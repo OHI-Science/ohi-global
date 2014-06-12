@@ -662,6 +662,7 @@ TR = function(layers, year_max){
 
   # calculate trend
   d_t = d_g_f_r %.%
+    filter(!is.na(Xtr_rmax)) %.%
     arrange(year, rgn_id) %.%
     group_by(rgn_id) %.%
     do(mod = lm(Xtr_rmax ~ year, data = .)) %>%
@@ -934,6 +935,36 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
 }
 
 LE = function(scores, layers){
+
+  # replacing 2012 scores for ECO and LIV with 2013 data (email Feb 28, Ben H.)
+  # ECO: Eritrea (just this one country)
+  # LIV: Eritrea, Anguilla, Bermuda, Egypt, Ghana, Indonesia, Iceland, Saint Kitts, 
+  #      Sri Lanka, Brunei, Malaysia, Trinidad & Tobago, and Taiwan
+  
+  # replacement data and region names
+  scores_2013 <- read.csv('../global2013/scores.csv')  
+  rgns = SelectLayersData(layers, layers='rgn_labels', narrow=T) %.%
+    select(region_id=id_num, label=val_chr) %.%
+    arrange(label)
+    
+  # ECO
+  ECO_rgn_id_replace = subset(rgns, label=='Eritrea', 'region_id', drop=T)
+  scores = scores %.%
+    filter(!(goal=='ECO' & dimension=='score' & region_id==ECO_rgn_id_replace)) %.%
+    rbind(
+      scores_2013 %.%
+        filter(goal=='ECO' & dimension=='score' & region_id==ECO_rgn_id_replace))
+    
+  # LIV
+  LIV_rgns_label_replace = c('Eritrea','Anguilla','Bermuda','Egypt','Ghana','Indonesia','Iceland','Saint Kitts and Nevis','Sri Lanka','Brunei','Malaysia','Trinidad and Tobago','Taiwan')
+  LIV_rgns_id_replace = subset(rgns, label %in% LIV_rgns_label_replace, 'region_id', drop=T)
+  stopifnot(length(LIV_rgns_label_replace)==length(LIV_rgns_id_replace))
+  scores = scores %.%
+    filter(!(goal=='LIV' & dimension=='score' & region_id %in% LIV_rgns_id_replace)) %.%
+    rbind(
+      scores_2013 %.%
+        filter(goal=='LIV' & dimension=='score' & region_id %in% LIV_rgns_id_replace))
+
   
   # calculate LE scores
   scores.LE = scores %.% 

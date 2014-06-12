@@ -36,7 +36,8 @@ scenarios = list(
     fld_dir      = 'dir_2012a',
     fld_fn       = 'fn_2012a'))
 
-for (i in 1:length(scenarios)){ # i=1
+#for (i in 1:length(scenarios)){ # i=1
+for (i in 2:length(scenarios)){ # i=1
   
   # vars
   scenario_old = scenarios[[i]][['name_old']]
@@ -115,16 +116,20 @@ for (i in 1:length(scenarios)){ # i=1
     s = readLines(f_in, warn=F, encoding='UTF-8')
     for (i in 1:nrow(lyrs)){ # i=1
       s = gsub(lyrs$layer_old[i], lyrs$layer[i], s, fixed=T)
+      
+      # fix LE for new scores path
+      s = gsub('inst/extdata/scores.Global2013.www2013.csv', '../global2013/scores.csv', s, fixed=T)      
     }
     writeLines(s, f_out)    
   }
     
   # calculate scores # load_all(dirs$ohicore)
-  layers = Layers(sprintf('%s/layers.csv', scenario_new),
-                  sprintf('%s/layers'    , scenario_new))
-  conf   = Conf(sprintf('%s/conf'    , scenario_new))
+  setwd(scenario_new)
+  layers = Layers('layers.csv', 'layers')
+  conf   = Conf('conf')
   scores = CalculateAll(conf, layers, debug=T)
   write.csv(scores, 'scores.csv', na='', row.names=F)
+  setwd('..')
   
   # spatial
   for (f in scenarios[[scenario_new]][['f_spatial']]){ # f = f_spatial[1]
