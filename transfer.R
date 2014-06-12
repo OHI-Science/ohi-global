@@ -17,12 +17,14 @@ scenarios = list(
     name_old     = 'Global2013.www2013',    
     google_doc   = 'https://docs.google.com/spreadsheet/pub?key=0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a'),
+    fld_fn       = 'fn_2013a',
+    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js')),
   global2012     = list(
     name_old     = 'Global2012.www2013',
     google_doc   = 'https://docs.google.com/spreadsheet/pub?key=0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
-    fld_fn       = 'fn_2012a'),
+    fld_fn       = 'fn_2012a',
+    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js')),
   antarctica2014 = list(
     name_old     = 'Antarctica2013.a2014',
     google_doc   = 'https://docs.google.com/spreadsheet/pub?key=0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
@@ -125,8 +127,9 @@ for (i in 1:length(scenarios)){ # i=1
   write.csv(scores, 'scores.csv', na='', row.names=F)
   
   # spatial
-  for (f in f_spatial){ # f = f_spatial[1]
-    file.copy(f, sprintf('spatial/%s', basename(f)))
+  for (f in scenarios[[scenario_new]][['f_spatial']]){ # f = f_spatial[1]
+    stopifnot(file.exists(f))
+    file.copy(f, sprintf('%s/spatial/%s', scenario_new, basename(f)))
   }
   
   # create shortcuts
@@ -140,5 +143,5 @@ for (i in 1:length(scenarios)){ # i=1
     make_all_launchApp=T)
   
   # launch on Mac
-  system('open launchApp.command')
+  system(sprintf('open %s/launchApp.command', scenario_new))
 }
