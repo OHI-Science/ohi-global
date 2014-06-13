@@ -942,7 +942,7 @@ LE = function(scores, layers){
   #      Sri Lanka, Brunei, Malaysia, Trinidad & Tobago, and Taiwan
   
   # replacement data and region names
-  scores_2013 <- read.csv('../global2013/scores.csv')  
+  scores_2013 <- read.csv('../eez2013/scores.csv')  
   rgns = SelectLayersData(layers, layers='rgn_labels', narrow=T) %.%
     select(region_id=id_num, label=val_chr) %.%
     arrange(label)

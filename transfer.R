@@ -13,13 +13,13 @@ load_all(dirs$ohicore)
 
 # scenarios
 scenarios = list(
-  global2013     = list(
+  eez2013     = list(
     name_old     = 'Global2013.www2013',    
     google_doc   = 'https://docs.google.com/spreadsheet/pub?key=0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js')),
-  global2012     = list(
+  eez2012     = list(
     name_old     = 'Global2012.www2013',
     google_doc   = 'https://docs.google.com/spreadsheet/pub?key=0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
@@ -118,7 +118,7 @@ for (i in 2:length(scenarios)){ # i=1
       s = gsub(lyrs$layer_old[i], lyrs$layer[i], s, fixed=T)
       
       # fix LE for new scores path
-      s = gsub('inst/extdata/scores.Global2013.www2013.csv', '../global2013/scores.csv', s, fixed=T)      
+      s = gsub('inst/extdata/scores.Global2013.www2013.csv', '../eez2013/scores.csv', s, fixed=T)      
     }
     writeLines(s, f_out)    
   }
