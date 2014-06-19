@@ -1,6 +1,6 @@
 require(ohicore)
 
-wd = "global2012"
+wd = "eez2012"
 scenario=list(
   conf   = ohicore::Conf(file.path(wd, "conf")),
   layers = ohicore::Layers(file.path(wd, "layers.csv"), file.path(wd, "layers")),

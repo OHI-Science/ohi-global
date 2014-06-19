@@ -1,31 +1,5 @@
 # transfer global scenarios out of ohicore
 
-# TODO NEXT...
-# Scenario: Antarctica2013.a2014 -> antarctica2014
-# 
-# Google spreadsheet editable URL:
-#   https://docs.google.com/spreadsheet/ccc?key=0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc
-# 
-# Error in gsub(lyrs$layer_old[i], lyrs$layer[i], s, fixed = T) : 
-#   input string 8 is invalid UTF-8
-# In addition: Warning messages:
-# 1: In CheckLayers(sprintf("%s/layers.csv", scenario_new), sprintf("%s/layers",  :
-#   Unused fields...
-#     eco: sector
-#     hab_extent: habitat
-#     hab_health: habitat
-#     hab_trend: habitat
-#     le_sector_weight: sector
-#     rgn_area: ccamlr_id,sp_id,sp_name
-#     rgn_global: ccamlr_id2,ccamlr_id,sp_id,sp_key,rgn_name,rgn_key
-# 2: In CheckLayers(sprintf("%s/layers.csv", scenario_new), sprintf("%s/layers",  :
-#   Rows duplicated...
-#     eco: 64
-#     hab_extent: 19
-#     hab_health: 19
-#     hab_trend: 19
-#     le_sector_weight: 19
-
 # get paths based on host machine
 dirs = list(
   neptune_data  = '/Volumes/data_edit', 
