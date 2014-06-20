@@ -636,14 +636,16 @@ TR = function(layers, year_max){
       by='rgn_id')
 
   # setup data for georegional gapfilling (remove Antarctica rgn_id=213)
+  if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
+  csv = 'reports/debug/eez2013_tr-gapfill-georegions.csv'
   d_g = gapfill_georegions(
     data = d %.%
       filter(rgn_id!=213) %.%
       select(rgn_id, year, Xtr),
     georegions = georegions,
-    georegion_labels = georegion_labels)
-#   write.csv(attr(d_g, 'gapfill_georegions'), sprintf('inst/extdata/reports%d.www2013/tr-%d_1-gapfilling.csv', yr, yr), row.names=F, na='')
-  
+    georegion_labels = georegion_labels,
+    attributes_csv=csv)
+    
   # filter: limit to 5 intervals (6 years worth of data)
   #   NOTE: original 2012 only used 2006:2010 whereas now we're using 2005:2010
   d_g_f = d_g %.%
@@ -902,7 +904,11 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
     as.data.frame() %.%
     select(rgn_id, score, w_sum)
   
-  s_r_g = gapfill_georegions(data, georegions, fld_weight='w_sum')
+  # georegional gapfill, and output gapfill_georegions attributes
+  if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
+  csv = sprintf('reports/debug/eez2013_%s-gapfill-georegions.csv', tolower(subgoal))
+  s_r_g = gapfill_georegions(data, georegions, fld_weight='w_sum', attributes_csv=csv)
+  
   #print(head(attr(s_r_g, 'gapfill_georegions')), row.names=F)
   # r0 r1 r2 id         w         v      r2_v     r1_v      r0_v r2_n r1_n r0_n z_n z_level         z
   # 1  2 11 56  214221.6 1.0000000 0.9268667 0.912682 0.7019455   11   36  166   1       v 1.0000000
