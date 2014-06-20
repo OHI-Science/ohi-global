@@ -1,4 +1,5 @@
 # transfer global scenarios out of ohicore
+setwd('~/github/ohi-global')
 
 # get paths based on host machine
 dirs = list(
@@ -33,14 +34,14 @@ scenarios = list(
   highseas2014   = list(
     name_old     = 'HighSeas2013.a2014',
     google_key   = '0ArcIhYsFwBeNdG9KVlJ6M0ZxV1dtVDJDQ3FLVWJQWFE',
-    fld_dir      = 'dir_2012a',
-    fld_fn       = 'fn_2012a'))
+    fld_dir      = 'dir_2013a',
+    fld_fn       = 'fn_2013a'))
 
-# read only: https://docs.google.com/spreadsheet/pub?key=0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE
-# editable:  https://docs.google.com/spreadsheet/ccc?key=0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE
+# read-only: https://docs.google.com/spreadsheet/pub?key=[google_key]
+# editable:  https://docs.google.com/spreadsheet/ccc?key=[google_key]
 
-for (i in 1:length(scenarios)){ # i=1
-#for (i in 1){ # i=3
+#for (i in 1:length(scenarios)){ # i=1
+for (i in 3:length(scenarios)){ # i=1
   
   # vars
   scenario_old = scenarios[[i]][['name_old']]
@@ -48,12 +49,14 @@ for (i in 1:length(scenarios)){ # i=1
   fld_dir      = scenarios[[i]][['fld_dir']]
   fld_fn       = scenarios[[i]][['fld_fn']]
   dir_conf_in  = sprintf('%s/inst/extdata/conf.%s'  , dirs$ohicore, scenario_old)
-  #dir_lyrs_in  = sprintf('%s/inst/extdata/layers.%s', dirs$ohicore, scenario_old)
+
   cat(sprintf('\nScenario: %s -> %s\n', scenario_old, scenario_new))
   
   # create dirs
-  dir.create(scenario_new, showWarnings=F)
-  for (dir in c('tmp','layers','conf','spatial')) dir.create(file.path(scenario_new, dir), showWarnings=F)
+  dirs_scenario = c(scenario_new, sprintf('%s/%s', scenario_new, c('tmp','layers','conf','spatial')))
+  for (dir in dirs_scenario) { # dir = dirs_scenario[3]
+    if (!file.exists(dir)) dir.create(dir, showWarnings=F)
+  }
 
   # load Google spreadsheet for copying layers
   cat(sprintf('\n  Google spreadsheet editable URL:\n    https://docs.google.com/spreadsheet/ccc?key=%s\n', scenarios[[i]][['google_key']]) )
@@ -90,7 +93,7 @@ for (i in 1:length(scenarios)){ # i=1
 
   # copy layers
   for (j in 1:nrow(lyrs)){ # j=1
-    file.copy(lyrs$path_in[j], lyrs$path_out[j], overwrite=T)
+    stopifnot(file.copy(lyrs$path_in[j], lyrs$path_out[j], overwrite=T))
   }
     
   # delete extraneous files
@@ -100,14 +103,9 @@ for (i in 1:length(scenarios)){ # i=1
   # layers registry
   write.csv(select(lyrs, -path_in, -path_in_exists, -path_out), sprintf('%s/layers.csv', scenario_new), row.names=F, na='')
   
-  # run checks on layers
-  CheckLayers(sprintf('%s/layers.csv', scenario_new), 
-              sprintf('%s/layers'    , scenario_new), 
-              flds_id=c('rgn_id','cntry_key','country_id','saup_id','fao_id','fao_saup_id'))
-  
   # order for layers for substitution old to new name in files
   lyrs = lyrs %.%
-    arrange(desc(nchar(as.character(layer_old))))
+    arrange(desc(nchar(as.character(layer_old))))  
   
   # copy configuration files
   conf_files = c('config.R','functions.R','goals.csv','pressures_matrix.csv','resilience_matrix.csv','resilience_weights.csv')
@@ -116,9 +114,13 @@ for (i in 1:length(scenarios)){ # i=1
     f_in  = sprintf('%s/%s', dir_conf_in, f)
     f_out = sprintf('%s/conf/%s', scenario_new, f)
     
+    cat(sprintf('%s sub layer_old with layer (new):\n', f))
+    
+    
     # substitute old layer names with new
     s = readLines(f_in, warn=F, encoding='UTF-8')
     for (i in 1:nrow(lyrs)){ # i=1
+      cat(sprintf('  %s -> %s\n', lyrs$layer_old[i], lyrs$layer[i]))
       s = gsub(lyrs$layer_old[i], lyrs$layer[i], s, fixed=T)
       
       # fix LE for new scores path
@@ -126,14 +128,28 @@ for (i in 1:length(scenarios)){ # i=1
     }
     writeLines(s, f_out)    
   }
-    
-  # calculate scores # load_all(dirs$ohicore)
-  setwd(scenario_new)
-  layers = Layers('layers.csv', 'layers')
-  conf   = Conf('conf')
-  scores = CalculateAll(conf, layers, debug=T)
-  write.csv(scores, 'scores.csv', na='', row.names=F)
-  setwd('..')
+  
+  # load conf
+  conf   = Conf(sprintf('%s/conf', scenario_new))
+  
+  # run checks on layers
+  CheckLayers(layers.csv = sprintf('%s/layers.csv', scenario_new), 
+              layers.dir = sprintf('%s/layers', scenario_new), 
+              flds_id    = conf$config$layers_id_fields)
+  
+  # load layers
+  layers = Layers(layers.csv = sprintf('%s/layers.csv', scenario_new), 
+                  layers.dir = sprintf('%s/layers', scenario_new))
+  
+  # calculate scores from directory of scenario
+  setwd(sprintf('~/github/ohi-global/%s', scenario_new)) # load_all(dirs$ohicore)
+  scores = CalculateAll(conf, layers, debug=T)  
+  setwd('~/github/ohi-global')
+  write.csv(scores, sprintf('%s/scores.csv', scenario_new), na='', row.names=F)
+  
+  # archive scores on disk (out of github, for easy retrieval later)
+  csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario_new, format(Sys.Date(), '%Y-%m-%d'))
+  write.csv(scores, csv, na='', row.names=F)
   
   # spatial
   for (f in scenarios[[scenario_new]][['f_spatial']]){ # f = f_spatial[1]
@@ -152,8 +168,8 @@ for (i in 1:length(scenarios)){ # i=1
     make_all_launchApp=T)
   
   # launch on Mac
-  system(sprintf('open %s/launchApp.command', scenario_new))
+  #system(sprintf('open %s/launchApp.command', scenario_new))
 }
 
 # create global scenario to combine the scores
-dir.create('global2014', showWarnings=F)
+if (!file.exists('global2014')) dir.create('global2014', showWarnings=F)
