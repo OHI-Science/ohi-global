@@ -40,8 +40,7 @@ scenarios = list(
 # read-only: https://docs.google.com/spreadsheet/pub?key=[google_key]
 # editable:  https://docs.google.com/spreadsheet/ccc?key=[google_key]
 
-#for (i in 1:length(scenarios)){ # i=1
-for (i in 3:length(scenarios)){ # i=1
+for (i in 1:length(scenarios)){ # i=1
   
   # vars
   scenario_old = scenarios[[i]][['name_old']]
@@ -156,19 +155,18 @@ for (i in 3:length(scenarios)){ # i=1
     stopifnot(file.exists(f))
     file.copy(f, sprintf('%s/spatial/%s', scenario_new, basename(f)))
   }
+ 
+   # delete old shortcut files
+   for (f in c('launchApp.bat','launchApp.command','launchApp_code.R','scenario.R')){
+     path = sprintf('%s/%s',scenario_new,f)
+     if (file.exists(path)) unlink(path)
+   }
+   
+   # create shortcuts
+   write_shortcuts(scenario_new, all_os=T) 
   
-  # create shortcuts
-  WriteScenario(
-    scenario = list(
-      conf    = conf, 
-      layers  = layers, 
-      scores  = scores,
-      spatial = 'spatial',
-      dir     = scenario_new),
-    make_all_launchApp=T)
-  
-  # launch on Mac
-  #system(sprintf('open %s/launchApp.command', scenario_new))
+  # launch on Mac # setwd('~/github/ohi-global/eez2013'); launch_app()
+  system(sprintf('open %s/launch_app.command', scenario_new))
 }
 
 # create global scenario to combine the scores
