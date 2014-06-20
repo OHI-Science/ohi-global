@@ -1,5 +1,5 @@
 # presume that working directory in current scenario directory, eg:
-# setwd('~/ohi-global/eez2013')
+# setwd('~/ohi-global/highseas2014')
 
 # load conf
 conf = Conf('conf')
