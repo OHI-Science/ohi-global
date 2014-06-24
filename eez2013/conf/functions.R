@@ -380,7 +380,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   
   # debug starting with fresh R session
   debug=T
-  scenario='eez2013'
+  scenario='eez2014'
   setwd(sprintf('~/github/ohi-global/%s', scenario))
   if (!file.exists('reports/debug') & debug) dir.create('reports/debug', showWarnings=F)
   library(devtools); load_all('~/github/ohicore')
@@ -481,7 +481,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     # need to generate this layer for calculating pressures and resilience
     w %>%
       select(rgn_id, product, weight=usd_peak_product_weight) %>%
-      write.csv(sprintf('~/github/ohiprep/Global/NCEAS-NaturalProducts_v2014/data/np_harvest_usd-peak-product-weight_year-max-%d.csv', year_max))
+      write.csv(sprintf('~/github/ohiprep/Global/NCEAS-NaturalProducts_v2014/data/np_harvest_usd-peak-product-weight_year-max-%d.csv', year_max), row.names=F, na='')
   }
   
   # strange ifelse behavior in dplyr when condition has NAs throwing "Error: incompatible types, expecting a numeric vector". see https://github.com/hadley/dplyr/issues/299.

@@ -103,6 +103,7 @@ for (i in 1:length(scenarios)){ # i=1
   CheckLayers(layers.csv = sprintf('%s/layers.csv', scenario), 
               layers.dir = sprintf('%s/layers', scenario), 
               flds_id    = conf$config$layers_id_fields)
+  # system(sprintf('open %s/layers.csv', scenario))
   
   # load layers
   layers = Layers(layers.csv = sprintf('%s/layers.csv', scenario), 
