@@ -378,17 +378,17 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: Nature 2012 georegional gapfilled by product and year
   
-  # debug starting with fresh R session
-  debug=T
-  scenario='eez2014'
-  setwd(sprintf('~/github/ohi-global/%s', scenario))
-  if (!file.exists('reports/debug') & debug) dir.create('reports/debug', showWarnings=F)
-  library(devtools); load_all('~/github/ohicore')
-  conf   = Conf('conf')
-  layers = Layers('layers.csv', 'layers')
-  scores = read.csv('scores.csv')
-  harvest_peak_buffer = 0.35
-  year_max = c(eez2014=2011, eez2013=2010, eez2012=2009)[[scenario]]
+  #   # debug starting with fresh R session
+  #   debug=T
+  #   scenario='eez2013'
+  #   setwd(sprintf('~/github/ohi-global/%s', scenario))
+  #   if (!file.exists('reports/debug') & debug) dir.create('reports/debug', showWarnings=F)
+  #   library(devtools); load_all('~/github/ohicore')
+  #   conf   = Conf('conf')
+  #   layers = Layers('layers.csv', 'layers')
+  #   scores = read.csv('scores.csv')
+  #   harvest_peak_buffer = 0.35
+  #   year_max = c(eez2014=2011, eez2013=2010, eez2012=2009)[[scenario]]
   
   # layers
   rgns      = layers$data[['rgn_labels']]
@@ -475,7 +475,12 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     group_by(rgn_id) %>%
     mutate(
       usd_peak_allproducts    = sum(usd_peak, na.rm=T),
-      usd_peak_product_weight = usd_peak / usd_peak_allproducts)
+      usd_peak_product_weight = usd_peak / usd_peak_allproducts)  
+  h = left_join(
+    h, 
+    w %>%
+      select(rgn_id, product, usd_peak_product_weight), 
+    by=c('rgn_id','product'))
   
   if (debug){
     # need to generate this layer for calculating pressures and resilience
@@ -487,7 +492,9 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   # strange ifelse behavior in dplyr when condition has NAs throwing "Error: incompatible types, expecting a numeric vector". see https://github.com/hadley/dplyr/issues/299.
   h = within(h, {
     tonnes_rel      = ifelse(tonnes >= tonnes_peak, 1, tonnes / tonnes_peak)
-    tonnes_rel_orig = tonnes_rel # 109 NAs
+    tonnes_rel_orig = tonnes_rel                                  # 109 NAs
+    usd_peak    = max(usd, na.rm=T)  * (1 - harvest_peak_buffer)  # 
+    usd_rel     = ifelse(usd >= usd_peak, 1, usd / usd_peak)    
     # swap one with other if still NA even after correlative gapfilling above
     tonnes_rel      = ifelse(is.na(tonnes_rel), usd_rel   , tonnes_rel)  
   }) %>% group_by(rgn_id, product, year)
@@ -499,7 +506,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
       # per region-product-year
       mutate(
         tonnes_gapfilled = ifelse( (is.na(tonnes_orig) | is.na(tonnes_rel_orig)) & !is.na(tonnes_rel), T, F),
-        usd_gapfilled    = ifelse( (is.na(usd_orig)    | is.na(usd_rel_orig)   ) & !is.na(usd_rel), T, F)) %>%
+        usd_gapfilled    = ifelse( is.na(usd_orig) & !is.na(usd_rel), T, F)) %>%
       # per region
       group_by(rgn_id) %>%
       summarize(
@@ -647,8 +654,9 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   # aggregate across products to rgn-year status, weighting by usd_rel
   S = D %>%
     group_by(rgn_name, rgn_id, year) %>%
+    filter(!is.na(product_status) & !is.na(usd_peak_product_weight)) %>%
     summarize(
-      status = weighted.mean(product_status, usd_rel, na.rm=T)) %>%
+      status = weighted.mean(product_status, usd_peak_product_weight)) %>%
     ungroup()
 
   if (debug){

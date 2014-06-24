@@ -99,15 +99,15 @@ for (i in 1:length(scenarios)){ # i=1
   # load conf
   conf   = Conf(sprintf('%s/conf', scenario))
   
-  # run checks on layers
-  CheckLayers(layers.csv = sprintf('%s/layers.csv', scenario), 
-              layers.dir = sprintf('%s/layers', scenario), 
-              flds_id    = conf$config$layers_id_fields)
-  # system(sprintf('open %s/layers.csv', scenario))
-  
-  # load layers
-  layers = Layers(layers.csv = sprintf('%s/layers.csv', scenario), 
-                  layers.dir = sprintf('%s/layers', scenario))
+#  # run checks on layers
+#   CheckLayers(layers.csv = sprintf('%s/layers.csv', scenario), 
+#               layers.dir = sprintf('%s/layers', scenario), 
+#               flds_id    = conf$config$layers_id_fields)
+#   # system(sprintf('open %s/layers.csv', scenario))
+#   
+#   # load layers
+#   layers = Layers(layers.csv = sprintf('%s/layers.csv', scenario), 
+#                   layers.dir = sprintf('%s/layers', scenario))
   
   # calculate scores from directory of scenario
   setwd(sprintf('~/github/ohi-global/%s', scenario)) # load_all(dirs$ohicore)
