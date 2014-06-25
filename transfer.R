@@ -1,4 +1,6 @@
 # transfer global scenarios out of ohicore
+# TODO: create true regions_gcs.js for Antarctica & High Seas
+
 setwd('~/github/ohi-global')
 
 # get paths based on host machine
@@ -30,12 +32,14 @@ scenarios = list(
     name_old     = 'Antarctica2013.a2014',
     google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
     fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a'),
+    fld_fn       = 'fn_2013a',
+    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js')),
   highseas2014   = list(
     name_old     = 'HighSeas2013.a2014',
     google_key   = '0ArcIhYsFwBeNdG9KVlJ6M0ZxV1dtVDJDQ3FLVWJQWFE',
     fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a'))
+    fld_fn       = 'fn_2013a'),
+    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'))
 
 # read-only: https://docs.google.com/spreadsheet/pub?key=[google_key]
 # editable:  https://docs.google.com/spreadsheet/ccc?key=[google_key]
@@ -149,21 +153,21 @@ for (i in 1:length(scenarios)){ # i=1
   # archive scores on disk (out of github, for easy retrieval later)
   csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario_new, format(Sys.Date(), '%Y-%m-%d'))
   write.csv(scores, csv, na='', row.names=F)
-  
-  # spatial
+   
+  # spatial  
   for (f in scenarios[[scenario_new]][['f_spatial']]){ # f = f_spatial[1]
     stopifnot(file.exists(f))
     file.copy(f, sprintf('%s/spatial/%s', scenario_new, basename(f)))
   }
- 
+  
    # delete old shortcut files
    for (f in c('launchApp.bat','launchApp.command','launchApp_code.R','scenario.R')){
      path = sprintf('%s/%s',scenario_new,f)
      if (file.exists(path)) unlink(path)
    }
    
-   # create shortcuts
-   write_shortcuts(scenario_new, all_os=T) 
+  # save shortcut files not specific to operating system
+  write_shortcuts(scenario_new, os_files=0)
   
   # launch on Mac # setwd('~/github/ohi-global/eez2013'); launch_app()
   system(sprintf('open %s/launch_app.command', scenario_new))
