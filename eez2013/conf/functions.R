@@ -376,13 +376,12 @@ AO = function(layers,
 
 NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   # TODO: add smoothing a la PLoS 2013 manuscript
-  # TODO: Nature 2012 georegional gapfilled by product and year
+  # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
   
   #   # debug starting with fresh R session
   #   debug=T
   #   scenario='eez2013'
   #   setwd(sprintf('~/github/ohi-global/%s', scenario))
-  #   if (!file.exists('reports/debug') & debug) dir.create('reports/debug', showWarnings=F)
   #   library(devtools); load_all('~/github/ohicore')
   #   conf   = Conf('conf')
   #   layers = Layers('layers.csv', 'layers')
@@ -403,6 +402,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   FIS_status =  scores %>% 
     filter(goal=='FIS' & dimension=='status') %>%
     select(rgn_id=region_id, score)  
+  
+  if (debug & !file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
   
   # merge harvest in tonnes and usd
   h = 
@@ -495,7 +496,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     tonnes_rel_orig = tonnes_rel                                  # 109 NAs
     usd_peak    = max(usd, na.rm=T)  * (1 - harvest_peak_buffer)  # 
     usd_rel     = ifelse(usd >= usd_peak, 1, usd / usd_peak)    
-    # swap one with other if still NA even after correlative gapfilling above
+    # swap usd_rel for tonnes_rel if still NA even after correlative gapfilling above
     tonnes_rel      = ifelse(is.na(tonnes_rel), usd_rel   , tonnes_rel)  
   }) %>% group_by(rgn_id, product, year)
   
@@ -513,8 +514,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
         tonnes_gapfilled = ifelse(sum(tonnes_gapfilled) > 0, T, F),
         usd_gapfilled    = ifelse(sum(usd_gapfilled) > 0, T, F))
     
-    write.csv(h  , 'reports/debug/np_harvest_gapfilled_data.csv', row.names=F, na='')
-    write.csv(h_g, 'reports/debug/np_harvest_gapfilled_summary.csv', row.names=F, na='')
+    write.csv(h  , 'reports/debug/np_1-harvest_lm-gapfilled_data.csv', row.names=F, na='')
+    write.csv(h_g, 'reports/debug/np_1-harvest_lm-gapfilled_summary.csv', row.names=F, na='')
   }  
   
   # area for poducts having single habitats for exposure
@@ -649,7 +650,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   }
   
   # calculate rgn-product-year status
-  D = mutate(D, product_status = tonnes_rel * sustainability)
+  D = mutate(D, product_status = tonnes_rel * sustainability) %.%
+    filter(rgn_name != 'DISPUTED')
   
   # aggregate across products to rgn-year status, weighting by usd_rel
   S = D %>%
@@ -659,11 +661,43 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
       status = weighted.mean(product_status, usd_peak_product_weight)) %>%
     ungroup()
 
+  # get georegions for gapfilling
+  georegions = layers$data[['rgn_georegions']] %.%
+    dcast(rgn_id ~ level, value.var='georgn_id')
+  
   if (debug){
-    write.csv(D, 'reports/debug/np_data_rgn-year-product.csv', row.names=F, na='')
-    write.csv(S, 'reports/debug/np_data_rgn-year.csv', row.names=F, na='')
+    # write out data
+    write.csv(D, 'reports/debug/np_2-rgn-year-product_data.csv', row.names=F, na='')
+    write.csv(S, 'reports/debug/np_3-rgn-year_status.csv', row.names=F, na='')
+    
+    # get georegion and region labels for prettier debug output
+    georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
+      mutate(level_label = sprintf('%s_label', level)) %.%
+      dcast(rgn_id ~ level_label, value.var='label') %.%
+      left_join(
+        layers$data[['rgn_labels']] %.%
+          select(rgn_id, v_label=label),
+        by='rgn_id')    
+    
+    # spatial gapfill by georegions
+    G = gapfill_georegions(
+      data = S %>%
+        select(rgn_id, year, status),
+      georegions = georegions,
+      georegion_labels = georegion_labels,
+      attributes_csv='reports/debug/np_4-gapfill-georegions.csv')
+    
+  } else {
+    
+    # spatial gapfill by georegions
+    G = gapfill_georegions(
+      data = S %>%
+        select(rgn_id, year, status),
+      georegions = georegions)
+    
   }
   
+  # calculate status
   status = S %>%
     filter(year==year_max & !is.na(status)) %>%
     mutate(
@@ -674,7 +708,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     
   # trend based on 5 intervals (6 years of data)
   trend = S %>%
-    filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>% # 765 status == NA total
+    filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>%
     arrange(rgn_id, year) %>%
     group_by(rgn_id) %>%
     do(mdl = lm(status ~ year, data=.)) %>%
@@ -1474,7 +1508,7 @@ PreGlobalScores = function(layers, conf, scores){
   return(scores)
 }
 
-FinalizeScores = function(layers, conf, scores){
+FinalizeScores = function(layers, conf, scores, debug=T){
   
   # get regions
   rgns = SelectLayersData(layers, layers=conf$config$layer_region_labels, narrow=T)

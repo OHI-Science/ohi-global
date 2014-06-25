@@ -374,21 +374,20 @@ AO = function(layers,
   return(scores)  
 }
 
-NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
+NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   # TODO: add smoothing a la PLoS 2013 manuscript
-  # TODO: Nature 2012 georegional gapfilled by product and year
+  # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
   
-  # debug starting with fresh R session
-  debug=T
-  scenario='eez2013'
-  setwd(sprintf('~/github/ohi-global/%s', scenario))
-  if (!file.exists('reports/debug') & debug) dir.create('reports/debug', showWarnings=F)
-  library(devtools); load_all('~/github/ohicore')
-  conf   = Conf('conf')
-  layers = Layers('layers.csv', 'layers')
-  scores = read.csv('scores.csv')
-  harvest_peak_buffer = 0.35
-  year_max = 2010 # eez2014=2011, eez2013=2010  
+  #   # debug starting with fresh R session
+  #   debug=T
+  #   scenario='eez2013'
+  #   setwd(sprintf('~/github/ohi-global/%s', scenario))
+  #   library(devtools); load_all('~/github/ohicore')
+  #   conf   = Conf('conf')
+  #   layers = Layers('layers.csv', 'layers')
+  #   scores = read.csv('scores.csv')
+  #   harvest_peak_buffer = 0.35
+  #   year_max = c(eez2014=2011, eez2013=2010, eez2012=2009)[[scenario]]
   
   # layers
   rgns      = layers$data[['rgn_labels']]
@@ -403,6 +402,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   FIS_status =  scores %>% 
     filter(goal=='FIS' & dimension=='status') %>%
     select(rgn_id=region_id, score)  
+  
+  if (debug & !file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
   
   # merge harvest in tonnes and usd
   h = 
@@ -468,27 +469,34 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     mutate(    
       tonnes_peak = max(tonnes, na.rm=T)  * (1 - harvest_peak_buffer),
       usd_peak    = max(   usd, na.rm=T)  * (1 - harvest_peak_buffer))
-    
+  
   # product weights per region: w = product peak / (sum of all product peaks)
   w = h %>%
     filter(year == year_max) %>%
     group_by(rgn_id) %>%
     mutate(
       usd_peak_allproducts    = sum(usd_peak, na.rm=T),
-      usd_peak_product_weight = usd_peak / usd_peak_allproducts)
+      usd_peak_product_weight = usd_peak / usd_peak_allproducts)  
+  h = left_join(
+    h, 
+    w %>%
+      select(rgn_id, product, usd_peak_product_weight), 
+    by=c('rgn_id','product'))
   
   if (debug){
-    # need to generate this layer for pressures and resilience weighting as well
+    # need to generate this layer for calculating pressures and resilience
     w %>%
       select(rgn_id, product, weight=usd_peak_product_weight) %>%
-      write.csv(sprintf('~/github/ohiprep/Global/NCEAS-NaturalProducts_v2014/data/np_harvest_usd-peak-product-weight_year-max-%d.csv', year_max))
+      write.csv(sprintf('~/github/ohiprep/Global/NCEAS-NaturalProducts_v2014/data/np_harvest_usd-peak-product-weight_year-max-%d.csv', year_max), row.names=F, na='')
   }
   
   # strange ifelse behavior in dplyr when condition has NAs throwing "Error: incompatible types, expecting a numeric vector". see https://github.com/hadley/dplyr/issues/299.
   h = within(h, {
     tonnes_rel      = ifelse(tonnes >= tonnes_peak, 1, tonnes / tonnes_peak)
-    tonnes_rel_orig = tonnes_rel # 109 NAs
-    # swap one with other if still NA even after correlative gapfilling above
+    tonnes_rel_orig = tonnes_rel                                  # 109 NAs
+    usd_peak    = max(usd, na.rm=T)  * (1 - harvest_peak_buffer)  # 
+    usd_rel     = ifelse(usd >= usd_peak, 1, usd / usd_peak)    
+    # swap usd_rel for tonnes_rel if still NA even after correlative gapfilling above
     tonnes_rel      = ifelse(is.na(tonnes_rel), usd_rel   , tonnes_rel)  
   }) %>% group_by(rgn_id, product, year)
   
@@ -499,15 +507,15 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
       # per region-product-year
       mutate(
         tonnes_gapfilled = ifelse( (is.na(tonnes_orig) | is.na(tonnes_rel_orig)) & !is.na(tonnes_rel), T, F),
-        usd_gapfilled    = ifelse( (is.na(usd_orig)    | is.na(usd_rel_orig)   ) & !is.na(usd_rel), T, F)) %>%
+        usd_gapfilled    = ifelse( is.na(usd_orig) & !is.na(usd_rel), T, F)) %>%
       # per region
       group_by(rgn_id) %>%
       summarize(
         tonnes_gapfilled = ifelse(sum(tonnes_gapfilled) > 0, T, F),
         usd_gapfilled    = ifelse(sum(usd_gapfilled) > 0, T, F))
     
-    write.csv(h  , 'reports/debug/np_harvest_gapfilled_data.csv', row.names=F, na='')
-    write.csv(h_g, 'reports/debug/np_harvest_gapfilled_summary.csv', row.names=F, na='')
+    write.csv(h  , 'reports/debug/np_1-harvest_lm-gapfilled_data.csv', row.names=F, na='')
+    write.csv(h_g, 'reports/debug/np_1-harvest_lm-gapfilled_summary.csv', row.names=F, na='')
   }  
   
   # area for poducts having single habitats for exposure
@@ -557,7 +565,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     ungroup() %>%
     mutate(
       exposure = log(exposure_raw + 1) / log(exposure_product_max + 1))
-    
+  
   # add exposure for fish_oil
   E = 
     rbind_list(
@@ -642,20 +650,54 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   }
   
   # calculate rgn-product-year status
-  D = mutate(D, product_status = tonnes_rel * sustainability)
+  D = mutate(D, product_status = tonnes_rel * sustainability) %.%
+    filter(rgn_name != 'DISPUTED')
   
   # aggregate across products to rgn-year status, weighting by usd_rel
   S = D %>%
     group_by(rgn_name, rgn_id, year) %>%
+    filter(!is.na(product_status) & !is.na(usd_peak_product_weight)) %>%
     summarize(
-      status = weighted.mean(product_status, usd_rel, na.rm=T)) %>%
+      status = weighted.mean(product_status, usd_peak_product_weight)) %>%
     ungroup()
-
+  
+  # get georegions for gapfilling
+  georegions = layers$data[['rgn_georegions']] %.%
+    dcast(rgn_id ~ level, value.var='georgn_id')
+  
   if (debug){
-    write.csv(D, 'reports/debug/np_data_rgn-year-product.csv', row.names=F, na='')
-    write.csv(S, 'reports/debug/np_data_rgn-year.csv', row.names=F, na='')
+    # write out data
+    write.csv(D, 'reports/debug/np_2-rgn-year-product_data.csv', row.names=F, na='')
+    write.csv(S, 'reports/debug/np_3-rgn-year_status.csv', row.names=F, na='')
+    
+    # get georegion and region labels for prettier debug output
+    georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
+      mutate(level_label = sprintf('%s_label', level)) %.%
+      dcast(rgn_id ~ level_label, value.var='label') %.%
+      left_join(
+        layers$data[['rgn_labels']] %.%
+          select(rgn_id, v_label=label),
+        by='rgn_id')    
+    
+    # spatial gapfill by georegions
+    G = gapfill_georegions(
+      data = S %>%
+        select(rgn_id, year, status),
+      georegions = georegions,
+      georegion_labels = georegion_labels,
+      attributes_csv='reports/debug/np_4-gapfill-georegions.csv')
+    
+  } else {
+    
+    # spatial gapfill by georegions
+    G = gapfill_georegions(
+      data = S %>%
+        select(rgn_id, year, status),
+      georegions = georegions)
+    
   }
   
+  # calculate status
   status = S %>%
     filter(year==year_max & !is.na(status)) %>%
     mutate(
@@ -663,10 +705,10 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
       score     = status * 100) %>%
     select(rgn_id, dimension, score) %>%
     arrange(rgn_id) # 30 status==NAs for year_max==2011
-    
+  
   # trend based on 5 intervals (6 years of data)
   trend = S %>%
-    filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>% # 765 status == NA total
+    filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>%
     arrange(rgn_id, year) %>%
     group_by(rgn_id) %>%
     do(mdl = lm(status ~ year, data=.)) %>%
@@ -686,7 +728,6 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     arrange(goal, dimension, region_id)
   return(scores_NP)
 }
-
 CS = function(layers){
   
   # layers
