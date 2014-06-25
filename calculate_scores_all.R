@@ -21,7 +21,7 @@ scenarios = list(
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'),
-    do           = F),
+    do           = T),
   eez2012     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
@@ -99,7 +99,7 @@ for (i in 1:length(scenarios)){ # i=1
     }
   
     # copy layers
-    for (j in 1:nrow(lyrs)){ # j=1
+    for (j in 1:nrow(lyrs)){ # j=45
       stopifnot(file.copy(lyrs$path_in[j], lyrs$path_out[j], overwrite=T))
     }
       

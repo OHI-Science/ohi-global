@@ -378,16 +378,16 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
   
-  #   # debug starting with fresh R session
-  #   debug=T
-  #   scenario='eez2013'
-  #   setwd(sprintf('~/github/ohi-global/%s', scenario))
-  #   library(devtools); load_all('~/github/ohicore')
-  #   conf   = Conf('conf')
-  #   layers = Layers('layers.csv', 'layers')
-  #   scores = read.csv('scores.csv')
-  #   harvest_peak_buffer = 0.35
-  #   year_max = c(eez2014=2011, eez2013=2010, eez2012=2009)[[scenario]]
+  # debug starting with fresh R session
+  debug=T
+  scenario='eez2014'
+  setwd(sprintf('~/github/ohi-global/%s', scenario))
+  library(devtools); load_all('~/github/ohicore')
+  conf   = Conf('conf')
+  layers = Layers('layers.csv', 'layers')
+  scores = read.csv('scores.csv')
+  harvest_peak_buffer = 0.35
+  year_max = c(eez2014=2011, eez2013=2010, eez2012=2009)[[scenario]]
   
   # layers
   rgns      = layers$data[['rgn_labels']]

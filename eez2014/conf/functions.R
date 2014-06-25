@@ -494,7 +494,6 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   h = within(h, {
     tonnes_rel      = ifelse(tonnes >= tonnes_peak, 1, tonnes / tonnes_peak)
     tonnes_rel_orig = tonnes_rel                                  # 109 NAs
-    usd_peak    = max(usd, na.rm=T)  * (1 - harvest_peak_buffer)  # 
     usd_rel     = ifelse(usd >= usd_peak, 1, usd / usd_peak)    
     # swap usd_rel for tonnes_rel if still NA even after correlative gapfilling above
     tonnes_rel      = ifelse(is.na(tonnes_rel), usd_rel   , tonnes_rel)  
