@@ -1,5 +1,5 @@
 # presume that working directory in current scenario directory, eg:
-# setwd('~/ohi-global/eez2013')
+# setwd('~/github/ohi-global/eez2013')
 library(ohicore)
 
 # load conf
