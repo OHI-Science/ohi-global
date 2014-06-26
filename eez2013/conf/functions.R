@@ -225,10 +225,6 @@ MAR = function(layers, status_years=2005:2011){
   
   # merge and cast harvest with sustainability
   #harvest_species$species = as.character(harvest_species$species)
-  rky = dcast(merge(merge(harvest_tonnes, 
-                          harvest_species, all.x=TRUE, by=c('species_code')),
-                    sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')),
-              rgn_id + species + species_code + sust_coeff ~ year, value.var='tonnes', mean, na.rm=T); head(rky)
   rky = harvest_tonnes %.%
     merge(harvest_species     , all.x=TRUE, by='species_code') %.%
     merge(sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')) %.%
@@ -374,29 +370,25 @@ AO = function(layers,
   return(scores)  
 }
 
-NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
+NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
-  
-  # debug starting with fresh R session
-  debug=T
-  scenario='eez2014'
-  setwd(sprintf('~/github/ohi-global/%s', scenario))
-  library(devtools); load_all('~/github/ohicore')
-  conf   = Conf('conf')
-  layers = Layers('layers.csv', 'layers')
-  scores = read.csv('scores.csv')
-  harvest_peak_buffer = 0.35
-  year_max = c(eez2014=2011, eez2013=2010, eez2012=2009)[[scenario]]
-  
+    
   # layers
-  rgns      = layers$data[['rgn_labels']]
-  h_tonnes  = layers$data[['np_harvest_tonnes']]
-  h_usd     = layers$data[['np_harvest_usd']]
-  r_cyanide = layers$data[['np_cyanide']]
-  r_blast   = layers$data[['np_blast']]
-  hab_coral = layers$data[['np_coral_reef']]
-  hab_rky   = layers$data[['np_rocky_reef']]
+  rgns       = layers$data[['rgn_labels']]
+  h_tonnes   = layers$data[['np_harvest_tonnes']]
+  h_usd      = layers$data[['np_harvest_usd']]
+  r_cyanide  = layers$data[['np_cyanide']]
+  r_blast    = layers$data[['np_blast']]  
+  hab_extent = layers$data[['hab_extent']]
+  
+  # extract habitats used
+  hab_coral = hab_extent %>%
+    filter(habitat=='coral') %>%
+    select(rgn_id, km2)
+  hab_rky   = hab_extent %>%
+    filter(habitat=='rocky_reef') %>%
+    select(rgn_id, km2)
   
   # FIS status
   FIS_status =  scores %>% 
@@ -524,40 +516,40 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       filter(product=='corals') %>%
       left_join(
         hab_coral %>%
-          filter(area_km2 > 0) %>%
-          select(rgn_id, area_km2), by='rgn_id'),
+          filter(km2 > 0) %>%
+          select(rgn_id, km2), by='rgn_id'),
     # seaweeds in rocky reef
     h %>%
       filter(product=='seaweeds') %>%
       left_join(
         hab_rky %>%
-          filter(area_km2 > 0) %>%
-          select(rgn_id, area_km2), by='rgn_id'))
+          filter(km2 > 0) %>%
+          select(rgn_id, km2), by='rgn_id'))
   
   # area for products in both coral and rocky reef habitats: shells, ornamentals, sponges
   b = h %>%
     filter(product %in% c('shells', 'ornamentals','sponges')) %>%
     left_join(
       hab_coral %>%
-        filter(area_km2 > 0) %>%
-        select(rgn_id, area_coral_km2=area_km2), 
+        filter(km2 > 0) %>%
+        select(rgn_id, coral_km2=km2), 
       by='rgn_id') %>%
     left_join(
       hab_rky %>%
-        filter(area_km2 > 0) %>%
-        select(rgn_id, area_rky_km2=area_km2), 
+        filter(km2 > 0) %>%
+        select(rgn_id, rky_km2=km2), 
       by='rgn_id')
-  b$area_km2 = rowSums(b[,c('area_rky_km2','area_coral_km2')], na.rm=T)
-  b = filter(b, area_km2 > 0)
+  b$km2 = rowSums(b[,c('rky_km2','coral_km2')], na.rm=T)
+  b = filter(b, km2 > 0)
   
   # exposure: combine areas, get tonnes / area, and rescale with log transform
   E = 
     rbind_list(
       a,
       b %>%
-        select(-area_rky_km2, -area_coral_km2)) %>%
+        select(-rky_km2, -coral_km2)) %>%
     mutate(
-      exposure_raw = ifelse(tonnes > 0 & area_km2 > 0, tonnes / area_km2, 0)) %>%
+      exposure_raw = ifelse(tonnes > 0 & km2 > 0, tonnes / km2, 0)) %>%
     group_by(product) %>%
     mutate(
       exposure_product_max = max(exposure_raw, na.rm=T)) %>%
@@ -1236,7 +1228,38 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
   return(scores)
 }
 
-LE = function(scores, layers){
+LE = function(scores, layers, eez2012=F){
+  
+  if (eez2012){
+    # replacing 2012 scores for ECO and LIV with 2013 data (email Feb 28, Ben H.)
+    # ECO: Eritrea (just this one country)
+    # LIV: Eritrea, Anguilla, Bermuda, Egypt, Ghana, Indonesia, Iceland, Saint Kitts, 
+    #      Sri Lanka, Brunei, Malaysia, Trinidad & Tobago, and Taiwan
+    
+    # replacement data and region names
+    scores_2013 <- read.csv('../eez2013/scores.csv')  
+    rgns = SelectLayersData(layers, layers='rgn_labels', narrow=T) %.%
+      select(region_id=id_num, label=val_chr) %.%
+      arrange(label)
+    
+    # ECO
+    ECO_rgn_id_replace = subset(rgns, label=='Eritrea', 'region_id', drop=T)
+    scores = scores %.%
+      filter(!(goal=='ECO' & dimension=='score' & region_id==ECO_rgn_id_replace)) %.%
+      rbind(
+        scores_2013 %.%
+          filter(goal=='ECO' & dimension=='score' & region_id==ECO_rgn_id_replace))
+    
+    # LIV
+    LIV_rgns_label_replace = c('Eritrea','Anguilla','Bermuda','Egypt','Ghana','Indonesia','Iceland','Saint Kitts and Nevis','Sri Lanka','Brunei','Malaysia','Trinidad and Tobago','Taiwan')
+    LIV_rgns_id_replace = subset(rgns, label %in% LIV_rgns_label_replace, 'region_id', drop=T)
+    stopifnot(length(LIV_rgns_label_replace)==length(LIV_rgns_id_replace))
+    scores = scores %.%
+      filter(!(goal=='LIV' & dimension=='score' & region_id %in% LIV_rgns_id_replace)) %.%
+      rbind(
+        scores_2013 %.%
+          filter(goal=='LIV' & dimension=='score' & region_id %in% LIV_rgns_id_replace))
+  }
   
   # calculate LE scores
   scores.LE = scores %.% 
