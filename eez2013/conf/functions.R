@@ -370,7 +370,7 @@ AO = function(layers,
   return(scores)  
 }
 
-NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
+NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
     
