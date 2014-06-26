@@ -378,16 +378,16 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
   
-  #   # debug starting with fresh R session
-  #   debug=T
-  #   scenario='eez2013'
-  #   setwd(sprintf('~/github/ohi-global/%s', scenario))
-  #   library(devtools); load_all('~/github/ohicore')
-  #   conf   = Conf('conf')
-  #   layers = Layers('layers.csv', 'layers')
-  #   scores = read.csv('scores.csv')
-  #   harvest_peak_buffer = 0.35
-  #   year_max = c(eez2014=2011, eez2013=2010, eez2012=2009)[[scenario]]
+  # debug starting with fresh R session
+  debug=T
+  scenario='eez2014'
+  setwd(sprintf('~/github/ohi-global/%s', scenario))
+  library(devtools); load_all('~/github/ohicore')
+  conf   = Conf('conf')
+  layers = Layers('layers.csv', 'layers')
+  scores = read.csv('scores.csv')
+  harvest_peak_buffer = 0.35
+  year_max = c(eez2014=2011, eez2013=2010, eez2012=2009)[[scenario]]
   
   # layers
   rgns      = layers$data[['rgn_labels']]
@@ -469,7 +469,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     mutate(    
       tonnes_peak = max(tonnes, na.rm=T)  * (1 - harvest_peak_buffer),
       usd_peak    = max(   usd, na.rm=T)  * (1 - harvest_peak_buffer))
-  
+    
   # product weights per region: w = product peak / (sum of all product peaks)
   w = h %>%
     filter(year == year_max) %>%
@@ -564,7 +564,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     ungroup() %>%
     mutate(
       exposure = log(exposure_raw + 1) / log(exposure_product_max + 1))
-  
+    
   # add exposure for fish_oil
   E = 
     rbind_list(
@@ -659,7 +659,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     summarize(
       status = weighted.mean(product_status, usd_peak_product_weight)) %>%
     ungroup()
-  
+
   # get georegions for gapfilling
   georegions = layers$data[['rgn_georegions']] %.%
     dcast(rgn_id ~ level, value.var='georgn_id')
@@ -704,7 +704,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       score     = status * 100) %>%
     select(rgn_id, dimension, score) %>%
     arrange(rgn_id) # 30 status==NAs for year_max==2011
-  
+    
   # trend based on 5 intervals (6 years of data)
   trend = S %>%
     filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>%
@@ -727,6 +727,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     arrange(goal, dimension, region_id)
   return(scores_NP)
 }
+
 CS = function(layers){
   
   # layers
@@ -824,7 +825,7 @@ CP = function(layers){
 }
 
 
-TR = function(layers, year_max){
+TR = function(layers, year_max, debug=F){
     
   # formula:
   #   E = Ed / (L - (L*U))
@@ -874,44 +875,46 @@ TR = function(layers, year_max){
     merge(rgns, by='rgn_id') %.%
     select(rgn_id, rgn_label, year, Ed, L, U, S, E, Xtr)
   
-#   # compare with pre-gapfilled data
-#   dir.create(sprintf('inst/extdata/reports%d.www2013', yr), showWarnings=F)
-#   
-#   # cast to wide format (rows:rgn, cols:year, vals: Xtr) similar to original
-#   d_c = d %.%
-#     filter(year %in% (year_max-5):year_max) %.%
-#     dcast(rgn_id ~ year, value.var='Xtr')
-#   write.csv(d_c, sprintf('inst/extdata/reports%d.www2013/tr-%d_0-pregap_wide.csv', yr, yr), row.names=F, na='')
-#   
-#   o = read.csv('/Volumes/data_edit/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv', na.strings='') %.%
-#     melt(id='rgn_id', variable.name='year', value.name='Xtr_o') %.%
-#     mutate(year = as.integer(sub('x_TR_','', year, fixed=T))) %.%
-#     arrange(rgn_id, year)
-#   
-#   vs = o %.%
-#     merge(
-#       expand.grid(list(
-#         rgn_id = rgns$rgn_id,
-#         year   = 2006:2011)),
-#       by=c('rgn_id', 'year'), all=T) %.%
-#     merge(d, by=c('rgn_id','year')) %.%
-#     mutate(Xtr_dif = Xtr - Xtr_o) %.% 
-#     select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %.%
-#     arrange(rgn_id, year)
-#   write.csv(vs, sprintf('inst/extdata/reports%d.www2013/tr-%d_0-pregap-vs_details.csv', yr, yr), row.names=F, na='')
-#   
-#   vs_rgn = vs %.%
-#     group_by(rgn_id) %.%
-#     summarize(
-#       n_notna_o   = sum(!is.na(Xtr_o)),
-#       n_notna     = sum(!is.na(Xtr)),
-#       dif_avg     = mean(Xtr, na.rm=T) - mean(Xtr_o, na.rm=T),
-#       Xtr_2011_o  = last(Xtr_o),
-#       Xtr_2011    = last(Xtr),
-#       dif_2011    = Xtr_2011 - Xtr_2011_o) %.%
-#     filter(n_notna_o !=0 | n_notna!=0) %.%
-#     arrange(desc(abs(dif_2011)), Xtr_2011, Xtr_2011_o)
-#   write.csv(vs_rgn, sprintf('inst/extdata/reports%d.www2013/tr-%d_0-pregap-vs_summary.csv', yr, yr), row.names=F, na='')
+  if (debug){
+    # compare with pre-gapfilled data
+    if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
+    
+    # cast to wide format (rows:rgn, cols:year, vals: Xtr) similar to original
+    d_c = d %.%
+      filter(year %in% (year_max-5):year_max) %.%
+      dcast(rgn_id ~ year, value.var='Xtr')
+    write.csv(d_c, 'reports/debug/tr_0-pregap_wide.csv', row.names=F, na='')
+    
+    o = read.csv('/Volumes/data_edit/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv', na.strings='') %.%
+      melt(id='rgn_id', variable.name='year', value.name='Xtr_o') %.%
+      mutate(year = as.integer(sub('x_TR_','', year, fixed=T))) %.%
+      arrange(rgn_id, year)
+    
+    vs = o %.%
+      merge(
+        expand.grid(list(
+          rgn_id = rgns$rgn_id,
+          year   = 2006:2011)),
+        by=c('rgn_id', 'year'), all=T) %.%
+      merge(d, by=c('rgn_id','year')) %.%
+      mutate(Xtr_dif = Xtr - Xtr_o) %.% 
+      select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %.%
+      arrange(rgn_id, year)
+    write.csv(vs, 'reports/debug/tr_0-pregap-vs_details.csv', row.names=F, na='')
+    
+    vs_rgn = vs %.%
+      group_by(rgn_id) %.%
+      summarize(
+        n_notna_o   = sum(!is.na(Xtr_o)),
+        n_notna     = sum(!is.na(Xtr)),
+        dif_avg     = mean(Xtr, na.rm=T) - mean(Xtr_o, na.rm=T),
+        Xtr_2011_o  = last(Xtr_o),
+        Xtr_2011    = last(Xtr),
+        dif_2011    = Xtr_2011 - Xtr_2011_o) %.%
+      filter(n_notna_o !=0 | n_notna!=0) %.%
+      arrange(desc(abs(dif_2011)), Xtr_2011, Xtr_2011_o)
+    write.csv(vs_rgn, 'reports/debug/tr_0-pregap-vs_summary.csv', row.names=F, na='')
+  }
   
   # get georegions for gapfilling
   georegions = layers$data[['rgn_georegions']] %.%
@@ -926,7 +929,7 @@ TR = function(layers, year_max){
 
   # setup data for georegional gapfilling (remove Antarctica rgn_id=213)
   if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
-  csv = 'reports/debug/eez2013_tr-gapfill-georegions.csv'
+  csv = 'reports/debug/tr_1-gapfill-georegions.csv'
   d_g = gapfill_georegions(
     data = d %.%
       filter(rgn_id!=213) %.%
@@ -949,7 +952,9 @@ TR = function(layers, year_max){
     mutate(
       Xtr_r95  = ifelse(Xtr / Xtr_95 > 1, 1, Xtr / Xtr_95), # rescale to 95th percentile, cap at 1
       Xtr_rmax = Xtr / Xtr_max )                            # rescale to max value   
-#   write.csv(d_g_f_r, sprintf('inst/extdata/reports%d.www2013/tr-%d_2-filtered-rescaled.csv', yr, yr), row.names=F, na='')
+  if (debug){
+    write.csv(d_g_f_r, 'reports/debug/tr_2-filtered-rescaled.csv', row.names=F, na='')
+  }
 
   # calculate trend
   d_t = d_g_f_r %.%
@@ -988,27 +993,29 @@ TR = function(layers, year_max){
   scores = d_b_u %.%
     select(region_id=rgn_id, goal, dimension, score)
   
-#   # compare with original scores
-#   csv_o = '/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores.Global2013.www2013_2013-10-09.csv'
-#   o = read.csv(csv_o, na.strings='NA', row.names=1) %.% 
-#     filter(goal %in% c('TR') & dimension %in% c('status','trend') & region_id!=0) %.% 
-#     select(goal, dimension, region_id, score_o=score)
-#   
-#   vs = scores %.%
-#     merge(o, all=T, by=c('goal','dimension','region_id')) %.%
-#     merge(
-#       rgns %.%
-#         select(region_id=rgn_id, region_label=rgn_label), 
-#       all.x=T) %.%
-#     mutate(
-#       score_dif    = score - score_o,
-#       score_notna  = is.na(score)!=is.na(score_o)) %.%  
-#     filter(abs(score_dif) > 0.01 | score_notna == T) %.%
-#     arrange(desc(dimension), desc(abs(score_dif))) %.%
-#     select(dimension, region_id, region_label, score_o, score, score_dif)
-#   
-#   # output comparison
-#   write.csv(vs, sprintf('inst/extdata/reports%d.www2013/tr-%d_3-scores-vs.csv', yr, yr), row.names=F, na='')
+  if (debug){
+    # compare with original scores
+    csv_o = '/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores.Global2013.www2013_2013-10-09.csv'
+    o = read.csv(csv_o, na.strings='NA', row.names=1) %.% 
+      filter(goal %in% c('TR') & dimension %in% c('status','trend') & region_id!=0) %.% 
+      select(goal, dimension, region_id, score_o=score)
+    
+    vs = scores %.%
+      merge(o, all=T, by=c('goal','dimension','region_id')) %.%
+      merge(
+        rgns %.%
+          select(region_id=rgn_id, region_label=rgn_label), 
+        all.x=T) %.%
+      mutate(
+        score_dif    = score - score_o,
+        score_notna  = is.na(score)!=is.na(score_o)) %.%  
+      filter(abs(score_dif) > 0.01 | score_notna == T) %.%
+      arrange(desc(dimension), desc(abs(score_dif))) %.%
+      select(dimension, region_id, region_label, score_o, score, score_dif)
+    
+    # output comparison
+    write.csv(vs, 'reports/debug/tr_3-scores-vs.csv', row.names=F, na='')
+  }
   
   return(scores)
 }
@@ -1229,7 +1236,38 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
   return(scores)
 }
 
-LE = function(scores, layers){
+LE = function(scores, layers, eez2012=F){
+  
+  if (eez2012){
+    # replacing 2012 scores for ECO and LIV with 2013 data (email Feb 28, Ben H.)
+    # ECO: Eritrea (just this one country)
+    # LIV: Eritrea, Anguilla, Bermuda, Egypt, Ghana, Indonesia, Iceland, Saint Kitts, 
+    #      Sri Lanka, Brunei, Malaysia, Trinidad & Tobago, and Taiwan
+    
+    # replacement data and region names
+    scores_2013 <- read.csv('../eez2013/scores.csv')  
+    rgns = SelectLayersData(layers, layers='rgn_labels', narrow=T) %.%
+      select(region_id=id_num, label=val_chr) %.%
+      arrange(label)
+    
+    # ECO
+    ECO_rgn_id_replace = subset(rgns, label=='Eritrea', 'region_id', drop=T)
+    scores = scores %.%
+      filter(!(goal=='ECO' & dimension=='score' & region_id==ECO_rgn_id_replace)) %.%
+      rbind(
+        scores_2013 %.%
+          filter(goal=='ECO' & dimension=='score' & region_id==ECO_rgn_id_replace))
+    
+    # LIV
+    LIV_rgns_label_replace = c('Eritrea','Anguilla','Bermuda','Egypt','Ghana','Indonesia','Iceland','Saint Kitts and Nevis','Sri Lanka','Brunei','Malaysia','Trinidad and Tobago','Taiwan')
+    LIV_rgns_id_replace = subset(rgns, label %in% LIV_rgns_label_replace, 'region_id', drop=T)
+    stopifnot(length(LIV_rgns_label_replace)==length(LIV_rgns_id_replace))
+    scores = scores %.%
+      filter(!(goal=='LIV' & dimension=='score' & region_id %in% LIV_rgns_id_replace)) %.%
+      rbind(
+        scores_2013 %.%
+          filter(goal=='LIV' & dimension=='score' & region_id %in% LIV_rgns_id_replace))
+  }
   
   # calculate LE scores
   scores.LE = scores %.% 

@@ -46,6 +46,11 @@ do.layercheck = T
 do.calculate  = T
 do.other      = F
 
+# sync functions.R: overwrite eez2012 and eez2014 with eez2013 (note LE's use of eez2013 argument)
+for (dir in c('eez2012','eez2014')){
+  stopifnot(file.copy('eez2013/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
+}
+
 for (i in 1:length(scenarios)){ # i=1
   
   # vars
@@ -161,5 +166,5 @@ for (i in 1:length(scenarios)){ # i=1
   }
 }
 
-# create global scenario to combine the scores
-if (!file.exists('global2014')) dir.create('global2014', showWarnings=F)
+# run comparison report
+source('../ohidev/report/compare_scores.R')
