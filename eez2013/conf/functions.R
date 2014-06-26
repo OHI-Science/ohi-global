@@ -225,10 +225,6 @@ MAR = function(layers, status_years=2005:2011){
   
   # merge and cast harvest with sustainability
   #harvest_species$species = as.character(harvest_species$species)
-  rky = dcast(merge(merge(harvest_tonnes, 
-                          harvest_species, all.x=TRUE, by=c('species_code')),
-                    sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')),
-              rgn_id + species + species_code + sust_coeff ~ year, value.var='tonnes', mean, na.rm=T); head(rky)
   rky = harvest_tonnes %.%
     merge(harvest_species     , all.x=TRUE, by='species_code') %.%
     merge(sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')) %.%
@@ -377,18 +373,7 @@ AO = function(layers,
 NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
-  
-  # debug starting with fresh R session
-  debug=T
-  scenario='eez2014'
-  setwd(sprintf('~/github/ohi-global/%s', scenario))
-  library(devtools); load_all('~/github/ohicore')
-  conf   = Conf('conf')
-  layers = Layers('layers.csv', 'layers')
-  scores = read.csv('scores.csv')
-  harvest_peak_buffer = 0.35
-  year_max = c(eez2014=2011, eez2013=2010, eez2012=2009)[[scenario]]
-  
+    
   # layers
   rgns      = layers$data[['rgn_labels']]
   h_tonnes  = layers$data[['np_harvest_tonnes']]
