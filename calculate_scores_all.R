@@ -14,36 +14,42 @@ dirs = list(
 library(devtools)
 load_all(dirs$ohicore)
 
-do.layercopy  = F
-do.layercheck = F
-do.calculate  = F
-do.other      = F
+do.layercopy  = T
+do.layercheck = T
+do.calculate  = T
+do.other      = T
 
 # scenarios
 scenarios = list(
+  eez2014     = list(
+    google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
+    fld_dir      = 'dir_2014a',
+    fld_fn       = 'fn_2014a',
+      f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'),
-    do           = T),
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = F),
   eez2012     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
     fld_fn       = 'fn_2012a',
-    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'),
-    do           = T),
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = F),
   antarctica2014 = list(
     google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'),
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = F),
   highseas2014   = list(
     google_key   = '0ArcIhYsFwBeNdG9KVlJ6M0ZxV1dtVDJDQ3FLVWJQWFE',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'),
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = F))
 
 # sync functions.R: overwrite eez2012 and eez2014 with eez2013 (note LE's use of eez2013 argument)
@@ -83,17 +89,25 @@ for (i in 1:length(scenarios)){ # i=1
     # load Google spreadsheet for copying layers
     cat(sprintf('\n  Google spreadsheet editable URL:\n    https://docs.google.com/spreadsheet/ccc?key=%s\n', google_key) )
     g.url = sprintf('https://docs.google.com/spreadsheet/pub?key=%s&output=csv', scenarios[[i]][['google_key']])
-    g0 = read.csv(textConnection(RCurl::getURL(g.url, ssl.verifypeer = FALSE)), skip=1, na.strings='')
-    write.csv(g0, sprintf('%s/tmp/layers_0-google.csv', scenario), na='', row.names=F)
+    g = read.csv(textConnection(RCurl::getURL(g.url, ssl.verifypeer = FALSE)), skip=1, na.strings='', stringsAsFactors=F)
+    write.csv(g, sprintf('%s/tmp/layers_0-google.csv', scenario), na='', row.names=F)
+    
+    # fill in for 2014
+    if (scenario=='eez2014'){
+      g = g %>%
+        mutate(
+          dir_2014a = ifelse(is.na(dir_2014a), dir_2013a, dir_2014a),
+          fn_2014a = ifelse(is.na(fn_2014a), fn_2013a, fn_2014a))
+    }
     
     # swap dir
-    g0$dir_in = sapply(
-      str_split(g0[[fld_dir]], ':'),   
+    g$dir_in = sapply(
+      str_split(g[[fld_dir]], ':'),   
       function(x){ sprintf('%s/%s', dirs[x[1]], x[2])})
-    g0$fn_in = g0[[fld_fn]]
+    g$fn_in = g[[fld_fn]]
     
     # filter
-    lyrs = g0 %.%
+    lyrs = g %.%
       filter(ingest==T) %.%
       mutate(
         path_in        = file.path(dir_in, fn_in),
