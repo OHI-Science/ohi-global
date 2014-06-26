@@ -370,7 +370,7 @@ AO = function(layers,
   return(scores)  
 }
 
-NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
+NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
     
@@ -479,7 +479,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     # need to generate this layer for calculating pressures and resilience
     w %>%
       select(rgn_id, product, weight=usd_peak_product_weight) %>%
-      write.csv(sprintf('~/github/ohiprep/Global/NCEAS-NaturalProducts_v2014/data/np_harvest_usd-peak-product-weight_year-max-%d.csv', year_max), row.names=F, na='')
+      write.csv(sprintf('~/github/ohiprep/Global/NCEAS-NaturalProducts_v2014/data/%s_np_harvest_usd-peak-product-weight_year-max-%d.csv', scenario, year_max), row.names=F, na='')
   }
   
   # strange ifelse behavior in dplyr when condition has NAs throwing "Error: incompatible types, expecting a numeric vector". see https://github.com/hadley/dplyr/issues/299.
@@ -505,8 +505,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
         tonnes_gapfilled = ifelse(sum(tonnes_gapfilled) > 0, T, F),
         usd_gapfilled    = ifelse(sum(usd_gapfilled) > 0, T, F))
     
-    write.csv(h  , 'reports/debug/np_1-harvest_lm-gapfilled_data.csv', row.names=F, na='')
-    write.csv(h_g, 'reports/debug/np_1-harvest_lm-gapfilled_summary.csv', row.names=F, na='')
+    write.csv(h  , sprintf('reports/debug/%s_np_1-harvest_lm-gapfilled_data.csv', scenario), row.names=F, na='')
+    write.csv(h_g, sprintf('reports/debug/%s_np_1-harvest_lm-gapfilled_summary.csv', scenario), row.names=F, na='')
   }  
   
   # area for poducts having single habitats for exposure
@@ -658,8 +658,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   
   if (debug){
     # write out data
-    write.csv(D, 'reports/debug/np_2-rgn-year-product_data.csv', row.names=F, na='')
-    write.csv(S, 'reports/debug/np_3-rgn-year_status.csv', row.names=F, na='')
+    write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
+    write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
     
     # get georegion and region labels for prettier debug output
     georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
@@ -676,7 +676,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
         select(rgn_id, year, status),
       georegions = georegions,
       georegion_labels = georegion_labels,
-      attributes_csv='reports/debug/np_4-gapfill-georegions.csv')
+      attributes_csv=sprintf('reports/debug/%s_np_4-gapfill-georegions.csv', scenario))
     
   } else {
     

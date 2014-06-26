@@ -14,8 +14,8 @@ dirs = list(
 library(devtools)
 load_all(dirs$ohicore)
 
-do.layercopy  = T
-do.layercheck = T
+do.layercopy  = F
+do.layercheck = F
 do.calculate  = T
 do.other      = F
 
@@ -49,6 +49,11 @@ scenarios = list(
 # sync functions.R: overwrite eez2012 and eez2014 with eez2013 (note LE's use of eez2013 argument)
 for (dir in c('eez2012','eez2014')){
   stopifnot(file.copy('eez2013/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
+}
+
+# get rid of old debug files without scenario prefix
+for (dir in c('eez2012','eez2013','eez2014')){
+  unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
 }
 
 # sync functions.R: overwrite eez2012 and eez2014 with eez2013 (note LE's use of eez2013 argument)
