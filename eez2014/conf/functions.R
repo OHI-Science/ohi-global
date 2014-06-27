@@ -467,7 +467,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       by=c('rgn_id', 'product','year')) %>%
     mutate(
       tonnes = ifelse(!is.na(tonnes_rollmean), tonnes_rollmean, tonnes),
-      usd = ifelse(!is.na(usd_rollmean), usd_rollmean, usd))
+      usd    = ifelse(!is.na(   usd_rollmean),    usd_rollmean,    usd))
             
   # relativize harvest
   h = h %>%
