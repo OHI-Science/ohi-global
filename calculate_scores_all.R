@@ -15,9 +15,9 @@ library(devtools)
 load_all(dirs$ohicore)
 
 do.layercopy  = F
-do.layercheck = T
+do.layercheck = F
 do.calculate  = T
-do.other      = T
+do.other      = F
 
 # scenarios
 scenarios = list(
