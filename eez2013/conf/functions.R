@@ -1,6 +1,6 @@
 Setup = function(){
   
-  extra.packages.required = c('zoo') # zoo for MAR()
+  extra.packages.required = c('zoo') # zoo for MAR(), NP()
   
   # install packages if needed
   for (p in extra.packages.required){
@@ -258,7 +258,7 @@ MAR = function(layers, status_years=2005:2011){
              mar_pop         = sum(sust_tonnes) / popsum[1])
   
   # get reference quantile based on argument years
-  ref_95pct = quantile(subset(ry, year %in% status_years, mar_pop, drop=T), 0.95, na.rm=T)
+  ref_95pct = quantile(subset(ry, year <= max(status_years), mar_pop, drop=T), 0.95, na.rm=T)
   
   ry = within(ry, {
     status = ifelse(mar_pop / ref_95pct > 1, 
@@ -375,13 +375,20 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
     
   # layers
-  rgns      = layers$data[['rgn_labels']]
-  h_tonnes  = layers$data[['np_harvest_tonnes']]
-  h_usd     = layers$data[['np_harvest_usd']]
-  r_cyanide = layers$data[['np_cyanide']]
-  r_blast   = layers$data[['np_blast']]
-  hab_coral = layers$data[['np_coral_reef']]
-  hab_rky   = layers$data[['np_rocky_reef']]
+  rgns       = layers$data[['rgn_labels']]
+  h_tonnes   = layers$data[['np_harvest_tonnes']]
+  h_usd      = layers$data[['np_harvest_usd']]
+  r_cyanide  = layers$data[['np_cyanide']]
+  r_blast    = layers$data[['np_blast']]  
+  hab_extent = layers$data[['hab_extent']]
+  
+  # extract habitats used
+  hab_coral = hab_extent %>%
+    filter(habitat=='coral') %>%
+    select(rgn_id, km2)
+  hab_rky   = hab_extent %>%
+    filter(habitat=='rocky_reef') %>%
+    select(rgn_id, km2)
   
   # FIS status
   FIS_status =  scores %>% 
@@ -408,14 +415,11 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   
   # show where NAs usd vs tonnes
   if (debug){
-    cat(sprintf('nrow(h): %d, range(h$year): %s\n', nrow(h), paste(range(h$year), collapse=' to ')))
-    # nrow(h): 12011, range(h$year): 1976 to 2010
+    cat(sprintf('  nrow(h): %d, range(h$year): %s\n  Table of h_na:\n', nrow(h), paste(range(h$year), collapse=' to ')))
     h_na = h %>% 
       filter(is.na(usd) | is.na(tonnes)) %>% 
       mutate(var_na = ifelse(is.na(usd), 'usd', 'tonnes'))
     print(table(ungroup(h_na) %>% select(var_na)))
-    # tonnes    usd 
-    #    694    214
   }
   
   # handle NA mismatch b/n tonnes and usd with correlative model
@@ -447,8 +451,24 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     mutate(
       usd_mdl  = tonnes_ix0 + tonnes_coef * tonnes,
       usd_orig = usd,
-      usd      = ifelse(is.na(usd), pmax(0, usd_mdl), usd))
+      usd      = ifelse(is.na(usd), pmax(0, usd_mdl), usd),
+      n_years  = n())
   
+  # smooth harvest over 4 year mean (prior and inclusive of current year)
+  library(zoo)
+  h = h %>%
+    left_join(
+      h %>%
+        filter(n_years >= 4) %>%
+        mutate(
+          tonnes_rollmean = rollmean(tonnes, 4, align='right', na.pad=T),
+          usd_rollmean    = rollmean(   usd, 4, align='right', na.pad=T)) %>%
+        select(rgn_id, product, year, tonnes_rollmean, usd_rollmean),
+      by=c('rgn_id', 'product','year')) %>%
+    mutate(
+      tonnes = ifelse(!is.na(tonnes_rollmean), tonnes_rollmean, tonnes),
+      usd    = ifelse(!is.na(   usd_rollmean),    usd_rollmean,    usd))
+            
   # relativize harvest
   h = h %>%
     mutate(    
@@ -472,7 +492,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     # need to generate this layer for calculating pressures and resilience
     w %>%
       select(rgn_id, product, weight=usd_peak_product_weight) %>%
-      write.csv(sprintf('~/github/ohiprep/Global/NCEAS-NaturalProducts_v2014/data/np_harvest_usd-peak-product-weight_year-max-%d.csv', year_max), row.names=F, na='')
+      write.csv(sprintf('~/github/ohiprep/Global/NCEAS-NaturalProducts_v2014/data/%s_np_harvest_usd-peak-product-weight_year-max-%d.csv', scenario, year_max), row.names=F, na='')
   }
   
   # strange ifelse behavior in dplyr when condition has NAs throwing "Error: incompatible types, expecting a numeric vector". see https://github.com/hadley/dplyr/issues/299.
@@ -498,8 +518,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
         tonnes_gapfilled = ifelse(sum(tonnes_gapfilled) > 0, T, F),
         usd_gapfilled    = ifelse(sum(usd_gapfilled) > 0, T, F))
     
-    write.csv(h  , 'reports/debug/np_1-harvest_lm-gapfilled_data.csv', row.names=F, na='')
-    write.csv(h_g, 'reports/debug/np_1-harvest_lm-gapfilled_summary.csv', row.names=F, na='')
+    write.csv(h  , sprintf('reports/debug/%s_np_1-harvest_lm-gapfilled_data.csv', scenario), row.names=F, na='')
+    write.csv(h_g, sprintf('reports/debug/%s_np_1-harvest_lm-gapfilled_summary.csv', scenario), row.names=F, na='')
   }  
   
   # area for poducts having single habitats for exposure
@@ -509,40 +529,40 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       filter(product=='corals') %>%
       left_join(
         hab_coral %>%
-          filter(area_km2 > 0) %>%
-          select(rgn_id, area_km2), by='rgn_id'),
+          filter(km2 > 0) %>%
+          select(rgn_id, km2), by='rgn_id'),
     # seaweeds in rocky reef
     h %>%
       filter(product=='seaweeds') %>%
       left_join(
         hab_rky %>%
-          filter(area_km2 > 0) %>%
-          select(rgn_id, area_km2), by='rgn_id'))
+          filter(km2 > 0) %>%
+          select(rgn_id, km2), by='rgn_id'))
   
   # area for products in both coral and rocky reef habitats: shells, ornamentals, sponges
   b = h %>%
     filter(product %in% c('shells', 'ornamentals','sponges')) %>%
     left_join(
       hab_coral %>%
-        filter(area_km2 > 0) %>%
-        select(rgn_id, area_coral_km2=area_km2), 
+        filter(km2 > 0) %>%
+        select(rgn_id, coral_km2=km2), 
       by='rgn_id') %>%
     left_join(
       hab_rky %>%
-        filter(area_km2 > 0) %>%
-        select(rgn_id, area_rky_km2=area_km2), 
+        filter(km2 > 0) %>%
+        select(rgn_id, rky_km2=km2), 
       by='rgn_id')
-  b$area_km2 = rowSums(b[,c('area_rky_km2','area_coral_km2')], na.rm=T)
-  b = filter(b, area_km2 > 0)
+  b$km2 = rowSums(b[,c('rky_km2','coral_km2')], na.rm=T)
+  b = filter(b, km2 > 0)
   
   # exposure: combine areas, get tonnes / area, and rescale with log transform
   E = 
     rbind_list(
       a,
       b %>%
-        select(-area_rky_km2, -area_coral_km2)) %>%
+        select(-rky_km2, -coral_km2)) %>%
     mutate(
-      exposure_raw = ifelse(tonnes > 0 & area_km2 > 0, tonnes / area_km2, 0)) %>%
+      exposure_raw = ifelse(tonnes > 0 & km2 > 0, tonnes / km2, 0)) %>%
     group_by(product) %>%
     mutate(
       exposure_product_max = max(exposure_raw, na.rm=T)) %>%
@@ -641,8 +661,10 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   S = D %>%
     group_by(rgn_name, rgn_id, year) %>%
     filter(!is.na(product_status) & !is.na(usd_peak_product_weight)) %>%
+    #select(rgn_name, rgn_id, year, product_status, usd_peak_product_weight) %>%
     summarize(
       status = weighted.mean(product_status, usd_peak_product_weight)) %>%
+    filter(!is.na(status)) %>% # 1/0 produces NaN
     ungroup()
 
   # get georegions for gapfilling
@@ -651,8 +673,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   
   if (debug){
     # write out data
-    write.csv(D, 'reports/debug/np_2-rgn-year-product_data.csv', row.names=F, na='')
-    write.csv(S, 'reports/debug/np_3-rgn-year_status.csv', row.names=F, na='')
+    write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
+    write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
     
     # get georegion and region labels for prettier debug output
     georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
@@ -669,7 +691,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
         select(rgn_id, year, status),
       georegions = georegions,
       georegion_labels = georegion_labels,
-      attributes_csv='reports/debug/np_4-gapfill-georegions.csv')
+      attributes_csv=sprintf('reports/debug/%s_np_4-gapfill-georegions.csv', scenario))
     
   } else {
     
@@ -681,17 +703,18 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     
   }
   
-  # calculate status
-  status = S %>%
+  # get status
+  status = G %>%
     filter(year==year_max & !is.na(status)) %>%
     mutate(
       dimension = 'status',
-      score     = status * 100) %>%
+      score     = round(status,4) * 100) %>%
     select(rgn_id, dimension, score) %>%
     arrange(rgn_id) # 30 status==NAs for year_max==2011
-    
+  stopifnot(min(status$score)>=0, max(status$score)<=100)
+  
   # trend based on 5 intervals (6 years of data)
-  trend = S %>%
+  trend = G %>%
     filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>%
     arrange(rgn_id, year) %>%
     group_by(rgn_id) %>%
@@ -700,6 +723,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       rgn_id    = rgn_id,
       dimension = 'trend',
       score     = max(-1, min(1, coef(mdl)[['year']] * 5)))
+  stopifnot(min(trend$score)>=-1, max(trend$score)<=1)
   
   # return scores
   scores_NP = 
@@ -1221,7 +1245,38 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
   return(scores)
 }
 
-LE = function(scores, layers){
+LE = function(scores, layers, eez2012=F){
+  
+  if (eez2012){
+    # replacing 2012 scores for ECO and LIV with 2013 data (email Feb 28, Ben H.)
+    # ECO: Eritrea (just this one country)
+    # LIV: Eritrea, Anguilla, Bermuda, Egypt, Ghana, Indonesia, Iceland, Saint Kitts, 
+    #      Sri Lanka, Brunei, Malaysia, Trinidad & Tobago, and Taiwan
+    
+    # replacement data and region names
+    scores_2013 <- read.csv('../eez2013/scores.csv')  
+    rgns = SelectLayersData(layers, layers='rgn_labels', narrow=T) %.%
+      select(region_id=id_num, label=val_chr) %.%
+      arrange(label)
+    
+    # ECO
+    ECO_rgn_id_replace = subset(rgns, label=='Eritrea', 'region_id', drop=T)
+    scores = scores %.%
+      filter(!(goal=='ECO' & dimension=='score' & region_id==ECO_rgn_id_replace)) %.%
+      rbind(
+        scores_2013 %.%
+          filter(goal=='ECO' & dimension=='score' & region_id==ECO_rgn_id_replace))
+    
+    # LIV
+    LIV_rgns_label_replace = c('Eritrea','Anguilla','Bermuda','Egypt','Ghana','Indonesia','Iceland','Saint Kitts and Nevis','Sri Lanka','Brunei','Malaysia','Trinidad and Tobago','Taiwan')
+    LIV_rgns_id_replace = subset(rgns, label %in% LIV_rgns_label_replace, 'region_id', drop=T)
+    stopifnot(length(LIV_rgns_label_replace)==length(LIV_rgns_id_replace))
+    scores = scores %.%
+      filter(!(goal=='LIV' & dimension=='score' & region_id %in% LIV_rgns_id_replace)) %.%
+      rbind(
+        scores_2013 %.%
+          filter(goal=='LIV' & dimension=='score' & region_id %in% LIV_rgns_id_replace))
+  }
   
   # calculate LE scores
   scores.LE = scores %.% 
