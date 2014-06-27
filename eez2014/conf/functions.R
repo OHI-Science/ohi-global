@@ -1,6 +1,6 @@
 Setup = function(){
   
-  extra.packages.required = c('zoo') # zoo for MAR()
+  extra.packages.required = c('zoo') # zoo for MAR(), NP()
   
   # install packages if needed
   for (p in extra.packages.required){
@@ -258,7 +258,7 @@ MAR = function(layers, status_years=2005:2011){
              mar_pop         = sum(sust_tonnes) / popsum[1])
   
   # get reference quantile based on argument years
-  ref_95pct = quantile(subset(ry, year %in% status_years, mar_pop, drop=T), 0.95, na.rm=T)
+  ref_95pct = quantile(subset(ry, year <= max(status_years), mar_pop, drop=T), 0.95, na.rm=T)
   
   ry = within(ry, {
     status = ifelse(mar_pop / ref_95pct > 1, 
@@ -370,7 +370,7 @@ AO = function(layers,
   return(scores)  
 }
 
-NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
+NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
     
@@ -415,14 +415,11 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   
   # show where NAs usd vs tonnes
   if (debug){
-    cat(sprintf('nrow(h): %d, range(h$year): %s\n', nrow(h), paste(range(h$year), collapse=' to ')))
-    # nrow(h): 12011, range(h$year): 1976 to 2010
+    cat(sprintf('  nrow(h): %d, range(h$year): %s\n  Table of h_na:\n', nrow(h), paste(range(h$year), collapse=' to ')))
     h_na = h %>% 
       filter(is.na(usd) | is.na(tonnes)) %>% 
       mutate(var_na = ifelse(is.na(usd), 'usd', 'tonnes'))
     print(table(ungroup(h_na) %>% select(var_na)))
-    # tonnes    usd 
-    #    694    214
   }
   
   # handle NA mismatch b/n tonnes and usd with correlative model
@@ -454,8 +451,24 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     mutate(
       usd_mdl  = tonnes_ix0 + tonnes_coef * tonnes,
       usd_orig = usd,
-      usd      = ifelse(is.na(usd), pmax(0, usd_mdl), usd))
+      usd      = ifelse(is.na(usd), pmax(0, usd_mdl), usd),
+      n_years  = n())
   
+  # smooth harvest over 4 year mean (prior and inclusive of current year)
+  library(zoo)
+  h = h %>%
+    left_join(
+      h %>%
+        filter(n_years >= 4) %>%
+        mutate(
+          tonnes_rollmean = rollmean(tonnes, 4, align='right', na.pad=T),
+          usd_rollmean    = rollmean(   usd, 4, align='right', na.pad=T)) %>%
+        select(rgn_id, product, year, tonnes_rollmean, usd_rollmean),
+      by=c('rgn_id', 'product','year')) %>%
+    mutate(
+      tonnes = ifelse(!is.na(tonnes_rollmean), tonnes_rollmean, tonnes),
+      usd = ifelse(!is.na(usd_rollmean), usd_rollmean, usd))
+            
   # relativize harvest
   h = h %>%
     mutate(    
@@ -648,8 +661,10 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
   S = D %>%
     group_by(rgn_name, rgn_id, year) %>%
     filter(!is.na(product_status) & !is.na(usd_peak_product_weight)) %>%
+    #select(rgn_name, rgn_id, year, product_status, usd_peak_product_weight) %>%
     summarize(
       status = weighted.mean(product_status, usd_peak_product_weight)) %>%
+    filter(!is.na(status)) %>% # 1/0 produces NaN
     ungroup()
 
   # get georegions for gapfilling
@@ -688,17 +703,18 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
     
   }
   
-  # calculate status
-  status = S %>%
+  # get status
+  status = G %>%
     filter(year==year_max & !is.na(status)) %>%
     mutate(
       dimension = 'status',
-      score     = status * 100) %>%
+      score     = round(status,4) * 100) %>%
     select(rgn_id, dimension, score) %>%
     arrange(rgn_id) # 30 status==NAs for year_max==2011
-    
+  stopifnot(min(status$score)>=0, max(status$score)<=100)
+  
   # trend based on 5 intervals (6 years of data)
-  trend = S %>%
+  trend = G %>%
     filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>%
     arrange(rgn_id, year) %>%
     group_by(rgn_id) %>%
@@ -707,6 +723,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=F){
       rgn_id    = rgn_id,
       dimension = 'trend',
       score     = max(-1, min(1, coef(mdl)[['year']] * 5)))
+  stopifnot(min(trend$score)>=-1, max(trend$score)<=1)
   
   # return scores
   scores_NP = 
