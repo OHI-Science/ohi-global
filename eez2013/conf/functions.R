@@ -413,6 +413,36 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     arrange(rgn_id, product, year) %>%
     group_by(rgn_id, product)
   
+  ## debug JSL June 27 6:30pm ----
+  
+  # read in original input layers from FAO
+  dir_d = '../ohiprep/Global/FAO-Commodities_v2011'
+  fao_tonnes = read.csv(file.path(dir_d, 'data', 'FAO-Commodities_v2011_tonnes.csv')); head(fao_tonnes)
+  fao_usd    = read.csv(file.path(dir_d, 'data', 'FAO-Commodities_v2011_usd.csv')); head(fao_usd)
+  
+  # compare tonnes, usd from h with tonnes, usd from fao
+  np_tbx_c = h %>%
+  left_join(layers_tonnes %>%
+              select(rgn_id, product, year, 
+                     tonnes_lyr = tonnes), 
+            by = c('rgn_id', 'product', 'year')) %>% 
+  mutate(tonnes_diff = tonnes_lyr - tonnes) %>%
+  left_join(layers_usd %>%
+              select(rgn_id, product, year, 
+                     usd_lyr = usd), 
+            by = c('rgn_id', 'product', 'year')) %>% 
+  mutate(usd_diff = usd_lyr - usd) %>%
+  select(rgn_name, rgn_id, product, year, 
+         tonnes_lyr, tonnes, tonnes_diff, 
+         usd_lyr   , usd,    usd_diff); tail(np_tbx_c,30)
+
+tbx_diff = np_tbx_c %>% 
+#   filter(tonnes_diff != 0 | usd_diff != 0) %>%
+  filter(!is.na(tonnes_diff) | !is.na(usd_diff))
+head(tbx_diff)
+
+  
+  
   # show where NAs usd vs tonnes
   if (debug){
     cat(sprintf('  nrow(h): %d, range(h$year): %s\n  Table of h_na:\n', nrow(h), paste(range(h$year), collapse=' to ')))
