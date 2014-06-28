@@ -12,12 +12,12 @@ dirs = list(
 
 # load ohicore, development mode
 library(devtools)
-load_all(dirs$ohicore)
+load_all(dirs$ohicore) # a developer alternative to library(ohicore)
 
-do.layercopy  = T
-do.layercheck = T
+do.layercopy  = F
+do.layercheck = F
 do.calculate  = T
-do.other      = F
+do.other      = T
 
 # scenarios
 scenarios = list(
@@ -32,7 +32,7 @@ scenarios = list(
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+    do           = F),
   eez2012     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
@@ -60,11 +60,6 @@ for (dir in c('eez2012','eez2014')){
 # get rid of old debug files without scenario prefix
 for (dir in c('eez2012','eez2013','eez2014')){
   unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
-}
-
-# sync functions.R: overwrite eez2012 and eez2014 with eez2013 (note LE's use of eez2013 argument)
-for (dir in c('eez2012','eez2014')){
-  stopifnot(file.copy('eez2013/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
 }
 
 for (i in 1:length(scenarios)){ # i=1
@@ -160,9 +155,9 @@ for (i in 1:length(scenarios)){ # i=1
     
     # calculate scores from directory of scenario
     setwd(sprintf('~/github/ohi-global/%s', scenario)) # load_all(dirs$ohicore)
-    scores = CalculateAll(conf, layers, debug=T)  
+    scores = CalculateAll(conf, layers, debug=T)
+    write.csv(scores, 'scores.csv', na='', row.names=F)
     setwd('~/github/ohi-global')
-    write.csv(scores, sprintf('%s/scores.csv', scenario), na='', row.names=F)
 
     # archive scores on disk (out of github, for easy retrieval later)
     csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
