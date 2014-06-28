@@ -1,5 +1,6 @@
 # presume that working directory in current scenario directory, eg:
-# setwd('~/ohi-global/antarctica2014')
+setwd('~/github/ohi-global/antarctica2014')
+library(ohicore)
 
 # load conf
 conf = Conf('conf')
