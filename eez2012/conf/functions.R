@@ -373,14 +373,22 @@ AO = function(layers,
 NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
-    
+
+  # FIS status
+  FIS_status =  scores %>% 
+    filter(goal=='FIS' & dimension=='status') %>%
+    select(rgn_id=region_id, score)  
+  
   # layers
-  rgns       = layers$data[['rgn_labels']]
-  h_tonnes   = layers$data[['np_harvest_tonnes']]
-  h_usd      = layers$data[['np_harvest_usd']]
-  r_cyanide  = layers$data[['np_cyanide']]
-  r_blast    = layers$data[['np_blast']]  
-  hab_extent = layers$data[['hab_extent']]
+  rgns         = layers$data[['rgn_labels']]
+  h_tonnes     = layers$data[['np_harvest_tonnes']]
+  h_tonnes_rel = layers$data[['np_harvest_tonnes_relative']]
+  h_usd        = layers$data[['np_harvest_usd']]
+  h_usd_rel    = layers$data[['np_harvest_usd_relative']]
+  h_w          = layers$data[['np_harvest_product_weight']]
+  r_cyanide    = layers$data[['np_cyanide']]
+  r_blast      = layers$data[['np_blast']]  
+  hab_extent   = layers$data[['hab_extent']]
   
   # extract habitats used
   hab_coral = hab_extent %>%
@@ -390,137 +398,38 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     filter(habitat=='rocky_reef') %>%
     select(rgn_id, km2)
   
-  # FIS status
-  FIS_status =  scores %>% 
-    filter(goal=='FIS' & dimension=='status') %>%
-    select(rgn_id=region_id, score)  
-  
   if (debug & !file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
   
   # merge harvest in tonnes and usd
   h = 
-    merge(
-      h_tonnes, 
-      h_usd,
-      by=c('rgn_id','product','year'), 
-      all=T) %>%
+    join_all(
+      list(
+        h_tonnes, 
+        h_tonnes_rel, 
+        h_usd,
+        h_usd_rel),
+      by=c('rgn_id','product','year'),      
+      type='full') %>%
+    left_join(
+      h_w %>%
+        select(rgn_id, product, usd_peak_product_weight=weight),
+      by=c('rgn_id','product')) %>%
     left_join(
       rgns %>%
         select(rgn_id, rgn_name=label),
       by='rgn_id') %>%
-    select(rgn_name, rgn_id, product, year, tonnes, usd) %>%
-    filter(year <= year_max) %>%
+    select(
+      rgn_name, rgn_id, product, year, 
+      tonnes, tonnes_rel,
+      usd, usd_rel,
+      usd_peak_product_weight) %>%
     arrange(rgn_id, product, year) %>%
     group_by(rgn_id, product)
-  
-  # show where NAs usd vs tonnes
+      
   if (debug){
-    cat(sprintf('  nrow(h): %d, range(h$year): %s\n  Table of h_na:\n', nrow(h), paste(range(h$year), collapse=' to ')))
-    h_na = h %>% 
-      filter(is.na(usd) | is.na(tonnes)) %>% 
-      mutate(var_na = ifelse(is.na(usd), 'usd', 'tonnes'))
-    print(table(ungroup(h_na) %>% select(var_na)))
+    # write out data
+    write.csv(h, sprintf('reports/debug/%s_np_0-harvest-rgn-year-product_data.csv', scenario), row.names=F, na='')
   }
-  
-  # handle NA mismatch b/n tonnes and usd with correlative model
-  m_tonnes = h  %>%
-    mutate(tonnes_nas   = sum(is.na(tonnes))) %>%
-    filter(tonnes_nas > 0 & !is.na(usd) & !is.na(tonnes)) %>%
-    do(mdl = lm(tonnes ~ usd, data=.)) %>%
-    summarize(
-      rgn_id   = rgn_id,
-      product  = factor(levels(h$product)[product], levels(h$product)),
-      usd_ix0  = coef(mdl)['(Intercept)'],
-      usd_coef = coef(mdl)['usd'])
-  m_usd = h %>%
-    mutate(usd_nas = sum(is.na(usd))) %>%
-    filter(usd_nas > 0 & !is.na(usd) & !is.na(tonnes)) %>%
-    do(mdl = lm(usd ~ tonnes, data=.)) %>%
-    summarize(
-      rgn_id      = rgn_id,
-      product     = factor(levels(h$product)[product], levels(h$product)),
-      tonnes_ix0  = coef(mdl)['(Intercept)'],
-      tonnes_coef = coef(mdl)['tonnes'])
-  h = h %>%
-    left_join(m_tonnes, by=c('rgn_id','product')) %>%
-    mutate(
-      tonnes_mdl  = usd_ix0 + usd_coef * usd,
-      tonnes_orig = tonnes,
-      tonnes      = ifelse(is.na(tonnes), pmax(0, tonnes_mdl), tonnes)) %>%
-    left_join(m_usd, by=c('rgn_id','product')) %>%
-    mutate(
-      usd_mdl  = tonnes_ix0 + tonnes_coef * tonnes,
-      usd_orig = usd,
-      usd      = ifelse(is.na(usd), pmax(0, usd_mdl), usd),
-      n_years  = n())
-  
-  # smooth harvest over 4 year mean (prior and inclusive of current year)
-  library(zoo)
-  h = h %>%
-    left_join(
-      h %>%
-        filter(n_years >= 4) %>%
-        mutate(
-          tonnes_rollmean = rollmean(tonnes, 4, align='right', na.pad=T),
-          usd_rollmean    = rollmean(   usd, 4, align='right', na.pad=T)) %>%
-        select(rgn_id, product, year, tonnes_rollmean, usd_rollmean),
-      by=c('rgn_id', 'product','year')) %>%
-    mutate(
-      tonnes = ifelse(!is.na(tonnes_rollmean), tonnes_rollmean, tonnes),
-      usd    = ifelse(!is.na(   usd_rollmean),    usd_rollmean,    usd))
-            
-  # relativize harvest
-  h = h %>%
-    mutate(    
-      tonnes_peak = max(tonnes, na.rm=T)  * (1 - harvest_peak_buffer),
-      usd_peak    = max(   usd, na.rm=T)  * (1 - harvest_peak_buffer))
-    
-  # product weights per region: w = product peak / (sum of all product peaks)
-  w = h %>%
-    filter(year == year_max) %>%
-    group_by(rgn_id) %>%
-    mutate(
-      usd_peak_allproducts    = sum(usd_peak, na.rm=T),
-      usd_peak_product_weight = usd_peak / usd_peak_allproducts)  
-  h = left_join(
-    h, 
-    w %>%
-      select(rgn_id, product, usd_peak_product_weight), 
-    by=c('rgn_id','product'))
-  
-  if (debug){
-    # need to generate this layer for calculating pressures and resilience
-    w %>%
-      select(rgn_id, product, weight=usd_peak_product_weight) %>%
-      write.csv(sprintf('~/github/ohiprep/Global/NCEAS-NaturalProducts_v2014/data/%s_np_harvest_usd-peak-product-weight_year-max-%d.csv', scenario, year_max), row.names=F, na='')
-  }
-  
-  # strange ifelse behavior in dplyr when condition has NAs throwing "Error: incompatible types, expecting a numeric vector". see https://github.com/hadley/dplyr/issues/299.
-  h = within(h, {
-    tonnes_rel      = ifelse(tonnes >= tonnes_peak, 1, tonnes / tonnes_peak)
-    tonnes_rel_orig = tonnes_rel                                  # 109 NAs
-    usd_rel     = ifelse(usd >= usd_peak, 1, usd / usd_peak)    
-    # swap usd_rel for tonnes_rel if still NA even after correlative gapfilling above
-    tonnes_rel      = ifelse(is.na(tonnes_rel), usd_rel   , tonnes_rel)  
-  }) %>% group_by(rgn_id, product, year)
-  
-  # debug output
-  if (debug){
-    # report whether region gapfilled for any product-year per var at either correlative or swap stages
-    h_g = h %>%
-      # per region-product-year
-      mutate(
-        tonnes_gapfilled = ifelse( (is.na(tonnes_orig) | is.na(tonnes_rel_orig)) & !is.na(tonnes_rel), T, F),
-        usd_gapfilled    = ifelse( is.na(usd_orig) & !is.na(usd_rel), T, F)) %>%
-      # per region
-      group_by(rgn_id) %>%
-      summarize(
-        tonnes_gapfilled = ifelse(sum(tonnes_gapfilled) > 0, T, F),
-        usd_gapfilled    = ifelse(sum(usd_gapfilled) > 0, T, F))
-    
-    write.csv(h  , sprintf('reports/debug/%s_np_1-harvest_lm-gapfilled_data.csv', scenario), row.names=F, na='')
-    write.csv(h_g, sprintf('reports/debug/%s_np_1-harvest_lm-gapfilled_summary.csv', scenario), row.names=F, na='')
-  }  
   
   # area for poducts having single habitats for exposure
   a = rbind_list(
