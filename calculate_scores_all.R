@@ -14,10 +14,10 @@ dirs = list(
 library(devtools)
 load_all(dirs$ohicore) # a developer alternative to library(ohicore)
 
-do.layercopy  = F
-do.layercheck = F
+do.layercopy  = T
+do.layercheck = T
 do.calculate  = T
-do.other      = T
+do.other      = F
 
 # scenarios
 scenarios = list(
@@ -32,13 +32,13 @@ scenarios = list(
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = F),
+    do           = T),
   eez2012     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
     fld_fn       = 'fn_2012a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = F),
+    do           = T),
   antarctica2014 = list(
     google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
     fld_dir      = 'dir_2013a',
@@ -181,9 +181,20 @@ for (i in 1:length(scenarios)){ # i=1
     write_shortcuts(scenario, os_files=0)
     
     # launch on Mac # setwd('~/github/ohi-global/eez2013'); launch_app()
-    system(sprintf('open %s/launch_app.command', scenario))
+    #system(sprintf('open %s/launch_app.command', scenario))
   }
 }
 
-# run comparison report
+# DEBUG NP
 source('../ohidev/report/compare_scores.R')
+read.csv(sprintf('/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_eez2012-2013_%s_vs_2013-10-09.csv', Sys.Date())) %>%
+  filter(goal=='NP' & year==2013 & dimension=='score') %>%
+  head(50)
+read.csv('~/github/ohiprep/Global/FAO-Commodities_v2011/tmp/eez2013_np_harvest_smoothed_data.csv') %>%
+  filter(rgn_id==199)
+
+read.csv('~/github/ohiprep/Global/FAO-Commodities_v2011/tmp/eez2013_np_harvest_smoothed_data.csv') %>%
+  filter(rgn_id==140) %>%
+  head(50)
+
+read.csv('')
