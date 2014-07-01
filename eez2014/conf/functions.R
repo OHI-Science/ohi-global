@@ -613,6 +613,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   }
   
   # get status
+  #browser() # status %>% filter(rgn_id==136) # DEBUG
   status = G %>%
     filter(year==year_max & !is.na(status)) %>%
     mutate(
@@ -643,6 +644,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       goal = 'NP') %>%
     select(goal, dimension, region_id=rgn_id, score) %>%
     arrange(goal, dimension, region_id)
+  # scores_NP %>% filter(region_id==136)
   return(scores_NP)
 }
 

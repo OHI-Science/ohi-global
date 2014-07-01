@@ -27,7 +27,7 @@ scenarios = list(
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = F),
+    do           = T),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
@@ -157,12 +157,16 @@ for (i in 1:length(scenarios)){ # i=1
     # calculate scores from directory of scenario
     setwd(sprintf('~/github/ohi-global/%s', scenario)) # load_all(dirs$ohicore)
     scores = CalculateAll(conf, layers, debug=T)
-    write.csv(scores, 'scores.csv', na='', row.names=F)
+    #browser()
+    #filter(scores, goal=='NP' & dimension=='status' & region_id==136)
+    write.csv(scores, 'scores.csv', na='', row.names=F)    
+    #read.csv('scores.csv') %>%
+    #  filter(goal=='NP' & dimension=='status' & region_id==136)
     setwd('~/github/ohi-global')
 
     # archive scores on disk (out of github, for easy retrieval later)
-    csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
-    write.csv(scores, csv, na='', row.names=F)    
+    #csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
+    #write.csv(scores, csv, na='', row.names=F)
   }
     
   if (do.other){
@@ -189,7 +193,7 @@ for (i in 1:length(scenarios)){ # i=1
 # DEBUG NP
 source('../ohidev/report/compare_scores.R')
 csv = sprintf('/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_eez2012-2013_%s_vs_2013-10-09.csv', Sys.Date())
-system(sprintf('open %s', csv))
+#system(sprintf('open %s', csv))
 
 read.csv(csv) %>%
   filter(goal=='NP' & year==2013 & dimension=='score') %>%
