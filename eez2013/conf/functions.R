@@ -620,7 +620,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       score     = round(status,4) * 100) %>%
     select(rgn_id, dimension, score) %>%
     arrange(rgn_id) # 30 status==NAs for year_max==2011
-  stopifnot(min(status$score)>=0, max(status$score)<=100)
+  stopifnot(min(status$score, na.rm=T)>=0, max(status$score, na.rm=T)<=100)
   
   # trend based on 5 intervals (6 years of data)
   trend = G %>%
@@ -758,13 +758,15 @@ TR = function(layers, year_max, debug=F){
   # based on model/GL-NCEAS-TR_v2013a: TRgapfill.R, TRcalc.R...
   # spatial gapfill simply avg, not weighted by total jobs or country population?
   
-#   # DEBUG
-#   library(devtools); load_all()
-#   yr=2013; year_max = 2011 # yr=2012; year_max = 2010
-#   scenario=sprintf('Global%d.www2013', yr)
-#   conf = ohicore::Conf(sprintf('inst/extdata/conf.%s', scenario))
-#   layers     = Layers(layers.csv = sprintf('inst/extdata/layers.%s.csv', scenario), 
-#                       layers.dir = sprintf('inst/extdata/layers.%s'    , scenario))
+  # DEBUG
+  scenario='eez2013'
+  setwd(sprintf('~/github/ohi-global/%s', scenario))
+  library(devtools)
+  load_all('~/github/ohicore')
+  conf   = Conf('conf')
+  layers = Layers('layers.csv', 'layers')
+  scores = read.csv('scores.csv')
+  year_max = c(eez2014=2012, eez2013=2011, eez2012=2010)[[scenario]]
   
   # get regions
   rgns = layers$data[[conf$config$layer_region_labels]] %.%
