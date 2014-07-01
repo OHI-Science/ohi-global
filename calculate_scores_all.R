@@ -192,6 +192,10 @@ for (i in 1:length(scenarios)){ # i=1
 
 # DEBUG NP
 source('../ohidev/report/compare_scores.R')
+
+system('open ~/github/ohi-global/eez2012/scores.csv')
+system('open ~/github/ohi-global/eez2013/scores.csv')
+
 csv = sprintf('/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_eez2012-2013_%s_vs_2013-10-09.csv', Sys.Date())
 #system(sprintf('open %s', csv))
 
