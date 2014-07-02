@@ -224,11 +224,17 @@ MAR = function(layers, status_years=2005:2011){
     c('id_num'='rgn_id', 'val_chr'='trend_yrs'))
   
   # merge and cast harvest with sustainability
-  #harvest_species$species = as.character(harvest_species$species)
+  #   harvest_species$species = as.character(harvest_species$species)
+  #   rky = dcast(merge(merge(harvest_tonnes, 
+  #                             harvest_species, all.x=TRUE, by=c('species_code')),
+  #                       sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')),
+  #                 rgn_id + species + species_code + sust_coeff ~ year, value.var='tonnes', mean, na.rm=T); head(rky)
   rky = harvest_tonnes %.%
     merge(harvest_species     , all.x=TRUE, by='species_code') %.%
     merge(sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')) %.%
     dcast(rgn_id + species + species_code + sust_coeff ~ year, value.var='tonnes', mean, na.rm=T)
+  
+  write.csv(rky, 'tmp/')
   
   # smooth each species-country time-series using a running mean with 4-year window, excluding NAs from the 4-year mean calculation
   # TODO: simplify below with dplyr::group_by()
@@ -259,7 +265,7 @@ MAR = function(layers, status_years=2005:2011){
   
   # get reference quantile based on argument years
   ref_95pct = quantile(subset(ry, year <= max(status_years), mar_pop, drop=T), 0.95, na.rm=T)
-  
+
   ry = within(ry, {
     status = ifelse(mar_pop / ref_95pct > 1, 
                     1,
@@ -295,6 +301,8 @@ MAR = function(layers, status_years=2005:2011){
         mutate(dimension = 'trend')) %.%
     mutate(goal='MAR')
   
+  cat(sprintf('DEBUG: MAR status for Thailand[25]: %g\n', subset(scores, region_id==25 & goal=='MAR' & dimension=='status', score)))
+
   return(scores)
   # NOTE: some differences to www2013 are due to 4_yr species only previously getting trend calculated to 4 years (instead of 5)
 }
@@ -398,7 +406,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     filter(habitat=='rocky_reef') %>%
     select(rgn_id, km2)
   
-  if (debug & !file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
+  if (debug & !file.exists('temp')) dir.create('temp', recursive=T)
   
   # merge harvest in tonnes and usd
   h = 
@@ -428,7 +436,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       
   if (debug){
     # write out data
-    write.csv(h, sprintf('reports/debug/%s_np_0-harvest-rgn-year-product_data.csv', scenario), row.names=F, na='')
+    write.csv(h, sprintf('temp/%s_np_0-harvest-rgn-year-product_data.csv', scenario), row.names=F, na='')
   }
   
   # area for poducts having single habitats for exposure
@@ -578,8 +586,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
 
   if (debug){
     # write out data
-    write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
-    write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
+    write.csv(D, sprintf('temp/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
+    write.csv(S, sprintf('temp/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
   }
 
   # get status
@@ -765,13 +773,13 @@ TR = function(layers, year_max, debug=F){
   
   if (debug){
     # compare with pre-gapfilled data
-    if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
+    if (!file.exists('temp')) dir.create('temp', recursive=T)
     
     # cast to wide format (rows:rgn, cols:year, vals: Xtr) similar to original
     d_c = d %.%
       filter(year %in% (year_max-5):year_max) %.%
       dcast(rgn_id ~ year, value.var='Xtr')
-    write.csv(d_c, 'reports/debug/tr_0-pregap_wide.csv', row.names=F, na='')
+    write.csv(d_c, 'temp/tr_0-pregap_wide.csv', row.names=F, na='')
     
     o = read.csv('/Volumes/data_edit/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv', na.strings='') %.%
       melt(id='rgn_id', variable.name='year', value.name='Xtr_o') %.%
@@ -788,7 +796,7 @@ TR = function(layers, year_max, debug=F){
       mutate(Xtr_dif = Xtr - Xtr_o) %.% 
       select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %.%
       arrange(rgn_id, year)
-    write.csv(vs, 'reports/debug/tr_0-pregap-vs_details.csv', row.names=F, na='')
+    write.csv(vs, 'temp/tr_0-pregap-vs_details.csv', row.names=F, na='')
     
     vs_rgn = vs %.%
       group_by(rgn_id) %.%
@@ -801,7 +809,7 @@ TR = function(layers, year_max, debug=F){
         dif_2011    = Xtr_2011 - Xtr_2011_o) %.%
       filter(n_notna_o !=0 | n_notna!=0) %.%
       arrange(desc(abs(dif_2011)), Xtr_2011, Xtr_2011_o)
-    write.csv(vs_rgn, 'reports/debug/tr_0-pregap-vs_summary.csv', row.names=F, na='')
+    write.csv(vs_rgn, 'temp/tr_0-pregap-vs_summary.csv', row.names=F, na='')
   }
   
   # get georegions for gapfilling
@@ -816,8 +824,8 @@ TR = function(layers, year_max, debug=F){
       by='rgn_id')
 
   # setup data for georegional gapfilling (remove Antarctica rgn_id=213)
-  if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
-  csv = 'reports/debug/tr_1-gapfill-georegions.csv'
+  if (!file.exists('temp')) dir.create('temp', recursive=T)
+  csv = 'temp/tr_1-gapfill-georegions.csv'
   d_g = gapfill_georegions(
     data = d %.%
       filter(rgn_id!=213) %.%
@@ -841,7 +849,7 @@ TR = function(layers, year_max, debug=F){
       Xtr_r95  = ifelse(Xtr / Xtr_95 > 1, 1, Xtr / Xtr_95), # rescale to 95th percentile, cap at 1
       Xtr_rmax = Xtr / Xtr_max )                            # rescale to max value   
   if (debug){
-    write.csv(d_g_f_r, 'reports/debug/tr_2-filtered-rescaled.csv', row.names=F, na='')
+    write.csv(d_g_f_r, 'temp/tr_2-filtered-rescaled.csv', row.names=F, na='')
   }
 
   # calculate trend
@@ -902,7 +910,7 @@ TR = function(layers, year_max, debug=F){
       select(dimension, region_id, region_label, score_o, score, score_dif)
     
     # output comparison
-    write.csv(vs, 'reports/debug/tr_3-scores-vs.csv', row.names=F, na='')
+    write.csv(vs, 'temp/tr_3-scores-vs.csv', row.names=F, na='')
   }
   
   return(scores)
@@ -1089,8 +1097,8 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
     select(rgn_id, score, w_sum)
   
   # georegional gapfill, and output gapfill_georegions attributes
-  if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
-  csv = sprintf('reports/debug/eez2013_%s-gapfill-georegions.csv', tolower(subgoal))
+  if (!file.exists('temp')) dir.create('temp', recursive=T)
+  csv = sprintf('temp/eez2013_%s-gapfill-georegions.csv', tolower(subgoal))
   s_r_g = gapfill_georegions(data, georegions, fld_weight='w_sum', attributes_csv=csv)
   
   #print(head(attr(s_r_g, 'gapfill_georegions')), row.names=F)
