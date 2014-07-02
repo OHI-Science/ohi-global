@@ -15,8 +15,8 @@ dirs = list(
 library(devtools)
 load_all(dirs$ohicore) # a developer alternative to library(ohicore)
 
-do.layercopy  = T
-do.layercheck = T
+do.layercopy  = F
+do.layercheck = F
 do.calculate  = T
 do.other      = F
 

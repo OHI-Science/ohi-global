@@ -576,44 +576,13 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     filter(!is.na(status)) %>% # 1/0 produces NaN
     ungroup()
 
-#   # get georegions for gapfilling
-#   georegions = layers$data[['rgn_georegions']] %.%
-#     dcast(rgn_id ~ level, value.var='georgn_id')
-#   
-#   if (debug){
-#     # write out data
-#     write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
-#     write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
-#     
-#     # get georegion and region labels for prettier debug output
-#     georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
-#       mutate(level_label = sprintf('%s_label', level)) %.%
-#       dcast(rgn_id ~ level_label, value.var='label') %.%
-#       left_join(
-#         layers$data[['rgn_labels']] %.%
-#           select(rgn_id, v_label=label),
-#         by='rgn_id')    
-#     
-#     # spatial gapfill by georegions
-#     G = gapfill_georegions(
-#       data = S %>%
-#         select(rgn_id, year, status),
-#       georegions = georegions,
-#       georegion_labels = georegion_labels,
-#       attributes_csv=sprintf('reports/debug/%s_np_4-gapfill-georegions.csv', scenario))
-#     
-#   } else {
-#     
-#     # spatial gapfill by georegions
-#     G = gapfill_georegions(
-#       data = S %>%
-#         select(rgn_id, year, status),
-#       georegions = georegions)
-#     
-#   }
-#   
+  if (debug){
+    # write out data
+    write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
+    write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
+  }
+
   # get status
-  #browser() # status %>% filter(rgn_id==136) # DEBUG
   status = S %>%
     filter(year==year_max & !is.na(status)) %>%
     mutate(
@@ -686,34 +655,36 @@ CS = function(layers){
 
 
 CP = function(layers){
-  
-  # layers
-  lyrs = list('rk' = c('hab_health' = 'health',
-                       'hab_extent' = 'extent',
-                       'hab_trend'  = 'trend'))
-  lyr_names = sub('^\\w*\\.','', names(unlist(lyrs)))
-  
+    
   # get layer data
-  D = SelectLayersData(layers, layers=lyr_names)
-  
-  # for habitat extent do not use all mangrove, but sum of mangrove_offshore1km + mangrove_inland1km = mangrove to match with extent and trend
-  d = subset(D, !(layer=='hab_extent' & category %in% c('mangrove','mangrove_inland1km','mangrove_offshore1km')))
-  m = D %.%
-    filter(layer=='hab_extent' & category %in% c('mangrove_inland1km','mangrove_offshore1km'))
-  if (nrow(m)>0){ # eg no mangrove in Baltic
-    m = m %.%
-      dcast(layer + id_num ~ category, value.var='val_num') %.%
-      mutate(
-        val_num  = sum(mangrove_inland1km, mangrove_offshore1km, na.rm=T),
-        category = 'mangrove')    
-    D = rbind.fill(m, d)
-  } else {
-    D = d
-  }
-  
-  # cast
-  rk = rename(dcast(D, id_num + category ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['rk']]))),
-              c('id_num'='region_id', 'category'='habitat', lyrs[['rk']]))
+  d = 
+    join_all(
+      list(
+        layers$data[['hab_health']] %>%
+          select(rgn_id, habitat, health),
+        
+        layers$data[['hab_trend']] %>%
+          select(rgn_id, habitat, trend),
+        
+        # for habitat extent
+        rbind_list(
+          
+          # do not use all mangrove
+          layers$data[['hab_extent']] %>%
+            filter(!habitat %in% c('mangrove','mangrove_inland1km','mangrove_offshore1km')) %>%
+            select(rgn_id, habitat, km2),
+        
+          # sum mangrove_offshore1km + mangrove_inland1km = mangrove to match with extent and trend
+          layers$data[['hab_extent']] %>%
+            filter(habitat %in% c('mangrove_inland1km','mangrove_offshore1km')) %>%
+            group_by(rgn_id) %>%
+            summarize(km2 = sum(km2, na.rm=T)) %>%
+            mutate(habitat='mangrove') %>%
+            ungroup() %>%
+            select(rgn_id, habitat, km2))),
+      
+      by=c('rgn_id','habitat'), type='full') %>% 
+    select(rgn_id, habitat, km2, health, trend)
   
   # limit to CP habitats and add rank
   habitat.rank = c('coral'            = 4,
@@ -722,26 +693,31 @@ CP = function(layers){
                    'seagrass'         = 1,
                    'seaice_shoreline' = 4)
   
-  rk = subset(rk, habitat %in% names(habitat.rank))
-  rk$rank = habitat.rank[as.character(rk$habitat)]
+  d = d %>%
+    filter(habitat %in% names(habitat.rank)) %>%
+    mutate(
+      rank = habitat.rank[habitat],
+      extent = ifelse(km2==0, NA, km2))
   
-  # assign extent of 0 as NA
-  rk$extent[rk$extent==0] = NA
-  
-  # status  
-  r.status = ddply(na.omit(rk[,c('region_id','habitat','rank','extent','health')]), .(region_id), summarize,
-                   goal = 'CP',
-                   dimension = 'status',
-                   score = min(1, sum(rank * health * extent) / (sum(extent) * max(rank)) ) * 100 )    
-  
-  # trend
-  r.trend = ddply(na.omit(rk[,c('region_id','habitat','rank','extent','trend')]), .(region_id), summarize,
-                  goal = 'CP',
-                  dimension = 'trend',
-                  score = sum(rank * trend * extent) / (sum(extent)* max(rank)) )
-  
+  scores_CP = rbind_list(
+    # status
+    d %>% 
+      group_by(rgn_id) %>%
+      summarize(      
+        score = pmin(1, sum(rank * health * extent) / (sum(extent) * max(rank)) ) * 100,
+        dimension = 'status'),
+    # trend
+    d %>% 
+      group_by(rgn_id) %>%
+      summarize(      
+        score = sum(rank * trend * extent) / (sum(extent)* max(rank)),
+        dimension = 'trend')) %>%
+    mutate(
+      goal = 'CP') %>%
+    select(region_id=rgn_id, goal, dimension, score)
+
   # return scores
-  return(rbind(r.status, r.trend))  
+  return(scores_CP)
 }
 
 
