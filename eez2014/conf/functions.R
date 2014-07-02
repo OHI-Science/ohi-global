@@ -576,45 +576,45 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     filter(!is.na(status)) %>% # 1/0 produces NaN
     ungroup()
 
-  # get georegions for gapfilling
-  georegions = layers$data[['rgn_georegions']] %.%
-    dcast(rgn_id ~ level, value.var='georgn_id')
-  
-  if (debug){
-    # write out data
-    write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
-    write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
-    
-    # get georegion and region labels for prettier debug output
-    georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
-      mutate(level_label = sprintf('%s_label', level)) %.%
-      dcast(rgn_id ~ level_label, value.var='label') %.%
-      left_join(
-        layers$data[['rgn_labels']] %.%
-          select(rgn_id, v_label=label),
-        by='rgn_id')    
-    
-    # spatial gapfill by georegions
-    G = gapfill_georegions(
-      data = S %>%
-        select(rgn_id, year, status),
-      georegions = georegions,
-      georegion_labels = georegion_labels,
-      attributes_csv=sprintf('reports/debug/%s_np_4-gapfill-georegions.csv', scenario))
-    
-  } else {
-    
-    # spatial gapfill by georegions
-    G = gapfill_georegions(
-      data = S %>%
-        select(rgn_id, year, status),
-      georegions = georegions)
-    
-  }
-  
+#   # get georegions for gapfilling
+#   georegions = layers$data[['rgn_georegions']] %.%
+#     dcast(rgn_id ~ level, value.var='georgn_id')
+#   
+#   if (debug){
+#     # write out data
+#     write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
+#     write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
+#     
+#     # get georegion and region labels for prettier debug output
+#     georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
+#       mutate(level_label = sprintf('%s_label', level)) %.%
+#       dcast(rgn_id ~ level_label, value.var='label') %.%
+#       left_join(
+#         layers$data[['rgn_labels']] %.%
+#           select(rgn_id, v_label=label),
+#         by='rgn_id')    
+#     
+#     # spatial gapfill by georegions
+#     G = gapfill_georegions(
+#       data = S %>%
+#         select(rgn_id, year, status),
+#       georegions = georegions,
+#       georegion_labels = georegion_labels,
+#       attributes_csv=sprintf('reports/debug/%s_np_4-gapfill-georegions.csv', scenario))
+#     
+#   } else {
+#     
+#     # spatial gapfill by georegions
+#     G = gapfill_georegions(
+#       data = S %>%
+#         select(rgn_id, year, status),
+#       georegions = georegions)
+#     
+#   }
+#   
   # get status
   #browser() # status %>% filter(rgn_id==136) # DEBUG
-  status = G %>%
+  status = S %>%
     filter(year==year_max & !is.na(status)) %>%
     mutate(
       dimension = 'status',
@@ -624,7 +624,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   stopifnot(min(status$score, na.rm=T)>=0, max(status$score, na.rm=T)<=100)
   
   # trend based on 5 intervals (6 years of data)
-  trend = G %>%
+  trend = S %>%
     filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>%
     arrange(rgn_id, year) %>%
     group_by(rgn_id) %>%

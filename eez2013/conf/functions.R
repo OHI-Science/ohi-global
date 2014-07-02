@@ -576,45 +576,45 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     filter(!is.na(status)) %>% # 1/0 produces NaN
     ungroup()
 
-  # get georegions for gapfilling
-  georegions = layers$data[['rgn_georegions']] %.%
-    dcast(rgn_id ~ level, value.var='georgn_id')
-  
-  if (debug){
-    # write out data
-    write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
-    write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
-    
-    # get georegion and region labels for prettier debug output
-    georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
-      mutate(level_label = sprintf('%s_label', level)) %.%
-      dcast(rgn_id ~ level_label, value.var='label') %.%
-      left_join(
-        layers$data[['rgn_labels']] %.%
-          select(rgn_id, v_label=label),
-        by='rgn_id')    
-    
-    # spatial gapfill by georegions
-    G = gapfill_georegions(
-      data = S %>%
-        select(rgn_id, year, status),
-      georegions = georegions,
-      georegion_labels = georegion_labels,
-      attributes_csv=sprintf('reports/debug/%s_np_4-gapfill-georegions.csv', scenario))
-    
-  } else {
-    
-    # spatial gapfill by georegions
-    G = gapfill_georegions(
-      data = S %>%
-        select(rgn_id, year, status),
-      georegions = georegions)
-    
-  }
-  
+#   # get georegions for gapfilling
+#   georegions = layers$data[['rgn_georegions']] %.%
+#     dcast(rgn_id ~ level, value.var='georgn_id')
+#   
+#   if (debug){
+#     # write out data
+#     write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
+#     write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
+#     
+#     # get georegion and region labels for prettier debug output
+#     georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
+#       mutate(level_label = sprintf('%s_label', level)) %.%
+#       dcast(rgn_id ~ level_label, value.var='label') %.%
+#       left_join(
+#         layers$data[['rgn_labels']] %.%
+#           select(rgn_id, v_label=label),
+#         by='rgn_id')    
+#     
+#     # spatial gapfill by georegions
+#     G = gapfill_georegions(
+#       data = S %>%
+#         select(rgn_id, year, status),
+#       georegions = georegions,
+#       georegion_labels = georegion_labels,
+#       attributes_csv=sprintf('reports/debug/%s_np_4-gapfill-georegions.csv', scenario))
+#     
+#   } else {
+#     
+#     # spatial gapfill by georegions
+#     G = gapfill_georegions(
+#       data = S %>%
+#         select(rgn_id, year, status),
+#       georegions = georegions)
+#     
+#   }
+#   
   # get status
   #browser() # status %>% filter(rgn_id==136) # DEBUG
-  status = G %>%
+  status = S %>%
     filter(year==year_max & !is.na(status)) %>%
     mutate(
       dimension = 'status',
@@ -624,7 +624,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
   stopifnot(min(status$score, na.rm=T)>=0, max(status$score, na.rm=T)<=100)
   
   # trend based on 5 intervals (6 years of data)
-  trend = G %>%
+  trend = S %>%
     filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>%
     arrange(rgn_id, year) %>%
     group_by(rgn_id) %>%
@@ -687,17 +687,49 @@ CS = function(layers){
 
 CP = function(layers){
   
-  # layers
-  lyrs = list('rk' = c('hab_health' = 'health',
-                       'hab_extent' = 'extent',
-                       'hab_trend'  = 'trend'))
-  lyr_names = sub('^\\w*\\.','', names(unlist(lyrs)))
+  # DEBUG
+  load('~/Downloads/layers.Global2013.www2013_ba215bd1.rda') # DEBUG
+  layers = layers.Global2013.www2013
+  # Investigate 2013 CP  score	for Belize[164] from 9.93	to 81.63
+  library(ohicore)
+  layers = Layers('eez2013/layers.csv', 'eez2013/layers')
   
   # get layer data
-  D = SelectLayersData(layers, layers=lyr_names)
+  D = 
+    join_all(
+      list(
+        layers$data[['hab_health']],
+        layers$data[['hab_extent']] %>%
+          filter(habitat %in% c('mangrove','mangrove_inland1km','mangrove_offshore1km')),
+        layers$data[['hab_extent']] %>%
+          filter(habitat %in% c('mangrove_inland1km','mangrove_offshore1km')),        
+        layers$data[['hab_trend']]),
+      by=c('rgn_id','habitat'), type='full') %>% 
+    select(rgn_id, habitat, km2, health, trend)
   
+  table(D$habitat)
+  D %>% filter(habitat=='mangrove_inland1km') %>% head
+  D %>% filter(habitat!='mangrove_inland1km') %>% head
   # for habitat extent do not use all mangrove, but sum of mangrove_offshore1km + mangrove_inland1km = mangrove to match with extent and trend
-  d = subset(D, !(layer=='hab_extent' & category %in% c('mangrove','mangrove_inland1km','mangrove_offshore1km')))
+  
+  
+# OLD (496:498)
+  m = dcast(D, layer + id_num ~ category, value.var='val_num', subset = .(layer=='rnk_hab_extent' & category %in% c('mangrove_inland1km','mangrove_offshore1km')))
+  m$val_num = rowSums(m[,c('mangrove_inland1km','mangrove_offshore1km')], na.rm=T)
+  m$category = as.factor('mangrove')
+  
+  # SAME
+  d = subset(D, !(layer=='rnk_hab_extent' & category %in% c('mangrove','mangrove_inland1km','mangrove_offshore1km')))
+  
+  # DELETED (500):
+  D = rbind.fill(m, d)
+D_o = D
+  
+# NEW
+
+# SAME
+d = subset(D, !(layer=='hab_extent' & category %in% c('mangrove','mangrove_inland1km','mangrove_offshore1km')))
+
   m = D %.%
     filter(layer=='hab_extent' & category %in% c('mangrove_inland1km','mangrove_offshore1km'))
   if (nrow(m)>0){ # eg no mangrove in Baltic
@@ -710,7 +742,11 @@ CP = function(layers){
   } else {
     D = d
   }
-  
+
+D_n = D
+subset(D_n, id_num==164)
+subset(D_o, id_num==164)
+
   # cast
   rk = rename(dcast(D, id_num + category ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['rk']]))),
               c('id_num'='region_id', 'category'='habitat', lyrs[['rk']]))
