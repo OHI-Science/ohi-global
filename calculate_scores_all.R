@@ -190,23 +190,5 @@ for (i in 1:length(scenarios)){ # i=2
   }
 }
 
-cat(sprintf('DEBUG after all: MAR status for Thailand[25]: %g\n', read.csv('eez2013/scores.csv') %>% subset(region_id==25 & goal=='MAR' & dimension=='status', score)))
-
-# DEBUG NP
+# DEBUG comparieson
 source('../ohidev/report/compare_scores.R')
-
-#system('open ~/github/ohi-global/eez2012/scores.csv')
-#system('open ~/github/ohi-global/eez2013/scores.csv')
-
-csv = sprintf('/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_eez2012-2013_%s_vs_2013-10-09.csv', Sys.Date())
-#system(sprintf('open %s', csv))
-
-# read.csv(csv) %>%
-#   filter(goal=='NP' & year==2013 & dimension=='score') %>%
-#   head(50)
-# read.csv('~/github/ohiprep/Global/FAO-Commodities_v2011/tmp/eez2013_np_harvest_smoothed_data.csv') %>%
-#   filter(rgn_id==199)
-# 
-# read.csv('~/github/ohiprep/Global/FAO-Commodities_v2011/tmp/eez2013_np_harvest_smoothed_data.csv') %>%
-#   filter(rgn_id==140) %>%
-#   head(50)
