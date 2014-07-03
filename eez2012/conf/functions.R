@@ -224,11 +224,39 @@ MAR = function(layers, status_years=2005:2011){
     c('id_num'='rgn_id', 'val_chr'='trend_yrs'))
   
   # merge and cast harvest with sustainability
-  #harvest_species$species = as.character(harvest_species$species)
+  #   harvest_species$species = as.character(harvest_species$species)
+  #   rky = dcast(merge(merge(harvest_tonnes, 
+  #                             harvest_species, all.x=TRUE, by=c('species_code')),
+  #                       sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')),
+  #                 rgn_id + species + species_code + sust_coeff ~ year, value.var='tonnes', mean, na.rm=T); head(rky)
   rky = harvest_tonnes %.%
     merge(harvest_species     , all.x=TRUE, by='species_code') %.%
     merge(sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')) %.%
     dcast(rgn_id + species + species_code + sust_coeff ~ year, value.var='tonnes', mean, na.rm=T)
+  
+  # DEBUG
+  csv_compare = function(o, step, prefix=sprintf('temp/%s_MAR', basename(getwd()))){
+    csv = sprintf('%s_%s_B.csv', prefix, step)
+    if (!file.exists(csv)){
+      cat(sprintf('DEBUG: writing %s.\n', csv))
+      write.csv(o, csv, row.names=F, na='')     
+    }
+    x = read.csv(csv, check.names=F)
+    
+    # custom modifications
+    if (step=='3-m-melt'){ x$year = factor(x$year, levels=levels(o$year)) } # [1] "Component “year”: 'current' is not a factor"
+    if (step=='7-ref95pct-quantile'){ x = setNames(as.numeric(x), '95%') }
+    
+    eq = all.equal(o, x)
+    if (class(eq) == 'character'){
+      csv = sprintf('%s_%s_A.csv', prefix, step)
+      cat(sprintf('DEBUG: NOT EQUAL! writing %s.\n', csv))
+      print(eq)
+      write.csv(o, csv, row.names=F, na='') 
+    }
+    return(x)
+  }  
+  x = csv_compare(rky, '1-rky')
   
   # smooth each species-country time-series using a running mean with 4-year window, excluding NAs from the 4-year mean calculation
   # TODO: simplify below with dplyr::group_by()
@@ -237,35 +265,72 @@ MAR = function(layers, status_years=2005:2011){
   rownames(rky_smooth) = as.character(yrs_smooth)
   rky_smooth = t(rky_smooth)
   rky = as.data.frame(cbind(rky[, c('rgn_id','species','species_code','sust_coeff')], rky_smooth)); head(rky)
-  
+  x = csv_compare(rky, '2-rky-smooth')  # DEBUG
+    
   # melt
   m = melt(rky,
            id=c('rgn_id', 'species', 'species_code', 'sust_coeff'),
            variable.name='year', value.name='sm_tonnes'); head(m)
-  
+  x = csv_compare(m, '3-m-melt')  # DEBUG
+  # "Component “year”: 'current' is not a factor"
+    
   # for each species-country-year, smooth mariculture harvest times the sustainability coefficient
   m = within(m, {
     sust_tonnes = sust_coeff * sm_tonnes
     year        = as.numeric(as.character(m$year))
   })
+  x = csv_compare(m, '4-m-within')  # DEBUG
   
   # merge the MAR and coastal human population data
   m = merge(m, popn_inland25mi, by=c('rgn_id','year'), all.x=T)
+  m_a = csv_compare(m, '5-m-merge')  # DEBUG
   
   # must first aggregate all weighted timeseries per region, before dividing by total population
-  ry = ddply(m, .(rgn_id, year, popsum), summarize, 
-             sust_tonnes_sum = sum(sust_tonnes),
-             mar_pop         = sum(sust_tonnes) / popsum[1])
+#   ry = ddply(m, .(rgn_id, year, popsum), summarize, 
+#              sust_tonnes_sum = sum(sust_tonnes),
+#              mar_pop         = sum(sust_tonnes) / popsum[1]) # <-- PROBLEM using popsum[1] with ddply!!!
+  
+  # aggregate all weighted timeseries per region, and divide by coastal human population
+  ry = m %>%
+    group_by(rgn_id, year) %>%
+    summarize(
+      sust_tonnes_sum = sum(sust_tonnes)) %>%
+    merge(
+      popn_inland25mi, by=c('rgn_id','year'), all.x=T) %>%
+    mutate(
+      mar_pop         = sust_tonnes_sum / popsum) %>%
+    select(rgn_id, year, popsum, sust_tonnes_sum, mar_pop)
+  ry_b = csv_compare(ry, '6-ry-ddply')  # RIGHT
+  ry_a = ry
+  eq = all.equal(ry_a, ry_b)
+  if (class(eq) == 'character') browser()
+
+#   # DEBUG
+#   ry_b = csv_compare(ry, '6-ry-ddply')  # RIGHT
+#   ry_a = ry                             # WRONG
+#   
+#   ry_a %>% # WRONG
+#     filter(rgn_id==25)
+#   ry_b %>% # RIGHT
+#     filter(rgn_id==25)
+#   
+# 
+#   
+#   all.equal(ry_n, ry_a)
+#   all.equal(ry_n, ry_b)
+  
   
   # get reference quantile based on argument years
   ref_95pct = quantile(subset(ry, year <= max(status_years), mar_pop, drop=T), 0.95, na.rm=T)
+  x = csv_compare(ref_95pct, '7-ref95pct-quantile')  # DEBUG
   
   ry = within(ry, {
     status = ifelse(mar_pop / ref_95pct > 1, 
                     1,
                     mar_pop / ref_95pct)})
   status <- subset(ry, year == max(status_years), c('rgn_id', 'status'))
-  status$status <- round(status$status*100, 2)
+  status$status <- round(status$status*100, 2)  
+  x = csv_compare(ry, '8-ry-within')  # DEBUG  
   
   # get list where trend is only to be calculated up to second-to-last-year
   # species where the last year of the time-series was 2010, and the same value was copied over to 2011
@@ -295,6 +360,8 @@ MAR = function(layers, status_years=2005:2011){
         mutate(dimension = 'trend')) %.%
     mutate(goal='MAR')
   
+  cat(sprintf('DEBUG: MAR status for Thailand[25]: %g\n', subset(scores, region_id==25 & goal=='MAR' & dimension=='status', score)))
+
   return(scores)
   # NOTE: some differences to www2013 are due to 4_yr species only previously getting trend calculated to 4 years (instead of 5)
 }
@@ -398,7 +465,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     filter(habitat=='rocky_reef') %>%
     select(rgn_id, km2)
   
-  if (debug & !file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
+  if (debug & !file.exists('temp')) dir.create('temp', recursive=T)
   
   # merge harvest in tonnes and usd
   h = 
@@ -428,7 +495,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       
   if (debug){
     # write out data
-    write.csv(h, sprintf('reports/debug/%s_np_0-harvest-rgn-year-product_data.csv', scenario), row.names=F, na='')
+    write.csv(h, sprintf('temp/%s_np_0-harvest-rgn-year-product_data.csv', scenario), row.names=F, na='')
   }
   
   # area for poducts having single habitats for exposure
@@ -576,54 +643,24 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
     filter(!is.na(status)) %>% # 1/0 produces NaN
     ungroup()
 
-  # get georegions for gapfilling
-  georegions = layers$data[['rgn_georegions']] %.%
-    dcast(rgn_id ~ level, value.var='georgn_id')
-  
   if (debug){
     # write out data
-    write.csv(D, sprintf('reports/debug/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
-    write.csv(S, sprintf('reports/debug/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
-    
-    # get georegion and region labels for prettier debug output
-    georegion_labels =  layers$data[['rgn_georegion_labels']] %.%    
-      mutate(level_label = sprintf('%s_label', level)) %.%
-      dcast(rgn_id ~ level_label, value.var='label') %.%
-      left_join(
-        layers$data[['rgn_labels']] %.%
-          select(rgn_id, v_label=label),
-        by='rgn_id')    
-    
-    # spatial gapfill by georegions
-    G = gapfill_georegions(
-      data = S %>%
-        select(rgn_id, year, status),
-      georegions = georegions,
-      georegion_labels = georegion_labels,
-      attributes_csv=sprintf('reports/debug/%s_np_4-gapfill-georegions.csv', scenario))
-    
-  } else {
-    
-    # spatial gapfill by georegions
-    G = gapfill_georegions(
-      data = S %>%
-        select(rgn_id, year, status),
-      georegions = georegions)
-    
+    write.csv(D, sprintf('temp/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
+    write.csv(S, sprintf('temp/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
   }
-  
+
   # get status
-  status = G %>%
+  status = S %>%
     filter(year==year_max & !is.na(status)) %>%
     mutate(
       dimension = 'status',
       score     = round(status,4) * 100) %>%
     select(rgn_id, dimension, score) %>%
     arrange(rgn_id) # 30 status==NAs for year_max==2011
-  stopifnot(min(status$score)>=0, max(status$score)<=100)
+  stopifnot(min(status$score, na.rm=T)>=0, max(status$score, na.rm=T)<=100)
   
   # trend based on 5 intervals (6 years of data)
-  trend = G %>%
+  trend = S %>%
     filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>%
     arrange(rgn_id, year) %>%
     group_by(rgn_id) %>%
@@ -643,6 +680,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       goal = 'NP') %>%
     select(goal, dimension, region_id=rgn_id, score) %>%
     arrange(goal, dimension, region_id)
+  # scores_NP %>% filter(region_id==136)
   return(scores_NP)
 }
 
@@ -684,34 +722,39 @@ CS = function(layers){
 
 
 CP = function(layers){
-  
-  # layers
-  lyrs = list('rk' = c('hab_health' = 'health',
-                       'hab_extent' = 'extent',
-                       'hab_trend'  = 'trend'))
-  lyr_names = sub('^\\w*\\.','', names(unlist(lyrs)))
-  
+    
   # get layer data
-  D = SelectLayersData(layers, layers=lyr_names)
+  d = 
+    join_all(
+      list(
+        layers$data[['hab_health']] %>%
+          select(rgn_id, habitat, health),
+        
+        layers$data[['hab_trend']] %>%
+          select(rgn_id, habitat, trend),
+        
+        # for habitat extent
+        rbind_list(
+          
+          # do not use all mangrove
+          layers$data[['hab_extent']] %>%
+            filter(!habitat %in% c('mangrove','mangrove_inland1km','mangrove_offshore1km')) %>%
+            select(rgn_id, habitat, km2),
+        
+          # sum mangrove_offshore1km + mangrove_inland1km = mangrove to match with extent and trend
+          layers$data[['hab_extent']] %>%
+            filter(habitat %in% c('mangrove_inland1km','mangrove_offshore1km')) %>%
+            group_by(rgn_id) %>%
+            summarize(km2 = sum(km2, na.rm=T)) %>%
+            mutate(habitat='mangrove') %>%
+            ungroup() %>%
+            select(rgn_id, habitat, km2))),
+      
+      by=c('rgn_id','habitat'), type='full') %>% 
+    select(rgn_id, habitat, km2, health, trend)
   
-  # for habitat extent do not use all mangrove, but sum of mangrove_offshore1km + mangrove_inland1km = mangrove to match with extent and trend
-  d = subset(D, !(layer=='hab_extent' & category %in% c('mangrove','mangrove_inland1km','mangrove_offshore1km')))
-  m = D %.%
-    filter(layer=='hab_extent' & category %in% c('mangrove_inland1km','mangrove_offshore1km'))
-  if (nrow(m)>0){ # eg no mangrove in Baltic
-    m = m %.%
-      dcast(layer + id_num ~ category, value.var='val_num') %.%
-      mutate(
-        val_num  = sum(mangrove_inland1km, mangrove_offshore1km, na.rm=T),
-        category = 'mangrove')    
-    D = rbind.fill(m, d)
-  } else {
-    D = d
-  }
-  
-  # cast
-  rk = rename(dcast(D, id_num + category ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['rk']]))),
-              c('id_num'='region_id', 'category'='habitat', lyrs[['rk']]))
+  #d %>% filter(rgn_id==250)
+  #browser()
   
   # limit to CP habitats and add rank
   habitat.rank = c('coral'            = 4,
@@ -720,26 +763,33 @@ CP = function(layers){
                    'seagrass'         = 1,
                    'seaice_shoreline' = 4)
   
-  rk = subset(rk, habitat %in% names(habitat.rank))
-  rk$rank = habitat.rank[as.character(rk$habitat)]
+  d = d %>%
+    filter(habitat %in% names(habitat.rank)) %>%
+    mutate(
+      rank = habitat.rank[habitat],
+      extent = ifelse(km2==0, NA, km2))
   
-  # assign extent of 0 as NA
-  rk$extent[rk$extent==0] = NA
-  
-  # status  
-  r.status = ddply(na.omit(rk[,c('region_id','habitat','rank','extent','health')]), .(region_id), summarize,
-                   goal = 'CP',
-                   dimension = 'status',
-                   score = min(1, sum(rank * health * extent) / (sum(extent) * max(rank)) ) * 100 )    
-  
-  # trend
-  r.trend = ddply(na.omit(rk[,c('region_id','habitat','rank','extent','trend')]), .(region_id), summarize,
-                  goal = 'CP',
-                  dimension = 'trend',
-                  score = sum(rank * trend * extent) / (sum(extent)* max(rank)) )
-  
+  scores_CP = rbind_list(
+    # status
+    d %>% 
+      filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
+      group_by(rgn_id) %>%
+      summarize(      
+        score = pmin(1, sum(rank * health * extent) / (sum(extent) * max(rank)) ) * 100,
+        dimension = 'status'),
+    # trend
+    d %>% 
+      filter(!is.na(rank) & !is.na(trend) & !is.na(extent)) %>%
+      group_by(rgn_id) %>%
+      summarize(      
+        score = sum(rank * trend * extent) / (sum(extent)* max(rank)),
+        dimension = 'trend')) %>%
+    mutate(
+      goal = 'CP') %>%
+    select(region_id=rgn_id, goal, dimension, score)
+
   # return scores
-  return(rbind(r.status, r.trend))  
+  return(scores_CP)
 }
 
 
@@ -757,14 +807,6 @@ TR = function(layers, year_max, debug=F){
   #
   # based on model/GL-NCEAS-TR_v2013a: TRgapfill.R, TRcalc.R...
   # spatial gapfill simply avg, not weighted by total jobs or country population?
-  
-#   # DEBUG
-#   library(devtools); load_all()
-#   yr=2013; year_max = 2011 # yr=2012; year_max = 2010
-#   scenario=sprintf('Global%d.www2013', yr)
-#   conf = ohicore::Conf(sprintf('inst/extdata/conf.%s', scenario))
-#   layers     = Layers(layers.csv = sprintf('inst/extdata/layers.%s.csv', scenario), 
-#                       layers.dir = sprintf('inst/extdata/layers.%s'    , scenario))
   
   # get regions
   rgns = layers$data[[conf$config$layer_region_labels]] %.%
@@ -795,13 +837,13 @@ TR = function(layers, year_max, debug=F){
   
   if (debug){
     # compare with pre-gapfilled data
-    if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
+    if (!file.exists('temp')) dir.create('temp', recursive=T)
     
     # cast to wide format (rows:rgn, cols:year, vals: Xtr) similar to original
     d_c = d %.%
       filter(year %in% (year_max-5):year_max) %.%
       dcast(rgn_id ~ year, value.var='Xtr')
-    write.csv(d_c, 'reports/debug/tr_0-pregap_wide.csv', row.names=F, na='')
+    write.csv(d_c, 'temp/tr_0-pregap_wide.csv', row.names=F, na='')
     
     o = read.csv('/Volumes/data_edit/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv', na.strings='') %.%
       melt(id='rgn_id', variable.name='year', value.name='Xtr_o') %.%
@@ -818,7 +860,7 @@ TR = function(layers, year_max, debug=F){
       mutate(Xtr_dif = Xtr - Xtr_o) %.% 
       select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %.%
       arrange(rgn_id, year)
-    write.csv(vs, 'reports/debug/tr_0-pregap-vs_details.csv', row.names=F, na='')
+    write.csv(vs, 'temp/tr_0-pregap-vs_details.csv', row.names=F, na='')
     
     vs_rgn = vs %.%
       group_by(rgn_id) %.%
@@ -831,7 +873,7 @@ TR = function(layers, year_max, debug=F){
         dif_2011    = Xtr_2011 - Xtr_2011_o) %.%
       filter(n_notna_o !=0 | n_notna!=0) %.%
       arrange(desc(abs(dif_2011)), Xtr_2011, Xtr_2011_o)
-    write.csv(vs_rgn, 'reports/debug/tr_0-pregap-vs_summary.csv', row.names=F, na='')
+    write.csv(vs_rgn, 'temp/tr_0-pregap-vs_summary.csv', row.names=F, na='')
   }
   
   # get georegions for gapfilling
@@ -846,8 +888,8 @@ TR = function(layers, year_max, debug=F){
       by='rgn_id')
 
   # setup data for georegional gapfilling (remove Antarctica rgn_id=213)
-  if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
-  csv = 'reports/debug/tr_1-gapfill-georegions.csv'
+  if (!file.exists('temp')) dir.create('temp', recursive=T)
+  csv = 'temp/tr_1-gapfill-georegions.csv'
   d_g = gapfill_georegions(
     data = d %.%
       filter(rgn_id!=213) %.%
@@ -871,7 +913,7 @@ TR = function(layers, year_max, debug=F){
       Xtr_r95  = ifelse(Xtr / Xtr_95 > 1, 1, Xtr / Xtr_95), # rescale to 95th percentile, cap at 1
       Xtr_rmax = Xtr / Xtr_max )                            # rescale to max value   
   if (debug){
-    write.csv(d_g_f_r, 'reports/debug/tr_2-filtered-rescaled.csv', row.names=F, na='')
+    write.csv(d_g_f_r, 'temp/tr_2-filtered-rescaled.csv', row.names=F, na='')
   }
 
   # calculate trend
@@ -932,7 +974,7 @@ TR = function(layers, year_max, debug=F){
       select(dimension, region_id, region_label, score_o, score, score_dif)
     
     # output comparison
-    write.csv(vs, 'reports/debug/tr_3-scores-vs.csv', row.names=F, na='')
+    write.csv(vs, 'temp/tr_3-scores-vs.csv', row.names=F, na='')
   }
   
   return(scores)
@@ -1119,8 +1161,8 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
     select(rgn_id, score, w_sum)
   
   # georegional gapfill, and output gapfill_georegions attributes
-  if (!file.exists('reports/debug')) dir.create('reports/debug', recursive=T)
-  csv = sprintf('reports/debug/eez2013_%s-gapfill-georegions.csv', tolower(subgoal))
+  if (!file.exists('temp')) dir.create('temp', recursive=T)
+  csv = sprintf('temp/eez2013_%s-gapfill-georegions.csv', tolower(subgoal))
   s_r_g = gapfill_georegions(data, georegions, fld_weight='w_sum', attributes_csv=csv)
   
   #print(head(attr(s_r_g, 'gapfill_georegions')), row.names=F)
@@ -1385,40 +1427,52 @@ CW = function(layers){
 
 
 HAB = function(layers){
+    
+  # get layer data
+  d = 
+    join_all(
+      list(
+        
+        layers$data[['hab_health']] %>%
+          select(rgn_id, habitat, health),
+        
+        layers$data[['hab_trend']] %>%
+          select(rgn_id, habitat, trend),
+        
+        layers$data[['hab_extent']] %>%
+          select(rgn_id, habitat, extent=km2)),
+        
+      by=c('rgn_id','habitat'), type='full') %>% 
+    select(rgn_id, habitat, extent, health, trend)
+
+  # limit to habitats used for HAB, create extent presence as weight
+  d = d %>%
+    filter(habitat %in% c('coral','mangrove','saltmarsh','seaice_edge','seagrass','soft_bottom')) %>%    
+    mutate(
+      w  = ifelse(!is.na(extent) & extent > 0, 1, NA)) %>%
+    filter(!is.na(w)) %>%
+    group_by(rgn_id)
   
-  # layers
-  lyrs = c('hab_health' = 'health',
-           'hab_extent' = 'extent',
-           'hab_trend'  = 'trend')
-  
-#  browser()
-  
-  # cast data
-  d = SelectLayersData(layers, layers=names(lyrs))  
-  rk = rename(dcast(d, id_num + category ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs))),
-              c('id_num'='region_id', 'category'='habitat', lyrs))
-  
-  # limit to HAB habitats
-  rk = subset(rk, habitat %in% c('coral','mangrove','saltmarsh','seaice_edge','seagrass','soft_bottom'))  
-  
-  # presence as weight
-  rk$w = ifelse(!is.na(rk$extent) & rk$extent>0, 1, NA)
-  
-  # status
-  r.status = ddply(na.omit(rk[,c('region_id','habitat','w','health')]), .(region_id), summarize,
-                   goal      = 'HAB',
-                   dimension = 'status',
-                   score     = min(1, sum(w * health) / sum(w)) * 100); summary(r.status)
-  
-  # trend
-  r.trend = ddply(na.omit(rk[,c('region_id','habitat','w','trend')]), .(region_id), summarize,
-                  goal      = 'HAB',
-                  dimension = 'trend',
-                  score     = sum(w * trend) / sum(w))
+  # calculate scores
+  scores_HAB = rbind_list(
+    # status
+    d %>% 
+      filter(!is.na(health)) %>%
+      summarize(      
+        score = pmin(1, sum(w * health) / sum(w)) * 100,
+        dimension = 'status'),
+    # trend
+    d %>% 
+      filter(!is.na(trend)) %>%      
+      summarize(      
+        score =  sum(w * trend) / sum(w),
+        dimension = 'trend')) %>%
+    mutate(
+      goal = 'HAB') %>%
+    select(region_id=rgn_id, goal, dimension, score)
   
   # return scores
-  scores = cbind(rbind(r.status, r.trend))
-  return(scores)  
+  return(scores_HAB)  
 }
 
 

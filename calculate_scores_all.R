@@ -1,5 +1,6 @@
 # transfer global scenarios out of ohicore
 # TODO: create true regions_gcs.js for Antarctica & High Seas
+#       eez2014 reshape input data problem once in pressures, many in resilience: Aggregation function missing: defaulting to length
 
 setwd('~/github/ohi-global')
 
@@ -13,9 +14,10 @@ dirs = list(
 # load ohicore, development mode
 library(devtools)
 load_all(dirs$ohicore) # a developer alternative to library(ohicore)
+#library(ohicore) # from ohidev:functions/trace_MAR.R ## 001 of 10. 2014-07-02 11:34:36 [9938966d]
 
-do.layercopy  = T
-do.layercheck = T
+do.layercopy  = F
+do.layercheck = F
 do.calculate  = T
 do.other      = F
 
@@ -26,7 +28,7 @@ scenarios = list(
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+    do           = F),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
@@ -58,11 +60,11 @@ for (dir in c('eez2012','eez2014')){
 }
 
 # get rid of old debug files without scenario prefix
-for (dir in c('eez2012','eez2013','eez2014')){
-  unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
-}
+# for (dir in c('eez2012','eez2013','eez2014')){
+#   unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
+# }
 
-for (i in 1:length(scenarios)){ # i=1
+for (i in 1:length(scenarios)){ # i=2
   
   # vars
   scenario   = names(scenarios)[[i]]
@@ -148,20 +150,23 @@ for (i in 1:length(scenarios)){ # i=1
   
   if (do.calculate){
     
-    # load configuration and layers
-    conf   = Conf(sprintf('%s/conf', scenario))
-    layers = Layers(layers.csv = sprintf('%s/layers.csv', scenario), 
-                    layers.dir = sprintf('%s/layers', scenario))
-    
     # calculate scores from directory of scenario
     setwd(sprintf('~/github/ohi-global/%s', scenario)) # load_all(dirs$ohicore)
-    scores = CalculateAll(conf, layers, debug=T)
+
+    # load configuration and layers
+    conf   = Conf('conf')
+    layers = Layers('layers.csv','layers')
+    
+    # calculate scores
+    try({   scores = CalculateAll(conf, layers, debug=T) })
     write.csv(scores, 'scores.csv', na='', row.names=F)
+  
+    # restore working directory
     setwd('~/github/ohi-global')
 
     # archive scores on disk (out of github, for easy retrieval later)
     csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
-    write.csv(scores, csv, na='', row.names=F)    
+    write.csv(scores, csv, na='', row.names=F)
   }
     
   if (do.other){
@@ -185,16 +190,23 @@ for (i in 1:length(scenarios)){ # i=1
   }
 }
 
+cat(sprintf('DEBUG after all: MAR status for Thailand[25]: %g\n', read.csv('eez2013/scores.csv') %>% subset(region_id==25 & goal=='MAR' & dimension=='status', score)))
+
 # DEBUG NP
 source('../ohidev/report/compare_scores.R')
-read.csv(sprintf('/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_eez2012-2013_%s_vs_2013-10-09.csv', Sys.Date())) %>%
-  filter(goal=='NP' & year==2013 & dimension=='score') %>%
-  head(50)
-read.csv('~/github/ohiprep/Global/FAO-Commodities_v2011/tmp/eez2013_np_harvest_smoothed_data.csv') %>%
-  filter(rgn_id==199)
 
-read.csv('~/github/ohiprep/Global/FAO-Commodities_v2011/tmp/eez2013_np_harvest_smoothed_data.csv') %>%
-  filter(rgn_id==140) %>%
-  head(50)
+#system('open ~/github/ohi-global/eez2012/scores.csv')
+#system('open ~/github/ohi-global/eez2013/scores.csv')
 
-read.csv('')
+csv = sprintf('/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_eez2012-2013_%s_vs_2013-10-09.csv', Sys.Date())
+#system(sprintf('open %s', csv))
+
+# read.csv(csv) %>%
+#   filter(goal=='NP' & year==2013 & dimension=='score') %>%
+#   head(50)
+# read.csv('~/github/ohiprep/Global/FAO-Commodities_v2011/tmp/eez2013_np_harvest_smoothed_data.csv') %>%
+#   filter(rgn_id==199)
+# 
+# read.csv('~/github/ohiprep/Global/FAO-Commodities_v2011/tmp/eez2013_np_harvest_smoothed_data.csv') %>%
+#   filter(rgn_id==140) %>%
+#   head(50)
