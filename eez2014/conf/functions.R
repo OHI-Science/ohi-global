@@ -437,7 +437,7 @@ AO = function(layers,
   return(scores)  
 }
 
-NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
+NP = function(scores, layers, year_max, debug=T){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
 
@@ -495,7 +495,7 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
       
   if (debug){
     # write out data
-    write.csv(h, sprintf('temp/%s_np_0-harvest-rgn-year-product_data.csv', scenario), row.names=F, na='')
+    write.csv(h, sprintf('temp/%s_NP_1-harvest-rgn-year-product_data.csv', basename(getwd())), row.names=F, na='')
   }
   
   # area for poducts having single habitats for exposure
@@ -645,8 +645,8 @@ NP = function(scores, layers, year_max, harvest_peak_buffer = 0.35, debug=T){
 
   if (debug){
     # write out data
-    write.csv(D, sprintf('temp/%s_np_2-rgn-year-product_data.csv', scenario), row.names=F, na='')
-    write.csv(S, sprintf('temp/%s_np_3-rgn-year_status.csv', scenario), row.names=F, na='')
+    write.csv(D, sprintf('temp/%s_NP_2-rgn-year-product_data.csv', basename(getwd())), row.names=F, na='')
+    write.csv(S, sprintf('temp/%s_NP_3-rgn-year_status.csv', basename(getwd())), row.names=F, na='')
   }
 
   # get status
@@ -793,20 +793,22 @@ CP = function(layers){
 }
 
 
-TR = function(layers, year_max, debug=F){
+TR = function(layers, year_max, debug=T){
     
   # formula:
   #   E = Ed / (L - (L*U))
-  #   Xtr = E * S 
+  #   Sr = (S-1)/5
+  #   Xtr = E * Sr
   # 
   # Ed = Direct employment in tourism (tr_jobs_tourism): ** this has not been gapfilled. We thought it would make more sense to do at the status level.
-  # L = Total labor force (tr_jobs_total) 2013: max(year)=2011; 2012: max(year)=2010
+  # L = Total labor force (tr_jobs_total)
   # U = Unemployment (tr_unemployment) 2013: max(year)=2011; 2012: max(year)=2010 
   # so E is tourism  / employed
   # S = Sustainability index (tr_sustainability)
   #
   # based on model/GL-NCEAS-TR_v2013a: TRgapfill.R, TRcalc.R...
   # spatial gapfill simply avg, not weighted by total jobs or country population?
+  # scenario='eez2013'; year_max = c(eez2012=2010, eez2013=2011, eez2014=2012)[scenario]; setwd(sprintf('~/github/ohi-global/%s', scenario))
   
   # get regions
   rgns = layers$data[[conf$config$layer_region_labels]] %.%
@@ -827,10 +829,11 @@ TR = function(layers, year_max, debug=F){
       by=c('rgn_id','year'), all=T) %.%    
     merge(
       layers$data[['tr_sustainability']] %.%
-        select(rgn_id, S=score),
+        select(rgn_id, S_score=score),
       by=c('rgn_id'), all=T)  %.%
     mutate(
       E   = Ed / (L - (L * U)),
+      S = (S_score - 1) / 5,
       Xtr = E * S ) %.%
     merge(rgns, by='rgn_id') %.%
     select(rgn_id, rgn_label, year, Ed, L, U, S, E, Xtr)
@@ -843,7 +846,7 @@ TR = function(layers, year_max, debug=F){
     d_c = d %.%
       filter(year %in% (year_max-5):year_max) %.%
       dcast(rgn_id ~ year, value.var='Xtr')
-    write.csv(d_c, 'temp/tr_0-pregap_wide.csv', row.names=F, na='')
+    write.csv(d_c, sprintf('temp/%s_TR_0-pregap_wide.csv', basename(getwd())), row.names=F, na='')
     
     o = read.csv('/Volumes/data_edit/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv', na.strings='') %.%
       melt(id='rgn_id', variable.name='year', value.name='Xtr_o') %.%
@@ -860,7 +863,7 @@ TR = function(layers, year_max, debug=F){
       mutate(Xtr_dif = Xtr - Xtr_o) %.% 
       select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %.%
       arrange(rgn_id, year)
-    write.csv(vs, 'temp/tr_0-pregap-vs_details.csv', row.names=F, na='')
+    write.csv(vs, sprintf('temp/%s_TR_0-pregap-vs_details.csv', basename(getwd())), row.names=F, na='')
     
     vs_rgn = vs %.%
       group_by(rgn_id) %.%
@@ -873,7 +876,7 @@ TR = function(layers, year_max, debug=F){
         dif_2011    = Xtr_2011 - Xtr_2011_o) %.%
       filter(n_notna_o !=0 | n_notna!=0) %.%
       arrange(desc(abs(dif_2011)), Xtr_2011, Xtr_2011_o)
-    write.csv(vs_rgn, 'temp/tr_0-pregap-vs_summary.csv', row.names=F, na='')
+    write.csv(vs_rgn, sprintf('temp/%s_TR_0-pregap-vs_summary.csv', basename(getwd())), row.names=F, na='')
   }
   
   # get georegions for gapfilling
@@ -889,7 +892,7 @@ TR = function(layers, year_max, debug=F){
 
   # setup data for georegional gapfilling (remove Antarctica rgn_id=213)
   if (!file.exists('temp')) dir.create('temp', recursive=T)
-  csv = 'temp/tr_1-gapfill-georegions.csv'
+  csv = sprintf('temp/%s_TR_1-gapfill-georegions.csv', basename(getwd()))
   d_g = gapfill_georegions(
     data = d %.%
       filter(rgn_id!=213) %.%
@@ -913,7 +916,8 @@ TR = function(layers, year_max, debug=F){
       Xtr_r95  = ifelse(Xtr / Xtr_95 > 1, 1, Xtr / Xtr_95), # rescale to 95th percentile, cap at 1
       Xtr_rmax = Xtr / Xtr_max )                            # rescale to max value   
   if (debug){
-    write.csv(d_g_f_r, 'temp/tr_2-filtered-rescaled.csv', row.names=F, na='')
+    write.csv(d_g_f_r, sprintf('temp/%s_TR_2-filtered-rescaled.csv', basename(getwd())), row.names=F, na='')
+    
   }
 
   # calculate trend
@@ -974,7 +978,8 @@ TR = function(layers, year_max, debug=F){
       select(dimension, region_id, region_label, score_o, score, score_dif)
     
     # output comparison
-    write.csv(vs, 'temp/tr_3-scores-vs.csv', row.names=F, na='')
+    write.csv(vs, sprintf('temp/%s_TR_3-scores-vs.csv', basename(getwd())), row.names=F, na='')
+    
   }
   
   return(scores)
