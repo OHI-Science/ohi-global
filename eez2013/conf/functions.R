@@ -835,6 +835,12 @@ TR = function(layers, year_max, debug=F){
     merge(rgns, by='rgn_id') %.%
     select(rgn_id, rgn_label, year, Ed, L, U, S, E, Xtr)
   
+  x = filter(d, !is.na(Ed) & ( is.na(L) | is.na(E)) & (year >= 2005 & year <=2012) ) %>%
+    mutate(
+      other_nas = is.na(S)*1 + is.na(U)*10) %>%
+    dcast(rgn_label + rgn_id ~ year, value.var='other_nas')
+  print(x, row.names=F)
+  
   if (debug){
     # compare with pre-gapfilled data
     if (!file.exists('temp')) dir.create('temp', recursive=T)
