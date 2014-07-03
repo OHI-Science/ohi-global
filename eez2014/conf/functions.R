@@ -282,13 +282,15 @@ MAR = function(layers, status_years=2005:2011){
   x = csv_compare(m, '4-m-within')  # DEBUG
   
   # merge the MAR and coastal human population data
-#   m = merge(m, popn_inland25mi, by=c('rgn_id','year'), all.x=T)
-#   m_a = csv_compare(m, '5-m-merge')  # DEBUG
+  m = merge(m, popn_inland25mi, by=c('rgn_id','year'), all.x=T)
+  m_a = csv_compare(m, '5-m-merge')  # DEBUG
   
   # must first aggregate all weighted timeseries per region, before dividing by total population
 #   ry = ddply(m, .(rgn_id, year, popsum), summarize, 
 #              sust_tonnes_sum = sum(sust_tonnes),
 #              mar_pop         = sum(sust_tonnes) / popsum[1]) # <-- PROBLEM using popsum[1] with ddply!!!
+  
+  # aggregate all weighted timeseries per region, and divide by coastal human population
   ry = m %>%
     group_by(rgn_id, year) %>%
     summarize(
@@ -751,6 +753,9 @@ CP = function(layers){
       by=c('rgn_id','habitat'), type='full') %>% 
     select(rgn_id, habitat, km2, health, trend)
   
+  #d %>% filter(rgn_id==250)
+  #browser()
+  
   # limit to CP habitats and add rank
   habitat.rank = c('coral'            = 4,
                    'mangrove'         = 4,
@@ -767,12 +772,14 @@ CP = function(layers){
   scores_CP = rbind_list(
     # status
     d %>% 
+      filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
       group_by(rgn_id) %>%
       summarize(      
         score = pmin(1, sum(rank * health * extent) / (sum(extent) * max(rank)) ) * 100,
         dimension = 'status'),
     # trend
     d %>% 
+      filter(!is.na(rank) & !is.na(trend) & !is.na(extent)) %>%
       group_by(rgn_id) %>%
       summarize(      
         score = sum(rank * trend * extent) / (sum(extent)* max(rank)),
@@ -1420,40 +1427,52 @@ CW = function(layers){
 
 
 HAB = function(layers){
+    
+  # get layer data
+  d = 
+    join_all(
+      list(
+        
+        layers$data[['hab_health']] %>%
+          select(rgn_id, habitat, health),
+        
+        layers$data[['hab_trend']] %>%
+          select(rgn_id, habitat, trend),
+        
+        layers$data[['hab_extent']] %>%
+          select(rgn_id, habitat, extent=km2)),
+        
+      by=c('rgn_id','habitat'), type='full') %>% 
+    select(rgn_id, habitat, extent, health, trend)
+
+  # limit to habitats used for HAB, create extent presence as weight
+  d = d %>%
+    filter(habitat %in% c('coral','mangrove','saltmarsh','seaice_edge','seagrass','soft_bottom')) %>%    
+    mutate(
+      w  = ifelse(!is.na(extent) & extent > 0, 1, NA)) %>%
+    filter(!is.na(w)) %>%
+    group_by(rgn_id)
   
-  # layers
-  lyrs = c('hab_health' = 'health',
-           'hab_extent' = 'extent',
-           'hab_trend'  = 'trend')
-  
-#  browser()
-  
-  # cast data
-  d = SelectLayersData(layers, layers=names(lyrs))  
-  rk = rename(dcast(d, id_num + category ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs))),
-              c('id_num'='region_id', 'category'='habitat', lyrs))
-  
-  # limit to HAB habitats
-  rk = subset(rk, habitat %in% c('coral','mangrove','saltmarsh','seaice_edge','seagrass','soft_bottom'))  
-  
-  # presence as weight
-  rk$w = ifelse(!is.na(rk$extent) & rk$extent>0, 1, NA)
-  
-  # status
-  r.status = ddply(na.omit(rk[,c('region_id','habitat','w','health')]), .(region_id), summarize,
-                   goal      = 'HAB',
-                   dimension = 'status',
-                   score     = min(1, sum(w * health) / sum(w)) * 100); summary(r.status)
-  
-  # trend
-  r.trend = ddply(na.omit(rk[,c('region_id','habitat','w','trend')]), .(region_id), summarize,
-                  goal      = 'HAB',
-                  dimension = 'trend',
-                  score     = sum(w * trend) / sum(w))
+  # calculate scores
+  scores_HAB = rbind_list(
+    # status
+    d %>% 
+      filter(!is.na(health)) %>%
+      summarize(      
+        score = pmin(1, sum(w * health) / sum(w)) * 100,
+        dimension = 'status'),
+    # trend
+    d %>% 
+      filter(!is.na(trend)) %>%      
+      summarize(      
+        score =  sum(w * trend) / sum(w),
+        dimension = 'trend')) %>%
+    mutate(
+      goal = 'HAB') %>%
+    select(region_id=rgn_id, goal, dimension, score)
   
   # return scores
-  scores = cbind(rbind(r.status, r.trend))
-  return(scores)  
+  return(scores_HAB)  
 }
 
 
