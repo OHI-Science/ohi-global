@@ -814,6 +814,26 @@ TR = function(layers, year_max, debug=T){
   rgns = layers$data[[conf$config$layer_region_labels]] %.%
     select(rgn_id, rgn_label = label)
   
+  L_adjustments = c(
+    '14'=0.362007,
+    '31'=0.402338,
+    '108'=0.402338,
+    '113'=0.41607,
+    '117'=0.41607,
+    '118'=0.41607,
+    '119'=0.41607,
+    '120'=0.41607,
+    '123'=0.41607,
+    '125'=0.41607,
+    '140'=0.41607,
+    '186'=0.436384,
+    '220'=0.41607,
+    '244'=0.41607,
+    '245'=0.41607,
+    '248'=0.41607,
+    '249'=0.41607,
+    '250'=0.41607)
+  
   # merge layers and calculate score
   d = layers$data[['tr_jobs_tourism']] %.%
     select(rgn_id, year, Ed=count) %.%
@@ -832,11 +852,16 @@ TR = function(layers, year_max, debug=T){
         select(rgn_id, S_score=score),
       by=c('rgn_id'), all=T)  %.%
     mutate(
-      E   = Ed / (L - (L * U)),
-      S = (S_score - 1) / 5,
-      Xtr = E * S ) %.%
+      L_orig = L,
+      L_adj = ifelse(
+        as.character(rgn_id) %in% names(L_adjustments), 
+        L * L_adjustments[as.character(rgn_id)], L),
+      L     = ifelse(!is.na(L_adj), L_adj, L),
+      E     = Ed / (L - (L * U)),
+      S     = (S_score - 1) / 5,
+      Xtr   = E * S ) %.%
     merge(rgns, by='rgn_id') %.%
-    select(rgn_id, rgn_label, year, Ed, L, U, S, E, Xtr)
+    select(rgn_id, rgn_label, year, Ed, L_orig, L_adj, L, U, S, E, Xtr)
   
   if (debug){
     # compare with pre-gapfilled data
@@ -904,22 +929,36 @@ TR = function(layers, year_max, debug=T){
   # filter: limit to 5 intervals (6 years worth of data)
   #   NOTE: original 2012 only used 2006:2010 whereas now we're using 2005:2010
   d_g_f = d_g %.%
-    filter((year <= year_max) & (year >= (year_max - 5)) )
+    filter(year %in% (year_max - 5):year_max)
   
   # rescale for
   #   status: 95 percentile value across all regions and filtered years
   #   trend: use the value divided by max bc that way it's rescaled but not capped to a lower percentile (otherwise the trend calculated for regions with capped scores, i.e. those at or above the percentile value, would be spurious)
-  Xtr_95  = quantile(d_g_f$Xtr, probs=0.95, na.rm=T)
+  
+  d_95_yr  = 
+    d_g_f %>%
+    group_by(year) %>%
+    summarize(
+      Xtr_95 = quantile(Xtr, probs=0.95, na.rm=T))
+    # year     Xtr_95
+    # 2006 0.06103857
+    # 2007 0.06001672
+    # 2008 0.06222823
+    # 2009 0.05563864
+    # 2010 0.05811622
+    # 2011 0.05893174
+
   Xtr_max = max(d_g_f$Xtr, na.rm=T)
-  d_g_f_r = d_g_f %.%    
+
+  d_g_f_r = d_g_f %.%
+    left_join(d_95_yr, by='year') %>%
     mutate(
       Xtr_r95  = ifelse(Xtr / Xtr_95 > 1, 1, Xtr / Xtr_95), # rescale to 95th percentile, cap at 1
       Xtr_rmax = Xtr / Xtr_max )                            # rescale to max value   
   if (debug){
     write.csv(d_g_f_r, sprintf('temp/%s_TR_2-filtered-rescaled.csv', basename(getwd())), row.names=F, na='')
-    
   }
-
+  
   # calculate trend
   d_t = d_g_f_r %.%
     filter(!is.na(Xtr_rmax)) %.%
