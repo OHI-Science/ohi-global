@@ -77,9 +77,11 @@ scenario='eez2013'
 conf   = Conf('conf')
 layers = Layers('layers.csv', 'layers')  
 d = conf$functions$MAR(layers, status_years=2005:2011)
+# A WRONG -- MAR status for Thailand[25]:  0.02
+# B RIGHT -- MAR status for Thailand[25]: 88.86
 
 #paste(sub('^package:','',search()), collapse=', ')
-cat(paste(sub('^package:','', rev(search())), collapse=')\nlibrary('))
+#cat(paste(sub('^package:','', rev(search())), collapse=')\nlibrary('))
 # load_all()
 #   DEBUG: MAR status for Thailand[25]: 0.02 WRONG!
 #   .GlobalEnv, dplyr, ohicore, RColorBrewer, stringr, psych, RJSONIO, reshape2, markdown, knitr, shiny, plyr, tools:rstudio, stats, graphics, grDevices, utils, datasets, methods, Autoloads, base
