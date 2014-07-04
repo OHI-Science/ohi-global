@@ -886,7 +886,7 @@ TR = function(layers, year_max, debug=T){
         by=c('rgn_id', 'year'), all=T) %.%
       merge(d, by=c('rgn_id','year')) %.%
       mutate(Xtr_dif = Xtr - Xtr_o) %.% 
-      select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %.%
+      select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L_orig, L_adj, L, U, S) %.%
       arrange(rgn_id, year)
     write.csv(vs, sprintf('temp/%s_TR_0-pregap-vs_details.csv', basename(getwd())), row.names=F, na='')
     
