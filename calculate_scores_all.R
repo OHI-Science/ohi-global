@@ -16,8 +16,8 @@ library(devtools)
 load_all(dirs$ohicore) # a developer alternative to library(ohicore)
 #library(ohicore) # from ohidev:functions/trace_MAR.R ## 001 of 10. 2014-07-02 11:34:36 [9938966d]
 
-do.layercopy  = F
-do.layercheck = F
+do.layercopy  = T
+do.layercheck = T
 do.calculate  = T
 do.other      = F
 
@@ -77,7 +77,7 @@ for (i in 1:length(scenarios)){ # i=2
   cat(sprintf('\nScenario: %s\n', scenario))
   
   # create dirs
-  dirs_scenario = c(scenario, sprintf('%s/%s', scenario, c('tmp','layers','conf','spatial')))
+  dirs_scenario = c(scenario, sprintf('%s/%s', scenario, c('temp','layers','conf','spatial')))
   for (dir in dirs_scenario) {
     if (!file.exists(dir)) dir.create(dir, showWarnings=F)
   }
@@ -87,7 +87,7 @@ for (i in 1:length(scenarios)){ # i=2
     cat(sprintf('\n  Google spreadsheet editable URL:\n    https://docs.google.com/spreadsheet/ccc?key=%s\n', google_key) )
     g.url = sprintf('https://docs.google.com/spreadsheet/pub?key=%s&output=csv', scenarios[[i]][['google_key']])
     g = read.csv(textConnection(RCurl::getURL(g.url, ssl.verifypeer = FALSE)), skip=1, na.strings='', stringsAsFactors=F)
-    write.csv(g, sprintf('%s/tmp/layers_0-google.csv', scenario), na='', row.names=F)
+    write.csv(g, sprintf('%s/temp/layers_0-google.csv', scenario), na='', row.names=F)
     
     # fill in for 2014
     if (scenario=='eez2014'){
@@ -116,7 +116,7 @@ for (i in 1:length(scenarios)){ # i=2
         fld_value, units,
         path_in, path_in_exists, filename, path_out) %.%
       arrange(targets, layer)
-    write.csv(lyrs, sprintf('%s/tmp/layers_1-ingest.csv', scenario), na='', row.names=F)
+    write.csv(lyrs, sprintf('%s/temp/layers_1-ingest.csv', scenario), na='', row.names=F)
     
     if (nrow(filter(lyrs, !path_in_exists)) != 0){
       message('The following layers paths do not exist:\n')
