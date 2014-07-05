@@ -918,13 +918,28 @@ TR = function(layers, year_max, debug=T){
   # setup data for georegional gapfilling (remove Antarctica rgn_id=213)
   if (!file.exists('temp')) dir.create('temp', recursive=T)
   csv = sprintf('temp/%s_TR_1-gapfill-georegions.csv', basename(getwd()))
+#   d_g = gapfill_georegions(
+#     data = d %.%
+#       filter(rgn_id!=213) %.%
+#       select(rgn_id, year, Xtr),
+#     georegions = georegions,
+#     georegion_labels = georegion_labels,
+#     attributes_csv=csv)
+  
   d_g = gapfill_georegions(
-    data = d %.%
+    data              = d %.%
       filter(rgn_id!=213) %.%
       select(rgn_id, year, Xtr),
-    georegions = georegions,
-    georegion_labels = georegion_labels,
-    attributes_csv=csv)
+    fld_id            = 'rgn_id',
+    fld_value         = 'Xtr',
+    fld_weight        = NULL,
+    georegions        = georegions,    
+    ratio_weights     = FALSE,
+    georegion_labels  = georegion_labels,
+    r0_to_NA          = TRUE, 
+    attributes_csv    = csv)
+  
+  
     
   # filter: limit to 5 intervals (6 years worth of data)
   #   NOTE: original 2012 only used 2006:2010 whereas now we're using 2005:2010
@@ -997,6 +1012,7 @@ TR = function(layers, year_max, debug=T){
     select(region_id=rgn_id, goal, dimension, score)
   
   if (debug){
+    
     # compare with original scores
     csv_o = '/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores.Global2013.www2013_2013-10-09.csv'
     o = read.csv(csv_o, na.strings='NA', row.names=1) %.% 
@@ -1012,7 +1028,7 @@ TR = function(layers, year_max, debug=T){
       mutate(
         score_dif    = score - score_o,
         score_notna  = is.na(score)!=is.na(score_o)) %.%  
-      filter(abs(score_dif) > 0.01 | score_notna == T) %.%
+      #filter(abs(score_dif) > 0.01 | score_notna == T) %.%
       arrange(desc(dimension), desc(abs(score_dif))) %.%
       select(dimension, region_id, region_label, score_o, score, score_dif)
     
@@ -1207,7 +1223,17 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
   # georegional gapfill, and output gapfill_georegions attributes
   if (!file.exists('temp')) dir.create('temp', recursive=T)
   csv = sprintf('temp/eez2013_%s-gapfill-georegions.csv', tolower(subgoal))
-  s_r_g = gapfill_georegions(data, georegions, fld_weight='w_sum', attributes_csv=csv)
+  #s_r_g = gapfill_georegions(data, georegions, fld_weight='w_sum', attributes_csv=csv)
+  s_r_g = gapfill_georegions(
+    data              = data,
+    fld_id            = 'rgn_id',
+    fld_value         = 'score',
+    fld_weight        = 'w_sum',
+    georegions        = georegions,    
+    ratio_weights     = FALSE,
+    georegion_labels  = NULL,
+    r0_to_NA          = TRUE, 
+    attributes_csv    = csv)
   
   #print(head(attr(s_r_g, 'gapfill_georegions')), row.names=F)
   # r0 r1 r2 id         w         v      r2_v     r1_v      r0_v r2_n r1_n r0_n z_n z_level         z
