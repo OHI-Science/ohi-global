@@ -793,7 +793,7 @@ CP = function(layers){
 }
 
 
-TR = function(layers, year_max, debug=T){
+TR = function(layers, year_max, debug=T, pct_ref=90){
     
   # formula:
   #   E = Ed / (L - (L*U))
@@ -813,27 +813,7 @@ TR = function(layers, year_max, debug=T){
   # get regions
   rgns = layers$data[[conf$config$layer_region_labels]] %.%
     select(rgn_id, rgn_label = label)
-  
-  L_adjustments = c(
-    '14'=0.362007,
-    '31'=0.402338,
-    '108'=0.402338,
-    '113'=0.41607,
-    '117'=0.41607,
-    '118'=0.41607,
-    '119'=0.41607,
-    '120'=0.41607,
-    '123'=0.41607,
-    '125'=0.41607,
-    '140'=0.41607,
-    '186'=0.436384,
-    '220'=0.41607,
-    '244'=0.41607,
-    '245'=0.41607,
-    '248'=0.41607,
-    '249'=0.41607,
-    '250'=0.41607)
-  
+    
   # merge layers and calculate score
   d = layers$data[['tr_jobs_tourism']] %.%
     select(rgn_id, year, Ed=count) %.%
@@ -852,16 +832,11 @@ TR = function(layers, year_max, debug=T){
         select(rgn_id, S_score=score),
       by=c('rgn_id'), all=T)  %.%
     mutate(
-      L_orig = L,
-      L_adj = ifelse(
-        as.character(rgn_id) %in% names(L_adjustments), 
-        L * L_adjustments[as.character(rgn_id)], L),
-      L     = ifelse(!is.na(L_adj), L_adj, L),
       E     = Ed / (L - (L * U)),
       S     = (S_score - 1) / 5,
       Xtr   = E * S ) %.%
     merge(rgns, by='rgn_id') %.%
-    select(rgn_id, rgn_label, year, Ed, L_orig, L_adj, L, U, S, E, Xtr)
+    select(rgn_id, rgn_label, year, Ed, L, U, S, E, Xtr)
   
   if (debug){
     # compare with pre-gapfilled data
@@ -886,7 +861,7 @@ TR = function(layers, year_max, debug=T){
         by=c('rgn_id', 'year'), all=T) %.%
       merge(d, by=c('rgn_id','year')) %.%
       mutate(Xtr_dif = Xtr - Xtr_o) %.% 
-      select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L_orig, L_adj, L, U, S) %.%
+      select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %.%
       arrange(rgn_id, year)
     write.csv(vs, sprintf('temp/%s_TR_0-pregap-vs_details.csv', basename(getwd())), row.names=F, na='')
     
@@ -950,12 +925,12 @@ TR = function(layers, year_max, debug=T){
   #   status: 95 percentile value across all regions and filtered years
   #   trend: use the value divided by max bc that way it's rescaled but not capped to a lower percentile (otherwise the trend calculated for regions with capped scores, i.e. those at or above the percentile value, would be spurious)
   
-  d_95_yr  = 
+  d_q_yr  = 
     d_g_f %>%
     group_by(year) %>%
     summarize(
-      Xtr_95 = quantile(Xtr, probs=0.95, na.rm=T))
-    # year     Xtr_95
+      Xtr_q = quantile(Xtr, probs=pct_ref/100, na.rm=T))
+    # year     Xtr_q
     # 2006 0.06103857
     # 2007 0.06001672
     # 2008 0.06222823
@@ -966,10 +941,10 @@ TR = function(layers, year_max, debug=T){
   Xtr_max = max(d_g_f$Xtr, na.rm=T)
 
   d_g_f_r = d_g_f %.%
-    left_join(d_95_yr, by='year') %>%
+    left_join(d_q_yr, by='year') %>%
     mutate(
-      Xtr_r95  = ifelse(Xtr / Xtr_95 > 1, 1, Xtr / Xtr_95), # rescale to 95th percentile, cap at 1
-      Xtr_rmax = Xtr / Xtr_max )                            # rescale to max value   
+      Xtr_rq  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q), # rescale to qth percentile, cap at 1
+      Xtr_rmax = Xtr / Xtr_max )                         # rescale to max value   
   if (debug){
     write.csv(d_g_f_r, sprintf('temp/%s_TR_2-filtered-rescaled.csv', basename(getwd())), row.names=F, na='')
   }
@@ -991,7 +966,7 @@ TR = function(layers, year_max, debug=T){
     group_by(rgn_id) %.%
     summarize(
       dimension = 'status',
-      score = last(Xtr_r95) * 100)
+      score = last(Xtr_rq) * 100)
   
   # bind rows
   d_b = rbind(d_t, d_s) %.%
