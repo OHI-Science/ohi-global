@@ -1197,7 +1197,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
   
   # georegional gapfill, and output gapfill_georegions attributes
   if (!file.exists('temp')) dir.create('temp', recursive=T)
-  csv = sprintf('temp/eez2013_%s-gapfill-georegions.csv', tolower(subgoal))
+  csv = sprintf('temp/eez2013_%s-status-gapfill-georegions.csv', tolower(subgoal))
   #s_r_g = gapfill_georegions(data, georegions, fld_weight='w_sum', attributes_csv=csv)
   s_r_g = gapfill_georegions(
     data              = data,
@@ -1229,15 +1229,283 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
       score     = score * 100) %.%
     arrange(region_id)
   
-  # TODO: trend individual layers
-  trend = SelectLayersData(layers, layers='liveco_trend') %.%
+  # OLD: trend
+  trend_o = SelectLayersData(layers, layers='liveco_trend') %.%
     filter(category==g.component) %.%
     select(region_id=id_num, score=val_num) %.%
     mutate(goal=subgoal, dimension='trend') %.%
     arrange(region_id)
+  
+  
+  # DEBUG: db
+  library(RPostgreSQL)
+  pg = dbConnect(dbDriver("PostgreSQL"), host='neptune.nceas.ucsb.edu', dbname='ohi_global2013', user='bbest') # assumes password in ~/.pgpass
+  dbSendQuery(pg, 'SET search_path TO global_li, global; SET ROLE TO ohi;')
+  
+  vs_status = status_score %>%
+    merge(
+      dbGetQuery(pg, "SELECT * FROM status_score") %>%
+        select(cntry_key=iso3166, component, value, score),
+      by=c('cntry_key','component'), all=T) %>%
+    filter(component==g.component) %>%
+    arrange(cntry_key)
+  
+  dbGetQuery(pg, "SELECT * FROM metric_sector_refperiod") %>% head
+  
+  adjustments_0 = dbGetQuery(pg, "SELECT * FROM adjustments")
+  table(adjustments_0$metric)
+    
+  # trend layers ----
+  le_unemployment     = read.csv('~/github/ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_unemployment.csv')
+  le_gdp              = read.csv('~/github/ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_gdp.csv')
+  le_jobs_sector_year = read.csv(sprintf('~/github/ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_%s_sector-year_%s.csv', 'jobs', scenario))
+  le_rev_sector_year  = read.csv(sprintf('~/github/ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_%s_sector-year_%s.csv', 'rev' , scenario))
+  le_wage_sector_year = read.csv(sprintf('~/github/ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_%s_sector-year_%s.csv', 'wage', scenario))
+  
+  suppressWarnings({ # Warning message: In rbind_list__impl(environment()) : Unequal factor levels: coercing to character
+    
+    # adjustments
+    adjustments = rbind_list(
+      le_unemployment %>% 
+        mutate(
+          metric='jobs',
+          value = 100 - percent) %>%
+        select(metric, cntry_key, year, value),
+      le_gdp %>% 
+        mutate(
+          metric='rev') %>%
+        select(metric, cntry_key, year, value=usd))
+    
+    # metric-country-sector-year
+    mcsy = rbind_list(
+      le_jobs_sector_year %>%
+        mutate(metric='jobs'),
+      le_rev_sector_year %>%
+        mutate(metric='rev'),
+      le_wage_sector_year %>%
+        mutate(metric='wage')) %>%
+      select(metric, cntry_key, sector, year, value)
 
+  })
+  
+  mcsy = mcsy %>% 
+    select(metric, cntry_key, sector, year, base_value=value) %>%
+    left_join(
+      adjustments %>% 
+        select(metric, cntry_key, year, adj_value=value),
+      by=c('metric','cntry_key','year')) %>%
+    mutate(
+      adj_value = ifelse(metric=='wage', 1, adj_value),
+      value = base_value / adj_value) %>% 
+    arrange(metric, cntry_key, year) # %>%
+    #     merge(
+    #       dbGetQuery(pg, "SELECT * FROM trend_data") %>%
+    #         select(metric, cntry_key=iso3166, year, adj_value, base_value, value, base_whence, adj_whence),
+    #       all=T, by=c('metric','cntry_key','year')) %>%
+    #     select(metric,cntry_key,year,base_value.x,base_value.y,adj_value.x,adj_value.y,value.x,value.y,base_whence,adj_whence)
+    #   summary(cky)
+    #     metric           cntry_key              year       base_value.x        base_value.y        adj_value.x         adj_value.y           value.x            value.y         base_whence         adj_whence       
+    #  Length:16437       Length:16437       Min.   :1990   Min.   :0.000e+00   Min.   :0.000e+00   Min.   :1.000e+00   Min.   :1.000e+00   Min.   :     0.0   Min.   :     0.0   Length:16437       Length:16437      
+    #  Class :character   Class :character   1st Qu.:2005   1st Qu.:2.842e+03   1st Qu.:2.842e+03   1st Qu.:9.000e+01   1st Qu.:9.000e+01   1st Qu.:     0.0   1st Qu.:     0.0   Class :character   Class :character  
+    # Mode  :character   Mode  :character   Median :2007   Median :6.065e+04   Median :6.065e+04   Median :1.355e+09   Median :1.355e+09   Median :     0.0   Median :     0.0   Mode  :character   Mode  :character  
+    # Mean   :2006   Mean   :3.100e+09   Mean   :3.100e+09   Mean   :2.525e+11   Mean   :2.525e+11   Mean   :  4983.3   Mean   :  4983.3                                        
+    # 3rd Qu.:2008   3rd Qu.:3.662e+07   3rd Qu.:3.662e+07   3rd Qu.:6.728e+10   3rd Qu.:6.728e+10   3rd Qu.:   396.5   3rd Qu.:   396.5                                        
+    # Max.   :2012   Max.   :1.320e+12   Max.   :1.320e+12   Max.   :1.468e+13   Max.   :1.468e+13   Max.   :436558.7   Max.   :436558.7                                        
+    # NA's   :164         NA's   :164         NA's   :164        NA's   :164 
+    
+    # cky %>% mutate(adj_na = is.na(adj_value.x)) %>% select(metric, adj_na) %>% table
+    #       adj_na
+    # metric FALSE TRUE
+    #   jobs  4218    6
+    # rev   9295  158
+    # wage  2760    0 
+
+  #filter(cky, is.na(adj_value.x) & !is.na(adj_value.y)) %>% select(metric) %>% table()
+  #filter(cky, !is.na(adj_value.y) & metric=='jobs') %>% mutate(na.x=is.na(adj_value.x)) %>% select(cntry_key, na.x) %>% table()  
+  
+  # trend per metric-country-sector, based on 5 intervals (6 years of data) 
+  mcs = 
+    mcsy %>%
+      filter(!is.na(value)) %>%
+      group_by(metric, cntry_key, sector) %>%
+      do(mdl = lm(value ~ year, data=.)) %>%
+      summarize(
+        metric    = metric,
+        cntry_key = cntry_key,
+        sector    = sector,
+        trend     = max(-1, min(1, coef(mdl)[['year']] * 5))) %>%
+    # get sums for weight
+    left_join(
+      mcsy %>%
+        filter(!is.na(value)) %>%
+        group_by(metric, cntry_key, sector) %>%
+        summarize(
+          value_sum = sum(value)),
+      by=c('metric','cntry_key','sector'))
+  
+  # trend per metric-country 
+  mc = rbind_list(
+    # wage: simple average of sectors
+    mcs %>%
+      group_by(metric, cntry_key) %>%
+      filter(metric=='wage') %>%
+      summarize(
+        trend = mean(trend)),
+    # jobs and rev: weighted average by total jobs or rev per sector
+    mcs %>%
+      group_by(metric, cntry_key) %>%
+      filter(metric %in% c('jobs','rev')) %>%
+      summarize(
+        trend = weighted.mean(trend, value_sum)))
+  
+  #   # mcsy vs trend_data
+  #   d = mcsy %>% 
+  #     merge(
+  #       dbGetQuery(pg, "SELECT * FROM trend_data") %>%
+  #         select(metric, cntry_key=iso3166, sector, year, adj_value, base_value, value, base_whence, adj_whence),
+  #       all=T, by=c('metric','cntry_key','sector','year')) %>%
+  #     filter(cntry_key=='AIA' & metric=='wage' & sector=='ph')
+  # #    metric cntry_key sector year base_value.x adj_value.x   value.x adj_value.y base_value.y   value.y base_whence adj_whence
+  # # 1    wage       AIA     ph 1995     9729.495           1  9729.495           1     9729.495  9729.495      actual     actual
+  # # 2    wage       AIA     ph 1996     9729.495           1  9729.495           1     9729.495  9729.495      actual     actual
+  # # 3    wage       AIA     ph 1997     9729.495           1  9729.495           1     9729.495  9729.495      actual     actual
+  # # 4    wage       AIA     ph 1998     9729.495           1  9729.495           1     9729.495  9729.495      actual     actual
+  # # 5    wage       AIA     ph 1999     9729.495           1  9729.495           1     9729.495  9729.495      actual     actual
+  # # 6    wage       AIA     ph 2000     9729.485           1  9729.485           1     9729.485  9729.485      actual     actual
+  # 
+  # x <- as.integer(d$year)
+  # y <- as.double(d$value.x)
+  # n <- length(x)
+  # xmin <- min(x)
+  # xmax <- max(x)
+  # 
+  # m <- lm(y~x)
+  # print(summary(m))
+  # 
+  # # load up other model statistics
+  # r2 <- summary(m)$r.squared
+  # r2 <- ifelse(is.nan(r2),0,r2)
+  # pv <- summary(m)$coefficients[2,4]
+  # pv <- ifelse(is.nan(pv),0,pv)
+  # 
+  # px <- c(xmin, xmax)
+  # py <- predict(m, data.frame(x=px))
+  # 
+  # cat('prediction', px, py, '\n')
+  # slope <- (py[2]-py[1])/py[1]
+  # t <- min(1, max(-1, 5 * (slope/(xmax-xmin))))
+  # t <- ifelse(is.nan(t),0,t) # -7.148955e-07 = -0.0000007149
+  # 
+  # plot(x,y, xlim=range(c(x, px)), ylim=range(c(y, py)))
+  # lines(px, py)
+  # 
+  # t2 = max(-1, min(1, coef(m)[['x']] * 5)) # -0.006955573
+  # m = lm(d, value.x)
+  # 
+  # # mcs vs trend_metric_sector
+  # mcs %>% 
+  #   merge(
+  #     dbGetQuery(pg, "SELECT * FROM trend_metric_sector") %>%
+  #       select(metric, sector, cntry_key=iso3166, trend=value, r2, n, pvalue, x1, x2),
+  #     all=T, by=c('metric','cntry_key','sector')) %>%
+  #   filter(cntry_key=='AIA' & metric=='wage')
+  #   metric cntry_key sector      trend.x value_sum       trend.y        r2 n    pvalue   x1   x2
+  # 1   wage       AIA     ph -0.006955573  58376.96 -7.148955e-07 0.4285714 6 0.1583024 1995 2000
+  #
+  # # mc vs trend_score
+  # mc %>% 
+  #   merge(
+  #     dbGetQuery(pg, "SELECT * FROM trend_score") %>%
+  #       select(metric, cntry_key=iso3166, trend=value),
+  #     by=c('metric', 'cntry_key')) %>%
+  #   head()
+  #
+  # _model.csv -> trend_metric_sector
+  # "metric","sector","iso3166","value","r2","n","pvalue","x1","x2"
+  # "jobs","cf","ABW",0.0599514386968995,0.470078174289482,6,0.132714371780515,2003,2008
+  # "jobs","mar","ABW",-0.826396199996383,0.628562457700438,6,0.0599392624579642,2003,2008
+  
+  # TODO: check weights and status so, like trend:
+  #   livelihood: avg(jobs, unweighted wage)
+  #   economy: rev
+  #  weights now: livelihood=workforce_adj; economy=rev_adj
+  
+  # trend per goal-country
+  gc = rbind_list(
+    # LIV: avg(jobs, wage)
+    mc %>%
+      group_by(cntry_key) %>%
+      filter(metric %in% c('jobs','wage') & !is.na(trend)) %>%
+      summarize(
+        score     = mean(trend),
+        component = 'livelihood'),
+    # ECO: rev
+    mc %>%
+      filter(metric %in% c('rev')) %>%
+      mutate(
+        component = 'economy',
+        score     = trend)) %>%
+    select(component, cntry_key, score)
+    
+  # aggregate countries to regions by weights
+  gr = gc %.%
+    merge(cntry_rgn, by='cntry_key', all.x=T) %.%
+    merge(weights, by=c('cntry_key','component'), all.x=T) %.%
+    select(component, rgn_id, rgn_name, cntry_key, score, w) %.%
+    arrange(component, rgn_name, cntry_key) %.%
+    group_by(component, rgn_id, rgn_name) %.%
+    summarize(cntry_w     = paste(cntry_key[!is.na(w)], collapse=','),
+              cntry_w_na  = paste(cntry_key[is.na(w)], collapse=','),
+              n           = n(),
+              n_w_na      = sum(is.na(w)),
+              score_w_avg = weighted.mean(score, w),
+              score_avg   = mean(score),
+              w_sum       = sum(w, na.rm=T)) %.%
+    mutate(score = ifelse(!is.na(score_w_avg), score_w_avg, score_avg)) %.%
+    ungroup() %>%
+    filter(!is.na(rgn_id))
+  
+  # georegional gap fill ----
+  data = gr %.%
+    filter(component==g.component) %.%
+    as.data.frame() %.%
+    select(rgn_id, score, w_sum)
+  
+  # georegional gapfill, and output gapfill_georegions attributes
+  if (!file.exists('temp')) dir.create('temp', recursive=T)
+  csv = sprintf('temp/eez2013_%s-trend-gapfill-georegions.csv', tolower(subgoal))
+  #s_r_g = gapfill_georegions(data, georegions, fld_weight='w_sum', attributes_csv=csv)
+  rg = gapfill_georegions(
+    data              = data,
+    fld_id            = 'rgn_id',
+    fld_value         = 'score',
+    fld_weight        = 'w_sum',
+    georegions        = georegions,    
+    ratio_weights     = FALSE,
+    georegion_labels  = NULL,
+    r0_to_NA          = TRUE, 
+    attributes_csv    = csv)
+  
+  #print(head(attr(s_r_g, 'gapfill_georegions')), row.names=F)
+  # r0 r1 r2 id         w         v      r2_v     r1_v      r0_v r2_n r1_n r0_n z_n z_level         z
+  # 1  2 11 56  214221.6 1.0000000 0.9268667 0.912682 0.7019455   11   36  166   1       v 1.0000000
+  # 1  2 11 64        NA        NA 0.9268667 0.912682 0.7019455   11   36  166  11      r2 0.9268667
+  # 1  2 11 65  765581.2 1.0000000 0.9268667 0.912682 0.7019455   11   36  166   1       v 1.0000000
+  # 1  2 11 66 5404582.6 1.0000000 0.9268667 0.912682 0.7019455   11   36  166   1       v 1.0000000
+  # 1  2 11 96 2141155.0 0.8587912 0.9268667 0.912682 0.7019455   11   36  166   1       v 0.8587912
+  # 1  2 11 97 1610531.7 1.0000000 0.9268667 0.912682 0.7019455   11   36  166   1       v 1.0000000
+  
+  # TODO: output diagnostic tables: 1) country to region and 2) region to georegion
+  
+  trend = rg %.% 
+    select(region_id=rgn_id, score) %.%    
+    mutate(
+      goal      = subgoal,
+      dimension = 'status',
+      score     = score * 100) %.%
+    arrange(region_id)
+  
   scores = rbind(status, trend)
-  attr(scores, sprintf('%s_status_gapfill_georegions', subgoal)) = attr(s_r_g, 'gapfill_georegions')
   return(scores)
 }
 
