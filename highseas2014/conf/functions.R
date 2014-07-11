@@ -109,7 +109,7 @@ FIS = function(layers, status_year=2011){
   #  species level.
   #  ***********************************************
   penaltyTable <- data.frame(TaxonPenaltyCode=1:6, 
-                             penalty=c(0.01, 0.1, 0.25, 0.5, 0.75, 1))
+                             penalty=c(0.01, 0.25, 0.5, 0.8, 0.9, 1))
   # 2d.Merge with data
   UnAssessedCatches <- join(UnAssessedCatches, penaltyTable, by="TaxonPenaltyCode")
 
