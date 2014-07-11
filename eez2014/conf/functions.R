@@ -893,14 +893,6 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
   # setup data for georegional gapfilling (remove Antarctica rgn_id=213)
   if (!file.exists('temp')) dir.create('temp', recursive=T)
   csv = sprintf('temp/%s_TR_1-gapfill-georegions.csv', basename(getwd()))
-#   d_g = gapfill_georegions(
-#     data = d %.%
-#       filter(rgn_id!=213) %.%
-#       select(rgn_id, year, Xtr),
-#     georegions = georegions,
-#     georegion_labels = georegion_labels,
-#     attributes_csv=csv)
-  
   d_g = gapfill_georegions(
     data              = d %.%
       filter(rgn_id!=213) %.%
@@ -914,7 +906,21 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
     r0_to_NA          = TRUE, 
     attributes_csv    = csv)
   
-  
+  # regions with Travel Warnings at http://travel.state.gov/content/passports/english/alertswarnings.html
+  rgn_travel_warnings = c('Djibouti'=46, 'Eritrea'=45, 'Somalia'=44, 'Mauritania'=64)
+  # TODO: check if regions with travel warnings are gapfilled (manually checked for 2013)
+  d_g = rbind_list(
+    d_g %>%
+      filter(!rgn_id %in% rgn_travel_warnings),
+    d_g %>%
+      filter(rgn_id %in% rgn_travel_warnings) %>%
+      mutate(
+        Xtr = 0.1 * Xtr))
+  # read.csv(csv) %>%
+  #   filter(r1_label=='Africa' & yr==year_max) %>%
+  #   select(v) %>% colMeans(na.rm=T) # Africa average: 0.021
+  # South Africa: 0.027 -> 42.79
+  # Namibia: 	    0.015 -> 23.06  
     
   # filter: limit to 5 intervals (6 years worth of data)
   #   NOTE: original 2012 only used 2006:2010 whereas now we're using 2005:2010
@@ -1202,7 +1208,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
   
   # georegional gapfill, and output gapfill_georegions attributes
   if (!file.exists('temp')) dir.create('temp', recursive=T)
-  csv = sprintf('temp/eez2013_%s-status-gapfill-georegions.csv', tolower(subgoal))
+  csv = sprintf('temp/eez2013_%s-status-gapfill-georegions.csv', subgoal)
   s_r_g = gapfill_georegions(
     data              = data,
     fld_id            = 'rgn_id',
@@ -1353,7 +1359,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min
   
   # georegional gapfill, and output gapfill_georegions attributes
   if (!file.exists('temp')) dir.create('temp', recursive=T)
-  csv = sprintf('temp/eez2013_%s-trend-gapfill-georegions.csv', tolower(subgoal))
+  csv = sprintf('temp/eez2013_%s-trend-gapfill-georegions.csv', subgoal)
   rg = gapfill_georegions(
     data              = data,
     fld_id            = 'rgn_id',
