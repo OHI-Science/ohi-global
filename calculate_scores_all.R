@@ -16,8 +16,8 @@ library(devtools)
 load_all(dirs$ohicore) # a developer alternative to library(ohicore)
 #library(ohicore) # from ohidev:functions/trace_MAR.R ## 001 of 10. 2014-07-02 11:34:36 [9938966d]
 
-do.layercopy  = F
-do.layercheck = F
+do.layercopy  = T
+do.layercheck = T
 do.calculate  = T
 do.other      = F
 
@@ -158,7 +158,8 @@ for (i in 1:length(scenarios)){ # i=2
     layers = Layers('layers.csv','layers')
     
     # calculate scores
-    try({   scores = CalculateAll(conf, layers, debug=T) })
+    #try({    })
+    scores = CalculateAll(conf, layers, debug=T)
     write.csv(scores, 'scores.csv', na='', row.names=F)
   
     # restore working directory
