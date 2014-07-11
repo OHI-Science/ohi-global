@@ -1,5 +1,6 @@
 # transfer global scenarios out of ohicore
 # TODO: create true regions_gcs.js for Antarctica & High Seas
+#       eez2014 reshape input data problem once in pressures, many in resilience: Aggregation function missing: defaulting to length
 
 setwd('~/github/ohi-global')
 
@@ -10,40 +11,45 @@ dirs = list(
   ohiprep       = '../ohiprep',
   ohicore       = '../ohicore')
 
-# load ohicore, development mode
-library(devtools)
-load_all(dirs$ohicore)
+# load ohicore
+library(ohicore) # or devtools::load_all(dirs$ohicore)
 
 do.layercopy  = F
 do.layercheck = F
-do.calculate  = F
+do.calculate  = T
 do.other      = F
 
 # scenarios
 scenarios = list(
+  eez2014     = list(
+    google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
+    fld_dir      = 'dir_2014a',
+    fld_fn       = 'fn_2014a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = F),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'),
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),
   eez2012     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
     fld_fn       = 'fn_2012a',
-    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'),
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),
   antarctica2014 = list(
     google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'),
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = F),
   highseas2014   = list(
     google_key   = '0ArcIhYsFwBeNdG9KVlJ6M0ZxV1dtVDJDQ3FLVWJQWFE',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohicore/inst/extdata/spatial.www2013/regions_gcs.js'),
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = F))
 
 # sync functions.R: overwrite eez2012 and eez2014 with eez2013 (note LE's use of eez2013 argument)
@@ -52,16 +58,11 @@ for (dir in c('eez2012','eez2014')){
 }
 
 # get rid of old debug files without scenario prefix
-for (dir in c('eez2012','eez2013','eez2014')){
-  unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
-}
+# for (dir in c('eez2012','eez2013','eez2014')){
+#   unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
+# }
 
-# sync functions.R: overwrite eez2012 and eez2014 with eez2013 (note LE's use of eez2013 argument)
-for (dir in c('eez2012','eez2014')){
-  stopifnot(file.copy('eez2013/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
-}
-
-for (i in 1:length(scenarios)){ # i=1
+for (i in 1:length(scenarios)){ # i=2
   
   # vars
   scenario   = names(scenarios)[[i]]
@@ -74,7 +75,7 @@ for (i in 1:length(scenarios)){ # i=1
   cat(sprintf('\nScenario: %s\n', scenario))
   
   # create dirs
-  dirs_scenario = c(scenario, sprintf('%s/%s', scenario, c('tmp','layers','conf','spatial')))
+  dirs_scenario = c(scenario, sprintf('%s/%s', scenario, c('temp','layers','conf','spatial')))
   for (dir in dirs_scenario) {
     if (!file.exists(dir)) dir.create(dir, showWarnings=F)
   }
@@ -83,17 +84,25 @@ for (i in 1:length(scenarios)){ # i=1
     # load Google spreadsheet for copying layers
     cat(sprintf('\n  Google spreadsheet editable URL:\n    https://docs.google.com/spreadsheet/ccc?key=%s\n', google_key) )
     g.url = sprintf('https://docs.google.com/spreadsheet/pub?key=%s&output=csv', scenarios[[i]][['google_key']])
-    g0 = read.csv(textConnection(RCurl::getURL(g.url, ssl.verifypeer = FALSE)), skip=1, na.strings='')
-    write.csv(g0, sprintf('%s/tmp/layers_0-google.csv', scenario), na='', row.names=F)
+    g = read.csv(textConnection(RCurl::getURL(g.url, ssl.verifypeer = FALSE)), skip=1, na.strings='', stringsAsFactors=F)
+    write.csv(g, sprintf('%s/temp/layers_0-google.csv', scenario), na='', row.names=F)
+    
+    # fill in for 2014
+    if (scenario=='eez2014'){
+      g = g %>%
+        mutate(
+          dir_2014a = ifelse(is.na(dir_2014a), dir_2013a, dir_2014a),
+          fn_2014a = ifelse(is.na(fn_2014a), fn_2013a, fn_2014a))
+    }
     
     # swap dir
-    g0$dir_in = sapply(
-      str_split(g0[[fld_dir]], ':'),   
+    g$dir_in = sapply(
+      str_split(g[[fld_dir]], ':'),   
       function(x){ sprintf('%s/%s', dirs[x[1]], x[2])})
-    g0$fn_in = g0[[fld_fn]]
+    g$fn_in = g[[fld_fn]]
     
     # filter
-    lyrs = g0 %.%
+    lyrs = g %.%
       filter(ingest==T) %.%
       mutate(
         path_in        = file.path(dir_in, fn_in),
@@ -105,7 +114,7 @@ for (i in 1:length(scenarios)){ # i=1
         fld_value, units,
         path_in, path_in_exists, filename, path_out) %.%
       arrange(targets, layer)
-    write.csv(lyrs, sprintf('%s/tmp/layers_1-ingest.csv', scenario), na='', row.names=F)
+    write.csv(lyrs, sprintf('%s/temp/layers_1-ingest.csv', scenario), na='', row.names=F)
     
     if (nrow(filter(lyrs, !path_in_exists)) != 0){
       message('The following layers paths do not exist:\n')
@@ -139,20 +148,24 @@ for (i in 1:length(scenarios)){ # i=1
   
   if (do.calculate){
     
-    # load configuration and layers
-    conf   = Conf(sprintf('%s/conf', scenario))
-    layers = Layers(layers.csv = sprintf('%s/layers.csv', scenario), 
-                    layers.dir = sprintf('%s/layers', scenario))
-    
     # calculate scores from directory of scenario
     setwd(sprintf('~/github/ohi-global/%s', scenario)) # load_all(dirs$ohicore)
-    scores = CalculateAll(conf, layers, debug=T)  
+
+    # load configuration and layers
+    conf   = Conf('conf')
+    layers = Layers('layers.csv','layers')
+    
+    # calculate scores
+    #try({    })
+    scores = CalculateAll(conf, layers, debug=T)
+    write.csv(scores, 'scores.csv', na='', row.names=F)
+  
+    # restore working directory
     setwd('~/github/ohi-global')
-    write.csv(scores, sprintf('%s/scores.csv', scenario), na='', row.names=F)
 
     # archive scores on disk (out of github, for easy retrieval later)
     csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
-    write.csv(scores, csv, na='', row.names=F)    
+    write.csv(scores, csv, na='', row.names=F)
   }
     
   if (do.other){
@@ -172,9 +185,9 @@ for (i in 1:length(scenarios)){ # i=1
     write_shortcuts(scenario, os_files=0)
     
     # launch on Mac # setwd('~/github/ohi-global/eez2013'); launch_app()
-    system(sprintf('open %s/launch_app.command', scenario))
+    #system(sprintf('open %s/launch_app.command', scenario))
   }
 }
 
-# run comparison report
+# DEBUG comparieson
 source('../ohidev/report/compare_scores.R')
