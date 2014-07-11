@@ -11,13 +11,11 @@ dirs = list(
   ohiprep       = '../ohiprep',
   ohicore       = '../ohicore')
 
-# load ohicore, development mode
-library(devtools)
-load_all(dirs$ohicore) # a developer alternative to library(ohicore)
-#library(ohicore) # from ohidev:functions/trace_MAR.R ## 001 of 10. 2014-07-02 11:34:36 [9938966d]
+# load ohicore
+library(ohicore) # or devtools::load_all(dirs$ohicore)
 
-do.layercopy  = T
-do.layercheck = T
+do.layercopy  = F
+do.layercheck = F
 do.calculate  = T
 do.other      = F
 
