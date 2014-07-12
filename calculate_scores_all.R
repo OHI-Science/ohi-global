@@ -12,7 +12,8 @@ dirs = list(
   ohicore       = '../ohicore')
 
 # load ohicore
-library(ohicore) # or devtools::load_all(dirs$ohicore)
+#library(ohicore) # or 
+devtools::load_all(dirs$ohicore)
 
 do.layercopy  = F
 do.layercheck = F
