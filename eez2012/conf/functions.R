@@ -10,6 +10,34 @@ Setup = function(){
       require(p, character.only=T)
     }
   }
+  
+  # csv comparison function, made global
+  csv_compare <<- function(o, step, prefix=sprintf('temp/%s_MAR', basename(getwd()))){
+    
+    dir_temp = basename(dirname(prefix))
+    if (!file.exists(dir_temp)) dir.create(dir_temp, recursive=T)
+    
+    csv = sprintf('%s_%s_B.csv', prefix, step)
+    if (!file.exists(csv)){
+      cat(sprintf('DEBUG: writing %s.\n', csv))
+      write.csv(o, csv, row.names=F, na='')     
+    }
+    x = read.csv(csv, check.names=F)
+    
+    # custom modifications
+    if (step=='3-m-melt'){ x$year = factor(x$year, levels=levels(o$year)) } # [1] "Component “year”: 'current' is not a factor"
+    if (step=='7-ref95pct-quantile'){ x = setNames(as.numeric(x), '95%') }
+    
+    eq = all.equal(o, x)
+    if (class(eq) == 'character'){
+      csv = sprintf('%s_%s_A.csv', prefix, step)
+      cat(sprintf('DEBUG: NOT EQUAL! writing %s.\n', csv))
+      print(eq)
+      write.csv(o, csv, row.names=F, na='') 
+    }
+    return(x)
+  }
+  
 }
 
 FIS = function(layers, status_year=2011){
@@ -233,29 +261,7 @@ MAR = function(layers, status_years=2005:2011){
     merge(harvest_species     , all.x=TRUE, by='species_code') %.%
     merge(sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')) %.%
     dcast(rgn_id + species + species_code + sust_coeff ~ year, value.var='tonnes', mean, na.rm=T)
-  
-  # DEBUG
-  csv_compare = function(o, step, prefix=sprintf('temp/%s_MAR', basename(getwd()))){
-    csv = sprintf('%s_%s_B.csv', prefix, step)
-    if (!file.exists(csv)){
-      cat(sprintf('DEBUG: writing %s.\n', csv))
-      write.csv(o, csv, row.names=F, na='')     
-    }
-    x = read.csv(csv, check.names=F)
     
-    # custom modifications
-    if (step=='3-m-melt'){ x$year = factor(x$year, levels=levels(o$year)) } # [1] "Component “year”: 'current' is not a factor"
-    if (step=='7-ref95pct-quantile'){ x = setNames(as.numeric(x), '95%') }
-    
-    eq = all.equal(o, x)
-    if (class(eq) == 'character'){
-      csv = sprintf('%s_%s_A.csv', prefix, step)
-      cat(sprintf('DEBUG: NOT EQUAL! writing %s.\n', csv))
-      print(eq)
-      write.csv(o, csv, row.names=F, na='') 
-    }
-    return(x)
-  }  
   x = csv_compare(rky, '1-rky')
   
   # smooth each species-country time-series using a running mean with 4-year window, excluding NAs from the 4-year mean calculation
