@@ -15,9 +15,9 @@ dirs = list(
 #library(ohicore) # or 
 devtools::load_all(dirs$ohicore)
 
-do.layercopy  = F
-do.layercheck = F
-do.calculate  = T
+do.layercopy  = T
+do.layercheck = T
+do.calculate  = F
 do.other      = F
 
 # scenarios
@@ -27,19 +27,19 @@ scenarios = list(
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = F),
+    do           = T),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+    do           = F),
   eez2012     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
     fld_fn       = 'fn_2012a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+    do           = F),
   antarctica2014 = list(
     google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
     fld_dir      = 'dir_2013a',
@@ -190,5 +190,5 @@ for (i in 1:length(scenarios)){ # i=2
   }
 }
 
-# DEBUG comparieson
+# DEBUG comparison
 source('../ohidev/report/compare_scores.R')
