@@ -2,20 +2,35 @@
 # TODO: create true regions_gcs.js for Antarctica & High Seas
 #       eez2014 reshape input data problem once in pressures, many in resilience: Aggregation function missing: defaulting to length
 
+# Melanie access on PC
+setwd("C:/Users/Melanie/Github/ohi-global")
+# access on Mac
 setwd('~/github/ohi-global')
 
-# get paths based on host machine
+## check to see if following also works on Mac:
+source('../ohiprep/src/R/Common.R')
+
+# new paths based on host machine
 dirs = list(
-  neptune_data  = '/Volumes/data_edit', 
-  neptune_local = '/Volumes/local_edit',
+  neptune_data  = dir_neptune_data, 
+  neptune_local = dir_neptune_local,
   ohiprep       = '../ohiprep',
   ohicore       = '../ohicore')
+
+
+# # if above works on mac...delete the following
+# # get paths based on host machine
+# dirs = list(
+#   neptune_data  = '/Volumes/data_edit', 
+#   neptune_local = '/Volumes/local_edit',
+#   ohiprep       = '../ohiprep',
+#   ohicore       = '../ohicore')
 
 # load ohicore
 #library(ohicore) # or 
 devtools::load_all(dirs$ohicore)
 
-do.layercopy  = F
+do.layercopy  = T
 do.layercheck = T
 do.calculate  = T
 do.other      = F
@@ -109,7 +124,7 @@ for (i in 1:length(scenarios)){ # i=1
       str_split(g[[fld_dir]], ':'),   
       function(x){ sprintf('%s/%s', dirs[x[1]], x[2])})
     g$fn_in = g[[fld_fn]]
-    
+
     # filter
     lyrs = g %.%
       filter(ingest==T) %.%
@@ -158,7 +173,7 @@ for (i in 1:length(scenarios)){ # i=1
   if (do.calculate){
     
     # calculate scores from directory of scenario
-    setwd(sprintf('~/github/ohi-global/%s', scenario)) # load_all(dirs$ohicore)
+    setwd(sprintf('%s', scenario)) # load_all(dirs$ohicore)
     
     # load configuration and layers
     conf   = Conf('conf')
@@ -167,7 +182,7 @@ for (i in 1:length(scenarios)){ # i=1
     # calculate scores
     #try({    })
     scores = CalculateAll(conf, layers, debug=T)
-    write.csv(scores, 'scores.csv', na='', row.names=F)
+     write.csv(scores, 'scores.csv', na='', row.names=F)
     
     # restore working directory
     setwd('~/github/ohi-global')
