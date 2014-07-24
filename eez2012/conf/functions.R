@@ -854,7 +854,7 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
       dcast(rgn_id ~ year, value.var='Xtr')
     write.csv(d_c, sprintf('temp/%s_TR_0-pregap_wide.csv', basename(getwd())), row.names=F, na='')
     
-    o = read.csv('/Volumes/data_edit/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv', na.strings='') %.%
+    o = read.csv(file.path(dir_neptune_data, '/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv'), na.strings='') %.%
       melt(id='rgn_id', variable.name='year', value.name='Xtr_o') %.%
       mutate(year = as.integer(sub('x_TR_','', year, fixed=T))) %.%
       arrange(rgn_id, year)
@@ -1001,7 +1001,7 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
   if (debug){
     
     # compare with original scores
-    csv_o = '/Volumes/data_edit/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores.Global2013.www2013_2013-10-09.csv'
+    csv_o = file.path(dir_neptune_data, 'git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores.Global2013.www2013_2013-10-09.csv')
     o = read.csv(csv_o, na.strings='NA', row.names=1) %.% 
       filter(goal %in% c('TR') & dimension %in% c('status','trend') & region_id!=0) %.% 
       select(goal, dimension, region_id, score_o=score)
