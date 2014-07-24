@@ -1,4 +1,7 @@
-setwd('~/github/ohi-global/global2014')
+# merge_scores.r
+# this script creates a global 2014 scores.csv, which is a combination of eez2014, antarctica2014, highseas2014
+
+# don't need to set working directory; just need to save it in global2014
 
 # merge scores
 d = rbind_list(
@@ -10,9 +13,11 @@ d = rbind_list(
       region_id = 213))
 
 # write scores
-write.csv(d, 'scores.csv', row.names=F, na='')
+# save this in global2014
+write.csv(d, file.path('global2014', 'scores.csv', row.names=F, na='')
 
 # output file for Radical...
+# ** JSL will find where a template file is that knows the format Radical wants
 
 # a = read.csv('../antarctica2014/scores.csv')
 # filter(a, region_id %in% c(0,248100) & goal=='BD') %>% arrange(region_id, goal, dimension)

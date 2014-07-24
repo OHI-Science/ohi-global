@@ -190,6 +190,9 @@ for (i in 1:length(scenarios)){ # i=1
     # archive scores on disk (out of github, for easy retrieval later)
     csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
     write.csv(scores, csv, na='', row.names=F)
+    
+    # add some kind of if statement: if scenario == 2014a, call merge_scores.R
+    
   }
   
   if (do.other){
@@ -215,3 +218,6 @@ for (i in 1:length(scenarios)){ # i=1
 
 # DEBUG comparison for 2013a
 # source('../ohidev/report/compare_scores.R')
+
+# comparison 2014a
+# source('../ohidev/report/compare_scenarios.R')
