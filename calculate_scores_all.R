@@ -3,7 +3,7 @@
 #       eez2014 reshape input data problem once in pressures, many in resilience: Aggregation function missing: defaulting to length
 
 # Melanie access on PC
-setwd("C:/Users/Melanie/Github/ohi-global")
+#setwd("C:/Users/Melanie/Github/ohi-global")
 # access on Mac
 setwd('~/github/ohi-global')
 
