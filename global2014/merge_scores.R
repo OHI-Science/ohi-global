@@ -3,18 +3,21 @@
 
 # don't need to set working directory; just need to save it in global2014
 
-# merge scores
+# merge scores (cut region_ids of zero.  We can add these, but the region_id's will need to be changed.)
 d = rbind_list(
-  read.csv('../eez2014/scores.csv'),
-  read.csv('../highseas2014/scores.csv'),
-  read.csv('../antarctica2014/scores.csv') %>%
+  read.csv('eez2014/scores.csv', stringsAsFactors=FALSE) %>%
+    filter(!(region_id %in% c(0, 213))), #region 213 is replaced with specific Antarctica data below.
+  read.csv('highseas2014/scores.csv', stringsAsFactors=FALSE) %>%
+    filter(region_id != 0),
+  read.csv('antarctica2014/scores.csv', stringsAsFactors=FALSE) %>%
     filter(region_id==0) %>%
     mutate(
-      region_id = 213))
+      region_id = 213))  #note: might need to take mean of pressures, resilience, trend for CCAMLR regions.
+                         # this wasn't done for the other data...not sure why.
 
 # write scores
 # save this in global2014
-write.csv(d, file.path('global2014', 'scores.csv', row.names=F, na='')
+write.csv(d, file.path('global2014', 'scores.csv'), row.names=F, na='')
 
 # output file for Radical...
 # ** JSL will find where a template file is that knows the format Radical wants
