@@ -2,13 +2,14 @@
 # TODO: create true regions_gcs.js for Antarctica & High Seas
 #       eez2014 reshape input data problem once in pressures, many in resilience: Aggregation function missing: defaulting to length
 
-# Melanie access on PC
+# Melanie access on PC 
 #setwd("C:/Users/Melanie/Github/ohi-global")
-# access on Mac
-setwd('~/github/ohi-global')
+# access on Mac (is the '/github/' part needed on Macs?)
+setwd(file.path('~/github/ohi-global'))
+setwd('~/ohi-global')
 
 ## check to see if following also works on Mac:
-source('../ohiprep/src/R/Common.R')
+source('../ohiprep/src/R/common.R')
 
 # new paths based on host machine
 dirs = list(
@@ -26,7 +27,7 @@ dirs = list(
 #   ohiprep       = '../ohiprep',
 #   ohicore       = '../ohicore')
 
-# load ohicore
+# load ohicore (must first download using directions from here: )
 #library(ohicore) # or 
 devtools::load_all(dirs$ohicore)
 
@@ -34,6 +35,7 @@ do.layercopy  = T
 do.layercheck = T
 do.calculate  = T
 do.other      = F
+do.merge      = T
 
 # scenarios
 scenarios = list(
@@ -42,7 +44,7 @@ scenarios = list(
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+    do           = F),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
@@ -185,14 +187,13 @@ for (i in 1:length(scenarios)){ # i=1
      write.csv(scores, 'scores.csv', na='', row.names=F)
     
     # restore working directory
-    setwd('~/github/ohi-global')
+    setwd('..') 
     
     # archive scores on disk (out of github, for easy retrieval later)
     csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
     write.csv(scores, csv, na='', row.names=F)
     
-    # add some kind of if statement: if scenario == 2014a, call merge_scores.R
-    
+    source('global2014/merge_scores.R')  
   }
   
   if (do.other){
