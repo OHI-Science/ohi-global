@@ -12,8 +12,7 @@ d = rbind_list(
   read.csv('antarctica2014/scores.csv', stringsAsFactors=FALSE) %>%
     filter(region_id==0) %>%
     mutate(
-      region_id = 213))  #note: might need to take mean of pressures, resilience, trend for CCAMLR regions.
-                         # this wasn't done for the other data...not sure why.
+      region_id = 213))  #note: has fewer variables than other regions (no pressures, resilience, trend because these don't average well)
 
 # write scores
 # save this in global2014
