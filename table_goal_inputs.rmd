@@ -7,6 +7,7 @@ This table compares the years assigned in the 'preindex_function' field of `goal
 
 Currently for scenarios **eez2012, eez2013, eez2014**.  
 
+
 ``` {r, eval=TRUE, message = FALSE, echo=FALSE}
 library(dplyr)
 library(stringr)
