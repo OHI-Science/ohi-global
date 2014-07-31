@@ -1,0 +1,5 @@
+setwd("~/Documents/GitHub/ohi-global/eez2013")
+devtools::load_all('~/Documents/GitHub/ohicore')
+require(methods)
+require(ohicore)
+launch_app()
