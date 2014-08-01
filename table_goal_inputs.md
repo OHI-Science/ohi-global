@@ -1,7 +1,8 @@
 This table compares the years assigned in the 'preindex\_function' field
 of `goals.csv`: these years will be used in `functions.r` to calculate
 goal scores. Note: this table has been simplified to only show years.
-See `preindex_functions.rmd` for the code that makes this table.
+Rerun `preindex_functions.rmd` for the most current version; you can
+also see the code that makes this table.
 
 Currently for scenarios **eez2012, eez2013, eez2014**.
 
@@ -23,14 +24,14 @@ Currently for scenarios **eez2012, eez2013, eez2014**.
     ## 
     ## CP     CP()                 CP()                 CP()                
     ## 
-    ## TR     TR(yr_max=2011)      TR(yr_max=2012)      TR(yr_max=2013)     
+    ## TR     TR(yr_max=2011)      TR(yr_max=2011)      TR(yr_max=2012)     
     ## 
     ## LE                                                                   
     ## 
-    ## LIV    LIV(wfsize_yr=2008,  LIV(wfsize_yr=2009,  LIV(wfsize_yr=2009, 
+    ## LIV    LIV(wfsize_yr=2010,  LIV(wfsize_yr=2011,  LIV(wfsize_yr=2012, 
     ##        revadj_minyr=1999)   revadj_minyr=2000)   revadj_minyr=2000)  
     ## 
-    ## ECO    ECO(wfsize_yr=2008,  ECO(wfsize_yr=2009,  ECO(wfsize_yr=2009, 
+    ## ECO    ECO(wfsize_yr=2010,  ECO(wfsize_yr=2011,  ECO(wfsize_yr=2012, 
     ##        revadj_minyr=1999)   revadj_minyr=2000)   revadj_minyr=2000)  
     ## 
     ## SP                                                                   
