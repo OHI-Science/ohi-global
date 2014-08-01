@@ -1,8 +1,16 @@
 ---
 title: "compare goals.csv inputs across scenarios"
-output: md_document
----
+author: "Julie Lowndes"
+date: "August 1, 2014"
+output: 
+  md_document:
+    variant: markdown_github
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
 
+---
 This table compares the years assigned in the 'preindex_function' field of `goals.csv`: these years will be used in `functions.r` to calculate goal scores. Note: this table has been simplified to only show years. Rerun `preindex_functions.rmd` for the most current version; you can also see the code that makes this table.
 
 Currently for scenarios **eez2012, eez2013, eez2014**.  

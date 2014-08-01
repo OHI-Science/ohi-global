@@ -1,8 +1,4 @@
-This table compares the years assigned in the 'preindex\_function' field
-of `goals.csv`: these years will be used in `functions.r` to calculate
-goal scores. Note: this table has been simplified to only show years.
-Rerun `preindex_functions.rmd` for the most current version; you can
-also see the code that makes this table.
+This table compares the years assigned in the 'preindex\_function' field of `goals.csv`: these years will be used in `functions.r` to calculate goal scores. Note: this table has been simplified to only show years. Rerun `preindex_functions.rmd` for the most current version; you can also see the code that makes this table.
 
 Currently for scenarios **eez2012, eez2013, eez2014**.
 
@@ -12,13 +8,13 @@ Currently for scenarios **eez2012, eez2013, eez2014**.
     ## ------ -------------------- -------------------- --------------------
     ## FP                                                                   
     ## 
-    ## FIS    FIS(st_yr=2010)      FIS(st_yr=2012)      FIS(st_yr=2011)     
+    ## FIS    FIS(st_yr=2010)      FIS(st_yr=2011)      FIS(st_yr=2011)     
     ## 
-    ## MAR    MAR(st_yr=2004:2010) MAR(st_yr=2005:2011) MAR(st_yr=2005:2011)
+    ## MAR    MAR(st_yr=2004:2010) MAR(st_yr=2005:2011) MAR(st_yr=2007:2012)
     ## 
     ## AO     AO(yr_max=2011)      AO(yr_max=2012)      AO(yr_max=2013)     
     ## 
-    ## NP     NP(yr_max=2008)      NP(yr_max=2010)      NP(yr_max=2011)     
+    ## NP     NP(yr_max=2009)      NP(yr_max=2010)      NP(yr_max=2011)     
     ## 
     ## CS     CS()                 CS()                 CS()                
     ## 
@@ -38,8 +34,8 @@ Currently for scenarios **eez2012, eez2013, eez2014**.
     ## 
     ## ICO    ICO()                ICO()                ICO()               
     ## 
-    ## LSP    LSP(st_yr=2011,      LSP(st_yr=2012,      LSP(st_yr=2012,     
-    ##        tr_yr=2004:2008)     tr_yr=2005:2009)     tr_yr=2005:2009)    
+    ## LSP    LSP(st_yr=2011,      LSP(st_yr=2012,      LSP(st_yr=2013,     
+    ##        tr_yr=2006:2011)     tr_yr=2007:2012)     tr_yr=2008:2013)    
     ## 
     ## CW     CW()                 CW()                 CW()                
     ## 

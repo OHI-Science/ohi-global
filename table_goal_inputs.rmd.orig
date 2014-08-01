@@ -1,0 +1,72 @@
+---
+title: "compare goals.csv inputs across scenarios"
+<<<<<<< HEAD
+output: md_document
+---
+
+=======
+author: "Julie Lowndes"
+date: "August 1, 2014"
+output: 
+  md_document:
+    variant: markdown_github
+  html_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+
+---
+>>>>>>> c348e0782f81ec34bc68c829f7444a2b88745466
+This table compares the years assigned in the 'preindex_function' field of `goals.csv`: these years will be used in `functions.r` to calculate goal scores. Note: this table has been simplified to only show years. Rerun `preindex_functions.rmd` for the most current version; you can also see the code that makes this table.
+
+Currently for scenarios **eez2012, eez2013, eez2014**.  
+
+
+``` {r, eval=TRUE, message = FALSE, echo=FALSE}
+library(dplyr)
+library(stringr)
+library(pander)
+# identify scenarios
+scenarios = c('eez2012', 
+              'eez2013', 
+              'eez2014')
+
+# loop through scenarios
+if (exists('d')) rm(d)
+for (i in 1:length(scenarios)) { # i=1
+  
+  f = read.csv(sprintf('%s/conf/goals.csv', scenarios[i])) %>%
+    select(goal, preindex_function)
+  
+  #   g = str_split(f$preindex_function, ',')
+  g = f %>%
+    mutate(yrs_set = preindex_function,   
+           yrs_set = str_replace_all(yrs_set, 'LIV_ECO\\(layers, subgoal\\=\'LIV\', ',    'LIV\\('),
+           yrs_set = str_replace_all(yrs_set, 'LIV_ECO\\(layers, subgoal\\=\'ECO\', ',    'ECO\\('),
+           yrs_set = str_replace_all(yrs_set, 'liv_workforcesize_year', 'wfsize_yr'),
+           yrs_set = str_replace_all(yrs_set, 'eco_rev_adj_min_year',   'revadj_minyr'),
+           yrs_set = str_replace_all(yrs_set, 'layers,* *',             ''),
+           yrs_set = str_replace_all(yrs_set, 'scores,* *',             ''),
+           yrs_set = str_replace_all(yrs_set, 'year',                   'yr'),
+           yrs_set = str_replace_all(yrs_set, 'status',                 'st'),
+           yrs_set = str_replace_all(yrs_set, 'trend',                  'tr'),
+           yrs_set = str_replace_all(yrs_set, 'yrs',                   'yr')) %>%
+    select(goal, yrs_set)
+  
+  names(g) = c('goal', sprintf('yrs_set_%s', scenarios[i]))
+  
+  # rbind
+  if (!exists('d')){ 
+    d = g
+    } else {
+      d = d %>%
+        inner_join(g, by='goal')
+      }
+  }
+
+pander(d, justify = 'left', split.tables = 100, 
+       caption = sprintf('Comparison of scenarios %s, %s, and %s', scenarios[1], scenarios[2], scenarios[3]))
+
+```
+
+
