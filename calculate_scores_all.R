@@ -56,7 +56,7 @@ scenarios = list(
     fld_dir      = 'dir_2012a',
     fld_fn       = 'fn_2012a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = F),
+    do           = ),
   antarctica2014 = list(
     google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
     fld_dir      = 'dir_2013a',
@@ -190,10 +190,13 @@ for (i in 1:length(scenarios)){ # i=2
     setwd('..') 
     
     # archive scores on disk (out of github, for easy retrieval later)
-    csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
-    write.csv(scores, csv, na='', row.names=F)
+    csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', 
+                  dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
+#     write.csv(scores, csv, na='', row.names=F)
     
-    source('global2014/merge_scores.R')  
+    if (scenarios$eez2014$do)  source('global2014/merge_scores.R')  
+    if (scenarios$eez2012$do && scenarios$eez2013$do) source('../ohidev/report/compare_scores.R')  
+    
   }
   
   if (do.other){
