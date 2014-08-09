@@ -322,7 +322,7 @@ MAR = function(layers, status_years=2005:2011){
   ry_b = csv_compare(ry, '6-ry-ddply')  # RIGHT
   ry_a = ry
   eq = all.equal(ry_a, ry_b)
-  if (class(eq) == 'character') browser()
+#   if (class(eq) == 'character') browser()
 
   
   # get reference quantile based on argument years

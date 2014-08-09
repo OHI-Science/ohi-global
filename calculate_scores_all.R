@@ -6,7 +6,7 @@
 #setwd("C:/Users/Melanie/Github/ohi-global")
 # access on Mac (is the '/github/' part needed on Macs?)
 setwd(file.path('~/github/ohi-global'))
-setwd('~/ohi-global')
+# setwd('~/ohi-global')
 
 ## check to see if following also works on Mac:
 source('../ohiprep/src/R/common.R')
@@ -35,7 +35,7 @@ do.layercopy  = T
 do.layercheck = T
 do.calculate  = T
 do.other      = F
-do.merge      = T
+do.merge      = F # needs to be written 
 
 # scenarios
 scenarios = list(
@@ -44,7 +44,7 @@ scenarios = list(
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = F),
+    do           = T),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
@@ -126,7 +126,7 @@ for (i in 1:length(scenarios)){ # i=2
       str_split(g[[fld_dir]], ':'),   
       function(x){ sprintf('%s/%s', dirs[x[1]], x[2])})
     g$fn_in = g[[fld_fn]]
-
+    
     # filter
     lyrs = g %.%
       filter(ingest==T) %.%
@@ -141,6 +141,8 @@ for (i in 1:length(scenarios)){ # i=2
         path_in, path_in_exists, filename, path_out) %.%
       arrange(targets, layer)
     write.csv(lyrs, sprintf('%s/temp/layers_1-ingest.csv', scenario), na='', row.names=F)
+    
+    filter(g, targets=='MAR')
     
     if (nrow(filter(lyrs, !path_in_exists)) != 0){
       message('The following layers paths do not exist:\n')
@@ -184,7 +186,7 @@ for (i in 1:length(scenarios)){ # i=2
     # calculate scores
     #try({    })
     scores = CalculateAll(conf, layers, debug=T)
-     write.csv(scores, 'scores.csv', na='', row.names=F)
+    write.csv(scores, 'scores.csv', na='', row.names=F)
     
     # restore working directory
     setwd('..') 
@@ -192,10 +194,10 @@ for (i in 1:length(scenarios)){ # i=2
     # archive scores on disk (out of github, for easy retrieval later)
     csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', 
                   dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
-#     write.csv(scores, csv, na='', row.names=F)
+    #     write.csv(scores, csv, na='', row.names=F)
     
-    if (scenarios$eez2014$do)  source('global2014/merge_scores.R')  
-    source('../ohidev/report/compare_scores.R')  
+    if (scenarios$eez2014$do) { source('global2014/merge_scores.R')  }
+    print_scenarios = T;       source('../ohidev/report/compare_scores.R')  
     
   }
   
@@ -221,8 +223,8 @@ for (i in 1:length(scenarios)){ # i=2
 }
 
 
-# DEBUG comparison for 2013a
-source('../ohidev/report/compare_scores.R')
+# # DEBUG comparison for 2013a
+# source('../ohidev/report/compare_scores.R')
 
 # comparison 2014a
 # source('../ohidev/report/compare_scenarios.R')
