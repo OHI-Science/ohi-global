@@ -6,7 +6,7 @@
 #setwd("C:/Users/Melanie/Github/ohi-global")
 # access on Mac (is the '/github/' part needed on Macs?)
 setwd(file.path('~/github/ohi-global'))
-# setwd('~/ohi-global')
+setwd('~/ohi-global')
 
 ## check to see if following also works on Mac:
 source('../ohiprep/src/R/common.R')
@@ -44,13 +44,13 @@ scenarios = list(
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+    do           = F),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+    do           = F),
   eez2012     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
@@ -80,7 +80,7 @@ for (dir in c('eez2012','eez2014')){
 #   unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
 # }
 
-for (i in 1:length(scenarios)){ # i=2
+for (i in 1:length(scenarios)){ # i=3
   
   # vars
   scenario   = names(scenarios)[[i]]
