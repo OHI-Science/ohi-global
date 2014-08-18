@@ -50,7 +50,7 @@ scenarios = list(
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = F),
+    do           = T),
   eez2012     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2012a',
@@ -197,7 +197,7 @@ for (i in 1:length(scenarios)){ # i=3
     #     write.csv(scores, csv, na='', row.names=F)
     
     if (scenarios$eez2014$do) { source('global2014/merge_scores.R')  }
-    print_scenarios = T;       source('../ohidev/report/compare_scores.R')  
+#    print_scenarios = T;       source('../ohidev/report/compare_scores.R')  
     
   }
   
