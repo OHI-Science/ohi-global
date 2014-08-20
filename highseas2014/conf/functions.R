@@ -1,23 +1,5 @@
 
 FIS = function(layers, status_year=2011){
-  library(stringr)
-
-  # layers used: fis_meancatch, fis_b_bmsy, FAOregions
-
-#   #mel stuff
-#   fis_meancatch <- read.csv("N:\\model\\GL-HS-AQ-Fisheries_v2013\\HighSeas\\data\\cnk_fis_meancatch.csv")
-#   fis_b_bmsy <- read.csv("N:\\model\\GL-NCEAS_FIS_v2013a\\RevisingFIS\\data\\fis_b_bmsy_lyr.csv")
-#   FAOregions <- read.csv("N:\\model\\GL-HS-AQ-Fisheries_v2013\\HighSeas\\data\\FAOregions.csv")
-# 
-#   c <- fis_meancatch
-#   c$fao_saup_id <- as.character(c$fao_saup_id)
-#   b <- fis_b_bmsy
-#   a <- FAOregions
-#   
-
-#status_year=2011
-#   
-#     # end: mel stuff
   
   # catch data
  c = SelectLayersData(layers, layer='fis_meancatch', narrow=T) %.%
@@ -48,12 +30,11 @@ FIS = function(layers, status_year=2011){
   
 
   # Identifier taxa/fao region:
-  
-  # area data for saup to rgn conversion
-  a = SelectLayersData(layers, layer='FAOregions', narrow=T) %.%
+   a = SelectLayersData(layers, layer='FAOregions', narrow=T) %>%
     select(
       rgn_id = id_num,
-      fao_id = val_num)
+      fao_id = val_num) %>%
+  filter(!(rgn_id %in% c(278, 268, 271))) #cut antarctica data (calculated separately)
   
   # ------------------------------------------------------------------------
   # STEP 1. Merge the species status data with catch data
@@ -185,7 +166,7 @@ FIS = function(layers, status_year=2011){
   # Join region names/ids to Geom data
   StatusData <- geomMean %.% 
     mutate(fao_id = as.integer(fao_id)) %.%
-    left_join(a, by='fao_id') %.%
+    inner_join(a, by='fao_id') %.%
     select(rgn_id = rgn_id, year, Status)
   
   # 2013 status is based on 2011 data (most recent data)
@@ -206,13 +187,13 @@ FIS = function(layers, status_year=2011){
     mdl = lm(Status ~ year, data=x)
     data.frame(
       score     = round(coef(mdl)[['year']] * 5, 2),
-      dimension = 'trend')}) %.%
+      dimension = 'trend')}) %>%
     select(region_id=rgn_id, dimension, score)
-  # %.% semi_join(status, by='rgn_id')
   
 # hack: Arctic region has no status (due to no catch data for 2011, and basically the past 5 years)
 # given this, trend should be zero (It's not because 2007 had a catch of 1)
 trend$score[trend$region_id == "260"] <- NA
+status$score[status$region_id == "260"] <- NA
 
   # assemble dimensions
   scores = rbind(status, trend) %.% mutate(goal='FIS')
