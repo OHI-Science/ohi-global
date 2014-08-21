@@ -81,6 +81,7 @@ Setup = function(){
   b$bmsy     <- as.numeric(b$bmsy)
   b$fao_id   <- as.numeric(as.character(b$fao_id))
   b$year     <- as.numeric(as.character(b$year))
+    
   
   # area data for saup to rgn conversion
   a = layers$data[['fis_proparea_saup2rgn']] %.%
@@ -127,6 +128,9 @@ Setup = function(){
   
   UnAssessedCatches <- join(UnAssessedCatches, b_summary, by=c("fao_id", "year"),
                             type="left", match="all")
+  
+  UnAssessedCatches <- UnAssessedCatches[!(is.na(UnAssessedCatches$Medianb_bmsy)), ] #added 8/21/2014 due to changes in b/bmsy data created NAs here
+  
   # 2b.  Create a penalty variable based on taxa level:
   UnAssessedCatches$TaxonPenaltyCode <- substring(UnAssessedCatches$TaxonKey,1,1)
   
