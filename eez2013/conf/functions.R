@@ -47,7 +47,7 @@ Setup = function(){
   
 }
 
- FIS = function(layers, status_year=2011){
+ FIS = function(layers, status_year){
   # layers used: fis_meancatch, fis_b_bmsy, fis_proparea_saup2rgn
       
   # catch data
@@ -239,7 +239,7 @@ Setup = function(){
   return(scores)  
 }
 
-MAR = function(layers, status_years=2005:2011){  
+MAR = function(layers, status_years){  
   # layers used: mar_harvest_tonnes, mar_harvest_species, mar_sustainability_score, mar_coastalpopn_inland25mi, mar_trend_years
   harvest_tonnes = rename(
     SelectLayersData(layers, layers='mar_harvest_tonnes', narrow=T),
@@ -389,8 +389,8 @@ FP = function(layers, scores){
 
 
 AO = function(layers, 
-              year_max=max(layers_data$year, na.rm=T), 
-              year_min=max(min(layers_data$year, na.rm=T), max(layers_data$year, na.rm=T)-10), 
+              year_max,
+              year_min=max(min(layers_data$year, na.rm=T), year_max - 10), 
               Sustainability=1.0){
   
   # cast data
@@ -1024,7 +1024,7 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
   return(scores)
 }
 
-LIV_ECO = function(layers, subgoal, liv_workforcesize_year=2009, eco_rev_adj_min_year=2000){
+LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year){
 
   g.component = c('LIV'='livelihood','ECO'='economy')[[subgoal]]
   
@@ -1489,7 +1489,7 @@ ICO = function(layers){
   
 }
 
-LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year=2012, trend_years=2005:2009){
+LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year, trend_years){
   # 2013: LSP(layers, status_year=2013, trend_years=2006:2010)
   # 2012: LSP(layers, status_year=2009, trend_years=2002:2006)
     
