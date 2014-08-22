@@ -129,7 +129,7 @@ Setup = function(){
   UnAssessedCatches <- join(UnAssessedCatches, b_summary, by=c("fao_id", "year"),
                             type="left", match="all")
   
-  UnAssessedCatches <- UnAssessedCatches[!(is.na(UnAssessedCatches$Medianb_bmsy)), ] #added 8/21/2014 due to changes in b/bmsy data created NAs here
+#  UnAssessedCatches <- UnAssessedCatches[!(is.na(UnAssessedCatches$Medianb_bmsy)), ] #added 8/21/2014 due to changes in b/bmsy data created NAs here
   
 #   ## Troubleshooting:
 #   head(UnAssessedCatches[is.na(UnAssessedCatches$Medianb_bmsy), ])
