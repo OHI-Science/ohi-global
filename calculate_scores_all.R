@@ -44,7 +44,7 @@ scenarios = list(
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = F),
+    do           = T),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
@@ -224,7 +224,8 @@ for (i in 1:length(scenarios)){ # i=5
 
 
 # # DEBUG comparison for 2013a
-# source('../ohidev/report/compare_scores.R')
+source('../ohidev/report/compare_scores.R')
+supressWarnings(source('../ohidev/report/visualizeScores/visualizeScores.R'))
 
 # comparison 2014a
 # source('../ohidev/report/compare_scenarios.R')
