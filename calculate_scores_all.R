@@ -225,7 +225,7 @@ for (i in 1:length(scenarios)){ # i=5
 
 # # DEBUG comparison for 2013a
 source('../ohidev/report/compare_scores.R')
-supressWarnings(source('../ohidev/report/visualizeScores/visualizeScores.R'))
+suppressWarnings(source('../ohidev/report/visualizeScores/visualizeScores.R'))
 
 # comparison 2014a
 # source('../ohidev/report/compare_scenarios.R')
