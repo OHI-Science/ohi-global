@@ -6,7 +6,7 @@
 #setwd("C:/Users/Melanie/Github/ohi-global")
 # access on Mac (is the '/github/' part needed on Macs?) (Macs: we've all saved our repos in a folder called 'github')
 setwd(file.path('~/github/ohi-global'))
-# setwd('~/ohi-global')
+ setwd('~/ohi-global')
 
 ## check to see if following also works on Mac:
 source('../ohiprep/src/R/common.R')
@@ -44,7 +44,7 @@ scenarios = list(
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+    do           = F),
   eez2013     = list(
     google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
     fld_dir      = 'dir_2013a',
