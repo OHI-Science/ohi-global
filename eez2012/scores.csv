@@ -4803,7 +4803,7 @@
 "NP","trend",159,
 "NP","trend",161,
 "NP","trend",162,0.01
-"NP","trend",163,-0.01
+"NP","trend",163,-0.07
 "NP","trend",164,-0.26
 "NP","trend",166,-0.01
 "NP","trend",167,
@@ -4871,7 +4871,7 @@
 "NP","trend",248,-0.48
 "NP","trend",249,-0.47
 "NP","trend",250,
-"NP","future",0,62.23
+"NP","future",0,62.06
 "NP","future",1,
 "NP","future",2,
 "NP","future",3,
@@ -5025,7 +5025,7 @@
 "NP","future",159,
 "NP","future",161,
 "NP","future",162,100
-"NP","future",163,64.54
+"NP","future",163,62.22
 "NP","future",164,75.65
 "NP","future",166,3.92
 "NP","future",167,
@@ -5093,7 +5093,7 @@
 "NP","future",248,39.72
 "NP","future",249,39.06
 "NP","future",250,
-"NP","score",0,59.17
+"NP","score",0,59.08
 "NP","score",1,
 "NP","score",2,
 "NP","score",3,
@@ -5247,7 +5247,7 @@
 "NP","score",159,
 "NP","score",161,
 "NP","score",162,92.27
-"NP","score",163,60.06
+"NP","score",163,58.91
 "NP","score",164,77.43
 "NP","score",166,3.71
 "NP","score",167,
@@ -21263,7 +21263,11 @@
 "BD","score",248,94.75
 "BD","score",249,94.65
 "BD","score",250,91.35
+<<<<<<< HEAD
 "Index","future",0,70.49
+=======
+"Index","future",0,70.48
+>>>>>>> b0e9b1a93438830b1b52eedf70452877e29fe476
 "Index","future",1,77.74
 "Index","future",2,76.48
 "Index","future",3,84.63
@@ -21417,7 +21421,11 @@
 "Index","future",159,80.03
 "Index","future",161,79.03
 "Index","future",162,85.45
+<<<<<<< HEAD
 "Index","future",163,64.32
+=======
+"Index","future",163,64.09
+>>>>>>> b0e9b1a93438830b1b52eedf70452877e29fe476
 "Index","future",164,68.31
 "Index","future",166,50.73
 "Index","future",167,50.28
@@ -21639,7 +21647,11 @@
 "Index","score",159,78.38
 "Index","score",161,76.71
 "Index","score",162,81.52
+<<<<<<< HEAD
 "Index","score",163,64.07
+=======
+"Index","score",163,63.96
+>>>>>>> b0e9b1a93438830b1b52eedf70452877e29fe476
 "Index","score",164,68.51
 "Index","score",166,56.37
 "Index","score",167,55.82
