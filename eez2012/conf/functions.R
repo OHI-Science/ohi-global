@@ -90,6 +90,10 @@ Setup = function(){
   a$saup_id   <- as.numeric(as.character(a$saup_id))
   a$rgn_id    <- as.numeric(as.character(a$rgn_id))
   
+#   #troubleshooting:
+#   NAs <- unique(c$stock_id[c$saup_id %in% c(239,897,334,74)])
+#   b[b$stock_id %in% NAs, ]
+#   
   # ------------------------------------------------------------------------
   # STEP 1. Merge the species status data with catch data
   #     AssessedCAtches: only taxa with catch status data
