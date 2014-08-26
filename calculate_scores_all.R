@@ -227,6 +227,8 @@ for (i in 1:length(scenarios)){ # i=5
 source('../ohidev/report/compare_scores.R')
 suppressWarnings(source('../ohidev/report/visualizeScores/visualizeScores.R'))
 
+# prepare data for Radical
+
 # comparison 2014a
 # source('../ohidev/report/compare_scenarios.R')
 
