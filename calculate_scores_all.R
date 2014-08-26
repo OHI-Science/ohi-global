@@ -4,9 +4,8 @@
 
 # Melanie access on PC 
 #setwd("C:/Users/Melanie/Github/ohi-global")
-# access on Mac (is the '/github/' part needed on Macs?) (Macs: we've all saved our repos in a folder called 'github')
 setwd(file.path('~/github/ohi-global'))
-# setwd('~/ohi-global')
+#  setwd('~/ohi-global')
 
 ## check to see if following also works on Mac:
 source('../ohiprep/src/R/common.R')
@@ -18,14 +17,6 @@ dirs = list(
   ohiprep       = '../ohiprep',
   ohicore       = '../ohicore')
 
-
-# # if above works on mac...delete the following
-# # get paths based on host machine
-# dirs = list(
-#   neptune_data  = '/Volumes/data_edit', 
-#   neptune_local = '/Volumes/local_edit',
-#   ohiprep       = '../ohiprep',
-#   ohicore       = '../ohicore')
 
 # load ohicore (must first download using directions from here: )
 #library(ohicore) # or 
@@ -226,6 +217,9 @@ for (i in 1:length(scenarios)){ # i=5
 # # DEBUG comparison for 2013a
 source('../ohidev/report/compare_scores.R')
 suppressWarnings(source('../ohidev/report/visualizeScores/visualizeScores.R'))
+
+# prepare data for Radical 2012 and 2013 eez (need to add Antarctica and High Seas)
+#source('../ohidev/report/radical.R')
 
 # comparison 2014a
 # source('../ohidev/report/compare_scenarios.R')

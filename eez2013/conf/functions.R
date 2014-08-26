@@ -129,8 +129,21 @@ Setup = function(){
   UnAssessedCatches <- join(UnAssessedCatches, b_summary, by=c("fao_id", "year"),
                             type="left", match="all")
   
-  UnAssessedCatches <- UnAssessedCatches[!(is.na(UnAssessedCatches$Medianb_bmsy)), ] #added 8/21/2014 due to changes in b/bmsy data created NAs here
+#  UnAssessedCatches <- UnAssessedCatches[!(is.na(UnAssessedCatches$Medianb_bmsy)), ] #added 8/21/2014 due to changes in b/bmsy data created NAs here
   
+#   ## Troubleshooting:
+#   head(UnAssessedCatches[is.na(UnAssessedCatches$Medianb_bmsy), ])
+#   tmp <- UnAssessedCatches[is.na(UnAssessedCatches$Medianb_bmsy), ]
+#   unique(tmp$fao_id)
+#   saups <- unique(tmp$saup_id)
+#   unique(tmp$stock_id)
+#   a[a$saup_id %in% saups,]
+#   
+#   ggplot(tmp, aes(x=year, y=catch, group=saup_id, color=saup_id)) +
+#     geom_point() +
+#     geom_line() +
+#     facet_wrap( ~ stock_id, ncol=9, scale="free")
+#   
   # 2b.  Create a penalty variable based on taxa level:
   UnAssessedCatches$TaxonPenaltyCode <- substring(UnAssessedCatches$TaxonKey,1,1)
   
