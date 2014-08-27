@@ -219,7 +219,7 @@ source('../ohidev/report/compare_scores.R')
 suppressWarnings(source('../ohidev/report/visualizeScores/visualizeScores.R'))
 
 # prepare data for Radical 2012 and 2013 eez (need to add Antarctica and High Seas)
-#source('../ohidev/report/radical.R')
+source('../ohidev/report/radical.R')
 
 # comparison 2014a
 # source('../ohidev/report/compare_scenarios.R')
