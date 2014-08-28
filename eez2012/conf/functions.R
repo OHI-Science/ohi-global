@@ -274,19 +274,13 @@ MAR = function(layers, status_years){
     SelectLayersData(layers, layers='mar_trend_years', narrow=T),
     c('id_num'='rgn_id', 'val_chr'='trend_yrs'))
   
-  # merge and cast harvest with sustainability
-  #   harvest_species$species = as.character(harvest_species$species)
-  #   rky = dcast(merge(merge(harvest_tonnes, 
-  #                             harvest_species, all.x=TRUE, by=c('species_code')),
-  #                       sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')),
-  #                 rgn_id + species + species_code + sust_coeff ~ year, value.var='tonnes', mean, na.rm=T); head(rky)
   rky = harvest_tonnes %.%
     merge(harvest_species     , all.x=TRUE, by='species_code') %.%
     merge(sustainability_score, all.x=TRUE, by=c('rgn_id', 'species')) %.%
     dcast(rgn_id + species + species_code + sust_coeff ~ year, value.var='tonnes', mean, na.rm=T) %.%
     arrange(rgn_id, species)
     
-  x = csv_compare(rky, '1-rky')
+ # x = csv_compare(rky, '1-rky')
   
   # smooth each species-country time-series using a running mean with 4-year window, excluding NAs from the 4-year mean calculation
   # TODO: simplify below with dplyr::group_by()
@@ -295,7 +289,7 @@ MAR = function(layers, status_years){
   rownames(rky_smooth) = as.character(yrs_smooth)
   rky_smooth = t(rky_smooth)
   rky = as.data.frame(cbind(rky[, c('rgn_id','species','species_code','sust_coeff')], rky_smooth)); head(rky)
-  x = csv_compare(rky, '2-rky-smooth')  # DEBUG
+#  x = csv_compare(rky, '2-rky-smooth')  # DEBUG
     
   # melt
   m = melt(rky,
@@ -336,7 +330,7 @@ MAR = function(layers, status_years){
     mutate(
       mar_pop         = sust_tonnes_sum / popsum) %>%
     select(rgn_id, year, popsum, sust_tonnes_sum, mar_pop)
-  ry_b = csv_compare(ry, '6-ry-ddply')  # RIGHT
+#  ry_b = csv_compare(ry, '6-ry-ddply')  # RIGHT
   ry_a = ry
   eq = all.equal(ry_a, ry_b)
 #   if (class(eq) == 'character') browser()
@@ -344,7 +338,7 @@ MAR = function(layers, status_years){
   
   # get reference quantile based on argument years
   ref_95pct = quantile(subset(ry, year <= max(status_years), mar_pop, drop=T), 0.95, na.rm=T)
-  x = csv_compare(ref_95pct, '7-ref95pct-quantile')  # DEBUG
+#  x = csv_compare(ref_95pct, '7-ref95pct-quantile')  # DEBUG
   
   ry = within(ry, {
     status = ifelse(mar_pop / ref_95pct > 1, 
