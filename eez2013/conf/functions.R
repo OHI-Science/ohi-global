@@ -966,6 +966,11 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
     # 2011 0.05893174
 
   Xtr_max = max(d_g_f$Xtr, na.rm=T)
+  
+  # print the reference point--incomplete
+#   d_g_f_ref = d_g_f_r %>%
+#     filter(Xtr >= Xtr_max)
+#   cat(sprintf('the %f percentile for TR is for rgn_id=%f', pct_ref, 
 
   d_g_f_r = d_g_f %.%
     left_join(d_q_yr, by='year') %>%
