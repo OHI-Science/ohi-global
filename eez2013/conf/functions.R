@@ -331,14 +331,21 @@ MAR = function(layers, status_years){
       mar_pop         = sust_tonnes_sum / popsum) %>%
     select(rgn_id, year, popsum, sust_tonnes_sum, mar_pop)
 #  ry_b = csv_compare(ry, '6-ry-ddply')  # RIGHT
-  ry_a = ry
-  eq = all.equal(ry_a, ry_b)
+#   ry_a = ry
+#   eq = all.equal(ry_a, ry_b)
 #   if (class(eq) == 'character') browser()
 
   
   # get reference quantile based on argument years
   ref_95pct = quantile(subset(ry, year <= max(status_years), mar_pop, drop=T), 0.95, na.rm=T)
 #  x = csv_compare(ref_95pct, '7-ref95pct-quantile')  # DEBUG
+
+# identify reference rgn_id
+ry_ref = ry %>% 
+  filter(year <=max(status_years)) %>%
+  arrange(mar_pop) %>%
+  filter(mar_pop >= ref_95pct)
+cat(sprintf('95th percentile rgn_id for MAR ref pt is: %s', ry_ref$rgn_id[1])) # rgn_id 25 = Thailand
   
   ry = within(ry, {
     status = ifelse(mar_pop / ref_95pct > 1, 
