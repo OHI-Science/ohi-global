@@ -142,7 +142,7 @@ for (i in 1:length(scenarios)){ # i=4
     }
     
     # copy layers
-    for (j in 1:nrow(lyrs)){ # j=45
+    for (j in 1:nrow(lyrs)){ # j=4
       stopifnot(file.copy(lyrs$path_in[j], lyrs$path_out[j], overwrite=T))
     }
     

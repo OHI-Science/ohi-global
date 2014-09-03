@@ -228,6 +228,8 @@ FIS = function(layers, status_year){
       dimension = 'trend')}) %.%
     select(region_id, dimension, score)
   # %.% semi_join(status, by='rgn_id')
+  trend$score <- ifelse(trend$score<(-1), -1, trend$score)
+  trend$score <- ifelse(trend$score>(1), 1, trend$score)
   
   # assemble dimensions
   scores = rbind(status, trend) %.% mutate(goal='FIS')
@@ -313,8 +315,7 @@ TR = function(layers){
 
 
 ECO = function(layers, status_year){
-  #status_year=2013
-  trend_years <-  (status_year-3):status_year
+  trend_years <-  (status_year-5):status_year
   D <- SelectLayersData(layers, layers=c('eco'))
   D <- D %.%
     select(sp_id = id_num, category, year, crew=val_num)
@@ -322,7 +323,7 @@ ECO = function(layers, status_year){
   ## change this year to a zero (based on catch data, this seems unlikely)
   D$crew[(D$sp_id=="248500" & D$category=="cf" & D$year=="2013")] <- 0
   
-  # calculate status (current year divided by current year minus 4 years)
+  # calculate status (current year divided by current year minus 5 years)
   D$status <- NA
   
   for(i in 1:dim(D)[1]){
@@ -339,13 +340,13 @@ ECO = function(layers, status_year){
   }
   
   D$status <- ifelse(D$status %in% "NaN", NA,  D$status) # these are zero divided by zero
-  D$status <- ifelse(D$status %in% "Inf", 1,  D$status) # these are value divided by zero (should this be NA?)
+  D$status <- ifelse(D$status %in% "Inf", 1,  D$status) # these are value divided by zero
   D$status <- ifelse(D$status > 1, 1,  D$status)
   
   
-  ## weights are the average crew between 2010-2013
+  ## weights are the average crew between 2008-2013
   weights <- D %.%
-    filter(year %in% 2010:2013) %.%
+    filter(year %in% c(trend_years)) %.%
     group_by(sp_id, category) %.%
     summarize(meanCrew=mean(crew, na.rm=TRUE))
   
@@ -390,11 +391,7 @@ ECO = function(layers, status_year){
     select(region_id=sp_id, goal, dimension, score) %.%
     mutate(score=ifelse(score>1, 1, score)) %.%
     mutate(score=ifelse(score<(-1), -1, score))
-  
-  #testing:
-  #lm(I(status/100) ~ year, data=subset(trend.data, sp_id == "248500")) ## only one value....
-  #lm(I(status/100) ~ year, data=subset(trend.data, sp_id == "248100")) ## only one value....
-  
+    
   # return scores
   return(rbind(trend.scores, status.scores))  
 }
@@ -584,8 +581,8 @@ tmp <-   scores %.%
                        goal      = c(conf$goals$goal, 'Index')), stringsAsFactors=F); head(d)
   
   d = subset(d, 
-             !(dimension %in% c('pressures','resilience','trend') & region_id==0)) & 
-             !(dimension %in% c('pressures','resilience','status','trend') & goal=='Index')
+             !(dimension %in% c('pressures','resilience','trend') & region_id==0) & 
+             !(dimension %in% c('pressures','resilience','status','trend') & goal=='Index'))
   scores = merge(scores, d, all=T)[,c('goal','dimension','region_id','score')]
       
   # order
