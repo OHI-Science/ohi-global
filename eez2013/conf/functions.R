@@ -339,6 +339,13 @@ MAR = function(layers, status_years){
   # get reference quantile based on argument years
   ref_95pct = quantile(subset(ry, year <= max(status_years), mar_pop, drop=T), 0.95, na.rm=T)
 #  x = csv_compare(ref_95pct, '7-ref95pct-quantile')  # DEBUG
+
+# identify reference rgn_id
+ry_ref = ry %>% 
+  filter(year <=max(status_years)) %>%
+  arrange(mar_pop) %>%
+  filter(mar_pop >= ref_95pct)
+cat(sprintf('95th percentile rgn_id for MAR ref pt is: %s', ry_ref$rgn_id[1])) # rgn_id 25 = Thailand
   
   ry = within(ry, {
     status = ifelse(mar_pop / ref_95pct > 1, 
@@ -959,6 +966,11 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
     # 2011 0.05893174
 
   Xtr_max = max(d_g_f$Xtr, na.rm=T)
+  
+  # print the reference point--incomplete
+#   d_g_f_ref = d_g_f_r %>%
+#     filter(Xtr >= Xtr_max)
+#   cat(sprintf('the %f percentile for TR is for rgn_id=%f', pct_ref, 
 
   d_g_f_r = d_g_f %.%
     left_join(d_q_yr, by='year') %>%
