@@ -331,8 +331,8 @@ MAR = function(layers, status_years){
       mar_pop         = sust_tonnes_sum / popsum) %>%
     select(rgn_id, year, popsum, sust_tonnes_sum, mar_pop)
 #  ry_b = csv_compare(ry, '6-ry-ddply')  # RIGHT
-  ry_a = ry
-  eq = all.equal(ry_a, ry_b)
+#   ry_a = ry
+#   eq = all.equal(ry_a, ry_b)
 #   if (class(eq) == 'character') browser()
 
   
