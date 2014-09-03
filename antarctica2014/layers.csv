@@ -2,8 +2,9 @@
 "CW","cw_chemical_trend","rn_cw_chemical_trend","Pesticide consumption as a proxy for trend in chemical pollution","shipping as a proxy for oil pollution: trend assumed to be zero based on status of 0","trend","trend score","cw_chemical_trend.csv","sp_id",,,,"trend",,TRUE,,,0,0,TRUE,,,,19
 "CW","cw_trash_trend","rn_cw_trash_trend","Coastal human population as a proxy for trend in trash","trash: trend assumed to be zero based on status of 0","trend","trend score","cw_trash_trend.csv","sp_id",,,,"trend",,TRUE,,,0,0,TRUE,,,,19
 "ECO","eco","rn_eco","crew data for tourism and fisheries","","crew","crew","eco.csv","sp_id",,"sector","year","crew",,TRUE,2005,2013,0,16783.4866300279,FALSE,,,,19
-"FIS","fis_status","fis_status","Modeled fisheries status","","status","status score","fis_status.csv","sp_id",,,,"status",,TRUE,,,23.22,80.31,FALSE,,,,19
-"FIS","fis_trend","fis_trend","Modeled fisheries status","","trend","trend score","fis_trend.csv","sp_id",,,,"trend",,TRUE,,,-0.464059376,0.456577015,FALSE,,,,19
+"FIS","fis_b_bmsy","fis_b_bmsy","b/bmsy scores","B/Bmsy estimates obtained using the catch-MSY method","b_bmsy","B / B_msy","fis_b_bmsy.csv",,,"taxon_name","year","b_bmsy",,TRUE,1970,2012,0.0466774557214168,1.82414112190987,FALSE,,,,19
+"FIS","fis_c_cmsy","fis_c_cmsy","c/cmsy scores","C/Cmsy estimates","c_cmsy","C / C_msy","fis_c_cmsy.csv","fao_id",,"taxon_name","year","c_cmsy",,TRUE,2007,2012,0,1.942857143,FALSE,,,,19
+"FIS","fis_meancatch","fis_meancatch","mean catch","Catch data for each Taxon/CCAMLR region averaged across years (1980-2011)","mean_catch","metric tons","fis_meancatch.csv",,"fao_saup_id","taxon_name_key","year","mean_catch",,TRUE,2006,2012,2e-06,97558.40875,FALSE,,,,19
 "HAB CS CP","hab_extent","rnk_hab_extent","Habitat extent","Modeled combined habitat extent (sea ice extent and shoreline)","km2","km^2","hab_extent.csv","sp_id",,"habitat",,"km2",,TRUE,,,25830.2696078431,1749712.12622549,FALSE,,,,19
 "HAB CS CP","hab_health","rnk_hab_health","Habitat health","Modeled combined habitat health condition trend (sea ice extent and shoreline)","health","value","hab_health.csv","sp_id",,"habitat",,"health",,TRUE,,,0.873087415490452,1,TRUE,,,,19
 "HAB CS CP","hab_trend","rnk_hab_trend","Habitat health trend","Modeled combined habitat health trend (sea ice extent and shoreline)","trend","trend score","hab_trend.csv","sp_id",,"habitat",,"trend",,TRUE,,,-0.0364283031789188,0.115409854780369,FALSE,,,,19
@@ -28,6 +29,7 @@
 "pressures LE","le_sector_weight","rnk_le_sector_weight","Jobs weighting","Jobs weighting by sector (defaulting to 1)","weight","value","le_sector_weight.csv","sp_id",,"sector",,"weight",,TRUE,,,1,1,TRUE,,,,19
 "regions","rgn_area","rn_rgn_area","regions by type (eez, subocean, unclaimed) and label","regions by type (eez, subocean, unclaimed) and label","area_km2","km^2","rgn_area.csv","sp_id",,,,"area_km2",,TRUE,,,138114.7648,5981736.195,FALSE,,,,19
 "regions","rgn_global","rnk_rgn_global","regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed ","regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed ","label","label","rgn_global.csv","sp_id",,,,,"label",TRUE,,,,,,,,,19
+"regions","rgn_labels","rnk_rgn_labels","CCAMLR regions to sp_id","Translate between different label types","sp_id","sp_id","rgn_labels.csv","sp_id",,"ccamlr_id",,"sp_id",,TRUE,,,248100,288300,FALSE,,,,19
 "resilience","MPAs","MPAs","","","resilience score","resilience score","MPAs.csv","sp_id",,,,"resilience.score",,TRUE,,,0,0.4495,TRUE,,,,19
 "resilience","Marpol_aliens","Marpol_aliens","","","resilience score","resilience score","Marpol_aliens.csv","sp_id",,,,"resilience.score",,TRUE,,,0.5,0.5,TRUE,,,,19
 "resilience","Marpol_poll","Marpol_poll","","","resilience score","resilience score","Marpol_poll.csv","sp_id",,,,"resilience.score",,TRUE,,,1,1,TRUE,,,,19
