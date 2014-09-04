@@ -53,13 +53,13 @@ scenarios = list(
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+    do           = F),
   highseas2014   = list(
     google_key   = '0ArcIhYsFwBeNdG9KVlJ6M0ZxV1dtVDJDQ3FLVWJQWFE',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = F))
+    do           = T))
 
 # sync functions.R: overwrite eez2012 and eez2014 with eez2013 (note LE's use of eez2013 argument)
 for (dir in c('eez2012','eez2014')){
@@ -71,7 +71,7 @@ for (dir in c('eez2012','eez2014')){
 #   unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
 # }
 
-for (i in 1:length(scenarios)){ # i=4
+for (i in 1:length(scenarios)){ # i=5
   
   # vars
   scenario   = names(scenarios)[[i]]
