@@ -1,5 +1,5 @@
 
-FIS = function(layers, status_year=2011){
+FIS = function(layers, status_year){
   
   # catch data
  c = SelectLayersData(layers, layer='fis_meancatch', narrow=T) %.%
