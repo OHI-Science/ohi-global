@@ -25,7 +25,7 @@ devtools::load_all(dirs$ohicore)
 do.layercopy  = T
 do.layercheck = T
 do.calculate  = T
-do.other      = F
+do.other      = T
 do.merge      = F # needs to be written 
 
 # scenarios
