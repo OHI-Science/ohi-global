@@ -90,6 +90,7 @@ write.csv(scores, file.path('global2014', sprintf('scores_2014_%s.csv', format(S
 dir_og = '../ohi-global'
 
 s2014 <- read.csv('global2014/scores_2014_2014-09-05.csv')
+
 ## remove eez/fao summaries (include only the global summaries)
 s2014 <- s2014 %>%
   filter(!(region_id==0 & region_type %in% c('eez', 'fao')))
@@ -106,23 +107,52 @@ radical <- read.csv(file.path(dir_og, 'eez2013/scores.csv')) %>%
   mutate(value=round(value, 2)) %>%
   arrange(scenario, goal, dimension, region_id)
 
-write.csv(radical, file.path("global2014", sprintf("/OHI_results_for_Radical_%s.csv", format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
+rad_region_0 <- radical[radical$region_id==0,]
+rad_region_Index <- radical[(radical$goal=="Index" & radical$region_id!=0),]
+
+radical_simple <- radical %>%
+  filter(region_id != 0) %>%
+  filter(goal != "Index")
+table(radical_simple$goal)
+table(radical_simple$region_id)
+
+radical_grid_eez <- expand.grid(scenario=c(2012,2013,2014), 
+                            goal=unique(radical_simple$goal), 
+                            dimension=unique(radical_simple$dimension),
+                            region_id=unique(radical_simple$region_id[radical_simple$region_type=="eez"]),
+                            region_type="eez")
+
+radical_grid_fao <- expand.grid(scenario=c(2012,2013,2014), 
+                                goal=unique(radical_simple$goal), 
+                                dimension=unique(radical_simple$dimension),
+                                region_id=unique(radical_simple$region_id[radical_simple$region_type=="fao"]),
+                                region_type="fao")
+
+radical_grid <- rbind(radical_grid_eez, radical_grid_fao)
+
+radical_full <- merge(radical_grid, radical_simple, by=c('scenario', "goal", "dimension", "region_type", 'region_id'), all.x=TRUE)
+radical_full <- rbind(radical_full, rad_region_0, rad_region_Index)
+
+table(radical_full$goal[radical_full$region_type=="eez"])
+table(radical_full$goal[radical_full$region_type=="fao"])
+
+write.csv(radical_full, file.path("global2014", sprintf("/OHI_results_for_Radical_%s_full.csv", format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
 
 
-## save to git-annex?
-csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/OHI_results_for_Radical_%s.csv',
-              dir_neptune_data, Sys.Date())
-if (file.exists(csv)) unlink(csv, force=T)
-write.csv(radical, csv, row.names=F, na='')
-
-radical <- read.csv(file.path(dir_og, 'eez2013/scores.csv')) %>%
-  mutate(scenario = 2013) %>%
-  rbind(s2012) %>%
-  rbind(s2014) %>%
-  select(scenario, goal, dimension, region_id, value=score) %>%
-  mutate(dimension=revalue(dimension, c('future'="likely_future_state"))) %>%
-  mutate(value=round(value, 2)) %>%
-  arrange(scenario, goal, dimension, region_id)
+# ## save to git-annex?
+# csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/OHI_results_for_Radical_%s.csv',
+#               dir_neptune_data, Sys.Date())
+# if (file.exists(csv)) unlink(csv, force=T)
+# write.csv(radical, csv, row.names=F, na='')
+# 
+# radical <- read.csv(file.path(dir_og, 'eez2013/scores.csv')) %>%
+#   mutate(scenario = 2013) %>%
+#   rbind(s2012) %>%
+#   rbind(s2014) %>%
+#   select(scenario, goal, dimension, region_id, value=score) %>%
+#   mutate(dimension=revalue(dimension, c('future'="likely_future_state"))) %>%
+#   mutate(value=round(value, 2)) %>%
+#   arrange(scenario, goal, dimension, region_id)
 
 
 
