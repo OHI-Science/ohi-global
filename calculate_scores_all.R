@@ -25,7 +25,7 @@ devtools::load_all(dirs$ohicore)
 do.layercopy  = T
 do.layercheck = T
 do.calculate  = T
-do.other      = T
+do.other      = F
 do.merge      = F # needs to be written 
 
 # scenarios
@@ -185,7 +185,7 @@ for (i in 1:length(scenarios)){ # i=5
     # archive scores on disk (out of github, for easy retrieval later)
     csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', 
                   dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
-    #     write.csv(scores, csv, na='', row.names=F)
+#         write.csv(scores, csv, na='', row.names=F)
     
     if (scenarios$eez2014$do) { source('global2014/merge_scores.R')  }
 #    print_scenarios = T;       source('../ohidev/report/compare_scores.R')  
