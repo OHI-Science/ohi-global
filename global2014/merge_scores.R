@@ -1,22 +1,123 @@
-# merge_scores.r
+ # merge_scores.r
 # this script creates a global 2014 scores.csv, which is a combination of eez2014, antarctica2014, highseas2014
+require(foreign)
 
-# don't need to set working directory; just need to save it in global2014
+area <- read.dbf(file.path(dir_neptune_data, "git-annex/Global/NCEAS-Regions_v2014/data/rgn_gcs.dbf"))
+area <- area %>% 
+  filter(rgn_type %in% c('eez', 'fao')) %>%
+  select(region_id=rgn_id, area_km2)
+
 
 # merge scores (cut region_ids of zero.  We can add these, but the region_id's will need to be changed.)
 d = rbind_list(
   read.csv('eez2014/scores.csv', stringsAsFactors=FALSE) %>%
-    filter(!(region_id %in% c(0, 213))), #region 213 is replaced with specific Antarctica data below.
-  read.csv('highseas2014/scores.csv', stringsAsFactors=FALSE) %>%
-    filter(region_id != 0),
-  read.csv('antarctica2014/scores.csv', stringsAsFactors=FALSE) %>%
-    filter(region_id==0) %>%
-    mutate(
-      region_id = 213))  #note: has fewer variables than other regions (no pressures, resilience, trend because these don't average well)
+    filter(!(region_id %in% c(0, 213))) %>%
+    mutate(rgn_type = "eez"), #region 213 is replaced with specific Antarctica data below.
+ read.csv('highseas2014/scores.csv', stringsAsFactors=FALSE) %>%
+   filter(region_id != 0) %>%
+   mutate(rgn_type = "fao"),
+ read.csv('antarctica2014/scores.csv', stringsAsFactors=FALSE) %>%
+   filter(region_id==0) %>%
+   mutate(region_id = 213) %>%
+   mutate(rgn_type = "eez")
+    )  #note: has fewer variables than other regions (no pressures, resilience, trend because these don't average well)
+
+# # checking against old data...remove the antarctica and high seas for testing
+
+
+d = d %>%
+  left_join(area, by="region_id")
+
+# global goal scores
+GlobalGoalScores <- d %>%
+  group_by(goal, dimension) %>%
+  filter(goal != "Index") %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%
+  filter(dimension %in% c('status', 'future', 'score')) %>%
+  ungroup() %>%
+  mutate(rgn_type="global", region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+
+RegionalGoalScores <- d %>%
+  group_by(rgn_type, goal, dimension) %>%
+  filter(goal != "Index") %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%
+  filter(dimension %in% c('status', 'future', 'score')) %>%
+  ungroup() %>%
+  mutate(region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+
+# tmp <- read.csv('eez2014/scores.csv', stringsAsFactors=FALSE)
+# # test <- GlobalGoalScores %>%
+# #   left_join(tmp)
+# # max(abs(test$score-test$score2))
+# tmp[tmp$goal=="Index" & tmp$region_id==0,]
+# tmp[tmp$goal=="Index",]
+
+# global Index scores
+GlobalIndexScores <- d %>%
+  filter(dimension %in% c("future", "score"),
+         goal %in% 'Index') %>%
+  group_by(dimension) %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%  
+  ungroup() %>%
+  mutate(goal="Index", rgn_type="global", region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+
+
+RegionalIndexScores <- d %>%
+  filter(dimension %in% c("future", "score"),
+         goal %in% 'Index') %>%
+  group_by(rgn_type, dimension) %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%  
+  ungroup() %>%
+  mutate(goal="Index", region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+
+scores <- rbind(d, GlobalGoalScores, RegionalGoalScores, RegionalIndexScores, GlobalIndexScores)
+scores <- scores %>%
+  mutate(scenario="2014") %>%
+  select(scenario, region_type=rgn_type, goal, dimension, region_id, score) %>%
+  arrange(scenario, region_type, region_id)
 
 # write scores
 # save this in global2014
-write.csv(d, file.path('global2014', 'scores.csv'), row.names=F, na='')
+write.csv(scores, file.path('global2014', sprintf('scores_2014_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
+
+
+
+#### for Radical ----
+
+dir_og = '../ohi-global'
+s2012 <- read.csv(file.path(dir_og, 'eez2012/scores.csv')) %>% 
+  mutate(scenario=2012) 
+s2014 <- read.csv(file.path(dir_og, 'eez2014/scores.csv')) %>% 
+  mutate(scenario=2014) 
+radical <- read.csv(file.path(dir_og, 'eez2013/scores.csv')) %>%
+  mutate(scenario = 2013) %>%
+  rbind(s2012) %>%
+  rbind(s2014) %>%
+  select(scenario, goal, dimension, region_id, value=score) %>%
+  mutate(dimension=revalue(dimension, c('future'="likely_future_state"))) %>%
+  mutate(value=round(value, 2)) %>%
+  arrange(scenario, goal, dimension, region_id)
+
+csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/OHI_results_for_Radical_%s.csv',
+              dir_neptune_data, Sys.Date())
+if (file.exists(csv)) unlink(csv, force=T)
+write.csv(radical, csv, row.names=F, na='')
+
+radical <- read.csv(file.path(dir_og, 'eez2013/scores.csv')) %>%
+  mutate(scenario = 2013) %>%
+  rbind(s2012) %>%
+  rbind(s2014) %>%
+  select(scenario, goal, dimension, region_id, value=score) %>%
+  mutate(dimension=revalue(dimension, c('future'="likely_future_state"))) %>%
+  mutate(value=round(value, 2)) %>%
+  arrange(scenario, goal, dimension, region_id)
+
+
+
 
 # output file for Radical...
 # ** JSL will find where a template file is that knows the format Radical wants
