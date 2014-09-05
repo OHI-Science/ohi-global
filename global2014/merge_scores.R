@@ -87,21 +87,29 @@ write.csv(scores, file.path('global2014', sprintf('scores_2014_%s.csv', format(S
 
 
 #### for Radical ----
-
 dir_og = '../ohi-global'
+
+s2014 <- read.csv('global2014/scores_2014_2014-09-05.csv')
+## remove eez/fao summaries (include only the global summaries)
+s2014 <- s2014 %>%
+  filter(!(region_id==0 & region_type %in% c('eez', 'fao')))
+
 s2012 <- read.csv(file.path(dir_og, 'eez2012/scores.csv')) %>% 
-  mutate(scenario=2012) 
-s2014 <- read.csv(file.path(dir_og, 'eez2014/scores.csv')) %>% 
-  mutate(scenario=2014) 
+  mutate(scenario=2012, region_type="eez") 
+
 radical <- read.csv(file.path(dir_og, 'eez2013/scores.csv')) %>%
-  mutate(scenario = 2013) %>%
+  mutate(scenario = 2013, region_type="eez") %>%
   rbind(s2012) %>%
   rbind(s2014) %>%
-  select(scenario, goal, dimension, region_id, value=score) %>%
+  select(scenario, goal, dimension, region_type, region_id, value=score) %>%
   mutate(dimension=revalue(dimension, c('future'="likely_future_state"))) %>%
   mutate(value=round(value, 2)) %>%
   arrange(scenario, goal, dimension, region_id)
 
+write.csv(radical, file.path("global2014", sprintf("/OHI_results_for_Radical_%s.csv", format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
+
+
+## save to git-annex?
 csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/OHI_results_for_Radical_%s.csv',
               dir_neptune_data, Sys.Date())
 if (file.exists(csv)) unlink(csv, force=T)
