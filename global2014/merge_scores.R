@@ -139,6 +139,77 @@ table(radical_full$goal[radical_full$region_type=="fao"])
 write.csv(radical_full, file.path("global2014", sprintf("/OHI_results_for_Radical_%s_full.csv", format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
 
 
+## scores without Antarctica----
+
+# merge scores (cut region_ids of zero.  We can add these, but the region_id's will need to be changed.)
+d = rbind_list(
+  read.csv('eez2014/scores.csv', stringsAsFactors=FALSE) %>%
+    filter(!(region_id %in% c(0, 213))) %>%
+    mutate(rgn_type = "eez"), #region 213 is replaced with specific Antarctica data below.
+  read.csv('highseas2014/scores.csv', stringsAsFactors=FALSE) %>%
+    filter(region_id != 0) %>%
+    mutate(rgn_type = "fao"),
+) 
+
+
+d = d %>%
+  left_join(area, by="region_id")
+
+# global goal scores
+GlobalGoalScores <- d %>%
+  group_by(goal, dimension) %>%
+  filter(goal != "Index") %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%
+  filter(dimension %in% c('status', 'future', 'score')) %>%
+  ungroup() %>%
+  mutate(rgn_type="global", region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+
+RegionalGoalScores <- d %>%
+  group_by(rgn_type, goal, dimension) %>%
+  filter(goal != "Index") %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%
+  filter(dimension %in% c('status', 'future', 'score')) %>%
+  ungroup() %>%
+  mutate(region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+
+# global Index scores
+GlobalIndexScores <- d %>%
+  filter(dimension %in% c("future", "score"),
+         goal %in% 'Index') %>%
+  group_by(dimension) %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%  
+  ungroup() %>%
+  mutate(goal="Index", rgn_type="global", region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+
+
+RegionalIndexScores <- d %>%
+  filter(dimension %in% c("future", "score"),
+         goal %in% 'Index') %>%
+  group_by(rgn_type, dimension) %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%  
+  ungroup() %>%
+  mutate(goal="Index", region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+
+scoresNoAntarctica <- rbind(d, GlobalGoalScores, RegionalGoalScores, RegionalIndexScores, GlobalIndexScores)
+scoresNoAntarctica <- scoresNoAntarctica %>%
+  mutate(scenario="2014") %>%
+  select(scenario, region_type=rgn_type, goal, dimension, region_id, score) %>%
+  arrange(scenario, region_type, region_id)
+
+# write scores
+# save this in global2014
+write.csv(scoresNoAntarctica, file.path('global2014', sprintf('scores_2014_noAntarctica_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
+
+
+
+
+
+
+
 # ## save to git-annex?
 # csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/OHI_results_for_Radical_%s.csv',
 #               dir_neptune_data, Sys.Date())
