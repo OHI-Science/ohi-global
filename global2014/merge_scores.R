@@ -22,8 +22,6 @@ d = rbind_list(
    mutate(rgn_type = "eez")
     )  #note: has fewer variables than other regions (no pressures, resilience, trend because these don't average well)
 
-# # checking against old data...remove the antarctica and high seas for testing
-
 
 d = d %>%
   left_join(area, by="region_id")
@@ -46,6 +44,7 @@ RegionalGoalScores <- d %>%
   ungroup() %>%
   mutate(region_id=0, area_km2=NA) %>%
   select(goal, dimension, region_id, score, rgn_type, area_km2)
+RegionalGoalScores[RegionalGoalScores == "eez"] <- "eez_Antarctica"
 
 # tmp <- read.csv('eez2014/scores.csv', stringsAsFactors=FALSE)
 # # test <- GlobalGoalScores %>%
@@ -64,7 +63,7 @@ GlobalIndexScores <- d %>%
   mutate(goal="Index", rgn_type="global", region_id=0, area_km2=NA) %>%
   select(goal, dimension, region_id, score, rgn_type, area_km2)
 
-
+#regional Index scores
 RegionalIndexScores <- d %>%
   filter(dimension %in% c("future", "score"),
          goal %in% 'Index') %>%
@@ -73,39 +72,83 @@ RegionalIndexScores <- d %>%
   ungroup() %>%
   mutate(goal="Index", region_id=0, area_km2=NA) %>%
   select(goal, dimension, region_id, score, rgn_type, area_km2)
+RegionalIndexScores[RegionalIndexScores == "eez"] <- "eez_Antarctica"
 
-scores <- rbind(d, GlobalGoalScores, RegionalGoalScores, RegionalIndexScores, GlobalIndexScores)
+### Add in eez summaries that exclude Antarctica
+d_noAnt = rbind_list(
+  read.csv('eez2014/scores.csv', stringsAsFactors=FALSE) %>%
+    filter(!(region_id %in% c(0, 213))) %>%
+    mutate(rgn_type = "eez"), #region 213 is replaced with specific Antarctica data below.
+  read.csv('highseas2014/scores.csv', stringsAsFactors=FALSE) %>%
+    filter(region_id != 0) %>%
+    mutate(rgn_type = "fao"),
+) 
+
+
+d_noAnt = d_noAnt %>%
+  left_join(area, by="region_id")
+
+# RegionalGoalScores no Antarctica data included
+RegionalGoalScores_noAnt <- d_noAnt %>%
+  group_by(rgn_type, goal, dimension) %>%
+  filter(goal != "Index",
+         rgn_type != "fao") %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%
+  filter(dimension %in% c('status', 'future', 'score')) %>%
+  ungroup() %>%
+  mutate(region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+RegionalGoalScores_noAnt[RegionalGoalScores_noAnt == "eez"] <- "eez_noAntarctica"
+
+
+# Regional Index scores - no Antarctica data included
+RegionalIndexScores_noAnt <- d_noAnt %>%
+  filter(dimension %in% c("future", "score"),
+         goal %in% 'Index') %>%
+  group_by(rgn_type, dimension) %>%
+  summarize(score = round(weighted.mean(score, area_km2, na.rm=TRUE), 2)) %>%  
+  ungroup() %>%
+  mutate(goal="Index", region_id=0, area_km2=NA) %>%
+  select(goal, dimension, region_id, score, rgn_type, area_km2)
+RegionalIndexScores_noAnt[RegionalIndexScores_noAnt == "eez"] <- "eez_noAntarctica"
+
+scores <- rbind(d, GlobalGoalScores, RegionalGoalScores, RegionalGoalScores_noAnt, RegionalIndexScores, RegionalIndexScores_noAnt, GlobalIndexScores)
 scores <- scores %>%
   mutate(scenario="2014") %>%
   select(scenario, region_type=rgn_type, goal, dimension, region_id, score) %>%
   arrange(scenario, region_type, region_id)
 
+
 # write scores
 # save this in global2014
-write.csv(scores, file.path('global2014', sprintf('scores_2014_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
+write.csv(scores, file.path('global2014', sprintf('scores_2014_sameSep9data_eezNoAnt_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
 
 
 
 #### for Radical ----
 dir_og = '../ohi-global'
 
-s2014 <- read.csv('global2014/scores_2014_2014-09-05.csv')
+s2014 <- read.csv('global2014/scores_2014_sameSep9data_eezNoAnt_2014-09-16.csv')
+s2014[s2014$region_type=="fao" & s2014$goal=="FIS",]
 
-## remove eez/fao summaries (include only the global summaries)
-s2014 <- s2014 %>%
-  filter(!(region_id==0 & region_type %in% c('eez', 'fao')))
+# ## remove eez/fao summaries (include only the global summaries)
+# s2014 <- s2014 %>%
+#   filter(!(region_id==0 & region_type %in% c('eez', 'fao')))
 
 s2012 <- read.csv(file.path(dir_og, 'eez2012/scores.csv')) %>% 
   mutate(scenario=2012, region_type="eez") 
+s2012$region_type[s2012$region_id==0] <- "eez_noAntarctica"
 
-radical <- read.csv(file.path(dir_og, 'eez2013/scores.csv')) %>%
+s2013 <- read.csv(file.path(dir_og, 'eez2013/scores.csv')) %>%
   mutate(scenario = 2013, region_type="eez") %>%
+s2013$region_type[s2013$region_id==0] <- "eez_noAntarctica"  
+
+radical <- s2013 %>%
   rbind(s2012) %>%
   rbind(s2014) %>%
   select(scenario, goal, dimension, region_type, region_id, value=score) %>%
   mutate(dimension=revalue(dimension, c('future'="likely_future_state"))) %>%
-  mutate(value=round(value, 2)) %>%
-  arrange(scenario, goal, dimension, region_id)
+  mutate(value=round(value, 2)) 
 
 rad_region_0 <- radical[radical$region_id==0,]
 rad_region_Index <- radical[(radical$goal=="Index" & radical$region_id!=0),]
@@ -115,6 +158,7 @@ radical_simple <- radical %>%
   filter(goal != "Index")
 table(radical_simple$goal)
 table(radical_simple$region_id)
+table(radical_simple$region_type)
 
 radical_grid_eez <- expand.grid(scenario=c(2012,2013,2014), 
                             goal=unique(radical_simple$goal), 
@@ -131,17 +175,37 @@ radical_grid_fao <- expand.grid(scenario=c(2012,2013,2014),
 radical_grid <- rbind(radical_grid_eez, radical_grid_fao)
 
 radical_full <- merge(radical_grid, radical_simple, by=c('scenario', "goal", "dimension", "region_type", 'region_id'), all.x=TRUE)
-radical_full <- rbind(radical_full, rad_region_0, rad_region_Index)
-
 table(radical_full$goal[radical_full$region_type=="eez"])
 table(radical_full$goal[radical_full$region_type=="fao"])
+
+
+radical_full <- rbind(radical_full, rad_region_0, rad_region_Index)
+table(radical_full$goal[radical_full$region_type=="eez"])
+table(radical_full$goal[radical_full$region_type=="fao"])
+radical_full[radical_full$goal=="Index" & radical_full$region_type=="fao",]
+
+##missing a few categories (total hack...figure this out):
+radical_grid_fao_rgn0 <- expand.grid(scenario="2014",
+                                     goal=c("AO", "CP", "CS", "CW", "ECO", "HAB", "LE", "LIV", "LSP", "MAR", "NP", "TR"),
+                                     dimension=c('likely_future_state', 'score', 'status'),
+                                     region_id=0,
+                                     region_type="fao",
+                                     value=NA)
+
+radical_full <- rbind(radical_full, radical_grid_fao_rgn0)
+table(radical_full$goal[radical_full$region_type=="eez"])
+table(radical_full$goal[radical_full$region_type=="fao"])
+
+
+radical_full  <-  radical_full %>%
+  arrange(scenario, goal, dimension, region_id)
+
 
 write.csv(radical_full, file.path("global2014", sprintf("/OHI_results_for_Radical_%s_full.csv", format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
 
 
 ## scores without Antarctica----
 
-# merge scores (cut region_ids of zero.  We can add these, but the region_id's will need to be changed.)
 d = rbind_list(
   read.csv('eez2014/scores.csv', stringsAsFactors=FALSE) %>%
     filter(!(region_id %in% c(0, 213))) %>%
