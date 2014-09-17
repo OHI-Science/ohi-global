@@ -113,12 +113,6 @@ RegionalIndexScores_noAnt <- d_noAnt %>%
   select(goal, dimension, region_id, score, rgn_type, area_km2)
 RegionalIndexScores_noAnt[RegionalIndexScores_noAnt == "eez"] <- "eez_noAntarctica"
 
-## troubleshooting:
-scores <- rbind(d, GlobalGoalScores, RegionalGoalScores, RegionalIndexScores, GlobalIndexScores)
-
-scores%>%
-  filter(goal == "AO",
-         region_id == 0)
 
 scores <- rbind(d, GlobalGoalScores, RegionalGoalScores, RegionalGoalScores_noAnt, RegionalIndexScores, RegionalIndexScores_noAnt, GlobalIndexScores)
 scores <- scores %>%
@@ -137,13 +131,6 @@ write.csv(scores, file.path('global2014', sprintf('scores_2014_sameSep9data_eezN
 dir_og = '../ohi-global'
 
 s2014 <- read.csv('global2014/scores_2014_sameSep9data_eezNoAnt_2014-09-16.csv')
-
-s2014[s2014$goal=="Index" & s2014$region_type=="fao", ]
-s2014 %>%
-  filter(scenario=="2014",
-         goal == "AO",
-         region_id == 0)
-
 
 
 # ## remove eez/fao summaries (include only the global summaries)
@@ -185,8 +172,8 @@ table(rad_region_Index$goal, rad_region_Index$dimension, rad_region_Index$region
 radical_simple <- radical %>%
   filter(region_id != 0) %>%
   filter(goal != "Index")
-table(radical_simple$goal)
-table(radical_simple$region_id)
+table(radical_simple$goal) #should be no Index values
+table(radical_simple$region_id) # should be no 0 regions
 table(radical_simple$region_type)
 
 radical_grid_eez <- expand.grid(scenario=c(2012,2013,2014), 
@@ -231,8 +218,8 @@ radical_full[radical_full$goal=="Index" & radical_full$region_id==0,]
 
 
 radical_full <- radical_full %>%
-   filter(!(region_type %in% "eez_Antarctica")) %>%
-  filter(!(region_type %in% "fao" & region_id == 0)) #cut eez summaries that include Antarctica to be comparable across years
+   filter(!(region_type %in% "eez_Antarctica")) %>%  #cut eez summaries that include Antarctica to be comparable across years
+  filter(!(region_type %in% "fao" & region_id == 0)) #cut fao summaries
 
 radical_full[radical_full$region_id == 0, ]
 
@@ -245,7 +232,7 @@ radical_full  <- radical_full %>%
    
 write.csv(radical_full, file.path("global2014", sprintf("/OHI_results_for_Radical_%s_full_v3.csv", format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
 
-
+radical_full[radical_full$goal=="Index" & radical_full$scenario=="2012",]
 
 
 
