@@ -1,5 +1,7 @@
  # merge_scores.r
 # this script creates a global 2014 scores.csv, which is a combination of eez2014, antarctica2014, highseas2014
+
+## NOTE: for revision:  also save a file with a generic name (without data so a comparison of changes can be made with the original data.)
 require(foreign)
 
 area <- read.dbf(file.path(dir_neptune_data, "git-annex/Global/NCEAS-Regions_v2014/data/rgn_gcs.dbf"))
