@@ -125,14 +125,15 @@ scores <- scores %>%
 
 # write scores
 # save this in global2014
-write.csv(scores, file.path('global2014', sprintf('scores_2014_sameSep9data_eezNoAnt_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
+#write.csv(scores, file.path('global2014', sprintf('scores_2014_sameSep9data_eezNoAnt_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
 
+write.csv(scores, file.path('global2014', 'scores_2014_2014-09-09.csv'), row.names=F, na='')
 
 
 #### for Radical ----
 dir_og = '../ohi-global'
 
-s2014 <- read.csv('global2014/scores_2014_sameSep9data_eezNoAnt_2014-09-16.csv')
+s2014 <- read.csv(file.path('global2014', 'scores_2014_2014-09-09.csv'))
 
 
 # ## remove eez/fao summaries (include only the global summaries)
