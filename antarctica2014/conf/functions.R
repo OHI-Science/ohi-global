@@ -453,6 +453,8 @@ CW = function(layers){
            'cw_chemical_trend'   = 'chem_trend',
            'cw_trash_trend'  = 'trash_trend')
     
+  ## At this point, trend assumed to be zero based perfect/near perfect scores
+  
   # cast data
   d = SelectLayersData(layers, layers=names(lyrs))  
   r = rename(dcast(d, id_num ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs))),
