@@ -1,6 +1,8 @@
  # merge_scores.r
 # this script creates a global 2014 scores.csv, which is a combination of eez2014, antarctica2014, highseas2014
 
+## Sep 17: realized AQ-NP excluded from analysis
+
 ## NOTE: for revision:  also save a file with a generic name (without data so a comparison of changes can be made with the original data.)
 require(foreign)
 
@@ -127,13 +129,14 @@ scores <- scores %>%
 # save this in global2014
 #write.csv(scores, file.path('global2014', sprintf('scores_2014_sameSep9data_eezNoAnt_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
 
-write.csv(scores, file.path('global2014', 'scores_2014_2014-09-09.csv'), row.names=F, na='')
+write.csv(scores, file.path('global2014', 'scores_2014.csv'), row.names=F, na='') # one to check for changes in Github
+write.csv(scores, file.path('global2014', sprintf('global2014_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='') # archive version
 
 
 #### for Radical ----
 dir_og = '../ohi-global'
 
-s2014 <- read.csv(file.path('global2014', 'scores_2014_2014-09-09.csv'))
+s2014 <- read.csv(file.path('global2014', 'scores_2014.csv'))
 
 
 # ## remove eez/fao summaries (include only the global summaries)
@@ -233,12 +236,8 @@ radical_full  <- radical_full %>%
   select(-region_type)                         
 
    
-write.csv(radical_full, file.path("global2014", sprintf("/OHI_results_for_Radical_%s_full_v4.csv", format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
-
-radical_full[radical_full$goal=="Index" & radical_full$scenario=="2012",]
-
-
-
+write.csv(radical_full, file.path("global2014", "scores_Radical.csv"), row.names=F, na='')
+write.csv(radical_full, file.path("global2014", sprintf("scores_Radical_%s.csv", format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
 
 
 # ## save to git-annex?
