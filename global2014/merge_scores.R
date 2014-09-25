@@ -130,7 +130,7 @@ scores <- scores %>%
 #write.csv(scores, file.path('global2014', sprintf('scores_2014_sameSep9data_eezNoAnt_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='')
 
 write.csv(scores, file.path('global2014', 'scores_2014.csv'), row.names=F, na='') # one to check for changes in Github
-write.csv(scores, file.path('global2014', sprintf('global2014_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='') # archive version
+write.csv(scores, file.path('global2014', sprintf('scores_2014_%s.csv', format(Sys.Date(), '%Y-%m-%d'))), row.names=F, na='') # archive version
 
 
 #### for Radical ----
