@@ -1,6 +1,6 @@
 Setup = function(){
   
-  extra.packages.required = c('zoo') # zoo for MAR(), NP()
+  extra.packages.required = c('zoo','psych') # zoo for MAR(), NP(); psych for geometric.mean
   
   # install packages if needed
   for (p in extra.packages.required){
