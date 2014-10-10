@@ -72,7 +72,7 @@ for (dir in c('eez2012','eez2014')){
 #   unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
 # }
 
-for (i in 1:length(scenarios)){ # i=4
+for (i in 1:length(scenarios)){ # i=2
   
   # vars
   scenario   = names(scenarios)[[i]]

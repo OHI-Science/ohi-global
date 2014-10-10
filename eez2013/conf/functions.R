@@ -859,46 +859,46 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
     merge(rgns, by='rgn_id') %.%
     select(rgn_id, rgn_label, year, Ed, L, U, S, E, Xtr)
   
-  if (debug){
-    # compare with pre-gapfilled data
-    if (!file.exists('temp')) dir.create('temp', recursive=T)
-    
-    # cast to wide format (rows:rgn, cols:year, vals: Xtr) similar to original
-    d_c = d %.%
-      filter(year %in% (year_max-5):year_max) %.%
-      dcast(rgn_id ~ year, value.var='Xtr')
-    write.csv(d_c, sprintf('temp/%s_TR_0-pregap_wide.csv', basename(getwd())), row.names=F, na='')
-    
-    o = read.csv(file.path(dir_neptune_data, '/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv'), na.strings='') %.%
-      melt(id='rgn_id', variable.name='year', value.name='Xtr_o') %.%
-      mutate(year = as.integer(sub('x_TR_','', year, fixed=T))) %.%
-      arrange(rgn_id, year)
-    
-    vs = o %.%
-      merge(
-        expand.grid(list(
-          rgn_id = rgns$rgn_id,
-          year   = 2006:2011)),
-        by=c('rgn_id', 'year'), all=T) %.%
-      merge(d, by=c('rgn_id','year')) %.%
-      mutate(Xtr_dif = Xtr - Xtr_o) %.% 
-      select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %.%
-      arrange(rgn_id, year)
-    write.csv(vs, sprintf('temp/%s_TR_0-pregap-vs_details.csv', basename(getwd())), row.names=F, na='')
-    
-    vs_rgn = vs %.%
-      group_by(rgn_id) %.%
-      summarize(
-        n_notna_o   = sum(!is.na(Xtr_o)),
-        n_notna     = sum(!is.na(Xtr)),
-        dif_avg     = mean(Xtr, na.rm=T) - mean(Xtr_o, na.rm=T),
-        Xtr_2011_o  = last(Xtr_o),
-        Xtr_2011    = last(Xtr),
-        dif_2011    = Xtr_2011 - Xtr_2011_o) %.%
-      filter(n_notna_o !=0 | n_notna!=0) %.%
-      arrange(desc(abs(dif_2011)), Xtr_2011, Xtr_2011_o)
-    write.csv(vs_rgn, sprintf('temp/%s_TR_0-pregap-vs_summary.csv', basename(getwd())), row.names=F, na='')
-  }
+#   if (debug){
+#     # compare with pre-gapfilled data
+#     if (!file.exists('temp')) dir.create('temp', recursive=T)
+#     
+#     # cast to wide format (rows:rgn, cols:year, vals: Xtr) similar to original
+#     d_c = d %.%
+#       filter(year %in% (year_max-5):year_max) %.%
+#       dcast(rgn_id ~ year, value.var='Xtr')
+#     write.csv(d_c, sprintf('temp/%s_TR_0-pregap_wide.csv', basename(getwd())), row.names=F, na='')
+#     
+#     o = read.csv(file.path(dir_neptune_data, '/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv'), na.strings='') %.%
+#       melt(id='rgn_id', variable.name='year', value.name='Xtr_o') %.%
+#       mutate(year = as.integer(sub('x_TR_','', year, fixed=T))) %.%
+#       arrange(rgn_id, year)
+#     
+#     vs = o %.%
+#       merge(
+#         expand.grid(list(
+#           rgn_id = rgns$rgn_id,
+#           year   = 2006:2011)),
+#         by=c('rgn_id', 'year'), all=T) %.%
+#       merge(d, by=c('rgn_id','year')) %.%
+#       mutate(Xtr_dif = Xtr - Xtr_o) %.% 
+#       select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %.%
+#       arrange(rgn_id, year)
+#     write.csv(vs, sprintf('temp/%s_TR_0-pregap-vs_details.csv', basename(getwd())), row.names=F, na='')
+#     
+#     vs_rgn = vs %.%
+#       group_by(rgn_id) %.%
+#       summarize(
+#         n_notna_o   = sum(!is.na(Xtr_o)),
+#         n_notna     = sum(!is.na(Xtr)),
+#         dif_avg     = mean(Xtr, na.rm=T) - mean(Xtr_o, na.rm=T),
+#         Xtr_2011_o  = last(Xtr_o),
+#         Xtr_2011    = last(Xtr),
+#         dif_2011    = Xtr_2011 - Xtr_2011_o) %.%
+#       filter(n_notna_o !=0 | n_notna!=0) %.%
+#       arrange(desc(abs(dif_2011)), Xtr_2011, Xtr_2011_o)
+#     write.csv(vs_rgn, sprintf('temp/%s_TR_0-pregap-vs_summary.csv', basename(getwd())), row.names=F, na='')
+#   }
   
   # get georegions for gapfilling
   georegions = layers$data[['rgn_georegions']] %.%
