@@ -1513,10 +1513,8 @@ ICO = function(layers){
 }
 
 LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year, trend_years){
-  # 2013: LSP(layers, status_year=2013, trend_years=2006:2010)
-  # 2012: LSP(layers, status_year=2009, trend_years=2002:2006)
-    
-  lyrs = list('r'  = c('rgn_area_inland1km'   = 'area_inland1km',
+
+lyrs = list('r'  = c('rgn_area_inland1km'   = 'area_inland1km',
                        'rgn_area_offshore3nm' = 'area_offshore3nm'),
               'ry' = c('lsp_prot_area_offshore3nm' = 'cmpa',
                         'lsp_prot_area_inland1km'   = 'cp'))              
@@ -1550,18 +1548,21 @@ LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year, trend_years)
   r.yrs = within(r.yrs,{
     pct_cp    = pmin(cp_cumsum   / area_inland1km   * 100, 100)
     pct_cmpa  = pmin(cmpa_cumsum / area_offshore3nm * 100, 100)
-    pct_pa    = pmin( (cp_cumsum + cmpa_cumsum) / (area_inland1km + area_offshore3nm) * 100, 100)
-    status    = ( pmin(pct_cp / ref_pct_cp, 1) + pmin(pct_cmpa / ref_pct_cmpa, 1) ) / 2 * 100
+    prop_protected    = ( pmin(pct_cp / ref_pct_cp, 1) + pmin(pct_cmpa / ref_pct_cmpa, 1) ) / 2
   })
   
   # extract status based on specified year
-  r.status = r.yrs[r.yrs$year==status_year, c('region_id','status')]; head(r.status)
+  r.status = r.yrs %>%
+    filter(year==status_year) %>%
+    select(region_id, status=prop_protected) %>%
+    mutate(status=status*100) 
+head(r.status)
   
   # calculate trend
   r.trend = ddply(subset(r.yrs, year %in% trend_years), .(region_id), function(x){
     data.frame(
-      trend = min(1, max(0, 5 * coef(lm(pct_pa ~ year, data=x))[['year']])))})      
-  
+      trend = min(1, max(0, 5 * coef(lm(prop_protected ~ year, data=x))[['year']])))})      
+
   # return scores
   scores = rbind.fill(
     within(r.status, {

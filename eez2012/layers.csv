@@ -1,6 +1,14 @@
 "targets","layer","layer_old","name","description","fld_value","units","filename","fld_id_num","fld_id_chr","fld_category","fld_year","fld_val_num","fld_val_chr","file_exists","year_min","year_max","val_min","val_max","val_0to1","flds_unused","flds_missing","rows_duplicated","num_ids_unique","data_na"
-"AO","ao_access","rn_ao_access","Fisheries management effectiveness and opportunity","The opportunity for artisanal and recreational fishing based on the quality of management of the small- scale fishing sector (Mora et al 2009)","value","value","ao_access.csv","rgn_id",,,,"value",,TRUE,,,0,0.854,TRUE,,,,241,FALSE
-"AO","ao_need","rny_ao_need","Purchasing power parity as a proxy for subsistence fishing need, by region","The per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP","value","value","ao_need.csv","rgn_id",,,"year","value",,TRUE,1990,2011,0.0013238907967184,1,TRUE,,,,241,FALSE
+"AO","ao_access","rn_ao_access","Fisheries management effectiveness and opportunity","The opportunity for artisanal and recreational fishing based on the quality of management of the small- scale fishing sector (Mora et al 2009).
+
+Data sources:
+
+- Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., Worm, B. (2009). **Management Effectiveness of the Worldï¿s Marine Fisheries**. _PLoS Biol_, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](http://dx.doi.org/10.1371/journal.pbio.1000131)","value","value","ao_access.csv","rgn_id",,,,"value",,TRUE,,,0,0.854,TRUE,,,,241,FALSE
+"AO","ao_need","rny_ao_need","Purchasing power parity as a proxy for subsistence fishing need, by region","The per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP.
+
+Data sources:
+
+- The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)","value","value","ao_need.csv","rgn_id",,,"year","value",,TRUE,1990,2011,0.0013238907967184,1,TRUE,,,,241,FALSE
 "CW","cw_coastalpopn_trend","rn_cw_coastalpopn_trend","Coastal human population as a proxy for trend in trash","Coastal population, defined as the total population inland of 25 miles ","trend","trend score","cw_coastalpopn_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.188549514549214,0.274677444427172,FALSE,,,,241,FALSE
 "CW","cw_fertilizer_trend","rn_cw_fertilizer_trend","Fertilizer consumption as a proxy for trend in nutrient pollution","Statistics on fertilizer consumption from the Food and Agricultural Organization (FAO) ","trend.score","trend score","cw_fertilizer_trend.csv","rgn_id",,,,"trend.score",,TRUE,,,-1,1,FALSE,,,,241,FALSE
 "CW","cw_pathogen_trend","rn_cw_pathogen_trend","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities","trend","trend score","cw_pathogen_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.00875520726791224,0.0868788966403764,FALSE,,,,241,FALSE
@@ -58,9 +66,24 @@
 "TR","tr_jobs_tourism","tr_jobs_tourism","Direct employment in tourism","","count","jobs","tr_jobs_tourism.csv","rgn_id",,,"year","count",,TRUE,1988,2013,0,23676500,FALSE,,,,241,FALSE
 "TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","score","score","tr_sustainability.csv","rgn_id",,,,"score",,TRUE,,,2.59,5.39,FALSE,,,,241,FALSE
 "TR","tr_unemployment","tr_unemployment","Percent unemployment","","percent","percent unemployed","tr_unemployment.csv","rgn_id",,,"year","percent",,TRUE,1980,2012,0.100000001490116,59.5,FALSE,,,,241,FALSE
-"pressures","cc_acid","cc_acid","Ocean acidification","Modeled distribution of the aragonite saturation state (AAS) of the ocean in pre-industrial (~1870) and modern times (2000-2009) from Halpern et al. 2008","pressure_score","pressure score","cc_acid.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0135662,0.974705,TRUE,,,,241,FALSE
-"pressures","cc_slr","cc_slr","Sea level rise","Modeled sea level rise after Halpern et al. 2008","pressure_score","pressure score","cc_slr.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.909090909090909,TRUE,,,,241,FALSE
-"pressures","cc_sst","cc_sst","Sea surface temperature (SST) anomalies","Modeled sea level rise after Halpern et al. 2008","pressure_score","pressure score","cc_sst.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000868356084809759,0.268141155968632,TRUE,,,,241,FALSE
+"pressures","cc_acid","cc_acid","Ocean acidification","Modeled distribution of the aragonite saturation state (AAS) of the ocean in pre-industrial (~1870) and modern times (2000-2009) (Halpern et al. 2008).
+
+Data sources:
+
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)","pressure_score","pressure score","cc_acid.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0135662,0.974705,TRUE,,,,241,FALSE
+"pressures","cc_slr","cc_slr","Sea level rise","Modeled sea level rise (Nicholls and Cazenave 2010).
+
+Data sources:
+
+- Nicholls R.J. and Cazenave A. (2010). **Sea-level rise and its impact on coastal zones**. _Science_ 328: 1517-1520. [doi:10.1126/science.1185782](http://dx.doi.org/10.1126/science.1185782). 
+- [AVISO Satellite Altimetry Data](http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html)","pressure_score","pressure score","cc_slr.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.909090909090909,TRUE,,,,241,FALSE
+"pressures","cc_sst","cc_sst","Sea surface temperature (SST) anomalies","Modeled sea level rise (Halpern et al. 2008) based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
+
+Data sources:
+
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
+- [AVHRR Pathfinder Version 5.0 SST data](http://pathfinder.nodc.noaa.gov) 
+- Casey, K.S., Brandon, T.B., Cornillon, P., and Evans, R. (2010). **The Past, Present and Future of the AVHRR Pathfinder SST Program**, _Oceanography from Space: Revisited_, eds. V. Barale, J.F.R. Gower, and L. Alberotanza, Springer. [doi:10.1007/978-90-481-8681-5_16](http://dx.doi.org/10.1007/978-90-481-8681-5_16) ","pressure_score","pressure score","cc_sst.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000868356084809759,0.268141155968632,TRUE,,,,241,FALSE
 "pressures","cc_uv","cc_uv","UV radiation","Modeled UV radiation after Halpern et al. 2008","pressure_score","pressure score","cc_uv.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.503101833728511,0.909090909090909,TRUE,,,,241,FALSE
 "pressures","fp_art_hb","fp_art_hb","High bycatch caused by artisanal fishing ","The presence of destructive artisanal blast and poison (cyanide) fishing","pressures.score","pressure score","fp_art_hb.csv","rgn_id",,,,"pressures.score",,TRUE,,,1.295083288e-05,0.25366568914956,TRUE,,,,241,FALSE
 "pressures","fp_art_lb","fp_art_lb","Low bycatch caused by artisanal fishing ","Statistics of low bycatch artisanal fishing using non-destructive practices","pressure_score","pressure score","fp_art_lb.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.909090909090909,TRUE,,,,241,FALSE
