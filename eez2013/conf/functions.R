@@ -1053,7 +1053,17 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
   g.component = c('LIV'='livelihood','ECO'='economy')[[subgoal]]
   
   # get status_model
-            
+  status_model_long = SelectLayersData(
+    layers, narrow=T,
+    layers=c('le_jobs_cur_base_value','le_jobs_ref_base_value','le_jobs_cur_adj_value','le_jobs_ref_adj_value',
+             'le_rev_cur_base_value','le_rev_ref_base_value','le_rev_cur_adj_value','le_rev_ref_adj_value',
+             'le_wage_cur_base_value','le_wage_ref_base_value','le_wage_cur_adj_value','le_wage_ref_adj_value'))
+  status_model = status_model_long %.%
+    select(cntry_key = id_chr, sector = category, val_num, layer) %.%
+    mutate(metric = str_replace(layer, 'le_(jobs|rev|wage)_(.*)', '\\1'),
+           field  = str_replace(layer, 'le_(jobs|rev|wage)_(.*)', '\\2')) %.% 
+    dcast(metric + cntry_key + sector ~ field, value.var='val_num')
+  
   # get gdp per capita, at ppp
   ppp = SelectLayersData(layers, layers='le_gdp_pc_ppp') %.%
     select(cntry_key=id_chr, year, usd=val_num)

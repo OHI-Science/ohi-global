@@ -459,7 +459,7 @@ summary(r.status); dim(r.status)
   return(scores)  
 }
 
-NP = function(scores, layers, year_max, debug=T){
+NP = function(scores, layers, year_max, debug=F){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
 
@@ -815,7 +815,7 @@ CP = function(layers){
 }
 
 
-TR = function(layers, year_max, debug=T, pct_ref=90){
+TR = function(layers, year_max, debug=FALSE, pct_ref=90){
     
   # formula:
   #   E = Ed / (L - (L*U))
@@ -1035,7 +1035,7 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
         all.x=T) %.%
       mutate(
         score_dif    = score - score_o,
-        score_notna  = is.na(score)!=is.na(score_o)) %.%  
+        score_notna  =  is.na(score)!=is.na(score_o)) %.%  
       #filter(abs(score_dif) > 0.01 | score_notna == T) %.%
       arrange(desc(dimension), desc(abs(score_dif))) %.%
       select(dimension, region_id, region_label, score_o, score, score_dif)
@@ -1063,7 +1063,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
     mutate(metric = str_replace(layer, 'le_(jobs|rev|wage)_(.*)', '\\1'),
            field  = str_replace(layer, 'le_(jobs|rev|wage)_(.*)', '\\2')) %.% 
     dcast(metric + cntry_key + sector ~ field, value.var='val_num')
-           
+  
   # get gdp per capita, at ppp
   ppp = SelectLayersData(layers, layers='le_gdp_pc_ppp') %.%
     select(cntry_key=id_chr, year, usd=val_num)

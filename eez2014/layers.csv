@@ -181,10 +181,25 @@ Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
 ","score","trend score","spp_trend.csv","rgn_id",,,,"score",,TRUE,,,-0.464904077028102,0.0977703458133595,FALSE,,,,241,FALSE
-"TR","tr_jobs_total","tr_jobs_total","Total labor force","","count","jobs","tr_jobs_total.csv","rgn_id",,,"year","count",,TRUE,1990,2012,0,791711771.342352,FALSE,,,,241,FALSE
-"TR","tr_jobs_tourism","tr_jobs_tourism","Direct employment in tourism","","count","jobs","tr_jobs_tourism.csv","rgn_id",,,"year","count",,TRUE,1988,2013,0,23676500,FALSE,,,,241,FALSE
+"TR","tr_jobs_total","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
+
+Data sources:
+
+- [The World Bank](data.worldbank.org/indicator/SL.TLF.TOTL.IN)
+","count","jobs","tr_jobs_total.csv","rgn_id",,,"year","count",,TRUE,1990,2012,0,791711771.342352,FALSE,,,,241,FALSE
+"TR","tr_jobs_tourism","tr_jobs_tourism","Direct employment in tourism","Direct employment in tourism (WTTC).
+
+Data sources:
+
+- [World Travel and Tourism Council (WTTC)](www.wttc.org/research/economic-data-search-tool/)
+","count","jobs","tr_jobs_tourism.csv","rgn_id",,,"year","count",,TRUE,1988,2013,0,23676500,FALSE,,,,241,FALSE
 "TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","score","score","tr_sustainability.csv","rgn_id",,,,"score",,TRUE,,,2.59,5.39,FALSE,,,,241,FALSE
-"TR","tr_unemployment","tr_unemployment","Percent unemployment","","percent","percent unemployed","tr_unemployment.csv","rgn_id",,,"year","percent",,TRUE,1980,2012,0.100000001490116,59.5,FALSE,,,,241,FALSE
+"TR","tr_unemployment","tr_unemployment","Percent unemployment","Percent unemployment (The World Bank).
+
+Data sources:
+
+- [The World Bank](http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS)
+","percent","percent unemployed","tr_unemployment.csv","rgn_id",,,"year","percent",,TRUE,1980,2012,0.100000001490116,59.5,FALSE,,,,241,FALSE
 "pressures","cc_acid","cc_acid","Ocean acidification","Modeled distribution of the aragonite saturation state (AAS) of the ocean in pre-industrial (~1870) and modern times (2000-2009) (Halpern et al. 2008).
 
 Data sources:
@@ -279,7 +294,11 @@ Data sources:
 Data sources:
 
 - Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","pressures.score","pressure score","sp_genetic.csv","rgn_id",,,,"pressures.score",,TRUE,,,0,1,TRUE,,,,241,FALSE
-"pressures","ss_wgi","ss_wgi","Weakness of governance indicated with the WGI","Inverse of World Governance Indicators (WGI) six combined scores","score","pressure score","ss_wgi.csv","rgn_id",,,,"score",,TRUE,,,0.126632771399314,0.954956553370774,TRUE,,,,241,FALSE
+"pressures","ss_wgi","ss_wgi","Weakness of governance indicated with the WGI","Inverse of World Governance Indicators (WGI) six combined scores.
+
+Data sources:
+
+- [Worldwide Governance Indicators (WGI)](info.worldbank.org/governance/wgi/index.asp)","score","pressure score","ss_wgi.csv","rgn_id",,,,"score",,TRUE,,,0.126632771399314,0.954956553370774,TRUE,,,,241,FALSE
 "pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent * rank, per Coastal Protection habitats","Habitat extent * habitat rank for Coastal Protection habitats: coral, mangrove offshore 1km, mangrove inland 1km, saltmarsh, seaice_shoreline and seagrass","extent_rank","rank","cp_habitat_extent_rank.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,1.7465,2744160.53921569,FALSE,,,,241,FALSE
 "pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent * rank, per Carbon Storage habitats","Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass","km2","km^2","cs_habitat_extent.csv","rgn_id",,"habitat",,"km2",,TRUE,,,0.82,39491,FALSE,,,,241,FALSE
 "pressures CW","po_chemicals","po_chemicals","Ocean-based chemical pollution","Modeled ocean-based chemical pollution from commercial shipping traffic and ports and harbors (Halpern et al. 2008).
@@ -307,7 +326,12 @@ Data sources:
 - [Ocean Conservancy International Coastal Cleanup 2012](http://www.oceanconservancy.org/our-work/international-coastal-cleanup/2012-ocean-trash-index.html)
 ","pressure_score","pressure score","po_trash.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.256796701754994,0.934301421204599,TRUE,,,,241,FALSE
 "pressures HAB","hab_presence","rnk_hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","hab_presence.csv","rgn_id",,"habitat",,"boolean",,TRUE,,,1,1,TRUE,,,,241,FALSE
-"resilience","alien_species","alien_species","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion","resilience score","resilience score","alien_species.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,241,FALSE
+"resilience","alien_species","alien_species","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
+
+Data sources:
+
+- Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)
+","resilience score","resilience score","alien_species.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,241,FALSE
 "resilience","cites","cites","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
 
 Data sources:
@@ -405,7 +429,11 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
 ","resilience score","resilience score","water.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,241,FALSE
-"resilience","wgi_all","wgi_all","Strength of governance indicated with the WGI","World Governance Indicators (WGI) six combined scores","score","resilience score","wgi_all.csv","rgn_id",,,,"score",,TRUE,,,0.0450434466292263,0.873367228600686,TRUE,,,,241,FALSE
+"resilience","wgi_all","wgi_all","Strength of governance indicated with the WGI","World Governance Indicators (WGI) six combined scores.
+
+Data sources:
+
+- [Worldwide Governance Indicators (WGI)](info.worldbank.org/governance/wgi/index.asp)","score","resilience score","wgi_all.csv","rgn_id",,,,"score",,TRUE,,,0.0450434466292263,0.873367228600686,TRUE,,,,241,FALSE
 "spatial","cntry_georegions","cnk_cntry_georegions","Georegion ids per country, at 3 georegion levels","Lookup table of country codes and UN georegions at 3 georegion levels.
 
 Data sources:
