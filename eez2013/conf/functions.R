@@ -227,7 +227,6 @@ Setup = function(){
   geomMean <- join(a, geomMean, type="inner", by="saup_id") # merge km2 of shelf area with status results
   
   # weighted mean scores
-  #StatusData <- ddply(.data = geomMean, .(rgn_id, year), summarize, Status = round(sum(status_saup*prop_area)*100))
   StatusData <- ddply(.data = geomMean, .(rgn_id, year), summarize, Status = sum(status_saup*prop_area))
   
   # 2013 status is based on 2011 data (most recent data)
@@ -241,8 +240,6 @@ Setup = function(){
   # ------------------------------------------------------------------------
   # STEP 6. Calculate trend  
   # -----------------------------------------------------------------------
-  # NOTE: Status is rounded to 2 digits before trend is 
-  # calculated in order to match OHI 2013 results (is this what we want to do?)
   trend = ddply(StatusData, .(rgn_id), function(x){
     mdl = lm(Status ~ year, data=x)
     data.frame(
@@ -427,19 +424,23 @@ AO = function(layers,
   # model
   ry = within(ry,{
     Du = (1.0 - need) * (1.0 - access)
-    status = ((1.0 - Du) * Sustainability) * 100
+    statusData = ((1.0 - Du) * Sustainability)
   })
   
   # status
-  r.status = subset(ry, year==year_max, c(region_id, status)); summary(r.status); dim(r.status)
+  r.status <- ry %>%
+    filter(year==year_max) %>%
+    select(region_id, statusData) %>%
+    mutate(status=statusData*100)
+summary(r.status); dim(r.status)
   
   # trend
   r.trend = ddply(subset(ry, year >= year_min), .(region_id), function(x)
     {
-      if (length(na.omit(x$status))>1) {
+      if (length(na.omit(x$statusData))>1) {
         # use only last valid 5 years worth of status data since year_min
-        d = data.frame(status=x$status, year=x$year)[tail(which(!is.na(x$status)), 5),]
-        trend = coef(lm(status ~ year, d))[['year']] / 100
+        d = data.frame(statusData=x$statusData, year=x$year)[tail(which(!is.na(x$statusData)), 5),]
+        trend = coef(lm(statusData ~ year, d))[['year']]
       } else {
         trend = NA
       }
@@ -458,7 +459,7 @@ AO = function(layers,
   return(scores)  
 }
 
-NP = function(scores, layers, year_max, debug=T){
+NP = function(scores, layers, year_max, debug=F){
   # TODO: add smoothing a la PLoS 2013 manuscript
   # TODO: move goal function code up to np_harvest_usd-peak-product-weight_year-max-%d.csv into ohiprep so layer ready already for calculating pressures & resilience
 
@@ -814,7 +815,7 @@ CP = function(layers){
 }
 
 
-TR = function(layers, year_max, debug=T, pct_ref=90){
+TR = function(layers, year_max, debug=FALSE, pct_ref=90){
     
   # formula:
   #   E = Ed / (L - (L*U))
@@ -1034,7 +1035,7 @@ TR = function(layers, year_max, debug=T, pct_ref=90){
         all.x=T) %.%
       mutate(
         score_dif    = score - score_o,
-        score_notna  = is.na(score)!=is.na(score_o)) %.%  
+        score_notna  =  is.na(score)!=is.na(score_o)) %.%  
       #filter(abs(score_dif) > 0.01 | score_notna == T) %.%
       arrange(desc(dimension), desc(abs(score_dif))) %.%
       select(dimension, region_id, region_label, score_o, score, score_dif)
@@ -1052,17 +1053,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
   g.component = c('LIV'='livelihood','ECO'='economy')[[subgoal]]
   
   # get status_model
-  status_model_long = SelectLayersData(
-    layers, narrow=T,
-    layers=c('le_jobs_cur_base_value','le_jobs_ref_base_value','le_jobs_cur_adj_value','le_jobs_ref_adj_value',
-             'le_rev_cur_base_value','le_rev_ref_base_value','le_rev_cur_adj_value','le_rev_ref_adj_value',
-             'le_wage_cur_base_value','le_wage_ref_base_value','le_wage_cur_adj_value','le_wage_ref_adj_value'))
-  status_model = status_model_long %.%
-    select(cntry_key = id_chr, sector = category, val_num, layer) %.%
-    mutate(metric = str_replace(layer, 'le_(jobs|rev|wage)_(.*)', '\\1'),
-           field  = str_replace(layer, 'le_(jobs|rev|wage)_(.*)', '\\2')) %.% 
-    dcast(metric + cntry_key + sector ~ field, value.var='val_num')
-           
+            
   # get gdp per capita, at ppp
   ppp = SelectLayersData(layers, layers='le_gdp_pc_ppp') %.%
     select(cntry_key=id_chr, year, usd=val_num)

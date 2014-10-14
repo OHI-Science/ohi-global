@@ -227,7 +227,6 @@ Setup = function(){
   geomMean <- join(a, geomMean, type="inner", by="saup_id") # merge km2 of shelf area with status results
   
   # weighted mean scores
-  #StatusData <- ddply(.data = geomMean, .(rgn_id, year), summarize, Status = round(sum(status_saup*prop_area)*100))
   StatusData <- ddply(.data = geomMean, .(rgn_id, year), summarize, Status = sum(status_saup*prop_area))
   
   # 2013 status is based on 2011 data (most recent data)
@@ -241,8 +240,6 @@ Setup = function(){
   # ------------------------------------------------------------------------
   # STEP 6. Calculate trend  
   # -----------------------------------------------------------------------
-  # NOTE: Status is rounded to 2 digits before trend is 
-  # calculated in order to match OHI 2013 results (is this what we want to do?)
   trend = ddply(StatusData, .(rgn_id), function(x){
     mdl = lm(Status ~ year, data=x)
     data.frame(
@@ -427,19 +424,23 @@ AO = function(layers,
   # model
   ry = within(ry,{
     Du = (1.0 - need) * (1.0 - access)
-    status = ((1.0 - Du) * Sustainability) * 100
+    statusData = ((1.0 - Du) * Sustainability)
   })
   
   # status
-  r.status = subset(ry, year==year_max, c(region_id, status)); summary(r.status); dim(r.status)
+  r.status <- ry %>%
+    filter(year==year_max) %>%
+    select(region_id, statusData) %>%
+    mutate(status=statusData*100)
+summary(r.status); dim(r.status)
   
   # trend
   r.trend = ddply(subset(ry, year >= year_min), .(region_id), function(x)
     {
-      if (length(na.omit(x$status))>1) {
+      if (length(na.omit(x$statusData))>1) {
         # use only last valid 5 years worth of status data since year_min
-        d = data.frame(status=x$status, year=x$year)[tail(which(!is.na(x$status)), 5),]
-        trend = coef(lm(status ~ year, d))[['year']] / 100
+        d = data.frame(statusData=x$statusData, year=x$year)[tail(which(!is.na(x$statusData)), 5),]
+        trend = coef(lm(statusData ~ year, d))[['year']]
       } else {
         trend = NA
       }
