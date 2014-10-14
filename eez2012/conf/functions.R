@@ -440,7 +440,7 @@ summary(r.status); dim(r.status)
       if (length(na.omit(x$statusData))>1) {
         # use only last valid 5 years worth of status data since year_min
         d = data.frame(statusData=x$statusData, year=x$year)[tail(which(!is.na(x$statusData)), 5),]
-        trend = coef(lm(statusData ~ year, d))[['year']]
+        trend = coef(lm(statusData ~ year, d))[['year']]*5
       } else {
         trend = NA
       }

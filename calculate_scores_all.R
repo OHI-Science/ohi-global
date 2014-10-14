@@ -188,8 +188,7 @@ for (i in 1:length(scenarios)){ # i=2
                   dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
 #         write.csv(scores, csv, na='', row.names=F)
     
-    if (scenarios$eez2014$do) { source('global2014/merge_scores.R')  }
-#    print_scenarios = T;       source('../ohidev/report/compare_scores.R')  
+ 
     
   }
   
@@ -214,6 +213,8 @@ for (i in 1:length(scenarios)){ # i=2
   }
 }
 
+
+source('global2014/merge_scores.R')
 
 # # DEBUG comparison for 2013a
 source('../ohidev/report/compare_scores.R')
