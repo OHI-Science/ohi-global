@@ -1620,6 +1620,8 @@ CW = function(layers){
   # invert trends for CW
   r$popn_trend = -1 * r$popn_trend
   r$path_trend = -1 * r$path_trend
+  r$pest_trend = -1 * r$pest_trend
+  r$fert_trend = -1 * r$fert_trend
   
   # status
   r$status = psych::geometric.mean(t(r[,c('a','u','l','d')]), na.rm=T) * 100

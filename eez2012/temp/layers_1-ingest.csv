@@ -19,7 +19,7 @@ Data sources:
 
 Data sources:
 
-- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","trend.score","trend score","/var/data/ohi/model/GL-NCEAS_CW_trends_v2013a/data/GL-NCEAS_CW_Fertilizers_trend_v2012a.csv",TRUE,"cw_fertilizer_trend.csv","eez2012/layers/cw_fertilizer_trend.csv"
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","trend.score","trend score","../ohiprep/Global/FAO-CW-Trends_v2011/data/rgn_cw_fertilizers_trends_2013a.csv",TRUE,"cw_fertilizer_trend.csv","eez2012/layers/cw_fertilizer_trend.csv"
 "CW","cw_pathogen_trend","rn_cw_pathogen_trend","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities.
 
 Data sources:
@@ -31,7 +31,7 @@ Data sources:
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
-","trend.score","trend score","/var/data/ohi/model/GL-NCEAS_CW_trends_v2013a/data/GL-NCEAS_CW_Pesticides_trend_v2012a.csv",TRUE,"cw_pesticide_trend.csv","eez2012/layers/cw_pesticide_trend.csv"
+","trend.score","trend score","../ohiprep/Global/FAO-CW-Trends_v2011/data/rgn_cw_pesticides_trends_2013a.csv",TRUE,"cw_pesticide_trend.csv","eez2012/layers/cw_pesticide_trend.csv"
 "FIS","fis_b_bmsy","fnk_fis_b_bmsy","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
