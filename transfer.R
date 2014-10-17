@@ -74,23 +74,23 @@ for (i in 1:length(scenarios)){ # i=1
   g0$fn_in = g0[[fld_fn]]
   
   # filter
-  lyrs = g0 %.%
-    filter(ingest==T) %.%
+  lyrs = g0 %>%
+    filter(ingest==T) %>%
     mutate(
       path_in        = file.path(dir_in, fn_in),
       path_in_exists = file.exists(path_in),
       filename = sprintf('%s.csv', layer),
-      path_out = sprintf('%s/layers/%s', scenario_new, filename)) %.%
+      path_out = sprintf('%s/layers/%s', scenario_new, filename)) %>%
     select(
       targets, layer, layer_old, name, description, 
       fld_value, units,
-      path_in, path_in_exists, filename, path_out) %.%
+      path_in, path_in_exists, filename, path_out) %>%
     arrange(targets, layer)
   write.csv(lyrs, sprintf('%s/tmp/layers_1-ingest.csv', scenario_new), na='', row.names=F)
   
   if (nrow(filter(lyrs, !path_in_exists)) != 0){
     message('The following layers paths do not exist:\n')
-    print(filter(lyrs, !path_in_exists) %.% select(layer, path_in), row.names=F)
+    print(filter(lyrs, !path_in_exists) %>% select(layer, path_in), row.names=F)
     stop('Resolve paths in google doc with filesystem.')
   }
 
@@ -107,7 +107,7 @@ for (i in 1:length(scenarios)){ # i=1
   write.csv(select(lyrs, -path_in, -path_in_exists, -path_out), sprintf('%s/layers.csv', scenario_new), row.names=F, na='')
   
   # order for layers for substitution old to new name in files
-  lyrs = lyrs %.%
+  lyrs = lyrs %>%
     arrange(desc(nchar(as.character(layer_old))))  
   
   # copy configuration files

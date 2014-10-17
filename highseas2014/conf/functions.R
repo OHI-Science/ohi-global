@@ -2,12 +2,12 @@
 FIS = function(layers, status_year){
   
   # catch data
- c = SelectLayersData(layers, layer='fis_meancatch', narrow=T) %.%
+ c = SelectLayersData(layers, layer='fis_meancatch', narrow=T) %>%
     select(
       fao_saup_id    = id_chr,
       taxon_name_key = category,
       year,
-      mean_catch     = val_num) %.%
+      mean_catch     = val_num) %>%
     mutate(
       fao_id     = as.numeric(str_replace(fao_saup_id   , '^(.*)_(.*)$', '\\1')),
       saup_id    = as.numeric(str_replace(fao_saup_id   , '^(.*)_(.*)$', '\\2')),
@@ -19,12 +19,12 @@ FIS = function(layers, status_year){
   # separate out the region ids:
   
   # b_bmsy data
-  b = SelectLayersData(layers, layer='fis_b_bmsy', narrow=T) %.%
+  b = SelectLayersData(layers, layer='fis_b_bmsy', narrow=T) %>%
     select(
       fao_id      = id_num,
       taxon_name  = category,
       year,
-      b_bmsy      = val_num) %.%
+      b_bmsy      = val_num) %>%
     mutate(
       stock_id    = paste(taxon_name, fao_id, sep="_"))
   
@@ -49,9 +49,9 @@ FIS = function(layers, status_year){
   AssessedCatches <- AssessedCatches[as.numeric(AssessedCatches$TaxonKey)>=600000, ]
   AssessedCatches$penalty <- 1
 
-# DataCheck <- AssessedCatches %.%
-#   filter(year %in% 2011) %.%
-#   select(fao_id, taxon_name, year, b_bmsy, mean_catch) %.%
+# DataCheck <- AssessedCatches %>%
+#   filter(year %in% 2011) %>%
+#   select(fao_id, taxon_name, year, b_bmsy, mean_catch) %>%
 #   arrange(fao_id, b_bmsy)
 # write.csv(DataCheck, "C:\\Users\\Melanie\\Desktop\\HS Explore\\FIS_bmsy.csv", row.names=FALSE)
   
@@ -94,10 +94,10 @@ FIS = function(layers, status_year){
   # 2d.Merge with data
   UnAssessedCatches <- join(UnAssessedCatches, penaltyTable, by="TaxonPenaltyCode")
 
-#  DataCheck <- UnAssessedCatches %.%
-#   filter(year %in% 2011) %.%
-#   mutate(b_bmsy = Medianb_bmsy*penalty) %.%
-#   select(fao_id, taxon_name, year, b_bmsy, mean_catch) %.%
+#  DataCheck <- UnAssessedCatches %>%
+#   filter(year %in% 2011) %>%
+#   mutate(b_bmsy = Medianb_bmsy*penalty) %>%
+#   select(fao_id, taxon_name, year, b_bmsy, mean_catch) %>%
 #   arrange(fao_id, b_bmsy)
 # write.csv(DataCheck, "C:\\Users\\Melanie\\Desktop\\HS Explore\\FIS_bmsy_Unassessed_full.csv", row.names=FALSE)
 
@@ -164,17 +164,17 @@ FIS = function(layers, status_year){
   # -----------------------------------------------------------------------
     
   # Join region names/ids to Geom data
-  StatusData <- geomMean %.% 
-    mutate(fao_id = as.integer(fao_id)) %.%
-    inner_join(a, by='fao_id') %.%
+  StatusData <- geomMean %>% 
+    mutate(fao_id = as.integer(fao_id)) %>%
+    inner_join(a, by='fao_id') %>%
     select(rgn_id = rgn_id, year, Status)
   
   # 2013 status is based on 2011 data (most recent data)
-  status = StatusData %.%
-    filter(year==status_year) %.%
+  status = StatusData %>%
+    filter(year==status_year) %>%
     mutate(
       score     = round(Status*100),
-      dimension = 'status') %.%
+      dimension = 'status') %>%
     select(region_id=rgn_id, dimension, score)
     
     
@@ -196,7 +196,7 @@ trend$score[trend$region_id == "260"] <- NA
 status$score[status$region_id == "260"] <- NA
 
   # assemble dimensions
-  scores = rbind(status, trend) %.% mutate(goal='FIS')
+  scores = rbind(status, trend) %>% mutate(goal='FIS')
   return(scores)  
 }
 
@@ -204,8 +204,8 @@ status$score[status$region_id == "260"] <- NA
 FP = function(layers, scores){
     
   # scores
-  s = scores %.%
-    filter(goal %in% c('FIS') & dimension %in% c('status','trend','future','score')) %.%
+  s = scores %>%
+    filter(goal %in% c('FIS') & dimension %in% c('status','trend','future','score')) %>%
     # NOTE: resilience and pressure skipped for supra-goals
     mutate(goal = 'FP')
   
@@ -222,11 +222,11 @@ ICO = function(layers){
     layers, 
     layers=c(
       'ico_spp_extinction_status' = 'status',
-      'ico_spp_popn_trend'        = 'trend'), narrow=T) %.%
+      'ico_spp_popn_trend'        = 'trend'), narrow=T) %>%
     select(
       region_id = id_num,
       dimension = layer,
-      score     = val_num) %.%
+      score     = val_num) %>%
     mutate(
       goal      = 'ICO',
       score     = ifelse(dimension=='status', score, score))
@@ -238,8 +238,8 @@ ICO = function(layers){
 SP = function(scores){
   
   # scores
-  s = scores %.%
-    filter(goal %in% c('ICO') & dimension %in% c('status','trend','future','score')) %.%
+  s = scores %>%
+    filter(goal %in% c('ICO') & dimension %in% c('status','trend','future','score')) %>%
     mutate(goal = 'SP')
   
   # return all scores
@@ -251,11 +251,11 @@ SP = function(scores){
 SPP = function(layers){
 
   # scores
-  scores = SelectLayersData(layers, layers=c('spp_status'='status','spp_trend'='trend'), narrow=T) %.%
+  scores = SelectLayersData(layers, layers=c('spp_status'='status','spp_trend'='trend'), narrow=T) %>%
     select(
       region_id = id_num,
       dimension = layer,
-      score     = val_num) %.%
+      score     = val_num) %>%
     mutate(
       goal      = 'SPP',
       score     = ifelse(dimension=='status', score, score))
@@ -266,8 +266,8 @@ SPP = function(layers){
 BD = function(scores){
   
   # scores
-  s = scores %.%
-    filter(goal %in% c('SPP') & dimension %in% c('status','trend','future','score')) %.%
+  s = scores %>%
+    filter(goal %in% c('SPP') & dimension %in% c('status','trend','future','score')) %>%
     mutate(goal = 'BD')
   
   # return all scores

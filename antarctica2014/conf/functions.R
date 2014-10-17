@@ -6,7 +6,7 @@ FIS = function(layers, status_year){
    
    trend_years <- (status_year-5):status_year
   
-  c = SelectLayersData(layers, layers='fis_meancatch', narrow=T) %.%
+  c = SelectLayersData(layers, layers='fis_meancatch', narrow=T) %>%
     select(
       fao_saup_id    = id_chr,
       taxon_name_key = category,
@@ -25,14 +25,14 @@ FIS = function(layers, status_year){
                       as.character(c$fao_id), sep="_")
   
   # b_bmsy data
-  b = SelectLayersData(layers, layer='fis_b_bmsy', narrow=T) %.%
+  b = SelectLayersData(layers, layer='fis_b_bmsy', narrow=T) %>%
     select(
       taxon_name      = category,
       year,
       b_bmsy           = val_num)
   
   # c_cmsy data
-  extra_ccmsy = SelectLayersData(layers, layer='fis_c_cmsy', narrow=T) %.%
+  extra_ccmsy = SelectLayersData(layers, layer='fis_c_cmsy', narrow=T) %>%
     select(
       fao_id    =       id_num,
       taxon_name      = category,
@@ -40,7 +40,7 @@ FIS = function(layers, status_year){
       c_cmsy           = val_num)
   
   # region labels
-  regions = SelectLayersData(layers, layer='rgn_labels') %.%
+  regions = SelectLayersData(layers, layer='rgn_labels') %>%
     select(
       fao_id    =       category,
       region_id      = id_num)
@@ -171,7 +171,7 @@ FIS = function(layers, status_year){
   scoresReplace$score = ifelse(scoresReplace$c_cmsy2 > 1.0, 2.0-scoresReplace$c_cmsy2, 
                                ifelse(scoresReplace$c_cmsy2 < 0.9, eps + score_range/value_range * scoresReplace$c_cmsy2, 1)) 
   
-  scoresReplace <- scoresReplace %.%
+  scoresReplace <- scoresReplace %>%
     select(taxon_name, TaxonKey, year, fao_id, mean_catch, score)
   
   ## replace old scores with newly calculated ccmsy
@@ -202,18 +202,18 @@ FIS = function(layers, status_year){
   StatusData <- ddply(.data = scores, .(fao_id, year), summarize, Status = prod(score^wprop)) 
   
   ### standardized region names
-  StatusData <- StatusData %.%
-    mutate(fao_id = as.integer(fao_id)) %.%
+  StatusData <- StatusData %>%
+    mutate(fao_id = as.integer(fao_id)) %>%
     left_join(regions, by="fao_id") 
   
   # ------------------------------------------------------------------------
   # STEP 5. Status  
   # -----------------------------------------------------------------------
-  status = StatusData %.%
-    filter(year==status_year) %.%
+  status = StatusData %>%
+    filter(year==status_year) %>%
     mutate(
       score     = round(Status*100),
-      dimension = 'status') %.%
+      dimension = 'status') %>%
     select(region_id, dimension, score)
   
   # ------------------------------------------------------------------------
@@ -225,14 +225,14 @@ FIS = function(layers, status_year){
     mdl = lm(Status ~ year, data=x)
     data.frame(
       score     = round(coef(mdl)[['year']] * 5, 2),
-      dimension = 'trend')}) %.%
+      dimension = 'trend')}) %>%
     select(region_id, dimension, score)
-  # %.% semi_join(status, by='rgn_id')
+  # %>% semi_join(status, by='rgn_id')
   trend$score <- ifelse(trend$score<(-1), -1, trend$score)
   trend$score <- ifelse(trend$score>(1), 1, trend$score)
   
   # assemble dimensions
-  scores = rbind(status, trend) %.% mutate(goal='FIS')
+  scores = rbind(status, trend) %>% mutate(goal='FIS')
   return(scores)  
   
 }
@@ -241,8 +241,8 @@ FIS = function(layers, status_year){
 FP = function(scores){
   
   # scores
-s = scores %.%
-    filter(goal %in% c('FIS') & dimension %in% c('status','trend','future','score')) %.%
+s = scores %>%
+    filter(goal %in% c('FIS') & dimension %in% c('status','trend','future','score')) %>%
     # NOTE: resilience and pressure skipped for supra-goals
     mutate(goal = 'FP')
   
@@ -317,7 +317,7 @@ TR = function(layers){
 ECO = function(layers, status_year){
   trend_years <-  (status_year-5):status_year
   D <- SelectLayersData(layers, layers=c('eco'))
-  D <- D %.%
+  D <- D %>%
     select(sp_id = id_num, category, year, crew=val_num)
   
   ## change this year to a zero (based on catch data, this seems unlikely)
@@ -345,9 +345,9 @@ ECO = function(layers, status_year){
   
   
   ## weights are the average crew between 2008-2013
-  weights <- D %.%
-    filter(year %in% c(trend_years)) %.%
-    group_by(sp_id, category) %.%
+  weights <- D %>%
+    filter(year %in% c(trend_years)) %>%
+    group_by(sp_id, category) %>%
     summarize(meanCrew=mean(crew, na.rm=TRUE))
   
   ## merge with other data
@@ -362,20 +362,20 @@ ECO = function(layers, status_year){
   status$tour_meanCrew[status$tour_meanCrew %in% "NaN"] <- 0
   
   
-  status <- status %.%
+  status <- status %>%
     mutate(f_weight = cf_meanCrew/(cf_meanCrew + tour_meanCrew),
-           tr_weight = 1-f_weight) %.%
-    mutate(status = ifelse(is.na(cf_status*f_weight), 0, cf_status*f_weight) + ifelse(is.na(tour_status*tr_weight), 0, tour_status*tr_weight)) %.%
+           tr_weight = 1-f_weight) %>%
+    mutate(status = ifelse(is.na(cf_status*f_weight), 0, cf_status*f_weight) + ifelse(is.na(tour_status*tr_weight), 0, tour_status*tr_weight)) %>%
     mutate(status = status*100)
   
   ##### Status & trend
-  status.scores <- status %.%
-  filter(year==status_year) %.%
+  status.scores <- status %>%
+  filter(year==status_year) %>%
     mutate(goal="ECO", 
-           dimension="status") %.%
+           dimension="status") %>%
     select(region_id=sp_id, goal, dimension, score=status)
   
-  trend.data <- status %.%
+  trend.data <- status %>%
     filter(year %in% trend_years)
   
     lm = dlply(
@@ -384,12 +384,12 @@ ECO = function(layers, status_year){
   
   trend_lm <- ldply(lm, coef)
   
-  trend.scores <- trend_lm %.%
+  trend.scores <- trend_lm %>%
    mutate(goal="ECO",
-          dimension="trend") %.%
-    mutate(score=year*5) %.%
-    select(region_id=sp_id, goal, dimension, score) %.%
-    mutate(score=ifelse(score>1, 1, score)) %.%
+          dimension="trend") %>%
+    mutate(score=year*5) %>%
+    select(region_id=sp_id, goal, dimension, score) %>%
+    mutate(score=ifelse(score>1, 1, score)) %>%
     mutate(score=ifelse(score<(-1), -1, score))
     
   # return scores
@@ -400,8 +400,8 @@ ECO = function(layers, status_year){
 LE = function(scores){
   
   # scores
-  s = scores %.%
-    filter(goal %in% c('ECO') & dimension %in% c('status','trend','future','score')) %.%
+  s = scores %>%
+    filter(goal %in% c('ECO') & dimension %in% c('status','trend','future','score')) %>%
     # NOTE: resilience and pressure skipped for supra-goals
     mutate(goal = 'LE')
   
@@ -563,16 +563,16 @@ FinalizeScores = function(layers, conf, scores){
   
   # get area data
   area = SelectLayersData(layers, layers='rgn_area', narrow=TRUE)  
-  area <- area %.%
+  area <- area %>%
     select(region_id=id_num, area=val_num)
   # get regions
   rgns = SelectLayersData(layers, layers=conf$config$layer_region_labels, narrow=T)
   
   
-tmp <-   scores %.%
-    join(area, by='region_id') %.% 
-  filter(region_id != 0) %.%
-  group_by(goal, dimension) %.%
+tmp <-   scores %>%
+    join(area, by='region_id') %>% 
+  filter(region_id != 0) %>%
+  group_by(goal, dimension) %>%
   summarize(region_id0 = weighted.mean(score, area, na.rm=TRUE))
   
   
