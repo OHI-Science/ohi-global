@@ -26,13 +26,14 @@
 # install_github('ohi-science/ohicore')
 
 # get scenarios and launch
-#library(ohicore)
-devtools::load_all('~/github/ohicore')
+#devtools::load_all('~/github/ohicore')
 #get_scenarios('ohi-science/ohi-global', '~/ohi-global')
 
-options(shiny.error=traceback)
+#options(shiny.error=traceback)
 #options(shiny.error=recover)
-devtools::load_all('~/github/ohicore')
-launch_app('~/github/ohi-global/eez2013')
-
+#devtools::load_all('~/github/ohicore'); launch_app('~/github/ohi-global/eez2013')
+#ohicore::launch_app('~/github/ohi-global/eez2013')
+require(methods)
+suppressWarnings(require(ohicore))
+launch_app()
 
