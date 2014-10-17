@@ -549,8 +549,10 @@ NP = function(scores, layers, year_max, debug=F){
       hab_rky %>%
         filter(km2 > 0) %>%
         select(rgn_id, rky_km2=km2), 
-      by='rgn_id') %>%
-    as.data.frame(b)
+      by='rgn_id')
+  
+  b <- as.data.frame(b)
+
   b$km2 = rowSums(b[,c('rky_km2','coral_km2')], na.rm=T)
   b = filter(b, km2 > 0)
   
