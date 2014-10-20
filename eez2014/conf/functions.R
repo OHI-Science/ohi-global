@@ -1319,6 +1319,9 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
   # trend per metric-country-sector, based on 5 intervals (6 years of data) 
   mcs = 
     mcsy %>%
+      # for clip-n-ship where cntry_key is one value, drops factor to integer so adding this bit
+      mutate(
+        cntry_key = as.character(cntry_key)) %>%
       filter(!is.na(value)) %>%
       group_by(metric, cntry_key, sector) %>%
       do(mdl = lm(value ~ year, data=.)) %>%
