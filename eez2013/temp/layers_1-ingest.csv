@@ -169,6 +169,37 @@ Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)
 ","usd_rel","score","../ohiprep/Global/FAO-Commodities_v2011/data/np_harvest_usd-rel_eez2013-year-max-2010_buffer-0.35.csv",TRUE,"np_harvest_usd_relative.csv","eez2013/layers/np_harvest_usd_relative.csv"
+"SPP","spp_status","rn_spp_status","Species lists and IUCN threat categories as a proxy for iconic species status","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
+
+Data sources:
+
+- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
+","score","status score","/Volumes/data_edit/model/GL-NCEAS-SpeciesDiversity_v2013a/data/rgn_spp_score_2013.csv",TRUE,"spp_status.csv","eez2013/layers/spp_status.csv"
+"SPP","spp_trend","rn_spp_trend","Species lists and IUCN threat categories as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
+
+Data sources:
+
+- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
+","score","trend score","/Volumes/data_edit/model/GL-NCEAS-SpeciesDiversity_v2013a/data/rgn_spp_trend_2013.csv",TRUE,"spp_trend.csv","eez2013/layers/spp_trend.csv"
+"TR","tr_jobs_total","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
+
+Data sources:
+
+- [The World Bank](data.worldbank.org/indicator/SL.TLF.TOTL.IN)
+","count","jobs","../ohiprep/Global/WorldBank-Statistics_v2012/data//rgn_wb_tlf_2014a_ratio-gapfilled.csv",TRUE,"tr_jobs_total.csv","eez2013/layers/tr_jobs_total.csv"
+"TR","tr_jobs_tourism","tr_jobs_tourism","Direct employment in tourism","Direct employment in tourism (WTTC).
+
+Data sources:
+
+- [World Travel and Tourism Council (WTTC)](www.wttc.org/research/economic-data-search-tool/)
+","count","jobs","../ohiprep/Global/WTTC-Tourism_v2013/data//rgn_wttc_empd_2014a.csv",TRUE,"tr_jobs_tourism.csv","eez2013/layers/tr_jobs_tourism.csv"
+"TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","score","score","/Volumes/data_edit/model/GL-WEF-Economics_v2013/data/rgn_wef_ttci_2013a_lyr.csv",TRUE,"tr_sustainability.csv","eez2013/layers/tr_sustainability.csv"
+"TR","tr_unemployment","tr_unemployment","Percent unemployment","Percent unemployment (The World Bank).
+
+Data sources:
+
+- [The World Bank](http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS)
+","percent","percent unemployed","../ohiprep/Global/WorldBank-Statistics_v2012/data//rgn_wb_uem_2014a_ratio-gapfilled.csv",TRUE,"tr_unemployment.csv","eez2013/layers/tr_unemployment.csv"
 "pressures","cc_acid","cc_acid","Ocean acidification","Modeled distribution of the aragonite saturation state (AAS) of the ocean in pre-industrial (~1870) and modern times (2000-2009) (Halpern et al. 2008).
 
 Data sources:
@@ -441,34 +472,3 @@ Data sources:
 ","georgn_id","georegion id","/Volumes/data_edit/model/GL-NCEAS-OceanRegions_v2013a/manual_output/rgn_georegions_long_2013b.csv",TRUE,"rgn_georegions.csv","eez2013/layers/rgn_georegions.csv"
 "spatial","rgn_global","rnk_rgn_global","regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed ","Regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed. ","label","label","/Volumes/data_edit/model/GL-NCEAS-OceanRegions_v2013a/data/rgn_global.csv",TRUE,"rgn_global.csv","eez2013/layers/rgn_global.csv"
 "spatial","rgn_labels","rtk_rgn_labels","regions by type (eez, subocean, unclaimed) and label","Ocean Health Index regions by type (eez, subocean, unclaimed) and label","label","label","/Volumes/data_edit/model/GL-NCEAS-OceanRegions_v2013a/data/rgn_labels.csv",TRUE,"rgn_labels.csv","eez2013/layers/rgn_labels.csv"
-"SPP","spp_status","rn_spp_status","Species lists and IUCN threat categories as a proxy for iconic species status","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
-
-Data sources:
-
-- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","status score","/Volumes/data_edit/model/GL-NCEAS-SpeciesDiversity_v2013a/data/rgn_spp_score_2013.csv",TRUE,"spp_status.csv","eez2013/layers/spp_status.csv"
-"SPP","spp_trend","rn_spp_trend","Species lists and IUCN threat categories as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
-
-Data sources:
-
-- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","trend score","/Volumes/data_edit/model/GL-NCEAS-SpeciesDiversity_v2013a/data/rgn_spp_trend_2013.csv",TRUE,"spp_trend.csv","eez2013/layers/spp_trend.csv"
-"TR","tr_jobs_total","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
-
-Data sources:
-
-- [The World Bank](data.worldbank.org/indicator/SL.TLF.TOTL.IN)
-","count","jobs","../ohiprep/Global/WorldBank-Statistics_v2012/data//rgn_wb_tlf_2014a_ratio-gapfilled.csv",TRUE,"tr_jobs_total.csv","eez2013/layers/tr_jobs_total.csv"
-"TR","tr_jobs_tourism","tr_jobs_tourism","Direct employment in tourism","Direct employment in tourism (WTTC).
-
-Data sources:
-
-- [World Travel and Tourism Council (WTTC)](www.wttc.org/research/economic-data-search-tool/)
-","count","jobs","../ohiprep/Global/WTTC-Tourism_v2013/data//rgn_wttc_empd_2014a.csv",TRUE,"tr_jobs_tourism.csv","eez2013/layers/tr_jobs_tourism.csv"
-"TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","score","score","/Volumes/data_edit/model/GL-WEF-Economics_v2013/data/rgn_wef_ttci_2013a_lyr.csv",TRUE,"tr_sustainability.csv","eez2013/layers/tr_sustainability.csv"
-"TR","tr_unemployment","tr_unemployment","Percent unemployment","Percent unemployment (The World Bank).
-
-Data sources:
-
-- [The World Bank](http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS)
-","percent","percent unemployed","../ohiprep/Global/WorldBank-Statistics_v2012/data//rgn_wb_uem_2014a_ratio-gapfilled.csv",TRUE,"tr_unemployment.csv","eez2013/layers/tr_unemployment.csv"
