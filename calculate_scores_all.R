@@ -7,6 +7,15 @@
 setwd(file.path('~/github/ohi-global'))
 #  setwd('~/ohi-global')
 
+# trying to calculate scores with old dplyr
+#devtools::install_version('dplyr', version=0.2)
+library(plyr)
+library(dplyr)
+library(stringr)
+summarise = summarize = dplyr::summarise
+# merge_scores.R line 34: getting error "Error in match(x, table, nomatch = 0L) : object 'dimension' not found"
+#     was summarizing to a single score b/c using plyr::summarize
+
 # check to see if following also works on Mac:
 source('../ohiprep/src/R/common.R')
 
@@ -20,7 +29,6 @@ dirs = list(
 # load ohicore (must first download using directions from here: )
 #library(ohicore) # or 
 devtools::load_all(dirs$ohicore)
-library(stringr)
 
 do.layercopy  = T
 do.layercheck = T

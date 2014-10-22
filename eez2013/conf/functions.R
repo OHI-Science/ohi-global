@@ -1,15 +1,16 @@
 Setup = function(){
   
-  extra.packages.required = c('zoo','psych') # zoo for MAR(), NP(); psych for geometric.mean
-  
-  # install packages if needed
-  for (p in extra.packages.required){
-    if (!suppressWarnings(library(p, character.only=T, logical.return=T))){
-      cat(sprintf('\n\nInstalling %s...\n', p))
-      install.packages(p)
-      require(p, character.only=T)
-    }
-  }
+# this code bombs the shinyapps.io deploy, so commenting out and relying on package prefixes to guide install zoo::, psych::
+#   extra.packages.required = c('zoo','psych') # zoo for MAR(), NP(); psych for geometric.mean
+#   
+#   # install packages if needed
+#   for (p in extra.packages.required){
+#     if (!suppressWarnings(library(p, character.only=T, logical.return=T))){
+#       cat(sprintf('\n\nInstalling %s...\n', p))
+#       install.packages(p)
+#       require(p, character.only=T)
+#     }
+#   }
   
   # csv comparison function, made global
   csv_compare <<- function(o, step, prefix=sprintf('temp/%s_MAR', basename(getwd()))){
@@ -549,12 +550,12 @@ NP = function(scores, layers, year_max, debug=F){
       hab_rky %>%
         filter(km2 > 0) %>%
         select(rgn_id, rky_km2=km2), 
-      by='rgn_id')
-  
-  b <- as.data.frame(b)
-
-  b$km2 = rowSums(b[,c('rky_km2','coral_km2')], na.rm=T)
-  b = filter(b, km2 > 0)
+      by='rgn_id') %>%
+    rowwise() %>%
+    mutate(
+      km2 = sum(c(rky_km2, coral_km2), na.rm=T)) %>%
+    group_by(rgn_id, product) %>%
+    filter(km2 > 0)
   
   # exposure: combine areas, get tonnes / area, and rescale with log transform
   E = 
@@ -1319,6 +1320,9 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
   # trend per metric-country-sector, based on 5 intervals (6 years of data) 
   mcs = 
     mcsy %>%
+      # for clip-n-ship where cntry_key is one value, drops factor to integer so adding this bit
+      mutate(
+        cntry_key = as.character(cntry_key)) %>%
       filter(!is.na(value)) %>%
       group_by(metric, cntry_key, sector) %>%
       do(mdl = lm(value ~ year, data=.)) %>%
