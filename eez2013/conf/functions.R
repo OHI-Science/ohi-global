@@ -851,7 +851,7 @@ TR = function(layers, year_max, debug=FALSE, pct_ref=90){
   # get regions
   rgns = layers$data[[conf$config$layer_region_labels]] %>%
     select(rgn_id, rgn_label = label)
-    
+  
   # merge layers and calculate score
   d = layers$data[['tr_jobs_tourism']] %>%
     select(rgn_id, year, Ed=count) %>%
@@ -875,6 +875,24 @@ TR = function(layers, year_max, debug=FALSE, pct_ref=90){
       Xtr   = E * S ) %>%
     merge(rgns, by='rgn_id') %>%
     select(rgn_id, rgn_label, year, Ed, L, U, S, E, Xtr)
+  
+  # feed NA for subcountry regions without sufficient data (vs global analysis)
+  if (conf$config$layer_region_labels!='rgn_global' & sum(!is.na(d$Xtr))==0) {
+    scores_TR = rbind_list(
+      rgns %>%
+        select(region_id = rgn_id) %>%
+        mutate(
+          goal      = 'TR',
+          dimension = 'status',
+          score     = NA),
+      rgns %>%
+        select(region_id = rgn_id) %>%
+        mutate(
+          goal      = 'TR',
+          dimension = 'trend',
+          score     = NA))
+    return(scores_TR)
+  }
   
 #   if (debug){
 #     # compare with pre-gapfilled data
@@ -931,34 +949,33 @@ TR = function(layers, year_max, debug=FALSE, pct_ref=90){
   # setup data for georegional gapfilling (remove Antarctica rgn_id=213)
   if (!file.exists('temp')) dir.create('temp', recursive=T)
   csv = sprintf('temp/%s_TR_1-gapfill-georegions.csv', basename(getwd()))
-  d_g = gapfill_georegions(
-    data              = d %>%
-      filter(rgn_id!=213) %>%
-      select(rgn_id, year, Xtr),
-    fld_id            = 'rgn_id',
-    fld_value         = 'Xtr',
-    fld_weight        = NULL,
-    georegions        = georegions,    
-    ratio_weights     = FALSE,
-    georegion_labels  = georegion_labels,
-    r0_to_NA          = TRUE, 
-    attributes_csv    = csv)
-  
-  # regions with Travel Warnings at http://travel.state.gov/content/passports/english/alertswarnings.html
-  rgn_travel_warnings = c('Djibouti'=46, 'Eritrea'=45, 'Somalia'=44, 'Mauritania'=64)
-  # TODO: check if regions with travel warnings are gapfilled (manually checked for 2013)
-  d_g = rbind_list(
-    d_g %>%
-      filter(!rgn_id %in% rgn_travel_warnings),
-    d_g %>%
-      filter(rgn_id %in% rgn_travel_warnings) %>%
-      mutate(
-        Xtr = 0.1 * Xtr))
-  # read.csv(csv) %>%
-  #   filter(r1_label=='Africa' & yr==year_max) %>%
-  #   select(v) %>% colMeans(na.rm=T) # Africa average: 0.021
-  # South Africa: 0.027 -> 42.79
-  # Namibia: 	    0.015 -> 23.06  
+  if (conf$config$layer_region_labels=='rgn_global'){
+    d_g = gapfill_georegions(
+      data              = d %>%
+        filter(rgn_id!=213) %>%
+        select(rgn_id, year, Xtr),
+      fld_id            = 'rgn_id',
+      fld_value         = 'Xtr',
+      fld_weight        = NULL,
+      georegions        = georegions,    
+      ratio_weights     = FALSE,
+      georegion_labels  = georegion_labels,
+      r0_to_NA          = TRUE, 
+      attributes_csv    = csv)
+    
+    # regions with Travel Warnings at http://travel.state.gov/content/passports/english/alertswarnings.html
+    rgn_travel_warnings = c('Djibouti'=46, 'Eritrea'=45, 'Somalia'=44, 'Mauritania'=64)
+    # TODO: check if regions with travel warnings are gapfilled (manually checked for 2013)
+    d_g = rbind_list(
+      d_g %>%
+        filter(!rgn_id %in% rgn_travel_warnings),
+      d_g %>%
+        filter(rgn_id %in% rgn_travel_warnings) %>%
+        mutate(
+          Xtr = 0.1 * Xtr))
+  } else {
+    d_g = d
+  }
     
   # filter: limit to 5 intervals (6 years worth of data)
   #   NOTE: original 2012 only used 2006:2010 whereas now we're using 2005:2010
@@ -997,7 +1014,7 @@ TR = function(layers, year_max, debug=FALSE, pct_ref=90){
   if (debug){
     write.csv(d_g_f_r, sprintf('temp/%s_TR_2-filtered-rescaled.csv', basename(getwd())), row.names=F, na='')
   }
-  
+    
   # calculate trend
   d_t = d_g_f_r %>%
     filter(!is.na(Xtr_rmax)) %>%
@@ -1021,15 +1038,17 @@ TR = function(layers, year_max, debug=FALSE, pct_ref=90){
   d_b = rbind(d_t, d_s) %>%
     mutate(goal = 'TR')  
   
-  # assign NA for uninhabitated islands
-  unpopulated = layers$data[['le_popn']] %>%
-    group_by(rgn_id) %>%
-    filter(count==0) %>%
-    select(rgn_id)
-  d_b$score = ifelse(d_b$rgn_id %in% unpopulated$rgn_id, NA, d_b$score)  
-
-  # replace North Korea value with 0
-  d_b$score[d_b$rgn_id == 21] = 0
+  if (conf$config$layer_region_labels=='rgn_global'){
+    # assign NA for uninhabitated islands
+    unpopulated = layers$data[['le_popn']] %>%
+      group_by(rgn_id) %>%
+      filter(count==0) %>%
+      select(rgn_id)
+    d_b$score = ifelse(d_b$rgn_id %in% unpopulated$rgn_id, NA, d_b$score)  
+  
+    # replace North Korea value with 0
+    d_b$score[d_b$rgn_id == 21] = 0
+  }
   
   # final scores
   scores = d_b %>%
@@ -1168,31 +1187,33 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
     arrange(rgn_name, cntry_key) %>%
     select(rgn_id, rgn_name, cntry_key)
 
-  # update country to region lookups
-  # TODO: use name_to_rgn
-  suppressWarnings({ # Warning message: In rbind_list__impl(environment()) : Unequal factor levels: coercing to character
-    cntry_rgn = cntry_rgn %>%
-      mutate(
-        cntry_key = revalue(cntry_key, c(
-          'SCG'            = 'MNE',  # used to be Serbia (no coast) and Montenegro (has coast) in Nature 2012
-          'Aruba'          = 'ABW',  # ABW and ANT EEZs got split...
-          'Bonaire'        = 'ANT',
-          'Curacao'        = 'ANT',
-          'Sint Eustatius' = 'ANT',
-          'Saba'           = 'ANT',
-          'Brunei'         = 'BRN',  # Brunei new country in Malaysia
-          'Malaysia'       = 'MYS'))) %>%
-      rbind_list(
-        data.frame(rgn_id=221, rgn_name='Northern Saint-Martin', cntry_key='BLM'),  # BLM is Saint Barthélemy, included within Northern Saint-Martin (MAF)
-        data.frame(rgn_id=209, rgn_name=                'China', cntry_key='HKG'),  # add Hong Kong to China (CHN)
-        data.frame(rgn_id=209, rgn_name=                'China', cntry_key='MAC'))  # add Macau to China (CHN)
-  })
-  cntry_landlocked = c('BDI','BOL','BWA','CHE','LUX','MKD','MWI','PRY','PSE','SCG','SVK','SWZ','TKM','UGA','ZMB')
-  
-  # remove landlocked countries and check for any country codes still not matched
-  status_score = filter(status_score, !cntry_key %in% cntry_landlocked)
-  if (sum(!status_score$cntry_key %in% cntry_rgn$cntry_key) != 0){
-    stop(sprintf('LIV_ECO status missing country to region lookup for: %s.', paste(setdiff(status_score$cntry_key, cntry_rgn$cntry_key), collapse=', ')))
+  if (conf$config$layer_region_labels=='rgn_global') {
+    # update country to region lookups
+    # TODO: use name_to_rgn
+    suppressWarnings({ # Warning message: In rbind_list__impl(environment()) : Unequal factor levels: coercing to character
+      cntry_rgn = cntry_rgn %>%
+        mutate(
+          cntry_key = revalue(cntry_key, c(
+            'SCG'            = 'MNE',  # used to be Serbia (no coast) and Montenegro (has coast) in Nature 2012
+            'Aruba'          = 'ABW',  # ABW and ANT EEZs got split...
+            'Bonaire'        = 'ANT',
+            'Curacao'        = 'ANT',
+            'Sint Eustatius' = 'ANT',
+            'Saba'           = 'ANT',
+            'Brunei'         = 'BRN',  # Brunei new country in Malaysia
+            'Malaysia'       = 'MYS'))) %>%
+        rbind_list(
+          data.frame(rgn_id=221, rgn_name='Northern Saint-Martin', cntry_key='BLM'),  # BLM is Saint Barthélemy, included within Northern Saint-Martin (MAF)
+          data.frame(rgn_id=209, rgn_name=                'China', cntry_key='HKG'),  # add Hong Kong to China (CHN)
+          data.frame(rgn_id=209, rgn_name=                'China', cntry_key='MAC'))  # add Macau to China (CHN)
+    })
+    cntry_landlocked = c('BDI','BOL','BWA','CHE','LUX','MKD','MWI','PRY','PSE','SCG','SVK','SWZ','TKM','UGA','ZMB')
+    
+    # remove landlocked countries and check for any country codes still not matched
+    status_score = filter(status_score, !cntry_key %in% cntry_landlocked)
+    if (sum(!status_score$cntry_key %in% cntry_rgn$cntry_key) != 0){
+      stop(sprintf('LIV_ECO status missing country to region lookup for: %s.', paste(setdiff(status_score$cntry_key, cntry_rgn$cntry_key), collapse=', ')))
+    }
   }
 
   # get weights, for 1) aggregating to regions and 2) georegionally gap filling
@@ -1242,26 +1263,31 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
   georegions = SelectLayersData(layers, layers='rgn_georegions') %>%
     select(rgn_id=id_num, level=category, georgn_id=val_num) %>%
     dcast(rgn_id ~ level, value.var='georgn_id')
-    
-  # georegional gap fill ----
+
   data = s_r %>%
     filter(component==g.component) %>%
     as.data.frame() %>%
     select(rgn_id, score, w_sum)
   
-  # georegional gapfill, and output gapfill_georegions attributes
-  if (!file.exists('temp')) dir.create('temp', recursive=T)
-  csv = sprintf('temp/eez2013_%s-status-gapfill-georegions.csv', subgoal)
-  s_r_g = gapfill_georegions(
-    data              = data,
-    fld_id            = 'rgn_id',
-    fld_value         = 'score',
-    fld_weight        = 'w_sum',
-    georegions        = georegions,    
-    ratio_weights     = FALSE,
-    georegion_labels  = NULL,
-    r0_to_NA          = TRUE, 
-    attributes_csv    = csv)
+  # georegional gap fill ----
+  if (conf$config$layer_region_labels=='rgn_global') {
+    
+    # georegional gapfill, and output gapfill_georegions attributes
+    if (!file.exists('temp')) dir.create('temp', recursive=T)
+    csv = sprintf('temp/eez2013_%s-status-gapfill-georegions.csv', subgoal)
+    s_r_g = gapfill_georegions(
+      data              = data,
+      fld_id            = 'rgn_id',
+      fld_value         = 'score',
+      fld_weight        = 'w_sum',
+      georegions        = georegions,    
+      ratio_weights     = FALSE,
+      georegion_labels  = NULL,
+      r0_to_NA          = TRUE, 
+      attributes_csv    = csv)
+  } else {
+    s_r_g = data
+  }
   
   status = s_r_g %>% 
     select(region_id=rgn_id, score) %>%    
@@ -1373,11 +1399,13 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
     select(component, cntry_key, score)
   
   # remove landlocked countries and check for any country codes still not matched
-  gc = filter(gc, !cntry_key %in% cntry_landlocked)
-  if (sum(!gc$cntry_key %in% cntry_rgn$cntry_key) != 0){
-    stop(sprintf('LIV_ECO trend missing country to region lookup for: %s.', paste(setdiff(gc$cntry_key, cntry_rgn$cntry_key), collapse=', ')))
+  if (conf$config$layer_region_labels=='rgn_global') {
+    gc = filter(gc, !cntry_key %in% cntry_landlocked)
+    if (sum(!gc$cntry_key %in% cntry_rgn$cntry_key) != 0){
+      stop(sprintf('LIV_ECO trend missing country to region lookup for: %s.', paste(setdiff(gc$cntry_key, cntry_rgn$cntry_key), collapse=', ')))
+    }
   }
-    
+  
   # aggregate countries to regions by weights
   # TODO: migrate to using name_to_rgn()
   gr = gc %>%
@@ -1396,28 +1424,34 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
     mutate(score = ifelse(!is.na(score_w_avg), score_w_avg, score_avg)) %>%
     ungroup() %>%
     filter(!is.na(rgn_id))
-  
-  # georegional gap fill ----
+
   data = gr %>%
     filter(component==g.component) %>%
     as.data.frame() %>%
     select(rgn_id, score, w_sum)
+
+  # georegional gap fill ----
+  if (conf$config$layer_region_labels=='rgn_global') {
+    
+    # georegional gapfill, and output gapfill_georegions attributes
+    if (!file.exists('temp')) dir.create('temp', recursive=T)
+    csv = sprintf('temp/eez2013_%s-trend-gapfill-georegions.csv', subgoal)
+    rg = gapfill_georegions(
+      data              = data,
+      fld_id            = 'rgn_id',
+      fld_value         = 'score',
+      fld_weight        = 'w_sum',
+      georegions        = georegions,    
+      ratio_weights     = FALSE,
+      georegion_labels  = NULL,
+      r0_to_NA          = TRUE, 
+      attributes_csv    = csv)
+    
+  } else {
+    rg = data
+  }
   
-  # georegional gapfill, and output gapfill_georegions attributes
-  if (!file.exists('temp')) dir.create('temp', recursive=T)
-  csv = sprintf('temp/eez2013_%s-trend-gapfill-georegions.csv', subgoal)
-  rg = gapfill_georegions(
-    data              = data,
-    fld_id            = 'rgn_id',
-    fld_value         = 'score',
-    fld_weight        = 'w_sum',
-    georegions        = georegions,    
-    ratio_weights     = FALSE,
-    georegion_labels  = NULL,
-    r0_to_NA          = TRUE, 
-    attributes_csv    = csv)
-  
-  trend = rg %>% 
+  trend = rg %>%
     select(region_id=rgn_id, score) %>%    
     mutate(
       goal      = subgoal,
