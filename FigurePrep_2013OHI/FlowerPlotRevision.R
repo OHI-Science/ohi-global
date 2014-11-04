@@ -1,42 +1,39 @@
 #####################################
 ## Getting the data together
 #####################################
-library(RCurl)
-library(plyr)
 library(dplyr)
-library(reshape2)
 require('RColorBrewer')
 
-source("C:\\Users\\Melanie\\Desktop\\NCEAS\\OHI R scripts\\FlowerPlotFunction.R")
-source("http://nceas.ucsb.edu/~frazier/functions/sort.txt")
+source("../ohidev/report/FlowerPlotFunction/FlowerPlotFunction.R")
 
-setwd("N:/git-annex/Global/FigurePrep_2013OHI")
+save_file <- "N:/git-annex/Global/FigurePrep_2013OHI"
 
-
-OHIscores2013 <- read.csv("Data2013_round0.csv")  
-OHIscores2012 <- read.csv("Data2012_round0.csv")
+OHIscores2013 <- read.csv("FigurePrep_2013OHI/Data2013_round0.csv")  
+OHIscores2012 <- read.csv("FigurePrep_2013OHI/Data2012_round0.csv")
 
 ## function to organize the data:
 organizeData <- function(FlowerData){
 FlowerData$code[FlowerData$Country.EEZ == "Global (area-weighted average)"] <- 0
-#FlowerData <- subset(FlowerData, Country.EEZ!="Global (EEZ average)")
-FlowerData <- rename(FlowerData, c(code="rgn_id", Country.EEZ="rgn_nam"))
-FlowerData <- subset(FlowerData, select=c(rgn_id, rgn_nam, Index, FIS, MAR, AO, NP,
-                                      CS, CP, TR, LIV, ECO, ICO, LSP, CW, HAB, SPP))
-FlowerData <- rename(FlowerData, c(NP= "Natural Products",
-                               AO= "Artisanal Fishing \n Opportunities",
-                               MAR="Mariculture",
-                               FIS="Fisheries",
-                               SPP="Species",
-                               HAB="Habitats",
-                               CW="Clean Waters",
-                               LSP="Lasting Special \n Places",
-                               ICO="Iconic \n Species",
-                               ECO="Economies",
-                               LIV="Livelihoods",
-                               TR= "Tourism & \n Recreation",
-                               CP="Coastal \n Protection",
-                               CS="Carbon Storage"))}
+
+FlowerData <- FlowerData %>%
+  rename('rgn_id'=code, 'rgn_nam'=Country.EEZ) %>%
+  select(rgn_id, rgn_nam, Index, FIS, MAR, AO, NP,
+         CS, CP, TR, LIV, ECO, ICO, LSP, CW, HAB, SPP) %>%
+  rename("Natural Products"=NP, 
+         "Artisanal Fishing \n Opportunities" = AO,
+         "Mariculture" = MAR,
+          "Fisheries" = FIS,
+         "Species" = SPP,
+         "Habitats" = HAB,
+          "Clean Waters" = CW,
+         "Lasting Special \n Places" = LSP,
+          "Iconic \n Species" = ICO,
+          "Economies" = ECO,
+         "Livelihoods" = LIV,
+         "Tourism & \n Recreation"= TR,
+         "Coastal \n Protection" = CP,
+         "Carbon Storage" = CS)
+}
 
 OHIscores2013 <- organizeData(OHIscores2013)
 OHIscores2012 <- organizeData(OHIscores2012)
@@ -90,7 +87,7 @@ aster(lengths=unlist(ifelse(is.na(data[4:17]), 100, data[4:17])),
 
 # 2013 index
 data <- OHIscores2013[OHIscores2013$rgn_id == 0,]
-png(file="figs/Index_2013.png", 
+png(file= file.path(save_file, "figs/Index_2013.png"), 
     res=300, height=8, width=8, units="in")
 par(mfrow=c(1,1))
 PlotFunction(data)
@@ -99,7 +96,7 @@ dev.off()
 
 # 2012 index
 data <- OHIscores2012[OHIscores2012$rgn_id == 0,]
-png(file="figs\\Index_2012.png", 
+png(file=file.path(save_file, "figs/Index_2012.png"), 
     res=300, height=8, width=8, units="in")
 par(mfrow=c(1,1))
 PlotFunction(data)

@@ -3,15 +3,21 @@
 ### R script to create tables for data
 ### Melanie Frazier Mar 6 2014
 #######################################################################
+# ##NOTE the 2014-10-21 and 2014-10-22 data are the same:
+# data21 <- read.csv('global2014/scores_Radical_2014-10-21.csv') %>%
+#   select(scenario, goal, dimension, region_id, value21=value)
+#   
+# data22 <- read.csv('global2014/scores_Radical_2014-10-22.csv') %>%
+#   select(scenario, goal, dimension, region_id, value22=value) %>%
+#   left_join(data21) %>%
+#   mutate(diff=value22-value21)
+# summary(data22)  
 
 ## Downloading packages
 library(ggplot2)
 library(grid)
-library(plyr)
 library(dplyr)
-library(RCurl)
-library(reshape2)
-library(lme4)
+library(tidyr)
 library(colorspace)
 library(RColorBrewer)
 
@@ -20,75 +26,57 @@ source("http://nceas.ucsb.edu/~frazier/functions/sort.txt")
 #sort.data.frame
 #write.excel
 #read.excel
-setwd("N:/git-annex/Global/FigurePrep_2013OHI")
+save_dir <- "N:/git-annex/Global/FigurePrep_2013OHI"
 
 #####################
 ## Creating table S27
 #### OHI 2013 summary data:
 
-OHIscores2012 <- read.csv("C:/Users/Melanie/Github/ohi-global/eez2012/scores2012_Oct22_2014.csv")  
-OHIscores2013 <- read.csv("C:/Users/Melanie/Github/ohi-global/eez2013/scores2013_Oct22_2014.csv")
+OHIscores2012 <- read.csv("C:/Users/Melanie/Github/ohi-global/eez2012/scores2012_Oct22_2014.csv", 
+                          stringsAsFactors=FALSE)  
+OHIscores2013 <- read.csv("C:/Users/Melanie/Github/ohi-global/eez2013/scores2013_Oct22_2014.csv",
+                          stringsAsFactors=FALSE)
 OHIscores2012$scenario <- "2012"  
 OHIscores2013$scenario <- "2013"  
 OHIscores <- rbind(OHIscores2012, OHIscores2013)
 
 # region names and areas:
-rgnNames <- read.csv("N:/model/GL-NCEAS-OceanRegions_v2013a/data/rgn_details.csv")  
-rgnAreas <- read.csv("N:/model/GL-NCEAS-OceanRegions_v2013a/data/rgn_areas.csv")  
+rgnNames <- read.csv("N:/model/GL-NCEAS-OceanRegions_v2013a/data/rgn_details.csv", 
+                     stringsAsFactors=FALSE)  
+rgnAreas <- read.csv("N:/model/GL-NCEAS-OceanRegions_v2013a/data/rgn_areas.csv", 
+                     stringsAsFactors=FALSE)  
 
 
 DataSummary <- function(Measure="score", Date="2013", round=0){
-Measure = "score"
-Date = "2013"
-round = 0
+# Measure = "score"
+# Date = "2013"
+# round = 0
 
 # getting data in correct format:
-scores <- OHIscores[OHIscores$dimension %in% c(Measure), ]
-scores <- scores[scores$scenario==Date, ] 
-scoresMelt <- melt(scores, id=c("scenario", "goal", "dimension", "region_id"))
-scoresCast <- dcast(scoresMelt, region_id ~ variable + goal, mean, drop=FALSE) #N=222
-names(scoresCast) <- gsub("score_", "", names(scoresCast))
-
 # join with region name
-rgnNames <- subset(rgnNames, select=c(rgn_id, rgn_nam))
-rgnNames <- plyr::rename(rgnNames, c(rgn_id="region_id"))
-scoresCast <- join(scoresCast, rgnNames, by="region_id")
+rgnNames <- rgnNames %>%
+  select(region_id=rgn_id, rgn_nam)
 
-# # join with area for weighted average
-# rgnAreas <- subset(rgnAreas, select=c(rgn_id, area_km2))
-# rgnAreas <- rename(rgnAreas, c(rgn_id="region_id"))
-# scoresCast <- join(scoresCast, rgnAreas, by="region_id")
-# 
-# EEZaverage <- apply(scoresCast[-1, 2:20], 2, function(x) mean(x, na.rm=TRUE))
-# EEZaverage <- data.frame(t(EEZaverage))
-# EEZaverage$region_id <- 0.5
-# # following is the area weighted mean which matches the region_id=0 data:
-# # apply(scoresCast[-1, 2:19], 2, weighted.mean, scoresCast$area_km2[-1], na.rm=TRUE) #for A0=97.5
-# 
-# scoresCast <- rbind.fill(scoresCast, EEZaverage)
-scoresCast <- sort.data.frame(scoresCast, by= ~region_id)
+scores <- OHIscores %>% 
+  filter(dimension %in% Measure) %>%
+  filter(scenario %in% Date) %>%
+  spread(goal, score) %>%
+  left_join(rgnNames, by="region_id") %>%
+  arrange(region_id) %>%
+  select(code=region_id, "Country/EEZ"=rgn_nam, Index, FIS, FP, MAR,
+         AO, NP, CS, CP, LIV, LE, ECO, TR, ICO, SP,
+         LSP, CW, HAB, BD, SPP) 
 
-#head(scoresCast)
-
-scoresCast <- subset(scoresCast, select=c(region_id, rgn_nam, Index, FIS, FP, MAR,
-                                          AO, NP, CS, CP, LIV, LE, ECO, TR, ICO, SP,
-                                          LSP, CW, HAB, BD, SPP))
-
-
-scoresCast$rgn_nam <- as.character(scoresCast$rgn_nam)
-scoresCast$rgn_nam[scoresCast$region_id==0] <- "Global (area-weighted average)"
-#scoresCast$rgn_nam[scoresCast$region_id==0.5] <- "Global (EEZ average)"
-scoresCast$region_id[scoresCast$region_id==0] <- NA
-#scoresCast$region_id[scoresCast$region_id==0.5] <- NA
-scoresCast <- rename(scoresCast, c("region_id"="code", "rgn_nam"="Country/EEZ"))
-scoresCast[, 3:21] <- apply(scoresCast[, 3:21], 2, function(x)round(x, round))
-scoresCast
+scores$"Country/EEZ"[scores$code==0] <- "Global (area-weighted average)"
+scores$code[scores$code==0] <- NA
+scores[, 3:21] <- apply(scores[, 3:21], 2, function(x)round(x, round))
+scores
 }
 
-scoresCast2013 <- DataSummary(Measure="score", Date="2013", round=0)
-#write.csv(scoresCast2013, "Data2013_round0.csv", row.names=FALSE)
-scoresCast2012 <- DataSummary(Measure="score", Date="2012", round=0)
-#write.csv(scoresCast2012, "Data2012_round0.csv", row.names=FALSE)
+scores2013 <- DataSummary(Measure="score", Date="2013", round=0)
+#write.csv(scores2013, "FigurePrep_2013OHI/Data2013_round0.csv", row.names=FALSE, na="")
+scores2012 <- DataSummary(Measure="score", Date="2012", round=0)
+#write.csv(scores2012, "FigurePrep_2013OHI/Data2012_round0.csv", row.names=FALSE, na="")
 
 
 #formatting in word:
@@ -127,17 +115,18 @@ scoresCast2013[grep("France", scoresCast2013$"Country/EEZ"),]
 ###################################################
 ## Difference between 2012 and 2013:
 ###################################################
-scoresCast2012_round1 <- DataSummary(Measure="score", Date="2012", round=1)
-scoresCast2013_round1 <- DataSummary(Measure="score", Date="2013", round=1)
+scores2012_round1 <- DataSummary(Measure="score", Date="2012", round=1)
+scores2013_round1 <- DataSummary(Measure="score", Date="2013", round=1)
 
 #check to make sure the data are consistent
-scoresCast2012_round1$code==scoresCast2013_round1$code #should all be true
+scores2012_round1$code==scores2013_round1$code #should all be true
 
 #determine difference 
-scoresDiff <- scoresCast2013_round1[ ,3:21] - scoresCast2012_round1[ ,3:21]
+scoresDiff <- scores2013_round1[ ,3:21] - scores2012_round1[ ,3:21]
 
 scoresDiff2 <- as.matrix(scoresDiff)
 mean(scoresDiff2, na.rm=TRUE)
+
 sums <- data.frame(apply(scoresDiff2, 1, sum, na.rm=TRUE))
 names(sums)[1] <- "sumScores"
 ggplot(sums, aes(x=sumScores))+
@@ -146,8 +135,8 @@ ggplot(sums, aes(x=sumScores))+
   labs(x="Sum of score differences (2013-2012)", y="Number of countries")
 #ggsave("C:\\Users\\Melanie\\Desktop\\BenTasksDec52013\\Hist of Diffs.png")
 
-scoresDiff <- cbind(scoresCast2012[,1:2], scoresDiff)
-write.csv(scoresDiff, "TableDiffs2013_2012.csv", row.names=FALSE)
+scoresDiff <- cbind(scores2012[,1:2], scoresDiff)
+write.csv(scoresDiff, "TableDiffs2013_2012.csv", row.names=FALSE, na="")
 # To add to an existing table in Word (from Excel):
 # paste option merge with table
 # For whatever reason: I don't think the following works anymore:
@@ -240,9 +229,53 @@ ggplot(subset(eez2012_2013, dimension %in% c("future", 'pressures', "resilience"
 hdi <- read.csv("C:\\Users\\Melanie\\Desktop\\NCEAS\\Projects\\OHI 2013\\GL-UNDP-HDI_v2012\\data\\HDI_mrf.csv")  
 hdi <- rename(hdi, c(rgn_id_2013="code", HDI="hdi"))
 
+# countries to regions
+
+cntry_rgn <- read.csv('eez2014/layers/cntry_rgn.csv', stringsAsFactors=FALSE)
+rgn_labels <- read.csv('eez2014/layers/rgn_labels.csv', stringsAsFactors=FALSE) %>%
+  select(rgn_id, rgn_name=label)
+
+cntry_rgn = cntry_rgn %>%
+  select(rgn_id, cntry_key) %>%
+  left_join(rgn_labels, by="rgn_id") %>%
+  arrange(rgn_name, cntry_key) %>%
+  select(rgn_id, rgn_name, cntry_key)
+
+cntry_rgn = cntry_rgn %>%
+  mutate(
+    cntry_key = revalue(cntry_key, c(
+      'SCG'            = 'MNE',  # used to be Serbia (no coast) and Montenegro (has coast) in Nature 2012
+      'Aruba'          = 'ABW',  # ABW and ANT EEZs got split...
+      'Bonaire'        = 'ANT',
+      'Curacao'        = 'ANT',
+      'Sint Eustatius' = 'ANT',
+      'Saba'           = 'ANT',
+      'Brunei'         = 'BRN',  # Brunei new country in Malaysia
+      'Malaysia'       = 'MYS'))) %>%
+  rbind_list(
+    data.frame(rgn_id=221, rgn_name='Northern Saint-Martin', cntry_key='BLM'),  # BLM is Saint Barthélemy, included within Northern Saint-Martin (MAF)
+    data.frame(rgn_id=209, rgn_name=                'China', cntry_key='HKG'),  # add Hong Kong to China (CHN)
+    data.frame(rgn_id=209, rgn_name=                'China', cntry_key='MAC'))  # add Macau to China (CHN)
+
+cntry_landlocked = c('BDI','BOL','BWA','CHE','LUX','MKD','MWI','PRY','PSE','SCG','SVK','SWZ','TKM','UGA','ZMB')
+
 # data for GDP
 # GDP = Gross Domestic Product (current $USD)
-gdp <- read.csv("N:/model/GL-WorldBank-Statistics_v2012/data/rgn_wb_gdp_2013a.csv")  
+gdp <- read.csv("eez2013/layers/le_gdp.csv") 
+
+gdp <- gdp %>%
+  left_join(cntry_rgn, by=('cntry_key')) %>%
+  filter(!(cntry_key %in% cntry_landlocked)) %>%
+  group_by(year, rgn_id) %>%
+  summarize(usd=sum(usd)) %>%
+  select(rgn_id, year, usd)
+
+gdp2010 <-  gdp %>%
+  filter(year==2010)
+gdp2011 <-  gdp %>%
+  filter(year==2011)
+use2010 <- setdiff(gdp2010$cntry_key, gdp2011$cntry_key)
+
 table(gdp$year)
 gdp <- gdp[gdp$year=="2011", ] #choosing most recent year
 gdp <- rename(gdp, c(rgn_id="code", USD="gdp_USD"))
