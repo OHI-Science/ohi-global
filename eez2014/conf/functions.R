@@ -364,10 +364,15 @@ ry_ref = ry %>%
     yrs = ifelse(x$trend_yrs=='4_yr',
                  (yr_max-5):(yr_max-1), # 4_yr
                  (yr_max-5):(yr_max))   # 5_yr
-    y = subset(x, year %in% yrs)
-    return(data.frame(
-      trend = round(max(min(lm(status ~ year, data=y)$coefficients[['year']] * 5, 1), -1), 2)))  
-    })
+    y = subset(x, year %in% yrs & !is.na(status))
+    # added condition for aus repo since rgns 7 & 9 have no data
+    if (nrow(y) > 1){
+      trend = round(max(min(lm(status ~ year, data=y)$coefficients[['year']] * 5, 1), -1), 2)
+    } else {
+      trend = NA
+    } 
+    return(data.frame(trend)) 
+  })
   
   # return scores
   scores = status %>%
