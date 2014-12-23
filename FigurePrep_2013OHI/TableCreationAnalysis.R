@@ -2,6 +2,9 @@
 ### NCEAS/OHI
 ### R script to create tables for data
 ### Melanie Frazier Mar 6 2014
+### NOTE: Forgot I had done this and used the analysis here:
+### N:\git-annex\Global\FigurePrep_2013OHI
+### (but for future- would be good to update from here)
 #######################################################################
 # ##NOTE the 2014-10-21 and 2014-10-22 data are the same:
 # data21 <- read.csv('global2014/scores_Radical_2014-10-21.csv') %>%
