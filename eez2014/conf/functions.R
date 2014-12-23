@@ -364,10 +364,15 @@ ry_ref = ry %>%
     yrs = ifelse(x$trend_yrs=='4_yr',
                  (yr_max-5):(yr_max-1), # 4_yr
                  (yr_max-5):(yr_max))   # 5_yr
-    y = subset(x, year %in% yrs)
-    return(data.frame(
-      trend = round(max(min(lm(status ~ year, data=y)$coefficients[['year']] * 5, 1), -1), 2)))  
-    })
+    y = subset(x, year %in% yrs & !is.na(status))
+    # added condition for aus repo since rgns 7 & 9 have no data
+    if (nrow(y) > 1){
+      trend = round(max(min(lm(status ~ year, data=y)$coefficients[['year']] * 5, 1), -1), 2)
+    } else {
+      trend = NA
+    } 
+    return(data.frame(trend)) 
+  })
   
   # return scores
   scores = status %>%
@@ -800,21 +805,28 @@ CP = function(layers){
       extent = ifelse(km2==0, NA, km2))
   
   if (nrow(d) > 0){
-    scores_CP = rbind_list(
-      # status
-      d %>% 
-        filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
-        group_by(rgn_id) %>%
-        summarize(      
-          score = pmin(1, sum(rank * health * extent) / (sum(extent) * max(rank)) ) * 100,
-          dimension = 'status'),
-      # trend
-      d %>% 
-        filter(!is.na(rank) & !is.na(trend) & !is.na(extent)) %>%
-        group_by(rgn_id) %>%
-        summarize(      
-          score = sum(rank * trend * extent) / (sum(extent)* max(rank)),
-          dimension = 'trend')) %>%
+    # status
+    scores_CP = d %>%
+      filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
+      group_by(rgn_id) %>%
+      summarize(
+        score = pmin(1, sum(rank * health * extent) / (sum(extent) * max(rank)) ) * 100,
+        dimension = 'status')
+    
+    # trend
+    d_trend = d %>%
+      filter(!is.na(rank) & !is.na(trend) & !is.na(extent))
+    if (nrow(d_trend) > 0 ){
+      scores_CP = rbind_list(
+        scores_CP,
+        d_trend %>%
+          group_by(rgn_id) %>%
+          summarize(
+            score = sum(rank * trend * extent) / (sum(extent)* max(rank)),
+            dimension = 'trend'))
+    }
+    
+    scores_CP = scores_CP %>%
       mutate(
         goal = 'CP') %>%
       select(region_id=rgn_id, goal, dimension, score)
