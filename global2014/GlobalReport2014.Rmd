@@ -1,0 +1,169 @@
+# Ocean Health Index Report
+
+## This is cool stuff, but for now, all I need to generate are the flower plots
+
+```{r debug_load, echo=F, eval=F, dependson=NULL}
+# DEBUG
+devtools::load_all('../ohicore')
+# options:
+open_html=T; overwrite=T; global_only=F
+# include:
+do_flowers=T; do_tables=F 
+# to implement...
+do_maps=F; do_histograms=F; do_paths=F; do_equations=F
+debug=F
+
+require(knitr); require(markdown)
+
+source('~/ohiprep/src/R/common.R')
+
+scenario <- 'eez2014'
+scoreDate <- "2014-10-21"
+
+# TODO: read scenario.R for this info
+conf        = read.csv(file.path(sprintf("%s/conf/goals.csv", scenario)))
+layers      = file.path(sprintf("%s/layers", scenario))
+scores      = read.csv(file.path(dir_neptune_data, sprintf("git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv",     scenario, scoreDate)))
+dir_spatial = file.path(scenario, 'spatial')
+
+ # filename = 'report.html'; directory='~/github/clip-n-ship/alb/alb2014/reports'
+dir_report  = file.path(dir_neptune_data, sprintf('git-annex/Global/NCEAS-OHI-Scores-Archive/reports/%s', scenario)) 
+
+
+# knitr options
+opts_chunk$set(dependson='init',echo=F,cache=F,fig.width=8,fig.height=5)
+options(markdown.HTML.options=c('hard_wrap','use_xhtml','smartypants','toc')) # exclude 'base64_images'
+ohi.markdown.css = ifelse(
+  file.exists(system.file('report/markdown.css', package='ohicore')),
+  system.file(     'report/markdown.css', package='ohicore'),
+  system.file('inst/report/markdown.css', package='ohicore'))
+
+ohi.options <- function() {
+  double.digits <- 15 # <- floor(log10(.Machine$double.base^.Machine$double.digits)) 
+  options(digits=double.digits)
+  options(stringsAsFactors=FALSE) # to prevent factors
+  options(width=120) # for outputting wide columns
+  options(
+    rstudio.markdownToHTML = 
+      function(inputFile, outputFile) {      
+      # example: eg /var/data/ohi/model/GL-NCEAS-Pressures_Matrix/report9.Rmd
+      # see: http://www.rstudio.com/ide/docs/authoring/markdown_custom_rendering
+      # original: '/Applications/RStudio.app/Contents/Resources/resources/markdown.css'
+      markdownToHTML(inputFile, options=getOption('markdown.HTML.options'), outputFile, stylesheet=ohi.markdown.css)})
+    options()
+}
+opt_old = options(ohi.options())
+
+# get goals for flowers, all and specific to weights
+goals.all = arrange(conf, order_color)[['goal']]
+
+# get colors for aster, based on 10 colors, but extended to all goals. subselect for goals.wts
+cols.goals.all = colorRampPalette(RColorBrewer::brewer.pal(10, 'Spectral'), space='Lab')(length(goals.all))
+names(cols.goals.all) = goals.all
+
+# get subgoals and goals, not supragoals, for doing flower plot
+goals_supra = na.omit(unique(conf$parent))
+wts = with(subset(conf, !goal %in% goals_supra, c(goal, weight)), setNames(weight, goal))
+goal_labels = gsub('\\n', '\n', with(conf, setNames(name_flower, goal))[names(wts)], fixed=T)
+
+# region names, ordered by GLOBAL and alphabetical
+rgn_names = rbind(
+  data.frame(
+    region_id=0, 
+    rgn_name='GLOBAL'),
+  read.csv(file.path(layers, 'rgn_labels.csv')) %>%
+    filter(type=="eez") %>%
+    filter(label != "DISPUTED") %>%
+    select(
+      region_id=rgn_id, 
+      rgn_name=label)  %>% 
+    arrange(rgn_name))
+
+# determine regions
+if (global_only){
+  rgns = 0
+} else {
+  rgns = rgn_names$region_id
+}
+
+# directory to store figures
+dir_fig = file.path(dir_report, 'figures')
+dir.create(dir_fig, showWarnings=F)
+
+# use factors to sort by goal and dimension in scores
+conf = arrange(conf, order_hierarchy)
+scores$goal_label = factor(
+  scores$goal, 
+  levels = c('Index', conf$goal),
+  labels = c('Index', ifelse(!is.na(conf$parent),
+                             sprintf('. %s', conf$name),
+                             conf$name)),
+  ordered=T)
+
+### this is now in the config.R file it appears...
+# scores$dimension_label = factor(
+#   scores$dimension,
+#   levels = names(conf$description),
+#   ordered=T)
+```
+
+```{r flowers, results='asis'}
+
+# loop through regions
+for (rgn_id in rgns){ # rgn_id=0
+   
+  # header md
+  rgn_name = subset(rgn_names, region_id==rgn_id, rgn_name, drop=T)
+  cat(sprintf('\n## %s (%d)\n\n', rgn_name, rgn_id))
+  
+  # flower plot ----
+  if (do_flowers){
+    
+    cat('\n### Flower\n\n')
+  
+    # region scores    
+    g_x = with(subset(scores, dimension=='score' & region_id==rgn_id ),
+             setNames(score, goal))[names(wts)]
+    x   = subset(scores, dimension=='score' & region_id==rgn_id & goal == 'Index', score, drop=T)
+    
+    fig_pdf = sprintf('%s/flowerPlots/flower_%s.pdf', dir_fig, gsub(' ','_', rgn_name))
+    fig_png = sprintf('%s/flowerPlots/flower_%s.png', dir_fig, gsub(' ','_', rgn_name))
+    res=72
+    if (overwrite | !file.exists(fig_png)){
+      png(fig_png, width=res*7, height=res*7)
+#     if (overwrite | !file.exists(fig_pdf)){
+#       pdf(fig_pdf)
+
+PlotFlower(main = rgn_name,
+                 lengths=ifelse(
+                   is.na(g_x),
+                   100,
+                   g_x),
+                 widths=wts,
+                 fill.col=ifelse(
+                   is.na(g_x), 
+                   'grey80', 
+                   cols.goals.all[names(wts)]),
+                 labels  =ifelse(
+                   is.na(g_x), 
+                   paste(goal_labels, '-', sep='\n'), 
+                   paste(goal_labels, round(x), sep='\n')),
+                 center=round(x),
+                 max.length = 100, disk=0.4, label.cex=0.9, label.offset=0.155, cex=2.2, cex.main=2.5)
+      dev.off()      
+      #system(sprintf('convert -density 150x150 %s %s', fig_pdf, fig_png)) # imagemagick's convert
+    }
+    
+    # flower md
+    cat(sprintf('![flower plot of %s](figures/%s)\n\n', rgn_name, basename(fig_png)))
+  }
+  
+  # table md
+  if (do_tables){    
+    cat('\n### Scores\n\n')    
+    x = reshape2::dcast(subset(scores, region_id==rgn_id), goal_label ~ dimension_label, value.var='score')
+    row.names(x) = x$goal_label; x = x[, names(x)!='goal_label']    
+    cat(knitr::kable(x, format='markdown'), sep='\n')
+  }
+}
+```
