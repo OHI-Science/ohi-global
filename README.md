@@ -13,6 +13,8 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 
 * **Pressures: General** Our pressure layers for 2008 and 2013 are typically aggregated data for several years (e.g., sst=2000-2005 and 2005-2010, etc).  So, is it worth updating these?  If so, what is the best approach? 
 
+* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Need to learn how the data was modeled into UV...is this code available?
+* 
 ###To do soon:
 
 * **gap-filling script** Did we want to improve this? (Julie question)
@@ -27,17 +29,19 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 
 * **ICO** New data are available.  Rethink this calculation?  For HS and Antarctica we ran the SPP model with the subset of species that were iconic.
 
-* **SPP** Updates to Aquamaps and IUCN. How did we get Aquamaps data in the past (did we have to request it)? We might be able to download Aquamaps data on a cell by cell basis (see details on spreadsheet).  This might be a challenging one to update because it is written in Python.  But we can at least figure out what has been updated and download those data.
+* **SPP** Updates to Aquamaps and IUCN. How did we get Aquamaps data in the past (did we have to request it)? We might be able to download Aquamaps data on a cell by cell basis (see details on spreadsheet).  This might be a challenging one to update because it is written in Python.  But we can at least figure out what has been updated and download those data.  Some discussion of whether to alter this model (issue #366).  At this point, we are going to calculate this goal using the original method and the method that is used by ICO (i.e., averaging IUCN of species located within eez - no area weighting).
 
 * **NP** New harvest data is available.  This would be a good one for Casey to practice on (but first redo the gap-filling script?).  Blast and cyanide data can't be updated (as far as I can tell).  Check that the function uses all the data called (I saw a note about that in one of the files I was looking at).  Also, check on effects of using the running mean.
 
 * **LE**  Is it better to have someone translate this from SQL to R?  Or, is it better to spend a few days seeing if we can just write this model from the ground up?
 
-* **Pressure: SLR** Jamie has these data for multiple years, but is exploring a new dataset (but hasn't had any success getting the data).
+* **Pressure: SLR** Jamie has these data for multiple years, but is exploring a new dataset (but hasn't had any success getting the data).  Update from Jamie: 
+> I recently received this response from the lead author on the paper, and attached is the data sent to me. It seems that their spatialized estimates of historical sea level rise are currently being developed for publication. I've followed up asking if they have any of it ready to share. I'm not sure we can do much with the data provided here except compare these global mean sea level estimates with the dataset we use, but we won't get at any spatial differences...
+
+> I have a feeling we won't get the spatialized data until it is published but will update with any new info.
+Conclusion: use the data that she extracted and see if this is available in 2016 (check with: Hay, Carling <carlinghay@fas.harvard.edu>).  
 
 * **Pressure: SST** Data is available for new year.  Might be worth extracting other years.  (check on emails Feb 9 2014)
-
-* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Need to learn how the data was modeled into UV...is this code available?
 
 * **Pressure: Commercial high bycatch** Is this the sum of pelagic high bycatch and demersal non-destructive high bycatch pressures?  In CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 FAO data.  I suspect the 2008 data were used to calculate this pressure.  So we could easily update with 2013....is it worth trying to update further?
 
