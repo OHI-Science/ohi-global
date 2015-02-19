@@ -5,6 +5,8 @@ Here is where we are (I have only appraised the goals and about half of the pres
 Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPYu9PgqsRTpkXikqVuDtdKZUN5Vs1yOsP5Do5ys/edit?usp=sharing) to a summary of each data layer so far.
 
 ###Working on now:
+* **Organizing pressure reference points** Create a table that indicates the reference points used to rescale the pressures (https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/1FMSqD4vBxYTBCsyejFnOdw-MfE_DgGetZ3B0CS8-fto/edit?usp=sharing).
+
 * **Summarizing the information**  Still need to get through about half of the pressures and all of the resilience measures.  I also need to look through issues and "new data" references.
 
 * **LSP** Updates to these data.  Casey is looking into running the python script [Issue 355](https://github.com/OHI-Science/issues/issues/355)
@@ -14,7 +16,7 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 * **Pressures: General** Our pressure layers for 2008 and 2013 are typically aggregated data for several years (e.g., sst=2000-2005 and 2005-2010, etc).  So, is it worth updating these?  If so, what is the best approach? 
 
 * **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Need to learn how the data was modeled into UV...is this code available?
-* 
+
 ###To do soon:
 
 * **gap-filling script** Did we want to improve this? (Julie question)
