@@ -17,9 +17,15 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 
 * **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Met with Jamie on Friday to discuss this goal.  We figured out how it was calculated in the past and Jamie is writing an issue to describe this.
 
-* **Pressure: SLR** Jamie has been working on these data.  We have been discussing how to rescale these data (see this [issue](https://github.com/OHI-Science/issues/issues/374)), and I think the final decision is to use the 99.99th quantile.  Also, this is a layer that will be updated for this year, but it sounds like there is no multi-year data.
+* **Pressure: SLR** Jamie has been working on these data.  We have been discussing how to rescale these data (see this [issue](https://github.com/OHI-Science/issues/issues/374)), and I think the final decision is to use the 99.99th quantile.  Also, this is a layer that will be updated for this year, but the data are aggregated across years so there will be no multi-year data. Jamie explored using a different SLR dataset, but this didn't go anywhere:
+ 
+> I recently received this response from the lead author on the paper, and attached is the data sent to me. It seems that their spatialized estimates of historical sea level rise are currently being developed for publication. I've followed up asking if they have any of it ready to share. I'm not sure we can do much with the data provided here except compare these global mean sea level estimates with the dataset we use, but we won't get at any spatial differences...
+
+> I have a feeling we won't get the spatialized data until it is published but will update with any new info.
+Conclusion: use the data that she extracted and see if this is available in 2016 (check with: Hay, Carling <carlinghay@fas.harvard.edu>).  
 
 ###To do soon:
+* **ohi-global** Update to include 2015 analysis
 
 * **gap-filling script** Did we want to improve this? (Julie question)
 
@@ -38,12 +44,6 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 * **NP** New harvest data is available.  This would be a good one for Casey to practice on (but first redo the gap-filling script?).  Blast and cyanide data can't be updated (as far as I can tell).  Check that the function uses all the data called (I saw a note about that in one of the files I was looking at).  Also, check on effects of using the running mean.  Here is an [issue](https://github.com/OHI-Science/issues/issues/370) describing the function and data that is read by the Toolbox. 
 
 * **LE**  Is it better to have someone translate this from SQL to R?  Or, is it better to spend a few days seeing if we can just write this model from the ground up?
-
-* **Pressure: SLR** Jamie has these data for multiple years, but is exploring a new dataset (but hasn't had any success getting the data).  Update from Jamie: 
-> I recently received this response from the lead author on the paper, and attached is the data sent to me. It seems that their spatialized estimates of historical sea level rise are currently being developed for publication. I've followed up asking if they have any of it ready to share. I'm not sure we can do much with the data provided here except compare these global mean sea level estimates with the dataset we use, but we won't get at any spatial differences...
-
-> I have a feeling we won't get the spatialized data until it is published but will update with any new info.
-Conclusion: use the data that she extracted and see if this is available in 2016 (check with: Hay, Carling <carlinghay@fas.harvard.edu>).  
 
 * **Pressure: SST** Data is available for new year.  Might be worth extracting other years.  (check on emails Feb 9 2014)
 
