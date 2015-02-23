@@ -5,17 +5,19 @@ Here is where we are (I have only appraised the goals and about half of the pres
 Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPYu9PgqsRTpkXikqVuDtdKZUN5Vs1yOsP5Do5ys/edit?usp=sharing) to a summary of each data layer so far.
 
 ###Working on now:
+* **Summarizing the information**  Still need to get through about half of the pressures and all of the resilience measures.  I also need to look through issues and "new data" references.  As I go through the data, I will also record instances of gap-filling in this [issue](https://github.com/OHI-Science/issues/issues/351).
+
 * **Organizing pressure reference points** Create a table that indicates the reference points used to rescale the pressures (https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/1FMSqD4vBxYTBCsyejFnOdw-MfE_DgGetZ3B0CS8-fto/edit?usp=sharing).
 
-* **Summarizing the information**  Still need to get through about half of the pressures and all of the resilience measures.  I also need to look through issues and "new data" references.
+* **LSP** Updates to these data.  Casey is running the python script [Issue 355](https://github.com/OHI-Science/issues/issues/355).  We are considering doing the data extraction using R.  I will need to get the script ready.
 
-* **LSP** Updates to these data.  Casey is looking into running the python script [Issue 355](https://github.com/OHI-Science/issues/issues/355)
-
-* **Pressure: Acid** Jamie is getting these spatial data together.
+* **Pressure: Acid** Jamie is getting these spatial data together.  I have a question about whether there are biological data we could use to scale the data.
 
 * **Pressures: General** Our pressure layers for 2008 and 2013 are typically aggregated data for several years (e.g., sst=2000-2005 and 2005-2010, etc).  So, is it worth updating these?  If so, what is the best approach? 
 
-* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Need to learn how the data was modeled into UV...is this code available?
+* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Met with Jamie on Friday to discuss this goal.  We figured out how it was calculated in the past and Jamie is writing an issue to describe this.
+
+* **Pressure: SLR** Jamie has been working on these data.  We have been discussing how to rescale these data (see this [issue](https://github.com/OHI-Science/issues/issues/374)), and I think the final decision is to use the 99.99th quantile.  Also, this is a layer that will be updated for this year, but it sounds like there is no multi-year data.
 
 ###To do soon:
 
@@ -25,7 +27,7 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 
 * **Update ohidev** get away from using plyr and change %.% to %>%.  Merge ohidev draft into master and make sure there are no changes to scores.  
 
-* **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models, and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.
+* **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.
 
 * **HAB CS CP** Sea ice is probably the only habitat we can update.  These data are ready and available.  These data should be reorganized such that the habitat layers are called separately by the Toolbox.
 
@@ -33,7 +35,7 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 
 * **SPP** Updates to Aquamaps and IUCN. How did we get Aquamaps data in the past (did we have to request it)? We might be able to download Aquamaps data on a cell by cell basis (see details on spreadsheet).  This might be a challenging one to update because it is written in Python.  But we can at least figure out what has been updated and download those data.  Some discussion of whether to alter this model (issue #366).  At this point, we are going to calculate this goal using the original method and the method that is used by ICO (i.e., averaging IUCN of species located within eez - no area weighting).
 
-* **NP** New harvest data is available.  This would be a good one for Casey to practice on (but first redo the gap-filling script?).  Blast and cyanide data can't be updated (as far as I can tell).  Check that the function uses all the data called (I saw a note about that in one of the files I was looking at).  Also, check on effects of using the running mean.
+* **NP** New harvest data is available.  This would be a good one for Casey to practice on (but first redo the gap-filling script?).  Blast and cyanide data can't be updated (as far as I can tell).  Check that the function uses all the data called (I saw a note about that in one of the files I was looking at).  Also, check on effects of using the running mean.  Here is an [issue](https://github.com/OHI-Science/issues/issues/370) describing the function and data that is read by the Toolbox. 
 
 * **LE**  Is it better to have someone translate this from SQL to R?  Or, is it better to spend a few days seeing if we can just write this model from the ground up?
 
@@ -60,7 +62,9 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 
 * **AO** The new ppppcgdp data is not yet available.
 
-* **FP** Update relative FIS to MAR when updates to these data
+* **FP** Update relative FIS to MAR when updates to these data.
+* 
+* * **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.
 
 
 ###Done (or not doing)
