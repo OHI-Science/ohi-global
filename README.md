@@ -15,7 +15,7 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 
 * **Pressures: General** Our pressure layers for 2008 and 2013 are typically aggregated data for several years (e.g., sst=2000-2005 and 2005-2010, etc).  So, is it worth updating these?  If so, what is the best approach? 
 
-* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Met with Jamie on Friday to discuss this goal.  We figured out how it was calculated in the past and Jamie is writing an issue to describe this.
+* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Met with Jamie on Friday to discuss this goal.  We figured out how it was calculated in the past and need to determine whether to use change in anomolies or anomolies for baseline (see this [issue](https://github.com/OHI-Science/issues/issues/377).
 
 * **Pressure: SLR** Jamie has been working on these data.  We have been discussing how to rescale these data (see this [issue](https://github.com/OHI-Science/issues/issues/374)), and I think the final decision is to use the 99.99th quantile.  Also, this is a layer that will be updated for this year, but the data are aggregated across years so there will be no multi-year data. Jamie explored using a different SLR dataset, but this didn't go anywhere:
  
@@ -45,7 +45,7 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 
 * **LE**  Is it better to have someone translate this from SQL to R?  Or, is it better to spend a few days seeing if we can just write this model from the ground up?
 
-* **Pressure: SST** Data is available for new year.  Might be worth extracting other years.  (check on emails Feb 9 2014)
+* **Pressure: SST** Data is available for new year.  Might be worth extracting other years.  (check on emails Feb 10 2014 - discussion of how data were analyzed)
 
 * **Pressure: Commercial high bycatch** Is this the sum of pelagic high bycatch and demersal non-destructive high bycatch pressures?  In CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 FAO data.  I suspect the 2008 data were used to calculate this pressure.  So we could easily update with 2013....is it worth trying to update further?
 
@@ -63,8 +63,8 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 * **AO** The new ppppcgdp data is not yet available.
 
 * **FP** Update relative FIS to MAR when updates to these data.
-* 
-* * **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.
+
+* **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.
 
 
 ###Done (or not doing)
