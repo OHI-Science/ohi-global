@@ -1,6 +1,7 @@
 Preparing for 2015
 ============
-Here is where we are (I have only appraised the goals and about half of the pressures so far).
+Here is where we are (I have only appraised the goals and about half of the pressures so far).  General note about pressures:
+N:\model\GL-NCEAS-Pressures_v2013a (shows that new 2013 pressures data was incorporated into 2014 analysis, I didn't think it had been.)
 
 Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPYu9PgqsRTpkXikqVuDtdKZUN5Vs1yOsP5Do5ys/edit?usp=sharing) to a summary of each data layer so far.
 
@@ -9,7 +10,7 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 
 * **Organizing pressure reference points** Create a table that indicates the reference points used to rescale the pressures (https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/1FMSqD4vBxYTBCsyejFnOdw-MfE_DgGetZ3B0CS8-fto/edit?usp=sharing).
 
-* **LSP** Updates to these data.  Casey is running the python script [Issue 355](https://github.com/OHI-Science/issues/issues/355).  We are considering doing the data extraction using R.  I will need to get the script ready.
+* **LSP** Updates to these data.  Casey is running the python script [Issue 355](https://github.com/OHI-Science/issues/issues/355).  We have prepared a version of the data.  Casey is going to provide details on the process to determine whether any of the data processing should change.  I notice that the function to calculate status/trend needs to be updated (mostly to get away from reshape functions).  Casey is interested in ultimately migrating the arcGIS steps into R or other open software (I will put this in future ideas). 
 
 * **Pressure: Acid** Jamie is getting these spatial data together.  I have a question about whether there are biological data we could use to scale the data.
 
@@ -47,11 +48,9 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 
 * **Pressure: SST** Data is available for new year.  Might be worth extracting other years.  (check on emails Feb 10 2014 - discussion of how data were analyzed)
 
-* **Pressure: Commercial high bycatch** Is this the sum of pelagic high bycatch and demersal non-destructive high bycatch pressures?  In CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 FAO data.  I suspect the 2008 data were used to calculate this pressure.  So we could easily update with 2013....is it worth trying to update further?
-
-* **Pressure: Commercial low bycatch** Is this the sum of pelagic low bycatch and demersal non-destructive low bycatch pressures?  In CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 FAO data.  I suspect the 2008 data were used to calculate this pressure.  So we could easily update with 2013....is it worth trying to update further?
-
-* **Pressure: target harvest** It appears that the last analysis went to 2012, but I can't find the original data files to confirm this.  Maybe Katie knows where they are?  I will check with her.
+* **Pressure: hd_intertidal** This is coastal population 10 miles inland. Predicted data for subsequent years is available.  We used v3 which is the most recent data available on the website.  The analysis seems very complicated.  Not sure why it was done this way: 
+> The first weird thing is that the data are extracted by tmp/rgn_offshore_5km_mol.tif which seems weird.  Also, I should take a look at neptune/model/GL-NCEAS-Pressures_v2013a/tmp/impact_layers_2013_redo/coastal_population/processed_rasters/coastal_boundary_population_sum_2010_buffer_5000m_trans.tif to get a better idea of what is going on.  There is also more description in this file (although I don't fully understand this): "GL-NCEAS-Pressures_Intertidal: We projected the 2000 population density data (GPWv3 2005) into Mollweide, and then marked the edge pixels at 4.224 km resolution. To account for conflation, we extracted all edge pixels that fell within a 10km neighborhood (~2 pixels inland or offshore) referenced by our coastline model at 1km resolution. After extracting the population density edge pixels, we rescaled them using log-plus1 score max and 10 percent plus the global maximum within the edge pixels (1.1 * 122,135). We then grew our OHI regions raster inland 20 pixels, and then extracted the OHI regions using the same 10km neighborhood and 4.224 km resolution. Finally, we computed zonal statistics and use the mean as the pressures score per region."
+Would it be easier to use these data: N:\model\GL-NCEAS-CoastalPopulation_v2013\data?  And a 25 km inland area?  The CHI pressures data was used - which is 5000 m buffer and 2006 for 2012 analysis and 2010 for 2013 analysis.
 
 
 
@@ -66,14 +65,20 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 
 * **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.
 
+* **Pressure: Artisanal low bycatch** "Modeled least destructive commercial fishing practices by 2 different gear types". We can probably update this when we get new fishing data, although it depends on the data.  NOTE: the fp_art_lb_2012_NEW.csv and fp_art_lb_2013_NEW.csv are the same data.
+
+* **Pressure: target harvest** It appears that the last analysis included FAO data to 2012, but I can't find the original data files to confirm this (asking Julie about this).  Good readme: Github\ohiprep\Global\FAO-TargetedHarvest_v2012.  Assuming data go to 2012 - there are no new data updates.
+
+* **Pressure: Commercial high bycatch** Sum of pelagic high bycatch and demersal non-destructive high bycatch and demersal high bycatch pressures.  For CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 FAO data.  May be new SAUP data coming.  Will evaluate whether it is worth it to update these.
+
+* **Pressure: Commercial low bycatch** Sum of pelagic low bycatch and demersal non-destructive low bycatch pressures?  For CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 data.  May be new SAUP data coming.  Will evaluate whether it is worth it to update these.
+
 
 ###Done (or not doing)
 * **Pressure: Artisanal high bycatch** Data from *Reefs at Risk Revisited* study - which hasn't been updated.
 
-* **Pressure: Artisanal low bycatch** "Modeled least destructive commercial fishing practices by 2 different gear types" (is this something we can update?)
-
 ###Extra stuff to do if there is time! (hahahahaha)
-
+* ** LSP: Analyze in open source software.
 
 
 
