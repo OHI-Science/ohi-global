@@ -48,10 +48,12 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 
 * **Pressure: SST** Data is available for new year.  Might be worth extracting other years.  (check on emails Feb 10 2014 - discussion of how data were analyzed)
 
-* **Pressure: hd_intertidal** This is coastal population 10 miles inland. Predicted data for subsequent years is available.  We used v3 which is the most recent data available on the website.  The analysis seems very complicated.  Not sure why it was done this way: 
-> The first weird thing is that the data are extracted by tmp/rgn_offshore_5km_mol.tif which seems weird.  Also, I should take a look at neptune/model/GL-NCEAS-Pressures_v2013a/tmp/impact_layers_2013_redo/coastal_population/processed_rasters/coastal_boundary_population_sum_2010_buffer_5000m_trans.tif to get a better idea of what is going on.  There is also more description in this file (although I don't fully understand this): "GL-NCEAS-Pressures_Intertidal: We projected the 2000 population density data (GPWv3 2005) into Mollweide, and then marked the edge pixels at 4.224 km resolution. To account for conflation, we extracted all edge pixels that fell within a 10km neighborhood (~2 pixels inland or offshore) referenced by our coastline model at 1km resolution. After extracting the population density edge pixels, we rescaled them using log-plus1 score max and 10 percent plus the global maximum within the edge pixels (1.1 * 122,135). We then grew our OHI regions raster inland 20 pixels, and then extracted the OHI regions using the same 10km neighborhood and 4.224 km resolution. Finally, we computed zonal statistics and use the mean as the pressures score per region."
-Would it be easier to use these data: N:\model\GL-NCEAS-CoastalPopulation_v2013\data?  And a 25 km inland area?  The CHI pressures data was used - which is 5000 m buffer and 2006 for 2012 analysis and 2010 for 2013 analysis.
+* **Pressure: hd_intertidal** This is coastal population 10 miles inland (a proxy for intertidal pressures). Predicted data for subsequent years is available.  We used v3 which is the most recent data available on the website.  The analysis seems very complicated.  Not sure why it was done this way: 
+> The first weird thing is that the data are extracted by tmp/rgn_offshore_5km_mol.tif which seems weird.  Also, I should take a look at neptune/model/GL-NCEAS-Pressures_v2013a/tmp/impact_layers_2013_redo/coastal_population/processed_rasters/coastal_boundary_population_sum_2010_buffer_5000m_trans.tif to get a better idea of what is going on.  There is also more description in this file (although I don't fully understand this): "GL-NCEAS-Pressures_Intertidal: We projected the 2000 population density data (GPWv3 2005) into Mollweide, and then marked the edge pixels at 4.224 km resolution. To account for conflation, we extracted all edge pixels that fell within a 10km neighborhood (~2 pixels inland or offshore) referenced by our coastline model at 1km resolution. After extracting the population density edge pixels, we rescaled them using log-plus1 score max and 10 percent plus the global maximum within the edge pixels (1.1 * 122,135). We then grew our OHI regions raster inland 20 pixels, and then extracted the OHI regions using the same 10km neighborhood and 4.224 km resolution. Finally, we computed zonal statistics and use the mean as the pressures score per region." 
 
+The CHI pressures data was used - which is 5000 m buffer and 2006 data for 2012 analysis and 2010 data for 2013 analysis.
+
+Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopulation_v2013\data?  And a 25 km inland area (given that we have that buffer)?  
 
 
 ###Things to keep checking on:
@@ -73,12 +75,23 @@ Would it be easier to use these data: N:\model\GL-NCEAS-CoastalPopulation_v2013\
 
 * **Pressure: Commercial low bycatch** Sum of pelagic low bycatch and demersal non-destructive low bycatch pressures?  For CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 data.  May be new SAUP data coming.  Will evaluate whether it is worth it to update these.
 
+* **Pressure: hd_subtidal_sb:**  Ben B. had recommended not using "subtidal" because it was calculated using subtidal and soft shelf habitats (for HS we also included soft slope).  This is calculated at the region scale by summarizing the area of soft-bottom and relative proportion of destructive fishing for each eez/fao/etc and then applying the following [method](https://github.com/OHI-Science/ohiprep/blob/master/Global/HS_AQ_Pressures_HD_SB_2014/PressuresHD_subtidal_soft_bottom.png).  Questions: 1) should we apply formula at the raster scale? 2) what categories of soft-bottom do we want to include? 3) how do we incorporate new fishing data (will we have the different fishing types...or just assume equivalent increase/decrease per saup region)?
+
+* **Pressure: po_chemicals_3nm:** Wait for John to update these data. Should be straight-forward.
+
+* **Pressure: po_nutrients_3nm:** Wait for John to update these data.  Should be straight-forward.
+
+* **Pressure: sp_alien:** This was based on the Molnar 2008 paper (data on the MEOW scale).  If we continue with this approach, I don't think there are any updated.  Would it be better to use John's alien data based on shipping models?  Also, I noticed that aquamaps included invasive species.  That might be another approach - but it would be fairly difficult.
+
+* **Pressure: sp_genetic:** Trujillo data from 2008. No updates for genetic escapes, but updats on other data.  
+
+
 
 ###Done (or not doing)
 * **Pressure: Artisanal high bycatch** Data from *Reefs at Risk Revisited* study - which hasn't been updated.
 
 ###Extra stuff to do if there is time! (hahahahaha)
-* ** LSP: Analyze in open source software.
+* **LSP:** Analyze in open source software.
 
 
 
