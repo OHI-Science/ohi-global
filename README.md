@@ -6,13 +6,15 @@ N:\model\GL-NCEAS-Pressures_v2013a (shows that new 2013 pressures data was incor
 Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPYu9PgqsRTpkXikqVuDtdKZUN5Vs1yOsP5Do5ys/edit?usp=sharing) to a summary of each data layer so far.
 
 ###Working on now:
-* **Summarizing the information**  Still need to get through about half of the pressures and all of the resilience measures.  I also need to look through issues and "new data" references.  As I go through the data, I will also record instances of gap-filling in this [issue](https://github.com/OHI-Science/issues/issues/351).
+* **
 
-* **Organizing pressure reference points** Create a table that indicates the reference points used to rescale the pressures (https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/1FMSqD4vBxYTBCsyejFnOdw-MfE_DgGetZ3B0CS8-fto/edit?usp=sharing).
+* **Prepare Toolbox for 2015** I will do this soon so we can start looking at the outputs when we add new data.
+
+* **Summarizing the information**  Still need to review the resilience measures.  I also need to look through issues and "new data" references.  As I go through the data, I will also record instances of gap-filling in this [issue](https://github.com/OHI-Science/issues/issues/351).
 
 * **LSP** Updates to these data.  Casey is running the python script [Issue 355](https://github.com/OHI-Science/issues/issues/355).  We have prepared a version of the data.  Casey is going to provide details on the process to determine whether any of the data processing should change.  I notice that the function to calculate status/trend needs to be updated (mostly to get away from reshape functions).  Casey is interested in ultimately migrating the arcGIS steps into R or other open software (I will put this in future ideas). 
 
-* **Pressure: Acid** Jamie is getting these spatial data together.  I have a question about whether there are biological data we could use to scale the data.
+* **Pressure: Acid** Jamie is getting these spatial data together.  I have a question about whether there are biological data we could use to scale the data, but since we are using difference data this might be difficult as Jamie has pointed out.
 
 * **Pressures: General** Our pressure layers for 2008 and 2013 are typically aggregated data for several years (e.g., sst=2000-2005 and 2005-2010, etc).  So, is it worth updating these?  If so, what is the best approach? 
 
@@ -90,7 +92,10 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 ###Done (or not doing)
 * **Pressure: Artisanal high bycatch** Data from *Reefs at Risk Revisited* study - which hasn't been updated.
 
-###Extra stuff to do if there is time! (hahahahaha)
+* **Organizing pressure reference points** Create a table that indicates the reference points used to rescale the pressures (https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/1FMSqD4vBxYTBCsyejFnOdw-MfE_DgGetZ3B0CS8-fto/edit?usp=sharing).
+
+
+###Future improvements
 * **LSP:** Analyze in open source software.
 
 
