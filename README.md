@@ -1,24 +1,20 @@
 Preparing for 2015
 ============
-Here is where we are (I have only appraised the goals and about half of the pressures so far).  General note about pressures:
-N:\model\GL-NCEAS-Pressures_v2013a (shows that new 2013 pressures data was incorporated into 2014 analysis, I didn't think it had been.)
+Here is where we are (I still need to add resilience).  
 
 Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPYu9PgqsRTpkXikqVuDtdKZUN5Vs1yOsP5Do5ys/edit?usp=sharing) to a summary of each data layer so far.
 
 ###Working on now:
-* **
 
-* **Prepare Toolbox for 2015** I will do this soon so we can start looking at the outputs when we add new data.
+* **Prepare ohi-global for 2015** I will do this soon so we can start looking at the outputs when we add new data.
 
 * **Summarizing the information**  Still need to review the resilience measures.  I also need to look through issues and "new data" references.  As I go through the data, I will also record instances of gap-filling in this [issue](https://github.com/OHI-Science/issues/issues/351).
 
-* **LSP** Updates to these data.  Casey is running the python script [Issue 355](https://github.com/OHI-Science/issues/issues/355).  We have prepared a version of the data.  Casey is going to provide details on the process to determine whether any of the data processing should change.  I notice that the function to calculate status/trend needs to be updated (mostly to get away from reshape functions).  Casey is interested in ultimately migrating the arcGIS steps into R or other open software (I will put this in future ideas). 
+* **LSP** Updates to these data.  Casey has been working on this goal and has come up with some good improvements [Issue 355](https://github.com/OHI-Science/issues/issues/355).  I notice that the function to calculate status/trend needs to be updated (mostly to get away from reshape functions).  Casey is interested in ultimately migrating the arcGIS steps into R or other open software (I will put this in future ideas). 
 
-* **Pressure: Acid** Jamie is getting these spatial data together.  I have a question about whether there are biological data we could use to scale the data, but since we are using difference data this might be difficult as Jamie has pointed out.
+* **Pressure: Acid** Jamie is getting these spatial data together.  I have a question about whether there are biological data we could use to scale the data, but since we are using difference data Jamie has pointed out that this might be difficult.
 
-* **Pressures: General** Our pressure layers for 2008 and 2013 are typically aggregated data for several years (e.g., sst=2000-2005 and 2005-2010, etc).  So, is it worth updating these?  If so, what is the best approach? 
-
-* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Met with Jamie on Friday to discuss this goal.  We figured out how it was calculated in the past and need to determine whether to use change in anomolies or anomolies for baseline (see this [issue](https://github.com/OHI-Science/issues/issues/377).
+* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Jamie and I figured out how this was calculated in the past.  We need to determine whether we want to use the anomolies or change in anomolies for pressures (see this [issue](https://github.com/OHI-Science/issues/issues/377).
 
 * **Pressure: SLR** Jamie has been working on these data.  We have been discussing how to rescale these data (see this [issue](https://github.com/OHI-Science/issues/issues/374)), and I think the final decision is to use the 99.99th quantile.  Also, this is a layer that will be updated for this year, but the data are aggregated across years so there will be no multi-year data. Jamie explored using a different SLR dataset, but this didn't go anywhere:
  
@@ -27,14 +23,14 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 > I have a feeling we won't get the spatialized data until it is published but will update with any new info.
 Conclusion: use the data that she extracted and see if this is available in 2016 (check with: Hay, Carling <carlinghay@fas.harvard.edu>).  
 
-###To do soon:
-* **ohi-global** Update to include 2015 analysis
+* **Update ohidev** get away from using plyr and change %.% to %>%.  Merge ohidev draft into master and make sure there are no changes to scores.  I think Ben B will be doing this soon.
 
-* **gap-filling script** Did we want to improve this? (Julie question)
+* **John P** make sure things are in place so he can work on the pressure layers when the time comes.
+
+###To do soon:
+* **gap-filling script** Did we want to improve this? (https://github.com/OHI-Science/issues/issues/139)
 
 * **data visualization app** This was super handy for comparing changes among commits.
-
-* **Update ohidev** get away from using plyr and change %.% to %>%.  Merge ohidev draft into master and make sure there are no changes to scores.  
 
 * **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.
 
@@ -71,7 +67,7 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 
 * **Pressure: Artisanal low bycatch** "Modeled least destructive commercial fishing practices by 2 different gear types". We can probably update this when we get new fishing data, although it depends on the data.  NOTE: the fp_art_lb_2012_NEW.csv and fp_art_lb_2013_NEW.csv are the same data.
 
-* **Pressure: target harvest** It appears that the last analysis included FAO data to 2012, but I can't find the original data files to confirm this (asking Julie about this).  Good readme: Github\ohiprep\Global\FAO-TargetedHarvest_v2012.  Assuming data go to 2012 - there are no new data updates.
+* **Pressure: target harvest** It appears that the last analysis included FAO data to 2012, but I can't find the original data files to confirm this (asked Julie and she couldn't find the data either).  Good readme: Github\ohiprep\Global\FAO-TargetedHarvest_v2012.  Assuming data go to 2012 - there are no new data updates.
 
 * **Pressure: Commercial high bycatch** Sum of pelagic high bycatch and demersal non-destructive high bycatch and demersal high bycatch pressures.  For CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 FAO data.  May be new SAUP data coming.  Will evaluate whether it is worth it to update these.
 
@@ -85,27 +81,22 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 
 * **Pressure: sp_alien:** This was based on the Molnar 2008 paper (data on the MEOW scale).  If we continue with this approach, I don't think there are any updated.  Would it be better to use John's alien data based on shipping models?  Also, I noticed that aquamaps included invasive species.  That might be another approach - but it would be fairly difficult.
 
-* **Pressure: sp_genetic:** Trujillo data from 2008. No updates for genetic escapes, but updats on other data.  
+* **Pressure: sp_genetic:** Trujillo data from 2008. No updates for genetic escapes, but updates to FAO mariculture data which seems to be integrated in the calculation.  Can't find the script where this is calclulated.
+
+* **Pressure: ss_wgi** The data is available to update this resilience/pressure data.
+
+* **Pressure: po_chemicals** John will be updating these data
+* **Pressures: po_pathogens** Data not available, will keep checking
+* **Pressures: po_trash** Check on trash data layer.  Data is located here: N:\git-annex\globalprep\FiveGyres_MarinePlastics_CW\v2015
 
 
-
-###Done (or not doing)
+###Done
 * **Pressure: Artisanal high bycatch** Data from *Reefs at Risk Revisited* study - which hasn't been updated.
 
+###Not doing
 * **Organizing pressure reference points** Create a table that indicates the reference points used to rescale the pressures (https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/1FMSqD4vBxYTBCsyejFnOdw-MfE_DgGetZ3B0CS8-fto/edit?usp=sharing).
-
 
 ###Future improvements
 * **LSP:** Analyze in open source software.
 
 
-
-
-##Following are Ben's notes
-
-Global scenarios of the Ocean Health Index
-
-The [calculate.R](./calculate.R) script generates the final global2014/scores.csv. The following sequence of calculating each scenario is needed:
-
-1. **global2013**
-1. **global2012** must follow global2013 in order to load global2013/scores.csv for LE Eritrea issue
