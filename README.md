@@ -14,9 +14,9 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 
 * **Pressure: Acid** Jamie is getting these spatial data together.  I have a question about whether there are biological data we could use to scale the data, but since we are using difference data Jamie has pointed out that this might be difficult.
 
-* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Jamie and I figured out how this was calculated in the past.  We need to determine whether we want to use the anomolies or change in anomolies for pressures (see this [issue](https://github.com/OHI-Science/issues/issues/377).
+* **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Jamie and I figured out how this was calculated in the past.  We need to determine whether we want to use the anomolies or change in anomolies for pressures (see this [issue](https://github.com/OHI-Science/issues/issues/377)).
 
-* **Pressure: SLR** Jamie has been working on these data.  We have been discussing how to rescale these data (see this [issue](https://github.com/OHI-Science/issues/issues/374)), and I think the final decision is to use the 99.99th quantile.  Also, this is a layer that will be updated for this year, but the data are aggregated across years so there will be no multi-year data. Jamie explored using a different SLR dataset, but this didn't go anywhere:
+* **Pressure: SLR** Jamie has been working on these data.  We have been discussing how to rescale these data (see this [issue](https://github.com/OHI-Science/issues/issues/374)). The final decision is to use the 99.99th quantile.  Also, this is a layer that will be updated for this year, but the data are aggregated across years so there will be no multi-year data. Jamie explored using a different SLR dataset, but this didn't go anywhere:
  
 > I recently received this response from the lead author on the paper, and attached is the data sent to me. It seems that their spatialized estimates of historical sea level rise are currently being developed for publication. I've followed up asking if they have any of it ready to share. I'm not sure we can do much with the data provided here except compare these global mean sea level estimates with the dataset we use, but we won't get at any spatial differences...
 
@@ -25,10 +25,8 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 
 * **Update ohidev** get away from using plyr and change %.% to %>%.  Merge ohidev draft into master and make sure there are no changes to scores.  I think Ben B will be doing this soon.
 
-* **John P** make sure things are in place so he can work on the pressure layers when the time comes.
-
 ###To do soon:
-* **gap-filling script** Did we want to improve this? (https://github.com/OHI-Science/issues/issues/139)
+* **gap-filling script** We are interested in adding a gap-filling across years component (https://github.com/OHI-Science/issues/issues/139).
 
 * **data visualization app** This was super handy for comparing changes among commits.
 
@@ -40,7 +38,7 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 
 * **SPP** Updates to Aquamaps and IUCN. How did we get Aquamaps data in the past (did we have to request it)? We might be able to download Aquamaps data on a cell by cell basis (see details on spreadsheet).  This might be a challenging one to update because it is written in Python.  But we can at least figure out what has been updated and download those data.  Some discussion of whether to alter this model (issue #366).  At this point, we are going to calculate this goal using the original method and the method that is used by ICO (i.e., averaging IUCN of species located within eez - no area weighting).
 
-* **NP** New harvest data is available.  This would be a good one for Casey to practice on (but first redo the gap-filling script?).  Blast and cyanide data can't be updated (as far as I can tell).  Check that the function uses all the data called (I saw a note about that in one of the files I was looking at).  Also, check on effects of using the running mean.  Here is an [issue](https://github.com/OHI-Science/issues/issues/370) describing the function and data that is read by the Toolbox. 
+* **NP** New harvest data is available.  This would be a good one for Casey to practice on.  Blast and cyanide data can't be updated.  Once we get the data, the first thing we will want to check is where gap-filling needs to occur (across years/ across countries).  We may need to develop a method of gap-filling across years (we will want to make this into a function).  We will need to generate a dataset that shows when/where the gap-filling occurred.  I think we will want to rethink how we standardize some of the data layers (i.e., standardizing tonnes by max $ year rather than max ton year).  We will want to rewrite the toolbox function so that it uses all the data that is called.  Also, check on effects of using the running mean - seemed to generate weird results to me - but maybe the results are just weird.  Here is an [issue](https://github.com/OHI-Science/issues/issues/370) describing the function and data that is read by the Toolbox. 
 
 * **LE**  Is it better to have someone translate this from SQL to R?  Or, is it better to spend a few days seeing if we can just write this model from the ground up?
 
@@ -79,7 +77,8 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 
 * **Pressure: po_nutrients_3nm:** Wait for John to update these data.  Should be straight-forward.
 
-* **Pressure: sp_alien:** This was based on the Molnar 2008 paper (data on the MEOW scale).  If we continue with this approach, I don't think there are any updated.  Would it be better to use John's alien data based on shipping models?  Also, I noticed that aquamaps included invasive species.  That might be another approach - but it would be fairly difficult.
+* **Pressure: sp_alien:** This was based on the Molnar 2008 paper (data on the MEOW scale).  If we continue with this approach, I don't think there are any updated.  Other options: (1) use John's alien data based on shipping models?  (2) aquamaps included invasive species.  Some potential issues:  Using the Aquamaps data would be fairly time-intensive.  Also, Katie had this to say about why the Molnar data might be better:  
+> for alien species, you were asking for a reminder of the reason not to use AquaMaps: it’s that they are not ranked on invasiveness. A species may be an alien but not be well established or be causing impacts. Instead, the study used had ranked species by invasiveness, and we only picked those ones with high ranks. Although outdated, that study is also more likely to be thorough, since it was a dedicated meta-analysis, compared to what Aquamaps may be providing.
 
 * **Pressure: sp_genetic:** Trujillo data from 2008. No updates for genetic escapes, but updates to FAO mariculture data which seems to be integrated in the calculation.  Can't find the script where this is calclulated.
 
@@ -90,11 +89,13 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 * **Pressures: po_trash** Check on trash data layer.  Data is located here: N:\git-annex\globalprep\FiveGyres_MarinePlastics_CW\v2015
 
 
-###Done
+###Not Doing
 * **Pressure: Artisanal high bycatch** Data from *Reefs at Risk Revisited* study - which hasn't been updated.
 
-###Not doing
+###Done
 * **Organizing pressure reference points** Create a table that indicates the reference points used to rescale the pressures (https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/1FMSqD4vBxYTBCsyejFnOdw-MfE_DgGetZ3B0CS8-fto/edit?usp=sharing).
+* 
+* **John P** make sure things are in place so he can work on the pressure layers when the time comes.  Ben H. Update: John will be starting May 1st!
 
 ###Future improvements
 * **LSP:** Analyze in open source software.
