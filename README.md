@@ -30,7 +30,7 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 
 * **data visualization app** This was super handy for comparing changes among commits.
 
-* **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.
+* **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.  Will replace population trend with trash trend data as there are now at least three years of trash data!
 
 * **HAB CS CP** Sea ice is probably the only habitat we can update.  These data are ready and available.  These data should be reorganized such that the habitat layers are called separately by the Toolbox.  Although here is a link to some potential [mangrove data](http://www.wri.org/blog/2015/02/satellite-data-reveals-state-world%E2%80%99s-mangrove-forests).  We need to check that out.
 
@@ -65,7 +65,7 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 
 * **Pressure: Artisanal low bycatch** "Modeled least destructive commercial fishing practices by 2 different gear types". We can probably update this when we get new fishing data, although it depends on the data.  NOTE: the fp_art_lb_2012_NEW.csv and fp_art_lb_2013_NEW.csv are the same data.
 
-* **Pressure: target harvest** It appears that the last analysis included FAO data to 2012, but I can't find the original data files to confirm this (asked Julie and she couldn't find the data either).  Good readme: Github\ohiprep\Global\FAO-TargetedHarvest_v2012.  Assuming data go to 2012 - there are no new data updates.
+* **Pressure: target harvest** It appears that the last analysis included FAO data to 2012. Data is located here: N:\git-annex\Global\NCEAS-SpatialFishCatch_v2014\raw\fao\FAO_raw_1950_2012.csv .  Good readme: Github\ohiprep\Global\FAO-TargetedHarvest_v2012.  Data go to 2012 - there are no new data updates yet.
 
 * **Pressure: Commercial high bycatch** Sum of pelagic high bycatch and demersal non-destructive high bycatch and demersal high bycatch pressures.  For CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 FAO data.  May be new SAUP data coming.  Will evaluate whether it is worth it to update these.
 
@@ -77,27 +77,31 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 
 * **Pressure: po_nutrients_3nm:** Wait for John to update these data.  Should be straight-forward.
 
-* **Pressure: sp_alien:** This was based on the Molnar 2008 paper (data on the MEOW scale).  If we continue with this approach, I don't think there are any updated.  Other options: (1) use John's alien data based on shipping models?  (2) aquamaps included invasive species.  Some potential issues:  Using the Aquamaps data would be fairly time-intensive.  Also, Katie had this to say about why the Molnar data might be better:  
-> for alien species, you were asking for a reminder of the reason not to use AquaMaps: it’s that they are not ranked on invasiveness. A species may be an alien but not be well established or be causing impacts. Instead, the study used had ranked species by invasiveness, and we only picked those ones with high ranks. Although outdated, that study is also more likely to be thorough, since it was a dedicated meta-analysis, compared to what Aquamaps may be providing.
-
 * **Pressure: sp_genetic:** Trujillo data from 2008. No updates for genetic escapes, but updates to FAO mariculture data which seems to be integrated in the calculation.  Can't find the script where this is calclulated.
 
 * **Pressure: ss_wgi** The data is available to update this resilience/pressure data.
 
 * **Pressure: po_chemicals** John will be updating these data
 * **Pressures: po_pathogens** Data not available, will keep checking
-* **Pressures: po_trash** Check on trash data layer.  Data is located here: N:\git-annex\globalprep\FiveGyres_MarinePlastics_CW\v2015
+* **Pressures: po_trash** Check on new trash data layer.  Data is located here: N:\git-annex\globalprep\FiveGyres_MarinePlastics_CW\v2015.  We will probably want to get the normal trash data anyway so we can estimate trend.
 
 
 ###Not Doing
 * **Pressure: Artisanal high bycatch** Data from *Reefs at Risk Revisited* study - which hasn't been updated.
 
+* **Pressure: sp_alien:** This was based on the Molnar 2008 paper (data on the MEOW scale) which has not been updated. We will not be updating these data (see this [issue](https://github.com/OHI-Science/issues/issues/388))
+
 ###Done
 * **Organizing pressure reference points** Create a table that indicates the reference points used to rescale the pressures (https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/1FMSqD4vBxYTBCsyejFnOdw-MfE_DgGetZ3B0CS8-fto/edit?usp=sharing).
-* 
-* **John P** make sure things are in place so he can work on the pressure layers when the time comes.  Ben H. Update: John will be starting May 1st!
+ 
+* **John P** Ben H. Update: John will be starting May 1st!
+
 
 ###Future improvements
 * **LSP:** Analyze in open source software.
+
+###General Notes
+There is FAO fish data for 2012 (most pressures data goes to 2011). So, it is possible to update these pressure layers.  But, Katie says this is not worth it:
+>for the fishing pressures, my opinion is it’s not worth redoing with the 2012 catch data we have, since that is split by gear using a very sketchy method. The whole effort of re-calculating just to incorporate an additional year of poor quality information seems not worthwhile. However, I think it’s worth re-doing with the new SAUP data split by gear, if there’s enough time (now that Jamie generated productivity multipliers we’re able to do that!). We’d need to request that they send the data by half-degree cell, though, to be able to match the productivity data - not sure if they’ll agree to that.
 
 
