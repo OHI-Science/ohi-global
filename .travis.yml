@@ -1,0 +1,6 @@
+language: c
+
+branches:
+  only:
+    - draft
+    - gh-pages
