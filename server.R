@@ -292,7 +292,7 @@ shinyServer(function(input, output, session) {
     #read.csv('ecu/published/subcountry2014/scores.csv', na.strings='') %>% filter(goal=='Index' & dimension=='score')
     #read.csv('github/subcountry2014/scores.csv', na.strings='') %>% filter(goal=='Index' & dimension=='score')
     read.csv(file.path(dir_scenario, "scores.csv"), na.strings="") %>% filter(goal=='Index' & dimension=='score')
-    
+
     v = list()
     #browser('GetVar top', expr=input$sel_layer=='mar_harvest_tonnes')
     if (input$sel_type == 'Layer'){
@@ -716,7 +716,10 @@ shinyServer(function(input, output, session) {
       # check column names
       stopifnot(names(a) == c('goal','dimension','region_id','score'))
       stopifnot(names(b) == c('goal','dimension','region_id','score'))
-      stopifnot(c('rgn_id','label') %in% names(r))
+
+      # hard code names(r) to override ohi-global/antarcticaYYYY having sp_id, label
+      #stopifnot(c('rgn_id','label') %in% names(r))
+      names(r) = c('rgn_id','label')
 
       # merge
       d = a %>%
