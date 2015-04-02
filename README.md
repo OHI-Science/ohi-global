@@ -6,13 +6,19 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 
 ###Working on now:
 
-* **Prepare ohi-global for 2015** I will do this soon so we can start looking at the outputs when we add new data.
+* **Prepare ohi-global for 2015** I will do this soon so we can start looking at the outputs when we add new data.  Have started thinking about [workflow](https://github.com/OHI-Science/issues/issues/409).
 
 * **Summarizing the information**  Still need to review the resilience measures.  I also need to look through issues and "new data" references.  As I go through the data, I will also record instances of gap-filling in this [issue](https://github.com/OHI-Science/issues/issues/351).
 
-* **LSP** Updates to these data.  Casey has been working on this goal and has come up with some good improvements [Issue 355](https://github.com/OHI-Science/issues/issues/355).  I notice that the function to calculate status/trend needs to be updated (mostly to get away from reshape functions).  Casey is interested in ultimately migrating the arcGIS steps into R or other open software (I will put this in future ideas). 
+* **Pressures: po_trash** Jamie has briefly looked into these data, and we need to develop a method of summarizing them.  Data is located here: N:\git-annex\globalprep\FiveGyres_MarinePlastics_CW\v2015.  We will probably want to get the normal trash data anyway so we can estimate trend (not updated yet).
 
-* **Pressure: Acid** Jamie is getting these spatial data together.  I have a question about whether there are biological data we could use to scale the data, but since we are using difference data Jamie has pointed out that this might be difficult.
+* **Pressure: ss_wgi** The data is available to update this resilience/pressure data.  Julie is working on this! Go Julie Go!!
+
+* **LSP** Casey has updated these data [Issue 355](https://github.com/OHI-Science/issues/issues/355) and [Issue 387](https://github.com/OHI-Science/issues/issues/387), I need to finalize data.  I also need to update toolbox function to calculate status/trend (mostly to get away from reshape functions).  Casey is interested in ultimately migrating the arcGIS steps into R or other open software (I will put this in future ideas). 
+
+* **Pressure: General** Working with Jamie, Katie, and Ben to determine a consistent strategy for dealing with pressure data.  Particularly transformations and rescaling.  See this [shinyapp](https://jafflerbach.shinyapps.io/decision_tree/).  This ["flowchart"](https://www.lucidchart.com/documents/edit/43e002ea-de05-483c-9569-20eb3a4d44d4?driveId=0ALcIhYsFwBeNUk9PVA) and this [issue](https://github.com/OHI-Science/issues/issues/389).
+
+* **Pressure: Acid** Jamie is getting these spatial data together.  She is preparing an issue for rescaling the data based on thresholds!!  This is very exciting.  
 
 * **Pressure: UV** New data is [available](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml). Jamie and I figured out how this was calculated in the past.  We need to determine whether we want to use the anomolies or change in anomolies for pressures (see this [issue](https://github.com/OHI-Science/issues/issues/377)).
 
@@ -23,12 +29,12 @@ Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPY
 > I have a feeling we won't get the spatialized data until it is published but will update with any new info.
 Conclusion: use the data that she extracted and see if this is available in 2016 (check with: Hay, Carling <carlinghay@fas.harvard.edu>).  
 
-* **Update ohidev** get away from using plyr and change %.% to %>%.  Merge ohidev draft into master and make sure there are no changes to scores.  I think Ben B will be doing this soon.
+* **NP** New harvest data is available.  Blast and cyanide data can't be updated.  Casey has been working on the script and developing the gap-filling.  I think we will want to rethink how we standardize some of the data layers (i.e., standardizing tonnes by max $ year rather than max ton year).  We will want to rewrite the toolbox function so that it uses all the data that is called.  Also, check on effects of using the running mean - seemed to generate weird results to me - but maybe the results are just weird.  Here is an [issue](https://github.com/OHI-Science/issues/issues/370) describing the function and data that is read by the Toolbox. Here is another NP [issues](https://github.com/OHI-Science/issues/issues/397).
+
+* **LE**  Is it better to have someone translate this from SQL to R?  Or, is it better to spend a few days seeing if we can just write this model from the ground up?
 
 ###To do soon:
-* **gap-filling script** We are interested in adding a gap-filling across years component (https://github.com/OHI-Science/issues/issues/139).
-
-* **data visualization app** This was super handy for comparing changes among commits.
+* **gap-filling script** We are interested in adding a gap-filling across years component (https://github.com/OHI-Science/issues/issues/139).  Have some gap-filling functions that we developed for NP (see this [issue](https://github.com/OHI-Science/issues/issues/397)).
 
 * **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.  Will replace population trend with trash trend data as there are now at least three years of trash data!
 
@@ -37,10 +43,6 @@ Conclusion: use the data that she extracted and see if this is available in 2016
 * **ICO** New data are available.  Rethink this calculation?  For HS and Antarctica we ran the SPP model with the subset of species that were iconic.
 
 * **SPP** Updates to Aquamaps and IUCN. How did we get Aquamaps data in the past (did we have to request it)? We might be able to download Aquamaps data on a cell by cell basis (see details on spreadsheet).  This might be a challenging one to update because it is written in Python.  But we can at least figure out what has been updated and download those data.  Some discussion of whether to alter this model (issue #366).  At this point, we are going to calculate this goal using the original method and the method that is used by ICO (i.e., averaging IUCN of species located within eez - no area weighting).
-
-* **NP** New harvest data is available.  This would be a good one for Casey to practice on.  Blast and cyanide data can't be updated.  Once we get the data, the first thing we will want to check is where gap-filling needs to occur (across years/ across countries).  We may need to develop a method of gap-filling across years (we will want to make this into a function).  We will need to generate a dataset that shows when/where the gap-filling occurred.  I think we will want to rethink how we standardize some of the data layers (i.e., standardizing tonnes by max $ year rather than max ton year).  We will want to rewrite the toolbox function so that it uses all the data that is called.  Also, check on effects of using the running mean - seemed to generate weird results to me - but maybe the results are just weird.  Here is an [issue](https://github.com/OHI-Science/issues/issues/370) describing the function and data that is read by the Toolbox. 
-
-* **LE**  Is it better to have someone translate this from SQL to R?  Or, is it better to spend a few days seeing if we can just write this model from the ground up?
 
 * **Pressure: SST** Data is available for new year.  Might be worth extracting other years.  (check on emails Feb 10 2014 - discussion of how data were analyzed)
 
@@ -51,11 +53,13 @@ The CHI pressures data was used - which is 5000 m buffer and 2006 data for 2012 
 
 Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopulation_v2013\data?  And a 25 km inland area (given that we have that buffer)?  
 
+* **MAR** We have data to update coastal population to 2015 (Population data is projected from <=2000 data - but that may be the best available?).  The FAO harvest tonnes has been updated with 2013 [data](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)).
+
+* **Pressure: target harvest** It appears that the last analysis included FAO data to 2012. Data is located here: N:\git-annex\Global\NCEAS-SpatialFishCatch_v2014\raw\fao\FAO_raw_1950_2012.csv .  Good readme: Github\ohiprep\Global\FAO-TargetedHarvest_v2012.  FAO data has been updated.
+
 
 ###Things to keep checking on:
 * **FIS** May have updated catch data.  May also have an updated CMSY model.
-
-* **MAR** We have data to update coastal population to 2015 (Population data is projected from <=2000 data - but that may be the best available?).  There hasn't been an update yet for the FAO harvest tonnes (look for addition of 2013 [data](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)).
 
 * **AO** The new ppppcgdp data is not yet available.
 
@@ -64,8 +68,6 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 * **CW** This will be updated with new pressures data for fertilizer and pesticide from John's plume models (see [issue](https://github.com/OHI-Science/issues/issues/343)), and the trend will be calculated directly from these pressures.  There is a new trash layer (that I haven't had a chance to look at - but this needs to be done). There is currently no new [pathogen](http://www.wssinfo.org/data-estimates/table) data available.
 
 * **Pressure: Artisanal low bycatch** "Modeled least destructive commercial fishing practices by 2 different gear types". We can probably update this when we get new fishing data, although it depends on the data.  NOTE: the fp_art_lb_2012_NEW.csv and fp_art_lb_2013_NEW.csv are the same data.
-
-* **Pressure: target harvest** It appears that the last analysis included FAO data to 2012. Data is located here: N:\git-annex\Global\NCEAS-SpatialFishCatch_v2014\raw\fao\FAO_raw_1950_2012.csv .  Good readme: Github\ohiprep\Global\FAO-TargetedHarvest_v2012.  Data go to 2012 - there are no new data updates yet.
 
 * **Pressure: Commercial high bycatch** Sum of pelagic high bycatch and demersal non-destructive high bycatch and demersal high bycatch pressures.  For CHI this is calculated with FAO fishing data in 1999 to 2003 and 2009 to 2011.  There are now 2012 FAO data.  May be new SAUP data coming.  Will evaluate whether it is worth it to update these.
 
@@ -79,22 +81,22 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 
 * **Pressure: sp_genetic:** Trujillo data from 2008. No updates for genetic escapes, but updates to FAO mariculture data which seems to be integrated in the calculation.  Can't find the script where this is calclulated.
 
-* **Pressure: ss_wgi** The data is available to update this resilience/pressure data.
-
 * **Pressure: po_chemicals** John will be updating these data
 * **Pressures: po_pathogens** Data not available, will keep checking
-* **Pressures: po_trash** Check on new trash data layer.  Data is located here: N:\git-annex\globalprep\FiveGyres_MarinePlastics_CW\v2015.  We will probably want to get the normal trash data anyway so we can estimate trend.
-
 
 ###Not Doing
 * **Pressure: Artisanal high bycatch** Data from *Reefs at Risk Revisited* study - which hasn't been updated.
 
 * **Pressure: sp_alien:** This was based on the Molnar 2008 paper (data on the MEOW scale) which has not been updated. We will not be updating these data (see this [issue](https://github.com/OHI-Science/issues/issues/388))
 
+* **Update ohidev** get away from using plyr and change %.% to %>%.  Merge ohidev draft into master and make sure there are no changes to scores.  I think Ben B will be doing this soon.  UPDATE: no longer doing this.  We will just use the dev branch.
+
 ###Done
 * **Organizing pressure reference points** Create a table that indicates the reference points used to rescale the pressures (https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/1FMSqD4vBxYTBCsyejFnOdw-MfE_DgGetZ3B0CS8-fto/edit?usp=sharing).
  
 * **John P** Ben H. Update: John will be starting May 1st!
+
+* **data visualization app** Thanks to Ben B!  Located [here](https://github.com/OHI-Science/issues/issues/405).
 
 
 ###Future improvements
