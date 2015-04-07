@@ -1,3 +1,4 @@
+#
 Setup = function(){
   
 # this code bombs the shinyapps.io deploy, so commenting out and relying on package prefixes to guide install zoo::, psych::
@@ -473,26 +474,13 @@ NP = function(scores, layers, year_max, debug=F){
   FIS_status =  scores %>% 
     filter(goal=='FIS' & dimension=='status') %>%
     select(rgn_id=region_id, score)  
-rgns <- read.csv('C:/Users/Melanie/Github/ohi-global/eez2014/layers/rgn_labels.csv')
-h_tonnes <- read.csv('C:/Users/Melanie/Github/ohi-global/eez2014/layers/np_harvest_tonnes.csv')
-h_tonnes_rel <- read.csv('C:/Users/Melanie/Github/ohi-global/eez2014/layers/np_harvest_tonnes_relative.csv')
-h_usd <- read.csv('C:/Users/Melanie/Github/ohi-global/eez2014/layers/np_harvest_usd.csv')
-h_usd_rel <- read.csv('C:/Users/Melanie/Github/ohi-global/eez2014/layers/np_harvest_usd_relative.csv')  
-h_w <- read.csv('C:/Users/Melanie/Github/ohi-global/eez2014/layers/np_harvest_product_weight.csv')  
-r_cyanide <- read.csv('C:/Users/Melanie/Github/ohi-global/eez2014/layers/np_cyanide.csv')  
-r_blast <- read.csv('C:/Users/Melanie/Github/ohi-global/eez2014/layers/np_blast.csv')  
-hab_extent <- read.csv('C:/Users/Melanie/Github/ohi-global/eez2014/layers/hab_extent.csv')  
-FIS_status =  read.csv("C:/Users/Melanie/Github/ohi-global/eez2014/scores.csv") %>% 
-  filter(goal=='FIS' & dimension=='status') %>%
-  select(rgn_id=region_id, score)  
-
-
-  # layers (the h_tonnes, h_usd, and h_usd_rel not used in model)
+  
+  # layers
   rgns         = layers$data[['rgn_labels']]
-  #h_tonnes     = layers$data[['np_harvest_tonnes']]
+  h_tonnes     = layers$data[['np_harvest_tonnes']]
   h_tonnes_rel = layers$data[['np_harvest_tonnes_relative']]
-  #h_usd        = layers$data[['np_harvest_usd']]
-  #h_usd_rel    = layers$data[['np_harvest_usd_relative']]
+  h_usd        = layers$data[['np_harvest_usd']]
+  h_usd_rel    = layers$data[['np_harvest_usd_relative']]
   h_w          = layers$data[['np_harvest_product_weight']]
   r_cyanide    = layers$data[['np_cyanide']]
   r_blast      = layers$data[['np_blast']]  
@@ -509,10 +497,15 @@ FIS_status =  read.csv("C:/Users/Melanie/Github/ohi-global/eez2014/scores.csv") 
   if (debug & !file.exists('temp')) dir.create('temp', recursive=T)
   
   # merge harvest in tonnes and usd
-  h = h_tonnes %>%
-        left_join(h_tonnes_rel, by=c('rgn_id','product','year')) %>%
-        left_join(h_usd, by=c('rgn_id','product','year')) %>%
-        left_join(h_usd_rel, by=c('rgn_id','product','year')) %>%
+  h = 
+    join_all(
+      list(
+        h_tonnes, 
+        h_tonnes_rel, 
+        h_usd,
+        h_usd_rel),
+      by=c('rgn_id','product','year'),      
+      type='full') %>%
     left_join(
       h_w %>%
         select(rgn_id, product, usd_peak_product_weight=weight),
@@ -526,9 +519,8 @@ FIS_status =  read.csv("C:/Users/Melanie/Github/ohi-global/eez2014/scores.csv") 
       tonnes, tonnes_rel,
       usd, usd_rel,
       usd_peak_product_weight) %>%
-    arrange(rgn_id, product, year) 
-#%>%
-#    group_by(rgn_id, product)
+    arrange(rgn_id, product, year) %>%
+    group_by(rgn_id, product)
       
   if (debug){
     # write out data
@@ -565,10 +557,10 @@ FIS_status =  read.csv("C:/Users/Melanie/Github/ohi-global/eez2014/scores.csv") 
         filter(km2 > 0) %>%
         select(rgn_id, rky_km2=km2), 
       by='rgn_id') %>%
-   rowwise() %>%
+    rowwise() %>%
     mutate(
       km2 = sum(c(rky_km2, coral_km2), na.rm=T)) %>%
-#    group_by(rgn_id, product) %>%
+    group_by(rgn_id, product) %>%
     filter(km2 > 0)
   
   # exposure: combine areas, get tonnes / area, and rescale with log transform
@@ -598,7 +590,6 @@ FIS_status =  read.csv("C:/Users/Melanie/Github/ohi-global/eez2014/scores.csv") 
               exposure = score/100) %>%
             select(rgn_id, exposure),
           by='rgn_id'))
-
   
   if (debug){
     cat('Regions without FIS_status having harvest values:\n')
@@ -614,10 +605,8 @@ FIS_status =  read.csv("C:/Users/Melanie/Github/ohi-global/eez2014/scores.csv") 
   }
   
   # assign fish_oil exposure to 0 if missing FIS status
- # MRF Note: This is changing all exposure NA values to zero
   E = E %>% mutate(
-    exposure = ifelse(is.na(exposure), 0, exposure)) %>%
-  mutate(product=as.character(product))
+    exposure = ifelse(is.na(exposure), 0, exposure))
   
   # risk for ornamentals set to 1 if blast or cyanide fishing present, based on Nature 2012 code
   #  despite Nature 2012 Suppl saying Risk for ornamental fish is set to the "relative intensity of cyanide fishing"
@@ -646,13 +635,9 @@ FIS_status =  read.csv("C:/Users/Melanie/Github/ohi-global/eez2014/scores.csv") 
         select(rgn_id, ornamentals),
       by = 'rgn_id')  %>%
     mutate(
-      ornamentals = ifelse(is.na(ornamentals), 0, ornamentals))  %>%
-  gather(product, risk, corals:ornamentals) %>%
-  mutate(product=as.character(product))
-
-#melt(id='rgn_id', variable.name='product', value.name='risk')
-# convert using tidyr
-
+      ornamentals = ifelse(is.na(ornamentals), 0, ornamentals)) %>%
+    melt(id='rgn_id', variable.name='product', value.name='risk')
+  
   # join Exposure (with harvest) and Risk
   D = E %>%
     left_join(

@@ -1,20 +1,10 @@
-# transfer global scenarios out of ohicore
-# TODO: create true regions_gcs.js for Antarctica & High Seas
-#       eez2014 reshape input data problem once in pressures, many in resilience: Aggregation function missing: defaulting to length
+# eez2014 reshape input data problem once in pressures, many in resilience: Aggregation function missing: defaulting to length
 
-# Melanie access on PC 
-#setwd("C:/Users/Melanie/Github/ohi-global")
-setwd(file.path('~/github/ohi-global'))
-#  setwd('~/ohi-global')
+library(devtools)
+devtools::install_github("ohi-science/ohicore@dev")
+library(ohicore)
 
-# trying to calculate scores with old dplyr
-#devtools::install_version('dplyr', version=0.2)
-library(plyr)
-library(dplyr)
-library(stringr)
-summarise = summarize = dplyr::summarise
-# merge_scores.R line 34: getting error "Error in match(x, table, nomatch = 0L) : object 'dimension' not found"
-#     was summarizing to a single score b/c using plyr::summarize
+setwd("~/ohi-global")
 
 # check to see if following also works on Mac:
 source('../ohiprep/src/R/common.R')
@@ -26,9 +16,6 @@ dirs = list(
   ohiprep       = '../ohiprep',
   ohicore       = '../ohicore')
 
-# load ohicore (must first download using directions from here: )
-#library(ohicore) # or 
-devtools::load_all(dirs$ohicore)
 
 do.layercopy  = T
 do.layercheck = T
@@ -38,48 +25,51 @@ do.merge      = F # needs to be written
 
 # scenarios
 scenarios = list(
+  eez2015     = list(
+    google_key   = '1qGfo99QXyTFWSm__8l_NwV-AYNmSoxjignFcm8Z0Zas',
+    fld_dir      = 'dir_2015a',
+    fld_fn       = 'fn_2015a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T),  
   eez2014     = list(
-    google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
+    google_key   = '1qGfo99QXyTFWSm__8l_NwV-AYNmSoxjignFcm8Z0Zas',
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),
   eez2013     = list(
-    google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
+    google_key   = '1qGfo99QXyTFWSm__8l_NwV-AYNmSoxjignFcm8Z0Zas',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),
   eez2012     = list(
-    google_key   = '0At9FvPajGTwJdEJBeXlFU2ladkR6RHNvbldKQjhiRlE',
+    google_key   = '1qGfo99QXyTFWSm__8l_NwV-AYNmSoxjignFcm8Z0Zas',
     fld_dir      = 'dir_2012a',
     fld_fn       = 'fn_2012a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-  antarctica2014 = list(
-    google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
-    fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-  highseas2014   = list(
-    google_key   = '0ArcIhYsFwBeNdG9KVlJ6M0ZxV1dtVDJDQ3FLVWJQWFE',
-    fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T))
+    do           = T)
+  )
+#   antarctica2014 = list(
+#     google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
+#     fld_dir      = 'dir_2013a',
+#     fld_fn       = 'fn_2013a',
+#     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+#     do           = T),
+#   highseas2014   = list(
+#     google_key   = '0ArcIhYsFwBeNdG9KVlJ6M0ZxV1dtVDJDQ3FLVWJQWFE',
+#     fld_dir      = 'dir_2013a',
+#     fld_fn       = 'fn_2013a',
+#     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+#     do           = T))
 
 # sync functions.R: overwrite eez2012 and eez2014 with eez2013 (note LE's use of eez2013 argument)
-for (dir in c('eez2012','eez2014')){
+for (dir in c('eez2012','eez2014', 'eez2015')){
   stopifnot(file.copy('eez2013/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
 }
 
-# get rid of old debug files without scenario prefix
-# for (dir in c('eez2012','eez2013','eez2014')){
-#   unlink(list.files(file.path(dir, 'reports/debug'), '^np_.*', full.names=T))
-# }
 
-for (i in 1:length(scenarios)){ # i=2
+for (i in 1:length(scenarios)){ # i=1
   
   # vars
   scenario   = names(scenarios)[[i]]
@@ -88,10 +78,10 @@ for (i in 1:length(scenarios)){ # i=2
   google_key = scenarios[[i]][['google_key']]
   do         = scenarios[[i]][['do']]
   
-  #   print(scenario)
-  #   print(fld_dir)
-  #   print(fld_fn)
-  #   print(do)
+    print(scenario)
+    print(fld_dir)
+    print(fld_fn)
+    print(do)
   
   
   
@@ -108,16 +98,25 @@ for (i in 1:length(scenarios)){ # i=2
   if (do.layercopy){
     # load Google spreadsheet for copying layers
     cat(sprintf('\n  Google spreadsheet editable URL:\n    https://docs.google.com/spreadsheet/ccc?key=%s\n', google_key) )
-    g.url = sprintf('https://docs.google.com/spreadsheet/pub?key=%s&output=csv', scenarios[[i]][['google_key']])
+    g.url = sprintf('https://docs.google.com/spreadsheets/d/%s/export?gid=0&format=csv', scenarios[[i]][['google_key']])
     g = read.csv(textConnection(RCurl::getURL(g.url, ssl.verifypeer = FALSE)), skip=1, na.strings='', stringsAsFactors=F)
     write.csv(g, sprintf('%s/temp/layers_0-google.csv', scenario), na='', row.names=F)
-    
     # fill in for 2014
     if (scenario=='eez2014'){
       g = g %>%
         mutate(
           dir_2014a = ifelse(is.na(dir_2014a), dir_2013a, dir_2014a),
           fn_2014a = ifelse(is.na(fn_2014a), fn_2013a, fn_2014a))
+    }
+    
+    if (scenario=='eez2015'){
+      g = g %>%
+        mutate(
+          dir_2015a = ifelse(is.na(dir_2015a), dir_2014a, dir_2015a),
+          fn_2015a = ifelse(is.na(fn_2015a), fn_2014a, fn_2015a)) %>%
+        mutate(
+          dir_2015a = ifelse(is.na(dir_2015a), dir_2013a, dir_2015a),
+          fn_2015a = ifelse(is.na(fn_2015a), fn_2013a, fn_2015a))
     }
     
     # swap dir
@@ -141,8 +140,7 @@ for (i in 1:length(scenarios)){ # i=2
       arrange(targets, layer)
     write.csv(lyrs, sprintf('%s/temp/layers_1-ingest.csv', scenario), na='', row.names=F)
     
-    filter(g, targets=='MAR')
-    
+      
     if (nrow(filter(lyrs, !path_in_exists)) != 0){
       message('The following layers paths do not exist:\n')
       print(filter(lyrs, !path_in_exists) %>% select(layer, path_in), row.names=F)
@@ -217,8 +215,11 @@ for (i in 1:length(scenarios)){ # i=2
   }
 }
 
+### this code needs to be redone!
 source('global2014/merge_scores.R')
 
+
+## look into following code:
 # # DEBUG comparison for 2013a
 #source('../ohidev/report/compare_scores.R')
 #suppressWarnings(source('../ohidev/report/visualizeScores/visualizeScores.R'))
