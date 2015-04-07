@@ -102,12 +102,12 @@ Data sources:
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_inland1km.csv","rgn_id",,,"year","area_km2",,TRUE,0,2013,1,33968,FALSE,,,,241,FALSE
+- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_inland1km.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,18071,FALSE,,,,241,FALSE
 "LSP","lsp_prot_area_offshore3nm","rny_lsp_prot_area_offshore3nm","Coastal marine protected areas offshore 3km","Coastal protected areas offshore to 3nm from the UN WDPA. 
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_offshore3nm.csv","rgn_id",,,"year","area_km2",,TRUE,0,2013,0,56510,FALSE,,,,241,FALSE
+- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_offshore3nm.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,56404,FALSE,,,,241,FALSE
 "MAR","mar_coastalpopn_inland25mi","mar_coastalpopn_inland25mi","Coastal population inland 25 miles","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -260,7 +260,7 @@ Data sources:
 - Center for International Earth Science Information Network (CIESIN)/Columbia University 
 - CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)
 ","pressure_score","pressure score","hd_intertidal.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.530149,TRUE,,,,241,FALSE
-"pressures","hd_subtidal_hb","hd_subtidal_hb","High bycatch artisanal fishing practices as a proxy for subtidal hard bottom habitat destruction","The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
+"pressures","hd_subtidal_hb","hd_subtidal_hb","High bycatch artisanal fishing practices as a proxy for subtidal hard bottom habitat destruction","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
 
