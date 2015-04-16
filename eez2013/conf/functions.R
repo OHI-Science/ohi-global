@@ -471,25 +471,13 @@ NP <- function(scores, layers, year_max, debug = FALSE){
   ###   all harvest data into single file passed from NP data_prep.R.
   # TODO: add smoothing a la PLoS 2013 manuscript # ??? CCO: done? is this the NP data_prep smoothing?
   
-### for testing the new code
-  library(readr)
-  library(tidyr)
-  library(dplyr)
-# ### new code version - directly load new data for testing
-#   np_harvest <- read_csv("../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest-eez2014_test-year_max_2011.csv")
-  r_blast    <- read_csv("eez2013/layers/np_blast.csv")
-  r_cyanide  <- read_csv("eez2013/layers/np_cyanide.csv")
-  hab_extent <- read_csv("eez2013/layers/hab_extent.csv")
-# 
 # ### new code version - load combined harvest variables
-# #  rgns         = layers$data[['rgn_labels']] ??? included within np_harvest
-#   np_harvest   = layers$data[['np_harvest']]
-#   r_cyanide    = layers$data[['np_cyanide']]
-#   r_blast      = layers$data[['np_blast']]  
-#   hab_extent   = layers$data[['hab_extent']]
+  r_cyanide    = layers$data[['np_cyanide']]
+  r_blast      = layers$data[['np_blast']]  
+  hab_extent   = layers$data[['hab_extent']]
 
 ### FIS status for fish oil exposure
-  scores       <- read_csv("eez2013/scores.csv")
+ # scores       <- read.csv("scores.csv")
   FIS_status   <-  scores %>% 
     filter(goal == 'FIS' & dimension == 'status') %>%
     select(rgn_id = region_id, score)  
@@ -509,18 +497,11 @@ NP <- function(scores, layers, year_max, debug = FALSE){
     ### [rgn_name  rgn_id  product  year  tonnes  tonnes_rel  prod_weight]
     #########################################.
 
-    ### for testing:
-    ### directly load old data from 2014
-    rgns         <- read_csv('eez2013/layers/rgn_labels.csv')
-    h_tonnes     <- read_csv('eez2013/layers/np_harvest_tonnes.csv')
-    h_tonnes_rel <- read_csv('eez2013/layers/np_harvest_tonnes_relative.csv')
-    h_w          <- read_csv('eez2013/layers/np_harvest_product_weight.csv')
-    ### for realz:
-    ### load data from layers dataframe
-    #   rgns         <- layers$data[['rgn_labels']]
-    #   h_tonnes     <- layers$data[['np_harvest_tonnes']]
-    #   h_tonnes_rel <- layers$data[['np_harvest_tonnes_relative']]
-    #   h_w          <- layers$data[['np_harvest_product_weight']]
+    ## load data from layers dataframe
+      rgns         <- layers$data[['rgn_labels']]
+      h_tonnes     <- layers$data[['np_harvest_tonnes']]
+      h_tonnes_rel <- layers$data[['np_harvest_tonnes_relative']]
+      h_w          <- layers$data[['np_harvest_product_weight']]
     
     # merge harvest in tonnes and usd
     harvest <- h_tonnes %>%
@@ -540,11 +521,6 @@ NP <- function(scores, layers, year_max, debug = FALSE){
             tonnes, tonnes_rel, prod_weight) %>%
           group_by(rgn_id, product)
         
-    if (debug){
-      # write out data
-      write.csv(harvest %>% arrange(rgn_id, product, year), 
-                sprintf('temp/%s_NP_1-harvest-rgn-year-product_data.csv', basename(getwd())), row.names=F, na='')
-    }
     return(harvest)
   }
 
@@ -568,7 +544,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
     ### area for products having single habitats for exposure
     area_single_hab <- full_join(
       # corals in coral reef
-      np_harvest %>%
+        np_harvest %>%
         filter(product == 'corals') %>%
         left_join(
           hab_coral %>%
@@ -769,7 +745,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
   np_risk    <- np_calc_risk(np_exp, r_cyanide, r_blast)
   np_sust    <- np_calc_sustainability(np_exp, np_risk)
   ### for testing - need to assign year_max b/c not passed into NP function.
-    year_max <- 2010
+  #  year_max <- 2010
   np_scores  <- np_calc_scores(np_sust, year_max) 
         
   return(np_scores)
