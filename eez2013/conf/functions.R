@@ -475,25 +475,79 @@ NP <- function(scores, layers, year_max, debug = FALSE){
   library(readr)
   library(tidyr)
   library(dplyr)
-  np_harvest <- read_csv("../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest-eez2014_test-year_max_2011.csv")
+# ### new code version - directly load new data for testing
+#   np_harvest <- read_csv("../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest-eez2014_test-year_max_2011.csv")
   r_blast    <- read_csv("eez2013/layers/np_blast.csv")
   r_cyanide  <- read_csv("eez2013/layers/np_cyanide.csv")
   hab_extent <- read_csv("eez2013/layers/hab_extent.csv")
+# 
+# ### new code version - load combined harvest variables
+# #  rgns         = layers$data[['rgn_labels']] ??? included within np_harvest
+#   np_harvest   = layers$data[['np_harvest']]
+#   r_cyanide    = layers$data[['np_cyanide']]
+#   r_blast      = layers$data[['np_blast']]  
+#   hab_extent   = layers$data[['hab_extent']]
 
-#  rgns         = layers$data[['rgn_labels']] ??? included within np_harvest
-  np_harvest   = layers$data[['np_harvest']]
-  r_cyanide    = layers$data[['np_cyanide']]
-  r_blast      = layers$data[['np_blast']]  
-  hab_extent   = layers$data[['hab_extent']]
-  
-  
-  ### FIS status for fish oil exposure
-    ### for testing new code:
-    # scores <- read_csv("eez2013/scores.csv")
-  FIS_status <-  scores %>% 
+### FIS status for fish oil exposure
+  scores       <- read_csv("eez2013/scores.csv")
+  FIS_status   <-  scores %>% 
     filter(goal == 'FIS' & dimension == 'status') %>%
     select(rgn_id = region_id, score)  
-  
+
+
+  ###########################################################.
+  ### Here I define five main sub-functions.  The main script that
+  ### actually calls these functions is at the very end of the NP section.
+  ###   np_rebuild_harvest
+  ###   np_calc_exposure
+  ###   np_calc_risk
+  ###   np_calc_sustainability
+  ###   np_calc_scores
+
+  np_rebuild_harvest <- function(layers, debug = FALSE) {
+    ### Reassembles NP harvest information from separate data layers:
+    ### [rgn_name  rgn_id  product  year  tonnes  tonnes_rel  prod_weight]
+    #########################################.
+
+    ### for testing:
+    ### directly load old data from 2014
+    rgns         <- read_csv('eez2013/layers/rgn_labels.csv')
+    h_tonnes     <- read_csv('eez2013/layers/np_harvest_tonnes.csv')
+    h_tonnes_rel <- read_csv('eez2013/layers/np_harvest_tonnes_relative.csv')
+    h_w          <- read_csv('eez2013/layers/np_harvest_product_weight.csv')
+    ### for realz:
+    ### load data from layers dataframe
+    #   rgns         <- layers$data[['rgn_labels']]
+    #   h_tonnes     <- layers$data[['np_harvest_tonnes']]
+    #   h_tonnes_rel <- layers$data[['np_harvest_tonnes_relative']]
+    #   h_w          <- layers$data[['np_harvest_product_weight']]
+    
+    # merge harvest in tonnes and usd
+    harvest <- h_tonnes %>%
+      full_join(
+        h_tonnes_rel,
+        by=c('rgn_id', 'product', 'year')) %>%
+          left_join(
+            h_w %>%
+              select(rgn_id, product, prod_weight = weight),
+            by=c('rgn_id', 'product')) %>%
+          left_join(
+            rgns %>%
+              select(rgn_id, rgn_name=label),
+            by='rgn_id') %>%
+          select(
+            rgn_name, rgn_id, product, year, 
+            tonnes, tonnes_rel, prod_weight) %>%
+          group_by(rgn_id, product)
+        
+    if (debug){
+      # write out data
+      write.csv(harvest %>% arrange(rgn_id, product, year), 
+                sprintf('temp/%s_NP_1-harvest-rgn-year-product_data.csv', basename(getwd())), row.names=F, na='')
+    }
+    return(harvest)
+  }
+
 
   np_calc_exposure <- function(np_harvest, hab_extent, FIS_status) {
     ### calculates NP exposure based on habitats (for corals, seaweeds, 
@@ -623,6 +677,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       mutate(
         ornamentals = ifelse(is.na(ornamentals), 0, ornamentals)) %>%
       gather(product, risk, -rgn_id)
+    return(risk_prod)
   }
 
   np_calc_sustainability <- function(np_exp, np_risk) {
@@ -630,20 +685,23 @@ NP <- function(scores, layers, year_max, debug = FALSE){
     ### on (1 - mean(c(exposure, risk))).  Returns first input dataframe with
     ### new columns for sustainability coefficient, and sustainability-adjusted
     ### NP product_status:
-    ### [rgn_id rgn_name product year tonnes tonnes_rel prod_weight exposure risk sustainability product_status]
+    ### [rgn_id  rgn_name  product  year  tonnes  tonnes_rel  prod_weight 
+    ###   exposure  risk  sustainability  product_status]
     #########################################.
     
     ### join Exposure (with harvest) and Risk
-    np_risk <- np_exp %>%
+    np_sust <- np_exp %>%
       left_join(
-        risk_prod,
+        np_risk,
         by = c('rgn_id', 'product')) %>%
       rowwise() %>% 
       mutate(sustainability = 1 - mean(c(exposure, risk), na.rm = TRUE))
     
     ### calculate rgn-product-year status
-    np_risk <- np_risk %>% mutate(product_status = tonnes_rel * sustainability) %>%
-      filter(rgn_name != 'DISPUTED')
+    np_sust <- np_sust %>% mutate(product_status = tonnes_rel * sustainability) %>%
+      filter(rgn_name != 'DISPUTED') %>%
+      select(-tonnes, -tonnes_rel, -risk, -exposure)
+    ### ??? is it OK to clean out extra vars at this point - tonnes, tonnes_rel, risk, exposure?
   }
 
   np_calc_scores <- function(np_sust, year_max) {
@@ -680,7 +738,9 @@ NP <- function(scores, layers, year_max, debug = FALSE){
         dimension = 'status',
         score     = round(status,4) * 100) %>%
       select(rgn_id, dimension, score)
-    stopifnot(min(np_status_current$score, na.rm = TRUE) >= 0, max(np_status_current$score, na.rm = TRUE) <= 100)
+    stopifnot(
+      min(np_status_current$score, na.rm = TRUE) >= 0, 
+      max(np_status_current$score, na.rm = TRUE) <= 100)
     
     ### trend based on 5 intervals (6 years of data)
     np_trend <- np_status_all %>%
@@ -704,10 +764,13 @@ NP <- function(scores, layers, year_max, debug = FALSE){
   ##########################################.
   ### Natural Products main starts here:
 
-  np_exp    <- np_calc_exposure(np_harvest, hab_extent, FIS_status) 
-  np_risk   <- np_calc_risk(np_exp, r_cyanide, r_blast)
-  np_sust   <- np_calc_sustainability(np_exp, np_risk)
-  np_scores <- np_calc_scores(np_sust, year_max) 
+  np_harvest <- np_rebuild_harvest(layers)  
+  np_exp     <- np_calc_exposure(np_harvest, hab_extent, FIS_status) 
+  np_risk    <- np_calc_risk(np_exp, r_cyanide, r_blast)
+  np_sust    <- np_calc_sustainability(np_exp, np_risk)
+  ### for testing - need to assign year_max b/c not passed into NP function.
+    year_max <- 2010
+  np_scores  <- np_calc_scores(np_sust, year_max) 
         
   return(np_scores)
 }
