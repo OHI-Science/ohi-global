@@ -467,8 +467,8 @@ summary(r.status); dim(r.status)
 }
 
 NP <- function(scores, layers, year_max, debug = FALSE){
-  ### Apr 2014: updated by @oharac to use dplyr, tidyr, readr.  Consolidated
-  ###   all harvest data into single file passed from NP data_prep.R.
+#  browser()
+  ### Apr 2014: updated by @oharac to use dplyr, tidyr.
   # TODO: add smoothing a la PLoS 2013 manuscript # ??? CCO: done? is this the NP data_prep smoothing?
   
 # ### new code version - load combined harvest variables
@@ -476,7 +476,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
   r_blast      = layers$data[['np_blast']]  
   hab_extent   = layers$data[['hab_extent']]
 
-### FIS status for fish oil exposure
+  ### FIS status for fish oil exposure
  # scores       <- read.csv("scores.csv")
   FIS_status   <-  scores %>% 
     filter(goal == 'FIS' & dimension == 'status') %>%
@@ -492,7 +492,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
   ###   np_calc_sustainability
   ###   np_calc_scores
 
-  np_rebuild_harvest <- function(layers, debug = FALSE) {
+  np_rebuild_harvest <- function(layers) {
     ### Reassembles NP harvest information from separate data layers:
     ### [rgn_name  rgn_id  product  year  tonnes  tonnes_rel  prod_weight]
     #########################################.
@@ -504,7 +504,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       h_w          <- layers$data[['np_harvest_product_weight']]
     
     # merge harvest in tonnes and usd
-    harvest <- h_tonnes %>%
+    np_harvest <- h_tonnes %>%
       full_join(
         h_tonnes_rel,
         by=c('rgn_id', 'product', 'year')) %>%
@@ -521,7 +521,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
             tonnes, tonnes_rel, prod_weight) %>%
           group_by(rgn_id, product)
         
-    return(harvest)
+    return(np_harvest)
   }
 
 
@@ -542,7 +542,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       select(rgn_id, km2)
     
     ### area for products having single habitats for exposure
-    area_single_hab <- full_join(
+    area_single_hab <- bind_rows(
       # corals in coral reef
         np_harvest %>%
         filter(product == 'corals') %>%
@@ -579,15 +579,12 @@ NP <- function(scores, layers, year_max, debug = FALSE){
     ### Determine Exposure
     ### exposure: combine areas, get tonnes / area, and rescale with log transform
     np_exp <- 
-      full_join(
+      bind_rows(
         area_single_hab,
         area_dual_hab %>%
           select(-rocky_km2, -coral_km2)) %>%
-      filter(!is.na(km2)) %>% 
-        # ??? CCO: the mutate function had a hard time with NAs in the km2.  Eliminating them here means not considering
-        #     exposure in the final sustainability calc - it will all be based on risk.  But if no area reported, what else could we do?
       mutate(
-        expos_raw = ifelse(km2 > 0, (tonnes / km2), 0)) %>%
+        expos_raw = ifelse(tonnes > 0 & km2 > 0, (tonnes / km2), 0)) %>%
       group_by(product) %>%
       mutate(
         expos_prod_max = max(expos_raw, na.rm = TRUE)) %>%
@@ -598,19 +595,23 @@ NP <- function(scores, layers, year_max, debug = FALSE){
         ### clean up columns
       
     ### add exposure for fish_oil
-    np_exp <- np_exp %>% full_join(
+    np_exp <- np_exp %>% bind_rows(
         np_harvest %>%
           filter(product=='fish_oil') %>%
           left_join(
             FIS_status %>%
               mutate(exposure = score / 100) %>%
+              mutate(exposure = ifelse(is.na(exposure), 0, exposure)) %>% 
+        ### ??? adding this ^^^ from below - now will filter only NAs in fish_oil exposure, not seaweeds and coral exposure
               select(rgn_id, exposure),
             by = 'rgn_id'))
     
-    ### assign fish_oil exposure to 0 if missing FIS status
+    ### ??? Original note: assign fish_oil exposure to 0 if missing FIS status
     # ??? CCO: This assigns exposure to zero for ANY product with NA
-    np_exp <- np_exp %>% 
-      mutate(exposure = ifelse(is.na(exposure), 0, exposure))
+#     np_exp <- np_exp %>% 
+#       mutate(exposure = ifelse(is.na(exposure), 0, exposure))
+    
+    return(np_exp)
   }
   
   np_calc_risk <- function(np_exp, r_cyanide, r_blast) {
@@ -638,10 +639,10 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       mutate(ornamentals = 1)
     
     ### risk as binary
-    risk_prod <- 
+    np_risk <- 
       ### fixed risk: corals (1), sponges (0) and shells (0)
       data.frame(
-        rgn_id  = unique(np_harvest$rgn_id), ### ??? CCO: was rgns$rgn_id - is this new thing valid?
+        rgn_id  = unique(np_harvest$rgn_id),
         corals  = 1,
         sponges = 0,
         shells  = 0) %>%  
@@ -653,7 +654,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       mutate(
         ornamentals = ifelse(is.na(ornamentals), 0, ornamentals)) %>%
       gather(product, risk, -rgn_id)
-    return(risk_prod)
+    return(np_risk)
   }
 
   np_calc_sustainability <- function(np_exp, np_risk) {
@@ -661,8 +662,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
     ### on (1 - mean(c(exposure, risk))).  Returns first input dataframe with
     ### new columns for sustainability coefficient, and sustainability-adjusted
     ### NP product_status:
-    ### [rgn_id  rgn_name  product  year  tonnes  tonnes_rel  prod_weight 
-    ###   exposure  risk  sustainability  product_status]
+    ### [rgn_id  rgn_name  product  year  prod_weight  sustainability  product_status]
     #########################################.
     
     ### join Exposure (with harvest) and Risk
@@ -674,10 +674,13 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       mutate(sustainability = 1 - mean(c(exposure, risk), na.rm = TRUE))
     
     ### calculate rgn-product-year status
-    np_sust <- np_sust %>% mutate(product_status = tonnes_rel * sustainability) %>%
+    np_sust <- np_sust %>% 
+      mutate(product_status = tonnes_rel * sustainability) %>%
       filter(rgn_name != 'DISPUTED') %>%
       select(-tonnes, -tonnes_rel, -risk, -exposure)
     ### ??? is it OK to clean out extra vars at this point - tonnes, tonnes_rel, risk, exposure?
+    
+    return(np_sust)
   }
 
   np_calc_scores <- function(np_sust, year_max) {
