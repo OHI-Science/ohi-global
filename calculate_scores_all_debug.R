@@ -4,7 +4,8 @@ library(devtools)
 devtools::install_github("ohi-science/ohicore@dev")
 library(ohicore)
 
-setwd("/Users/ohara/GitHub/ohi-global")
+#setwd("/Users/ohara/GitHub/ohi-global") # work iMac
+setwd("/Users/caseyohara/GitHub/ohi-global") # macbook air
 
 # check to see if following also works on Mac:
 source('../ohiprep/src/R/common.R')

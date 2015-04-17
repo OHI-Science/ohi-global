@@ -467,7 +467,6 @@ summary(r.status); dim(r.status)
 }
 
 NP <- function(scores, layers, year_max, debug = FALSE){
-  browser()
   ### Apr 2014: updated by @oharac to use dplyr, tidyr.
   # TODO: add smoothing a la PLoS 2013 manuscript # ??? CCO: done? is this the NP data_prep smoothing?
   
@@ -721,7 +720,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
     
     ### trend based on 5 intervals (6 years of data)
     np_trend <- np_status_all %>%
-      filter(year <= year_max & year >= (year_max - 5) & !is.na(status)) %>%
+      filter(year <= year_max & year > (year_max - 5) & !is.na(status)) %>%
       group_by(rgn_id) %>%
       do(mdl = lm(status ~ year, data=.)) %>%
       summarize(
