@@ -4,7 +4,7 @@ library(devtools)
 devtools::install_github("ohi-science/ohicore@dev")
 library(ohicore)
 
-setwd("/ohi-global")
+setwd("/Users/ohara/GitHub/ohi-global")
 
 # check to see if following also works on Mac:
 source('../ohiprep/src/R/common.R')
@@ -214,10 +214,10 @@ scenarios = list(
 #     # launch on Mac # setwd('~/github/ohi-global/eez2013'); launch_app()
 #     #system(sprintf('open %s/launch_app.command', scenario))
 #   }
-}
+
 
 ### this code needs to be redone!
-source('global2014/merge_scores.R')
+#source('global2014/merge_scores.R')
 
 
 ## look into following code:

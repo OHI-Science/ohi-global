@@ -467,7 +467,7 @@ summary(r.status); dim(r.status)
 }
 
 NP <- function(scores, layers, year_max, debug = FALSE){
-#  browser()
+  browser()
   ### Apr 2014: updated by @oharac to use dplyr, tidyr.
   # TODO: add smoothing a la PLoS 2013 manuscript # ??? CCO: done? is this the NP data_prep smoothing?
   
@@ -601,15 +601,14 @@ NP <- function(scores, layers, year_max, debug = FALSE){
           left_join(
             FIS_status %>%
               mutate(exposure = score / 100) %>%
-              mutate(exposure = ifelse(is.na(exposure), 0, exposure)) %>% 
+#              mutate(exposure = ifelse(is.na(exposure), 0, exposure)) %>% 
         ### ??? adding this ^^^ from below - now will filter only NAs in fish_oil exposure, not seaweeds and coral exposure
               select(rgn_id, exposure),
             by = 'rgn_id'))
     
-    ### ??? Original note: assign fish_oil exposure to 0 if missing FIS status
-    # ??? CCO: This assigns exposure to zero for ANY product with NA
-#     np_exp <- np_exp %>% 
-#       mutate(exposure = ifelse(is.na(exposure), 0, exposure))
+    # ??? CCO: This assigns exposure to zero for ANY product with NA (fish oil, seaweeds, corals)
+     np_exp <- np_exp %>% 
+       mutate(exposure = ifelse(is.na(exposure), 0, exposure))
     
     return(np_exp)
   }
@@ -678,7 +677,6 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       mutate(product_status = tonnes_rel * sustainability) %>%
       filter(rgn_name != 'DISPUTED') %>%
       select(-tonnes, -tonnes_rel, -risk, -exposure)
-    ### ??? is it OK to clean out extra vars at this point - tonnes, tonnes_rel, risk, exposure?
     
     return(np_sust)
   }
@@ -733,11 +731,13 @@ NP <- function(scores, layers, year_max, debug = FALSE){
     stopifnot(min(np_trend$score) >= -1, max(np_trend$score) <= 1)
     
     ### return scores
-    scores_NP <- np_status_current %>%
+    np_scores <- np_status_current %>%
       full_join(np_trend) %>%
       mutate(goal = 'NP') %>%
       select(goal, dimension, region_id=rgn_id, score) %>%
       arrange(goal, dimension, region_id)
+    
+    return(np_scores)
   }
 
   ##########################################.
