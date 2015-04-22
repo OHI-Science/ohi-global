@@ -75,9 +75,9 @@ Seems like it would be better to use these data: N:\model\GL-NCEAS-CoastalPopula
 
 * **Pressure: hd_subtidal_sb:**  Ben B. had recommended not using "subtidal" because it was calculated using subtidal and soft shelf habitats (for HS we also included soft slope).  This is calculated at the region scale by summarizing the area of soft-bottom and relative proportion of destructive fishing for each eez/fao/etc and then applying the following [method](https://github.com/OHI-Science/ohiprep/blob/master/Global/HS_AQ_Pressures_HD_SB_2014/PressuresHD_subtidal_soft_bottom.png).  Questions: 1) should we apply formula at the raster scale? 2) what categories of soft-bottom do we want to include? 3) how do we incorporate new fishing data (will we have the different fishing types...or just assume equivalent increase/decrease per saup region)?
 
-* **Pressure: po_chemicals_3nm:** Wait for John to update these data. Should be straight-forward.
+* **Pressure: po_chemicals_3nm:** Updated by ??.  Includes pesticide plume data (new data), inorganic (based on impervious surfaces, and does not appear to have updated data), ocean-based pollution (check that this was the correct data used...not totally clear.  Includes shipping - which is not going to be updated and ports)?  Inorganic pollution based on landcover impervious surfaces (does not appear to be new data from noaa: http://ngdc.noaa.gov/eog/dmsp/download_global_isa.html - there is one from 2010, but this just appears to be a different projection)   
 
-* **Pressure: po_nutrients_3nm:** Wait for John to update these data.  Should be straight-forward.
+* **Pressure: po_nutrients_3nm:** Updated by ??. FAO fertilizer data.  Based on these files: Y:\mnt\storage\marine_threats\impact_layers_2013_redo\impact_layers\work\land_based\scripts_and_intermediary_layers\[1]_fao\input\faostats_fert.csv it appears that the data John used in his last analysis went to 2010.  The data are now available to 2011.  There also appears to be updated land use data (http://landcover.usgs.gov/global_climatology.php, or http://glcf.umd.edu/data/lc/) which is used in the model to distribute the FAO nutrient data.
 
 * **Pressure: sp_genetic:** Trujillo data from 2008. No updates for genetic escapes, but updates to FAO mariculture data which seems to be integrated in the calculation.  Can't find the script where this is calclulated.
 
