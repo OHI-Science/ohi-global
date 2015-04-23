@@ -17,7 +17,7 @@ dirs = list(
   ohicore       = '../ohicore')
 
 
-do.layercopy  = T
+do.layercopy  = F
 do.layercheck = T
 do.calculate  = T
 do.other      = F
@@ -69,7 +69,7 @@ for (dir in c('eez2012','eez2014', 'eez2015')){
 }
 
 
-for (i in 1:length(scenarios)){ # i=1
+for (i in 1:length(scenarios)){ # i=3
   
   # vars
   scenario   = names(scenarios)[[i]]

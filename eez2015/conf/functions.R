@@ -1580,45 +1580,65 @@ ICO = function(layers){
 }
 
 LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year, trend_years){
-
-lyrs = list('r'  = c('rgn_area_inland1km'   = 'area_inland1km',
-                       'rgn_area_offshore3nm' = 'area_offshore3nm'),
-              'ry' = c('lsp_prot_area_offshore3nm' = 'cmpa',
-                        'lsp_prot_area_inland1km'   = 'cp'))              
-  lyr_names = sub('^\\w*\\.','', names(unlist(lyrs)))
+# browser()
+#   status_year = 2012
+#   trend_years = 2007:2012
   
-  # cast data ----
-  d = SelectLayersData(layers, layers=lyr_names)  
-  r  = rename(dcast(d, id_num ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['r']]))),
-              c('id_num'='region_id', lyrs[['r']]))
-  ry = rename(dcast(d, id_num + year ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['ry']]))),
-              c('id_num'='region_id', lyrs[['ry']]))
+# lyrs = list('r'  = c('rgn_area_inland1km'   = 'area_inland1km',
+#                        'rgn_area_offshore3nm' = 'area_offshore3nm'),
+#               'ry' = c('lsp_prot_area_offshore3nm' = 'cmpa',
+#                         'lsp_prot_area_inland1km'   = 'cp'))              
+#  lyr_names = sub('^\\w*\\.','', names(unlist(lyrs)))
+# 
+# lyrs = data.frame(dataType=rep(c('r', 'ry'), each=2), 
+#                   layers =c('rgn_area_inland1km', 'rgn_area_offshore3nm', 'lsp_prot_area_offshore3nm', 'lsp_prot_area_inland1km'),
+#                   names =c('area_inland1km', 'area_offshore3nm', 'cmpa', 'cp'))
+
+  # select data ----
+  r = SelectLayersData(layers, layers=c('rgn_area_inland1km', 'rgn_area_offshore3nm'))  #total offshore/inland areas
+  ry = SelectLayersData(layers, layers=c('lsp_prot_area_offshore3nm', 'lsp_prot_area_inland1km')) #total protected areas                      
+                       
+#   r  = rename(reshape2::dcast(d, id_num ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['r']]))),
+#               c('id_num'='region_id', lyrs[['r']]))
+
+r <- r %>%
+  select(region_id = id_num, val_num, layer) %>%
+  spread(layer, val_num) %>%
+  dplyr::rename(area_inland1km = rgn_area_inland1km,
+                area_offshore3nm = rgn_area_offshore3nm)
+
+ry <- ry %>%
+  select(region_id = id_num, year, val_num, layer) %>%
+  spread(layer, val_num) %>%
+  dplyr::rename(cmpa = lsp_prot_area_offshore3nm,
+                cp = lsp_prot_area_inland1km)
+  
+#   ry = rename(reshape2::dcast(d, id_num + year ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['ry']]))),
+#               c('id_num'='region_id', lyrs[['ry']]))
     
   # fill in time series from first year specific region_id up to max year for all regions and generate cumulative sum
-  yr.max = max(max(ry$year), status_year)
-  r.yrs = ddply(ry, .(region_id), function(x){
-    data.frame(region_id=x$region_id[1],
-               year=min(x$year):yr.max)
-    })
-  r.yrs = merge(r.yrs, ry, all.x=T)
-  r.yrs$cp[is.na(r.yrs$cp)]     = 0
-  r.yrs$cmpa[is.na(r.yrs$cmpa)] = 0
-  r.yrs = within(r.yrs, {
-    cp_cumsum    = ave(cp  , region_id, FUN=cumsum)
-    cmpa_cumsum  = ave(cmpa, region_id, FUN=cumsum)
-    pa_cumsum    = cp_cumsum + cmpa_cumsum
-  })
+r.yrs <- expand.grid(region_id = unique(ry$region_id),
+                         year = unique(ry$year)) %>%
+  left_join(ry, by=c('region_id', 'year')) %>%
+  arrange(region_id, year) %>%
+  mutate(cp= ifelse(is.na(cp), 0, cp),
+         cmpa = ifelse(is.na(cmpa), 0, cmpa)) %>%
+  group_by(region_id) %>%
+  mutate(cp_cumsum    = cumsum(cp),
+         cmpa_cumsum  = cumsum(cmpa)) %>%
+  ungroup() %>%
+ mutate(pa_cumsum     = cp_cumsum + cmpa_cumsum)
   
   # get percent of total area that is protected for inland1km (cp) and offshore3nm (cmpa) per year
   # and calculate status score
-  r.yrs = merge(r.yrs, r, all.x=T); head(r.yrs)
-  r.yrs = within(r.yrs,{
-    pct_cp    = pmin(cp_cumsum   / area_inland1km   * 100, 100)
-    pct_cmpa  = pmin(cmpa_cumsum / area_offshore3nm * 100, 100)
-    prop_protected    = ( pmin(pct_cp / ref_pct_cp, 1) + pmin(pct_cmpa / ref_pct_cmpa, 1) ) / 2
-  })
-  
-  # extract status based on specified year
+r.yrs = r.yrs %>%
+  full_join(r) %>%
+  mutate(pct_cp    = pmin(cp_cumsum   / area_inland1km   * 100, 100),
+         pct_cmpa  = pmin(cmpa_cumsum / area_offshore3nm * 100, 100),
+         prop_protected    = ( pmin(pct_cp / ref_pct_cp, 1) + pmin(pct_cmpa / ref_pct_cmpa, 1) ) / 2) %>%
+  filter(!is.na(prop_protected))
+
+# extract status based on specified year
   r.status = r.yrs %>%
     filter(year==status_year) %>%
     select(region_id, status=prop_protected) %>%
@@ -1626,10 +1646,15 @@ lyrs = list('r'  = c('rgn_area_inland1km'   = 'area_inland1km',
 head(r.status)
   
   # calculate trend
-  r.trend = ddply(subset(r.yrs, year %in% trend_years), .(region_id), function(x){
-    data.frame(
-      trend = min(1, max(0, 5 * coef(lm(prop_protected ~ year, data=x))[['year']])))})      
-
+  r.trend =   r.yrs %>%
+  filter(year %in% trend_years) %>%
+  group_by(region_id) %>%
+  do(mdl = lm(prop_protected ~ year, data=.)) %>%
+  summarize(
+    region_id = region_id,
+    trend = min(1, max(0, 5*coef(mdl)['year']))) %>% # set boundaries so trend does not go below 0 or above 1
+   ungroup()
+  
   # return scores
   scores = rbind.fill(
     within(r.status, {
