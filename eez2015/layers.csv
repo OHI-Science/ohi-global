@@ -102,12 +102,12 @@ Data sources:
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_inland1km.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,18071,FALSE,,,,241,FALSE
+- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_inland1km.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,15649.5,FALSE,,,,241,FALSE
 "LSP","lsp_prot_area_offshore3nm","rny_lsp_prot_area_offshore3nm","Coastal marine protected areas offshore 3km","Coastal protected areas offshore to 3nm from the UN WDPA. 
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_offshore3nm.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,56404,FALSE,,,,241,FALSE
+- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_offshore3nm.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,59446.5,FALSE,,,,241,FALSE
 "MAR","mar_coastalpopn_inland25mi","mar_coastalpopn_inland25mi","Coastal population inland 25 miles","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -252,7 +252,7 @@ Data sources:
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","score","pressure score","fp_targetharvest.csv","rgn_id",,,,"score",,TRUE,,,0,0.431432768059821,TRUE,,,,241,FALSE
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","score","pressure score","fp_targetharvest.csv","rgn_id",,,,"score",,TRUE,,,0,0.431432768,TRUE,,,,241,FALSE
 "pressures","hd_intertidal","hd_intertidal","Coastal population density as a proxy for intertidal habitat destruction","Coastal population, defined as the total population inland of 10 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:

@@ -1580,26 +1580,11 @@ ICO = function(layers){
 }
 
 LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year){
-# browser()
-#   status_year = 2012
    trend_years = (status_year-4):2012
   
-# lyrs = list('r'  = c('rgn_area_inland1km'   = 'area_inland1km',
-#                        'rgn_area_offshore3nm' = 'area_offshore3nm'),
-#               'ry' = c('lsp_prot_area_offshore3nm' = 'cmpa',
-#                         'lsp_prot_area_inland1km'   = 'cp'))              
-#  lyr_names = sub('^\\w*\\.','', names(unlist(lyrs)))
-# 
-# lyrs = data.frame(dataType=rep(c('r', 'ry'), each=2), 
-#                   layers =c('rgn_area_inland1km', 'rgn_area_offshore3nm', 'lsp_prot_area_offshore3nm', 'lsp_prot_area_inland1km'),
-#                   names =c('area_inland1km', 'area_offshore3nm', 'cmpa', 'cp'))
-
   # select data ----
   r = SelectLayersData(layers, layers=c('rgn_area_inland1km', 'rgn_area_offshore3nm'))  #total offshore/inland areas
   ry = SelectLayersData(layers, layers=c('lsp_prot_area_offshore3nm', 'lsp_prot_area_inland1km')) #total protected areas                      
-                       
-#   r  = rename(reshape2::dcast(d, id_num ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['r']]))),
-#               c('id_num'='region_id', lyrs[['r']]))
 
 r <- r %>%
   select(region_id = id_num, val_num, layer) %>%
@@ -1613,10 +1598,7 @@ ry <- ry %>%
   dplyr::rename(cmpa = lsp_prot_area_offshore3nm,
                 cp = lsp_prot_area_inland1km)
   
-#   ry = rename(reshape2::dcast(d, id_num + year ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['ry']]))),
-#               c('id_num'='region_id', lyrs[['ry']]))
-    
-  # fill in time series from first year specific region_id up to max year for all regions and generate cumulative sum
+  # fill in time series for all regions and generate cumulative sum
 r.yrs <- expand.grid(region_id = unique(ry$region_id),
                          year = unique(ry$year)) %>%
   left_join(ry, by=c('region_id', 'year')) %>%
