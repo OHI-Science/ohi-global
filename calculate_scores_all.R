@@ -19,7 +19,7 @@ dirs = list(
   ohicore       = '../ohicore')
 
 
-do.layercopy  = F
+do.layercopy  = T
 do.layercheck = T
 do.calculate  = T
 do.other      = F
