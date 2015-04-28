@@ -469,14 +469,13 @@ summary(r.status); dim(r.status)
 NP <- function(scores, layers, year_max, debug = FALSE){
   ### Apr 2014: updated by @oharac to use dplyr, tidyr.
   # TODO: add smoothing a la PLoS 2013 manuscript # ??? CCO: done? is this the NP data_prep smoothing?
-  
-# ### new code version - load combined harvest variables
+
+  ### new code version - load combined harvest variables
   r_cyanide    = layers$data[['np_cyanide']]
   r_blast      = layers$data[['np_blast']]  
   hab_extent   = layers$data[['hab_extent']]
 
   ### FIS status for fish oil exposure
- # scores       <- read.csv("scores.csv")
   FIS_status   <-  scores %>% 
     filter(goal == 'FIS' & dimension == 'status') %>%
     select(rgn_id = region_id, score)  
@@ -586,13 +585,23 @@ NP <- function(scores, layers, year_max, debug = FALSE){
         expos_raw = ifelse(tonnes > 0 & km2 > 0, (tonnes / km2), 0)) %>%
       group_by(product) %>%
       mutate(
-        expos_prod_max = max(expos_raw, na.rm = TRUE)) %>%
+        expos_prod_max = (1 - .35)*max(expos_raw, na.rm = TRUE)) %>%
+          ### Reduced max exposure:
+          ###   .35 is the threshold for harvest peak used in status
       ungroup() %>%
       mutate(
         exposure = log(expos_raw + 1) / log(expos_prod_max + 1)) %>%
       select(-km2, -expos_raw, -expos_prod_max)
         ### clean up columns
       
+    ### add exposure for countries with (habitat extent == NA)
+    np_exp <- np_exp %>% 
+      group_by(product) %>%
+      mutate(mean_exp = mean(exposure, na.rm = TRUE)) %>%
+      mutate(exposure = ifelse(is.na(exposure), mean_exp, exposure)) %>%
+      select(-mean_exp) %>%
+      ungroup()
+    
     ### add exposure for fish_oil
     np_exp <- np_exp %>% bind_rows(
         np_harvest %>%
@@ -606,8 +615,8 @@ NP <- function(scores, layers, year_max, debug = FALSE){
             by = 'rgn_id'))
     
     # ??? CCO: This assigns exposure to zero for ANY product with NA (fish oil, seaweeds, corals)
-     np_exp <- np_exp %>% 
-       mutate(exposure = ifelse(is.na(exposure), 0, exposure))
+#     np_exp <- np_exp %>% 
+ #      mutate(exposure = ifelse(is.na(exposure), 0, exposure))
     
     return(np_exp)
   }
@@ -746,8 +755,6 @@ NP <- function(scores, layers, year_max, debug = FALSE){
   np_exp     <- np_calc_exposure(np_harvest, hab_extent, FIS_status) 
   np_risk    <- np_calc_risk(np_exp, r_cyanide, r_blast)
   np_sust    <- np_calc_sustainability(np_exp, np_risk)
-  ### for testing - need to assign year_max b/c not passed into NP function.
-  #  year_max <- 2010
   np_scores  <- np_calc_scores(np_sust, year_max) 
         
   return(np_scores)
