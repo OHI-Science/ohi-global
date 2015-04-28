@@ -1579,10 +1579,10 @@ ICO = function(layers){
   
 }
 
-LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year, trend_years){
+LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year){
 # browser()
 #   status_year = 2012
-#   trend_years = 2007:2012
+   trend_years = (status_year-4):2012
   
 # lyrs = list('r'  = c('rgn_area_inland1km'   = 'area_inland1km',
 #                        'rgn_area_offshore3nm' = 'area_offshore3nm'),

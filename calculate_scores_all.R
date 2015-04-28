@@ -1,5 +1,7 @@
 # eez2014 reshape input data problem once in pressures, many in resilience: Aggregation function missing: defaulting to length
 
+# STEP 1: be sure to pull ohiprep
+
 library(devtools)
 devtools::install_github("ohi-science/ohicore@dev")
 library(ohicore)
@@ -214,6 +216,17 @@ for (i in 1:length(scenarios)){ # i=3
   }
 }
 
+### make a plot to compare different commits within a scenario
+source('../ohiprep/src/R/VisGlobal.R')
+changePlot(repo="~/ohi-global", scenario="eez2013", commit="final_2014", fileSave="LSP_trend_data_update")
+
+# looking within a goal:
+scatterPlot(repo="~/ohi-global", scenario="eez2013", commit="previous", goal="LSP", dim="status", fileSave="LSP_trend_data_update_status")
+goalHistogram(repo="~/ohi-global", scenario="eez2013", goal="LSP", dim="score", fileSave="LSP_trend_data_update")
+
+#   scenario options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'
+#   commit options: 'final_2014' (the final commit for the 2014 analysis), 'previous' (previous commit), a commit code (ie., 'e30e7a4')
+#   saved to: ohi-global/figures/DataCheck with name from fileSave argument
 ### this code needs to be redone!
 source('global2014/merge_scores.R')
 
@@ -228,4 +241,34 @@ source('global2014/merge_scores.R')
 
 # comparison 2014a
 # source('../ohidev/report/compare_scenarios.R')
+
+# library(git2r)
+# devtools::install_github('ropensci/git2r')
+
+
+repository(repo)
+lookup(repository(repo), hex)
+o=tree(lookup(repository(repo), hex))
+dirname(path)
+tools::file_path_sans_ext(basename(path))
+git2r::content(o[basename(path)])
+git2r::content(o)
+
+
+
+data_new %>%
+  filter(goal=="LSP",
+         dimension=="score",
+         region_id==2)
+
+t=0
+x=.5937
+r=.2
+p=.2
+DISCOUNT=1
+BETA=0.67
+
+DISCOUNT * (1 + (BETA * t) + ((1-BETA) * (r - p))) * x
+
+(1 + (0.67*trend) + ((1-0.67)*(resilience-pressures)))*status
 
