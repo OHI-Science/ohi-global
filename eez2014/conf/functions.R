@@ -1580,7 +1580,7 @@ ICO = function(layers){
 }
 
 LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year){
-   trend_years = (status_year-4):2012
+   trend_years = (status_year-4):status_year
   
   # select data ----
   r = SelectLayersData(layers, layers=c('rgn_area_inland1km', 'rgn_area_offshore3nm'))  #total offshore/inland areas
