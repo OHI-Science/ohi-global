@@ -1,5 +1,5 @@
 "goal","dimension","region_id","score"
-"AO","future",0,72.92
+"AO","future",0,72.83
 "AO","future",1,96.72
 "AO","future",2,97.29
 "AO","future",3,99.47
@@ -109,7 +109,7 @@
 "AO","future",113,74.91
 "AO","future",114,49.95
 "AO","future",115,66.46
-"AO","future",116,74.09
+"AO","future",116,73.89
 "AO","future",117,75.34
 "AO","future",118,75.18
 "AO","future",119,79.08
@@ -144,8 +144,8 @@
 "AO","future",150,100
 "AO","future",151,89.23
 "AO","future",152,75.27
-"AO","future",153,88.51
-"AO","future",154,88.48
+"AO","future",153,84.67
+"AO","future",154,83.38
 "AO","future",155,71.5
 "AO","future",156,88.51
 "AO","future",157,59.46
@@ -196,7 +196,7 @@
 "AO","future",206,70.23
 "AO","future",207,53.13
 "AO","future",208,91.64
-"AO","future",209,81.75
+"AO","future",209,79.2
 "AO","future",210,68.68
 "AO","future",212,55.41
 "AO","future",213,
@@ -330,7 +330,7 @@
 "AO","pressures",113,15.7
 "AO","pressures",114,38.44
 "AO","pressures",115,30.32
-"AO","pressures",116,19.26
+"AO","pressures",116,20.17
 "AO","pressures",117,12.55
 "AO","pressures",118,12.49
 "AO","pressures",119,18.12
@@ -365,8 +365,8 @@
 "AO","pressures",150,12.56
 "AO","pressures",151,18.83
 "AO","pressures",152,23.48
-"AO","pressures",153,7.47
-"AO","pressures",154,7.65
+"AO","pressures",153,23.7
+"AO","pressures",154,29.24
 "AO","pressures",155,24.86
 "AO","pressures",156,7.45
 "AO","pressures",157,25.28
@@ -417,7 +417,7 @@
 "AO","pressures",206,33.48
 "AO","pressures",207,41.85
 "AO","pressures",208,31.06
-"AO","pressures",209,32.99
+"AO","pressures",209,43.53
 "AO","pressures",210,17.99
 "AO","pressures",212,27.41
 "AO","pressures",213,
@@ -663,7 +663,7 @@
 "AO","resilience",248,72.35
 "AO","resilience",249,66.31
 "AO","resilience",250,70.75
-"AO","score",0,67.93
+"AO","score",0,67.89
 "AO","score",1,88
 "AO","score",2,88.28
 "AO","score",3,89.37
@@ -773,7 +773,7 @@
 "AO","score",113,69.3
 "AO","score",114,49.51
 "AO","score",115,63.09
-"AO","score",116,70.63
+"AO","score",116,70.53
 "AO","score",117,69.52
 "AO","score",118,69.44
 "AO","score",119,74.06
@@ -808,8 +808,8 @@
 "AO","score",150,93.04
 "AO","score",151,83.34
 "AO","score",152,70.81
-"AO","score",153,80.07
-"AO","score",154,80.06
+"AO","score",153,78.15
+"AO","score",154,77.51
 "AO","score",155,68.09
 "AO","score",156,80.07
 "AO","score",157,55.93
@@ -860,7 +860,7 @@
 "AO","score",206,66.92
 "AO","score",207,51.33
 "AO","score",208,85.24
-"AO","score",209,77.53
+"AO","score",209,76.26
 "AO","score",210,62.97
 "AO","score",212,53.11
 "AO","score",213,
@@ -1328,7 +1328,7 @@
 "AO","trend",248,-0.03
 "AO","trend",249,-0.03
 "AO","trend",250,-0.03
-"BD","future",0,85.36
+"BD","future",0,85.27
 "BD","future",1,92.56
 "BD","future",2,91.87
 "BD","future",3,93.94
@@ -1438,7 +1438,7 @@
 "BD","future",113,88.59
 "BD","future",114,64.55
 "BD","future",115,79.82
-"BD","future",116,90.96
+"BD","future",116,90.83
 "BD","future",117,82.98
 "BD","future",118,82.65
 "BD","future",119,95.15
@@ -1473,8 +1473,8 @@
 "BD","future",150,89.96
 "BD","future",151,86.79
 "BD","future",152,89.29
-"BD","future",153,88.22
-"BD","future",154,87.82
+"BD","future",153,83.85
+"BD","future",154,82.05
 "BD","future",155,77.58
 "BD","future",156,83.37
 "BD","future",157,87.83
@@ -1525,7 +1525,7 @@
 "BD","future",206,72.85
 "BD","future",207,72.37
 "BD","future",208,81.63
-"BD","future",209,76.94
+"BD","future",209,74.13
 "BD","future",210,92.66
 "BD","future",212,84.66
 "BD","future",213,
@@ -1992,7 +1992,7 @@
 "BD","resilience",248,
 "BD","resilience",249,
 "BD","resilience",250,
-"BD","score",0,85.59
+"BD","score",0,85.54
 "BD","score",1,91.44
 "BD","score",2,90.67
 "BD","score",3,92.33
@@ -2102,7 +2102,7 @@
 "BD","score",113,87.95
 "BD","score",114,74.19
 "BD","score",115,83.26
-"BD","score",116,89.47
+"BD","score",116,89.4
 "BD","score",117,83.64
 "BD","score",118,83.43
 "BD","score",119,92.74
@@ -2137,8 +2137,8 @@
 "BD","score",150,87.34
 "BD","score",151,88.03
 "BD","score",152,89
-"BD","score",153,84.84
-"BD","score",154,84.46
+"BD","score",153,82.66
+"BD","score",154,81.57
 "BD","score",155,83.12
 "BD","score",156,81.16
 "BD","score",157,87.72
@@ -2189,7 +2189,7 @@
 "BD","score",206,80.21
 "BD","score",207,79.28
 "BD","score",208,82.44
-"BD","score",209,78.87
+"BD","score",209,77.46
 "BD","score",210,90.45
 "BD","score",212,85.81
 "BD","score",213,
@@ -2657,7 +2657,7 @@
 "BD","trend",248,-0.08
 "BD","trend",249,-0.08
 "BD","trend",250,-0.24
-"CP","future",0,70.45
+"CP","future",0,70.34
 "CP","future",1,58.47
 "CP","future",2,27.59
 "CP","future",3,
@@ -2767,7 +2767,7 @@
 "CP","future",113,58.77
 "CP","future",114,9.15
 "CP","future",115,53.64
-"CP","future",116,39.55
+"CP","future",116,39.45
 "CP","future",117,49.93
 "CP","future",118,39.92
 "CP","future",119,46.34
@@ -2802,8 +2802,8 @@
 "CP","future",150,82.06
 "CP","future",151,29.61
 "CP","future",152,35.53
-"CP","future",153,89.16
-"CP","future",154,84.43
+"CP","future",153,83.91
+"CP","future",154,78.01
 "CP","future",155,20.82
 "CP","future",156,89.75
 "CP","future",157,100
@@ -2854,7 +2854,7 @@
 "CP","future",206,72.75
 "CP","future",207,55.53
 "CP","future",208,29.1
-"CP","future",209,46.9
+"CP","future",209,45.35
 "CP","future",210,100
 "CP","future",212,82.87
 "CP","future",213,
@@ -2988,7 +2988,7 @@
 "CP","pressures",113,23.56
 "CP","pressures",114,47.88
 "CP","pressures",115,42
-"CP","pressures",116,31.9
+"CP","pressures",116,32.81
 "CP","pressures",117,26.93
 "CP","pressures",118,27.61
 "CP","pressures",119,32.12
@@ -3023,8 +3023,8 @@
 "CP","pressures",150,26.27
 "CP","pressures",151,29.8
 "CP","pressures",152,35.85
-"CP","pressures",153,20.05
-"CP","pressures",154,22.4
+"CP","pressures",153,36.28
+"CP","pressures",154,43.99
 "CP","pressures",155,41.09
 "CP","pressures",156,18.57
 "CP","pressures",157,39.48
@@ -3075,7 +3075,7 @@
 "CP","pressures",206,37.23
 "CP","pressures",207,44.12
 "CP","pressures",208,32.6
-"CP","pressures",209,31.62
+"CP","pressures",209,42.16
 "CP","pressures",210,27.02
 "CP","pressures",212,37.14
 "CP","pressures",213,
@@ -3321,7 +3321,7 @@
 "CP","resilience",248,69.7
 "CP","resilience",249,60.09
 "CP","resilience",250,64.79
-"CP","score",0,69.64
+"CP","score",0,69.58
 "CP","score",1,53.21
 "CP","score",2,25
 "CP","score",3,
@@ -3431,7 +3431,7 @@
 "CP","score",113,56.48
 "CP","score",114,21.16
 "CP","score",115,55.34
-"CP","score",116,37.44
+"CP","score",116,37.39
 "CP","score",117,48.08
 "CP","score",118,39.29
 "CP","score",119,45.04
@@ -3466,8 +3466,8 @@
 "CP","score",150,78.18
 "CP","score",151,29.15
 "CP","score",152,33.55
-"CP","score",153,93.59
-"CP","score",154,87.22
+"CP","score",153,90.97
+"CP","score",154,84.02
 "CP","score",155,29.01
 "CP","score",156,94.06
 "CP","score",157,100
@@ -3518,7 +3518,7 @@
 "CP","score",206,76.47
 "CP","score",207,66.34
 "CP","score",208,27.55
-"CP","score",209,45.82
+"CP","score",209,45.04
 "CP","score",210,97.07
 "CP","score",212,82.31
 "CP","score",213,
@@ -3986,7 +3986,7 @@
 "CP","trend",248,0.03
 "CP","trend",249,0.03
 "CP","trend",250,0.03
-"CS","future",0,68.88
+"CS","future",0,68.8
 "CS","future",1,100
 "CS","future",2,100
 "CS","future",3,
@@ -4131,8 +4131,8 @@
 "CS","future",150,
 "CS","future",151,97.05
 "CS","future",152,93.01
-"CS","future",153,60.84
-"CS","future",154,60.42
+"CS","future",153,58.16
+"CS","future",154,56.86
 "CS","future",155,49.83
 "CS","future",156,60.9
 "CS","future",157,
@@ -4183,7 +4183,7 @@
 "CS","future",206,46.87
 "CS","future",207,25.11
 "CS","future",208,96.69
-"CS","future",209,45.82
+"CS","future",209,43.64
 "CS","future",210,100
 "CS","future",212,88.18
 "CS","future",213,
@@ -4317,7 +4317,7 @@
 "CS","pressures",113,19.12
 "CS","pressures",114,45.23
 "CS","pressures",115,37.97
-"CS","pressures",116,27.94
+"CS","pressures",116,28.85
 "CS","pressures",117,21.56
 "CS","pressures",118,21.23
 "CS","pressures",119,27.34
@@ -4352,8 +4352,8 @@
 "CS","pressures",150,
 "CS","pressures",151,25.57
 "CS","pressures",152,31.08
-"CS","pressures",153,10.82
-"CS","pressures",154,13.21
+"CS","pressures",153,27.05
+"CS","pressures",154,34.8
 "CS","pressures",155,34.05
 "CS","pressures",156,10.29
 "CS","pressures",157,
@@ -4404,7 +4404,7 @@
 "CS","pressures",206,28.83
 "CS","pressures",207,37.43
 "CS","pressures",208,29.43
-"CS","pressures",209,33.43
+"CS","pressures",209,43.97
 "CS","pressures",210,24.95
 "CS","pressures",212,31.85
 "CS","pressures",213,
@@ -4650,7 +4650,7 @@
 "CS","resilience",248,69.7
 "CS","resilience",249,60.09
 "CS","resilience",250,64.79
-"CS","score",0,74.29
+"CS","score",0,74.25
 "CS","score",1,92.76
 "CS","score",2,92.76
 "CS","score",3,
@@ -4795,8 +4795,8 @@
 "CS","score",150,
 "CS","score",151,94.17
 "CS","score",152,89.26
-"CS","score",153,55.42
-"CS","score",154,55.21
+"CS","score",153,54.08
+"CS","score",154,53.43
 "CS","score",155,67.67
 "CS","score",156,55.45
 "CS","score",157,
@@ -4847,7 +4847,7 @@
 "CS","score",206,65.42
 "CS","score",207,41.81
 "CS","score",208,91.1
-"CS","score",209,54.28
+"CS","score",209,53.18
 "CS","score",210,95.64
 "CS","score",212,86.84
 "CS","score",213,
@@ -5315,7 +5315,7 @@
 "CS","trend",248,
 "CS","trend",249,
 "CS","trend",250,-0.61
-"CW","future",0,75.06
+"CW","future",0,74.98
 "CW","future",1,96.48
 "CW","future",2,95.9
 "CW","future",3,87.75
@@ -5425,7 +5425,7 @@
 "CW","future",113,66.32
 "CW","future",114,40.19
 "CW","future",115,50.41
-"CW","future",116,62.33
+"CW","future",116,62.12
 "CW","future",117,76.36
 "CW","future",118,70.77
 "CW","future",119,69.59
@@ -5460,8 +5460,8 @@
 "CW","future",150,100
 "CW","future",151,46.46
 "CW","future",152,71.73
-"CW","future",153,90.91
-"CW","future",154,91.79
+"CW","future",153,86.94
+"CW","future",154,86.3
 "CW","future",155,74.61
 "CW","future",156,81.85
 "CW","future",157,68.27
@@ -5512,7 +5512,7 @@
 "CW","future",206,61.95
 "CW","future",207,41.44
 "CW","future",208,58.31
-"CW","future",209,28.02
+"CW","future",209,26.85
 "CW","future",210,72.37
 "CW","future",212,49.98
 "CW","future",213,
@@ -5646,7 +5646,7 @@
 "CW","pressures",113,64.8
 "CW","pressures",114,86.26
 "CW","pressures",115,78.23
-"CW","pressures",116,67.36
+"CW","pressures",116,68.28
 "CW","pressures",117,59.89
 "CW","pressures",118,61.49
 "CW","pressures",119,66.49
@@ -5681,8 +5681,8 @@
 "CW","pressures",150,12.96
 "CW","pressures",151,67.72
 "CW","pressures",152,69.65
-"CW","pressures",153,48.15
-"CW","pressures",154,42.51
+"CW","pressures",153,64.38
+"CW","pressures",154,64.1
 "CW","pressures",155,74.12
 "CW","pressures",156,52.75
 "CW","pressures",157,61.41
@@ -5733,7 +5733,7 @@
 "CW","pressures",206,71.63
 "CW","pressures",207,80.27
 "CW","pressures",208,59.23
-"CW","pressures",209,69.92
+"CW","pressures",209,80.46
 "CW","pressures",210,62.54
 "CW","pressures",212,74.98
 "CW","pressures",213,
@@ -5979,7 +5979,7 @@
 "CW","resilience",248,74.42
 "CW","resilience",249,74.42
 "CW","resilience",250,79.12
-"CW","score",0,73.46
+"CW","score",0,73.42
 "CW","score",1,86.84
 "CW","score",2,86.43
 "CW","score",3,82.38
@@ -6089,7 +6089,7 @@
 "CW","score",113,67.53
 "CW","score",114,45.14
 "CW","score",115,53.7
-"CW","score",116,65.01
+"CW","score",116,64.91
 "CW","score",117,75.74
 "CW","score",118,70.7
 "CW","score",119,68.76
@@ -6124,8 +6124,8 @@
 "CW","score",150,99.85
 "CW","score",151,51.4
 "CW","score",152,71.84
-"CW","score",153,82.59
-"CW","score",154,84.48
+"CW","score",153,80.6
+"CW","score",154,81.73
 "CW","score",155,71.71
 "CW","score",156,76.65
 "CW","score",157,72.15
@@ -6176,7 +6176,7 @@
 "CW","score",206,63.4
 "CW","score",207,47.41
 "CW","score",208,52.34
-"CW","score",209,30.77
+"CW","score",209,30.18
 "CW","score",210,69.48
 "CW","score",212,53.23
 "CW","score",213,
@@ -6644,7 +6644,7 @@
 "CW","trend",248,-0.13
 "CW","trend",249,-0.13
 "CW","trend",250,-0.11
-"ECO","future",0,88.16
+"ECO","future",0,88.11
 "ECO","future",1,100
 "ECO","future",2,100
 "ECO","future",3,100
@@ -6754,7 +6754,7 @@
 "ECO","future",113,100
 "ECO","future",114,93.45
 "ECO","future",115,100
-"ECO","future",116,97.97
+"ECO","future",116,97.71
 "ECO","future",117,88.9
 "ECO","future",118,93.39
 "ECO","future",119,85.04
@@ -6789,8 +6789,8 @@
 "ECO","future",150,
 "ECO","future",151,77.45
 "ECO","future",152,86.98
-"ECO","future",153,67.27
-"ECO","future",154,38.93
+"ECO","future",153,64.32
+"ECO","future",154,36.67
 "ECO","future",155,100
 "ECO","future",156,81.52
 "ECO","future",157,66.51
@@ -6975,7 +6975,7 @@
 "ECO","pressures",113,20.45
 "ECO","pressures",114,44.21
 "ECO","pressures",115,35.32
-"ECO","pressures",116,23.9
+"ECO","pressures",116,24.81
 "ECO","pressures",117,16.6
 "ECO","pressures",118,17.23
 "ECO","pressures",119,23.45
@@ -7010,8 +7010,8 @@
 "ECO","pressures",150,
 "ECO","pressures",151,18.99
 "ECO","pressures",152,22.99
-"ECO","pressures",153,10.86
-"ECO","pressures",154,10.67
+"ECO","pressures",153,27.08
+"ECO","pressures",154,32.26
 "ECO","pressures",155,30.45
 "ECO","pressures",156,11.15
 "ECO","pressures",157,28.18
@@ -7062,7 +7062,7 @@
 "ECO","pressures",206,30.55
 "ECO","pressures",207,40.64
 "ECO","pressures",208,28.15
-"ECO","pressures",209,31.77
+"ECO","pressures",209,42.31
 "ECO","pressures",210,18.59
 "ECO","pressures",212,31.53
 "ECO","pressures",213,
@@ -7308,7 +7308,7 @@
 "ECO","resilience",248,61.28
 "ECO","resilience",249,61.28
 "ECO","resilience",250,65.98
-"ECO","score",0,87.92
+"ECO","score",0,87.89
 "ECO","score",1,100
 "ECO","score",2,100
 "ECO","score",3,100
@@ -7418,7 +7418,7 @@
 "ECO","score",113,100
 "ECO","score",114,94.89
 "ECO","score",115,98.77
-"ECO","score",116,92.81
+"ECO","score",116,92.68
 "ECO","score",117,82.73
 "ECO","score",118,86.87
 "ECO","score",119,82.69
@@ -7453,8 +7453,8 @@
 "ECO","score",150,
 "ECO","score",151,71.86
 "ECO","score",152,81.7
-"ECO","score",153,61.2
-"ECO","score",154,35.33
+"ECO","score",153,59.72
+"ECO","score",154,34.2
 "ECO","score",155,99.62
 "ECO","score",156,73.9
 "ECO","score",157,68.02
@@ -7973,7 +7973,7 @@
 "ECO","trend",248,0
 "ECO","trend",249,0
 "ECO","trend",250,0.02
-"FIS","future",0,62.9
+"FIS","future",0,62.84
 "FIS","future",1,37.32
 "FIS","future",2,33.81
 "FIS","future",3,48.3
@@ -8083,7 +8083,7 @@
 "FIS","future",113,8.51
 "FIS","future",114,1.02
 "FIS","future",115,19.96
-"FIS","future",116,28.42
+"FIS","future",116,28.34
 "FIS","future",117,10.88
 "FIS","future",118,3.58
 "FIS","future",119,13.12
@@ -8118,8 +8118,8 @@
 "FIS","future",150,57.16
 "FIS","future",151,61.35
 "FIS","future",152,57.67
-"FIS","future",153,56.58
-"FIS","future",154,68.94
+"FIS","future",153,54.17
+"FIS","future",154,64.88
 "FIS","future",155,72.57
 "FIS","future",156,63.45
 "FIS","future",157,
@@ -8170,7 +8170,7 @@
 "FIS","future",206,72.96
 "FIS","future",207,3.19
 "FIS","future",208,89.09
-"FIS","future",209,40.23
+"FIS","future",209,38.98
 "FIS","future",210,31.27
 "FIS","future",212,75.31
 "FIS","future",213,
@@ -8304,7 +8304,7 @@
 "FIS","pressures",113,15.55
 "FIS","pressures",114,38.84
 "FIS","pressures",115,31.42
-"FIS","pressures",116,19.75
+"FIS","pressures",116,20.67
 "FIS","pressures",117,12.34
 "FIS","pressures",118,12.29
 "FIS","pressures",119,18.34
@@ -8339,8 +8339,8 @@
 "FIS","pressures",150,12.57
 "FIS","pressures",151,18.77
 "FIS","pressures",152,23.92
-"FIS","pressures",153,7.38
-"FIS","pressures",154,7.44
+"FIS","pressures",153,23.61
+"FIS","pressures",154,29.03
 "FIS","pressures",155,24.73
 "FIS","pressures",156,7.41
 "FIS","pressures",157,25.25
@@ -8391,7 +8391,7 @@
 "FIS","pressures",206,37.54
 "FIS","pressures",207,45.21
 "FIS","pressures",208,41.37
-"FIS","pressures",209,40.68
+"FIS","pressures",209,51.23
 "FIS","pressures",210,21
 "FIS","pressures",212,30.47
 "FIS","pressures",213,
@@ -8637,7 +8637,7 @@
 "FIS","resilience",248,71.65
 "FIS","resilience",249,66.33
 "FIS","resilience",250,70.28
-"FIS","score",0,58.89
+"FIS","score",0,58.86
 "FIS","score",1,34.16
 "FIS","score",2,30.91
 "FIS","score",3,44.15
@@ -8747,7 +8747,7 @@
 "FIS","score",113,7.75
 "FIS","score",114,1.01
 "FIS","score",115,18.98
-"FIS","score",116,26.71
+"FIS","score",116,26.67
 "FIS","score",117,9.94
 "FIS","score",118,3.29
 "FIS","score",119,12.06
@@ -8782,8 +8782,8 @@
 "FIS","score",150,52.08
 "FIS","score",151,56.17
 "FIS","score",152,50.84
-"FIS","score",153,50.79
-"FIS","score",154,62.97
+"FIS","score",153,49.59
+"FIS","score",154,60.94
 "FIS","score",155,66.79
 "FIS","score",156,58.23
 "FIS","score",157,
@@ -8834,7 +8834,7 @@
 "FIS","score",206,65.48
 "FIS","score",207,3.09
 "FIS","score",208,79.55
-"FIS","score",209,38.12
+"FIS","score",209,37.49
 "FIS","score",210,28.63
 "FIS","score",212,70.15
 "FIS","score",213,
@@ -9302,7 +9302,7 @@
 "FIS","trend",248,
 "FIS","trend",249,
 "FIS","trend",250,0
-"FP","future",0,61.73
+"FP","future",0,61.68
 "FP","future",1,37.32
 "FP","future",2,33.81
 "FP","future",3,48.3
@@ -9412,7 +9412,7 @@
 "FP","future",113,8.51
 "FP","future",114,1.02
 "FP","future",115,18.68
-"FP","future",116,28.42
+"FP","future",116,28.34
 "FP","future",117,10.88
 "FP","future",118,3.58
 "FP","future",119,13.12
@@ -9447,8 +9447,8 @@
 "FP","future",150,57.16
 "FP","future",151,61.35
 "FP","future",152,57.67
-"FP","future",153,56.58
-"FP","future",154,68.94
+"FP","future",153,54.17
+"FP","future",154,64.88
 "FP","future",155,72.57
 "FP","future",156,63.45
 "FP","future",157,
@@ -9499,7 +9499,7 @@
 "FP","future",206,67.65
 "FP","future",207,31.3
 "FP","future",208,89.04
-"FP","future",209,76.52
+"FP","future",209,76.02
 "FP","future",210,30.56
 "FP","future",212,75.29
 "FP","future",213,
@@ -9966,7 +9966,7 @@
 "FP","resilience",248,
 "FP","resilience",249,
 "FP","resilience",250,
-"FP","score",0,58.04
+"FP","score",0,58.01
 "FP","score",1,34.16
 "FP","score",2,30.91
 "FP","score",3,44.15
@@ -10076,7 +10076,7 @@
 "FP","score",113,7.75
 "FP","score",114,1.01
 "FP","score",115,17.76
-"FP","score",116,26.71
+"FP","score",116,26.67
 "FP","score",117,9.94
 "FP","score",118,3.29
 "FP","score",119,12.06
@@ -10111,8 +10111,8 @@
 "FP","score",150,52.08
 "FP","score",151,56.17
 "FP","score",152,50.84
-"FP","score",153,50.79
-"FP","score",154,62.97
+"FP","score",153,49.59
+"FP","score",154,60.94
 "FP","score",155,66.79
 "FP","score",156,58.23
 "FP","score",157,
@@ -10163,7 +10163,7 @@
 "FP","score",206,60.9
 "FP","score",207,28.71
 "FP","score",208,79.49
-"FP","score",209,75.68
+"FP","score",209,75.44
 "FP","score",210,28.14
 "FP","score",212,70.14
 "FP","score",213,
@@ -10631,7 +10631,7 @@
 "FP","trend",248,
 "FP","trend",249,
 "FP","trend",250,0
-"HAB","future",0,88.81
+"HAB","future",0,88.72
 "HAB","future",1,100
 "HAB","future",2,100
 "HAB","future",3,100
@@ -10776,8 +10776,8 @@
 "HAB","future",150,100
 "HAB","future",151,100
 "HAB","future",152,100
-"HAB","future",153,92.35
-"HAB","future",154,92.08
+"HAB","future",153,88.03
+"HAB","future",154,86.33
 "HAB","future",155,81.06
 "HAB","future",156,81.39
 "HAB","future",157,100
@@ -10828,7 +10828,7 @@
 "HAB","future",206,73.79
 "HAB","future",207,72.49
 "HAB","future",208,94.33
-"HAB","future",209,76.92
+"HAB","future",209,74.24
 "HAB","future",210,100
 "HAB","future",212,97
 "HAB","future",213,
@@ -10962,7 +10962,7 @@
 "HAB","pressures",113,18.7
 "HAB","pressures",114,41.97
 "HAB","pressures",115,35.54
-"HAB","pressures",116,23.8
+"HAB","pressures",116,24.72
 "HAB","pressures",117,18.44
 "HAB","pressures",118,18.67
 "HAB","pressures",119,22.52
@@ -10997,8 +10997,8 @@
 "HAB","pressures",150,15
 "HAB","pressures",151,26.09
 "HAB","pressures",152,29.3
-"HAB","pressures",153,9.71
-"HAB","pressures",154,10.51
+"HAB","pressures",153,25.94
+"HAB","pressures",154,32.1
 "HAB","pressures",155,29
 "HAB","pressures",156,11.77
 "HAB","pressures",157,27.59
@@ -11049,7 +11049,7 @@
 "HAB","pressures",206,31.51
 "HAB","pressures",207,39.52
 "HAB","pressures",208,26.38
-"HAB","pressures",209,30.17
+"HAB","pressures",209,40.71
 "HAB","pressures",210,21.24
 "HAB","pressures",212,29.96
 "HAB","pressures",213,
@@ -11295,7 +11295,7 @@
 "HAB","resilience",248,72.49
 "HAB","resilience",249,69.88
 "HAB","resilience",250,74.62
-"HAB","score",0,88.45
+"HAB","score",0,88.41
 "HAB","score",1,97.59
 "HAB","score",2,97.59
 "HAB","score",3,100
@@ -11440,8 +11440,8 @@
 "HAB","score",150,93.58
 "HAB","score",151,97.82
 "HAB","score",152,96.38
-"HAB","score",153,86.48
-"HAB","score",154,86.35
+"HAB","score",153,84.32
+"HAB","score",154,83.47
 "HAB","score",155,87.05
 "HAB","score",156,78.19
 "HAB","score",157,95.96
@@ -11492,7 +11492,7 @@
 "HAB","score",206,81.75
 "HAB","score",207,79.23
 "HAB","score",208,88.06
-"HAB","score",209,76.97
+"HAB","score",209,75.63
 "HAB","score",210,96.4
 "HAB","score",212,93.39
 "HAB","score",213,
@@ -11960,7 +11960,7 @@
 "HAB","trend",248,0.02
 "HAB","trend",249,0.02
 "HAB","trend",250,-0.29
-"ICO","future",0,59.76
+"ICO","future",0,59.68
 "ICO","future",1,71.99
 "ICO","future",2,46.27
 "ICO","future",3,97.33
@@ -12070,7 +12070,7 @@
 "ICO","future",113,59.55
 "ICO","future",114,45.54
 "ICO","future",115,52
-"ICO","future",116,53.2
+"ICO","future",116,53.02
 "ICO","future",117,57.54
 "ICO","future",118,76.69
 "ICO","future",119,54.88
@@ -12105,8 +12105,8 @@
 "ICO","future",150,50.86
 "ICO","future",151,57.46
 "ICO","future",152,59.73
-"ICO","future",153,70.88
-"ICO","future",154,67.6
+"ICO","future",153,67.43
+"ICO","future",154,62.97
 "ICO","future",155,59.32
 "ICO","future",156,52.7
 "ICO","future",157,
@@ -12157,7 +12157,7 @@
 "ICO","future",206,47.25
 "ICO","future",207,48.35
 "ICO","future",208,48.25
-"ICO","future",209,49.15
+"ICO","future",209,47.2
 "ICO","future",210,58.24
 "ICO","future",212,56.67
 "ICO","future",213,
@@ -12291,7 +12291,7 @@
 "ICO","pressures",113,22.49
 "ICO","pressures",114,46.71
 "ICO","pressures",115,40.32
-"ICO","pressures",116,28.27
+"ICO","pressures",116,29.18
 "ICO","pressures",117,20.06
 "ICO","pressures",118,20.07
 "ICO","pressures",119,26.12
@@ -12326,8 +12326,8 @@
 "ICO","pressures",150,13.7
 "ICO","pressures",151,24.23
 "ICO","pressures",152,29.67
-"ICO","pressures",153,12.76
-"ICO","pressures",154,13.75
+"ICO","pressures",153,28.98
+"ICO","pressures",154,35.34
 "ICO","pressures",155,30.75
 "ICO","pressures",156,12.33
 "ICO","pressures",157,29.81
@@ -12378,7 +12378,7 @@
 "ICO","pressures",206,37.4
 "ICO","pressures",207,46.15
 "ICO","pressures",208,34.3
-"ICO","pressures",209,38.9
+"ICO","pressures",209,49.45
 "ICO","pressures",210,27.44
 "ICO","pressures",212,31.25
 "ICO","pressures",213,
@@ -12624,7 +12624,7 @@
 "ICO","resilience",248,69.6
 "ICO","resilience",249,66.09
 "ICO","resilience",250,70.04
-"ICO","score",0,60.31
+"ICO","score",0,60.27
 "ICO","score",1,66
 "ICO","score",2,49.8
 "ICO","score",3,88.66
@@ -12734,7 +12734,7 @@
 "ICO","score",113,59.77
 "ICO","score",114,51.66
 "ICO","score",115,56
-"ICO","score",116,56.6
+"ICO","score",116,56.51
 "ICO","score",117,58.77
 "ICO","score",118,75.49
 "ICO","score",119,57.44
@@ -12769,8 +12769,8 @@
 "ICO","score",150,55.43
 "ICO","score",151,59.98
 "ICO","score",152,62.36
-"ICO","score",153,67.66
-"ICO","score",154,66.3
+"ICO","score",153,65.94
+"ICO","score",154,63.99
 "ICO","score",155,63.41
 "ICO","score",156,56.35
 "ICO","score",157,
@@ -12821,7 +12821,7 @@
 "ICO","score",206,49.99
 "ICO","score",207,54.18
 "ICO","score",208,54.13
-"ICO","score",209,52.58
+"ICO","score",209,51.6
 "ICO","score",210,59.12
 "ICO","score",212,61.67
 "ICO","score",213,
@@ -13289,7 +13289,7 @@
 "ICO","trend",248,-0.29
 "ICO","trend",249,-0.29
 "ICO","trend",250,-0.29
-"Index","future",0,67.82
+"Index","future",0,67.76
 "Index","future",1,75.74
 "Index","future",2,73.79
 "Index","future",3,84.69
@@ -13399,7 +13399,7 @@
 "Index","future",113,65.04
 "Index","future",114,37.43
 "Index","future",115,56.72
-"Index","future",116,63.1
+"Index","future",116,62.96
 "Index","future",117,59.98
 "Index","future",118,57.57
 "Index","future",119,57.23
@@ -13434,8 +13434,8 @@
 "Index","future",150,84.1
 "Index","future",151,67.39
 "Index","future",152,60.11
-"Index","future",153,61.07
-"Index","future",154,70.1
+"Index","future",153,58.18
+"Index","future",154,65.7
 "Index","future",155,55.24
 "Index","future",156,70.43
 "Index","future",157,78.26
@@ -13486,7 +13486,7 @@
 "Index","future",206,68.67
 "Index","future",207,53.2
 "Index","future",208,65.09
-"Index","future",209,62
+"Index","future",209,60.42
 "Index","future",210,68.29
 "Index","future",212,61.67
 "Index","future",213,
@@ -13511,7 +13511,7 @@
 "Index","future",248,71.09
 "Index","future",249,66.94
 "Index","future",250,68.1
-"Index","score",0,66.56
+"Index","score",0,66.53
 "Index","score",1,70.54
 "Index","score",2,69.14
 "Index","score",3,79.77
@@ -13621,7 +13621,7 @@
 "Index","score",113,64.36
 "Index","score",114,43.96
 "Index","score",115,61.01
-"Index","score",116,62.09
+"Index","score",116,62.02
 "Index","score",117,63.14
 "Index","score",118,60.02
 "Index","score",119,56.3
@@ -13656,8 +13656,8 @@
 "Index","score",150,81.37
 "Index","score",151,66.34
 "Index","score",152,57.96
-"Index","score",153,57.57
-"Index","score",154,65.93
+"Index","score",153,56.13
+"Index","score",154,63.73
 "Index","score",155,57.43
 "Index","score",156,66.72
 "Index","score",157,78.67
@@ -13708,7 +13708,7 @@
 "Index","score",206,68.92
 "Index","score",207,57.8
 "Index","score",208,61.67
-"Index","score",209,61.36
+"Index","score",209,60.57
 "Index","score",210,66
 "Index","score",212,61.18
 "Index","score",213,
@@ -13733,7 +13733,7 @@
 "Index","score",248,71.97
 "Index","score",249,67.67
 "Index","score",250,68.57
-"LE","future",0,82.31
+"LE","future",0,82.26
 "LE","future",1,100
 "LE","future",2,100
 "LE","future",3,100
@@ -13843,7 +13843,7 @@
 "LE","future",113,100
 "LE","future",114,96.72
 "LE","future",115,66.42
-"LE","future",116,77.32
+"LE","future",116,77.11
 "LE","future",117,65.12
 "LE","future",118,60.05
 "LE","future",119,57.71
@@ -13878,8 +13878,8 @@
 "LE","future",150,
 "LE","future",151,88.72
 "LE","future",152,45.29
-"LE","future",153,51.78
-"LE","future",154,65.94
+"LE","future",153,49.27
+"LE","future",154,62.01
 "LE","future",155,100
 "LE","future",156,90.76
 "LE","future",157,71.17
@@ -14397,7 +14397,7 @@
 "LE","resilience",248,
 "LE","resilience",249,
 "LE","resilience",250,
-"LE","score",0,82.4
+"LE","score",0,82.38
 "LE","score",1,96.35
 "LE","score",2,96.35
 "LE","score",3,96.35
@@ -14507,7 +14507,7 @@
 "LE","score",113,100
 "LE","score",114,97.45
 "LE","score",115,82.6
-"LE","score",116,73.6
+"LE","score",116,73.49
 "LE","score",117,75.62
 "LE","score",118,62.47
 "LE","score",119,58.98
@@ -14542,8 +14542,8 @@
 "LE","score",150,
 "LE","score",151,85.53
 "LE","score",152,42.59
-"LE","score",153,49.26
-"LE","score",154,60.54
+"LE","score",153,48.01
+"LE","score",154,58.57
 "LE","score",155,99.81
 "LE","score",156,81.59
 "LE","score",157,73.97
@@ -15062,7 +15062,7 @@
 "LE","trend",248,-0.5
 "LE","trend",249,-0.5
 "LE","trend",250,0.51
-"LIV","future",0,76.46
+"LIV","future",0,76.42
 "LIV","future",1,100
 "LIV","future",2,100
 "LIV","future",3,100
@@ -15172,7 +15172,7 @@
 "LIV","future",113,100
 "LIV","future",114,100
 "LIV","future",115,32.84
-"LIV","future",116,56.67
+"LIV","future",116,56.52
 "LIV","future",117,41.35
 "LIV","future",118,26.72
 "LIV","future",119,30.39
@@ -15207,8 +15207,8 @@
 "LIV","future",150,
 "LIV","future",151,100
 "LIV","future",152,3.6
-"LIV","future",153,36.28
-"LIV","future",154,92.95
+"LIV","future",153,34.22
+"LIV","future",154,87.35
 "LIV","future",155,100
 "LIV","future",156,100
 "LIV","future",157,75.83
@@ -15393,7 +15393,7 @@
 "LIV","pressures",113,20.77
 "LIV","pressures",114,47.27
 "LIV","pressures",115,37.2
-"LIV","pressures",116,24.09
+"LIV","pressures",116,25
 "LIV","pressures",117,16.65
 "LIV","pressures",118,17.3
 "LIV","pressures",119,23.45
@@ -15428,8 +15428,8 @@
 "LIV","pressures",150,
 "LIV","pressures",151,18.98
 "LIV","pressures",152,23.3
-"LIV","pressures",153,11.77
-"LIV","pressures",154,11.35
+"LIV","pressures",153,28
+"LIV","pressures",154,32.94
 "LIV","pressures",155,30.26
 "LIV","pressures",156,12.24
 "LIV","pressures",157,29.39
@@ -15480,7 +15480,7 @@
 "LIV","pressures",206,32.37
 "LIV","pressures",207,43.83
 "LIV","pressures",208,30.41
-"LIV","pressures",209,35.2
+"LIV","pressures",209,45.74
 "LIV","pressures",210,18.3
 "LIV","pressures",212,34
 "LIV","pressures",213,
@@ -15726,7 +15726,7 @@
 "LIV","resilience",248,40.85
 "LIV","resilience",249,40.85
 "LIV","resilience",250,43.98
-"LIV","score",0,76.89
+"LIV","score",0,76.87
 "LIV","score",1,92.69
 "LIV","score",2,92.69
 "LIV","score",3,92.69
@@ -15836,7 +15836,7 @@
 "LIV","score",113,100
 "LIV","score",114,100
 "LIV","score",115,66.42
-"LIV","score",116,54.38
+"LIV","score",116,54.31
 "LIV","score",117,68.51
 "LIV","score",118,38.08
 "LIV","score",119,35.27
@@ -15871,8 +15871,8 @@
 "LIV","score",150,
 "LIV","score",151,99.2
 "LIV","score",152,3.47
-"LIV","score",153,37.31
-"LIV","score",154,85.74
+"LIV","score",153,36.29
+"LIV","score",154,82.95
 "LIV","score",155,100
 "LIV","score",156,89.27
 "LIV","score",157,79.92
@@ -16391,7 +16391,7 @@
 "LIV","trend",248,-1
 "LIV","trend",249,-1
 "LIV","trend",250,0.99
-"LSP","future",0,61.89
+"LSP","future",0,61.88
 "LSP","future",1,0
 "LSP","future",2,61.59
 "LSP","future",3,100
@@ -16501,7 +16501,7 @@
 "LSP","future",113,36.7
 "LSP","future",114,4.26
 "LSP","future",115,100
-"LSP","future",116,97.39
+"LSP","future",116,97.11
 "LSP","future",117,5.16
 "LSP","future",118,0
 "LSP","future",119,0
@@ -16536,7 +16536,7 @@
 "LSP","future",150,100
 "LSP","future",151,78.66
 "LSP","future",152,1.13
-"LSP","future",153,0.28
+"LSP","future",153,0.27
 "LSP","future",154,0
 "LSP","future",155,3.18
 "LSP","future",156,0
@@ -16588,7 +16588,7 @@
 "LSP","future",206,17.36
 "LSP","future",207,100
 "LSP","future",208,1.38
-"LSP","future",209,25.72
+"LSP","future",209,24.92
 "LSP","future",210,95.1
 "LSP","future",212,0
 "LSP","future",213,
@@ -16722,7 +16722,7 @@
 "LSP","pressures",113,30.39
 "LSP","pressures",114,54.34
 "LSP","pressures",115,49.83
-"LSP","pressures",116,35.85
+"LSP","pressures",116,36.77
 "LSP","pressures",117,26.52
 "LSP","pressures",118,27.93
 "LSP","pressures",119,33.02
@@ -16757,8 +16757,8 @@
 "LSP","pressures",150,12.78
 "LSP","pressures",151,32.65
 "LSP","pressures",152,37.85
-"LSP","pressures",153,21.08
-"LSP","pressures",154,22.42
+"LSP","pressures",153,37.31
+"LSP","pressures",154,44.01
 "LSP","pressures",155,39.57
 "LSP","pressures",156,20.63
 "LSP","pressures",157,37.86
@@ -16809,7 +16809,7 @@
 "LSP","pressures",206,44.64
 "LSP","pressures",207,53.82
 "LSP","pressures",208,36.34
-"LSP","pressures",209,43.09
+"LSP","pressures",209,53.63
 "LSP","pressures",210,34.97
 "LSP","pressures",212,39.72
 "LSP","pressures",213,
@@ -17165,7 +17165,7 @@
 "LSP","score",113,34.31
 "LSP","score",114,4.38
 "LSP","score",115,100
-"LSP","score",116,95.37
+"LSP","score",116,95.23
 "LSP","score",117,4.77
 "LSP","score",118,0
 "LSP","score",119,0
@@ -17252,7 +17252,7 @@
 "LSP","score",206,16.52
 "LSP","score",207,100
 "LSP","score",208,1.28
-"LSP","score",209,24.27
+"LSP","score",209,23.88
 "LSP","score",210,89.96
 "LSP","score",212,0
 "LSP","score",213,
@@ -18051,7 +18051,7 @@
 "MAR","pressures",113,16.8
 "MAR","pressures",114,39.54
 "MAR","pressures",115,34.98
-"MAR","pressures",116,20.85
+"MAR","pressures",116,21.76
 "MAR","pressures",117,14.46
 "MAR","pressures",118,14.38
 "MAR","pressures",119,21.66
@@ -18086,8 +18086,8 @@
 "MAR","pressures",150,13.06
 "MAR","pressures",151,19.52
 "MAR","pressures",152,23.93
-"MAR","pressures",153,8.66
-"MAR","pressures",154,9.62
+"MAR","pressures",153,24.89
+"MAR","pressures",154,31.21
 "MAR","pressures",155,27.3
 "MAR","pressures",156,8.33
 "MAR","pressures",157,25.77
@@ -18138,7 +18138,7 @@
 "MAR","pressures",206,33.92
 "MAR","pressures",207,40.89
 "MAR","pressures",208,36.88
-"MAR","pressures",209,33.54
+"MAR","pressures",209,44.08
 "MAR","pressures",210,19.26
 "MAR","pressures",212,26.49
 "MAR","pressures",213,
@@ -19049,7 +19049,7 @@
 "MAR","trend",248,
 "MAR","trend",249,
 "MAR","trend",250,
-"NP","future",0,49.65
+"NP","future",0,49.63
 "NP","future",1,
 "NP","future",2,
 "NP","future",3,
@@ -19246,7 +19246,7 @@
 "NP","future",206,100
 "NP","future",207,91.6
 "NP","future",208,12.83
-"NP","future",209,88.8
+"NP","future",209,86.37
 "NP","future",210,43.86
 "NP","future",212,0.04
 "NP","future",213,
@@ -19415,7 +19415,7 @@
 "NP","pressures",150,
 "NP","pressures",151,
 "NP","pressures",152,
-"NP","pressures",153,8.6
+"NP","pressures",153,24.83
 "NP","pressures",154,
 "NP","pressures",155,25.25
 "NP","pressures",156,
@@ -19467,7 +19467,7 @@
 "NP","pressures",206,25.92
 "NP","pressures",207,34.39
 "NP","pressures",208,24.29
-"NP","pressures",209,23.65
+"NP","pressures",209,34.19
 "NP","pressures",210,19.11
 "NP","pressures",212,25.7
 "NP","pressures",213,
@@ -19713,7 +19713,7 @@
 "NP","resilience",248,69.62
 "NP","resilience",249,65.58
 "NP","resilience",250,
-"NP","score",0,46.19
+"NP","score",0,46.18
 "NP","score",1,
 "NP","score",2,
 "NP","score",3,
@@ -19910,7 +19910,7 @@
 "NP","score",206,90.71
 "NP","score",207,81.44
 "NP","score",208,12
-"NP","score",209,79.34
+"NP","score",209,78.12
 "NP","score",210,40.88
 "NP","score",212,0.06
 "NP","score",213,
@@ -20378,7 +20378,7 @@
 "NP","trend",248,-1
 "NP","trend",249,-1
 "NP","trend",250,
-"SP","future",0,60.53
+"SP","future",0,60.49
 "SP","future",1,36
 "SP","future",2,53.93
 "SP","future",3,98.66
@@ -20488,7 +20488,7 @@
 "SP","future",113,48.12
 "SP","future",114,24.9
 "SP","future",115,76
-"SP","future",116,75.29
+"SP","future",116,75.06
 "SP","future",117,31.35
 "SP","future",118,38.34
 "SP","future",119,27.44
@@ -20523,8 +20523,8 @@
 "SP","future",150,75.43
 "SP","future",151,68.06
 "SP","future",152,30.43
-"SP","future",153,35.58
-"SP","future",154,33.8
+"SP","future",153,33.85
+"SP","future",154,31.49
 "SP","future",155,31.25
 "SP","future",156,26.35
 "SP","future",157,100
@@ -20575,7 +20575,7 @@
 "SP","future",206,32.31
 "SP","future",207,74.18
 "SP","future",208,24.81
-"SP","future",209,37.44
+"SP","future",209,36.06
 "SP","future",210,76.67
 "SP","future",212,28.34
 "SP","future",213,
@@ -21042,7 +21042,7 @@
 "SP","resilience",248,
 "SP","resilience",249,
 "SP","resilience",250,
-"SP","score",0,59.88
+"SP","score",0,59.86
 "SP","score",1,33
 "SP","score",2,52.91
 "SP","score",3,94.33
@@ -21152,7 +21152,7 @@
 "SP","score",113,47.04
 "SP","score",114,28.02
 "SP","score",115,78
-"SP","score",116,75.98
+"SP","score",116,75.87
 "SP","score",117,31.77
 "SP","score",118,37.74
 "SP","score",119,28.72
@@ -21187,8 +21187,8 @@
 "SP","score",150,77.72
 "SP","score",151,68.99
 "SP","score",152,31.72
-"SP","score",153,33.96
-"SP","score",154,33.15
+"SP","score",153,33.09
+"SP","score",154,31.99
 "SP","score",155,33.27
 "SP","score",156,28.17
 "SP","score",157,100
@@ -21239,7 +21239,7 @@
 "SP","score",206,33.25
 "SP","score",207,77.09
 "SP","score",208,27.71
-"SP","score",209,38.42
+"SP","score",209,37.74
 "SP","score",210,74.54
 "SP","score",212,30.83
 "SP","score",213,
@@ -21707,7 +21707,7 @@
 "SP","trend",248,-0.14
 "SP","trend",249,-0.14
 "SP","trend",250,-0.14
-"SPP","future",0,81.91
+"SPP","future",0,81.82
 "SPP","future",1,85.11
 "SPP","future",2,83.74
 "SPP","future",3,87.88
@@ -21817,7 +21817,7 @@
 "SPP","future",113,91.36
 "SPP","future",114,75.72
 "SPP","future",115,83.42
-"SPP","future",116,81.91
+"SPP","future",116,81.65
 "SPP","future",117,85.79
 "SPP","future",118,85.33
 "SPP","future",119,90.3
@@ -21852,8 +21852,8 @@
 "SPP","future",150,79.93
 "SPP","future",151,73.57
 "SPP","future",152,78.57
-"SPP","future",153,84.08
-"SPP","future",154,83.57
+"SPP","future",153,79.67
+"SPP","future",154,77.76
 "SPP","future",155,74.1
 "SPP","future",156,85.35
 "SPP","future",157,75.65
@@ -21904,7 +21904,7 @@
 "SPP","future",206,71.92
 "SPP","future",207,72.26
 "SPP","future",208,68.92
-"SPP","future",209,76.95
+"SPP","future",209,74.01
 "SPP","future",210,85.33
 "SPP","future",212,72.33
 "SPP","future",213,
@@ -22038,7 +22038,7 @@
 "SPP","pressures",113,21.8
 "SPP","pressures",114,45.2
 "SPP","pressures",115,37.78
-"SPP","pressures",116,26.08
+"SPP","pressures",116,26.99
 "SPP","pressures",117,18.18
 "SPP","pressures",118,18.58
 "SPP","pressures",119,24.88
@@ -22073,8 +22073,8 @@
 "SPP","pressures",150,14.72
 "SPP","pressures",151,24.25
 "SPP","pressures",152,29.28
-"SPP","pressures",153,12.77
-"SPP","pressures",154,13.16
+"SPP","pressures",153,29
+"SPP","pressures",154,34.75
 "SPP","pressures",155,30.46
 "SPP","pressures",156,12.7
 "SPP","pressures",157,30.31
@@ -22125,7 +22125,7 @@
 "SPP","pressures",206,40.09
 "SPP","pressures",207,47.69
 "SPP","pressures",208,48.72
-"SPP","pressures",209,43.51
+"SPP","pressures",209,54.05
 "SPP","pressures",210,26.86
 "SPP","pressures",212,35.76
 "SPP","pressures",213,
@@ -22371,7 +22371,7 @@
 "SPP","resilience",248,63.86
 "SPP","resilience",249,59.05
 "SPP","resilience",250,63.74
-"SPP","score",0,82.75
+"SPP","score",0,82.71
 "SPP","score",1,85.3
 "SPP","score",2,83.76
 "SPP","score",3,84.66
@@ -22481,7 +22481,7 @@
 "SPP","score",113,89.41
 "SPP","score",114,82.01
 "SPP","score",115,84.92
-"SPP","score",116,84.2
+"SPP","score",116,84.07
 "SPP","score",117,85.23
 "SPP","score",118,84.93
 "SPP","score",119,90.05
@@ -22516,8 +22516,8 @@
 "SPP","score",150,81.1
 "SPP","score",151,78.24
 "SPP","score",152,81.62
-"SPP","score",153,83.2
-"SPP","score",154,82.58
+"SPP","score",153,80.99
+"SPP","score",154,79.67
 "SPP","score",155,79.19
 "SPP","score",156,84.12
 "SPP","score",157,79.48
@@ -22568,7 +22568,7 @@
 "SPP","score",206,78.67
 "SPP","score",207,79.33
 "SPP","score",208,76.82
-"SPP","score",209,80.77
+"SPP","score",209,79.3
 "SPP","score",210,84.49
 "SPP","score",212,78.23
 "SPP","score",213,
@@ -23036,7 +23036,7 @@
 "SPP","trend",248,-0.18
 "SPP","trend",249,-0.18
 "SPP","trend",250,-0.18
-"TR","future",0,42.99
+"TR","future",0,42.95
 "TR","future",1,64.08
 "TR","future",2,63.73
 "TR","future",3,64.72
@@ -23146,7 +23146,7 @@
 "TR","future",113,53.45
 "TR","future",114,4.87
 "TR","future",115,34.85
-"TR","future",116,19.91
+"TR","future",116,19.85
 "TR","future",117,100
 "TR","future",118,100
 "TR","future",119,26.67
@@ -23181,8 +23181,8 @@
 "TR","future",150,
 "TR","future",151,39.23
 "TR","future",152,42.75
-"TR","future",153,49.17
-"TR","future",154,49.24
+"TR","future",153,46.96
+"TR","future",154,46.3
 "TR","future",155,39.93
 "TR","future",156,48.89
 "TR","future",157,61.09
@@ -23233,7 +23233,7 @@
 "TR","future",206,74.51
 "TR","future",207,30.58
 "TR","future",208,66.9
-"TR","future",209,37.82
+"TR","future",209,36.61
 "TR","future",210,23.34
 "TR","future",212,59.05
 "TR","future",213,
@@ -23367,7 +23367,7 @@
 "TR","pressures",113,45.14
 "TR","pressures",114,67.19
 "TR","pressures",115,60.29
-"TR","pressures",116,50.18
+"TR","pressures",116,51.1
 "TR","pressures",117,44.1
 "TR","pressures",118,45.17
 "TR","pressures",119,49.76
@@ -23402,8 +23402,8 @@
 "TR","pressures",150,13.96
 "TR","pressures",151,52.44
 "TR","pressures",152,56.09
-"TR","pressures",153,36.03
-"TR","pressures",154,35.47
+"TR","pressures",153,52.26
+"TR","pressures",154,57.06
 "TR","pressures",155,61.64
 "TR","pressures",156,38.06
 "TR","pressures",157,48.68
@@ -23454,7 +23454,7 @@
 "TR","pressures",206,57.89
 "TR","pressures",207,65.56
 "TR","pressures",208,45.48
-"TR","pressures",209,54.13
+"TR","pressures",209,64.67
 "TR","pressures",210,45.83
 "TR","pressures",212,58.89
 "TR","pressures",213,
@@ -23700,7 +23700,7 @@
 "TR","resilience",248,74.42
 "TR","resilience",249,74.42
 "TR","resilience",250,79.12
-"TR","score",0,41.84
+"TR","score",0,41.82
 "TR","score",1,59.15
 "TR","score",2,58.98
 "TR","score",3,59.47
@@ -23810,7 +23810,7 @@
 "TR","score",113,50.89
 "TR","score",114,5.12
 "TR","score",115,34.92
-"TR","score",116,19.95
+"TR","score",116,19.92
 "TR","score",117,100
 "TR","score",118,100
 "TR","score",119,26.32
@@ -23845,8 +23845,8 @@
 "TR","score",150,
 "TR","score",151,40.26
 "TR","score",152,42.02
-"TR","score",153,45.23
-"TR","score",154,45.27
+"TR","score",153,44.13
+"TR","score",154,43.8
 "TR","score",155,40.62
 "TR","score",156,45.09
 "TR","score",157,60.92
@@ -23897,7 +23897,7 @@
 "TR","score",206,72.18
 "TR","score",207,30.39
 "TR","score",208,62.5
-"TR","score",209,36.33
+"TR","score",209,35.72
 "TR","score",210,22.74
 "TR","score",212,59.9
 "TR","score",213,

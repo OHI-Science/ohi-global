@@ -270,7 +270,7 @@ Data sources:
 Data sources:
 
 - Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","7.22","5.22","pressures.score","pressure score",,"new","no gapfilling: if no mariculture, genetic escapee pressures=0; 2012a: gapfilled Trujillo score*MAR harvest2009; 2013a: gapfilled Trujillo score*MAR harvest2010; ","NA (updated)","Y",,,"sp_genetic",,TRUE,,,"equal","global pressures data were applied equally to all regions.","NA","p_sp_genetic.csv","region_id",,,,"pressures_score",
-"pressures","ss_wgi","ohiprep:Global/WorldBank-WGI_v2013/data","rgn_wb_wgi_2012a_inverse.csv","ohiprep:Global/WorldBank-WGI_v2013/data","rgn_wb_wgi_2013a_inverse.csv","ohiprep:Global/WorldBank-WGI_v2013/data","rgn_wb_wgi_2014a_inverse.csv",,,,"Y: done","Weakness of governance indicated with the WGI","Inverse of World Governance Indicators (WGI) six combined scores.
+"pressures","ss_wgi","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2012a_inverse.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2013a_inverse.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2014a_inverse.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2015a_inverse.csv",,"Y: done","Weakness of governance indicated with the WGI","Inverse of World Governance Indicators (WGI) six combined scores.
 
 Data sources:
 
