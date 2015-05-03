@@ -405,7 +405,7 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
 ","7.14","5.14","resilience score","resilience score","2012a","parent",,"disaggregate(csv.in='/Volumes/local_edit/src/toolbox/data/global_2012_nature/layers/r_water.csv', csv.out ='/Volumes/data_edit/model/GL-NCEAS-Resilience_v2013a/data/r_water_2013a.csv', fld.value=NA, weight.csv=NA)","N",,,"water",,TRUE,"neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a","CBDwater_whence.csv","equal","global resilience data were applied equally to all regions.",,"r_water.csv","region_id",,,,"resilience_score",
-"resilience","wgi_all","ohiprep:Global/WorldBank-WGI_v2013/data","rgn_wb_wgi_2012a.csv","ohiprep:Global/WorldBank-WGI_v2013/data","rgn_wb_wgi_2013a.csv","ohiprep:Global/WorldBank-WGI_v2013/data","rgn_wb_wgi_2014a.csv",,,,"Y: done","Strength of governance indicated with the WGI","World Governance Indicators (WGI) six combined scores.
+"resilience","wgi_all","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2012a.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2013a.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2014a.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2015a.csv",,"Y: done","Strength of governance indicated with the WGI","World Governance Indicators (WGI) six combined scores.
 
 Data sources:
 
