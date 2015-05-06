@@ -8,7 +8,6 @@ library(ohicore)
 
 setwd("~/ohi-global")
 
-# check to see if following also works on Mac:
 source('../ohiprep/src/R/common.R')
 
 # new paths based on host machine
@@ -218,8 +217,7 @@ for (i in 1:length(scenarios)){ # i=3
 
 ### make a plot to compare different commits within a scenario
 source('../ohiprep/src/R/VisGlobal.R')
-changePlot(repo="~/ohi-global", scenario="eez2013", commit="previous", fileSave="wgi_resilience_update")
-changePlot(repo="~/ohi-global", scenario="eez2013", commit="2d2836f", fileSave="wgi_resilience_update_prior2wgipressure")
+changePlot(repo="~/ohi-global", scenario="eez2013", commit="previous", fileSave="slr_pressure_update")
 
 # looking within a goal:
 #scatterPlot(repo="~/ohi-global", scenario="eez2013", commit="previous", goal="LSP", dim="score", fileSave="acid_update")
