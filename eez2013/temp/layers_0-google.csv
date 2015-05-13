@@ -283,7 +283,7 @@ Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
 ","7.53","5.57","pressure_score","pressure score",,"new",,,"Y",,,"po_pathogens",,TRUE,,,"raster","spatial data was extracted for each region. ","NA","p_po_pathogens.csv","region_id",,,,"pressures_score",
-"pressures CW","po_trash","ohiprep:Global/OceanConserv-Trash_v2013/data","po_trash_2012a.csv","ohiprep:Global/OceanConserv-Trash_v2013/data","po_trash_2013a.csv","ohiprep:Global/OceanConserv-Trash_v2013/data","po_trash_2014a.csv",,,,"Y: done","Trash pollution","Density of trash from coastal land and sea (Ocean Conservancy). 
+"pressures CW","po_trash","ohiprep:globalprep/PressuresRegionExtract/data","trash_eez_2015.csv","ohiprep:globalprep/PressuresRegionExtract/data","trash_eez_2015.csv","ohiprep:globalprep/PressuresRegionExtract/data","trash_eez_2015.csv",,,,"Y: done","Trash pollution","Density of trash from coastal land and sea (Ocean Conservancy). 
 
 Data sources:
 

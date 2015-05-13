@@ -312,7 +312,7 @@ Data sources:
 Data sources:
 
 - [Ocean Conservancy International Coastal Cleanup 2012](http://www.oceanconservancy.org/our-work/international-coastal-cleanup/2012-ocean-trash-index.html)
-","pressure_score","pressure score","../ohiprep/Global/OceanConserv-Trash_v2013/data/po_trash_2013a.csv",TRUE,"po_trash.csv","eez2013/layers/po_trash.csv"
+","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/trash_eez_2015.csv",TRUE,"po_trash.csv","eez2013/layers/po_trash.csv"
 "pressures HAB","hab_presence","rnk_hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/hab_habitat_presence_NewSeaIce.csv",TRUE,"hab_presence.csv","eez2013/layers/hab_presence.csv"
 "resilience","alien_species","alien_species","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 

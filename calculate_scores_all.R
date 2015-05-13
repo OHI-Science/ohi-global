@@ -3,7 +3,7 @@
 # STEP 1: be sure to pull ohiprep
 
 library(devtools)
-devtools::install_github("ohi-science/ohicore@dev")
+#devtools::install_github("ohi-science/ohicore@dev")
 library(ohicore)
 
 setwd("~/ohi-global")
@@ -216,12 +216,13 @@ for (i in 1:length(scenarios)){ # i=3
 }
 
 ### make a plot to compare different commits within a scenario
+## for some reason, the devtools package needs to be turned off for this to work 
 source('../ohiprep/src/R/VisGlobal.R')
-changePlot(repo="~/ohi-global", scenario="eez2013", commit="previous", fileSave="NP_update")
+changePlot(repo="~/ohi-global", scenario="eez2013", commit="previous", fileSave="trash_pressure_update")
 
 # looking within a goal:
-scatterPlot(repo="~/ohi-global", scenario="eez2013", commit="previous", goal="NP", dim="score", fileSave="NP_update")
-goalHistogram(scenario="eez2013", goal="NP", dim="score", fileSave="NP_function_update")
+scatterPlot(repo="~/ohi-global", scenario="eez2013", commit="previous", goal="CW", dim="score", fileSave="trash_update")
+goalHistogram(scenario="eez2013", goal="CW", dim="score", fileSave="trash_update")
 
 #   scenario options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'
 #   commit options: 'final_2014' (the final commit for the 2014 analysis), 'previous' (previous commit), a commit code (ie., 'e30e7a4')
