@@ -137,45 +137,33 @@ Data sources:
 
 - Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.",,,"sust_coeff","sustainability",,,,,,,,"mar_sustainability_score",,TRUE,,,"equal","global mariculture sustainability scores were applied equally to each region.","NA",,,,,,,
 "MAR","mar_trend_years","neptune_data:model/GL-NCEAS_MAR_v2013a/Revision_Dec202013","mar_trend_years_lyr.csv","neptune_data:model/GL-NCEAS_MAR_v2013a/Revision_Dec202013","mar_trend_years_lyr.csv","ohiprep:Global/FAO-Aquaculture_v2012/data","mar_trend_years_2014a_lyr.csv",,,,"Y: done","Mariculture years used for trend","Mariculture years used for trend",,,"trend_yrs","year string",,,,,,,,"mar_trend_years",,TRUE,,,"equal","global trends were applied equally to each region.","NA",,,,,,,
-"NP","np_blast","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_blast_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_blast_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_blast_3nm_rgn2013.csv",,,,"Y: done","Areas of observed blast (dynamite) fishing","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
+"NP","np_blast","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_blast_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_blast_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_blast_3nm_rgn2013.csv",,,"N","Y: done","Areas of observed blast (dynamite) fishing","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
 
 - [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) 
 ",,,"score","pressure score",,,,,,,,,,TRUE,,,"equal","global scores were applied equally to each region. ","NA",,,,,,,
-"NP","np_cyanide","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_poison_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_poison_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_poison_3nm_rgn2013.csv",,,,"Y: done","Areas of observed poison fishing","The presence of destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
+"NP","np_cyanide","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_poison_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_poison_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_poison_3nm_rgn2013.csv",,,"N","Y: done","Areas of observed poison fishing","The presence of destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
 
 Data sources:
 
 - [Reefs at Risk Revisited](www.wri.org/publication/reefs-at-risk-revisited) 
 ",,,"score","pressure score",,,,,,,,,,TRUE,,,"equal","global scores were applied equally to each region. ","NA",,,,,,,
-"NP","np_harvest_product_weight","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_usd_product-peak_eez2012-year-max-2009_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_usd_product-peak_eez2013-year-max-2010_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_usd_product-peak_eez2014-year-max-2011_buffer-0.35.csv",,,,"Y: done","Ratio of product peak harvest value (in 2010 USD) divided by sum of all product peak harvest values, per region","Ratio of harvest of of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+"NP","np_harvest_product_weight","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv",,,"?","Y: done","Ratio of product peak harvest value (in 2010 USD) divided by sum of all product peak harvest values, per region","Ratio of harvest of of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)",,,"weight","score",,,,,,,,,,TRUE,,,"equal","global weights were applied equally to each region. ","NA",,,,,,,
-"NP","np_harvest_tonnes","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_tonnes_eez2012-year-max-2009_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_tonnes_eez2013-year-max-2010_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_tonnes_eez2014-year-max-2011_buffer-0.35.csv",,,,"Y: done","Harvest yield of marine natural products, smoothed","Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+"NP","np_harvest_tonnes","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes_eez2014_test-year_max_2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes_eez2014_test-year_max_2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes_eez2014_test-year_max_2011.csv",,,"?","Y: done","Harvest yield of marine natural products, smoothed","Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","6C","5.51-5.53","tonnes","metric tonnes","new","new",,,"U",,,"rnky_np_harvest_relative",,TRUE,,,"area_offshore_3nm","global harvest (tonnes) was applied to each region after weighting by each region's offshore area to 3nm. ","NA","np_harvest_relative.csv",,"country_id","product","year","tonnes",
-"NP","np_harvest_tonnes_relative","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_tonnes-rel_eez2012-year-max-2009_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_tonnes-rel_eez2013-year-max-2010_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_tonnes-rel_eez2014-year-max-2011_buffer-0.35.csv",,,,"Y: done","Harvest ratio to peak yeild of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+"NP","np_harvest_tonnes_relative","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv",,,"?","Y: done","Harvest ratio to peak yeild of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","6C","5.51-5.53","tonnes_rel","score","new","new",,,"U",,,"rnky_np_harvest_relative",,TRUE,,,"equal","global scores were applied equally to each region. ","NA","np_harvest_relative.csv",,"country_id","product","year","tonnes",
-"NP","np_harvest_usd","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_usd_eez2012-year-max-2009_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_usd_eez2013-year-max-2010_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_usd_eez2014-year-max-2011_buffer-0.35.csv",,,,"Y: done","Harvest value of marine natural products, smoothed","Value in 2010 US dollars of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
-
-Data sources:
-
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)
-","6C","5.51-5.53","usd","2010 USD","new","new",,,"U",,,"rnky_np_harvest_relative",,TRUE,,,"equal","global harvest (usd), used as a weighting score, was applied equally to all regions. ","NA","np_harvest_relative.csv",,"country_id","product","year","tonnes",
-"NP","np_harvest_usd_relative","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_usd-rel_eez2012-year-max-2009_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_usd-rel_eez2013-year-max-2010_buffer-0.35.csv","ohiprep:Global/FAO-Commodities_v2011/data","np_harvest_usd-rel_eez2014-year-max-2011_buffer-0.35.csv",,,,"Y: done","Harvest ratio to peak value of marine natural products","Ratio to max value (2010 USD) of product peak of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
-
-Data sources:
-
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)
-","6C","5.51-5.53","usd_rel","score","new","new",,,"U",,,"rnky_np_harvest_relative",,TRUE,,,"equal","global scores were applied equally to each region. ","NA","np_harvest_relative.csv",,"country_id","product","year","tonnes",
 "pressures","cc_acid","ohiprep:globalprep/PressuresRegionExtract/data","acid_eez_2011.csv","ohiprep:globalprep/PressuresRegionExtract/data","acid_eez_2012.csv","ohiprep:globalprep/PressuresRegionExtract/data","acid_eez_2013.csv","ohiprep:globalprep/PressuresRegionExtract/data","acid_eez_2014.csv","Y: done",,"Ocean acidification","Modeled distribution of the aragonite saturation state (AAS) of the ocean in pre-industrial (~1870) and modern times (2000-2009) (Halpern et al. 2008).
 
 Data sources:

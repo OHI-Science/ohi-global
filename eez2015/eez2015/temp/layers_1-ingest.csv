@@ -8,7 +8,7 @@ Data sources:
 
 Data sources:
 
-- The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)","value","value","../ohiprep/Global/WorldBank-Statistics_v2012/data/rgn_wb_gdppcppp_rescaled_2014a.csv",TRUE,"ao_need.csv","eez2015/layers/ao_need.csv"
+- The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)","value","value","../ohiprep/Global/WorldBank-Statistics_v2012/data/rgn_wb_gdppcppp_rescaled_2014a.csv",FALSE,"ao_need.csv","eez2015/layers/ao_need.csv"
 "CW","cw_coastalpopn_trend","rn_cw_coastalpopn_trend","Coastal human population as a proxy for trend in trash","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -19,41 +19,41 @@ Data sources:
 
 Data sources:
 
-- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","trend.score","trend score","../ohiprep/Global/FAO-CW-Trends_v2011/data/rgn_cw_fertilizers_trends_2014a.csv",TRUE,"cw_fertilizer_trend.csv","eez2015/layers/cw_fertilizer_trend.csv"
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","trend.score","trend score","../ohiprep/Global/FAO-CW-Trends_v2011/data/rgn_cw_fertilizers_trends_2014a.csv",FALSE,"cw_fertilizer_trend.csv","eez2015/layers/cw_fertilizer_trend.csv"
 "CW","cw_pathogen_trend","rn_cw_pathogen_trend","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities.
 
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
-","trend","trend score","../ohiprep/Global/WHOUNICEF-Sanitation_v2012/data/pathogens_popdensity25km_trend_2014a.csv",TRUE,"cw_pathogen_trend.csv","eez2015/layers/cw_pathogen_trend.csv"
+","trend","trend score","../ohiprep/Global/WHOUNICEF-Sanitation_v2012/data/pathogens_popdensity25km_trend_2014a.csv",FALSE,"cw_pathogen_trend.csv","eez2015/layers/cw_pathogen_trend.csv"
 "CW","cw_pesticide_trend","rn_cw_pesticide_trend","Pesticide consumption as a proxy for trend in chemical pollution","Statistics on pesticide consumption from the Food and Agricultural Organization (FAO). 
 
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
-","trend.score","trend score","../ohiprep/Global/FAO-CW-Trends_v2011/data/rgn_cw_pesticides_trends_2014a.csv",TRUE,"cw_pesticide_trend.csv","eez2015/layers/cw_pesticide_trend.csv"
+","trend.score","trend score","../ohiprep/Global/FAO-CW-Trends_v2011/data/rgn_cw_pesticides_trends_2014a.csv",FALSE,"cw_pesticide_trend.csv","eez2015/layers/cw_pesticide_trend.csv"
 "FIS","fis_b_bmsy","fnk_fis_b_bmsy","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
 
 - Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
-","b_bmsy","B / B_msy","../ohiprep/Global/NCEAS-Fisheries_2014a/data/fnk_fis_b_bmsy_lyr.csv",TRUE,"fis_b_bmsy.csv","eez2015/layers/fis_b_bmsy.csv"
+","b_bmsy","B / B_msy","../ohiprep/Global/NCEAS-Fisheries_2014a/data/fnk_fis_b_bmsy_lyr.csv",FALSE,"fis_b_bmsy.csv","eez2015/layers/fis_b_bmsy.csv"
 "FIS","fis_meancatch","snk_fis_meancatch","Catch data for each Taxon/FAO/SAUP region averaged across years (1980-2011)","Mean catch-per-taxon values within each FAO major fishing area.
 
 Data sources:
 
-- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","../ohiprep/Global/NCEAS-Fisheries_2014a/data/fnk_fis_meancatch_lyr.csv",TRUE,"fis_meancatch.csv","eez2015/layers/fis_meancatch.csv"
+- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","../ohiprep/Global/NCEAS-Fisheries_2014a/data/fnk_fis_meancatch_lyr.csv",FALSE,"fis_meancatch.csv","eez2015/layers/fis_meancatch.csv"
 "FIS","fis_proparea_saup2rgn","snk_fis_proparea_saup2rgn","area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
 
 Data sources:
 
 - [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)
-","prop_area","proportion of area","../ohiprep/Global/NCEAS-Fisheries_2014a/data/snk_fis_proparea_saup2rgn_lyr.csv",TRUE,"fis_proparea_saup2rgn.csv","eez2015/layers/fis_proparea_saup2rgn.csv"
+","prop_area","proportion of area","../ohiprep/Global/NCEAS-Fisheries_2014a/data/snk_fis_proparea_saup2rgn_lyr.csv",FALSE,"fis_proparea_saup2rgn.csv","eez2015/layers/fis_proparea_saup2rgn.csv"
 "FP","fp_wildcaught_weight","rn_fp_wildcaught_weight","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","w_fis","value","../ohiprep/Global/NCEAS-Fisheries_2014a/data/FP_mar_fis_weight_2014a.csv",TRUE,"fp_wildcaught_weight.csv","eez2015/layers/fp_wildcaught_weight.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","w_fis","value","../ohiprep/Global/NCEAS-Fisheries_2014a/data/FP_mar_fis_weight_2014a.csv",FALSE,"fp_wildcaught_weight.csv","eez2015/layers/fp_wildcaught_weight.csv"
 "HAB CS CP","hab_extent","rnk_hab_extent","Habitat extent","Modeled combined habitat extent","km2","km^2","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/hab_habitat_extent_NewSeaIce.csv",TRUE,"hab_extent.csv","eez2015/layers/hab_extent.csv"
 "HAB CS CP","hab_health","rnk_hab_health","Habitat health","Modeled combined habitat health condition trend","health","value","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/hab_habitat_health.csv",TRUE,"hab_health.csv","eez2015/layers/hab_health.csv"
 "HAB CS CP","hab_trend","rnk_hab_trend","Habitat health trend","Modeled combined habitat health trend","trend","trend score","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/hab_habitat_trend.csv",TRUE,"hab_trend.csv","eez2015/layers/hab_trend.csv"
@@ -74,26 +74,26 @@ Data sources:
 Data sources:
 
 - [The World Bank](data.worldbank.org/indicator/NY.GDP.MKTP.CD)
-","usd","2010 USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_gdp.csv",TRUE,"le_gdp.csv","eez2015/layers/le_gdp.csv"
-"LE","le_gdp_pc_ppp","le_gdp_pc_ppp","Modeled Livelihoods & Economies data","gross domestic product per person at purchasing power parity","usd","USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_cntry_gdp_pc_ppp_2013a.csv",TRUE,"le_gdp_pc_ppp.csv","eez2015/layers/le_gdp_pc_ppp.csv"
-"LE","le_jobs_cur_adj_value","le_jobs_cur_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_jobs_cur_adj_value.csv",TRUE,"le_jobs_cur_adj_value.csv","eez2015/layers/le_jobs_cur_adj_value.csv"
-"LE","le_jobs_cur_base_value","le_jobs_cur_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_jobs_cur_base_value.csv",TRUE,"le_jobs_cur_base_value.csv","eez2015/layers/le_jobs_cur_base_value.csv"
-"LE","le_jobs_ref_adj_value","le_jobs_ref_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_jobs_ref_adj_value.csv",TRUE,"le_jobs_ref_adj_value.csv","eez2015/layers/le_jobs_ref_adj_value.csv"
-"LE","le_jobs_ref_base_value","le_jobs_ref_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_jobs_ref_base_value.csv",TRUE,"le_jobs_ref_base_value.csv","eez2015/layers/le_jobs_ref_base_value.csv"
-"LE","le_jobs_sector_year",,"Jobs","gapfilled","value","jobs","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_eez2013_trend_jobs_sector-year.csv",TRUE,"le_jobs_sector_year.csv","eez2015/layers/le_jobs_sector_year.csv"
-"LE","le_rev_cur_adj_value","le_rev_cur_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_rev_cur_adj_value.csv",TRUE,"le_rev_cur_adj_value.csv","eez2015/layers/le_rev_cur_adj_value.csv"
-"LE","le_rev_cur_base_value","le_rev_cur_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_rev_cur_base_value.csv",TRUE,"le_rev_cur_base_value.csv","eez2015/layers/le_rev_cur_base_value.csv"
-"LE","le_rev_ref_adj_value","le_rev_ref_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_rev_ref_adj_value.csv",TRUE,"le_rev_ref_adj_value.csv","eez2015/layers/le_rev_ref_adj_value.csv"
-"LE","le_rev_ref_base_value","le_rev_ref_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_rev_ref_base_value.csv",TRUE,"le_rev_ref_base_value.csv","eez2015/layers/le_rev_ref_base_value.csv"
-"LE","le_rev_sector_year",,"Revenue","gapfilled","value","2010 USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_eez2013_trend_rev_sector-year.csv",TRUE,"le_rev_sector_year.csv","eez2015/layers/le_rev_sector_year.csv"
-"LE","le_revenue_adj","le_revenue_adj","Modeled Livelihoods & Economies data","adjusted revenue","usd","USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_revenue_adj.csv",TRUE,"le_revenue_adj.csv","eez2015/layers/le_revenue_adj.csv"
-"LE","le_unemployment",,"Unemployment","gapfilled","percent","percent unemployed","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_unemployment.csv",TRUE,"le_unemployment.csv","eez2015/layers/le_unemployment.csv"
-"LE","le_wage_cur_adj_value","le_wage_cur_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_wage_cur_adj_value.csv",TRUE,"le_wage_cur_adj_value.csv","eez2015/layers/le_wage_cur_adj_value.csv"
-"LE","le_wage_cur_base_value","le_wage_cur_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_wage_cur_base_value.csv",TRUE,"le_wage_cur_base_value.csv","eez2015/layers/le_wage_cur_base_value.csv"
-"LE","le_wage_ref_adj_value","le_wage_ref_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_wage_ref_adj_value.csv",TRUE,"le_wage_ref_adj_value.csv","eez2015/layers/le_wage_ref_adj_value.csv"
-"LE","le_wage_ref_base_value","le_wage_ref_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_wage_ref_base_value.csv",TRUE,"le_wage_ref_base_value.csv","eez2015/layers/le_wage_ref_base_value.csv"
-"LE","le_wage_sector_year",,"Wages","gapfilled","value","2010 USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_eez2013_trend_wage_sector-year.csv",TRUE,"le_wage_sector_year.csv","eez2015/layers/le_wage_sector_year.csv"
-"LE","le_workforcesize_adj","le_workforcesize_adj","Modeled Livelihoods & Economies data","adjusted workforce size","jobs","jobs","../ohiprep/Global/WorldBank-Statistics_v2012/data/cntry_wb_tlf_2014a_ratio-gapfilled.csv",TRUE,"le_workforcesize_adj.csv","eez2015/layers/le_workforcesize_adj.csv"
+","usd","2010 USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_gdp.csv",FALSE,"le_gdp.csv","eez2015/layers/le_gdp.csv"
+"LE","le_gdp_pc_ppp","le_gdp_pc_ppp","Modeled Livelihoods & Economies data","gross domestic product per person at purchasing power parity","usd","USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_cntry_gdp_pc_ppp_2013a.csv",FALSE,"le_gdp_pc_ppp.csv","eez2015/layers/le_gdp_pc_ppp.csv"
+"LE","le_jobs_cur_adj_value","le_jobs_cur_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_jobs_cur_adj_value.csv",FALSE,"le_jobs_cur_adj_value.csv","eez2015/layers/le_jobs_cur_adj_value.csv"
+"LE","le_jobs_cur_base_value","le_jobs_cur_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_jobs_cur_base_value.csv",FALSE,"le_jobs_cur_base_value.csv","eez2015/layers/le_jobs_cur_base_value.csv"
+"LE","le_jobs_ref_adj_value","le_jobs_ref_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_jobs_ref_adj_value.csv",FALSE,"le_jobs_ref_adj_value.csv","eez2015/layers/le_jobs_ref_adj_value.csv"
+"LE","le_jobs_ref_base_value","le_jobs_ref_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_jobs_ref_base_value.csv",FALSE,"le_jobs_ref_base_value.csv","eez2015/layers/le_jobs_ref_base_value.csv"
+"LE","le_jobs_sector_year",,"Jobs","gapfilled","value","jobs","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_eez2013_trend_jobs_sector-year.csv",FALSE,"le_jobs_sector_year.csv","eez2015/layers/le_jobs_sector_year.csv"
+"LE","le_rev_cur_adj_value","le_rev_cur_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_rev_cur_adj_value.csv",FALSE,"le_rev_cur_adj_value.csv","eez2015/layers/le_rev_cur_adj_value.csv"
+"LE","le_rev_cur_base_value","le_rev_cur_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_rev_cur_base_value.csv",FALSE,"le_rev_cur_base_value.csv","eez2015/layers/le_rev_cur_base_value.csv"
+"LE","le_rev_ref_adj_value","le_rev_ref_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_rev_ref_adj_value.csv",FALSE,"le_rev_ref_adj_value.csv","eez2015/layers/le_rev_ref_adj_value.csv"
+"LE","le_rev_ref_base_value","le_rev_ref_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_rev_ref_base_value.csv",FALSE,"le_rev_ref_base_value.csv","eez2015/layers/le_rev_ref_base_value.csv"
+"LE","le_rev_sector_year",,"Revenue","gapfilled","value","2010 USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_eez2013_trend_rev_sector-year.csv",FALSE,"le_rev_sector_year.csv","eez2015/layers/le_rev_sector_year.csv"
+"LE","le_revenue_adj","le_revenue_adj","Modeled Livelihoods & Economies data","adjusted revenue","usd","USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_revenue_adj.csv",FALSE,"le_revenue_adj.csv","eez2015/layers/le_revenue_adj.csv"
+"LE","le_unemployment",,"Unemployment","gapfilled","percent","percent unemployed","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_unemployment.csv",FALSE,"le_unemployment.csv","eez2015/layers/le_unemployment.csv"
+"LE","le_wage_cur_adj_value","le_wage_cur_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_wage_cur_adj_value.csv",FALSE,"le_wage_cur_adj_value.csv","eez2015/layers/le_wage_cur_adj_value.csv"
+"LE","le_wage_cur_base_value","le_wage_cur_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_wage_cur_base_value.csv",FALSE,"le_wage_cur_base_value.csv","eez2015/layers/le_wage_cur_base_value.csv"
+"LE","le_wage_ref_adj_value","le_wage_ref_adj_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_wage_ref_adj_value.csv",FALSE,"le_wage_ref_adj_value.csv","eez2015/layers/le_wage_ref_adj_value.csv"
+"LE","le_wage_ref_base_value","le_wage_ref_base_value","Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_2013_status_model_curref_wage_ref_base_value.csv",FALSE,"le_wage_ref_base_value.csv","eez2015/layers/le_wage_ref_base_value.csv"
+"LE","le_wage_sector_year",,"Wages","gapfilled","value","2010 USD","../ohiprep/Global/NCEAS-Livelihoods_v2013/data/le_eez2013_trend_wage_sector-year.csv",FALSE,"le_wage_sector_year.csv","eez2015/layers/le_wage_sector_year.csv"
+"LE","le_workforcesize_adj","le_workforcesize_adj","Modeled Livelihoods & Economies data","adjusted workforce size","jobs","jobs","../ohiprep/Global/WorldBank-Statistics_v2012/data/cntry_wb_tlf_2014a_ratio-gapfilled.csv",FALSE,"le_workforcesize_adj.csv","eez2015/layers/le_workforcesize_adj.csv"
 "LE pressures","le_sector_weight","rnk_le_sector_weight","Jobs weighting","Jobs weighting by sector (defaulting to 1)","weight","value","/var/data/ohi/model/GL-NCEAS-Pressures_v2013a/data/le_sector_weight_disaggregateNature2012b.csv",TRUE,"le_sector_weight.csv","eez2015/layers/le_sector_weight.csv"
 "LIV ECO","le_popn","rny_le_popn","Total population by subregion","Population data from The World Bank","count","count","/var/data/ohi/model/GL-WorldBank-Statistics_v2012/data/rgn_wb_pop_2013a_updated.csv",TRUE,"le_popn.csv","eez2015/layers/le_popn.csv"
 "LIV ECO","liveco_status","rn_liveco_status","Modeled livelihoods and economies status","Modeled livelihoods and economies status based on new approach","value","status score","/var/data/ohi/model/GL-NCEAS-LayersDisaggregated_v2013a/data/rgn_liv.eco_status_2013a.csv",TRUE,"liveco_status.csv","eez2015/layers/liveco_status.csv"
@@ -102,12 +102,12 @@ Data sources:
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","../ohiprep/globalprep/WDPA_MPA/v2015/data/lsp_protarea_inland1km.csv",TRUE,"lsp_prot_area_inland1km.csv","eez2015/layers/lsp_prot_area_inland1km.csv"
+- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","../ohiprep/globalprep/WDPA_MPA/v2015/data/lsp_protarea_inland1km.csv",FALSE,"lsp_prot_area_inland1km.csv","eez2015/layers/lsp_prot_area_inland1km.csv"
 "LSP","lsp_prot_area_offshore3nm","rny_lsp_prot_area_offshore3nm","Coastal marine protected areas offshore 3km","Coastal protected areas offshore to 3nm from the UN WDPA. 
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","../ohiprep/globalprep/WDPA_MPA/v2015/data/lsp_protarea_offshore3nm.csv",TRUE,"lsp_prot_area_offshore3nm.csv","eez2015/layers/lsp_prot_area_offshore3nm.csv"
+- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","../ohiprep/globalprep/WDPA_MPA/v2015/data/lsp_protarea_offshore3nm.csv",FALSE,"lsp_prot_area_offshore3nm.csv","eez2015/layers/lsp_prot_area_offshore3nm.csv"
 "MAR","mar_coastalpopn_inland25mi","mar_coastalpopn_inland25mi","Coastal population inland 25 miles","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -118,45 +118,45 @@ Data sources:
 
 Data sources:
 
-- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","species","species name","../ohiprep/Global/FAO-Aquaculture_v2012/data/mar_harvest_species_2014a_lyr.csv",TRUE,"mar_harvest_species.csv","eez2015/layers/mar_harvest_species.csv"
+- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","species","species name","../ohiprep/Global/FAO-Aquaculture_v2012/data/mar_harvest_species_2014a_lyr.csv",FALSE,"mar_harvest_species.csv","eez2015/layers/mar_harvest_species.csv"
 "MAR","mar_harvest_tonnes","mar_harvest_tonnes","Mariculture harvest","Mariculture harvest from the FAO. 
 
 Data sources:
 
-- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","tonnes","tons","../ohiprep/Global/FAO-Aquaculture_v2012/data/mar_harvest_tonnes_2014a_lyr.csv",TRUE,"mar_harvest_tonnes.csv","eez2015/layers/mar_harvest_tonnes.csv"
+- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","tonnes","tons","../ohiprep/Global/FAO-Aquaculture_v2012/data/mar_harvest_tonnes_2014a_lyr.csv",FALSE,"mar_harvest_tonnes.csv","eez2015/layers/mar_harvest_tonnes.csv"
 "MAR","mar_sustainability_score","mar_sustainability_score","Mariculture sustainability score","Mariculture sustainability and mariculture regulations indicated by the Mariculture Sustainability Index (MSI). 
 
 Data sources:
 
-- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","../ohiprep/Global/FAO-Aquaculture_v2012/data/mar_sustainability_score_2014a_lyr.csv",TRUE,"mar_sustainability_score.csv","eez2015/layers/mar_sustainability_score.csv"
-"MAR","mar_trend_years","mar_trend_years","Mariculture years used for trend","Mariculture years used for trend","trend_yrs","year string","../ohiprep/Global/FAO-Aquaculture_v2012/data/mar_trend_years_2014a_lyr.csv",TRUE,"mar_trend_years.csv","eez2015/layers/mar_trend_years.csv"
+- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","../ohiprep/Global/FAO-Aquaculture_v2012/data/mar_sustainability_score_2014a_lyr.csv",FALSE,"mar_sustainability_score.csv","eez2015/layers/mar_sustainability_score.csv"
+"MAR","mar_trend_years","mar_trend_years","Mariculture years used for trend","Mariculture years used for trend","trend_yrs","year string","../ohiprep/Global/FAO-Aquaculture_v2012/data/mar_trend_years_2014a_lyr.csv",FALSE,"mar_trend_years.csv","eez2015/layers/mar_trend_years.csv"
 "NP","np_blast",,"Areas of observed blast (dynamite) fishing","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
 
 - [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) 
-","score","pressure score","../ohiprep/Global/WRI-ReefsAtRisk_v2013/data/gl_thr_blast_3nm_rgn2013.csv",TRUE,"np_blast.csv","eez2015/layers/np_blast.csv"
+","score","pressure score","../ohiprep/Global/WRI-ReefsAtRisk_v2013/data/gl_thr_blast_3nm_rgn2013.csv",FALSE,"np_blast.csv","eez2015/layers/np_blast.csv"
 "NP","np_cyanide",,"Areas of observed poison fishing","The presence of destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
 
 Data sources:
 
 - [Reefs at Risk Revisited](www.wri.org/publication/reefs-at-risk-revisited) 
-","score","pressure score","../ohiprep/Global/WRI-ReefsAtRisk_v2013/data/gl_thr_poison_3nm_rgn2013.csv",TRUE,"np_cyanide.csv","eez2015/layers/np_cyanide.csv"
+","score","pressure score","../ohiprep/Global/WRI-ReefsAtRisk_v2013/data/gl_thr_poison_3nm_rgn2013.csv",FALSE,"np_cyanide.csv","eez2015/layers/np_cyanide.csv"
 "NP","np_harvest_product_weight",,"Ratio of product peak harvest value (in 2010 USD) divided by sum of all product peak harvest values, per region","Ratio of harvest of of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","weight","score","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv",TRUE,"np_harvest_product_weight.csv","eez2015/layers/np_harvest_product_weight.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","weight","score","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv",FALSE,"np_harvest_product_weight.csv","eez2015/layers/np_harvest_product_weight.csv"
 "NP","np_harvest_tonnes","rnky_np_harvest_relative","Harvest yield of marine natural products, smoothed","Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","tonnes","metric tonnes","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes.csv","eez2015/layers/np_harvest_tonnes.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","tonnes","metric tonnes","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes_eez2014_test-year_max_2011.csv",FALSE,"np_harvest_tonnes.csv","eez2015/layers/np_harvest_tonnes.csv"
 "NP","np_harvest_tonnes_relative","rnky_np_harvest_relative","Harvest ratio to peak yeild of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","tonnes_rel","score","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes_relative.csv","eez2015/layers/np_harvest_tonnes_relative.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","tonnes_rel","score","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv",FALSE,"np_harvest_tonnes_relative.csv","eez2015/layers/np_harvest_tonnes_relative.csv"
 "SPP","spp_status","rn_spp_status","Species lists and IUCN threat categories as a proxy for iconic species status","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
@@ -174,31 +174,31 @@ Data sources:
 Data sources:
 
 - [The World Bank](http://data.worldbank.org/indicator/SL.TLF.TOTL.IN)
-","count","jobs","../ohiprep/Global/WorldBank-Statistics_v2012/data/rgn_wb_tlf_2014a_ratio-gapfilled.csv",TRUE,"tr_jobs_total.csv","eez2015/layers/tr_jobs_total.csv"
+","count","jobs","../ohiprep/Global/WorldBank-Statistics_v2012/data/rgn_wb_tlf_2014a_ratio-gapfilled.csv",FALSE,"tr_jobs_total.csv","eez2015/layers/tr_jobs_total.csv"
 "TR","tr_jobs_tourism","tr_jobs_tourism","Direct employment in tourism","Direct employment in tourism (WTTC).
 
 Data sources:
 
 - [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-","count","jobs","../ohiprep/Global/WTTC-Tourism_v2013/data/rgn_wttc_empd_2014a.csv",TRUE,"tr_jobs_tourism.csv","eez2015/layers/tr_jobs_tourism.csv"
+","count","jobs","../ohiprep/Global/WTTC-Tourism_v2013/data/rgn_wttc_empd_2014a.csv",FALSE,"tr_jobs_tourism.csv","eez2015/layers/tr_jobs_tourism.csv"
 "TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","score","score","/var/data/ohi/model/GL-WEF-Economics_v2013/data/rgn_wef_ttci_2013a_lyr.csv",TRUE,"tr_sustainability.csv","eez2015/layers/tr_sustainability.csv"
 "TR","tr_unemployment","tr_unemployment","Percent unemployment","Percent unemployment (The World Bank).
 
 Data sources:
 
 - [The World Bank](http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS)
-","percent","percent unemployed","../ohiprep/Global/WorldBank-Statistics_v2012/data/rgn_wb_uem_2014a_ratio-gapfilled.csv",TRUE,"tr_unemployment.csv","eez2015/layers/tr_unemployment.csv"
+","percent","percent unemployed","../ohiprep/Global/WorldBank-Statistics_v2012/data/rgn_wb_uem_2014a_ratio-gapfilled.csv",FALSE,"tr_unemployment.csv","eez2015/layers/tr_unemployment.csv"
 "pressures","cc_acid","cc_acid","Ocean acidification","Modeled distribution of the aragonite saturation state (AAS) of the ocean in pre-industrial (~1870) and modern times (2000-2009) (Halpern et al. 2008).
 
 Data sources:
 
-- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/acid_eez_2014.csv",TRUE,"cc_acid.csv","eez2015/layers/cc_acid.csv"
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/acid_eez_2014.csv",FALSE,"cc_acid.csv","eez2015/layers/cc_acid.csv"
 "pressures","cc_slr","cc_slr","Sea level rise","Modeled sea level rise (Nicholls and Cazenave 2010).
 
 Data sources:
 
 - Nicholls R.J. and Cazenave A. (2010). **Sea-level rise and its impact on coastal zones**. _Science_ 328: 1517-1520. [doi:10.1126/science.1185782](http://dx.doi.org/10.1126/science.1185782). 
-- [AVISO Satellite Altimetry Data](http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html)","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/slr_eez_2015.csv",TRUE,"cc_slr.csv","eez2015/layers/cc_slr.csv"
+- [AVISO Satellite Altimetry Data](http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html)","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/slr_eez_2015.csv",FALSE,"cc_slr.csv","eez2015/layers/cc_slr.csv"
 "pressures","cc_sst","cc_sst","Sea surface temperature (SST) anomalies","Modeled sea surface temperature (Halpern et al. 2008) based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
 
 Data sources:
@@ -240,7 +240,7 @@ Data sources:
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","score","pressure score","../ohiprep/Global/FAO-TargetedHarvest_v2012/data/rgn_fao_targeted_2014a.csv",TRUE,"fp_targetharvest.csv","eez2015/layers/fp_targetharvest.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","score","pressure score","../ohiprep/Global/FAO-TargetedHarvest_v2012/data/rgn_fao_targeted_2014a.csv",FALSE,"fp_targetharvest.csv","eez2015/layers/fp_targetharvest.csv"
 "pressures","hd_intertidal","hd_intertidal","Coastal population density as a proxy for intertidal habitat destruction","Coastal population, defined as the total population inland of 10 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -286,7 +286,7 @@ Data sources:
 
 Data sources:
 
-- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","../ohiprep/globalprep/worldbank_wgi/data/rgn_wb_wgi_2015a_inverse.csv",TRUE,"ss_wgi.csv","eez2015/layers/ss_wgi.csv"
+- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","../ohiprep/globalprep/worldbank_wgi/data/rgn_wb_wgi_2015a_inverse.csv",FALSE,"ss_wgi.csv","eez2015/layers/ss_wgi.csv"
 "pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent * rank, per Coastal Protection habitats","Habitat extent * habitat rank for Coastal Protection habitats: coral, mangrove offshore 1km, mangrove inland 1km, saltmarsh, seaice_shoreline and seagrass","extent_rank","rank","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/cp_habitat_extent_rank_NewSeaIce.csv",TRUE,"cp_habitat_extent_rank.csv","eez2015/layers/cp_habitat_extent_rank.csv"
 "pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent * rank, per Carbon Storage habitats","Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass","km2","km^2","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/cs_habitat_extent.csv",TRUE,"cs_habitat_extent.csv","eez2015/layers/cs_habitat_extent.csv"
 "pressures CW","po_chemicals","po_chemicals","Ocean-based chemical pollution","Modeled ocean-based chemical pollution from commercial shipping traffic and ports and harbors (Halpern et al. 2008).
@@ -306,13 +306,13 @@ Data sources:
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
-","pressure_score","pressure score","../ohiprep/Global/WHOUNICEF-Sanitation_v2012/data/po_pathogens_popdensity25km_2014a.csv",TRUE,"po_pathogens.csv","eez2015/layers/po_pathogens.csv"
+","pressure_score","pressure score","../ohiprep/Global/WHOUNICEF-Sanitation_v2012/data/po_pathogens_popdensity25km_2014a.csv",FALSE,"po_pathogens.csv","eez2015/layers/po_pathogens.csv"
 "pressures CW","po_trash","po_trash","Trash pollution","Density of trash from coastal land and sea (Ocean Conservancy). 
 
 Data sources:
 
 - [Ocean Conservancy International Coastal Cleanup 2012](http://www.oceanconservancy.org/our-work/international-coastal-cleanup/2012-ocean-trash-index.html)
-","pressure_score","pressure score","../ohiprep/Global/OceanConserv-Trash_v2013/data/po_trash_2014a.csv",TRUE,"po_trash.csv","eez2015/layers/po_trash.csv"
+","pressure_score","pressure score","../ohiprep/Global/OceanConserv-Trash_v2013/data/po_trash_2014a.csv",FALSE,"po_trash.csv","eez2015/layers/po_trash.csv"
 "pressures HAB","hab_presence","rnk_hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/hab_habitat_presence_NewSeaIce.csv",TRUE,"hab_presence.csv","eez2015/layers/hab_presence.csv"
 "resilience","alien_species","alien_species","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
@@ -326,37 +326,37 @@ Data sources:
 
 - [CITES List of Contracting Parties](http://www.cites.org/eng/disc/parties/chronolo.php)
 
-","resilience score","resilience score","../ohiprep/Global/CITES-Signatories_v2014/data/rgn_cites_2014a_lyr.csv",TRUE,"cites.csv","eez2015/layers/cites.csv"
+","resilience score","resilience score","../ohiprep/Global/CITES-Signatories_v2014/data/rgn_cites_2014a_lyr.csv",FALSE,"cites.csv","eez2015/layers/cites.csv"
 "resilience","fishing_v1","fishing_v1","CBD survey: coastal fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v1_2014a.csv",TRUE,"fishing_v1.csv","eez2015/layers/fishing_v1.csv"
+","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v1_2014a.csv",FALSE,"fishing_v1.csv","eez2015/layers/fishing_v1.csv"
 "resilience","fishing_v1_eez","fishing_v1_eez","CBD survey: ocean fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v1_eez_2014a.csv",TRUE,"fishing_v1_eez.csv","eez2015/layers/fishing_v1_eez.csv"
+","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v1_eez_2014a.csv",FALSE,"fishing_v1_eez.csv","eez2015/layers/fishing_v1_eez.csv"
 "resilience","fishing_v2_eez","fishing_v2_eez","CBD survey: ocean fishing v2","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v2_eez_2014a.csv",TRUE,"fishing_v2_eez.csv","eez2015/layers/fishing_v2_eez.csv"
+","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v2_eez_2014a.csv",FALSE,"fishing_v2_eez.csv","eez2015/layers/fishing_v2_eez.csv"
 "resilience","fishing_v3","fishing_v3","CBD survey: coastal fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v3_2014a.csv",TRUE,"fishing_v3.csv","eez2015/layers/fishing_v3.csv"
+","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v3_2014a.csv",FALSE,"fishing_v3.csv","eez2015/layers/fishing_v3.csv"
 "resilience","fishing_v3_eez","fishing_v3_eez","CBD survey: ocean fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v3_eez_2014a.csv",TRUE,"fishing_v3_eez.csv","eez2015/layers/fishing_v3_eez.csv"
+","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v3_eez_2014a.csv",FALSE,"fishing_v3_eez.csv","eez2015/layers/fishing_v3_eez.csv"
 "resilience","habitat","habitat","CBD survey: habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
@@ -368,19 +368,19 @@ Data sources:
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_habitat_combo_2014a.csv",TRUE,"habitat_combo.csv","eez2015/layers/habitat_combo.csv"
+","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_habitat_combo_2014a.csv",FALSE,"habitat_combo.csv","eez2015/layers/habitat_combo.csv"
 "resilience","habitat_combo_eez","habitat_combo_eez","CBD survey: ocean habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_habitat_combo_eez_2014a.csv",TRUE,"habitat_combo_eez.csv","eez2015/layers/habitat_combo_eez.csv"
+","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_habitat_combo_eez_2014a.csv",FALSE,"habitat_combo_eez.csv","eez2015/layers/habitat_combo_eez.csv"
 "resilience","li_gci","li_gci","GCI: competitiveness in achieving sustained economic prosperity","Global Competitiveness Index (GCI) scores from the World Economic Forum.
 
 Data sources:
 
 - [World Economic Forum](http://www.weforum.org/issues/global-competitiveness)
-","score","resilience score","../ohiprep/Global/WEF-Economics_v2014/data/rgn_wef_gci_2014a.csv",TRUE,"li_gci.csv","eez2015/layers/li_gci.csv"
+","score","resilience score","../ohiprep/Global/WEF-Economics_v2014/data/rgn_wef_gci_2014a.csv",FALSE,"li_gci.csv","eez2015/layers/li_gci.csv"
 "resilience","li_sector_evenness","li_sector_evenness","Sector evenness as a measure of economic diversity","Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.","resilience score","resilience score","/var/data/ohi/model/GL-NCEAS-Resilience_v2013a/data/r_li_sector_evenness_2013a.csv",TRUE,"li_sector_evenness.csv","eez2015/layers/li_sector_evenness.csv"
 "resilience","mariculture","mariculture","CBD survey: mariculture","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
@@ -421,7 +421,7 @@ Data sources:
 
 Data sources:
 
-- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","resilience score","../ohiprep/globalprep/worldbank_wgi/data/rgn_wb_wgi_2015a.csv",TRUE,"wgi_all.csv","eez2015/layers/wgi_all.csv"
+- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","resilience score","../ohiprep/globalprep/worldbank_wgi/data/rgn_wb_wgi_2015a.csv",FALSE,"wgi_all.csv","eez2015/layers/wgi_all.csv"
 "spatial","cntry_georegions","cnk_cntry_georegions","Georegion ids per country, at 3 georegion levels","Lookup table of country codes and UN georegions at 3 georegion levels.
 
 Data sources:

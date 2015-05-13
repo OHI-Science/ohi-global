@@ -146,7 +146,7 @@ Data sources:
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","weight","score","np_harvest_product_weight.csv","rgn_id",,"product",,"weight",,TRUE,,,0.000111858053963259,1,TRUE,,,,241,FALSE
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","weight","score","np_harvest_product_weight.csv","rgn_id",,"product",,"weight",,TRUE,,,0,1,TRUE,,,,241,FALSE
 "NP","np_harvest_tonnes","rnky_np_harvest_relative","Harvest yield of marine natural products, smoothed","Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
@@ -157,18 +157,6 @@ Data sources:
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","tonnes_rel","score","np_harvest_tonnes_relative.csv","rgn_id",,"product","year","tonnes_rel",,TRUE,1976,2011,0,1,TRUE,,,,241,FALSE
-"NP","np_harvest_usd","rnky_np_harvest_relative","Harvest value of marine natural products, smoothed","Value in 2010 US dollars of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
-
-Data sources:
-
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)
-","usd","2010 USD","np_harvest_usd.csv","rgn_id",,"product","year","usd",,TRUE,1976,2011,0,312377.5,FALSE,,,,241,FALSE
-"NP","np_harvest_usd_relative","rnky_np_harvest_relative","Harvest ratio to peak value of marine natural products","Ratio to max value (2010 USD) of product peak of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
-
-Data sources:
-
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)
-","usd_rel","score","np_harvest_usd_relative.csv","rgn_id",,"product","year","usd_rel",,TRUE,1976,2011,0,1,TRUE,,,,241,FALSE
 "SPP","spp_status","rn_spp_status","Species lists and IUCN threat categories as a proxy for iconic species status","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:

@@ -217,11 +217,11 @@ for (i in 1:length(scenarios)){ # i=3
 
 ### make a plot to compare different commits within a scenario
 source('../ohiprep/src/R/VisGlobal.R')
-changePlot(repo="~/ohi-global", scenario="eez2013", commit="previous", fileSave="slr_pressure_update")
+changePlot(repo="~/ohi-global", scenario="eez2013", commit="previous", fileSave="NP_update")
 
 # looking within a goal:
-#scatterPlot(repo="~/ohi-global", scenario="eez2013", commit="previous", goal="LSP", dim="score", fileSave="acid_update")
-#goalHistogram(repo="~/ohi-global", scenario="eez2013", goal="LSP", dim="score", fileSave="LSP_trend_data_update")
+scatterPlot(repo="~/ohi-global", scenario="eez2013", commit="previous", goal="NP", dim="score", fileSave="NP_update")
+goalHistogram(scenario="eez2013", goal="NP", dim="score", fileSave="NP_function_update")
 
 #   scenario options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'
 #   commit options: 'final_2014' (the final commit for the 2014 analysis), 'previous' (previous commit), a commit code (ie., 'e30e7a4')
