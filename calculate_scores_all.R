@@ -217,8 +217,9 @@ for (i in 1:length(scenarios)){ # i=3
 
 ### make a plot to compare different commits within a scenario
 ## for some reason, the devtools package needs to be turned off for this to work 
+detach("package:devtools", unload=TRUE)
 source('../ohiprep/src/R/VisGlobal.R')
-changePlot(repo="~/ohi-global", scenario="eez2013", commit="previous", fileSave="trash_pressure_update")
+changePlot(repo="~/ohi-global", scenario="eez2013", commit="previous", fileSave="uv_pressure_update")
 
 # looking within a goal:
 scatterPlot(repo="~/ohi-global", scenario="eez2013", commit="previous", goal="CW", dim="score", fileSave="trash_update")

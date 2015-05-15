@@ -212,7 +212,7 @@ Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
 - [Goddard Earth Sciences Data and Information Services Center (GES DISC)](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml)
-","pressure_score","pressure score","/var/data/ohi/model/GL-NCEAS-Pressures_v2013a/data/cc_uv_2012_NEW.csv",TRUE,"cc_uv.csv","eez2012/layers/cc_uv.csv"
+","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/uv_eez_2015.csv",TRUE,"cc_uv.csv","eez2012/layers/cc_uv.csv"
 "pressures","fp_art_hb","fp_art_hb","High bycatch caused by artisanal fishing ","The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
 
 Data sources:
