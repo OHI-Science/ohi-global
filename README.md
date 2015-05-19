@@ -1,5 +1,6 @@
 Preparing for 2015
 ============
+
 Here is where we are (I still need to add resilience).  
 
 Here is a [link](https://docs.google.com/a/nceas.ucsb.edu/spreadsheets/d/13rYgPYu9PgqsRTpkXikqVuDtdKZUN5Vs1yOsP5Do5ys/edit?usp=sharing) to a summary of each data layer so far.
