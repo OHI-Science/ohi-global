@@ -1,12 +1,12 @@
 # configuration for https://ohi-science.nceas.ucsb.edu/ohi-global
-study_area:       
+study_area:       Global
 git_owner:        OHI-Science
 git_repo:         ohi-global
 git_slug:         OHI-Science/ohi-global
 git_url:          https://github.com/OHI-Science/ohi-global
 app_url:          http://ohi-science.nceas.ucsb.edu/ohi-global
 default_branch:   published
-default_scenario: subcountry2014
+default_scenario: eez2014
 debug:            False
 last_updated:     2015-05-18
 ohicore_app:
