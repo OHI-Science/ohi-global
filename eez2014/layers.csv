@@ -146,17 +146,17 @@ Data sources:
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","weight","score","np_harvest_product_weight.csv","rgn_id",,"product",,"weight",,TRUE,,,0,1,TRUE,,,,241,FALSE
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","weight","score","np_harvest_product_weight.csv","rgn_id",,"product",,"weight",,TRUE,,,0,1,TRUE,,,,241,FALSE
 "NP","np_harvest_tonnes","rnky_np_harvest_relative","Harvest yield of marine natural products, smoothed","Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","tonnes","metric tonnes","np_harvest_tonnes.csv","rgn_id",,"product","year","tonnes",,TRUE,1976,2011,0,298403.75,FALSE,,,,241,FALSE
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes","metric tonnes","np_harvest_tonnes.csv","rgn_id",,"product","year","tonnes",,TRUE,1976,2011,0,298403.75,FALSE,,,,241,FALSE
 "NP","np_harvest_tonnes_relative","rnky_np_harvest_relative","Harvest ratio to peak yeild of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","tonnes_rel","score","np_harvest_tonnes_relative.csv","rgn_id",,"product","year","tonnes_rel",,TRUE,1976,2011,0,1,TRUE,,,,241,FALSE
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes_rel","score","np_harvest_tonnes_relative.csv","rgn_id",,"product","year","tonnes_rel",,TRUE,1976,2011,0,1,TRUE,,,,241,FALSE
 "SPP","spp_status","rn_spp_status","Species lists and IUCN threat categories as a proxy for iconic species status","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:

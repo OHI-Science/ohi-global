@@ -54,9 +54,9 @@ Data sources:
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","w_fis","value","../ohiprep/Global/NCEAS-Fisheries_2014a/data/FP_mar_fis_weight_2013a.csv",TRUE,"fp_wildcaught_weight.csv","eez2013/layers/fp_wildcaught_weight.csv"
-"HAB CS CP","hab_extent","rnk_hab_extent","Habitat extent","Modeled combined habitat extent","km2","km^2","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/hab_habitat_extent_NewSeaIce.csv",TRUE,"hab_extent.csv","eez2013/layers/hab_extent.csv"
-"HAB CS CP","hab_health","rnk_hab_health","Habitat health","Modeled combined habitat health condition trend","health","value","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/hab_habitat_health.csv",TRUE,"hab_health.csv","eez2013/layers/hab_health.csv"
-"HAB CS CP","hab_trend","rnk_hab_trend","Habitat health trend","Modeled combined habitat health trend","trend","trend score","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/hab_habitat_trend.csv",TRUE,"hab_trend.csv","eez2013/layers/hab_trend.csv"
+"HAB CS CP","hab_extent","rnk_hab_extent","Habitat extent","Modeled combined habitat extent","km2","km^2","../ohiprep/globalprep/hab_combined/v2015/data/habitat_extent_v2015",TRUE,"hab_extent.csv","eez2013/layers/hab_extent.csv"
+"HAB CS CP","hab_health","rnk_hab_health","Habitat health","Modeled combined habitat health condition trend","health","value","../ohiprep/globalprep/hab_combined/v2015/data/habitat_health_2013",TRUE,"hab_health.csv","eez2013/layers/hab_health.csv"
+"HAB CS CP","hab_trend","rnk_hab_trend","Habitat health trend","Modeled combined habitat health trend","trend","trend score","../ohiprep/globalprep/hab_combined/v2015/data/habitat_trend_2013",TRUE,"hab_trend.csv","eez2013/layers/hab_trend.csv"
 "ICO","ico_spp_extinction_status","rnk_ico_spp_extinction_status","IUCN extinction risk category for iconic species","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
 
 Data sources:
@@ -146,17 +146,17 @@ Data sources:
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","weight","score","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv",TRUE,"np_harvest_product_weight.csv","eez2013/layers/np_harvest_product_weight.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","weight","score","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv",TRUE,"np_harvest_product_weight.csv","eez2013/layers/np_harvest_product_weight.csv"
 "NP","np_harvest_tonnes","rnky_np_harvest_relative","Harvest yield of marine natural products, smoothed","Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","tonnes","metric tonnes","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes.csv","eez2013/layers/np_harvest_tonnes.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes","metric tonnes","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes.csv","eez2013/layers/np_harvest_tonnes.csv"
 "NP","np_harvest_tonnes_relative","rnky_np_harvest_relative","Harvest ratio to peak yeild of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","tonnes_rel","score","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes_relative.csv","eez2013/layers/np_harvest_tonnes_relative.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes_rel","score","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes_relative.csv","eez2013/layers/np_harvest_tonnes_relative.csv"
 "SPP","spp_status","rn_spp_status","Species lists and IUCN threat categories as a proxy for iconic species status","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
