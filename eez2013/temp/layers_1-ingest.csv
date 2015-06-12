@@ -162,13 +162,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","status score","/var/data/ohi/model/GL-NCEAS-SpeciesDiversity_v2013a/data/rgn_spp_score_2013.csv",TRUE,"spp_status.csv","eez2013/layers/spp_status.csv"
+","score","status score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/spp_status.csv",TRUE,"spp_status.csv","eez2013/layers/spp_status.csv"
 "SPP","spp_trend","rn_spp_trend","Species lists and IUCN threat categories as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","trend score","/var/data/ohi/model/GL-NCEAS-SpeciesDiversity_v2013a/data/rgn_spp_trend_2013.csv",TRUE,"spp_trend.csv","eez2013/layers/spp_trend.csv"
+","score","trend score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/spp_trend.csv",TRUE,"spp_trend.csv","eez2013/layers/spp_trend.csv"
 "TR","tr_jobs_total","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
 
 Data sources:

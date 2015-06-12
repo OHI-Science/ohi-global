@@ -162,13 +162,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","status score","spp_status.csv","rgn_id",,,,"score",,TRUE,,,0.743259450182977,0.930308754120408,TRUE,,,,241,FALSE
+","score","status score","spp_status.csv","rgn_id",,,,"score",,TRUE,,,0.751268,0.953603,TRUE,,,,241,FALSE
 "SPP","spp_trend","rn_spp_trend","Species lists and IUCN threat categories as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","trend score","spp_trend.csv","rgn_id",,,,"score",,TRUE,,,-0.464904077028102,0.0977703458133595,FALSE,,,,241,FALSE
+","score","trend score","spp_trend.csv","rgn_id",,,,"score",,TRUE,,,-0.348804,0.386041,FALSE,,,,241,FALSE
 "TR","tr_jobs_total","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
 
 Data sources:
