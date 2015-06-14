@@ -799,7 +799,6 @@ CS <- function(layers){
 
 
 CP <- function(layers){
-  
   # sum mangrove_offshore1km + mangrove_inland1km = mangrove to match with extent and trend
   m <- layers$data[['hab_extent']] %>%
     filter(habitat %in% c('mangrove_inland1km','mangrove_offshore1km')) %>%
@@ -815,7 +814,7 @@ CP <- function(layers){
   
   # join layer data
   d <- 
-    join_all(
+    plyr::join_all(
       list(
         layers$data[['hab_health']] %>%
           select(rgn_id, habitat, health),
@@ -839,10 +838,10 @@ CP <- function(layers){
   
   # limit to CP habitats and add rank
   habitat.rank <- c('coral'            = 4,
-                   'mangrove'         = 4,
-                   'saltmarsh'        = 3,
-                   'seagrass'         = 1,
-                   'seaice_shoreline' = 4)
+                    'mangrove'         = 4,
+                    'saltmarsh'        = 3,
+                    'seagrass'         = 1,
+                    'seaice_shoreline' = 4)
   
   d <- d %>%
     filter(habitat %in% names(habitat.rank)) %>%
@@ -856,7 +855,7 @@ CP <- function(layers){
       filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
       group_by(rgn_id) %>%
       summarize(
-        score = pmin(1, sum(rank * health * extent) / (sum(extent) * max(rank)) ) * 100,
+        score = pmin(1, sum(rank * health * extent, na.rm=TRUE) / (sum(extent * rank, na.rm=TRUE)) ) * 100,
         dimension = 'status')
     
     # trend
@@ -868,9 +867,20 @@ CP <- function(layers){
         d_trend %>%
           group_by(rgn_id) %>%
           summarize(
-            score = sum(rank * trend * extent) / (sum(extent)* max(rank)),
+            score = sum(rank * trend * extent, na.rm=TRUE) / (sum(extent*rank, na.rm=TRUE)),
             dimension = 'trend'))
     }
+    
+    ### output data file for checking and data review
+    scores_check <- spread(scores_CP, dimension, score) %>%
+      select(rgn_id, status, trend_score=trend)
+    
+    d_check <- d %>%
+      select(rgn_id, habitat, extent, health, trend, rank) %>%
+      arrange(rgn_id, habitat) %>%
+      left_join(scores_check, by="rgn_id") 
+    write.csv(d_check, sprintf('temp/CP_data_%s.csv', scenario), row.names=FALSE)    
+    ### end: output...   
     
     scores_CP <- scores_CP %>%
       mutate(
