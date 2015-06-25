@@ -1637,38 +1637,45 @@ LE = function(scores, layers, eez2012 = FALSE){
 }
 
 ICO = function(layers){
-  
-  # layers
-  lyrs = c('ico_spp_extinction_status' = 'risk_category',
-           'ico_spp_popn_trend'        = 'popn_trend')
-  
-  # cast data ----
-  layers_data = SelectLayersData(layers, layers=names(lyrs))  
-  rk = rename(dcast(layers_data, id_num + category ~ layer, value.var='val_chr'),
-              c('id_num'='region_id', 'category'='sciname', lyrs))
+
+  layers_data = SelectLayersData(layers, layers=c('ico_spp_extinction_status', 'ico_spp_popn_trend'))  
+ 
+   rk <- layers_data %>%
+    select(region_id = id_num, sciname = category, iucn_cat=val_chr, layer)
   
   # lookup for weights status
-  w.risk_category = c('LC' = 0,
-                      'NT' = 0.2,
-                      'VU' = 0.4,
-                      'EN' = 0.6,
-                      'CR' = 0.8,
-                      'EX' = 1)
-  
+  w.risk_category = data.frame(iucn_cat = c('LC', 'NT', 'VU', 'EN', 'CR', 'EX'),
+                               risk_score = c(1,  0.8,   0.6,  0.4,  0.2,  0))
+
   # lookup for population trend
-  w.popn_trend = c('Decreasing' = -0.5,
-                   'Stable'     =  0,                                           
-                   'Increasing' =  0.5)
+  w.popn_trend = data.frame(iucn_cat = c('decreasing', 'stable', 'increasing'),
+                            trend_score = c(-0.5, 0, 0.5))
   
-  # status
-  r.status = rename(ddply(rk, .(region_id), function(x){ 
-    mean(1 - w.risk_category[x$risk_category], na.rm = TRUE) * 100 }), 
-                    c('V1'='score'))
+  ####### status
+  # STEP 1: take mean of subpopulation scores
+  r.status_spp <- rk %>%
+    filter(layer == 'ico_spp_extinction_status') %>%
+    left_join(w.risk_category) %>%
+    group_by(region_id, sciname) %>%
+    summarize(spp_mean = mean(risk_score, na.rm=TRUE) * 100) %>%
+    ungroup()
+  # STEP 2: take mean of populations within regions
+  r.status <- r.status_spp %>%
+    group_by(region_id) %>%
+    summarize(score = mean(spp_mean, na.rm=TRUE))
   
-  # trend
-  r.trend = rename(ddply(rk, .(region_id), function(x){ 
-    mean(w.popn_trend[x$popn_trend], na.rm = TRUE) }), 
-                   c('V1'='score'))
+  ####### trend
+  # STEP 1: take mean of subpopulation scores
+  r.trend_spp <- rk %>%
+    filter(layer == 'ico_spp_popn_trend') %>%
+    left_join(w.popn_trend) %>%
+    group_by(region_id, sciname) %>%
+    summarize(spp_mean = mean(trend_score, na.rm=TRUE)) %>%
+    ungroup()
+  # STEP 2: take mean of populations within regions
+  r.trend <- r.trend_spp %>%
+    group_by(region_id) %>%
+    summarize(score = mean(spp_mean, na.rm=TRUE))
   
   # return scores
   s.status = cbind(r.status, data.frame('dimension'='status'))

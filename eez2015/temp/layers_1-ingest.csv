@@ -62,13 +62,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","category","category","/var/data/ohi/model/GL-NCEAS-IconicSpecies_v2013/data/ico_spp_extinction_status.csv",TRUE,"ico_spp_extinction_status.csv","eez2015/layers/ico_spp_extinction_status.csv"
+","category","category","../ohiprep/globalprep/SpeciesDiversity/v2015/data/ico_status.csv",TRUE,"ico_spp_extinction_status.csv","eez2015/layers/ico_spp_extinction_status.csv"
 "ICO","ico_spp_popn_trend","rnk_ico_spp_popn_trend","IUCN population trend as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","popn_trend","trend score","/var/data/ohi/model/GL-NCEAS-IconicSpecies_v2013/data/ico_spp_popn_trend.csv",TRUE,"ico_spp_popn_trend.csv","eez2015/layers/ico_spp_popn_trend.csv"
+","popn_trend","trend score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/ico_trend.csv",TRUE,"ico_spp_popn_trend.csv","eez2015/layers/ico_spp_popn_trend.csv"
 "LE","le_gdp",,"GDP","Gross Domestic Product (GDP) data (reported in 2012 US dollars) from The World Bank.
 
 Data sources:
