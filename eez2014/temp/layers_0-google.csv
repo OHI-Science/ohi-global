@@ -454,24 +454,31 @@ Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
 ","7.27","5.29","score","trend score",,"new",,,,,,"rn_spp_trend",,TRUE,,,"equal","global trends were applied equally to each region. ",,,,,,,,
-"TR","tr_jobs_total","ohiprep:Global/WorldBank-Statistics_v2012/data/","rgn_wb_tlf_2014a_ratio-gapfilled.csv","ohiprep:Global/WorldBank-Statistics_v2012/data/","rgn_wb_tlf_2014a_ratio-gapfilled.csv","ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_tlf_2014a_ratio-gapfilled.csv",,,,"Y: done","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
+"TR","tr_jobs_total","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_total.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_total.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_total.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_total.csv",,"Y: done","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
 
 Data sources:
 
 - [The World Bank](http://data.worldbank.org/indicator/SL.TLF.TOTL.IN)
-",,,"count","jobs",,,,,,,,"tr_jobs_total",,TRUE,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_tlf_2014a_attr.csv","population_inland25km","global total labor force data were applied to each region after weighting by each region's coastal population.","NA",,,,,,,
-"TR","tr_jobs_tourism","ohiprep:Global/WTTC-Tourism_v2013/data/","rgn_wttc_empd_2014a.csv","ohiprep:Global/WTTC-Tourism_v2013/data/","rgn_wttc_empd_2014a.csv","ohiprep:Global/WTTC-Tourism_v2013/data","rgn_wttc_empd_2014a.csv",,,,"Y: done","Direct employment in tourism","Direct employment in tourism (WTTC).
+",,,"L","total labor force jobs",,,,,,,,"tr_jobs_total",,TRUE,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_tlf_2014a_attr.csv","population_inland25km","global total labor force data were applied to each region after weighting by each region's coastal population.","NA",,,,,,,
+"TR","tr_jobs_tourism","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_tourism.csv",,"Y: done","Direct employment in tourism","Direct employment in tourism (WTTC).
 
 Data sources:
 
 - [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-",,,"count","jobs",,,,,,,,"tr_jobs_tourism",,TRUE,,,"population_inland25km","global tourism employee data were applied to each region after weighting by each region's coastal population.","NA",,,,,,,
-"TR","tr_status","neptune_data:model/GL-NCEAS-TR_v2013a/data","TourRec_Status_2012a_Sep23b.csv","neptune_data:model/GL-NCEAS-TR_v2013a/data","TourRec_Status_2013a_Sep23b.csv",,,,,,,"Modeled tourism status","Modeled tourism status with updated approach","6G","5.75","status","status score",,"new",,,,,,"rn_tr_status",,FALSE,,,"(not ingested; see column X)",,,,,,,,,
-"TR","tr_sustainability","neptune_data:model/GL-WEF-Economics_v2013/data","rgn_wef_ttci_2013a_lyr.csv","neptune_data:model/GL-WEF-Economics_v2013/data","rgn_wef_ttci_2013a_lyr.csv",,,,,,"N","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum",,,"score","score",,,,,,,,"tr_sustainability",,TRUE,"neptune_data:model/GL-WEF-Economics_v2013/data","rgn_wef_ttci_2013a_whence.csv","equal ","global scores were applied equally to each region. ","NA",,,,,,,
-"TR","tr_trend","neptune_data:model/GL-NCEAS-TR_v2013a/data","TourRec_Trend_2012a_Sep23b.csv","neptune_data:model/GL-NCEAS-TR_v2013a/data","TourRec_Trend_2013a_Sep23b.csv",,,,,,,"Modeled tourism trend","Modeled tourism trend with updated approach","6G","5.75","trend","trend score",,"new",,,,,,"rn_tr_trend",,FALSE,,,"(not ingested; see column X)",,,,,,,,,
-"TR","tr_unemployment","ohiprep:Global/WorldBank-Statistics_v2012/data/","rgn_wb_uem_2014a_ratio-gapfilled.csv","ohiprep:Global/WorldBank-Statistics_v2012/data/","rgn_wb_uem_2014a_ratio-gapfilled.csv","ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_uem_2014a_ratio-gapfilled.csv",,,,"Y: done","Percent unemployment","Percent unemployment (The World Bank).
+",,,"Ed","direct tourism jobs",,,,,,,,"tr_jobs_tourism",,TRUE,,,"population_inland25km","global tourism employee data were applied to each region after weighting by each region's coastal population.","NA",,,,,,,
+"TR","tr_jobs_pct_tourism","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_pct_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_pct_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_pct_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_pct_tourism.csv",,"Y: done","Percent direct employment in tourism","Percent direct employment in tourism (WTTC).
+
+Data sources:
+
+- [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
+",,,"Ed","direct tourism jobs",,,,,,,,"tr_jobs_tourism",,TRUE,,,"population_inland25km","global tourism employee data were applied to each region after weighting by each region's coastal population.","NA",,,,,,,
+"TR","tr_sustainability","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability.csv",,"N","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum",,,"S_score","TTCI raw score",,,,,,,,"tr_sustainability",,TRUE,"neptune_data:model/GL-WEF-Economics_v2013/data","rgn_wef_ttci_2013a_whence.csv","equal ","global scores were applied equally to each region. ","NA",,,,,,,
+"TR","tr_unemployment","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv",,"Y: done","Percent unemployment","Percent unemployment (The World Bank).
 
 Data sources:
 
 - [The World Bank](http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS)
-",,,"percent","percent unemployed",,,,,,,,"tr_unemployment",,TRUE,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_uem_2014a_attr.csv","equal","global unemployment percentages were applied equally to each region. ","NA",,,,,,,
+",,,"U","percent unemployed",,,,,,,,"tr_unemployment",,TRUE,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_uem_2014a_attr.csv","equal","global unemployment percentages were applied equally to each region. ","NA",,,,,,,
+"TR","tr_travelwarnings","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2015.csv",,,"Travel Warnings","Countries with US State Department travel warnings.
+Data source:
+- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)",,,"rgn_name","travel warning region",,,,,,,,,,TRUE,,,,,,,,,,,,

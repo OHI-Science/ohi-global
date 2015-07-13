@@ -943,211 +943,96 @@ CP <- function(layers){
 }
 
 
-TR = function(layers, year_max, debug = FALSE, pct_ref=90){
-    
+TR = function(layers, year_max, debug = FALSE, pct_ref = 90) {
+  ### Updated July 2015 - Casey O'Hara
+  ### * adjusted model to use percent employment in tourism when available.
+  ### * set up layers for travel warnings.
+  
+  #Inputs:
+  # * U  = tr_unemployment.csv:     Percent unemployment (0-100%)
+  # * S_score  = tr_sustainability.csv:   TTCI score, not normalized (1-7)
+  # * Ed = tr_jobs_tourism.csv:     Number of jobs, direct employment in tourism
+  # * Ep = tr_jobs_pct_tourism.csv: Percent of direct tourism jobs
+  # * L  = tr_jobs_total.csv:       Total labor force
   # formula:
-  #   E = Ed / (L - (L*U))
-  #   Sr = (S-1)/5
-  #   Xtr = E * Sr
-  # 
-  # Ed = Direct employment in tourism (tr_jobs_tourism): ** this has not been gapfilled. We thought it would make more sense to do at the status level.
-  # L = Total labor force (tr_jobs_total)
-  # U = Unemployment (tr_unemployment) 2013: max(year)=2011; 2012: max(year)=2010 
-  # so E is tourism  / employed
-  # S = Sustainability index (tr_sustainability)
-  #
-  # based on model/GL-NCEAS-TR_v2013a: TRgapfill.R, TRcalc.R...
-  # spatial gapfill simply avg, not weighted by total jobs or country population?
-  # scenario='eez2013'; year_max = c(eez2012=2010, eez2013=2011, eez2014=2012)[scenario]; setwd(sprintf('~/github/ohi-global/%s', scenario))
+  #  E       = ifelse(is.na(Ep), Ed / (L - (L * U)), Ep)    # Ep is direct percentage of labor in tourism; if not available, calc the hard way
+  #  S       = (S_score - 1) / (7 - 1)                      # S_score is raw score (from 1:7).  Subtract 1 and normalize.
+  #  Xtr     = E * S 
   
   # get regions
-  rgns = layers$data[[conf$config$layer_region_labels]] %>%
-    select(rgn_id, rgn_label = label)
+  rgn_names = layers$data[[conf$config$layer_region_labels]] %>%
+    select(rgn_id, rgn_name = label)   
   
-  # merge layers and calculate score
-  d = layers$data[['tr_jobs_tourism']] %>%
-    select(rgn_id, year, Ed=count) %>%
-    arrange(rgn_id, year) %>%
-    merge(
-      layers$data[['tr_jobs_total']] %>%
-        select(rgn_id, year, L=count),
-      by = c('rgn_id','year'), all = TRUE) %>%
-    merge(
-      layers$data[['tr_unemployment']] %>%
-        select(rgn_id, year, U=percent) %>%
-        mutate(U = U/100),
-      by = c('rgn_id','year'), all = TRUE) %>%    
-    merge(
-      layers$data[['tr_sustainability']] %>%
-        select(rgn_id, S_score=score),
-      by = c('rgn_id'), all = TRUE)  %>%
+  tr_data  <- layers$data[['tr_jobs_tourism']]     %>% 
+    select(-layer) %>%
+    full_join(layers$data[['tr_jobs_pct_tourism']] %>% 
+                select(-layer),
+              by = c('rgn_id','year'))             %>%
+    full_join(layers$data[['tr_unemployment']]     %>% 
+                select(-layer),
+              by = c('rgn_id','year'))             %>%
+    full_join(layers$data[['tr_jobs_total']]       %>% 
+                select(-layer),
+              by = c('rgn_id','year'))             %>%
+    full_join(layers$data[['tr_sustainability']]   %>% 
+                select(-layer),
+              by = c('rgn_id'))                    %>%
+    full_join(rgn_names, by = 'rgn_id')            %>%
+    filter(year <= year_max)
+  
+  tr_model <- tr_data %>%
     mutate(
-      E     = Ed / (L - (L * U)),
-      S     = (S_score - 1) / 5,
-      Xtr   = E * S ) %>%
-    merge(rgns, by = 'rgn_id') %>%
-    select(rgn_id, rgn_label, year, Ed, L, U, S, E, Xtr)
+      E   = ifelse(is.na(Ep), Ed / (L - (L * U)), Ep),
+      S   = (S_score - 1) / (7 - 1), # scale score from 1 to 7.
+      Xtr = E * S ) %>%  
+    filter(year <= year_max & year > year_max - 5) 
+  # five data years, four intervals
   
-  # feed NA for subcountry regions without sufficient data (vs global analysis)
-  if (conf$config$layer_region_labels!='rgn_global' & sum(!is.na(d$Xtr))==0) {
-    scores_TR = rbind_list(
-      rgns %>%
-        select(region_id = rgn_id) %>%
-        mutate(
-          goal      = 'TR',
-          dimension = 'status',
-          score     = NA),
-      rgns %>%
-        select(region_id = rgn_id) %>%
-        mutate(
-          goal      = 'TR',
-          dimension = 'trend',
-          score     = NA))
-    return(scores_TR)
-  }
+  # regions with Travel Warnings at http://travel.state.gov/content/passports/english/alertswarnings.html
+  rgn_travel_warnings <- layers$data[['tr_travelwarnings']] %>%
+    select(rgn_name, multiplier) %>%
+    left_join(rgn_names, by = 'rgn_name') %>%
+    filter(!is.na(rgn_id))
   
-#   if (debug){
-#     # compare with pre-gapfilled data
-#     if (!file.exists('temp')) dir.create('temp', recursive = TRUE)
-#     
-#     # cast to wide format (rows:rgn, cols:year, vals: Xtr) similar to original
-#     d_c = d %>%
-#       filter(year %in% (year_max-5):year_max) %>%
-#       dcast(rgn_id ~ year, value.var='Xtr')
-#     write.csv(d_c, sprintf('temp/%s_TR_0-pregap_wide.csv', basename(getwd())), row.names = FALSE, na='')
-#     
-#     o = read.csv(file.path(dir_neptune_data, '/model/GL-NCEAS-TR_v2013a/raw/TR_status_pregap_Sept23.csv'), na.strings='') %>%
-#       melt(id='rgn_id', variable.name='year', value.name='Xtr_o') %>%
-#       mutate(year = as.integer(sub('x_TR_','', year, fixed = TRUE))) %>%
-#       arrange(rgn_id, year)
-#     
-#     vs = o %>%
-#       merge(
-#         expand.grid(list(
-#           rgn_id = rgns$rgn_id,
-#           year   = 2006:2011)),
-#         by = c('rgn_id', 'year'), all = TRUE) %>%
-#       merge(d, by = c('rgn_id','year')) %>%
-#       mutate(Xtr_dif = Xtr - Xtr_o) %>% 
-#       select(rgn_id, rgn_label, year, Xtr_o, Xtr, Xtr_dif, E, Ed, L, U, S) %>%
-#       arrange(rgn_id, year)
-#     write.csv(vs, sprintf('temp/%s_TR_0-pregap-vs_details.csv', basename(getwd())), row.names = FALSE, na='')
-#     
-#     vs_rgn = vs %>%
-#       group_by(rgn_id) %>%
-#       summarize(
-#         n_notna_o   = sum(!is.na(Xtr_o)),
-#         n_notna     = sum(!is.na(Xtr)),
-#         dif_avg     = mean(Xtr, na.rm = TRUE) - mean(Xtr_o, na.rm = TRUE),
-#         Xtr_2011_o  = last(Xtr_o),
-#         Xtr_2011    = last(Xtr),
-#         dif_2011    = Xtr_2011 - Xtr_2011_o) %>%
-#       filter(n_notna_o !=0 | n_notna!=0) %>%
-#       arrange(desc(abs(dif_2011)), Xtr_2011, Xtr_2011_o)
-#     write.csv(vs_rgn, sprintf('temp/%s_TR_0-pregap-vs_summary.csv', basename(getwd())), row.names = FALSE, na='')
-#   }
+  tr_model <- tr_model %>%
+    left_join(rgn_travel_warnings %>% 
+                select(-rgn_name), 
+              by = 'rgn_id') %>%
+    mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
+    select(-multiplier)
   
-  # get georegions for gapfilling
-  georegions = layers$data[['rgn_georegions']] %>%
-    dcast(rgn_id ~ level, value.var='georgn_id')
-  georegion_labels =  layers$data[['rgn_georegion_labels']] %>%    
-    mutate(level_label = sprintf('%s_label', level)) %>%
-    dcast(rgn_id ~ level_label, value.var='label') %>%
-    left_join(
-      layers$data[['rgn_labels']] %>%
-        select(rgn_id, v_label=label),
-      by = 'rgn_id')
-
-  # setup data for georegional gapfilling (remove Antarctica rgn_id=213)
-  if (!file.exists('temp')) dir.create('temp', recursive = TRUE)
-  csv = sprintf('temp/%s_TR_1-gapfill-georegions.csv', basename(getwd()))
-  if (conf$config$layer_region_labels=='rgn_global'){
-    d_g = gapfill_georegions(
-      data              = d %>%
-        filter(rgn_id!=213) %>%
-        select(rgn_id, year, Xtr),
-      fld_id            = 'rgn_id',
-      fld_value         = 'Xtr',
-      fld_weight        = NULL,
-      georegions        = georegions,    
-      ratio_weights     = FALSE,
-      georegion_labels  = georegion_labels,
-      r0_to_NA          = TRUE, 
-      attributes_csv    = csv)
-    
-    # regions with Travel Warnings at http://travel.state.gov/content/passports/english/alertswarnings.html
-    rgn_travel_warnings = c('Djibouti'=46, 'Eritrea'=45, 'Somalia'=44, 'Mauritania'=64)
-    # TODO: check if regions with travel warnings are gapfilled (manually checked for 2013)
-    d_g = rbind_list(
-      d_g %>%
-        filter(!rgn_id %in% rgn_travel_warnings),
-      d_g %>%
-        filter(rgn_id %in% rgn_travel_warnings) %>%
-        mutate(
-          Xtr = 0.1 * Xtr))
-  } else {
-    d_g = d
-  }
-    
-  # filter: limit to 5 intervals (6 years worth of data)
-  #   NOTE: original 2012 only used 2006:2010 whereas now we're using 2005:2010
-  d_g_f = d_g %>%
-    filter(year %in% (year_max - 5):year_max)
-  
-  # rescale for
-  #   status: 95 percentile value across all regions and filtered years
-  #   trend: use the value divided by max bc that way it's rescaled but not capped to a lower percentile (otherwise the trend calculated for regions with capped scores, i.e. those at or above the percentile value, would be spurious)
-  
-  d_q_yr  = 
-    d_g_f %>%
-    group_by(year) %>%
-    summarize(
-      Xtr_q = quantile(Xtr, probs=pct_ref/100, na.rm = TRUE))
-    # year     Xtr_q
-    # 2006 0.06103857
-    # 2007 0.06001672
-    # 2008 0.06222823
-    # 2009 0.05563864
-    # 2010 0.05811622
-    # 2011 0.05893174
-
-  Xtr_max = max(d_g_f$Xtr, na.rm = TRUE)
-  
-  # print the reference point--incomplete
-#   d_g_f_ref = d_g_f_r %>%
-#     filter(Xtr >= Xtr_max)
-#   cat(sprintf('the %f percentile for TR is for rgn_id=%f', pct_ref, 
-
-  d_g_f_r = d_g_f %>%
-    left_join(d_q_yr, by = 'year') %>%
+  ### Calculate status based on quantile reference (see function call for pct_ref)
+  tr_model <- tr_model %>%
+    select(rgn_id, rgn_name, year, Xtr) %>%
+    left_join(tr_model %>%
+                group_by(year) %>%
+                summarize(Xtr_q = quantile(Xtr, probs = pct_ref/100, na.rm = TRUE)),
+              by = 'year') %>%
     mutate(
-      Xtr_rq  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q), # rescale to qth percentile, cap at 1
-      Xtr_rmax = Xtr / Xtr_max )                         # rescale to max value   
-  if (debug){
-    write.csv(d_g_f_r, sprintf('temp/%s_TR_2-filtered-rescaled.csv', basename(getwd())), row.names = FALSE, na='')
-  }
-    
+      Xtr_rq  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q)) # rescale to qth percentile, cap at 1
+  
+  
   # calculate trend
-  d_t = d_g_f_r %>%
-    filter(!is.na(Xtr_rmax)) %>%
+  tr_trend <- tr_model %>%
+    filter(!is.na(Xtr_rq)) %>%
     arrange(year, rgn_id) %>%
     group_by(rgn_id) %>%
-    do(mod = lm(Xtr_rmax ~ year, data = .)) %>%
+    do(mod = lm(Xtr_rq ~ year, data = .)) %>%
     do(data.frame(
-      rgn_id = .$rgn_id,
+      rgn_id    = .$rgn_id,
       dimension = 'trend',
-      score = max(min(coef(.$mod)[['year']] * 5, 1), -1)))
+      score     =  max(min(coef(.$mod)[['year']] * 5, 1), -1)))
   
   # get status (as last year's value)
-  d_s = d_g_f_r %>%
+  tr_status <- tr_model %>%
     arrange(year, rgn_id) %>%
     group_by(rgn_id) %>%
     summarize(
       dimension = 'status',
-      score = last(Xtr_rq) * 100)
+      score     = last(Xtr_rq) * 100)
   
-  # bind rows
-  d_b = rbind(d_t, d_s) %>%
+  # bind status and trend by rows
+  tr_score <- bind_rows(tr_status, tr_trend) %>%
     mutate(goal = 'TR')  
   
   if (conf$config$layer_region_labels=='rgn_global'){
@@ -1156,45 +1041,18 @@ TR = function(layers, year_max, debug = FALSE, pct_ref=90){
       group_by(rgn_id) %>%
       filter(count==0) %>%
       select(rgn_id)
-    d_b$score = ifelse(d_b$rgn_id %in% unpopulated$rgn_id, NA, d_b$score)  
-  
-    # replace North Korea value with 0
-    d_b$score[d_b$rgn_id == 21] = 0
+    tr_score$score = ifelse(tr_score$rgn_id %in% unpopulated$rgn_id, NA, tr_score$score)  
+    
+    #     # replace North Korea value with 0
+    #     tr_score$score[tr_score$rgn_id == 21] = 0
   }
   
-  # final scores
-  scores = d_b %>%
+  # return final scores
+  scores = tr_score %>%
     select(region_id=rgn_id, goal, dimension, score)
-  
-  if (debug){
-    
-    # compare with original scores
-    csv_o = file.path(dir_neptune_data, 'git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores.Global2013.www2013_2013-10-09.csv')
-    o = read.csv(csv_o, na.strings='NA', row.names=1) %>% 
-      filter(goal %in% c('TR') & dimension %in% c('status','trend') & region_id!=0) %>% 
-      select(goal, dimension, region_id, score_o=score)
-    
-    vs = scores %>%
-      merge(o, all = TRUE, by = c('goal','dimension','region_id')) %>%
-      merge(
-        rgns %>%
-          select(region_id=rgn_id, region_label=rgn_label), 
-        all.x = TRUE) %>%
-      mutate(
-        score_dif    = score - score_o,
-        score_notna  =  is.na(score)!=is.na(score_o)) %>%  
-      #filter(abs(score_dif) > 0.01 | score_notna == TRUE) %>%
-      arrange(desc(dimension), desc(abs(score_dif))) %>%
-      select(dimension, region_id, region_label, score_o, score, score_dif)
-    
-    # output comparison
-    write.csv(vs, sprintf('temp/%s_TR_3-scores-vs.csv', basename(getwd())), row.names = FALSE, na='')
-    
-  }
   
   return(scores)
 }
-
 LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year){
 
   g.component = c('LIV'='livelihood','ECO'='economy')[[subgoal]]

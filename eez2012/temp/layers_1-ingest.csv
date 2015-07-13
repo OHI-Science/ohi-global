@@ -169,25 +169,34 @@ Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
 ","score","trend score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/spp_trend.csv",TRUE,"spp_trend.csv","eez2012/layers/spp_trend.csv"
+"TR","tr_jobs_pct_tourism","tr_jobs_tourism","Percent direct employment in tourism","Percent direct employment in tourism (WTTC).
+
+Data sources:
+
+- [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
+","Ed","direct tourism jobs","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_jobs_pct_tourism.csv",TRUE,"tr_jobs_pct_tourism.csv","eez2012/layers/tr_jobs_pct_tourism.csv"
 "TR","tr_jobs_total","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
 
 Data sources:
 
 - [The World Bank](http://data.worldbank.org/indicator/SL.TLF.TOTL.IN)
-","count","jobs","../ohiprep/Global/WorldBank-Statistics_v2012/data//rgn_wb_tlf_2014a_ratio-gapfilled.csv",TRUE,"tr_jobs_total.csv","eez2012/layers/tr_jobs_total.csv"
+","L","total labor force jobs","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_jobs_total.csv",TRUE,"tr_jobs_total.csv","eez2012/layers/tr_jobs_total.csv"
 "TR","tr_jobs_tourism","tr_jobs_tourism","Direct employment in tourism","Direct employment in tourism (WTTC).
 
 Data sources:
 
 - [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-","count","jobs","../ohiprep/Global/WTTC-Tourism_v2013/data//rgn_wttc_empd_2014a.csv",TRUE,"tr_jobs_tourism.csv","eez2012/layers/tr_jobs_tourism.csv"
-"TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","score","score","/var/data/ohi/model/GL-WEF-Economics_v2013/data/rgn_wef_ttci_2013a_lyr.csv",TRUE,"tr_sustainability.csv","eez2012/layers/tr_sustainability.csv"
+","Ed","direct tourism jobs","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_jobs_tourism.csv",TRUE,"tr_jobs_tourism.csv","eez2012/layers/tr_jobs_tourism.csv"
+"TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","S_score","TTCI raw score","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_sustainability_2014.csv",TRUE,"tr_sustainability.csv","eez2012/layers/tr_sustainability.csv"
+"TR","tr_travelwarnings",,"Travel Warnings","Countries with US State Department travel warnings.
+Data source:
+- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","rgn_name","travel warning region","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_travelwarnings_2014.csv",TRUE,"tr_travelwarnings.csv","eez2012/layers/tr_travelwarnings.csv"
 "TR","tr_unemployment","tr_unemployment","Percent unemployment","Percent unemployment (The World Bank).
 
 Data sources:
 
 - [The World Bank](http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS)
-","percent","percent unemployed","../ohiprep/Global/WorldBank-Statistics_v2012/data//rgn_wb_uem_2014a_ratio-gapfilled.csv",TRUE,"tr_unemployment.csv","eez2012/layers/tr_unemployment.csv"
+","U","percent unemployed","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_unemployment.csv",TRUE,"tr_unemployment.csv","eez2012/layers/tr_unemployment.csv"
 "pressures","cc_acid","cc_acid","Ocean acidification","Modeled distribution of the aragonite saturation state (AAS) of the ocean in pre-industrial (~1870) and modern times (2000-2009) (Halpern et al. 2008).
 
 Data sources:
