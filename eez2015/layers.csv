@@ -43,7 +43,7 @@ Data sources:
 Data sources:
 
 - [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","fis_meancatch.csv",,"fao_saup_id","taxon_name_key","year","mean_catch",,TRUE,2006,2011,8.17638e-18,4787769.75544375,FALSE,,,,241,FALSE
-"FIS","fis_proparea_saup2rgn","snk_fis_proparea_saup2rgn","area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
+"FIS","fis_proparea_saup2rgn","","area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
 
 Data sources:
 
@@ -407,7 +407,7 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","species_diversity.csv","rgn_id",,,,"score",,TRUE,,,0.743259450182977,0.930308754120408,TRUE,,,,241,FALSE
+","score","resilience score","species_diversity.csv","rgn_id",,,,"score",,TRUE,,,0.751268,0.953603,TRUE,,,,241,FALSE
 "resilience","species_diversity_3nm","species_diversity_3nm","Coastal ecological integrity","Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
 
 Data sources:

@@ -20,7 +20,7 @@ Data sources:
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","7.19","5.19","trend.score","trend score","new","new","use coastpop to gap-fill v2013a and v2012a (NOTE: trend needs to be normalized)",,"U",,,"rn_cw_fertilizer_trend",,TRUE,"ohiprep:Global/FAO-CW-Trends_v2011/data","rgn_cw_fertilizers_trends_2013a.csv","equal","global trends were applied equally to all regions.","NA",,,,,,,
-"CW","cw_pathogen_trend","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","pathogens_popdensity25km_trend_2012a.csv","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","pathogens_popdensity25km_trend_2013a.csv","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","pathogens_popdensity25km_trend_2014a.csv",,,"need >2012","Y: done","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities.
+"CW","cw_pathogen_trend","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","pathogens_popdensity25km_trend_2012a.csv","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","pathogens_popdensity25km_trend_2013a.csv","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","pathogens_popdensity25km_trend_2014a.csv",,,"Y","Y: done","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities.
 
 Data sources:
 
@@ -44,12 +44,12 @@ Data sources:
 Data sources:
 
 - [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","6A","6A","mean_catch","metric tons",,,,,,,,"snk_fis_meancatch",,TRUE,,,"equal","global mean catch information was applied equally to all regions.",,,,,,,,
-"FIS","fis_proparea_saup2rgn","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv",,,,"Y: done","area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
+"FIS","fis_proparea_saup2rgn","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv",,,,,"area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
 
 Data sources:
 
 - [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)
-","6A","6A","prop_area","proportion of area",,,,,,,,"snk_fis_proparea_saup2rgn",,TRUE,,,"area_offshore","global proportional area were applied to each region after weighting by each region's offshore area.",,,,,,,,
+","6A","6A","prop_area","proportion of area",,,,,,,,,,TRUE,,,,,,,,,,,,
 "FP","fp_wildcaught_weight","ohiprep:Global/NCEAS-Fisheries_2014a/data","GL_FP_wildcaught_weight_v2012a_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","FP_mar_fis_weight_2013a.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","FP_mar_fis_weight_2014a.csv",,,,"Y: done","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
 
 Data sources:
@@ -189,7 +189,7 @@ Data sources:
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
 - [Goddard Earth Sciences Data and Information Services Center (GES DISC)](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml)
 ","7.69","5.76","pressure_score","pressure score",,"new",,"NA (updated data)","Y",,,"cc_uv",,TRUE,,,"raster | equal",,,"p_cc_uv.csv","region_id",,,,"pressures_score",
-"pressures","fp_art_hb","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_fp_art_hb_disaggregateNature2012.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_fp_art_hb_disaggregateNature2012.csv",,,,,,,"High bycatch caused by artisanal fishing ","The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
+"pressures","fp_art_hb","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_fp_art_hb_disaggregateNature2012.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_fp_art_hb_disaggregateNature2012.csv",,,,,"N",,"High bycatch caused by artisanal fishing ","The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
 
 Data sources:
 
@@ -224,7 +224,7 @@ Data sources:
 - Center for International Earth Science Information Network (CIESIN)/Columbia University 
 - CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)
 ","7.24","5.25","pressure_score","pressure score",,"coastal_pop",,"coastal-pop-weighted","N",,,"hd_intertidal",,TRUE,,,"population_inland25km","global intertidal pressures were applied to each region after weighting by each region's coastal population.","NA","p_hd_intertidal.csv","region_id",,,,"pressures_score",
-"pressures","hd_subtidal_hb","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_hd_subtidal_hb_v2013a.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_hd_subtidal_hb_v2013a.csv",,,,,,,"High bycatch artisanal fishing practices as a proxy for subtidal hard bottom habitat destruction","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
+"pressures","hd_subtidal_hb","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_hd_subtidal_hb_v2013a.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_hd_subtidal_hb_v2013a.csv",,,,,"N",,"High bycatch artisanal fishing practices as a proxy for subtidal hard bottom habitat destruction","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
 
@@ -369,7 +369,7 @@ Data sources:
 Data sources:
 
 - Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","7.3","5.33","resilience score","resilience score","2012a","parent",,"disaggregate(csv.in='/Volumes/local_edit/src/toolbox/data/global_2012_nature/layers/r_msi_gov.csv', csv.out ='/Volumes/data_edit/model/GL-NCEAS-Resilience_v2013a/data/r_msi_gov_2013a.csv', fld.value=NA, weight.csv=NA)","N","only 63 unique rgn_2012nature; so only 80 unique in rgns for 2012a and 2013a",,"msi_gov",,TRUE,,,"equal","global resilience data were applied equally to all regions.","NA","r_msi_gov.csv","region_id",,,,"resilience_score",
-"resilience","species_diversity","neptune_data:model/GL-NCEAS-SpeciesDiversity_v2013a/data","rgn_spp_score_2012.csv","neptune_data:model/GL-NCEAS-SpeciesDiversity_v2013a/data","rgn_spp_score_2013.csv",,,,,,,"Ocean ecological integrity","Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
+"resilience","species_diversity","ohiprep:globalprep/SpeciesDiversity/v2015/data","spp_status.csv","ohiprep:globalprep/SpeciesDiversity/v2015/data","spp_status.csv","ohiprep:globalprep/SpeciesDiversity/v2015/data","spp_status.csv","ohiprep:globalprep/SpeciesDiversity/v2015/data","spp_status.csv","Y",,"Ocean ecological integrity","Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
 
 Data sources:
 

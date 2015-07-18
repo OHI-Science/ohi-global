@@ -43,7 +43,7 @@ Data sources:
 Data sources:
 
 - [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","../ohiprep/Global/NCEAS-Fisheries_2014a/data/fnk_fis_meancatch_lyr.csv",TRUE,"fis_meancatch.csv","eez2014/layers/fis_meancatch.csv"
-"FIS","fis_proparea_saup2rgn","snk_fis_proparea_saup2rgn","area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
+"FIS","fis_proparea_saup2rgn",,"area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
 
 Data sources:
 
@@ -407,7 +407,7 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","/var/data/ohi/model/GL-NCEAS-SpeciesDiversity_v2013a/data/rgn_spp_score_2013.csv",TRUE,"species_diversity.csv","eez2014/layers/species_diversity.csv"
+","score","resilience score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/spp_status.csv",TRUE,"species_diversity.csv","eez2014/layers/species_diversity.csv"
 "resilience","species_diversity_3nm","species_diversity_3nm","Coastal ecological integrity","Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
 
 Data sources:
