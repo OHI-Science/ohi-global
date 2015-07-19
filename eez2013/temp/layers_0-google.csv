@@ -471,7 +471,7 @@ Data sources:
 Data sources:
 
 - [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-",,,"Ed","direct tourism jobs",,,,,,,,"tr_jobs_tourism",,TRUE,,,"population_inland25km","global tourism employee data were applied to each region after weighting by each region's coastal population.","NA",,,,,,,
+",,,"Ep","direct tourism jobs",,,,,,,,"tr_jobs_tourism",,TRUE,,,"population_inland25km","global tourism employee data were applied to each region after weighting by each region's coastal population.","NA",,,,,,,
 "TR","tr_sustainability","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability.csv",,"N","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum",,,"S_score","TTCI raw score",,,,,,,,"tr_sustainability",,TRUE,"neptune_data:model/GL-WEF-Economics_v2013/data","rgn_wef_ttci_2013a_whence.csv","equal ","global scores were applied equally to each region. ","NA",,,,,,,
 "TR","tr_unemployment","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv",,"Y: done","Percent unemployment","Percent unemployment (The World Bank).
 
@@ -481,4 +481,4 @@ Data sources:
 ",,,"U","percent unemployed",,,,,,,,"tr_unemployment",,TRUE,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_uem_2014a_attr.csv","equal","global unemployment percentages were applied equally to each region. ","NA",,,,,,,
 "TR","tr_travelwarnings","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2015.csv",,,"Travel Warnings","Countries with US State Department travel warnings.
 Data source:
-- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)",,,"rgn_name","travel warning region",,,,,,,,,,TRUE,,,,,,,,,,,,
+- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)",,,"multiplier","travel warning region",,,,,,,,,,TRUE,,,,,,,,,,,,

@@ -174,7 +174,7 @@ Data sources:
 Data sources:
 
 - [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-","Ed","direct tourism jobs","tr_jobs_pct_tourism.csv","rgn_id",,"ep","year",,,TRUE,1989,2013,,,FALSE,,"NA ed",,241,
+","Ep","direct tourism jobs","tr_jobs_pct_tourism.csv","rgn_id",,,"year","ep",,TRUE,1989,2013,0,0.782726,TRUE,,,,241,FALSE
 "TR","tr_jobs_total","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
 
 Data sources:
@@ -190,7 +190,7 @@ Data sources:
 "TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","S_score","TTCI raw score","tr_sustainability.csv","rgn_id",,,,"s_score",,TRUE,,,2.58,5.3406,FALSE,,,,241,FALSE
 "TR","tr_travelwarnings","","Travel Warnings","Countries with US State Department travel warnings.
 Data source:
-- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","rgn_name","travel warning region","tr_travelwarnings.csv",,,"date",,,"rgn_name",TRUE,,,,,FALSE,"rgn_name_full,multiplier,inform,risk,avoid_nonessential,avoid_all,gtfo,regional,x,recommendation,x_inform,x_risk,x_avoid_nonessential,x_avoid_all,x_gtfo,x_regional",,4,241,
+- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","multiplier","travel warning region","tr_travelwarnings.csv",,,"rgn_name",,"multiplier",,TRUE,,,0,1,TRUE,,,,241,FALSE
 "TR","tr_unemployment","tr_unemployment","Percent unemployment","Percent unemployment (The World Bank).
 
 Data sources:

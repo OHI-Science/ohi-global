@@ -174,7 +174,7 @@ Data sources:
 Data sources:
 
 - [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-","Ed","direct tourism jobs","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_jobs_pct_tourism.csv",TRUE,"tr_jobs_pct_tourism.csv","eez2015/layers/tr_jobs_pct_tourism.csv"
+","Ep","direct tourism jobs","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_jobs_pct_tourism.csv",TRUE,"tr_jobs_pct_tourism.csv","eez2015/layers/tr_jobs_pct_tourism.csv"
 "TR","tr_jobs_total","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
 
 Data sources:
@@ -190,7 +190,7 @@ Data sources:
 "TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","S_score","TTCI raw score","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_sustainability.csv",TRUE,"tr_sustainability.csv","eez2015/layers/tr_sustainability.csv"
 "TR","tr_travelwarnings",,"Travel Warnings","Countries with US State Department travel warnings.
 Data source:
-- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","rgn_name","travel warning region","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_travelwarnings_2015.csv",TRUE,"tr_travelwarnings.csv","eez2015/layers/tr_travelwarnings.csv"
+- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","multiplier","travel warning region","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_travelwarnings_2015.csv",TRUE,"tr_travelwarnings.csv","eez2015/layers/tr_travelwarnings.csv"
 "TR","tr_unemployment","tr_unemployment","Percent unemployment","Percent unemployment (The World Bank).
 
 Data sources:
