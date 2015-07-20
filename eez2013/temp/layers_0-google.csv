@@ -296,13 +296,13 @@ Data sources:
 
 - Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)
 ","7.01","5.01","resilience score","resilience score","2012a","parent",,,"N",,,"alien_species",,TRUE,"neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a","CBDaliens_whence.csv","equal","global resilience data were applied equally to all regions.",,,,,,,,
-"resilience","cites","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_cites_2013a.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_cites_2013a.csv","ohiprep:Global/CITES-Signatories_v2014/data","rgn_cites_2014a_lyr.csv",,,,"Y: done","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
+"resilience","cites","ohiprep:globalprep/cites_signatories/v2015/data","rgn_cites_eez2012.csv","ohiprep:globalprep/cites_signatories/v2015/data","rgn_cites_eez2013.csv","ohiprep:globalprep/cites_signatories/v2015/data","rgn_cites_eez2014.csv","ohiprep:globalprep/cites_signatories/v2015/data","rgn_cites_eez2015.csv","Y: done","Y: done","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
 
 Data sources:
 
 - [CITES List of Contracting Parties](http://www.cites.org/eng/disc/parties/chronolo.php)
 
-","7.16","5.15","resilience score","resilience score","2012a","parent",,"disaggregate(csv.in='/Volumes/local_edit/src/toolbox/data/global_2012_nature/layers/r_cites.csv', csv.out ='/Volumes/data_edit/model/GL-NCEAS-Resilience_v2013a/data/r_cites_2013a.csv', fld.value=NA, weight.csv=NA)","N",,,"cites",,TRUE,"neptune_data:model/GL-CITES-Signatories_v2013/data","rgn_cites_2013_all_whence.csv","equal","global resilience data were applied equally to all regions.",,"r_cites.csv","region_id",,,,"resilience_score",
+","7.16","5.15","resilience_score","resilience score","2012a","parent",,"disaggregate(csv.in='/Volumes/local_edit/src/toolbox/data/global_2012_nature/layers/r_cites.csv', csv.out ='/Volumes/data_edit/model/GL-NCEAS-Resilience_v2013a/data/r_cites_2013a.csv', fld.value=NA, weight.csv=NA)","N",,,"cites",,TRUE,"neptune_data:model/GL-CITES-Signatories_v2013/data","rgn_cites_2013_all_whence.csv","equal","global resilience data were applied equally to all regions.",,"r_cites.csv","region_id",,,,"resilience_score",
 "resilience","fishing_v1","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v1_2012a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v1_2013a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v1_2014a.csv",,,,"Y: done","CBD survey: coastal fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:

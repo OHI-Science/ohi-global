@@ -219,7 +219,7 @@ for (i in 1:length(scenarios)){ # i=3
 ## for some reason, the devtools package needs to be turned off for this to work 
 detach("package:devtools", unload=TRUE)
 source('../ohiprep/src/R/VisGlobal.R')
-changePlot(repo="~/ohi-global", scenario="eez2014", commit="previous", fileSave="SP_resil_2014_update")
+changePlot(repo="~/ohi-global", scenario="eez2013", commit="previous", fileSave="cites_resil_2013_update")
 
 # looking within a goal:
 scatterPlot(repo="~/ohi-global", scenario="eez2013", commit="previous", goal="ICO", dim="score", fileSave="ICO_data_update")
