@@ -14,7 +14,7 @@ Data sources:
 Data sources:
 
 - Center for International Earth Science Information Network (CIESIN)/Columbia University 
-- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","/var/data/ohi/model/GL-NCEAS-CoastalPopulation_v2013/data/rgn_popn5yrtrend_inland25mi_2008to2013.csv",TRUE,"cw_coastalpopn_trend.csv","eez2014/layers/cw_coastalpopn_trend.csv"
+- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","../ohiprep/globalprep/coastal_population/v2015/data/rgn_popn5yrtrend_inland25mi_2010to2014.csv",TRUE,"cw_coastalpopn_trend.csv","eez2014/layers/cw_coastalpopn_trend.csv"
 "CW","cw_fertilizer_trend","rn_cw_fertilizer_trend","Fertilizer consumption as a proxy for trend in nutrient pollution","Statistics on fertilizer consumption from the Food and Agricultural Organization (FAO). 
 
 Data sources:
@@ -25,7 +25,7 @@ Data sources:
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
-","trend","trend score","../ohiprep/Global/WHOUNICEF-Sanitation_v2012/data/pathogens_popdensity25km_trend_2014a.csv",TRUE,"cw_pathogen_trend.csv","eez2014/layers/cw_pathogen_trend.csv"
+","trend","trend score","../ohiprep/globalprep/whounicef_sanitation/v2015/data/pathogens_popdensity25mi_trend_2014a.csv",TRUE,"cw_pathogen_trend.csv","eez2014/layers/cw_pathogen_trend.csv"
 "CW","cw_pesticide_trend","rn_cw_pesticide_trend","Pesticide consumption as a proxy for trend in chemical pollution","Statistics on pesticide consumption from the Food and Agricultural Organization (FAO). 
 
 Data sources:
@@ -315,7 +315,7 @@ Data sources:
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
-","pressure_score","pressure score","../ohiprep/Global/WHOUNICEF-Sanitation_v2012/data/po_pathogens_popdensity25km_2014a.csv",TRUE,"po_pathogens.csv","eez2014/layers/po_pathogens.csv"
+","pressure_score","pressure score","../ohiprep/globalprep/whounicef_sanitation/v2015/data/po_pathogens_popdensity25mi_2014a.csv",TRUE,"po_pathogens.csv","eez2014/layers/po_pathogens.csv"
 "pressures CW","po_trash","po_trash","Trash pollution","Density of trash from coastal land and sea (Ocean Conservancy). 
 
 Data sources:
@@ -389,7 +389,7 @@ Data sources:
 Data sources:
 
 - [World Economic Forum](http://www.weforum.org/issues/global-competitiveness)
-","score","resilience score","../ohiprep/Global/WEF-Economics_v2014/data/rgn_wef_gci_2014a.csv",TRUE,"li_gci.csv","eez2014/layers/li_gci.csv"
+","score","resilience score","../ohiprep/globalprep/WEF-Economics/v2015/data/rgn_wef_gci_2014.csv",TRUE,"li_gci.csv","eez2014/layers/li_gci.csv"
 "resilience","li_sector_evenness","li_sector_evenness","Sector evenness as a measure of economic diversity","Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.","resilience score","resilience score","/var/data/ohi/model/GL-NCEAS-Resilience_v2013a/data/r_li_sector_evenness_2013a.csv",TRUE,"li_sector_evenness.csv","eez2014/layers/li_sector_evenness.csv"
 "resilience","mariculture","mariculture","CBD survey: mariculture","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
@@ -413,7 +413,7 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","/var/data/ohi/model/GL-NCEAS-SpeciesDiversity_v2013a/data/rgn_spp_score_offshore3nm_2013.csv",TRUE,"species_diversity_3nm.csv","eez2014/layers/species_diversity_3nm.csv"
+","score","resilience score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/spp_status_3nm.csv",TRUE,"species_diversity_3nm.csv","eez2014/layers/species_diversity_3nm.csv"
 "resilience","tourism","tourism","CBD survey: tourism","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:

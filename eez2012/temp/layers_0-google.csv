@@ -9,7 +9,7 @@ Data sources:
 Data sources:
 
 - The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)","7.05","5.05","value","value","new","new",,,"U",,,"rny_ao_need",,TRUE,"neptune_data:model/GL-WorldBank-Statistics_v2012/data","rgn_wb_gdppcppp_2013a_whence.csv","equal","global purchasing power parity information was applied equally to all regions.","NA","ao_need.csv",,"country_id",,"year","score",
-"CW","cw_coastalpopn_trend","neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data","rgn_popn5yrtrend_inland25mi_2007to2012.csv","neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data","rgn_popn5yrtrend_inland25mi_2008to2013.csv",,,,,,"N","Coastal human population as a proxy for trend in trash","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
+"CW","cw_coastalpopn_trend","ohiprep:globalprep/coastal_population/v2015/data","rgn_popn5yrtrend_inland25mi_2008to2012.csv","ohiprep:globalprep/coastal_population/v2015/data","rgn_popn5yrtrend_inland25mi_2009to2013.csv","ohiprep:globalprep/coastal_population/v2015/data","rgn_popn5yrtrend_inland25mi_2010to2014.csv","ohiprep:globalprep/coastal_population/v2015/data","rgn_popn5yrtrend_inland25mi_2011to2015.csv",,"N","Coastal human population as a proxy for trend in trash","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
 
@@ -20,7 +20,7 @@ Data sources:
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","7.19","5.19","trend.score","trend score","new","new","use coastpop to gap-fill v2013a and v2012a (NOTE: trend needs to be normalized)",,"U",,,"rn_cw_fertilizer_trend",,TRUE,"ohiprep:Global/FAO-CW-Trends_v2011/data","rgn_cw_fertilizers_trends_2013a.csv","equal","global trends were applied equally to all regions.","NA",,,,,,,
-"CW","cw_pathogen_trend","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","pathogens_popdensity25km_trend_2012a.csv","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","pathogens_popdensity25km_trend_2013a.csv","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","pathogens_popdensity25km_trend_2014a.csv",,,"Y","Y: done","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities.
+"CW","cw_pathogen_trend","ohiprep:globalprep/whounicef_sanitation/v2015/data","pathogens_popdensity25mi_trend_2012a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","pathogens_popdensity25mi_trend_2013a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","pathogens_popdensity25mi_trend_2014a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","pathogens_popdensity25mi_trend_2015a.csv","Y","Y: done","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities.
 
 Data sources:
 
@@ -277,7 +277,7 @@ Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
 ","7.51","5.55","pressure_score","pressure score",,"new",,"NA (updated data)","Y",,,"po_nutrients",,TRUE,,,"raster","spatial data was extracted for each region. ","NA","p_po_nutrients.csv","region_id",,,,"pressures_score",
-"pressures CW","po_pathogens","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","po_pathogens_popdensity25km_2012a.csv","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","po_pathogens_popdensity25km_2013a.csv","ohiprep:Global/WHOUNICEF-Sanitation_v2012/data","po_pathogens_popdensity25km_2014a.csv",,,,"Y: done","Access to improved sanitation as a proxy for pathogen pollution","Percent of population with access to improved sanitation facilities. 
+"pressures CW","po_pathogens","ohiprep:globalprep/whounicef_sanitation/v2015/data","po_pathogens_popdensity25mi_2012a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","po_pathogens_popdensity25mi_2013a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","po_pathogens_popdensity25mi_2014a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","po_pathogens_popdensity25mi_2015a.csv",,"Y: done","Access to improved sanitation as a proxy for pathogen pollution","Percent of population with access to improved sanitation facilities. 
 
 Data sources:
 
@@ -351,7 +351,7 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
 ","7.14","5.14","resilience score","resilience score","new","parent","(update with new MPA data?)","disaggregate(csv.in='/Volumes/local_edit/src/toolbox/data/global_2012_nature/layers/r_habitat_combo_eez.csv', csv.out ='/Volumes/data_edit/model/GL-NCEAS-Resilience_v2013a/data/r_habitat_combo_eez_2013a.csv', fld.value=NA, weight.csv=NA)","N",,,"habitat_combo_eez",,TRUE,,,"equal","global resilience data were applied equally to all regions.",,"r_habitat_combo_eez.csv","region_id",,,,"resilience_score",
-"resilience","li_gci","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_li_gci_Nature2012disaggregated.csv","neptune_data:model/GL-WEF-Economics_v2013/data","rgn_wef_gci_2013a_rescaled.csv","ohiprep:Global/WEF-Economics_v2014/data","rgn_wef_gci_2014a.csv",,,,"Y: done","GCI: competitiveness in achieving sustained economic prosperity","Global Competitiveness Index (GCI) scores from the World Economic Forum.
+"resilience","li_gci","ohiprep:globalprep/WEF-Economics/v2015/data","rgn_wef_gci_2012.csv","ohiprep:globalprep/WEF-Economics/v2015/data","rgn_wef_gci_2013.csv","ohiprep:globalprep/WEF-Economics/v2015/data","rgn_wef_gci_2014.csv","ohiprep:globalprep/WEF-Economics/v2015/data","rgn_wef_gci_2015.csv",,"Y: done","GCI: competitiveness in achieving sustained economic prosperity","Global Competitiveness Index (GCI) scores from the World Economic Forum.
 
 Data sources:
 
@@ -375,7 +375,7 @@ Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
 ","7.18","5.18","score","resilience score","new","new","(same as SPP status score)","disaggregate(csv.in='/Volumes/local_edit/src/toolbox/data/global_2012_nature/layers/r_species_diversity.csv', csv.out ='/Volumes/data_edit/model/GL-NCEAS-Resilience_v2013a/data/r_species_diversity_2013a.csv', fld.value=NA, weight.csv=NA)","N",,,"species_diversity",,TRUE,,,"equal","global resilience data were applied equally to all regions.",,"r_species_diversity.csv","region_id",,,,"resilience_score",
-"resilience","species_diversity_3nm","neptune_data:model/GL-NCEAS-SpeciesDiversity_v2013a/data","rgn_spp_score_offshore3nm_2013.csv","neptune_data:model/GL-NCEAS-SpeciesDiversity_v2013a/data","rgn_spp_score_offshore3nm_2013.csv",,,,,,,"Coastal ecological integrity","Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
+"resilience","species_diversity_3nm","ohiprep:globalprep/SpeciesDiversity/v2015/data","spp_status_3nm.csv","ohiprep:globalprep/SpeciesDiversity/v2015/data","spp_status_3nm.csv","ohiprep:globalprep/SpeciesDiversity/v2015/data","spp_status_3nm.csv","ohiprep:globalprep/SpeciesDiversity/v2015/data","spp_status_3nm.csv",,,"Coastal ecological integrity","Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
 
 Data sources:
 

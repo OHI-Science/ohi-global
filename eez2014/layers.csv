@@ -14,7 +14,7 @@ Data sources:
 Data sources:
 
 - Center for International Earth Science Information Network (CIESIN)/Columbia University 
-- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","cw_coastalpopn_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.189382246579428,0.270753851039487,FALSE,,,,241,FALSE
+- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","cw_coastalpopn_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.191289868171402,0.263942643233275,FALSE,,,,241,FALSE
 "CW","cw_fertilizer_trend","rn_cw_fertilizer_trend","Fertilizer consumption as a proxy for trend in nutrient pollution","Statistics on fertilizer consumption from the Food and Agricultural Organization (FAO). 
 
 Data sources:
@@ -25,7 +25,7 @@ Data sources:
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
-","trend","trend score","cw_pathogen_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.015098791960566,0.13425692875753,FALSE,,,,241,FALSE
+","trend","trend score","cw_pathogen_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.0295294816406263,0.126250479937232,FALSE,,,,241,FALSE
 "CW","cw_pesticide_trend","rn_cw_pesticide_trend","Pesticide consumption as a proxy for trend in chemical pollution","Statistics on pesticide consumption from the Food and Agricultural Organization (FAO). 
 
 Data sources:
@@ -389,7 +389,7 @@ Data sources:
 Data sources:
 
 - [World Economic Forum](http://www.weforum.org/issues/global-competitiveness)
-","score","resilience score","li_gci.csv","rgn_id",,,,"score",,TRUE,,,0.415714285714286,0.801428571428571,TRUE,,,,241,FALSE
+","score","resilience score","li_gci.csv","rgn_id",,,,"score",,TRUE,,,0.416013021142857,0.801893491285714,TRUE,,,,241,FALSE
 "resilience","li_sector_evenness","li_sector_evenness","Sector evenness as a measure of economic diversity","Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.","resilience score","resilience score","li_sector_evenness.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,0.997518269205,TRUE,,,,241,FALSE
 "resilience","mariculture","mariculture","CBD survey: mariculture","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
@@ -413,7 +413,7 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","species_diversity_3nm.csv","rgn_id",,,,"score",,TRUE,,,0.752102387423915,0.943822818112876,TRUE,,,,241,FALSE
+","score","resilience score","species_diversity_3nm.csv","rgn_id",,,,"score",,TRUE,,,0.780993,0.957274,TRUE,,,,241,FALSE
 "resilience","tourism","tourism","CBD survey: tourism","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
