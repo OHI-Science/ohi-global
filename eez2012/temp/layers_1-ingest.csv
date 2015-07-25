@@ -129,7 +129,6 @@ Data sources:
 Data sources:
 
 - Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","/var/data/ohi/model/GL-NCEAS_MAR_v2013a/Revision_Dec202013/mar_sustainability_score_lyr.csv",TRUE,"mar_sustainability_score.csv","eez2012/layers/mar_sustainability_score.csv"
-"MAR","mar_trend_years","mar_trend_years","Mariculture years used for trend","Mariculture years used for trend","trend_yrs","year string","/var/data/ohi/model/GL-NCEAS_MAR_v2013a/Revision_Dec202013/mar_trend_years_lyr.csv",TRUE,"mar_trend_years.csv","eez2012/layers/mar_trend_years.csv"
 "NP","np_blast",,"Areas of observed blast (dynamite) fishing","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
@@ -296,8 +295,8 @@ Data sources:
 Data sources:
 
 - [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","../ohiprep/globalprep/worldbank_wgi/data/rgn_wb_wgi_2012a_inverse.csv",TRUE,"ss_wgi.csv","eez2012/layers/ss_wgi.csv"
-"pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent * rank, per Coastal Protection habitats","Habitat extent * habitat rank for Coastal Protection habitats: coral, mangrove offshore 1km, mangrove inland 1km, saltmarsh, seaice_shoreline and seagrass","extent_rank","rank","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/cp_habitat_extent_rank_NewSeaIce_2012.csv",TRUE,"cp_habitat_extent_rank.csv","eez2012/layers/cp_habitat_extent_rank.csv"
-"pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent * rank, per Carbon Storage habitats","Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass","km2","extent*rank","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/cs_habitat_extent.csv",TRUE,"cs_habitat_extent.csv","eez2012/layers/cs_habitat_extent.csv"
+"pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent * rank, per Coastal Protection habitats","Habitat extent * habitat rank for Coastal Protection habitats: coral, mangrove offshore 1km, mangrove inland 1km, saltmarsh, seaice_shoreline and seagrass","extent_rank","extent*rank","../ohiprep/globalprep/hab_combined/v2015/data/cp_habitat_extent_rank.csv",TRUE,"cp_habitat_extent_rank.csv","eez2012/layers/cp_habitat_extent_rank.csv"
+"pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent * rank, per Carbon Storage habitats","Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass","extent_rank","extent*rank","../ohiprep/globalprep/hab_combined/v2015/data/cs_habitat_extent_rank.csv",TRUE,"cs_habitat_extent.csv","eez2012/layers/cs_habitat_extent.csv"
 "pressures CW","po_chemicals","po_chemicals","Ocean-based chemical pollution","Modeled ocean-based chemical pollution from commercial shipping traffic and ports and harbors (Halpern et al. 2008).
 
 Data sources:
@@ -322,7 +321,7 @@ Data sources:
 
 - [Ocean Conservancy International Coastal Cleanup 2012](http://www.oceanconservancy.org/our-work/international-coastal-cleanup/2012-ocean-trash-index.html)
 ","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/trash_eez_2015.csv",TRUE,"po_trash.csv","eez2012/layers/po_trash.csv"
-"pressures HAB","hab_presence","rnk_hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/hab_habitat_presence_NewSeaIce_2012.csv",TRUE,"hab_presence.csv","eez2012/layers/hab_presence.csv"
+"pressures HAB","hab_presence","rnk_hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","../ohiprep/globalprep/hab_combined/v2015/data/hab_habitat_presence.csv",TRUE,"hab_presence.csv","eez2012/layers/hab_presence.csv"
 "resilience","alien_species","alien_species","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
 Data sources:

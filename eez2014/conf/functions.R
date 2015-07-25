@@ -804,9 +804,9 @@ NP <- function(scores, layers, year_max, debug = FALSE){
 
 
 CP <- function(layers){
-  # sum mangrove_offshore1km + mangrove_inland1km = mangrove to match with extent and trend
+  # sum mangrove_offshore + mangrove_inland1km = mangrove to match with extent and trend
   m <- layers$data[['hab_extent']] %>%
-    filter(habitat %in% c('mangrove_inland1km','mangrove_offshore1km')) %>%
+    filter(habitat %in% c('mangrove_inland1km','mangrove_offshore')) %>%
     select(rgn_id, habitat, km2)
   
   if (nrow(m) > 0){
@@ -832,10 +832,10 @@ CP <- function(layers){
           
           # do not use all mangrove
           layers$data[['hab_extent']] %>%
-            filter(!habitat %in% c('mangrove','mangrove_inland1km','mangrove_offshore1km')) %>%
+            filter(!habitat %in% c('mangrove','mangrove_inland1km','mangrove_offshore')) %>%
             select(rgn_id, habitat, km2),
           
-          # just use inland1km and offshore1km
+          # just use inland1km and offshore
           m)),
       
       by = c('rgn_id','habitat'), type='full') %>% 

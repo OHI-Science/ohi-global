@@ -129,7 +129,6 @@ Data sources:
 Data sources:
 
 - Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","mar_sustainability_score.csv","rgn_id",,"species",,"sust_coeff",,TRUE,,,0.1,1,TRUE,,,,241,FALSE
-"MAR","mar_trend_years","mar_trend_years","Mariculture years used for trend","Mariculture years used for trend","trend_yrs","year string","mar_trend_years.csv","rgn_id",,,,,"trend_yrs",TRUE,,,,,FALSE,,,,241,
 "NP","np_blast","","Areas of observed blast (dynamite) fishing","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
@@ -296,8 +295,8 @@ Data sources:
 Data sources:
 
 - [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","ss_wgi.csv","rgn_id",,,,"score",,TRUE,,,0.130717265605927,0.94625465075175,TRUE,,,,241,FALSE
-"pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent * rank, per Coastal Protection habitats","Habitat extent * habitat rank for Coastal Protection habitats: coral, mangrove offshore 1km, mangrove inland 1km, saltmarsh, seaice_shoreline and seagrass","extent_rank","rank","cp_habitat_extent_rank.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,1.7465,2744160.53921569,FALSE,,,,241,FALSE
-"pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent * rank, per Carbon Storage habitats","Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass","km2","extent*rank","cs_habitat_extent.csv","rgn_id",,"habitat",,"km2",,TRUE,,,0.82,39491,FALSE,,,,241,FALSE
+"pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent * rank, per Coastal Protection habitats","Habitat extent * habitat rank for Coastal Protection habitats: coral, mangrove offshore 1km, mangrove inland 1km, saltmarsh, seaice_shoreline and seagrass","extent_rank","extent*rank","cp_habitat_extent_rank.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.000108,2800227.27272727,FALSE,,,,241,FALSE
+"pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent * rank, per Carbon Storage habitats","Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass","extent_rank","extent*rank","cs_habitat_extent.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.003753,3317914.748642,FALSE,,,,241,FALSE
 "pressures CW","po_chemicals","po_chemicals","Ocean-based chemical pollution","Modeled ocean-based chemical pollution from commercial shipping traffic and ports and harbors (Halpern et al. 2008).
 
 Data sources:
