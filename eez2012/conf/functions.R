@@ -269,9 +269,6 @@ MAR = function(layers, status_year){
   popn_inland25mi <- SelectLayersData(layers, layers='mar_coastalpopn_inland25mi', narrow = TRUE) %>%
     select(rgn_id=id_num, year, popsum=val_num)
 
-# should be able to delete:
-  trend_years <- SelectLayersData(layers, layers='mar_trend_years', narrow = TRUE) %>%
-    select(rgn_id=id_num, trend_yrs=val_chr)
 
 rky <-  harvest_tonnes %>%
     left_join(harvest_species, by = 'species_code') %>%
@@ -316,7 +313,7 @@ ry_ref = ref_95pct_data %>%
   cat(sprintf('95th percentile for MAR ref pt is: %s\n', ref_95pct)) # rgn_id 25 = Thailand
   cat(sprintf('95th percentile rgn_id for MAR ref pt is: %s\n', ry_ref$rgn_id[1])) # rgn_id 25 = Thailand
 tmp <- data.frame(MAR=c('quantile', 'region'), value=c(ref_95pct, ry_ref$rgn_id[1]))
-write.csv(tmp, 'temp/MAR_reference_csv', row.names=FALSE)
+write.csv(tmp, 'temp/MAR_reference.csv', row.names=FALSE)
   
 ry = ry %>%
   mutate(status = ifelse(mar_pop / ref_95pct > 1,
@@ -330,10 +327,8 @@ status <- ry %>%
 
 # get MAR trend
 trend = ry %>%
-  left_join(trend_years) %>%
-  mutate(yearCorrect = ifelse(trend_yrs == '4_yr', 1, 0)) %>%
   group_by(rgn_id) %>%
-  do(mdl = lm(status ~ year, data=., subset=year %in% (status_year-4):(status_year-yearCorrect[1]))) %>%
+  do(mdl = lm(status ~ year, data=., subset=year %in% (status_year-4):(status_year))) %>%
   summarize(rgn_id, trend = coef(mdl)['year'] * 5) %>%
   ungroup()
 

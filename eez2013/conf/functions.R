@@ -269,9 +269,6 @@ MAR = function(layers, status_year){
   popn_inland25mi <- SelectLayersData(layers, layers='mar_coastalpopn_inland25mi', narrow = TRUE) %>%
     select(rgn_id=id_num, year, popsum=val_num)
 
-# should be able to delete:
-  trend_years <- SelectLayersData(layers, layers='mar_trend_years', narrow = TRUE) %>%
-    select(rgn_id=id_num, trend_yrs=val_chr)
 
 rky <-  harvest_tonnes %>%
     left_join(harvest_species, by = 'species_code') %>%
@@ -330,10 +327,8 @@ status <- ry %>%
 
 # get MAR trend
 trend = ry %>%
-  left_join(trend_years) %>%
-  mutate(yearCorrect = ifelse(trend_yrs == '4_yr', 1, 0)) %>%
   group_by(rgn_id) %>%
-  do(mdl = lm(status ~ year, data=., subset=year %in% (status_year-4):(status_year-yearCorrect[1]))) %>%
+  do(mdl = lm(status ~ year, data=., subset=year %in% (status_year-4):(status_year))) %>%
   summarize(rgn_id, trend = coef(mdl)['year'] * 5) %>%
   ungroup()
 
