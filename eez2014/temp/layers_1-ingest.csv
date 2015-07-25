@@ -297,7 +297,7 @@ Data sources:
 
 - [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","../ohiprep/globalprep/worldbank_wgi/data/rgn_wb_wgi_2014a_inverse.csv",TRUE,"ss_wgi.csv","eez2014/layers/ss_wgi.csv"
 "pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent * rank, per Coastal Protection habitats","Habitat extent * habitat rank for Coastal Protection habitats: coral, mangrove offshore 1km, mangrove inland 1km, saltmarsh, seaice_shoreline and seagrass","extent_rank","rank","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/cp_habitat_extent_rank_NewSeaIce.csv",TRUE,"cp_habitat_extent_rank.csv","eez2014/layers/cp_habitat_extent_rank.csv"
-"pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent * rank, per Carbon Storage habitats","Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass","km2","km^2","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/cs_habitat_extent.csv",TRUE,"cs_habitat_extent.csv","eez2014/layers/cs_habitat_extent.csv"
+"pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent * rank, per Carbon Storage habitats","Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass","km2","extent*rank","/var/data/ohi/model/GL-NCEAS-Habitats_v2013a/data/cs_habitat_extent.csv",TRUE,"cs_habitat_extent.csv","eez2014/layers/cs_habitat_extent.csv"
 "pressures CW","po_chemicals","po_chemicals","Ocean-based chemical pollution","Modeled ocean-based chemical pollution from commercial shipping traffic and ports and harbors (Halpern et al. 2008).
 
 Data sources:
