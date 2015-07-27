@@ -272,7 +272,7 @@ MAR = function(layers, status_year){
 
 rky <-  harvest_tonnes %>%
     left_join(harvest_species, by = 'species_code') %>%
-    left_join(sustainability_score, by = c('rgn_id', 'species')) 
+    left_join(sustainability_score, by = c('rgn_id', 'species_code')) 
 
 # fill in gaps with no data
 rky <- spread(rky, year, tonnes)
