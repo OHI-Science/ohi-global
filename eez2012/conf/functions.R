@@ -264,7 +264,7 @@ MAR = function(layers, status_year){
     select(species_code=category, species=val_chr)
 
   sustainability_score <- SelectLayersData(layers, layers='mar_sustainability_score', narrow = TRUE) %>%
-    select(rgn_id=id_num, species=category, sust_coeff=val_num)
+    select(rgn_id=id_num, species_code=category, sust_coeff=val_num)
   
   popn_inland25mi <- SelectLayersData(layers, layers='mar_coastalpopn_inland25mi', narrow = TRUE) %>%
     select(rgn_id=id_num, year, popsum=val_num)
@@ -272,7 +272,7 @@ MAR = function(layers, status_year){
 
 rky <-  harvest_tonnes %>%
     left_join(harvest_species, by = 'species_code') %>%
-    left_join(sustainability_score, by = c('rgn_id', 'species')) 
+    left_join(sustainability_score, by = c('rgn_id', 'species_code')) 
 
 # fill in gaps with no data
 rky <- spread(rky, year, tonnes)

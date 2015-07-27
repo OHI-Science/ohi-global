@@ -118,17 +118,17 @@ Data sources:
 
 Data sources:
 
-- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","species","species name","/var/data/ohi/model/GL-NCEAS_MAR_v2013a/Revision_Dec202013/mar_harvest_species_lyr.csv",TRUE,"mar_harvest_species.csv","eez2012/layers/mar_harvest_species.csv"
+- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","species","species name","../ohiprep/globalprep/mariculture_status/data//mar_harvest_species_2015a_lyr.csv",TRUE,"mar_harvest_species.csv","eez2012/layers/mar_harvest_species.csv"
 "MAR","mar_harvest_tonnes","mar_harvest_tonnes","Mariculture harvest","Mariculture harvest from the FAO. 
 
 Data sources:
 
-- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","tonnes","tons","/var/data/ohi/model/GL-NCEAS_MAR_v2013a/Revision_Dec202013/mar_harvest_tonnes_lyr.csv",TRUE,"mar_harvest_tonnes.csv","eez2012/layers/mar_harvest_tonnes.csv"
+- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","tonnes","tons","../ohiprep/globalprep/mariculture_status/data//mar_harvest_tonnes_2015a_lyr.csv",TRUE,"mar_harvest_tonnes.csv","eez2012/layers/mar_harvest_tonnes.csv"
 "MAR","mar_sustainability_score","mar_sustainability_score","Mariculture sustainability score","Mariculture sustainability and mariculture regulations indicated by the Mariculture Sustainability Index (MSI). 
 
 Data sources:
 
-- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","/var/data/ohi/model/GL-NCEAS_MAR_v2013a/Revision_Dec202013/mar_sustainability_score_lyr.csv",TRUE,"mar_sustainability_score.csv","eez2012/layers/mar_sustainability_score.csv"
+- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","../ohiprep/globalprep/mariculture_status/data//mar_sustainability_score_2015a_lyr.csv",TRUE,"mar_sustainability_score.csv","eez2012/layers/mar_sustainability_score.csv"
 "NP","np_blast",,"Areas of observed blast (dynamite) fishing","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
