@@ -1,5 +1,5 @@
 # layers ----
-layers_id_fields        = c('rgn_id','cntry_key','country_id','saup_id','fao_id','fao_saup_id') # note: cntry_key for www2013, country_id for nature2012
+layers_id_fields        = c('rgn_id','cntry_key','country_id','saup_id','fao_id','fao_ohi_id') # note: cntry_key for www2013, country_id for nature2012
 layer_region_labels     = 'rgn_global'
 layer_region_areas      = 'rgn_area'
 

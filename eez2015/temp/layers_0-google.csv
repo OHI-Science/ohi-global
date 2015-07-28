@@ -33,23 +33,17 @@ Data sources:
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 ","6I","5.58","trend.score","trend score","new","new","use coastpop to gap-fill v2013a and v2012a (NOTE: trend needs to be normalized)",,"U",,,"rn_cw_pesticide_trend",,TRUE,"ohiprep:Global/FAO-CW-Trends_v2011/data","rgn_cw_pesticides_trends_2013a.csv","equal","global trends were applied equally to all regions.","NA",,,,,,,
 "ECO",,,,,,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_gdp_2014a.csv",,,,"Y: done",,,,,,,,,,,,,,"gdp",,,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_gdp_2014a_attr.csv","(not ingested; see column X)",,,,,,,,,
-"FIS","fis_b_bmsy","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_b_bmsy_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_b_bmsy_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_b_bmsy_lyr.csv",,,,"Y: done","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
+"FIS","fis_b_bmsy","ohiprep:globalprep/SAUP_FIS/v2015/data","fnk_fis_b_bmsy_lyr.csv","ohiprep:globalprep/SAUP_FIS/v2015/data","fnk_fis_b_bmsy_lyr.csv","ohiprep:globalprep/SAUP_FIS/v2015/data","fnk_fis_b_bmsy_lyr.csv",,,"Y:done","Y: done","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
 
 - Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
 ","6A","6A","b_bmsy","B / B_msy",,,,,,,,"fnk_fis_b_bmsy",,TRUE,,,"equal","global b_bmsy information was applied equally to all regions.",,,,,,,,
-"FIS","fis_meancatch","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_meancatch_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_meancatch_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_meancatch_lyr.csv",,,,"Y: done","Catch data for each Taxon/FAO/SAUP region averaged across years (1980-2011)","Mean catch-per-taxon values within each FAO major fishing area.
+"FIS","fis_meancatch","ohiprep:globalprep/SAUP_FIS/v2015/data","mean_catch.csv","ohiprep:globalprep/SAUP_FIS/v2015/data","mean_catch.csv","ohiprep:globalprep/SAUP_FIS/v2015/data","mean_catch.csv",,,"Y:done","Y: done","Catch data for each Taxon/FAO/SAUP region averaged across years (1980-2011)","Mean catch-per-taxon values within each FAO major fishing area.
 
 Data sources:
 
 - [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","6A","6A","mean_catch","metric tons",,,,,,,,"snk_fis_meancatch",,TRUE,,,"equal","global mean catch information was applied equally to all regions.",,,,,,,,
-"FIS","fis_proparea_saup2rgn","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv",,,,,"area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
-
-Data sources:
-
-- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)
-","6A","6A","prop_area","proportion of area",,,,,,,,,,TRUE,,,,,,,,,,,,
 "FP","fp_wildcaught_weight","ohiprep:Global/NCEAS-Fisheries_2014a/data","GL_FP_wildcaught_weight_v2012a_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","FP_mar_fis_weight_2013a.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","FP_mar_fis_weight_2014a.csv",,,,"Y: done","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
 
 Data sources:
