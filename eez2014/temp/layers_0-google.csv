@@ -44,7 +44,7 @@ Data sources:
 Data sources:
 
 - [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","6A","6A","mean_catch","metric tons",,,,,,,,"snk_fis_meancatch",,TRUE,,,"equal","global mean catch information was applied equally to all regions.",,,,,,,,
-"FP","fp_wildcaught_weight","ohiprep:Global/NCEAS-Fisheries_2014a/data","GL_FP_wildcaught_weight_v2012a_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","FP_mar_fis_weight_2013a.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","FP_mar_fis_weight_2014a.csv",,,,"Y: done","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
+"FP","fp_wildcaught_weight","ohiprep:globalprep/food_provision/data","wildcaught_weight_v2012.csv","ohiprep:globalprep/food_provision/data","wildcaught_weight_v2013.csv","ohiprep:globalprep/food_provision/data","wildcaught_weight_v2014.csv","ohiprep:globalprep/food_provision/data","wildcaught_weight_v2015.csv","Y:done","Y: done","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
 
 Data sources:
 
@@ -187,7 +187,7 @@ Data sources:
 Data sources:
 
 - [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","7.02","5.02","pressures.score","pressure score","2012a","parent",,,"N",,,"fp_art_hb",,TRUE,,,"equal","global pressures data were applied equally to all regions.","NA","p_fp_art_hb.csv","region_id",,,,"pressures_score",
-"pressures","fp_art_lb","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","fp_art_lb_2012_NEW.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","fp_art_lb_2013_NEW.csv",,,,,,,"Low bycatch caused by artisanal fishing ","Modeled low bycatch artisanal fishing using non-destructive practices (Halpern et al. 2008) based on FAO fisheries statistics.
+"pressures","fp_art_lb","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","fp_art_lb_2012_NEW.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","fp_art_lb_2013_NEW.csv",,,,,"N",,"Low bycatch caused by artisanal fishing ","Modeled low bycatch artisanal fishing using non-destructive practices (Halpern et al. 2008) based on FAO fisheries statistics.
 
 Data sources:
 
@@ -240,13 +240,13 @@ Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
 ","7.51","5.55","pressure_score","pressure score",,"new",,"NA (updated data)","Y",,,"po_nutrients_3nm",,TRUE,,,"raster | equal",,"NA","p_po_nutrients_3nm.csv","region_id",,,,"pressures_score",
-"pressures","sp_alien","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_sp_alien_2013a.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_sp_alien_2013a.csv",,,,,,"N","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
+"pressures","sp_alien","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_sp_alien_2013a.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_sp_alien_2013a.csv",,,,,"N","N","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
 Data sources:
 
 - Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)
 ","7.01","5.01","pressures.score","pressure score","2012a","eez_area",,"disaggregate(csv.in='/Volumes/local_edit/src/toolbox/data/global_2012_nature/layers/p_sp_alien.csv', csv.out = '/Volumes/data_edit/model/GL-NCEAS-Pressures_v2013a/data/p_sp_alien_2013a.csv', fld.value=NA, weight.csv='/Volumes/data_edit/model/GL-NCEAS-OceanRegions_v2013a/data/rgn_area.csv', weight.fld = 'area_km2')","N",,,"sp_alien",,TRUE,,,"equal","global pressures data were applied equally to all regions.",,"p_sp_alien.csv","region_id",,,,"pressures_score",
-"pressures","sp_genetic","neptune_data:model/GL-NCEAS-Pressures-GenEsc_v2013a/data","GenEsc_v2012a.csv","neptune_data:model/GL-NCEAS-Pressures-GenEsc_v2013a/data","GenEsc_v2013a.csv",,,,,,"N","Introduced species as a proxy for genetic escapes ","Statistics on native or introduced species from the Mariculture Sustainibility Index (MSI). 
+"pressures","sp_genetic","neptune_data:model/GL-NCEAS-Pressures-GenEsc_v2013a/data","GenEsc_v2012a.csv","neptune_data:model/GL-NCEAS-Pressures-GenEsc_v2013a/data","GenEsc_v2013a.csv",,,,,"N","N","Introduced species as a proxy for genetic escapes ","Statistics on native or introduced species from the Mariculture Sustainibility Index (MSI). 
 
 Data sources:
 

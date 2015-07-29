@@ -47,7 +47,7 @@ Data sources:
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","w_fis","value","../ohiprep/Global/NCEAS-Fisheries_2014a/data/GL_FP_wildcaught_weight_v2012a_lyr.csv",TRUE,"fp_wildcaught_weight.csv","eez2012/layers/fp_wildcaught_weight.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","w_fis","value","../ohiprep/globalprep/food_provision/data/wildcaught_weight_v2012.csv",TRUE,"fp_wildcaught_weight.csv","eez2012/layers/fp_wildcaught_weight.csv"
 "HAB CS CP","hab_extent","rnk_hab_extent","Habitat extent","Modeled combined habitat extent","km2","km^2","../ohiprep/globalprep/hab_combined/v2015/data/habitat_extent_v2015.csv",TRUE,"hab_extent.csv","eez2012/layers/hab_extent.csv"
 "HAB CS CP","hab_health","rnk_hab_health","Habitat health","Modeled combined habitat health condition trend","health","value","../ohiprep/globalprep/hab_combined/v2015/data/habitat_health_2012.csv",TRUE,"hab_health.csv","eez2012/layers/hab_health.csv"
 "HAB CS CP","hab_trend","rnk_hab_trend","Habitat health trend","Modeled combined habitat health trend","trend","trend score","../ohiprep/globalprep/hab_combined/v2015/data/habitat_trend_2012.csv",TRUE,"hab_trend.csv","eez2012/layers/hab_trend.csv"
