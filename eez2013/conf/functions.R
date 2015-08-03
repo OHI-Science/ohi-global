@@ -1608,17 +1608,17 @@ CW = function(layers){
   r$pest_trend = -1 * r$pest_trend
   r$fert_trend = -1 * r$fert_trend
   
-#   geometric.mean <- function (x, na.rm = TRUE) {
-#     if (is.null(nrow(x))) {
-#       exp(mean(log(x), na.rm = TRUE))
-#     }
-#     else {
-#       exp(apply(log(x), 2, mean, na.rm = na.rm))
-#     }
-#   }
+geometric.mean2 <- function (x, na.rm = TRUE) {
+    if (is.null(nrow(x))) {
+      exp(mean(log(x), na.rm = TRUE))
+    }
+    else {
+      exp(apply(log(x), 2, mean, na.rm = na.rm))
+    }
+  }
   
   # status
-  r$status = psych::geometric.mean(t(r[,c('a','u','l','d')]), na.rm = TRUE) * 100
+  r$status = geometric.mean2(t(r[,c('a','u','l','d')]), na.rm = TRUE) * 100
   
   # trend
   r$trend = rowMeans(r[,c('pest_trend','fert_trend','popn_trend','path_trend')], na.rm = TRUE)
