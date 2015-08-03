@@ -19,7 +19,7 @@ Data sources:
 
 Data sources:
 
-- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","trend.score","trend score","../ohiprep/Global/FAO-CW-Trends_v2011/data/rgn_cw_fertilizers_trends_2013a.csv",TRUE,"cw_fertilizer_trend.csv","eez2012/layers/cw_fertilizer_trend.csv"
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","trend","trend score","../ohiprep/globalprep/PressuresRegionExtract/data/cw_fertilizers_trend_2012.csv",TRUE,"cw_fertilizer_trend.csv","eez2012/layers/cw_fertilizer_trend.csv"
 "CW","cw_pathogen_trend","rn_cw_pathogen_trend","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities.
 
 Data sources:
@@ -31,7 +31,7 @@ Data sources:
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
-","trend.score","trend score","../ohiprep/Global/FAO-CW-Trends_v2011/data/rgn_cw_pesticides_trends_2013a.csv",TRUE,"cw_pesticide_trend.csv","eez2012/layers/cw_pesticide_trend.csv"
+","trend","trend score","../ohiprep/globalprep/PressuresRegionExtract/data/cw_chemical_trend_2012.csv",TRUE,"cw_pesticide_trend.csv","eez2012/layers/cw_pesticide_trend.csv"
 "FIS","fis_b_bmsy","fnk_fis_b_bmsy","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
@@ -266,13 +266,13 @@ Data sources:
 Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","/var/data/ohi/model/GL-NCEAS-Pressures_v2013a/data/po_chemicals_3nm_2012_NEW.csv",TRUE,"po_chemicals_3nm.csv","eez2012/layers/po_chemicals_3nm.csv"
+","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/cw_chemical_score_3nm_2012.csv",TRUE,"po_chemicals_3nm.csv","eez2012/layers/po_chemicals_3nm.csv"
 "pressures","po_nutrients_3nm","po_nutrients_3nm","Coastal nutrient pollution","Modeled coastal nutrient pollution (Halpern et al. 2008).
 
 Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","/var/data/ohi/model/GL-NCEAS-Pressures_v2013a/data/po_nutrients_3nm_2012_NEW.csv",TRUE,"po_nutrients_3nm.csv","eez2012/layers/po_nutrients_3nm.csv"
+","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/cw_fertilizers_score_3nm_2012.csv",TRUE,"po_nutrients_3nm.csv","eez2012/layers/po_nutrients_3nm.csv"
 "pressures","sp_alien","sp_alien","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
 Data sources:
@@ -296,13 +296,13 @@ Data sources:
 Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","/var/data/ohi/model/GL-NCEAS-Pressures_v2013a/data/po_chemicals_2012_NEW.csv",TRUE,"po_chemicals.csv","eez2012/layers/po_chemicals.csv"
+","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/cw_chemical_score_2012.csv",TRUE,"po_chemicals.csv","eez2012/layers/po_chemicals.csv"
 "pressures CW","po_nutrients","po_nutrients","Ocean nutrient pollution","Modeled ocean nutrient pollution (Halpern et al. 2008).
 
 Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","/var/data/ohi/model/GL-NCEAS-Pressures_v2013a/data/po_nutrients_2012_NEW.csv",TRUE,"po_nutrients.csv","eez2012/layers/po_nutrients.csv"
+","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/cw_fertilizers_score_2012.csv",TRUE,"po_nutrients.csv","eez2012/layers/po_nutrients.csv"
 "pressures CW","po_pathogens","po_pathogens","Access to improved sanitation as a proxy for pathogen pollution","Percent of population with access to improved sanitation facilities. 
 
 Data sources:
@@ -440,7 +440,7 @@ Data sources:
 Data sources:
 
 - [VLIZ Maritime Boundaries Geodatabase, version 7](http://www.marineregions.org/)
-","area_km2","km^2","/var/data/ohi/model/GL-NCEAS-OceanRegions_v2013a/data/rgn_fao_gcs_area.csv",TRUE,"rgn_area.csv","eez2012/layers/rgn_area.csv"
+","area_km2","km^2","../ohiprep/globalprep/spatial/v2015/data/rgn_fao_gcs_area.csv",TRUE,"rgn_area.csv","eez2012/layers/rgn_area.csv"
 "spatial","rgn_area_inland1km","rn_rgn_area_inland1km","Region area 1 km inland","inland area 1 km from shore.","area_km2","km^2","/var/data/ohi/model/GL-NCEAS-OceanRegions_v2013a/data/rgn_area_inland1km.csv",TRUE,"rgn_area_inland1km.csv","eez2012/layers/rgn_area_inland1km.csv"
 "spatial","rgn_area_offshore3nm","rn_rgn_area_offshore3nm","Region area offshore 3nm","Area of Ocean Health Index regions to 3nm (VLIZ 2012). 
 

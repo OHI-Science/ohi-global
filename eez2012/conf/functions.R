@@ -1583,8 +1583,8 @@ CW = function(layers){
   
   # layers
   lyrs = c('po_pathogens' = 'a',
-           'po_nutrients' = 'u',
-           'po_chemicals' = 'l',
+           'po_nutrients_3nm' = 'u',
+           'po_chemicals_3nm' = 'l',
            'po_trash'     = 'd',
            'cw_pesticide_trend'   = 'pest_trend',
            'cw_fertilizer_trend'  = 'fert_trend',
@@ -1607,6 +1607,15 @@ CW = function(layers){
   r$path_trend = -1 * r$path_trend
   r$pest_trend = -1 * r$pest_trend
   r$fert_trend = -1 * r$fert_trend
+  
+#   geometric.mean <- function (x, na.rm = TRUE) {
+#     if (is.null(nrow(x))) {
+#       exp(mean(log(x), na.rm = TRUE))
+#     }
+#     else {
+#       exp(apply(log(x), 2, mean, na.rm = na.rm))
+#     }
+#   }
   
   # status
   r$status = psych::geometric.mean(t(r[,c('a','u','l','d')]), na.rm = TRUE) * 100

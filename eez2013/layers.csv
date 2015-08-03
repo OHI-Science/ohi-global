@@ -14,12 +14,12 @@ Data sources:
 Data sources:
 
 - Center for International Earth Science Information Network (CIESIN)/Columbia University 
-- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","cw_coastalpopn_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.190292146376781,0.26719330855019,FALSE,,,,241,FALSE
+- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","cw_coastalpopn_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.190295129458631,0.267189837110224,FALSE,,,,241,FALSE
 "CW","cw_fertilizer_trend","rn_cw_fertilizer_trend","Fertilizer consumption as a proxy for trend in nutrient pollution","Statistics on fertilizer consumption from the Food and Agricultural Organization (FAO). 
 
 Data sources:
 
-- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","trend.score","trend score","cw_fertilizer_trend.csv","rgn_id",,,,"trend.score",,TRUE,,,-1,1,FALSE,,,,241,FALSE
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","trend","trend score","cw_fertilizer_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.37863085285016,0.432284157179075,FALSE,,,,241,FALSE
 "CW","cw_pathogen_trend","rn_cw_pathogen_trend","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities.
 
 Data sources:
@@ -31,7 +31,7 @@ Data sources:
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
-","trend.score","trend score","cw_pesticide_trend.csv","rgn_id",,,,"trend.score",,TRUE,,,-1,1,FALSE,,,,241,FALSE
+","trend","trend score","cw_pesticide_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.0633639823615575,0.0849250500222279,FALSE,,,,241,FALSE
 "FIS","fis_b_bmsy","fnk_fis_b_bmsy","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
@@ -266,13 +266,13 @@ Data sources:
 Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","po_chemicals_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.631873593517296,TRUE,,,,241,FALSE
+","pressure_score","pressure score","po_chemicals_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000314089840492316,0.989717545123944,TRUE,,,,241,FALSE
 "pressures","po_nutrients_3nm","po_nutrients_3nm","Coastal nutrient pollution","Modeled coastal nutrient pollution (Halpern et al. 2008).
 
 Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.341163,TRUE,,,,241,FALSE
+","pressure_score","pressure score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.540888123801358,TRUE,,,,241,FALSE
 "pressures","sp_alien","sp_alien","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
 Data sources:
@@ -296,13 +296,13 @@ Data sources:
 Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","po_chemicals.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000133491581905408,0.764782278905096,TRUE,,,,241,FALSE
+","pressure_score","pressure score","po_chemicals.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.00747125428241358,0.991066097990588,TRUE,,,,241,FALSE
 "pressures CW","po_nutrients","po_nutrients","Ocean nutrient pollution","Modeled ocean nutrient pollution (Halpern et al. 2008).
 
 Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","po_nutrients.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.334982,TRUE,,,,241,FALSE
+","pressure_score","pressure score","po_nutrients.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.565077457891731,TRUE,,,,241,FALSE
 "pressures CW","po_pathogens","po_pathogens","Access to improved sanitation as a proxy for pathogen pollution","Percent of population with access to improved sanitation facilities. 
 
 Data sources:
@@ -440,7 +440,7 @@ Data sources:
 Data sources:
 
 - [VLIZ Maritime Boundaries Geodatabase, version 7](http://www.marineregions.org/)
-","area_km2","km^2","rgn_area.csv","rgn_id",,,,"area_km2",,TRUE,,,9.46355858358,31057239.8303,FALSE,,,,241,FALSE
+","area_km2","km^2","rgn_area.csv","rgn_id",,,,"area_km2",,TRUE,,,12.7630587776,31886958.884907,FALSE,,,,241,FALSE
 "spatial","rgn_area_inland1km","rn_rgn_area_inland1km","Region area 1 km inland","inland area 1 km from shore.","area_km2","km^2","rgn_area_inland1km.csv","rgn_id",,,,"area_km2",,TRUE,,,1.7465015431603,163643.701591034,FALSE,,,,241,FALSE
 "spatial","rgn_area_offshore3nm","rn_rgn_area_offshore3nm","Region area offshore 3nm","Area of Ocean Health Index regions to 3nm (VLIZ 2012). 
 
