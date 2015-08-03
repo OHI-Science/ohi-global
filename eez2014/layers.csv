@@ -32,17 +32,23 @@ Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 ","trend","trend score","cw_pesticide_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.0939129345700766,0.0815632118085061,FALSE,,,,241,FALSE
-"FIS","fis_b_bmsy","fnk_fis_b_bmsy","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
+"FIS","fis_b_bmsy","","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
 
 - Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
-","b_bmsy","B / B_msy","fis_b_bmsy.csv",,"fao_ohi_id","taxonkey","year","b_bmsy",,TRUE,2005,2010,0.0168,10.7,FALSE,,,,241,FALSE
-"FIS","fis_meancatch","snk_fis_meancatch","Catch data for each Taxon/FAO/SAUP region averaged across years (1980-2011)","Mean catch-per-taxon values within each FAO major fishing area.
+","b_bmsy","B / B_msy","fis_b_bmsy.csv","fao_id",,"taxon_name","year","b_bmsy",,TRUE,1954,2011,0.0543516096887502,1.98695925324803,FALSE,,,,241,FALSE
+"FIS","fis_meancatch","","Catch data for each Taxon/FAO/SAUP region averaged across years (1980-2011)","Mean catch-per-taxon values within each FAO major fishing area.
 
 Data sources:
 
-- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","fis_meancatch.csv",,"fao_ohi_id","taxon_name_key","year","mean_catch",,TRUE,2005,2010,2.66e-16,6223692.79,FALSE,,,,241,FALSE
+- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","fis_meancatch.csv",,"fao_saup_id","taxon_name_key","year","mean_catch",,TRUE,2006,2011,8.17638e-18,4787769.75544375,FALSE,,,,241,FALSE
+"FIS","fis_proparea_saup2rgn","","area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
+
+Data sources:
+
+- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)
+","prop_area","proportion of area","fis_proparea_saup2rgn.csv","saup_id",,"rgn_id",,"prop_area",,TRUE,,,1.79195021000782e-05,1,TRUE,,,,241,FALSE
 "FP","fp_wildcaught_weight","rn_fp_wildcaught_weight","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
 
 Data sources:

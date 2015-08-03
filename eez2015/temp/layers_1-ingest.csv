@@ -32,17 +32,23 @@ Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 ","trend","trend score","../ohiprep/globalprep/PressuresRegionExtract/data/cw_chemical_trend_2015.csv",TRUE,"cw_pesticide_trend.csv","eez2015/layers/cw_pesticide_trend.csv"
-"FIS","fis_b_bmsy","fnk_fis_b_bmsy","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
+"FIS","fis_b_bmsy",,"B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
 
 - Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
-","b_bmsy","B / B_msy","../ohiprep/globalprep/SAUP_FIS/v2015/data/fnk_fis_b_bmsy_lyr.csv",TRUE,"fis_b_bmsy.csv","eez2015/layers/fis_b_bmsy.csv"
-"FIS","fis_meancatch","snk_fis_meancatch","Catch data for each Taxon/FAO/SAUP region averaged across years (1980-2011)","Mean catch-per-taxon values within each FAO major fishing area.
+","b_bmsy","B / B_msy","../ohiprep/Global/NCEAS-Fisheries_2014a/data/fnk_fis_b_bmsy_lyr.csv",TRUE,"fis_b_bmsy.csv","eez2015/layers/fis_b_bmsy.csv"
+"FIS","fis_meancatch",,"Catch data for each Taxon/FAO/SAUP region averaged across years (1980-2011)","Mean catch-per-taxon values within each FAO major fishing area.
 
 Data sources:
 
-- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","../ohiprep/globalprep/SAUP_FIS/v2015/data/mean_catch.csv",TRUE,"fis_meancatch.csv","eez2015/layers/fis_meancatch.csv"
+- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","../ohiprep/Global/NCEAS-Fisheries_2014a/data/fnk_fis_meancatch_lyr.csv",TRUE,"fis_meancatch.csv","eez2015/layers/fis_meancatch.csv"
+"FIS","fis_proparea_saup2rgn",,"area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
+
+Data sources:
+
+- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)
+","prop_area","proportion of area","../ohiprep/Global/NCEAS-Fisheries_2014a/data/snk_fis_proparea_saup2rgn_lyr.csv",TRUE,"fis_proparea_saup2rgn.csv","eez2015/layers/fis_proparea_saup2rgn.csv"
 "FP","fp_wildcaught_weight","rn_fp_wildcaught_weight","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
 
 Data sources:
