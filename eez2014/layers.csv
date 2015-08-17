@@ -8,55 +8,58 @@ Data sources:
 
 Data sources:
 
-- The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)","value","value","ao_need.csv","rgn_id",,,"year","value",,TRUE,1990,2013,0.0013238907967184,1,TRUE,,,,241,FALSE
+- The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)","value","current international $","ao_need.csv","rgn_id",,,"year","value",,TRUE,1990,2013,0.0013238907967184,1,TRUE,,,,241,FALSE
 "CW","cw_coastalpopn_trend","rn_cw_coastalpopn_trend","Coastal human population as a proxy for trend in trash","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
 
 - Center for International Earth Science Information Network (CIESIN)/Columbia University 
 - CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","cw_coastalpopn_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.191287878787863,0.26394378913071,FALSE,,,,241,FALSE
-"CW","cw_fertilizer_trend","rn_cw_fertilizer_trend","Fertilizer consumption as a proxy for trend in nutrient pollution","Statistics on fertilizer consumption from the Food and Agricultural Organization (FAO). 
+"CW","cw_fertilizer_trend","rn_cw_fertilizer_trend","Trends in fertilizer pollution as a proxy for nutrient pollution","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO; Halpern et al. 2015). 
 
 Data sources:
 
-- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).","trend","trend score","cw_fertilizer_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.203908793398624,0.314565342320905,FALSE,,,,241,FALSE
-"CW","cw_pathogen_trend","rn_cw_pathogen_trend","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population with access to improved sanitation facilities.
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E)
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","trend","trend score","cw_fertilizer_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.203908793398624,0.314565342320905,FALSE,,,,241,FALSE
+"CW","cw_pathogen_trend","rn_cw_pathogen_trend","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population without access to improved sanitation facilities.
 
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
 ","trend","trend score","cw_pathogen_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.0234611817924605,0.0321057956460707,FALSE,,,,241,FALSE
-"CW","cw_pesticide_trend","rn_cw_pesticide_trend","Pesticide consumption as a proxy for trend in chemical pollution","Statistics on pesticide consumption from the Food and Agricultural Organization (FAO). 
+"CW","cw_pesticide_trend","rn_cw_pesticide_trend","Trends in chemical pollution","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
 
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
-","trend","trend score","cw_pesticide_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.0939129345700766,0.0815632118085061,FALSE,,,,241,FALSE
-"FIS","fis_b_bmsy","","B/Bmsy estimates obtained using the catch-MSY method","The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","trend","trend score","cw_pesticide_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.0939129345700766,0.0815632118085061,FALSE,,,,241,FALSE
+"FIS","fis_b_bmsy","","B/Bmsy estimates obtained using the catch-MSY method","The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
 
 - Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
 ","b_bmsy","B / B_msy","fis_b_bmsy.csv","fao_id",,"taxon_name","year","b_bmsy",,TRUE,1954,2011,0.0543516096887502,1.98695925324803,FALSE,,,,241,FALSE
-"FIS","fis_meancatch","","Catch data for each Taxon/FAO/SAUP region averaged across years (1980-2011)","Mean catch-per-taxon values within each FAO major fishing area.
+"FIS","fis_meancatch","","Catch data for each Taxon/FAO/SAU region averaged across years","Mean catch-per-taxon values within each Sea Around US/FAO fishing area.
 
 Data sources:
 
 - [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","fis_meancatch.csv",,"fao_saup_id","taxon_name_key","year","mean_catch",,TRUE,2006,2011,8.17638e-18,4787769.75544375,FALSE,,,,241,FALSE
-"FIS","fis_proparea_saup2rgn","","area of each saup/total OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
+"FIS","fis_proparea_saup2rgn","","proportion area of each SAUP within each OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
 
 Data sources:
 
 - [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)
-","prop_area","proportion of area","fis_proparea_saup2rgn.csv","saup_id",,"rgn_id",,"prop_area",,TRUE,,,1.79195021000782e-05,1,TRUE,,,,241,FALSE
+","prop_area","proportion","fis_proparea_saup2rgn.csv","saup_id",,"rgn_id",,"prop_area",,TRUE,,,1.79195021000782e-05,1,TRUE,,,,241,FALSE
 "FP","fp_wildcaught_weight","rn_fp_wildcaught_weight","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","w_fis","value","fp_wildcaught_weight.csv","rgn_id",,,,"w_fis",,TRUE,,,0.32568948685823,1,TRUE,,,,241,FALSE
-"HAB CS CP","hab_extent","rnk_hab_extent","Habitat extent","Modeled combined habitat extent","km2","km^2","hab_extent.csv","rgn_id",,"habitat",,"km2",,TRUE,,,0,3804040,FALSE,,,,241,FALSE
-"HAB CS CP","hab_health","rnk_hab_health","Habitat health","Modeled combined habitat health condition trend","health","value","hab_health.csv","rgn_id",,"habitat",,"health",,TRUE,,,0,1,TRUE,,,,241,FALSE
-"HAB CS CP","hab_trend","rnk_hab_trend","Habitat health trend","Modeled combined habitat health trend","trend","trend score","hab_trend.csv","rgn_id",,"habitat",,"trend",,TRUE,,,-1,1,FALSE,,,,241,FALSE
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","w_fis","proportion","fp_wildcaught_weight.csv","rgn_id",,,,"w_fis",,TRUE,,,0.32568948685823,1,TRUE,,,,241,FALSE
+"HAB CS CP","hab_extent","rnk_hab_extent","Habitat extent","Habitat extent","km2","km^2","hab_extent.csv","rgn_id",,"habitat",,"km2",,TRUE,,,0,3804040,FALSE,,,,241,FALSE
+"HAB CS CP","hab_health","rnk_hab_health","Habitat health","Habitat health/condition","health","proportion","hab_health.csv","rgn_id",,"habitat",,"health",,TRUE,,,0,1,TRUE,,,,241,FALSE
+"HAB CS CP","hab_trend","rnk_hab_trend","Habitat health trend","Habitat health trend","trend","trend score","hab_trend.csv","rgn_id",,"habitat",,"trend",,TRUE,,,-1,1,FALSE,,,,241,FALSE
 "ICO","ico_spp_extinction_status","rnk_ico_spp_extinction_status","IUCN extinction risk category for iconic species","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
 
 Data sources:
@@ -129,98 +132,105 @@ Data sources:
 Data sources:
 
 - Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","mar_sustainability_score.csv","rgn_id",,"species_code",,"sust_coeff",,TRUE,,,0.1,1,TRUE,,,,241,FALSE
-"NP","np_blast","","Areas of observed blast (dynamite) fishing","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
+"NP","np_blast","","Areas of observed blast (dynamite) fishing","Destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
 
 - [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) 
 ","score","pressure score","np_blast.csv","rgn_id",,,,"score",,TRUE,,,0.006865107932434,0.874460499155564,TRUE,,,,241,FALSE
-"NP","np_cyanide","","Areas of observed poison fishing","The presence of destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
+"NP","np_cyanide","","Areas of observed poison fishing","Destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
 
 Data sources:
 
 - [Reefs at Risk Revisited](www.wri.org/publication/reefs-at-risk-revisited) 
 ","score","pressure score","np_cyanide.csv","rgn_id",,,,"score",,TRUE,,,0.00565484574373731,0.495137734714806,TRUE,,,,241,FALSE
-"NP","np_harvest_product_weight","","Ratio of product peak harvest value (in 2010 USD) divided by sum of all product peak harvest values, per region","Ratio of harvest of of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+"NP","np_harvest_product_weight","","Product peak harvest divided by sum of all product peak harvest values, per region","Ratio of harvest of of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","weight","score","np_harvest_product_weight.csv","rgn_id",,"product",,"weight",,TRUE,,,0,1,TRUE,,,,241,FALSE
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","weight","proportion","np_harvest_product_weight.csv","rgn_id",,"product",,"weight",,TRUE,,,0,1,TRUE,,,,241,FALSE
 "NP","np_harvest_tonnes","rnky_np_harvest_relative","Harvest yield of marine natural products, smoothed","Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes","metric tonnes","np_harvest_tonnes.csv","rgn_id",,"product","year","tonnes",,TRUE,1976,2011,0,298403.75,FALSE,,,,241,FALSE
-"NP","np_harvest_tonnes_relative","rnky_np_harvest_relative","Harvest ratio to peak yeild of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+"NP","np_harvest_tonnes_relative","rnky_np_harvest_relative","Harvest ratio to peak yield of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes_rel","score","np_harvest_tonnes_relative.csv","rgn_id",,"product","year","tonnes_rel",,TRUE,1976,2011,0,1,TRUE,,,,241,FALSE
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes_rel","ratio","np_harvest_tonnes_relative.csv","rgn_id",,"product","year","tonnes_rel",,TRUE,1976,2011,0,1,TRUE,,,,241,FALSE
 "SPP","spp_status","rn_spp_status","Species lists and IUCN threat categories as a proxy for iconic species status","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","status score","spp_status.csv","rgn_id",,,,"score",,TRUE,,,0.751268,0.953603,TRUE,,,,241,FALSE
+","score","status score","spp_status.csv","rgn_id",,,,"score",,TRUE,,,0.737897,0.953823,TRUE,,,,241,FALSE
 "SPP","spp_trend","rn_spp_trend","Species lists and IUCN threat categories as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","trend score","spp_trend.csv","rgn_id",,,,"score",,TRUE,,,-0.348804,0.386041,FALSE,,,,241,FALSE
+","score","trend score","spp_trend.csv","rgn_id",,,,"score",,TRUE,,,-0.348219,0.386041,FALSE,,,,241,FALSE
 "TR","tr_jobs_pct_tourism","tr_jobs_tourism","Percent direct employment in tourism","Percent direct employment in tourism (WTTC).
 
 Data sources:
 
 - [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-","Ep","direct tourism jobs","tr_jobs_pct_tourism.csv","rgn_id",,,"year","ep",,TRUE,1989,2013,0,0.782726,TRUE,,,,241,FALSE
+","Ep","percent","tr_jobs_pct_tourism.csv","rgn_id",,,"year","ep",,TRUE,1989,2013,0,0.782726,TRUE,,,,241,FALSE
 "TR","tr_jobs_total","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
 
 Data sources:
 
 - [The World Bank](http://data.worldbank.org/indicator/SL.TLF.TOTL.IN)
-","L","total labor force jobs","tr_jobs_total.csv","rgn_id",,,"year","l",,TRUE,1989,2013,32119,797400000,FALSE,,,,241,FALSE
+","L","people","tr_jobs_total.csv","rgn_id",,,"year","l",,TRUE,1989,2013,32119,797400000,FALSE,,,,241,FALSE
 "TR","tr_jobs_tourism","tr_jobs_tourism","Direct employment in tourism","Direct employment in tourism (WTTC).
 
 Data sources:
 
 - [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-","Ed","direct tourism jobs","tr_jobs_tourism.csv","rgn_id",,,"year","ed",,TRUE,1989,2013,0,23676500,FALSE,,,,241,FALSE
-"TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum","S_score","TTCI raw score","tr_sustainability.csv","rgn_id",,,,"s_score",,TRUE,,,2.59,5.39,FALSE,,,,241,FALSE
+","Ed","jobs","tr_jobs_tourism.csv","rgn_id",,,"year","ed",,TRUE,1989,2013,0,23676500,FALSE,,,,241,FALSE
+"TR","tr_sustainability","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum
+
+Data sources:
+
+- [World Economic Forum](http://reports.weforum.org/travel-and-tourism-competitiveness-report-2015/index-results-the-travel-tourism-competitiveness-index-ranking-2015/)","S_score","score","tr_sustainability.csv","rgn_id",,,,"s_score",,TRUE,,,2.59,5.39,FALSE,,,,241,FALSE
 "TR","tr_travelwarnings","","Travel Warnings","Countries with US State Department travel warnings.
-Data source:
-- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","multiplier","travel warning region","tr_travelwarnings.csv",,,"rgn_name",,"multiplier",,TRUE,,,0.1,0.1,TRUE,,,,241,FALSE
+
+Data sources:
+
+- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","multiplier","score","tr_travelwarnings.csv",,,"rgn_name",,"multiplier",,TRUE,,,0.1,0.1,TRUE,,,,241,FALSE
 "TR","tr_unemployment","tr_unemployment","Percent unemployment","Percent unemployment (The World Bank).
 
 Data sources:
 
 - [The World Bank](http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS)
-","U","percent unemployed","tr_unemployment.csv","rgn_id",,,"year","u",,TRUE,1989,2013,0,0.376,TRUE,,,,241,FALSE
-"pressures","cc_acid","cc_acid","Ocean acidification","Modeled distribution of the aragonite saturation state (AAS) of the ocean in pre-industrial (~1870) and modern times (2000-2009) (Halpern et al. 2008).
+","U","percent ","tr_unemployment.csv","rgn_id",,,"year","u",,TRUE,1989,2013,0,0.376,TRUE,,,,241,FALSE
+"pressures","cc_acid","cc_acid","Ocean acidification","Change in current year's modeled aragonite saturation state (Feely et al. 2010) relative to historical mean (1880-1889).
 
 Data sources:
-
-- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)","pressure_score","pressure score","cc_acid.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.1438154796928,0.694140957098857,TRUE,,,,241,FALSE
+- Feely, R., Doney, S. & Cooley, S. (2009) **Ocean acidification: present conditions and future changes in a high-CO2 world**.
+_Oceanography_. 22:36-47. [doi:10.5670/oceanog.2009.95](http://www.tos.org/oceanography/archive/22-4_feely.html)
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_OceanAcidification/v2015) ","pressure_score","pressure score","cc_acid.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.1438154796928,0.694140957098857,TRUE,,,,241,FALSE
 "pressures","cc_slr","cc_slr","Sea level rise","Modeled sea level rise (Nicholls and Cazenave 2010).
 
 Data sources:
 
 - Nicholls R.J. and Cazenave A. (2010). **Sea-level rise and its impact on coastal zones**. _Science_ 328: 1517-1520. [doi:10.1126/science.1185782](http://dx.doi.org/10.1126/science.1185782). 
-- [AVISO Satellite Altimetry Data](http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html)","pressure_score","pressure score","cc_slr.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0045383145473687,0.368439974493097,TRUE,,,,241,FALSE
-"pressures","cc_sst","cc_sst","Sea surface temperature (SST) anomalies","Modeled sea surface temperature (Halpern et al. 2008) based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
+- [AVISO Satellite Altimetry Data](http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html)
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SeaLevelRise/v2015) ","pressure_score","pressure score","cc_slr.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0045383145473687,0.368439974493097,TRUE,,,,241,FALSE
+"pressures","cc_sst","cc_sst","Sea surface temperature (SST) anomalies","Sea surface temperature based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
 
 Data sources:
 
-- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
 - [AVHRR Pathfinder Version 5.0 SST data](http://pathfinder.nodc.noaa.gov) 
-- Casey, K.S., Brandon, T.B., Cornillon, P., and Evans, R. (2010). **The Past, Present and Future of the AVHRR Pathfinder SST Program**, _Oceanography from Space: Revisited_, eds. V. Barale, J.F.R. Gower, and L. Alberotanza, Springer. [doi:10.1007/978-90-481-8681-5_16](http://dx.doi.org/10.1007/978-90-481-8681-5_16) ","pressure_score","pressure score","cc_sst.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.717084227779375,TRUE,,,,241,FALSE
-"pressures","cc_uv","cc_uv","UV radiation","Modeled UV radiation (Halpern et al. 2008) based on Erythemal UV Irradiance data provided by GES DISC.
+- Casey, K.S., Brandon, T.B., Cornillon, P., and Evans, R. (2010). **The Past, Present and Future of the AVHRR Pathfinder SST Program**, _Oceanography from Space: Revisited_, eds. V. Barale, J.F.R. Gower, and L. Alberotanza, Springer. [doi:10.1007/978-90-481-8681-5_16](http://dx.doi.org/10.1007/978-90-481-8681-5_16)
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SST) ","pressure_score","pressure score","cc_sst.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.717084227779375,TRUE,,,,241,FALSE
+"pressures","cc_uv","cc_uv","UV radiation","Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC.
 
 Data sources:
 
-- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
 - [Goddard Earth Sciences Data and Information Services Center (GES DISC)](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml)
-","pressure_score","pressure score","cc_uv.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.941252273722627,TRUE,,,,241,FALSE
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_UV) ","pressure_score","pressure score","cc_uv.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.941252273722627,TRUE,,,,241,FALSE
 "pressures","fp_art_hb","fp_art_hb","High bycatch caused by artisanal fishing ","The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
 
 Data sources:
@@ -255,30 +265,33 @@ Data sources:
 
 - Center for International Earth Science Information Network (CIESIN)/Columbia University 
 - CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)
-","pressure_score","pressure score","hd_intertidal.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.530149,TRUE,,,,241,FALSE
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)","pressure_score","pressure score","hd_intertidal.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.530149,TRUE,,,,241,FALSE
 "pressures","hd_subtidal_hb","hd_subtidal_hb","High bycatch artisanal fishing practices as a proxy for subtidal hard bottom habitat destruction","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
 
 - [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","value","pressure score","hd_subtidal_hb.csv","rgn_id",,,,"value",,TRUE,,,1.3e-05,0.253665689,TRUE,,,,241,FALSE
-"pressures","hd_subtidal_sb","hd_subtidal_sb","High bycatch commercial fishing practices as a proxy for subtidal soft bottom habitat destruction","Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project.
+"pressures","hd_subtidal_sb","hd_subtidal_sb","Demersal destructive commercial fishing practices relative to soft-bottom habitat area as a proxy for soft bottom habitat destruction","Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
 
 Data sources:
 
 - [Sea Around Us Project (SAUP)](http://www.seaaroundus.org/)
 ","pressures.score","pressure score","hd_subtidal_sb.csv","rgn_id",,,,"pressures.score",,TRUE,,,0,0.992856206,TRUE,,,,241,FALSE
-"pressures","po_chemicals_3nm","po_chemicals_3nm","Land-based chemical pollution","Modeled land-based organic pollution at 1km2 resolution (Halpern et al. 2008).
+"pressures","po_chemicals_3nm","po_chemicals_3nm","Coastal chemical pollution within 3 nm offshore","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015), primarily land-based chemical pollution due to 3nm offshore buffer.
 
 Data sources:
 
-- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","po_chemicals_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000314089840492316,0.98943314153362,TRUE,,,,241,FALSE
-"pressures","po_nutrients_3nm","po_nutrients_3nm","Coastal nutrient pollution","Modeled coastal nutrient pollution (Halpern et al. 2008).
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_chemicals_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000314089840492316,0.98943314153362,TRUE,,,,241,FALSE
+"pressures","po_nutrients_3nm","po_nutrients_3nm","Coastal fertilizer pollution as a proxy for nutrient pollution within 3nm offshore","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
 
 Data sources:
 
-- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.580681603304141,TRUE,,,,241,FALSE
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)
+Modeled coastal nutrient pollution (Halpern et al. 2008).","pressure_score","pressure score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.580681603304141,TRUE,,,,241,FALSE
 "pressures","sp_alien","sp_alien","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
 Data sources:
@@ -295,32 +308,36 @@ Data sources:
 Data sources:
 
 - [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","ss_wgi.csv","rgn_id",,,,"score",,TRUE,,,0.126632771399314,0.954956553370774,TRUE,,,,241,FALSE
-"pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent * rank, per Coastal Protection habitats","Habitat extent * habitat rank for Coastal Protection habitats: coral, mangrove offshore 1km, mangrove inland 1km, saltmarsh, seaice_shoreline and seagrass","extent_rank","extent*rank","cp_habitat_extent_rank.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.000108,2800227.27272727,FALSE,,,,241,FALSE
-"pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent * rank, per Carbon Storage habitats","Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass","extent_rank","extent*rank","cs_habitat_extent.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.003753,3317914.748642,FALSE,,,,241,FALSE
-"pressures CW","po_chemicals","po_chemicals","Ocean-based chemical pollution","Modeled ocean-based chemical pollution from commercial shipping traffic and ports and harbors (Halpern et al. 2008).
+"pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent multiplied by rank, per Coastal Protection habitats","Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass","extent_rank","extent*rank","cp_habitat_extent_rank.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.000108,2800227.27272727,FALSE,,,,241,FALSE
+"pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent multiplied by carbon storage capacity, per Carbon Storage habitats","Habitat extent mulitiplied by habitat carbon storage capacity for: mangrove, saltmarsh and seagrass","extent_rank","extent*CS capacity","cs_habitat_extent.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.003753,3317914.748642,FALSE,,,,241,FALSE
+"pressures CW","po_chemicals","po_chemicals","Chemical pollution","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
 
 Data sources:
 
-- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","po_chemicals.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.00747125428241358,0.990900503870012,TRUE,,,,241,FALSE
-"pressures CW","po_nutrients","po_nutrients","Ocean nutrient pollution","Modeled ocean nutrient pollution (Halpern et al. 2008).
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_chemicals.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.00747125428241358,0.990900503870012,TRUE,,,,241,FALSE
+"pressures CW","po_nutrients","po_nutrients","Fertilizer pollution as a proxy for nutrient pollution","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
 
 Data sources:
 
-- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-","pressure_score","pressure score","po_nutrients.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.580681603304141,TRUE,,,,241,FALSE
-"pressures CW","po_pathogens","po_pathogens","Access to improved sanitation as a proxy for pathogen pollution","Percent of population with access to improved sanitation facilities. 
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)
+Modeled coastal nutrient pollution (Halpern et al. 2008).","pressure_score","pressure score","po_nutrients.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.580681603304141,TRUE,,,,241,FALSE
+"pressures CW","po_pathogens","po_pathogens","Access to improved sanitation as a proxy for pathogen pollution","Population without access to improved sanitation facilities. 
 
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
 ","pressure_score","pressure score","po_pathogens.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.909090909090909,TRUE,,,,241,FALSE
-"pressures CW","po_trash","po_trash","Trash pollution","Density of trash from coastal land and sea (Ocean Conservancy). 
+"pressures CW","po_trash","po_trash","Trash pollution","Global marine plastics (Eriksen et al. 2014)
 
 Data sources:
 
-- [Ocean Conservancy International Coastal Cleanup 2012](http://www.oceanconservancy.org/our-work/international-coastal-cleanup/2012-ocean-trash-index.html)
-","pressure_score","pressure score","po_trash.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0223096329122635,0.843154478466252,TRUE,,,,241,FALSE
+- Eriksen M., Lebreton, L.C.M., Carson, H.S., Thiel, M., Moore, C.J. and Borerro, J.C.  (2014). 
+**Plastic pollution in the worldâs oceans: more than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea**. _PLoS ONE_ 9:e111913. [doi:10.1371/journal.pone.0111913](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0111913). 
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash) ","pressure_score","pressure score","po_trash.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0223096329122635,0.843154478466252,TRUE,,,,241,FALSE
 "pressures HAB","hab_presence","rnk_hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","hab_presence.csv","rgn_id",,"habitat",,"boolean",,TRUE,,,1,1,TRUE,,,,241,FALSE
 "resilience","alien_species","alien_species","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
@@ -406,13 +423,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","species_diversity.csv","rgn_id",,,,"score",,TRUE,,,0.751268,0.953603,TRUE,,,,241,FALSE
+","score","resilience score","species_diversity.csv","rgn_id",,,,"score",,TRUE,,,0.737897,0.953823,TRUE,,,,241,FALSE
 "resilience","species_diversity_3nm","species_diversity_3nm","Coastal ecological integrity","Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","species_diversity_3nm.csv","rgn_id",,,,"score",,TRUE,,,0.780993,0.957274,TRUE,,,,241,FALSE
+","score","resilience score","species_diversity_3nm.csv","rgn_id",,,,"score",,TRUE,,,0.786685,0.957274,TRUE,,,,241,FALSE
 "resilience","tourism","tourism","CBD survey: tourism","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
