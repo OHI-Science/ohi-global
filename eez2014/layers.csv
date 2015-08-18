@@ -41,11 +41,12 @@ Data sources:
 
 - Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
 ","b_bmsy","B / B_msy","fis_b_bmsy.csv","fao_id",,"taxon_name","year","b_bmsy",,TRUE,1954,2011,0.0543516096887502,1.98695925324803,FALSE,,,,241,FALSE
-"FIS","fis_meancatch","","Catch data for each Taxon/FAO/SAU region averaged across years","Mean catch-per-taxon values within each Sea Around US/FAO fishing area.
+"FIS","fis_meancatch","","Catch data for each Taxon/FAO/SAU region averaged across years","Mean catch-per-taxon values within each Sea Around Us/FAO fishing area.
 
 Data sources:
 
-- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)","mean_catch","metric tons","fis_meancatch.csv",,"fao_saup_id","taxon_name_key","year","mean_catch",,TRUE,2006,2011,8.17638e-18,4787769.75544375,FALSE,,,,241,FALSE
+- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)
+- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)","mean_catch","metric tons","fis_meancatch.csv",,"fao_saup_id","taxon_name_key","year","mean_catch",,TRUE,2006,2011,8.17638e-18,4787769.75544375,FALSE,,,,241,FALSE
 "FIS","fis_proparea_saup2rgn","","proportion area of each SAUP within each OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
 
 Data sources:
@@ -57,9 +58,49 @@ Data sources:
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","w_fis","proportion","fp_wildcaught_weight.csv","rgn_id",,,,"w_fis",,TRUE,,,0.32568948685823,1,TRUE,,,,241,FALSE
-"HAB CS CP","hab_extent","rnk_hab_extent","Habitat extent","Habitat extent","km2","km^2","hab_extent.csv","rgn_id",,"habitat",,"km2",,TRUE,,,0,3804040,FALSE,,,,241,FALSE
-"HAB CS CP","hab_health","rnk_hab_health","Habitat health","Habitat health/condition","health","proportion","hab_health.csv","rgn_id",,"habitat",,"health",,TRUE,,,0,1,TRUE,,,,241,FALSE
-"HAB CS CP","hab_trend","rnk_hab_trend","Habitat health trend","Habitat health trend","trend","trend score","hab_trend.csv","rgn_id",,"habitat",,"trend",,TRUE,,,-1,1,FALSE,,,,241,FALSE
+"HAB CS CP","hab_extent","rnk_hab_extent","Habitat extent","Habitat extent
+
+Data sources:
+
+- Hamilton, S. & Casey, D. (2014). **Creation of a high spatiotemporal resolution global database of continuous mangrove forest cover for the 21st Century (CGMFC-21): a big-data fusion approach**. [arXiv:1412.0722](http://arxiv.org/ftp/arxiv/papers/1412/1412.0722.pdf)
+- Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). **The carbon balance of North American Wetlands**. _Wetlands_ 26: 889-916.
+- Dahl, T. E. (2000). **Status and trends of wetlands in the conterminous United States 1986 to 1997**. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C.
+- Ministry for the Environment (2007). **Environment New Zealand** (http://www.mfe.govt.nz/sites/default/files/environment-nz07-dec07.pdf)
+- Joint Nature Conservation Committee, JNCC. (2004). **UK Lowland wetland habitats** (http://jncc.defra.gov.uk/page-1433) 
+- European Environment Agency (2008). 
+- Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_. http://dx.doi.org/10.5067/8GQ8LZQVL0VL.
+- UNEP-WCMC (2005). **Global distribution of seagrasses - points dataset**.
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
+- Burke, L., Reytar, K., Spalding, M.,  et al. (2011). **Reefs at Risk Revisited**. _World Resources Institute, Washington, DC_.
+","km2","km^2","hab_extent.csv","rgn_id",,"habitat",,"km2",,TRUE,,,0,3804040,FALSE,,,,241,FALSE
+"HAB CS CP","hab_health","rnk_hab_health","Habitat health","Habitat health/condition
+
+Data sources:
+
+- FAO. (2007). **The world's mangroves 1980-2005**. _FAO Forestry Paper_ 153.
+- Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). **The carbon balance of North American Wetlands**. _Wetlands_ 26: 889-916.
+- Dahl, T. E. (2000). **Status and trends of wetlands in the conterminous United States 1986 to 1997**. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C.
+- Ministry for the Environment (2007). **Environment New Zealand** (http://www.mfe.govt.nz/sites/default/files/environment-nz07-dec07.pdf)
+- Joint Nature Conservation Committee, JNCC. (2004). **UK Lowland wetland habitats** (http://jncc.defra.gov.uk/page-1433) 
+- European Environment Agency (2008). 
+- Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_. http://dx.doi.org/10.5067/8GQ8LZQVL0VL.
+- Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009), **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381.
+- Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons.** _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711
+- Schutte, V. G. W., Selig, E. R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122. ","health","proportion","hab_health.csv","rgn_id",,"habitat",,"health",,TRUE,,,0,1,TRUE,,,,241,FALSE
+"HAB CS CP","hab_trend","rnk_hab_trend","Habitat health trend","Habitat health trend
+
+Data sources:
+
+- Hamilton, S. & Casey, D. (2014). **Creation of a high spatiotemporal resolution global database of continuous mangrove forest cover for the 21st Century (CGMFC-21): a big-data fusion approach**. [arXiv:1412.0722](http://arxiv.org/ftp/arxiv/papers/1412/1412.0722.pdf)
+- Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). **The carbon balance of North American wetlands**. _Wetlands_ 26: 889-916.
+- Dahl, T. E. (2000). **Status and trends of wetlands in the conterminous United States 1986 to 1997**. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C.
+- Ministry for the Environment (2007). **Environment New Zealand** (http://www.mfe.govt.nz/sites/default/files/environment-nz07-dec07.pdf)
+- Joint Nature Conservation Committee, JNCC. (2004). **UK Lowland wetland habitats** (http://jncc.defra.gov.uk/page-1433) 
+- European Environment Agency (2008). 
+- Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_ (http://dx.doi.org/10.5067/8GQ8LZQVL0VL)
+- Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009). **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381.
+- Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons**. _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711
+- Schutte, V. G. W., Selig, E.R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122.","trend","trend score","hab_trend.csv","rgn_id",,"habitat",,"trend",,TRUE,,,-1,1,FALSE,,,,241,FALSE
 "ICO","ico_spp_extinction_status","rnk_ico_spp_extinction_status","IUCN extinction risk category for iconic species","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
 
 Data sources:
@@ -115,8 +156,7 @@ Data sources:
 
 Data sources:
 
-- Center for International Earth Science Information Network (CIESIN)/Columbia University 
-- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","popsum","people","mar_coastalpopn_inland25mi.csv","rgn_id",,,"year","popsum",,TRUE,2005,2015,0,222071000,FALSE,,,,241,FALSE
+- CIESIN & CIAT (Center for International Earth Science Information Network /Columbia University & Centro Internacional de Agricultura Tropical) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","popsum","people","mar_coastalpopn_inland25mi.csv","rgn_id",,,"year","popsum",,TRUE,2005,2015,0,222071000,FALSE,,,,241,FALSE
 "MAR","mar_harvest_species","mar_harvest_species","Mariculture species harvested","Lookup table for mariculture: species Latin names and species code. 
 
 Data sources:
@@ -194,7 +234,7 @@ Data sources:
 Data sources:
 
 - [World Economic Forum](http://reports.weforum.org/travel-and-tourism-competitiveness-report-2015/index-results-the-travel-tourism-competitiveness-index-ranking-2015/)","S_score","score","tr_sustainability.csv","rgn_id",,,,"s_score",,TRUE,,,2.59,5.39,FALSE,,,,241,FALSE
-"TR","tr_travelwarnings","","Travel Warnings","Countries with US State Department travel warnings.
+"TR","tr_travelwarnings","","Travel warnings","Countries with US State Department travel warnings.
 
 Data sources:
 
@@ -209,7 +249,7 @@ Data sources:
 
 Data sources:
 - Feely, R., Doney, S. & Cooley, S. (2009) **Ocean acidification: present conditions and future changes in a high-CO2 world**.
-_Oceanography_. 22:36-47. [doi:10.5670/oceanog.2009.95](http://www.tos.org/oceanography/archive/22-4_feely.html)
+_Oceanography_ 22:36-47. [doi:10.5670/oceanog.2009.95](http://www.tos.org/oceanography/archive/22-4_feely.html)
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_OceanAcidification/v2015) ","pressure_score","pressure score","cc_acid.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.1438154796928,0.694140957098857,TRUE,,,,241,FALSE
 "pressures","cc_slr","cc_slr","Sea level rise","Modeled sea level rise (Nicholls and Cazenave 2010).
 
@@ -223,7 +263,7 @@ Data sources:
 Data sources:
 
 - [AVHRR Pathfinder Version 5.0 SST data](http://pathfinder.nodc.noaa.gov) 
-- Casey, K.S., Brandon, T.B., Cornillon, P., and Evans, R. (2010). **The Past, Present and Future of the AVHRR Pathfinder SST Program**, _Oceanography from Space: Revisited_, eds. V. Barale, J.F.R. Gower, and L. Alberotanza, Springer. [doi:10.1007/978-90-481-8681-5_16](http://dx.doi.org/10.1007/978-90-481-8681-5_16)
+- Casey, K. S., Brandon, T. B., Cornillon, P., and Evans, R. (2010). **The past, present and future of the AVHRR Pathfinder SST Program**, _Oceanography from Space: Revisited_, eds. V. Barale, J. F. R. Gower, and L. Alberotanza, Springer. [doi:10.1007/978-90-481-8681-5_16](http://dx.doi.org/10.1007/978-90-481-8681-5_16)
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SST) ","pressure_score","pressure score","cc_sst.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.717084227779375,TRUE,,,,241,FALSE
 "pressures","cc_uv","cc_uv","UV radiation","Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC.
 
@@ -231,6 +271,8 @@ Data sources:
 
 - [Goddard Earth Sciences Data and Information Services Center (GES DISC)](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml)
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_UV) ","pressure_score","pressure score","cc_uv.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.941252273722627,TRUE,,,,241,FALSE
+"pressures","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent multiplied by rank, per Coastal Protection habitats","Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass","extent_rank","extent*rank","cp_habitat_extent_rank.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.000108,2800227.27272727,FALSE,,,,241,FALSE
+"pressures","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent multiplied by carbon storage capacity, per Carbon Storage habitats","Habitat extent mulitiplied by habitat carbon storage capacity for: mangrove, saltmarsh and seagrass","extent_rank","extent*CS capacity","cs_habitat_extent.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.003753,3317914.748642,FALSE,,,,241,FALSE
 "pressures","fp_art_hb","fp_art_hb","High bycatch caused by artisanal fishing ","The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
 
 Data sources:
@@ -290,14 +332,12 @@ Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)
-Modeled coastal nutrient pollution (Halpern et al. 2008).","pressure_score","pressure score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.580681603304141,TRUE,,,,241,FALSE
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.580681603304141,TRUE,,,,241,FALSE
 "pressures","sp_alien","sp_alien","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
 Data sources:
 
-- Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)
-","pressures.score","pressure score","sp_alien.csv","rgn_id",,,,"pressures.score",,TRUE,,,0,1,TRUE,,,,241,FALSE
+- Molnar, J. L., Gamboa, R. L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)","pressures.score","pressure score","sp_alien.csv","rgn_id",,,,"pressures.score",,TRUE,,,0,1,TRUE,,,,241,FALSE
 "pressures","sp_genetic","sp_genetic","Introduced species as a proxy for genetic escapes ","Statistics on native or introduced species from the Mariculture Sustainibility Index (MSI). 
 
 Data sources:
@@ -308,8 +348,6 @@ Data sources:
 Data sources:
 
 - [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","ss_wgi.csv","rgn_id",,,,"score",,TRUE,,,0.126632771399314,0.954956553370774,TRUE,,,,241,FALSE
-"pressures CP","cp_habitat_extent_rank","rnk_cp_habitat_extent_rank","Habitat extent multiplied by rank, per Coastal Protection habitats","Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass","extent_rank","extent*rank","cp_habitat_extent_rank.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.000108,2800227.27272727,FALSE,,,,241,FALSE
-"pressures CS","cs_habitat_extent","rnk_cs_habitat_extent","Habitat extent multiplied by carbon storage capacity, per Carbon Storage habitats","Habitat extent mulitiplied by habitat carbon storage capacity for: mangrove, saltmarsh and seagrass","extent_rank","extent*CS capacity","cs_habitat_extent.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.003753,3317914.748642,FALSE,,,,241,FALSE
 "pressures CW","po_chemicals","po_chemicals","Chemical pollution","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
 
 Data sources:
@@ -323,8 +361,7 @@ Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)
-Modeled coastal nutrient pollution (Halpern et al. 2008).","pressure_score","pressure score","po_nutrients.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.580681603304141,TRUE,,,,241,FALSE
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_nutrients.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.580681603304141,TRUE,,,,241,FALSE
 "pressures CW","po_pathogens","po_pathogens","Access to improved sanitation as a proxy for pathogen pollution","Population without access to improved sanitation facilities. 
 
 Data sources:
@@ -335,7 +372,7 @@ Data sources:
 
 Data sources:
 
-- Eriksen M., Lebreton, L.C.M., Carson, H.S., Thiel, M., Moore, C.J. and Borerro, J.C.  (2014). 
+- Eriksen M., Lebreton, L. C. M., Carson, H. S., Thiel, M., Moore, C. J. and Borerro, J. C.  (2014). 
 **Plastic pollution in the worldâs oceans: more than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea**. _PLoS ONE_ 9:e111913. [doi:10.1371/journal.pone.0111913](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0111913). 
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash) ","pressure_score","pressure score","po_trash.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0223096329122635,0.843154478466252,TRUE,,,,241,FALSE
 "pressures HAB","hab_presence","rnk_hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","hab_presence.csv","rgn_id",,"habitat",,"boolean",,TRUE,,,1,1,TRUE,,,,241,FALSE
