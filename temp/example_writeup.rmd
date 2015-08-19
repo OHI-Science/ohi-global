@@ -20,6 +20,7 @@ scores_0 = scores %>%
 
 The Ocean Health Index (OHI) is the first assessment framework that provides a common platform for scientifically combining and comparing all key elements from all dimensions of the ocean (ecological, social, economic, and physical) to measure how sustainably people are using ocean and coastal resources.
 
+<<<<<<< HEAD
 Global scores from the `r scenario` assessment ranged from `r min(scores_0$score)` (in the `r scores_0$goal[scores_0$score == min(scores_0$score)]` goal) to `r max(scores_0$score)`  (in the `r scores_0$goal[scores_0$score == max(scores_0$score)]` goal). Below is a histogram showing the range and distribution of scores. 
 
 ```{r hist of global scores, echo=F}
@@ -29,3 +30,6 @@ hist(scores_0$score)
 ```
 
 Other fascinating results include that scores differed in different regions. For example...
+=======
+Global scores ranged from `r min(scores_0$score)` (in the `r scores_0$goal[scores_0$score == min(scores_0$score)]` goal) to `r max(scores_0$score)`  (in the `r scores_0$goal[scores_0$score == max(scores_0$score)]` goal). Other fascinating results include that scores differed in different regions. For example...
+>>>>>>> 5364078ca343cd313553a3f20aa0b318d85fffb4
