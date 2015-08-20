@@ -176,7 +176,10 @@ FIS = function(layers, status_year){
   #     arrange(-score)
   #   write.csv(status_save, "FIS_status.csv", row.names=FALSE)  
   
+  trend_years <- status_year:(status_year-4)
+  
   trend <- StatusData %>%
+    filter(year==trend_years) %>%
     group_by(rgn_id) %>%
     do(mdl = lm(status ~ year, data=.)) %>%
     summarize(region_id = rgn_id,
