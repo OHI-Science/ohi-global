@@ -111,44 +111,44 @@ radical <- radical %>%
 
 write.csv(radical, sprintf('global2015/radical_%s.csv', Sys.Date()), row.names=FALSE, na="")
 
-##################################
-## checking calculations
-##################################
-goalsOnly <- c('AO', 'BD', 'CP', 'CS', 'CW', 'FP', 'LE', 'NP', 'SP', 'TR')
-
-
-# this matches the region_id = 300 goals exactly (already calculated, these are the rgn_id==0 in the eez data)
-rgnGoalSummary <- tmp %>%
-  filter(!(region_id %in% c(300, 213))) %>%
-  group_by(goal, dimension) %>%
-  summarize(score_myCalc = weighted.mean(score, area_km2, na.rm=TRUE)) %>%
-  mutate(score_myCalc = round(score_myCalc, 2)) %>%
-  filter(dimension %in% c('likely_future_state', 'score', 'status')) %>%
-  mutate(region_id = 300) %>%
-  left_join(tmp) %>%
-  ungroup()
-data.frame(rgnGoalSummary)
-
-# this matches the goal= Index (these are calculated for each region, just testing here)
-rgnSummary <- tmp %>%
-  filter(!(region_id %in% c(300, 213))) %>%
-  filter(goal %in% goalsOnly) %>%
-  group_by(region_id, dimension) %>%
-  summarize(score_myCalc = mean(score, na.rm=TRUE)) %>%
-  mutate(score_myCalc = round(score_myCalc, 2)) %>%
-  filter(dimension %in% c('likely_future_state', 'score')) %>%
-  mutate(goal = 'Index') %>%
-  left_join(tmp) %>%
-  ungroup()
-data.frame(rgnSummary)
-
-# this matches the goal="Index" and region_id=300 (need to calculate this for global scores that include eez, antarctica, high seas) 
-eezGoalSummary <- data.frame(rgnSummary) %>%
-  group_by(dimension) %>%
-  summarize(score_myCalc = weighted.mean(score_myCalc, area_km2, na.rm=TRUE))
-eezGoalSummary
-
-filter(tmp, goal=="Index" & region_id==300)
+# ##################################
+# ## checking calculations
+# ##################################
+# goalsOnly <- c('AO', 'BD', 'CP', 'CS', 'CW', 'FP', 'LE', 'NP', 'SP', 'TR')
+# 
+# 
+# # this matches the region_id = 300 goals exactly (already calculated, these are the rgn_id==0 in the eez data)
+# rgnGoalSummary <- radical %>%
+#   filter(!(region_id %in% c(300, 213))) %>%
+#   group_by(goal, dimension) %>%
+#   summarize(score_myCalc = weighted.mean(score, area_km2, na.rm=TRUE)) %>%
+#   mutate(score_myCalc = round(score_myCalc, 2)) %>%
+#   filter(dimension %in% c('likely_future_state', 'score', 'status')) %>%
+#   mutate(region_id = 300) %>%
+#   left_join(tmp) %>%
+#   ungroup()
+# data.frame(rgnGoalSummary)
+# 
+# # this matches the goal= Index (these are calculated for each region, just testing here)
+# rgnSummary <- radical %>%
+#   filter(!(region_id %in% c(300, 213))) %>%
+#   filter(goal %in% goalsOnly) %>%
+#   group_by(region_id, dimension) %>%
+#   summarize(score_myCalc = mean(score, na.rm=TRUE)) %>%
+#   mutate(score_myCalc = round(score_myCalc, 2)) %>%
+#   filter(dimension %in% c('likely_future_state', 'score')) %>%
+#   mutate(goal = 'Index') %>%
+#   left_join(tmp) %>%
+#   ungroup()
+# data.frame(rgnSummary)
+# 
+# # this matches the goal="Index" and region_id=300 (need to calculate this for global scores that include eez, antarctica, high seas) 
+# eezGoalSummary <- data.frame(rgnSummary) %>%
+#   group_by(dimension) %>%
+#   summarize(score_myCalc = weighted.mean(score_myCalc, area_km2, na.rm=TRUE))
+# eezGoalSummary
+# 
+# filter(tmp, goal=="Index" & region_id==300)
 
 
 
