@@ -13,9 +13,7 @@ layers <- read.csv('global2015/layers_2015.csv') %>%
   filter(radical_include=="yes") %>%
   select(component_id, component_name, goal, dimension, scenario, units, source)
 
-summary(layers)
-
-scenario <- "eez2015"
+#summary(layers)
 
 ## Note: the layers for the following goals were not added due to formatting that does not lend itself to the data playground
 # FIS: There are an undefined number of fish records for each region and most regions have a lot of records

@@ -1,0 +1,170 @@
+---
+title: "Reporting for 2015 OHI global"
+author: "Casey and Mel"
+date: "8/20/2015"
+output: html_document
+---
+
+This document summarizes the data for the OHI 2015 global analysis.
+
+#Saving website data files
+
+The data files needed for http://www.oceanhealthindex.org/ are saved to this location (github:ohi-global/global2015).  These files are used to generate the data in this report.
+
+Output files: 
+*radical_todays_date.csv
+*radicalv2_eez2015_todays_data.csv
+ 
+ (##NOTE:## The code in the following code chunk will need to be modified when new scenarios are added)
+
+```{r, include=FALSE}
+
+#load libraries
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(hwriter)
+library(RColorBrewer)
+
+setwd("~/ohi-global")
+
+goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+
+## scripts to generate website data:
+source('global2015/radical_scores.R')
+
+scenario <- "eez2015" #identify scenario to collect data for (this can be changed to obtain data for other years)
+source('global2015/Radical_scores_v2.R')
+
+```
+
+
+#Saving human readable tables
+Tables of the results are saved to this location (github:ohi-global/global2015/data).
+
+###EEZ scores for 2015
+Outputs (include both csv and html formatted tables): 
+*scores_eez2015.csv and .html 
+
+ 
+ (##NOTE:## The code in the following code chunk will need to be modified when new scenarios are added)
+
+```{r, include=FALSE}
+
+scenario = 2015
+rgn_names <- read.csv(sprintf('eez%s/layers/rgn_global.csv', scenario)) %>%
+  select(region_id = rgn_id, country = label)
+
+
+data <- read.csv('global2015/radical_2015-08-20.csv') 
+
+data <- data[data$scenario == scenario, ]
+
+data <- data %>%
+  filter(scenario == scenario) %>%       # focus on this scenario
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country)))
+
+data <- spread(data, goal, value)
+
+index <- data %>%
+  filter(country == 'eez_weighted_avg')
+
+data <- data %>%
+  arrange(-Index) %>%
+  filter(country != 'eez_weighted_avg')
+
+data <- rbind(index, data) %>%
+    select(scenario, dimension, country, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+
+write.csv(data, sprintf("global2015/Reporting/data/scores_eez%s.csv", scenario), row.names = FALSE, na='')
+
+## make an html file that is color coded:
+pal = brewer.pal(10, 'Spectral')
+
+cols <- data.frame(country=data$country)
+for(goal in goals){ #goal="Index"
+  tmp <- data[, goal]
+  tmp <- assign(goal, cut(tmp, breaks=c(0,10,20,30,40,50,60,70,80,90,100), include.lowest = TRUE, labels=pal))
+  tmp <- data.frame(goal=tmp)
+  names(tmp) <- goal
+  cols <- cbind(cols, tmp)
+}
+
+
+hwrite(data, sprintf('global2015/Reporting/data/scores_eez%s.html', scenario), br=TRUE, center=TRUE, border=0, 
+       row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
+       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff',Index = cols$Index, 
+                        AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
+                        ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
+                        SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
+
+
+```
+
+###Difference between old and new scores using 2013 benchmark
+Outputs (include both csv and html formatted tables): 
+*
+
+ 
+ (##NOTE:## The code in the following code chunk will need to be modified when new scenarios are added)
+
+```{r, include=FALSE}
+
+benchmark <- 2013
+data <- read.csv('global2015/radical_2015-08-20.csv') 
+
+data <- data[data$scenario == scenario, ]
+
+data <- data %>%
+  filter(scenario == scenario) %>%       # focus on this scenario
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country)))
+
+data <- spread(data, goal, value)
+
+index <- data %>%
+  filter(country == 'eez_weighted_avg')
+
+data <- data %>%
+  arrange(-Index) %>%
+  filter(country != 'eez_weighted_avg')
+
+data <- rbind(index, data) %>%
+    select(scenario, dimension, country, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+
+write.csv(data, sprintf("global2015/Reporting/data/scores_eez%s.csv", scenario), row.names = FALSE, na='')
+
+## make an html file that is color coded:
+pal = brewer.pal(10, 'Spectral')
+
+cols <- data.frame(country=data$country)
+for(goal in goals){ #goal="Index"
+  tmp <- data[, goal]
+  tmp <- assign(goal, cut(tmp, breaks=c(0,10,20,30,40,50,60,70,80,90,100), include.lowest = TRUE, labels=pal))
+  tmp <- data.frame(goal=tmp)
+  names(tmp) <- goal
+  cols <- cbind(cols, tmp)
+}
+
+
+hwrite(data, sprintf('global2015/Reporting/data/scores_eez%s.html', scenario), br=TRUE, center=TRUE, border=0, 
+       row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
+       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff',Index = cols$Index, 
+                        AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
+                        ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
+                        SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
+
+
+```
+
