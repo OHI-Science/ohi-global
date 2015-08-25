@@ -1,3 +1,5 @@
+if(radical1==TRUE){
+
 ###########################################
 ## Radical data preparation
 ###########################################
@@ -150,6 +152,6 @@ write.csv(radical, sprintf('global2015/radical_%s.csv', Sys.Date()), row.names=F
 # 
 # filter(tmp, goal=="Index" & region_id==300)
 
-
+}
 
 

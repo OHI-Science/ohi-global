@@ -15,7 +15,7 @@ Output files:
 *radical_todays_date.csv
 *radicalv2_eez2015_todays_data.csv
  
- (##NOTE:## The code in the following code chunk will need to be modified when new scenarios are added)
+ (**NOTE:** The code in the following code chunks will need to be modified when new scenarios are added)
 
 ```{r, include=FALSE}
 
@@ -30,7 +30,11 @@ setwd("~/ohi-global")
 
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
 
-## scripts to generate website data:
+## scripts to generate website data (change following to true to run these scripts):
+#-------------------------
+radical1 <- FALSE
+radical2 <- FALSE
+#-------------------------
 source('global2015/radical_scores.R')
 
 scenario <- "eez2015" #identify scenario to collect data for (this can be changed to obtain data for other years)
@@ -44,19 +48,20 @@ Tables of the results are saved to this location (github:ohi-global/global2015/d
 
 ###EEZ scores for 2015
 Outputs (include both csv and html formatted tables): 
-*scores_eez2015.csv and .html 
-
- 
- (##NOTE:## The code in the following code chunk will need to be modified when new scenarios are added)
+*scores_...*.csv and .html 
 
 ```{r, include=FALSE}
-
+#-------------------------
 scenario = 2015
+radicalFile = '2015-08-20'
+#-------------------------
+
+setwd("~/ohi-global")
+
 rgn_names <- read.csv(sprintf('eez%s/layers/rgn_global.csv', scenario)) %>%
   select(region_id = rgn_id, country = label)
 
-
-data <- read.csv('global2015/radical_2015-08-20.csv') 
+data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
 
 data <- data[data$scenario == scenario, ]
 
@@ -68,7 +73,8 @@ data <- data %>%
   filter(region_id <= 250) %>%       # get rid of high seas regions
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
   left_join(rgn_names, by=c('region_id')) %>%
-  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country)))
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
+  mutate(value = round(value, 0))
 
 data <- spread(data, goal, value)
 
@@ -82,7 +88,7 @@ data <- data %>%
 data <- rbind(index, data) %>%
     select(scenario, dimension, country, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
 
-write.csv(data, sprintf("global2015/Reporting/data/scores_eez%s.csv", scenario), row.names = FALSE, na='')
+write.csv(data, sprintf("global2015/Reporting/data/scores_eez%s_Rad%s.csv", scenario, radicalFile), row.names = FALSE, na='')
 
 ## make an html file that is color coded:
 pal = brewer.pal(10, 'Spectral')
@@ -97,7 +103,7 @@ for(goal in goals){ #goal="Index"
 }
 
 
-hwrite(data, sprintf('global2015/Reporting/data/scores_eez%s.html', scenario), br=TRUE, center=TRUE, border=0, 
+hwrite(data, sprintf('global2015/Reporting/data/scores_eez%s_Rad%s.html', scenario, radicalFile), br=TRUE, center=TRUE, border=0, 
        row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
        col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff',Index = cols$Index, 
                         AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
@@ -109,17 +115,20 @@ hwrite(data, sprintf('global2015/Reporting/data/scores_eez%s.html', scenario), b
 
 ###Difference between old and new scores using 2013 benchmark
 Outputs (include both csv and html formatted tables): 
-*
+*change_in_scores_benchmark...*.csv and .html 
 
  
- (##NOTE:## The code in the following code chunk will need to be modified when new scenarios are added)
-
 ```{r, include=FALSE}
+#-------------------------
+benchmark = 2013
+oldCommit = '4da6b4a1d69d694264ea68456359a939b0c03f9c' # '4da6b4a1d69d694264ea68456359a939b0c03f9c' = commit for 2014 analysis
+#-------------------------
 
-benchmark <- 2013
-data <- read.csv('global2015/radical_2015-08-20.csv') 
+setwd("~/ohi-global")
 
-data <- data[data$scenario == scenario, ]
+data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
+
+data <- data[data$scenario == benchmark, ]
 
 data <- data %>%
   filter(scenario == scenario) %>%       # focus on this scenario
@@ -127,43 +136,177 @@ data <- data %>%
   filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
   mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
   filter(region_id <= 250) %>%       # get rid of high seas regions
-  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  filter(region_id != 213)  
+
+# get the older data
+oldDataAddress <- paste0('https://raw.githubusercontent.com/',
+                         'OHI-Science/ohi-global/', oldCommit,
+                        sprintf('/eez%s/scores.csv', benchmark))
+
+oldData <- repmis::source_data(oldDataAddress) %>%
+  filter(dimension == "score") %>%
+  filter(region_id != 213) %>%
+  select(goal, dimension, region_id, old_value=score)
+
+oldData$scenario <- benchmark
+
+compare <- data %>%
+  left_join(oldData) %>%
   left_join(rgn_names, by=c('region_id')) %>%
-  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country)))
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
+  mutate(change_in_score = round((value - old_value), 2)) %>%
+  select(scenario, goal, dimension, country, change_in_score)
 
-data <- spread(data, goal, value)
+compare_wide <- spread(compare, goal, change_in_score)
 
-index <- data %>%
+index <- compare_wide %>%
   filter(country == 'eez_weighted_avg')
 
-data <- data %>%
+compare_wide <- compare_wide %>%
   arrange(-Index) %>%
   filter(country != 'eez_weighted_avg')
 
-data <- rbind(index, data) %>%
+compare_wide <- rbind(index, compare_wide) %>%
     select(scenario, dimension, country, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
 
-write.csv(data, sprintf("global2015/Reporting/data/scores_eez%s.csv", scenario), row.names = FALSE, na='')
+write.csv(compare_wide, sprintf("global2015/Reporting/data/change_in_scores_benchmark%s_eez%s.csv", benchmark, scenario), row.names = FALSE, na='')
 
 ## make an html file that is color coded:
 pal = brewer.pal(10, 'Spectral')
 
-cols <- data.frame(country=data$country)
-for(goal in goals){ #goal="Index"
-  tmp <- data[, goal]
-  tmp <- assign(goal, cut(tmp, breaks=c(0,10,20,30,40,50,60,70,80,90,100), include.lowest = TRUE, labels=pal))
+cols <- data.frame(country=compare$country)
+for(goal in goals){ #goal="CW"
+  tmp <- compare[, goal]
+   tmp <- assign(goal, cut(tmp, breaks=c(-100, -50, -30, -20, -10, 0, 10, 20, 30, 50, 100), include.lowest = TRUE, labels=pal))
   tmp <- data.frame(goal=tmp)
   names(tmp) <- goal
   cols <- cbind(cols, tmp)
 }
 
 
-hwrite(data, sprintf('global2015/Reporting/data/scores_eez%s.html', scenario), br=TRUE, center=TRUE, border=0, 
+hwrite(compare_wide, sprintf('global2015/Reporting/data/change_in_scores_benchmark%s_eez%s.html', benchmark, scenario), br=TRUE, center=TRUE, border=0, 
        row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
        col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff',Index = cols$Index, 
                         AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
                         ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
                         SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
+
+
+```
+
+###Trend data from 2012 to 2015 scenarios
+Outputs (include both csv and html formatted tables): 
+*trends...*.csv and .html 
+
+ 
+```{r, include=FALSE}
+#-------------------------
+#-------------------------
+
+setwd("~/ohi-global")
+
+data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  
+
+trends <- data %>%
+  filter(!is.na(value)) %>%
+  mutate(goal = as.character(goal)) %>%
+  group_by(goal, region_id) %>%
+  do(mdl = lm(value ~ scenario, data = .)) %>%
+  summarize(goal = goal, region_id = region_id,
+            trend = coef(mdl)['scenario']) %>%
+  ungroup()
+
+
+trends <- trends %>%  
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
+  mutate(trend = round(trend, 2)) %>%
+  select(goal, country, trend) %>%
+  data.frame()
+
+trends <- spread(trends, goal, trend)
+
+index <- trends %>%
+  filter(country == 'eez_weighted_avg')
+
+trends <- trends %>%
+  arrange(-Index) %>%
+  filter(country != 'eez_weighted_avg')
+
+trends <- rbind(index, trends) %>%
+    select(country, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+
+write.csv(trends, sprintf("global2015/Reporting/data/trends.csv", benchmark, scenario), row.names = FALSE, na='')
+
+## make an html file that is color coded:
+pal = brewer.pal(10, 'Spectral')
+
+cols <- data.frame(country=trends$country)
+for(goal in goals){ #goal="CW"
+  tmp <- trends[, goal]
+  tmp <- assign(goal, cut(tmp, breaks=c(-1000, -10, -5, -2, -1, 0, 1, 2, 5, 10, 1000), include.lowest = TRUE, labels=pal))
+  tmp <- data.frame(goal=tmp)
+  names(tmp) <- goal
+  cols <- cbind(cols, tmp)
+}
+
+
+hwrite(trends, sprintf('global2015/Reporting/data/trends.html', benchmark, scenario), br=TRUE, center=TRUE, border=0, 
+       row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
+       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff',Index = cols$Index, 
+                        AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
+                        ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
+                        SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
+
+
+```
+
+#Figures
+###Carpet plot from 2012 to 2015 scenarios
+Outputs (see png file for details): 
+*carpetPlot.png* 
+
+ 
+```{r, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=12, fig.height=20,}
+#-------------------------
+#-------------------------
+
+setwd("~/ohi-global")
+
+data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%
+  mutate(value = round(value, 0)) %>%
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame()
+  
+data$goal <- factor(data$goal, levels = goals)
+
+myPalette <- colorRampPalette(brewer.pal(11, "Spectral"), space="Lab")
+ggplot(data, aes(y=factor(country, levels=(country)[order(meanIndex)]), x=scenario, fill=value)) + 
+  geom_tile(aes(order=meanIndex)) +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette(100), na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5)) +
+  ylab("") + 
+  xlab("")
+ggsave("global2015/Reporting/figures/carpetPlot.png", width=20, height=25, units="in")
 
 
 ```
