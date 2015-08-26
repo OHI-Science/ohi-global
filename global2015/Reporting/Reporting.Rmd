@@ -25,6 +25,8 @@ library(tidyr)
 library(ggplot2)
 library(hwriter)
 library(RColorBrewer)
+library(knitr)
+library(googleVis)
 
 setwd("~/ohi-global")
 
@@ -153,11 +155,12 @@ oldData$scenario <- benchmark
 compare <- data %>%
   left_join(oldData) %>%
   left_join(rgn_names, by=c('region_id')) %>%
-  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
-  mutate(change_in_score = round((value - old_value), 2)) %>%
-  select(scenario, goal, dimension, country, change_in_score)
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) 
 
-compare_wide <- spread(compare, goal, change_in_score)
+compare_wide <- compare %>%
+  mutate(change_in_score = round((value - old_value), 2)) %>%
+  select(scenario, goal, dimension, country, change_in_score) %>%
+  spread(goal, change_in_score)
 
 index <- compare_wide %>%
   filter(country == 'eez_weighted_avg')
@@ -174,9 +177,9 @@ write.csv(compare_wide, sprintf("global2015/Reporting/data/change_in_scores_benc
 ## make an html file that is color coded:
 pal = brewer.pal(10, 'Spectral')
 
-cols <- data.frame(country=compare$country)
+cols <- data.frame(country=compare_wide$country)
 for(goal in goals){ #goal="CW"
-  tmp <- compare[, goal]
+  tmp <- compare_wide[, goal]
    tmp <- assign(goal, cut(tmp, breaks=c(-100, -50, -30, -20, -10, 0, 10, 20, 30, 50, 100), include.lowest = TRUE, labels=pal))
   tmp <- data.frame(goal=tmp)
   names(tmp) <- goal
@@ -186,7 +189,7 @@ for(goal in goals){ #goal="CW"
 
 hwrite(compare_wide, sprintf('global2015/Reporting/data/change_in_scores_benchmark%s_eez%s.html', benchmark, scenario), br=TRUE, center=TRUE, border=0, 
        row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
-       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff',Index = cols$Index, 
+       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff', Index = cols$Index, 
                         AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
                         ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
                         SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
@@ -268,13 +271,49 @@ hwrite(trends, sprintf('global2015/Reporting/data/trends.html', benchmark, scena
 
 ```
 
+
+###Status years used in the 2012 to 2015 scenarios
+
+```{r, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+#-------------------------
+#-------------------------
+
+setwd("~/ohi-global")
+
+scenarios <- 2012:scenario
+
+data <- data.frame(goals = goals[-1])
+
+for (scenarioYear in scenarios){ # scenarioYear = 2015
+
+    f <-  read.csv(sprintf('eez%s/conf/goals.csv', scenarioYear)) %>%
+      select(goal, preindex_function)
+
+goalsYears <- c()    
+    for(goal in goals[-1]){ # goal = "FIS"  goal = "AO"
+    g <- f[f$goal == goal, ]
+    year <- as.numeric(gsub("[^\\d]+", "", g$preindex_function, perl=TRUE))
+    
+    year <- ifelse(length(year)==0, NA, year)
+    goalsYears <- c(goalsYears, year)
+    }
+goalsYears <- data.frame(goalsYears)
+names(goalsYears) <- paste('eez', scenarioYear, sep="_")
+data <- cbind(data, goalsYears)
+}
+
+kable(data,format="pandoc",caption="Years used in analysis")
+
+```
+
+
 #Figures
 ###Carpet plot from 2012 to 2015 scenarios
 Outputs (see png file for details): 
 *carpetPlot.png* 
 
  
-```{r, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=12, fig.height=20,}
+```{r, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23,}
 #-------------------------
 #-------------------------
 
@@ -311,3 +350,77 @@ ggsave("global2015/Reporting/figures/carpetPlot.png", width=20, height=25, units
 
 ```
 
+###Scatterplots comparing the current analysis and the 2014 analysis
+
+
+```{r, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+#-------------------------
+  criteria <- ~dimension == score
+#-------------------------
+
+# uses compare data calculated above
+
+setwd("~/ohi-global")
+
+for(goal in goals){ # goal = "AO"
+
+data_new <- compare %>%
+    mutate(change = value - old_value) %>%
+    group_by(goal) %>% 
+    mutate(mean = mean(change, na.rm=TRUE),
+           sd =  sd(change, na.rm=TRUE)) %>%
+    ungroup() %>%
+    mutate(z_score = (change - mean)/sd) %>%
+    mutate(z_greater_1 = ifelse(abs(z_score) > 1, "yes", "no")) %>%
+    filter(region_id != 0) %>%
+    mutate(plotLabel = ifelse(z_greater_1=="yes", as.character(country), NA))
+  
+  data_new <- data_new[data_new$goal==goal,]  
+
+p <-   ggplot(data_new, aes(x=old_value, y=value)) +
+    geom_point(shape=19) +
+    theme_bw() + 
+    labs(title=paste(benchmark, goal, sep=": "), y="New scores", x="Old scores") +
+    geom_abline(slope=1, intercept=0, color="red") +
+    geom_text(aes(label=plotLabel), vjust=1.5, size=2) +
+  xlim(0, 100) +
+  ylim(0, 100)
+
+print(p)
+}
+
+```
+
+###GoogleVis plot
+
+
+```{r, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+#-------------------------
+#-------------------------
+
+setwd("~/ohi-global")
+
+data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%
+  mutate(value = round(value, 2)) %>%
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
+  select(year=scenario, goal, country, score=value)
+
+data <- spread(data, goal, score)
+
+Motion=gvisMotionChart(data, 
+                       idvar="country", 
+                       timevar="year")
+plot(Motion)
+
+print(Motion, file='global2015/Reporting/figures/GoogleVisScores.html')
+
+
+```
