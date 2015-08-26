@@ -13,7 +13,7 @@ library(maptools)
 # library(geosphere)
 require('RColorBrewer')
 # library(shapefiles)
-# source("http://nceas.ucsb.edu/~frazier/functions/sort.txt")
+# source('http://nceas.ucsb.edu/~frazier/functions/sort.txt')
 
 
 dir_global <- setwd('~/github/ohi-global')
@@ -27,7 +27,7 @@ source(file.path(dir_ohiprep, 'src/R/common.R'))
   # in ohiprep
 
 ### load spatial layer
-rgn_eez <- readOGR(dsn = path.expand(dir_sp), "rgn_eez_gcs_low_res")
+rgn_eez <- readOGR(dsn = path.expand(dir_sp), 'rgn_eez_gcs_low_res')
 eezlist <- rgn_eez@data$rgn_id
 
 ## 2013 data ----
@@ -72,7 +72,7 @@ year      <- 2015
 ## This loop goes through the columns to be plotted and:
 ## 1. matches the data row names (rgn_id) to the rgn_id of the OHI regions
 ## 2. identifies the break points for colors from: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
-## 3. plots the maps and saves them to the "fig" file in the working directory 
+## 3. plots the maps and saves them to the 'fig' file in the working directory 
 
 for (fld in mapFlds){ # fld <- mapFlds[1]
   fig_save = file.path(dir_rept, sprintf('figures/global_map_%s_%s.png', fld, year))
@@ -87,18 +87,42 @@ for (fld in mapFlds){ # fld <- mapFlds[1]
     left_join(fld_val, 
               by = 'rgn_id')
   
-  rgns_plot(fld_data)
+  fld_name <- expand_fld(fld)
+  
+  rgns_plot(fld_data, fld)
 }
 
-rgns_plot <- function(rgn_df, fig_save = NULL) {
+expand_fld <- function(fld) {
+  switch(fld,  'Index'='Ocean Health Index',
+               'FP'   = 'Food Provision',
+               'AO'   = 'Artisanal Fishing Opportunity',
+               'NP'   = 'Natural Products',
+               'CS'   = 'Carbon Storage',
+               'CP'   = 'Coastal Protection',
+               'TR'   = 'Tourism & Recreation',
+               'LE'   = 'Coastal Livelihoods & Economies',
+               'SP'   = 'Sense of Place',
+               'CW'   = 'Clean Water',
+               'BD'   = 'Biodiversity',
+               'ECO'  = 'Economies',
+               'LIV'  = 'Livelihoods',
+               'FIS'  = 'Fisheries',
+               'MAR'  = 'Mariculture',
+               'ICO'  = 'Iconic Species',
+               'LSP'  = 'Lasting Special Places',
+               'HAB'  = 'Habitats', 
+               'SPP'  = 'Species')
+}
+
+rgns_plot <- function(rgn_df, fld, title = sprintf('OHI Scores: %s', fld), fig_save = NULL) {
   df_plot <- ggplot(data = rgn_df, aes(x = long, y = lat, group = group, fill = val)) +  
     scale_fill_gradientn(colours = brewer.pal(10, 'RdYlBu'), space = 'Lab', na.value = 'gray80',
                          breaks = col.brks, labels = col.brks, limits = c(0, 100)) + 
     scale_x_continuous(breaks = seq(-180, 180, by = 30), expand = c(0, 2)) +
     scale_y_continuous(breaks = seq( -90,  90, by = 30), expand = c(0, 2)) +
     geom_polygon(color = 'gray80', size = 0.1) +
-    borders("world", color="gray40", fill="gray45") + # create a layer of borders
-    labs(title = sprintf('OHI 2015 Scores: %s', fld), fill = fld, x = NULL, y = NULL)
+    borders('world', color='gray40', fill='gray45') + # create a layer of borders
+    labs(title = title, fill = fld, x = NULL, y = NULL)
   df_plot
   
   if(!is.null(fig_save)) {
@@ -112,9 +136,9 @@ rgns_plot <- function(rgn_df, fig_save = NULL) {
 
 
 # Difference data ----
-OHIdiff <- read.csv("TableDiffs2013_2012.csv")
-OHIdiff <- subset(OHIdiff, !(Country.EEZ %in% c("Global (area-weighted average)",
-                                                            "Global (EEZ average)")))
+OHIdiff <- read.csv('TableDiffs2013_2012.csv')
+OHIdiff <- subset(OHIdiff, !(Country.EEZ %in% c('Global (area-weighted average)',
+                                                            'Global (EEZ average)')))
 row.names(OHIdiff) <- OHIdiff$code
 
 OHIdiff <- subset(OHIdiff, select=c(code, Index, FP, AO, NP,
@@ -122,26 +146,26 @@ OHIdiff <- subset(OHIdiff, select=c(code, Index, FP, AO, NP,
                                                 SP, CW, BD, 
                                                 ECO, LIV, FIS, MAR,
                                                 ICO, LSP, HAB, SPP))
-OHIdiff <- plyr::rename(OHIdiff, c(code="rgn_id",
-                             Index="Ocean Health Index",
-                                   FP = "Food Provision",
-                                   AO= "Artisanal Fishing Opportunity",
-                                   NP= "Natural Products",
-                                   CS="Carbon Storage",
-                                   CP="Coastal Protection",
-                                   TR= "Tourism & Recreation",
-                                   LE="Coastal Livelihoods & Economies",
-                                   SP="Sense of Place",
-                                   CW="Clean Water",
-                                   BD="Biodiversity",
-                                   ECO="Economies",
-                                   LIV="Livelihoods",
-                                   FIS="Fisheries",
-                                   MAR="Mariculture",
-                                   ICO="Iconic Species",
-                                   LSP="Lasting Special Places",
-                                   HAB="Habitats", 
-                                   SPP="Species"))
+OHIdiff <- plyr::rename(OHIdiff, c(code='rgn_id',
+                             Index='Ocean Health Index',
+                                   FP = 'Food Provision',
+                                   AO = 'Artisanal Fishing Opportunity',
+                                   NP= 'Natural Products',
+                                   CS='Carbon Storage',
+                                   CP='Coastal Protection',
+                                   TR= 'Tourism & Recreation',
+                                   LE='Coastal Livelihoods & Economies',
+                                   SP='Sense of Place',
+                                   CW='Clean Water',
+                                   BD='Biodiversity',
+                                   ECO='Economies',
+                                   LIV='Livelihoods',
+                                   FIS='Fisheries',
+                                   MAR='Mariculture',
+                                   ICO='Iconic Species',
+                                   LSP='Lasting Special Places',
+                                   HAB='Habitats', 
+                                   SPP='Species'))
 
 PlotData <- OHIdiff
 
@@ -167,7 +191,7 @@ for (i in 1:length(mapCols)){
   par(oma=c(0,0,0,0),
       mar=c(1.5,1,0,1))
   plot(ocean, col='gray90', border=NA)
-  plot(rgnOHI, border="grey75", add=TRUE,
+  plot(rgnOHI, border='grey75', add=TRUE,
        col=brewer.pal(10, 'RdYlBu')[cut(v, col.brks, labels=1:10, include.lowest=TRUE)])
   plot(land, col='gray80', border='grey75', add=TRUE)
   
