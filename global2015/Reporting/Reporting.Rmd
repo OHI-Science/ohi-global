@@ -25,6 +25,8 @@ library(tidyr)
 library(ggplot2)
 library(hwriter)
 library(RColorBrewer)
+library(knitr)
+library(googleVis)
 
 setwd("~/ohi-global")
 
@@ -269,6 +271,42 @@ hwrite(trends, sprintf('global2015/Reporting/data/trends.html', benchmark, scena
 
 ```
 
+
+###Status years used in the 2012 to 2015 scenarios
+
+```{r, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+#-------------------------
+#-------------------------
+
+setwd("~/ohi-global")
+
+scenarios <- 2012:scenario
+
+data <- data.frame(goals = goals[-1])
+
+for (scenarioYear in scenarios){ # scenarioYear = 2015
+
+    f <-  read.csv(sprintf('eez%s/conf/goals.csv', scenarioYear)) %>%
+      select(goal, preindex_function)
+
+goalsYears <- c()    
+    for(goal in goals[-1]){ # goal = "FIS"  goal = "AO"
+    g <- f[f$goal == goal, ]
+    year <- as.numeric(gsub("[^\\d]+", "", g$preindex_function, perl=TRUE))
+    
+    year <- ifelse(length(year)==0, NA, year)
+    goalsYears <- c(goalsYears, year)
+    }
+goalsYears <- data.frame(goalsYears)
+names(goalsYears) <- paste('eez', scenarioYear, sep="_")
+data <- cbind(data, goalsYears)
+}
+
+kable(data,format="pandoc",caption="Years used in analysis")
+
+```
+
+
 #Figures
 ###Carpet plot from 2012 to 2015 scenarios
 Outputs (see png file for details): 
@@ -350,5 +388,39 @@ p <-   ggplot(data_new, aes(x=old_value, y=value)) +
 
 print(p)
 }
+
+```
+
+###GoogleVis plot
+
+
+```{r, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+#-------------------------
+#-------------------------
+
+setwd("~/ohi-global")
+
+data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%
+  mutate(value = round(value, 2)) %>%
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
+  select(year=scenario, goal, country, score=value)
+
+data <- spread(data, goal, score)
+
+Motion=gvisMotionChart(data, 
+                       idvar="country", 
+                       timevar="year")
+plot(Motion)
+
+print(Motion, file='global2015/Reporting/figures/GoogleVisScores.html')
+
 
 ```
