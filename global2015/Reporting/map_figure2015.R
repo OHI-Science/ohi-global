@@ -6,46 +6,32 @@
 ### Oct 17, 2013: Melanie Frazier 
 ###   * Original script
 #######################################################################
-
-
-library(rgdal)
-library(maptools)
-require('RColorBrewer')
-
-dir_global <- setwd('~/github/ohi-global')
-dir_rept   <- file.path(dir_global, 'global2015/Reporting')
-dir_data   <- file.path(dir_rept, 'data')
-
-dir_ohiprep <- '~/github/ohiprep'
-dir_sp     <-  file.path(dir_ohiprep, 'globalprep/spatial/downres')
-  # writeOGR dsn needs to be an absolute path? apparently '~' causes issues. getwd() expands the '~'.
-source(file.path(dir_ohiprep, 'src/R/common.R'))
-  # in ohiprep
+dir_rept <- '~/github/ohi-global/global2015/Reporting'
 source(file.path(dir_rept, 'map_fxns.R'))
 
+source(file.path('~/github/ohiprep/src/R/common.R'))
+# in ohiprep
+library(ggplot2)
 
 ### Get regions map - converts shapefile to data frame
-rgn_eez_df <- get_rgn_df
+rgn_df <- get_rgn_df() %>%
+  filter(rgn_id %in% scores_data$rgn_id)
 
 
 ### get OHI data and clean it up.
-ohi_data <- read.csv(file.path(dir_data, 'scores_eez2015.csv'), stringsAsFactors = FALSE) %>%
+scores_data <- read.csv(file.path(dir_data, 'scores_eez2015.csv'), stringsAsFactors = FALSE) %>%
   rename(rgn_name = country)
 
-if (!('rgn_id' %in% names(ohi_data))) {
+if (!('rgn_id' %in% names(scores_data))) {
   rgn_names        <- read.csv('~/github/ohi-global/eez2013/layers/rgn_global.csv', stringsAsFactors = FALSE) %>%
     rename(rgn_name = label)
   
-  ohi_data <- ohi_data %>% 
+  scores_data <- scores_data %>% 
     left_join(rgn_names, by = 'rgn_name') %>%
-    filter(!is.na(rgn_id)) ### gets rid of global average
+    filter(!is.na(rgn_id)) ### gets rid of global average, if left_join didn't
 }
 
-year <- ohi_data$scenario[1]  
-
-ohi_data <- ohi_data %>%
-  filter(rgn_id %in% rgn_eez_df$rgn_id) %>%
-  select(-scenario, -dimension) %>%
+scores_data <- scores_data %>%
   arrange(rgn_id)
 
 
@@ -53,21 +39,21 @@ ohi_data <- ohi_data %>%
 
 ### Identify the columns of the OHI data to be mapped.  The for loop with
 ### call each field in turn to attach data and plot it.
-mapFlds   <- names(ohi_data %>% select(-rgn_name, -rgn_id))
+mapFlds   <- names(scores_data %>% select(-rgn_name, -rgn_id, -scenario, -dimension))
 
 for (fld in mapFlds) { 
   
   # fld <- mapFlds[1]
-  fig_save = file.path(dir_rept, sprintf('figures/global_map_%s_%s.png', fld, year))
+  fig_save = file.path(dir_rept, sprintf('figures/global_map_%s_%s.png', fld, scores_data$scenario[1]))
   cat(sprintf('Creating map for %s...\n', fld))
   
   ### Separate out a simple data frame of rgn_id and field value; rename field to 'val'
   ### so it's easier to call with dplyr and ggplot functions
-  fld_val  <- ohi2015[ , c('rgn_id', fld)]
+  fld_val  <- scores_data[ , c('rgn_id', fld)]
   names(fld_val)[2] = 'val'
   
   ### join the fld_data info to the spatial info in rgn_eez_df
-  fld_data <- rgn_eez_df %>%
+  fld_data <- rgn_df %>%
     left_join(fld_val, 
               by = 'rgn_id')
 
@@ -80,6 +66,14 @@ for (fld in mapFlds) {
   ohiplot <- plot_scores(fld_data, fld, fig_save = fig_save, title = title)
   
 }
+
+
+single_plot <- plot_scores_easy(scores_data, mapFlds[1], 
+                                rgn_df = rgn_df, 
+                                fig_save = '~/github/ohi-global/global2015/Reporting/figures/test_index.png', 
+                                leg_on = TRUE)
+### to test out the "plot_scores_easy()" function
+
 
 # Difference data ----
 OHIdiff <- read.csv('TableDiffs2013_2012.csv')
