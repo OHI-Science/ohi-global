@@ -3,7 +3,6 @@ title: "Reporting for 2015 OHI global"
 author: "Casey and Mel"
 date: "8/20/2015"
 output: html_document
-toc: true
 ---
 
 This document summarizes the data for the OHI 2015 global analysis.
@@ -22,8 +21,6 @@ library(ohicore)
 library(sp)
 library(rgdal)
 
-source('../ohiprep/src/R/common.R')
-
 setwd("~/ohi-global")
 
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
@@ -39,8 +36,8 @@ saveFile <- 'global2015' #location where files that are created are to be saved
 
 # if the ohi-global data is updated these should be changed to TRUE
 # (note: these files are then read in for all subsequent tables/figures)
-radical1 <- FALSE
-radical2 <- FALSE
+radical1 <- TRUE
+radical2 <- TRUE
 
 ## General files to load
 rgn_names <- read.csv(sprintf('eez%s/layers/rgn_global.csv', scenario)) %>%
@@ -79,6 +76,7 @@ source('global2015/radical_scores.R')
 ## the metadata for each layer file.  This will need to be updated if any of the 
 ## layers change in future analyses.
 source('global2015/Radical_scores_v2.R')
+
 
 ```
 
@@ -318,6 +316,7 @@ goalsYears <- c()
     year <- ifelse(length(year)==0, NA, year)
     goalsYears <- c(goalsYears, year)
     }
+
 goalsYears <- data.frame(goalsYears)
 names(goalsYears) <- paste('eez', scenarioYear, sep="_")
 data <- cbind(data, goalsYears)
@@ -417,29 +416,29 @@ print(p)
 #-------------------------
 #-------------------------
 
-setwd("~/ohi-global")
-
-## read in map data:
-map <- readOGR(dsn=file.path(dir_neptune_data, 'model/GL-NCEAS-OceanRegions_v2013a/data'), layer= 'rgn_ocean_cntry_mol')
-
-## This isolates the main map parts: 
-ocean  <-  p[is.na(p@data$ISO_3digit) & p@data$rgn_id==0,]
-land  <-  p[!is.na(p@data$ISO_3digit) & p@data$rgn_id==0,]
-rgnOHI <-  p[p@data$rgn_id>0,]
-
-
-## read in data:
-data <- read.csv(sprintf('%s/radical_%s.csv', saveFile, radicalFile)) 
-
-## global score map
-data <- data[data$scenario == scenario, ]
-
-data <- data %>%
-  filter(dimension == "score") %>%
-  filter(region_id <= 250) %>%
-  filter(region_id != 0) 
-
-data <- spread(data, goal, value)
+# setwd("~/ohi-global")
+# 
+# ## read in map data:
+# map <- readOGR(dsn=file.path(dir_neptune_data, 'model/GL-NCEAS-OceanRegions_v2013a/data'), layer= 'rgn_ocean_cntry_mol')
+# 
+# ## This isolates the main map parts: 
+# ocean  <-  p[is.na(p@data$ISO_3digit) & p@data$rgn_id==0,]
+# land  <-  p[!is.na(p@data$ISO_3digit) & p@data$rgn_id==0,]
+# rgnOHI <-  p[p@data$rgn_id>0,]
+# 
+# 
+# ## read in data:
+# data <- read.csv(sprintf('%s/radical_%s.csv', saveFile, radicalFile)) 
+# 
+# ## global score map
+# data <- data[data$scenario == scenario, ]
+# 
+# data <- data %>%
+#   filter(dimension == "score") %>%
+#   filter(region_id <= 250) %>%
+#   filter(region_id != 0) 
+# 
+# data <- spread(data, goal, value)
 
 ```
 

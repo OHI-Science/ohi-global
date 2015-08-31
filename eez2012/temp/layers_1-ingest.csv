@@ -106,13 +106,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","category","category","../ohiprep/globalprep/SpeciesDiversity/v2015/data/ico_status.csv",TRUE,"ico_spp_extinction_status.csv","eez2012/layers/ico_spp_extinction_status.csv"
+","category","category","../ohiprep/globalprep/SPP_ICO/v2015/data/ico_status.csv",TRUE,"ico_spp_extinction_status.csv","eez2012/layers/ico_spp_extinction_status.csv"
 "ICO","ico_spp_popn_trend","rnk_ico_spp_popn_trend","IUCN population trend as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","popn_trend","trend score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/ico_trend.csv",TRUE,"ico_spp_popn_trend.csv","eez2012/layers/ico_spp_popn_trend.csv"
+","popn_trend","trend score","../ohiprep/globalprep/SPP_ICO/v2015/data/ico_trend.csv",TRUE,"ico_spp_popn_trend.csv","eez2012/layers/ico_spp_popn_trend.csv"
 "LE","le_gdp",,"GDP","Gross Domestic Product (GDP) data (reported in 2012 US dollars) from The World Bank.
 
 Data sources:
@@ -204,13 +204,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","status score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/spp_status_global.csv",TRUE,"spp_status.csv","eez2012/layers/spp_status.csv"
+","score","status score","../ohiprep/globalprep/SPP_ICO/v2015/data/spp_status_global.csv",TRUE,"spp_status.csv","eez2012/layers/spp_status.csv"
 "SPP","spp_trend","rn_spp_trend","Species lists and IUCN threat categories as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","trend score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/spp_trend_global.csv",TRUE,"spp_trend.csv","eez2012/layers/spp_trend.csv"
+","score","trend score","../ohiprep/globalprep/SPP_ICO/v2015/data/spp_trend_global.csv",TRUE,"spp_trend.csv","eez2012/layers/spp_trend.csv"
 "TR","tr_jobs_pct_tourism","tr_jobs_tourism","Percent direct employment in tourism","Percent direct employment in tourism (WTTC).
 
 Data sources:
@@ -460,13 +460,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/spp_status_global.csv",TRUE,"species_diversity.csv","eez2012/layers/species_diversity.csv"
+","score","resilience score","../ohiprep/globalprep/SPP_ICO/v2015/data/spp_status_global.csv",TRUE,"species_diversity.csv","eez2012/layers/species_diversity.csv"
 "resilience","species_diversity_3nm","species_diversity_3nm","Coastal ecological integrity","Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","../ohiprep/globalprep/SpeciesDiversity/v2015/data/spp_status_3nm.csv",TRUE,"species_diversity_3nm.csv","eez2012/layers/species_diversity_3nm.csv"
+","score","resilience score","../ohiprep/globalprep/SPP_ICO/v2015/data/spp_status_3nm.csv",TRUE,"species_diversity_3nm.csv","eez2012/layers/species_diversity_3nm.csv"
 "resilience","tourism","tourism","CBD survey: tourism","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:

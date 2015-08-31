@@ -152,9 +152,9 @@ s_t_radical <- data.frame()
 ### Goal layers with no components
 #-----------------------------------------------------------------------------------
 
-goals <- c('CW', 'FP', 'AO', 'LSP', 'TR', 'NP')
+goals_sub <- c('CW', 'FP', 'AO', 'LSP', 'TR', 'NP')
 
-for(goal in goals){ # goal='CW'
+for(goal in goals_sub){ # goal='CW'
   
 status_components <- stat_trend_layers$component_id[stat_trend_layers$goal == goal]
 status_components <- status_components[! status_components %in%  c("np_harvest_product_weight", "np_harvest_tonnes", "np_harvest_tonnes_relative")]
@@ -226,8 +226,8 @@ if(sum(grepl("year", names(data)))>0){
 ### habitat layers (includes some pressure data as well)
 #-----------------------------------------------------------------------------------
 
-goals <- c('HAB')
-hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %in% goals]) 
+goals_sub <- c('HAB')
+hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %in% goals_sub]) 
   
 
 for(comp in hab_components) { # comp="hab_extent"
@@ -248,8 +248,8 @@ for(comp in hab_components) { # comp="hab_extent"
 
 }
 
-goals <- c('CP')
-hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %in% goals]) 
+goals_sub <- c('CP')
+hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %in% goals_sub]) 
 
 
 for(comp in hab_components) { # comp="hab_extent"
@@ -276,8 +276,8 @@ for(comp in hab_components) { # comp="hab_extent"
   
 }
 
-goals <- c('CS')
-hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %in% goals]) 
+goals_sub <- c('CS')
+hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %in% goals_sub]) 
 
 
 for(comp in hab_components) { # comp="hab_extent"
