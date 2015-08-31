@@ -111,7 +111,7 @@ for(scenarioYear in 2012:2013){ #scenarioYear=2012
 radical <- radical %>%
   arrange(scenario, goal, dimension, region_id)
 
-write.csv(radical, sprintf('global2015/radical_%s.csv', Sys.Date()), row.names=FALSE, na="")
+write.csv(radical, sprintf('%s/radical_%s.csv', saveFile, Sys.Date()), row.names=FALSE, na="")
 
 # ##################################
 # ## checking calculations

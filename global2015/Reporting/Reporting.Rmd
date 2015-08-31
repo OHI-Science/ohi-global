@@ -7,17 +7,7 @@ output: html_document
 
 This document summarizes the data for the OHI 2015 global analysis.
 
-#Saving website data files
-
-The data files needed for http://www.oceanhealthindex.org/ are saved to this location (github:ohi-global/global2015).  These files are used to generate the data in this report.
-
-Output files: 
-*radical_todays_date.csv
-*radicalv2_eez2015_todays_data.csv
- 
- (**NOTE:** The code in the following code chunks will need to be modified when new scenarios are added)
-
-```{r, include=FALSE}
+```{r data set up, include=FALSE}
 
 #load libraries
 library(dplyr)
@@ -27,48 +17,86 @@ library(hwriter)
 library(RColorBrewer)
 library(knitr)
 library(googleVis)
+library(ohicore)
+library(sp)
+library(rgdal)
 
 setwd("~/ohi-global")
 
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
 
-## scripts to generate website data (change following to true to run these scripts):
-#-------------------------
+#---------------------------
+## General settings to control
+scenario <- "2015" #identify scenario of focus (this can be changed to obtain data for other years)
+radicalFile = '2015-08-20' #date extension on the radical data files that are used for all tables/figures
+benchmark = 2013  # year that is used for old vs. new OHI analyses
+oldCommit = '4da6b4a1d69d694264ea68456359a939b0c03f9c' # '4da6b4a1d69d694264ea68456359a939b0c03f9c' = commit for 2014 analysis
+colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
+saveFile <- 'global2015' #location where files that are created are to be saved
+
+# if the ohi-global data is updated these should be changed to TRUE
+# (note: these files are then read in for all subsequent tables/figures)
 radical1 <- FALSE
 radical2 <- FALSE
-#-------------------------
+
+## General files to load
+rgn_names <- read.csv(sprintf('eez%s/layers/rgn_global.csv', scenario)) %>%
+  select(region_id = rgn_id, country = label)
+#-----------------------------------------
+````
+
+#Saving data files for website
+
+Data files are created that are used to generate content for http://www.oceanhealthindex.org/.
+
+Output files: 
+*[radical_*date*.csv](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2015/radical_2015-08-20.csv)
+
+`sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/radical_%s.csv', saveFile, radicalFile)`. This file is also used to generate the tables and figures in this document.
+
+*[`sprintf(radicalv2_eez%s_date.csv, scenario`](`sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/radicalv2_eez%s_%s.csv', saveFile, radicalFile)`)
+ 
+ (**NOTE:** The code in the following code chunks will need to be modified when new scenarios are added)
+
+```{r websites data, include=FALSE}
+
+setwd("~/ohi-global")
+
+
+## These are run and saved if radical1 and radical2 arguments are TRUE
+# NOTE: radical_scores.R, compiles all scenarios using the following combinations:
+# 2012 = eez2012
+# 2013 = eez2013
+# 2014 = eez2014 and antarctica2014 and highseas2014
+# 2015 = eez2015 and antarctica2014 and highseas2014
+# this function needs to be updated when these scenarios are updated
 source('global2015/radical_scores.R')
 
-scenario <- "eez2015" #identify scenario to collect data for (this can be changed to obtain data for other years)
+## This calls a file called layers_2015.csv that includes information about
+## the metadata for each layer file.  This will need to be updated if any of the 
+## layers change in future analyses.
 source('global2015/Radical_scores_v2.R')
+
 
 ```
 
 
-#Saving human readable tables
-Tables of the results are saved to this location (github:ohi-global/global2015/data).
+#Human readable tables
+Tables of the results are saved to this location (github:ohi-global/`saveFile`/data).
 
 ###EEZ scores for 2015
 Outputs (include both csv and html formatted tables): 
 *scores_...*.csv and .html 
 
-```{r, include=FALSE}
-#-------------------------
-scenario = 2015
-radicalFile = '2015-08-20'
-#-------------------------
+```{r score table, include=FALSE}
 
 setwd("~/ohi-global")
-
-rgn_names <- read.csv(sprintf('eez%s/layers/rgn_global.csv', scenario)) %>%
-  select(region_id = rgn_id, country = label)
 
 data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
 
 data <- data[data$scenario == scenario, ]
 
 data <- data %>%
-  filter(scenario == scenario) %>%       # focus on this scenario
   filter(dimension == "score") %>%   # focus only on score data
   filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
   mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
@@ -88,12 +116,12 @@ data <- data %>%
   filter(country != 'eez_weighted_avg')
 
 data <- rbind(index, data) %>%
-    select(scenario, dimension, country, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+    select(scenario, dimension, country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
 
-write.csv(data, sprintf("global2015/Reporting/data/scores_eez%s_Rad%s.csv", scenario, radicalFile), row.names = FALSE, na='')
+write.csv(data, sprintf("%s/Reporting/data/scores_eez%s.csv", saveFile, scenario), row.names = FALSE, na='')
 
 ## make an html file that is color coded:
-pal = brewer.pal(10, 'Spectral')
+pal = brewer.pal(10, 'RdYlBu')
 
 cols <- data.frame(country=data$country)
 for(goal in goals){ #goal="Index"
@@ -105,9 +133,9 @@ for(goal in goals){ #goal="Index"
 }
 
 
-hwrite(data, sprintf('global2015/Reporting/data/scores_eez%s_Rad%s.html', scenario, radicalFile), br=TRUE, center=TRUE, border=0, 
+hwrite(data, sprintf('%s/Reporting/data/scores_eez%s.html', saveFile, scenario), br=TRUE, center=TRUE, border=0, 
        row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
-       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff',Index = cols$Index, 
+       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff', region_id='#fff', Index = cols$Index, 
                         AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
                         ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
                         SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
@@ -120,20 +148,15 @@ Outputs (include both csv and html formatted tables):
 *change_in_scores_benchmark...*.csv and .html 
 
  
-```{r, include=FALSE}
-#-------------------------
-benchmark = 2013
-oldCommit = '4da6b4a1d69d694264ea68456359a939b0c03f9c' # '4da6b4a1d69d694264ea68456359a939b0c03f9c' = commit for 2014 analysis
-#-------------------------
+```{r difference table, include=FALSE}
 
 setwd("~/ohi-global")
 
-data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
+data <- read.csv(sprintf('%s/radical_%s.csv', saveFile, radicalFile)) 
 
 data <- data[data$scenario == benchmark, ]
 
 data <- data %>%
-  filter(scenario == scenario) %>%       # focus on this scenario
   filter(dimension == "score") %>%   # focus only on score data
   filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
   mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
@@ -159,7 +182,7 @@ compare <- data %>%
 
 compare_wide <- compare %>%
   mutate(change_in_score = round((value - old_value), 2)) %>%
-  select(scenario, goal, dimension, country, change_in_score) %>%
+  select(scenario, goal, dimension, country, region_id, change_in_score) %>%
   spread(goal, change_in_score)
 
 index <- compare_wide %>%
@@ -170,12 +193,12 @@ compare_wide <- compare_wide %>%
   filter(country != 'eez_weighted_avg')
 
 compare_wide <- rbind(index, compare_wide) %>%
-    select(scenario, dimension, country, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+    select(scenario, dimension, country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
 
-write.csv(compare_wide, sprintf("global2015/Reporting/data/change_in_scores_benchmark%s_eez%s.csv", benchmark, scenario), row.names = FALSE, na='')
+write.csv(compare_wide, sprintf("%s/Reporting/data/change_in_scores_benchmark%s_eez%s.csv", saveFile, benchmark, scenario), row.names = FALSE, na='')
 
 ## make an html file that is color coded:
-pal = brewer.pal(10, 'Spectral')
+pal = brewer.pal(10, 'RdYlBu')
 
 cols <- data.frame(country=compare_wide$country)
 for(goal in goals){ #goal="CW"
@@ -187,9 +210,9 @@ for(goal in goals){ #goal="CW"
 }
 
 
-hwrite(compare_wide, sprintf('global2015/Reporting/data/change_in_scores_benchmark%s_eez%s.html', benchmark, scenario), br=TRUE, center=TRUE, border=0, 
+hwrite(compare_wide, sprintf('%s/Reporting/data/change_in_scores_benchmark%s_eez%s.html', saveFile, benchmark, scenario), br=TRUE, center=TRUE, border=0, 
        row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
-       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff', Index = cols$Index, 
+       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff', region_id='#fff', Index = cols$Index, 
                         AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
                         ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
                         SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
@@ -202,13 +225,11 @@ Outputs (include both csv and html formatted tables):
 *trends...*.csv and .html 
 
  
-```{r, include=FALSE}
-#-------------------------
-#-------------------------
+```{r trends, include=FALSE}
 
 setwd("~/ohi-global")
 
-data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
+data <- read.csv(sprintf('%s/radical_%s.csv', saveFile, radicalFile)) 
 
 data <- data %>%
   filter(dimension == "score") %>%   # focus only on score data
@@ -231,7 +252,7 @@ trends <- trends %>%
   left_join(rgn_names, by=c('region_id')) %>%
   mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
   mutate(trend = round(trend, 2)) %>%
-  select(goal, country, trend) %>%
+  select(goal, country, region_id, trend) %>%
   data.frame()
 
 trends <- spread(trends, goal, trend)
@@ -244,12 +265,12 @@ trends <- trends %>%
   filter(country != 'eez_weighted_avg')
 
 trends <- rbind(index, trends) %>%
-    select(country, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+    select(country, Index, region_id, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
 
-write.csv(trends, sprintf("global2015/Reporting/data/trends.csv", benchmark, scenario), row.names = FALSE, na='')
+write.csv(trends, sprintf("%s/Reporting/data/trends.csv", saveFile, benchmark, scenario), row.names = FALSE, na='')
 
 ## make an html file that is color coded:
-pal = brewer.pal(10, 'Spectral')
+pal = brewer.pal(10, 'RdYlBu')
 
 cols <- data.frame(country=trends$country)
 for(goal in goals){ #goal="CW"
@@ -261,9 +282,9 @@ for(goal in goals){ #goal="CW"
 }
 
 
-hwrite(trends, sprintf('global2015/Reporting/data/trends.html', benchmark, scenario), br=TRUE, center=TRUE, border=0, 
+hwrite(trends, sprintf('%s/Reporting/data/trends.html', saveFile), br=TRUE, center=TRUE, border=0, 
        row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
-       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff',Index = cols$Index, 
+       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff', region_id='#fff', Index = cols$Index, 
                         AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
                         ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
                         SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
@@ -274,9 +295,7 @@ hwrite(trends, sprintf('global2015/Reporting/data/trends.html', benchmark, scena
 
 ###Status years used in the 2012 to 2015 scenarios
 
-```{r, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
-#-------------------------
-#-------------------------
+```{r status years, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 
 setwd("~/ohi-global")
 
@@ -297,6 +316,7 @@ goalsYears <- c()
     year <- ifelse(length(year)==0, NA, year)
     goalsYears <- c(goalsYears, year)
     }
+
 goalsYears <- data.frame(goalsYears)
 names(goalsYears) <- paste('eez', scenarioYear, sep="_")
 data <- cbind(data, goalsYears)
@@ -313,13 +333,11 @@ Outputs (see png file for details):
 *carpetPlot.png* 
 
  
-```{r, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23,}
-#-------------------------
-#-------------------------
+```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 
 setwd("~/ohi-global")
 
-data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
+data <- read.csv(sprintf('%s/radical_%s.csv', saveFile, radicalFile)) 
 
 data <- data %>%
   filter(dimension == "score") %>%   # focus only on score data
@@ -337,7 +355,7 @@ data <- data %>%
   
 data$goal <- factor(data$goal, levels = goals)
 
-myPalette <- colorRampPalette(brewer.pal(11, "Spectral"), space="Lab")
+myPalette <- colorRampPalette(brewer.pal(10, "RdYlBu"))
 ggplot(data, aes(y=factor(country, levels=(country)[order(meanIndex)]), x=scenario, fill=value)) + 
   geom_tile(aes(order=meanIndex)) +
   facet_grid(~goal) + 
@@ -345,7 +363,7 @@ ggplot(data, aes(y=factor(country, levels=(country)[order(meanIndex)]), x=scenar
   theme(axis.text.x  = element_text(angle=90, vjust=0.5)) +
   ylab("") + 
   xlab("")
-ggsave("global2015/Reporting/figures/carpetPlot.png", width=20, height=25, units="in")
+ggsave(sprintf("%s/Reporting/figures/carpetPlot.png", saveFile), width=20, height=25, units="in")
 
 
 ```
@@ -353,7 +371,7 @@ ggsave("global2015/Reporting/figures/carpetPlot.png", width=20, height=25, units
 ###Scatterplots comparing the current analysis and the 2014 analysis
 
 
-```{r, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+```{r scatter plot: old vs new, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 #-------------------------
   criteria <- ~dimension == score
 #-------------------------
@@ -391,16 +409,109 @@ print(p)
 
 ```
 
-###GoogleVis plot
+### Maps
 
 
-```{r, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+```{r map plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 #-------------------------
 #-------------------------
 
 setwd("~/ohi-global")
 
-data <- read.csv(sprintf('global2015/radical_%s.csv', radicalFile)) 
+## read in map data:
+p <- readOGR(dsn='/var/data/ohi/model/GL-NCEAS-OceanRegions_v2013a/data', layer= 'rgn_ocean_cntry_mol')
+
+## This isolates the main map parts: 
+ocean  <-  p[is.na(p@data$ISO_3digit) & p@data$rgn_id==0,]
+land  <-  p[!is.na(p@data$ISO_3digit) & p@data$rgn_id==0,]
+rgnOHI <-  p[p@data$rgn_id>0,]
+
+
+## read in data:
+data <- read.csv(sprintf('%s/radical_%s.csv', saveFile, radicalFile)) 
+
+## global score map
+data <- data[data$scenario == scenario, ]
+
+data <- data %>%
+  filter(dimension == "score") %>%
+  filter(region_id <= 250) %>%
+  filter(region_id != 0) %>%
+  select(code=region_id, goal, value) %>%
+  mutate(goal = factor(goal, levels=goals)) 
+
+PlotData <- spread(data, goal, value) 
+rownames(PlotData) <- PlotData$code
+
+mapCols <- 2:20
+
+## This loop goes through the columns to be plotted and:
+## 1. matches the data row names (rgn_id) to the rgn_id of the OHI regions
+## 2. identifies the break points for colors from: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+## 3. plots the maps and saves them to the "fig" file in the working directory 
+
+for (i in 1:length(mapCols)){ 
+  #i <- 1
+  s=mapCols[i]
+  # Index map
+  fld = names(PlotData)[s]
+  v= PlotData[match(rgnOHI@data$rgn_id, row.names(PlotData)), fld]    
+  maps = setNames(list(v), fld)  
+  
+  fig = sprintf('%s/Reporting/figures/maps_old_school/global_map_mol_%s.png', saveFile, fld)
+
+  col.brks = seq(0,100,length.out=11)
+  
+  # ensure color ramp breaks contain all data
+  stopifnot(max(v,na.rm=T)<=max(col.brks) & min(v,na.rm=T)>=min(col.brks) & length(col.brks)==11)
+  
+  # plot map
+  png(file=fig, width=1200, height=800, res=150, pointsize=18, type='cairo')
+  par(oma=c(0,0,0,0),
+      mar=c(1.5,1,0,1))
+  plot(ocean, col='gray90', border=NA)
+  plot(rgnOHI, border="grey75", add=TRUE,
+       col=brewer.pal(10, 'RdYlBu')[cut(v, col.brks, labels=1:10, include.lowest=TRUE)])
+  plot(land, col='gray80', border='grey75', add=TRUE)
+  
+  # get plotting dimensions
+  p=par('usr'); px=diff(p[1:2]); py=diff(p[3:4]) # c(x1, x2, y1, y2)
+  
+  # add label
+  text(x=p[1]+px*0.02, y=p[4]-py*0.1, labels=fld, pos=4) # +p.dx*0.1
+  
+  # plot legend
+  yh=0.05; x1=p[1]+px*0.2; x2=p[2]-px*0.2; y1=p[3]; y2=p[3]+py*yh
+  ix = seq(x1, x2, length.out=10)
+  ixd = diff(ix)[1]/2
+  par(xpd=TRUE) # turn off clipping to plot region
+  image(x = ix,
+        y = c(y1, y2),
+        z = matrix(1:10), col=brewer.pal(10, 'RdYlBu'), add=T)
+  rect(x1-ixd,y1,x2+ixd,y2, border='gray20')
+  rect(x1-ixd*3,y1,x1-ixd,y2, border='gray20')
+  text(x = c(x1-ixd*2, seq(x1-ixd, x2+ixd, length.out=11)),
+       y = y1, cex=0.6, pos=1, # adj=c(0.5,0), # , offset=0.1,
+       labels=c('NA',as.character(col.brks))) 
+  par(xpd=F) # turn back on clipping to plot region
+  
+  # finish fig
+  dev.off() #; system(sprintf('open %s', fig))
+}
+
+
+
+```
+
+
+###GoogleVis plot
+
+
+```{r GoogleVis, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+setwd("~/ohi-global")
+
+data <- read.csv(sprintf('%s/radical_%s.csv', saveFile, radicalFile)) 
 
 data <- data %>%
   filter(dimension == "score") %>%   # focus only on score data
@@ -418,9 +529,126 @@ data <- spread(data, goal, score)
 Motion=gvisMotionChart(data, 
                        idvar="country", 
                        timevar="year")
-plot(Motion)
+#plot(Motion)
 
-print(Motion, file='global2015/Reporting/figures/GoogleVisScores.html')
+print(Motion, file=sprintf('%s/Reporting/figures/GoogleVisScores.html', saveFile))
 
+
+```
+
+###Flower plots
+
+```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4, fig.height=4}
+
+setwd("~/ohi-global")
+
+## weights for FIS vs. MAR
+weights <- read.csv(sprintf("eez%s/layers/fp_wildcaught_weight.csv", scenario), stringsAsFactors=FALSE)
+weights_global <- data.frame(rgn_id=0, w_fis=mean(weights$w_fis))
+weights <- rbind(weights_global, weights)
+
+# getting the goals that will be plotted:
+conf <-  read.csv(sprintf("eez%s/conf/goals.csv", scenario), stringsAsFactors=FALSE) 
+
+goals_supra = na.omit(unique(conf$parent)) # goals comprised of subgoals, not included in plot
+
+conf <- conf %>%
+  filter(!(goal %in% goals_supra)) %>%
+  select(goal, order_color, order_hierarchy, weight, name_flower) %>%
+  mutate(name_flower = gsub("\\n", "\n", name_flower, fixed = TRUE)) %>%
+  arrange(order_hierarchy)
+
+
+data <- read.csv(sprintf('%s/radical_%s.csv', saveFile, radicalFile), stringsAsFactors=FALSE) 
+data <- data[data$scenario == scenario, ]
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)
+
+# region names, ordered by GLOBAL and alphabetical
+rgn_names2 = rbind(
+  data.frame(
+    region_id=0, 
+    country='GLOBAL'),
+  rgn_names) %>%
+    arrange(country) %>%
+  filter(region_id != 213)
+
+# loop through regions to plot flowers
+for (rgn_id in unique(rgn_names2$region_id)){  #rgn_id=0
+   
+  # header md
+  rgn_name = subset(rgn_names2, region_id==rgn_id, country, drop=T)
+  message(sprintf('\n## %s (%d)\n\n', rgn_name, rgn_id))
+  
+    # region scores    
+  g_x <- subset(data, region_id==rgn_id) %>%
+         inner_join(conf, by="goal") %>%
+         arrange(order_color)
+  x <-  subset(data, region_id==rgn_id & goal == 'Index', value, drop=T)
+
+    # get colors for aster, based on 10 colors, but extended to all goals. subselect for goals.wts
+if(colorScheme == "new"){
+  g_x$cols.goals.all = cut(g_x$value, breaks=seq(0, 100, by=10), include.lowest=TRUE, 
+                       labels=RColorBrewer::brewer.pal(10, 'RdYlBu')) } else {
+    g_x$cols.goals.all = colorRampPalette(RColorBrewer::brewer.pal(11, 'Spectral'), space='Lab')(length(goals.all))
+   }
+
+       #weights after correcting for fisheries/mariculture contributions
+  g_x$weight[g_x$goal == "FIS"] <-   weights$w_fis[weights$rgn_id == rgn_id]
+  g_x$weight[g_x$goal == "MAR"] <- 1 - weights$w_fis[weights$rgn_id == rgn_id]
+  
+        
+  # res=72
+      
+  res=150
+   ## start plot
+   png(sprintf('%s/Reporting/figures/FlowerPlots/flower_%s.png', saveFile, rgn_name),
+          width=res*6, height=res*6, bg = "transparent")
+#par(oma=c(0,0,3,0), mar=c(6, 4, 0, 2) + 0.1)
+   PlotFlower(main = rgn_name,
+                 lengths=ifelse(
+                   is.na(g_x$value),
+                   100,
+                   g_x$value),
+                 widths=g_x$weight,
+                 fill.col=ifelse(
+                   is.na(g_x$cols.goals.all), 
+                   'grey80', 
+                   as.character(g_x$cols.goals.all)),
+                 labels  =ifelse(
+                   is.na(g_x$value), 
+                   paste(g_x$name_flower, '-', sep='\n'), 
+                   paste(as.character(g_x$name_flower), round(g_x$value), sep='\n')),
+                 center=round(x),
+               #  max.length = 100, disk=0.4, label.cex=0.9, label.offset=0.155, cex=2.2, cex.main=2.5)
+           max.length = 100, disk=0.3, label.cex=1.5, label.offset=0.15, cex=3, cex.main=3)
+
+      dev.off()      
+      #system(sprintf('convert -density 150x150 %s %s', fig_pdf, fig_png)) # imagemagick's convert
+  
+    
+PlotFlower(main = rgn_name,
+                 lengths=ifelse(
+                   is.na(g_x$value),
+                   100,
+                   g_x$value),
+                 widths=g_x$weight,
+                 fill.col=ifelse(
+                   is.na(g_x$cols.goals.all), 
+                   'grey80', 
+                   as.character(g_x$cols.goals.all)),
+                 labels  =ifelse(
+                   is.na(g_x$value), 
+                   paste(g_x$name_flower, '-', sep='\n'), 
+                   paste(as.character(g_x$name_flower), round(g_x$value), sep='\n')),
+                 center=round(x),
+                max.length = 100, disk=0.4, label.cex=0.5, label.offset=0.19, cex=1.2, cex.main=1.2, uin=1)
+  }
+  
 
 ```
