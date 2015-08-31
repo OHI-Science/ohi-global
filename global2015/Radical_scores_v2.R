@@ -9,10 +9,10 @@ if(radical2 == TRUE){
 # library(tidyr)
 # setwd("~/ohi-global")
 
-# scenario <- "eez2015"
+# scenario <- "2015"
 
 ## data needs to be in this order: component_id, component_name, goal, dimension, scenario, region_id, value, units, source
-layers <- read.csv('global2015/layers_2015.csv') %>%
+layers <- read.csv(sprintf('%s/layers_2015.csv', saveFile)) %>%
   filter(radical_include=="yes") %>%
   select(component_id, component_name, goal, dimension, scenario, units, source)
 table(layers$goal) 
@@ -38,7 +38,7 @@ pressures <- layers %>%
   filter(goal=="pressures") %>%
   select(-goal)
 
-pMatrix <- read.csv('eez2015/conf/pressures_matrix.csv')
+pMatrix <- read.csv(sprintf('eez%s/conf/pressures_matrix.csv', scenario))
 
 pMatrix <- gather(pMatrix, "component_id", "weight", 4:ncol(pMatrix)) %>%
   group_by(goal, component_id) %>%
@@ -66,7 +66,7 @@ res <- layers %>%
   filter(goal=="resilience") %>%
   select(-goal)
 
-rMatrix <- read.csv('eez2015/conf/resilience_matrix.csv')
+rMatrix <- read.csv(sprintf('eez%s/conf/resilience_matrix.csv', scenario))
 
 rMatrix <- gather(rMatrix, "component_id", "weight", 3:ncol(rMatrix)) %>%
   filter(weight != "") %>%
@@ -105,7 +105,7 @@ p_components <- p_components[! (p_components %in% c('cp_habitat_extent_rank', 'c
 pres_res_data <- data.frame()
 
 for(comp in p_components) { # comp="wgi_all"
-  data <- read.csv(sprintf('%s/layers/%s.csv', scenario, comp))
+  data <- read.csv(sprintf('eez%s/layers/%s.csv', scenario, comp))
   
   names(data)[which(names(data)=="rgn_id")] <- "region_id"
   names(data)[which(names(data) != "region_id")] <- "value"
@@ -162,10 +162,10 @@ status_components <- status_components[! status_components %in%  c("np_harvest_p
 s_t_radical_comp <- data.frame()
 
 for(comp in status_components) { # comp="po_pathogens"
-data <- read.csv(sprintf('%s/layers/%s.csv', scenario, comp))  
+data <- read.csv(sprintf('eez%s/layers/%s.csv', scenario, comp))  
   
 if(sum(grepl("year", names(data)))>0){    
-  f <-  read.csv(sprintf('%s/conf/goals.csv', scenario)) %>%
+  f <-  read.csv(sprintf('eez%s/conf/goals.csv', scenario)) %>%
     select(goal, preindex_function)
   f <- f[f$goal == goal, ]
   year <- as.numeric(gsub("[^\\d]+", "", f$preindex_function, perl=TRUE))
@@ -196,10 +196,10 @@ np_components <- np_components[! (np_components %in% c('np_blast', 'np_cyanide')
 
 for(comp in np_components) { # comp='np_harvest_tonnes_relative'
 
-  data <- read.csv(sprintf('%s/layers/%s.csv', scenario, comp))
+  data <- read.csv(sprintf('eez%s/layers/%s.csv', scenario, comp))
   
 if(sum(grepl("year", names(data)))>0){
-    f <-  read.csv(sprintf('%s/conf/goals.csv', scenario)) %>%
+    f <-  read.csv(sprintf('eez%s/conf/goals.csv', scenario)) %>%
       select(goal, preindex_function)
     f <- f[f$goal == "NP", ]
     year <- as.numeric(gsub("[^\\d]+", "", f$preindex_function, perl=TRUE))
@@ -231,7 +231,7 @@ hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %
   
 
 for(comp in hab_components) { # comp="hab_extent"
-  data <- read.csv(sprintf('%s/layers/%s.csv', scenario, comp)) %>%
+  data <- read.csv(sprintf('eez%s/layers/%s.csv', scenario, comp)) %>%
   filter(habitat %in% c('coral','mangrove','saltmarsh','seaice_edge','seagrass','soft_bottom'))
   
   names(data)[which(names(data)=="rgn_id")] <- "region_id"
@@ -255,10 +255,10 @@ hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %
 for(comp in hab_components) { # comp="hab_extent"
   
   if(grepl('extent', comp)){
-  data <- read.csv(sprintf('%s/layers/%s.csv', scenario, comp)) %>%
+  data <- read.csv(sprintf('eez%s/layers/%s.csv', scenario, comp)) %>%
     filter(habitat %in% c('coral','mangrove_inland1km','mangrove_offshore', 'saltmarsh','seaice_edge','seagrass'))
   } else {
-    data <- read.csv(sprintf('%s/layers/%s.csv', scenario, comp)) %>%
+    data <- read.csv(sprintf('eez%s/layers/%s.csv', scenario, comp)) %>%
       filter(habitat %in% c('coral','mangrove', 'saltmarsh','seaice_edge','seagrass'))
   }
   
@@ -281,7 +281,7 @@ hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %
 
 
 for(comp in hab_components) { # comp="hab_extent"
-  data <- read.csv(sprintf('%s/layers/%s.csv', scenario, comp)) %>%
+  data <- read.csv(sprintf('eez%s/layers/%s.csv', scenario, comp)) %>%
     filter(habitat %in% c('mangrove','saltmarsh','seagrass'))
   
   names(data)[which(names(data)=="rgn_id")] <- "region_id"
@@ -324,7 +324,7 @@ radical <- p_r_radical %>%
 ### adding trend data
 #-----------------------------------------------------------------------------------
 
-trends <-  read.csv(sprintf('%s/scores.csv', scenario)) %>%
+trends <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
   filter(dimension=="trend") %>%
   mutate(component_id = paste0("trend_", goal)) %>%
   mutate(component_name = paste0("trend_", goal)) %>%
@@ -356,6 +356,6 @@ setdiff(paste(layers$component_id, layers$goal, layers$dimension), paste(radical
 sum(duplicated(paste(radical_final$component_id, radical_final$component_name, radical_final$goal, radical_final$dimension, radical_final$region_id)))
 
 
-write.csv(radical_final, sprintf('global2015/radicalv2_%s_%s.csv', scenario, Sys.Date()),
+write.csv(radical_final, sprintf('%s/radicalv2_%s_%s.csv', saveFile, scenario, Sys.Date()),
           row.names=FALSE, na="") 
 }
