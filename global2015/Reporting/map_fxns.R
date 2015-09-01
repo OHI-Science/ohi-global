@@ -1,27 +1,22 @@
 ### map_fxns.R 
 ### Aug 26, 2015: Casey O'Hara
-library(rgdal)
-library(maptools)
+require('rgdal')
+require('maptools')
 require('RColorBrewer')
-library(ggplot2)
+require('ggplot2')
+require('stringr')
 
-dir_global <- setwd('~/github/ohi-global')
-dir_rept   <- file.path(dir_global, 'global2015/Reporting')
-dir_data   <- file.path(dir_rept, 'data')
+if(!exists('dir_global')) 
+  dir_global <- ifelse(dir.exists('~/github'), '~/github/ohi-global', '~/ohi-global')
 
-dir_ohiprep <- '~/github/ohiprep'
-dir_sp     <-  file.path(dir_ohiprep, 'globalprep/spatial/downres')
-# writeOGR dsn needs to be an absolute path? apparently '~' causes issues. getwd() expands the '~'.
-
-
-get_rgn_df <- function(dsn = '~/github/ohiprep/globalprep/spatial/downres', layer = NULL, prj = 'gcs') {
-  
-  layer <- sprintf('rgn_eez_%s_low_res', prj)
-  rgn_shp <- readOGR(dsn = path.expand(dsn), layer) #, p4s = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs')
+get_rgn_df <- function(dsn = str_replace(dir_global, 'ohi-global', 'ohiprep/globalprep/spatial/downres'),
+                       layer = NULL, prj = 'gcs') {
+  if(is.null(layer)) layer <- sprintf('rgn_eez_%s_low_res', prj)
+  rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE) #, p4s = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs')
 
   ### The ID number for fortify(rgn_shp) is simply the row number within the @data.
   ### So create a lookup table for row number (zero to N-1) to rgn_id.
-  rgn_lookup <- data.frame(id     = c(0:(nrow(rgn_shp@data)-1)), 
+  rgn_lookup <- data.frame(id     = c(0:(nrow(rgn_shp@data) - 1)), 
                            rgn_id = rgn_shp@data$rgn_id)
   
 #   if (prj == 'mol') {
@@ -39,9 +34,10 @@ get_rgn_df <- function(dsn = '~/github/ohiprep/globalprep/spatial/downres', laye
 }
 
 
-get_land_df <- function(dsn = '~/github/ohiprep/globalprep/spatial/downres', layer = 'rgn_land_mol_low_res') {
+get_land_df <- function(dsn = sprintf('%s/../ohiprep/globalprep/spatial/downres', dir_global),
+                        layer = 'rgn_land_mol_low_res') {
 ### gets Mollweide land forms for plotting.
-  rgn_shp <- readOGR(dsn = path.expand(dsn), layer)
+  rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE)
   
   ### Fortify the rgn_eez from shapefile into dataframe.  Then attach the region
   ### ID by the polygon ID (row number from @data)
@@ -50,9 +46,10 @@ get_land_df <- function(dsn = '~/github/ohiprep/globalprep/spatial/downres', lay
   return(rgn_df)
 }
 
-get_ocean_df <- function(dsn = '~/github/ohiprep/globalprep/spatial/downres', layer = 'rgn_all_mol_low_res') {
+get_ocean_df <- function(dsn = sprintf('%s/../ohiprep/globalprep/spatial/downres', dir_global),
+                         layer = 'rgn_all_mol_low_res') {
   ### gets Mollweide ocean regions (all) for plotting.
-  rgn_shp <- readOGR(dsn = path.expand(dsn), layer)
+  rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE)
   
   ### Fortify the rgn_eez from shapefile into dataframe.  Then attach the region
   ### ID by the polygon ID (row number from @data)
@@ -108,7 +105,7 @@ plot_scores <- function(rgn_df, fld, fig_save = NULL, prj = 'gcs',
          x = NULL, y = NULL) 
   if(prj == 'mol'){
   ### For Mollweide, 'border()' doesn't seem to work.  Load in land and ocean polygons to plot directly.
-    if(!exists('land_poly')) {}
+    if(!exists('land_poly'))
       land_poly <- get_land_df()
     if(!exists('ocean_poly'))
       ocean_poly <- get_ocean_df()
@@ -127,8 +124,7 @@ plot_scores <- function(rgn_df, fld, fig_save = NULL, prj = 'gcs',
       scale_x_continuous(breaks = seq(-180, 180, by = 30), expand = c(0, 2)) +
       scale_y_continuous(breaks = seq( -90,  90, by = 30), expand = c(0, 2))
   }
-  df_plot
-  
+
   if(!is.null(fig_save)) {
     cat(sprintf('Saving map to %s...\n', fig_save))
     ggsave(fig_save, width = 10, height = 6)
