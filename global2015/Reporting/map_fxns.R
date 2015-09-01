@@ -50,6 +50,17 @@ get_land_df <- function(dsn = '~/github/ohiprep/globalprep/spatial/downres', lay
   return(rgn_df)
 }
 
+get_ocean_df <- function(dsn = '~/github/ohiprep/globalprep/spatial/downres', layer = 'rgn_all_mol_low_res') {
+  ### gets Mollweide ocean regions (all) for plotting.
+  rgn_shp <- readOGR(dsn = path.expand(dsn), layer)
+  
+  ### Fortify the rgn_eez from shapefile into dataframe.  Then attach the region
+  ### ID by the polygon ID (row number from @data)
+  rgn_df <- fortify(rgn_shp)
+  
+  return(rgn_df)
+}
+
 
 expand_fld <- function(fld) {
   switch(fld,  
@@ -92,18 +103,26 @@ plot_scores <- function(rgn_df, fld, fig_save = NULL, prj = 'gcs',
           legend.position = ifelse(leg_on, 'right', 'none')) + 
     scale_fill_gradientn(colours = brewer.pal(10, 'RdYlBu'), space = 'Lab', na.value = 'gray80',
                          breaks = col.brks, labels = col.brks, limits = c(0, 100)) + 
-    geom_polygon(color = 'gray80', size = 0.1) +
     labs(title = title, 
          fill  = ifelse(leg_title & leg_on, fld, ''),
          x = NULL, y = NULL) 
   if(prj == 'mol'){
-    if(!exists('land_poly'))
+  ### For Mollweide, 'border()' doesn't seem to work.  Load in land and ocean polygons to plot directly.
+    if(!exists('land_poly')) {}
       land_poly <- get_land_df()
+    if(!exists('ocean_poly'))
+      ocean_poly <- get_ocean_df()
+    
     df_plot <- df_plot +
-      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank()) +
+      geom_polygon(data = ocean_poly, color = 'gray92', fill = 'gray92', size = 0.25) +
+      geom_polygon(color = 'gray80', size = 0.1) +
       geom_polygon(data = land_poly, color = 'gray40', fill = 'gray45', size = 0.25)
+    ### df_plot order: oceans (light grey), then EEZ score polygons, then land polygons (dark grey).
   } else {
+  ### For default projection, use standard grey background for oceans, and use borders() for land forms.
     df_plot <- df_plot +   
+      geom_polygon(color = 'gray80', size = 0.1) +
       borders('world', color = 'gray40', fill = 'gray45', size = .25) + # create a layer of borders
       scale_x_continuous(breaks = seq(-180, 180, by = 30), expand = c(0, 2)) +
       scale_y_continuous(breaks = seq( -90,  90, by = 30), expand = c(0, 2))
