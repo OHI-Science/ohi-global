@@ -1,11 +1,20 @@
 ---
 title: "Reporting for 2015 OHI global"
 author: "Casey and Mel"
-date: "8/20/2015"
+date: "9/1/2015"
 output: html_document
 ---
 
-This document summarizes the data for the OHI 2015 global analysis.
+This document summarizes the data for the OHI 2015 global analysis.  Shortcuts to:
+
+* [Saving data files for websites](#saving)
+* [Human-readable tables](#tables)
+* [Figures:](#figures)
+    * [Carpet plot](#carpet)
+    * [Maps](#maps) by goal and subgoal
+    * [Scatter plots](#scatter) showing 2015 analysis vs 2014 analysis (using 2013 benchmark year)
+    * [GoogleVis plots](#googlevis)
+    * [Flower plots](#flower) for every region
 
 ```{r data set up, include=FALSE}
 
@@ -44,18 +53,16 @@ radical2 <- FALSE
 rgn_names <- read.csv(sprintf('eez%s/layers/rgn_global.csv', scenario)) %>%
   select(region_id = rgn_id, country = label)
 #-----------------------------------------
-````
+```
 
-#Saving data files for website
+#<a name="saving"></a>Saving data files for website
 
-Data files are created that are used to generate content for http://www.oceanhealthindex.org/.
+Data files to generate content for http://www.oceanhealthindex.org/.
 
 Output files: 
-*[radical_*date*.csv](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2015/radical_2015-08-20.csv)
 
-`sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/radical_%s.csv', saveFile, radicalFile)`. This file is also used to generate the tables and figures in this document.
-
-*[`sprintf(radicalv2_eez%s_date.csv, scenario`](`sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/radicalv2_eez%s_%s.csv', saveFile, radicalFile)`)
+* [radical_*date*.csv](`r sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/radical_%s.csv', saveFile, radicalFile)`). This file is also used to generate the tables and figures in this document.
+* [`r sprintf('radicalv2_eez%s_*date*.csv', scenario)`](`r sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/radicalv2_eez2015_%s.csv', saveFile, radicalFile)`)
  
  (**NOTE:** The code in the following code chunks will need to be modified when new scenarios are added)
 
@@ -82,8 +89,8 @@ source('global2015/Radical_scores_v2.R')
 ```
 
 
-#Human readable tables
-Tables of the results are saved to this location (github:ohi-global/`saveFile`/data).
+#<a name="tables"></a>Human readable tables
+Tables of the results are saved to this location (github:ohi-global/`r saveFile`/data).
 
 ###EEZ scores for 2015
 Outputs (include both csv and html formatted tables): 
@@ -225,7 +232,6 @@ hwrite(compare_wide, sprintf('%s/Reporting/data/change_in_scores_benchmark%s_eez
 Outputs (include both csv and html formatted tables): 
 *trends...*.csv and .html 
 
- 
 ```{r trends, include=FALSE}
 
 setwd(dir_global)
@@ -293,7 +299,6 @@ hwrite(trends, sprintf('%s/Reporting/data/trends.html', saveFile), br=TRUE, cent
 
 ```
 
-
 ###Status years used in the 2012 to 2015 scenarios
 
 ```{r status years, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
@@ -327,13 +332,11 @@ kable(data,format="pandoc",caption="Years used in analysis")
 
 ```
 
-
-#Figures
-###Carpet plot from 2012 to 2015 scenarios
+#<a name="figures"></a>Figures
+###<a name="carpet"></a>Carpet plot from 2012 to 2015 scenarios
 Outputs (see png file for details): 
 *carpetPlot.png* 
 
- 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 
 setwd(dir_global)
@@ -369,8 +372,45 @@ ggsave(sprintf("%s/Reporting/figures/carpetPlot.png", saveFile), width=20, heigh
 
 ```
 
-###Scatterplots comparing the current analysis and the 2014 analysis
+###<a name="maps"></a>Maps
 
+``` {r Maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+dir_rept <- sprintf('%s/global2015/Reporting', dir_global)
+source(file.path(dir_rept, 'map_fxns.R'))
+
+### set scenario and desired map projection
+scenario <- 2015
+prj      <- 'mol'    ### note: 'gcs' is way faster.
+
+### get OHI data and rename column headings
+scores_df <- read.csv(file.path(dir_rept, sprintf('data/scores_eez%s.csv', scenario)), stringsAsFactors = FALSE) %>%
+  rename(rgn_name = country, rgn_id = region_id)
+
+### load region data frame, so doesn't need to reload every time through the loop.  Also
+### load the land data frame, if plotting in Mollweide projection.
+rgn_df <- get_rgn_df(prj = prj)
+if(prj == 'mol' & !exists('land_poly')) {
+  land_poly  <- get_land_df()
+  ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
+}
+
+
+### establish list of fields for mapping
+mapFlds   <- names(scores_df %>% select(-rgn_name, -rgn_id, -scenario, -dimension))
+
+### Loop over each field, plotting each map in turn and saving to file.
+for (fld in mapFlds) { # fld <- mapFlds[1]
+
+   fig_save = file.path(dir_rept, sprintf('figures/maps_by_goal_%s/global_map_%s_%s_%s.png', prj, fld, scenario, prj))
+   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save)
+   
+   print(ohiplot)
+}
+
+```
+
+###<a name="scatter"></a>Scatterplots comparing the current analysis and the 2014 analysis
 
 ```{r scatter plot: old vs new, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 #-------------------------
@@ -410,48 +450,7 @@ print(p)
 
 ```
 
-
-### Maps
-
-``` {r Maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-
-dir_rept <- sprintf('%s/global2015/Reporting', dir_global)
-source(file.path(dir_rept, 'map_fxns.R'))
-
-### set scenario and desired map projection
-scenario <- 2015
-prj      <- 'mol'    ### note: 'gcs' is way faster.
-
-### get OHI data and rename column headings
-scores_df <- read.csv(file.path(dir_rept, sprintf('data/scores_eez%s.csv', scenario)), stringsAsFactors = FALSE) %>%
-  rename(rgn_name = country, rgn_id = region_id)
-
-### load region data frame, so doesn't need to reload every time through the loop.  Also
-### load the land data frame, if plotting in Mollweide projection.
-rgn_df <- get_rgn_df(prj = prj)
-if(prj == 'mol' & !exists('land_poly')) {
-  land_poly  <- get_land_df()
-  ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
-}
-
-
-### establish list of fields for mapping
-mapFlds   <- names(scores_df %>% select(-rgn_name, -rgn_id, -scenario, -dimension))
-
-### Loop over each field, plotting each map in turn and saving to file.
-for (fld in mapFlds) { # fld <- mapFlds[1]
-
-   #fig_save = file.path(dir_rept, sprintf('figures/maps_by_goal_%s/global_map_%s_%s_%s.png', prj, fld, scenario, prj))
-   #cat(sprintf('Creating map for %s...\n', fld))
-
-   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj)#, fig_save = fig_save)
-   print(ohiplot)
-}
-
-```
-
-###GoogleVis plot
-
+###<a name="googlevis"></a>GoogleVis plot
 
 ```{r GoogleVis, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -482,7 +481,7 @@ print(Motion, file=sprintf('%s/Reporting/figures/GoogleVisScores.html', saveFile
 
 ```
 
-###Flower plots
+###<a name="flower"></a>Flower plots
 
 ```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4, fig.height=4}
 

@@ -126,7 +126,7 @@ plot_scores <- function(rgn_df, fld, fig_save = NULL, prj = 'gcs',
   }
 
   if(!is.null(fig_save)) {
-    cat(sprintf('Saving map to %s...\n', fig_save))
+    #cat(sprintf('Saving map to %s...\n', fig_save))
     ggsave(fig_save, width = 10, height = 6)
     return(invisible(df_plot))
   } else {
