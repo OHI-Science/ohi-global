@@ -90,11 +90,14 @@ summary(layers)
 table(layers$goal)
 
 
-#-----------------------------------------------------------------------------------
+#########################################################################
 ### do most of the pressure and resilience layers (these are mostly straightforward)
 ## Habitat ones are excluded because they include an extra variable that has to be
 ## controlled for
-#-----------------------------------------------------------------------------------
+#########################################################################
+
+### blank pressures/resilience dataframe to add data
+p_r_radical <- data.frame()
 
 pres_res_layers <- layers %>%
   filter(dimension %in% c("pressure", "resilience")) 
@@ -115,26 +118,32 @@ pres_res_data <- rbind(pres_res_data, data)
 }
 
 pres_res_data <- pres_res_data %>%
-  left_join(pres_res_layers, by=c('component_id'))
+  left_join(pres_res_layers, by=c('component_id')) %>%
+  mutate(subcomponent_id = NA)
 
-#data check
+#data check ##
 filter(pres_res_data, goal=='CW', region_id==1) %>%
   select(-source)
 filter(pres_res_data, goal=='AO', region_id==1) %>%
   select(-source)
+#end: data check ##
 
-
-p_r_radical <- data.frame()
+## combine with radical data
 p_r_radical <- rbind(p_r_radical, pres_res_data)
 
+#data check##
 p_r_radical %>%
   filter(goal == "CP")%>%
   filter(region_id == 163) %>%
   select(-source)
+#end: data check ##
 
 ############################################################
 ## goal data
 ############################################################
+
+#initialize the goal dataframe
+s_t_radical <- data.frame()
 
 stat_trend_layers <- layers %>%
   filter(dimension %in% c("status", "trend")) 
@@ -146,22 +155,22 @@ extras <- layers %>%
 stat_trend_layers <- stat_trend_layers %>%
   bind_rows(extras)
 
-#initialize the data
-s_t_radical <- data.frame()
 #-----------------------------------------------------------------------------------
-### Goal layers with no components
+### Goal layers with no subcomponents
 #-----------------------------------------------------------------------------------
 
 goals_sub <- c('CW', 'FP', 'AO', 'LSP', 'TR', 'NP')
 
-for(goal in goals_sub){ # goal='CW'
+for(goal in goals_sub){ # goal='NP'
   
 status_components <- stat_trend_layers$component_id[stat_trend_layers$goal == goal]
+
+
 status_components <- status_components[! status_components %in%  c("np_harvest_product_weight", "np_harvest_tonnes", "np_harvest_tonnes_relative")]
 
 s_t_radical_comp <- data.frame()
 
-for(comp in status_components) { # comp="po_pathogens"
+for(comp in status_components) { # comp="np_blast"
 data <- read.csv(sprintf('eez%s/layers/%s.csv', scenario, comp))  
   
 if(sum(grepl("year", names(data)))>0){    
@@ -179,8 +188,9 @@ names(data)[which(names(data) != "region_id")] <- "value"
 data$component_id = comp
 data$component_name = unique(layers$component_name[layers$component_id == comp])
 data$goal = goal
+data$subcomponent_id = NA
 
-s_t_radical_comp <- rbind(s_t_radical_comp, data)     
+s_t_radical_comp <- rbind(s_t_radical_comp, data)
 
 }
 s_t_radical <- rbind(s_t_radical, s_t_radical_comp)
@@ -188,7 +198,7 @@ s_t_radical <- rbind(s_t_radical, s_t_radical_comp)
 }
 
 #-----------------------------------------------------------------------------------
-### NP goals: years and components
+### NP goals: years and subcomponents
 #-----------------------------------------------------------------------------------
 
 np_components <- stat_trend_layers$component_id[stat_trend_layers$goal == "NP"] 
@@ -212,11 +222,12 @@ if(sum(grepl("year", names(data)))>0){
   names(data)[which(names(data)=="rgn_id")] <- "region_id"
   names(data)[which(!(names(data) %in% c("region_id", "product")))] <- "value"
   data$component_id = comp
-  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$product)  
+  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$product)
+  data$subcomponent_id = data$product
   data$goal = 'NP'
   
   data <- data %>%
-    select(region_id, value, component_id, component_name, goal)
+    select(region_id, value, component_id, component_name, goal, subcomponent_id)
   
   s_t_radical <- rbind(s_t_radical, data)    
 }
@@ -239,9 +250,10 @@ for(comp in hab_components) { # comp="hab_extent"
   data$component_id = comp
   data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
   data$goal = 'HAB'
+  data$subcomponent_id = data$habitat
   
   data <- data %>%
-    select(region_id, value, component_id, component_name, goal) %>%
+    select(region_id, value, component_id, component_name, goal, subcomponent_id) %>%
     unique()
   
   s_t_radical <- rbind(s_t_radical, data)    
@@ -267,9 +279,10 @@ for(comp in hab_components) { # comp="hab_extent"
   data$component_id = comp
   data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
   data$goal = 'CP'
+  data$subcomponent_id = data$habitat
   
   data <- data %>%
-    select(region_id, value, component_id, component_name, goal) %>%
+    select(region_id, value, component_id, component_name, goal, subcomponent_id) %>%
     unique()
   
   s_t_radical <- rbind(s_t_radical, data)    
@@ -289,9 +302,10 @@ for(comp in hab_components) { # comp="hab_extent"
   data$component_id = comp
   data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
   data$goal = 'CS'
+  data$subcomponent_id = data$habitat
   
   data <- data %>%
-    select(region_id, value, component_id, component_name, goal) %>%
+    select(region_id, value, component_id, component_name, goal, subcomponent_id) %>%
     unique()
   
   s_t_radical <- rbind(s_t_radical, data)    
@@ -318,7 +332,7 @@ radical <- p_r_radical %>%
   filter(!is.na(region_id)) %>%
   filter(region_id <= 250) %>%
   filter(region_id != 213) %>%
-  select(component_id, component_name, goal, dimension, scenario, region_id, value, units, source)
+  select(component_id, subcomponent_id, component_name, goal, dimension, scenario, region_id, value, units, source)
  
 #-----------------------------------------------------------------------------------
 ### adding trend data
@@ -327,14 +341,25 @@ radical <- p_r_radical %>%
 trends <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
   filter(dimension=="trend") %>%
   mutate(component_id = paste0("trend_", goal)) %>%
+  mutate(subcomponent_id = NA) %>%
   mutate(component_name = paste0("trend_", goal)) %>%
   mutate(scenario = "2015") %>%
   mutate(units = NA) %>%
   mutate(source = "toolbox calculation: change in status during past 5 years") %>%
-  select(component_id, component_name, goal, dimension, scenario, region_id, value=score, units, source)
+  select(component_id, subcomponent_id, component_name, goal, dimension, scenario, region_id, value=score, units, source)
   
 radical_final <- rbind(radical, trends)
+
+#-----------------------------------------------------------------------------------
+### final formatting
+#-----------------------------------------------------------------------------------
+radical_final <-  radical_final %>%
+  mutate(radical_component_id = paste(component_id, subcomponent_id, goal, sep="_")) %>%
+  select(ohi_component_id = component_id, component_id = radical_component_id, subcomponent_id, component_name, goal, dimension, scenario, region_id, value, units, source)
+
+
   
+## data check ##
 data.frame(filter(radical_final, goal=="CW" & region_id==1) %>%
   select(-source))
 data.frame(filter(radical_final, goal=="CP" & region_id==7) %>%
@@ -354,7 +379,7 @@ setdiff(paste(radical_final$component_id, radical_final$goal, radical_final$dime
 setdiff(paste(layers$component_id, layers$goal, layers$dimension), paste(radical_final$component_id, radical_final$goal, radical_final$dimension))
 
 sum(duplicated(paste(radical_final$component_id, radical_final$component_name, radical_final$goal, radical_final$dimension, radical_final$region_id)))
-
+## end data check
 
 write.csv(radical_final, sprintf('%s/radicalv2_%s_%s.csv', saveFile, scenario, Sys.Date()),
           row.names=FALSE, na="") 
