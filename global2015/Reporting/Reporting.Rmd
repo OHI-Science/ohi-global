@@ -44,14 +44,16 @@ oldCommit = '4da6b4a1d69d694264ea68456359a939b0c03f9c' # '4da6b4a1d69d694264ea68
 colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
 saveFile <- 'global2015' #location where files that are created are to be saved
 
+## General files to load
+rgn_names <- read.csv(sprintf('eez%s/layers/rgn_global.csv', scenario)) %>%
+  dplyr::select(region_id = rgn_id, country = label)
+
+
 # if the ohi-global data is updated these should be changed to TRUE
 # (note: these files are then read in for all subsequent tables/figures)
 radical1 <- FALSE
 radical2 <- FALSE
 
-## General files to load
-rgn_names <- read.csv(sprintf('eez%s/layers/rgn_global.csv', scenario)) %>%
-  select(region_id = rgn_id, country = label)
 #-----------------------------------------
 ```
 

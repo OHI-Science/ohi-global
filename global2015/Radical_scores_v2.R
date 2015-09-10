@@ -14,7 +14,7 @@ if(radical2 == TRUE){
 ## data needs to be in this order: component_id, component_name, goal, dimension, scenario, region_id, value, units, source
 layers <- read.csv(sprintf('%s/layers_2015.csv', saveFile)) %>%
   filter(radical_include=="yes") %>%
-  select(component_id, component_name, goal, dimension, scenario, units, source)
+  select(component_id, component_name, component_label, goal, dimension, scenario, units, source, url)
 table(layers$goal) 
 
 
@@ -187,7 +187,9 @@ names(data)[which(names(data)=="rgn_id")] <- "region_id"
 names(data)[which(names(data) != "region_id")] <- "value"
 data$component_id = comp
 data$component_name = unique(layers$component_name[layers$component_id == comp])
+data$component_label = unique(layers$component_label[layers$component_id == comp])
 data$goal = goal
+data$url = unique(layers$url[layers$component_id == comp])
 data$subcomponent_id = NA
 
 s_t_radical_comp <- rbind(s_t_radical_comp, data)
@@ -223,11 +225,15 @@ if(sum(grepl("year", names(data)))>0){
   names(data)[which(!(names(data) %in% c("region_id", "product")))] <- "value"
   data$component_id = comp
   data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$product)
+  data$component_label = unique(layers$component_label[layers$component_id == comp])
   data$subcomponent_id = data$product
   data$goal = 'NP'
+  data$url = unique(layers$url[layers$component_id == comp])
   
+  
+    
   data <- data %>%
-    select(region_id, value, component_id, component_name, goal, subcomponent_id)
+    select(region_id, value, component_id, component_name, component_label, goal, url, subcomponent_id)
   
   s_t_radical <- rbind(s_t_radical, data)    
 }
@@ -249,11 +255,14 @@ for(comp in hab_components) { # comp="hab_extent"
   names(data)[which(!(names(data) %in% c("region_id", "habitat")))] <- "value"
   data$component_id = comp
   data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
+  data$component_label = unique(layers$component_label[layers$component_id == comp & layers$goal == 'HAB'])
   data$goal = 'HAB'
+  data$url = unique(layers$url[layers$component_id == comp])
   data$subcomponent_id = data$habitat
   
+    
   data <- data %>%
-    select(region_id, value, component_id, component_name, goal, subcomponent_id) %>%
+    select(region_id, value, component_id, component_name, component_label, goal, url, subcomponent_id) %>%
     unique()
   
   s_t_radical <- rbind(s_t_radical, data)    
@@ -280,14 +289,19 @@ for(comp in hab_components) { # comp="hab_extent"
   data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
   data$goal = 'CP'
   data$subcomponent_id = data$habitat
+  data$component_label = unique(layers$component_label[layers$component_id == comp & layers$goal=="CP"])
+  data$url = unique(layers$url[layers$component_id == comp])
   
+
   data <- data %>%
-    select(region_id, value, component_id, component_name, goal, subcomponent_id) %>%
+    select(region_id, value, component_id, component_name, component_label, goal, url, subcomponent_id) %>%
     unique()
   
   s_t_radical <- rbind(s_t_radical, data)    
   
 }
+
+
 
 goals_sub <- c('CS')
 hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %in% goals_sub]) 
@@ -303,9 +317,11 @@ for(comp in hab_components) { # comp="hab_extent"
   data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
   data$goal = 'CS'
   data$subcomponent_id = data$habitat
+  data$component_label = unique(layers$component_label[layers$component_id == comp & layers$goal=="CS"])
+  data$url = unique(layers$url[layers$component_id == comp])
   
   data <- data %>%
-    select(region_id, value, component_id, component_name, goal, subcomponent_id) %>%
+    select(region_id, value, component_id, component_name, component_label, goal, url, subcomponent_id) %>%
     unique()
   
   s_t_radical <- rbind(s_t_radical, data)    
@@ -332,7 +348,7 @@ radical <- p_r_radical %>%
   filter(!is.na(region_id)) %>%
   filter(region_id <= 250) %>%
   filter(region_id != 213) %>%
-  select(component_id, subcomponent_id, component_name, goal, dimension, scenario, region_id, value, units, source)
+  select(component_id, subcomponent_id, component_name, component_label, goal, dimension, scenario, region_id, value, units, source, url)
  
 #-----------------------------------------------------------------------------------
 ### adding trend data
@@ -343,10 +359,12 @@ trends <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
   mutate(component_id = paste0("trend_", goal)) %>%
   mutate(subcomponent_id = NA) %>%
   mutate(component_name = paste0("trend_", goal)) %>%
+  mutate(component_label = NA) %>%
   mutate(scenario = "2015") %>%
   mutate(units = NA) %>%
   mutate(source = "toolbox calculation: change in status during past 5 years") %>%
-  select(component_id, subcomponent_id, component_name, goal, dimension, scenario, region_id, value=score, units, source)
+  mutate(url = NA) %>%
+  select(component_id, subcomponent_id, component_name, component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
   
 radical_final <- rbind(radical, trends)
 
