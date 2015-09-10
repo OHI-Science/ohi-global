@@ -330,7 +330,7 @@ for(comp in hab_components) { # comp="hab_extent"
 
 ## getting the rest of the data
 stat_trend_layers <- stat_trend_layers %>%
-  select(component_id, goal, dimension, scenario, units, source)
+  select(component_id, component_label, goal, dimension, scenario, units, source, url)
   
 
 s_t_radical <- stat_trend_layers %>%
@@ -372,8 +372,8 @@ radical_final <- rbind(radical, trends)
 ### final formatting
 #-----------------------------------------------------------------------------------
 radical_final <-  radical_final %>%
-  mutate(radical_component_id = paste(component_id, subcomponent_id, goal, sep="_")) %>%
-  select(ohi_component_id = component_id, component_id = radical_component_id, subcomponent_id, component_name, goal, dimension, scenario, region_id, value, units, source)
+  mutate(radical_component_id = paste(component_id, subcomponent_id, goal, substring(dimension, 1,1), sep="_")) %>%
+  select(ohi_component_id = component_id, component_id = radical_component_id, subcomponent_id, component_name, goal, dimension, scenario, region_id, value, units, source, url)
 
 
   
@@ -391,12 +391,10 @@ data.frame(filter(radical_final, goal=="HAB" & region_id==163) %>%
              arrange(dimension))
 
 # all the combinations of data seem to match
-setdiff(layers$component_id, radical_final$component_id)
-setdiff(radical_final$component_id, layers$component_id)
-setdiff(paste(radical_final$component_id, radical_final$goal, radical_final$dimension), paste(layers$component_id, layers$goal, layers$dimension))
-setdiff(paste(layers$component_id, layers$goal, layers$dimension), paste(radical_final$component_id, radical_final$goal, radical_final$dimension))
+setdiff(layers$component_id, radical_final$ohi_component_id)
+setdiff(radical_final$ohi_component_id, layers$component_id)  # trend data is ok...this was added secondarily
 
-sum(duplicated(paste(radical_final$component_id, radical_final$component_name, radical_final$goal, radical_final$dimension, radical_final$region_id)))
+sum(duplicated(paste(radical_final$component_id, radical_final$region_id))
 ## end data check
 
 write.csv(radical_final, sprintf('%s/radicalv2_%s_%s.csv', saveFile, scenario, Sys.Date()),
