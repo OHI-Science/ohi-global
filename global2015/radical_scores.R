@@ -167,7 +167,10 @@ write.csv(radical, sprintf('%s/radical_%s.csv', saveFile, Sys.Date()), row.names
 }
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4e4432ca98121580be656bf5534c243cf22ed687
 ###########################################################
 ## Data for Colin @Croscon, Sept 2015
 ###########################################################
@@ -263,6 +266,3 @@ head(us, 20)
 
 write.csv(us, file.path(dir_croscon, 'OHI US West Coast Scores.csv'), row.names =F)
 
-
-
-  
