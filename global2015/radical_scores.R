@@ -167,3 +167,70 @@ write.csv(radical, sprintf('%s/radical_%s.csv', saveFile, Sys.Date()), row.names
 }
 
 
+###########################################################
+## Data for Colin @Croscon, Sept 2015
+###########################################################
+
+# # Only report scores, no other dimensions.
+# # Format scores like this: 
+#   
+# (Sub)Goal	Region_id	Region_label	Score
+# Index	0	US West Coast	96.1
+# Index	1	Northern California	96.6
+# Index	2	Central California	96.27
+# Index	3	Southern California	98.11
+# Index	4	Oregon	67.36
+# Index	5	Washington	47.2
+# FIS	0	US West Coast	96.1
+# FIS	1	Northern California	96.6
+
+library(dplyr)
+library(tidyr)
+library(stringr)
+dir_croscon = '~/github/ohi-global/global2015/croscon_scores'
+
+goal_order = c('Index', 'FIS', 'FP', 'MAR', 'AO', 'CS', 'CP', 'TR', 'LIV', 'LE', 'ECO', 'ICO', 'SP', 'LSP', 'CW', 'HAB', 'BD', 'SPP', 'NP')
+
+#######
+# FIJI
+#######
+
+
+# get fiji rgn_id
+fiji_info = read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-fiji/master/fiji2013/layers/rgn_labels.csv') %>%
+  filter(label == 'Fiji')
+
+# read in fiji scores.csv and filter
+fiji <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-fiji/master/fiji2013/scores.csv') %>%
+  filter(region_id == fiji_info$rgn_id, 
+         dimension == 'score') %>%
+  mutate(rgn_id    = 0, 
+         rgn_label = 'Fiji')%>%
+  select('(Sub)Goal'  = goal, 
+         Region_id    = rgn_id,
+         Region_label = rgn_label, 
+         Score        = score)
+fiji
+
+# write.csv(fiji, file.path(dir_croscon, 'OHI Fiji Scores.csv'), row.names =F)
+# have to arrange by goal_order by hand
+
+#######
+# BRAZIL
+#######
+
+br <- read.csv(file.path(dir_save, 'Elfes_Table3.csv'), strip.white=TRUE) %>%
+  mutate(Region_id = 0:17) %>%
+  gather(goal, score, -Region, -Region_id) %>%
+  mutate(Region = str_replace_all(Region, ' \\([A-Z][A-Z]\\)', '')) %>%
+  select('(Sub)Goal'  = goal, 
+         Region_id,
+         Region_label = Region, 
+         Score        = score)
+head(br, 20)    
+    
+write.csv(br, file.path(dir_croscon, 'OHI Brazil Scores.csv'), row.names =F)
+
+
+
+  
