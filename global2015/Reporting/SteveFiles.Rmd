@@ -64,7 +64,7 @@ datatable(data,
           caption = '2015 OHI scores')
 ```
 
-CSV files for each goal are saved here:  
+CSV files for each goal are saved [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2015/Reporting/data/SteveData).  
 
 ```{r, echo=FALSE}
 setwd(dir_global)
