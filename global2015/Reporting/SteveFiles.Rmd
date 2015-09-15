@@ -1,0 +1,104 @@
+---
+title: "Steve Score Summaries"
+author: "Mel"
+date: "9/15/2015"
+output: html_document
+---
+
+The following table is interactive and you can sort the scores for each goal/subgoal.  You can also search for specific countries.
+
+```{r, include=FALSE}
+
+library(DT)
+library(dplyr)
+library(tidyr)
+library(knitr)
+
+dir_global <- ifelse(dir.exists('~/github'), '~/github/ohi-global', '~/ohi-global')
+setwd(dir_global)
+
+scenario <- '2015'
+
+## General files to load
+rgn_names <- read.csv(sprintf('eez%s/layers/rgn_global.csv', scenario)) %>%
+  dplyr::select(region_id = rgn_id, country = label)
+
+data <- read.csv('global2015/radical_2015-09-11.csv')
+
+data <- data[data$scenario == scenario, ]
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
+  mutate(value = round(value, 0))
+
+data <- spread(data, goal, value)
+
+index <- data %>%
+  filter(country == 'eez_weighted_avg')
+
+data <- data %>%
+  arrange(-Index) %>%
+  filter(country != 'eez_weighted_avg')
+
+data <- rbind(index, data) 
+
+row.names(data) <- data$country
+
+data <- data %>%
+    select(scenario, dimension, country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR) %>%
+  select(-scenario, -dimension, -region_id, -country)
+
+datatable(data,
+          caption = '2015 OHI scores')
+```
+
+
+```{r, echo=FALSE}
+datatable(data,
+          caption = '2015 OHI scores')
+```
+
+CSV files for each goal are saved here:  
+
+```{r, echo=FALSE}
+setwd(dir_global)
+
+data2 <- data %>%
+  mutate(country = row.names(data)) %>%
+  filter(country != 'eez_weighted_avg')
+
+goals <- names(data2)
+goals <- goals[goals != 'country']
+
+for(goal in goals){ #goal <- "Index"
+  tmp <- data2[, c("country", goal)]
+  names(tmp) <- c('country', 'x')
+  tmp <- tmp %>%
+    arrange(-x)
+  names(tmp) <- c('country', goal)
+  
+  write.csv(tmp, sprintf('global2015/Reporting/data/SteveData/%s_sorted.csv', goal), row.names=FALSE)
+}
+```
+
+Summary statistics:
+```{r, echo=FALSE}
+
+setwd(dir_global)
+
+data3 <- select(data2, -country)
+minScore <- data.frame(apply(data3, 2, function(x){min(as.numeric(x), na.rm=TRUE)}))
+maxScore <- data.frame(apply(data3, 2, function(x){max(as.numeric(x), na.rm=TRUE)}))
+EEZ_weighted_avg <- t(data[which(row.names(data)=="eez_weighted_avg"), ])
+
+scores <- cbind(minScore, maxScore, EEZ_weighted_avg)
+names(scores) <- c('lowest score', 'highest score', 'average score (weighted by eez area)')
+kable(scores,format="pandoc",caption="Summary of scores")
+
+```
