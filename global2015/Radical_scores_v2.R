@@ -369,7 +369,7 @@ trends <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
 radical_final <- rbind(radical, trends)
 
 #-----------------------------------------------------------------------------------
-### adding score data for subgoals/goals without data layers that can easily be used
+### adding score/status data for subgoals/goals without data layers that can easily be used
 #-----------------------------------------------------------------------------------
 
 scores <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
@@ -377,16 +377,31 @@ scores <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
   filter(dimension=="score") %>%
   mutate(component_id = paste0("score_", goal)) %>%
   mutate(subcomponent_id = NA) %>%
-  mutate(component_name = paste0("score_", goal, ": score is average of subgoals")) %>%
+  mutate(component_name = paste0("score: ", goal)) %>%
   mutate(component_label = NA) %>%
   mutate(scenario = "2015") %>%
   mutate(units = NA) %>%
-  mutate(source = "toolbox calculation: average of subgoals") %>%
+  mutate(source = "toolbox calculated value") %>%
   mutate(url = NA) %>%
   select(component_id, subcomponent_id, component_name, component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
 
 radical_final <- rbind(radical_final, scores)
 
+
+status <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
+  filter(goal %in% c('FIS', 'LIV', 'ECO', 'MAR', 'ICO', 'SPP')) %>%
+  filter(dimension=="status") %>%
+  mutate(component_id = paste0("status_", goal)) %>%
+  mutate(subcomponent_id = NA) %>%
+  mutate(component_name = paste0("status: ", goal, ": score is average of subgoals")) %>%
+  mutate(component_label = NA) %>%
+  mutate(scenario = "2015") %>%
+  mutate(units = NA) %>%
+  mutate(source = "toolbox calculated value") %>%
+  mutate(url = NA) %>%
+  select(component_id, subcomponent_id, component_name, component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
+
+radical_final <- rbind(radical_final, status)
 
 
 #-----------------------------------------------------------------------------------
