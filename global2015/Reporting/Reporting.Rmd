@@ -38,7 +38,7 @@ goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LI
 #---------------------------
 ## General settings to control
 scenario <- "2015" #identify scenario of focus (this can be changed to obtain data for other years)
-radicalFile = '2015-08-20' #date extension on the radical data files that are used for all tables/figures
+radicalFile = '2015-09-11' #date extension on the radical data files that are used for all tables/figures
 benchmark = 2013  # year that is used for old vs. new OHI analyses
 oldCommit = '4da6b4a1d69d694264ea68456359a939b0c03f9c' # '4da6b4a1d69d694264ea68456359a939b0c03f9c' = commit for 2014 analysis
 colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)

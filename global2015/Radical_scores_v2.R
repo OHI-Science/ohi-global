@@ -369,6 +369,27 @@ trends <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
 radical_final <- rbind(radical, trends)
 
 #-----------------------------------------------------------------------------------
+### adding score data for subgoals/goals without data layers that can easily be used
+#-----------------------------------------------------------------------------------
+
+scores <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
+  filter(goal %in% c('FIS', 'LIV', 'ECO', 'MAR', 'ICO', 'SPP')) %>%
+  filter(dimension=="score") %>%
+  mutate(component_id = paste0("score_", goal)) %>%
+  mutate(subcomponent_id = NA) %>%
+  mutate(component_name = paste0("score_", goal, ": score is average of subgoals")) %>%
+  mutate(component_label = NA) %>%
+  mutate(scenario = "2015") %>%
+  mutate(units = NA) %>%
+  mutate(source = "toolbox calculation: average of subgoals") %>%
+  mutate(url = NA) %>%
+  select(component_id, subcomponent_id, component_name, component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
+
+radical_final <- rbind(radical_final, scores)
+
+
+
+#-----------------------------------------------------------------------------------
 ### final formatting
 #-----------------------------------------------------------------------------------
 radical_final <-  radical_final %>%
@@ -392,9 +413,9 @@ data.frame(filter(radical_final, goal=="HAB" & region_id==163) %>%
 
 # all the combinations of data seem to match
 setdiff(layers$component_id, radical_final$ohi_component_id)
-setdiff(radical_final$ohi_component_id, layers$component_id)  # trend data is ok...this was added secondarily
+setdiff(radical_final$ohi_component_id, layers$component_id)  # trend data is ok and scores for ECO, FIS, ICO, LIV, MAR, SPP...this was added secondarily
 
-sum(duplicated(paste(radical_final$component_id, radical_final$region_id))
+sum(duplicated(paste(radical_final$component_id, radical_final$region_id)))
 ## end data check
 
 write.csv(radical_final, sprintf('%s/radicalv2_%s_%s.csv', saveFile, scenario, Sys.Date()),
