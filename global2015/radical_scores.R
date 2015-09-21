@@ -167,10 +167,6 @@ write.csv(radical, sprintf('%s/radical_%s.csv', saveFile, Sys.Date()), row.names
 }
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4e4432ca98121580be656bf5534c243cf22ed687
 ###########################################################
 ## Data for Colin @Croscon, Sept 2015
 ###########################################################
@@ -223,7 +219,7 @@ fiji
 # BRAZIL
 #######
 
-br <- read.csv(file.path(dir_save, 'Elfes_Table3.csv'), strip.white=TRUE) %>%
+br <- read.csv(file.path(dir_croscon, 'Elfes_Table3.csv'), strip.white=TRUE) %>%
   mutate(Region_id = 0:17) %>%
   gather(goal, score, -Region, -Region_id) %>%
   mutate(Region = str_replace_all(Region, ' \\([A-Z][A-Z]\\)', '')) %>%
