@@ -100,7 +100,7 @@ table(layers$goal)
 p_r_radical <- data.frame()
 
 pres_res_layers <- layers %>%
-  filter(dimension %in% c("pressure", "resilience")) 
+  filter(dimension %in% c("pressures", "resilience")) 
 
 p_components <- unique(pres_res_layers$component_id)
 p_components <- p_components[! (p_components %in% c('cp_habitat_extent_rank', 'cs_habitat_extent', 'hab_presence'))] #these have habitat information
@@ -409,8 +409,8 @@ radical_final <- rbind(radical_final, status)
 #-----------------------------------------------------------------------------------
 radical_final <-  radical_final %>%
   mutate(radical_component_id = paste(component_id, subcomponent_id, goal, substring(dimension, 1,1), sep="_")) %>%
-  select(ohi_component_id = component_id, component_id = radical_component_id, subcomponent_id, component_name, goal, dimension, scenario, region_id, value, units, source, url)
-
+  select(ohi_component_id = component_id, component_id = radical_component_id, subcomponent_id, 
+         component_name, goal, dimension, scenario, region_id, value, units, source, url)
 
   
 ## data check ##
