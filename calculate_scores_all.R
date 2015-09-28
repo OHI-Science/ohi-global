@@ -22,7 +22,6 @@ do.layercopy  = T
 do.layercheck = T
 do.calculate  = T
 do.other      = F
-do.merge      = F # needs to be written 
 
 # scenarios
 scenarios = list(
@@ -49,28 +48,46 @@ scenarios = list(
     fld_dir      = 'dir_2012a',
     fld_fn       = 'fn_2012a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T) ,
+  antarctica2014 = list(
+    layer   = 'layers_antarctica',
+    fld_dir      = 'dir_2014a',
+    fld_fn       = 'fn_2014a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T),
+  antarctica2015 = list(
+    layer   = 'layers_antarctica',
+    fld_dir      = 'dir_2015a',
+    fld_fn       = 'fn_2015a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T)
+  
 )
-#   antarctica2014 = list(
-#     google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
-#     fld_dir      = 'dir_2013a',
-#     fld_fn       = 'fn_2013a',
-#     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-#     do           = T),
-#   highseas2014   = list(
+  #   highseas2014   = list(
 #     google_key   = '0ArcIhYsFwBeNdG9KVlJ6M0ZxV1dtVDJDQ3FLVWJQWFE',
 #     fld_dir      = 'dir_2013a',
 #     fld_fn       = 'fn_2013a',
 #     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
 #     do           = T))
 
-# sync functions.R: overwrite eez2012, eez2014, eez2015, with eez2013 (note LE's use of eez2013 argument)
+### sync functions.R: 
+# overwrite eez2012, eez2014, eez2015, with eez2013
 for (dir in c('eez2012','eez2014', 'eez2015')){
   stopifnot(file.copy('eez2013/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
 }
 
+# overwrite antarctica2015 with antarctica2014
+for (dir in c('antarctica2015')){
+  stopifnot(file.copy('antarctica2014/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
+}
 
-for (i in 1:length(scenarios)){  #i=2
+# overwrite highseas2015 with highseas2014
+for (dir in c('highseas2015')){
+  stopifnot(file.copy('highseas2014/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
+}
+
+
+for (i in 1:length(scenarios)){  #i=5
   
   # vars
   scenario   = names(scenarios)[[i]]
