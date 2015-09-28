@@ -1,4 +1,3 @@
-# eez2014 reshape input data problem once in pressures, many in resilience: Aggregation function missing: defaulting to length
 
 # STEP 1: be sure to pull ohiprep
 
@@ -60,15 +59,20 @@ scenarios = list(
     fld_dir      = 'dir_2015a',
     fld_fn       = 'fn_2015a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T), 
+  highseas2014   = list(
+    layer   = 'layers_highseas',
+    fld_dir      = 'dir_2014a',
+    fld_fn       = 'fn_2014a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T), 
+  highseas2015   = list(
+    layer   = 'layers_highseas',
+    fld_dir      = 'dir_2015a',
+    fld_fn       = 'fn_2015a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T)
-  
-)
-  #   highseas2014   = list(
-#     google_key   = '0ArcIhYsFwBeNdG9KVlJ6M0ZxV1dtVDJDQ3FLVWJQWFE',
-#     fld_dir      = 'dir_2013a',
-#     fld_fn       = 'fn_2013a',
-#     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-#     do           = T))
+  )
 
 ### sync functions.R: 
 # overwrite eez2012, eez2014, eez2015, with eez2013
@@ -87,7 +91,7 @@ for (dir in c('highseas2015')){
 }
 
 
-for (i in 1:length(scenarios)){  #i=5
+for (i in 1:length(scenarios)){  #i=7
   
   # vars
   scenario   = names(scenarios)[[i]]
