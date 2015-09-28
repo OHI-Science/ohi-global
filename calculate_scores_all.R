@@ -2,7 +2,7 @@
 
 # STEP 1: be sure to pull ohiprep
 
-library(devtools)
+# library(devtools)
 #devtools::install_github("ohi-science/ohicore@dev")
 library(ohicore)
 
@@ -27,30 +27,30 @@ do.merge      = F # needs to be written
 # scenarios
 scenarios = list(
   eez2015     = list(
-    google_key   = '1qGfo99QXyTFWSm__8l_NwV-AYNmSoxjignFcm8Z0Zas',
+    layer   = 'layers_eez',
     fld_dir      = 'dir_2015a',
     fld_fn       = 'fn_2015a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),  
   eez2014     = list(
-    google_key   = '1qGfo99QXyTFWSm__8l_NwV-AYNmSoxjignFcm8Z0Zas',
+    layer   = 'layers_eez',
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),
   eez2013     = list(
-    google_key   = '1qGfo99QXyTFWSm__8l_NwV-AYNmSoxjignFcm8Z0Zas',
+    layer   = 'layers_eez',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),
   eez2012     = list(
-    google_key   = '1qGfo99QXyTFWSm__8l_NwV-AYNmSoxjignFcm8Z0Zas',
+    layer   = 'layers_eez',
     fld_dir      = 'dir_2012a',
     fld_fn       = 'fn_2012a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T)
-  )
+)
 #   antarctica2014 = list(
 #     google_key   = '0ArcIhYsFwBeNdHNxNk1iRHc1S05KLWsyb0ZtZjRjZnc',
 #     fld_dir      = 'dir_2013a',
@@ -70,13 +70,13 @@ for (dir in c('eez2012','eez2014', 'eez2015')){
 }
 
 
-for (i in 1:length(scenarios)){ # i=3
+for (i in 1:length(scenarios)){  #i=2
   
   # vars
   scenario   = names(scenarios)[[i]]
   fld_dir    = scenarios[[i]][['fld_dir']]
   fld_fn     = scenarios[[i]][['fld_fn']]
-  google_key = scenarios[[i]][['google_key']]
+  layer = scenarios[[i]][['layer']]
   do         = scenarios[[i]][['do']]
   
     print(scenario)
@@ -96,36 +96,36 @@ for (i in 1:length(scenarios)){ # i=3
   }
   
   if (do.layercopy){
-    # load Google spreadsheet for copying layers
-    cat(sprintf('\n  Google spreadsheet editable URL:\n    https://docs.google.com/spreadsheet/ccc?key=%s\n', google_key) )
-    g.url = sprintf('https://docs.google.com/spreadsheets/d/%s/export?gid=0&format=csv', scenarios[[i]][['google_key']])
-    g = read.csv(textConnection(RCurl::getURL(g.url, ssl.verifypeer = FALSE)), skip=1, na.strings='', stringsAsFactors=F)
-    write.csv(g, sprintf('%s/temp/layers_0-google.csv', scenario), na='', row.names=F)
-    # fill in for 2014
-    if (scenario=='eez2014'){
+#     # load Google spreadsheet for copying layers
+#     cat(sprintf('\n  Google spreadsheet editable URL:\n    https://docs.google.com/spreadsheet/ccc?key=%s\n', google_key) )
+#     g.url = sprintf('https://docs.google.com/spreadsheets/d/%s/export?gid=0&format=csv', scenarios[[i]][['google_key']])
+#     g = read.csv(textConnection(RCurl::getURL(g.url, ssl.verifypeer = FALSE)), skip=1, na.strings='', stringsAsFactors=F)
+#     write.csv(g, sprintf('%s/temp/layers_0-google.csv', scenario), na='', row.names=F)
+
+## Read in the layers.csv file with paths to the data files
+ g <- read.csv(sprintf("%s.csv", layer), stringsAsFactors = FALSE, na.strings='')    
+ 
+ # carry forward file paths and names when no data for 2014 and/or 2015
+    if (as.numeric(gsub("[a-z]", "", scenario)) > 2013){
       g = g %>%
-        mutate(
+        dplyr::mutate(
           dir_2014a = ifelse(is.na(dir_2014a), dir_2013a, dir_2014a),
-          fn_2014a = ifelse(is.na(fn_2014a), fn_2013a, fn_2014a))
-    }
-    
-    if (scenario=='eez2015'){
-      g = g %>%
-        mutate(
+          fn_2014a = ifelse(is.na(fn_2014a), fn_2013a, fn_2014a)) %>%
+        dplyr::mutate(
           dir_2015a = ifelse(is.na(dir_2015a), dir_2014a, dir_2015a),
-          fn_2015a = ifelse(is.na(fn_2015a), fn_2014a, fn_2015a)) %>%
-        mutate(
-          dir_2015a = ifelse(is.na(dir_2015a), dir_2013a, dir_2015a),
-          fn_2015a = ifelse(is.na(fn_2015a), fn_2013a, fn_2015a))
-    }
+          fn_2015a = ifelse(is.na(fn_2015a), fn_2014a, fn_2015a))
+      }
     
-    # swap dir
+    # replaces 'ohiprep' and 'neptune_data' parts of the filepath with the full file paths
+    # 'ohiprep' files are located here: https://github.com/OHI-Science/ohiprep
+    # 'neptune_data' files are located on the NCEAS Neptune server
     g$dir_in = sapply(
       str_split(g[[fld_dir]], ':'),   
       function(x){ sprintf('%s/%s', dirs[x[1]], x[2])})
+    
     g$fn_in = g[[fld_fn]]
     
-    # filter
+    # filters the data and determines whether the file is available, saves a copy to tmp folder
     lyrs = g %>%
       filter(ingest==T) %>%
       mutate(
@@ -134,20 +134,20 @@ for (i in 1:length(scenarios)){ # i=3
         filename = sprintf('%s.csv', layer),
         path_out = sprintf('%s/layers/%s', scenario, filename)) %>%
       select(
-        targets, layer, layer_old, name, description, 
+        targets, layer, name, description, 
         fld_value, units,
         path_in, path_in_exists, filename, path_out) %>%
       arrange(targets, layer)
     write.csv(lyrs, sprintf('%s/temp/layers_1-ingest.csv', scenario), na='', row.names=F)
     
-      
+    # checks that all data layers are available based on file paths 
     if (nrow(filter(lyrs, !path_in_exists)) != 0){
       message('The following layers paths do not exist:\n')
       print(filter(lyrs, !path_in_exists) %>% select(layer, path_in), row.names=F)
-      stop('Resolve paths in google doc with filesystem.')
+      stop('Data cannot be found - check file paths/names in layers.csv' )
     }
     
-    # copy layers
+    # copy layers into specific scenario / layers file 
     for (j in 1:nrow(lyrs)){ # j=4
       stopifnot(file.copy(lyrs$path_in[j], lyrs$path_out[j], overwrite=T))
     }

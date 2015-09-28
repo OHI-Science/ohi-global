@@ -1,0 +1,543 @@
+"targets","layer","dir_2012a","fn_2012a","dir_2013a","fn_2013a","dir_2014a","fn_2014a","dir_2015a","fn_2015a","name","description","fld_value","units","src_2015a","src_2014a","ingest","dir_gap_fill_2013","fn_gap_fill_2013","clip_n_ship_disag","clip_n_ship_disag_description","uninhabited_expect"
+"AO","ao_access","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_mora_s4_2013a.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_mora_s4_2013a.csv",,,,,"Fisheries management effectiveness and opportunity","The opportunity for artisanal and recreational fishing based on the quality of management of the small- scale fishing sector (Mora et al 2009).
+
+Data sources:
+
+- Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., Worm, B. (2009). **Management Effectiveness of the Worldï¿s Marine Fisheries**. _PLoS Biol_, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](http://dx.doi.org/10.1371/journal.pbio.1000131)","value","value","N: no data updates","N",TRUE,"neptune_data:model/GL-NCEAS-Resilience_Mora/whence_2013a","mora_whence.csv","equal","global management effectiveness scores were applied equally to all regions.","NA"
+"AO","ao_need","ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_gdppcppp_rescaled_2012a.csv","ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_gdppcppp_rescaled_2013a.csv","ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_gdppcppp_rescaled_2014a.csv",,,"Purchasing power parity as a proxy for subsistence fishing need, by region","The per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP.
+
+Data sources:
+
+- The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)","value","current international $","N: no data updates","Y",TRUE,"neptune_data:model/GL-WorldBank-Statistics_v2012/data","rgn_wb_gdppcppp_2013a_whence.csv","equal","global purchasing power parity information was applied equally to all regions.","NA"
+"CW","cw_coastalpopn_trend","ohiprep:globalprep/coastal_population/v2015/data","rgn_popn5yrtrend_inland25mi_2008to2012.csv","ohiprep:globalprep/coastal_population/v2015/data","rgn_popn5yrtrend_inland25mi_2009to2013.csv","ohiprep:globalprep/coastal_population/v2015/data","rgn_popn5yrtrend_inland25mi_2010to2014.csv","ohiprep:globalprep/coastal_population/v2015/data","rgn_popn5yrtrend_inland25mi_2011to2015.csv","Coastal human population as a proxy for trend in trash","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
+
+Data sources:
+
+- Center for International Earth Science Information Network (CIESIN)/Columbia University 
+- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","Y","N",TRUE,,,"equal","global trends were applied equally to all regions.","NA"
+"CW","cw_fertilizer_trend","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_trend_2012.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_trend_2013.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_trend_2014.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_trend_2015.csv","Trends in fertilizer pollution as a proxy for nutrient pollution","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO; Halpern et al. 2015). 
+
+Data sources:
+
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E)
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","trend","trend score","Y","Y",TRUE,"ohiprep:Global/FAO-CW-Trends_v2011/data","rgn_cw_fertilizers_trends_2013a.csv","equal","global trends were applied equally to all regions.","NA"
+"CW","cw_pathogen_trend","ohiprep:globalprep/whounicef_sanitation/v2015/data","pathogens_popdensity25mi_trend_2012a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","pathogens_popdensity25mi_trend_2013a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","pathogens_popdensity25mi_trend_2014a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","pathogens_popdensity25mi_trend_2015a.csv","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population without access to improved sanitation facilities.
+
+Data sources:
+
+- [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
+","trend","trend score","Y","Y",TRUE,,,"equal","global trends were applied equally to all regions.","NA"
+"CW","cw_pesticide_trend","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_trend_2012.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_trend_2013.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_trend_2014.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_trend_2015.csv","Trends in chemical pollution","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
+
+Data sources:
+
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","trend","trend score","Y","Y",TRUE,"ohiprep:Global/FAO-CW-Trends_v2011/data","rgn_cw_pesticides_trends_2013a.csv","equal","global trends were applied equally to all regions.","NA"
+"ECO",,,,,,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_gdp_2014a.csv",,,,,,,"N","Y",,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_gdp_2014a_attr.csv","(not ingested; see column X)",,
+"FIS","fis_b_bmsy","ohiprep:globalprep/SAUP_FIS/v2015/data","fnk_fis_b_bmsy_lyr.csv","ohiprep:globalprep/SAUP_FIS/v2015/data","fnk_fis_b_bmsy_lyr.csv","ohiprep:globalprep/SAUP_FIS/v2015/data","fnk_fis_b_bmsy_lyr.csv",,,"B/Bmsy estimates obtained using the catch-MSY method","The ratio of fish population abundance to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
+
+Data sources:
+
+- Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
+","b_bmsy","B / B_msy","Y","Y",FALSE,,,"equal","global b_bmsy information was applied equally to all regions.",
+"FIS","fis_meancatch","ohiprep:globalprep/SAUP_FIS/v2015/data","mean_catch.csv","ohiprep:globalprep/SAUP_FIS/v2015/data","mean_catch.csv","ohiprep:globalprep/SAUP_FIS/v2015/data","mean_catch.csv",,,"Catch data for each Taxon/FAO/OHI region averaged across years","Mean catch-per-taxon values within each OHI/FAO fishing area.
+
+Data sources:
+
+- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)
+- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)","mean_catch","metric tons","Y","Y",FALSE,,,"equal","global mean catch information was applied equally to all regions.",
+"FIS","fis_b_bmsy","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_b_bmsy_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_b_bmsy_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_b_bmsy_lyr.csv",,,"B/Bmsy estimates obtained using the catch-MSY method","The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
+
+Data sources:
+
+- Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
+","b_bmsy","B / B_msy","N","Y",TRUE,,,,,
+"FIS","fis_meancatch","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_meancatch_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_meancatch_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","fnk_fis_meancatch_lyr.csv",,,"Catch data for each Taxon/FAO/SAU region averaged across years","Mean catch-per-taxon values within each Sea Around Us/FAO fishing area.
+
+Data sources:
+
+- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)
+- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)","mean_catch","metric tons","N","Y",TRUE,,,,,
+"FIS","fis_proparea_saup2rgn","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv","ohiprep:Global/NCEAS-Fisheries_2014a/data","snk_fis_proparea_saup2rgn_lyr.csv",,,"proportion area of each SAUP within each OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
+
+Data sources:
+
+- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)
+","prop_area","proportion","N","Y",TRUE,,,,,
+"FP","fp_wildcaught_weight","ohiprep:globalprep/food_provision/data","wildcaught_weight_v2012.csv","ohiprep:globalprep/food_provision/data","wildcaught_weight_v2013.csv","ohiprep:globalprep/food_provision/data","wildcaught_weight_v2014.csv","ohiprep:globalprep/food_provision/data","wildcaught_weight_v2015.csv","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
+
+Data sources:
+
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","w_fis","proportion","Y","Y",TRUE,,,"equal","global weights were applied equally to all regions. ",
+"HAB CS CP","hab_extent","ohiprep:globalprep/hab_combined/v2015/data","habitat_extent_v2015.csv","ohiprep:globalprep/hab_combined/v2015/data","habitat_extent_v2015.csv",,,,,"Habitat extent","Habitat extent
+
+Data sources:
+
+- Hamilton, S. & Casey, D. (2014). **Creation of a high spatiotemporal resolution global database of continuous mangrove forest cover for the 21st Century (CGMFC-21): a big-data fusion approach**. [arXiv:1412.0722](http://arxiv.org/ftp/arxiv/papers/1412/1412.0722.pdf)
+- Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). **The carbon balance of North American Wetlands**. _Wetlands_ 26: 889-916.
+- Dahl, T. E. (2000). **Status and trends of wetlands in the conterminous United States 1986 to 1997**. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C.
+- Ministry for the Environment (2007). **Environment New Zealand** (http://www.mfe.govt.nz/sites/default/files/environment-nz07-dec07.pdf)
+- Joint Nature Conservation Committee, JNCC. (2004). **UK Lowland wetland habitats** (http://jncc.defra.gov.uk/page-1433) 
+- European Environment Agency (2008). 
+- Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_. http://dx.doi.org/10.5067/8GQ8LZQVL0VL.
+- UNEP-WCMC (2005). **Global distribution of seagrasses - points dataset**.
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
+- Burke, L., Reytar, K., Spalding, M.,  et al. (2011). **Reefs at Risk Revisited**. _World Resources Institute, Washington, DC_.
+","km2","km^2","Y: seaice/mangrove","N",TRUE,"neptune_data:model/GL-NCEAS-Habitats_v2013a/whence_2013a",,"raster | area_offshore",,
+"HAB CS CP","hab_health","ohiprep:globalprep/hab_combined/v2015/data","habitat_health_2012.csv","ohiprep:globalprep/hab_combined/v2015/data","habitat_health_2013.csv","ohiprep:globalprep/hab_combined/v2015/data","habitat_health_2014.csv","ohiprep:globalprep/hab_combined/v2015/data","habitat_health_2015.csv","Habitat health","Habitat health/condition
+
+Data sources:
+
+- FAO. (2007). **The world's mangroves 1980-2005**. _FAO Forestry Paper_ 153.
+- Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). **The carbon balance of North American Wetlands**. _Wetlands_ 26: 889-916.
+- Dahl, T. E. (2000). **Status and trends of wetlands in the conterminous United States 1986 to 1997**. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C.
+- Ministry for the Environment (2007). **Environment New Zealand** (http://www.mfe.govt.nz/sites/default/files/environment-nz07-dec07.pdf)
+- Joint Nature Conservation Committee, JNCC. (2004). **UK Lowland wetland habitats** (http://jncc.defra.gov.uk/page-1433) 
+- European Environment Agency (2008). 
+- Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_. http://dx.doi.org/10.5067/8GQ8LZQVL0VL.
+- Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009), **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381.
+- Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons.** _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711
+- Schutte, V. G. W., Selig, E. R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122. ","health","proportion","Y: seaice/mangrove","N",TRUE,"neptune_data:model/GL-NCEAS-Habitats_v2013a/whence_2013a",,"equal","global habitat health was applied equally to all regions. ",
+"HAB CS CP","hab_trend","ohiprep:globalprep/hab_combined/v2015/data","habitat_trend_2012.csv","ohiprep:globalprep/hab_combined/v2015/data","habitat_trend_2013.csv","ohiprep:globalprep/hab_combined/v2015/data","habitat_trend_2014.csv","ohiprep:globalprep/hab_combined/v2015/data","habitat_trend_2015.csv","Habitat health trend","Habitat health trend
+
+Data sources:
+
+- Hamilton, S. & Casey, D. (2014). **Creation of a high spatiotemporal resolution global database of continuous mangrove forest cover for the 21st Century (CGMFC-21): a big-data fusion approach**. [arXiv:1412.0722](http://arxiv.org/ftp/arxiv/papers/1412/1412.0722.pdf)
+- Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). **The carbon balance of North American wetlands**. _Wetlands_ 26: 889-916.
+- Dahl, T. E. (2000). **Status and trends of wetlands in the conterminous United States 1986 to 1997**. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C.
+- Ministry for the Environment (2007). **Environment New Zealand** (http://www.mfe.govt.nz/sites/default/files/environment-nz07-dec07.pdf)
+- Joint Nature Conservation Committee, JNCC. (2004). **UK Lowland wetland habitats** (http://jncc.defra.gov.uk/page-1433) 
+- European Environment Agency (2008). 
+- Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_ (http://dx.doi.org/10.5067/8GQ8LZQVL0VL)
+- Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009). **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381.
+- Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons**. _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711
+- Schutte, V. G. W., Selig, E.R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122.","trend","trend score","Y: sea ice/mangrove","N",TRUE,"neptune_data:model/GL-NCEAS-Habitats_v2013a/whence_2013a",,"equal","global trends were applied equally to all regions.",
+"ICO","ico_spp_extinction_status","ohiprep:globalprep/SPP_ICO/v2015/data","ico_status.csv","ohiprep:globalprep/SPP_ICO/v2015/data","ico_status.csv","ohiprep:globalprep/SPP_ICO/v2015/data","ico_status.csv","ohiprep:globalprep/SPP_ICO/v2015/data","ico_status.csv","IUCN extinction risk category for iconic species","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
+
+Data sources:
+
+- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
+","category","category","Y",,TRUE,,,"equal","global status was applied equally to all regions. ",
+"ICO","ico_spp_popn_trend","ohiprep:globalprep/SPP_ICO/v2015/data","ico_trend.csv","ohiprep:globalprep/SPP_ICO/v2015/data","ico_trend.csv","ohiprep:globalprep/SPP_ICO/v2015/data","ico_trend.csv","ohiprep:globalprep/SPP_ICO/v2015/data","ico_trend.csv","IUCN population trend as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
+
+Data sources:
+
+- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
+","popn_trend","trend score","Y","?",TRUE,,,"equal","global trends were applied equally to all regions.",
+"LE","le_gdp","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_gdp.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_gdp.csv",,,,,"GDP","Gross Domestic Product (GDP) data (reported in 2012 US dollars) from The World Bank.
+
+Data sources:
+
+- [The World Bank](data.worldbank.org/indicator/NY.GDP.MKTP.CD)
+","usd","2010 USD","N",,TRUE,,,"population_inland25km","global GDP data were applied to each region after weighting by each region's coastal population.","NA"
+"LE","le_gdp_pc_ppp","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_cntry_gdp_pc_ppp_2013a.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_cntry_gdp_pc_ppp_2013a.csv",,,,,"Modeled Livelihoods & Economies data","gross domestic product per person at purchasing power parity","usd","USD","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_jobs_cur_adj_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_jobs_cur_adj_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_jobs_cur_adj_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_jobs_cur_base_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_jobs_cur_base_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_jobs_cur_base_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_jobs_ref_adj_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_jobs_ref_adj_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_jobs_ref_adj_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_jobs_ref_base_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_jobs_ref_base_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_jobs_ref_base_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_jobs_sector_year","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_eez2012_trend_jobs_sector-year.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_eez2013_trend_jobs_sector-year.csv",,,,,"Jobs","gapfilled","value","jobs","N",,TRUE,,,"equal","global trends were applied equally to each region. ","NA"
+"LE","le_rev_cur_adj_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_rev_cur_adj_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_rev_cur_adj_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_rev_cur_base_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_rev_cur_base_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_rev_cur_base_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_rev_ref_adj_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_rev_ref_adj_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_rev_ref_adj_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_rev_ref_base_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_rev_ref_base_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_rev_ref_base_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_rev_sector_year","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_eez2012_trend_rev_sector-year.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_eez2013_trend_rev_sector-year.csv",,,,,"Revenue","gapfilled","value","2010 USD","N",,TRUE,,,"equal","global trends were applied equally to each region. ","NA"
+"LE","le_revenue_adj","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_revenue_adj.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_revenue_adj.csv",,,,,"Modeled Livelihoods & Economies data","adjusted revenue","usd","USD","N",,TRUE,,,"population_inland25km",,"NA"
+"LE","le_unemployment","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_unemployment.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_unemployment.csv",,,,,"Unemployment","gapfilled","percent","percent unemployed","N",,TRUE,,,"equal","global unemployment percentages were applied equally to each region. ","NA"
+"LE","le_wage_cur_adj_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_wage_cur_adj_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_wage_cur_adj_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"equal","global wage data were applied equally to all regions.","NA"
+"LE","le_wage_cur_base_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_wage_cur_base_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_wage_cur_base_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"equal","global wage data were applied equally to all regions.","NA"
+"LE","le_wage_ref_adj_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_wage_ref_adj_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_wage_ref_adj_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"equal","global wage data were applied equally to all regions.","NA"
+"LE","le_wage_ref_base_value","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2012_status_model_curref_wage_ref_base_value.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_2013_status_model_curref_wage_ref_base_value.csv",,,,,"Modeled Livelihoods & Economies data","One of current or reference and base or adjusted value","value","value","N",,TRUE,,,"equal","global wage data were applied equally to all regions.","NA"
+"LE","le_wage_sector_year","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_eez2012_trend_wage_sector-year.csv","ohiprep:Global/NCEAS-Livelihoods_v2013/data","le_eez2013_trend_wage_sector-year.csv",,,,,"Wages","gapfilled","value","2010 USD","N",,TRUE,,,"equal","global wages were applied equally to each region. ","NA"
+"LE","le_workforcesize_adj","ohiprep:Global/WorldBank-Statistics_v2012/data","cntry_wb_tlf_2012a_ratio-gapfilled.csv","ohiprep:Global/WorldBank-Statistics_v2012/data","cntry_wb_tlf_2013a_ratio-gapfilled.csv","ohiprep:Global/WorldBank-Statistics_v2012/data","cntry_wb_tlf_2014a_ratio-gapfilled.csv",,,"Modeled Livelihoods & Economies data","adjusted workforce size","jobs","jobs","N","Y",TRUE,,,"population_inland25km","global workforce data were applied to each region after weighting by each region's coastal population.","NA"
+"LE pressures","le_sector_weight","ohiprep:globalprep/LE/data","le_sector_weight.csv","ohiprep:globalprep/LE/data","le_sector_weight.csv",,,,,"Jobs weighting","Jobs weighting by sector (defaulting to 1)","weight","value","N",,TRUE,"exclude",,"equal",,"NA"
+"LIV ECO","le_popn","neptune_data:model/GL-WorldBank-Statistics_v2012/data","rgn_wb_pop_2013a_updated.csv","neptune_data:model/GL-WorldBank-Statistics_v2012/data","rgn_wb_pop_2013a_updated.csv",,,,,"Total population by subregion","Population data from The World Bank","count","count","N",,TRUE,,,"equal",,"NA"
+"LIV ECO","liveco_status","neptune_data:model/GL-NCEAS-LayersDisaggregated_v2013a/data","rgn_liv.eco_status_2012a.csv","neptune_data:model/GL-NCEAS-LayersDisaggregated_v2013a/data","rgn_liv.eco_status_2013a.csv",,,,,"Modeled livelihoods and economies status","Modeled livelihoods and economies status based on new approach","value","status score","N",,TRUE,,,"equal",,"NA"
+"LIV ECO","liveco_trend","neptune_data:model/GL-NCEAS-LayersDisaggregated_v2013a/data","rgn_liv.eco_trend_2012a.csv","neptune_data:model/GL-NCEAS-LayersDisaggregated_v2013a/data","rgn_liv.eco_trend_2013a.csv",,,,,"Modeled livelihoods and economies trend","Modeled livelihoods and economies trend based on new approach","value","trend score","N",,TRUE,,,"equal",,"NA"
+"LSP","lsp_prot_area_inland1km","ohiprep:globalprep/WDPA_MPA/v2015/data","lsp_protarea_inland1km.csv","ohiprep:globalprep/WDPA_MPA/v2015/data","lsp_protarea_inland1km.csv","ohiprep:globalprep/WDPA_MPA/v2015/data","lsp_protarea_inland1km.csv","ohiprep:globalprep/WDPA_MPA/v2015/data","lsp_protarea_inland1km.csv","Coastal protected areas inland 1km","Coastal protected areas inland to 1km from the UN WDPA. 
+
+Data sources:
+
+- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","Y","Y",TRUE,,,"raster | area_inland1km",,
+"LSP","lsp_prot_area_offshore3nm","ohiprep:globalprep/WDPA_MPA/v2015/data","lsp_protarea_offshore3nm.csv","ohiprep:globalprep/WDPA_MPA/v2015/data","lsp_protarea_offshore3nm.csv","ohiprep:globalprep/WDPA_MPA/v2015/data","lsp_protarea_offshore3nm.csv","ohiprep:globalprep/WDPA_MPA/v2015/data","lsp_protarea_offshore3nm.csv","Coastal marine protected areas offshore 3km","Coastal protected areas offshore to 3nm from the UN WDPA. 
+
+Data sources:
+
+- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","Y","Y",TRUE,,,"raster | area_offshore3nm",,
+"MAR","mar_coastalpopn_inland25mi","neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data","rgn_popsum2005to2015_inland25mi.csv","neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data","rgn_popsum2005to2015_inland25mi.csv","neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data","rgn_popsum2005to2015_inland25mi.csv",,,"Coastal population inland 25 miles","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
+
+Data sources:
+
+- CIESIN & CIAT (Center for International Earth Science Information Network /Columbia University & Centro Internacional de Agricultura Tropical) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","popsum","people","N: data modeled to 2015","N",TRUE,,,"raster","spatial data was extracted for each region. ","NA"
+"MAR","mar_harvest_species","ohiprep:globalprep/mariculture_status/data/","mar_harvest_species_2015a_lyr.csv","ohiprep:globalprep/mariculture_status/data/","mar_harvest_species_2015a_lyr.csv","ohiprep:globalprep/mariculture_status/data/","mar_harvest_species_2015a_lyr.csv","ohiprep:globalprep/mariculture_status/data/","mar_harvest_species_2015a_lyr.csv","Mariculture species harvested","Lookup table for mariculture: species Latin names and species code. 
+
+Data sources:
+
+- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","species","species name","Y","Y",TRUE,,,"equal","global mariculture species were applied equally to each region.","NA"
+"MAR","mar_harvest_tonnes","ohiprep:globalprep/mariculture_status/data/","mar_harvest_tonnes_2015a_lyr.csv","ohiprep:globalprep/mariculture_status/data/","mar_harvest_tonnes_2015a_lyr.csv","ohiprep:globalprep/mariculture_status/data/","mar_harvest_tonnes_2015a_lyr.csv","ohiprep:globalprep/mariculture_status/data/","mar_harvest_tonnes_2015a_lyr.csv","Mariculture harvest","Mariculture harvest from the FAO. 
+
+Data sources:
+
+- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","tonnes","tons","Y","Y",TRUE,,,"area_offshore_3nm","global mariculture harvest (tonnes) data were applied to each region after weighting by each region's offshore area to 3nm. ","NA"
+"MAR","mar_sustainability_score","ohiprep:globalprep/mariculture_status/data/","mar_sustainability_score_2015a_lyr.csv","ohiprep:globalprep/mariculture_status/data/","mar_sustainability_score_2015a_lyr.csv","ohiprep:globalprep/mariculture_status/data/","mar_sustainability_score_2015a_lyr.csv","ohiprep:globalprep/mariculture_status/data/","mar_sustainability_score_2015a_lyr.csv","Mariculture sustainability score","Mariculture sustainability and mariculture regulations indicated by the Mariculture Sustainability Index (MSI). 
+
+Data sources:
+
+- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","Y","Y",TRUE,,,"equal","global mariculture sustainability scores were applied equally to each region.","NA"
+"NP","np_blast","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_blast_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_blast_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_blast_3nm_rgn2013.csv",,,"Areas of observed blast (dynamite) fishing","Destructive artisanal blast fishing (Reefs at Risk Revisited).
+
+Data sources:
+
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) 
+","score","pressure score","N: No data updates","Y",TRUE,,,"equal","global scores were applied equally to each region. ","NA"
+"NP","np_cyanide","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_poison_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_poison_3nm_rgn2013.csv","ohiprep:Global/WRI-ReefsAtRisk_v2013/data","gl_thr_poison_3nm_rgn2013.csv",,,"Areas of observed poison fishing","Destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
+
+Data sources:
+
+- [Reefs at Risk Revisited](www.wri.org/publication/reefs-at-risk-revisited) 
+","score","pressure score","N: No data updates","Y",TRUE,,,"equal","global scores were applied equally to each region. ","NA"
+"NP","np_harvest_product_weight","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv",,,"Product peak harvest divided by sum of all product peak harvest values, per region","Ratio of harvest of of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+
+Data sources:
+
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","weight","proportion","N: No data updates","Y",TRUE,,,"equal","global weights were applied equally to each region. ","NA"
+"NP","np_harvest_tonnes","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes_eez2014_test-year_max_2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes_eez2014_test-year_max_2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes_eez2014_test-year_max_2011.csv",,,"Harvest yield of marine natural products, smoothed","Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+
+Data sources:
+
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes","metric tonnes","N: No data updates","Y",TRUE,,,"area_offshore_3nm","global harvest (tonnes) was applied to each region after weighting by each region's offshore area to 3nm. ","NA"
+"NP","np_harvest_tonnes_relative","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv","ohiprep:globalprep/FAO_commodities/v2014_test/data","np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv",,,"Harvest ratio to peak yield of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+
+Data sources:
+
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes_rel","ratio","N: No data updates","Y",TRUE,,,"equal","global scores were applied equally to each region. ","NA"
+"pressures","cc_acid","ohiprep:globalprep/PressuresRegionExtract/data","acid_eez_2011.csv","ohiprep:globalprep/PressuresRegionExtract/data","acid_eez_2012.csv","ohiprep:globalprep/PressuresRegionExtract/data","acid_eez_2013.csv","ohiprep:globalprep/PressuresRegionExtract/data","acid_eez_2014.csv","Ocean acidification","Change in current year's modeled aragonite saturation state (Feely et al. 2010) relative to historical mean (1880-1889).
+
+Data sources:
+- Feely, R., Doney, S. & Cooley, S. (2009) **Ocean acidification: present conditions and future changes in a high-CO2 world**.
+_Oceanography_ 22:36-47. [doi:10.5670/oceanog.2009.95](http://www.tos.org/oceanography/archive/22-4_feely.html)
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_OceanAcidification/v2015) ","pressure_score","pressure score","Y","Y",TRUE,,,"raster | equal",,
+"pressures","cc_slr","ohiprep:globalprep/PressuresRegionExtract/data","slr_eez_2015.csv","ohiprep:globalprep/PressuresRegionExtract/data","slr_eez_2015.csv","ohiprep:globalprep/PressuresRegionExtract/data","slr_eez_2015.csv","ohiprep:globalprep/PressuresRegionExtract/data","slr_eez_2015.csv","Sea level rise","Modeled sea level rise (Nicholls and Cazenave 2010).
+
+Data sources:
+
+- Nicholls R.J. and Cazenave A. (2010). **Sea-level rise and its impact on coastal zones**. _Science_ 328: 1517-1520. [doi:10.1126/science.1185782](http://dx.doi.org/10.1126/science.1185782). 
+- [AVISO Satellite Altimetry Data](http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html)
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SeaLevelRise/v2015) ","pressure_score","pressure score","Y","Y",TRUE,,,"raster | equal",,
+"pressures","cc_sst","ohiprep:globalprep/PressuresRegionExtract/data","sst_eez_2012.csv","ohiprep:globalprep/PressuresRegionExtract/data","sst_eez_2013.csv","ohiprep:globalprep/PressuresRegionExtract/data","sst_eez_2014.csv","ohiprep:globalprep/PressuresRegionExtract/data","sst_eez_2015.csv","Sea surface temperature (SST) anomalies","Sea surface temperature based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
+
+Data sources:
+
+- [AVHRR Pathfinder Version 5.0 SST data](http://pathfinder.nodc.noaa.gov) 
+- Casey, K. S., Brandon, T. B., Cornillon, P., and Evans, R. (2010). **The past, present and future of the AVHRR Pathfinder SST Program**, _Oceanography from Space: Revisited_, eds. V. Barale, J. F. R. Gower, and L. Alberotanza, Springer. [doi:10.1007/978-90-481-8681-5_16](http://dx.doi.org/10.1007/978-90-481-8681-5_16)
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SST) ","pressure_score","pressure score","Y","Y",TRUE,,,"raster | equal",,
+"pressures","cc_uv","ohiprep:globalprep/PressuresRegionExtract/data","uv_eez_2015.csv","ohiprep:globalprep/PressuresRegionExtract/data","uv_eez_2015.csv",,,,,"UV radiation","Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC.
+
+Data sources:
+
+- [Goddard Earth Sciences Data and Information Services Center (GES DISC)](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml)
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_UV) ","pressure_score","pressure score","Y","Y",TRUE,,,"raster | equal",,
+"pressures","fp_art_hb","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_fp_art_hb_disaggregateNature2012.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_fp_art_hb_disaggregateNature2012.csv",,,,,"High bycatch caused by artisanal fishing ","The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
+
+Data sources:
+
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","pressures.score","pressure score","N: No data updates",,TRUE,,,"equal","global pressures data were applied equally to all regions.","NA"
+"pressures","fp_art_lb","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","fp_art_lb_2012_NEW.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","fp_art_lb_2013_NEW.csv",,,,,"Low bycatch caused by artisanal fishing ","Modeled low bycatch artisanal fishing using non-destructive practices (Halpern et al. 2008) based on FAO fisheries statistics.
+
+Data sources:
+
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","pressure_score","pressure score","N: No data updates",,TRUE,,,"equal","global pressures data were applied equally to all regions.","NA"
+"pressures","fp_com_hb","ohiprep:globalprep/PressuresRegionExtract/data","catch_03_07_npp_hb_eez.csv","ohiprep:globalprep/PressuresRegionExtract/data","catch_04_08_npp_hb_eez.csv","ohiprep:globalprep/PressuresRegionExtract/data","catch_05_09_npp_hb_eez.csv","ohiprep:globalprep/PressuresRegionExtract/data","catch_06_10_npp_hb_eez.csv","High bycatch caused by commercial fishing ","Modeled destructive commercial fishing practices by 5 different gear types (Halpern et al. 2008).
+
+Data sources:
+
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
+","pressure_score","pressure score","Y",,TRUE,,,"equal","global pressures data were applied equally to all regions.",
+"pressures","fp_com_lb","ohiprep:globalprep/PressuresRegionExtract/data","catch_03_07_npp_lb_eez.csv","ohiprep:globalprep/PressuresRegionExtract/data","catch_04_08_npp_hb_eez.csv","ohiprep:globalprep/PressuresRegionExtract/data","catch_05_09_npp_hb_eez.csv","ohiprep:globalprep/PressuresRegionExtract/data","catch_06_10_npp_hb_eez.csv","Low bycatch caused by commercial fishing ","Modeled least destructive commercial fishing practices by 2 different gear types (Halpern et al. 2008).
+
+Data sources:
+
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
+","pressure_score","pressure score","Y",,TRUE,,,"equal","global pressures data were applied equally to all regions.",
+"pressures","fp_targetharvest","ohiprep:globalprep/FAO_targetedharvest/data","rgn_fao_targeted_2012a.csv","ohiprep:globalprep/FAO_targetedharvest/data","rgn_fao_targeted_2013a.csv","ohiprep:globalprep/FAO_targetedharvest/data","rgn_fao_targeted_2014a.csv","ohiprep:globalprep/FAO_targetedharvest/data","rgn_fao_targeted_2015a.csv","Targeted harvest of cetaceans and sea turtles","Targeted harvest of cetaceans and marine turtles, from FAO fisheries data.
+
+Data sources:
+
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","score","pressure score","Y","Y",TRUE,,,"equal","global pressures data were applied equally to all regions.","NA"
+"pressures","hd_intertidal","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","hd_intertidal_2012_NEW.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","hd_intertidal_2013_NEW.csv",,,,,"Coastal population density as a proxy for intertidal habitat destruction","Coastal population, defined as the total population inland of 10 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
+
+Data sources:
+
+- Center for International Earth Science Information Network (CIESIN)/Columbia University 
+- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)
+- Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)","pressure_score","pressure score","N",,TRUE,,,"population_inland25km","global intertidal pressures were applied to each region after weighting by each region's coastal population.","NA"
+"pressures","hd_subtidal_hb","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_hd_subtidal_hb_v2013a.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_hd_subtidal_hb_v2013a.csv",,,,,"High bycatch artisanal fishing practices as a proxy for subtidal hard bottom habitat destruction","The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
+
+Data sources:
+
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","value","pressure score","N",,TRUE,,,"equal","global pressures data were applied equally to all regions.","NA"
+"pressures","hd_subtidal_sb","neptune_data:model/GL-NCEAS-subtidal_softbottom_v2013a/data","po_rgn_hd_subtidal_sb_2012a.csv","neptune_data:model/GL-NCEAS-subtidal_softbottom_v2013a/data","po_rgn_hd_subtidal_sb_2013a.csv",,,,,"Demersal destructive commercial fishing practices relative to soft-bottom habitat area as a proxy for soft bottom habitat destruction","Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
+
+Data sources:
+
+- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org/)
+","pressures.score","pressure score","N",,TRUE,,,"equal","global pressures data were applied equally to all regions.",
+"pressures","po_chemicals_3nm","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_score_3nm_2012.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_score_3nm_2013.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_score_3nm_2014.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_score_3nm_2015.csv","Coastal chemical pollution within 3 nm offshore","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015), primarily land-based chemical pollution due to 3nm offshore buffer.
+
+Data sources:
+
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","Y",,TRUE,,,"raster | equal",,"NA"
+"pressures","po_nutrients_3nm","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_score_3nm_2012.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_score_3nm_2013.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_score_3nm_2014.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_score_3nm_2015.csv","Coastal fertilizer pollution as a proxy for nutrient pollution within 3nm offshore","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
+
+Data sources:
+
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","Y",,TRUE,,,"raster | equal",,"NA"
+"pressures","sp_alien","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_sp_alien_2013a.csv","neptune_data:model/GL-NCEAS-Pressures_v2013a/data","p_sp_alien_2013a.csv",,,,,"Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
+
+Data sources:
+
+- Molnar, J. L., Gamboa, R. L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)","pressures.score","pressure score","N: No data updates","N",TRUE,,,"equal","global pressures data were applied equally to all regions.",
+"pressures","sp_genetic","neptune_data:model/GL-NCEAS-Pressures-GenEsc_v2013a/data","GenEsc_v2012a.csv","neptune_data:model/GL-NCEAS-Pressures-GenEsc_v2013a/data","GenEsc_v2013a.csv",,,,,"Introduced species as a proxy for genetic escapes ","Statistics on native or introduced species from the Mariculture Sustainibility Index (MSI). 
+
+Data sources:
+
+- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","pressures.score","pressure score","N: No data updates","N",TRUE,,,"equal","global pressures data were applied equally to all regions.","NA"
+"pressures","ss_wgi","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2012a_inverse.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2013a_inverse.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2014a_inverse.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2015a_inverse.csv","Weakness of governance indicated with the WGI","Inverse of World Governance Indicators (WGI) six combined scores.
+
+Data sources:
+
+- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","Y","Y",TRUE,"neptune_data:model/GL-WorldBank-WGI_v2011/data","rgn_wb_wgi_2013a_whence.csv","equal","global pressures data were applied equally to all regions.",
+"pressures","cp_habitat_extent_rank","ohiprep:globalprep/hab_combined/v2015/data","cp_habitat_extent_rank.csv","ohiprep:globalprep/hab_combined/v2015/data","cp_habitat_extent_rank.csv",,,,,"Habitat extent multiplied by rank, per Coastal Protection habitats","Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass","extent_rank","extent*rank","Y","N",TRUE,"exclude",,"equal","global pressures data were applied equally to all regions.",
+"pressures","cs_habitat_extent","ohiprep:globalprep/hab_combined/v2015/data","cs_habitat_extent_rank.csv","ohiprep:globalprep/hab_combined/v2015/data","cs_habitat_extent_rank.csv",,,,,"Habitat extent multiplied by carbon storage capacity, per Carbon Storage habitats","Habitat extent mulitiplied by habitat carbon storage capacity for: mangrove, saltmarsh and seagrass","extent_rank","extent*CS capacity","Y","N",TRUE,"exclude",,"area_offshore_3nm","global habitat extent was applied to each region after weighting by each region's offshore area to 3nm. ",
+"pressures CW","po_chemicals","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_score_2012.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_score_2013.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_score_2014.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_chemical_score_2015.csv","Chemical pollution","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
+
+Data sources:
+
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","Y","N",TRUE,,,"raster","spatial data was extracted for each region. ","NA"
+"pressures CW","po_nutrients","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_score_2012.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_score_2013.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_score_2014.csv","ohiprep:globalprep/PressuresRegionExtract/data","cw_fertilizers_score_2015.csv","Fertilizer pollution as a proxy for nutrient pollution","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
+
+Data sources:
+
+- [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
+- Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","Y","N",TRUE,,,"raster","spatial data was extracted for each region. ","NA"
+"pressures CW","po_pathogens","ohiprep:globalprep/whounicef_sanitation/v2015/data","po_pathogens_popdensity25mi_2012a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","po_pathogens_popdensity25mi_2013a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","po_pathogens_popdensity25mi_2014a.csv","ohiprep:globalprep/whounicef_sanitation/v2015/data","po_pathogens_popdensity25mi_2015a.csv","Access to improved sanitation as a proxy for pathogen pollution","Population without access to improved sanitation facilities. 
+
+Data sources:
+
+- [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
+","pressure_score","pressure score","Y","Y",TRUE,,,"raster","spatial data was extracted for each region. ","NA"
+"pressures CW","po_trash","ohiprep:globalprep/PressuresRegionExtract/data","trash_eez_2015.csv","ohiprep:globalprep/PressuresRegionExtract/data","trash_eez_2015.csv","ohiprep:globalprep/PressuresRegionExtract/data","trash_eez_2015.csv",,,"Trash pollution","Global marine plastics (Eriksen et al. 2014)
+
+Data sources:
+
+- Eriksen M., Lebreton, L. C. M., Carson, H. S., Thiel, M., Moore, C. J. and Borerro, J. C.  (2014). 
+**Plastic pollution in the worldâs oceans: more than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea**. _PLoS ONE_ 9:e111913. [doi:10.1371/journal.pone.0111913](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0111913). 
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash) ","pressure_score","pressure score","Y","Y",TRUE,"neptune_data:model/GL-OceanConserv-Trash_v2012/data","rgn_oc_trash_2013a_whence.csv","equal","global pressures data were applied equally to all regions.","NA"
+"pressures HAB","hab_presence","ohiprep:globalprep/hab_combined/v2015/data","hab_habitat_presence.csv","ohiprep:globalprep/hab_combined/v2015/data","hab_habitat_presence.csv",,,,,"Habitat presence","Modeled combined habitat presence","boolean","boolean","Y",,TRUE,"exclude",,"equal","global pressures data were applied equally to all regions.",
+"resilience","alien_species","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_alien_species_Nature2012disaggregated.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_alien_species_Nature2012disaggregated.csv",,,,,"Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
+
+Data sources:
+
+- Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)
+","resilience score","resilience score","N: No data updates","N",TRUE,"neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a","CBDaliens_whence.csv","equal","global resilience data were applied equally to all regions.",
+"resilience","cites","ohiprep:globalprep/cites_signatories/v2015/data","rgn_cites_eez2012.csv","ohiprep:globalprep/cites_signatories/v2015/data","rgn_cites_eez2013.csv","ohiprep:globalprep/cites_signatories/v2015/data","rgn_cites_eez2014.csv","ohiprep:globalprep/cites_signatories/v2015/data","rgn_cites_eez2015.csv","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
+
+Data sources:
+
+- [CITES List of Contracting Parties](http://www.cites.org/eng/disc/parties/chronolo.php)
+
+","resilience_score","resilience score","Y","Y",TRUE,"neptune_data:model/GL-CITES-Signatories_v2013/data","rgn_cites_2013_all_whence.csv","equal","global resilience data were applied equally to all regions.",
+"resilience","fishing_v1","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v1_2012a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v1_2013a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v1_2014a.csv",,,"CBD survey: coastal fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","Y",TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","fishing_v1_eez","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v1_eez_2012a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v1_eez_2013a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v1_eez_2014a.csv",,,"CBD survey: ocean fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","Y",TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","fishing_v2_eez","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v2_eez_2012a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v2_eez_2013a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v2_eez_2014a.csv",,,"CBD survey: ocean fishing v2","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","Y",TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","fishing_v3","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v3_2012a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v3_2013a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v3_2014a.csv",,,"CBD survey: coastal fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","Y",TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","fishing_v3_eez","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v3_eez_2012a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v3_eez_2013a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_fishing_v3_eez_2014a.csv",,,"CBD survey: ocean fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","Y",TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","habitat","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_habitat_2013a.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_habitat_2013a.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_habitat_2013a.csv",,,"CBD survey: habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates",,TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","habitat_combo","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_habitat_combo_2012a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_habitat_combo_2013a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_habitat_combo_2014a.csv",,,"CBD survey: coastal habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","Y",TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","habitat_combo_eez","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_habitat_combo_eez_2012a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_habitat_combo_eez_2013a.csv","ohiprep:Global/GL-Resilience_Fish_Hab_2014a/data","r_habitat_combo_eez_2014a.csv",,,"CBD survey: ocean habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","Y",TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","li_gci","ohiprep:globalprep/WEF-Economics/v2015/data","rgn_wef_gci_2012.csv","ohiprep:globalprep/WEF-Economics/v2015/data","rgn_wef_gci_2013.csv","ohiprep:globalprep/WEF-Economics/v2015/data","rgn_wef_gci_2014.csv","ohiprep:globalprep/WEF-Economics/v2015/data","rgn_wef_gci_2015.csv","GCI: competitiveness in achieving sustained economic prosperity","Global Competitiveness Index (GCI) scores from the World Economic Forum.
+
+Data sources:
+
+- [World Economic Forum](http://www.weforum.org/issues/global-competitiveness)
+","score","resilience score","Y","Y",TRUE,"ohiprep:Global/WEF-Economics_v2014/data","rgn_wef_gci_2014a.csv","equal","global resilience data were applied equally to all regions.","NA"
+"resilience","li_sector_evenness","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_li_sector_evenness_2013a.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_li_sector_evenness_2013a.csv",,,,,"Sector evenness as a measure of economic diversity","Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.","resilience score","resilience score","N","N",TRUE,,,"equal","global resilience data were applied equally to all regions.","NA"
+"resilience","mariculture","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_mariculture_2013a.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_mariculture_2013a.csv",,,,,"CBD survey: mariculture","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","N",TRUE,,,"equal","global resilience data were applied equally to all regions.","NA"
+"resilience","msi_gov","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_msi_gov_2013a.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_msi_gov_2013a.csv",,,,," MSI sustainability and regulations","Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI). 
+
+Data sources:
+
+- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","resilience score","resilience score","N: No data updates","N",TRUE,,,"equal","global resilience data were applied equally to all regions.","NA"
+"resilience","species_diversity","ohiprep:globalprep/SPP_ICO/v2015/data","spp_status_global.csv","ohiprep:globalprep/SPP_ICO/v2015/data","spp_status_global.csv",,,,,"Ocean ecological integrity","Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
+
+Data sources:
+
+- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
+","score","resilience score","Y",,TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","species_diversity_3nm","ohiprep:globalprep/SPP_ICO/v2015/data","spp_status_3nm.csv","ohiprep:globalprep/SPP_ICO/v2015/data","spp_status_3nm.csv",,,,,"Coastal ecological integrity","Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
+
+Data sources:
+
+- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
+","score","resilience score","Y",,TRUE,,,"equal","global resilience data were applied equally to all regions.",
+"resilience","tourism","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_tourism_2013a.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_tourism_2013a.csv",,,,,"CBD survey: tourism","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","N",TRUE,"neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a","CBDtourism_whence.csv","equal","global resilience data were applied equally to all regions.","NA"
+"resilience","water","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_water_2013a.csv","neptune_data:model/GL-NCEAS-Resilience_v2013a/data","r_water_2013a.csv",,,,,"CBD survey: water","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+Data sources:
+
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+","resilience score","resilience score","N: No data updates","N",TRUE,"neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a","CBDwater_whence.csv","equal","global resilience data were applied equally to all regions.",
+"resilience","wgi_all","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2012a.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2013a.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2014a.csv","ohiprep:globalprep/worldbank_wgi/data","rgn_wb_wgi_2015a.csv","Strength of governance indicated with the WGI","World Governance Indicators (WGI) six combined scores.
+
+Data sources:
+
+- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","resilience score","Y","Y",TRUE,"neptune_data:model/GL-WorldBank-WGI_v2011/data","rgn_wb_wgi_2013a_whence.csv","equal","global resilience data were applied equally to all regions.",
+"REV",,,,,,"ohiprep:Global/WTTC-Tourism_v2013/data","rgn_wttc_gdpt_2014a.csv",,,,,,,"N","Y",,,,,,
+"spatial","cntry_area_inland25mi",,,,,,,,,"Country inland area 25 miles from shore","country inland area 25 miles from shore","km2","km^2","N","N",,,,"raster",,
+"spatial","cntry_area_inland50mi",,,,,,,,,"Country inland area 50 miles from shore","country inland area 50 miles from shore","km2","km^2","N","N",,,,"raster",,
+"spatial","cntry_area_land",,,,,,,,,"Country inland area total","country inland area","km2","km^2","N","N",,,,"raster",,
+"spatial","cntry_georegion_labels",,,,,,,,,"Georegion labels per country, at 3 georegion_levels","georegion labels per country, at 3 georegion_levels","georegion_label","georegion label","N",,,,,"raster",,
+"spatial","cntry_georegions","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output","cntry_georegions_long_2013b.csv","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output","cntry_georegions_long_2013b.csv",,,,,"Georegion ids per country, at 3 georegion levels","Lookup table of country codes and UN georegions at 3 georegion levels.
+
+Data sources:
+
+- [UN geographical region and composition](http://unstats.un.org/unsd/methods/m49/m49regin.htm)","georgn_id","georegion id","N",,TRUE,,,"raster","spatial data was extracted for each region. ",
+"spatial","cntry_label",,,,,,,,,"Countries by ISO 3166 code","countries by ISO 3166 code","label","region label","N","N",,,,"raster",,
+"spatial","cntry_rgn","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output","cntry_rgn_2013.csv","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output","cntry_rgn_2013.csv",,,,,"Regions per country","Lookup table of country codes (based on ISO 3166 country codes) and Ocean Health Index region idenifiers.
+
+Data sources:
+
+- [ISO 3166 country codes](http://en.wikipedia.org/wiki/ISO_3166-1)
+","rgn_id","region id","N",,TRUE,,,"raster","spatial data was extracted for each region.",
+"spatial","rgn_area","ohiprep:globalprep/spatial/v2015/data","rgn_fao_gcs_area.csv","ohiprep:globalprep/spatial/v2015/data","rgn_fao_gcs_area.csv",,,,,"Region area of total EEZ ocean","Area of Ocean Health Index regions based on exclusive economic zones (VLIZ 2012). 
+
+Data sources:
+
+- [VLIZ Maritime Boundaries Geodatabase, version 7](http://www.marineregions.org/)
+","area_km2","km^2","Y",,TRUE,,,"raster","spatial data was extracted for each region.",
+"spatial","rgn_area_inland1km","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data","rgn_area_inland1km.csv","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data","rgn_area_inland1km.csv",,,,,"Region area 1 km inland","inland area 1 km from shore.","area_km2","km^2","N",,TRUE,,,"raster","spatial data was extracted for each region.",
+"spatial","rgn_area_offshore3nm","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data","rgn_area_offshore3nm.csv","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data","rgn_area_offshore3nm.csv",,,,,"Region area offshore 3nm","Area of Ocean Health Index regions to 3nm (VLIZ 2012). 
+
+Data sources:
+
+- [VLIZ Maritime Boundaries Geodatabase, version 7](http://www.marineregions.org/)
+","area_km2","km^2","N",,TRUE,,,"raster","spatial data was extracted for each region.",
+"spatial","rgn_georegion_labels","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output","rgn_georegions_labels_long_2013b.csv","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output","rgn_georegions_labels_long_2013b.csv",,,,,"Georegion labels per region, at 3 georegion levels","Lookup table of Ocean Health Index regions and UN georegion names at 3 georegion levels.
+
+Data sources:
+
+- [UN geographical region and composition](http://unstats.un.org/unsd/methods/m49/m49regin.htm)
+","label","label","N","N",TRUE,,,"raster","spatial data was extracted for each region.",
+"spatial","rgn_georegions","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output","rgn_georegions_long_2013b.csv","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output","rgn_georegions_long_2013b.csv",,,,,"Georegion ids per region, at 3 georegion levels","Lookup table of Ocean Health Index regions and UN georegion identifiers at 3 georegion levels.
+
+Data sources:
+
+- [UN geographical region and composition](http://unstats.un.org/unsd/methods/m49/m49regin.htm)
+","georgn_id","georegion id","N",,TRUE,,,"raster","spatial data was extracted for each region.",
+"spatial","rgn_global","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data","rgn_global.csv","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data","rgn_global.csv",,,,,"regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed ","Regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed. ","label","label","N","N",TRUE,,,"raster","spatial data was extracted for each region.",
+"spatial","rgn_labels","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data","rgn_labels.csv","neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data","rgn_labels.csv",,,,,"regions by type (eez, subocean, unclaimed) and label","Ocean Health Index regions by type (eez, subocean, unclaimed) and label","label","label","N","N",TRUE,,,"raster","spatial data was extracted for each region.",
+"SPP","spp_status","ohiprep:globalprep/SPP_ICO/v2015/data","spp_status_global.csv","ohiprep:globalprep/SPP_ICO/v2015/data","spp_status_global.csv","ohiprep:globalprep/SPP_ICO/v2015/data","spp_status_global.csv","ohiprep:globalprep/SPP_ICO/v2015/data","spp_status_global.csv","Species lists and IUCN threat categories as a proxy for iconic species status","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
+
+Data sources:
+
+- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
+","score","status score","Y",,TRUE,,,"equal","global scores were applied equally to each region. ",
+"SPP","spp_trend","ohiprep:globalprep/SPP_ICO/v2015/data","spp_trend_global.csv","ohiprep:globalprep/SPP_ICO/v2015/data","spp_trend_global.csv","ohiprep:globalprep/SPP_ICO/v2015/data","spp_trend_global.csv","ohiprep:globalprep/SPP_ICO/v2015/data","spp_trend_global.csv","Species lists and IUCN threat categories as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
+
+Data sources:
+
+- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
+","score","trend score","Y",,TRUE,,,"equal","global trends were applied equally to each region. ",
+"TR","tr_jobs_total","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_total.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_total.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_total.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_total.csv","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
+
+Data sources:
+
+- [The World Bank](http://data.worldbank.org/indicator/SL.TLF.TOTL.IN)
+","L","people","Y","Y",TRUE,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_tlf_2014a_attr.csv","population_inland25km","global total labor force data were applied to each region after weighting by each region's coastal population.","NA"
+"TR","tr_jobs_tourism","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_tourism.csv","Direct employment in tourism","Direct employment in tourism (WTTC).
+
+Data sources:
+
+- [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
+","Ed","jobs","Y","Y",TRUE,,,"population_inland25km","global tourism employee data were applied to each region after weighting by each region's coastal population.","NA"
+"TR","tr_jobs_pct_tourism","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_pct_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_pct_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_pct_tourism.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_jobs_pct_tourism.csv","Percent direct employment in tourism","Percent direct employment in tourism (WTTC).
+
+Data sources:
+
+- [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
+","Ep","percent","Y","Y",TRUE,,,"population_inland25km","global tourism employee data were applied to each region after weighting by each region's coastal population.","NA"
+"TR","tr_sustainability","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_sustainability.csv","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum
+
+Data sources:
+
+- [World Economic Forum](http://reports.weforum.org/travel-and-tourism-competitiveness-report-2015/index-results-the-travel-tourism-competitiveness-index-ranking-2015/)","S_score","score","Y","N",TRUE,"neptune_data:model/GL-WEF-Economics_v2013/data","rgn_wef_ttci_2013a_whence.csv","equal ","global scores were applied equally to each region. ","NA"
+"TR","tr_unemployment","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_unemployment.csv","Percent unemployment","Percent unemployment (The World Bank).
+
+Data sources:
+
+- [The World Bank](http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS)
+","U","percent ","Y","Y",TRUE,"ohiprep:Global/WorldBank-Statistics_v2012/data","rgn_wb_uem_2014a_attr.csv","equal","global unemployment percentages were applied equally to each region. ","NA"
+"TR","tr_travelwarnings","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2014.csv","ohiprep:globalprep/TourismRecreation/v2015/data","tr_travelwarnings_2015.csv","Travel warnings","Countries with US State Department travel warnings.
+
+Data sources:
+
+- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","multiplier","score","Y",,TRUE,,,,,
