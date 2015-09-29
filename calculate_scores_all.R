@@ -22,7 +22,7 @@ do.layercheck = T
 do.calculate  = T
 do.other      = F
 
-# scenarios
+# scenario list (need to add new scenarios here)
 scenarios = list(
   eez2015     = list(
     layer   = 'layers_eez',
