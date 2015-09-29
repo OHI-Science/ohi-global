@@ -7,11 +7,11 @@ layer_region_areas  = 'rgn_area'
 # components describe the layer and level with which to aggregate resilience and pressures matrices for goals with categories
 resilience_components = list('NP'  = c('layer'='rnk_np_weights_combo'       , 'level'='region_id-category'),  # old: rnk_np_product_weight
                              'CS'  = c('layer'='rnk_cs_habitat_extent'      , 'level'='region_id'),
-                             'CP'  = c('layer'='rnk_cp_habitat_extent_rank' , 'level'='region_id'),           # old: rnk_cp_habitat_extent
+                         #    'CP'  = c('layer'='rnk_cp_habitat_extent_rank' , 'level'='region_id'),           # old: rnk_cp_habitat_extent
                              'HAB' = c('layer'='rnk_hab_presence'           , 'level'='region_id'))
 pressures_components  = list('NP'  = c('layer'='rnk_np_weights_combo'       , 'level'='region_id-category'),
                              'CS'  = c('layer'='rnk_cs_habitat_extent'      , 'level'='region_id'),
-                             'CP'  = c('layer'='rnk_cp_habitat_extent_rank' , 'level'='region_id'),
+                          #   'CP'  = c('layer'='rnk_cp_habitat_extent_rank' , 'level'='region_id'),
                              'LIV' = c('layer'='le_sector_weight'       , 'level'='region_id'),
                              'ECO' = c('layer'='le_sector_weight'       , 'level'='region_id'),
                              'HAB' = c('layer'='rnk_hab_presence'           , 'level'='region_id'))

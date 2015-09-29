@@ -260,49 +260,6 @@ NP = function(layers){
 
 
 
-CP = function(layers){
-  
-  # layers
-  lyrs = list('rk' = c('hab_health' = 'health',
-                       'hab_extent' = 'extent',
-                       'hab_trend'  = 'trend'))
-  lyr_names = sub('^\\w*\\.','', names(unlist(lyrs)))
-  
-  # get layer data
-  D = SelectLayersData(layers, layers=lyr_names)
-    # cast
-  rk = rename(dcast(D, id_num + category ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs[['rk']]))),
-              c(id_num='region_id', 'category'='habitat', lyrs[['rk']]))
-  
-  # limit to CP habitats and add rank
-  habitat.rank = c('coral'            = 4,
-                   'mangrove'         = 4,
-                   'saltmarsh'        = 3,
-                   'seagrass'         = 1,
-                   'seaice_shoreline' = 4)
-  
-  rk = subset(rk, habitat %in% names(habitat.rank))
-  rk$rank = habitat.rank[as.character(rk$habitat)]
-  
-  # assign extent of 0 as NA
-  rk$extent[rk$extent==0] = NA
-  
-  # status  
-  r.status = ddply(na.omit(rk[,c('region_id','habitat','rank','extent','health')]), .(region_id), summarize,
-                   goal = 'CP',
-                   dimension = 'status',
-                   score = min(1, sum(rank * health * extent) / (sum(extent) * max(rank)) ) * 100 )    
-  
-  # trend
-  r.trend = ddply(na.omit(rk[,c('region_id','habitat','rank','extent','trend')]), .(region_id), summarize,
-                  goal = 'CP',
-                  dimension = 'trend',
-                  score = sum(rank * trend * extent) / (sum(extent)* max(rank)) * 5)
-  
-  # return scores
-  return(rbind(r.status, r.trend))  
-}
-
 
 TR = function(layers){
   
