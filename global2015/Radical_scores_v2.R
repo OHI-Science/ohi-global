@@ -358,7 +358,7 @@ trends <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
   filter(dimension=="trend") %>%
   mutate(component_id = paste0("trend_", goal)) %>%
   mutate(subcomponent_id = NA) %>%
-  mutate(component_name = paste0("trend_", goal)) %>%
+  mutate(component_name = paste0("trend: ", goal)) %>%
   mutate(component_label = NA) %>%
   mutate(scenario = "2015") %>%
   mutate(units = NA) %>%
@@ -393,7 +393,7 @@ status <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
   filter(dimension=="status") %>%
   mutate(component_id = paste0("status_", goal)) %>%
   mutate(subcomponent_id = NA) %>%
-  mutate(component_name = paste0("status: ", goal, ": score is average of subgoals")) %>%
+  mutate(component_name = paste0("status: ", goal)) %>%
   mutate(component_label = NA) %>%
   mutate(scenario = "2015") %>%
   mutate(units = NA) %>%
