@@ -261,8 +261,10 @@ NP = function(layers){
 
 
 
-TR = function(layers){
+TR = function(layers, status_year){
+  trend_years <- (status_year - 4):status_year
   
+  browser()
   # scores
   return(cbind(rename(SelectLayersData(layers, layers=c('tr_status'='status','tr_trend'='trend'), narrow=T),
                       c(id_num='region_id', layer='dimension', val_num='score')), 
