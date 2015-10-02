@@ -50,7 +50,7 @@ FIS = function(layers, status_year){
   # STEP 1. Merge the species status data with catch data
   #     AssessedCAtches: only taxa with catch status data
   # -----------------------------------------------------------------------
-  AssessedCatches <- join(b, c, 
+  AssessedCatches <- plyr::join(b, c, 
                           by=c("taxon_name", "year"), type="inner")
   
   # include only taxa with species-level data
@@ -81,13 +81,15 @@ FIS = function(layers, status_year){
   #  median
   #  ***********************************************
   
-  b_summary <- ddply(b, .(year), summarize,
-                     Medianb_bmsy=quantile(as.numeric(b_bmsy), probs=c(0.5)), 
-                     Minb_bmsy=min(as.numeric(b_bmsy))) 
+  b_summary <- b %>%
+    group_by(year) %>%
+    summarize(Medianb_bmsy = quantile(b_bmsy, probs=c(0.5)), 
+              Minb_bmsy = min(b_bmsy))
+    
   # minimum b_bmsy was used in 2013 OHI analysis to provide a conservative estimate of the b_bmsy
   # We now use the median to estimate b_bmsy for these taxa (OHI 2014, High seas, Antarctica).
   
-  UnAssessedCatches <- join(UnAssessedCatches, b_summary, by=c("year"),
+  UnAssessedCatches <- plyr::join(UnAssessedCatches, b_summary, by=c("year"),
                             type="left", match="all")
   
   
@@ -101,7 +103,7 @@ FIS = function(layers, status_year){
   penaltyTable <- data.frame(TaxonKey=1:6, 
                              penalty=c(0.01, 0.25, 0.5, 0.8, 0.9, 1))
   # 2d.Merge with data
-  UnAssessedCatches <- join(UnAssessedCatches, penaltyTable, by="TaxonKey")
+  UnAssessedCatches <- plyr::join(UnAssessedCatches, penaltyTable, by="TaxonKey")
   
   # ------------------------------------------------------------------------
   # STEP 3. Calculate score for all taxa based on status (b/bmsy) and taxa
@@ -151,14 +153,16 @@ FIS = function(layers, status_year){
   # determine mean for each species/year and apply to missing data
   meanCMSY <- extra_ccmsy %>%
     group_by(taxon_name, year) %>%
-    summarize(mean_cmsy = mean(c_cmsy, na.rm=TRUE))
+    summarize(mean_cmsy = mean(c_cmsy, na.rm=TRUE)) %>%
+    ungroup()
   
   
   scoresReplace <- scores %>%
     filter(taxon_name %in% c("Dissostichus mawsoni", "Champsocephalus gunnari", "Dissostichus eleginoides")) %>%
     mutate(fao_id = as.integer(fao_id)) %>%
     left_join(extra_ccmsy, by=c("taxon_name", "fao_id", "year")) %>%
-    left_join(meanCMSY, by=c("taxon_name", "year"))
+    left_join(meanCMSY, by=c("taxon_name", "year")) %>%
+    ungroup()
   
   scoresReplace$c_cmsy2 <- ifelse(is.na(scoresReplace$c_cmsy), scoresReplace$mean_cmsy, scoresReplace$c_cmsy)
   
@@ -189,17 +193,23 @@ FIS = function(layers, status_year){
   # the mean catch of taxon is divided by the   
   # sum of mean catch of all species in region r, which is calculated as: 
   
-  smc <- ddply(.data = scores, .(year, fao_id), summarize, 
-               SumCatch = sum(mean_catch)) 
+  smc <- scores %>%
+    group_by(year, fao_id) %>%
+    summarize(SumCatch = sum(mean_catch)) %>%
+    ungroup()
   
-  scores<-join(scores,smc,by=c("year","fao_id"))
+  scores<-plyr::join(scores,smc,by=c("year","fao_id"))
   
   scores$wprop<-scores$mean_catch/scores$SumCatch 
   
   
   #  4b. The "score" and "weight" values per taxon per SAUP region are used to  
   #    calculate a geometric weighted mean across taxa for each saup_id region
-  StatusData <- ddply(.data = scores, .(fao_id, year), summarize, Status = prod(score^wprop)) 
+  
+  StatusData <- scores %>%
+    group_by(fao_id, year) %>%
+    summarize(Status = prod(score^wprop)) %>%
+    ungroup()
   
   ### standardized region names
   StatusData <- StatusData %>%
@@ -221,18 +231,24 @@ FIS = function(layers, status_year){
   # -----------------------------------------------------------------------
   # NOTE: Status is rounded to 2 digits before trend is 
   # calculated in order to match OHI 2013 results (is this what we want to do?)
-  trend = ddply(StatusData, .(region_id), function(x){
-    mdl = lm(Status ~ year, data=x)
-    data.frame(
-      score     = round(coef(mdl)[['year']] * 5, 2),
-      dimension = 'trend')}) %>%
-    select(region_id, dimension, score)
-  # %>% semi_join(status, by='rgn_id')
-  trend$score <- ifelse(trend$score<(-1), -1, trend$score)
-  trend$score <- ifelse(trend$score>(1), 1, trend$score)
+  trend = StatusData %>%
+    group_by(region_id) %>%
+    do(mdl = lm(Status ~ year, data=.)) %>%
+    summarize(region_id = region_id,
+              score = coef(mdl)['year'] * 5)
+  
+  trend <- trend %>%
+    mutate(score = round(score, 2)) %>%
+    mutate(dimension = 'trend') %>%
+    mutate(score = ifelse(score < (-1), -1, score)) %>%
+    mutate(score = ifelse(score > 1, 1, score)) %>%
+    select(region_id, dimension, score) %>%
+    ungroup()
   
   # assemble dimensions
-  scores = rbind(status, trend) %>% mutate(goal='FIS')
+  scores = rbind(status, trend) %>% 
+    mutate(goal='FIS') %>%
+    data.frame()
   return(scores)  
   
 }
@@ -245,30 +261,67 @@ s = scores %>%
     filter(goal %in% c('FIS') & dimension %in% c('status','trend','future','score')) %>%
     # NOTE: resilience and pressure skipped for supra-goals
     mutate(goal = 'FP')
-  
+scores <- rbind(scores, s)  
   # return all scores
-  return(rbind(scores, s))
+  return(scores)
 }
 
 
 NP = function(layers){
   # scores
-  return(cbind(rename(SelectLayersData(layers, layers=c('np_status'='status','np_trend'='trend'), narrow=T),
-                      c(id_num='region_id', layer='dimension', val_num='score')), 
-               data.frame('goal'='NP')))
+  scores <- SelectLayersData(layers, layers=c('np_status'='status','np_trend'='trend'), narrow=T) %>%
+    select(region_id = id_num, dimension = layer, score = val_num) %>%
+    mutate(goal = "NP")
+  
+  return(scores)
 }
 
 
 
 
 TR = function(layers, status_year){
+
   trend_years <- (status_year - 4):status_year
   
-  browser()
-  # scores
-  return(cbind(rename(SelectLayersData(layers, layers=c('tr_status'='status','tr_trend'='trend'), narrow=T),
-                      c(id_num='region_id', layer='dimension', val_num='score')), 
-               data.frame('goal'='TR')))  
+# get data file
+  tr_data <- layers$data$tr_days %>%
+    select(sp_id, year, days)
+  
+# calculate relative tourist days:
+  tr_data <- tr_data %>%
+    group_by(sp_id) %>%
+    mutate(rel_days = days/max(days, na.rm=TRUE)) %>%
+    arrange(sp_id, year) %>%
+    ungroup()
+
+# calculate status:
+  status = tr_data %>%
+    filter(year==status_year) %>%
+    mutate(
+      score     = round(rel_days*100, 2),
+      dimension = 'status') %>%
+    select(region_id = sp_id, dimension, score)
+
+# calculate trend: 
+  trend <- tr_data %>%
+    filter(year %in% trend_years) %>%
+    group_by(sp_id) %>%
+    do(mdl = lm(rel_days ~ year, data = .)) %>%
+    summarize(region_id = sp_id,
+              score = coef(mdl)['year'] * 5) %>%
+    ungroup() %>%
+    mutate(score = ifelse(score<(-1), -1, score)) %>%
+    mutate(score = ifelse(score>(1), 1, score)) %>%
+    mutate(score = round(score, 4)) %>%
+    mutate(dimension = "trend") %>%
+    select(region_id, dimension, score)
+  
+  # assemble dimensions
+  scores = rbind(status, trend) %>% 
+    mutate(goal='TR') %>%
+    data.frame()
+  
+  return(scores)  
 }
 
 

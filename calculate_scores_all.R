@@ -92,7 +92,7 @@ for (dir in c('highseas2015')){
 }
 
 
-for (i in 1:length(scenarios)){  #i=4
+for (i in 1:length(scenarios)){  #i=1
   
   # vars
   scenario   = names(scenarios)[[i]]
@@ -194,13 +194,13 @@ for (i in 1:length(scenarios)){  #i=4
   }
   
   if (do.calculate){
-    
     # calculate scores from directory of scenario
     setwd(sprintf('%s', scenario)) # load_all(dirs$ohicore)
-    
+   
     # load configuration and layers
     conf   = Conf('conf')
     layers = Layers('layers.csv','layers')
+  
     
     # calculate scores
     #try({    })
@@ -241,10 +241,10 @@ for (i in 1:length(scenarios)){  #i=4
 ## for some reason, the devtools package needs to be turned off for this to work 
 detach("package:devtools", unload=TRUE)
 source('../ohiprep/src/R/VisGlobal.R')
-changePlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", fileSave="antarctica_FIS_pressures")
+changePlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", fileSave="antarctica_TR")
 
 # looking within a goal:
-scatterPlot(repo="~/ohi-global", scenario="eez2013", commit="previous", goal="SPP", dim="score", fileSave="SPP_errorCorrect_2013")
+scatterPlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", goal="TR", dim="score", fileSave="antarctica_TR_2013")
 goalHistogram(scenario="eez2013", goal="CW", dim="score", fileSave="CW_plume_and_3nm_update")
 
 #   scenario options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'
@@ -252,6 +252,60 @@ goalHistogram(scenario="eez2013", goal="CW", dim="score", fileSave="CW_plume_and
 #   saved to: ohi-global/figures/DataCheck with name from fileSave argument
 ### this code needs to be redone!
 #source('global2014/merge_scores.R')
+
+## Scatterplot for Antarctica:
+scatterPlot <- function(repo="~/ohi-global", scenario="eez2013", commit="previous", goal, dim="score", fileSave){
+  #   scenario <- "eez2013"  ## options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'
+  #   commit <- "final_2014"   ## 'final_2014', 'previous', a commit code (ie., 'e30e7a4')
+  #   fileSave <- 'LSP_trend_data'
+  #   goal <- 'LSP'
+  ## Useful code: repository(repo)
+  ## Useful code: commits(repo)
+  
+  # devtools::install_github('ropensci/git2r') # to get latest version
+  require(git2r)
+  require(ggplot2)
+  require(RColorBrewer)
+  
+  if(commit=="previous"){
+    commit2 = substring(commits(repository(repo))[[1]]@sha, 1, 7)
+  } else{
+    if (commit == "final_2014"){
+      commit2 = '4da6b4a'
+    } else {commit2 = commit}
+  }
+  path = paste0(scenario, '/scores.csv')
+  
+#   names <- read.csv(sprintf("%s/layers/rgn_labels.csv", scenario)) %>%
+#     filter(type=="eez") %>%
+#     select(region_id=rgn_id, label)
+  
+  data_old <- read_git_csv(repo, commit2, path) %>%
+    select(goal, dimension, region_id, old_score=score)
+  
+  criteria <- ~dimension == dim
+  
+  data_new <- read.csv(file.path(repo, path)) %>%
+    left_join(data_old, by=c('goal', 'dimension', 'region_id')) %>%
+    mutate(change = score-old_score) %>%
+    filter_(criteria) %>%
+    group_by(goal) %>% 
+    mutate(mean = mean(change, na.rm=TRUE),
+           sd =  sd(change, na.rm=TRUE)) %>%
+    ungroup()
+  
+  data_new <- data_new[data_new$goal==goal,]  
+  
+  ggplot(data_new, aes(x=old_score, y=score)) +
+    geom_point(shape=19) +
+    theme_bw() + 
+    labs(title=paste(scenario, goal, dim, commit, sep=": "), y="New scores", x="Scores from previous analysis") +
+    geom_abline(slope=1, intercept=0, color="red") + 
+    xlim(c(0,100))
+  
+  ggsave(file.path(repo, 'figures/DataCheck', paste0(fileSave, "_scatterPlot_", Sys.Date(), '.png')), width=10, height=8)
+}
+
 
 
 ## look into following code:
