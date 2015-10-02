@@ -1,0 +1,138 @@
+---
+title: "Score Checking"
+author: "Mel"
+date: "9/16/2015"
+output: html_document
+---
+
+```{r, echo=FALSE}
+library(tidyr)
+library(dplyr)
+library("RCurl", lib.loc="~/R/x86_64-pc-linux-gnu-library/3.2")
+library(curl)
+```
+
+
+The purpose of this document is to explore the questions we have about particular scores.  
+
+Question 1: Why the change in UK HAB/CP scores?
+Answer: Appears to be due to sea ice (edge and shoreline)
+```{r}
+
+region <- 180 #United Kingdom
+tmp <- data.frame()
+
+for (scenario in 2012:2015){ #scenario <- 2015
+
+extent <- read.csv(sprintf('eez%s/layers/hab_extent.csv', scenario)) %>%
+  mutate(variable = 'extent') %>%
+  select(rgn_id, variable, habitat, score=km2)
+health <- read.csv(sprintf('eez%s/layers/hab_health.csv', scenario))%>%
+  mutate(variable = 'health') %>%
+  select(rgn_id, variable, habitat, score=health)
+trend <- read.csv(sprintf('eez%s/layers/hab_trend.csv', scenario)) %>%
+  mutate(variable = 'trend') %>%
+  select(rgn_id, variable, habitat, score=trend)
+
+allHab <- rbind(extent, health, trend) 
+allHab$scenario = scenario
+
+tmp <- rbind(tmp, allHab[allHab$rgn_id==region, ])
+
+}
+
+tmp2 <- tmp %>%
+  filter(!(variable=="extent" & score == 0)) %>%
+  arrange(variable, habitat, scenario) %>%
+  filter(variable != "extent")
+
+
+
+```
+
+
+
+Question 2: What caused Mozambique to have increased NP scores?
+Answer: Appears to be due to sea ice (edge and shoreline)
+```{r}
+
+region <- 41 #Mozambique
+
+np <- read.csv(sprintf('eez%s/layers/np_harvest_tonnes_relative.csv', scenario)) %>%
+  filter(year>2005) %>%
+  spread(year, tonnes_rel)
+
+np <- np[np$rgn_id==region, ]
+  
+np_t <- read.csv(sprintf('eez%s/layers/np_harvest_tonnes.csv', scenario)) %>%
+  filter(year>2005) %>%
+  spread(year, tonnes)
+
+np_t[np_t$rgn_id==region, ]
+  
+
+```
+
+Question 3: Why are Israel's CW scores so low?
+Answer: Appears to be due to sea ice (edge and shoreline)
+```{r}
+
+region <- 79 #Israel
+
+read.csv('eez2014/scores.csv') %>%
+  filter(region_id == region) %>%
+  filter(goal == "CW")
+
+read.csv('eez2014/layers/po_pathogens.csv') %>%
+  filter(rgn_id == region) %>%
+  mutate(score = 1- pressure_score)
+
+read.csv('eez2014/layers/po_trash.csv') %>%
+  filter(rgn_id == region)%>%
+  mutate(score = 1- pressure_score)
+
+read.csv('eez2014/layers/po_chemicals_3nm.csv') %>%
+  filter(rgn_id == region)%>%
+  mutate(score = 1- pressure_score)
+
+read.csv('eez2014/layers/po_nutrients_3nm.csv') %>%
+  filter(rgn_id == region)%>%
+  mutate(score = 1- pressure_score)
+
+### compare to 2014 analysis:
+
+v2014.3_url = 'https://raw.githubusercontent.com/OHI-Science/ohi-global/4da6b4a1d69d694264ea68456359a939b0c03f9c/eez2014/'
+read.csv(curl(file.path(v2014.3_url, 'layers/po_pathogens.csv'))) %>%
+  filter(rgn_id==region)%>%
+  mutate(score = 1- pressure_score)
+
+read.csv(curl(file.path(v2014.3_url, 'layers/po_trash.csv'))) %>%
+  filter(rgn_id==region)%>%
+  mutate(score = 1- pressure_score)
+
+
+### Note these measurements are based on the entire eez! rather than 3nm as we did in 2015:
+read.csv(curl(file.path(v2014.3_url, 'layers/po_chemicals.csv'))) %>%
+  filter(rgn_id==region)%>%
+  mutate(score = 1- pressure_score)
+
+read.csv(curl(file.path(v2014.3_url, 'layers/po_nutrients.csv'))) %>%
+  filter(rgn_id==region)%>%
+  mutate(score = 1- pressure_score)
+
+```
+
+
+Question 4: Brazil + Trinidade Goal score for FIS is 1000 (rgn = 171)?
+Answer: Not sure what is going on...data looks correct on my end....
+```{r}
+
+data1 <- read.csv('global2015/radicalv2_2015_2015-09-30.csv')
+region <- 171 #Brazil and Trinidade
+
+data1 %>%
+  filter(region_id==171) %>%
+  filter(goal=="FIS") %>%
+  select(-source)
+
+```
