@@ -427,7 +427,7 @@ radical_final <- rbind(radical_final, status)
 radical_final <-  radical_final %>%
   mutate(radical_component_id = paste(component_id, subcomponent_id, goal, substring(dimension, 1,1), sep="_")) %>%
   select(ohi_component_id = component_id, component_id = radical_component_id, subcomponent_id, 
-         component_label, component_name, goal, dimension, scenario, region_id, value, units, source, url)
+         component_label, component_name, goal, dimension, scenario, region_id, value, units, source)
 
 # > dim(radical_final)
 # [1] 60142    13
@@ -454,6 +454,15 @@ setdiff(radical_final$ohi_component_id, layers$component_id)  # trend data is ok
 
 sum(duplicated(paste(radical_final$component_id, radical_final$region_id)))
 ## end data check
+
+## add component urls (email 10/2/2015)
+url <- read.csv('global2015/component_urls.csv') %>%
+  select(component_id = ohi_id, url)
+setdiff(url$component_id, radical_final$component_id)
+setdiff(radical_final$component_id, url$component_id)
+
+radical_final <- radical_final %>%
+  left_join(url, by="component_id")
 
 write.csv(radical_final, sprintf('%s/radicalv2_noFP_%s_%s.csv', saveFile, scenario, Sys.Date()),
           row.names=FALSE, na="") 
