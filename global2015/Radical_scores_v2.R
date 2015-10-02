@@ -455,6 +455,6 @@ setdiff(radical_final$ohi_component_id, layers$component_id)  # trend data is ok
 sum(duplicated(paste(radical_final$component_id, radical_final$region_id)))
 ## end data check
 
-write.csv(radical_final, sprintf('%s/radicalv2_%s_%s.csv', saveFile, scenario, Sys.Date()),
+write.csv(radical_final, sprintf('%s/radicalv2_noFP_%s_%s.csv', saveFile, scenario, Sys.Date()),
           row.names=FALSE, na="") 
 }
