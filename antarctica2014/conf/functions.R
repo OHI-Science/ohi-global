@@ -540,9 +540,11 @@ HAB = function(layers){
 SPP = function(layers){
 
   # scores
-  scores = cbind(rename(SelectLayersData(layers, layers=c('spp_status'='status','spp_trend'='trend'), narrow=T),
-                      c(id_num='region_id', layer='dimension', val_num='score')), 
-               data.frame('goal'='SPP'))
+  scores <- SelectLayersData(layers, layers=c('spp_status' = 'status', 'spp_trend' = 'trend'), narrow = TRUE) %>%
+    select(region_id = id_num, dimension = layer, score = val_num) %>%
+    mutate(score = ifelse(dimension %in% "status", score * 100, score)) %>%
+    mutate(goal = "SPP")
+  
   return(scores) 
 }
 
