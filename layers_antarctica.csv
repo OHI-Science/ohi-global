@@ -31,8 +31,8 @@ resilience,UNEP_gap_report,,,resilience score,resilience score,neptune_data:mode
 resilience,Marpol_aliens,,,resilience score,resilience score,neptune_data:model/GL-HS-AQ-Resilience/data,Marpol_aliens_AQ.csv,,,T,
 resilience,Marpol_poll,,,resilience score,resilience score,neptune_data:model/GL-HS-AQ-Resilience/data,Marpol_poll_AQ.csv,,,T,
 resilience,MPAs,,,resilience score,resilience score,neptune_data:model/GL-HS-AQ-Resilience/data,MPAs_AQ.csv,,,T,
-SPP,spp_status,Species lists and IUCN threat categories as a proxy for species richness status/trend,International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists ,score,status score,ohiprep:Global/HS-AQ-SpeciesRichness_v2014/data,rgn_spp_score_2013_AQ.csv,,,T,
-SPP,spp_trend,Species lists and IUCN threat categories as a proxy for species richness status/trend,International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists ,score,trend score,ohiprep:Global/HS-AQ-SpeciesRichness_v2014/data,rgn_spp_trend_2013_AQ.csv,,,T,
+SPP,spp_status,Species lists and IUCN threat categories as a proxy for species richness status/trend,International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists ,score,status score,ohiprep:globalprep/SPP_ICO/v2015/data,spp_status_aq.csv,,,T,
+SPP,spp_trend,Species lists and IUCN threat categories as a proxy for species richness status/trend,International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists ,score,trend score,ohiprep:globalprep/SPP_ICO/v2015/data,spp_trend_aq.csv,,,T,
 TR,tr_days,Tourism days,Number of tourist days,days,days,ohiprep:Antarctica/AQ-Tourism_v2014/data,tr_days.csv,,,T,Y
 pressures LE,le_sector_weight,Jobs weighting,Jobs weighting by sector (defaulting to 1),weight,value,ohiprep:Antarctica/Other_v2014,LIV_sector_weights.csv,,,T,
 pressures HAB,hab_presence,Habitat presence,Modeled combined habitat presence,weight,boolean,ohiprep:Antarctica/Other_v2014,hab_presence.csv,,,T,
