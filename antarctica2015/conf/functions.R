@@ -282,6 +282,8 @@ NP = function(layers){
 TR = function(layers, status_year){
 
   trend_years <- (status_year - 4):status_year
+  buffer <- 0.35  ## when tourist days are >= max*(1-buffer) the score will be 1
+  NAcut <- 500   ## sites that have < NAcut tourist days get an NA score
   
 # get data file
   tr_data <- layers$data$tr_days %>%
@@ -290,12 +292,19 @@ TR = function(layers, status_year){
 # calculate relative tourist days:
   tr_data <- tr_data %>%
     group_by(sp_id) %>%
+    mutate(maxDays = max(days, na.rm=TRUE)) %>%
     mutate(rel_days = days/max(days, na.rm=TRUE)) %>%
+    mutate(rel_days = rel_days/(1-buffer)) %>%
+    mutate(rel_days = ifelse(rel_days > 1, 1, rel_days)) %>%
     arrange(sp_id, year) %>%
     ungroup()
 
+
 ## save this as intermediate reference:
   write.csv(tr_data, 'temp/tr_rel_days.csv', row.names=FALSE)
+  
+  tr_data <- tr_data %>%
+    filter(maxDays > NAcut)
   
 # calculate status:
   status = tr_data %>%
