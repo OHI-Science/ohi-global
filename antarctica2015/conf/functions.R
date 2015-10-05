@@ -294,6 +294,9 @@ TR = function(layers, status_year){
     arrange(sp_id, year) %>%
     ungroup()
 
+## save this as intermediate reference:
+  write.csv(tr_data, 'temp/tr_rel_days.csv', row.names=FALSE)
+  
 # calculate status:
   status = tr_data %>%
     filter(year==status_year) %>%
