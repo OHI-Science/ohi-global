@@ -241,10 +241,10 @@ for (i in 1:length(scenarios)){  #i=1
 ## for some reason, the devtools package needs to be turned off for this to work 
 detach("package:devtools", unload=TRUE)
 source('../ohiprep/src/R/VisGlobal.R')
-changePlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", fileSave="antarctica_TR")
+changePlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", fileSave="antarctica_SPP")
 
 # looking within a goal:
-scatterPlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", goal="TR", dim="score", fileSave="antarctica_TR_2013")
+scatterPlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", goal="TR", dim="score", fileSave="antarctica_SPP_2014")
 goalHistogram(scenario="eez2013", goal="CW", dim="score", fileSave="CW_plume_and_3nm_update")
 
 #   scenario options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'

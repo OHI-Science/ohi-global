@@ -11,33 +11,31 @@ FIS = function(layers, status_year){
       fao_saup_id    = id_chr,
       taxon_name_key = category,
       year,
-      mean_catch          = val_num)  
+      mean_catch     = val_num)  
   
   # separate out the region ids:
-  c$fao_id    <- as.numeric(sapply(strsplit(as.character(c$fao_saup_id), "_"), function(x)x[1]))
-  c$saup_id   <- as.numeric(sapply(strsplit(as.character(c$fao_saup_id), "_"), function(x)x[2]))
-  c$taxon_name <- sapply(strsplit(as.character(c$taxon_name_key), "_"), function(x)x[1])
-  c$TaxonKey  <- as.numeric(sapply(strsplit(as.character(c$taxon_name_key), "_"), function(x)x[2]))
-  c$mean_catch     <- as.numeric(c$mean_catch)
-  c$year      <- as.numeric(as.character(c$year))
-  #Create Identifier for linking assessed stocks with country-level catches
-  c$stock_id <- paste(as.character(c$TaxonName),
-                      as.character(c$fao_id), sep="_")
+  c <-  c %>%
+    separate(fao_saup_id, c("fao_id", "saup_id"), sep="_") %>%
+    separate(taxon_name_key, c("taxon_name", "TaxonKey"), sep="_") %>%
+    mutate(TaxonKey = as.numeric(TaxonKey)) %>%
+    mutate(mean_catch = as.numeric(mean_catch)) %>%
+    mutate(year = as.numeric(year)) %>%
+    mutate(stock_id = paste(taxon_name, fao_id, sep="_"))
   
   # b_bmsy data
   b = SelectLayersData(layers, layer='fis_b_bmsy', narrow=T) %>%
     select(
-      taxon_name      = category,
+      taxon_name       = category,
       year,
       b_bmsy           = val_num)
   
   # c_cmsy data
   extra_ccmsy = SelectLayersData(layers, layer='fis_c_cmsy', narrow=T) %>%
     select(
-      fao_id    =       id_num,
+      fao_id          = id_num,
       taxon_name      = category,
       year,
-      c_cmsy           = val_num)
+      c_cmsy          = val_num)
   
   # region labels
   regions = SelectLayersData(layers, layer='rgn_labels') %>%
@@ -50,12 +48,10 @@ FIS = function(layers, status_year){
   # STEP 1. Merge the species status data with catch data
   #     AssessedCAtches: only taxa with catch status data
   # -----------------------------------------------------------------------
-  AssessedCatches <- plyr::join(b, c, 
-                          by=c("taxon_name", "year"), type="inner")
-  
-  # include only taxa with species-level data
-  AssessedCatches <- AssessedCatches[as.numeric(AssessedCatches$TaxonKey)>=6, ]
-  AssessedCatches$penalty <- 1
+  AssessedCatches <- inner_join(b, c, 
+                          by=c("taxon_name", "year"), type="inner") %>%
+    filter(TaxonKey >= 6) %>%
+    mutate(penalty = 1)
   
   
   # ------------------------------------------------------------------------
@@ -73,24 +69,15 @@ FIS = function(layers, status_year){
   # Here, the Median b_bmsy was chosen for TaxonKey >= 600000 
   # and for TaxonKey < 600000
   
-  #  *************NOTE *****************************
-  #  Using the minimum B/BMSY score as an starting point
-  #  for the estimate of B/BMSY for unassessed taxa not
-  #  identified to species level is very conservative.
-  #  This is a parameter that can be changed.  Here we used the
-  #  median
-  #  ***********************************************
-  
   b_summary <- b %>%
     group_by(year) %>%
-    summarize(Medianb_bmsy = quantile(b_bmsy, probs=c(0.5)), 
-              Minb_bmsy = min(b_bmsy))
+    summarize(Medianb_bmsy = quantile(b_bmsy, probs=c(0.5)))
     
   # minimum b_bmsy was used in 2013 OHI analysis to provide a conservative estimate of the b_bmsy
   # We now use the median to estimate b_bmsy for these taxa (OHI 2014, High seas, Antarctica).
   
-  UnAssessedCatches <- plyr::join(UnAssessedCatches, b_summary, by=c("year"),
-                            type="left", match="all")
+  UnAssessedCatches <- UnAssessedCatches %>%
+    left_join(b_summary, by=c("year"))
   
   
   # 2c. Create a penalty table for taxa not identified to species level
@@ -102,8 +89,9 @@ FIS = function(layers, status_year){
   
   penaltyTable <- data.frame(TaxonKey=1:6, 
                              penalty=c(0.01, 0.25, 0.5, 0.8, 0.9, 1))
-  # 2d.Merge with data
-  UnAssessedCatches <- plyr::join(UnAssessedCatches, penaltyTable, by="TaxonKey")
+  
+  UnAssessedCatches <- UnAssessedCatches %>%
+    left_join(penaltyTable, by="TaxonKey")
   
   # ------------------------------------------------------------------------
   # STEP 3. Calculate score for all taxa based on status (b/bmsy) and taxa
@@ -140,7 +128,7 @@ FIS = function(layers, status_year){
   UnAssessedCatchesT6$score <- score(UnAssessedCatchesT6, "Medianb_bmsy")
   
   UnAssessedCatches <- subset(UnAssessedCatches, penalty!=1)
-  UnAssessedCatches$score <- score(UnAssessedCatches, "Medianb_bmsy") #this used to be the Minb_bmsy 
+  UnAssessedCatches$score <- score(UnAssessedCatches, "Medianb_bmsy") 
   
   scores <- rbind(AssessedCatches[,c("taxon_name", "TaxonKey", "year", "fao_id", "mean_catch","score")],
                   UnAssessedCatchesT6[,c("taxon_name", "TaxonKey", "year", "fao_id", "mean_catch","score")],
@@ -164,7 +152,8 @@ FIS = function(layers, status_year){
     left_join(meanCMSY, by=c("taxon_name", "year")) %>%
     ungroup()
   
-  scoresReplace$c_cmsy2 <- ifelse(is.na(scoresReplace$c_cmsy), scoresReplace$mean_cmsy, scoresReplace$c_cmsy)
+  scoresReplace <- scoresReplace %>%
+    mutate(c_cmsy2 = ifelse(is.na(c_cmsy), mean_cmsy, c_cmsy))
   
   
   ## calculate score based on c_cmsy
@@ -172,19 +161,25 @@ FIS = function(layers, status_year){
   score_range  <- 1-0.25
   value_range <- 0.90-0
   
-  scoresReplace$score = ifelse(scoresReplace$c_cmsy2 > 1.0, 2.0-scoresReplace$c_cmsy2, 
-                               ifelse(scoresReplace$c_cmsy2 < 0.9, eps + score_range/value_range * scoresReplace$c_cmsy2, 1)) 
+  scoresReplace <- scoresReplace %>%
+    mutate(score = ifelse(c_cmsy2 > 1.0, 2.0-c_cmsy2, 
+                               ifelse(c_cmsy2 < 0.9, eps + score_range/value_range * c_cmsy2, 1))) 
+  
+  png('temp/c_cmsyVSscore.png')
+  plot(score ~ c_cmsy2, data=scoresReplace, xlab='c/cmsy', ylab="score", xlim=c(0,1), ylim=c(0,1))
+  abline(0,1, col="red")
+  dev.off()
   
   scoresReplace <- scoresReplace %>%
     select(taxon_name, TaxonKey, year, fao_id, mean_catch, score)
   
   ## replace old scores with newly calculated ccmsy
   
-  scores <- scores[!(scores$taxon_name %in% c("Dissostichus mawsoni", "Champsocephalus gunnari", "Dissostichus eleginoides")), ]
+  scores <- scores %>%
+    filter(!(taxon_name %in% c("Dissostichus mawsoni", "Champsocephalus gunnari", "Dissostichus eleginoides"))) %>%
+    rbind(scoresReplace) %>%
+    filter(year %in% trend_years)
   
-  scores <- rbind(scores, scoresReplace)
-  
-  scores <- scores[scores$year %in% trend_years, ]
   # ------------------------------------------------------------------------
   # STEP 4. Calculate status for each saup_id region
   # -----------------------------------------------------------------------
@@ -193,14 +188,14 @@ FIS = function(layers, status_year){
   # the mean catch of taxon is divided by the   
   # sum of mean catch of all species in region r, which is calculated as: 
   
-  smc <- scores %>%
+  scores <- scores %>%
     group_by(year, fao_id) %>%
-    summarize(SumCatch = sum(mean_catch)) %>%
+    mutate(SumCatch = sum(mean_catch)) %>%
     ungroup()
   
-  scores<-plyr::join(scores,smc,by=c("year","fao_id"))
-  
-  scores$wprop<-scores$mean_catch/scores$SumCatch 
+
+  scores <- scores %>%
+    mutate(wprop = mean_catch/SumCatch) 
   
   
   #  4b. The "score" and "weight" values per taxon per SAUP region are used to  
@@ -282,6 +277,8 @@ NP = function(layers){
 TR = function(layers, status_year){
 
   trend_years <- (status_year - 4):status_year
+  buffer <- 0.35  ## when tourist days are >= max*(1-buffer) the score will be 1
+  NAcut <- 500   ## sites that have < NAcut tourist days get an NA score
   
 # get data file
   tr_data <- layers$data$tr_days %>%
@@ -290,10 +287,20 @@ TR = function(layers, status_year){
 # calculate relative tourist days:
   tr_data <- tr_data %>%
     group_by(sp_id) %>%
+    mutate(maxDays = max(days, na.rm=TRUE)) %>%
     mutate(rel_days = days/max(days, na.rm=TRUE)) %>%
+    mutate(rel_days = rel_days/(1-buffer)) %>%
+    mutate(rel_days = ifelse(rel_days > 1, 1, rel_days)) %>%
     arrange(sp_id, year) %>%
     ungroup()
 
+
+## save this as intermediate reference:
+  write.csv(tr_data, 'temp/tr_rel_days.csv', row.names=FALSE)
+  
+  tr_data <- tr_data %>%
+    filter(maxDays > NAcut)
+  
 # calculate status:
   status = tr_data %>%
     filter(year==status_year) %>%
@@ -537,9 +544,11 @@ HAB = function(layers){
 SPP = function(layers){
 
   # scores
-  scores = cbind(rename(SelectLayersData(layers, layers=c('spp_status'='status','spp_trend'='trend'), narrow=T),
-                      c(id_num='region_id', layer='dimension', val_num='score')), 
-               data.frame('goal'='SPP'))
+  scores <- SelectLayersData(layers, layers=c('spp_status' = 'status', 'spp_trend' = 'trend'), narrow = TRUE) %>%
+    select(region_id = id_num, dimension = layer, score = val_num) %>%
+    mutate(score = ifelse(dimension %in% "status", score * 100, score)) %>%
+    mutate(goal = "SPP")
+  
   return(scores) 
 }
 
