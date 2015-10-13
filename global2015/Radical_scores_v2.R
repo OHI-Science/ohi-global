@@ -429,9 +429,29 @@ radical_final <-  radical_final %>%
   select(ohi_component_id = component_id, component_id = radical_component_id, subcomponent_id, 
          component_label, component_name, goal, dimension, scenario, region_id, value, units, source)
 
-# > dim(radical_final)
-# [1] 60142    13
-  
+
+## add component urls (email 10/2/2015)
+url <- read.csv('global2015/component_urls.csv') %>%
+  select(component_id = ohi_id, url)
+setdiff(url$component_id, radical_final$component_id)
+setdiff(radical_final$component_id, url$component_id)
+
+radical_final <- radical_final %>%
+  left_join(url, by="component_id")
+
+## add region name (a few changes based on emails from Oct 2):
+rgn_names2 <- rgn_names %>%
+  mutate(country = as.character(country)) 
+
+rgn_names2$country[rgn_names2$region_id == 212] <- "Gilbert Islands (Kiribati)"
+rgn_names2$country[rgn_names2$region_id == 148] <- "Line Islands (Kiribati)"
+rgn_names2$country[rgn_names2$region_id == 157] <- "Phoenix Islands (Kiribati)"
+
+radical_final <- radical_final %>%
+  left_join(rgn_names2) %>%
+  select(ohi_component_id, component_id, subcomponent_id, 
+         component_label, component_name, goal, dimension, scenario, region_id, country, value, units, source, url)
+
 ## data check ##
 data.frame(filter(radical_final, goal=="CW" & region_id==1) %>%
   select(-source))
@@ -455,15 +475,7 @@ setdiff(radical_final$ohi_component_id, layers$component_id)  # trend data is ok
 sum(duplicated(paste(radical_final$component_id, radical_final$region_id)))
 ## end data check
 
-## add component urls (email 10/2/2015)
-url <- read.csv('global2015/component_urls.csv') %>%
-  select(component_id = ohi_id, url)
-setdiff(url$component_id, radical_final$component_id)
-setdiff(radical_final$component_id, url$component_id)
 
-radical_final <- radical_final %>%
-  left_join(url, by="component_id")
-
-write.csv(radical_final, sprintf('%s/radicalv2_noFP_%s_%s.csv', saveFile, scenario, Sys.Date()),
+write.csv(radical_final, sprintf('%s/radicalv2_%s_%s.csv', saveFile, scenario, Sys.Date()),
           row.names=FALSE, na="") 
 }
