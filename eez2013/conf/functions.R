@@ -360,28 +360,30 @@ FP = function(layers, scores){
 
 
 AO = function(layers, 
-              year_max,
-              year_min=max(min(layers_data$year, na.rm = TRUE), year_max - 10), 
+              year_max, 
               Sustainability=1.0){
   
   # cast data
   layers_data = SelectLayersData(layers, targets='AO')
+
+  year_min=max(min(layers_data$year, na.rm = TRUE), year_max - 10)
   
-  ry = rename(dcast(layers_data, id_num + year ~ layer, value.var='val_num', 
-                    subset = .(layer %in% c('ao_need'))),
-              c('id_num'='region_id', 'ao_need'='need')); head(ry); summary(ry)
+  r <- layers_data %>%
+    filter(layer == 'ao_access') %>%
+    select(region_id=id_num, access=val_num)
+  r <- na.omit(r)
   
-  r = na.omit(rename(dcast(layers_data, id_num ~ layer, value.var='val_num', 
-                           subset = .(layer %in% c('ao_access'))),
-                     c('id_num'='region_id', 'ao_access'='access'))); head(r); summary(r)
-  
-  ry = merge(ry, r); head(r); summary(r); dim(r)
+  ry <- layers_data %>%
+    filter(layer == 'ao_need') %>%
+    select(region_id = id_num, year, need=val_num) %>%
+    left_join(r)
+    
   
   # model
-  ry = within(ry,{
-    Du = (1.0 - need) * (1.0 - access)
-    statusData = ((1.0 - Du) * Sustainability)
-  })
+  
+  ry <- ry %>%
+    mutate(Du = (1 - need) * (1 - access)) %>%
+    mutate(statusData = (1 - Du) * Sustainability)
   
   # status
   r.status <- ry %>%
@@ -391,18 +393,30 @@ AO = function(layers,
 summary(r.status); dim(r.status)
   
   # trend
-  r.trend = ddply(subset(ry, year >= year_min), .(region_id), function(x)
-    {
-      if (length(na.omit(x$statusData))>1) {
-        # use only last valid 5 years worth of status data since year_min
-        d = data.frame(statusData=x$statusData, year=x$year)[tail(which(!is.na(x$statusData)), 5),]
-        trend = coef(lm(statusData ~ year, d))[['year']]*5
-      } else {
-        trend = NA
-      }
-      return(data.frame(trend=trend))
-    })
+tmp <- data.frame(pet = c((rep(c('cat', 'dog'), each=4)), 'hamster'), year=c(1990:1993, 1994:1991, 2012))
+tmp %>%
+  group_by(pet) %>%
+  arrange(year) %>%
+  top_n(2, year)
+
+r.trend <- ry %>%
+  filter(year >= year_min) %>%
+  filter(!is.na(statusData)) %>%
+  group_by(region_id) %>%
+  arrange(year) %>%
+  top_n(5, year) %>%
+  ungroup()
   
+
+r.trend <- r.trend %>%
+  group_by(region_id) %>%
+  do(mdl = lm(statusData ~ year, data=.)) %>%
+  summarize( region_id = region_id, 
+             trend = coef(mdl)['year']*5) %>%
+  ungroup()
+
+
+
   # return scores
   scores = r.status %>%
     select(region_id, score=status) %>%
