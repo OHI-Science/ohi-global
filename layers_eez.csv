@@ -36,18 +36,6 @@ Data sources:
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
 Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",trend,trend score,Y,Y,TRUE,ohiprep:Global/FAO-CW-Trends_v2011/data,rgn_cw_pesticides_trends_2013a.csv,,,equal,global trends were applied equally to all regions.,NA
 ECO,,,,,,ohiprep:Global/WorldBank-Statistics_v2012/data,rgn_wb_gdp_2014a.csv,,,,,,,N,Y,,ohiprep:Global/WorldBank-Statistics_v2012/data,rgn_wb_gdp_2014a_attr.csv,,,(not ingested; see column X),,
-FIS,fis_b_bmsy,ohiprep:globalprep/SAUP_FIS/v2015/data,fnk_fis_b_bmsy_lyr.csv,ohiprep:globalprep/SAUP_FIS/v2015/data,fnk_fis_b_bmsy_lyr.csv,ohiprep:globalprep/SAUP_FIS/v2015/data,fnk_fis_b_bmsy_lyr.csv,,,B/Bmsy estimates obtained using the catch-MSY method,"The ratio of fish population abundance to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
-
-Data sources:
-
-- Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
-",b_bmsy,B / B_msy,Y,Y,FALSE,,,,,equal,global b_bmsy information was applied equally to all regions.,
-FIS,fis_meancatch,ohiprep:globalprep/SAUP_FIS/v2015/data,mean_catch.csv,ohiprep:globalprep/SAUP_FIS/v2015/data,mean_catch.csv,ohiprep:globalprep/SAUP_FIS/v2015/data,mean_catch.csv,,,Catch data for each Taxon/FAO/OHI region averaged across years,"Mean catch-per-taxon values within each OHI/FAO fishing area.
-
-Data sources:
-
-- [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)
-- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)",mean_catch,metric tons,Y,Y,FALSE,,,,,equal,global mean catch information was applied equally to all regions.,
 FIS,fis_b_bmsy,ohiprep:Global/NCEAS-Fisheries_2014a/data,fnk_fis_b_bmsy_lyr.csv,ohiprep:Global/NCEAS-Fisheries_2014a/data,fnk_fis_b_bmsy_lyr.csv,ohiprep:Global/NCEAS-Fisheries_2014a/data,fnk_fis_b_bmsy_lyr.csv,,,B/Bmsy estimates obtained using the catch-MSY method,"The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
