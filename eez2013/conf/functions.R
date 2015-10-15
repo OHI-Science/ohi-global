@@ -765,7 +765,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       mutate(prop_score = weighted_cont/sum(weighted_cont)) %>%
       mutate(prop_score = round(prop_score, 3)) %>%
       select(rgn_id, habitat, prop_score)
-    write.csv(dp, 'temp/CS_hab_contributions.csv', row.names=FALSE)
+    write.csv(dp, 'temp/cs_hab_contributions.csv', row.names=FALSE)
     
         
     if (nrow(d) > 0){
@@ -798,7 +798,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
         select(rgn_id, habitat, extent, health, trend, rank) %>%
         arrange(rgn_id, habitat) %>%
         left_join(scores_check, by="rgn_id") 
-      write.csv(d_check, sprintf('temp/CS_data_%s.csv', scenario), row.names=FALSE)    
+      write.csv(d_check, sprintf('temp/cs_data_%s.csv', scenario), row.names=FALSE)    
       ### end: output...   
       
       scores_CS <- scores_CS %>%
@@ -881,7 +881,7 @@ CP <- function(layers){
     mutate(prop_score = weighted_cont/sum(weighted_cont)) %>%
     mutate(prop_score = round(prop_score, 3)) %>%
     select(rgn_id, habitat, prop_score)
- write.csv(dp, 'temp/CP_hab_contributions.csv', row.names=FALSE)
+ write.csv(dp, 'temp/cp_hab_contributions.csv', row.names=FALSE)
   
   if (nrow(d) > 0){
     # status
@@ -913,7 +913,7 @@ CP <- function(layers){
       select(rgn_id, habitat, extent, health, trend, rank) %>%
       arrange(rgn_id, habitat) %>%
       left_join(scores_check, by="rgn_id") 
-    write.csv(d_check, sprintf('temp/CP_data_%s.csv', scenario), row.names=FALSE)    
+    write.csv(d_check, sprintf('temp/cp_data_%s.csv', scenario), row.names=FALSE)    
     ### end: output...   
     
     scores_CP <- scores_CP %>%
