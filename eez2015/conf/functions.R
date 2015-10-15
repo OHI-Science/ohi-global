@@ -362,6 +362,7 @@ FP = function(layers, scores){
 AO = function(layers, 
               year_max, 
               Sustainability=1.0){
+  
   # cast data
   layers_data = SelectLayersData(layers, targets='AO')
 
@@ -378,28 +379,12 @@ AO = function(layers,
     left_join(r)
     
   
-  
-#   ry = plyr::rename(reshape2::dcast(layers_data, id_num + year ~ layer, value.var='val_num', 
-#                     subset = (layer %in% c('ao_need'))),
-#               c('id_num'='region_id', 'ao_need'='need')); head(ry); summary(ry)
-#   
-#   r = na.omit(rename(dcast(layers_data, id_num ~ layer, value.var='val_num', 
-#                            subset = .(layer %in% c('ao_access'))),
-#                      c('id_num'='region_id', 'ao_access'='access'))); head(r); summary(r)
-#   
-#    ry = merge(ry, r); head(r); summary(r); dim(r)
-  
   # model
   
   ry <- ry %>%
     mutate(Du = (1 - need) * (1 - access)) %>%
     mutate(statusData = (1 - Du) * Sustainability)
   
-#   ry = within(ry,{
-#     Du2 = (1.0 - need) * (1.0 - access)
-#     statusData2 = ((1.0 - Du) * Sustainability)
-#   })
-#   
   # status
   r.status <- ry %>%
     filter(year==year_max) %>%
@@ -432,18 +417,6 @@ r.trend <- r.trend %>%
 
 
 
-#   r.trend = ddply(subset(ry, year >= year_min), .(region_id), function(x)
-#     {
-#       if (length(na.omit(x$statusData))>1) {
-#         # use only last valid 5 years worth of status data since year_min
-#         d = data.frame(statusData=x$statusData, year=x$year)[tail(which(!is.na(x$statusData)), 5),]
-#         trend = coef(lm(statusData ~ year, d))[['year']]*5
-#       } else {
-#         trend = NA
-#       }
-#       return(data.frame(trend=trend))
-#     })
-  
   # return scores
   scores = r.status %>%
     select(region_id, score=status) %>%
@@ -753,7 +726,8 @@ NP <- function(scores, layers, year_max, debug = FALSE){
 
 
   CS <- function(layers){
-    # join layer data
+   
+     # join layer data
     d <- 
       plyr::join_all(
         list(
@@ -770,7 +744,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       select(rgn_id, habitat, km2, health, trend) %>%
       mutate(habitat = as.character(habitat))
     
-    # limit to CP habitats and add rank
+    # limit to CS habitats and add rank
     habitat.rank <- c('mangrove'         = 139,
                       'saltmarsh'        = 210,
                       'seagrass'         = 83)
@@ -780,7 +754,20 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       mutate(
         rank = habitat.rank[habitat],
         extent = ifelse(km2==0, NA, km2))
+
+    ## output file to temp folder that describes how much each habitat
+    ## contributes to the score based on rank and extent
+    ## this output is for the dataplayground website
+    dp <- d %>%
+      mutate(weighted_cont = rank*extent) %>%
+      filter(!is.na(weighted_cont)) %>%
+      group_by(rgn_id) %>%
+      mutate(prop_score = weighted_cont/sum(weighted_cont)) %>%
+      mutate(prop_score = round(prop_score, 3)) %>%
+      select(rgn_id, habitat, prop_score)
+    write.csv(dp, 'temp/CS_hab_contributions.csv', row.names=FALSE)
     
+        
     if (nrow(d) > 0){
       # status
       scores_CS <- d %>%
@@ -833,6 +820,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
 
 
 CP <- function(layers){
+  
   # sum mangrove_offshore + mangrove_inland1km = mangrove to match with extent and trend
   m <- layers$data[['hab_extent']] %>%
     filter(habitat %in% c('mangrove_inland1km','mangrove_offshore')) %>%
@@ -882,6 +870,18 @@ CP <- function(layers){
     mutate(
       rank = habitat.rank[habitat],
       extent = ifelse(km2==0, NA, km2))
+  
+  ## output file to temp folder that describes how much each habitat
+  ## contributes to the score based on rank and extent
+  ## this output is for the dataplayground website
+  dp <- d %>%
+    mutate(weighted_cont = rank*extent) %>%
+    filter(!is.na(weighted_cont)) %>%
+    group_by(rgn_id) %>%
+    mutate(prop_score = weighted_cont/sum(weighted_cont)) %>%
+    mutate(prop_score = round(prop_score, 3)) %>%
+    select(rgn_id, habitat, prop_score)
+ write.csv(dp, 'temp/CP_hab_contributions.csv', row.names=FALSE)
   
   if (nrow(d) > 0){
     # status

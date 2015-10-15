@@ -726,7 +726,8 @@ NP <- function(scores, layers, year_max, debug = FALSE){
 
 
   CS <- function(layers){
-    # join layer data
+   
+     # join layer data
     d <- 
       plyr::join_all(
         list(
@@ -743,7 +744,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       select(rgn_id, habitat, km2, health, trend) %>%
       mutate(habitat = as.character(habitat))
     
-    # limit to CP habitats and add rank
+    # limit to CS habitats and add rank
     habitat.rank <- c('mangrove'         = 139,
                       'saltmarsh'        = 210,
                       'seagrass'         = 83)
@@ -753,7 +754,20 @@ NP <- function(scores, layers, year_max, debug = FALSE){
       mutate(
         rank = habitat.rank[habitat],
         extent = ifelse(km2==0, NA, km2))
+
+    ## output file to temp folder that describes how much each habitat
+    ## contributes to the score based on rank and extent
+    ## this output is for the dataplayground website
+    dp <- d %>%
+      mutate(weighted_cont = rank*extent) %>%
+      filter(!is.na(weighted_cont)) %>%
+      group_by(rgn_id) %>%
+      mutate(prop_score = weighted_cont/sum(weighted_cont)) %>%
+      mutate(prop_score = round(prop_score, 3)) %>%
+      select(rgn_id, habitat, prop_score)
+    write.csv(dp, 'temp/CS_hab_contributions.csv', row.names=FALSE)
     
+        
     if (nrow(d) > 0){
       # status
       scores_CS <- d %>%
@@ -806,6 +820,7 @@ NP <- function(scores, layers, year_max, debug = FALSE){
 
 
 CP <- function(layers){
+  
   # sum mangrove_offshore + mangrove_inland1km = mangrove to match with extent and trend
   m <- layers$data[['hab_extent']] %>%
     filter(habitat %in% c('mangrove_inland1km','mangrove_offshore')) %>%
@@ -855,6 +870,18 @@ CP <- function(layers){
     mutate(
       rank = habitat.rank[habitat],
       extent = ifelse(km2==0, NA, km2))
+  
+  ## output file to temp folder that describes how much each habitat
+  ## contributes to the score based on rank and extent
+  ## this output is for the dataplayground website
+  dp <- d %>%
+    mutate(weighted_cont = rank*extent) %>%
+    filter(!is.na(weighted_cont)) %>%
+    group_by(rgn_id) %>%
+    mutate(prop_score = weighted_cont/sum(weighted_cont)) %>%
+    mutate(prop_score = round(prop_score, 3)) %>%
+    select(rgn_id, habitat, prop_score)
+ write.csv(dp, 'temp/CP_hab_contributions.csv', row.names=FALSE)
   
   if (nrow(d) > 0){
     # status
