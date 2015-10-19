@@ -69,20 +69,72 @@ img {
 
 
 <p>Here is a brief description of the ohicore functions:</p>
-<p><strong>core functions</strong></p>
-<p>CalculateAll</p>
+<p><strong>dataprep functions</strong></p>
 <ul>
-<li>CalculatePressuresAll
+<li>gapfill_georegions: gapfilling with georegion means</li>
+<li>name_to_rgn: converts country names to rgn_id and deals with sovereign countrys</li>
+</ul>
+<p><strong>core organizing/checking data layers functions</strong></p>
+<ul>
+<li>CheckLayers: runs checks on data</li>
+<li>Conf:</li>
+<li>Layers:</li>
+<li>SelectLayersData.R</li>
+</ul>
+<p><strong>core calculation functions</strong></p>
+<p>CalculateAll: Primary function used to calculate all the scores (calls a variety of functions)</p>
+<ul>
+<li>CalculatePressuresAll: Calculate pressure
 <ul>
 <li>CalculatesPressuresScore</li>
 <li>CalculatePressuresMatrix</li>
 </ul></li>
-<li>CalculateResilienceAll
+<li>CalculateResilienceAll: Calculate resilience
 <ul>
 <li>CalculateResilienceScore</li>
 <li>CalculateResilienceMatrix</li>
 </ul></li>
-<li>CalculateGoalIndex</li>
+<li>CalculateGoalIndex: Calculate scores</li>
+<li>CalculateSubgoal: Computes a single subgoal
+<ul>
+<li>CalculateStatusComponent</li>
+<li>CalculatePressuresComponent</li>
+<li>CalculateResilienceComponent</li>
+</ul></li>
+<li>ScoreScaling: functions for scaling data (score.rescale, score.max, score.clamp)</li>
+</ul>
+<p><strong>after scores are calculated</strong></p>
+<ul>
+<li>Git related functions
+<ul>
+<li>read_git_csv: read a csv from git file</li>
+<li>trace_git_csv: trace value from csv file through history of local Git repository</li>
+</ul></li>
+<li>Checking/comparing data
+<ul>
+<li>compare_scores_df: compare 2 scores.csv files and calculate difference</li>
+</ul></li>
+<li>Reporting
+<ul>
+<li>PlotFlower: make the flower plots</li>
+<li>aster: make the flower plots (I think this is the same thing as PlotFlower)</li>
+<li>ReportScores: part of report generation, but I’m not sure this was ever completed</li>
+<li>ReportScoresComparison: part of report generation, but I’m not sure this was ever completed (look for report.Rmd in files)</li>
+</ul></li>
+</ul>
+<p><strong>apps</strong></p>
+<ul>
+<li>shp_to_geojson: save a shape file as GeoJson</li>
+<li>launch_app</li>
+<li>launch_cmp</li>
+<li>write_shortcuts</li>
+</ul>
+<p><strong>unknown how used</strong></p>
+<ul>
+<li>get_scenarios.R: downloads entire repository, not sure why</li>
+<li>zzz: appears to control how packages are downloaded (but doesn’t look like anything)</li>
+<li>data: references data from 2012 analysis, but I am not sure what is happening</li>
+<li>PlotChloroPlethMap.R: This doesn’t look like anything related to what we are doing</li>
 </ul>
 
 

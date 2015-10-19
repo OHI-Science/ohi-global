@@ -37,6 +37,7 @@ CalculateAll:  Primary function used to calculate all the scores (calls a variet
 * ScoreScaling: functions for scaling data (score.rescale, score.max, score.clamp)
     
 **after scores are calculated**
+
 * Git related functions
     + read_git_csv: read a csv from git file
     + trace_git_csv: trace value from csv file through history of local Git repository
@@ -49,12 +50,14 @@ CalculateAll:  Primary function used to calculate all the scores (calls a variet
     + ReportScoresComparison: part of report generation, but I'm not sure this was ever completed (look for report.Rmd in files)
 
 **apps**
+
 * shp_to_geojson: save a shape file as GeoJson
 * launch_app
 * launch_cmp
 * write_shortcuts
 
 **unknown how used**
+
 * get_scenarios.R: downloads entire repository, not sure why
 * zzz: appears to control how packages are downloaded (but doesn't look like anything)
 * data: references data from 2012 analysis, but I am not sure what is happening
