@@ -1,0 +1,64 @@
+---
+title: "ohicore"
+author: "Mel"
+date: "10/19/2015"
+output: html_document
+---
+
+Here is a brief description of the ohicore functions:
+
+**dataprep functions**
+
+* gapfill_georegions: gapfilling with georegion means
+* name_to_rgn: converts country names to rgn_id and deals with sovereign countrys
+
+**core organizing/checking data layers functions**
+
+* CheckLayers: runs checks on data 
+* Conf: 
+* Layers:
+* SelectLayersData.R
+
+**core calculation functions**
+
+CalculateAll:  Primary function used to calculate all the scores (calls a variety of functions)
+
+* CalculatePressuresAll: Calculate pressure
+    + CalculatesPressuresScore
+    + CalculatePressuresMatrix
+* CalculateResilienceAll: Calculate resilience
+    + CalculateResilienceScore
+    + CalculateResilienceMatrix
+* CalculateGoalIndex: Calculate scores
+* CalculateSubgoal: Computes a single subgoal
+    + CalculateStatusComponent
+    + CalculatePressuresComponent
+    + CalculateResilienceComponent
+* ScoreScaling: functions for scaling data (score.rescale, score.max, score.clamp)
+    
+**after scores are calculated**
+
+* Git related functions
+    + read_git_csv: read a csv from git file
+    + trace_git_csv: trace value from csv file through history of local Git repository
+* Checking/comparing data
+    + compare_scores_df: compare 2 scores.csv files and calculate difference
+* Reporting
+    + PlotFlower: make the flower plots
+    + aster: make the flower plots (I think this is the same thing as PlotFlower)
+    + ReportScores: part of report generation, but I'm not sure this was ever completed
+    + ReportScoresComparison: part of report generation, but I'm not sure this was ever completed (look for report.Rmd in files)
+
+**apps**
+
+* shp_to_geojson: save a shape file as GeoJson
+* launch_app
+* launch_cmp
+* write_shortcuts
+
+**unknown how used**
+
+* get_scenarios.R: downloads entire repository, not sure why
+* zzz: appears to control how packages are downloaded (but doesn't look like anything)
+* data: references data from 2012 analysis, but I am not sure what is happening
+* PlotChloroPlethMap.R: This doesn't look like anything related to what we are doing
