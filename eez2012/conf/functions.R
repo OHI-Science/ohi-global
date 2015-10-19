@@ -300,21 +300,63 @@ trend <- trend %>%
 }
 
 FP = function(layers, scores){
-  # weights
-  w = rename(SelectLayersData(layers, layers='fp_wildcaught_weight', narrow = TRUE),
-             c('id_num'='region_id', 'val_num'='w_FIS')); head(w)
-  
-  # scores
-  s = dcast(scores, region_id + dimension ~ goal, value.var='score', subset=.(goal %in% c('FIS','MAR') & !dimension %in% c('pressures','resilience'))); head(s)  
-  
-  # combine
-  d = merge(s, w)
-  d$w_MAR = 1 - d$w_FIS
-  d$score = apply(d[,c('FIS','MAR','w_FIS', 'w_MAR')], 1, function(x){ weighted.mean(x[1:2], x[3:4], na.rm = TRUE) })
-  d$goal = 'FP'
-  
+
+    # weights
+  w <-  SelectLayersData(layers, layers='fp_wildcaught_weight', narrow = TRUE) %>%
+             select(region_id = id_num, w_FIS = val_num); head(w)
+
+    # scores
+    s <- scores %>%
+    filter(goal %in% c('FIS', 'MAR')) %>%
+    filter(!(dimension %in% c('pressures', 'resilience'))) %>%
+    left_join(w, by="region_id")  %>%
+    mutate(w_MAR = 1 - w_FIS) %>%
+    mutate(weight = ifelse(goal == "FIS", w_FIS, w_MAR)) 
+    
+
+    ## Some warning messages due to potential mismatches in data: 
+      # NA score but there is a weight
+    tmp <- filter(s, goal=='FIS' & is.na(score) & (!is.na(w_FIS) & w_FIS!=0) & dimension == "score")
+    if(dim(tmp)[1]>0){
+        warning(paste0("Check: these regions have a FIS weight but no score: ", 
+                             paste(as.character(tmp$region_id), collapse = ", ")))}
+    
+    tmp <- filter(s, goal=='MAR' & is.na(score) & (!is.na(w_MAR) & w_MAR!=0) & dimension == "score")
+    if(dim(tmp)[1]>0){
+      warning(paste0("Check: these regions have a MAR weight but no score: ", 
+                     paste(as.character(tmp$region_id), collapse = ", ")))}
+   
+      # score, but the weight is NA or 0
+     tmp <- filter(s, goal=='FIS' & (!is.na(score) & score > 0) & (is.na(w_FIS) | w_FIS==0) & dimension == "score" & region_id !=0)
+    if(dim(tmp)[1]>0){
+      warning(paste0("Check: these regions have a FIS score but no weight: ", 
+                     paste(as.character(tmp$region_id), collapse = ", ")))}
+    
+     tmp <- filter(s, goal=='MAR' & (!is.na(score) & score > 0) & (is.na(w_MAR) | w_MAR==0) & dimension == "score" & region_id !=0)
+     if(dim(tmp)[1]>0){
+       warning(paste0("Check: these regions have a MAR score but no weight: ", 
+                      paste(as.character(tmp$region_id), collapse = ", ")))}
+     
+#   s = reshape2::dcast(scores, region_id + dimension ~ goal, value.var='score') %>%
+#     select(region_id, dimension, FIS, MAR) %>%
+#     filter(!dimension %in% c('pressures', 'resilience'))
+#             subset=.(goal %in% c('FIS','MAR') & !dimension %in% c('pressures','resilience'))); head(s)  
+#   
+#   # combine
+#   d = merge(s, w)
+#   d$w_MAR = 1 - d$w_FIS
+#   d$score = apply(d[,c('FIS','MAR','w_FIS', 'w_MAR')], 1, function(x){ weighted.mean(x[1:2], x[3:4], na.rm = TRUE) })
+#   d$goal = 'FP'
+s <- s  %>%
+  group_by(region_id, dimension) %>%
+  summarize(score = weighted.mean(score, weight, na.rm=TRUE)) %>%
+  mutate(goal = "FP") %>%
+  ungroup() %>%
+  select(region_id, goal, dimension, score) %>%
+  data.frame()
+
   # return all scores
-  return(rbind(scores, d[,c('region_id','goal','dimension','score')]))
+  return(rbind(scores, s))
 }
 
 
@@ -352,12 +394,6 @@ AO = function(layers,
 summary(r.status); dim(r.status)
   
   # trend
-tmp <- data.frame(pet = c((rep(c('cat', 'dog'), each=4)), 'hamster'), year=c(1990:1993, 1994:1991, 2012))
-tmp %>%
-  group_by(pet) %>%
-  arrange(year) %>%
-  top_n(2, year)
-
 r.trend <- ry %>%
   filter(year >= year_min) %>%
   filter(!is.na(statusData)) %>%
