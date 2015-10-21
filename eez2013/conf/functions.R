@@ -924,7 +924,7 @@ CP <- function(layers){
 }
 
 
-TR = function(layers, year_max, debug = FALSE, pct_ref = 90) {
+TR = function(layers, status_year, debug = FALSE, pct_ref = 90) {
   ### Updated July 2015 - Casey O'Hara
   ### * adjusted model to use percent employment in tourism when available.
   ### * set up layers for travel warnings.
@@ -959,14 +959,14 @@ TR = function(layers, year_max, debug = FALSE, pct_ref = 90) {
                 select(-layer),
               by = c('rgn_id'))                    %>%
     full_join(rgn_names, by = 'rgn_id')            %>%
-    filter(year <= year_max)
+    filter(year <= status_year)
   
   tr_model <- tr_data %>%
     mutate(
       E   = ifelse(is.na(Ep), Ed / (L - (L * U)), Ep),
       S   = (S_score - 1) / (7 - 1), # scale score from 1 to 7.
       Xtr = E * S ) %>%  
-    filter(year <= year_max & year > year_max - 5) 
+    filter(year <= status_year & year > status_year - 5) 
   # five data years, four intervals
   
   # regions with Travel Warnings at http://travel.state.gov/content/passports/english/alertswarnings.html
@@ -1480,47 +1480,58 @@ ICO = function(layers){
   layers_data = SelectLayersData(layers, layers=c('ico_spp_extinction_status', 'ico_spp_popn_trend'))  
  
    rk <- layers_data %>%
-    select(region_id = id_num, sciname = category, iucn_cat=val_chr, layer)
+    select(region_id = id_num, sciname = category, iucn_cat=val_chr, layer) %>%
+     mutate(iucn_cat = as.character(iucn_cat))
   
   # lookup for weights status
   w.risk_category = data.frame(iucn_cat = c('LC', 'NT', 'VU', 'EN', 'CR', 'EX'),
-                               risk_score = c(1,  0.8,   0.6,  0.4,  0.2,  0))
+                               risk_score = c(1,  0.8,   0.6,  0.4,  0.2,  0)) %>%
+    mutate(iucn_cat = as.character(iucn_cat))
 
   # lookup for population trend
-  w.popn_trend = data.frame(iucn_cat = c('decreasing', 'stable', 'increasing'),
-                            trend_score = c(-0.5, 0, 0.5))
+  w.popn_trend = data.frame(iucn_cat = as.character(c('decreasing', 'stable', 'increasing')),
+                            trend_score = c(-0.5, 0, 0.5)) %>%
+    mutate(iucn_cat = as.character(iucn_cat))
   
   ####### status
   # STEP 1: take mean of subpopulation scores
   r.status_spp <- rk %>%
     filter(layer == 'ico_spp_extinction_status') %>%
-    left_join(w.risk_category) %>%
+    left_join(w.risk_category, by = 'iucn_cat') %>%
     group_by(region_id, sciname) %>%
     summarize(spp_mean = mean(risk_score, na.rm=TRUE) * 100) %>%
     ungroup()
-  # STEP 2: take mean of populations within regions
+
+    # STEP 2: take mean of populations within regions
   r.status <- r.status_spp %>%
     group_by(region_id) %>%
-    summarize(score = mean(spp_mean, na.rm=TRUE))
+    summarize(score = mean(spp_mean, na.rm=TRUE)) %>%
+    ungroup() %>%
+    mutate(dimension = "status")
   
   ####### trend
   # STEP 1: take mean of subpopulation scores
   r.trend_spp <- rk %>%
     filter(layer == 'ico_spp_popn_trend') %>%
-    left_join(w.popn_trend) %>%
+    left_join(w.popn_trend ,by = 'iucn_cat') %>%
     group_by(region_id, sciname) %>%
     summarize(spp_mean = mean(trend_score, na.rm=TRUE)) %>%
     ungroup()
+  
   # STEP 2: take mean of populations within regions
   r.trend <- r.trend_spp %>%
     group_by(region_id) %>%
-    summarize(score = mean(spp_mean, na.rm=TRUE))
+    summarize(score = mean(spp_mean, na.rm=TRUE)) %>%
+    ungroup() %>%
+    mutate(dimension = "trend")
   
   # return scores
-  s.status = cbind(r.status, data.frame('dimension'='status'))
-  s.trend  = cbind(r.trend , data.frame('dimension'='trend' ))
-  scores = cbind(rbind(s.status, s.trend), data.frame('goal'='ICO'))
-  return(scores)  
+  scores <-  rbind(r.status, r.trend) %>%
+    mutate('goal'='ICO') %>%
+    select(goal, dimension, region_id, score) %>%
+    data.frame()
+
+    return(scores)  
   
 }
 
@@ -1534,13 +1545,13 @@ LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year){
 r <- r %>%
   select(region_id = id_num, val_num, layer) %>%
   spread(layer, val_num) %>%
-  dplyr::rename(area_inland1km = rgn_area_inland1km,
-                area_offshore3nm = rgn_area_offshore3nm)
+  select(region_id, area_inland1km = rgn_area_inland1km,
+         area_offshore3nm = rgn_area_offshore3nm)
 
 ry <- ry %>%
   select(region_id = id_num, year, val_num, layer) %>%
   spread(layer, val_num) %>%
-  dplyr::rename(cmpa = lsp_prot_area_offshore3nm,
+  select(region_id, year, cmpa = lsp_prot_area_offshore3nm,
                 cp = lsp_prot_area_inland1km)
   
   # fill in time series for all regions and generate cumulative sum
@@ -1559,7 +1570,7 @@ r.yrs <- expand.grid(region_id = unique(ry$region_id),
   # get percent of total area that is protected for inland1km (cp) and offshore3nm (cmpa) per year
   # and calculate status score
 r.yrs = r.yrs %>%
-  full_join(r) %>%
+  full_join(r, by="region_id") %>%
   mutate(pct_cp    = pmin(cp_cumsum   / area_inland1km   * 100, 100),
          pct_cmpa  = pmin(cmpa_cumsum / area_offshore3nm * 100, 100),
          prop_protected    = ( pmin(pct_cp / ref_pct_cp, 1) + pmin(pct_cmpa / ref_pct_cmpa, 1) ) / 2) %>%
@@ -1584,7 +1595,7 @@ head(r.status)
    ungroup()
   
   # return scores
-  scores = rbind.fill(
+  scores = bind_rows(
     within(r.status, {
       goal      = 'LSP'
       dimension = 'status'
@@ -1614,35 +1625,16 @@ SP = function(scores){
 
 
 CW = function(layers){
-  
+ 
   # layers
-  lyrs = c('po_pathogens' = 'a',
-           'po_nutrients_3nm' = 'u',
-           'po_chemicals_3nm' = 'l',
-           'po_trash'     = 'd',
-           'cw_pesticide_trend'   = 'pest_trend',
-           'cw_fertilizer_trend'  = 'fert_trend',
-           'cw_coastalpopn_trend' = 'popn_trend',
-           'cw_pathogen_trend'    = 'path_trend')
+  lyrs <- c('po_pathogens', 'po_nutrients_3nm', 'po_chemicals_3nm', 'po_trash',
+            'cw_pesticide_trend', 'cw_fertilizer_trend', 'cw_coastalpopn_trend', 'cw_pathogen_trend')
   
-  # cast data
-  d = SelectLayersData(layers, layers=names(lyrs))  
-  r = rename(dcast(d, id_num ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs))),
-              c('id_num'='region_id', lyrs)); head(r); summary(r)
-  
-  # invert pressures
-  r$a = 1 - r$a
-  r$u = 1 - r$u
-  r$l = 1 - r$l
-  r$d = 1 - r$d
-  
-  # invert trends for CW
-  r$popn_trend = -1 * r$popn_trend
-  r$path_trend = -1 * r$path_trend
-  r$pest_trend = -1 * r$pest_trend
-  r$fert_trend = -1 * r$fert_trend
-  
-geometric.mean2 <- function (x, na.rm = TRUE) {
+  d <-  SelectLayersData(layers, layers=lyrs)  %>%
+    select(region_id = id_num, layer, value = val_num)
+
+  ### function to calculate geometric mean:  
+  geometric.mean2 <- function (x, na.rm = TRUE) {
     if (is.null(nrow(x))) {
       exp(mean(log(x), na.rm = TRUE))
     }
@@ -1651,23 +1643,32 @@ geometric.mean2 <- function (x, na.rm = TRUE) {
     }
   }
   
-  # status
-  r$status = geometric.mean2(t(r[,c('a','u','l','d')]), na.rm = TRUE) * 100
-  
-  # trend
-  r$trend = rowMeans(r[,c('pest_trend','fert_trend','popn_trend','path_trend')], na.rm = TRUE)
-  
+    
+  d_pressures <- d %>%
+    filter(layer %in% grep('po_', lyrs, value=TRUE))  %>%
+    mutate(pressure = 1 - value) %>%  # invert pressures
+    group_by(region_id) %>%
+    summarize(score = geometric.mean2(pressure, na.rm=TRUE)) %>% # take geometric mean
+    mutate(score = score * 100) %>%
+    mutate(dimension = "status") %>%
+    ungroup()
+    
+  d_trends <- d %>%
+    filter(layer %in% grep('_trend', lyrs, value=TRUE)) %>%
+    mutate(trend = -1 * value)  %>%  # invert trends
+    group_by(region_id) %>%
+    summarize(score = mean(trend, na.rm = TRUE)) %>%
+    mutate(dimension = "trend") %>%
+    ungroup()
+
+
   # return scores
-  scores = rbind(
-    within(r, {
-      goal      = 'CW'
-      dimension = 'status'
-      score     = status}),
-    within(r, {
-      goal      = 'CW'
-      dimension = 'trend'
-      score     = trend}))[,c('region_id','goal','dimension','score')]
-  return(scores)  
+  scores = rbind(d_pressures, d_trends) %>%
+    mutate(goal = "CW") %>%
+    select(region_id, goal, dimension, score) %>%
+    data.frame()
+ 
+    return(scores)  
 }
 
 
