@@ -1673,48 +1673,56 @@ CW = function(layers){
 
 
 HAB = function(layers){
-    
-  # get layer data
-  d = 
-    join_all(
-      list(
-        
-        layers$data[['hab_health']] %>%
-          select(rgn_id, habitat, health),
-        
-        layers$data[['hab_trend']] %>%
-          select(rgn_id, habitat, trend),
-        
-        layers$data[['hab_extent']] %>%
-          select(rgn_id, habitat, extent=km2)),
-        
-      by = c('rgn_id','habitat'), type='full') %>% 
-    select(rgn_id, habitat, extent, health, trend)
-
-  # limit to habitats used for HAB, create extent presence as weight
-  d = d %>%
-    filter(habitat %in% c('coral','mangrove','saltmarsh','seaice_edge','seagrass','soft_bottom')) %>%    
-    mutate(
-      w  = ifelse(!is.na(extent) & extent > 0, 1, NA)) %>%
-    filter(!is.na(w)) %>%
-    group_by(rgn_id)
   
-  # calculate scores
-  scores_HAB = rbind_list(
-    # status
-    d %>% 
-      filter(!is.na(health)) %>%
+  ## get the data:
+  health <-  layers$data[['hab_health']] %>%
+    select(rgn_id, habitat, health) %>%
+    mutate(habitat = as.character(habitat))
+  
+  trend <-  layers$data[['hab_trend']] %>%
+    select(rgn_id, habitat, trend) %>%
+    mutate(habitat = as.character(habitat))
+  
+  extent <- layers$data[['hab_extent']] %>%
+    select(rgn_id, habitat, extent=km2) %>%
+    mutate(habitat = as.character(habitat))
+
+# join and limit to HAB habitats
+  d <- health %>%
+    full_join(trend, by = c('rgn_id', 'habitat')) %>%
+    full_join(extent, by = c('rgn_id', 'habitat')) %>%
+    filter(habitat %in% c('coral','mangrove','saltmarsh','seaice_edge','seagrass','soft_bottom')) %>%    
+    mutate(w  = ifelse(!is.na(extent) & extent > 0, 1, NA)) %>%
+    filter(!is.na(w))
+  
+ if(sum(d$w %in% 1 & is.na(d$trend)) > 0){
+   warning("Some regions/habitats have extent data, but no trend data.  Consider estimating these values.")
+ }
+  
+  if(sum(d$w %in% 1 & is.na(d$health)) > 0){
+    warning("Some regions/habitats have extent data, but no health data.  Consider estimating these values.")
+  }  
+  
+d <- d %>%
+  group_by(rgn_id) 
+  
+
+# calculate scores
+
+status <- d %>%
+  filter(!is.na(health)) %>%
       summarize(      
-        score = pmin(1, sum(w * health) / sum(w)) * 100,
-        dimension = 'status'),
-    # trend
-    d %>% 
+        score = pmin(1, sum(health) / sum(w)) * 100,
+        dimension = 'status')
+
+trend <- d %>%
       filter(!is.na(trend)) %>%      
       summarize(      
-        score =  sum(w * trend) / sum(w),
-        dimension = 'trend')) %>%
-    mutate(
-      goal = 'HAB') %>%
+        score =  sum(trend) / sum(w),
+        dimension = 'trend') 
+
+scores_HAB <- rbind(status, trend) %>%
+  mutate(goal = "HAB") %>%
     select(region_id=rgn_id, goal, dimension, score)
   
   # return scores

@@ -152,6 +152,22 @@ FIS = function(layers, status_year){
     left_join(meanCMSY, by=c("taxon_name", "year")) %>%
     ungroup()
   
+#   tmp <- c %>%
+#     group_by(year) %>%
+#     mutate(totalCatch = sum(mean_catch)) %>%
+#     mutate(total3sp = sum(mean_catch[taxon_name %in% c("Dissostichus mawsoni", "Champsocephalus gunnari", "Dissostichus eleginoides")])) %>%
+#     select(year, totalCatch, total3sp) %>%
+#     unique() %>%
+#     mutate(percent = totalCatch/total3sp) %>%
+#     arrange(year)
+#   
+#   tmp <- c %>%
+#     filter(year == 2012) %>%
+#     arrange(mean_catch) %>%
+#     filter(mean_catch > 100) %>%
+#     select(taxon_name) %>%
+#     unique()
+
   scoresReplace <- scoresReplace %>%
     mutate(c_cmsy2 = ifelse(is.na(c_cmsy), mean_cmsy, c_cmsy))
   
