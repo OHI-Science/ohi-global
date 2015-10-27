@@ -1,3 +1,9 @@
+Setup = function(){
+referencePoints <- data.frame(goal=as.character(), 
+                              method = as.character(), 
+                              reference_point = as.character())
+write.csv(referencePoints, 'temp/referencePoints.csv', row.names=FALSE)
+}
 
 FIS = function(layers, status_year){
   # layers used: fis_meancatch, fis_b_bmsy, fis_proparea_saup2rgn
@@ -195,6 +201,11 @@ FIS = function(layers, status_year){
     select(region_id, dimension, score) %>%
     data.frame()
 
+  # reference point data
+  rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+  rbind(data.frame(goal = "FIS", method = "b/bmsy: modeled", reference_point = NA))
+  write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
+  
     # assemble dimensions
     scores = rbind(status, trend) %>% mutate(goal='FIS')
   return(scores)  
@@ -258,11 +269,15 @@ m <- m %>%
 ry_ref = ref_95pct_data %>%
   arrange(mar_pop) %>%
   filter(mar_pop >= ref_95pct)
-  cat(sprintf('95th percentile for MAR ref pt is: %s\n', ref_95pct)) # rgn_id 25 = Thailand
-  cat(sprintf('95th percentile rgn_id for MAR ref pt is: %s\n', ry_ref$rgn_id[1])) # rgn_id 25 = Thailand
-tmp <- data.frame(MAR=c('quantile', 'region'), value=c(ref_95pct, ry_ref$rgn_id[1]))
-write.csv(tmp, 'temp/MAR_reference.csv', row.names=FALSE)
+  message(sprintf('95th percentile for MAR ref pt is: %s\n', ref_95pct)) # rgn_id 25 = Thailand
+  message(sprintf('95th percentile rgn_id for MAR ref pt is: %s\n', ry_ref$rgn_id[1])) # rgn_id 25 = Thailand
+
+rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+    rbind(data.frame(goal = "MAR", method = "spatial 95th quantile", 
+                     reference_point = paste0("region id: ", ry_ref$rgn_id[1], ' value: ', ref_95pct)))
+  write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
   
+
 ry = ry %>%
   mutate(status = ifelse(mar_pop / ref_95pct > 1,
                          1, 
@@ -401,6 +416,11 @@ r.trend <- r.trend %>%
              trend = coef(mdl)['year']*5) %>%
   ungroup()
 
+## reference points
+rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+  rbind(data.frame(goal = "AO", method = "??", 
+                   reference_point = NA))
+write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
 
 
   # return scores
@@ -416,7 +436,6 @@ r.trend <- r.trend %>%
 }
 
 NP <- function(scores, layers, status_year, debug = FALSE){
-  ### Apr 2014: updated by @oharac to use dplyr, tidyr.
   # TODO: add smoothing a la PLoS 2013 manuscript # ??? CCO: done? is this the NP data_prep smoothing?
 
   ### new code version - load combined harvest variables
@@ -662,12 +681,6 @@ NP <- function(scores, layers, status_year, debug = FALSE){
       summarize(status = weighted.mean(product_status, prod_weight)) %>%
       filter(!is.na(status)) %>% # 1/0 produces NaN
       ungroup()
-  
-    #   if (debug){
-    #     ### write out data
-    #     write.csv(np_risk, sprintf('temp/%s_NP_2-rgn-year-product_data.csv', basename(getwd())), row.names = FALSE, na='')
-    #     write.csv(status_all, sprintf('temp/%s_NP_3-rgn-year_status.csv', basename(getwd())), row.names = FALSE, na='')
-    #   }
 
     ### get current status
     np_status_current <- np_status_all %>%
@@ -680,7 +693,7 @@ NP <- function(scores, layers, status_year, debug = FALSE){
       min(np_status_current$score, na.rm = TRUE) >= 0, 
       max(np_status_current$score, na.rm = TRUE) <= 100)
     
-    ### trend based on 5 intervals (6 years of data)
+    ### trend 
     np_trend <- np_status_all %>%
       filter(year <= status_year & year > (status_year - 5) & !is.na(status)) %>%
       group_by(rgn_id) %>%
@@ -690,6 +703,7 @@ NP <- function(scores, layers, status_year, debug = FALSE){
         dimension = 'trend',
         score     = max(-1, min(1, coef(mdl)[['year']] * 5)))
     stopifnot(min(np_trend$score) >= -1, max(np_trend$score) <= 1)
+  
     
     ### return scores
     np_scores <- np_status_current %>%
@@ -709,6 +723,13 @@ NP <- function(scores, layers, status_year, debug = FALSE){
   np_risk    <- np_calc_risk(np_exp, r_cyanide, r_blast)
   np_sust    <- np_calc_sustainability(np_exp, np_risk)
   np_scores  <- np_calc_scores(np_sust, status_year) 
+  
+  ## reference points
+  rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+    rbind(data.frame(goal = "NP", method = "Harvest peak within region times 0.65 buffer", 
+                     reference_point = "varies for each region"))
+  write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
+  
         
   return(np_scores)
 }
@@ -803,6 +824,13 @@ NP <- function(scores, layers, status_year, debug = FALSE){
         region_id = integer(0),
         score     = numeric())
     }
+    
+    ## reference points
+    rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+      rbind(data.frame(goal = "CS", method = "Health/condition variable based on current vs. historic extent", 
+                       reference_point = "varies for each region/habitat"))
+    write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
+    
     
     # return scores
     return(scores_CS)
@@ -918,7 +946,14 @@ CP <- function(layers){
       region_id = integer(0),
       score     = numeric())
   }
-  
+
+ ## reference points
+ rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+   rbind(data.frame(goal = "CP", method = "Health/condition variable based on current vs. historic extent", 
+                    reference_point = "varies for each region/habitat"))
+ write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
+ 
+   
   # return scores
   return(scores_CP)
 }
@@ -994,6 +1029,19 @@ TR = function(layers, status_year, debug = FALSE, pct_ref = 90) {
     mutate(
       Xtr_rq  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q)) # rescale to qth percentile, cap at 1
   
+  
+  
+  ## reference points
+  ref_point <- tr_model %>%
+    filter(year == status_year) %>%
+    select(Xtr_q) %>%
+    unique()
+  rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+    rbind(data.frame(goal = "TR", method = paste0('spatial: ', pct_ref, "th quantile"), 
+                     reference_point = ref_point$Xtr_q))
+  write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
+  
+
   
   # calculate trend
   tr_trend <- tr_model %>%
@@ -1527,6 +1575,13 @@ ICO = function(layers){
     ungroup() %>%
     mutate(dimension = "trend")
   
+  ## reference points
+  rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+    rbind(data.frame(goal = "ICO", method = "scaled IUCN risk categories", 
+                     reference_point = NA))
+  write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
+  
+   
   # return scores
   scores <-  rbind(r.status, r.trend) %>%
     mutate('goal'='ICO') %>%
@@ -1585,8 +1640,7 @@ r.yrs = r.yrs %>%
     filter(year==status_year) %>%
     select(region_id, status=prop_protected) %>%
     mutate(status=status*100) 
-head(r.status)
-  
+
   # calculate trend
   r.trend =   r.yrs %>%
   filter(year %in% trend_years) %>%
@@ -1596,7 +1650,15 @@ head(r.status)
     region_id = region_id,
     trend = min(1, max(0, 5*coef(mdl)['year']))) %>% # set boundaries so trend does not go below 0 or above 1
    ungroup()
+
+  ## reference points
+  rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+    rbind(data.frame(goal = "LSP", method = paste0(ref_pct_cmpa, "% marine protected area; ", 
+                                                   ref_pct_cp, "% coastal protected area"), 
+                     reference_point = "varies by area of region's eez and 1 km inland"))
+  write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
   
+    
   # return scores
   scores = bind_rows(
     within(r.status, {
@@ -1670,7 +1732,13 @@ CW = function(layers){
     mutate(goal = "CW") %>%
     select(region_id, goal, dimension, score) %>%
     data.frame()
- 
+
+  ## reference points
+  rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+    rbind(data.frame(goal = "CW", method = "spatial: pressures scaled from 0-1 at raster level", 
+          reference_point = NA))
+write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
+
     return(scores)  
 }
 
@@ -1727,7 +1795,13 @@ trend <- d %>%
 scores_HAB <- rbind(status, trend) %>%
   mutate(goal = "HAB") %>%
     select(region_id=rgn_id, goal, dimension, score)
-  
+
+## reference points
+rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+  rbind(data.frame(goal = "HAB", method = "Health/condition variable based on current vs. historic extent", 
+                   reference_point = "varies for each region/habitat"))
+write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
+
   # return scores
   return(scores_HAB)  
 }
@@ -1738,6 +1812,14 @@ scores <-   SelectLayersData(layers, layers=c('spp_status'='status','spp_trend'=
   select(region_id = id_num, dimension = layer, score = val_num) %>%
   mutate(goal = 'SPP') %>%
   mutate(score = ifelse(dimension == 'status', score*100, score))
+
+## reference points
+rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
+  rbind(data.frame(goal = "SPP", method = "Average of IUCN risk categories, scaled to historic extinction", 
+                   reference_point = NA))
+write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
+
+
 return(scores) 
 }
 
