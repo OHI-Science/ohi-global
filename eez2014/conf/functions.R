@@ -942,7 +942,8 @@ TR = function(layers, status_year, debug = FALSE, pct_ref = 90) {
   
   # get regions
   rgn_names = layers$data[[conf$config$layer_region_labels]] %>%
-    select(rgn_id, rgn_name = label)   
+    select(rgn_id, rgn_name = label) %>%
+    mutate(rgn_name = as.character(rgn_name))
   
   tr_data  <- layers$data[['tr_jobs_tourism']]     %>% 
     select(-layer) %>%
@@ -972,6 +973,7 @@ TR = function(layers, status_year, debug = FALSE, pct_ref = 90) {
   # regions with Travel Warnings at http://travel.state.gov/content/passports/english/alertswarnings.html
   rgn_travel_warnings <- layers$data[['tr_travelwarnings']] %>%
     select(rgn_name, multiplier) %>%
+    mutate(rgn_name = as.character(rgn_name)) %>%
     left_join(rgn_names, by = 'rgn_name') %>%
     filter(!is.na(rgn_id))
   
@@ -1536,6 +1538,7 @@ ICO = function(layers){
 }
 
 LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year){
+
    trend_years = (status_year-4):status_year
   
   # select data ----
@@ -1731,26 +1734,22 @@ scores_HAB <- rbind(status, trend) %>%
 
 
 SPP = function(layers){
-
-  # scores
-  scores = cbind(rename(SelectLayersData(layers, layers=c('spp_status'='status','spp_trend'='trend'), narrow = TRUE),
-                      c(id_num='region_id', layer='dimension', val_num='score')), 
-               data.frame('goal'='SPP'))
-  scores = mutate(scores, score=ifelse(dimension=='status', score*100, score))
-  return(scores) 
+scores <-   SelectLayersData(layers, layers=c('spp_status'='status','spp_trend'='trend'), narrow = TRUE) %>%
+  select(region_id = id_num, dimension = layer, score = val_num) %>%
+  mutate(goal = 'SPP') %>%
+  mutate(score = ifelse(dimension == 'status', score*100, score))
+return(scores) 
 }
 
 BD = function(scores){
-  
-  d = within(
-    dcast(
-      scores, 
-      region_id + dimension ~ goal, value.var='score', 
-      subset=.(goal %in% c('HAB','SPP') & !dimension %in% c('pressures','resilience'))), 
-    {
-      goal = 'BD'
-      score = rowMeans(cbind(HAB, SPP), na.rm = TRUE)})
-  
+  d <- scores %>%
+    filter(goal %in% c('HAB', 'SPP')) %>%
+    filter(!(dimension %in% c('pressures', 'resilience'))) %>%
+    group_by(region_id, dimension) %>%
+    summarize(score = mean(score, na.rm=TRUE)) %>%
+    mutate(goal = 'BD') %>%
+    data.frame()
+
   # return all scores
   return(rbind(scores, d[,c('region_id','goal','dimension','score')]))
 }

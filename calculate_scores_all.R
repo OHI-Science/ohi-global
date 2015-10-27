@@ -1,8 +1,9 @@
 
 # STEP 1: be sure to pull ohiprep
 
-# library(devtools)
-#devtools::install_github("ohi-science/ohicore@dev")
+library(devtools)
+#devtools::install_github("ohi-science/ohicore@dev") # when testing changes to ohicore
+#devtools::install_github("ohi-science/ohicore@master")
 library(ohicore)
 
 setwd("~/ohi-global")
@@ -238,14 +239,23 @@ for (i in 1:length(scenarios)){  #i=3
   }
 }
 
+
+
+
 ### make a plot to compare different commits within a scenario
 ## for some reason, the devtools package needs to be turned off for this to work 
 detach("package:devtools", unload=TRUE)
 source('../ohiprep/src/R/VisGlobal.R')
-changePlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", fileSave="antarctica_SPP")
+changePlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", 
+           fileSave="antarctica2014_TR")
+compare <- read.csv('figures/DataCheck/eez2015_Hackathon_julie_updates_diff_data_2015-10-21.csv')
+difs_only <- filter(compare, change != 0)
+table(difs_only$dimension)
+tmp <- filter(compare, is.na(score) & !is.na(old_score))
+tmp <- filter(compare, !is.na(score) & is.na(old_score))
 
 # looking within a goal:
-scatterPlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", goal="TR", dim="score", fileSave="antarctica_SPP_2014")
+scatterPlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", goal="TR", dim="score", fileSave="antarctica_TR_2014")
 goalHistogram(scenario="eez2013", goal="CW", dim="score", fileSave="CW_plume_and_3nm_update")
 
 #   scenario options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'
