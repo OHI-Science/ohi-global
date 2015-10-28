@@ -3,7 +3,7 @@
 
 library(devtools)
 #devtools::install_github("ohi-science/ohicore@dev") # when testing changes to ohicore
-#devtools::install_github("ohi-science/ohicore@master")
+devtools::install_github("ohi-science/ohicore@master")
 library(ohicore)
 
 setwd("~/ohi-global")

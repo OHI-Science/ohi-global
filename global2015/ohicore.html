@@ -71,25 +71,26 @@ img {
 <p>Here is a brief description of the ohicore functions:</p>
 <p><strong>dataprep functions</strong></p>
 <ul>
-<li>gapfill_georegions: gapfilling with georegion means</li>
-<li>name_to_rgn: converts country names to rgn_id and deals with sovereign countrys</li>
+<li><strong>UPDATED, but not incorporated, see test directory</strong> gapfill_georegions: gapfilling with georegion means</li>
+<li><strong>UPDATED, but not incorporated, see test directory</strong> name_to_rgn: converts country names to rgn_id and deals with sovereign countrys</li>
+<li><strong>ADDED (Oct 2015)</strong> mapvalues: from dplyr package, provides easy method of changing factor levels</li>
 </ul>
 <p><strong>core organizing/checking data layers functions</strong></p>
 <ul>
-<li>CheckLayers: runs checks on data</li>
-<li>Conf:</li>
-<li>Layers:</li>
-<li>SelectLayersData.R</li>
+<li>CheckLayers: checks layers.csv to make sure data files exist in layers directory</li>
+<li>Conf: creates conf object (a list) that has information from config.R and functions.R</li>
+<li>Layers: creates layers object (a list) with all of the raw data layers</li>
+<li>SelectLayersData: function to extract raw data from layers object</li>
 </ul>
 <p><strong>core calculation functions</strong></p>
-<p>CalculateAll: Primary function used to calculate all the scores (calls a variety of functions)</p>
+<p><strong>UPDATED (Oct 2015)</strong> CalculateAll: Primary function used to calculate all the scores (calls a variety of functions)</p>
 <ul>
-<li>CalculatePressuresAll: Calculate pressure
+<li><strong>UPDATED (Oct 2015)</strong> CalculatePressuresAll: Calculate pressure
 <ul>
 <li>CalculatesPressuresScore</li>
 <li>CalculatePressuresMatrix</li>
 </ul></li>
-<li>CalculateResilienceAll: Calculate resilience
+<li><strong>UPDATED (Oct 2015)</strong> CalculateResilienceAll: Calculate resilience
 <ul>
 <li>CalculateResilienceScore</li>
 <li>CalculateResilienceMatrix</li>
@@ -116,10 +117,10 @@ img {
 </ul></li>
 <li>Reporting
 <ul>
-<li>PlotFlower: make the flower plots</li>
+<li><strong>DELETED Oct 2015</strong> PlotFlower: make the flower plots</li>
 <li>aster: make the flower plots (I think this is the same thing as PlotFlower)</li>
-<li>ReportScores: part of report generation, but I’m not sure this was ever completed</li>
-<li>ReportScoresComparison: part of report generation, but I’m not sure this was ever completed (look for report.Rmd in files)</li>
+<li><strong>DELETED Oct 2015</strong> ReportScores: part of report generation, but I’m not sure this was ever completed</li>
+<li><strong>DELETED Oct 2015</strong> ReportScoresComparison: part of report generation, but I’m not sure this was ever completed (look for report.Rmd in files)</li>
 </ul></li>
 </ul>
 <p><strong>apps</strong></p>
@@ -133,8 +134,8 @@ img {
 <ul>
 <li>get_scenarios.R: downloads entire repository, not sure why</li>
 <li>zzz: appears to control how packages are downloaded (but doesn’t look like anything)</li>
-<li>data: references data from 2012 analysis, but I am not sure what is happening</li>
-<li>PlotChloroPlethMap.R: This doesn’t look like anything related to what we are doing</li>
+<li><strong>DELETED Oct 2015</strong> data: references data from 2012 analysis, but I am not sure what is happening</li>
+<li><strong>DELETED Oct 2015</strong> PlotChloroPlethMap.R: This doesn’t look like anything related to what we are doing</li>
 </ul>
 
 

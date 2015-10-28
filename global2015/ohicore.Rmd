@@ -9,24 +9,25 @@ Here is a brief description of the ohicore functions:
 
 **dataprep functions**
 
-* gapfill_georegions: gapfilling with georegion means
-* name_to_rgn: converts country names to rgn_id and deals with sovereign countrys
+* **UPDATED, but not incorporated, see test directory** gapfill_georegions: gapfilling with georegion means
+* **UPDATED, but not incorporated, see test directory** name_to_rgn: converts country names to rgn_id and deals with sovereign countrys
+* **ADDED (Oct 2015)** mapvalues: from dplyr package, provides easy method of changing factor levels
 
 **core organizing/checking data layers functions**
 
-* CheckLayers: runs checks on data 
-* Conf: 
-* Layers:
-* SelectLayersData.R
+* CheckLayers: checks layers.csv to make sure data files exist in layers directory 
+* Conf: creates conf object (a list) that has information from config.R and functions.R
+* Layers: creates layers object (a list) with all of the raw data layers 
+* SelectLayersData: function to extract raw data from layers object
 
 **core calculation functions**
 
-CalculateAll:  Primary function used to calculate all the scores (calls a variety of functions)
+**UPDATED (Oct 2015)** CalculateAll:  Primary function used to calculate all the scores (calls a variety of functions)
 
-* CalculatePressuresAll: Calculate pressure
+* **UPDATED (Oct 2015)** CalculatePressuresAll: Calculate pressure
     + CalculatesPressuresScore
     + CalculatePressuresMatrix
-* CalculateResilienceAll: Calculate resilience
+* **UPDATED (Oct 2015)** CalculateResilienceAll: Calculate resilience
     + CalculateResilienceScore
     + CalculateResilienceMatrix
 * CalculateGoalIndex: Calculate scores
@@ -44,10 +45,10 @@ CalculateAll:  Primary function used to calculate all the scores (calls a variet
 * Checking/comparing data
     + compare_scores_df: compare 2 scores.csv files and calculate difference
 * Reporting
-    + PlotFlower: make the flower plots
+    + **DELETED Oct 2015** PlotFlower: make the flower plots
     + aster: make the flower plots (I think this is the same thing as PlotFlower)
-    + ReportScores: part of report generation, but I'm not sure this was ever completed
-    + ReportScoresComparison: part of report generation, but I'm not sure this was ever completed (look for report.Rmd in files)
+    + **DELETED Oct 2015** ReportScores: part of report generation, but I'm not sure this was ever completed
+    + **DELETED Oct 2015** ReportScoresComparison: part of report generation, but I'm not sure this was ever completed (look for report.Rmd in files)
 
 **apps**
 
@@ -60,5 +61,5 @@ CalculateAll:  Primary function used to calculate all the scores (calls a variet
 
 * get_scenarios.R: downloads entire repository, not sure why
 * zzz: appears to control how packages are downloaded (but doesn't look like anything)
-* data: references data from 2012 analysis, but I am not sure what is happening
-* PlotChloroPlethMap.R: This doesn't look like anything related to what we are doing
+* **DELETED Oct 2015** data: references data from 2012 analysis, but I am not sure what is happening
+* **DELETED Oct 2015** PlotChloroPlethMap.R: This doesn't look like anything related to what we are doing
