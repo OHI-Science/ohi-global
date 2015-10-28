@@ -1,0 +1,493 @@
+---
+title: "Quantifying gap-filling of OHI 2015 analysis"
+author: "Mel"
+date: "9/4/2015"
+output: html_document
+---
+
+```{r, include=FALSE}
+# load libraries
+library(tidyr)
+library(dplyr)
+
+setwd('/home/frazier/ohi-global/global2015/gapFilling') # comment this out when knitting!!!
+
+# list of regions:
+regions <- read.csv('../../../ohiprep/src/LookupTables/eez_rgn_2013master.csv') %>%
+  select(rgn_id = rgn_id_2013) %>%
+  filter(rgn_id < 255) %>%
+  arrange(rgn_id) %>%
+  unique()
+
+# create empty scores.csv file for gap-filling data
+tmp <- data.frame("goal" = NA,"dimension" = NA,"region_id" = NA,"score" = NA)
+
+write.csv(tmp, 'scores.csv', row.names=FALSE)
+
+```
+
+```{r, inclue=FALSE}
+
+# download gap-filling layers
+source('../../../ohiprep/src/R/common.R')
+
+# new paths based on host machine
+dirs = list(
+  neptune_data  = dir_neptune_data, 
+  neptune_local = dir_neptune_local,
+  ohiprep       = '../../../ohiprep',
+  ohicore       = '../../../ohicore')
+
+ scenarioList = list(
+   eez2015     = list(
+    layer   = 'layers_eez',
+    fld_dir      = 'dir_gap_fill_2015',
+    fld_fn       = 'fn_gap_fill_2015',
+    save_dir     = 'global2015'))
+  
+  
+  for (i in length(scenarioList)){ #i=1
+  scenario   = names(scenarioList)[[i]]
+  fld_dir    = scenarioList[[i]][['fld_dir']]
+  fld_fn     = scenarioList[[i]][['fld_fn']]
+  layer = scenarioList[[i]][['layer']]
+  save_dir = scenarioList[[i]][['save_dir']]
+  
+  ## Read in the layers.csv file with paths to the data files
+ g <- read.csv(sprintf("../../%s.csv", layer), stringsAsFactors = FALSE, na.strings='')    
+ 
+    # replaces 'ohiprep' and 'neptune_data' parts of the filepath with the full file paths
+    # 'ohiprep' files are located here: https://github.com/OHI-Science/ohiprep
+    # 'neptune_data' files are located on the NCEAS Neptune server
+    g$dir_in = sapply(
+      str_split(g[[fld_dir]], ':'),   
+      function(x){ sprintf('%s/%s', dirs[x[1]], x[2])})
+    
+    g$fn_in = g[[fld_fn]]
+    
+    # filters the data and determines whether the file is available, saves a copy to tmp folder
+    lyrs = g %>%
+      filter(ingest==T) %>%
+      mutate(
+        path_in        = file.path(dir_in, fn_in),
+        path_in_exists = file.exists(path_in),
+        filename = sprintf('%s.csv', layer),
+        path_out = sprintf('layers/%s', filename)) %>%
+      select(
+        targets, layer, name, description, 
+        fld_value, units,
+        path_in, path_in_exists, filename, path_out) %>%
+      arrange(targets, layer) %>%
+      filter(path_in != "NULL/NA/NA")
+    
+    # checks that all data layers are available based on file paths 
+    if (nrow(filter(lyrs, !path_in_exists)) != 0){
+      message('The following layers paths do not exist:\n')
+      print(filter(lyrs, !path_in_exists) %>% select(layer, path_in), row.names=F)
+      stop('Data cannot be found - check file paths/names in layers.csv' )
+    }
+    
+    # copy layers into specific scenario / layers file 
+    for (j in 1:nrow(lyrs)){ # j=4
+      stopifnot(file.copy(lyrs$path_in[j], lyrs$path_out[j], overwrite=T))
+    }
+    
+    # delete extraneous files
+    files_extra = setdiff(list.files(sprintf('%s/gapFilling/layers', save_dir)), as.character(lyrs$filename))
+    unlink(sprintf('%s/gapFilling/layers', save_dir, files_extra))
+    
+    # layers registry
+    write.csv(select(lyrs, -path_in, -path_in_exists, -path_out), 'layers.csv', row.names=F, na='')
+
+}
+
+```
+
+I am only focusing on the 2015 data, although some layers have additional years.
+
+# Goals
+
+'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR'
+
+## Artisanal Opportunities
+Need and access equally contribute to the status calculation of this goal.  Gap-filling was calculated as:
+$x_{ao}=\frac{(access_{gf} + need_{gf})}{2}$
+where, 
+$access_{gp}$ = 1, if gap-filled; 0, if not gap-filled
+$need_{gp}$ = 1, if gap-filled; 0, if not gap-filled
+
+NOTES: 
+- Need and access layers were disaggregated from 2012 to 2013, but in this case, I did not count this as gap-filling because this refelected the sovereign countries average scores.
+
+- I used the gap-filling data that was previously used
+
+- spatial gapfilling based on the r2 designations
+- assume status and trend have the same gap-filling
+
+```{r ao}
+
+scores <- read.csv('../../eez2015/scores.csv') %>%
+   filter(goal == 'AO') %>%
+   filter(dimension == "score") %>%
+   filter(region_id != 0) %>%
+   select(region_id, goal, score)
+ 
+access <- read.csv('layers/ao_access.csv') %>%
+  mutate(gap_filling = ifelse(whencev01=="SG", 1, 0)) %>%
+   select(region_id = rgn_id, gap_filling)
+
+  
+need <- read.csv('layers/ao_need.csv') %>%
+  filter(year==2012) %>%
+  mutate(gap_filling = ifelse(whencev01=="SG", 1, 0)) %>% # SG= Spatial gap-filling; OD = "Original data"
+  select(region_id = rgn_id, gap_filling)
+
+status_AO <- rbind(access, need) %>%
+  group_by(region_id) %>%
+  summarize(status_gf = sum(gap_filling)/2) %>% ## if either variable has an NA, these should drop
+  left_join(scores) %>%
+  filter(!is.na(score)) %>%
+  mutate(dimension = 'status') %>%
+  mutate(year = 2015) %>%
+  select(goal, dimension, region_id, score=status_gf)
+
+trend_AO <- status %>%
+  mutate(dimension = "trend")
+
+scores_AO <- rbind(status_AO, trend_AO)
+
+scores <- read.csv('scores.csv')
+scores <- na.omit(scores)
+write.csv(rbind(scores, scores_AO), 'scores.csv', row.names=FALSE, na="")
+ 
+``` 
+
+## Species Diversity
+There is no gap-filling for status calculations of this subgoal.  I do believe that there are many species that lack trend data (but are included in the status calculation).  I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data.  Figuring this out would involve an analysis at the raster level.  If this is worth estimating, I would have to talk to Casey about doing this.
+
+```{r, include=FALSE}
+template <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'SPP') %>%
+  filter(dimension == 'status') %>%
+  filter(region_id != 0)
+
+```
+
+
+## Habitat (extent, trend, condition)
+
+This effects: CP, CS, HAB, and some pressures
+
+Much of the habitat gap-filling occurred prior to my arrival, and is largely documented here: Neptune:\GL-NCEAS_Habitat_health-v2013a\tmp\Habitat_whence.  However, one type of gap-filling that was not accounted for in the previous analysis was the "dissaggregation" of data that occurred when new regions were added for the 2013 analysis.  
+
+When a habitat is present in a region, but does not have corresponding trend data, this habitat is excluded from the calculation which is functionally a form of gap-filling because the trend is assumed to be the average of the other habitats.  If only one habitat is relevant to the goal calculation within a region, it is given a value of NA.  However, when final scores are calculated, the trend is assumed to be zero.  There are many examples of this for seagrass and mangrove.  This suggests we should really fill in these gaps in a more sensible way prior to the analysis.  Given this, I consider the trend for these habitats to be gap-filled.
+
+Summary of gap-filling for each habitat
+
+Habitat      |  Variable                 | Notes
+------------ | ------------------------- | ----------
+soft_bottom  | extent, trend, condition  | disaggregation from 2012 to 2013*
+coral        | extent                    | disaggregation
+             | trend                     | disaggregation
+             | condition                 | adjacent, georegion, prediction (considered actual), disaggregation
+seagrass     | extent                    | disaggregation
+             | trend                     | georegion, disaggregation
+               condition                 | actuals-mixed (considered actual), prediction (considered actual, but this might be wrong), adjacent, adjacent-georegion, georegion, disaggregation
+salt_marsh   | extent, trend, condition  | disaggregation
+sea_ice      | extent, trend, condition  | no gap-filling
+mangrove     | extent                    | no gap-filling
+             | trend                     | 3 regions reported as one, regional (r2 mean)
+             | condition                 | disaggregation, regional (r1 and r2 means)
+
+* disaggregation occurred during the 2013 analysis when many additional countries were added to the analysis.  In these cases, trend and health were given the same scores as the sovereign country and extents were based on the sovereign country scaled to eez.  As we update the habitat data, this form of gap-filling will disappear.  This is good because in many cases, the results are fairly nonsensical.  Often disaggregation is paired with another type of gap-filling.  These regions will tend to have even more uncertainty.
+
+All forms of gap-filling will be considered equal for habitat extent, trend, condition.
+
+### Coastal Protection
+
+This calculates the relative proportion of the status value estimated using gap-filled data for each country, based on the following equation:
+
+$x_{cp}=\frac{\sum_{i=1}^{k}A * w*{E_{p}}}{\sum_{1=1}^{k}A * w}$
+where, 
+$i$ = habitats (coral, mangrove, saltmarsh, seagrass, sea ice (shoreline))
+$A$ = extent area (km2)
+$w$ = rank protective ability of the habitat
+$E_{p}$ = proportion of variables estimated (area and health can be estimated)
+
+The same method was used to calculate trend, by replacing condition (C) with trend (T). 
+
+
+```{r coastal protection}
+ 
+ # I think i might need to convert NA trend/health to 1 for gap-filling....
+ 
+setwd('/home/frazier/ohi-global/global2015/gapFilling')
+
+# habitat rank data 
+habitat_rank <- data.frame(habitat =c('coral', 'mangrove', 'saltmarsh', 'seagrass', 'seaice_shoreline'),
+                   rank =c(4, 4, 3, 1, 4))
+  
+# gap-fill data 
+extent_gf <- read.csv('layers/hab_extent.csv') %>%
+  filter(habitat %in% habitat_rank$habitat) %>%
+  select(rgn_id, habitat, gap_fill_extent=gap_fill) %>%
+  filter(!is.na(gap_fill_extent))
+
+condition_gf <- read.csv('layers/hab_health.csv') %>%
+  filter(habitat %in% habitat_rank$habitat) %>%
+  select(rgn_id, habitat, gap_fill_health=gap_fill)
+  
+trend_gf <-  read.csv('layers/hab_trend.csv') %>%
+  filter(habitat %in% habitat_rank$habitat) %>%
+  select(rgn_id, habitat, gap_fill_trend = gap_fill)
+
+# extent/condition/trend data for 2015
+extent <- read.csv('../../eez2015/layers/hab_extent.csv') %>%
+  filter(km2 > 0)%>%
+  filter(habitat %in% habitat_rank$habitat) 
+condition <- read.csv('../../eez2015/layers/hab_health.csv')%>%
+  filter(habitat %in% habitat_rank$habitat) 
+trend <- read.csv('../../eez2015/layers/hab_trend.csv')%>%
+  filter(habitat %in% habitat_rank$habitat) 
+
+data <- extent %>%
+  left_join(condition) %>%
+  left_join(trend) %>%
+  left_join(extent_gf) %>%
+  left_join(condition_gf) %>%
+  left_join(trend_gf) %>%
+  left_join(condition_gf) %>%
+  left_join(habitat_rank) %>%
+  filter(rgn_id < 255) %>%
+  filter(!is.na(health) & !is.na(km2)) %>%
+  mutate(gap_fill_extent = ifelse(gap_fill_extent==0, 0, 1)) %>%
+  mutate(gap_fill_health = ifelse(gap_fill_health==0, 0, 1)) %>%
+  mutate(gap_fill_trend = ifelse(gap_fill_trend==0, 0, 1))
+
+
+## calculate status:
+status_CP <- data %>%
+  mutate(prop_gf_status = (gap_fill_extent + gap_fill_health)/2) %>%
+  mutate(a_p_est = km2 * rank * prop_gf_status) %>%
+  mutate(a_p = km2 * rank)
+  
+status_CP <- status_CP %>%
+  group_by(rgn_id) %>%
+  summarize(sum_a_p_est = sum(a_p_est),
+            sum_a_p = sum(a_p)) %>%
+  ungroup() %>%
+  mutate(status_gf = sum_a_p_est/sum_a_p)
+
+status_CP <- status_CP %>%
+  mutate(goal = "CP") %>%
+  mutate(dimension = "status") %>%
+  mutate(year = 2015) %>%
+  select(goal, dimension, region_id = rgn_id, score=status_gf)
+
+## calculate trend: 
+trend_CP <- data %>%
+  mutate(prop_gf_trend = (gap_fill_extent + gap_fill_trend)/2) %>%
+  mutate(a_p_est = km2 * rank * prop_gf_trend) %>%
+  mutate(a_p = km2 * rank)
+  
+trend_CP <- trend_CP %>%
+  group_by(rgn_id) %>%
+  summarize(sum_a_p_est = sum(a_p_est),
+            sum_a_p = sum(a_p)) %>%
+  ungroup() %>%
+  mutate(trend_gf = sum_a_p_est/sum_a_p)
+
+trend_CP <- trend_CP %>%
+  mutate(goal = "CP") %>%
+  mutate(dimension = "trend") %>%
+  mutate(year = 2015) %>%
+  select(goal, dimension, region_id = rgn_id, score=trend_gf)
+
+scores_CP <- rbind(status_CP, trend_CP)
+
+write.csv(rbind(status_CP, trend_CP), 'scores.csv', row.names=FALSE, na="")
+
+
+```
+
+### Carbon Storage
+
+This calculates the relative proportion of the status value estimated using gap-filled data for each country, based on the following equation:
+
+$x_{cs}=\frac{\sum_{i=1}^{k}A * w*{E_{p}}}{\sum_{1=1}^{k}A * w}$
+where, 
+$i$ = habitats (mangrove, saltmarsh, seagrass)
+$A$ = extent area (km2)
+$w$ = carbon storage capacity
+$E_{p}$ = proportion of variables estimated (area and health can be estimated)
+
+The same method was used to calculate trend, by replacing condition (C) with trend (T). 
+
+
+
+```{r carbon storage}
+ 
+ # I think i might need to convert NA trend/health to 1 for gap-filling....
+ 
+setwd('/home/frazier/ohi-global/global2015/gapFilling')
+
+# habitat rank data 
+habitat_rank <- data.frame(habitat = c('mangrove', 'saltmarsh', 'seagrass'),  
+                           rank = c(139, 210, 83))
+    
+# gap-fill data 
+extent_gf <- read.csv('layers/hab_extent.csv') %>%
+  filter(habitat %in% habitat_rank$habitat) %>%
+  select(rgn_id, habitat, gap_fill_extent=gap_fill) %>%
+  filter(!is.na(gap_fill_extent))
+
+condition_gf <- read.csv('layers/hab_health.csv') %>%
+  filter(habitat %in% habitat_rank$habitat) %>%
+  select(rgn_id, habitat, gap_fill_health=gap_fill)
+  
+trend_gf <-  read.csv('layers/hab_trend.csv') %>%
+  filter(habitat %in% habitat_rank$habitat) %>%
+  select(rgn_id, habitat, gap_fill_trend = gap_fill)
+
+# extent/condition/trend data for 2015
+extent <- read.csv('../../eez2015/layers/hab_extent.csv') %>%
+  filter(km2 > 0)%>%
+  filter(habitat %in% habitat_rank$habitat) 
+condition <- read.csv('../../eez2015/layers/hab_health.csv')%>%
+  filter(habitat %in% habitat_rank$habitat) 
+trend <- read.csv('../../eez2015/layers/hab_trend.csv')%>%
+  filter(habitat %in% habitat_rank$habitat) 
+
+data <- extent %>%
+  left_join(condition) %>%
+  left_join(trend) %>%
+  left_join(extent_gf) %>%
+  left_join(condition_gf) %>%
+  left_join(trend_gf) %>%
+  left_join(condition_gf) %>%
+  left_join(habitat_rank) %>%
+  filter(rgn_id < 255) %>%
+  filter(!is.na(health) & !is.na(km2)) %>%
+  mutate(gap_fill_extent = ifelse(gap_fill_extent==0, 0, 1)) %>%
+  mutate(gap_fill_health = ifelse(gap_fill_health==0, 0, 1)) %>%
+  mutate(gap_fill_trend = ifelse(gap_fill_trend==0, 0, 1))
+
+
+## calculate status:
+status_CS <- data %>%
+  mutate(prop_gf_status = (gap_fill_extent + gap_fill_health)/2) %>%
+  mutate(a_p_est = km2 * rank * prop_gf_status) %>%
+  mutate(a_p = km2 * rank)
+  
+status_CS <- status_CS %>%
+  group_by(rgn_id) %>%
+  summarize(sum_a_p_est = sum(a_p_est),
+            sum_a_p = sum(a_p)) %>%
+  ungroup() %>%
+  mutate(status_gf = sum_a_p_est/sum_a_p)
+
+status_CS <- status_CS %>%
+  mutate(goal = "CS") %>%
+  mutate(dimension = "status") %>%
+  mutate(year = 2015) %>%
+  select(goal, dimension, region_id = rgn_id, score=status_gf)
+
+## calculate trend: 
+trend_CS <- data %>%
+  mutate(prop_gf_trend = (gap_fill_extent + gap_fill_trend)/2) %>%
+  mutate(a_p_est = km2 * rank * prop_gf_trend) %>%
+  mutate(a_p = km2 * rank)
+  
+trend_CS <- trend_CS %>%
+  group_by(rgn_id) %>%
+  summarize(sum_a_p_est = sum(a_p_est),
+            sum_a_p = sum(a_p)) %>%
+  ungroup() %>%
+  mutate(trend_gf = sum_a_p_est/sum_a_p)
+
+trend_CS <- trend_CS %>%
+  mutate(goal = "CS") %>%
+  mutate(dimension = "trend") %>%
+  mutate(year = 2015) %>%
+  select(goal, dimension, region_id = rgn_id, score=trend_gf)
+
+scores_CS <- rbind(status_CS, trend_CS)
+tmp <- read.csv('scores.csv')
+
+write.csv(rbind(tmp, scores_CS), 'scores.csv', row.names=FALSE, na="")
+
+
+```
+
+### Habitat
+
+The relative proportion of the status value estimated using gap-filled data for each region, is calculated as:
+
+$x_{hab}=\frac{# gap-filled health values}{total # habitats}$
+where habitats include: coral, mangrove, saltmarsh, seagrass, seaice (edge and shoreline), and soft bottom).
+
+The same method was used to calculate trend gap-filling. 
+
+```{r habitat}
+ 
+ # I think i might need to convert NA trend/health to 1 for gap-filling....
+ 
+setwd('/home/frazier/ohi-global/global2015/gapFilling')
+
+
+# gap-fill data 
+extent_gf <- read.csv('layers/hab_extent.csv') %>%
+  select(rgn_id, habitat, gap_fill_extent=gap_fill) %>%
+  filter(!is.na(gap_fill_extent))
+
+condition_gf <- read.csv('layers/hab_health.csv') %>%
+  select(rgn_id, habitat, gap_fill_health=gap_fill)
+  
+trend_gf <-  read.csv('layers/hab_trend.csv') %>%
+  select(rgn_id, habitat, gap_fill_trend = gap_fill)
+
+# extent/condition/trend data for 2015
+extent <- read.csv('../../eez2015/layers/hab_extent.csv') %>%
+  filter(km2 > 0) 
+condition <- read.csv('../../eez2015/layers/hab_health.csv')
+trend <- read.csv('../../eez2015/layers/hab_trend.csv')
+
+data <- extent %>%
+  left_join(condition) %>%
+  left_join(trend) %>%
+  left_join(extent_gf) %>%
+  left_join(condition_gf) %>%
+  left_join(trend_gf) %>%
+  left_join(condition_gf) %>%
+  filter(rgn_id < 255) %>%
+  filter(!is.na(health) & !is.na(km2)) %>%
+  mutate(gap_fill_extent = ifelse(gap_fill_extent==0, 0, 1)) %>%
+  mutate(gap_fill_health = ifelse(gap_fill_health==0, 0, 1)) %>%
+  mutate(gap_fill_trend = ifelse(gap_fill_trend==0, 0, 1))
+
+
+## calculate status:
+status_HAB <- data %>%
+  group_by(rgn_id) %>%
+  summarize(score = sum(gap_fill_health)/length(gap_fill_health)) %>%
+  ungroup() %>%
+  mutate(goal = "HAB") %>%
+  mutate(dimension = "status") %>%
+  select(goal, dimension, region_id=rgn_id, score)
+  
+## calculate trend:
+trend_HAB <- data %>%
+  group_by(rgn_id) %>%
+  summarize(score = sum(gap_fill_trend)/length(gap_fill_trend)) %>%
+  ungroup() %>%
+  mutate(goal = "HAB") %>%
+  mutate(dimension = "trend") %>%
+  select(goal, dimension, region_id=rgn_id, score)
+  
+scores_HAB <- rbind(status_HAB, trend_HAB)
+tmp <- read.csv('scores.csv')
+
+write.csv(rbind(tmp, scores_HAB), 'scores.csv', row.names=FALSE, na="")
+
+
+```
