@@ -1,4 +1,5 @@
 Setup = function(){
+if(file.exists('eez2013/temp/referencePoints.csv')){file.remove('temp/referencePoints.csv')}
 referencePoints <- data.frame(goal=as.character(), 
                               method = as.character(), 
                               reference_point = as.character())
