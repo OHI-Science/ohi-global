@@ -1,26 +1,29 @@
+
 ---
-title: "ohicore"
-author: "Mel"
-date: "10/19/2015"
-output: html_document
+title: Description of ohicore functions
+author: Melanie Frazier
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+  html_document:
+    includes:
+      in_header: ../../ohiprep/src/R/mystyle.htm
+    toc: true
 ---
 
-Here is a brief description of the ohicore functions:
-
-**dataprep functions**
+###dataprep functions
 
 * **UPDATED, but not incorporated, see test directory** gapfill_georegions: gapfilling with georegion means
 * **UPDATED, but not incorporated, see test directory** name_to_rgn: converts country names to rgn_id and deals with sovereign countrys
 * **ADDED (Oct 2015)** mapvalues: from dplyr package, provides easy method of changing factor levels
 
-**core organizing/checking data layers functions**
+###core organizing/checking data layers functions
 
 * CheckLayers: checks layers.csv to make sure data files exist in layers directory 
 * Conf: creates conf object (a list) that has information from config.R and functions.R
 * Layers: creates layers object (a list) with all of the raw data layers 
 * SelectLayersData: function to extract raw data from layers object
 
-**core calculation functions**
+###core calculation functions
 
 **UPDATED (Oct 2015)** CalculateAll:  Primary function used to calculate all the scores (calls a variety of functions)
 
@@ -37,7 +40,7 @@ Here is a brief description of the ohicore functions:
     + CalculateResilienceComponent
 * ScoreScaling: functions for scaling data (score.rescale, score.max, score.clamp)
     
-**after scores are calculated**
+###after scores are calculated
 
 * Git related functions
     + read_git_csv: read a csv from git file
@@ -50,14 +53,14 @@ Here is a brief description of the ohicore functions:
     + **DELETED Oct 2015** ReportScores: part of report generation, but I'm not sure this was ever completed
     + **DELETED Oct 2015** ReportScoresComparison: part of report generation, but I'm not sure this was ever completed (look for report.Rmd in files)
 
-**apps**
+###apps
 
 * shp_to_geojson: save a shape file as GeoJson
 * launch_app
 * launch_cmp
 * write_shortcuts
 
-**unknown how used**
+###unknown how used
 
 * get_scenarios.R: downloads entire repository, not sure why
 * zzz: appears to control how packages are downloaded (but doesn't look like anything)
