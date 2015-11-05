@@ -26,7 +26,7 @@ write.csv(tmp, 'scores.csv', row.names=FALSE)
 
 ```
 
-```{r, inclue=FALSE}
+```{r layer download, inclue=FALSE}
 
 # download gap-filling layers
 source('../../../ohiprep/src/R/common.R')
@@ -52,7 +52,7 @@ dirs = list(
   fld_fn     = scenarioList[[i]][['fld_fn']]
   layer = scenarioList[[i]][['layer']]
   save_dir = scenarioList[[i]][['save_dir']]
-  
+
   ## Read in the layers.csv file with paths to the data files
  g <- read.csv(sprintf("../../%s.csv", layer), stringsAsFactors = FALSE, na.strings='')    
  
@@ -107,7 +107,24 @@ I am only focusing on the 2015 data, although some layers have additional years.
 
 # Goals
 
-'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR'
+#### Calculated directly
+AO, 
+SPP, 
+HAB, 
+CP, 
+CS, 
+CW, 
+ECO (ignoring) 
+LIV (ignoring) 
+
+FIS, MAR, SP, NP, TR
+
+#### Comprised of 2 goals
+BD: HAB/SPP
+LE: ECO/LIV
+FP: FIS/MAR
+SP: ICO/LSP
+
 
 ## Artisanal Opportunities
 Need and access equally contribute to the status calculation of this goal.  Gap-filling was calculated as:
@@ -151,25 +168,29 @@ status_AO <- rbind(access, need) %>%
   mutate(year = 2015) %>%
   select(goal, dimension, region_id, score=status_gf)
 
-trend_AO <- status %>%
+trend_AO <- status_AO %>%
   mutate(dimension = "trend")
 
 scores_AO <- rbind(status_AO, trend_AO)
 
-scores <- read.csv('scores.csv')
-scores <- na.omit(scores)
-write.csv(rbind(scores, scores_AO), 'scores.csv', row.names=FALSE, na="")
+tmp <- read.csv('scores.csv')
+tmp <- na.omit(tmp)
+write.csv(rbind(tmp, scores_AO), 'scores.csv', row.names=FALSE, na="")
  
 ``` 
 
 ## Species Diversity
 There is no gap-filling for status calculations of this subgoal.  I do believe that there are many species that lack trend data (but are included in the status calculation).  I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data.  Figuring this out would involve an analysis at the raster level.  If this is worth estimating, I would have to talk to Casey about doing this.
 
-```{r, include=FALSE}
-template <- read.csv('../../eez2015/scores.csv') %>%
+```{r spp, include=FALSE}
+scores_SPP <- read.csv('../../eez2015/scores.csv') %>%
   filter(goal == 'SPP') %>%
   filter(dimension == 'status') %>%
-  filter(region_id != 0)
+  filter(region_id != 0) %>%
+  mutate(score = ifelse(!is.na(score), 0, NA) 
+
+tmp <- read.csv('scores.csv')
+write.csv(rbind(tmp, scores_SPP), 'scores.csv', row.names=FALSE, na="")
 
 ```
 
@@ -221,8 +242,6 @@ The same method was used to calculate trend, by replacing condition (C) with tre
  
  # I think i might need to convert NA trend/health to 1 for gap-filling....
  
-setwd('/home/frazier/ohi-global/global2015/gapFilling')
-
 # habitat rank data 
 habitat_rank <- data.frame(habitat =c('coral', 'mangrove', 'saltmarsh', 'seagrass', 'seaice_shoreline'),
                    rank =c(4, 4, 3, 1, 4))
@@ -305,7 +324,9 @@ trend_CP <- trend_CP %>%
 
 scores_CP <- rbind(status_CP, trend_CP)
 
-write.csv(rbind(status_CP, trend_CP), 'scores.csv', row.names=FALSE, na="")
+tmp <- read.csv('scores.csv')
+
+write.csv(rbind(tmp, scores_CP), 'scores.csv', row.names=FALSE, na="")
 
 
 ```
@@ -329,8 +350,6 @@ The same method was used to calculate trend, by replacing condition (C) with tre
  
  # I think i might need to convert NA trend/health to 1 for gap-filling....
  
-setwd('/home/frazier/ohi-global/global2015/gapFilling')
-
 # habitat rank data 
 habitat_rank <- data.frame(habitat = c('mangrove', 'saltmarsh', 'seagrass'),  
                            rank = c(139, 210, 83))
@@ -413,7 +432,6 @@ trend_CS <- trend_CS %>%
 
 scores_CS <- rbind(status_CS, trend_CS)
 tmp <- read.csv('scores.csv')
-
 write.csv(rbind(tmp, scores_CS), 'scores.csv', row.names=FALSE, na="")
 
 
@@ -421,7 +439,7 @@ write.csv(rbind(tmp, scores_CS), 'scores.csv', row.names=FALSE, na="")
 
 ### Habitat
 
-The relative proportion of the status value estimated using gap-filled data for each region, is calculated as:
+For each region, the relative proportion of the status based on gap-filled data, is calculated as:
 
 $x_{hab}=\frac{# gap-filled health values}{total # habitats}$
 where habitats include: coral, mangrove, saltmarsh, seagrass, seaice (edge and shoreline), and soft bottom).
@@ -432,8 +450,6 @@ The same method was used to calculate trend gap-filling.
  
  # I think i might need to convert NA trend/health to 1 for gap-filling....
  
-setwd('/home/frazier/ohi-global/global2015/gapFilling')
-
 
 # gap-fill data 
 extent_gf <- read.csv('layers/hab_extent.csv') %>%
@@ -491,3 +507,298 @@ write.csv(rbind(tmp, scores_HAB), 'scores.csv', row.names=FALSE, na="")
 
 
 ```
+
+### Clean Waters
+
+For each region, the relative proportion of the status score that is calculated using gap-filled data, is calculated as:
+
+$x_{cw}=\frac{# gap-filled cw indices}{total # indices}$
+where indices include the one minus the following pressures: pathogens, nutrients(within 3 nm of shore), chemicals (within 3 nm of shore), trash.
+
+The same method was used to calculate trend gap-filling. 
+
+There are 4 pressures datasets used to calculate CW:
+
+dataset   | description    |  gap-filling 
+---------- | -------------
+pathogens  | proportion of people without access to sanitation scaled by population density | v1 and v2 regional averages within a year for proportion of people without sanitation access, if there was no population data, it just got an NA
+fertilizers | modeled based on FAO data  | No gap-filling (?)
+chemicals | combined of three data layers: pesticides (proxy for organic pollution) based on modeled FAO data; ocean pollution (shipping and port data); inorganic pollution (based on impervious surface area data)  | probably considered gap-filled for the port data because this was statistically modeled, but no way to recreate, so will assume no gap-filling.
+trash   | pressure is based on global plastics raster data and trend is based on population  | no gap-filling for pressure, 
+
+
+NOTES: 
+- status is calculated using the geometric mean of (1 minus the pressure) values, but I think that overall status gap-filling should be determined using the proportion of gap-filled data.  But mabye it would be better to calculate as: average of gap-filled values (0 vs. 1) weighted by the exp(actual values)????  Ask about this. No..I don't think so.  The value drives two levels of data, the weight and the mean, but all the values have equal potential to influence the score.
+- I don't think there was gap-filling for the chemical and nutrient pressures - but check on this!
+
+```{r clean waters}
+
+##########################
+### Pathogens
+
+## status
+sanitation_status <- read.csv('layers/cw_pathogen_trend.csv') %>%
+  select(rgn_id=id, year = yr, gap_fill = z_level) %>%
+  mutate(gap_fill = ifelse(gap_fill=="v", 0, 1)) %>%
+  filter(year == 2015) %>%
+  mutate(pressure = "pathogen") %>%
+  arrange(rgn_id)
+
+# Not all the sanitation scores count because this is multiplied by population density (which might not have a value)
+pathogens_status <- read.csv('../../eez2015/layers/po_pathogens.csv') %>%
+  arrange(rgn_id) %>%
+  full_join(sanitation_status) %>%
+  mutate(gap_fill = ifelse(is.na(pressure_score), NA, gap_fill)) %>%
+  select(rgn_id, pressure, gap_fill)
+
+## trend: determine proportion of years with no data
+sanitation_trend <- read.csv('layers/cw_pathogen_trend.csv') %>%
+  select(rgn_id=id, year = yr, gap_fill = z_level) %>%
+  mutate(gap_fill = ifelse(gap_fill=="v", 0, 1)) %>%
+  filter(year %in% c(2011:2015)) %>%
+  group_by(rgn_id) %>%
+  summarize(gap_fill = sum(gap_fill)/length(gap_fill)) %>%
+  mutate(pressure = "pathogen") %>%
+  arrange(rgn_id) %>%
+  data.frame()
+
+pathogens_trend <- read.csv('../../eez2015/layers/po_pathogens.csv') %>%
+  arrange(rgn_id) %>%
+  full_join(sanitation_trend) %>%
+  mutate(gap_fill = ifelse(is.na(pressure_score), NA, gap_fill)) %>%
+  select(rgn_id, pressure, gap_fill)
+
+###########################
+### Nutrients
+nutrients <- read.csv('../../eez2015/layers/po_nutrients_3nm.csv')
+nutrients_status <- nutrients %>%
+  mutate(gap_fill = ifelse(!is.na(pressure_score), 0, NA)) %>%
+  mutate(pressure = "nutrients") %>%
+  select(rgn_id, pressure, gap_fill)
+
+## repeat for trend, given that there was no gapfilling at my level based on below test:
+nutrients_trend <- nutrients %>%
+  mutate(gap_fill = ifelse(!is.na(pressure_score), 0, NA)) %>%
+  mutate(pressure = "nutrients") %>%
+  select(rgn_id, pressure, gap_fill)
+
+## checking whether there was gap-filling at the trend level:
+data <- read.csv("../../../ohiprep/globalprep/PressuresRegionExtract/tmp/nutrients_plume_data_offshore_3nm.csv") 
+data <- gather(data, "year", "pressure_score", starts_with("global"))
+data <- data %>%
+  mutate(year = gsub("global_plumes_fert_", "", year)) %>%
+  mutate(year = gsub("_raw_log_extend_scaled", "", year)) %>%
+  mutate(year = as.numeric(as.character(year))) %>%
+  dplyr::select(rgn_id, rgn_name, year, pressure_score) %>%
+  filter(!is.na(pressure_score))#NA is Antarctica - this is fine
+
+data <- data %>%
+  filter(year %in% max(year):(max(year)-4)) %>%
+  group_by(rgn_id) %>%
+  summarize(samples = length(year)/5)
+
+summary(data) 
+
+if(sum(data$samples != 1) > 0){
+  stop("some years of data missing")
+}  # if the data doesn't stop it means that all regions have all years of data.
+   # and there is no gap filling, at least at this level
+
+## end of looking for trend gap-filling
+
+#################################
+## Chemical
+## Several variables go into the Chemical trend calculation, none of these have gap-filling....
+
+chemicals <- read.csv('../../eez2015/layers/po_chemicals_3nm.csv')
+chemicals_status <- chemicals %>%
+  mutate(gap_fill = ifelse(!is.na(pressure_score), 0, NA)) %>%
+  mutate(pressure = "chemicals") %>%
+  select(rgn_id, pressure, gap_fill)
+
+## repeat for trend, given that there was no gapfilling at my level based on below test:
+chemicals_trend <- chemicals %>%
+  mutate(gap_fill = ifelse(!is.na(pressure_score), 0, NA)) %>%
+  mutate(pressure = "chemicals") %>%
+  select(rgn_id, pressure, gap_fill)
+
+
+#################################
+## Trash
+## status is based on global plastics dataset and trend is based on population data
+
+trash <- read.csv('../../eez2015/layers/po_trash.csv')
+trash_status <- trash %>%
+  mutate(gap_fill = ifelse(!is.na(pressure_score), 0, NA)) %>%
+  mutate(pressure = "trash") %>%
+  select(rgn_id, pressure, gap_fill)
+
+trash_population <- read.csv('../../eez2015/layers/cw_coastalpopn_trend.csv')
+trash_trend <- trash_population %>%
+  mutate(gap_fill = ifelse(!is.na(trend), 0, NA)) %>%
+  mutate(pressure = "trash") %>%
+  select(rgn_id, pressure, gap_fill)
+
+## calculate overall CW status gap-filling:
+status_CW <- rbind(pathogens_status, nutrients_status, chemicals_status, trash_status)
+status_CW <- status_CW %>%
+  group_by(rgn_id) %>%
+  summarize(score = sum(gap_fill, na.rm=TRUE)/length(na.omit(gap_fill))) %>%
+  ungroup() %>%
+  mutate(goal = "CW") %>%
+  mutate(dimension = "status") %>%
+  select(goal, dimension, region_id=rgn_id, score) %>%
+  data.frame()
+
+## calculate overall CW trend gap-filling:
+trend_CW <- rbind(pathogens_trend, nutrients_trend, chemicals_trend, trash_trend)
+trend_CW <- trend_CW %>%
+  group_by(rgn_id) %>%
+  summarize(score = sum(gap_fill, na.rm=TRUE)/length(na.omit(gap_fill))) %>%
+  ungroup() %>%
+  mutate(goal = "CW") %>%
+  mutate(dimension = "trend") %>%
+  select(goal, dimension, region_id=rgn_id, score) %>%
+  data.frame()
+
+
+### putting the data together
+scores_CW <- rbind(status_CW, trend_CW)
+tmp <- read.csv('scores.csv')
+
+write.csv(rbind(tmp, scores_CW), 'scores.csv', row.names=FALSE, na="")
+
+
+```
+
+
+### Fisheries
+
+Fishery status scores are calculated within each region by taking a geometric mean of the stock status scores (b/bmsy --> stock status) weighted by the stock's proportion of the total catch.  For example,
+
+Variable      |  Stock A   | Stock B
+------------- | ---------- | ----------
+stock status  | 0.1        | 1
+proportion of catch | 0.1  | 0.9
+
+The status is calculated as:
+0.1^0.1 * 1^0.9  = 0.79
+
+The geometric mean gives more weight to lower stock status scores than a normal weighted mean (for reference, if this were a weighted mean, the score would be 0.91).
+
+Another example is: 0.1^.5 * 1^.5 = ```0.1^.5 * 1^.5```
+
+Stocks that didn't have b/bmsy values because they were not identified to species or had inadequate data are gap-filled using the median of the other stocks in their region/year.  A penalty is also applied to stocks not identified to species level, as this is considered an indicator of a poorly managed stock.  
+
+To calculate the proportion of gap-filling, I thought I would code gap-filled taxa as 1 and non-gapfilled taxa as 0.0001 (a near zero value, because you can't use a 0 score for the geometric mean, 0^0.1 = 0).  The next step would be to take the geometric mean of these values weighted by the relative proportion of catch.  When I used this method, the scores tended to suggest there was very little gap-filling because the geometric mean tends toward the lower scores.  
+
+This is not correct.  Instead, I think I will just calculate the proportion of the catch that did not have directly estimated b/bmsy values.
+
+
+```{r fisheries}
+
+## This code is tries the weighted mean approach...but it is not correct....
+
+bmsy <- read.csv('../../eez2015/layers/fis_b_bmsy.csv')
+
+catch <- read.csv('../../eez2015/layers/fis_meancatch.csv') %>%
+  separate(fao_saup_id, c("fao_id", "saup_id"), sep="_") %>%
+  separate(taxon_name_key, c("taxon_name", "taxon_key"), sep="_") %>%
+  mutate(fao_id = as.numeric(fao_id)) %>%
+  mutate(saup_id = as.numeric(saup_id)) %>%
+  mutate(taxon_key = as.numeric(taxon_key)) %>%
+  left_join(bmsy, by=c("fao_id", "taxon_name", "year"))
+
+saup2rgn <- read.csv('../../eez2015/layers/fis_proparea_saup2rgn.csv')
+
+fis_gapfill_saup <- catch %>%
+  mutate(gap_fill = ifelse(is.na(b_bmsy), 1, 0.000001))
+
+fis_gapfill_saup <- fis_gapfill_saup %>%
+    group_by(year, saup_id) %>%
+    mutate(SumCatch = sum(mean_catch)) %>%
+    ungroup() %>%
+    mutate(wprop = mean_catch/SumCatch) %>%
+    mutate(weight = gap_fill^wprop) %>%
+    data.frame() 
+ 
+filter(fis_gapfill_saup, saup_id==166 & year ==2011) 
+  #  4b. The "score" and "weight" values per taxon per SAUP region are used to  
+  #    calculate a geometric weighted mean across taxa for each saup_id region
+ fis_gapfill_saup <- fis_gapfill_saup %>%
+   group_by(saup_id, year) %>%
+   summarize(gapfill = prod(gap_fill^wprop)) %>%
+   mutate(gapfill = round(gapfill, 4)) %>%
+   ungroup() %>%
+   data.frame()
+
+
+  # ------------------------------------------------------------------------
+  # STEP 5. Convert status from saup spatial scale to OHI spatial scale  
+  # -----------------------------------------------------------------------
+  # In many cases the ohi reporting regions are comprised of multiple saup regions.
+  # To correct for this, the proportion of each saup area of the total area of the 
+  # OHI region was calculated. This was used to calculate Status from the Status_saup.
+  # This type of adjustment is omitted if the data were collected at the same spatial 
+  # scale as the collecting region.
+  
+  # Join region names/ids to Geom data
+  fis_gapfill <- fis_gapfill_saup %>% 
+   left_join(saup2rgn, by = 'saup_id')
+ 
+  # weighted mean scores
+  fis_gapfill <- fis_gapfill %>%
+    group_by(rgn_id, year) %>%
+    summarize(score = sum(gapfill*prop_area)) %>%
+    ungroup() %>%
+    data.frame() %>%
+    filter(!is.na(rgn_id))
+
+## summarizing for status
+  fis_status <- fis_gapfill %>% 
+    filter(year == 2011) %>%
+    mutate(goal = "FIS") %>%
+    mutate(dimension = "status") %>%
+    select(goal, dimension, region_id=rgn_id, score)
+    
+
+## calculate overall CW status gap-filling:
+status_CW <- rbind(pathogens_status, nutrients_status, chemicals_status, trash_status)
+status_CW <- status_CW %>%
+  group_by(rgn_id) %>%
+  summarize(score = sum(gap_fill, na.rm=TRUE)/length(na.omit(gap_fill))) %>%
+  ungroup() %>%
+  mutate(goal = "CW") %>%
+  mutate(dimension = "status") %>%
+  select(goal, dimension, region_id=rgn_id, score) %>%
+  data.frame()
+
+## calculate overall CW trend gap-filling:
+trend_CW <- rbind(pathogens_trend, nutrients_trend, chemicals_trend, trash_trend)
+trend_CW <- trend_CW %>%
+  group_by(rgn_id) %>%
+  summarize(score = sum(gap_fill, na.rm=TRUE)/length(na.omit(gap_fill))) %>%
+  ungroup() %>%
+  mutate(goal = "CW") %>%
+  mutate(dimension = "trend") %>%
+  select(goal, dimension, region_id=rgn_id, score) %>%
+  data.frame()
+
+
+### putting the data together
+scores_CW <- rbind(status_CW, trend_CW)
+tmp <- read.csv('scores.csv')
+
+write.csv(rbind(tmp, scores_CW), 'scores.csv', row.names=FALSE, na="")
+  
+    
+
+### putting the data together
+scores_FIS <- rbind(status_FIS, trend_FIS)
+tmp <- read.csv('scores.csv')
+
+write.csv(rbind(tmp, scores_CW), 'scores.csv', row.names=FALSE, na="")
+
+
+```
+

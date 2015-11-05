@@ -9,6 +9,12 @@ Data sources:
 Data sources:
 
 - The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)","value","current international $","ao_need.csv"
+"CW","cw_pathogen_trend","Trends in access to improved sanitation as a proxy for pathogen pollution trend","Trends in percent of population without access to improved sanitation facilities.
+
+Data sources:
+
+- [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
+","trend","trend score","cw_pathogen_trend.csv"
 "HAB CS CP","hab_extent","Habitat extent","Habitat extent
 
 Data sources:

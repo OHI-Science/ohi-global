@@ -27,7 +27,7 @@ CW,cw_pathogen_trend,ohiprep:globalprep/whounicef_sanitation/v2015/data,pathogen
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
-",trend,trend score,Y,Y,TRUE,,,,,equal,global trends were applied equally to all regions.,NA
+",trend,trend score,Y,Y,TRUE,,,ohiprep:globalprep/whounicef_sanitation/v2015/int,rgn_jmp_san_2015a_attr.csv,equal,global trends were applied equally to all regions.,NA
 CW,cw_pesticide_trend,ohiprep:globalprep/PressuresRegionExtract/data,cw_chemical_trend_2012.csv,ohiprep:globalprep/PressuresRegionExtract/data,cw_chemical_trend_2013.csv,ohiprep:globalprep/PressuresRegionExtract/data,cw_chemical_trend_2014.csv,ohiprep:globalprep/PressuresRegionExtract/data,cw_chemical_trend_2015.csv,Trends in chemical pollution,"Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
 
 Data sources:
