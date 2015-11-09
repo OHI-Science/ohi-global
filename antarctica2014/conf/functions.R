@@ -529,8 +529,7 @@ HAB = function(layers, status_year){
   ## data to calculate status/trend
   sea_ice <-  SelectLayersData(layers, layers='hab_sea_ice', narrow=TRUE) %>%
     select(region_id=id_num, year, days=val_num)
-  
-  
+   
   ## reference years are first 10 years of the data
   ref_years <- min(sea_ice$year):(min(sea_ice$year) + 9)
   
@@ -539,6 +538,7 @@ HAB = function(layers, status_year){
     group_by(region_id) %>%
     mutate(ref_days = mean(days[year %in% ref_years])) %>%
     ungroup() %>%
+    filter(ref_days >= 10) %>%   # must have at least 10 days of an ice season to be counted.
     mutate(status = days/ref_days) %>%
     mutate(status_mean = rollapply(status, width=5, FUN=mean, align="right", na.rm=TRUE, fill=NA)) %>%
     mutate(status_mean = ifelse(status_mean>1, 1, status_mean)) %>%

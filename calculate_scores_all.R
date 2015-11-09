@@ -255,7 +255,7 @@ tmp <- filter(compare, !is.na(score) & is.na(old_score))
 
 # looking within a goal:
 scatterPlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", goal="TR", dim="score", fileSave="antarctica_TR_2014")
-goalHistogram(scenario="eez2013", goal="CW", dim="score", fileSave="CW_plume_and_3nm_update")
+goalHistogram(scenario="antarctica2014", goal="HAB", dim="status", fileSave="HAB_new_sea_ice")
 
 #   scenario options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'
 #   commit options: 'final_2014' (the final commit for the 2014 analysis), 'previous' (previous commit), a commit code (ie., 'e30e7a4')
