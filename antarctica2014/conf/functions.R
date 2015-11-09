@@ -519,40 +519,59 @@ CW = function(layers){
 }
 
 
-HAB = function(layers){
+HAB = function(layers, status_year){
   
-  # layers
-  lyrs = c('hab_health' = 'health',
-           'hab_extent' = 'extent',
-           'hab_trend'  = 'trend')
+  ## extent data to calculate hab_presence
+  extent <- SelectLayersData(layers, layers='hab_extent', narrow=TRUE) %>%
+    filter(category == "seaice_extent") %>%
+    select(region_id=id_num, km2=val_num)
   
-#  browser()
+  ## data to calculate status/trend
+  sea_ice <-  SelectLayersData(layers, layers='hab_sea_ice', narrow=TRUE) %>%
+    select(region_id=id_num, year, days=val_num)
   
-  # cast data
-  d = SelectLayersData(layers, layers=names(lyrs))  
-  rk = rename(dcast(d, id_num + category ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs))),
-              c(id_num='region_id', 'category'='habitat', lyrs))
   
-  # limit to HAB habitats
-  rk = subset(rk, habitat %in% c('coral','mangrove','saltmarsh','seaice_extent','seagrass','soft_bottom'))  
+  ## reference years are first 10 years of the data
+  ref_years <- min(sea_ice$year):(min(sea_ice$year) + 9)
   
-  # presence as weight
-  rk$w = ifelse(!is.na(rk$extent) & rk$extent>0, 1, NA)
+  ## adding reference days
+  sea_ice_status <- sea_ice %>%
+    group_by(region_id) %>%
+    mutate(ref_days = mean(days[year %in% ref_years])) %>%
+    ungroup() %>%
+    mutate(status = days/ref_days) %>%
+    mutate(status_mean = rollapply(status, width=5, FUN=mean, align="right", na.rm=TRUE, fill=NA)) %>%
+    mutate(status_mean = ifelse(status_mean>1, 1, status_mean)) %>%
+    data.frame()
   
-  # status
-  r.status = ddply(na.omit(rk[,c('region_id','habitat','w','health')]), .(region_id), summarize,
-                   goal      = 'HAB',
-                   dimension = 'status',
-                   score     = min(1, sum(w * health) / sum(w)) * 100); summary(r.status)
+  # trend calculation:
+  trend_years <- status_year:(status_year - 4)
   
-  # trend
-  r.trend = ddply(na.omit(rk[,c('region_id','habitat','w','trend')]), .(region_id), summarize,
-                  goal      = 'HAB',
-                  dimension = 'trend',
-                  score     = sum(w * trend) / sum(w) * 5)
-  ### should these be multiplied by 5?
+  sea_ice_trend <- sea_ice_status %>%
+  filter(year %in% trend_years) %>%
+    filter(!is.na(status_mean)) %>%
+    group_by(region_id) %>%
+    do(mdl = lm(status_mean ~ year, data = .)) %>%
+    summarize(region_id = region_id,
+              score = coef(mdl)['year'] * 5) %>%
+    ungroup() %>%
+   mutate(score = ifelse(score>1, 1, score)) %>%
+   mutate(score = ifelse(score<(-1), (-1), score)) %>%
+    mutate(dimension = "trend") %>%
+    select(region_id, dimension, score) 
+  
+  # final status data:
+  sea_ice_status <- sea_ice_status %>%
+    filter(year == status_year) %>%
+    mutate(dimension = "status") %>%
+    mutate(status_mean = 100*status_mean) %>%
+    select(region_id, dimension, score = status_mean)
+  
   # return scores
-  scores = cbind(rbind(r.status, r.trend))
+  scores <-  rbind(sea_ice_status, sea_ice_trend) %>%
+    mutate(goal = "HAB") %>%
+    data.frame()
+  
   return(scores)  
 }
 
@@ -570,17 +589,16 @@ SPP = function(layers){
 
 BD = function(scores){
   
-  d = within(
-    dcast(
-      scores, 
-      region_id + dimension ~ goal, value.var='score', 
-      subset=.(goal %in% c('HAB','SPP') & !dimension %in% c('pressures','resilience'))), 
-    {
-      goal = 'BD'
-      score = rowMeans(cbind(HAB, SPP), na.rm=T)})
+  d <-  scores %>%
+    filter(goal %in% c('HAB', 'SPP')) %>%
+    filter(!(dimension %in% c('pressures', 'resilience'))) %>%
+    group_by(region_id, dimension) %>%
+    summarize(score = mean(score))%>%
+    mutate(goal = 'BD') %>%
+    select(region_id, goal, dimension, score)
   
   # return all scores
-  return(rbind(scores, d[,c('region_id','goal','dimension','score')]))
+  return(rbind(scores, d))
 }
 
 PreGlobalScores = function(layers, conf, scores){

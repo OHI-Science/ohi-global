@@ -3,8 +3,9 @@
 
 library(devtools)
 #devtools::install_github("ohi-science/ohicore@dev") # when testing changes to ohicore
-devtools::install_github("ohi-science/ohicore@master")
+#devtools::install_github("ohi-science/ohicore@master")
 library(ohicore)
+library(zoo)
 
 setwd("~/ohi-global")
 
@@ -25,43 +26,43 @@ do.other      = F
 
 # scenario list (need to add new scenarios here)
 scenarios = list(
-  eez2015     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2015a',
-    fld_fn       = 'fn_2015a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T) ,  
-  eez2014     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2014a',
-    fld_fn       = 'fn_2014a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-  eez2013     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-  eez2012     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2012a',
-    fld_fn       = 'fn_2012a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T) 
-#  ,
-#   antarctica2014 = list(
-#     layer   = 'layers_antarctica',
+#   eez2015     = list(
+#     layer   = 'layers_eez',
+#     fld_dir      = 'dir_2015a',
+#     fld_fn       = 'fn_2015a',
+#     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+#     do           = T) ,  
+#   eez2014     = list(
+#     layer   = 'layers_eez',
 #     fld_dir      = 'dir_2014a',
 #     fld_fn       = 'fn_2014a',
 #     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
 #     do           = T),
-#   antarctica2015 = list(
-#     layer   = 'layers_antarctica',
-#     fld_dir      = 'dir_2015a',
-#     fld_fn       = 'fn_2015a',
+#   eez2013     = list(
+#     layer   = 'layers_eez',
+#     fld_dir      = 'dir_2013a',
+#     fld_fn       = 'fn_2013a',
 #     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-#     do           = T)
+#     do           = T),
+#   eez2012     = list(
+#     layer   = 'layers_eez',
+#     fld_dir      = 'dir_2012a',
+#     fld_fn       = 'fn_2012a',
+#     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+#     do           = T) 
+#  ,
+  antarctica2014 = list(
+    layer   = 'layers_antarctica',
+    fld_dir      = 'dir_2014a',
+    fld_fn       = 'fn_2014a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T),
+  antarctica2015 = list(
+    layer   = 'layers_antarctica',
+    fld_dir      = 'dir_2015a',
+    fld_fn       = 'fn_2015a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T)
 #   , 
 #   highseas2014   = list(
 #     layer   = 'layers_highseas',
@@ -238,8 +239,6 @@ for (i in 1:length(scenarios)){  #i=3
     #system(sprintf('open %s/launch_app.command', scenario))
   }
 }
-
-
 
 
 ### make a plot to compare different commits within a scenario
