@@ -571,8 +571,39 @@ HAB = function(layers, status_year){
   scores <-  rbind(sea_ice_status, sea_ice_trend) %>%
     mutate(goal = "HAB") %>%
     data.frame()
+
+  ## create a pressure layer: hd_sea_ice
+  pressure <- sea_ice_status %>%
+    mutate(score = 1 - score/100) %>%
+    select(sp_id=region_id,pressure_score=score)
+  if(sum(pressure$pressure_score<0 | pressure$pressure_score>1)>0){  
+  stop("check pressure calculation in HAB function, scores are not between 0-1")}
+  write.csv(pressure, 'layers/hd_sea_ice.csv', row.names=FALSE)
   
-  return(scores)  
+  # add data to layers.csv
+  layersData <- read.csv("layers.csv", stringsAsFactors = FALSE)
+  newPressure <- data.frame(targets = as.character("pressures"),
+                            layer = as.character("hd_sea_ice"),
+                            name = as.character("Relative decreases in sea ice season length (d)"),
+                            description = as.character("Calculated in HAB function"),
+                            fld_value = as.character("pressure_score"), 
+                            units = as.character("pressure_score"),
+                            filename = as.character("hd_sea_ice.csv"),
+                            fld_id_num = as.character("sp_id"),
+                              fld_val_num = as.character("pressure_score"),
+                            file_exists = TRUE,
+                            val_min = min(pressure$pressure_score, na.rm=TRUE),
+                            val_max = max(pressure$pressure_score, na.rm=TRUE),
+                            val_0to1 = ifelse(min(pressure$pressure_score, na.rm=TRUE) >= 0 &
+                                             max(pressure$pressure_score, na.rm=TRUE) <= 1, 
+                                             TRUE, FALSE),
+                            num_ids_unique = sum(unique(pressure$sp_id)), 
+                              data_na = FALSE)
+   layers <- bind_rows(layersData, newPressure)
+   write.csv(layers, "layers.csv", row.names=FALSE)
+   layers <<-  Layers('layers.csv','layers')
+  
+    return(scores)  
 }
 
 

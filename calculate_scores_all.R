@@ -246,7 +246,7 @@ for (i in 1:length(scenarios)){  #i=3
 detach("package:devtools", unload=TRUE)
 source('../ohiprep/src/R/VisGlobal.R')
 changePlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", 
-           fileSave="antarctica2014_TR")
+           fileSave="antarctica2014_hd_sea_ice")
 compare <- read.csv('figures/DataCheck/eez2015_Hackathon_julie_updates_diff_data_2015-10-21.csv')
 difs_only <- filter(compare, change != 0)
 table(difs_only$dimension)
@@ -254,7 +254,7 @@ tmp <- filter(compare, is.na(score) & !is.na(old_score))
 tmp <- filter(compare, !is.na(score) & is.na(old_score))
 
 # looking within a goal:
-scatterPlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", goal="TR", dim="score", fileSave="antarctica_TR_2014")
+scatterPlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", goal="HAB", dim="pressure", fileSave="antarctica_hd_sea_ice_2014")
 goalHistogram(scenario="antarctica2014", goal="HAB", dim="status", fileSave="HAB_new_sea_ice")
 
 #   scenario options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'
