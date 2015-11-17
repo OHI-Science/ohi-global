@@ -85,3 +85,8 @@ Data sources:
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes_rel","ratio","np_harvest_tonnes_relative.csv"
+"TR","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum
+
+Data sources:
+
+- [World Economic Forum](http://reports.weforum.org/travel-and-tourism-competitiveness-report-2015/index-results-the-travel-tourism-competitiveness-index-ranking-2015/)","S_score","score","tr_sustainability.csv"

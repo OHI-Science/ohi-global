@@ -119,9 +119,7 @@ LIV (ignoring)
 FIS
 MAR 
 NP
-
-
-, TR
+TR
 
 #### Comprised of 2 goals
 BD: HAB/SPP
@@ -859,11 +857,11 @@ tonnes           | zero-fill: Zero values are given when there are missing value
                  | r1_t/u_rgn: tonnes ~ usd within a region\
                  | r2_t/u_gr: tonnes ~ usd + year within a georegion\
                  | r2_t/u_gl: tonnes ~ usd + year global data
-risk             | blast and cyanide: no gap-filling\
+usd              | same as tonnes (but no gap-filling in more recent years used in analysis)                 
+risk             | blast and cyanide: no gap-filling
 exposure         | no gap-filling for rocky reef or coral habitat\
                  | gap-filling for FIS \
                  | gap-filled in some cases for overall exposure (done in functions.R)
-usd              | same as tonnes (but no recent gap-filling)
 
 
 
@@ -982,125 +980,53 @@ write.csv(rbind(tmp, scores_NP), 'scores.csv', row.names=FALSE, na="")
 
 
 ### Tourism and Recreation
-Natural product is calculated as (see issue 370 for more details):
+Tourism and Recreation is calculated as:
 
-Within each region, calculate the following for each of the 6 products (coral, sponges, ornamentals, fish oil, shells seaweeds):
-sustainability = 1 - (exposure + risk)/2
-product_status = sustainability * relative tonnes
+Ep = Proportion of employment in tourism and recreation (directly supplied by WTTC, but in the past calculated using additional World Bank Data for Unemployment, U, and Labor Force, L)
 
-Then for each region, take the average of the product_status scores for each product weighted by USD.   
+S = Sustainability score based on TTCI data
 
-There are 4 possible variables that could be gap-filled:
+Xtr = Ep * S
+
+There are several variables that could be gap-filled:
 
 variable         | types of gap-filling
 ---------------- | -----------------------------------
-tonnes           | zero-fill: Zero values are given when there are missing values for both USD and tonnes\
-                 | r1_t/u_rgn: tonnes ~ usd within a region\
-                 | r2_t/u_gr: tonnes ~ usd + year within a georegion\
-                 | r2_t/u_gl: tonnes ~ usd + year global data
-risk             | blast and cyanide: no gap-filling\
-exposure         | no gap-filling for rocky reef or coral habitat\
-                 | gap-filling for FIS \
-                 | gap-filled in some cases for overall exposure (done in functions.R)
-usd              | same as tonnes (but no recent gap-filling)
+Ep               | mean Ep values
+S                | gdp + georegion (mostly r2 designations, but some r1, and sometimes with gap-filled GDP)
+
+Unemployment (U) and Labor Force are listed in data, but they are not used in practice because Ep is directly estimated (should probably simplify output in next iteration). 
+
+GDP (used to estimate S) is also gap-filled in some cases. Estiamtes of S based on gap-filled GDP will have greater uncertainty, but for now, I will count all gap-filled S values the same. At some point, it would be good to incorporate estimates of error into the gapfill estimates (rather than binary: gapfilled/not gapfilled).  
 
 
+```{r tourism and recreation}
 
-```{r natural products}
+gf <- read.csv('layers/tr_sustainability.csv') 
 
-####################################################
-## exposure: currently no gap-filling for coral or rocky reef
-habitat <- read.csv('layers/hab_extent.csv') %>%
-  filter(habitat %in% c('rocky_reef', 'coral'))
+gf <- separate(gf, gaps, c("Ep", "U", "S", "L", "G"), sep=c(1,2,3,4))
 
-if(sum(!(is.na(habitat$gap_fill) | habitat$gap_fill ==0)) > 0){
-  stop("coral or rocky reef habitat extents have gap-filling - will need to incorporate this into calculation")
-}
-
-# gapfilling for fish oil (use FIS data): use same data for all years
-fis_exposure <- read.csv('scores.csv') %>%
-  filter(goal == 'FIS' & dimension == "status") %>%
-  filter(region_id != 0) %>%
-  mutate(product = "fish_oil") %>%
-  select(rgn_id = region_id, product, exposure=score) 
-
-year_range <- 1976:2011
-year <- rep(year_range, each=length(fis_exposure$rgn_id))
-tmp <-   fis_exposure[rep(seq_len(nrow(fis_exposure)), length(year_range)), ]
-fis_exposure <- cbind(tmp, year)
+gf <- gf %>%  ## L and U don't actually matter
+  mutate(Ep = ifelse(Ep == "E", NA, 
+                      ifelse(Ep == "_", 0, 1))) %>%  ## E values are given an NA value
+  mutate(S = ifelse(S == "S", NA,                   ## S values are given an NA value
+                     ifelse(S == "_", 0, 1))) %>%
+    mutate(G = ifelse(G %in% c("_", "*", "c"), 0,
+                    ifelse(G == "G", NA, 1)))  %>%    ## G values are given an NA value, c is an alternative data source, * means it wasn't needed
+  mutate(SG = paste0(S, G))  # Informational: for now, estimates of S are treated the same, regardless of whether the gdp is estimated                                                      
+gap_fill <- gf %>%
+  mutate(score = (Ep + S)/2)
   
-
-# function.R gap-filling for exposure when the product is a NP, but the corresponding habitat is not in the region
-# in these cases we gapfilled with the mean exposure of the products in other regions
-
-exposure <- read.csv('../../eez2015/temp/NP_exposure_gapfill.csv') %>%
-  mutate(exposure = ifelse(gap_fill==0, 0, 1)) %>%
-  select(rgn_id, product, year, exposure) %>%
-  bind_rows(fis_exposure)
-  
-
-
-########################################################
-## risk gap-filling: none for blast/poison data
-## not gap-filling at this point.  Will return a warning
-## if subsequent datasets for these variable have gapfilling
-
-blast <- read.csv('layers/np_blast.csv')
-if(sum(blast$gap_fill) > 0){
-  stop("risk: blast data has gap-filling - will need to incorporate this into calculation")
-}
-
-poison <- read.csv('layers/np_cyanide.csv')
-if(sum(poison$gap_fill) > 0){
-  stop("risk: blast data has gap-filling - will need to incorporate this into calculation")
-}
-
-
-#########################################################
-## Harvest gap-filling
-## 
-weights <- read.csv('../../eez2015/layers/np_harvest_product_weight.csv')
-## weights only include 2006:2011 data
-
-gapData <- read.csv('layers/np_harvest_tonnes_relative.csv')
-table(gapData$gapfill)
-
-# figure out what to do when _u_ is gap-filled (this indicates gapfilling for usd used to calculate the weights)
-filter(gapData, gapfill == "r2_u_gr")  # all of these are from a long time ago - can ignore!  
-
-
-# STEP 1: Figure out proportion of each region/year/product that was gap-filled (Each type of gap-filling counts as a 1, otherwise 0)
-# STEP 2: Weight proportion of gap-filling by proportion of max USD for each product/region during past 6 years to get estimate of gap-filling across all products
-
-productData <- gapData %>%
-  filter(gapfill != "r2_u_gr") %>%
-  group_by(rgn_id, product, year) %>%
-  summarize(totalProducts=n(),
-              totalGapfill=sum(!(gapfill %in% "none"))) %>%
-  mutate(Proportion_gf_tonnes = totalGapfill / totalProducts) %>%
-  left_join(weights, by=c("rgn_id", "product")) %>%
-  filter(!is.na(weight)) %>%
-  ungroup() %>%
-  data.frame()
-
-gap_fill <- productData %>%
-  left_join(exposure, by=c('rgn_id', 'product', 'year')) %>%
-  filter(!is.na(exposure)) %>%   # N=904 NA values, this is an error in gap-filling in functions.R...fix next time
-  mutate(sustainability = exposure/2) %>%
-  mutate(product_score_gf = (Proportion_gf_tonnes + sustainability)/2) %>%
-  group_by(rgn_id, year) %>%
-  summarize(score = weighted.mean(product_score_gf, weight))
-
 
 ## summarizing for status
-  status_NP <- gap_fill %>% 
+  status_TR <- gap_fill %>% 
     filter(year == max(gap_fill$year)) %>%
-    mutate(goal = "NP") %>%
+    mutate(goal = "TR") %>%
     mutate(dimension = "status") %>%
     select(goal, dimension, region_id=rgn_id, score)
     
 ## summarizing for trend
-  trend_NP <- gap_fill %>% 
+  trend_TR <- gap_fill %>% 
     filter(year %in% (max(gap_fill$year)-4):max(gap_fill$year)) %>%
     group_by(rgn_id) %>%
     summarize(score = mean(score)) %>%
@@ -1112,9 +1038,9 @@ gap_fill <- productData %>%
 
 
 ### putting the data together
-scores_NP <- rbind(status_NP, trend_NP)
+scores_TR <- rbind(status_TR, trend_TR)
 tmp <- read.csv('scores.csv')
 
-write.csv(rbind(tmp, scores_NP), 'scores.csv', row.names=FALSE, na="")
+write.csv(rbind(tmp, scores_TR), 'scores.csv', row.names=FALSE, na="")
 
 ```
