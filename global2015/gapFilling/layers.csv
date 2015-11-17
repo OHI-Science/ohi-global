@@ -58,3 +58,30 @@ Data sources:
 - Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009). **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381.
 - Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons**. _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711
 - Schutte, V. G. W., Selig, E.R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122.","trend","trend score","hab_trend.csv"
+"MAR","mar_harvest_tonnes","Mariculture harvest","Mariculture harvest from the FAO. 
+
+Data sources:
+
+- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","tonnes","tons","mar_harvest_tonnes.csv"
+"MAR","mar_sustainability_score","Mariculture sustainability score","Mariculture sustainability and mariculture regulations indicated by the Mariculture Sustainability Index (MSI). 
+
+Data sources:
+
+- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","mar_sustainability_score.csv"
+"NP","np_blast","Areas of observed blast (dynamite) fishing","Destructive artisanal blast fishing (Reefs at Risk Revisited).
+
+Data sources:
+
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) 
+","score","pressure score","np_blast.csv"
+"NP","np_cyanide","Areas of observed poison fishing","Destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
+
+Data sources:
+
+- [Reefs at Risk Revisited](www.wri.org/publication/reefs-at-risk-revisited) 
+","score","pressure score","np_cyanide.csv"
+"NP","np_harvest_tonnes_relative","Harvest ratio to peak yield of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+
+Data sources:
+
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes_rel","ratio","np_harvest_tonnes_relative.csv"

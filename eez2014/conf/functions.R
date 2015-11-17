@@ -564,6 +564,11 @@ NP <- function(scores, layers, status_year, debug = FALSE){
       select(-km2, -expos_raw, -expos_prod_max)
         ### clean up columns
       
+    gap_fill <- np_exp %>%
+      mutate(gap_fill = ifelse(is.na(exposure), "prod_average", 0)) %>%
+      select(rgn_id, product, year, gap_fill)
+    write.csv(gap_fill, 'temp/NP_exposure_gapfill.csv', row.names=FALSE)
+    
     ### add exposure for countries with (habitat extent == NA)
     np_exp <- np_exp %>% 
       group_by(product) %>%
