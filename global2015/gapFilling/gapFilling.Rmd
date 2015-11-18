@@ -109,7 +109,7 @@ I am only focusing on the 2015 data, although some layers have additional years.
 
 #### Calculated directly
 AO 
-SPP 
+SPP (trend?) 
 HAB 
 CP 
 CS 
@@ -120,8 +120,8 @@ FIS
 MAR 
 NP
 TR
-
-#### Comprised of 2 goals
+LSP
+ICO (trend?)
 BD: HAB/SPP
 LE: ECO/LIV
 FP: FIS/MAR
@@ -182,17 +182,51 @@ write.csv(rbind(tmp, scores_AO), 'scores.csv', row.names=FALSE, na="")
 ``` 
 
 ## Species Diversity
-There is no gap-filling for status calculations of this subgoal.  I do believe that there are many species that lack trend data (but are included in the status calculation).  I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data.  Figuring this out would involve an analysis at the raster level.  If this is worth estimating, I would have to talk to Casey about doing this.
+There is no gap-filling for status calculations of this subgoal.  I do believe that there are many species that lack trend data (but are included in the status calculation).  I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data.  Figuring this out would involve an analysis at the raster level.  If this is worth estimating, I would have to talk to Casey about doing this. (at this point, I am assuming no gapfilling for trend).
 
 ```{r spp, include=FALSE}
 scores_SPP <- read.csv('../../eez2015/scores.csv') %>%
   filter(goal == 'SPP') %>%
-  filter(dimension == 'status') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
   filter(region_id != 0) %>%
   mutate(score = ifelse(!is.na(score), 0, NA)) 
 
 tmp <- read.csv('scores.csv')
 write.csv(rbind(tmp, scores_SPP), 'scores.csv', row.names=FALSE, na="")
+
+```
+
+
+## Iconic species
+There is no gap-filling for status calculations of this subgoal.  I do believe that there are many species that lack trend data (but are included in the status calculation).  I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data.  I am getting everyone's opinion on whether this should be considered gap-filling.  We will say no for now.
+
+```{r ico, include=FALSE}
+
+scores_ICO <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'ICO') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = ifelse(!is.na(score), 0, NA)) 
+
+tmp <- read.csv('scores.csv')
+write.csv(rbind(tmp, scores_ICO), 'scores.csv', row.names=FALSE, na="")
+
+```
+
+
+## Lasting Special Places
+There is no gap-filling for status calculations of this subgoal.  
+
+```{r lsp, include=FALSE}
+
+scores_LSP <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'LSP') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = ifelse(!is.na(score), 0, NA)) 
+
+tmp <- read.csv('scores.csv')
+write.csv(rbind(tmp, scores_LSP), 'scores.csv', row.names=FALSE, na="")
 
 ```
 
@@ -1042,5 +1076,57 @@ scores_TR <- rbind(status_TR, trend_TR)
 tmp <- read.csv('scores.csv')
 
 write.csv(rbind(tmp, scores_TR), 'scores.csv', row.names=FALSE, na="")
+
+```
+
+### Supragoals: BD, LE, FP, SP
+Biodiversity (BD: subgoals Habitat and Species Diversity) and Sense of Place (SP: Iconic Species and Lasting Special Places) are calculating using the average of their subgoal data.  Food Provision (FP) is a weighted average of the Mariculture and Fisheries harvest.  
+
+Livelihoods and Economies (LE) is also a supragoal (LIV and ECO), but I am ignoring this one for now due to impending changes in this goal.
+
+
+```{r supragoals}
+
+scores <- read.csv('scores.csv')
+
+# Biodiversity
+BD <- scores %>%
+  filter(goal %in% c('SPP', 'HAB')) %>%
+  group_by(dimension, region_id) %>%
+  summarize(score = mean(score, na.rm=TRUE)) %>%
+  mutate(goal = "BD") %>%
+    select(goal, dimension, region_id, score) %>%
+  ungroup()
+
+# Sense of Place
+SP <- scores %>%
+  filter(goal %in% c('ICO', 'LSP')) %>%
+  group_by(dimension, region_id) %>%
+  summarize(score = mean(score, na.rm=TRUE)) %>%
+  mutate(goal = "SP") %>%
+  select(goal, dimension, region_id, score) %>%
+  ungroup()
+
+# Food Provision: weighted mean based on relative FIS/MAR harvest
+weights <- read.csv('../../eez2015/layers/fp_wildcaught_weight.csv') %>%
+  mutate(MAR = 1-w_fis) %>%
+  select(region_id = rgn_id, FIS = w_fis, MAR) %>%
+  gather('goal', 'weight', 2:3)
+
+FP <- scores %>%
+  filter(goal %in% c('FIS', 'MAR')) %>%
+  left_join(weights, by=c('region_id', 'goal')) %>%
+  group_by(dimension, region_id) %>%
+  summarize(score = weighted.mean(score, weight)) %>%
+  mutate(goal = "FP") %>%
+    select(goal, dimension, region_id, score) %>%
+  ungroup()
+
+
+### putting the data together
+tmp <- read.csv('scores.csv')
+
+scores_supraGoals <- rbind(FP, BD, SP)
+write.csv(rbind(tmp, scores_supraGoals), 'scores.csv', row.names=FALSE, na="")
 
 ```
