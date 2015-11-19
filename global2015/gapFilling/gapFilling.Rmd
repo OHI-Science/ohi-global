@@ -1064,7 +1064,7 @@ gap_fill <- gf %>%
     filter(year %in% (max(gap_fill$year)-4):max(gap_fill$year)) %>%
     group_by(rgn_id) %>%
     summarize(score = mean(score)) %>%
-    mutate(goal = "NP") %>%
+    mutate(goal = "TR") %>%
     mutate(dimension = "trend") %>%
     ungroup() %>%
     select(goal, dimension, region_id=rgn_id, score) %>%
@@ -1128,5 +1128,43 @@ tmp <- read.csv('scores.csv')
 
 scores_supraGoals <- rbind(FP, BD, SP)
 write.csv(rbind(tmp, scores_supraGoals), 'scores.csv', row.names=FALSE, na="")
+
+```
+
+
+### Checking data
+
+
+```{r check}
+
+scores <- read.csv('scores.csv')
+
+
+if(length(table(scores$goal)) != 15){
+  stop('There are not 15 goals/subgoals')
+}
+
+if(sum(is.na(table(scores$goal, scores$dimension))) > 0 ){
+  stop('One or more goals is missing the status/trend dimension')
+}
+
+if(sum(table(scores$goal, scores$dimension) < 100 | table(scores$goal, scores$dimension) > 250) > 0) {
+  stop('One or more of the goals appears to have too many or too few values')
+}
+
+if(min(scores$score, na.rm=TRUE) < 0 | max(scores$score, na.rm=TRUE) > 1) {
+  stop('Scores are outside 0 to 1 range...check this')
+}
+
+```
+
+
+### Finalize data
+
+
+```{r final format}
+
+scores <- read.csv('scores.csv')
+
 
 ```
