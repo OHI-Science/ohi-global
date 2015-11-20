@@ -7,26 +7,52 @@
 # http://www.tuicode.com/article/5637dded499808840885af68
 
 ### Need to read in the shape files for each of these regions:
-
+library(dplyr)
 library(sp)
 library(rgdal)
 library(raster)
-# library(leafletR) # to visualize
+# library(leafletR) # alternative method for visualization
 library(leaflet)
 library(htmlwidgets)
 library(jsonlite)
-
+library(RColorBrewer)
 map1 <- readOGR('../ohiprep/globalprep/spatial/downres', layer="rgn_eez_gcs_low_res")
 # map1 <- map1[map1@data$rgn_nam %in% c('Brazil', 'Canada'), ]
 
 
 map1 <- map1[map1@data$rgn_nam %in% c('Brazil', 'Canada', 'British Virgin Islands', 'Ecuador', 'Colombia',
-                            'China', 'Mexico', 'Peru', 'Venezuela', 'South Korea', 'Japan', 'New Caledonia',
-                            'Fiji'), ]
+                            'China', 'Mexico', 'Peru', 'South Korea', 'Japan',
+                            'Fiji', 'Israel', 'Panama', 'Spain', 'Chile'), ]
 proj4string(map1) <- CRS("+init=epsg:4326")
 
-map1@data$country <- 1:nrow(map1@data)
+#map1@data$country <- 1:nrow(map1@data) # don't think I need this anymore.
+map1@data <- map1@data %>%
+  select(country=rgn_nam)
 
+
+####################
+# uses leaflet and htmlwidgets to save html file
+
+popup <- paste0('<b>', "Country", '</b>', "<br/>", map1@data$country)
+myPalette <- colorRampPalette(brewer.pal(11, "Spectral"))
+myPalette <- topo.colors(nrow(map1), alpha=NULL)
+
+m <- leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = map1, 
+              fillColor = myPalette(nrow(map1)), 
+              #fillColor = myPalette,
+              popup=popup, 
+              #stroke=FALSE,
+              color = myPalette,
+              weight = 1,
+              opacity = 0.4,
+              fillOpacity = 0.3,
+              )
+saveWidget(m, file="map1.html")
+
+
+############## NOT sure if anything down here is necessary anymore
 ## save as geojson:
 writeOGR(map1, 'global2015/geojson/test/map1.geojson', layer = '', driver='GeoJSON')  # layer is needed, but doesn't make a difference what is included
 # dat <- toGeoJSON(map1) # another way of saving
@@ -57,12 +83,6 @@ geojson$features <- lapply(geojson$features, function(feat){
 leaflet() %>% addGeoJSON(geojson)
 exportJSON <- toJSON(geojson)
 write(exportJSON, "global2015/geojson/test/map2.geojson")
-####################
-# uses leaflet and htmlwidgets to save html file
-m <- leaflet(data=map1) %>%
-  addTiles() %>%
-  addPolygons(fillColor = topo.colors(nrow(map1), alpha=NULL), popup=map1@data$rgn_nam, stroke=FALSE)
-saveWidget(m, file="map1.html")
 
 
 ## make html using leafletR
