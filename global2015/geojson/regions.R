@@ -17,23 +17,23 @@ library(htmlwidgets)
 library(jsonlite)
 
 map1 <- readOGR('../ohiprep/globalprep/spatial/downres', layer="rgn_eez_gcs_low_res")
-map1 <- map1[map1@data$rgn_nam %in% c('Brazil', 'Canada'), ]
+# map1 <- map1[map1@data$rgn_nam %in% c('Brazil', 'Canada'), ]
 
 
-# map1 <- map1[map1@data$rgn_nam %in% c('Brazil', 'Canada', 'British Virgin Islands', 'Ecuador', 'Colombia',
-#                             'China', 'Mexico', 'Peru', 'Venezuela', 'South Korea', 'Japan', 'New Caledonia',
-#                             'Fiji'), ]
+map1 <- map1[map1@data$rgn_nam %in% c('Brazil', 'Canada', 'British Virgin Islands', 'Ecuador', 'Colombia',
+                            'China', 'Mexico', 'Peru', 'Venezuela', 'South Korea', 'Japan', 'New Caledonia',
+                            'Fiji'), ]
 proj4string(map1) <- CRS("+init=epsg:4326")
 
 map1@data$country <- 1:nrow(map1@data)
 
 ## save as geojson:
-#writeOGR(map1, 'global2015/geojson/test/map1.geojson', layer = '', driver='GeoJSON')  # layer is needed, but doesn't make a difference what is included
-dat <- toGeoJSON(map1)
+writeOGR(map1, 'global2015/geojson/test/map1.geojson', layer = '', driver='GeoJSON')  # layer is needed, but doesn't make a difference what is included
+# dat <- toGeoJSON(map1) # another way of saving
 
 ## REading a geojson file:
 # # From http://data.okfn.org/data/datasets/geo-boundaries-world-110m
-geojson <- readLines('map1.geojson', warn = FALSE) %>%
+geojson <- readLines('global2015/geojson/test/map1.geojson', warn = FALSE) %>%
   paste(collapse = "\n") %>%
   fromJSON(simplifyVector = FALSE)
 
@@ -55,13 +55,14 @@ geojson$features <- lapply(geojson$features, function(feat){
 })
 
 leaflet() %>% addGeoJSON(geojson)
-
+exportJSON <- toJSON(geojson)
+write(exportJSON, "global2015/geojson/test/map2.geojson")
 ####################
 # uses leaflet and htmlwidgets to save html file
 m <- leaflet(data=map1) %>%
   addTiles() %>%
   addPolygons(fillColor = topo.colors(nrow(map1), alpha=NULL), popup=map1@data$rgn_nam, stroke=FALSE)
-saveWidget(m, file="htmlTest.html")
+saveWidget(m, file="map1.html")
 
 
 ## make html using leafletR
