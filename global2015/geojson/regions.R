@@ -16,40 +16,93 @@ library(leaflet)
 library(htmlwidgets)
 library(jsonlite)
 library(RColorBrewer)
-map1 <- readOGR('../ohiprep/globalprep/spatial/downres', layer="rgn_eez_gcs_low_res")
-# map1 <- map1[map1@data$rgn_nam %in% c('Brazil', 'Canada'), ]
 
+
+## Hawaii----
+map2 <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'sp_gcs')
+map2 <- map2[map2@data$sp_type == "eez", ]
+Hawaii <- map2[map2@data$sp_name %in% c('Hawaii'), ]
+
+Hawaii@data <- Hawaii@data %>%
+  dplyr::select(Region = sp_name) %>%
+  mutate(Region = "United States, Hawaii")
+
+## US Pacific Coast----
+## Identifying the US West Coast: don't need to run this again
+# US <- map2[map2@data$sp_name %in% c('United States'), ]
+# locator(2)
+# US <- crop(US, extent(-135, -112, 50, 30))
+# writeOGR(US, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'USWestCoast_gcs', driver="ESRI Shapefile")
+
+USWC <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'USWestCoast_gcs')
+USWC@data <- USWC@data %>%
+  dplyr::select(Region = sp_name) %>%
+  mutate(Region = "United States, Pacific Coast")
+
+
+## Several countries----
+
+map1 <- readOGR('../ohiprep/globalprep/spatial/downres', layer="rgn_eez_gcs_low_res")
 
 map1 <- map1[map1@data$rgn_nam %in% c('Brazil', 'Canada', 'British Virgin Islands', 'Ecuador', 'Colombia',
-                            'China', 'Mexico', 'Peru', 'South Korea', 'Japan',
-                            'Fiji', 'Israel', 'Panama', 'Spain', 'Chile'), ]
-proj4string(map1) <- CRS("+init=epsg:4326")
+                                      'China', 'Mexico', 'Peru', 'South Korea', 'Japan',
+                                      'Israel', 'Panama', 'Spain', 'Chile', 'Fiji'), ]
+proj4string(map1) <- CRS(proj4string(map2))
 
 #map1@data$country <- 1:nrow(map1@data) # don't think I need this anymore.
 map1@data <- map1@data %>%
-  select(country=rgn_nam)
+  dplyr::select(Region=rgn_nam)
 
+
+#### Baltic (BHI)
+library(rgeos)
+bhi <- readOGR(dsn='/var/data/ohi/git-annex/clip-n-ship/bhi/spatial', layer = 'rgn_offshore_gcs')
+bhi <- gBuffer(bhi, width=0.05)
+data <- data.frame(id = getSpPPolygonsIDSlots(bhi))
+row.names(data) <- getSpPPolygonsIDSlots(bhi)
+bhi <- SpatialPolygonsDataFrame(bhi, data=data)
+
+bhi@data <- bhi@data %>%
+  dplyr::select(Region = id) %>%
+  mutate(Region = "Baltic")
+
+#### British Columbia: don't include for now...wait for Casey to tell me the correct map
+# bci <- readOGR(dsn='/var/data/ohi/git-annex/bcprep/regions/rgn_development/mapp_rgns', layer = 'mapp_rgn_all')
+# bci2 <- readOGR(dsn='/var/data/ohi/git-annex/bcprep/regions/rgn_development/working', layer = 'ohi-bc-rgns')
+# bci3 <- readOGR(dsn='/var/data/ohi/git-annex/bcprep/regions/rgn_development', layer = 'ohibc_rgns_unclipped')
+# 
+# bci <- spTransform(bci, proj4string(data2))
+
+
+### Combine layers
+regionAll <- rbind(map1, USWC, Hawaii, bhi)
+writeOGR(regionAll, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
+         layer="allRegions", driver = "ESRI Shapefile")
+write.csv(regionAll@data, 'global2015/geojson/regions.csv', row.names=FALSE)
 
 ####################
 # uses leaflet and htmlwidgets to save html file
 
-popup <- paste0('<b>', "Country", '</b>', "<br/>", map1@data$country)
-myPalette <- colorRampPalette(brewer.pal(11, "Spectral"))
-myPalette <- topo.colors(nrow(map1), alpha=NULL)
+popup1 <- paste0('<b>', "Region", '</b>', "<br/>", regionAll@data$Region)
+#myPalette <- colorRampPalette(brewer.pal(11, "Spectral"))
+myPalette <- colorRampPalette(c("#9E0142", "#D53E4F", "#F46D43", "#FDAE61", "#3288BD", "#5E4FA2"))
+#myPalette <- topo.colors(nrow(map1), alpha=NULL)
 
 m <- leaflet() %>%
   addTiles() %>%
-  addPolygons(data = map1, 
-              fillColor = myPalette(nrow(map1)), 
+#   addTiles(options = tileOptions(noWrap = TRUE)) %>%  
+#   fitBounds(-180, -70, 180, 80) %>%
+  #  addTiles() %>%
+  addPolygons(data = regionAll, 
+              fillColor = myPalette(nrow(regionAll)), 
               #fillColor = myPalette,
-              popup=popup, 
+              popup=popup1, 
               #stroke=FALSE,
               color = myPalette,
               weight = 1,
-              opacity = 0.4,
-              fillOpacity = 0.3,
-              )
-saveWidget(m, file="map1.html")
+              opacity = 0.5,
+              fillOpacity = 0.3)
+saveWidget(m, file="allRegions.html", selfcontained=FALSE)
 
 
 ############## NOT sure if anything down here is necessary anymore
@@ -96,5 +149,7 @@ fw = file('global2015/geojson/test/map1.js', 'wb')
 cat('var regions = ', file=fw)
 cat(readLines('global2015/geojson/test/map1.geojson', n = -1), file=fw)
 close(fw)
+
+
 
 
