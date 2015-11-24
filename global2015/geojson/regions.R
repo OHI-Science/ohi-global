@@ -130,7 +130,7 @@ regionAll <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/dat
 ## Not including Arctic, file is messed up (fix later):
 regionAll <- regionAll[regionAll@data$Region != "Arctic", ]
 
-popup1 <- paste0('<b>', "Area", '</b>', "<br/>", regionAll@data$Region)
+popup1 <- paste0('<b>', regionAll@data$Region, '</b>') # use this for new line: , "<br/>")
 # myPalette <- colorRampPalette(brewer.pal(11, "Spectral"))
 #myPalette <- colorRampPalette(c("#9E0142", "#D53E4F", "#F46D43", "#FDAE61", "#3288BD", "#5E4FA2"))
 myPalette <- topo.colors(nrow(regionAll@data), alpha=NULL)
