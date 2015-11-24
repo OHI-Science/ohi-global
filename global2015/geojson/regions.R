@@ -93,7 +93,7 @@ bci@data <- bci@data %>%
 arctic <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
                   layer="pan_arctic_gcs")
 
-arctic <- gBuffer(arctic, width=0.05)
+arctic <- gBuffer(arctic, width=0.1)
 pid <- sapply(slot(arctic, 'polygons'), function(x) slot(x, "ID"))
 p.df <- data.frame(ID=1:length(arctic), row.names=pid)
 arctic <- SpatialPolygonsDataFrame(arctic, data=p.df)
@@ -125,29 +125,32 @@ write.csv(regionAll@data, 'global2015/geojson/regions.csv', row.names=FALSE)
 ####################
 # uses leaflet and htmlwidgets to save html file
 regionAll <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
-               layer="allRegions")
+                     layer="allRegions")
 
-popup1 <- paste0('<b>', "Region", '</b>', "<br/>", regionAll@data$Region)
-myPalette <- colorRampPalette(brewer.pal(11, "Spectral"))
+## Not including Arctic, file is messed up (fix later):
+regionAll <- regionAll[regionAll@data$Region != "Arctic", ]
+
+popup1 <- paste0('<b>', "Area", '</b>', "<br/>", regionAll@data$Region)
+# myPalette <- colorRampPalette(brewer.pal(11, "Spectral"))
 #myPalette <- colorRampPalette(c("#9E0142", "#D53E4F", "#F46D43", "#FDAE61", "#3288BD", "#5E4FA2"))
-#myPalette <- topo.colors(nrow(regionAll@data), alpha=NULL)
+myPalette <- topo.colors(nrow(regionAll@data), alpha=NULL)
 
 m <- leaflet() %>%
-  # addTiles() %>%
-   addProviderTiles("OpenStreetMap.BlackAndWhite") %>%
+   addTiles() %>%
+  #addProviderTiles("OpenStreetMap.BlackAndWhite") %>%
   #   addTiles(options = tileOptions(noWrap = TRUE)) %>%  
   #   fitBounds(-180, -70, 180, 80) %>%
   #  addTiles() %>%
   addPolygons(data = regionAll, 
-              fillColor = myPalette(nrow(regionAll)), 
-              #fillColor = myPalette,
+              #fillColor = myPalette(nrow(regionAll)), 
+              fillColor = myPalette,
               popup=popup1, 
               #stroke=FALSE,
               color = myPalette,
               weight = 1,
               opacity = 0.5,
               fillOpacity = 0.4)
-saveWidget(m, file="allRegions3.html", selfcontained=FALSE)
+saveWidget(m, file="allRegions.html", selfcontained=FALSE)
 
 
 ############## NOT sure if anything down here is necessary anymore
