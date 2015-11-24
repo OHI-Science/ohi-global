@@ -153,6 +153,7 @@ m <- leaflet() %>%
 saveWidget(m, file="allRegions.html", selfcontained=FALSE)
 
 
+
 ############## NOT sure if anything down here is necessary anymore
 ## save as geojson:
 writeOGR(map1, 'global2015/geojson/test/map1.geojson', layer = '', driver='GeoJSON')  # layer is needed, but doesn't make a difference what is included
