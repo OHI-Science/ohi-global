@@ -105,28 +105,6 @@ dirs = list(
 
 I am only focusing on the 2015 data, although some layers have additional years.
 
-# Goals
-
-#### Calculated directly
-AO 
-SPP (trend?) 
-HAB 
-CP 
-CS 
-CW 
-ECO (ignoring) 
-LIV (ignoring) 
-FIS
-MAR 
-NP
-TR
-LSP
-ICO (trend?)
-BD: HAB/SPP
-LE: ECO/LIV
-FP: FIS/MAR
-SP: ICO/LSP
-
 
 ## Artisanal Opportunities
 Need and access equally contribute to the status calculation of this goal.  Gap-filling was calculated as:
@@ -1166,5 +1144,53 @@ if(min(scores$score, na.rm=TRUE) < 0 | max(scores$score, na.rm=TRUE) > 1) {
 
 scores <- read.csv('scores.csv')
 
+goals <- unique(scores$goal)
+dimension <- unique(scores$dimension)
+regions <- read.csv('../../eez2015/layers/rgn_labels.csv') %>%
+  filter(type == "eez") %>%
+  filter(rgn_id <= 250) %>%
+  select(region_id = rgn_id)
 
+blank <- expand.grid(goal=goals, dimension=dimension, region_id=regions$region_id)
+
+final_scores <- blank %>%
+  left_join(scores, by=c('goal', 'dimension', 'region_id')) %>%
+  arrange(goal, dimension, region_id) %>%
+  mutate(score = ifelse(region_id ==213, NA, score))
+
+######################################
+## Get average score for each country:
+# identify supragoals
+conf <- read.csv('../../eez2015/conf/goals.csv')
+supragoals <-  conf %>%
+  filter(parent=="")
+supragoals <- supragoals$goal
+  
+# all goals weighted equally, so just an average:
+countryScores <- final_scores %>%
+  filter(goal %in% supragoals) %>%
+  group_by(region_id, dimension) %>%
+  summarize(score = mean(score, na.rm = TRUE)) %>%
+  mutate(goal = "Index") %>%
+  select(goal, dimension, region_id, score) %>%
+  ungroup()
+
+final_scores <- rbind(final_scores, countryScores)  
+
+#######################################
+## Get average goal scores (weighted by country average)
+area <- read.csv('../../eez2015/layers/rgn_area.csv') %>%
+  select(region_id = rgn_id, area = area_km2)
+
+goalScores <- final_scores %>%
+  left_join(area, by=c('region_id')) %>%
+  group_by(goal, dimension) %>%
+  summarize(score = weighted.mean(score, area, na.rm=TRUE)) %>%
+  mutate(region_id = 0) %>%
+   select(goal, dimension, region_id, score) %>%
+  ungroup()
+  
+final_scores <- rbind(final_scores, goalScores)  
+
+write.csv(final_scores, "scores.csv", row.names=FALSE)
 ```

@@ -140,17 +140,6 @@ dirs = list(
 
 }</code></pre>
 <p>I am only focusing on the 2015 data, although some layers have additional years.</p>
-<div id="goals" class="section level1">
-<h1>Goals</h1>
-<div id="calculated-directly" class="section level4">
-<h4>Calculated directly</h4>
-<p>AO SPP HAB CP CS CW ECO (ignoring) LIV (ignoring) FIS MAR NP</p>
-<p>, TR</p>
-</div>
-<div id="comprised-of-2-goals" class="section level4">
-<h4>Comprised of 2 goals</h4>
-<p>BD: HAB/SPP LE: ECO/LIV FP: FIS/MAR SP: ICO/LSP</p>
-</div>
 <div id="artisanal-opportunities" class="section level2">
 <h2>Artisanal Opportunities</h2>
 <p>Need and access equally contribute to the status calculation of this goal. Gap-filling was calculated as: <span class="math">\(x_{ao}=\frac{(access_{gf} + need_{gf})}{2}\)</span> where, <span class="math">\(access_{gp}\)</span> = 1, if gap-filled; 0, if not gap-filled <span class="math">\(need_{gp}\)</span> = 1, if gap-filled; 0, if not gap-filled</p>
@@ -196,7 +185,15 @@ write.csv(rbind(tmp, scores_AO), 'scores.csv', row.names=FALSE, na=&quot;&quot;)
 </div>
 <div id="species-diversity" class="section level2">
 <h2>Species Diversity</h2>
-<p>There is no gap-filling for status calculations of this subgoal. I do believe that there are many species that lack trend data (but are included in the status calculation). I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data. Figuring this out would involve an analysis at the raster level. If this is worth estimating, I would have to talk to Casey about doing this.</p>
+<p>There is no gap-filling for status calculations of this subgoal. I do believe that there are many species that lack trend data (but are included in the status calculation). I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data. Figuring this out would involve an analysis at the raster level. If this is worth estimating, I would have to talk to Casey about doing this. (at this point, I am assuming no gapfilling for trend).</p>
+</div>
+<div id="iconic-species" class="section level2">
+<h2>Iconic species</h2>
+<p>There is no gap-filling for status calculations of this subgoal. I do believe that there are many species that lack trend data (but are included in the status calculation). I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data. I am getting everyone’s opinion on whether this should be considered gap-filling. We will say no for now.</p>
+</div>
+<div id="lasting-special-places" class="section level2">
+<h2>Lasting Special Places</h2>
+<p>There is no gap-filling for status calculations of this subgoal.</p>
 </div>
 <div id="habitat-extent-trend-condition" class="section level2">
 <h2>Habitat (extent, trend, condition)</h2>
@@ -869,16 +866,25 @@ write.csv(rbind(tmp, scores_MAR), 'scores.csv', row.names=FALSE, na=&quot;&quot;
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">tonnes &amp; usd</td>
+<td align="left">tonnes</td>
 <td align="left">zero-fill: Zero values are given when there are missing values for both USD and tonnes<br /></td>
 </tr>
 <tr class="even">
+<td align="left">usd</td>
+<td align="left">same as tonnes (but no gap-filling in more recent years used in analysis)</td>
+</tr>
+<tr class="odd">
 <td align="left">risk</td>
-<td align="left">blast and cyanide: no gap-filling<br />exposure</td>
+<td align="left">blast and cyanide: no gap-filling</td>
+</tr>
+<tr class="even">
+<td align="left">exposure</td>
+<td align="left">no gap-filling for rocky reef or coral habitat<br /></td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>## exposure: currently no gap-filling for coral or rocky reef
+<pre class="r"><code>####################################################
+## exposure: currently no gap-filling for coral or rocky reef
 habitat &lt;- read.csv('layers/hab_extent.csv') %&gt;%
   filter(habitat %in% c('rocky_reef', 'coral'))
 
@@ -886,12 +892,34 @@ if(sum(!(is.na(habitat$gap_fill) | habitat$gap_fill ==0)) &gt; 0){
   stop(&quot;coral or rocky reef habitat extents have gap-filling - will need to incorporate this into calculation&quot;)
 }
 
-# gapfilling for fish oil (use FIS data)
-fis_gf &lt;- read.csv('scores.csv') %&gt;%
-  filter(goal == 'FIS' &amp; dimension == &quot;status&quot;)
+# gapfilling for fish oil (use FIS data): use same data for all years
+fis_exposure &lt;- read.csv('scores.csv') %&gt;%
+  filter(goal == 'FIS' &amp; dimension == &quot;status&quot;) %&gt;%
+  filter(region_id != 0) %&gt;%
+  mutate(product = &quot;fish_oil&quot;) %&gt;%
+  select(rgn_id = region_id, product, exposure=score) 
+
+year_range &lt;- 1976:2011
+year &lt;- rep(year_range, each=length(fis_exposure$rgn_id))
+tmp &lt;-   fis_exposure[rep(seq_len(nrow(fis_exposure)), length(year_range)), ]
+fis_exposure &lt;- cbind(tmp, year)
+  
+
+# function.R gap-filling for exposure when the product is a NP, but the corresponding habitat is not in the region
+# in these cases we gapfilled with the mean exposure of the products in other regions
+
+exposure &lt;- read.csv('../../eez2015/temp/NP_exposure_gapfill.csv') %&gt;%
+  mutate(exposure = ifelse(gap_fill==0, 0, 1)) %&gt;%
+  select(rgn_id, product, year, exposure) %&gt;%
+  bind_rows(fis_exposure)
+  
 
 
-## risk gap-filling: none for blast/poison data:
+########################################################
+## risk gap-filling: none for blast/poison data
+## not gap-filling at this point.  Will return a warning
+## if subsequent datasets for these variable have gapfilling
+
 blast &lt;- read.csv('layers/np_blast.csv')
 if(sum(blast$gap_fill) &gt; 0){
   stop(&quot;risk: blast data has gap-filling - will need to incorporate this into calculation&quot;)
@@ -903,51 +931,212 @@ if(sum(poison$gap_fill) &gt; 0){
 }
 
 
+#########################################################
+## Harvest gap-filling
+## 
+weights &lt;- read.csv('../../eez2015/layers/np_harvest_product_weight.csv')
+## weights only include 2006:2011 data
 
+gapData &lt;- read.csv('layers/np_harvest_tonnes_relative.csv')
+table(gapData$gapfill)</code></pre>
+<pre><code>## 
+##     none r1_t_rgn  r2_t_gr  r2_u_gr  r3_t_gl zerofill 
+##    12983       15      488        6       13     1243</code></pre>
+<pre class="r"><code># figure out what to do when _u_ is gap-filled (this indicates gapfilling for usd used to calculate the weights)
+filter(gapData, gapfill == &quot;r2_u_gr&quot;)  # all of these are from a long time ago - can ignore!  </code></pre>
+<pre><code>##   rgn_id           commodity product year gapfill
+## 1    181 Natural sponges raw sponges 1982 r2_u_gr
+## 2    181          Shells nei  shells 1977 r2_u_gr
+## 3    181          Shells nei  shells 1979 r2_u_gr
+## 4    181          Shells nei  shells 1983 r2_u_gr
+## 5    181          Shells nei  shells 1984 r2_u_gr
+## 6    181          Shells nei  shells 1985 r2_u_gr</code></pre>
+<pre class="r"><code># STEP 1: Figure out proportion of each region/year/product that was gap-filled (Each type of gap-filling counts as a 1, otherwise 0)
+# STEP 2: Weight proportion of gap-filling by proportion of max USD for each product/region during past 6 years to get estimate of gap-filling across all products
 
+productData &lt;- gapData %&gt;%
+  filter(gapfill != &quot;r2_u_gr&quot;) %&gt;%
+  group_by(rgn_id, product, year) %&gt;%
+  summarize(totalProducts=n(),
+              totalGapfill=sum(!(gapfill %in% &quot;none&quot;))) %&gt;%
+  mutate(Proportion_gf_tonnes = totalGapfill / totalProducts) %&gt;%
+  left_join(weights, by=c(&quot;rgn_id&quot;, &quot;product&quot;)) %&gt;%
+  filter(!is.na(weight)) %&gt;%
+  ungroup() %&gt;%
+  data.frame()
 
-sustain &lt;- read.csv('layers/mar_sustainability_score.csv') %&gt;%
-  select(region_id = id, species, species_code, year, gap_fill_sustain = gapfill) %&gt;%
-  mutate(gap_fill_sustain = ifelse(gap_fill_sustain == &quot;actuals&quot;, 0, 1))
-
-
-harvest &lt;- read.csv('layers/mar_harvest_tonnes.csv') %&gt;%
-  select(region_id = id, species, species_code, year, gap_fill_harvest = gap_0_fill) %&gt;%
-  mutate(gap_fill_harvest = ifelse(gap_fill_harvest == &quot;NA_to_zero&quot;, 1, 0)) 
-
-
-gap_fill &lt;- harvest %&gt;%
-  left_join(sustain, by=c(&quot;region_id&quot;, &quot;year&quot;, &quot;species&quot;, &quot;species_code&quot;)) %&gt;%
-  mutate(gap_fill_species = (gap_fill_harvest + gap_fill_sustain)/2) %&gt;%
-  group_by(region_id, year) %&gt;%
-  summarize(score = sum(gap_fill_species)/length(gap_fill_species))
-
-
-## summarizing for status
-  status_MAR &lt;- gap_fill %&gt;% 
-    filter(year == 2013) %&gt;%
-    mutate(goal = &quot;MAR&quot;) %&gt;%
+gap_fill &lt;- productData %&gt;%
+  left_join(exposure, by=c('rgn_id', 'product', 'year')) %&gt;%
+  filter(!is.na(exposure)) %&gt;%   # N=904 NA values, this is an error in gap-filling in functions.R...fix next time
+  mutate(sustainability = exposure/2) %&gt;%
+  mutate(product_score_gf = (Proportion_gf_tonnes + sustainability)/2) %&gt;%
+  group_by(rgn_id, year) %&gt;%
+  summarize(score = weighted.mean(product_score_gf, weight))</code></pre>
+<pre><code>## Warning in left_join_impl(x, y, by$x, by$y): joining character vector and
+## factor, coercing into character vector</code></pre>
+<pre class="r"><code>## summarizing for status
+  status_NP &lt;- gap_fill %&gt;% 
+    filter(year == max(gap_fill$year)) %&gt;%
+    mutate(goal = &quot;NP&quot;) %&gt;%
     mutate(dimension = &quot;status&quot;) %&gt;%
-    select(goal, dimension, region_id, score)
+    select(goal, dimension, region_id=rgn_id, score)
     
 ## summarizing for trend
-  trend_MAR &lt;- gap_fill %&gt;% 
-    filter(year %in% (2013-4):2013) %&gt;%
-    group_by(region_id) %&gt;%
+  trend_NP &lt;- gap_fill %&gt;% 
+    filter(year %in% (max(gap_fill$year)-4):max(gap_fill$year)) %&gt;%
+    group_by(rgn_id) %&gt;%
     summarize(score = mean(score)) %&gt;%
-    mutate(goal = &quot;MAR&quot;) %&gt;%
+    mutate(goal = &quot;NP&quot;) %&gt;%
     mutate(dimension = &quot;trend&quot;) %&gt;%
     ungroup() %&gt;%
-    select(goal, dimension, region_id, score) %&gt;%
+    select(goal, dimension, region_id=rgn_id, score) %&gt;%
     data.frame()
 
 
 ### putting the data together
-scores_MAR &lt;- rbind(status_MAR, trend_MAR)
+scores_NP &lt;- rbind(status_NP, trend_NP)
 tmp &lt;- read.csv('scores.csv')
 
-write.csv(rbind(tmp, scores_MAR), 'scores.csv', row.names=FALSE, na=&quot;&quot;)</code></pre>
+write.csv(rbind(tmp, scores_NP), 'scores.csv', row.names=FALSE, na=&quot;&quot;)</code></pre>
 </div>
+<div id="tourism-and-recreation" class="section level3">
+<h3>Tourism and Recreation</h3>
+<p>Tourism and Recreation is calculated as:</p>
+<p>Ep = Proportion of employment in tourism and recreation (directly supplied by WTTC, but in the past calculated using additional World Bank Data for Unemployment, U, and Labor Force, L)</p>
+<p>S = Sustainability score based on TTCI data</p>
+<p>Xtr = Ep * S</p>
+<p>There are several variables that could be gap-filled:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">variable</th>
+<th align="left">types of gap-filling</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ep</td>
+<td align="left">mean Ep values</td>
+</tr>
+<tr class="even">
+<td align="left">S</td>
+<td align="left">gdp + georegion (mostly r2 designations, but some r1, and sometimes with gap-filled GDP)</td>
+</tr>
+</tbody>
+</table>
+<p>Unemployment (U) and Labor Force are listed in data, but they are not used in practice because Ep is directly estimated (should probably simplify output in next iteration).</p>
+<p>GDP (used to estimate S) is also gap-filled in some cases. Estiamtes of S based on gap-filled GDP will have greater uncertainty, but for now, I will count all gap-filled S values the same. At some point, it would be good to incorporate estimates of error into the gapfill estimates (rather than binary: gapfilled/not gapfilled).</p>
+<pre class="r"><code>gf &lt;- read.csv('layers/tr_sustainability.csv') 
+
+gf &lt;- separate(gf, gaps, c(&quot;Ep&quot;, &quot;U&quot;, &quot;S&quot;, &quot;L&quot;, &quot;G&quot;), sep=c(1,2,3,4))
+
+gf &lt;- gf %&gt;%  ## L and U don't actually matter
+  mutate(Ep = ifelse(Ep == &quot;E&quot;, NA, 
+                      ifelse(Ep == &quot;_&quot;, 0, 1))) %&gt;%  ## E values are given an NA value
+  mutate(S = ifelse(S == &quot;S&quot;, NA,                   ## S values are given an NA value
+                     ifelse(S == &quot;_&quot;, 0, 1))) %&gt;%
+    mutate(G = ifelse(G %in% c(&quot;_&quot;, &quot;*&quot;, &quot;c&quot;), 0,
+                    ifelse(G == &quot;G&quot;, NA, 1)))  %&gt;%    ## G values are given an NA value, c is an alternative data source, * means it wasn't needed
+  mutate(SG = paste0(S, G))  # Informational: for now, estimates of S are treated the same, regardless of whether the gdp is estimated                                                      
+gap_fill &lt;- gf %&gt;%
+  mutate(score = (Ep + S)/2)
+  
+
+## summarizing for status
+  status_TR &lt;- gap_fill %&gt;% 
+    filter(year == max(gap_fill$year)) %&gt;%
+    mutate(goal = &quot;TR&quot;) %&gt;%
+    mutate(dimension = &quot;status&quot;) %&gt;%
+    select(goal, dimension, region_id=rgn_id, score)
+    
+## summarizing for trend
+  trend_TR &lt;- gap_fill %&gt;% 
+    filter(year %in% (max(gap_fill$year)-4):max(gap_fill$year)) %&gt;%
+    group_by(rgn_id) %&gt;%
+    summarize(score = mean(score)) %&gt;%
+    mutate(goal = &quot;TR&quot;) %&gt;%
+    mutate(dimension = &quot;trend&quot;) %&gt;%
+    ungroup() %&gt;%
+    select(goal, dimension, region_id=rgn_id, score) %&gt;%
+    data.frame()
+
+
+### putting the data together
+scores_TR &lt;- rbind(status_TR, trend_TR)
+tmp &lt;- read.csv('scores.csv')
+
+write.csv(rbind(tmp, scores_TR), 'scores.csv', row.names=FALSE, na=&quot;&quot;)</code></pre>
+</div>
+<div id="supragoals-bd-le-fp-sp" class="section level3">
+<h3>Supragoals: BD, LE, FP, SP</h3>
+<p>Biodiversity (BD: subgoals Habitat and Species Diversity) and Sense of Place (SP: Iconic Species and Lasting Special Places) are calculating using the average of their subgoal data. Food Provision (FP) is a weighted average of the Mariculture and Fisheries harvest.</p>
+<p>Livelihoods and Economies (LE) is also a supragoal (LIV and ECO), but I am ignoring this one for now due to impending changes in this goal.</p>
+<pre class="r"><code>scores &lt;- read.csv('scores.csv')
+
+# Biodiversity
+BD &lt;- scores %&gt;%
+  filter(goal %in% c('SPP', 'HAB')) %&gt;%
+  group_by(dimension, region_id) %&gt;%
+  summarize(score = mean(score, na.rm=TRUE)) %&gt;%
+  mutate(goal = &quot;BD&quot;) %&gt;%
+    select(goal, dimension, region_id, score) %&gt;%
+  ungroup()
+
+# Sense of Place
+SP &lt;- scores %&gt;%
+  filter(goal %in% c('ICO', 'LSP')) %&gt;%
+  group_by(dimension, region_id) %&gt;%
+  summarize(score = mean(score, na.rm=TRUE)) %&gt;%
+  mutate(goal = &quot;SP&quot;) %&gt;%
+  select(goal, dimension, region_id, score) %&gt;%
+  ungroup()
+
+# Food Provision: weighted mean based on relative FIS/MAR harvest
+weights &lt;- read.csv('../../eez2015/layers/fp_wildcaught_weight.csv') %&gt;%
+  mutate(MAR = 1-w_fis) %&gt;%
+  select(region_id = rgn_id, FIS = w_fis, MAR) %&gt;%
+  gather('goal', 'weight', 2:3)
+
+FP &lt;- scores %&gt;%
+  filter(goal %in% c('FIS', 'MAR')) %&gt;%
+  left_join(weights, by=c('region_id', 'goal')) %&gt;%
+  group_by(dimension, region_id) %&gt;%
+  summarize(score = weighted.mean(score, weight)) %&gt;%
+  mutate(goal = &quot;FP&quot;) %&gt;%
+    select(goal, dimension, region_id, score) %&gt;%
+  ungroup()</code></pre>
+<pre><code>## Warning in left_join_impl(x, y, by$x, by$y): joining factors with different
+## levels, coercing to character vector</code></pre>
+<pre class="r"><code>### putting the data together
+tmp &lt;- read.csv('scores.csv')
+
+scores_supraGoals &lt;- rbind(FP, BD, SP)
+write.csv(rbind(tmp, scores_supraGoals), 'scores.csv', row.names=FALSE, na=&quot;&quot;)</code></pre>
+</div>
+<div id="checking-data" class="section level3">
+<h3>Checking data</h3>
+<pre class="r"><code>scores &lt;- read.csv('scores.csv')
+
+
+if(length(table(scores$goal)) != 15){
+  stop('There are not 15 goals/subgoals')
+}
+
+if(sum(is.na(table(scores$goal, scores$dimension))) &gt; 0 ){
+  stop('One or more goals is missing the status/trend dimension')
+}
+
+if(sum(table(scores$goal, scores$dimension) &lt; 100 | table(scores$goal, scores$dimension) &gt; 250) &gt; 0) {
+  stop('One or more of the goals appears to have too many or too few values')
+}
+
+if(min(scores$score, na.rm=TRUE) &lt; 0 | max(scores$score, na.rm=TRUE) &gt; 1) {
+  stop('Scores are outside 0 to 1 range...check this')
+}</code></pre>
+</div>
+<div id="finalize-data" class="section level3">
+<h3>Finalize data</h3>
+<pre class="r"><code>scores &lt;- read.csv('scores.csv')</code></pre>
 </div>
 </div>
 
