@@ -1190,7 +1190,8 @@ goalScores <- final_scores %>%
    select(goal, dimension, region_id, score) %>%
   ungroup()
   
-final_scores <- rbind(final_scores, goalScores)  
+final_scores <- rbind(final_scores, goalScores)  %>%
+  mutate(score = round(score*100, 2))
 
 write.csv(final_scores, "scores.csv", row.names=FALSE)
 ```
