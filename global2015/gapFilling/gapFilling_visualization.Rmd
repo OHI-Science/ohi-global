@@ -243,7 +243,7 @@ data <- rbind(index, data) %>%
 m <- datatable(data,
           caption = '2015 OHI scores')
 
-saveWidget(m, file="gapFilling.html")
+saveWidget(m, file="gapFillingTable.html")
 
 ```
 

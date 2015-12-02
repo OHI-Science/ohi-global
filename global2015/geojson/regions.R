@@ -2,6 +2,8 @@
 ## This script is used to create a geojson map
 ## with regions that have OHI assessments
 
+### NOTE: I just realized that I need to clip out the bci portion of the canada map...so it doesn't get two overlapping polygons
+
 ## need to update script due to package updates:
 ## Following needs to be replaced (see Arctic example):
 # data <- data.frame(id = getSpPPolygonsIDSlots(bhi))
@@ -35,82 +37,110 @@ Hawaii@data <- Hawaii@data %>%
   dplyr::select(Region = sp_name) %>%
   mutate(Region = "United States, Hawaii")
 
+Hawaii <- spChFIDs(Hawaii, Hawaii@data$Region)
+
+writeOGR(Hawaii, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
+         layer="Hawaii", driver="ESRI Shapefile")
+
+Hawaii <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
+         layer="Hawaii")
+Hawaii <- spChFIDs(Hawaii, as.character(Hawaii@data$Region))
+
 ## US Pacific Coast----
 ## Identifying the US West Coast: don't need to run this again
-# US <- map2[map2@data$sp_name %in% c('United States'), ]
-# #locator(2)
-# US <- crop(US, extent(-135, -112, 50, 30))
-# writeOGR(US, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'USWestCoast_gcs', driver="ESRI Shapefile", overwrite=TRUE)
+US <- map2[map2@data$sp_name %in% c('United States'), ]
+#locator(2)
+USWC <- crop(US, extent(-135, -112, 50, 30))
 
-USWC <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'USWestCoast_gcs')
 USWC@data <- USWC@data %>%
   dplyr::select(Region = sp_name) %>%
   mutate(Region = "United States, Pacific Coast")
+writeOGR(USWC, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'USWestCoast_gcs', driver="ESRI Shapefile", overwrite=TRUE)
+
+USWC <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'USWestCoast_gcs')
+
+USWC <- spChFIDs(USWC, USWC@data$Region)
 
 
 ## Several countries----
-
 map1 <- readOGR('../ohiprep/globalprep/spatial/downres', layer="rgn_eez_gcs_low_res")
 
 map1 <- map1[map1@data$rgn_nam %in% c('Brazil', 'Canada', 'British Virgin Islands', 'Ecuador', 'Colombia',
                                       'China', 'Mexico', 'Peru', 'South Korea', 'Japan',
                                       'Israel', 'Panama', 'Spain', 'Chile', 'Fiji'), ]
-proj4string(map1) <- CRS(proj4string(map2))
+proj4string(map1) <- CRS(proj4string(Hawaii))
 
 #map1@data$country <- 1:nrow(map1@data) # don't think I need this anymore.
 map1@data <- map1@data %>%
   dplyr::select(Region=rgn_nam)
 
+map1 <- spChFIDs(map1, as.character(map1@data$Region))
 
 #### Baltic (BHI)
 library(rgeos)
 bhi <- readOGR(dsn='/var/data/ohi/git-annex/clip-n-ship/bhi/spatial', layer = 'rgn_offshore_gcs')
 bhi <- gBuffer(bhi, width=0.05)
-data <- data.frame(id = getSpPPolygonsIDSlots(bhi))
-row.names(data) <- getSpPPolygonsIDSlots(bhi)
-bhi <- SpatialPolygonsDataFrame(bhi, data=data)
+pid <- sapply(slot(bhi, 'polygons'), function(x) slot(x, "ID"))
+p.df <- data.frame(ID=1:length(bhi), row.names=pid)
+bhi <- SpatialPolygonsDataFrame(bhi, data=p.df)
+bhi@data$Region <- "Baltic"
 
 bhi@data <- bhi@data %>%
-  dplyr::select(Region = id) %>%
-  mutate(Region = "Baltic")
+  dplyr::select(Region) 
+
+plot(bhi)
+
+# doesn't seem to work....
 # writeOGR(bhi, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
-#          layer="bhi_buffer")
+#          layer="bhi_buffer", driver="ESRI Shapefile", overwrite_layer = TRUE)
 
-
+bhi <- spChFIDs(bhi, as.character(bhi@data$Region))
 
 #### British Columbia: don't include for now...wait for Casey to tell me the correct map
 bci <- readOGR(dsn='/var/data/ohi/git-annex/clip-n-ship/ohibc/spatial', layer = 'rgn_offshore_gcs')
 bci <- gBuffer(bci, width=0.1)
-data <- data.frame(id = getSpPPolygonsIDSlots(bci))
-row.names(data) <- getSpPPolygonsIDSlots(bci)
-bci <- SpatialPolygonsDataFrame(bci, data=data)
+pid <- sapply(slot(bci, 'polygons'), function(x) slot(x, "ID"))
+p.df <- data.frame(ID=1:length(bci), row.names=pid)
+bci <- SpatialPolygonsDataFrame(bci, data=p.df)
+bci@data$Region <- "British Columbia"
 
 bci@data <- bci@data %>%
-  dplyr::select(Region = id) %>%
-  mutate(Region = "British Columbia")
+  dplyr::select(Region) 
+
+# writeOGR(bci, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
+#          layer="bci_buffer", driver="ESRI Shapefile")
+
+
+bci <- spChFIDs(bci, as.character(bci@data$Region))
+
 
 #### Arctic
-arctic <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
-                  layer="pan_arctic_gcs")
 
-arctic <- gBuffer(arctic, width=0.1)
-pid <- sapply(slot(arctic, 'polygons'), function(x) slot(x, "ID"))
-p.df <- data.frame(ID=1:length(arctic), row.names=pid)
-arctic <- SpatialPolygonsDataFrame(arctic, data=p.df)
-arctic@data$Region <- "Arctic"
-
-arctic@data <- arctic@data %>%
-  dplyr::select(Region) 
-writeOGR(arctic, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
-         layer="pan_arctic_gcs_buffer", driver= "ESRI Shapefile", overwrite=TRUE)
-
+### These data got messed up in CRS transformation:
+# arctic <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
+#                   layer="pan_arctic_gcs")
+# 
+# arctic <- gBuffer(arctic, width=0.1)
+# pid <- sapply(slot(arctic, 'polygons'), function(x) slot(x, "ID"))
+# p.df <- data.frame(ID=1:length(arctic), row.names=pid)
+# arctic <- SpatialPolygonsDataFrame(arctic, data=p.df)
+# arctic@data$Region <- "Arctic"
+# 
+# arctic@data <- arctic@data %>%
+#   dplyr::select(Region) 
+# 
+# writeOGR(arctic, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
+#          layer="pan_arctic_gcs_buffer", driver= "ESRI Shapefile", overwrite=TRUE)
+# arctic <- readOGR(arctic, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
+#          layer="pan_arctic_gcs_buffer")
 
 ### Combine layers
 library(maptools)
-regionAll <- rbind(map1, USWC, Hawaii, bhi, bci, arctic)
+regionAll <- rbind(map1, bhi, bci, Hawaii, USWC)  
+
 writeOGR(regionAll, dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
          layer="allRegions", driver = "ESRI Shapefile", overwrite=TRUE)
-write.csv(regionAll@data, 'global2015/geojson/regions.csv', row.names=FALSE)
+#write.csv(regionAll@data, 'global2015/geojson/regions.csv', row.names=FALSE)
 
 ### Adding new layers
 all <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
@@ -126,27 +156,35 @@ write.csv(regionAll@data, 'global2015/geojson/regions.csv', row.names=FALSE)
 # uses leaflet and htmlwidgets to save html file
 regionAll <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/website_OHIplus_regions', 
                      layer="allRegions")
+regions <- read.csv('global2015/geojson/regions.csv')
 
 ## Not including Arctic, file is messed up (fix later):
-regionAll <- regionAll[regionAll@data$Region != "Arctic", ]
+regionAll <- regionAll[regionAll@data$Region %in% regions$Region, ]
 
-popup1 <- paste0('<b>', regionAll@data$Region, '</b>') # use this for new line: , "<br/>")
+## Add color data
+colors <- data.frame(Status = c("conduct", "inform", "plan", "learn"), 
+                     color= c('#5079A6', '#464EA7', '#5794A5', '#93CBDF'))
+regionAll@data <- regionAll@data %>%
+  left_join(regions, by="Region") %>%
+  left_join(colors, by="Status")
+
+popup1 <- paste0('<b>', regionAll@data$Region, '</b>',
+                 '<br/>', "status: ", regionAll@data$Status) # use this for new line: , "<br/>")
 # myPalette <- colorRampPalette(brewer.pal(11, "Spectral"))
-#myPalette <- colorRampPalette(c("#9E0142", "#D53E4F", "#F46D43", "#FDAE61", "#3288BD", "#5E4FA2"))
-myPalette <- topo.colors(nrow(regionAll@data), alpha=NULL)
+# myPalette <- colorRampPalette(c("#9E0142", "#D53E4F", "#F46D43", "#FDAE61", "#3288BD", "#5E4FA2"))
+# myPalette <- topo.colors(nrow(regionAll@data), alpha=NULL)
 
 m <- leaflet() %>%
    addTiles() %>%
   #addProviderTiles("OpenStreetMap.BlackAndWhite") %>%
   #   addTiles(options = tileOptions(noWrap = TRUE)) %>%  
   #   fitBounds(-180, -70, 180, 80) %>%
-  #  addTiles() %>%
   addPolygons(data = regionAll, 
               #fillColor = myPalette(nrow(regionAll)), 
-              fillColor = myPalette,
+              fillColor = regionAll@data$color,
               popup=popup1, 
               #stroke=FALSE,
-              color = myPalette,
+              color = "#A8A8A8",
               weight = 1,
               opacity = 0.5,
               fillOpacity = 0.4)

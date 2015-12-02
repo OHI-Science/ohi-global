@@ -26,7 +26,7 @@ write.csv(tmp, 'scores.csv', row.names=FALSE)
 
 ```
 
-```{r layer download, inclue=FALSE}
+```{r layer download, include=FALSE}
 
 # download gap-filling layers
 source('../../../ohiprep/src/R/common.R')
@@ -103,7 +103,65 @@ dirs = list(
 
 ```
 
+## General notes
+This document calculates the proportion of each goal's status and trend scores that are based on gap-filled data.  All gap-filling is weighted equally.  
+
 I am only focusing on the 2015 data, although some layers have additional years.
+
+I ignore LE/ECO/LIV because we will be changing these data.
+
+I haven't done the pressures and resilience yet - but I am going to work on this next.  Once I have that, I can calculate the proportion of each goal's score that is based on gap-filled data.
+
+Eventually, I want to do these calculations using the error introduced by gap-filling based on cross-validation methods.
+
+## Species Diversity
+There is no gap-filling for status calculations of this subgoal.  I believe there are many species that lack trend data (but are included in the status calculation).  This may be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data.  However, at this point, I am assuming no gapfilling for trend. I think this is defensible because it is a random sample of the species data that do not have trends.
+
+```{r spp, include=FALSE}
+scores_SPP <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'SPP') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = ifelse(!is.na(score), 0, NA)) 
+
+tmp <- read.csv('scores.csv')
+write.csv(rbind(tmp, scores_SPP), 'scores.csv', row.names=FALSE, na="")
+
+```
+
+
+## Iconic species
+See Species goal.
+
+```{r ico, include=FALSE}
+
+scores_ICO <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'ICO') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = ifelse(!is.na(score), 0, NA)) 
+
+tmp <- read.csv('scores.csv')
+write.csv(rbind(tmp, scores_ICO), 'scores.csv', row.names=FALSE, na="")
+
+```
+
+
+## Lasting Special Places
+There is no gap-filling for status calculations of this subgoal.  
+
+```{r lsp, include=FALSE}
+
+scores_LSP <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'LSP') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = ifelse(!is.na(score), 0, NA)) 
+
+tmp <- read.csv('scores.csv')
+write.csv(rbind(tmp, scores_LSP), 'scores.csv', row.names=FALSE, na="")
+
+```
 
 
 ## Artisanal Opportunities
@@ -121,7 +179,7 @@ NOTES:
 - spatial gapfilling based on the r2 designations
 - assume status and trend have the same gap-filling
 
-```{r ao}
+```{r ao, warning=FALSE, message=FALSE}
 
 scores_AO <- read.csv('../../eez2015/scores.csv') %>%
    filter(goal == 'AO') %>%
@@ -159,82 +217,36 @@ write.csv(rbind(tmp, scores_AO), 'scores.csv', row.names=FALSE, na="")
  
 ``` 
 
-## Species Diversity
-There is no gap-filling for status calculations of this subgoal.  I do believe that there are many species that lack trend data (but are included in the status calculation).  I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data.  Figuring this out would involve an analysis at the raster level.  If this is worth estimating, I would have to talk to Casey about doing this. (at this point, I am assuming no gapfilling for trend).
-
-```{r spp, include=FALSE}
-scores_SPP <- read.csv('../../eez2015/scores.csv') %>%
-  filter(goal == 'SPP') %>%
-  filter(dimension %in% c('status', 'trend')) %>%
-  filter(region_id != 0) %>%
-  mutate(score = ifelse(!is.na(score), 0, NA)) 
-
-tmp <- read.csv('scores.csv')
-write.csv(rbind(tmp, scores_SPP), 'scores.csv', row.names=FALSE, na="")
-
-```
-
-
-## Iconic species
-There is no gap-filling for status calculations of this subgoal.  I do believe that there are many species that lack trend data (but are included in the status calculation).  I believe this would be a form of gap-filling because the species that are not included are functionally given the average trend of the species that do have trend data.  I am getting everyone's opinion on whether this should be considered gap-filling.  We will say no for now.
-
-```{r ico, include=FALSE}
-
-scores_ICO <- read.csv('../../eez2015/scores.csv') %>%
-  filter(goal == 'ICO') %>%
-  filter(dimension %in% c('status', 'trend')) %>%
-  filter(region_id != 0) %>%
-  mutate(score = ifelse(!is.na(score), 0, NA)) 
-
-tmp <- read.csv('scores.csv')
-write.csv(rbind(tmp, scores_ICO), 'scores.csv', row.names=FALSE, na="")
-
-```
-
-
-## Lasting Special Places
-There is no gap-filling for status calculations of this subgoal.  
-
-```{r lsp, include=FALSE}
-
-scores_LSP <- read.csv('../../eez2015/scores.csv') %>%
-  filter(goal == 'LSP') %>%
-  filter(dimension %in% c('status', 'trend')) %>%
-  filter(region_id != 0) %>%
-  mutate(score = ifelse(!is.na(score), 0, NA)) 
-
-tmp <- read.csv('scores.csv')
-write.csv(rbind(tmp, scores_LSP), 'scores.csv', row.names=FALSE, na="")
-
-```
-
 
 ## Habitat (extent, trend, condition)
 
-This effects: CP, CS, HAB, and some pressures
+These data are used for: CP, CS, HAB, and some pressures
 
-Much of the habitat gap-filling occurred prior to my arrival, and is largely documented here: Neptune:\GL-NCEAS_Habitat_health-v2013a\tmp\Habitat_whence.  However, one type of gap-filling that was not accounted for in the previous analysis was the "dissaggregation" of data that occurred when new regions were added for the 2013 analysis.  
+The habitat gap-filling has some documentation at: Neptune:\GL-NCEAS_Habitat_health-v2013a\tmp\Habitat_whence.  However, one type of gap-filling that was not accounted for in the previous analysis was the "dissaggregation" of data that occurred when new regions were added for the 2013 analysis.  
 
-When a habitat is present in a region, but does not have corresponding trend data, this habitat is excluded from the calculation which is functionally a form of gap-filling because the trend is assumed to be the average of the other habitats.  If only one habitat is relevant to the goal calculation within a region, it is given a value of NA.  However, when final scores are calculated, the trend is assumed to be zero.  There are many examples of this for seagrass and mangrove.  This suggests we should really fill in these gaps in a more sensible way prior to the analysis.  Given this, I consider the trend for these habitats to be gap-filled.
+When a habitat is present in a region, but does not have corresponding trend data, this habitat is excluded from the calculation which is functionally a form of gap-filling because the trend is assumed to be the average of the other habitats.  If only one habitat is relevant to the goal calculation within a region, and doesn't have a trend value, when final scores are calculated, the trend is given a zero.  There are many examples of this for seagrass and mangrove.  This suggests we should really fill in these gaps in a more sensible way prior to the analysis.  Given this, I consider the trend for these habitats to be gap-filled.
 
 Summary of gap-filling for each habitat
 
-Habitat      |  Variable                 | Notes
------------- | ------------------------- | ----------
-soft_bottom  | extent, trend, condition  | disaggregation from 2012 to 2013*
-coral        | extent                    | disaggregation
-             | trend                     | disaggregation
-             | condition                 | adjacent, georegion, prediction (considered actual), disaggregation
-seagrass     | extent                    | disaggregation
-             | trend                     | georegion, disaggregation
-               condition                 | actuals-mixed (considered actual), prediction (considered actual, but this might be wrong), adjacent, adjacent-georegion, georegion, disaggregation
-salt_marsh   | extent, trend, condition  | disaggregation
-sea_ice      | extent, trend, condition  | no gap-filling
-mangrove     | extent                    | no gap-filling
-             | trend                     | 3 regions reported as one, regional (r2 mean)
-             | condition                 | disaggregation, regional (r1 and r2 means)
+Habitat      | Variable                  | Notes
+------------- | ------------------------ | -------------
+soft_bottom   | extent                | none
+--  | trend, condition  | disaggregation from 2012 to 2013
+coral        | extent                    | none
+--             | trend                     | disaggregation
+--             | condition                 | adjacent, georegion, prediction (considered actual), disaggregation
+seagrass     | extent                    | none
+--             | trend                     | georegion, disaggregation
+--               condition                 | actuals-mixed (considered actual), prediction (considered actual, but this might be wrong), adjacent, adjacent-georegion, georegion, disaggregation
+salt_marsh   | extent  | none
+--   | trend, condition  | disaggregation
+sea_ice      | extent, trend, condition  | none
+mangrove     | extent                    | none
+--             | trend                     | 3 regions reported as one, regional (r2 mean)
+--             | condition                 | disaggregation, regional (r1 and r2 means)
 
-* disaggregation occurred during the 2013 analysis when many additional countries were added to the analysis.  In these cases, trend and health were given the same scores as the sovereign country and extents were based on the sovereign country scaled to eez.  As we update the habitat data, this form of gap-filling will disappear.  This is good because in many cases, the results are fairly nonsensical.  Often disaggregation is paired with another type of gap-filling.  These regions will tend to have even more uncertainty.
+
+* disaggregation occurred during the 2013 analysis when many additional countries were added to the analysis.  In these cases, trend and health were given the same scores as the sovereign country. Often disaggregation is paired with another type of gap-filling.  These regions will tend to have even more uncertainty, but I don't account for this here.
 
 All forms of gap-filling will be considered equal for habitat extent, trend, condition.
 
@@ -252,7 +264,7 @@ $E_{p}$ = proportion of variables estimated (area and health can be estimated)
 The same method was used to calculate trend, by replacing condition (C) with trend (T). 
 
 
-```{r coastal protection}
+```{r coastal protection, warning=FALSE, message=FALSE}
  
  # I think i might need to convert NA trend/health to 1 for gap-filling....
  
@@ -360,7 +372,7 @@ The same method was used to calculate trend, by replacing condition (C) with tre
 
 
 
-```{r carbon storage}
+```{r carbon storage, warning=FALSE, message=FALSE}
  
  # I think i might need to convert NA trend/health to 1 for gap-filling....
  
@@ -460,7 +472,7 @@ where habitats include: coral, mangrove, saltmarsh, seagrass, seaice (edge and s
 
 The same method was used to calculate trend gap-filling. 
 
-```{r habitat}
+```{r habitat, warning=FALSE, message=FALSE}
  
  # I think i might need to convert NA trend/health to 1 for gap-filling....
  
@@ -545,7 +557,7 @@ NOTES:
 - status is calculated using the geometric mean of (1 minus the pressure) values, but I think that overall status gap-filling should be determined using the proportion of gap-filled data.  But mabye it would be better to calculate as: average of gap-filled values (0 vs. 1) weighted by the exp(actual values)????  Ask about this. No..I don't think so.  The value drives two levels of data, the weight and the mean, but all the values have equal potential to influence the score.
 - I don't think there was gap-filling for the chemical and nutrient pressures - but check on this!
 
-```{r clean waters}
+```{r clean waters, warning=FALSE, message=FALSE}
 
 ##########################
 ### Pathogens
@@ -710,7 +722,7 @@ This is not correct.  Instead, I think I will just calculate the proportion of t
 
 Final method: Proportion of catch that is gap-filled for b/bmsy.
 
-```{r fisheries}
+```{r fisheries, warning=FALSE, message=FALSE}
 
 bmsy <- read.csv('../../eez2015/layers/fis_b_bmsy.csv')
 
@@ -806,7 +818,7 @@ sustainability       | fairly extensive.  Trujillo data is provided for sustaina
 harvest_tonnes      | relatively little gap-filling. In a couple places, we assumed that NA values were 0.  This will count as gap-filling.
 
 
-```{r mariculture}
+```{r mariculture, warning=FALSE, message=FALSE}
 
 sustain <- read.csv('layers/mar_sustainability_score.csv') %>%
   select(region_id = id, species, species_code, year, gap_fill_sustain = gapfill) %>%
@@ -877,7 +889,7 @@ exposure         | no gap-filling for rocky reef or coral habitat\
 
 
 
-```{r natural products}
+```{r natural products, warning=FALSE, message=FALSE}
 
 ####################################################
 ## exposure: currently no gap-filling for coral or rocky reef
@@ -1012,7 +1024,7 @@ Unemployment (U) and Labor Force are listed in data, but they are not used in pr
 GDP (used to estimate S) is also gap-filled in some cases. Estiamtes of S based on gap-filled GDP will have greater uncertainty, but for now, I will count all gap-filled S values the same. At some point, it would be good to incorporate estimates of error into the gapfill estimates (rather than binary: gapfilled/not gapfilled).  
 
 
-```{r tourism and recreation}
+```{r tourism and recreation, warning=FALSE, message=FALSE}
 
 gf <- read.csv('layers/tr_sustainability.csv') 
 
@@ -1063,7 +1075,7 @@ Biodiversity (BD: subgoals Habitat and Species Diversity) and Sense of Place (SP
 Livelihoods and Economies (LE) is also a supragoal (LIV and ECO), but I am ignoring this one for now due to impending changes in this goal.
 
 
-```{r supragoals}
+```{r supragoals, warning=FALSE, message=FALSE}
 
 scores <- read.csv('scores.csv')
 
@@ -1113,7 +1125,7 @@ write.csv(rbind(tmp, scores_supraGoals), 'scores.csv', row.names=FALSE, na="")
 ### Checking data
 
 
-```{r check}
+```{r check, include=FALSE}
 
 scores <- read.csv('scores.csv')
 
@@ -1140,7 +1152,7 @@ if(min(scores$score, na.rm=TRUE) < 0 | max(scores$score, na.rm=TRUE) > 1) {
 ### Finalize data
 
 
-```{r final format}
+```{r final format, include=FALSE}
 
 scores <- read.csv('scores.csv')
 
