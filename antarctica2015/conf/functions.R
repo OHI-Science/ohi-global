@@ -574,8 +574,13 @@ HAB = function(layers, status_year){
     data.frame()
 
   ## create a pressure layer: hd_sea_ice
+  ## consider a 50% decrease in season length is a pressure score of 1
+  
+  ice_scale <- 50
+  
   pressure <- sea_ice_status %>%
-    mutate(score = 1 - score/100) %>%
+    mutate(score = 1 - (score-ice_scale)/ice_scale) %>%
+    mutate(score = ifelse(score<0, 0, score)) %>%
     select(sp_id=region_id,pressure_score=score)
   if(sum(pressure$pressure_score<0 | pressure$pressure_score>1)>0){  
   stop("check pressure calculation in HAB function, scores are not between 0-1")}
