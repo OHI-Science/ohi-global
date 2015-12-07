@@ -447,12 +447,63 @@ LE = function(scores){
 
 ICO = function(layers){
   
-  # scores
-  scores = cbind(rename(SelectLayersData(layers, layers=c('ico_status'='status','ico_trend'='trend'), narrow=T),
-                         c(id_num='region_id', layer='dimension', val_num='score')), 
-                 data.frame('goal'='ICO'))
-  return(scores) 
-}
+  layers_data <-  SelectLayersData(layers, layers=c('ico_status', 'ico_trend'))
+  
+  rk <- layers_data %>%
+    select(region_id = id_num, sciname = category, iucn_cat=val_chr, layer) %>%
+    mutate(iucn_cat = as.character(iucn_cat))
+  
+  # lookup for weights status
+  w.risk_category = data.frame(iucn_cat = c('LC', 'NT', 'VU', 'EN', 'CR', 'EX'),
+                               risk_score = c(1,  0.8,   0.6,  0.4,  0.2,  0)) %>%
+    mutate(iucn_cat = as.character(iucn_cat))
+  
+  # lookup for population trend
+  w.popn_trend = data.frame(iucn_cat = as.character(c('Decreasing', 'Stable', 'Increasing')),
+                            trend_score = c(-0.5, 0, 0.5)) %>%
+    mutate(iucn_cat = as.character(iucn_cat))
+  
+  ####### status
+  # STEP 1: take mean of subpopulation scores
+  r.status_spp <- rk %>%
+    filter(layer == 'ico_status') %>%
+    left_join(w.risk_category, by = 'iucn_cat') %>%
+    group_by(region_id, sciname) %>%
+    summarize(spp_mean = mean(risk_score, na.rm=TRUE) * 100) %>%
+    ungroup()
+  
+  # STEP 2: take mean of populations within regions
+  r.status <- r.status_spp %>%
+    group_by(region_id) %>%
+    summarize(score = mean(spp_mean, na.rm=TRUE)) %>%
+    ungroup() %>%
+    mutate(dimension = "status")
+  
+  ####### trend
+  # STEP 1: take mean of subpopulation scores
+  r.trend_spp <- rk %>%
+    filter(layer == 'ico_trend') %>%
+    left_join(w.popn_trend ,by = 'iucn_cat') %>%
+    group_by(region_id, sciname) %>%
+    summarize(spp_mean = mean(trend_score, na.rm=TRUE)) %>%
+    ungroup()
+  
+  # STEP 2: take mean of populations within regions
+  r.trend <- r.trend_spp %>%
+    group_by(region_id) %>%
+    summarize(score = mean(spp_mean, na.rm=TRUE)) %>%
+    ungroup() %>%
+    mutate(dimension = "trend")
+  
+  # return scores
+  scores <-  rbind(r.status, r.trend) %>%
+    mutate('goal'='ICO') %>%
+    select(goal, dimension, region_id, score) %>%
+    data.frame()
+  
+  return(scores)  
+
+  }
 
 
 LSP = function(layers){
