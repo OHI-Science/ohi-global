@@ -26,43 +26,43 @@ do.other      = F
 
 # scenario list (need to add new scenarios here)
 scenarios = list(
-  eez2015     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2015a',
-    fld_fn       = 'fn_2015a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T) ,  
-  eez2014     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2014a',
-    fld_fn       = 'fn_2014a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-  eez2013     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-  eez2012     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2012a',
-    fld_fn       = 'fn_2012a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T) 
-#  ,
-#   antarctica2014 = list(
-#     layer   = 'layers_antarctica',
+#   eez2015     = list(
+#     layer   = 'layers_eez',
+#     fld_dir      = 'dir_2015a',
+#     fld_fn       = 'fn_2015a',
+#     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+#     do           = T) ,  
+#   eez2014     = list(
+#     layer   = 'layers_eez',
 #     fld_dir      = 'dir_2014a',
 #     fld_fn       = 'fn_2014a',
 #     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
 #     do           = T),
-#   antarctica2015 = list(
-#     layer   = 'layers_antarctica',
-#     fld_dir      = 'dir_2015a',
-#     fld_fn       = 'fn_2015a',
+#   eez2013     = list(
+#     layer   = 'layers_eez',
+#     fld_dir      = 'dir_2013a',
+#     fld_fn       = 'fn_2013a',
 #     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-#     do           = T)
+#     do           = T),
+#   eez2012     = list(
+#     layer   = 'layers_eez',
+#     fld_dir      = 'dir_2012a',
+#     fld_fn       = 'fn_2012a',
+#     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+#     do           = T) 
+#  ,
+  antarctica2014 = list(
+    layer   = 'layers_antarctica',
+    fld_dir      = 'dir_2014a',
+    fld_fn       = 'fn_2014a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T),
+  antarctica2015 = list(
+    layer   = 'layers_antarctica',
+    fld_dir      = 'dir_2015a',
+    fld_fn       = 'fn_2015a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T)
 #   , 
 #   highseas2014   = list(
 #     layer   = 'layers_highseas',
@@ -246,7 +246,7 @@ for (i in 1:length(scenarios)){  #i=3
 detach("package:devtools", unload=TRUE)
 source('../ohiprep/src/R/VisGlobal.R')
 changePlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", 
-           fileSave="antarctica2014_hd_sea_ice")
+           fileSave="antarctica2014_sea_ice_10yrtrend")
 compare <- read.csv('figures/DataCheck/eez2015_Hackathon_julie_updates_diff_data_2015-10-21.csv')
 difs_only <- filter(compare, change != 0)
 table(difs_only$dimension)

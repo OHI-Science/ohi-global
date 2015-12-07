@@ -544,8 +544,9 @@ HAB = function(layers, status_year){
     mutate(status_mean = ifelse(status_mean>1, 1, status_mean)) %>%
     data.frame()
   
-  # trend calculation:
-  trend_years <- status_year:(status_year - 4)
+  # trend calculation
+  # (using 10 years in this case to be more likely to get longer term climate trends rather than shorter term trends):
+  trend_years <- status_year:(status_year - 9)
   
   sea_ice_trend <- sea_ice_status %>%
   filter(year %in% trend_years) %>%
