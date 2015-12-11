@@ -142,7 +142,37 @@ scores_ICO <- read.csv('../../eez2015/scores.csv') %>%
   mutate(score = ifelse(!is.na(score), 0, NA)) 
 
 tmp <- read.csv('scores.csv')
+tmp <- na.omit(tmp) ## get rid of NA values when dataframe was created
 write.csv(rbind(tmp, scores_ICO), 'scores.csv', row.names=FALSE, na="")
+
+```
+
+
+## Livelihoods and Economies
+I do not gapfill this goal (or corresponding subgoals) because the source data have been discontinued and we are revising the model.  However, I realized I should put in a place holder for these to make it clear that these are not estimated.
+
+```{r LE, include=FALSE}
+
+scores_LE <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'LE') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = NA) 
+
+scores_LIV <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'LIV') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = NA) 
+
+scores_ECO <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'ECO') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = NA) 
+
+tmp <- read.csv('scores.csv')
+write.csv(rbind(tmp, scores_LE, scores_LIV, scores_ECO), 'scores.csv', row.names=FALSE, na="")
 
 ```
 
@@ -212,7 +242,7 @@ trend_AO <- status_AO %>%
 scores_AO <- rbind(status_AO, trend_AO)
 
 tmp <- read.csv('scores.csv')
-tmp <- na.omit(tmp)
+##tmp <- na.omit(tmp) ## messing up LIV/ECO, not sure why this was included here....
 write.csv(rbind(tmp, scores_AO), 'scores.csv', row.names=FALSE, na="")
  
 ``` 
@@ -1130,8 +1160,8 @@ write.csv(rbind(tmp, scores_supraGoals), 'scores.csv', row.names=FALSE, na="")
 scores <- read.csv('scores.csv')
 
 
-if(length(table(scores$goal)) != 15){
-  stop('There are not 15 goals/subgoals')
+if(length(table(scores$goal)) != 18){
+  stop('There are not 18 goals/subgoals')
 }
 
 if(sum(is.na(table(scores$goal, scores$dimension))) > 0 ){
