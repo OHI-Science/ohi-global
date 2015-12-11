@@ -26,8 +26,7 @@ regions <- read.csv('../../eez2015/layers/rgn_global.csv') %>%
 
 # data of gap-filling scores
 scores <- read.csv('scores.csv') %>%
-  left_join(regions) %>%
-  mutate(score = score*100)
+  left_join(regions)
 
 # some organization of data
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
@@ -59,6 +58,7 @@ rownames(PlotData) <- PlotData$code
 
 mapCols <- 2:ncol(PlotData)
 
+MyColor <- colorRampPalette(brewer.pal(9, 'YlOrRd'))
 ## This loop goes through the columns to be plotted and:
 ## 1. matches the data row names (rgn_id) to the rgn_id of the OHI regions
 ## 2. identifies the break points for colors from: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
@@ -85,7 +85,7 @@ for (i in 1:length(mapCols)){
       mar=c(1.5,1,0,1))
   plot(ocean, col='gray90', border=NA)
   plot(rgnOHI, border="grey75", add=TRUE,
-       col=rev(brewer.pal(10, 'RdYlBu'))[cut(v, col.brks, labels=1:10, include.lowest=TRUE)])
+       col = MyColor(10)[cut(v, col.brks, labels=1:10, include.lowest=TRUE)])
   plot(land, col='gray80', border='grey75', add=TRUE)
   
   # get plotting dimensions
@@ -101,7 +101,7 @@ for (i in 1:length(mapCols)){
   par(xpd=TRUE) # turn off clipping to plot region
   image(x = ix,
         y = c(y1, y2),
-        z = matrix(1:10), col=rev(brewer.pal(10, 'RdYlBu')), add=T)
+        z = matrix(1:10), col = MyColor(10), add=T)
   rect(x1-ixd,y1,x2+ixd,y2, border='gray20')
   rect(x1-ixd*3,y1,x1-ixd,y2, border='gray20')
   text(x = c(x1-ixd*2, seq(x1-ixd, x2+ixd, length.out=11)),
@@ -159,7 +159,7 @@ for (rgn_id in unique(data$region_id)){  #rgn_id=0
     # get colors for aster, based on 10 colors, but extended to all goals. subselect for goals.wts
 if(colorScheme == "new"){
   g_x$cols.goals.all = cut(g_x$score, breaks=seq(0, 100, by=10), include.lowest=TRUE, 
-                       labels=rev(RColorBrewer::brewer.pal(10, 'RdYlBu'))) } else {
+                       labels=MyColor(10)) } else {
     g_x$cols.goals.all = colorRampPalette(RColorBrewer::brewer.pal(11, 'Spectral'), space='Lab')(length(goals.all))
    }
 
@@ -238,7 +238,7 @@ data <- data %>%
   filter(region != 'eez_weighted_avg')
 
 data <- rbind(index, data) %>%
-    select(dimension, region, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+    select(dimension, region, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
 
 m <- datatable(data,
           caption = '2015 OHI scores')
@@ -247,11 +247,21 @@ saveWidget(m, file="gapFillingTable.html")
 
 ```
 
+```{r summary, include=FALSE}
+
+
+```
+
+
 ```{r analysis, include=FALSE}
 ## no real patterns that I can see
 
 area <- read.csv('../../eez2015/layers/rgn_area.csv') %>%
   select(region_id = rgn_id, area=area_km2)
+
+territories <- read.csv('../../../ohi-global/global2015/gapFilling/dissaggregated_gap_fill.csv') %>%
+  select(region_id = rgn_id_2013) %>%
+  mutate(territory = "territory")
 
 # add in the uninhabited islands
 noPop <- read.csv('../../../ohiprep/src/LookupTables/rgn_uninhabited_islands.csv') %>%
@@ -277,7 +287,9 @@ data <- scores %>%
   filter(goal == "Index") %>%
   mutate(score = round(score, 0)) %>%
   left_join(population) %>%
-  left_join(area)
+  left_join(area) %>%
+  left_join(territories) %>%
+  
 
 ggplot(data, aes(y=score, x=log(population + 1))) +
   geom_point()
@@ -287,9 +299,13 @@ ggplot(data, aes(y=score, x=log(area))) +
 
 ```
 
+
 ```{r histograms, include=FALSE}
-## no real patterns that I can see
-ggplot(subset(scores, goal=="Index" & dimension == "status"), aes(x=score)) +
+
+tmp <- subset(scores, goal=="Index" & dimension == "status" & region_id != 0)
+mean(tmp$score, na.rm=TRUE) # mean is 23
+
+ggplot(subset(scores, goal=="Index" & dimension == "status" & region_id != 0), aes(x=score)) +
   geom_histogram(fill="gray", color="darkgray") + 
   labs(y="# countries", x="% gap-filling") +
   theme_bw()
@@ -297,12 +313,16 @@ ggsave('figures/index_histogram.png')
 
 scores$goal <- factor(scores$goal,levels=goals)
 
-ggplot(subset(scores, goal!="Index" & dimension=="status"), aes(x=score)) +
+ggplot(subset(scores, goal!="Index" & dimension=="status" & region_id != 0), aes(x=score)) +
   geom_histogram(fill="orange", color="darkgray") + 
   facet_wrap('goal') +
   labs(y="# countries", x="% gap-filling") +
   theme_bw()
 ggsave('figures/goals_histogram.png')
 
+
+```
+
+```{r heatmap, include=FALSE}
 
 ```
