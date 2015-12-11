@@ -20,6 +20,9 @@ library(ggplot2)
 
 setwd('/home/frazier/ohi-global/global2015/gapFilling') # comment this out when knitting!!!
 
+# theme for scatterplots
+source('../../../ohiprep/src/R/scatterTheme.txt')
+
 # list of regions:
 regions <- read.csv('../../eez2015/layers/rgn_global.csv') %>%
   select(region_id=rgn_id, region=label)
@@ -289,13 +292,33 @@ data <- scores %>%
   left_join(population) %>%
   left_join(area) %>%
   left_join(territories) %>%
+  mutate(territory = ifelse(is.na(territory), "not territory", territory))
+
+
+## I am going to ignore population because:
+ # 1) it is strongly correlated with area
+ # 2) missing a lot of data
+mod <- lm(population ~ area, data=data)
+summary(mod)
+plot(population ~ area, data=data)
+
+
+ggplot(data, aes(y=score, x=log(area), color=territory)) +
+  geom_point(shape=19, size = 3) + 
+  stat_smooth(method = lm, se=FALSE) + 
+  scale_color_manual(values=c('orangered', 'gray45')) +
+  labs(y="Percent gapfilled, score", x="Area of EEZ, ln") +
+  scatterTheme +
+  theme(legend.position="none") +
+  annotate('text', label="Territories", x= 11, y=55, color='gray45', size=rel(7)) +
+  annotate('text', label="Countries", x= 5, y=20, color='orangered', size=rel(7))
   
+ggsave('figures/gap_filled_model.png', width=8, height=6)
 
-ggplot(data, aes(y=score, x=log(population + 1))) +
-  geom_point()
+mod1 <- lm(score ~ log(area) + territory, data=data)
+summary(mod1)
+plot(predict(mod1), data$score)
 
-ggplot(data, aes(y=score, x=log(area))) +
-  geom_point()
 
 ```
 
@@ -307,9 +330,9 @@ mean(tmp$score, na.rm=TRUE) # mean is 23
 
 ggplot(subset(scores, goal=="Index" & dimension == "status" & region_id != 0), aes(x=score)) +
   geom_histogram(fill="gray", color="darkgray") + 
-  labs(y="# countries", x="% gap-filling") +
-  theme_bw()
-ggsave('figures/index_histogram.png')
+  labs(y="Number of countries", x="Percent gapfilled, score") +
+  scatterTheme
+ggsave('figures/index_histogram.png', height=6, width=8)
 
 scores$goal <- factor(scores$goal,levels=goals)
 
