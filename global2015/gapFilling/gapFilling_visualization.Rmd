@@ -250,11 +250,6 @@ saveWidget(m, file="gapFillingTable.html")
 
 ```
 
-```{r summary, include=FALSE}
-
-
-```
-
 
 ```{r analysis, include=FALSE}
 ## no real patterns that I can see
@@ -347,5 +342,28 @@ ggsave('figures/goals_histogram.png')
 ```
 
 ```{r heatmap, include=FALSE}
+
+data <- scores %>%
+  filter(dimension == "status") %>%   # focus only on score data
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%
+  mutate(score = round(score, 0)) %>%
+  mutate(region = ifelse(is.na(region), "eez_weighted_avg", as.character(region))) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(score[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame()
+  
+data$goal <- factor(data$goal, levels = goals)
+
+myPalette <- colorRampPalette(brewer.pal(9, "YlOrRd"))
+ggplot(data, aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal, fill=score)) + 
+  geom_tile() +
+  scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5)) +
+  ylab("") + 
+  xlab("")
+ggsave("figures/carpetPlot.png", width=20, height=25, units="in")
+
 
 ```
