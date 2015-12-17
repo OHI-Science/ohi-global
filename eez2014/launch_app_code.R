@@ -1,3 +1,3 @@
 require(methods)
-require(ohicore)
+suppressWarnings(require(ohicore))
 launch_app()

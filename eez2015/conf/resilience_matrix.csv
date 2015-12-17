@@ -1,0 +1,26 @@
+goal,component,alien_species,cites,fishing_v1,fishing_v1_eez,fishing_v2_eez,fishing_v3,fishing_v3_eez,habitat,habitat_combo,habitat_combo_eez,li_gci,li_sector_evenness,mariculture,msi_gov,species_diversity,species_diversity_3nm,tourism,water,wgi_all
+AO,,,,fishing_v1,,,,,,habitat_combo,,,,,,,species_diversity_3nm,,,wgi_all
+HAB,coral only,alien_species,,,,,,fishing_v3_eez,,,habitat_combo_eez,,,mariculture,,species_diversity,,tourism,water,wgi_all
+HAB,"soft_bottom, with coral",alien_species,,,,fishing_v2_eez,,,,,habitat_combo_eez,,,mariculture,,species_diversity,,tourism,water,wgi_all
+HAB,"soft_bottom, without coral",alien_species,,,fishing_v1_eez,,,,,,habitat_combo_eez,,,mariculture,,species_diversity,,tourism,water,wgi_all
+HAB,,alien_species,,,,,,,,,habitat_combo_eez,,,mariculture,,species_diversity,,tourism,water,wgi_all
+SPP,,alien_species,cites,,,fishing_v2_eez,,,,,habitat_combo_eez,,,mariculture,,,,tourism,water,wgi_all
+CS,,,,,,,,,,habitat_combo,,,,,,,,,water,wgi_all
+CS,mangrove only,,,,,,,,,habitat_combo,,,,,,,,,,wgi_all
+CW,,,,,,,,,,,,,,,,,,,water,wgi_all
+FIS,,,,,,fishing_v2_eez,,,,,habitat_combo_eez,,,,,species_diversity,,,,wgi_all
+MAR,,,,,,,,,,,,,,mariculture,msi_gov,,,,water,wgi_all
+ECO,,,,,,,,,,,,li_gci,,,,,,,,wgi_all
+LIV,,,,,,,,,,,,li_gci,li_sector_evenness,,,,,,,wgi_all
+NP,corals,,cites,,,,,,,habitat_combo,,,,,,,species_diversity_3nm,,water,wgi_all
+NP,fish_oil,,cites,fishing_v1,,,,,,habitat_combo,,,,,,,species_diversity_3nm,,water,wgi_all
+NP,ornamentals,,cites,,,,fishing_v3,,,habitat_combo,,,,,,,species_diversity_3nm,,water,wgi_all
+NP,seaweeds,,cites,,,,,,,,,,,,,,species_diversity_3nm,,water,wgi_all
+NP,shells,,cites,,,,,,,habitat_combo,,,,,,,species_diversity_3nm,,,wgi_all
+NP,sponges,,cites,,,,,,,habitat_combo,,,,,,,species_diversity_3nm,,,wgi_all
+CP,,,,,,,,,,habitat_combo,,,,,,,,,water,wgi_all
+CP,mangrove only,,,,,,,,,habitat_combo,,,,,,,,,,wgi_all
+CP,seaice_shoreline only,,,,,,,,,,,,,,,,,,,wgi_all
+ICO,,,cites,,,fishing_v2_eez,,,,,habitat_combo_eez,,,,,species_diversity,,,water,wgi_all
+LSP,,,,,,,,,habitat,,,,,,,,,,water,wgi_all
+TR,,,,,,,,,,,,,,,,,,,water,wgi_all
