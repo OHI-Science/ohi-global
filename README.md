@@ -1,3 +1,8 @@
+ohi-global
+==========
+  
+Global scenarios of the Ocean Health Index 
+=======
 # Various information about ohi-global
 
 ### Creating a new scenario (e.g., eez2012, highseas2015, antarctica2014)
@@ -21,8 +26,9 @@ scenarios = list(
   
 ```
 
- - Add the scenarios to the "sync" functions.  This overwrites any changes to the function files with one version so that the functions are consistent across years:
-
+1. **global2013**
+1. **global2012** must follow global2013 in order to load global2013/scores.csv for LE Eritrea issue
+=======
 ```
  ### sync functions.R: 
 # overwrite eez2012, eez2014, eez2015, with eez2013
