@@ -275,6 +275,9 @@ mangrove     | extent                    | none
 --             | trend                     | 3 regions reported as one, regional (r2 mean)
 --             | condition                 | disaggregation, regional (r1 and r2 means)
 
+Sea grass description for SOM 2012: 
+'Seagrass Status and Trend data were calculated on a per-site basis from ref 90, which provides seagrass habitat extent data for several sites around the world over several years. Habitat condition (health) data came from these data, where the reference condition is the mean of the three oldest years between 1975-1985, or the two earliest years if needed. If data responding to these conditions was not available, we fitted a linear model to all data points, and then used the mean of the predicted values for 1979-1981 as the reference condition. For the current condition we used the mean of the three most recent years after 2000 or the two most recent years. If condition data satisfying these constraints were still not available, we fitted a linear model to all data points, provided that there were at least three data points and then used the mean of the predicted values for 2008-2010 as the current condition and the mean of the predicted values for 1979-1981 as the reference condition. Otherwise, we used neighboring (adjacent) regional averages, weighted by habitat area, or averages weighted by habitat area using seagrass geographical regions as defined by Hemminga and Duarte91. We did not project beyond a 15-year timeframe.'
+
 
 * disaggregation occurred during the 2013 analysis when many additional countries were added to the analysis.  In these cases, trend and health were given the same scores as the sovereign country. Often disaggregation is paired with another type of gap-filling.  These regions will tend to have even more uncertainty, but I don't account for this here.
 
