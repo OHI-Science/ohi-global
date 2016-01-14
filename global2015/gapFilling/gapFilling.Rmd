@@ -142,7 +142,37 @@ scores_ICO <- read.csv('../../eez2015/scores.csv') %>%
   mutate(score = ifelse(!is.na(score), 0, NA)) 
 
 tmp <- read.csv('scores.csv')
+tmp <- na.omit(tmp) ## get rid of NA values when dataframe was created
 write.csv(rbind(tmp, scores_ICO), 'scores.csv', row.names=FALSE, na="")
+
+```
+
+
+## Livelihoods and Economies
+I do not gapfill this goal (or corresponding subgoals) because the source data have been discontinued and we are revising the model.  However, I realized I should put in a place holder for these to make it clear that these are not estimated.
+
+```{r LE, include=FALSE}
+
+scores_LE <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'LE') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = NA) 
+
+scores_LIV <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'LIV') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = NA) 
+
+scores_ECO <- read.csv('../../eez2015/scores.csv') %>%
+  filter(goal == 'ECO') %>%
+  filter(dimension %in% c('status', 'trend')) %>%
+  filter(region_id != 0) %>%
+  mutate(score = NA) 
+
+tmp <- read.csv('scores.csv')
+write.csv(rbind(tmp, scores_LE, scores_LIV, scores_ECO), 'scores.csv', row.names=FALSE, na="")
 
 ```
 
@@ -212,7 +242,7 @@ trend_AO <- status_AO %>%
 scores_AO <- rbind(status_AO, trend_AO)
 
 tmp <- read.csv('scores.csv')
-tmp <- na.omit(tmp)
+##tmp <- na.omit(tmp) ## messing up LIV/ECO, not sure why this was included here....
 write.csv(rbind(tmp, scores_AO), 'scores.csv', row.names=FALSE, na="")
  
 ``` 
@@ -244,6 +274,9 @@ sea_ice      | extent, trend, condition  | none
 mangrove     | extent                    | none
 --             | trend                     | 3 regions reported as one, regional (r2 mean)
 --             | condition                 | disaggregation, regional (r1 and r2 means)
+
+Sea grass description for SOM 2012: 
+'Seagrass Status and Trend data were calculated on a per-site basis from ref 90, which provides seagrass habitat extent data for several sites around the world over several years. Habitat condition (health) data came from these data, where the reference condition is the mean of the three oldest years between 1975-1985, or the two earliest years if needed. If data responding to these conditions was not available, we fitted a linear model to all data points, and then used the mean of the predicted values for 1979-1981 as the reference condition. For the current condition we used the mean of the three most recent years after 2000 or the two most recent years. If condition data satisfying these constraints were still not available, we fitted a linear model to all data points, provided that there were at least three data points and then used the mean of the predicted values for 2008-2010 as the current condition and the mean of the predicted values for 1979-1981 as the reference condition. Otherwise, we used neighboring (adjacent) regional averages, weighted by habitat area, or averages weighted by habitat area using seagrass geographical regions as defined by Hemminga and Duarte91. We did not project beyond a 15-year timeframe.'
 
 
 * disaggregation occurred during the 2013 analysis when many additional countries were added to the analysis.  In these cases, trend and health were given the same scores as the sovereign country. Often disaggregation is paired with another type of gap-filling.  These regions will tend to have even more uncertainty, but I don't account for this here.
@@ -1130,8 +1163,8 @@ write.csv(rbind(tmp, scores_supraGoals), 'scores.csv', row.names=FALSE, na="")
 scores <- read.csv('scores.csv')
 
 
-if(length(table(scores$goal)) != 15){
-  stop('There are not 15 goals/subgoals')
+if(length(table(scores$goal)) != 18){
+  stop('There are not 18 goals/subgoals')
 }
 
 if(sum(is.na(table(scores$goal, scores$dimension))) > 0 ){
