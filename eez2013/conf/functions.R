@@ -937,8 +937,8 @@ CP <- function(layers){
             score = sum(rank * trend * extent, na.rm=TRUE) / (sum(extent*rank, na.rm=TRUE)),
             dimension = 'trend'))
     } else { # if no trend score, assign NA
-        scores_CS <- rbind_list(
-          scores_CS,
+        scores_CP <- rbind_list(
+          scores_CP,
           d %>%
             group_by(rgn_id) %>%
             summarize(
