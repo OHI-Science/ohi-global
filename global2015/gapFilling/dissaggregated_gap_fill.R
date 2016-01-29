@@ -14,8 +14,12 @@ regions <- regions %>%
   arrange(sov_id, as.numeric(region_id_2012)) %>%
   select(rgn_id_2013, rgn_nam_2013, sov_id, sov_nam, region_id_2012)
 
+brunei <- regions %>%    ## Brunei is surrounded by Malaysia, and got grouped with that country in 2012 analysis
+  filter(rgn_nam_2013 == "Brunei")
+
 regions <- regions %>%
   filter(rgn_id_2013 != sov_id) %>%
-  unique()
+  unique() %>%
+  rbind(brunei)
 
 write.csv(regions, '../ohi-global/global2015/gapFilling/dissaggregated_gap_fill.csv', row.names=FALSE)
