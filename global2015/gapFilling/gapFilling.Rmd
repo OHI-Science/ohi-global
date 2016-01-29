@@ -587,7 +587,7 @@ trash   | pressure is based on global plastics raster data and trend is based on
 
 
 NOTES: 
-- status is calculated using the geometric mean of (1 minus the pressure) values, but I think that overall status gap-filling should be determined using the proportion of gap-filled data.  But mabye it would be better to calculate as: average of gap-filled values (0 vs. 1) weighted by the exp(actual values)????  Ask about this. No..I don't think so.  The value drives two levels of data, the weight and the mean, but all the values have equal potential to influence the score.
+- status is calculated using the geometric mean of (1 minus the pressure) values. 
 - I don't think there was gap-filling for the chemical and nutrient pressures - but check on this!
 
 ```{r clean waters, warning=FALSE, message=FALSE}
@@ -980,6 +980,11 @@ weights <- read.csv('../../eez2015/layers/np_harvest_product_weight.csv')
 
 gapData <- read.csv('layers/np_harvest_tonnes_relative.csv')
 table(gapData$gapfill)
+paperVals <- gapData %>%
+  filter(year > 2001)
+table(gapData$gapfill)
+1243/(12983 + 1243 + 488 +15 + 13) # ~ 8% of data zero filled
+(488 + 15 + 13)/(12983 + 488 +15 + 13)  # ~ 4% of remaining data filled with modeled data
 
 # figure out what to do when _u_ is gap-filled (this indicates gapfilling for usd used to calculate the weights)
 filter(gapData, gapfill == "r2_u_gr")  # all of these are from a long time ago - can ignore!  
@@ -1045,11 +1050,11 @@ S = Sustainability score based on TTCI data
 
 Xtr = Ep * S
 
-There are several variables that could be gap-filled:
+Variables that could be gap-filled, are:
 
 variable         | types of gap-filling
 ---------------- | -----------------------------------
-Ep               | mean Ep values
+Ep               | Ep values, UN r2 georegions
 S                | gdp + georegion (mostly r2 designations, but some r1, and sometimes with gap-filled GDP)
 
 Unemployment (U) and Labor Force are listed in data, but they are not used in practice because Ep is directly estimated (should probably simplify output in next iteration). 

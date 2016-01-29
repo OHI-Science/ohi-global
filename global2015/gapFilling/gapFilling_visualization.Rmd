@@ -32,19 +32,19 @@ scores <- read.csv('scores.csv') %>%
   left_join(regions)
 
 # some organization of data
-goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+goals <- c('Index', 'AO', 'BD', 'HAB', 'SPP', 'CP', 'CS', 'CW', 'LE', 'ECO','LIV', 'FP', 'FIS',  'MAR',  'NP','SP', 'ICO','LSP','TR')
 goal_names <- data.frame(goal = goals, 
-                          goal_name = c("Index", "Artisanal Fishing Opportunities", "Species", "Biodiversity", "Habitats",
-                                        "Coastal Protection", "Carbon Storage", "Clean Waters", "Economies", "Coastal Livelihoods and Economies",
-                                        "Livelihoods", "Fisheries", "Food Provision", "Mariculture", "Iconic Species", "Sense of Place",
-                                        "Lasting Special Places", "Natural Products", "Tourism and Recreation"))
+                          goal_name = c("Index", "Artisanal Fishing Opportunities", "Biodiversity", "Habitats", "Species", 
+                                        "Coastal Protection", "Carbon Storage", "Clean Waters", "Coastal Livelihoods and Economies", "Economies", 
+                                        "Livelihoods", "Food Provision", "Fisheries", "Mariculture", "Natural Products",  "Sense of Place", "Iconic Species",
+                                        "Lasting Special Places",  "Tourism and Recreation"))
 
 
 ```
 
 Maps of scores
 
-```{r, echo=FALSE}
+```{r maps, echo=FALSE}
 
 ## read in map data:
 p <- readOGR(dsn='/var/data/ohi/model/GL-NCEAS-OceanRegions_v2013a/data', layer= 'rgn_ocean_cntry_mol')
@@ -262,6 +262,11 @@ m <- datatable(data,
 
 saveWidget(m, file="gapFillingTable.html")
 
+data <- data %>%
+  select(-dimension, -region_id)
+
+write.csv(data, "S2 Table.csv", row.names=FALSE)
+
 ```
 
 
@@ -342,9 +347,12 @@ MyColor <- palette[col.brks]
 
 tmp <- subset(scores, goal=="Index" & dimension == "status" & region_id != 0) %>%
   mutate(colors = cut(score, breaks=seq(0, 100, by=10), include.lowest=TRUE, 
-                       labels=MyColor))
+                       labels=MyColor)) %>%
+  filter(region_id != 213)
 mean(tmp$score, na.rm=TRUE) # mean is 23
-
+sum(tmp$score <= 5)
+sum(tmp$score <= 10)
+filter(tmp, score >= 50)
 
 ggplot(tmp, aes(x=score, fill=colors)) +
   geom_histogram(color="lightgray") + 
@@ -398,6 +406,15 @@ set1 <- tmp$region[1:73]
 set2 <- tmp$region[74:(73+73)]
 set3 <- tmp$region[147:(length(tmp$region))]
 
+ggplot(data, aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
+  geom_tile() +
+  scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
+  theme(axis.text.x  = element_text(angle=35, vjust=1, hjust=1)) +
+  ylab("") + 
+  xlab("")
+ggsave("figures/carpetPlot_all.tiff", width=15, height=25, units="in")
+
+
 ggplot(subset(data, region %in% set1), aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
   geom_tile() +
   scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
@@ -424,4 +441,70 @@ ggsave("figures/carpetPlot_low.png", width=10, height=12.5, units="in")
 
 
 
+```
+
+
+```{r stats, include=FALSE}
+goalMeans <- scores %>%
+  filter(!region_id %in% c(0, 213)) %>%
+  filter(dimension == "status") %>%
+  group_by(goal) %>%
+  summarize(score_average = mean(score, na.rm=TRUE),
+            score_sd      = sd(score, na.rm=TRUE)) %>%
+  mutate(goal = factor(goal, levels=goals)) %>%
+  arrange(goal) %>%
+  data.frame()
+
+goalMeans
+
+
+#weighted averages and sd
+
+library(SDMTools)  # need a special package for weighted sd
+
+area <- read.csv('../../eez2015/layers/rgn_area.csv') %>%
+  select(region_id = rgn_id, area = area_km2)
+
+goalWmeans <- scores %>%
+  left_join(area) %>%  
+  filter(!region_id %in% c(0, 213)) %>%
+  filter(dimension == "status") %>%
+  group_by(goal) %>%
+  summarize(score_weighted_average = weighted.mean(score, area, na.rm=TRUE),
+            score_weighted_sd      = wt.sd(score, area)) %>%
+    mutate(goal = factor(goal, levels=goals)) %>%
+  arrange(goal) %>%
+  data.frame()
+goalWmeans
+
+## Next do weighted mean and sd
+
+```
+
+```{r pairwise plot, include=FALSE}
+
+library(GGally)
+pairs <- scores %>%
+  filter(!region_id %in% c(0, 213)) %>%
+  filter(dimension == "status") %>%
+  select(goal, region_id, score)
+
+pairs <- spread(pairs, goal, score) %>%
+  select(Index, AO, BD, CP, CS, CW, FP, NP, SP, TR)
+
+plots <- ggpairs(pairs,
+        lower = list(
+          continuous = "smooth"))
+plot2 <- plots + theme_bw()
+plot2
+
+library(Hmisc)
+rcorr(as.matrix(pairs), type="pearson") # type can be pearson or spearman
+
+cor(pairs, use="pairwise.complete.obs", method="pearson") 
+
+## Possible figures
+ggcorr(pairs, geom = "circle", nbreaks = 5, max_size=15, low = "darkred", mid = "white", high = "steelblue", label=TRUE, label_color="white")
+ggcorr(pairs, geom = "text", nbreaks = 5, palette = "RdYlBu", hjust = 1, label_size=7)
+ggcorr(pairs, label=TRUE, label_size=5, low = "darkred", mid = "white", high = "steelblue")
 ```
