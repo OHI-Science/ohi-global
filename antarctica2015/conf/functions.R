@@ -350,82 +350,81 @@ TR = function(layers, status_year){
 
 
 ECO = function(layers, status_year){
-  trend_years <-  (status_year-5):status_year
+# D <- read.csv('layers/eco.csv') %>%
+# select(sp_id, category=sector, year, crew)  
+# status_year <- 2015
+  
+  trend_years <-  (status_year-4):status_year
+  meanCrew_cut <- 10      # cut if there were less than 10 crew averaged over the past 5 years
+  yearsData_cut <- 3   # cut if there are fewer than 3 years of non-zero crew data over the past 5 years
+
   D <- SelectLayersData(layers, layers=c('eco'))
   D <- D %>%
     select(sp_id = id_num, category, year, crew=val_num)
-  
-  ## change this year to a zero (based on catch data, this seems unlikely)
-  D$crew[(D$sp_id=="248500" & D$category=="cf" & D$year=="2013")] <- 0
-  
-  # calculate status (current year divided by current year minus 5 years)
-  D$status <- NA
-  
-  for(i in 1:dim(D)[1]){
-    #i <- 8 #testing
-    sp_id_tmp <- D[i, 1]
-    year_curr <- D[i, 3]
-    category <- D[i,2]
-    year_ref <- year_curr-4
-    
-    
-    D$status[i] <- ifelse(identical(D$crew[i]/D$crew[D$sp_id == sp_id_tmp & D$year==year_ref & D$category==category], numeric(0)), 
-                                         NA,
-                                         D$crew[i]/D$crew[D$sp_id == sp_id_tmp & D$year==year_ref& D$category==category])  
-  }
-  
-  D$status <- ifelse(D$status %in% "NaN", NA,  D$status) # these are zero divided by zero
-  D$status <- ifelse(D$status %in% "Inf", 1,  D$status) # these are value divided by zero
-  D$status <- ifelse(D$status > 1, 1,  D$status)
-  
-  
-  ## weights are the average crew between 2008-2013
-  weights <- D %>%
-    filter(year %in% c(trend_years)) %>%
-    group_by(sp_id, category) %>%
-    summarize(meanCrew=mean(crew, na.rm=TRUE))
-  
-  ## merge with other data
-  D <- merge(D, weights, all.x=TRUE, by=c("sp_id", "category"))
-  
-  status_melt <- melt(D, id=c("sp_id", "category", "year"))
-  status <- dcast(status_melt, sp_id + year ~ category + variable, mean)
-  
-  status <- status[status$year %in% trend_years, ]
 
-  status$cf_meanCrew[status$cf_meanCrew %in% "NaN"] <- 0
-  status$tour_meanCrew[status$tour_meanCrew %in% "NaN"] <- 0
+  # filter the data, so sites with low/variable crews are not included  
+  D <- D %>%
+    group_by(sp_id, category) %>%
+    mutate(meanCrew = mean(crew[year %in% trend_years])) %>%
+    mutate(yearsData = sum(crew[year %in% trend_years] > 0)) %>%
+    mutate(crew = ifelse(meanCrew < meanCrew_cut | yearsData < yearsData_cut,
+                          0, crew)) %>%
+    ungroup() %>%
+    data.frame()
+  
+    
+  # calculate status of each category  
+  status_cat <- D %>%
+    group_by(sp_id, category) %>%
+    arrange(year) %>%
+    mutate(crew_5 = lag(crew, 4)) %>%
+    mutate(status_cat = crew / crew_5) %>%
+    select(sp_id, category, year, crew, status_cat) %>%
+    ungroup() %>%
+    data.frame()
+    
+  status_cat$status_cat <- ifelse(status_cat$status_cat %in% "NaN", NA,  status_cat$status_cat) # these are zero divided by zero
+  status_cat$status_cat <- ifelse(status_cat$status_cat %in% "Inf", 1,  status_cat$status_cat) # these are value divided by zero
+  status_cat$status_cat <- ifelse(status_cat$status_cat > 1, 1,  status_cat$status_cat)
   
   
-  status <- status %>%
-    mutate(f_weight = cf_meanCrew/(cf_meanCrew + tour_meanCrew),
-           tr_weight = 1-f_weight) %>%
-    mutate(status = ifelse(is.na(cf_status*f_weight), 0, cf_status*f_weight) + ifelse(is.na(tour_status*tr_weight), 0, tour_status*tr_weight)) %>%
-    mutate(status = status*100)
+  ## weights are the average crew in status years to weight contribution of tour vs. fis crews
+  status_cat_wt <- status_cat %>%
+    filter(year %in% trend_years) %>%
+    group_by(sp_id, category) %>%
+    mutate(meanCrew=mean(crew, na.rm=TRUE)) %>%
+    ungroup() %>%
+    data.frame()
   
+  ## calculate status by taking a weighted mean of category status values
+  status <- status_cat_wt %>%
+    group_by(sp_id, year) %>%
+    summarize(status = weighted.mean(status_cat, meanCrew, na.rm=TRUE)) %>%
+    ungroup() %>%
+    filter(!is.na(status)) %>%
+    data.frame()
+  
+
   ##### Status & trend
   status.scores <- status %>%
   filter(year==status_year) %>%
+  mutate(status = status * 100) %>%
     mutate(goal="ECO", 
            dimension="status") %>%
     select(region_id=sp_id, goal, dimension, score=status)
   
-  trend.data <- status %>%
-    filter(year %in% trend_years)
-  
-    lm = dlply(
-    trend.data, .(sp_id),
-    function(x) lm(I(status/100) ~ year, x))
-  
-  trend_lm <- ldply(lm, coef)
-  
-  trend.scores <- trend_lm %>%
+  trend.scores <- status %>%
+    group_by(sp_id) %>%
+    do(mdl = lm(status ~ year, data = .)) %>%
+    summarize(sp_id = sp_id, 
+              score = coef(mdl)['year'] * 5) %>%
+    ungroup() %>%
    mutate(goal="ECO",
           dimension="trend") %>%
-    mutate(score=year*5) %>%
     select(region_id=sp_id, goal, dimension, score) %>%
     mutate(score=ifelse(score>1, 1, score)) %>%
-    mutate(score=ifelse(score<(-1), -1, score))
+    mutate(score=ifelse(score<(-1), -1, score)) %>%
+    data.frame()
     
   # return scores
   return(rbind(trend.scores, status.scores))  

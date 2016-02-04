@@ -806,6 +806,14 @@ NP <- function(scores, layers, status_year, debug = FALSE){
               score = sum(rank * trend * extent, na.rm=TRUE) / (sum(extent*rank, na.rm=TRUE)),
               dimension = 'trend')) %>%
           ungroup()
+      } else { # if no trend score, assign NA
+        scores_CS <- rbind_list(
+          scores_CS,
+          d %>%
+            group_by(rgn_id) %>%
+            summarize(
+              score = NA,
+              dimension = 'trend'))
       }
       
       ### output data file for checking and data review
@@ -928,7 +936,15 @@ CP <- function(layers){
           summarize(
             score = sum(rank * trend * extent, na.rm=TRUE) / (sum(extent*rank, na.rm=TRUE)),
             dimension = 'trend'))
-    }
+    } else { # if no trend score, assign NA
+        scores_CP <- rbind_list(
+          scores_CP,
+          d %>%
+            group_by(rgn_id) %>%
+            summarize(
+              score = NA,
+              dimension = 'trend'))
+      }
     
     ### output data file for checking and data review
     scores_check <- spread(scores_CP, dimension, score) %>%
