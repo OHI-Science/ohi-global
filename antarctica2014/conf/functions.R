@@ -505,13 +505,133 @@ ICO = function(layers){
   }
 
 
-LSP = function(layers){
+LSP = function(layers, status_year){
   
-  # scores
-  scores = cbind(rename(SelectLayersData(layers, layers=c('lsp_prot_area_status'='status','lsp_prot_area_trend'='trend'), narrow=T),
-                        c(id_num='region_id', layer='dimension', val_num='score')), 
-                 data.frame('goal'='LSP'))
-  return(scores) 
+#   mpa <- read.csv('../ohiprep/Antarctica/AQ-LSP_v2014/data/lsp_prot_area_offshore.csv')
+# 
+#   area_inland <- read.csv('../ohiprep/Antarctica/Other_v2014/rgn_area_ccamlr_inland_1km_lyr.csv') %>%
+#     mutate(type = "pa")
+#   
+#   area_offshore <- read.csv('antarctica2014/layers/rgn_area.csv') %>%
+#     mutate(type = "cmpa")
+#   
+#   status_year <- 2015
+#   
+  ref_pct <- 0.30  # reference point (30% of region as protected)
+  
+  trend_years <-  (status_year-4):status_year 
+  
+  area_inland <-  SelectLayersData(layers, layers = c('rgn_area_inland')) %>%
+    mutate(type = "pa") %>%
+    select(type, sp_id = id_num, area_km2 = val_num)
+  area_offshore <- SelectLayersData(layers, layers = c('rgn_area')) %>%
+    mutate(type = "cmpa") %>%
+    select(type, sp_id = id_num, area_km2 = val_num)
+  mpa <- SelectLayersData(layers, layers = c("lsp_mpa")) %>%
+    select(sp_id = id_num, year, area_mpa_km2 = val_num)
+
+
+  ## add mpas in same region/year
+    mpa  <- mpa %>%
+    group_by(sp_id, year) %>%
+    summarize(area_mpa_km2 = sum(area_mpa_km2)) %>%
+      ungroup()
+    
+  ## cumulative sum of MPAs in each region  
+    mpa_cum <- expand.grid(sp_id = unique(area_offshore$sp_id), year = 1974:status_year) %>%
+      left_join(mpa, by=c("sp_id", "year")) %>%
+      arrange(sp_id, year) %>%
+      mutate(area_mpa_km2 = ifelse(is.na(area_mpa_km2), 0, area_mpa_km2)) %>%
+      group_by(sp_id) %>%
+      mutate(cum_sum = cumsum(area_mpa_km2)) %>%
+      ungroup()
+  
+  ##  Merge with region area and calculate % area of CCAMLR marine area
+    mpa_status <- mpa_cum %>%
+      left_join(area_offshore, by="sp_id") %>%
+      mutate(status = cum_sum / (area_km2 * ref_pct)) %>%
+      mutate(type = "cmpa") %>%
+      select(type, sp_id, year, status)
+    
+  ## save this data as resilience:
+  resilience <- mpa_status %>%
+    filter(year==status_year) %>%
+    select(sp_id, resilience.score=status)
+  write.csv(resilience, "layers/MPAs.csv", row.names=FALSE)
+  
+  # add data to layers.csv
+  layersData <- read.csv("layers.csv", stringsAsFactors = FALSE)
+  newPressure <- data.frame(targets = as.character("resilience"),
+                            layer = as.character("MPAs"),
+                            name = as.character("Proportion of protected marine habitat (relative to 30% of total marine area)"),
+                            description = as.character("Calculated in LSP function"),
+                            fld_value = as.character("resilience.score"), 
+                            units = as.character("resilience.score"),
+                            filename = as.character("MPAs.csv"),
+                            fld_id_num = as.character("sp_id"),
+                            fld_val_num = as.character("resilience.score"),
+                            file_exists = TRUE,
+                            val_min = min(resilience$resilience.score, na.rm=TRUE),
+                            val_max = max(resilience$resilience.score, na.rm=TRUE),
+                            val_0to1 = ifelse(min(resilience$resilience.score, na.rm=TRUE) >= 0 &
+                                                max(resilience$resilience.score, na.rm=TRUE) <= 1, 
+                                              TRUE, FALSE),
+                            num_ids_unique = sum(unique(resilience$sp_id)), 
+                            data_na = FALSE)
+  layers <- bind_rows(layersData, newPressure)
+  write.csv(layers, "layers.csv", row.names=FALSE)
+  layers <<-  Layers('layers.csv','layers')
+  
+  
+  ### Land-based: assumed to be status = 100 (all land protected in Antarctica)
+  pa_status <- mpa_status %>%
+    select(type, sp_id, year) %>%
+    mutate(type = "pa", status = 1)
+  
+  ## merge inland and offshore data
+  
+  # first combine inland and offshore area data
+  areas <- rbind(area_inland, area_offshore) 
+  
+  
+  # take weighted mean of inland and offshore status values, based on area
+  status <- rbind(mpa_status, pa_status) %>%
+    left_join(areas, by=c('type', 'sp_id')) %>%
+    group_by(sp_id, year) %>%
+    summarize(score = weighted.mean(status, area_km2, na.rm=TRUE)) %>%
+    ungroup() %>%
+    data.frame()
+    
+  
+  ## status
+  status_scores <- status %>%
+    filter(year==status_year) %>%
+    mutate(score=round(score*100, 2)) %>%
+    mutate(dimension="status") %>%
+    mutate(goal = "LSP") %>%
+    select(region_id = sp_id, goal, dimension, score) %>%
+    data.frame()
+  
+  
+  #Trend
+  trend_scores <- status %>%
+    filter(year %in% trend_years) %>%
+    group_by(sp_id) %>%
+    do(mdl = lm(score ~ year, data = .)) %>%
+    summarize(sp_id, 
+              score = coef(mdl)['year'] * 5) %>%
+    mutate(score = round(score, 4)) %>%
+    ungroup() %>%
+    mutate(goal="LSP",
+           dimension="trend") %>%
+    select(region_id = sp_id, goal, dimension, score) %>%
+    mutate(score=ifelse(score>1, 1, score)) %>%
+    mutate(score=ifelse(score<(-1), -1, score)) %>%
+    data.frame()
+  
+  # return scores
+  return(rbind(trend_scores, status_scores))    
+
 }
 
 SP = function(scores){

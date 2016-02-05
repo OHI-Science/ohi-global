@@ -7,7 +7,7 @@ order_color,order_hierarchy,order_calculate,goal,parent,name,name_flower,descrip
 7.1,7.1,8,ECO,LE,Livelihoods,Livelihoods,This subgoal evaluates the benefits people obtain from the oceans in the form of jobs and wages.,0.5,"ECO(layers, status_year=2015)",,,,,,,,
 8.2,8,17,SP,,Sense of Place,Sense of Place,This goal aims to capture the level of protection for aspects of the coastal and marine system that contribute to a person's sense of cultural identity.,1,,SP(scores),,,,,,,
 8.1,8.1,10,ICO,SP,Iconic Species,Iconic\nSpecies,This subgoal captures the species that are important to a region because they are relevant to local cultural identity.,0.5,ICO(layers),,,,,,,,
-8.3,8.2,11,LSP,SP,Lasting Special Places,Lasting Special\nPlaces,"This subgoal captures the conservation status of geographic locations that hold significant aesthetic, spiritual, cultural, recreational, or existence value for people.",0.5,LSP(layers),,,,,,,,
+8.3,8.2,11,LSP,SP,Lasting Special Places,Lasting Special\nPlaces,"This subgoal captures the conservation status of geographic locations that hold significant aesthetic, spiritual, cultural, recreational, or existence value for people.",0.5,"LSP(layers, status_year=2015)",,,,,,,,
 9,9,12,CW,,Clean Waters,Clean Waters,This goal captures the degree to which waters are polluted.,1,CW(layers),,,,,,,,
 10.2,10,18,BD,,Biodiversity,Biodiversity,This goal captures the conservation status of marine species.,1,,BD(scores),,,,,,,
 10.1,10.1,13,HAB,BD,Habitats,Habitats,This subgoal measures the condition of habitats that are important for supporting a wide array of species diversity.,0.5,"HAB(layers, status_year=2013)",,,,,,,,
