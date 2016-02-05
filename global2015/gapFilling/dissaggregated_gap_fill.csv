@@ -1,61 +1,71 @@
-"rgn_id_2013","rgn_nam_2013","sov_id","sov_nam","region_id_2012"
-1,"Cocos Islands",16,"Australia",1
-2,"Christmas Island",16,"Australia",1
-3,"Norfolk Island",16,"Australia",1
-94,"Heard and McDonald Islands",16,"Australia",2
-4,"Macquarie Island",16,"Australia",2
-90,"Prince Edward Islands",102,"South Africa",75
-153,"Cook Islands",162,"New Zealand",115
-154,"Niue",162,"New Zealand",115
-156,"Tokelau",162,"New Zealand",115
-151,"American Samoa",163,"United States",111
-13,"Northern Mariana Islands and Guam",163,"United States",111
-158,"Howland Island and Baker Island",163,"United States",114
-159,"Johnston Atoll",163,"United States",114
-150,"Palmyra Atoll",163,"United States",114
-12,"Wake Island",163,"United States",114
-141,"Faeroe Islands",175,"Denmark",126
-145,"Greenland",175,"Denmark",126
-250,"Aruba",177,"Netherlands",94
-245,"Bonaire",177,"Netherlands",94
-244,"Curacao",177,"Netherlands",94
-249,"Sint Eustatius",177,"Netherlands",94
-248,"Saba",177,"Netherlands",94
-220,"Sint Maarten",177,"Netherlands",94
-34,"Bassas da India",179,"France",21
-35,"Ile Europa",179,"France",21
-30,"Glorioso Islands",179,"France",21
-33,"Juan de Nova Island",179,"France",21
-32,"Reunion",179,"France",21
-36,"Ile Tromelin",179,"France",21
-29,"Mayotte",179,"France",21
-92,"Amsterdam Island and Saint Paul Island",179,"France",67
-91,"Crozet Islands",179,"France",67
-93,"Kerguelen Islands",179,"France",67
-140,"Guadeloupe and Martinique",179,"France",106
-221,"Northern Saint-Martin",179,"France",106
-147,"French Polynesia",179,"France",109
-161,"Wallis and Futuna",179,"France",109
-85,"Ascension",180,"United Kingdom",68
-95,"Falkland Islands",180,"United Kingdom",68
-89,"South Georgia and the South Sandwich Islands",180,"United Kingdom",68
-86,"Saint Helena",180,"United Kingdom",68
-88,"Tristan da Cunha",180,"United Kingdom",68
-118,"Anguilla",180,"United Kingdom",85
-108,"Bermuda",180,"United Kingdom",85
-113,"Cayman Islands",180,"United Kingdom",85
-121,"Montserrat",180,"United Kingdom",85
-111,"Turks and Caicos Islands",180,"United Kingdom",85
-117,"British Virgin Islands",180,"United Kingdom",85
-228,"Guernsey",180,"United Kingdom",131
-227,"Jersey",180,"United Kingdom",131
-58,"Canary Islands",182,"Spain",133
-55,"Azores",183,"Portugal",134
-57,"Madeira",183,"Portugal",134
-26,"Andaman and Nicobar",203,"India",153
-148,"Line Group",212,"Kiribati",161
-157,"Phoenix Group",212,"Kiribati",161
-105,"Bouvet Island",223,"Norway",169
-144,"Jan Mayen",223,"Norway",169
-237,"Oecussi Ambeno",231,"East Timor",171
-247,"Brunei",247,"Brunei",156
+"rgn_id_2013","rgn_nam_2013","sov_id","sov_nam","region_id_2012","description"
+1,"Cocos Islands",16,"Australia",1,"Territories, disaggregated in 2013"
+2,"Christmas Island",16,"Australia",1,"Territories, disaggregated in 2013"
+3,"Norfolk Island",16,"Australia",1,"Territories, disaggregated in 2013"
+94,"Heard and McDonald Islands",16,"Australia",2,"Territories, disaggregated in 2013"
+4,"Macquarie Island",16,"Australia",2,"Territories, disaggregated in 2013"
+90,"Prince Edward Islands",102,"South Africa",75,"Territories, disaggregated in 2013"
+153,"Cook Islands",162,"New Zealand",115,"Territories, disaggregated in 2013"
+154,"Niue",162,"New Zealand",115,"Territories, disaggregated in 2013"
+156,"Tokelau",162,"New Zealand",115,"Territories, disaggregated in 2013"
+151,"American Samoa",163,"United States",111,"Territories, disaggregated in 2013"
+13,"Northern Mariana Islands and Guam",163,"United States",111,"Territories, disaggregated in 2013"
+158,"Howland Island and Baker Island",163,"United States",114,"Territories, disaggregated in 2013"
+159,"Johnston Atoll",163,"United States",114,"Territories, disaggregated in 2013"
+150,"Palmyra Atoll",163,"United States",114,"Territories, disaggregated in 2013"
+12,"Wake Island",163,"United States",114,"Territories, disaggregated in 2013"
+141,"Faeroe Islands",175,"Denmark",126,"Territories, disaggregated in 2013"
+145,"Greenland",175,"Denmark",126,"Territories, disaggregated in 2013"
+250,"Aruba",177,"Netherlands",94,"Territories, disaggregated in 2013"
+245,"Bonaire",177,"Netherlands",94,"Territories, disaggregated in 2013"
+244,"Curacao",177,"Netherlands",94,"Territories, disaggregated in 2013"
+249,"Sint Eustatius",177,"Netherlands",94,"Territories, disaggregated in 2013"
+248,"Saba",177,"Netherlands",94,"Territories, disaggregated in 2013"
+220,"Sint Maarten",177,"Netherlands",94,"Territories, disaggregated in 2013"
+34,"Bassas da India",179,"France",21,"Territories, disaggregated in 2013"
+35,"Ile Europa",179,"France",21,"Territories, disaggregated in 2013"
+30,"Glorioso Islands",179,"France",21,"Territories, disaggregated in 2013"
+33,"Juan de Nova Island",179,"France",21,"Territories, disaggregated in 2013"
+32,"Reunion",179,"France",21,"Territories, disaggregated in 2013"
+36,"Ile Tromelin",179,"France",21,"Territories, disaggregated in 2013"
+29,"Mayotte",179,"France",21,"Territories, disaggregated in 2013"
+92,"Amsterdam Island and Saint Paul Island",179,"France",67,"Territories, disaggregated in 2013"
+91,"Crozet Islands",179,"France",67,"Territories, disaggregated in 2013"
+93,"Kerguelen Islands",179,"France",67,"Territories, disaggregated in 2013"
+140,"Guadeloupe and Martinique",179,"France",106,"Territories, disaggregated in 2013"
+221,"Northern Saint-Martin",179,"France",106,"Territories, disaggregated in 2013"
+147,"French Polynesia",179,"France",109,"Territories, disaggregated in 2013"
+161,"Wallis and Futuna",179,"France",109,"Territories, disaggregated in 2013"
+85,"Ascension",180,"United Kingdom",68,"Territories, disaggregated in 2013"
+95,"Falkland Islands",180,"United Kingdom",68,"Territories, disaggregated in 2013"
+89,"South Georgia and the South Sandwich Islands",180,"United Kingdom",68,"Territories, disaggregated in 2013"
+86,"Saint Helena",180,"United Kingdom",68,"Territories, disaggregated in 2013"
+88,"Tristan da Cunha",180,"United Kingdom",68,"Territories, disaggregated in 2013"
+118,"Anguilla",180,"United Kingdom",85,"Territories, disaggregated in 2013"
+108,"Bermuda",180,"United Kingdom",85,"Territories, disaggregated in 2013"
+113,"Cayman Islands",180,"United Kingdom",85,"Territories, disaggregated in 2013"
+121,"Montserrat",180,"United Kingdom",85,"Territories, disaggregated in 2013"
+111,"Turks and Caicos Islands",180,"United Kingdom",85,"Territories, disaggregated in 2013"
+117,"British Virgin Islands",180,"United Kingdom",85,"Territories, disaggregated in 2013"
+228,"Guernsey",180,"United Kingdom",131,"Territories, disaggregated in 2013"
+227,"Jersey",180,"United Kingdom",131,"Territories, disaggregated in 2013"
+58,"Canary Islands",182,"Spain",133,"Territories, disaggregated in 2013"
+55,"Azores",183,"Portugal",134,"Territories, disaggregated in 2013"
+57,"Madeira",183,"Portugal",134,"Territories, disaggregated in 2013"
+26,"Andaman and Nicobar",203,"India",153,"Territories, disaggregated in 2013"
+148,"Line Group",212,"Kiribati",161,"Territories, disaggregated in 2013"
+157,"Phoenix Group",212,"Kiribati",161,"Territories, disaggregated in 2013"
+105,"Bouvet Island",223,"Norway",169,"Territories, disaggregated in 2013"
+144,"Jan Mayen",223,"Norway",169,"Territories, disaggregated in 2013"
+237,"Oecussi Ambeno",231,"East Timor",171,"Territories, disaggregated in 2013"
+247,"Brunei",247,"Brunei",156,"Country, not included in 2012"
+5,"New Caledonia",179,"France",3,"Territories, included in 2013, probably gapfilled"
+38,"British Indian Ocean Territory",180,"United Kingdom",24,"Territories, included in 2013, probably gapfilled"
+60,"Gibraltar",180,"United Kingdom",43,"Territories, included in 2013, probably gapfilled"
+63,"Western Sahara",62,"Morocco",46,"Territories, included in 2013, probably gapfilled"
+107,"Clipperton Island",179,"France",79,"Territories, included in 2013, probably gapfilled"
+116,"Puerto Rico and Virgin Islands of the United States",163,"United States",84,"Territories, included in 2013, probably gapfilled"
+146,"Pitcairn",180,"United Kingdom",108,"Territories, included in 2013, probably gapfilled"
+149,"Jarvis Island",163,"United States",110,"Territories, included in 2013, probably gapfilled"
+169,"French Guiana",179,"France",121,"Territories, included in 2013, probably gapfilled"
+219,"Saint Pierre and Miquelon",179,"France",167,"Territories, included in 2013, probably gapfilled"
