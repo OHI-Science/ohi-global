@@ -95,7 +95,7 @@ for (dir in c('highseas2015')){
 }
 
 
-for (i in 1:length(scenarios)){  #i=3
+for (i in 1:length(scenarios)){  #i=2
   
   # vars
   scenario   = names(scenarios)[[i]]
@@ -246,7 +246,7 @@ for (i in 1:length(scenarios)){  #i=3
 detach("package:devtools", unload=TRUE)
 source('../ohiprep/src/R/VisGlobal.R')
 changePlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", 
-           fileSave="antarctica2014_ico")
+           fileSave="antarctica2014_ECO")
 compare <- read.csv('figures/DataCheck/eez2015_Hackathon_julie_updates_diff_data_2015-10-21.csv')
 difs_only <- filter(compare, change != 0)
 table(difs_only$dimension)
