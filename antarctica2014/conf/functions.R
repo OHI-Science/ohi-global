@@ -507,16 +507,6 @@ ICO = function(layers){
 
 LSP = function(layers, status_year){
   
-#   mpa <- read.csv('../ohiprep/Antarctica/AQ-LSP_v2014/data/lsp_prot_area_offshore.csv')
-# 
-#   area_inland <- read.csv('../ohiprep/Antarctica/Other_v2014/rgn_area_ccamlr_inland_1km_lyr.csv') %>%
-#     mutate(type = "pa")
-#   
-#   area_offshore <- read.csv('antarctica2014/layers/rgn_area.csv') %>%
-#     mutate(type = "cmpa")
-#   
-#   status_year <- 2015
-#   
   ref_pct <- 0.30  # reference point (30% of region as protected)
   
   trend_years <-  (status_year-4):status_year 
@@ -563,7 +553,7 @@ LSP = function(layers, status_year){
   layersData <- read.csv("layers.csv", stringsAsFactors = FALSE)
   newPressure <- data.frame(targets = as.character("resilience"),
                             layer = as.character("MPAs"),
-                            name = as.character("Proportion of protected marine habitat (relative to 30% of total marine area)"),
+                            name = as.character("Status: marine protected area"),
                             description = as.character("Calculated in LSP function"),
                             fld_value = as.character("resilience.score"), 
                             units = as.character("resilience.score"),
@@ -584,9 +574,12 @@ LSP = function(layers, status_year){
   
   
   ### Land-based: assumed to be status = 100 (all land protected in Antarctica)
-  pa_status <- mpa_status %>%
-    select(type, sp_id, year) %>%
-    mutate(type = "pa", status = 1)
+  pa_status <- expand.grid(type="pa", sp_id = area_inland$sp_id, year = 1975:max(mpa$year)) %>%
+    mutate(type = as.character(type) , 
+           sp_id = as.numeric(as.character(sp_id))) %>%
+    left_join(area_inland, by=c("type", 'sp_id')) %>%
+    mutate(status = ifelse(area_km2==0, NA, 1)) %>%
+    select(type, sp_id, year, status)
   
   ## merge inland and offshore data
   
@@ -594,11 +587,12 @@ LSP = function(layers, status_year){
   areas <- rbind(area_inland, area_offshore) 
   
   
-  # take weighted mean of inland and offshore status values, based on area
+  # take mean of inland and offshore status values (also an option to use a weighted mean)
   status <- rbind(mpa_status, pa_status) %>%
     left_join(areas, by=c('type', 'sp_id')) %>%
     group_by(sp_id, year) %>%
-    summarize(score = weighted.mean(status, area_km2, na.rm=TRUE)) %>%
+    summarize(score = mean(status, na.rm=TRUE)) %>%  # average: weighted by area (not using)
+#    summarize(score = weighted.mean(status, area_km2, na.rm=TRUE)) %>%  # average: weighted by area (not using)
     ungroup() %>%
     data.frame()
     
