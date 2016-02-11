@@ -95,7 +95,7 @@ for (dir in c('highseas2015')){
 }
 
 
-for (i in 1:length(scenarios)){  #i=2
+for (i in 1:length(scenarios)){  #i=1
   
   # vars
   scenario   = names(scenarios)[[i]]
