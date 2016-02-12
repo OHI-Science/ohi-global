@@ -565,39 +565,50 @@ SP = function(scores){
 
 
 CW = function(layers){
-  # layers
-  lyrs = c('po_chemicals' = 'l',
-           'po_trash'     = 'd',
-           'cw_chemical_trend'   = 'chem_trend',
-           'cw_trash_trend'  = 'trash_trend')
+
+    lyrs = c('po_chemicals', 
+           'po_trash',
+           'cw_chemical_trend',
+           'cw_trash_trend')
     
   ## At this point, trend assumed to be zero based perfect/near perfect scores
   
   # cast data
-  d = SelectLayersData(layers, layers=names(lyrs))  
-  r = rename(dcast(d, id_num ~ layer, value.var='val_num', subset = .(layer %in% names(lyrs))),
-              c(id_num='region_id', lyrs)); head(r); summary(r)
+  d <-  SelectLayersData(layers, layers=lyrs)  %>%
+    select(region_id = id_num, layer, value = val_num)
   
-  # invert pressures
-  r$l = 1 - r$l
-  r$d = 1 - r$d
+  ### function to calculate geometric mean:  
+  geometric.mean2 <- function (x, na.rm = TRUE) {
+    if (is.null(nrow(x))) {
+      exp(mean(log(x), na.rm = TRUE))
+    }
+    else {
+      exp(apply(log(x), 2, mean, na.rm = na.rm))
+    }
+  }
   
-  # status
-  r$status = psych::geometric.mean(t(r[,c('l','d')]), na.rm=T) * 100
+  d_pressures <- d %>%
+    filter(layer %in% grep('po_', lyrs, value=TRUE))  %>%
+    mutate(pressure = 1 - value) %>%  # invert pressures
+    group_by(region_id) %>%
+    summarize(score = geometric.mean2(pressure, na.rm=TRUE)) %>% # take geometric mean
+    mutate(score = score * 100) %>%
+    mutate(dimension = "status") %>%
+    ungroup()
   
-  # trend
-  r$trend = rowMeans(r[,c('chem_trend','trash_trend')], na.rm=T)
+  d_trends <- d %>%
+    filter(layer %in% grep('_trend', lyrs, value=TRUE)) %>%
+    mutate(trend = -1 * value)  %>%  # invert trends
+    group_by(region_id) %>%
+    summarize(score = mean(trend, na.rm = TRUE)) %>%
+    mutate(dimension = "trend") %>%
+    ungroup()
   
-  # return scores
-  scores = rbind(
-    within(r, {
-      goal      = 'CW'
-      dimension = 'status'
-      score     = status}),
-    within(r, {
-      goal      = 'CW'
-      dimension = 'trend'
-      score     = trend}))[,c('region_id','goal','dimension','score')]
+  scores = rbind(d_pressures, d_trends) %>%
+    mutate(goal = "CW") %>%
+    select(region_id, goal, dimension, score) %>%
+    data.frame()
+  
   return(scores)  
 }
 
