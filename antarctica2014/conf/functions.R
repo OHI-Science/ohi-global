@@ -82,7 +82,7 @@ FIS = function(layers, status_year){
   scores <- cmsy %>%
     mutate(score = ifelse(c_cmsy > 1.0 , 2.0-c_cmsy, 
                                ifelse(c_cmsy < 0.9, eps + score_range/value_range * c_cmsy, 1))) %>%
-    mutate(score = ifelse(score < 0, 0, score))
+    mutate(score = ifelse(score <= 0, 0.1, score))
   
   ## plot a figure to show how c/cmsy is converted to a score
   png('temp/c_cmsyVSscore.png')
