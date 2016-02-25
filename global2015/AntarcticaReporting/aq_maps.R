@@ -78,6 +78,57 @@ fig <-  ggplot(ccamlr_f, aes(long, lat, group = group)) +
 ggsave(sprintf('global2015/AntarcticaReporting/maps/%s.png', goals[which(names(goals)==goal)]), width=8, height=6)
 }
 
+#### Maps of pressures
+
+pressures <-  c("chemical pollution" = "po_chemicals", 
+                "trash pollution" = "po_trash", 
+                "invasive species" = 'sp_alien', 
+                "fisheries, low bycatch" = 'fp_com_lb', 
+                "fisheries, high bycatch" = 'fp_com_hb', 
+                "sea surface temperature" = 'cc_sst', 
+                "ocean acidification" = 'cc_acid', 
+                "sea level rise" = 'cc_slr', 
+                "sea ice loss" = 'hd_sea_ice')
+
+data <- data.frame()
+for(pressure in pressures) { #pressure= 'po_chemicals'
+
+  tmp <- read.csv(sprintf('antarctica2015/layers/%s.csv', pressure)) 
+   tmp$pressure = pressure
+data <- rbind(data, tmp)}
+
+data <- spread(data, pressure, pressure_score) %>%
+  mutate(sp_id = as.character(sp_id))
+
+ccamlr_f <- fortify(ccamlr, region = "sp_id") %>%
+  select(long, lat, order, hole, piece, sp_id=id, group) %>%
+  left_join(data)
+
+
+col.brks  <- seq(0, 1, length.out = 6)
+
+for(pressure in pressures){ #pressure = 'cc_acid'
+  
+  fig <-  ggplot(ccamlr_f, aes(long, lat, group = group)) +
+    geom_polygon(aes_string(fill = pressure), colour="gray90") +
+    scale_fill_gradientn(colours = rev(brewer.pal(10, 'RdYlBu')), space = 'Lab', na.value = 'gray80',
+                         breaks = col.brks, labels = col.brks, limits = c(0, 1)) + 
+    geom_polygon(data = eez_f, fill = 'white', size = 0.25)  +
+    geom_polygon(data = land_f, color = 'gray90', fill = 'gray90', size = 0.25)  +
+    theme(axis.line=element_blank(),
+          axis.text.x=element_blank(),
+          axis.text.y=element_blank(),
+          axis.ticks=element_blank(),
+          axis.title.x=element_blank(),
+          axis.title.y=element_blank(),
+          panel.background=element_blank(),
+          panel.border=element_blank(),
+          panel.grid.major=element_blank(),
+          panel.grid.minor=element_blank(),
+          plot.background=element_blank()) +
+    labs(fill = names(pressures)[which(pressures==pressure)]) 
+  ggsave(sprintf('global2015/AntarcticaReporting/maps/pressures/%s.png', names(pressures)[which(pressures==pressure)]), width=8, height=6)
+}
 
 ### some code for combining polygons
 antarctica <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'antarctica_stereographic_v5')
