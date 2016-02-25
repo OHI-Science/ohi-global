@@ -8,7 +8,7 @@ AO,ao_need,ohiprep:Global/WorldBank-Statistics_v2012/data,rgn_wb_gdppcppp_rescal
 
 Data sources:
 
-- The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)",value,current international $,N: no data updates,Y,TRUE,neptune_data:model/GL-WorldBank-Statistics_v2012/data,rgn_wb_gdppcppp_2013a_whence.csv,neptune_data:model/GL-WorldBank-Statistics_v2012/data,rgn_wb_gdppcppp_2013a_whence.csv,equal,global purchasing power parity information was applied equally to all regions.,NA
+- The World Bank [GDP per capita, PPP (current international $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD)",value,current international $,N: no data updates,Y,TRUE,neptune_data:model/GL-WorldBank-Statistics_v2012/data,rgn_wb_gdppcppp_2013a_whence.csv,ohiprep:Global/WorldBank-Statistics_v2012/data,rgn_wb_gdppcppp_rescaled_2014a_gf.csv,equal,global purchasing power parity information was applied equally to all regions.,NA
 CW,cw_coastalpopn_trend,ohiprep:globalprep/coastal_population/v2015/data,rgn_popn5yrtrend_inland25mi_2008to2012.csv,ohiprep:globalprep/coastal_population/v2015/data,rgn_popn5yrtrend_inland25mi_2009to2013.csv,ohiprep:globalprep/coastal_population/v2015/data,rgn_popn5yrtrend_inland25mi_2010to2014.csv,ohiprep:globalprep/coastal_population/v2015/data,rgn_popn5yrtrend_inland25mi_2011to2015.csv,Coastal human population as a proxy for trend in trash,"Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -21,7 +21,7 @@ Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E)
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",trend,trend score,Y,Y,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,cw_fertilizers_trend_2015_gf.csv,equal,global trends were applied equally to all regions.,NA
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",trend,trend score,Y,Y,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,cw_fertilizer_trend_2015_gf.csv,equal,global trends were applied equally to all regions.,NA
 CW,cw_pathogen_trend,ohiprep:globalprep/whounicef_sanitation/v2015/data,pathogens_popdensity25mi_trend_2012a.csv,ohiprep:globalprep/whounicef_sanitation/v2015/data,pathogens_popdensity25mi_trend_2013a.csv,ohiprep:globalprep/whounicef_sanitation/v2015/data,pathogens_popdensity25mi_trend_2014a.csv,ohiprep:globalprep/whounicef_sanitation/v2015/data,pathogens_popdensity25mi_trend_2015a.csv,Trends in access to improved sanitation as a proxy for pathogen pollution trend,"Trends in percent of population without access to improved sanitation facilities.
 
 Data sources:
@@ -34,7 +34,7 @@ Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",trend,trend score,Y,Y,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,cw_chemical_trend_2015_gf.csv,equal,global trends were applied equally to all regions.,NA
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",trend,trend score,Y,Y,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,cw_pesticide_trend_2015_gf.csv,equal,global trends were applied equally to all regions.,NA
 ECO,,,,,,ohiprep:Global/WorldBank-Statistics_v2012/data,rgn_wb_gdp_2014a.csv,,,,,,,N,Y,,ohiprep:Global/WorldBank-Statistics_v2012/data,rgn_wb_gdp_2014a_attr.csv,,,(not ingested; see column X),,
 FIS,fis_b_bmsy,ohiprep:Global/NCEAS-Fisheries_2014a/data,fnk_fis_b_bmsy_lyr.csv,ohiprep:Global/NCEAS-Fisheries_2014a/data,fnk_fis_b_bmsy_lyr.csv,ohiprep:Global/NCEAS-Fisheries_2014a/data,fnk_fis_b_bmsy_lyr.csv,,,B/Bmsy estimates obtained using the catch-MSY method,"The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
@@ -285,7 +285,7 @@ Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",pressure_score,pressure score,Y,,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,cw_fertilizers_score_2015_gf.csv,raster | equal,,NA
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",pressure_score,pressure score,Y,,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,cw_fertilizer_score_2015_gf.csv,raster | equal,,NA
 pressures,sp_alien,ohiprep:globalprep/pressures_alien/v2013/data,p_sp_alien_2013a.csv,ohiprep:globalprep/pressures_alien/v2013/data,p_sp_alien_2013a.csv,,,,,Alien species,"The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
 Data sources:
@@ -316,13 +316,13 @@ Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",pressure_score,pressure score,Y,N,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,cw_fertilizers_score_2015_gf.csv,raster,spatial data was extracted for each region. ,NA
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",pressure_score,pressure score,Y,N,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,cw_fertilizer_score_2015_gf.csv,raster,spatial data was extracted for each region. ,NA
 pressures CW,po_pathogens,ohiprep:globalprep/whounicef_sanitation/v2015/data,po_pathogens_popdensity25mi_2012a.csv,ohiprep:globalprep/whounicef_sanitation/v2015/data,po_pathogens_popdensity25mi_2013a.csv,ohiprep:globalprep/whounicef_sanitation/v2015/data,po_pathogens_popdensity25mi_2014a.csv,ohiprep:globalprep/whounicef_sanitation/v2015/data,po_pathogens_popdensity25mi_2015a.csv,Access to improved sanitation as a proxy for pathogen pollution,"Population without access to improved sanitation facilities. 
 
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
-",pressure_score,pressure score,Y,Y,TRUE,ohiprep:globalprep/whounicef_sanitation/v2015/data,po_pathogens_popdensity25mi_2015a.csv,NA,NA,raster,spatial data was extracted for each region. ,NA
+",pressure_score,pressure score,Y,Y,TRUE,,,ohiprep:globalprep/whounicef_sanitation/v2015/data,po_pathogens_popdensity25mi_2015a_gf.csv,raster,spatial data was extracted for each region. ,NA
 pressures CW,po_trash,ohiprep:globalprep/PressuresRegionExtract/data,trash_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,trash_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,trash_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,trash_eez_2015.csv,Trash pollution,"Global marine plastics (Eriksen et al. 2014)
 
 Data sources:
@@ -335,7 +335,7 @@ resilience,alien_species,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2
 
 Data sources:
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)",resilience score,resilience score,N: No data updates,N,TRUE,neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a,CBDaliens_whence.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2013/data,r_alien_species_Nature2012disaggregated_gf.csv,equal,global resilience data were applied equally to all regions.,
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)",resilience score,resilience score,N: No data updates,N,TRUE,neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a,CBDaliens_whence.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_alien_species_Nature2012disaggregated_gf.csv,equal,global resilience data were applied equally to all regions.,
 resilience,cites,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2012.csv,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2013.csv,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2014.csv,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2015.csv,Resilience from commitment to CITES,"Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
 
 Data sources:
@@ -403,7 +403,7 @@ resilience,mariculture,ohiprep:globalprep/resilience_cbd_habitat/resilience_v201
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-",resilience score,resilience score,N: No data updates,N,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2013/data,r_mariculture_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,NA
+",resilience score,resilience score,N: No data updates,N,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_mariculture_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,NA
 resilience,msi_gov,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_msi_gov_2013a.csv,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_msi_gov_2013a.csv,,,,, MSI sustainability and regulations,"Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI). 
 
 Data sources:
@@ -426,13 +426,13 @@ resilience,tourism,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/da
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-",resilience score,resilience score,N: No data updates,N,TRUE,neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a,CBDtourism_whence.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2013/data,r_tourism_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,NA
+",resilience score,resilience score,N: No data updates,N,TRUE,neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a,CBDtourism_whence.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_tourism_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,NA
 resilience,water,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_water_2013a.csv,,,,,,,CBD survey: water,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-",resilience score,resilience score,N: No data updates,N,TRUE,neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a,CBDwater_whence.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2013/data,r_water_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,
+",resilience score,resilience score,N: No data updates,N,TRUE,neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a,CBDwater_whence.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_water_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,
 resilience,wgi_all,ohiprep:globalprep/worldbank_wgi/data,rgn_wb_wgi_2012a.csv,ohiprep:globalprep/worldbank_wgi/data,rgn_wb_wgi_2013a.csv,ohiprep:globalprep/worldbank_wgi/data,rgn_wb_wgi_2014a.csv,ohiprep:globalprep/worldbank_wgi/data,rgn_wb_wgi_2015a.csv,Strength of governance indicated with the WGI,"World Governance Indicators (WGI) six combined scores.
 
 Data sources:

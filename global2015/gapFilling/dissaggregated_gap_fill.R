@@ -35,7 +35,7 @@ regions_ter <- regions %>%
   filter(!(rgn_id_2013 %in% regions_dis$rgn_id_2013)) %>%
   unique() %>%
   select(rgn_id_2013, rgn_nam_2013, sov_id, sov_nam, region_id_2012) %>%
-  mutate(description = "Territories, included in 2013, probably gapfilled") 
+  mutate(description = "Territories, included prior to 2013, may be gapfilled with parent country") 
 
 
 ## Combine
