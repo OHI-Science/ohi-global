@@ -1,5 +1,5 @@
 targets,layer,dir_2012a,fn_2012a,dir_2013a,fn_2013a,dir_2014a,fn_2014a,dir_2015a,fn_2015a,name,description,fld_value,units,src_2015a,src_2014a,ingest,dir_gap_fill_2013,fn_gap_fill_2013,dir_gap_fill_2015,fn_gap_fill_2015,clip_n_ship_disag,clip_n_ship_disag_description,uninhabited_expect
-AO,ao_access,ohiprep:globalprep/resilience_mora/v2013/data,r_mora_s4_2013a.csv,,,,,,,Fisheries management effectiveness and opportunity,"The opportunity for artisanal and recreational fishing based on the quality of management of the small- scale fishing sector (Mora et al 2009).
+AO,ao_access,ohiprep:globalprep/resilience_mora/v2013/data,r_mora_s4_2013a.csv,ohiprep:globalprep/resilience_mora/v2013/data,r_mora_s4_2013a.csv,,,,,Fisheries management effectiveness and opportunity,"The opportunity for artisanal and recreational fishing based on the quality of management of the small- scale fishing sector (Mora et al 2009).
 
 Data sources:
 
@@ -206,7 +206,7 @@ Data sources:
 - Feely, R., Doney, S. & Cooley, S. (2009) **Ocean acidification: present conditions and future changes in a high-CO2 world**.
 _Oceanography_ 22:36-47. [doi:10.5670/oceanog.2009.95](http://www.tos.org/oceanography/archive/22-4_feely.html)
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_OceanAcidification/v2015) ",pressure_score,pressure score,Y,Y,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,acid_eez_2014_gf.csv,raster | equal,,
-pressures,cc_slr,ohiprep:globalprep/PressuresRegionExtract/data,slr_eez_2012.csv,ohiprep:globalprep/PressuresRegionExtract/data,slr_eez_2013.csv,ohiprep:globalprep/PressuresRegionExtract/data,slr_eez_2014.csv,ohiprep:globalprep/PressuresRegionExtract/data,slr_eez_2015.csv,Sea level rise,"Modeled sea level rise (Nicholls and Cazenave 2010).
+pressures,cc_slr,ohiprep:globalprep/PressuresRegionExtract/data,slr_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,slr_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,slr_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,slr_eez_2015.csv,Sea level rise,"Modeled sea level rise (Nicholls and Cazenave 2010).
 
 Data sources:
 
@@ -331,7 +331,7 @@ Data sources:
 **Plastic pollution in the worldâs oceans: more than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea**. _PLoS ONE_ 9:e111913. [doi:10.1371/journal.pone.0111913](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0111913). 
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash) ",pressure_score,pressure score,Y,Y,TRUE,neptune_data:model/GL-OceanConserv-Trash_v2012/data,rgn_oc_trash_2013a_whence.csv,ohiprep:globalprep/PressuresRegionExtract/data,trash_eez_2015_gf.csv,equal,global pressures data were applied equally to all regions.,NA
 pressures HAB,hab_presence,ohiprep:globalprep/hab_combined/v2015/data,hab_habitat_presence.csv,ohiprep:globalprep/hab_combined/v2015/data,hab_habitat_presence.csv,,,,,Habitat presence,Modeled combined habitat presence,boolean,boolean,Y,,TRUE,,,ohiprep:globalprep/hab_combined/v2015/data,hab_habitat_presence.csv,equal,global pressures data were applied equally to all regions.,
-resilience,alien_species,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_alien_species_Nature2012disaggregated.csv,,,,,,,CBD survey: alien species,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,alien_species,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_alien_species_Nature2012disaggregated.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_alien_species_Nature2012disaggregated.csv,,,,,CBD survey: alien species,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
@@ -373,7 +373,7 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
 ",resilience score,resilience score,N: No data updates,Y,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_eez_2014a_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,habitat,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,,,,,,,CBD survey: habitat,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,habitat,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,,,,,CBD survey: habitat,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
@@ -398,7 +398,7 @@ Data sources:
 - [World Economic Forum](http://www.weforum.org/issues/global-competitiveness)
 ",score,resilience score,Y,Y,TRUE,ohiprep:Global/WEF-Economics_v2014/data,rgn_wef_gci_2014a.csv,ohiprep:globalprep/WEF-Economics/v2015/data,rgn_wef_gci_2015_gf.csv,equal,global resilience data were applied equally to all regions.,NA
 resilience,li_sector_evenness,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_li_sector_evenness_2013a.csv,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_li_sector_evenness_2013a.csv,,,,,Sector evenness as a measure of economic diversity,Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.,resilience score,resilience score,N,N,TRUE,,,ohiprep:globalprep/Resilience_sector_evenness,r_li_sector_evenness_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,NA
-resilience,mariculture,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_mariculture_2013a.csv,,,,,,,CBD survey: mariculture,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,mariculture,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_mariculture_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_mariculture_2013a.csv,,,,,CBD survey: mariculture,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
@@ -421,13 +421,13 @@ Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
 ",score,resilience score,Y,,TRUE,,,ohiprep:globalprep/SPP_ICO/v2015/data,spp_status_3nm_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,tourism,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_tourism_2013a.csv,,,,,,,CBD survey: tourism,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,tourism,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_tourism_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_tourism_2013a.csv,,,,,CBD survey: tourism,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
 ",resilience score,resilience score,N: No data updates,N,TRUE,neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a,CBDtourism_whence.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_tourism_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,NA
-resilience,water,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_water_2013a.csv,,,,,,,CBD survey: water,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,water,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_water_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_water_2013a.csv,,,,,CBD survey: water,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 

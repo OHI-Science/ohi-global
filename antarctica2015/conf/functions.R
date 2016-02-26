@@ -700,7 +700,7 @@ BD = function(scores){
     filter(goal %in% c('HAB', 'SPP')) %>%
     filter(!(dimension %in% c('pressures', 'resilience'))) %>%
     group_by(region_id, dimension) %>%
-    summarize(score = mean(score))%>%
+    summarize(score = mean(score, na.rm=TRUE))%>%
     mutate(goal = 'BD') %>%
     select(region_id, goal, dimension, score)
   
@@ -721,22 +721,8 @@ PreGlobalScores = function(layers, conf, scores){
 
 FinalizeScores = function(layers, conf, scores){
   
-  #  browser()
-  
-  # get area data
-  area = SelectLayersData(layers, layers='rgn_area', narrow=TRUE)  
-  area <- area %>%
-    select(region_id=id_num, area=val_num)
   # get regions
   rgns = SelectLayersData(layers, layers=conf$config$layer_region_labels, narrow=T)
-  
-  
-tmp <-   scores %>%
-    join(area, by='region_id') %>% 
-  filter(region_id != 0) %>%
-  group_by(goal, dimension) %>%
-  summarize(region_id0 = weighted.mean(score, area, na.rm=TRUE))
-  
   
   # add NAs to missing combos (region_id, goal, dimension)
   d = expand.grid(list(score_NA  = NA,

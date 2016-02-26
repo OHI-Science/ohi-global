@@ -3,7 +3,7 @@
 
 Data sources:
 
-- Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., Worm, B. (2009). **Management Effectiveness of the Worldï¿s Marine Fisheries**. _PLoS Biol_, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](http://dx.doi.org/10.1371/journal.pbio.1000131)","value","value","/var/data/ohi/model/GL-NCEAS-Resilience_v2013a/data/r_mora_s4_2013a.csv",TRUE,"ao_access.csv","eez2013/layers/ao_access.csv"
+- Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., Worm, B. (2009). **Management Effectiveness of the Worldï¿s Marine Fisheries**. _PLoS Biol_, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](http://dx.doi.org/10.1371/journal.pbio.1000131)","value","value","../ohiprep/globalprep/resilience_mora/v2013/data/r_mora_s4_2013a.csv",TRUE,"ao_access.csv","eez2013/layers/ao_access.csv"
 "AO","ao_need","Purchasing power parity as a proxy for subsistence fishing need, by region","The per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP.
 
 Data sources:
@@ -231,13 +231,13 @@ Data sources:
 
 Data sources:
 
-- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","pressures.score","pressure score","/var/data/ohi/model/GL-NCEAS-Pressures_v2013a/data/p_fp_art_hb_disaggregateNature2012.csv",TRUE,"fp_art_hb.csv","eez2013/layers/fp_art_hb.csv"
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","pressures.score","pressure score","../ohiprep/globalprep/pressures_artisanal_fp/v2012/data/p_fp_art_hb_disaggregateNature2012.csv",TRUE,"fp_art_hb.csv","eez2013/layers/fp_art_hb.csv"
 "pressures","fp_art_lb","Low bycatch caused by artisanal fishing ","Modeled low bycatch artisanal fishing using non-destructive practices (Halpern et al. 2008) based on FAO fisheries statistics.
 
 Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","pressure_score","pressure score","/var/data/ohi/model/GL-NCEAS-Pressures_v2013a/data/fp_art_lb_2013_NEW.csv",TRUE,"fp_art_lb.csv","eez2013/layers/fp_art_lb.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","pressure_score","pressure score","../ohiprep/globalprep/pressures_artisanal_fp/v2013/data/fp_art_lb_2013_NEW.csv",TRUE,"fp_art_lb.csv","eez2013/layers/fp_art_lb.csv"
 "pressures","fp_com_hb","High bycatch caused by commercial fishing ","Modeled destructive commercial fishing practices by 5 different gear types (Halpern et al. 2008).
 
 Data sources:
@@ -291,7 +291,7 @@ Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/
 
 Data sources:
 
-- Molnar, J. L., Gamboa, R. L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)","pressures.score","pressure score","/var/data/ohi/model/GL-NCEAS-Pressures_v2013a/data/p_sp_alien_2013a.csv",TRUE,"sp_alien.csv","eez2013/layers/sp_alien.csv"
+- Molnar, J. L., Gamboa, R. L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)","pressures.score","pressure score","../ohiprep/globalprep/pressures_alien/v2013/data/p_sp_alien_2013a.csv",TRUE,"sp_alien.csv","eez2013/layers/sp_alien.csv"
 "pressures","sp_genetic","Introduced species as a proxy for genetic escapes ","Statistics on native or introduced species from the Mariculture Sustainibility Index (MSI). 
 
 Data sources:
@@ -330,12 +330,11 @@ Data sources:
 **Plastic pollution in the worldâs oceans: more than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea**. _PLoS ONE_ 9:e111913. [doi:10.1371/journal.pone.0111913](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0111913). 
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash) ","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/trash_eez_2015.csv",TRUE,"po_trash.csv","eez2013/layers/po_trash.csv"
 "pressures HAB","hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","../ohiprep/globalprep/hab_combined/v2015/data/hab_habitat_presence.csv",TRUE,"hab_presence.csv","eez2013/layers/hab_presence.csv"
-"resilience","alien_species","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
+"resilience","alien_species","CBD survey: alien species","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
-- Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)
-","resilience score","resilience score","/var/data/ohi/model/GL-NCEAS-Resilience_v2013a/data/r_alien_species_Nature2012disaggregated.csv",TRUE,"alien_species.csv","eez2013/layers/alien_species.csv"
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_alien_species_Nature2012disaggregated.csv",TRUE,"alien_species.csv","eez2013/layers/alien_species.csv"
 "resilience","cites","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
 
 Data sources:
@@ -348,49 +347,49 @@ Data sources:
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v1_2013a.csv",TRUE,"fishing_v1.csv","eez2013/layers/fishing_v1.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_fishing_v1_2013a.csv",TRUE,"fishing_v1.csv","eez2013/layers/fishing_v1.csv"
 "resilience","fishing_v1_eez","CBD survey: ocean fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v1_eez_2013a.csv",TRUE,"fishing_v1_eez.csv","eez2013/layers/fishing_v1_eez.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_fishing_v1_eez_2013a.csv",TRUE,"fishing_v1_eez.csv","eez2013/layers/fishing_v1_eez.csv"
 "resilience","fishing_v2_eez","CBD survey: ocean fishing v2","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v2_eez_2013a.csv",TRUE,"fishing_v2_eez.csv","eez2013/layers/fishing_v2_eez.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_fishing_v2_eez_2013a.csv",TRUE,"fishing_v2_eez.csv","eez2013/layers/fishing_v2_eez.csv"
 "resilience","fishing_v3","CBD survey: coastal fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v3_2013a.csv",TRUE,"fishing_v3.csv","eez2013/layers/fishing_v3.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_fishing_v3_2013a.csv",TRUE,"fishing_v3.csv","eez2013/layers/fishing_v3.csv"
 "resilience","fishing_v3_eez","CBD survey: ocean fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_fishing_v3_eez_2013a.csv",TRUE,"fishing_v3_eez.csv","eez2013/layers/fishing_v3_eez.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_fishing_v3_eez_2013a.csv",TRUE,"fishing_v3_eez.csv","eez2013/layers/fishing_v3_eez.csv"
 "resilience","habitat","CBD survey: habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","/var/data/ohi/model/GL-NCEAS-Resilience_v2013a/data/r_habitat_2013a.csv",TRUE,"habitat.csv","eez2013/layers/habitat.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_habitat_2013a.csv",TRUE,"habitat.csv","eez2013/layers/habitat.csv"
 "resilience","habitat_combo","CBD survey: coastal habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_habitat_combo_2013a.csv",TRUE,"habitat_combo.csv","eez2013/layers/habitat_combo.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_habitat_combo_2013a.csv",TRUE,"habitat_combo.csv","eez2013/layers/habitat_combo.csv"
 "resilience","habitat_combo_eez","CBD survey: ocean habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","../ohiprep/Global/GL-Resilience_Fish_Hab_2014a/data/r_habitat_combo_eez_2013a.csv",TRUE,"habitat_combo_eez.csv","eez2013/layers/habitat_combo_eez.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_habitat_combo_eez_2013a.csv",TRUE,"habitat_combo_eez.csv","eez2013/layers/habitat_combo_eez.csv"
 "resilience","li_gci","GCI: competitiveness in achieving sustained economic prosperity","Global Competitiveness Index (GCI) scores from the World Economic Forum.
 
 Data sources:
@@ -403,7 +402,7 @@ Data sources:
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","/var/data/ohi/model/GL-NCEAS-Resilience_v2013a/data/r_mariculture_2013a.csv",TRUE,"mariculture.csv","eez2013/layers/mariculture.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_mariculture_2013a.csv",TRUE,"mariculture.csv","eez2013/layers/mariculture.csv"
 "resilience","msi_gov"," MSI sustainability and regulations","Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI). 
 
 Data sources:
@@ -426,13 +425,13 @@ Data sources:
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","/var/data/ohi/model/GL-NCEAS-Resilience_v2013a/data/r_tourism_2013a.csv",TRUE,"tourism.csv","eez2013/layers/tourism.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_tourism_2013a.csv",TRUE,"tourism.csv","eez2013/layers/tourism.csv"
 "resilience","water","CBD survey: water","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","/var/data/ohi/model/GL-NCEAS-Resilience_v2013a/data/r_water_2013a.csv",TRUE,"water.csv","eez2013/layers/water.csv"
+","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_water_2013a.csv",TRUE,"water.csv","eez2013/layers/water.csv"
 "resilience","wgi_all","Strength of governance indicated with the WGI","World Governance Indicators (WGI) six combined scores.
 
 Data sources:

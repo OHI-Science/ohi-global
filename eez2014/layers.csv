@@ -330,12 +330,11 @@ Data sources:
 **Plastic pollution in the worldâs oceans: more than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea**. _PLoS ONE_ 9:e111913. [doi:10.1371/journal.pone.0111913](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0111913). 
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash) ","pressure_score","pressure score","po_trash.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0223096329122635,0.843154478466252,TRUE,,,,221,FALSE
 "pressures HAB","hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","hab_presence.csv","rgn_id",,"habitat",,"boolean",,TRUE,,,1,1,TRUE,,,,221,FALSE
-"resilience","alien_species","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
+"resilience","alien_species","CBD survey: alien species","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
-- Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)
-","resilience score","resilience score","alien_species.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)","resilience score","resilience score","alien_species.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
 "resilience","cites","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
 
 Data sources:
