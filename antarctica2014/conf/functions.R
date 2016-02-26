@@ -3,7 +3,6 @@ Setup = function(){
 }
 
 FIS = function(layers, status_year){
-
    trend_years <- (status_year-4):status_year
   
 # catch 
@@ -50,22 +49,32 @@ FIS = function(layers, status_year){
      mutate(c_cmsy = catch_krill/limit) %>%
      select(species, sp_id, year, c_cmsy)
    
-   # Toothfish: limits are based on combined TOA and TOP
-    tf_catch <- catch %>%
+   # Toothfish: limits are based on combined TOA and TOP (except for one region)
+    tf_catch_combined <- catch %>%
      filter(species %in% c("TOA", "TOP")) %>%
-     mutate(species_tf = "TOP-TOA") %>%
-     group_by(sp_id, year, species_tf) %>%
-     mutate(catch_tf = sum(catch, na.rm=TRUE)) %>%
+     group_by(sp_id, year) %>%
+     summarize(catch_tf = sum(catch, na.rm=TRUE)) %>%
      ungroup() %>%
-      mutate(sp_id = as.character(sp_id)) 
+     mutate(species = "TOP-TOA") %>%
+     mutate(sp_id = as.character(sp_id)) 
    
+    tf_catch_species <- catch %>%
+      filter(species %in% c("TOA", "TOP")) %>%
+      group_by(sp_id, year) %>%
+      mutate(catch_tf = sum(catch, na.rm=TRUE)) %>%
+      ungroup() %>%
+      mutate(sp_id = as.character(sp_id)) 
+    
+    tf_catch <- bind_rows(tf_catch_combined, tf_catch_species)
+    
     tf_limit <- limit %>%
-     filter(species %in% c("TOP-TOA")) %>%
-     select(sp_id, species_tf = species, year, limit)%>%
-     mutate(sp_id = as.character(sp_id))
+     filter(species %in% c("TOP-TOA", "TOP", "TOA")) %>%
+     select(sp_id, species, year, limit)%>%
+     mutate(sp_id = as.character(sp_id),
+            species = as.character(species))
    
    tf <- tf_limit %>%
-     left_join(tf_catch, by=c("sp_id", "year")) %>%
+     left_join(tf_catch, by=c("sp_id", "year", "species")) %>%
      mutate(c_cmsy = catch_tf/limit) %>%
      select(species, sp_id, year, c_cmsy)
    
@@ -99,47 +108,17 @@ FIS = function(layers, status_year){
     select(sp_id, species, year, score)
   write.csv(np, 'layers/np_krill.csv', row.names=FALSE)
 
-  # ------------------------------------------------------------------------
-  # STEP 3. Calculate: mean catch for each region, 
-  #                    mean proportional catch of each species in each region,  
-  #                    and merge with scores
-  # -----------------------------------------------------------------------
-  
-  ## Krill not included in FIS calculation because not directly used as food source
-  # limit to years >= 1980
-  catch_mean <- catch %>%
-    filter(species != "KRI") %>%
-    filter(year >= 1980) %>%
-    group_by(sp_id, species) %>%
-    mutate(mean_catch = mean(catch, na.rm=TRUE)) %>%
-    ungroup() 
-  
-  # calculate total mean catch for a region to determine proportion of catch for each species/region/year
-  catch_mean <- catch_mean %>%
-    group_by(sp_id, year) %>%
-    mutate(total_mean_catch = sum(mean_catch, na.rm=TRUE)) %>%
-    ungroup() %>%
-    mutate(wprop = mean_catch/total_mean_catch) %>%
-    mutate(sp_id = as.character(sp_id))
   
   # add in scores
   status_data <- scores %>%
     filter(species != "KRI") %>%
-    left_join(catch_mean, by=c('sp_id', 'species', 'year'))
+    select(species, sp_id, year, Status=score)
   
 
   # ------------------------------------------------------------------------
   # STEP 4. Calculate status & trend
   # -----------------------------------------------------------------------
-  #  4b. The "score" and "weight" values per taxon per SAUP region are used to  
-  #    calculate a geometric weighted mean across taxa for each saup_id region
   
-  status_data <- status_data %>%
-    group_by(sp_id, year) %>%
-    summarize(Status = prod(score^wprop)) %>%
-    ungroup()
-  
-
   status = status_data %>%
     filter(year==status_year) %>%
     filter(!is.na(Status)) %>%
