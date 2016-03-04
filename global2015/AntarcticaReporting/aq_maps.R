@@ -82,6 +82,7 @@ ggsave(sprintf('global2015/AntarcticaReporting/maps/%s.png', goals[which(names(g
 
 pressures <-  c("chemical pollution" = "po_chemicals", 
                 "trash pollution" = "po_trash", 
+                "pathogen pollution" = "po_pathogens", 
                 "invasive species" = 'sp_alien', 
                 "fisheries, low bycatch" = 'fp_com_lb', 
                 "fisheries, high bycatch" = 'fp_com_hb', 
