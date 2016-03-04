@@ -547,8 +547,10 @@ CW = function(layers){
 
     lyrs = c('po_chemicals', 
            'po_trash',
+           'po_pathogens',
            'cw_chemical_trend',
-           'cw_trash_trend')
+           'cw_trash_trend',
+           'cw_pathogen_trend')
     
   ## At this point, trend assumed to be zero based perfect/near perfect scores
   
