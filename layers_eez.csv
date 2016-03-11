@@ -152,7 +152,7 @@ LSP,lsp_prot_area_offshore3nm,ohiprep:globalprep/WDPA_MPA/v2015/data,lsp_protare
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)",area_km2,km^2,Y,Y,TRUE,,,NA,NA,raster | area_offshore3nm,,
+- United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)",area_km2,km^2,Y,Y,TRUE,,,NA,NA,raster | area_offshore3nm,,
 MAR,mar_coastalpopn_inland25mi,neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data,rgn_popsum2005to2015_inland25mi.csv,neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data,rgn_popsum2005to2015_inland25mi.csv,neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data,rgn_popsum2005to2015_inland25mi.csv,,,Coastal population inland 25 miles,"Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -343,53 +343,69 @@ Data sources:
 - [CITES List of Contracting Parties](http://www.cites.org/eng/disc/parties/chronolo.php)
 
 ",resilience_score,resilience score,Y,Y,TRUE,neptune_data:model/GL-CITES-Signatories_v2013/data,rgn_cites_2013_all_whence.csv,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2015_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,fishing_v1,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_2014a.csv,,,CBD survey: coastal fishing v1,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,fishing_v1,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_2014a.csv,,,Composite resilience variable,"Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ",resilience score,resilience score,N: No data updates,Y,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_2014a_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,fishing_v1_eez,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_eez_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_eez_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_eez_2014a.csv,,,CBD survey: ocean fishing v1,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,fishing_v1_eez,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_eez_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_eez_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_eez_2014a.csv,,,Composite resilience variable,"Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ",resilience score,resilience score,N: No data updates,Y,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v1_eez_2014a_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,fishing_v2_eez,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v2_eez_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v2_eez_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v2_eez_2014a.csv,,,CBD survey: ocean fishing v2,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,fishing_v2_eez,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v2_eez_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v2_eez_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v2_eez_2014a.csv,,,Composite resilience variable,"Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ",resilience score,resilience score,N: No data updates,Y,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v2_eez_2014a_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,fishing_v3,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_2014a.csv,,,CBD survey: coastal fishing v3,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,fishing_v3,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_2014a.csv,,,Composite resilience variable,"Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ",resilience score,resilience score,N: No data updates,Y,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_2014a_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,fishing_v3_eez,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_eez_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_eez_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_eez_2014a.csv,,,CBD survey: ocean fishing v3,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,fishing_v3_eez,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_eez_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_eez_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_eez_2014a.csv,,,Composite resilience variable,"Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ",resilience score,resilience score,N: No data updates,Y,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_fishing_v3_eez_2014a_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,habitat,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,,,,,CBD survey: habitat,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,habitat,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,,,,,Composite resilience variable,"Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ",resilience score,resilience score,N: No data updates,,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,habitat_combo,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_2014a.csv,,,CBD survey: coastal habitat,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,habitat_combo,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_2014a.csv,,,Composite resilience variable,"Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ",resilience score,resilience score,N: No data updates,Y,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_2014a_gf.csv,equal,global resilience data were applied equally to all regions.,
-resilience,habitat_combo_eez,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_eez_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_eez_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_eez_2014a.csv,,,CBD survey: ocean habitat,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,habitat_combo_eez,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_eez_2012a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_eez_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_eez_2014a.csv,,,Composite resilience variable,"Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ",resilience score,resilience score,N: No data updates,Y,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_combo_eez_2014a_gf.csv,equal,global resilience data were applied equally to all regions.,
 resilience,li_gci,ohiprep:globalprep/WEF-Economics/v2015/data,rgn_wef_gci_2012.csv,ohiprep:globalprep/WEF-Economics/v2015/data,rgn_wef_gci_2013.csv,ohiprep:globalprep/WEF-Economics/v2015/data,rgn_wef_gci_2014.csv,ohiprep:globalprep/WEF-Economics/v2015/data,rgn_wef_gci_2015.csv,GCI: competitiveness in achieving sustained economic prosperity,"Global Competitiveness Index (GCI) scores from the World Economic Forum.
 
