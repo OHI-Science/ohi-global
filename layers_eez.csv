@@ -168,7 +168,7 @@ MAR,mar_harvest_tonnes,ohiprep:globalprep/mariculture_status/data/,mar_harvest_t
 Data sources:
 
 - [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)",tonnes,tons,Y,Y,TRUE,,,ohiprep:globalprep/mariculture_status/data,MAR_FP_data.csv,area_offshore_3nm,global mariculture harvest (tonnes) data were applied to each region after weighting by each region's offshore area to 3nm. ,NA
-MAR,mar_sustainability_score,ohiprep:globalprep/mariculture_status/data/,mar_sustainability_score_2015a_lyr.csv,ohiprep:globalprep/mariculture_status/data/,mar_sustainability_score_2015a_lyr.csv,ohiprep:globalprep/mariculture_status/data/,mar_sustainability_score_2015a_lyr.csv,ohiprep:globalprep/mariculture_status/data/,mar_sustainability_score_2015a_lyr.csv,Mariculture sustainability score,"Mariculture sustainability and mariculture regulations indicated by the Mariculture Sustainability Index (MSI). 
+MAR,mar_sustainability_score,ohiprep:globalprep/mariculture_status/data/,mar_sustainability_score_2015a_lyr.csv,ohiprep:globalprep/mariculture_status/data/,mar_sustainability_score_2015a_lyr.csv,ohiprep:globalprep/mariculture_status/data/,mar_sustainability_score_2015a_lyr.csv,ohiprep:globalprep/mariculture_status/data/,mar_sustainability_score_2015a_lyr.csv,Resilience and sustainability for mariculture,"Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI): “fishmeal use”, “waste treatment”, and “seed and larvae origin” criteria.
 
 Data sources:
 
@@ -420,7 +420,7 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
 ",resilience score,resilience score,N: No data updates,N,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_mariculture_2013a_gf.csv,equal,global resilience data were applied equally to all regions.,NA
-resilience,msi_gov,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_msi_gov_2013a.csv,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_msi_gov_2013a.csv,,,,, MSI sustainability and regulations,"Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI). 
+resilience,msi_gov,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_msi_gov_2013a.csv,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_msi_gov_2013a.csv,,,,,Resilience and sustainability for mariculture,"Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI): “traceability” and “code of practice” measures. 
 
 Data sources:
 

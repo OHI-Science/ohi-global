@@ -29,7 +29,8 @@ write.csv(tmp, 'scores.csv', row.names=FALSE)
 ```{r layer download, warning=FALSE, message=FALSE}
 
 # download gap-filling layers
-source('../../../ohiprep/src/R/common.R')
+source('../ohiprep/src/R/common.R')
+#source('../../../ohiprep/src/R/common.R')
 
 # new paths based on host machine
 dirs = list(
@@ -783,7 +784,7 @@ sustain <- read.csv('layers/mar_sustainability_score.csv') %>%
 
 
 harvest <- read.csv('layers/mar_harvest_tonnes.csv') %>%
-  select(region_id = id, species, species_code, year, gap_fill_harvest = gap_0_fill) %>%
+  select(region_id = id, species, species_code, year, gap_fill_harvest = gap_0_fill)%>%
   mutate(gap_fill_harvest = ifelse(gap_fill_harvest == "NA_to_zero", 1, 0)) 
 
 
