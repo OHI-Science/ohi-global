@@ -508,3 +508,35 @@ ggcorr(pairs, geom = "circle", nbreaks = 5, max_size=15, low = "darkred", mid = 
 ggcorr(pairs, geom = "text", nbreaks = 5, palette = "RdYlBu", hjust = 1, label_size=7)
 ggcorr(pairs, label=TRUE, label_size=5, low = "darkred", mid = "white", high = "steelblue")
 ```
+
+Data layers analysis
+```{r data layers, include=FALSE}
+
+layers <- read.csv("data_layers_gapfill.csv")
+
+### histogram of data:
+ggplot(layers, aes(x=proportion_gf, fill=component)) +
+  geom_histogram() +
+  labs(y="Number of datasets", x="Proportion gapfilled data") +
+  scale_fill_manual(values=c("#C55F4B", "#95B8B6", "#534640")) +
+  stat_bin(binwidth=0.1) +
+  scatterTheme +
+  theme(legend.position="none")
+
+ggsave("figures/dataLayers_histogram.png", height=6, width=9)
+
+### general statistics
+mean(layers$proportion_gf)
+sum(!is.na(layers$proportion))
+sum(layers$proportion_gf > 0)/sum(!is.na(layers$proportion)) ## 0.58
+min(layers$proportion_gf) ## 0
+max(layers$proportion_gf) ## 0.92
+mean(layers$proportion_gf) ## 0.18
+sum(layers$proportion_gf < 0.05)/sum(!is.na(layers$proportion)) ## 0.47
+sum(layers$proportion_gf < 0.20)/sum(!is.na(layers$proportion)) ## 0.57
+sum(layers$proportion_gf > 0.50)/sum(!is.na(layers$proportion)) ## 0.09
+
+
+
+
+```

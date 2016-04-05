@@ -263,53 +263,69 @@ Data sources:
 - [CITES List of Contracting Parties](http://www.cites.org/eng/disc/parties/chronolo.php)
 
 ","resilience_score","resilience score","cites.csv"
-"resilience","fishing_v1","CBD survey: coastal fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","fishing_v1","Composite resilience variable","Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ","resilience score","resilience score","fishing_v1.csv"
-"resilience","fishing_v1_eez","CBD survey: ocean fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","fishing_v1_eez","Composite resilience variable","Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ","resilience score","resilience score","fishing_v1_eez.csv"
-"resilience","fishing_v2_eez","CBD survey: ocean fishing v2","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","fishing_v2_eez","Composite resilience variable","Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ","resilience score","resilience score","fishing_v2_eez.csv"
-"resilience","fishing_v3","CBD survey: coastal fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","fishing_v3","Composite resilience variable","Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ","resilience score","resilience score","fishing_v3.csv"
-"resilience","fishing_v3_eez","CBD survey: ocean fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","fishing_v3_eez","Composite resilience variable","Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ","resilience score","resilience score","fishing_v3_eez.csv"
-"resilience","habitat","CBD survey: habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","habitat","Composite resilience variable","Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ","resilience score","resilience score","habitat.csv"
-"resilience","habitat_combo","CBD survey: coastal habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","habitat_combo","Composite resilience variable","Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ","resilience score","resilience score","habitat_combo.csv"
-"resilience","habitat_combo_eez","CBD survey: ocean habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","habitat_combo_eez","Composite resilience variable","Combination of several resilience datasets including: 
 
-Data sources:
+- Mora et al. 2009. Management effectiveness of the world's marine fisheries. [PLoS Biol 7, e1000131](http://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.1000131).  
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)
+
+-  Marine Protected Areas from: United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)
 ","resilience score","resilience score","habitat_combo_eez.csv"
 "resilience","li_gci","GCI: competitiveness in achieving sustained economic prosperity","Global Competitiveness Index (GCI) scores from the World Economic Forum.
 

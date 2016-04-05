@@ -29,8 +29,8 @@ write.csv(tmp, 'scores.csv', row.names=FALSE)
 ```{r layer download, warning=FALSE, message=FALSE}
 
 # download gap-filling layers
-source('../ohiprep/src/R/common.R')
-#source('../../../ohiprep/src/R/common.R')
+#source('../ohiprep/src/R/common.R')
+source('../../../ohiprep/src/R/common.R')
 
 # new paths based on host machine
 dirs = list(
@@ -55,7 +55,8 @@ dirs = list(
   save_dir = scenarioList[[i]][['save_dir']]
 
   ## Read in the layers.csv file with paths to the data files
- g <- read.csv(sprintf("../../%s.csv", layer), stringsAsFactors = FALSE, na.strings='')    
+  ## reading archived 2015 file
+ g <- read.csv(sprintf("%s.csv", layer), stringsAsFactors = FALSE, na.strings='')    
  
     # replaces 'ohiprep' and 'neptune_data' parts of the filepath with the full file paths
     # 'ohiprep' files are located here: https://github.com/OHI-Science/ohiprep
