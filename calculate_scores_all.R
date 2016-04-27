@@ -3,7 +3,7 @@
 
 library(devtools)
 #devtools::install_github("ohi-science/ohicore@dev") # when testing changes to ohicore
-devtools::install_github("ohi-science/ohicore@master")
+#devtools::install_github("ohi-science/ohicore@master")
 library(ohicore)
 library(zoo)
 
@@ -13,8 +13,8 @@ source('../ohiprep/src/R/common.R')
 
 # new paths based on host machine
 dirs = list(
-  neptune_data  = dir_neptune_data, 
-  neptune_local = dir_neptune_local,
+  neptune_data  = dir_M, 
+  neptune_local = dir_M,
   ohiprep       = '../ohiprep',
   ohicore       = '../ohicore')
 
