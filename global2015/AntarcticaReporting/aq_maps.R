@@ -18,7 +18,7 @@ data <- read.csv('antarctica2015/scores.csv') %>%
   select(-dimension, sp_id=region_id) %>%
   mutate(sp_id = as.character(sp_id))
 
-antarctica <- readOGR(dsn='/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'antarctica_stereographic')
+antarctica <- readOGR(dsn='/home/shares/ohi/git-annex/Global/NCEAS-Regions_v2014/data', layer= 'antarctica_stereographic')
 plot(antarctica)
 text(getSpPPolygonsLabptSlots(antarctica), labels=antarctica@data$sp_id, cex=0.8)
 
