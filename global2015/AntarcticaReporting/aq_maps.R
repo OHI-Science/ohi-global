@@ -88,7 +88,6 @@ pressures <-  c("chemical pollution" = "po_chemicals",
                 "fisheries, high bycatch" = 'fp_com_hb', 
                 "sea surface temperature" = 'cc_sst', 
                 "ocean acidification" = 'cc_acid', 
-                "sea level rise" = 'cc_slr', 
                 "sea ice loss" = 'hd_sea_ice')
 
 data <- data.frame()
