@@ -400,6 +400,15 @@ data$goal_name <- factor(data$goal_name, levels = goal_names$goal_name)
 
 myPalette <- colorRampPalette(MyColor)
 
+ggplot(data, aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
+  geom_tile() +
+  scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
+  theme(axis.text.x  = element_text(angle=35, vjust=1, hjust=1, size=20)) +
+  ylab("") + 
+  xlab("")
+ggsave("figures_tables/carpetPlot_all.tiff", width=15, height=25, units="in")
+
+
 ## plot over 3 pages:
 tmp <- data %>%
   select(region, meanIndex) %>%
@@ -409,14 +418,6 @@ tmp <- data %>%
 set1 <- tmp$region[1:73]
 set2 <- tmp$region[74:(73+73)]
 set3 <- tmp$region[147:(length(tmp$region))]
-
-ggplot(data, aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
-  geom_tile() +
-  scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
-  theme(axis.text.x  = element_text(angle=35, vjust=1, hjust=1)) +
-  ylab("") + 
-  xlab("")
-ggsave("figures_tables/carpetPlot_all.tiff", width=15, height=25, units="in")
 
 
 ggplot(subset(data, region %in% set1), aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
