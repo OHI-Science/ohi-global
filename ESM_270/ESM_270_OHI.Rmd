@@ -1,0 +1,59 @@
+---
+title: "ESM 270 Ocean Health Index Lab"
+output: html_document
+---
+
+# Introduction
+
+The Ocean Health Index (OHI) framework measures health of coupled human-ocean ecosystems in different contexts by accommodating differences in local environmental characteristics, cultural priorities, and information availability and quality. The OHI framework assesses a suite of benefits the ocean provides humans using the best available information. It distills complex socio-ecological relationships and context-specific targets into scores that can be repeated so that management can track and respond through time. 
+
+In this assignment you will explore how Ocean Health Index (OHI) scores would respond to 1) changing how goals are weighted, and 2) changing the reference point of a goal. You will be using the OHI Toolbox software
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, root.dir = 'eez2015')
+```
+
+# Install the OHI package `ohicore`
+
+Run the following code to install the OHI package `ohicore`. 
+
+If you have any problems, check that R and RStudio are up-to-date. The most recent version of R is 3.3 and RStudio is 0.99. If needed, update R [here](Find the latest version at http://cran.r-project.org) and RStudio [here](http://www.rstudio.com/products/rstudio/download). 
+
+```{r install ohicore}
+
+# remove old packages
+for (p in c('ohicore', 'ohigui', 'rCharts')){
+  if (p %in% rownames(installed.packages())){
+    lib = subset(as.data.frame(installed.packages()), Package==p, LibPath, drop=T)
+    remove.packages(p, lib)
+  }
+}
+
+# install dependencies
+for (p in c('devtools', 'zoo', 'psych', 'tidyr')){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+    require(p, character.only=T)
+  }
+}
+
+# install packages
+install_github('ohi-science/rCharts')
+install_github('ohi-science/ohicore')
+library(ohicore)
+
+```
+
+# Work within the repo
+
+
+```{r tailored repo}
+
+# our working directory is ohi-global. 
+setwd('eez2015')
+source('calculate_scores.r')
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
