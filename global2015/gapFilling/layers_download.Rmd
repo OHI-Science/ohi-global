@@ -1,0 +1,96 @@
+---
+title: "Downloading gapfilling data layers from OHI 2015 analysis"
+author: "Mel"
+date: "9/4/2015"
+output: html_document
+---
+
+Based on the paths in "layers_eez.csv", gapfilling datasets are hunted down and placed in the ohi-global/global2015/gapFilling/layers folder.  In most cases, the gapfilling data will be located in the same location as the actual data, with a _gf extension.
+
+This code should be run as a first step if there were changes in the gapfilling data.
+
+```{r layer download, warning=FALSE, message=FALSE}
+
+# load libraries
+library(tidyr)
+library(dplyr)
+
+setwd('/home/frazier/ohi-global/global2015/gapFilling') # comment this out when knitting!!!
+
+# download gap-filling layers
+#source('../ohiprep/src/R/common.R')
+source('../../../ohiprep/src/R/common.R')
+
+# new paths based on host machine
+dirs = list(
+  neptune_data  = dir_neptune_data, 
+  neptune_local = dir_neptune_local,
+  ohiprep       = '../../../ohiprep',
+  ohicore       = '../../../ohicore')
+
+ scenarioList = list(
+   eez2015     = list(
+    layer   = 'layers_eez',
+    fld_dir      = 'dir_gap_fill_2015',
+    fld_fn       = 'fn_gap_fill_2015',
+    save_dir     = 'global2015'))
+  
+  
+  for (i in length(scenarioList)){ #i=1
+  scenario   = names(scenarioList)[[i]]
+  fld_dir    = scenarioList[[i]][['fld_dir']]
+  fld_fn     = scenarioList[[i]][['fld_fn']]
+  layer = scenarioList[[i]][['layer']]
+  save_dir = scenarioList[[i]][['save_dir']]
+
+  ## Read in the layers.csv file with paths to the data files
+  ## reading archived 2015 file
+ g <- read.csv(sprintf("%s.csv", layer), stringsAsFactors = FALSE, na.strings='')    
+ 
+    # replaces 'ohiprep' and 'neptune_data' parts of the filepath with the full file paths
+    # 'ohiprep' files are located here: https://github.com/OHI-Science/ohiprep
+    # 'neptune_data' files are located on the NCEAS Neptune server
+    g$dir_in = sapply(
+      str_split(g[[fld_dir]], ':'),   
+      function(x){ sprintf('%s/%s', dirs[x[1]], x[2])})
+    
+    g$fn_in = g[[fld_fn]]
+    
+    # filters the data and determines whether the file is available, saves a copy to tmp folder
+    lyrs = g %>%
+      filter(ingest==T) %>%
+      mutate(
+        path_in        = file.path(dir_in, fn_in),
+        path_in_exists = file.exists(path_in),
+        filename = sprintf('%s.csv', layer),
+        path_out = sprintf('layers/%s', filename)) %>%
+      select(
+        targets, layer, name, description, 
+        fld_value, units,
+        path_in, path_in_exists, filename, path_out) %>%
+      arrange(targets, layer) %>%
+      filter(path_in != "NULL/NA/NA")
+    
+    # checks that all data layers are available based on file paths 
+    if (nrow(filter(lyrs, !path_in_exists)) != 0){
+      message('The following layers paths do not exist:\n')
+      print(filter(lyrs, !path_in_exists) %>% select(layer, path_in), row.names=F)
+      stop('Data cannot be found - check file paths/names in layers.csv' )
+    }
+    
+    # copy layers into specific scenario / layers file 
+    for (j in 1:nrow(lyrs)){ # j=4
+      stopifnot(file.copy(lyrs$path_in[j], lyrs$path_out[j], overwrite=T))
+    }
+    
+    # delete extraneous files
+    files_extra = setdiff(list.files(sprintf('%s/gapFilling/layers', save_dir)), as.character(lyrs$filename))
+    unlink(sprintf('%s/gapFilling/layers', save_dir, files_extra))
+    
+    # layers registry (don't think there is a need for this here, but keeping code in case)
+    # write.csv(select(lyrs, -path_in, -path_in_exists, -path_out), 'layers.csv', row.names=F, na='')
+
+}
+
+```
+

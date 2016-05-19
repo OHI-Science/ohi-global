@@ -151,7 +151,7 @@ Data sources:
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_offshore3nm.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,59446.5,FALSE,,,,221,FALSE
+- United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_offshore3nm.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,59446.5,FALSE,,,,221,FALSE
 "MAR","mar_coastalpopn_inland25mi","Coastal population inland 25 miles","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -330,67 +330,46 @@ Data sources:
 **Plastic pollution in the worldâs oceans: more than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea**. _PLoS ONE_ 9:e111913. [doi:10.1371/journal.pone.0111913](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0111913). 
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash) ","pressure_score","pressure score","po_trash.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0223096329122635,0.843154478466252,TRUE,,,,221,FALSE
 "pressures HAB","hab_presence","Habitat presence","Modeled combined habitat presence","boolean","boolean","hab_presence.csv","rgn_id",,"habitat",,"boolean",,TRUE,,,1,1,TRUE,,,,221,FALSE
-"resilience","alien_species","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
+"resilience","fp_habitat","CBD survey: habitat","Convention on Biological Diversity (Habitat related regulations and protections)
 
-Data sources:
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","resilience score","resilience score","fp_habitat.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.138087289287079,1,TRUE,,,,221,FALSE
+"resilience","fp_mora","CBD survey: fishing","Convention on Biological Diversity (Fishing related regulations and protections)
 
-- Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)
-","resilience score","resilience score","alien_species.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
-"resilience","cites","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","value","resilience score","fp_mora.csv","rgn_id",,,,"value",,TRUE,,,0,0.814394256522431,TRUE,,,,221,FALSE
+"resilience","fp_mora_artisanal","CBD survey: artisanal fishing","Convention on Biological Diversity (Artisanal fishing related regulations and protections)
+
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","value","resilience score","fp_mora_artisanal.csv","rgn_id",,,,"value",,TRUE,,,0,0.854,TRUE,,,,221,FALSE
+"resilience","fp_mpa_coast","Protected marine area","LSP scores","resilience.score","resilience score","fp_mpa_coast.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
+"resilience","fp_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","fp_mpa_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,1.46999542695242e-05,1,TRUE,,,,221,FALSE
+"resilience","g_cites","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
 
 Data sources:
 
 - [CITES List of Contracting Parties](http://www.cites.org/eng/disc/parties/chronolo.php)
 
-","resilience_score","resilience score","cites.csv","rgn_id",,,,"resilience_score",,TRUE,,,0,1,TRUE,,,,221,FALSE
-"resilience","fishing_v1","CBD survey: coastal fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+","resilience_score","resilience score","g_cites.csv","rgn_id",,,,"resilience_score",,TRUE,,,0,1,TRUE,,,,221,FALSE
+"resilience","g_mariculture","CBD survey: mariculture","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","fishing_v1.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.257163600288611,0.898860529902194,TRUE,,,,221,FALSE
-"resilience","fishing_v1_eez","CBD survey: ocean fishing v1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+","resilience score","resilience score","g_mariculture.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.054428393263486,1,TRUE,,,,221,FALSE
+"resilience","g_msi_gov"," MSI sustainability and regulations","Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI). 
+
+Data sources:
+
+- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","resilience score","resilience score","g_msi_gov.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.1,0.8576923077,TRUE,,,,221,FALSE
+"resilience","g_tourism","CBD survey: tourism","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","fishing_v1_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.257163600288611,0.898860529902194,TRUE,,,,221,FALSE
-"resilience","fishing_v2_eez","CBD survey: ocean fishing v2","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+","resilience score","resilience score","g_tourism.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
+"resilience","hd_habitat","CBD survey: habitat","Convention on Biological Diversity (Habitat related regulations and protections)
 
-Data sources:
-
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","fishing_v2_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.295372700216458,0.848077005170792,TRUE,,,,221,FALSE
-"resilience","fishing_v3","CBD survey: coastal fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
-
-Data sources:
-
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","fishing_v3.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.270589142343944,0.902,TRUE,,,,221,FALSE
-"resilience","fishing_v3_eez","CBD survey: ocean fishing v3","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
-
-Data sources:
-
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","fishing_v3_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.270589142343944,0.902,TRUE,,,,221,FALSE
-"resilience","habitat","CBD survey: habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
-
-Data sources:
-
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","habitat.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.138087289287079,1,TRUE,,,,221,FALSE
-"resilience","habitat_combo","CBD survey: coastal habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
-
-Data sources:
-
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","habitat_combo.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.129767294214749,1,TRUE,,,,221,FALSE
-"resilience","habitat_combo_eez","CBD survey: ocean habitat","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
-
-Data sources:
-
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","habitat_combo_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.129767294214749,1,TRUE,,,,221,FALSE
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","resilience score","resilience score","hd_habitat.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.138087289287079,1,TRUE,,,,221,FALSE
+"resilience","hd_mpa_coast","Protected marine area","LSP scores","resilience.score","resilience score","hd_mpa_coast.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
+"resilience","hd_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","hd_mpa_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,1.46999542695242e-05,1,TRUE,,,,221,FALSE
 "resilience","li_gci","GCI: competitiveness in achieving sustained economic prosperity","Global Competitiveness Index (GCI) scores from the World Economic Forum.
 
 Data sources:
@@ -398,41 +377,29 @@ Data sources:
 - [World Economic Forum](http://www.weforum.org/issues/global-competitiveness)
 ","score","resilience score","li_gci.csv","rgn_id",,,,"score",,TRUE,,,0.416013021142857,0.801893491285714,TRUE,,,,221,FALSE
 "resilience","li_sector_evenness","Sector evenness as a measure of economic diversity","Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.","resilience score","resilience score","li_sector_evenness.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,0.997518269205,TRUE,,,,221,FALSE
-"resilience","mariculture","CBD survey: mariculture","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","po_water","CBD survey: water","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","mariculture.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.054428393263486,1,TRUE,,,,221,FALSE
-"resilience","msi_gov"," MSI sustainability and regulations","Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI). 
+","resilience score","resilience score","po_water.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
+"resilience","sp_alien_species","CBD survey: alien species","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
-- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","resilience score","resilience score","msi_gov.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.1,0.8576923077,TRUE,,,,221,FALSE
-"resilience","species_diversity","Ocean ecological integrity","Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
-
-Data sources:
-
-- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","species_diversity.csv","rgn_id",,,,"score",,TRUE,,,0.737897,0.953823,TRUE,,,,221,FALSE
+- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)","resilience score","resilience score","sp_alien_species.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
 "resilience","species_diversity_3nm","Coastal ecological integrity","Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
 ","score","resilience score","species_diversity_3nm.csv","rgn_id",,,,"score",,TRUE,,,0.786685,0.957274,TRUE,,,,221,FALSE
-"resilience","tourism","CBD survey: tourism","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+"resilience","species_diversity_eez","Ocean ecological integrity","Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
 
 Data sources:
 
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","tourism.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
-"resilience","water","CBD survey: water","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
-
-Data sources:
-
-- [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
-","resilience score","resilience score","water.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
+- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
+","score","resilience score","species_diversity_eez.csv","rgn_id",,,,"score",,TRUE,,,0.737897,0.953823,TRUE,,,,221,FALSE
 "resilience","wgi_all","Strength of governance indicated with the WGI","World Governance Indicators (WGI) six combined scores.
 
 Data sources:

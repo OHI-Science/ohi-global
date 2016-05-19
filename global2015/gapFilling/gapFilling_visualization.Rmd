@@ -32,19 +32,19 @@ scores <- read.csv('scores.csv') %>%
   left_join(regions)
 
 # some organization of data
-goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+goals <- c('Index', 'AO', 'BD', 'HAB', 'SPP', 'CP', 'CS', 'CW', 'LE', 'ECO','LIV', 'FP', 'FIS',  'MAR',  'NP','SP', 'ICO','LSP','TR')
 goal_names <- data.frame(goal = goals, 
-                          goal_name = c("Index", "Artisanal Fishing Opportunities", "Species", "Biodiversity", "Habitats",
-                                        "Coastal Protection", "Carbon Storage", "Clean Waters", "Economies", "Coastal Livelihoods and Economies",
-                                        "Livelihoods", "Fisheries", "Food Provision", "Mariculture", "Iconic Species", "Sense of Place",
-                                        "Lasting Special Places", "Natural Products", "Tourism and Recreation"))
+                          goal_name = c("Index", "Artisanal Fishing Opportunities", "Biodiversity", "Habitats", "Species", 
+                                        "Coastal Protection", "Carbon Storage", "Clean Waters", "Coastal Livelihoods and Economies", "Economies", 
+                                        "Livelihoods", "Food Provision", "Fisheries", "Mariculture", "Natural Products",  "Sense of Place", "Iconic Species",
+                                        "Lasting Special Places",  "Tourism and Recreation"))
 
 
 ```
 
 Maps of scores
 
-```{r, echo=FALSE}
+```{r maps, echo=FALSE}
 
 ## read in map data:
 p <- readOGR(dsn='/var/data/ohi/model/GL-NCEAS-OceanRegions_v2013a/data', layer= 'rgn_ocean_cntry_mol')
@@ -55,7 +55,7 @@ land  <-  p[!is.na(p@data$ISO_3digit) & p@data$rgn_id==0,]
 rgnOHI <-  p[p@data$rgn_id>0,]
 
 data <- scores %>%
-  filter(dimension == "status") %>%
+  filter(dimension == "score") %>%
   filter(region_id <= 250) %>%
   filter(region_id != 0) %>%
   select(code=region_id, goal, score) %>%
@@ -85,7 +85,7 @@ for (i in 1:length(mapCols)){
   v= PlotData[match(rgnOHI@data$rgn_id, row.names(PlotData)), fld]    
   maps = setNames(list(v), fld)  
   
-  fig = sprintf('figures/maps/global_map_mol_%s.png', fld)
+  fig = sprintf('figures_tables/maps/global_map_mol_%s.png', fld)
   
   col.brks = seq(0,100,length.out=11)
   
@@ -153,7 +153,7 @@ conf <- conf %>%
   arrange(order_hierarchy)
 
 data <- scores %>%
-  filter(dimension == "status") %>%   # focus only on score data
+  filter(dimension == "score") %>%   # focus only on score data
   filter(region_id <= 250) %>%       # get rid of high seas regions
   filter(region_id != 213) %>%
   mutate(region = ifelse(region_id == 0, "GLOBAL", as.character(region))) %>%
@@ -189,7 +189,7 @@ if(colorScheme == "new"){
       
   res=150
    ## start plot
-   png(sprintf('figures/flowerPlots/flower_%s.png', rgn_name),
+   png(sprintf('figures_tables/flowerPlots/flower_%s.png', rgn_name),
           width=res*6, height=res*6, bg = "transparent")
 #par(oma=c(0,0,3,0), mar=c(6, 4, 0, 2) + 0.1)
    PlotFlower(main = "% gapfilled",
@@ -228,7 +228,7 @@ if(colorScheme == "new"){
 #                    is.na(g_x$value), 
 #                    paste(g_x$name_flower, '-', sep='\n'), 
 #                    paste(as.character(g_x$name_flower), round(g_x$value), sep='\n')),
-#                  center=round(x),
+#                  cewarnter=round(x),
 #                 max.length = 100, disk=0.4, label.cex=0.5, label.offset=0.19, cex=1.2, cex.main=1.2, uin=1)
   }
   
@@ -239,7 +239,7 @@ if(colorScheme == "new"){
 ```{r score table, include=FALSE}
 
 data <- scores %>%
-  filter(dimension == "status") %>%   # focus only on score data
+  filter(dimension == "score") %>%   # focus only on score data
   filter(region_id <= 250) %>%       # get rid of high seas regions
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
   mutate(country = ifelse(is.na(region), "eez_weighted_avg", as.character(region))) %>%
@@ -255,12 +255,17 @@ data <- data %>%
   filter(region != 'eez_weighted_avg')
 
 data <- rbind(index, data) %>%
-    select(dimension, region, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+    select(dimension, region, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
 
 m <- datatable(data,
           caption = '2015 OHI scores')
 
 saveWidget(m, file="gapFillingTable.html")
+
+data <- data %>%
+  select(-dimension, -region_id)
+
+write.csv(data, "figures_tables/S3 Table.csv", row.names=FALSE)
 
 ```
 
@@ -292,7 +297,7 @@ population <- read.csv('../../eez2015/layers/le_popn.csv') %>%
   arrange(region_id)
 
 data <- scores %>%
-  filter(dimension == "status") %>%   # focus only on score data
+  filter(dimension == "score") %>%   # focus only on score data
   filter(region_id <= 250) %>%       # get rid of high seas regions
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
   filter(region_id != 0) %>%
@@ -322,7 +327,7 @@ ggplot(data, aes(y=score, x=log(area), color=territory)) +
   annotate('text', label="Territories", x= 11, y=55, color='gray45', size=rel(7)) +
   annotate('text', label="Countries", x= 5, y=20, color='orangered', size=rel(7))
   
-ggsave('figures/gap_filled_model.png', width=8, height=6)
+ggsave('figures_tables/gap_filled_model.png', width=8, height=6)
 
 mod1 <- lm(score ~ log(area) + territory, data=data)
 summary(mod1)
@@ -340,27 +345,34 @@ col.brks <-  c(0, 10, 20, 40, 60, 70, 80, 85, 90, 95, 100)
 MyColor <- palette[col.brks] 
 
 
-tmp <- subset(scores, goal=="Index" & dimension == "status" & region_id != 0) %>%
+tmp <- subset(scores, goal=="Index" & dimension == "score" & region_id != 0) %>%
   mutate(colors = cut(score, breaks=seq(0, 100, by=10), include.lowest=TRUE, 
-                       labels=MyColor))
+                       labels=MyColor)) %>%
+  filter(region_id != 213)
 mean(tmp$score, na.rm=TRUE) # mean is 23
+sum(tmp$score <= 5)
+sum(tmp$score <= 10)
+filter(tmp, score >= 50)
+
+dim(tmp[tmp$score <= 5, ])
+dim(tmp[tmp$score <= 10, ])
+tmp[tmp$score > 60, ]
 
 
 ggplot(tmp, aes(x=score, fill=colors)) +
-  geom_histogram(color="lightgray") + 
+  geom_histogram(color="lightgray", bins=13) + 
   labs(y="Number of regions", x="Percent gapfilled") +
   scale_fill_manual(values=c(MyColor), guide=FALSE) +
   scatterTheme
-ggsave('figures/index_histogram.png', height=6, width=8)
+ggsave('figures_tables/index_histogram.png', height=6, width=8)
 
 scores$goal <- factor(scores$goal,levels=goals)
 
-ggplot(subset(scores, goal!="Index" & dimension=="status" & region_id != 0), aes(x=score)) +
+ggplot(subset(scores, goal!="Index" & dimension=="score" & region_id != 0), aes(x=score)) +
   geom_histogram(fill="orange", color="darkgray") + 
   facet_wrap('goal') +
   labs(y="# countries", x="% gap-filling") +
   theme_bw()
-ggsave('figures/goals_histogram.png')
 
 
 ```
@@ -373,7 +385,7 @@ col.brks <-  c(0, 10, 20, 40, 60, 70, 80, 85, 90, 95, 100)
 MyColor <- palette[col.brks] 
 
 data <- scores %>%
-  filter(dimension == "status") %>%   # focus only on score data
+  filter(dimension == "score") %>%   # focus only on score data
   filter(region_id <= 250) %>%       # get rid of high seas regions
   filter(region_id != 213)  %>%
   mutate(score = round(score, 0)) %>%
@@ -388,6 +400,15 @@ data$goal_name <- factor(data$goal_name, levels = goal_names$goal_name)
 
 myPalette <- colorRampPalette(MyColor)
 
+ggplot(data, aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
+  geom_tile() +
+  scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
+  theme(axis.text.x  = element_text(angle=35, vjust=1, hjust=1, size=20)) +
+  ylab("") + 
+  xlab("")
+ggsave("figures_tables/carpetPlot_all.tiff", width=15, height=25, units="in")
+
+
 ## plot over 3 pages:
 tmp <- data %>%
   select(region, meanIndex) %>%
@@ -397,6 +418,7 @@ tmp <- data %>%
 set1 <- tmp$region[1:73]
 set2 <- tmp$region[74:(73+73)]
 set3 <- tmp$region[147:(length(tmp$region))]
+
 
 ggplot(subset(data, region %in% set1), aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
   geom_tile() +
@@ -421,6 +443,105 @@ ggplot(subset(data, region %in% set3), aes(y=factor(region, levels=unique((regio
   ylab("") + 
   xlab("")
 ggsave("figures/carpetPlot_low.png", width=10, height=12.5, units="in")
+
+
+
+```
+
+
+```{r stats, include=FALSE}
+goalMeans <- scores %>%
+  filter(!region_id %in% c(0, 213)) %>%
+  filter(dimension == "score") %>%
+  group_by(goal) %>%
+  summarize(score_average = mean(score, na.rm=TRUE),
+            score_sd      = sd(score, na.rm=TRUE)) %>%
+  mutate(goal = factor(goal, levels=goals)) %>%
+  arrange(goal) %>%
+  data.frame()
+
+goalMeans
+
+
+#weighted averages and sd
+
+library(SDMTools)  # need a special package for weighted sd
+citation('SDMTools')
+
+area <- read.csv('../../eez2015/layers/rgn_area.csv') %>%
+  select(region_id = rgn_id, area = area_km2)
+
+goalWmeans <- scores %>%
+  left_join(area) %>%  
+  filter(!region_id %in% c(0, 213)) %>%
+  filter(dimension == "score") %>%
+  group_by(goal) %>%
+  summarize(score_weighted_average = weighted.mean(score, area, na.rm=TRUE),
+            score_weighted_sd      = wt.sd(score, area)) %>%
+    mutate(goal = factor(goal, levels=goals)) %>%
+  arrange(goal) %>%
+  data.frame()
+goalWmeans
+
+## Next do weighted mean and sd
+
+```
+
+```{r pairwise plot, include=FALSE}
+
+library(GGally)
+pairs <- scores %>%
+  filter(!region_id %in% c(0, 213)) %>%
+  filter(dimension == "score") %>%
+  select(goal, region_id, score)
+
+pairs <- spread(pairs, goal, score) %>%
+  select(Index, AO, BD, CP, CS, CW, FP, NP, SP, TR)
+
+plots <- ggpairs(pairs,
+        lower = list(
+          continuous = "smooth"))
+plot2 <- plots + theme_bw()
+plot2
+
+library(Hmisc)
+rcorr(as.matrix(pairs), type="pearson") # type can be pearson or spearman
+
+cor(pairs, use="pairwise.complete.obs", method="pearson") 
+
+## Possible figures
+ggcorr(pairs, geom = "circle", nbreaks = 5, max_size=15, low = "darkred", mid = "white", high = "steelblue", label=TRUE, label_color="white")
+ggcorr(pairs, geom = "text", nbreaks = 5, palette = "RdYlBu", hjust = 1, label_size=7)
+ggcorr(pairs, label=TRUE, label_size=5, low = "darkred", mid = "white", high = "steelblue")
+```
+
+Data layers analysis
+```{r data layers, include=FALSE}
+
+layers <- read.csv("layers_summary.csv")
+
+### histogram of data:
+ggplot(layers, aes(x=proportion_gf*100, fill=component)) +
+  geom_histogram() +
+  labs(y="Number of datasets", x="Percent gapfilled") +
+  scale_fill_manual(values=c("#C55F4B", "#95B8B6", "#534640")) +
+  stat_bin(binwidth=10) +
+  scatterTheme +
+  theme(legend.position="none")
+
+ggsave("figures_tables/dataLayers_histogram.png", height=6, width=9)
+
+### general statistics
+mean(layers$proportion_gf)
+sum(!is.na(layers$proportion))
+sum(layers$proportion_gf > 0)/sum(!is.na(layers$proportion)) ## 0.58
+min(layers$proportion_gf) ## 0
+max(layers$proportion_gf) ## 0.92
+mean(layers$proportion_gf) ## 0.18
+sum(layers$proportion_gf < 0.05)/sum(!is.na(layers$proportion)) ## 0.47
+sum(layers$proportion_gf < 0.20)/sum(!is.na(layers$proportion)) ## 0.57
+sum(layers$proportion_gf > 0.50)/sum(!is.na(layers$proportion)) ## 0.09
+
 
 
 

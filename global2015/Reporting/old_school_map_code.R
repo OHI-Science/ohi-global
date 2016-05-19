@@ -40,7 +40,7 @@ mapCols <- 2:20
 ## 3. plots the maps and saves them to the "fig" file in the working directory 
 
 for (i in 1:length(mapCols)){ 
-  #i <- 1
+  #i <- 13
   s=mapCols[i]
   # Index map
   fld = names(PlotData)[s]
