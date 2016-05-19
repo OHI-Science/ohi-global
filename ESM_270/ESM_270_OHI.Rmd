@@ -11,8 +11,24 @@ In this assignment you will explore how Ocean Health Index (OHI) scores would re
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, root.dir = 'eez2015')
+knitr::opts_chunk$set(echo = TRUE, root.dir = 'ESM_270')
 ```
+
+# Download/Clone the ohi-global repo 
+
+url, 
+save on your computer. 
+Navigate to where you saved the `ohi-global` repo and double-click the `ohi-global.Rproj` file. This will open RStudio. 
+Within the RStudio file directory pane, navigate to the `ESM_270 folder`. 
+TODO
+
+# Explore `ohi-global/ESM_270`. 
+
+TODO: here's a quick intro to what's inside. 
+
+Since we're in RStudio with a `.Rproj` file, our current working directory is `ohi-global`, no matter where you saved it on your computer. So to set the working directory to the ESM_270 folder, we can simply type: 
+
+```{r setwd, eval=FALSE}
 
 # Install the OHI package `ohicore`
 
@@ -42,18 +58,30 @@ for (p in c('devtools', 'zoo', 'psych', 'tidyr')){
 install_github('ohi-science/rCharts')
 install_github('ohi-science/ohicore')
 library(ohicore)
+library(tidyr)
 
 ```
 
-# Work within the repo
+# Change goal weightings
 
+TODO
+
+# Calculate scores
 
 ```{r tailored repo}
 
 # our working directory is ohi-global. 
-setwd('eez2015')
-source('calculate_scores.r')
+source('ESM_270/calculate_scores.r')
 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+# Create flower plots
+
+```{r}
+
+# Choose a region to plot TODO
+
+rgn_id = 0 
+source('plot_flowers.r')
+```
+

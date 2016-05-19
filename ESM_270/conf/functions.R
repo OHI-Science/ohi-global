@@ -330,29 +330,6 @@ FP = function(layers, scores){
     mutate(w_MAR = 1 - w_FIS) %>%
     mutate(weight = ifelse(goal == "FIS", w_FIS, w_MAR)) 
     
-
-    ## Some warning messages due to potential mismatches in data: 
-      # NA score but there is a weight
-    tmp <- filter(s, goal=='FIS' & is.na(score) & (!is.na(w_FIS) & w_FIS!=0) & dimension == "score")
-    if(dim(tmp)[1]>0){
-        warning(paste0("Check: these regions have a FIS weight but no score: ", 
-                             paste(as.character(tmp$region_id), collapse = ", ")))}
-    
-    tmp <- filter(s, goal=='MAR' & is.na(score) & (!is.na(w_MAR) & w_MAR!=0) & dimension == "score")
-    if(dim(tmp)[1]>0){
-      warning(paste0("Check: these regions have a MAR weight but no score: ", 
-                     paste(as.character(tmp$region_id), collapse = ", ")))}
-   
-      # score, but the weight is NA or 0
-     tmp <- filter(s, goal=='FIS' & (!is.na(score) & score > 0) & (is.na(w_FIS) | w_FIS==0) & dimension == "score" & region_id !=0)
-    if(dim(tmp)[1]>0){
-      warning(paste0("Check: these regions have a FIS score but no weight: ", 
-                     paste(as.character(tmp$region_id), collapse = ", ")))}
-    
-     tmp <- filter(s, goal=='MAR' & (!is.na(score) & score > 0) & (is.na(w_MAR) | w_MAR==0) & dimension == "score" & region_id !=0)
-     if(dim(tmp)[1]>0){
-       warning(paste0("Check: these regions have a MAR score but no weight: ", 
-                      paste(as.character(tmp$region_id), collapse = ", ")))}
      
 s <- s  %>%
   group_by(region_id, dimension) %>%
