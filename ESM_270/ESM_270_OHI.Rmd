@@ -47,7 +47,7 @@ for (p in c('ohicore', 'ohigui', 'rCharts')){
 }
 
 # install dependencies
-for (p in c('devtools', 'zoo', 'psych', 'tidyr')){
+for (p in c('devtools', 'dplyr', 'tidyr', 'readr', 'zoo', 'psych')){
   if (!require(p, character.only=T)){
     install.packages(p)
     require(p, character.only=T)
@@ -58,7 +58,9 @@ for (p in c('devtools', 'zoo', 'psych', 'tidyr')){
 install_github('ohi-science/rCharts')
 install_github('ohi-science/ohicore')
 library(ohicore)
+library(dplyr)
 library(tidyr)
+library(readr)
 
 ```
 
@@ -68,20 +70,26 @@ TODO
 
 # Calculate scores
 
-```{r tailored repo}
+```{r setwd, eval=FALSE}
 
-# our working directory is ohi-global. 
-source('ESM_270/calculate_scores.r')
+setwd('ESM_270')
 
 ```
 
 # Create flower plots
 
 ```{r}
+# our working directory is ohi-global/ESM_270. 
+source('calculate_scores.r')
+
 
 # Choose a region to plot TODO
 
-rgn_id = 0 
-source('plot_flowers.r')
+rgns_to_plot = c(1, 5)
+source('PlotFlowerMulti.r')
+PlotFlowerMulti(scores       = read.csv('scores.csv'), 
+                rgns_to_plot = rgns_to_plot)
+
+
 ```
 

@@ -1,9 +1,9 @@
 ## Overview
 ## calculate_scores.R calculates scores for all OHI dimensions (status, trend, pressures, resilience, likely future state, and overall Index scores).
 
+library(tidyr)
+library(stringr)
 
-## set working directory 
-setwd('ESM_270')
 
 # load scenario configuration. "Conf" is an ohicore function that loads all materials from "conf" folder
 conf = Conf('conf')
