@@ -1,16 +1,18 @@
 ## PlotFlowerMulti.r
 
 library(dplyr) #install.packages('dplyr')
+# TODO: change to read_csv
 
 PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # dataframe with regions, goals, dimensions, scores
                             rgns_to_plot, # vector of regions to plot. Can be single many, eg 1 or c(1, 5)
                             rgn_names       = read.csv('layers/rgn_global.csv'),
+                            conf            = read.csv('conf/goals.csv'),
                             fld_value_id    = 'region_id', # header of scores variable; likely 'rgn_id' or 'region_id'
                             fld_value_score = 'score', # header of scores variable; likely 'score' or 'value'
                             dim_choice      = 'score', # header of scores variable; likely "future", "pressures", "resilience", "score", "status", "trend"
                             print_fig       = FALSE,
                             save_fig        = TRUE,
-                            path_figures    = 'reports/figures',
+                            name_fig        = 'reports/figures/flower',
                             # scale_label     = 'score',
                             # scale_limits    = c(0, 100),
                             overwrite       = TRUE, 
@@ -34,13 +36,13 @@ PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # datafram
   
   
   ## weights for FIS vs. MAR 
-  ##TODO: add this as variable to read in
-  weights_fis <- read_csv(sprintf("layers/fp_wildcaught_weight.csv")) %>%
-    rbind(data.frame(rgn_id=0, w_fis=mean(weights$w_fis)))
-  
+  # ##TODO: add this as variable to read in
+  # weights_fis <- read_csv(sprintf("layers/fp_wildcaught_weight.csv")) %>%
+  #   rbind(data.frame(rgn_id=0, w_fis=mean(weights$w_fis)))
+  # 
   
   ## getting the goals that will be plotted:
-  conf <-  read_csv("conf/goals.csv") 
+  # conf <-  read_csv("conf/goals.csv") # temporarily putting this in the function call 
   
   goals_supra = na.omit(unique(conf$parent)) # goals comprised of subgoals, not included in plot
   
@@ -82,11 +84,7 @@ PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # datafram
       inner_join(conf, by="goal") %>%
       arrange(order_color)
     
-    score_Index <-  subset(scores, region_id==rgn_id & goal == 'Index', score, drop=T)
-    
-    
-    ## TODO: can delete this because no 'Index', but double check. 
-    #x <-  subset(data, region_id==rgn_id & goal == 'Index', value, drop=T)
+    score_Index <-  subset(scores, region_id==r & goal == 'Index', score, drop=T)
     
     # get colors for aster, based on 10 colors, but extended to all goals. subselect for goals.wts
     if(color_scheme == "new"){
@@ -100,22 +98,26 @@ PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # datafram
       # scores_r$cols.goals.all = colorRampPalette(RColorBrewer::brewer.pal(11, 'Spectral'), space='Lab')(length(goals.all))
     }
     
-    # weights after correcting for fisheries/mariculture contributions
-    scores_r$weight[scores_r$goal == "FIS"] <-   weights$w_fis[weights$rgn_id == rgn_id]
-    scores_r$weight[scores_r$goal == "MAR"] <- 1 - weights$w_fis[weights$rgn_id == rgn_id]
+    # #TODO: fix this weights after correcting for fisheries/mariculture contributions
+    # scores_r$weight[scores_r$goal == "FIS"] <-   weights$w_fis[weights$rgn_id == rgn_id]
+    # scores_r$weight[scores_r$goal == "MAR"] <- 1 - weights$w_fis[weights$rgn_id == rgn_id]
     
     ## flower plot ----
     
-   # fig_pdf = sprintf('%s/flowerPlots/flower_%s.pdf', path_figures, gsub(' ','_', rgn_name))
-    fig_png = sprintf('%s/flower_%s.png', path_figures, gsub(' ','_', rgn_name))
+    ## fig name 
+    fig_png = sprintf('%s_%s.png', name_fig, gsub(' ','_', rgn_name))
+   
     res=72
     if (overwrite | !file.exists(fig_png)){
-      png(fig_png, width=res*7, height=res*7, bg = "transparent")
+       png(fig_png, width=res7, height=res*7, bg = "transparent")
+      
+      
       # TODO: also a pdf    
+       # fig_pdf = sprintf('%s/flowerPlots/flower_%s.pdf', path_figures, gsub(' ','_', rgn_name))
       # if (overwrite | !file.exists(fig_pdf)){
       #       pdf(fig_pdf)
       
-      PlotFlower(main       = rgn_name,
+     PlotFlower(main       = rgn_name,
                  lengths    = ifelse(is.na(scores_r$score), 100, scores_r$score),
                  widths     = scores_r$weight,
                  fill.col   = ifelse(is.na(scores_r$cols.goals.all), 'grey80', scores_r$cols.goals.all),
@@ -126,6 +128,18 @@ PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # datafram
                  max.length = 100, disk=0.4, label.cex=0.9, label.offset=0.155, cex=2.2, cex.main=2.5)
       dev.off()      
       
+      # repeat it so that it prints in the Plot window; need to change PlotFlower so that this is not needed. 
+      PlotFlower(main       = rgn_name,
+                 lengths    = ifelse(is.na(scores_r$score), 100, scores_r$score),
+                 widths     = scores_r$weight,
+                 fill.col   = ifelse(is.na(scores_r$cols.goals.all), 'grey80', scores_r$cols.goals.all),
+                 labels     = ifelse(is.na(scores_r$score), 
+                                     paste(scores_r$name_flower, '-', sep='\n'), 
+                                     paste(as.character(scores_r$name_flower), round(scores_r$score), sep='\n')),
+                 center     = round(score_Index),
+                 max.length = 100, disk=0.4, label.cex=0.9, label.offset=0.155, cex=2.2, cex.main=2.5)
+      
+      # return(p)
       #system(sprintf('convert -density 150x150 %s %s', fig_pdf, fig_png)) # imagemagick's convert
     }
     
