@@ -7,8 +7,6 @@ output:
     number_sections: yes
     toc: yes
     toc_float: yes
-  word_document:
-    toc: yes
 ---
 
 # Introduction
@@ -20,14 +18,14 @@ Assessments using the OHI framework results in scores for each goal as well as i
 ![**Ocean Health Index goals can be represented as a flower plot**](fig/goal_icons_recolored_labeled.png)
 
 
-# Your assignment
+# Instructions
 
 In this assignment you will explore how Ocean Health Index (OHI) scores respond when you chante two things: 
 
 1. how goals are weighted 
 2. the reference point of a goal
 
-You will turn in a Word document with figures visualizing the changes you've made for a country of your choice. You will be using the OHI Toolbox software to do this, and follow the instructions in this document. Walk through line-by-line and execute the code in R. Then, once you have finished, press the 'Knit Word' at the top of this pane; this is what you'll turn in as homework. It will take a few minutes to Knit. 
+You will be using the OHI Toolbox software to do this, and follow the instructions here (`OHI_Instructions.Rmd`). Walk through line-by-line and execute the code in R. You will turn in a Word document with figures visualizing the changes you've made for a country of your choice; instructions for what to turn in are below in Section 3. 
 
 The example presented is for the USA, so please choose another country for your assignment. 
 
@@ -51,23 +49,19 @@ We'll be playing with inputs for the global OHI assessments; we calculate scores
 
 ## Setup
 
-Since we're in RStudio with a `.Rproj` file, our current working directory is `wherever/you/saved/it/ohi-global`. All of our work for the assignment happens in the `ESM_270` folder. Let's change the working directory to the ESM_270 folder, and install the packages we need to get going. 
+Since we're in RStudio with a `.Rproj` file, our current working directory is `wherever/you/saved/it/ohi-global`. All of our work for the assignment happens in the `ESM_270` folder; this file is `ohi-global/ESM_270/ESM_270_OHI.Rmd`. Let's change the working directory to the ESM_270 folder, and install the packages we need to get going. 
 
 If you have any problems, check that R and RStudio are up-to-date. The most recent version of R is 3.3 and RStudio is 0.99. If needed, update R [here](Find the latest version at http://cran.r-project.org) and RStudio [here](http://www.rstudio.com/products/rstudio/download). 
 
 
-1. Run the following code to install the OHI package `ohicore`. 
-```{r setwd, eval=FALSE}
-
-## set working directory with setwd()
-## our working directory is ohi-global; set it to ohi-global/ESM_270. 
+Run the following code:
+```{r ohicore, eval=FALSE, message=FALSE, results='hide'}
+## set working directory to ohi-global/ESM_270 with setwd()
 setwd('ESM_270')
-
 
 ## Install the OHI package `ohicore`
 
-## remove old packages
-for (p in c('ohicore', 'rCharts')){
+for (p in c('ohicore')){
   if (p %in% rownames(installed.packages())){
     lib = subset(as.data.frame(installed.packages()), Package==p, LibPath, drop=T)
     remove.packages(p, lib)
@@ -75,39 +69,19 @@ for (p in c('ohicore', 'rCharts')){
 }
 
 ## install dependencies
-for (p in c('devtools', 'dplyr', 'tidyr', 'readr', 'zoo', 'psych')){
+for (p in c('devtools', 'readr')){
   if (!require(p, character.only=T)){
     install.packages(p)
     require(p, character.only=T)
   }
 }
 
-## install packages
-devtools::install_github('ohi-science/rCharts')
-devtools::install_github('ohi-science/ohicore')
-
-# for (p in c('ohicore')){
-#   if (p %in% rownames(installed.packages())){
-#     lib = subset(as.data.frame(installed.packages()), Package==p, LibPath, drop=T)
-#     remove.packages(p, lib)
-#   }
-# }
-# 
-# ## install dependencies
-# for (p in c('devtools')){
-#   if (!require(p, character.only=T)){
-#     install.packages(p)
-#     require(p, character.only=T)
-#   }
-# }
-# 
-# ## install ohicore -- don't worry about the warnings
-# devtools::install_github('ohi-science/ohicore@dev')
+## install ohicore -- don't worry about the warnings
+devtools::install_github('ohi-science/ohicore@dev')
 library(ohicore)
 
 ## source the function to make flower plots
 source('PlotFlowerMulti.r')
-
 ```
 
 
@@ -122,20 +96,15 @@ We can calculate OHI scores by sourcing `calculate_scores.r` (below). This uses 
 Resulting scores for all goals and all 221 regions are saved in `scores.csv`. 
 
 
-```{r calculate scores, eval=FALSE}
-
+```{r calculate scores, eval=FALSE, message=FALSE}
 source('calculate_scores.r')
-
 ```
 
 ## Visualize OHI scores for your region
 
-We just calculated scores for all 221 regions. But you'll just be inspecting one region, which do you choose? Each region has a unique numeric identifier. View the full list of regions and choose one to inspect. Run the following code, then use the search icon in the top right of the View pane for your country and assign the `rgn_id` to `my_rgn`. 
+We just calculated scores for all 221 regions. But you'll just be inspecting one region, which do you choose? Each region has a unique numeric identifier. View the full list of regions and choose one to inspect: `View(read.csv('layers/rgn_global.csv'))`. Run the following code, then use the search icon in the top right of the View pane for your country and assign the `rgn_id` to `my_rgn`. 
 
 ```{r assign rgn_id, eval=FALSE}
-
-View(read.csv('layers/rgn_global.csv'))
-
 ## assign your rgn_id
 my_rgn = 163 # United States; change this to your region of choice
 
@@ -145,8 +114,7 @@ my_rgn = 163 # United States; change this to your region of choice
 
 Now, let's visualize your region's scores in a flower plot. Run the following as-is: 
 
-```{r plot original, eval=FALSE}
-
+```{r plot original, eval=FALSE, message=FALSE}
 ## parameters for the flower plot
 scores_orig <- read.csv('scores.csv')
 conf_orig <- read.csv('conf/goals.csv')
@@ -157,18 +125,13 @@ PlotFlowerMulti(scores       = scores_orig,
                 rgns_to_plot = my_rgn, 
                 conf         = conf_orig, 
                 name_fig     = name_fig_orig)
-
 ```
 
 ## Change goal weighting
 
-Now you will change the goal weighting for one of the goals. Refer to the [Introduction](#Introduction) above to see the list of goals. All goals have a weight of 1; if a goal has sub-goals, those are weighted each as 0.5. Below, look at the weights of each goal and sub-goal, and change one of the weights. The example below shows changing the weight of the Artisanal Fishing Opportunity goal (AO) from 1 to 3. Note that all of these weights are relative; you don't need to have them add up as they do now. 
+Now you will change the goal weighting for one of the goals. Refer to the [Introduction](#Introduction) above to see the list of goals. All goals have a weight of 1; if a goal has sub-goals, those are weighted each as 0.5. View this with `View(conf_orig %>% dplyr::select(goal, name, weight))`. Below, look at the weights of each goal and sub-goal, and change one of the weights. The example below shows changing the weight of the Artisanal Fishing Opportunity goal (AO) from 1 to 3. Note that all of these weights are relative; you don't need to have them add up as they do now. 
 
-```{r, eval=FALSE}
-
-## inspect the weights for each goal
-View(conf_orig %>% dplyr::select(goal, name, weight))
-
+```{r, eval=FALSE, message=FALSE}
 ## save original conf file
 readr::write_csv(conf_orig, 'conf/goals_orig.csv')
 
@@ -176,9 +139,6 @@ readr::write_csv(conf_orig, 'conf/goals_orig.csv')
 conf_new_wt <- conf_orig
 conf_new_wt$weight[conf_new_wt$goal == 'CP'] = 10
 readr::write_csv(conf_new_wt, 'conf/goals.csv')
-
-## ensure your new weight is reflected
-View(conf_new_wt %>% dplyr::select(goal, name, weight))
 
 ## re-calculate scores
 source('calculate_scores.r')
@@ -192,16 +152,8 @@ PlotFlowerMulti(scores       = scores_new_wt,
                 rgns_to_plot = my_rgn, 
                 conf         = conf_new_wt, 
                 name_fig     = name_fig_weights)
-
 ```
 
-Compare: don't forget to change these with your region names!
-
-![](reports/figures/flower_orig_United_States.png) ![](reports/figures/flower_weights_new_United_States.png)
-
-## What are your reactions?
-
-(write plain text here)
 
 ## Now change LSP reference point. 
 
@@ -209,8 +161,7 @@ The Lasting Special Places sub-goal represents geographic locations that hold pa
 
 You can see this by navigating to `conf/functions.r`, and looking at line 1578: you can also search for `LSP = `. Right now it's set to 30% of waters should be in MPAs. What if we altered that? Go ahead and change it and let's compare. 
 
-```{r, eval=FALSE}
-
+```{r, eval=FALSE, message=FALSE}
 ## set a new reference point
 ref_pct_new <- 50
 
@@ -230,16 +181,18 @@ PlotFlowerMulti(scores       = scores_new_ref,
                 rgns_to_plot = my_rgn, 
                 conf         = conf_orig, 
                 name_fig     = name_fig_ref)
-
-# Warning message:
-# In inner_join_impl(x, y, by$x, by$y) :
-#   joining character vector and factor, coercing into character vector
-
-
 ```
 
-![](reports/figures/flower_orig_United_States.png) 
-![](reports/figures/flower_ref_new_United_States.png)
+# Assignment to turn in
+
+Turn in a simple document describing: 
+
+- the new goal weight
+- the new reference point
+- how these changes affected the final scores
+- what this means for scoring ocean health
+
+Turn in your final assignment as a Word document. We've got one started: you could modify `ESM_270/OHI_Assignment.Rmd` with your information and pressing the `Knit Word` document to create this right from R.
 
 
-## Write up something about these differences
+

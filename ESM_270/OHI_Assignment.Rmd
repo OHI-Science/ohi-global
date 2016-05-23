@@ -1,0 +1,28 @@
+---
+title: "ESM 270 Assignment"
+author: "YOUR NAME"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is the original flower plot for YOUR REGION. 
+
+![](reports/figures/flower_orig_United_States.png)
+
+
+I changed the weight of goal X to XX. How did this affect the scores? 
+
+![](reports/figures/flower_weights_new_United_States.png)
+
+
+I set the Lasting Special Places referece point to Y. How did this affect the scores? 
+
+Look in `reports/figures`: 
+
+![](reports/figures/flower_ref_new_United_States.png)
+
+
+What are your reactions? What this means for scoring ocean health

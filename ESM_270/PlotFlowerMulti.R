@@ -109,7 +109,7 @@ PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # datafram
    
     res=72
     if (overwrite | !file.exists(fig_png)){
-       png(fig_png, width=res7, height=res*7, bg = "transparent")
+       png(fig_png, width=res*7, height=res*7, bg = "transparent")
       
       
       # TODO: also a pdf    
