@@ -229,7 +229,7 @@ div.tocify {
 </div>
 <div id="instructions" class="section level1">
 <h1><span class="header-section-number">2</span> Instructions</h1>
-<p>In this assignment you will explore how Ocean Health Index (OHI) scores respond when you chante two things:</p>
+<p>In this assignment you will explore how Ocean Health Index (OHI) scores respond when you change two things:</p>
 <ol style="list-style-type: decimal">
 <li>how goals are weighted</li>
 <li>the reference point of a goal</li>
@@ -290,15 +290,22 @@ source('PlotFlowerMulti.r')</code></pre>
 <li>data layers in the <code>layers</code> folder</li>
 <li>goal models and reference points in <code>conf/functions.r</code></li>
 <li>goal weighs in <code>conf/goals.csv</code></li>
+<li>calculated scores for all goals and all 221 regions are saved in <code>scores.csv</code>.</li>
 </ul>
-<p>Resulting scores for all goals and all 221 regions are saved in <code>scores.csv</code>.</p>
-<pre class="r"><code>source('calculate_scores.r')</code></pre>
+<p>Note: because the Toolbox relies on these file names for calculation and for visualizing, we’ll be overwriting some of these files (after saving the originals) to use in each of the steps as we go forward.</p>
+<pre class="r"><code>## calculate scores
+source('calculate_scores.r')
+
+## save copies of original files
+file.copy('conf/goals.csv',   'conf/goals_orig.csv', overwrite = TRUE)
+file.copy('conf/functions.r', 'conf/functions_orig.r', overwrite = TRUE)
+file.copy('scores.csv',       'scores_orig.csv', overwrite = TRUE)</code></pre>
 </div>
 <div id="visualize-ohi-scores-for-your-region" class="section level2">
 <h2><span class="header-section-number">2.4</span> Visualize OHI scores for your region</h2>
 <p>We just calculated scores for all 221 regions. But you’ll just be inspecting one region, which do you choose? Each region has a unique numeric identifier. View the full list of regions and choose one to inspect: <code>View(read.csv('layers/rgn_global.csv'))</code>. Run the following code, then use the search icon in the top right of the View pane for your country and assign the <code>rgn_id</code> to <code>my_rgn</code>.</p>
 <pre class="r"><code>## assign your rgn_id
-my_rgn = 163 # United States; change this to your region of choice</code></pre>
+my_rgn &lt;-  163 # United States; change this to your region of choice</code></pre>
 </div>
 <div id="flower-plot-for-your-region" class="section level2">
 <h2><span class="header-section-number">2.5</span> Flower plot for your region</h2>
@@ -317,17 +324,14 @@ PlotFlowerMulti(scores       = scores_orig,
 <div id="change-goal-weighting" class="section level2">
 <h2><span class="header-section-number">2.6</span> Change goal weighting</h2>
 <p>Now you will change the goal weighting for one of the goals. Refer to the <a href="#Introduction">Introduction</a> above to see the list of goals. All goals have a weight of 1; if a goal has sub-goals, those are weighted each as 0.5. View this with <code>View(conf_orig %&gt;% dplyr::select(goal, name, weight))</code>. Below, look at the weights of each goal and sub-goal, and change one of the weights. The example below shows changing the weight of the Artisanal Fishing Opportunity goal (AO) from 1 to 3. Note that all of these weights are relative; you don’t need to have them add up as they do now.</p>
-<pre class="r"><code>## save original conf file
-readr::write_csv(conf_orig, 'conf/goals_orig.csv')
-
-## change the weight of a goal, eg AO to 3 and save file
+<pre class="r"><code>## change the weight of a goal, eg AO to 3 and save file
 conf_new_wt &lt;- conf_orig
-conf_new_wt$weight[conf_new_wt$goal == 'CP'] = 10
-readr::write_csv(conf_new_wt, 'conf/goals.csv')
+conf_new_wt$weight[conf_new_wt$goal == 'AO'] = 3
 
 ## re-calculate scores
+readr::write_csv(conf_new_wt, 'conf/goals.csv') # use new weight
 source('calculate_scores.r')
-scores_new_wt &lt;- read_csv('scores.csv')
+scores_new_wt &lt;- read.csv('scores.csv')
 
 ## parameter for the flower plot
 name_fig_weights &lt;- 'reports/figures/flower_weights_new'
@@ -338,23 +342,26 @@ PlotFlowerMulti(scores       = scores_new_wt,
                 conf         = conf_new_wt, 
                 name_fig     = name_fig_weights)</code></pre>
 </div>
-<div id="now-change-lsp-reference-point." class="section level2">
-<h2><span class="header-section-number">2.7</span> Now change LSP reference point.</h2>
+<div id="change-reference-point" class="section level2">
+<h2><span class="header-section-number">2.7</span> Change reference point</h2>
 <p>The Lasting Special Places sub-goal represents geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. In global assessments, we model this with the proportion of the offshore area that is a marine protected area (MPAs), with the reference point set to 30%.</p>
 <p>You can see this by navigating to <code>conf/functions.r</code>, and looking at line 1578: you can also search for <code>LSP =</code>. Right now it’s set to 30% of waters should be in MPAs. What if we altered that? Go ahead and change it and let’s compare.</p>
 <pre class="r"><code>## set a new reference point
-ref_pct_new &lt;- 50
+ref_pct_new &lt;- 100 # change this with your reference point
 
 ## run this this to insert your new reference point into functions.r
 readLines('conf/functions.r') %&gt;%
-  str_replace(&quot;LSP = .*&quot;, sprintf(&quot;LSP = function(layers, ref_pct_cmpa=%s, ref_pct_cp=%s, status_year){&quot;, ref_pct_new, ref_pct_new)) %&gt;%
+  str_replace(&quot;LSP = .*&quot;, sprintf(&quot;LSP = function(layers, ref_pct_cmpa=%s, ref_pct_cp=%s, status_year){&quot;, 
+                                  ref_pct_new, ref_pct_new)) %&gt;%
   writeLines('conf/functions.r')
 
 
-## recalculate scores with new reference point
+## re-calculate scores with new reference point
+readr::write_csv(conf_orig, 'conf/goals.csv') # use original conf
 source('calculate_scores.r')
-
 scores_new_ref &lt;- read.csv('scores.csv')
+
+## parameter for the flower plot
 name_fig_ref &lt;- 'reports/figures/flower_ref_new'
 
 PlotFlowerMulti(scores       = scores_new_ref, 
@@ -372,7 +379,7 @@ PlotFlowerMulti(scores       = scores_new_ref,
 <li>how these changes affected the final scores</li>
 <li>what this means for scoring ocean health</li>
 </ul>
-<p>Turn in your final assignment as a Word document. We’ve got one started: you could modify <code>ESM_270/OHI_Assignment.Rmd</code> with your information and pressing the <code>Knit Word</code> document to create this right from R.</p>
+<p>Turn in your final assignment as a Word document. You can do this on your own or using a template we’ve started, right here in R! You can modify <code>ESM_270/OHI_Assignment.Rmd</code> press the <code>Knit Word</code> document to create a Word document like <code>ESM_270/OHI_Assignment.docx</code> right from R. You’ll need to modify the <code>.Rmd</code> file with your figure names and write up your comments and reactions to the lab before knitting.</p>
 </div>
 
 

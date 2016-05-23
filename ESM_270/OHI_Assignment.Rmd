@@ -8,21 +8,24 @@ output: word_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This is the original flower plot for YOUR REGION. 
+# Original Flower Plot
+
+<!--Make sure you update all the figure names with the figures for your region! Also, add your comments about how your changes affected scores.-->
 
 ![](reports/figures/flower_orig_United_States.png)
 
+# Modification 1: Goal weight
 
-I changed the weight of goal X to XX. How did this affect the scores? 
+I changed the weight of goal X to XX. Here are my comments about what this did to the scores.
 
 ![](reports/figures/flower_weights_new_United_States.png)
 
+# Modification 2: Reference Point
 
-I set the Lasting Special Places referece point to Y. How did this affect the scores? 
-
-Look in `reports/figures`: 
+I set the Lasting Special Places referece point to Y. Here are my comments about what this did to the scores.
 
 ![](reports/figures/flower_ref_new_United_States.png)
 
+# Final thoughts
 
-What are your reactions? What this means for scoring ocean health
+Here are my overall reactions. Here are some thoughts about what this means for scoring ocean health.

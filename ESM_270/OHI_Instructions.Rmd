@@ -20,7 +20,7 @@ Assessments using the OHI framework results in scores for each goal as well as i
 
 # Instructions
 
-In this assignment you will explore how Ocean Health Index (OHI) scores respond when you chante two things: 
+In this assignment you will explore how Ocean Health Index (OHI) scores respond when you change two things: 
 
 1. how goals are weighted 
 2. the reference point of a goal
@@ -92,12 +92,19 @@ We can calculate OHI scores by sourcing `calculate_scores.r` (below). This uses 
 - data layers in the `layers` folder
 - goal models and reference points in `conf/functions.r`
 - goal weighs in `conf/goals.csv`
+- calculated scores for all goals and all 221 regions are saved in `scores.csv`. 
 
-Resulting scores for all goals and all 221 regions are saved in `scores.csv`. 
+Note: because the Toolbox relies on these file names for calculation and for visualizing, we'll be overwriting some of these files (after saving the originals) to use in each of the steps as we go forward. 
 
 
 ```{r calculate scores, eval=FALSE, message=FALSE}
+## calculate scores
 source('calculate_scores.r')
+
+## save copies of original files
+file.copy('conf/goals.csv',   'conf/goals_orig.csv', overwrite = TRUE)
+file.copy('conf/functions.r', 'conf/functions_orig.r', overwrite = TRUE)
+file.copy('scores.csv',       'scores_orig.csv', overwrite = TRUE)
 ```
 
 ## Visualize OHI scores for your region
@@ -106,8 +113,7 @@ We just calculated scores for all 221 regions. But you'll just be inspecting one
 
 ```{r assign rgn_id, eval=FALSE}
 ## assign your rgn_id
-my_rgn = 163 # United States; change this to your region of choice
-
+my_rgn <-  163 # United States; change this to your region of choice
 ```
 
 ## Flower plot for your region
@@ -132,17 +138,14 @@ PlotFlowerMulti(scores       = scores_orig,
 Now you will change the goal weighting for one of the goals. Refer to the [Introduction](#Introduction) above to see the list of goals. All goals have a weight of 1; if a goal has sub-goals, those are weighted each as 0.5. View this with `View(conf_orig %>% dplyr::select(goal, name, weight))`. Below, look at the weights of each goal and sub-goal, and change one of the weights. The example below shows changing the weight of the Artisanal Fishing Opportunity goal (AO) from 1 to 3. Note that all of these weights are relative; you don't need to have them add up as they do now. 
 
 ```{r, eval=FALSE, message=FALSE}
-## save original conf file
-readr::write_csv(conf_orig, 'conf/goals_orig.csv')
-
 ## change the weight of a goal, eg AO to 3 and save file
 conf_new_wt <- conf_orig
-conf_new_wt$weight[conf_new_wt$goal == 'CP'] = 10
-readr::write_csv(conf_new_wt, 'conf/goals.csv')
+conf_new_wt$weight[conf_new_wt$goal == 'AO'] = 3
 
 ## re-calculate scores
+readr::write_csv(conf_new_wt, 'conf/goals.csv') # use new weight
 source('calculate_scores.r')
-scores_new_wt <- read_csv('scores.csv')
+scores_new_wt <- read.csv('scores.csv')
 
 ## parameter for the flower plot
 name_fig_weights <- 'reports/figures/flower_weights_new'
@@ -155,7 +158,7 @@ PlotFlowerMulti(scores       = scores_new_wt,
 ```
 
 
-## Now change LSP reference point. 
+## Change reference point
 
 The Lasting Special Places sub-goal represents geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. In global assessments, we model this with the proportion of the offshore area that is a marine protected area (MPAs), with the reference point set to 30%. 
 
@@ -163,18 +166,21 @@ You can see this by navigating to `conf/functions.r`, and looking at line 1578: 
 
 ```{r, eval=FALSE, message=FALSE}
 ## set a new reference point
-ref_pct_new <- 50
+ref_pct_new <- 100 # change this with your reference point
 
 ## run this this to insert your new reference point into functions.r
 readLines('conf/functions.r') %>%
-  str_replace("LSP = .*", sprintf("LSP = function(layers, ref_pct_cmpa=%s, ref_pct_cp=%s, status_year){", ref_pct_new, ref_pct_new)) %>%
+  str_replace("LSP = .*", sprintf("LSP = function(layers, ref_pct_cmpa=%s, ref_pct_cp=%s, status_year){", 
+                                  ref_pct_new, ref_pct_new)) %>%
   writeLines('conf/functions.r')
 
 
-## recalculate scores with new reference point
+## re-calculate scores with new reference point
+readr::write_csv(conf_orig, 'conf/goals.csv') # use original conf
 source('calculate_scores.r')
-
 scores_new_ref <- read.csv('scores.csv')
+
+## parameter for the flower plot
 name_fig_ref <- 'reports/figures/flower_ref_new'
 
 PlotFlowerMulti(scores       = scores_new_ref, 
@@ -192,7 +198,7 @@ Turn in a simple document describing:
 - how these changes affected the final scores
 - what this means for scoring ocean health
 
-Turn in your final assignment as a Word document. We've got one started: you could modify `ESM_270/OHI_Assignment.Rmd` with your information and pressing the `Knit Word` document to create this right from R.
+Turn in your final assignment as a Word document. You can do this on your own or using a template we've started, right here in R! You can modify `ESM_270/OHI_Assignment.Rmd` press the `Knit Word` document to create a Word document like `ESM_270/OHI_Assignment.docx` right from R. You'll need to modify the `.Rmd` file with your figure names and write up your comments and reactions to the lab before knitting.
 
 
 

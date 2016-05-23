@@ -50,6 +50,7 @@ PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # datafram
     filter(!(goal %in% goals_supra)) %>%
     select(goal, order_color, order_hierarchy, weight, name_flower) %>%
     mutate(name_flower = gsub("\\n", "\n", name_flower, fixed = TRUE)) %>%
+    mutate(goal = as.character(goal)) %>%
     arrange(order_hierarchy)
   
   scores <- scores %>%
