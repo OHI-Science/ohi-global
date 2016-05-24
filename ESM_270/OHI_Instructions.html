@@ -269,7 +269,7 @@ for (p in c('ohicore')){
 }
 
 ## install dependencies
-for (p in c('devtools', 'readr')){
+for (p in c('devtools', 'git2r')){
   if (!require(p, character.only=T)){
     install.packages(p)
     require(p, character.only=T)
@@ -329,7 +329,7 @@ conf_new_wt &lt;- conf_orig
 conf_new_wt$weight[conf_new_wt$goal == 'AO'] = 3
 
 ## re-calculate scores
-readr::write_csv(conf_new_wt, 'conf/goals.csv') # use new weight
+write.csv(conf_new_wt, 'conf/goals.csv', row.names = FALSE) # use new weight
 source('calculate_scores.r')
 scores_new_wt &lt;- read.csv('scores.csv')
 
@@ -357,7 +357,7 @@ readLines('conf/functions.r') %&gt;%
 
 
 ## re-calculate scores with new reference point
-readr::write_csv(conf_orig, 'conf/goals.csv') # use original conf
+write.csv(conf_orig, 'conf/goals.csv', row.names = FALSE) # use original conf
 source('calculate_scores.r')
 scores_new_ref &lt;- read.csv('scores.csv')
 
