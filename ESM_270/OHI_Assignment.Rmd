@@ -8,24 +8,14 @@ output: word_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Original Flower Plot
+If you want to use RMarkdown to create a report... 
 
-<!--Make sure you update all the figure names with the figures for your region! Also, add your comments about how your changes affected scores.-->
+# Hashtags turn into headers. 
 
+Plain text is plain text. 
+
+you would include a figure with this syntax, just change the name of the png file. 
 ![](reports/figures/flower_orig_United_States.png)
 
-# Modification 1: Goal weight
 
-I changed the weight of goal X to XX. Here are my comments about what this did to the scores.
-
-![](reports/figures/flower_weights_new_United_States.png)
-
-# Modification 2: Reference Point
-
-I set the Lasting Special Places referece point to Y. Here are my comments about what this did to the scores.
-
-![](reports/figures/flower_ref_new_United_States.png)
-
-# Final thoughts
-
-Here are my overall reactions. Here are some thoughts about what this means for scoring ocean health.
+Then, press 'Knit Word' from RStudio and you'll have a word doc! Try it now!
