@@ -138,7 +138,7 @@ for (g in subgoals) { # g = 'FIS' g='HAB' g='NP'
                                    by = "country_id") %>% filter(region_id %in% 
                                                                    regions) %>% select(region_id, category, 
                                                                                        country_id, country_area_km2)
-        m_w = dcast(d_w_r, region_id ~ category, sum)
+        m_w = reshape2::dcast(d_w_r, region_id ~ category, sum)
       }
       else {   # this is actually what happens for the region_id
         if (debug) 

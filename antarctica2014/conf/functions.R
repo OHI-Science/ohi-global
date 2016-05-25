@@ -529,7 +529,7 @@ LSP = function(layers, status_year){
 SP = function(scores){
   
   d = within(
-    dcast(
+    reshape2::dcast(
       scores, 
       region_id + dimension ~ goal, value.var='score', 
       subset=.(goal %in% c('ICO','LSP') & !dimension %in% c('pressures','resilience')))

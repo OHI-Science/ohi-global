@@ -2,7 +2,7 @@
 # STEP 1: be sure to pull ohiprep
 
 library(devtools)
-devtools::install_github("ohi-science/ohicore@dev") # when testing changes to ohicore
+devtools::install_github("ohi-science/ohicore@dev_resil") # when testing changes to ohicore
 #devtools::install_github("ohi-science/ohicore@master")
 #install_github('rCharts', 'ramnathv')
 library(ohicore)
@@ -32,25 +32,27 @@ scenarios = list(
     fld_dir      = 'dir_2015a',
     fld_fn       = 'fn_2015a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T) ,
-  eez2014     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2014a',
-    fld_fn       = 'fn_2014a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-  eez2013     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-  eez2012     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2012a',
-    fld_fn       = 'fn_2012a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T)
+  # # # ,
+  # eez2014     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2014a',
+  #   fld_fn       = 'fn_2014a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T)
+  #,
+  # eez2013     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2013a',
+  #   fld_fn       = 'fn_2013a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T),
+  # eez2012     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2012a',
+  #   fld_fn       = 'fn_2012a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T)
 )
 
 ### sync functions.R: 
@@ -143,7 +145,7 @@ for (i in 1:length(scenarios)){  #i=1
     unlink(sprintf('%s/layers/%s', scenario, files_extra))
     
     # layers registry
-    write.csv(select(lyrs, -path_in, -path_in_exists, -path_out), sprintf('%s/layers.csv', scenario), row.names=F, na='')
+    write.csv(dplyr::select(lyrs, -path_in, -path_in_exists, -path_out), sprintf('%s/layers.csv', scenario), row.names=F, na='')
   }
   
   if (do.layercheck){
@@ -163,7 +165,7 @@ for (i in 1:length(scenarios)){  #i=1
    
     # load configuration and layers
     conf   = Conf('conf')
-    layers = Layers('layers.csv','layers')
+    layers = Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
   
     
     # calculate scores
@@ -207,7 +209,7 @@ for (i in 1:length(scenarios)){  #i=1
 detach("package:devtools", unload=TRUE)
 source('../ohiprep/src/R/VisGlobal.R')
 changePlot(repo="~/ohi-global", scenario="eez2015", commit="previous", 
-           fileSave="global_resilience_check")
+           fileSave="global_resilience_massive_revision")
 compare <- read.csv('figures/DataCheck/eez2015_Hackathon_julie_updates_diff_data_2015-10-21.csv')
 difs_only <- filter(compare, change != 0)
 table(difs_only$dimension)
