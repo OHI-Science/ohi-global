@@ -234,8 +234,7 @@ div.tocify {
 <li>how goals are weighted</li>
 <li>the reference point of a goal</li>
 </ol>
-<p>You will be using the OHI Toolbox software to do this, and follow the instructions here (<code>OHI_Instructions.Rmd</code>). Walk through line-by-line and execute the code in R. You will turn in a Word document with figures visualizing the changes you’ve made for a country of your choice; instructions for what to turn in are below in Section 3.</p>
-<p>The example presented is for the USA, so please choose another country for your assignment.</p>
+<p>You will be using the OHI Toolbox software to do this, and follow the instructions here (<code>OHI_Instructions.Rmd</code>). Walk through line-by-line and execute the code in R. The example presented is for the USA, so please choose another country for your assignment.</p>
 <div id="get-the-ohi-global-repo" class="section level2">
 <h2><span class="header-section-number">2.1</span> Get the ohi-global repo</h2>
 <p>We’ll be playing with inputs for the global OHI assessments; we calculate scores each year for 221 coastal nations and territories. Let’s get it on your computer.</p>
@@ -345,7 +344,7 @@ PlotFlowerMulti(scores       = scores_new_wt,
 <div id="change-reference-point" class="section level2">
 <h2><span class="header-section-number">2.7</span> Change reference point</h2>
 <p>The Lasting Special Places sub-goal represents geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. In global assessments, we model this with the proportion of the offshore area that is a marine protected area (MPAs), with the reference point set to 30%.</p>
-<p>You can see this by navigating to <code>conf/functions.r</code>, and looking at line 1578: you can also search for <code>LSP =</code>. Right now it’s set to 30% of waters should be in MPAs. What if we altered that? Go ahead and change it and let’s compare.</p>
+<p>You can see this by navigating to <code>conf/functions.r</code>, and looking at line 1578: you can also search for <code>LSP =</code>. Right now it’s set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 100%. Go ahead and change it and let’s compare.</p>
 <pre class="r"><code>## set a new reference point
 ref_pct_new &lt;- 100 # change this with your reference point
 
@@ -369,17 +368,6 @@ PlotFlowerMulti(scores       = scores_new_ref,
                 conf         = conf_orig, 
                 name_fig     = name_fig_ref)</code></pre>
 </div>
-</div>
-<div id="assignment-to-complete" class="section level1">
-<h1><span class="header-section-number">3</span> Assignment to complete</h1>
-<p>Turn in a simple document describing:</p>
-<ul>
-<li>the new goal weight</li>
-<li>the new reference point</li>
-<li>how these changes affected the final scores</li>
-<li>what this means for scoring ocean health</li>
-</ul>
-<p>Turn in your final assignment as a Word document. You can do this on your own or using a template we’ve started, right here in R! You can modify <code>ESM_270/OHI_Assignment.Rmd</code> press the <code>Knit Word</code> document to create a Word document like <code>ESM_270/OHI_Assignment.docx</code> right from R. You’ll need to modify the <code>.Rmd</code> file with your figure names and write up your comments and reactions to the lab before knitting.</p>
 </div>
 
 

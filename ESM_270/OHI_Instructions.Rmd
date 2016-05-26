@@ -25,9 +25,7 @@ In this assignment you will explore how Ocean Health Index (OHI) scores respond 
 1. how goals are weighted 
 2. the reference point of a goal
 
-You will be using the OHI Toolbox software to do this, and follow the instructions here (`OHI_Instructions.Rmd`). Walk through line-by-line and execute the code in R. You will turn in a Word document with figures visualizing the changes you've made for a country of your choice; instructions for what to turn in are below in Section 3. 
-
-The example presented is for the USA, so please choose another country for your assignment. 
+You will be using the OHI Toolbox software to do this, and follow the instructions here (`OHI_Instructions.Rmd`). Walk through line-by-line and execute the code in R. The example presented is for the USA, so please choose another country for your assignment. 
 
 
 ```{r setup, include=FALSE}
@@ -162,7 +160,7 @@ PlotFlowerMulti(scores       = scores_new_wt,
 
 The Lasting Special Places sub-goal represents geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. In global assessments, we model this with the proportion of the offshore area that is a marine protected area (MPAs), with the reference point set to 30%. 
 
-You can see this by navigating to `conf/functions.r`, and looking at line 1578: you can also search for `LSP = `. Right now it's set to 30% of waters should be in MPAs. What if we altered that? Go ahead and change it and let's compare. 
+You can see this by navigating to `conf/functions.r`, and looking at line 1578: you can also search for `LSP = `. Right now it's set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 100%. Go ahead and change it and let's compare. 
 
 ```{r, eval=FALSE, message=FALSE}
 ## set a new reference point
@@ -188,17 +186,3 @@ PlotFlowerMulti(scores       = scores_new_ref,
                 conf         = conf_orig, 
                 name_fig     = name_fig_ref)
 ```
-
-# Assignment to complete
-
-Turn in a simple document describing: 
-
-- the new goal weight
-- the new reference point
-- how these changes affected the final scores
-- what this means for scoring ocean health
-
-Turn in your final assignment as a Word document. You can do this on your own or using a template we've started, right here in R! You can modify `ESM_270/OHI_Assignment.Rmd` press the `Knit Word` document to create a Word document like `ESM_270/OHI_Assignment.docx` right from R. You'll need to modify the `.Rmd` file with your figure names and write up your comments and reactions to the lab before knitting.
-
-
-
