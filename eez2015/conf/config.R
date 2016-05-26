@@ -1,6 +1,11 @@
-# layers ----
-layers_id_fields        = c('rgn_id','cntry_key','country_id','saup_id','fao_id','fao_ohi_id','fao_saup_id') # note: cntry_key for www2013, country_id for nature2012
-layer_region_labels     = 'rgn_global'
+# region data layers----
+# a list of possible id fields used in datalayers (most will use rgn_id, but not always)
+layers_id_fields        = c('rgn_id','cntry_key', 'fao_id', 'fao_saup_id', 'country_id','saup_id','fao_ohi_id') 
+
+# the official list of regions (and corresponding names)
+layer_region_labels     = 'rgn_global'   
+
+# the official ocean areas of each region (used to weight each subregions contribution to the region score)
 layer_region_areas      = 'rgn_area'
 
 # pressures & resilience matrices ----
@@ -12,13 +17,16 @@ resilience_components = list('NP'  = 'np_harvest_product_weight',
                              'CP'  = 'cp_habitat_extent_rank'   ,
                              'HAB' = 'hab_presence'             )
 
-pressures_components  = list('NP'  = c('layer'='np_harvest_product_weight'),
-                             'CS'  = c('layer'='cs_habitat_extent'        ),
-                             'CP'  = c('layer'='cp_habitat_extent_rank'   ),
-                             'LIV' = c('layer'='le_sector_weight'         ),
-                             'ECO' = c('layer'='le_sector_weight'         ),
-                             'HAB' = c('layer'='hab_presence'             ))
-pressures_categories = list(environmental=c('po','hd','fp','sp','cc'), social='ss')
+pressures_components  = list('NP'  = 'np_harvest_product_weight',
+                             'CS'  = 'cs_habitat_extent'        ,
+                             'CP'  = 'cp_habitat_extent_rank'   ,
+                             'LIV' = 'le_sector_weight'         ,
+                             'ECO' = 'le_sector_weight'         ,
+                             'HAB' = 'hab_presence'             )
+
+# Pressure categories (defined by the two-letter prefix of the filename of the datalayer)
+pressures_categories = list(ecological = c('po','hd','fp','sp','cc'), 
+                            social = 'ss')
 
 # constants
 pressures_gamma = 0.5  # The relative importance of social vs. ecological pressures (pressure = gamma * ecological + (1-gamma) * social)
