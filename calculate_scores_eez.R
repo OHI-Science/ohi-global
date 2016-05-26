@@ -170,7 +170,7 @@ for (i in 1:length(scenarios)){  #i=1
     
     # calculate scores
     #try({    })
-    scores = CalculateAll(conf, layers, debug=T)
+    scores = CalculateAll(conf, layers)
     write.csv(scores, 'scores.csv', na='', row.names=F)
     
     # restore working directory
