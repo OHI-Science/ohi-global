@@ -174,7 +174,7 @@ Go ahead and change it and run the following. It will save a file with your regi
 
 ```{r, eval=FALSE, message=FALSE}
 ## set a new reference point
-ref_pct_new <- 100 # change this with your reference point
+ref_pct_new <- 40 # change this with your reference point
 
 ## run this to insert your new reference point into conf/functions.r
 readLines('conf/functions.r') %>%
@@ -197,3 +197,32 @@ PlotFlowerMulti(scores       = scores_new_ref,
                 conf         = conf_orig, 
                 name_fig     = name_fig_ref)
 ```
+
+How does the new reference point flower plot compare with the original? How much would you have expected the overall score to change? And how would you communicate this using the flower plots? 
+
+Run this to compare how much the LSP goal score changed vs. the overall Index score (displayed in the middle of the flower plot): 
+```{r, eval=FALSE, message=FALSE}
+
+## investigate the LSP scores: 
+scores_orig %>%
+  filter(region_id == my_rgn, 
+         goal == 'LSP', 
+         dimension == 'score')
+
+scores_new_ref %>%
+  filter(region_id == my_rgn, 
+         goal == 'LSP', 
+         dimension == 'score')
+
+## investigate the overall Index scores 
+scores_orig %>%
+  filter(region_id == my_rgn, 
+         goal == 'Index', 
+         dimension == 'score')
+
+scores_new_ref %>%
+  filter(region_id == my_rgn, 
+         goal == 'Index', 
+         dimension == 'score')
+```
+

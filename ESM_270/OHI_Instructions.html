@@ -351,7 +351,7 @@ PlotFlowerMulti(scores       = scores_new_wt,
 <p>You can see this by navigating to <code>conf/functions.r</code>, and looking at line 1578: you can also search for <code>LSP =</code>. Right now it’s set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 100%.</p>
 <p>Go ahead and change it and run the following. It will save a file with your region’s name, for example <code>ohi-global/ESM_270/reports/figures/flower_ref_new_United_States.png.</code></p>
 <pre class="r"><code>## set a new reference point
-ref_pct_new &lt;- 100 # change this with your reference point
+ref_pct_new &lt;- 40 # change this with your reference point
 
 ## run this to insert your new reference point into conf/functions.r
 readLines('conf/functions.r') %&gt;%
@@ -373,6 +373,29 @@ PlotFlowerMulti(scores       = scores_new_ref,
                 rgns_to_plot = my_rgn, 
                 conf         = conf_orig, 
                 name_fig     = name_fig_ref)</code></pre>
+<p>How does the new reference point flower plot compare with the original? How much would you have expected the overall score to change? And how would you communicate this using the flower plots?</p>
+<p>Run this to compare how much the LSP goal score changed vs. the overall Index score (displayed in the middle of the flower plot):</p>
+<pre class="r"><code>## investigate the LSP scores: 
+scores_orig %&gt;%
+  filter(region_id == my_rgn, 
+         goal == 'LSP', 
+         dimension == 'score')
+
+scores_new_ref %&gt;%
+  filter(region_id == my_rgn, 
+         goal == 'LSP', 
+         dimension == 'score')
+
+## investigate the overall Index scores 
+scores_orig %&gt;%
+  filter(region_id == my_rgn, 
+         goal == 'Index', 
+         dimension == 'score')
+
+scores_new_ref %&gt;%
+  filter(region_id == my_rgn, 
+         goal == 'Index', 
+         dimension == 'score')</code></pre>
 </div>
 </div>
 
