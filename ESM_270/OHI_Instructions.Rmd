@@ -54,9 +54,6 @@ Since we're in RStudio with a `.Rproj` file, our current working directory is `w
 
 Run the following code:
 ```{r ohicore, eval=FALSE, message=FALSE, results='hide'}
-## set working directory to ohi-global/ESM_270 with setwd()
-setwd('ESM_270')
-
 ## delete any existing version of `ohicore`
 for (p in c('ohicore')){
   if (p %in% rownames(installed.packages())){
@@ -78,6 +75,9 @@ devtools::install_github('ohi-science/ohicore@dev')
 
 ## load ohicore library -- again, don't worry about the warnings. But ensure the last line is not an error.
 library(ohicore)
+
+## set working directory to ohi-global/ESM_270 with setwd()
+setwd('ESM_270')
 
 ## source the function to make flower plots; this won't do anything yet.
 source('PlotFlowerMulti.r')
@@ -168,7 +168,7 @@ PlotFlowerMulti(scores       = scores_new_wt,
 
 The **Lasting Special Places** sub-goal represents geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. In global assessments, we model this with the proportion of the offshore area that is a marine protected area (MPAs), with the reference point set to 30%. 
 
-You can see this by navigating to `conf/functions.r`, and looking at line 1578: you can also search for `LSP = `. Right now it's set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 100%. 
+You can see this by navigating to `conf/functions.r`, and looking at line 1578: you can also search for `LSP = `. Right now it's set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 40%. 
 
 Go ahead and change it and run the following. It will save a file with your region's name, for example `ohi-global/ESM_270/reports/figures/flower_ref_new_United_States.png.`
 
