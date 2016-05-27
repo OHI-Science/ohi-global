@@ -1,6 +1,6 @@
 ---
 title: "ESM 270 Ocean Health Index Lab"
-author: "Julie Lowndes"
+author: "Julie Lowndes and Ben Halpern"
 date: "June 1, 2016"
 output:
   html_document:
@@ -25,7 +25,9 @@ In this assignment you will explore how Ocean Health Index (OHI) scores respond 
 1. how goals are weighted 
 2. the reference point of a goal
 
-You will be using the OHI Toolbox software to do this, and follow the instructions here (`OHI_Instructions.Rmd`). Walk through line-by-line and execute the code in R. The example presented is for the USA, so please choose another country for your assignment. 
+You will be using the OHI Toolbox software to do this, and follow the instructions here ([`OHI_Instructions.Rmd`](https://rawgit.com/OHI-Science/ohi-global/draft/ESM_270/OHI_Instructions.html)). Walk through line-by-line and execute the code in R; the order does matter so be sure to proceed line-by-line. The example presented is for the USA, so please choose another country for your assignment. 
+
+Your final figures will be saved as .pngs within the ohi-global folder you downloaded: `ohi-global/ESM_270/reports/figures`. 
 
 
 ```{r setup, include=FALSE}
@@ -34,22 +36,20 @@ knitr::opts_chunk$set(echo = TRUE, root.dir = 'ESM_270')
 
 ## Get the ohi-global repo
 
-We'll be playing with inputs for the global OHI assessments; we calculate scores each year for 221 coastal nations and territories. Let's get it on your computer.
+We'll be playing with weights and reference points for the global OHI assessments; we calculate scores each year for 221 coastal nations and territories. Let's get it on your computer.
 
-1. Go to [github.com/OHI-Science/ohi-global](https://github.com/OHI-Science/ohi-global). This is the `ohi-global` repository 'repo'. 
+1. Go to [github.com/OHI-Science/ohi-global](https://github.com/OHI-Science/ohi-global). This is the `ohi-global` repository (called 'repo'). 
 2. Click on the <span style="color:green">green</span> 'clone or download' button. 
-3. Clone or download somewhere you can find on your computer. If you are familiar with GitHub clone this repository. Otherwise click 'Download ZIP' from this site.
+3. Clone or download somewhere you can find on your computer. If you are familiar with GitHub, clone this repository. Otherwise click 'Download ZIP'.
 4. Navigate to where you saved the `ohi-global` repo on your computer and double-click the `ohi-global.Rproj` file. This will open [RStudio](https://www.rstudio.com/) (which is how you should always interface with R). 
-5. Within the RStudio file directory pane (bottom right), navigate to the `ESM_270` folder. Inside is a mix of `.R` scripts and `.csv` files. The figure below shows more information than you need about each file's role in the calculation workflow (green). 
-
-![**OHI assessment repository file structure and workflow **](fig/file_system_with_workflow.2.png)
+5. Within the RStudio file directory pane (bottom right), navigate to the `ESM_270` folder. Inside is a mix of `.R` scripts and `.csv` files. We will just focus on a few of them.
 
 
 ## Setup
 
-Since we're in RStudio with a `.Rproj` file, our current working directory is `wherever/you/saved/it/ohi-global`. All of our work for the assignment happens in the `ESM_270` folder; this file is `ohi-global/ESM_270/ESM_270_OHI.Rmd`. Let's change the working directory to the ESM_270 folder, and install the packages we need to get going. 
+Since we're in RStudio with a `.Rproj` file, our current working directory is `wherever/you/saved/it/ohi-global`. All of our work for the assignment happens in the `ESM_270` folder (what you are reading is from `ohi-global/ESM_270/ESM_270_OHI.Rmd`). Let's change the working directory to the ESM_270 folder, and install the packages we need to get going. 
 
-If you have any problems, check that R and RStudio are up-to-date. The most recent version of R is 3.3 and RStudio is 0.99. If needed, update R [here](Find the latest version at http://cran.r-project.org) and RStudio [here](http://www.rstudio.com/products/rstudio/download). 
+**Troubleshooting: If you have any problems**, check that R and RStudio are up-to-date. The most recent version of R is 3.3 and RStudio is 0.99. If needed, update R [here](Find the latest version at http://cran.r-project.org) and RStudio [here](http://www.rstudio.com/products/rstudio/download). 
 
 
 Run the following code:
@@ -57,8 +57,7 @@ Run the following code:
 ## set working directory to ohi-global/ESM_270 with setwd()
 setwd('ESM_270')
 
-## Install the OHI package `ohicore`
-
+## delete any existing version of `ohicore`
 for (p in c('ohicore')){
   if (p %in% rownames(installed.packages())){
     lib = subset(as.data.frame(installed.packages()), Package==p, LibPath, drop=T)
@@ -74,11 +73,13 @@ for (p in c('devtools', 'git2r')){
   }
 }
 
-## install ohicore -- don't worry about the warnings
+## install most current version of ohicore -- don't worry about the warnings. But make sure there are no errors.
 devtools::install_github('ohi-science/ohicore@dev')
+
+## load ohicore library -- again, don't worry about the warnings. But ensure the last line is not an error.
 library(ohicore)
 
-## source the function to make flower plots
+## source the function to make flower plots; this won't do anything yet.
 source('PlotFlowerMulti.r')
 ```
 
@@ -87,7 +88,7 @@ source('PlotFlowerMulti.r')
 
 We can calculate OHI scores by sourcing `calculate_scores.r` (below). This uses the following files, which are all in our current working directory, `ohi-global/ESM_270`: 
 
-- data layers in the `layers` folder
+- input data layers in the `layers` folder
 - goal models and reference points in `conf/functions.r`
 - goal weighs in `conf/goals.csv`
 - calculated scores for all goals and all 221 regions are saved in `scores.csv`. 
@@ -96,7 +97,7 @@ Note: because the Toolbox relies on these file names for calculation and for vis
 
 
 ```{r calculate scores, eval=FALSE, message=FALSE}
-## calculate scores
+## calculate scores. The Toolbox will describe each step as it calculates
 source('calculate_scores.r')
 
 ## save copies of original files
@@ -107,8 +108,9 @@ file.copy('scores.csv',       'scores_orig.csv', overwrite = TRUE)
 
 ## Visualize OHI scores for your region
 
-We just calculated scores for all 221 regions. But you'll just be inspecting one region, which do you choose? Each region has a unique numeric identifier. View the full list of regions and choose one to inspect: `View(read.csv('layers/rgn_global.csv'))`. Run the following code, then use the search icon in the top right of the View pane for your country and assign the `rgn_id` to `my_rgn`. 
+We just calculated scores for all 221 regions. But you'll just be inspecting one region, which do you choose? Each region has a unique numeric identifier. Run this to view the full list of regions and choose one to inspect: `View(read.csv('layers/rgn_global.csv'))`. Use use the search bar in the top right of the View pane to find your country and note its `rgn_id`. 
 
+You'll assign it in R now as `my_rgn`: 
 ```{r assign rgn_id, eval=FALSE}
 ## assign your rgn_id
 my_rgn <-  163 # United States; change this to your region of choice
@@ -116,15 +118,16 @@ my_rgn <-  163 # United States; change this to your region of choice
 
 ## Flower plot for your region
 
-Now, let's visualize your region's scores in a flower plot. Run the following as-is: 
+Now, let's visualize your region's scores in a flower plot. The `PlotFlowerMulti()` function will make figures for you, saving them as .pngs in `ohi-global/ESM_270/reports/figures` and displaying them in the RStudio Viewer (they will look a bit cut-off in the Viewer but that is just a vizualization glitch; the .pngs are fine).  
 
+Run the following -- it will save a file with your region's name, for example `ohi-global/ESM_270/reports/figures/flower_orig_United_States.png.`:  
 ```{r plot original, eval=FALSE, message=FALSE}
 ## parameters for the flower plot
 scores_orig <- read.csv('scores.csv')
 conf_orig <- read.csv('conf/goals.csv')
 name_fig_orig <- 'reports/figures/flower_orig'   # my_rng is appended to name_fig
 
-## function call for the flower plot
+## function call for the flower plot -- original
 PlotFlowerMulti(scores       = scores_orig, 
                 rgns_to_plot = my_rgn, 
                 conf         = conf_orig, 
@@ -133,19 +136,24 @@ PlotFlowerMulti(scores       = scores_orig,
 
 ## Change goal weighting
 
-Now you will change the goal weighting for one of the goals. Refer to the [Introduction](#Introduction) above to see the list of goals. All goals have a weight of 1; if a goal has sub-goals, those are weighted each as 0.5. View this with `View(conf_orig %>% dplyr::select(goal, name, weight))`. Below, look at the weights of each goal and sub-goal, and change one of the weights. The example below shows changing the weight of the Artisanal Fishing Opportunity goal (AO) from 1 to 3. Note that all of these weights are relative; you don't need to have them add up as they do now. 
+Now you will change the goal weighting for one of the goals. 
 
+Refer to the Introduction above to see the list of goals. Currently, goals are weighted equally. This means goals have a weight of 1; if a goal has sub-goals, those are weighted each as 0.5. View this with `View(conf_orig %>% dplyr::select(goal, name, weight))`. Identify the 2- or 3- letter code for the goal or sub-goal you want to change.
+
+Run the following after updating the weight; the example below shows changing the weight of the Artisanal Fishing Opportunity goal ('AO') to 3. Note that all of these weights are relative; so you can just change one goal weight without worrying about what it adds up to. This will save a file with your region's name, for example `ohi-global/ESM_270/reports/figures/flower_weights_new_United_States.png.`
 ```{r, eval=FALSE, message=FALSE}
-## change the weight of a goal, eg AO to 3 and save file
+## create a new variable conf_new_wt
 conf_new_wt <- conf_orig
-conf_new_wt$weight[conf_new_wt$goal == 'AO'] = 3
 
-## re-calculate scores
-write.csv(conf_new_wt, 'conf/goals.csv', row.names = FALSE) # use new weight
+## change the weight of a goal, eg AO to 3 and save file
+conf_new_wt$weight[conf_new_wt$goal == 'AO'] = 3. # the 2- or 3- letter code must be in quotes. 
+write.csv(conf_new_wt, 'conf/goals.csv', row.names = FALSE) 
+
+## re-calculate scores with new weight
 source('calculate_scores.r')
 scores_new_wt <- read.csv('scores.csv')
 
-## parameter for the flower plot
+## parameter for the flower plot -- new weight
 name_fig_weights <- 'reports/figures/flower_weights_new'
 
 ## function call for the flower plot
@@ -158,27 +166,30 @@ PlotFlowerMulti(scores       = scores_new_wt,
 
 ## Change reference point
 
-The Lasting Special Places sub-goal represents geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. In global assessments, we model this with the proportion of the offshore area that is a marine protected area (MPAs), with the reference point set to 30%. 
+The **Lasting Special Places** sub-goal represents geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. In global assessments, we model this with the proportion of the offshore area that is a marine protected area (MPAs), with the reference point set to 30%. 
 
-You can see this by navigating to `conf/functions.r`, and looking at line 1578: you can also search for `LSP = `. Right now it's set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 100%. Go ahead and change it and let's compare. 
+You can see this by navigating to `conf/functions.r`, and looking at line 1578: you can also search for `LSP = `. Right now it's set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 100%. 
+
+Go ahead and change it and run the following. It will save a file with your region's name, for example `ohi-global/ESM_270/reports/figures/flower_ref_new_United_States.png.`
 
 ```{r, eval=FALSE, message=FALSE}
 ## set a new reference point
-ref_pct_new <- 100 # change this with your reference point
+ref_pct_new <- 40 # change this with your reference point
 
-## run this this to insert your new reference point into functions.r
+## run this to insert your new reference point into conf/functions.r
 readLines('conf/functions.r') %>%
   str_replace("LSP = .*", sprintf("LSP = function(layers, ref_pct_cmpa=%s, ref_pct_cp=%s, status_year){", 
                                   ref_pct_new, ref_pct_new)) %>%
   writeLines('conf/functions.r')
 
+## reset original conf/goals.csv file
+write.csv(conf_orig, 'conf/goals.csv', row.names = FALSE) # use original conf
 
 ## re-calculate scores with new reference point
-write.csv(conf_orig, 'conf/goals.csv', row.names = FALSE) # use original conf
 source('calculate_scores.r')
 scores_new_ref <- read.csv('scores.csv')
 
-## parameter for the flower plot
+## parameter for the flower plot -- new reference point
 name_fig_ref <- 'reports/figures/flower_ref_new'
 
 PlotFlowerMulti(scores       = scores_new_ref, 
@@ -186,3 +197,32 @@ PlotFlowerMulti(scores       = scores_new_ref,
                 conf         = conf_orig, 
                 name_fig     = name_fig_ref)
 ```
+
+How does the new reference point flower plot compare with the original? How much would you have expected the overall score to change? And how would you communicate this using the flower plots? 
+
+Run this to compare how much the LSP goal score changed vs. the overall Index score (displayed in the middle of the flower plot): 
+```{r, eval=FALSE, message=FALSE}
+
+## investigate the LSP scores: 
+scores_orig %>%
+  filter(region_id == my_rgn, 
+         goal == 'LSP', 
+         dimension == 'score')
+
+scores_new_ref %>%
+  filter(region_id == my_rgn, 
+         goal == 'LSP', 
+         dimension == 'score')
+
+## investigate the overall Index scores 
+scores_orig %>%
+  filter(region_id == my_rgn, 
+         goal == 'Index', 
+         dimension == 'score')
+
+scores_new_ref %>%
+  filter(region_id == my_rgn, 
+         goal == 'Index', 
+         dimension == 'score')
+```
+
