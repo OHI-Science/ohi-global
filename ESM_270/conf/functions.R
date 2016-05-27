@@ -233,7 +233,7 @@ m <- rky %>%
   mutate(year = as.numeric(as.character(year))) %>%
   group_by(rgn_id, species, species_code, sust_coeff) %>%
   arrange(rgn_id, species, species_code, year) %>%
-  mutate(sm_tonnes = zoo::rollapply(tonnes, 4, mean, na.rm=TRUE, partial=TRUE)) %>%
+  mutate(sm_tonnes = mean(tonnes, na.rm=TRUE)) %>% # note: deleted the zoo::rollapply function so scores will differ from global slightly
   ungroup()
 
 # smoothed mariculture harvest * sustainability coefficient
@@ -260,8 +260,6 @@ m <- m %>%
 ry_ref = ref_95pct_data %>%
   arrange(mar_pop) %>%
   filter(mar_pop >= ref_95pct)
-  message(sprintf('95th percentile for MAR ref pt is: %s\n', ref_95pct)) # rgn_id 25 = Thailand
-  message(sprintf('95th percentile rgn_id for MAR ref pt is: %s\n', ry_ref$rgn_id[1])) # rgn_id 25 = Thailand
 
 ry = ry %>%
   mutate(status = ifelse(mar_pop / ref_95pct > 1,
