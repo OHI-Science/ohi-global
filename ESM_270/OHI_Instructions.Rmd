@@ -27,7 +27,7 @@ In this assignment you will explore how Ocean Health Index (OHI) scores respond 
 
 You will be using the OHI Toolbox software to do this, and follow the instructions here ([`OHI_Instructions.Rmd`](https://rawgit.com/OHI-Science/ohi-global/draft/ESM_270/OHI_Instructions.html)). Walk through line-by-line and execute the code in R; the order does matter so be sure to proceed line-by-line. The example presented is for the USA, so please choose another country for your assignment. 
 
-Your final figures will be saved as .pngs within the ohi-global folder you downloaded: `ohi-global/ESM_270/reports/figures`. 
+Your final figures will be saved as .pngs within the ohi-global folder you will download. 
 
 
 ```{r setup, include=FALSE}
@@ -55,7 +55,7 @@ Run the following code:
 ## set working directory to ohi-global/ESM_270 
 setwd('ESM_270')
 
-## load ohicore library -- don't worry about the warnings. But make sure no errors.
+## load ohicore library (ohicore is already installed). -- Warnings are OK, but make sure no errors.
 library(ohicore)
 
 ## source the function to make flower plots; this won't do anything yet.

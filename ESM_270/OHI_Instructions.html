@@ -235,7 +235,7 @@ div.tocify {
 <li>the reference point of a goal</li>
 </ol>
 <p>You will be using the OHI Toolbox software to do this, and follow the instructions here (<a href="https://rawgit.com/OHI-Science/ohi-global/draft/ESM_270/OHI_Instructions.html"><code>OHI_Instructions.Rmd</code></a>). Walk through line-by-line and execute the code in R; the order does matter so be sure to proceed line-by-line. The example presented is for the USA, so please choose another country for your assignment.</p>
-<p>Your final figures will be saved as .pngs within the ohi-global folder you downloaded: <code>ohi-global/ESM_270/reports/figures</code>.</p>
+<p>Your final figures will be saved as .pngs within the ohi-global folder you will download.</p>
 <div id="get-the-ohi-global-repo" class="section level2">
 <h2><span class="header-section-number">2.1</span> Get the ohi-global repo</h2>
 <p>We’ll be playing with weights and reference points for the global OHI assessments; we calculate scores each year for 221 coastal nations and territories. Let’s get it on your computer.</p>
@@ -256,7 +256,7 @@ div.tocify {
 <pre class="r"><code>## set working directory to ohi-global/ESM_270 
 setwd('ESM_270')
 
-## load ohicore library -- don't worry about the warnings. But make sure no errors.
+## load ohicore library (ohicore is already installed). -- Warnings are OK, but make sure no errors.
 library(ohicore)
 
 ## source the function to make flower plots; this won't do anything yet.
