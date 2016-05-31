@@ -240,42 +240,24 @@ div.tocify {
 <h2><span class="header-section-number">2.1</span> Get the ohi-global repo</h2>
 <p>We’ll be playing with weights and reference points for the global OHI assessments; we calculate scores each year for 221 coastal nations and territories. Let’s get it on your computer.</p>
 <ol style="list-style-type: decimal">
-<li>Go to <a href="https://github.com/OHI-Science/ohi-global">github.com/OHI-Science/ohi-global</a>. This is the <code>ohi-global</code> repository (called ‘repo’).</li>
-<li>Click on the <span style="color:green">green</span> ‘clone or download’ button.</li>
-<li>Clone or download somewhere you can find on your computer. If you are familiar with GitHub, clone this repository. Otherwise click ‘Download ZIP’.</li>
-<li>Navigate to where you saved the <code>ohi-global</code> repo on your computer and double-click the <code>ohi-global.Rproj</code> file. This will open <a href="https://www.rstudio.com/">RStudio</a> (which is how you should always interface with R).</li>
-<li>Within the RStudio file directory pane (bottom right), navigate to the <code>ESM_270</code> folder. Inside is a mix of <code>.R</code> scripts and <code>.csv</code> files. We will just focus on a few of them.</li>
+<li>Go to <a href="https://github.com/OHI-Science/ohi-global">github.com/OHI-Science/ohi-global</a>. This is the <code>ohi-global</code> repository ‘repo’.</li>
+<li>Click on the <span style="color:green">green</span> ‘clone or download’ button. (If you are familiar with GitHub, clone this repository; otherwise click ‘Download ZIP’).</li>
+<li>Navigate to where you saved the repo (check the Downloads folder).</li>
+<li>Make sure the folder is simply called <code>ohi-global</code>. If necessary, rename it (delete ‘-draft’ if it exists).</li>
+<li>Extract the ZIP file: right click to extract using 7Zip</li>
+<li>Open the folder (rename to <code>ohi-global</code> again if necessary).</li>
+<li>Double-click the <code>ohi-global.Rproj</code> (if file extensions aren’t displayed this file will be simply called <code>ohi-global</code>). Double-clicking this <code>.Rproj</code> file which will open <a href="https://www.rstudio.com/">RStudio</a> (which is how you should always interface with R).</li>
 </ol>
 </div>
 <div id="setup" class="section level2">
 <h2><span class="header-section-number">2.2</span> Setup</h2>
-<p>Since we’re in RStudio with a <code>.Rproj</code> file, our current working directory is <code>wherever/you/saved/it/ohi-global</code>. All of our work for the assignment happens in the <code>ESM_270</code> folder (what you are reading is from <code>ohi-global/ESM_270/ESM_270_OHI.Rmd</code>). Let’s change the working directory to the ESM_270 folder, and install the packages we need to get going.</p>
-<p><strong>Troubleshooting: If you have any problems</strong>, check that R and RStudio are up-to-date. The most recent version of R is 3.3 and RStudio is 0.99. If needed, update R <a href="Find%20the%20latest%20version%20at%20http://cran.r-project.org">here</a> and RStudio <a href="http://www.rstudio.com/products/rstudio/download">here</a>.</p>
+<p>Since we’re in RStudio with a <code>.Rproj</code> file, our current working directory is <code>wherever/you/saved/it/ohi-global</code>. All of our work for the assignment happens in the <code>ESM_270</code> folder (what you are reading is from <code>ohi-global/ESM_270/ESM_270_OHI.Rmd</code>). Let’s change the working directory to the <code>ESM_270</code> folder, and install the packages we need to get going. The <code>ESM_270</code> folder has a mix of <code>.R</code> scripts and <code>.csv</code> files that we will be using (you can navigate to them in RStudio’s lower-right files pane, but will still need to set your working directory).</p>
 <p>Run the following code:</p>
-<pre class="r"><code>## delete any existing version of `ohicore`
-for (p in c('ohicore')){
-  if (p %in% rownames(installed.packages())){
-    lib = subset(as.data.frame(installed.packages()), Package==p, LibPath, drop=T)
-    remove.packages(p, lib)
-  }
-}
-
-## install dependencies
-for (p in c('devtools', 'git2r')){
-  if (!require(p, character.only=T)){
-    install.packages(p)
-    require(p, character.only=T)
-  }
-}
-
-## install most current version of ohicore -- don't worry about the warnings. But make sure there are no errors.
-devtools::install_github('ohi-science/ohicore@dev')
-
-## load ohicore library -- again, don't worry about the warnings. But ensure the last line is not an error.
-library(ohicore)
-
-## set working directory to ohi-global/ESM_270 with setwd()
+<pre class="r"><code>## set working directory to ohi-global/ESM_270 
 setwd('ESM_270')
+
+## load ohicore library -- don't worry about the warnings. But make sure no errors.
+library(ohicore)
 
 ## source the function to make flower plots; this won't do anything yet.
 source('PlotFlowerMulti.r')</code></pre>
@@ -289,7 +271,7 @@ source('PlotFlowerMulti.r')</code></pre>
 <li>goal weighs in <code>conf/goals.csv</code></li>
 <li>calculated scores for all goals and all 221 regions are saved in <code>scores.csv</code>.</li>
 </ul>
-<p>Note: because the Toolbox relies on these file names for calculation and for visualizing, we’ll be overwriting some of these files (after saving the originals) to use in each of the steps as we go forward.</p>
+<p><strong>Note:</strong> because the Toolbox relies on these file names for calculation and for visualizing, we’ll be overwriting some of these files (after saving the originals) to use in each of the steps as we go forward.</p>
 <pre class="r"><code>## calculate scores. The Toolbox will describe each step as it calculates
 source('calculate_scores.r')
 
@@ -298,20 +280,20 @@ file.copy('conf/goals.csv',   'conf/goals_orig.csv', overwrite = TRUE)
 file.copy('conf/functions.r', 'conf/functions_orig.r', overwrite = TRUE)
 file.copy('scores.csv',       'scores_orig.csv', overwrite = TRUE)</code></pre>
 </div>
-<div id="visualize-ohi-scores-for-your-region" class="section level2">
-<h2><span class="header-section-number">2.4</span> Visualize OHI scores for your region</h2>
-<p>We just calculated scores for all 221 regions. But you’ll just be inspecting one region, which do you choose? Each region has a unique numeric identifier. Run this to view the full list of regions and choose one to inspect: <code>View(read.csv('layers/rgn_global.csv'))</code>. Use use the search bar in the top right of the View pane to find your country and note its <code>rgn_id</code>.</p>
+<div id="choose-your-region" class="section level2">
+<h2><span class="header-section-number">2.4</span> Choose your region</h2>
+<p>We just calculated scores for all 221 regions. But you’ll just be inspecting one region, which do you choose? Each region has a unique numeric identifier. Run this to view the full list of regions and choose one to inspect: <code>View(read.csv('layers/rgn_global.csv'))</code>. Use the search bar in the top right of the View pane to find your country and note its <code>rgn_id</code>.</p>
 <p>You’ll assign it in R now as <code>my_rgn</code>:</p>
 <pre class="r"><code>## assign your rgn_id
 my_rgn &lt;-  163 # United States; change this to your region of choice</code></pre>
 </div>
-<div id="flower-plot-for-your-region" class="section level2">
-<h2><span class="header-section-number">2.5</span> Flower plot for your region</h2>
+<div id="original-flower-plot-for-your-region" class="section level2">
+<h2><span class="header-section-number">2.5</span> Original flower plot for your region</h2>
 <p>Now, let’s visualize your region’s scores in a flower plot. The <code>PlotFlowerMulti()</code> function will make figures for you, saving them as .pngs in <code>ohi-global/ESM_270/reports/figures</code> and displaying them in the RStudio Viewer (they will look a bit cut-off in the Viewer but that is just a vizualization glitch; the .pngs are fine).</p>
 <p>Run the following – it will save a file with your region’s name, for example <code>ohi-global/ESM_270/reports/figures/flower_orig_United_States.png.</code>:</p>
 <pre class="r"><code>## parameters for the flower plot
-scores_orig &lt;- read.csv('scores.csv')
-conf_orig &lt;- read.csv('conf/goals.csv')
+scores_orig &lt;- read.csv('scores_orig.csv')
+conf_orig &lt;- read.csv('conf/goals_orig.csv')
 name_fig_orig &lt;- 'reports/figures/flower_orig'   # my_rng is appended to name_fig
 
 ## function call for the flower plot -- original
@@ -353,9 +335,9 @@ PlotFlowerMulti(scores       = scores_new_wt,
 <pre class="r"><code>## set a new reference point
 ref_pct_new &lt;- 40 # change this with your reference point
 
-## run this to insert your new reference point into conf/functions.r
+## run this to insert your new reference point into conf/functions.r If problems, you can change this one by hand in functions.r
 readLines('conf/functions.r') %&gt;%
-  str_replace(&quot;LSP = .*&quot;, sprintf(&quot;LSP = function(layers, ref_pct_cmpa=%s, ref_pct_cp=%s, status_year){&quot;, 
+  stringr::str_replace(&quot;LSP = .*&quot;, sprintf(&quot;LSP = function(layers, ref_pct_cmpa=%s, ref_pct_cp=%s, status_year){&quot;, 
                                   ref_pct_new, ref_pct_new)) %&gt;%
   writeLines('conf/functions.r')
 
@@ -377,23 +359,23 @@ PlotFlowerMulti(scores       = scores_new_ref,
 <p>Run this to compare how much the LSP goal score changed vs. the overall Index score (displayed in the middle of the flower plot):</p>
 <pre class="r"><code>## investigate the LSP scores: 
 scores_orig %&gt;%
-  filter(region_id == my_rgn, 
+  dplyr::filter(region_id == my_rgn, 
          goal == 'LSP', 
          dimension == 'score')
 
 scores_new_ref %&gt;%
-  filter(region_id == my_rgn, 
+  dplyr::filter(region_id == my_rgn, 
          goal == 'LSP', 
          dimension == 'score')
 
 ## investigate the overall Index scores 
 scores_orig %&gt;%
-  filter(region_id == my_rgn, 
+  dplyr::filter(region_id == my_rgn, 
          goal == 'Index', 
          dimension == 'score')
 
 scores_new_ref %&gt;%
-  filter(region_id == my_rgn, 
+  dplyr::filter(region_id == my_rgn, 
          goal == 'Index', 
          dimension == 'score')</code></pre>
 </div>
