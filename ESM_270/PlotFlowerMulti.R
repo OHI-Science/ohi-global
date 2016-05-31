@@ -31,7 +31,7 @@ PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # datafram
   ## if exists, filter dimension for 'score'
   if ( 'dimension' %in% names(scores) ) {
     scores <- scores %>%
-      filter(dimension == dim_choice)
+      dplyr::filter(dimension == dim_choice)
   }
   
   
@@ -47,17 +47,17 @@ PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # datafram
   goals_supra = na.omit(unique(conf$parent)) # goals comprised of subgoals, not included in plot
   
   conf <- conf %>%
-    filter(!(goal %in% goals_supra)) %>%
-    select(goal, order_color, order_hierarchy, weight, name_flower) %>%
-    mutate(name_flower = gsub("\\n", "\n", name_flower, fixed = TRUE)) %>%
-    mutate(goal = as.character(goal)) %>%
-    arrange(order_hierarchy)
+    dplyr::filter(!(goal %in% goals_supra)) %>%
+    dplyr::select(goal, order_color, order_hierarchy, weight, name_flower) %>%
+    dplyr::mutate(name_flower = gsub("\\n", "\n", name_flower, fixed = TRUE)) %>%
+    dplyr::mutate(goal = as.character(goal)) %>%
+    dplyr::arrange(order_hierarchy)
   
   scores <- scores %>%
     # TODO: don't know what this did @Mel?  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
-    mutate(goal = as.character(goal)) %>%
-    filter(region_id <= 250) %>%       # get rid of high seas regions
-    filter(region_id != 213)
+    dplyr::mutate(goal = as.character(goal)) %>%
+    dplyr::filter(region_id <= 250) %>%       # get rid of high seas regions
+    dplyr::filter(region_id != 213)
   
   # TODO, not sure this is needed
   # region names, ordered by GLOBAL and alphabetical
@@ -75,15 +75,15 @@ PlotFlowerMulti <- function(scores          = read.csv('scores.csv'), # datafram
     
     ## region name for title
     rgn_name = rgn_names %>%
-      filter(rgn_id == r)
+      dplyr::filter(rgn_id == r)
     rgn_name = rgn_name$label
     print(sprintf('Flower Plot for %s (rgn_id %s) . . .', rgn_name, r))
     
     ## combine to goal weighting
     scores_r = scores %>%
-      filter(region_id == r) %>%
-      inner_join(conf, by="goal") %>%
-      arrange(order_color)
+      dplyr::filter(region_id == r) %>%
+      dplyr::inner_join(conf, by="goal") %>%
+      dplyr::arrange(order_color)
     
     score_Index <-  subset(scores, region_id==r & goal == 'Index', score, drop=T)
     
