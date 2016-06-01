@@ -1,29 +1,39 @@
-# layers ----
-layers_id_fields        = c('rgn_id','cntry_key','country_id','saup_id','fao_id','fao_ohi_id','fao_saup_id') # note: cntry_key for www2013, country_id for nature2012
-layer_region_labels     = 'rgn_global'
+# region data layers----
+# a list of possible id fields used in datalayers (most will use rgn_id, but not always)
+layers_id_fields        = c('rgn_id','cntry_key', 'fao_id', 'fao_saup_id', 'country_id','saup_id','fao_ohi_id') 
+
+# the official list of regions (and corresponding names)
+layer_region_labels     = 'rgn_global'   
+
+# the official ocean areas of each region (used to weight each subregions contribution to the region score)
 layer_region_areas      = 'rgn_area'
 
 # pressures & resilience matrices ----
-# components describe the layer and level with which to aggregate resilience and pressures matrices for goals with categories
-resilience_components = list('NP'  = c('layer'='np_harvest_product_weight' , 'level'='region_id-category'),  # old: rnk_np_product_weight
-                             'CS'  = c('layer'='cs_habitat_extent'         , 'level'='region_id-category'),
-                             'CP'  = c('layer'='cp_habitat_extent_rank'    , 'level'='region_id-category'),           # old: rnk_cp_habitat_extent
-                             'HAB' = c('layer'='hab_presence'              , 'level'='region_id-category'))
-pressures_components  = list('NP'  = c('layer'='np_harvest_product_weight' , 'level'='region_id-category'),
-                             'CS'  = c('layer'='cs_habitat_extent'         , 'level'='region_id-category'),
-                             'CP'  = c('layer'='cp_habitat_extent_rank'    , 'level'='region_id-category'),
-                             'LIV' = c('layer'='le_sector_weight'          , 'level'='region_id-category'),
-                             'ECO' = c('layer'='le_sector_weight'          , 'level'='region_id-category'),
-                             'HAB' = c('layer'='hab_presence'              , 'level'='region_id-category'))
-pressures_categories = list(environmental=c('po','hd','fp','sp','cc'), social='ss')
-resilience_categories = c('environmental', 'regulatory', 'social')
+
+# For goals with elements (e.g., for coastal protection: mangrove, saltmarsh, seagrass), these data layers describe how to
+# weight the contribution of each goal element to calculate the final goal pressure and resilience dimensions.
+resilience_element = list('NP'  = 'np_harvest_product_weight',
+                             'CS'  = 'element_wts_cs_km2_x_storage' ,
+                             'CP'  = 'element_wts_cp_km2_x_protection',
+                             'HAB' = 'element_wts_hab_pres_abs'             )
+
+pressures_element  = list('NP'  = 'np_harvest_product_weight',
+                             'CS'  = 'element_wts_cs_km2_x_storage'  ,
+                             'CP'  = 'element_wts_cp_km2_x_protection' ,
+                             'LIV' = 'le_sector_weight' ,
+                             'ECO' = 'le_sector_weight',
+                             'HAB' = 'element_wts_hab_pres_abs'             )
+
 
 # constants
-pressures_gamma = 0.5
-goal_discount = 1.0
-goal_beta = 0.67
+pressures_gamma = 0.5  # The relative importance of social vs. ecological pressures (pressure = gamma * ecological + (1-gamma) * social)
+resilience_gamma = 0.5 # The relative importance of social vs. ecological resiliences (resilience = gamma * ecological + (1-gamma) * social)
+goal_discount = 1.0    # Used to calculate likely future state
+goal_beta = 0.67       # The relative importance of trend vs. pressure/resilience on likely future state; if goal_beta = 0.67, trend is twice as important as pressure/resilience.
 default_trend = 0
 
+
+#### NOTE: can we delete the following information???
 # map configuration
 map_lat=0; map_lon=0; map_zoom=3
 
