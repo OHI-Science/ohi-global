@@ -1,4 +1,4 @@
-targets,layer,dir_2012a,fn_2012a,dir_2013a,fn_2013a,dir_2014a,fn_2014a,dir_2015a,fn_2015a,dir_2015a,fn_2015a,name,description,fld_value,units,ingest,dir_gap_fill_2013,fn_gap_fill_2013,dir_gap_fill_2015,fn_gap_fill_2015,clip_n_ship_disag,clip_n_ship_disag_description
+targets,layer,dir_2012a,fn_2012a,dir_2013a,fn_2013a,dir_2014a,fn_2014a,dir_2015a,fn_2015a,dir_2016a,fn_2016a,name,description,fld_value,units,ingest,dir_gap_fill_2013,fn_gap_fill_2013,dir_gap_fill_2015,fn_gap_fill_2015,clip_n_ship_disag,clip_n_ship_disag_description
 AO,ao_access,ohiprep:globalprep/resilience_mora/v2013/data,r_mora_s4_2013a.csv,ohiprep:globalprep/resilience_mora/v2013/data,r_mora_s4_2013a.csv,,,,,,,Fisheries management effectiveness and opportunity,"The opportunity for artisanal and recreational fishing based on the quality of management of the small- scale fishing sector (Mora et al 2009).
 
 Data sources:
@@ -373,13 +373,13 @@ resilience,g_msi_gov,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_msi_go
 Data sources:
 
 - Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.",resilience score,resilience score,TRUE,,,ohiprep:globalprep/resilience_msi,r_msi_gov_2013a_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,species_diversity_eez,ohiprep:globalprep/spp_ico/v2015/data,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/data,spp_status_global.csv,Ocean ecological integrity,"Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
+resilience,species_diversity_eez,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,Ocean ecological integrity,"Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
 ",score,resilience score,TRUE,,,ohiprep:globalprep/spp_ico/v2015/data,spp_status_global_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,species_diversity_3nm,ohiprep:globalprep/spp_ico/v2015/data,spp_status_3nm.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_status_3nm.csv,,,,,,,Coastal ecological integrity,"Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
+resilience,species_diversity_3nm,ohiprep:globalprep/spp_ico/v2016/output,spp_status_3nm.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_3nm.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_3nm.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_3nm.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_3nm.csv,Coastal ecological integrity,"Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
 
 Data sources:
 
@@ -449,13 +449,13 @@ Data sources:
 ",georgn_id,georegion id,TRUE,,,,rgn_georegions_long_2013b_dr.csv,raster,spatial data was extracted for each region.
 spatial,rgn_global,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data,rgn_global.csv,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data,rgn_global.csv,,,,,,,"regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed ","Regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed. ",label,label,TRUE,,,,rgn_global_dr.csv,raster,spatial data was extracted for each region.
 spatial,rgn_labels,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data,rgn_labels.csv,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data,rgn_labels.csv,,,,,,,"regions by type (eez, subocean, unclaimed) and label","Ocean Health Index regions by type (eez, subocean, unclaimed) and label",label,label,TRUE,,,,rgn_labels_dr.csv,raster,spatial data was extracted for each region.
-SPP,spp_status,ohiprep:globalprep/spp_ico/v2015/data,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/data,spp_status_global.csv,Species lists and IUCN threat categories as a proxy for iconic species status,"International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
+SPP,spp_status,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,Species lists and IUCN threat categories as a proxy for iconic species status,"International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
 ",score,status score,TRUE,,,NA,NA,equal,global scores were applied equally to each region. 
-SPP,spp_trend,ohiprep:globalprep/spp_ico/v2015/data,spp_trend_global.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_trend_global.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_trend_global.csv,ohiprep:globalprep/spp_ico/v2015/data,spp_trend_global.csv,ohiprep:globalprep/spp_ico/v2016/data,spp_trend_global.csv,Species lists and IUCN threat categories as a proxy for iconic species trend,"International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
+SPP,spp_trend,ohiprep:globalprep/spp_ico/v2016/output,spp_trend_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_trend_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_trend_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_trend_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_trend_global.csv,Species lists and IUCN threat categories as a proxy for iconic species trend,"International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
 
