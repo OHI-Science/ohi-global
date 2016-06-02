@@ -50,6 +50,8 @@ We'll be playing with weights and reference points for the global OHI assessment
 
 Since we're in RStudio with a `.Rproj` file, our current working directory is `wherever/you/saved/it/ohi-global`. All of our work for the assignment happens in the `ESM_270` folder (what you are reading is from `ohi-global/ESM_270/ESM_270_OHI.Rmd`). Let's change the working directory to the `ESM_270` folder, and install the packages we need to get going. The `ESM_270` folder has a mix of `.R` scripts and `.csv` files that we will be using (you can navigate to them in RStudio's lower-right files pane, but will still need to set your working directory). 
 
+**Note:** the following code assumes the the `ohicore` package is already installed on the GIS lab computers. See the full install instructions at the end of the document. 
+
 Run the following code:
 ```{r ohicore, eval=FALSE, message=FALSE, results='hide'}
 ## set working directory to ohi-global/ESM_270 
@@ -147,7 +149,7 @@ PlotFlowerMulti(scores       = scores_new_wt,
 
 The **Lasting Special Places** sub-goal represents geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. In global assessments, we model this with the proportion of the offshore area that is a marine protected area (MPAs), with the reference point set to 30%. 
 
-You can see this by navigating to `conf/functions.r`, and looking at line 1578: you can also search for `LSP = `. Right now it's set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 40%. 
+You can see this by navigating to `conf/functions.r`, and looking at line 1484: you can also search for `LSP = `. Right now it's set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 40%. 
 
 Go ahead and change it and run the following. It will save a file with your region's name, for example `ohi-global/ESM_270/reports/figures/flower_ref_new_United_States.png.`
 
@@ -177,6 +179,7 @@ PlotFlowerMulti(scores       = scores_new_ref,
                 name_fig     = name_fig_ref)
 ```
 
+## Inspect scores more closely
 How does the new reference point flower plot compare with the original? How much would you have expected the overall score to change? And how would you communicate this using the flower plots? 
 
 Run this to compare how much the LSP goal score changed vs. the overall Index score (displayed in the middle of the flower plot): 
@@ -203,5 +206,31 @@ scores_new_ref %>%
   dplyr::filter(region_id == my_rgn, 
          goal == 'Index', 
          dimension == 'score')
+```
+
+# Full ohicore install instructions
+The OHI R package `ohicore` is already installed on the GIS lab computers, so if you are working there, you can ignore this. 
+
+But if you're working on your on machine, run the following to install `ohicore`, and then continue with the Setup instructions from the lab (above) and carry on.
+
+```{r, eval=FALSE, message=FALSE}
+## delete any existing version of `ohicore`
+for (p in c('ohicore')){
+  if (p %in% rownames(installed.packages())){
+    lib = subset(as.data.frame(installed.packages()), Package==p, LibPath, drop=T)
+    remove.packages(p, lib)
+  }
+}
+
+## install dependencies
+for (p in c('devtools', 'git2r')){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+    require(p, character.only=T)
+  }
+}
+
+## install most current version of ohicore -- don't worry about the warnings. But make sure there are no errors.
+devtools::install_github('ohi-science/ohicore@dev')
 ```
 

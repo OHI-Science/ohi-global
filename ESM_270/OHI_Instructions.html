@@ -252,6 +252,7 @@ div.tocify {
 <div id="setup" class="section level2">
 <h2><span class="header-section-number">2.2</span> Setup</h2>
 <p>Since we’re in RStudio with a <code>.Rproj</code> file, our current working directory is <code>wherever/you/saved/it/ohi-global</code>. All of our work for the assignment happens in the <code>ESM_270</code> folder (what you are reading is from <code>ohi-global/ESM_270/ESM_270_OHI.Rmd</code>). Let’s change the working directory to the <code>ESM_270</code> folder, and install the packages we need to get going. The <code>ESM_270</code> folder has a mix of <code>.R</code> scripts and <code>.csv</code> files that we will be using (you can navigate to them in RStudio’s lower-right files pane, but will still need to set your working directory).</p>
+<p><strong>Note:</strong> the following code assumes the the <code>ohicore</code> package is already installed on the GIS lab computers. See the full install instructions at the end of the document.</p>
 <p>Run the following code:</p>
 <pre class="r"><code>## set working directory to ohi-global/ESM_270 
 setwd('ESM_270')
@@ -330,7 +331,7 @@ PlotFlowerMulti(scores       = scores_new_wt,
 <div id="change-reference-point" class="section level2">
 <h2><span class="header-section-number">2.7</span> Change reference point</h2>
 <p>The <strong>Lasting Special Places</strong> sub-goal represents geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. In global assessments, we model this with the proportion of the offshore area that is a marine protected area (MPAs), with the reference point set to 30%.</p>
-<p>You can see this by navigating to <code>conf/functions.r</code>, and looking at line 1578: you can also search for <code>LSP =</code>. Right now it’s set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 40%.</p>
+<p>You can see this by navigating to <code>conf/functions.r</code>, and looking at line 1484: you can also search for <code>LSP =</code>. Right now it’s set to 30% of waters should be in MPAs. What if we altered that? The example below changes it to 40%.</p>
 <p>Go ahead and change it and run the following. It will save a file with your region’s name, for example <code>ohi-global/ESM_270/reports/figures/flower_ref_new_United_States.png.</code></p>
 <pre class="r"><code>## set a new reference point
 ref_pct_new &lt;- 40 # change this with your reference point
@@ -355,6 +356,9 @@ PlotFlowerMulti(scores       = scores_new_ref,
                 rgns_to_plot = my_rgn, 
                 conf         = conf_orig, 
                 name_fig     = name_fig_ref)</code></pre>
+</div>
+<div id="inspect-scores-more-closely" class="section level2">
+<h2><span class="header-section-number">2.8</span> Inspect scores more closely</h2>
 <p>How does the new reference point flower plot compare with the original? How much would you have expected the overall score to change? And how would you communicate this using the flower plots?</p>
 <p>Run this to compare how much the LSP goal score changed vs. the overall Index score (displayed in the middle of the flower plot):</p>
 <pre class="r"><code>## investigate the LSP scores: 
@@ -379,6 +383,29 @@ scores_new_ref %&gt;%
          goal == 'Index', 
          dimension == 'score')</code></pre>
 </div>
+</div>
+<div id="full-ohicore-install-instructions" class="section level1">
+<h1><span class="header-section-number">3</span> Full ohicore install instructions</h1>
+<p>The OHI R package <code>ohicore</code> is already installed on the GIS lab computers, so if you are working there, you can ignore this.</p>
+<p>But if you’re working on your on machine, run the following to install <code>ohicore</code>, and then continue with the Setup instructions from the lab (above) and carry on.</p>
+<pre class="r"><code>## delete any existing version of `ohicore`
+for (p in c('ohicore')){
+  if (p %in% rownames(installed.packages())){
+    lib = subset(as.data.frame(installed.packages()), Package==p, LibPath, drop=T)
+    remove.packages(p, lib)
+  }
+}
+
+## install dependencies
+for (p in c('devtools', 'git2r')){
+  if (!require(p, character.only=T)){
+    install.packages(p)
+    require(p, character.only=T)
+  }
+}
+
+## install most current version of ohicore -- don't worry about the warnings. But make sure there are no errors.
+devtools::install_github('ohi-science/ohicore@dev')</code></pre>
 </div>
 
 
