@@ -393,13 +393,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","species_diversity_3nm.csv","rgn_id",,,,"score",,TRUE,,,0.786685,0.957274,TRUE,,,,221,FALSE
+","score","resilience score","species_diversity_3nm.csv","rgn_id",,,,"score",,TRUE,,,0.877105422176482,0.962966768212714,TRUE,,,,221,FALSE
 "resilience","species_diversity_eez","Ocean ecological integrity","Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","species_diversity_eez.csv","rgn_id",,,,"score",,TRUE,,,0.737897,0.953823,TRUE,,,,221,FALSE
+","score","resilience score","species_diversity_eez.csv","rgn_id",,,,"score",,TRUE,,,0.871981848756887,0.961226989799502,TRUE,,,,221,FALSE
 "resilience","wgi_all","Strength of governance indicated with the WGI","World Governance Indicators (WGI) six combined scores.
 
 Data sources:
@@ -448,13 +448,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","status score","spp_status.csv","rgn_id",,,,"score",,TRUE,,,0.737897,0.953823,TRUE,,,,221,FALSE
+","score","status score","spp_status.csv","rgn_id",,,,"score",,TRUE,,,0.871981848756887,0.961226989799502,TRUE,,,,221,FALSE
 "SPP","spp_trend","Species lists and IUCN threat categories as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","trend score","spp_trend.csv","rgn_id",,,,"score",,TRUE,,,-0.348219,0.386041,FALSE,,,,221,FALSE
+","score","trend score","spp_trend.csv","rgn_id",,,,"score",,TRUE,,,-0.307391304347826,-0.0514800222979872,FALSE,,,,221,FALSE
 "TR","tr_jobs_pct_tourism","Percent direct employment in tourism","Percent direct employment in tourism (WTTC).
 
 Data sources:

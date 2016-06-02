@@ -66,13 +66,13 @@ scenarios = list(
 
 ### sync functions.R: 
 # overwrite eez2012, eez2014, eez2015, with eez2013
-for (dir in c('eez2012','eez2014', 'eez2015')){
+for (dir in c('eez2012','eez2014', 'eez2015', 'eez2016')){
   stopifnot(file.copy('eez2013/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
 }
 
 
 
-for (i in 1:length(scenarios)){  #i=5
+for (i in 1:length(scenarios)){  #i=1
   
   # vars
   scenario   = names(scenarios)[[i]]
@@ -110,7 +110,10 @@ for (i in 1:length(scenarios)){  #i=5
           fn_2014a = ifelse(is.na(fn_2014a), fn_2013a, fn_2014a)) %>%
         dplyr::mutate(
           dir_2015a = ifelse(is.na(dir_2015a), dir_2014a, dir_2015a),
-          fn_2015a = ifelse(is.na(fn_2015a), fn_2014a, fn_2015a))
+          fn_2015a = ifelse(is.na(fn_2015a), fn_2014a, fn_2015a))%>%
+        dplyr::mutate(
+          dir_2016a = ifelse(is.na(dir_2016a), dir_2015a, dir_2016a),
+          fn_2016a = ifelse(is.na(fn_2016a), fn_2015a, fn_2016a))
       }
     
     # replaces 'ohiprep' and 'neptune_data' parts of the filepath with the full file paths

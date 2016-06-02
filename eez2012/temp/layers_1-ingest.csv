@@ -393,13 +393,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","../ohiprep/globalprep/spp_ico/v2015/data/spp_status_3nm.csv",TRUE,"species_diversity_3nm.csv","eez2012/layers/species_diversity_3nm.csv"
+","score","resilience score","../ohiprep/globalprep/spp_ico/v2016/output/spp_status_3nm.csv",TRUE,"species_diversity_3nm.csv","eez2012/layers/species_diversity_3nm.csv"
 "resilience","species_diversity_eez","Ocean ecological integrity","Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","resilience score","../ohiprep/globalprep/spp_ico/v2015/data/spp_status_global.csv",TRUE,"species_diversity_eez.csv","eez2012/layers/species_diversity_eez.csv"
+","score","resilience score","../ohiprep/globalprep/spp_ico/v2016/output/spp_status_global.csv",TRUE,"species_diversity_eez.csv","eez2012/layers/species_diversity_eez.csv"
 "resilience","wgi_all","Strength of governance indicated with the WGI","World Governance Indicators (WGI) six combined scores.
 
 Data sources:
@@ -448,13 +448,13 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","status score","../ohiprep/globalprep/spp_ico/v2015/data/spp_status_global.csv",TRUE,"spp_status.csv","eez2012/layers/spp_status.csv"
+","score","status score","../ohiprep/globalprep/spp_ico/v2016/output/spp_status_global.csv",TRUE,"spp_status.csv","eez2012/layers/spp_status.csv"
 "SPP","spp_trend","Species lists and IUCN threat categories as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","score","trend score","../ohiprep/globalprep/spp_ico/v2015/data/spp_trend_global.csv",TRUE,"spp_trend.csv","eez2012/layers/spp_trend.csv"
+","score","trend score","../ohiprep/globalprep/spp_ico/v2016/output/spp_trend_global.csv",TRUE,"spp_trend.csv","eez2012/layers/spp_trend.csv"
 "TR","tr_jobs_pct_tourism","Percent direct employment in tourism","Percent direct employment in tourism (WTTC).
 
 Data sources:
