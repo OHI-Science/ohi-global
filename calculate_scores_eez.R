@@ -2,13 +2,14 @@
 # STEP 1: be sure to pull ohiprep
 
 library(devtools)
-devtools::install_github("ohi-science/ohicore@dev_resil") # when testing changes to ohicore
+devtools::install_github("ohi-science/ohicore@dev_resil") 
+#devtools::install_github("ohi-science/ohicore@dev") 
 #devtools::install_github("ohi-science/ohicore@master")
 #install_github('rCharts', 'ramnathv')
 library(ohicore)
 library(zoo)
 
-setwd("~/ohi-global")
+setwd("../ohi-global")
 
 source('../ohiprep/src/R/common.R')
 
@@ -27,32 +28,40 @@ do.other      = F
 
 # scenario list (need to add new scenarios here)
 scenarios = list(
+  eez2016     = list(
+    layer   = 'layers_eez',
+    fld_dir      = 'dir_2016a',
+    fld_fn       = 'fn_2016a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T), 
+  
   eez2015     = list(
     layer   = 'layers_eez',
     fld_dir      = 'dir_2015a',
     fld_fn       = 'fn_2015a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T) ,
+  
+  eez2014     = list(
+    layer   = 'layers_eez',
+    fld_dir      = 'dir_2014a',
+    fld_fn       = 'fn_2014a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T),
+  
+  eez2013     = list(
+    layer   = 'layers_eez',
+    fld_dir      = 'dir_2013a',
+    fld_fn       = 'fn_2013a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+    do           = T),
+  
+  eez2012     = list(
+    layer   = 'layers_eez',
+    fld_dir      = 'dir_2012a',
+    fld_fn       = 'fn_2012a',
+    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T)
-  # # # ,
-  # eez2014     = list(
-  #   layer   = 'layers_eez',
-  #   fld_dir      = 'dir_2014a',
-  #   fld_fn       = 'fn_2014a',
-  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-  #   do           = T)
-  #,
-  # eez2013     = list(
-  #   layer   = 'layers_eez',
-  #   fld_dir      = 'dir_2013a',
-  #   fld_fn       = 'fn_2013a',
-  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-  #   do           = T),
-  # eez2012     = list(
-  #   layer   = 'layers_eez',
-  #   fld_dir      = 'dir_2012a',
-  #   fld_fn       = 'fn_2012a',
-  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-  #   do           = T)
 )
 
 ### sync functions.R: 
@@ -63,7 +72,7 @@ for (dir in c('eez2012','eez2014', 'eez2015')){
 
 
 
-for (i in 1:length(scenarios)){  #i=1
+for (i in 1:length(scenarios)){  #i=5
   
   # vars
   scenario   = names(scenarios)[[i]]
@@ -205,22 +214,11 @@ for (i in 1:length(scenarios)){  #i=1
 
 
 ### make a plot to compare different commits within a scenario
-## for some reason, the devtools package needs to be turned off for this to work 
-detach("package:devtools", unload=TRUE)
+
+change_plot(repo = "ohi-global", scenario="eez2012", commit="previous", 
+           fileSave="eez2012_ohicore_resil_update", save_csv=FALSE, save_png=FALSE)
+
 source('../ohiprep/src/R/VisGlobal.R')
-changePlot(repo="~/ohi-global", scenario="eez2015", commit="previous", 
-           fileSave="global_resilience_massive_revision")
-compare <- read.csv('figures/DataCheck/eez2015_Hackathon_julie_updates_diff_data_2015-10-21.csv')
-difs_only <- filter(compare, change != 0)
-table(difs_only$dimension)
-tmp <- filter(compare, is.na(score) & !is.na(old_score))
-tmp <- filter(compare, !is.na(score) & is.na(old_score))
-
 # looking within a goal:
-scatterPlot(repo="~/ohi-global", scenario="antarctica2014", commit="previous", goal="HAB", dim="pressure", fileSave="antarctica_hd_sea_ice_2014")
+scatterPlot(repo="ohi-global", scenario="antarctica2014", commit="previous", goal="HAB", dim="pressure", fileSave="antarctica_hd_sea_ice_2014")
 goalHistogram(scenario="antarctica2014", goal="HAB", dim="status", fileSave="HAB_new_sea_ice")
-
-#   scenario options: 'eez2012', 'eez2013', 'eez2014', 'eez2015'
-#   commit options: 'final_2014' (the final commit for the 2014 analysis), 'previous' (previous commit), a commit code (ie., 'e30e7a4')
-#   saved to: ohi-global/figures/DataCheck with name from fileSave argument
-
