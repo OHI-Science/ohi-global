@@ -200,7 +200,7 @@ NP,np_harvest_tonnes_relative,ohiprep:globalprep/FAO_commodities/v2014_test/data
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)",tonnes_rel,ratio,TRUE,,,ohiprep:globalprep/FAO_commodities/v2014_test/data,v2014_test_np_gapfill_report.csv,equal,global scores were applied equally to each region. 
-pressures,cc_acid,ohiprep:globalprep/PressuresRegionExtract/data,acid_eez_2011.csv,ohiprep:globalprep/PressuresRegionExtract/data,acid_eez_2012.csv,ohiprep:globalprep/PressuresRegionExtract/data,acid_eez_2013.csv,ohiprep:globalprep/PressuresRegionExtract/data,acid_eez_2014.csv,,,Ocean acidification,"Change in current year's modeled aragonite saturation state (Feely et al. 2010) relative to historical mean (1880-1889).
+pressures,cc_acid,ohiprep:globalprep/prs_oa/v2016/output,acid_eez_2011.csv,ohiprep:globalprep/prs_oa/v2016/output,acid_eez_2012.csv,ohiprep:globalprep/prs_oa/v2016/output,acid_eez_2013.csv,ohiprep:globalprep/prs_oa/v2016/output,acid_eez_2014.csv,ohiprep:globalprep/prs_oa/v2016/output,acid_eez_2015.csv,Ocean acidification,"Change in current year's modeled aragonite saturation state (Feely et al. 2010) relative to historical mean (1880-1889).
 
 Data sources:
 - Feely, R., Doney, S. & Cooley, S. (2009) **Ocean acidification: present conditions and future changes in a high-CO2 world**.
