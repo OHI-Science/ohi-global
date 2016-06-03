@@ -2,8 +2,8 @@
 # STEP 1: be sure to pull ohiprep
 
 library(devtools)
-devtools::install_github("ohi-science/ohicore@dev_resil") 
-#devtools::install_github("ohi-science/ohicore@dev") 
+#devtools::install_github("ohi-science/ohicore@dev_resil") 
+devtools::install_github("ohi-science/ohicore@dev") 
 #devtools::install_github("ohi-science/ohicore@master")
 #install_github('rCharts', 'ramnathv')
 library(ohicore)
@@ -215,6 +215,18 @@ for (i in 1:length(scenarios)){  #i=1
   }
 }
 
+data_2014 <- read.csv("eez2014/scores.csv") %>%
+  select(goal, dimension, region_id, score_2014=score)
+data_2015 <- read.csv("eez2015/scores.csv") %>%
+  select(goal, dimension, region_id, score_2015=score)
+data <- left_join(data_2014, data_2015) %>%
+  filter(goal=="CW") %>%
+  filter(dimension=="score")
+
+p <- ggplot(data=data, aes(x = score_2014, y = score_2015, label=region_id)) +
+  geom_point() +
+  geom_abline(slope=1, intercept=0, color = "orange")
+ggplotly(p)
 
 ### make a plot to compare different commits within a scenario
 

@@ -271,20 +271,20 @@ Data sources:
 
 - [Sea Around Us Project (SAUP)](http://www.seaaroundus.org/)
 ","pressures.score","pressure score","hd_subtidal_sb.csv","rgn_id",,,,"pressures.score",,TRUE,,,0,0.992856206,TRUE,,,,221,FALSE
-"pressures","po_chemicals_3nm","Coastal chemical pollution within 3 nm offshore","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015), primarily land-based chemical pollution due to 3nm offshore buffer.
+"pressures","po_chemicals","Chemical pollution","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
 
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_chemicals_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000314089840492316,0.989717545123944,TRUE,,,,221,FALSE
-"pressures","po_nutrients_3nm","Coastal fertilizer pollution as a proxy for nutrient pollution within 3nm offshore","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_chemicals.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.00747125428241358,0.991066097990588,TRUE,,,,221,FALSE
+"pressures","po_nutrients","Fertilizer pollution as a proxy for nutrient pollution","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
 
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.540888123801358,TRUE,,,,221,FALSE
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_nutrients.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.565077457891731,TRUE,,,,221,FALSE
 "pressures","sp_alien","Alien species","The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
 Data sources:
@@ -300,20 +300,20 @@ Data sources:
 Data sources:
 
 - [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","ss_wgi.csv","rgn_id",,,,"score",,TRUE,,,0.12711092909796,0.957456440312554,TRUE,,,,221,FALSE
-"pressures CW","po_chemicals","Chemical pollution","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
+"pressures CW","po_chemicals_3nm","Coastal chemical pollution within 3 nm offshore","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015), primarily land-based chemical pollution due to 3nm offshore buffer.
 
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_chemicals.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.00747125428241358,0.991066097990588,TRUE,,,,221,FALSE
-"pressures CW","po_nutrients","Fertilizer pollution as a proxy for nutrient pollution","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_chemicals_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000314089840492316,0.989717545123944,TRUE,,,,221,FALSE
+"pressures CW","po_nutrients_3nm","Coastal fertilizer pollution as a proxy for nutrient pollution within 3nm offshore","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
 
 Data sources:
 
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
-Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_nutrients.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.565077457891731,TRUE,,,,221,FALSE
+Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","pressure_score","pressure score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.540888123801358,TRUE,,,,221,FALSE
 "pressures CW","po_pathogens","Access to improved sanitation as a proxy for pathogen pollution","Population without access to improved sanitation facilities. 
 
 Data sources:
