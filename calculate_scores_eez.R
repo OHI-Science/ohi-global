@@ -215,15 +215,15 @@ for (i in 1:length(scenarios)){  #i=1
   }
 }
 
-data_2014 <- read.csv("eez2014/scores.csv") %>%
-  select(goal, dimension, region_id, score_2014=score)
 data_2015 <- read.csv("eez2015/scores.csv") %>%
   select(goal, dimension, region_id, score_2015=score)
-data <- left_join(data_2014, data_2015) %>%
+data_2016 <- read.csv("eez2016/scores.csv") %>%
+  select(goal, dimension, region_id, score_2016=score)
+data <- left_join(data_2015, data_2016) %>%
   filter(goal=="CW") %>%
   filter(dimension=="score")
 
-p <- ggplot(data=data, aes(x = score_2014, y = score_2015, label=region_id)) +
+p <- ggplot(data=data, aes(x = score_2015, y = score_2016, label=region_id)) +
   geom_point() +
   geom_abline(slope=1, intercept=0, color = "orange")
 ggplotly(p)
