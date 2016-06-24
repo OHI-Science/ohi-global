@@ -1641,18 +1641,14 @@ r.yrs <- expand.grid(region_id = unique(ry$region_id),
   arrange(region_id, year) %>%
   mutate(cp= ifelse(is.na(cp), 0, cp),
          cmpa = ifelse(is.na(cmpa), 0, cmpa)) %>%
-  group_by(region_id) %>%
-  mutate(cp_cumsum    = cumsum(cp),
-         cmpa_cumsum  = cumsum(cmpa)) %>%
-  ungroup() %>%
- mutate(pa_cumsum     = cp_cumsum + cmpa_cumsum)
+ mutate(pa     = cp + cmpa)
   
   # get percent of total area that is protected for inland1km (cp) and offshore3nm (cmpa) per year
   # and calculate status score
 r.yrs = r.yrs %>%
   full_join(r, by="region_id") %>%
-  mutate(pct_cp    = pmin(cp_cumsum   / area_inland1km   * 100, 100),
-         pct_cmpa  = pmin(cmpa_cumsum / area_offshore3nm * 100, 100),
+  mutate(pct_cp    = pmin(cp   / area_inland1km   * 100, 100),
+         pct_cmpa  = pmin(cmpa / area_offshore3nm * 100, 100),
          prop_protected    = ( pmin(pct_cp / ref_pct_cp, 1) + pmin(pct_cmpa / ref_pct_cmpa, 1) ) / 2) %>%
   filter(!is.na(prop_protected))
 

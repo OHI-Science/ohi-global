@@ -146,12 +146,12 @@ Data sources:
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_inland1km.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,15649.5,FALSE,,,,221,FALSE
+- United Nations - World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","a_prot_1km","km^2","lsp_prot_area_inland1km.csv","rgn_id",,,"year","a_prot_1km",,TRUE,2000,2015,0,30449.5,FALSE,,,,221,FALSE
 "LSP","lsp_prot_area_offshore3nm","Coastal marine protected areas offshore 3km","Coastal protected areas offshore to 3nm from the UN WDPA. 
 
 Data sources:
 
-- United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","area_km2","km^2","lsp_prot_area_offshore3nm.csv","rgn_id",,,"year","area_km2",,TRUE,0,2014,0,59446.5,FALSE,,,,221,FALSE
+- United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)","a_prot_3nm","3nm^2","lsp_prot_area_offshore3nm.csv","rgn_id",,,"year","a_prot_3nm",,TRUE,2000,2015,0,99060,FALSE,,,,221,FALSE
 "MAR","mar_coastalpopn_inland25mi","Coastal population inland 25 miles","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -422,13 +422,13 @@ Data sources:
 
 - [VLIZ Maritime Boundaries Geodatabase, version 7](http://www.marineregions.org/)
 ","area_km2","km^2","rgn_area.csv","rgn_id",,,,"area_km2",,TRUE,,,12.7630587776,31886958.884907,FALSE,,,,221,FALSE
-"spatial","rgn_area_inland1km","Region area 1 km inland","inland area 1 km from shore.","area_km2","km^2","rgn_area_inland1km.csv","rgn_id",,,,"area_km2",,TRUE,,,1.7465015431603,163643.701591034,FALSE,,,,221,FALSE
+"spatial","rgn_area_inland1km","Region area 1 km inland","inland area 1 km from shore.","area","km^2","rgn_area_inland1km.csv","rgn_id",,,,"area",,TRUE,,,1,175147,FALSE,,,,221,FALSE
 "spatial","rgn_area_offshore3nm","Region area offshore 3nm","Area of Ocean Health Index regions to 3nm (VLIZ 2012). 
 
 Data sources:
 
 - [VLIZ Maritime Boundaries Geodatabase, version 7](http://www.marineregions.org/)
-","area_km2","km^2","rgn_area_offshore3nm.csv","rgn_id",,,,"area_km2",,TRUE,,,10.4790092589618,629255.77349294,FALSE,,,,221,FALSE
+","area","3nm^2","rgn_area_offshore3nm.csv","rgn_id",,,,"area",,TRUE,,,12.75,621887.75,FALSE,,,,221,FALSE
 "spatial","rgn_georegion_labels","Georegion labels per region, at 3 georegion levels","Lookup table of Ocean Health Index regions and UN georegion names at 3 georegion levels.
 
 Data sources:
