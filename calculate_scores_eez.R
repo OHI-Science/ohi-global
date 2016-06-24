@@ -215,23 +215,11 @@ for (i in 1:length(scenarios)){  #i=1
   }
 }
 
-data_2015 <- read.csv("eez2015/scores.csv") %>%
-  select(goal, dimension, region_id, score_2015=score)
-data_2016 <- read.csv("eez2016/scores.csv") %>%
-  select(goal, dimension, region_id, score_2016=score)
-data <- left_join(data_2015, data_2016) %>%
-  filter(goal=="CW") %>%
-  filter(dimension=="score")
-
-p <- ggplot(data=data, aes(x = score_2015, y = score_2016, label=region_id)) +
-  geom_point() +
-  geom_abline(slope=1, intercept=0, color = "orange")
-ggplotly(p)
 
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2015", commit="previous", 
-           fileSave="eez2015_oa_update", save_csv=FALSE, save_png=FALSE)
+           fileSave="eez2015_lsp_update", save_csv=FALSE, save_png=FALSE)
 
 source('../ohiprep/src/R/VisGlobal.R')
 # looking within a goal:
