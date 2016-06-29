@@ -65,9 +65,9 @@ scenarios = list(
 )
 
 ### sync functions.R: 
-# overwrite eez2012, eez2014, eez2015, with eez2013
-for (dir in c('eez2012','eez2014', 'eez2015', 'eez2016')){
-  stopifnot(file.copy('eez2013/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
+# overwrite eez2012, eez2013, eez2014, eez2015
+for (dir in c('eez2012','eez2013', 'eez2014', 'eez2015')){
+  stopifnot(file.copy('eez2016/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
 }
 
 
