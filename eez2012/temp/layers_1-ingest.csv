@@ -101,18 +101,12 @@ Data sources:
 - Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009). **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381.
 - Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons**. _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711
 - Schutte, V. G. W., Selig, E.R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122.","trend","trend score","../ohiprep/globalprep/hab_combined/v2015/data/habitat_trend_2012.csv",TRUE,"hab_trend.csv","eez2012/layers/hab_trend.csv"
-"ICO","ico_spp_extinction_status","IUCN extinction risk category for iconic species","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
+"ICO","ico_spp_iucn_status","IUCN extinction risk category for iconic species","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","category","category","../ohiprep/globalprep/spp_ico/v2015/data/ico_status.csv",TRUE,"ico_spp_extinction_status.csv","eez2012/layers/ico_spp_extinction_status.csv"
-"ICO","ico_spp_popn_trend","IUCN population trend as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
-
-Data sources:
-
-- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","popn_trend","trend score","../ohiprep/globalprep/spp_ico/v2015/data/ico_trend.csv",TRUE,"ico_spp_popn_trend.csv","eez2012/layers/ico_spp_popn_trend.csv"
+","category","category","../ohiprep/globalprep/spp_ico/v2016/output/ico_spp_iucn_status.csv",TRUE,"ico_spp_iucn_status.csv","eez2012/layers/ico_spp_iucn_status.csv"
 "LE","le_gdp","GDP","Gross Domestic Product (GDP) data (reported in 2012 US dollars) from The World Bank.
 
 Data sources:
@@ -188,17 +182,17 @@ Data sources:
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","weight","proportion","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv",TRUE,"np_harvest_product_weight.csv","eez2012/layers/np_harvest_product_weight.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","weight","proportion","../ohiprep/globalprep/np/v2014_test/data/np_harvest_usd_product-peak_eez2014_test-year-max-2011.csv",TRUE,"np_harvest_product_weight.csv","eez2012/layers/np_harvest_product_weight.csv"
 "NP","np_harvest_tonnes","Harvest yield of marine natural products","Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes","metric tonnes","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes.csv","eez2012/layers/np_harvest_tonnes.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes","metric tonnes","../ohiprep/globalprep/np/v2014_test/data/np_harvest_tonnes_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes.csv","eez2012/layers/np_harvest_tonnes.csv"
 "NP","np_harvest_tonnes_relative","Harvest ratio to peak yield of marine natural products","Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes_rel","ratio","../ohiprep/globalprep/FAO_commodities/v2014_test/data/np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes_relative.csv","eez2012/layers/np_harvest_tonnes_relative.csv"
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-commodities-production/en)","tonnes_rel","ratio","../ohiprep/globalprep/np/v2014_test/data/np_harvest_tonnes-rel_eez2014_test-year_max_2011.csv",TRUE,"np_harvest_tonnes_relative.csv","eez2012/layers/np_harvest_tonnes_relative.csv"
 "pressures","cc_acid","Ocean acidification","Change in current year's modeled aragonite saturation state (Feely et al. 2010) relative to historical mean (1880-1889).
 
 Data sources:
@@ -333,10 +327,10 @@ Data sources:
 "resilience","fp_habitat","CBD survey: habitat","Convention on Biological Diversity (Habitat related regulations and protections)
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_habitat_2013a.csv",TRUE,"fp_habitat.csv","eez2012/layers/fp_habitat.csv"
-"resilience","fp_mora","CBD survey: fishing","Convention on Biological Diversity (Fishing related regulations and protections)
+"resilience","fp_mora","Commercial fishing regulations","Convention on Biological Diversity (Fishing related regulations and protections)
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","value","resilience score","../ohiprep/globalprep/resilience_mora/v2013/data/r_mora_2013a.csv",TRUE,"fp_mora.csv","eez2012/layers/fp_mora.csv"
-"resilience","fp_mora_artisanal","CBD survey: artisanal fishing","Convention on Biological Diversity (Artisanal fishing related regulations and protections)
+"resilience","fp_mora_artisanal","Artisanal fishing regulations","Convention on Biological Diversity (Artisanal fishing related regulations and protections)
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","value","resilience score","../ohiprep/globalprep/resilience_mora/v2013/data/r_mora_s4_2013a.csv",TRUE,"fp_mora_artisanal.csv","eez2012/layers/fp_mora_artisanal.csv"
 "resilience","fp_mpa_coast","Protected marine area","LSP scores","resilience.score","resilience score","../ohiprep/globalprep/lsp/v2016/output/mpa_3nm_2011.csv",TRUE,"fp_mpa_coast.csv","eez2012/layers/fp_mpa_coast.csv"

@@ -33,29 +33,29 @@ scenarios = list(
     fld_dir      = 'dir_2016a',
     fld_fn       = 'fn_2016a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T), 
-  
+    do           = T) , 
+
   eez2015     = list(
     layer   = 'layers_eez',
     fld_dir      = 'dir_2015a',
     fld_fn       = 'fn_2015a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T) ,
-  
+
   eez2014     = list(
     layer   = 'layers_eez',
     fld_dir      = 'dir_2014a',
     fld_fn       = 'fn_2014a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),
-  
+
   eez2013     = list(
     layer   = 'layers_eez',
     fld_dir      = 'dir_2013a',
     fld_fn       = 'fn_2013a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),
-  
+
   eez2012     = list(
     layer   = 'layers_eez',
     fld_dir      = 'dir_2012a',
@@ -65,7 +65,7 @@ scenarios = list(
 )
 
 ### sync functions.R: 
-# overwrite eez2012, eez2013, eez2014, eez2015
+# overwrite eez2012, eez2013, eez2014, eez2015 with eez2016
 for (dir in c('eez2012','eez2013', 'eez2014', 'eez2015')){
   stopifnot(file.copy('eez2016/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
 }
@@ -219,7 +219,7 @@ for (i in 1:length(scenarios)){  #i=1
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2015", commit="previous", 
-           fileSave="eez2015_lsp_update", save_csv=FALSE, save_png=FALSE)
+           fileSave="eez2015_ico_update", save_csv=FALSE, save_png=FALSE)
 
 source('../ohiprep/src/R/VisGlobal.R')
 # looking within a goal:
