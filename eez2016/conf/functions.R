@@ -1547,56 +1547,62 @@ LE = function(scores, layers, eez2012 = FALSE){
   return(scores)  
 }
 
-ICO = function(layers){
+ICO = function(layers, status_year){
   
-  layers_data = SelectLayersData(layers, layers=c('ico_spp_extinction_status', 'ico_spp_popn_trend'))  
+  layers_data = SelectLayersData(layers, layers=c('ico_spp_iucn_status'))  
   
   rk <- layers_data %>%
-    select(region_id = id_num, sciname = category, iucn_cat=val_chr, layer) %>%
+    select(region_id = id_num, sciname = category, iucn_cat=val_chr, year, layer) %>%
     mutate(iucn_cat = as.character(iucn_cat))
   
   # lookup for weights status
-  w.risk_category = data.frame(iucn_cat = c('LC', 'NT', 'VU', 'EN', 'CR', 'EX'),
-                               risk_score = c(1,  0.8,   0.6,  0.4,  0.2,  0)) %>%
-    mutate(iucn_cat = as.character(iucn_cat))
-  
-  # lookup for population trend
-  w.popn_trend = data.frame(iucn_cat = as.character(c('decreasing', 'stable', 'increasing')),
-                            trend_score = c(-0.5, 0, 0.5)) %>%
+  #  LC <- "LOWER RISK/LEAST CONCERN (LR/LC)"                         
+  #  NT <- "LOWER RISK/NEAR THREATENED (LR/NT)"                       
+  #  T  <- "THREATENED (T)" treat as "EN"
+  #  VU <- "VULNERABLE (V)"                                           
+  #  EN <- "ENDANGERED (E)"                                           
+  #  LR/CD <- "LOWER RISK/CONSERVATION DEPENDENT (LR/CD)" treat as between VU and NT
+  #  CR <- "VERY RARE AND BELIEVED TO BE DECREASING IN NUMBERS"       
+  #  DD <- "INSUFFICIENTLY KNOWN (K)"                                 
+  #  DD <- "INDETERMINATE (I)"                                        
+  #  DD <- "STATUS INADEQUATELY KNOWN-SURVEY REQUIRED OR DATA SOUGHT" 
+  w.risk_category = data.frame(iucn_cat = c('LC', 'NT', 'CD', 'VU', 'EN', 'CR', 'EX', 'DD'),
+                               risk_score = c(0,  0.2,  0.3,  0.4,  0.6,  0.8,  1, NA)) %>%
+                    mutate(status_score = 1-risk_score) %>%
     mutate(iucn_cat = as.character(iucn_cat))
   
   ####### status
   # STEP 1: take mean of subpopulation scores
   r.status_spp <- rk %>%
-    filter(layer == 'ico_spp_extinction_status') %>%
     left_join(w.risk_category, by = 'iucn_cat') %>%
-    group_by(region_id, sciname) %>%
-    summarize(spp_mean = mean(risk_score, na.rm=TRUE) * 100) %>%
+    group_by(region_id, sciname, year) %>%
+    summarize(spp_mean = mean(status_score, na.rm=TRUE)) %>%
     ungroup()
   
   # STEP 2: take mean of populations within regions
   r.status <- r.status_spp %>%
-    group_by(region_id) %>%
+    group_by(region_id, year) %>%
     summarize(score = mean(spp_mean, na.rm=TRUE)) %>%
-    ungroup() %>%
-    mutate(dimension = "status")
+    ungroup() 
   
   ####### trend
-  # STEP 1: take mean of subpopulation scores
-  r.trend_spp <- rk %>%
-    filter(layer == 'ico_spp_popn_trend') %>%
-    left_join(w.popn_trend ,by = 'iucn_cat') %>%
-    group_by(region_id, sciname) %>%
-    summarize(spp_mean = mean(trend_score, na.rm=TRUE)) %>%
-    ungroup()
-  
-  # STEP 2: take mean of populations within regions
-  r.trend <- r.trend_spp %>%
+  trend_years <- c(status_year:(status_year - 9)) # trend based on 10 years of data, due to infrequency of IUCN assessments 
+  r.trend <- r.status %>%
+    filter(year %in% trend_years) %>%
     group_by(region_id) %>%
-    summarize(score = mean(spp_mean, na.rm=TRUE)) %>%
+    do(mdl = lm(score ~ year, data=.)) %>%
+    summarize(region_id = region_id,
+              score = coef(mdl)['year'] * 5) %>%
     ungroup() %>%
     mutate(dimension = "trend")
   
+  ####### status
+  r.status <- r.status %>%
+    filter(year == status_year) %>%
+    mutate(score = score * 100) %>%
+    mutate(dimension = "status") %>%
+    select(region_id, score, dimension)
+
   ## reference points
   rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
     rbind(data.frame(goal = "ICO", method = "scaled IUCN risk categories", 

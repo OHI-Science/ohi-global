@@ -1,11 +1,11 @@
 "goal","method","reference_point"
 "FIS","b/bmsy: modeled",NA
-"MAR","spatial 95th quantile","region id: 25 value: 0.0144351461059595"
+"MAR","spatial 95th quantile","region id: 181 value: 0.014117048311101"
 "AO","??",NA
 "NP","Harvest peak within region times 0.65 buffer","varies for each region"
 "CS","Health/condition variable based on current vs. historic extent","varies for each region/habitat"
 "CP","Health/condition variable based on current vs. historic extent","varies for each region/habitat"
-"TR","spatial: 90th quantile","0.0547631677715968"
+"TR","spatial: 90th quantile","0.0571583211046598"
 "ICO","scaled IUCN risk categories",NA
 "LSP","30% marine protected area; 30% coastal protected area","varies by area of region's eez and 1 km inland"
 "CW","spatial: pressures scaled from 0-1 at raster level",NA

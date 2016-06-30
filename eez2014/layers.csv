@@ -101,18 +101,12 @@ Data sources:
 - Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009). **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381.
 - Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons**. _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711
 - Schutte, V. G. W., Selig, E.R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122.","trend","trend score","hab_trend.csv","rgn_id",,"habitat",,"trend",,TRUE,,,-1,1,FALSE,,,,221,FALSE
-"ICO","ico_spp_extinction_status","IUCN extinction risk category for iconic species","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
+"ICO","ico_spp_iucn_status","IUCN extinction risk category for iconic species","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
 
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","category","category","ico_spp_extinction_status.csv","rgn_id",,"sciname",,,"category",TRUE,,,,,FALSE,,,407,221,
-"ICO","ico_spp_popn_trend","IUCN population trend as a proxy for iconic species trend","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
-
-Data sources:
-
-- [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","popn_trend","trend score","ico_spp_popn_trend.csv","rgn_id",,"sciname",,,"popn_trend",TRUE,,,,,FALSE,,,407,221,
+","category","category","ico_spp_iucn_status.csv","rgn_id",,"sciname","year",,"category",TRUE,2000,2015,,,FALSE,,,7936,221,
 "LE","le_gdp","GDP","Gross Domestic Product (GDP) data (reported in 2012 US dollars) from The World Bank.
 
 Data sources:
@@ -333,10 +327,10 @@ Data sources:
 "resilience","fp_habitat","CBD survey: habitat","Convention on Biological Diversity (Habitat related regulations and protections)
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","resilience score","resilience score","fp_habitat.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.138087289287079,1,TRUE,,,,221,FALSE
-"resilience","fp_mora","CBD survey: fishing","Convention on Biological Diversity (Fishing related regulations and protections)
+"resilience","fp_mora","Commercial fishing regulations","Convention on Biological Diversity (Fishing related regulations and protections)
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","value","resilience score","fp_mora.csv","rgn_id",,,,"value",,TRUE,,,0,0.814394256522431,TRUE,,,,221,FALSE
-"resilience","fp_mora_artisanal","CBD survey: artisanal fishing","Convention on Biological Diversity (Artisanal fishing related regulations and protections)
+"resilience","fp_mora_artisanal","Artisanal fishing regulations","Convention on Biological Diversity (Artisanal fishing related regulations and protections)
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","value","resilience score","fp_mora_artisanal.csv","rgn_id",,,,"value",,TRUE,,,0,0.854,TRUE,,,,221,FALSE
 "resilience","fp_mpa_coast","Protected marine area","LSP scores","resilience.score","resilience score","fp_mpa_coast.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
