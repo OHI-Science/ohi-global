@@ -106,7 +106,7 @@ Data sources:
 Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
-","category","category","ico_spp_iucn_status.csv","rgn_id",,"sciname","year",,"category",TRUE,2000,2015,,,FALSE,,,7936,221,
+","category","category","ico_spp_iucn_status.csv","rgn_id",,"sciname","year",,"category",TRUE,2000,2016,,,FALSE,"iucn_sid",,8432,221,
 "LE","le_gdp","GDP","Gross Domestic Product (GDP) data (reported in 2012 US dollars) from The World Bank.
 
 Data sources:
@@ -334,7 +334,7 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","value","resilience score","fp_mora_artisanal.csv","rgn_id",,,,"value",,TRUE,,,0,0.854,TRUE,,,,221,FALSE
 "resilience","fp_mpa_coast","Protected marine area","LSP scores","resilience.score","resilience score","fp_mpa_coast.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
-"resilience","fp_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","fp_mpa_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,1.46999542695242e-05,1,TRUE,,,,221,FALSE
+"resilience","fp_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","fp_mpa_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
 "resilience","g_cites","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
 
 Data sources:
@@ -363,7 +363,7 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","resilience score","resilience score","hd_habitat.csv","rgn_id",,,,"resilience.score",,TRUE,,,0.138087289287079,1,TRUE,,,,221,FALSE
 "resilience","hd_mpa_coast","Protected marine area","LSP scores","resilience.score","resilience score","hd_mpa_coast.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
-"resilience","hd_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","hd_mpa_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,1.46999542695242e-05,1,TRUE,,,,221,FALSE
+"resilience","hd_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","hd_mpa_eez.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,221,FALSE
 "resilience","li_gci","GCI: competitiveness in achieving sustained economic prosperity","Global Competitiveness Index (GCI) scores from the World Economic Forum.
 
 Data sources:
