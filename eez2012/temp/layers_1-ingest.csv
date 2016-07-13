@@ -334,7 +334,7 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","value","resilience score","../ohiprep/globalprep/resilience_mora/v2013/data/r_mora_s4_2013a.csv",TRUE,"fp_mora_artisanal.csv","eez2012/layers/fp_mora_artisanal.csv"
 "resilience","fp_mpa_coast","Protected marine area","LSP scores","resilience.score","resilience score","../ohiprep/globalprep/lsp/v2016/output/mpa_3nm_2011.csv",TRUE,"fp_mpa_coast.csv","eez2012/layers/fp_mpa_coast.csv"
-"resilience","fp_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","../ohiprep/globalprep/lsp/v2015/data/resilience_lsp_score_eez_2012.csv",TRUE,"fp_mpa_eez.csv","eez2012/layers/fp_mpa_eez.csv"
+"resilience","fp_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","../ohiprep/globalprep/lsp/v2016/output/mpa_eez_2011_resilience.csv",TRUE,"fp_mpa_eez.csv","eez2012/layers/fp_mpa_eez.csv"
 "resilience","g_cites","Resilience from commitment to CITES","Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
 
 Data sources:
@@ -363,7 +363,7 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)","resilience score","resilience score","../ohiprep/globalprep/resilience_cbd_habitat/resilience_v2014/data/r_habitat_2013a.csv",TRUE,"hd_habitat.csv","eez2012/layers/hd_habitat.csv"
 "resilience","hd_mpa_coast","Protected marine area","LSP scores","resilience.score","resilience score","../ohiprep/globalprep/lsp/v2016/output/mpa_3nm_2011.csv",TRUE,"hd_mpa_coast.csv","eez2012/layers/hd_mpa_coast.csv"
-"resilience","hd_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","../ohiprep/globalprep/lsp/v2015/data/resilience_lsp_score_eez_2012.csv",TRUE,"hd_mpa_eez.csv","eez2012/layers/hd_mpa_eez.csv"
+"resilience","hd_mpa_eez","Protected marine area in eez","LSP model applied to eez","resilience.score","resilience score","../ohiprep/globalprep/lsp/v2016/output/mpa_eez_2011_resilience.csv",TRUE,"hd_mpa_eez.csv","eez2012/layers/hd_mpa_eez.csv"
 "resilience","li_gci","GCI: competitiveness in achieving sustained economic prosperity","Global Competitiveness Index (GCI) scores from the World Economic Forum.
 
 Data sources:
