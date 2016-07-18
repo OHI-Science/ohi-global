@@ -19,6 +19,7 @@ library(DT)
 library(ggplot2)
 
 setwd('/home/frazier/ohi-global/global2015/gapFilling') # comment this out when knitting!!!
+setwd('C:/Users/Melanie/Github/ohi-global/global2015/gapFilling') # comment this out when knitting!!!, local computer path!
 
 # theme for scatterplots
 source('../../../ohiprep/src/R/scatterTheme.txt')
@@ -271,7 +272,6 @@ write.csv(data, "figures_tables/S3 Table.csv", row.names=FALSE)
 
 
 ```{r analysis, include=FALSE}
-## no real patterns that I can see
 
 area <- read.csv('../../eez2015/layers/rgn_area.csv') %>%
   select(region_id = rgn_id, area=area_km2)
@@ -329,8 +329,16 @@ ggplot(data, aes(y=score, x=log(area), color=territory)) +
   
 ggsave('figures_tables/gap_filled_model.png', width=8, height=6)
 
-mod1 <- lm(score ~ log(area) + territory, data=data)
+mod1 <- lm(score ~ log(area)*territory, data=data)
 summary(mod1)
+mod2 <- lm(score ~ log(area) + territory, data=data)
+summary(mod2)
+mod3 <- lm(score ~ territory, data=data)
+summary(mod3)
+mod4 <- lm(score ~ log(area), data=data)
+summary(mod4)
+AIC(mod1, mod2, mod3, mod4)
+
 plot(predict(mod1), data$score)
 
 
@@ -524,14 +532,22 @@ layers <- read.csv("layers_summary.csv")
 ggplot(layers, aes(x=proportion_gf*100, fill=component)) +
   geom_histogram() +
   labs(y="Number of datasets", x="Percent gapfilled") +
-  scale_fill_manual(values=c("#C55F4B", "#95B8B6", "#534640")) +
+  scale_fill_manual(breaks = c("resilience", "pressure", "goal"),
+                    values=c("#C55F4B", "#95B8B6", "#534640"),
+                    labels =c("resilience", "pressure", "goal"),
+                    name = "Score\ncomponents") +
   stat_bin(binwidth=10) +
   scatterTheme +
-  theme(legend.position="none")
+  theme(legend.position=c(.80, .70),
+        legend.text = element_text(size = 16),
+        plot.margin=grid::unit(c(10,10,10,10), "mm")) +
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100)) +
+  scale_y_continuous(breaks = c(0, 10, 20, 30, 40)) +
+  ylim(c(0, 40)) 
 
-ggsave("figures_tables/dataLayers_histogram.png", height=6, width=9)
+ggsave("figures_tables/dataLayers_histogram.png", height=7, width=9)
 
-### general statistics
+I ### general statistics
 mean(layers$proportion_gf)
 sum(!is.na(layers$proportion))
 sum(layers$proportion_gf > 0)/sum(!is.na(layers$proportion)) ## 0.58
