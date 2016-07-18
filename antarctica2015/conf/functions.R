@@ -22,6 +22,10 @@ FIS = function(layers, status_year){
       year,
       limit      = val_num)
   
+#   catch <- read.csv('Antarctica/AQ_FIS/v2015/data/fis_catch.csv') %>%
+#     select(sp_id, species=species_code, year, catch)
+#   limit <- read.csv('Antarctica/AQ_FIS/v2015/data/fis_reference.csv') %>%
+#     select(sp_id, species = species_code, year, limit=reference)
   
   # ------------------------------------------------------------------------
   # STEP 1. Calculate proportion of catch relative to reference
@@ -60,7 +64,7 @@ FIS = function(layers, status_year){
    
     tf_catch_species <- catch %>%
       filter(species %in% c("TOA", "TOP")) %>%
-      group_by(sp_id, year) %>%
+      group_by(species, sp_id, year) %>%
       mutate(catch_tf = sum(catch, na.rm=TRUE)) %>%
       ungroup() %>%
       mutate(sp_id = as.character(sp_id)) 
@@ -81,7 +85,7 @@ FIS = function(layers, status_year){
    cmsy <- rbind(krill, tf)
   
    # ------------------------------------------------------------------------
-   # STEP 2. Calculate score based on Ccmsy
+   # STEP 2. Calculate score 
    # -----------------------------------------------------------------------
     
   eps <- .25 
@@ -99,7 +103,7 @@ FIS = function(layers, status_year){
     mutate(score = ifelse(c_cmsy > 1.0, 2.0-c_cmsy, 
                           ifelse(c_cmsy < 0.9, eps + score_range/value_range * c_cmsy, 1)))%>%
     mutate(score = ifelse(score < 0, 0, score))
-  plot(score ~ c_cmsy, data=tmp, xlab='c/cmsy', ylab="score", type="l")
+  plot(score ~ c_cmsy, data=tmp, xlab='C/CL', ylab="Stock status score", type="l")
   dev.off()
   
   ## save data for Natural Products (calculated using Krill)
@@ -117,6 +121,9 @@ FIS = function(layers, status_year){
 
   # ------------------------------------------------------------------------
   # STEP 4. Calculate status & trend
+  ## Both toothfish species are managed as a single species
+  ## consequently, there is no need to do a weighted average of 
+  ## the scores.
   # -----------------------------------------------------------------------
   
   status = status_data %>%
@@ -212,6 +219,8 @@ NP = function(layers, status_year){
 
 TR = function(layers, status_year){
 
+#   tr_data <- read.csv("Antarctica/AQ_TR/data/tr_days.csv")
+#   status_year <- 2015
   trend_years <- (status_year - 4):status_year
   buffer <- 0.35  ## when tourist days are >= max*(1-buffer) the score will be 1
   NAcut <- 500   ## sites that have < NAcut tourist days get an NA score
@@ -596,11 +605,6 @@ CW = function(layers){
 
 HAB = function(layers, status_year){
   
-  ## extent data to calculate hab_presence
-  extent <- SelectLayersData(layers, layers='hab_extent', narrow=TRUE) %>%
-    filter(category == "seaice_extent") %>%
-    select(region_id=id_num, km2=val_num)
-  
   ## data to calculate status/trend
   sea_ice <-  SelectLayersData(layers, layers='hab_sea_ice', narrow=TRUE) %>%
     select(region_id=id_num, year, days=val_num)
@@ -654,7 +658,7 @@ HAB = function(layers, status_year){
   ice_scale <- 50
   
   pressure <- sea_ice_status %>%
-    mutate(score = 1 - (score-ice_scale)/ice_scale) %>%
+    mutate(score = 1 - (score - ice_scale)/ice_scale) %>%
     mutate(score = ifelse(score<0, 0, score)) %>%
     select(sp_id=region_id,pressure_score=score)
   if(sum(pressure$pressure_score<0 | pressure$pressure_score>1)>0){  
