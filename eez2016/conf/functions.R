@@ -1698,18 +1698,20 @@ r.yrs = r.yrs %>%
 
 SP = function(scores){
   
-  d = within(
-    dcast(
-      scores, 
-      region_id + dimension ~ goal, value.var='score', 
-      subset=.(goal %in% c('ICO','LSP') & !dimension %in% c('pressures','resilience')))
-    , {
-      goal = 'SP'
-      score = rowMeans(cbind(ICO, LSP), na.rm = TRUE)})
-  
+  ## to calculate the four SP dimesions, average those dimensions for ICO and LSP
+  s <- scores %>%
+    filter(goal %in% c('ICO','LSP'),
+           dimension %in% c('status', 'trend', 'future', 'score')) %>%
+    group_by(region_id, dimension) %>%
+    summarize(score = mean(score, na.rm=TRUE)) %>%
+    ungroup() %>%
+    arrange(region_id) %>%
+    mutate(goal = "SP") %>%
+    select(region_id, goal, dimension, score) %>%
+    data.frame()
   
   # return all scores
-  return(rbind(scores, d[,c('region_id','goal','dimension','score')]))
+  return(rbind(scores, s))
 }
 
 
