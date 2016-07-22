@@ -369,7 +369,7 @@ Data sources:
 Data sources:
 
 - [World Economic Forum](http://www.weforum.org/issues/global-competitiveness)
-","score","resilience score","../ohiprep/globalprep/WEF-Economics/v2015/data/rgn_wef_gci_2014.csv",TRUE,"li_gci.csv","eez2014/layers/li_gci.csv"
+","score","resilience score","../ohiprep/globalprep/res_gci/v2015/data/rgn_wef_gci_2014.csv",TRUE,"li_gci.csv","eez2014/layers/li_gci.csv"
 "resilience","li_sector_evenness","Sector evenness as a measure of economic diversity","Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.","resilience score","resilience score","/home/shares/ohi/model/GL-NCEAS-Resilience_v2013a/data/r_li_sector_evenness_2013a.csv",TRUE,"li_sector_evenness.csv","eez2014/layers/li_sector_evenness.csv"
 "resilience","po_water","CBD survey: water","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
@@ -454,32 +454,14 @@ Data sources:
 Data sources:
 
 - [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-","Ep","percent","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_jobs_pct_tourism.csv",TRUE,"tr_jobs_pct_tourism.csv","eez2014/layers/tr_jobs_pct_tourism.csv"
-"TR","tr_jobs_total","Total labor force","Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
-
-Data sources:
-
-- [The World Bank](http://data.worldbank.org/indicator/SL.TLF.TOTL.IN)
-","L","people","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_jobs_total.csv",TRUE,"tr_jobs_total.csv","eez2014/layers/tr_jobs_total.csv"
-"TR","tr_jobs_tourism","Direct employment in tourism","Direct employment in tourism (WTTC).
-
-Data sources:
-
-- [World Travel and Tourism Council (WTTC)](http://www.wttc.org/research/economic-data-search-tool/)
-","Ed","jobs","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_jobs_tourism.csv",TRUE,"tr_jobs_tourism.csv","eez2014/layers/tr_jobs_tourism.csv"
+","Ep","percent","../ohiprep/globalprep/tr/v2016/output/tr_jobs_pct_tourism.csv",TRUE,"tr_jobs_pct_tourism.csv","eez2014/layers/tr_jobs_pct_tourism.csv"
 "TR","tr_sustainability","Sustainability index","Tourism Competitiveness Index (TTCI) from the World Economic Forum
 
 Data sources:
 
-- [World Economic Forum](http://reports.weforum.org/travel-and-tourism-competitiveness-report-2015/index-results-the-travel-tourism-competitiveness-index-ranking-2015/)","S_score","score","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_sustainability_2014.csv",TRUE,"tr_sustainability.csv","eez2014/layers/tr_sustainability.csv"
+- [World Economic Forum](http://reports.weforum.org/travel-and-tourism-competitiveness-report-2015/index-results-the-travel-tourism-competitiveness-index-ranking-2015/)","S_score","score","../ohiprep/globalprep/tr/v2015/data/tr_sustainability_2014.csv",TRUE,"tr_sustainability.csv","eez2014/layers/tr_sustainability.csv"
 "TR","tr_travelwarnings","Travel warnings","Countries with US State Department travel warnings.
 
 Data sources:
 
-- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","multiplier","score","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_travelwarnings_2014.csv",TRUE,"tr_travelwarnings.csv","eez2014/layers/tr_travelwarnings.csv"
-"TR","tr_unemployment","Percent unemployment","Percent unemployment (The World Bank).
-
-Data sources:
-
-- [The World Bank](http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS)
-","U","percent ","../ohiprep/globalprep/TourismRecreation/v2015/data/tr_unemployment.csv",TRUE,"tr_unemployment.csv","eez2014/layers/tr_unemployment.csv"
+- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","multiplier","score","../ohiprep/globalprep/tr/v2016/output/tr_travelwarnings.csv",TRUE,"tr_travelwarnings.csv","eez2014/layers/tr_travelwarnings.csv"

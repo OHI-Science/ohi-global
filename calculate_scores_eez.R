@@ -5,6 +5,7 @@ library(devtools)
 #devtools::install_github("ohi-science/ohicore@dev_resil") 
 devtools::install_github("ohi-science/ohicore@dev") 
 #devtools::install_github("ohi-science/ohicore@master")
+#devtools::install_github("ohi-science/ohicore@master_a2015")
 #install_github('rCharts', 'ramnathv')
 library(ohicore)
 library(zoo)
@@ -72,7 +73,7 @@ for (dir in c('eez2012','eez2013', 'eez2014', 'eez2015')){
 
 
 
-for (i in 1:length(scenarios)){  #i=1
+for (i in 1:length(scenarios)){  #i=2
   
   # vars
   scenario   = names(scenarios)[[i]]
@@ -219,7 +220,7 @@ for (i in 1:length(scenarios)){  #i=1
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2015", commit="previous", 
-           fileSave="eez2015_lsp_eez_resil_update", save_csv=FALSE, save_png=FALSE)
+           fileSave="eez2015_tr_update_new_TCCI", save_csv=FALSE, save_png=FALSE)
 
 source('../ohiprep/src/R/VisGlobal.R')
 # looking within a goal:

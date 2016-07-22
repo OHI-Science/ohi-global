@@ -981,77 +981,61 @@ CP <- function(layers){
 }
 
 
-TR = function(layers, status_year, debug = FALSE, pct_ref = 90) {
-  ### Updated July 2015 - Casey O'Hara
-  ### * adjusted model to use percent employment in tourism when available.
-  ### * set up layers for travel warnings.
-  
+TR = function(layers, status_year, pct_ref = 90) {
   #Inputs:
-  # * U  = tr_unemployment.csv:     Percent unemployment (0-100%)
   # * S_score  = tr_sustainability.csv:   TTCI score, not normalized (1-7)
-  # * Ed = tr_jobs_tourism.csv:     Number of jobs, direct employment in tourism
   # * Ep = tr_jobs_pct_tourism.csv: Percent of direct tourism jobs
-  # * L  = tr_jobs_total.csv:       Total labor force
   # formula:
-  #  E       = ifelse(is.na(Ep), Ed / (L - (L * U)), Ep)    # Ep is direct percentage of labor in tourism; if not available, calc the hard way
+  #  E       = Ep    # Ep is direct percentage of labor in tourism
   #  S       = (S_score - 1) / (7 - 1)                      # S_score is raw score (from 1:7).  Subtract 1 and normalize.
   #  Xtr     = E * S 
   
-  # get regions
-  rgn_names = layers$data[[conf$config$layer_region_labels]] %>%
-    select(rgn_id, rgn_name = label) %>%
-    mutate(rgn_name = as.character(rgn_name))
+  # # get regions
+  # rgn_names = layers$data[[conf$config$layer_region_labels]] %>%
+  #   select(rgn_id, rgn_name = label) %>%
+  #   mutate(rgn_name = as.character(rgn_name))
   
-  tr_data  <- layers$data[['tr_jobs_tourism']]     %>% 
-    select(-layer) %>%
-    full_join(layers$data[['tr_jobs_pct_tourism']] %>% 
-                select(-layer),
-              by = c('rgn_id','year'))             %>%
-    full_join(layers$data[['tr_unemployment']]     %>% 
-                select(-layer),
-              by = c('rgn_id','year'))             %>%
-    full_join(layers$data[['tr_jobs_total']]       %>% 
-                select(-layer),
-              by = c('rgn_id','year'))             %>%
+  tr_data  <- layers$data[['tr_jobs_pct_tourism']] %>% 
+                select(-layer)                     %>%
     full_join(layers$data[['tr_sustainability']]   %>% 
                 select(-layer),
               by = c('rgn_id'))                    %>%
-    full_join(rgn_names, by = 'rgn_id')            %>%
+    # full_join(rgn_names, by = 'rgn_id')            %>%
     filter(year <= status_year)
   
   tr_model <- tr_data %>%
     mutate(
-      E   = ifelse(is.na(Ep), Ed / (L - (L * U)), Ep),
+      E   = Ep,
       S   = (S_score - 1) / (7 - 1), # scale score from 1 to 7.
       Xtr = E * S ) %>%  
     filter(year <= status_year & year > status_year - 5) 
-  # five data years, four intervals
-  
-  # regions with Travel Warnings at http://travel.state.gov/content/passports/english/alertswarnings.html
+  # five data years for trend calcs
+
+  # regions with Travel Warnings 
+  ### adjust the travel warning years...these always reflect the current year
+  ### but the other datasets will lag
+  scenario_year <- as.numeric(substring(scenario, 4,7)) 
+  offset_years <- scenario_year - status_year 
+  # regions with Travel Warnings 
   rgn_travel_warnings <- layers$data[['tr_travelwarnings']] %>%
-    select(rgn_name, multiplier) %>%
-    mutate(rgn_name = as.character(rgn_name)) %>%
-    left_join(rgn_names, by = 'rgn_name') %>%
-    filter(!is.na(rgn_id))
+    select(rgn_id, year, multiplier) %>%
+    mutate(year = year - offset_years)
   
+     
   tr_model <- tr_model %>%
-    left_join(rgn_travel_warnings %>% 
-                select(-rgn_name), 
-              by = 'rgn_id') %>%
+    left_join(rgn_travel_warnings, by = c('rgn_id', 'year')) %>%
     mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
     select(-multiplier)
   
   ### Calculate status based on quantile reference (see function call for pct_ref)
   tr_model <- tr_model %>%
-    select(rgn_id, rgn_name, year, Xtr) %>%
+    select(rgn_id, year, Xtr) %>%
     left_join(tr_model %>%
                 group_by(year) %>%
                 summarize(Xtr_q = quantile(Xtr, probs = pct_ref/100, na.rm = TRUE)),
               by = 'year') %>%
     mutate(
       Xtr_rq  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q)) # rescale to qth percentile, cap at 1
-  
-  
   
   ## reference points
   ref_point <- tr_model %>%
@@ -1095,9 +1079,6 @@ TR = function(layers, status_year, debug = FALSE, pct_ref = 90) {
       filter(count==0) %>%
       select(rgn_id)
     tr_score$score = ifelse(tr_score$rgn_id %in% unpopulated$rgn_id, NA, tr_score$score)  
-    
-    #     # replace North Korea value with 0
-    #     tr_score$score[tr_score$rgn_id == 21] = 0
   }
   
   # return final scores
@@ -1698,18 +1679,20 @@ r.yrs = r.yrs %>%
 
 SP = function(scores){
   
-  d = within(
-    dcast(
-      scores, 
-      region_id + dimension ~ goal, value.var='score', 
-      subset=.(goal %in% c('ICO','LSP') & !dimension %in% c('pressures','resilience')))
-    , {
-      goal = 'SP'
-      score = rowMeans(cbind(ICO, LSP), na.rm = TRUE)})
-  
+  ## to calculate the four SP dimesions, average those dimensions for ICO and LSP
+  s <- scores %>%
+    filter(goal %in% c('ICO','LSP'),
+           dimension %in% c('status', 'trend', 'future', 'score')) %>%
+    group_by(region_id, dimension) %>%
+    summarize(score = mean(score, na.rm=TRUE)) %>%
+    ungroup() %>%
+    arrange(region_id) %>%
+    mutate(goal = "SP") %>%
+    select(region_id, goal, dimension, score) %>%
+    data.frame()
   
   # return all scores
-  return(rbind(scores, d[,c('region_id','goal','dimension','score')]))
+  return(rbind(scores, s))
 }
 
 
