@@ -16,12 +16,6 @@ Data sources:
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
 Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","trend","trend score","../ohiprep/globalprep/prs_chem/v2015/output/cw_chemical_trend_2014.csv",TRUE,"cw_chemical_trend.csv","eez2014/layers/cw_chemical_trend.csv"
-"CW","cw_coastalpopn_trend","Coastal human population as a proxy for trend in trash","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
-
-Data sources:
-
-- Center for International Earth Science Information Network (CIESIN)/Columbia University 
-- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","../ohiprep/globalprep/coastal_population/v2015/data/rgn_popn5yrtrend_inland25mi_2010to2014.csv",TRUE,"cw_coastalpopn_trend.csv","eez2014/layers/cw_coastalpopn_trend.csv"
 "CW","cw_nutrient_trend","Trends in fertilizer pollution as a proxy for nutrient pollution","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO; Halpern et al. 2015). 
 
 Data sources:
@@ -34,7 +28,8 @@ Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
-","trend","trend score","../ohiprep/globalprep/whounicef_sanitation/v2015/data/pathogens_popdensity25mi_trend_2014a.csv",TRUE,"cw_pathogen_trend.csv","eez2014/layers/cw_pathogen_trend.csv"
+","trend","trend score","../ohiprep/globalprep/prs_cw_pathogen/v2015/data/pathogens_popdensity25mi_trend_2014a.csv",TRUE,"cw_pathogen_trend.csv","eez2014/layers/cw_pathogen_trend.csv"
+"CW","cw_trash_trend","Trends in trash estimated using improperly disposed of plastics","Trend estimated using 2010 data and estimated 2025 data for improperly disposed of trash data.","trend","trend score","../ohiprep/globalprep/cw_trend_trash/v2016/output//cw_trash_trend.csv",TRUE,"cw_trash_trend.csv","eez2014/layers/cw_trash_trend.csv"
 "FIS","fis_b_bmsy","B/Bmsy estimates obtained using the catch-MSY method","The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
@@ -293,7 +288,7 @@ Data sources:
 
 Data sources:
 
-- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","../ohiprep/globalprep/worldbank_wgi/data/rgn_wb_wgi_2014a_inverse.csv",TRUE,"ss_wgi.csv","eez2014/layers/ss_wgi.csv"
+- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","../ohiprep/globalprep/prs_res_wgi/v2015/data/rgn_wb_wgi_2014a_inverse.csv",TRUE,"ss_wgi.csv","eez2014/layers/ss_wgi.csv"
 "pressures CW","po_chemicals_3nm","Coastal chemical pollution within 3 nm offshore","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015), primarily land-based chemical pollution due to 3nm offshore buffer.
 
 Data sources:
@@ -313,7 +308,7 @@ Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/
 Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
-","pressure_score","pressure score","../ohiprep/globalprep/whounicef_sanitation/v2015/data/po_pathogens_popdensity25mi_2014a.csv",TRUE,"po_pathogens.csv","eez2014/layers/po_pathogens.csv"
+","pressure_score","pressure score","../ohiprep/globalprep/prs_cw_pathogen/v2015/data/po_pathogens_popdensity25mi_2014a.csv",TRUE,"po_pathogens.csv","eez2014/layers/po_pathogens.csv"
 "pressures CW","po_trash","Trash pollution","Global marine plastics (Eriksen et al. 2014)
 
 Data sources:
@@ -398,7 +393,7 @@ Data sources:
 
 Data sources:
 
-- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","resilience score","../ohiprep/globalprep/worldbank_wgi/data/rgn_wb_wgi_2014a.csv",TRUE,"wgi_all.csv","eez2014/layers/wgi_all.csv"
+- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","resilience score","../ohiprep/globalprep/prs_res_wgi/v2015/data/rgn_wb_wgi_2014a.csv",TRUE,"wgi_all.csv","eez2014/layers/wgi_all.csv"
 "spatial","cntry_georegions","Georegion ids per country, at 3 georegion levels","Lookup table of country codes and UN georegions at 3 georegion levels.
 
 Data sources:

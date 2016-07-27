@@ -1700,7 +1700,7 @@ CW = function(layers){
   
   # layers
   lyrs <- c('po_pathogens', 'po_nutrients_3nm', 'po_chemicals_3nm', 'po_trash',
-            'cw_chemical_trend', 'cw_nutrient_trend', 'cw_coastalpopn_trend', 'cw_pathogen_trend')
+            'cw_chemical_trend', 'cw_nutrient_trend', 'cw_trash_trend', 'cw_pathogen_trend')
   
   d <-  SelectLayersData(layers, layers=lyrs)  %>%
     select(region_id = id_num, layer, value = val_num)
