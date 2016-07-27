@@ -16,12 +16,6 @@ Data sources:
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
 Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)","trend","trend score","cw_chemical_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.141867412335314,0.150858021503559,FALSE,,,,34,FALSE
-"CW","cw_coastalpopn_trend","Coastal human population as a proxy for trend in trash","Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
-
-Data sources:
-
-- Center for International Earth Science Information Network (CIESIN)/Columbia University 
-- CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","trend","trend score","cw_coastalpopn_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.198897203623477,0.250709163798199,FALSE,,,,34,FALSE
 "CW","cw_nutrient_trend","Trends in fertilizer pollution as a proxy for nutrient pollution","Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO; Halpern et al. 2015). 
 
 Data sources:
@@ -35,6 +29,7 @@ Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
 ","trend","trend score","cw_pathogen_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.267215427357852,0.0943661457945447,FALSE,,,,34,FALSE
+"CW","cw_trash_trend","Trends in trash estimated using improperly disposed of plastics","Trend estimated using 2010 data and estimated 2025 data for improperly disposed of trash data.","trend","trend score","cw_trash_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.209086973997465,1,FALSE,,,,34,FALSE
 "FIS","fis_b_bmsy","B/Bmsy estimates obtained using the catch-MSY method","The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
@@ -464,4 +459,4 @@ Data sources:
 
 Data sources:
 
-- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","multiplier","score","tr_travelwarnings.csv","rgn_id",,,"year","multiplier",,TRUE,2012,2016,0,1,TRUE,,,,34,FALSE
+- [U.S. Department of State](http://travel.state.gov/content/passports/english/alertswarnings.html)","multiplier","score","tr_travelwarnings.csv","rgn_id",,,"year","multiplier",,TRUE,2008,2016,0,1,TRUE,,,,34,FALSE
