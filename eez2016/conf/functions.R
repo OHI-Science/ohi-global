@@ -798,7 +798,7 @@ CS <- function(layers){
     d_trend <- d %>%
       filter(!is.na(rank) & !is.na(trend) & !is.na(extent))
     if (nrow(d_trend) > 0 ){
-      scores_CS <- rbind_list(
+      scores_CS <- dplyr::bind_rows(
         scores_CS,
         d_trend %>%
           group_by(rgn_id) %>%
@@ -807,7 +807,7 @@ CS <- function(layers){
             dimension = 'trend')) %>%
         ungroup()
     } else { # if no trend score, assign NA
-      scores_CS <- rbind_list(
+      scores_CS <- dplyr::bind_rows(
         scores_CS,
         d %>%
           group_by(rgn_id) %>%
@@ -929,7 +929,7 @@ CP <- function(layers){
       filter(!is.na(rank) & !is.na(trend) & !is.na(extent))
     
     if (nrow(d_trend) > 0 ){
-      scores_CP <- rbind_list(
+      scores_CP <- dplyr::bind_rows(
         scores_CP,
         d_trend %>%
           group_by(rgn_id) %>%
@@ -937,7 +937,7 @@ CP <- function(layers){
             score = sum(rank * trend * extent, na.rm=TRUE) / (sum(extent*rank, na.rm=TRUE)),
             dimension = 'trend'))
     } else { # if no trend score, assign NA
-      scores_CP <- rbind_list(
+      scores_CP <- dplyr::bind_rows(
         scores_CP,
         d %>%
           group_by(rgn_id) %>%
@@ -1101,7 +1101,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
     select(cntry_key = id_chr, sector = category, val_num, layer) %>%
     mutate(metric = str_replace(layer, 'le_(jobs|rev|wage)_(.*)', '\\1'),
            field  = str_replace(layer, 'le_(jobs|rev|wage)_(.*)', '\\2')) %>% 
-    dcast(metric + cntry_key + sector ~ field, value.var='val_num')
+    reshape2::dcast(metric + cntry_key + sector ~ field, value.var='val_num')
   
   # get gdp per capita, at ppp
   ppp = SelectLayersData(layers, layers='le_gdp_pc_ppp') %>%
@@ -1160,7 +1160,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
     rbind(status_wage)
   status_score = status_model_combined %>%
     # liv
-    dcast(cntry_key ~ metric, value.var='score') %>%
+    reshape2::dcast(cntry_key ~ metric, value.var='score') %>%
     group_by(cntry_key) %>%
     mutate(
       value     = mean(c(jobs, wage), na.rm = TRUE),
@@ -1197,7 +1197,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
     suppressWarnings({ # Warning message: In rbind_list__impl(environment()) : Unequal factor levels: coercing to character
       cntry_rgn = cntry_rgn %>%
         mutate(
-          cntry_key = revalue(cntry_key, c(
+          cntry_key = plyr::revalue(cntry_key, c(
             'SCG'            = 'MNE',  # used to be Serbia (no coast) and Montenegro (has coast) in Nature 2012
             'Aruba'          = 'ABW',  # ABW and ANT EEZs got split...
             'Bonaire'        = 'ANT',
@@ -1206,7 +1206,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
             'Saba'           = 'ANT',
             'Brunei'         = 'BRN',  # Brunei new country in Malaysia
             'Malaysia'       = 'MYS'))) %>%
-        rbind_list(
+        dplyr::bind_rows(
           data.frame(rgn_id=221, rgn_name='Northern Saint-Martin', cntry_key='BLM'),  # BLM is Saint Barthélemy, included within Northern Saint-Martin (MAF)
           data.frame(rgn_id=209, rgn_name=                'China', cntry_key='HKG'),  # add Hong Kong to China (CHN)
           data.frame(rgn_id=209, rgn_name=                'China', cntry_key='MAC'))  # add Macau to China (CHN)
@@ -1266,7 +1266,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
   # setup georegions gapfill by region
   georegions = SelectLayersData(layers, layers='rgn_georegions') %>%
     select(rgn_id=id_num, level=category, georgn_id=val_num) %>%
-    dcast(rgn_id ~ level, value.var='georgn_id')
+    reshape2::dcast(rgn_id ~ level, value.var='georgn_id')
   
   data = s_r %>%
     filter(component==g.component) %>%
@@ -1312,7 +1312,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
     #browser()
     
     # adjustments
-    adjustments = rbind_list(
+    adjustments = dplyr::bind_rows(
       le_unemployment %>% 
         mutate(
           metric='jobs',
@@ -1324,7 +1324,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
         select(metric, cntry_key, year, value=usd))
     
     # metric-country-sector-year
-    mcsy = rbind_list(
+    mcsy = dplyr::bind_rows(
       le_jobs_sector_year %>%
         mutate(metric='jobs'),
       le_rev_sector_year %>%
@@ -1371,7 +1371,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
       by = c('metric','cntry_key','sector'))
   
   # trend per metric-country 
-  mc = rbind_list(
+  mc = dplyr::bind_rows(
     # wage: simple average of sectors
     mcs %>%
       group_by(metric, cntry_key) %>%
@@ -1386,7 +1386,7 @@ LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year
         trend = weighted.mean(trend, value_sum)))
   
   # trend per goal-country
-  gc = rbind_list(
+  gc = dplyr::bind_rows(
     # LIV: avg(jobs, wage)
     mc %>%
       group_by(cntry_key) %>%
@@ -1503,7 +1503,7 @@ LE = function(scores, layers, eez2012 = FALSE){
   # calculate LE scores
   scores.LE = scores %>% 
     filter(goal %in% c('LIV','ECO') & dimension %in% c('status','trend','score','future')) %>%
-    dcast(region_id + dimension ~ goal, value.var='score') %>%
+    reshape2::dcast(region_id + dimension ~ goal, value.var='score') %>%
     mutate(score = rowMeans(cbind(ECO, LIV), na.rm = TRUE)) %>%
     select(region_id, dimension, score) %>%
     mutate(goal  = 'LE')
@@ -1515,7 +1515,7 @@ LE = function(scores, layers, eez2012 = FALSE){
   # LIV, ECO and LE: nullify unpopulated regions and those of the Southern Ocean Islands
   r_s_islands   = subset(SelectLayersData(layers, layers='rgn_georegions', narrow = TRUE), 
                          category=='r2' & val_num==999, id_num, drop = TRUE)
-  r_unpopulated = subset(ddply(SelectLayersData(layers, layers='le_popn', narrow = TRUE), .(id_num), summarize, 
+  r_unpopulated = subset(plyr::ddply(SelectLayersData(layers, layers='le_popn', narrow = TRUE), plyr::.(id_num), summarize, 
                                count = val_num[which.max(year)]),
                          is.na(count) | count==0, id_num, drop = TRUE)
   scores[with(scores, 
