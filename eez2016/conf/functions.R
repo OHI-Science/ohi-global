@@ -1037,9 +1037,6 @@ TR = function(layers, status_year, pct_ref = 90) {
   # regions with Travel Warnings 
   ### adjust the travel warning years...these always reflect the current year
   ### but the other datasets will lag
-  scenario_year <- as.numeric(substring(scenario, 4,7)) 
-  offset_years <- scenario_year - status_year 
-  
   if (exists('scenarios')) { ## if global scenarios
     scenario_year <- as.numeric(substring(scenario, 4,7))
     offset_years <- scenario_year - status_year
