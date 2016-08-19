@@ -30,24 +30,18 @@ Data sources:
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
 ","trend","trend score","cw_pathogen_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.267215427357852,0.0943661457945447,FALSE,,,,34,FALSE
 "CW","cw_trash_trend","Trends in trash estimated using improperly disposed of plastics","Trend estimated using 2010 data and estimated 2025 data for improperly disposed of trash data.","trend","trend score","cw_trash_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.209086973997465,1,FALSE,,,,34,FALSE
-"FIS","fis_b_bmsy","B/Bmsy estimates obtained using the catch-MSY method","The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
+"FIS","fis_b_bmsy","B/Bmsy estimates obtained using RAM data (when available) and the catch-MSY method","The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
 
 Data sources:
 
 - Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. [doi:10.1111/j.1467-2979.2012.00485.x](https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x)
-","b_bmsy","B / B_msy","fis_b_bmsy.csv","fao_id",,"taxon_name","year","b_bmsy",,TRUE,1954,2011,0.0543516096887502,1.98695925324803,FALSE,,,,34,FALSE
+","bbmsy","B / B_msy","fis_b_bmsy.csv","rgn_id",,"stock_id","year","bbmsy",,TRUE,2005,2010,0.00263,10.7,FALSE,,,,34,FALSE
 "FIS","fis_meancatch","Catch data for each Taxon/FAO/SAU region averaged across years","Mean catch-per-taxon values within each Sea Around Us/FAO fishing area.
 
 Data sources:
 
 - [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)
-- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)","mean_catch","metric tons","fis_meancatch.csv",,"fao_saup_id","taxon_name_key","year","mean_catch",,TRUE,2006,2011,8.17638e-18,4787769.75544375,FALSE,,,,34,FALSE
-"FIS","fis_proparea_saup2rgn","proportion area of each SAUP within each OHI reporting region","Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
-
-Data sources:
-
-- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)
-","prop_area","proportion","fis_proparea_saup2rgn.csv","saup_id",,"rgn_id",,"prop_area",,TRUE,,,1.79195021000782e-05,1,TRUE,,,,34,FALSE
+- [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)","mean_catch","metric tons","fis_meancatch.csv","rgn_id",,"stock_id_taxonkey","year","mean_catch",,TRUE,2005,2010,3.36290652419971e-17,6153125.16129057,FALSE,,,,34,FALSE
 "FP","fp_wildcaught_weight","Fisheries weighting factor","Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
 
 Data sources:
@@ -146,21 +140,16 @@ Data sources:
 Data sources:
 
 - CIESIN & CIAT (Center for International Earth Science Information Network /Columbia University & Centro Internacional de Agricultura Tropical) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)","popsum","people","mar_coastalpopn_inland25mi.csv","rgn_id",,,"year","popsum",,TRUE,2005,2015,0,222071000,FALSE,,,,34,FALSE
-"MAR","mar_harvest_species","Mariculture species harvested","Lookup table for mariculture: species Latin names and species code. 
-
-Data sources:
-
-- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","species","species name","mar_harvest_species.csv",,,"species_code",,,"species",TRUE,,,,,FALSE,,,,34,
 "MAR","mar_harvest_tonnes","Mariculture harvest","Mariculture harvest from the FAO. 
 
 Data sources:
 
-- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","tonnes","tons","mar_harvest_tonnes.csv","rgn_id",,"species_code","year","tonnes",,TRUE,1950,2013,0,4218644,FALSE,,,,34,FALSE
+- [FAO global aquaculture production](http://www.fao.org/fishery/statistics/global-aquaculture-production/en)","tonnes","tons","mar_harvest_tonnes.csv","rgn_id",,"taxa_code","year","tonnes",,TRUE,1950,2014,0,4352694,FALSE,,,,34,FALSE
 "MAR","mar_sustainability_score","Mariculture sustainability score","Mariculture sustainability and mariculture regulations indicated by the Mariculture Sustainability Index (MSI). 
 
 Data sources:
 
-- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","mar_sustainability_score.csv","rgn_id",,"species_code",,"sust_coeff",,TRUE,,,0.1,1,TRUE,,,,34,FALSE
+- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","sust_coeff","sustainability","mar_sustainability_score.csv","rgn_id",,"taxa_code",,"sust_coeff",,TRUE,,,0.1,1,TRUE,,,,34,FALSE
 "NP","np_blast","Areas of observed blast (dynamite) fishing","Destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
