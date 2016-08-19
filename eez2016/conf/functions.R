@@ -274,13 +274,12 @@ status_data <- data_fis_gf %>%
 }
 
 MAR = function(layers, status_year){  
-  
   # layers used: mar_harvest_tonnes, mar_harvest_species, mar_sustainability_score, mar_coastalpopn_inland25mi, mar_trend_years
   harvest_tonnes <- SelectLayersData(layers, layers='mar_harvest_tonnes', narrow = TRUE) %>%
     select(rgn_id=id_num, species_code=category, year, tonnes=val_num)
   
-  harvest_species <- SelectLayersData(layers, layers='mar_harvest_species', narrow = TRUE) %>%
-    select(species_code=category, species=val_chr)
+  # harvest_species <- SelectLayersData(layers, layers='mar_harvest_species', narrow = TRUE) %>%
+  #   select(species_code=category, species=val_chr)
   
   sustainability_score <- SelectLayersData(layers, layers='mar_sustainability_score', narrow = TRUE) %>%
     select(rgn_id=id_num, species_code=category, sust_coeff=val_num)
@@ -290,19 +289,18 @@ MAR = function(layers, status_year){
   
   
   rky <-  harvest_tonnes %>%
-    left_join(harvest_species, by = 'species_code') %>%
     left_join(sustainability_score, by = c('rgn_id', 'species_code')) 
   
   # fill in gaps with no data
   rky <- spread(rky, year, tonnes)
-  rky <- gather(rky, "year", "tonnes", 5:dim(rky)[2])
+  rky <- gather(rky, "year", "tonnes", 4:dim(rky)[2])
   
   
   # 4-year rolling mean of data
   m <- rky %>%
     mutate(year = as.numeric(as.character(year))) %>%
-    group_by(rgn_id, species, species_code, sust_coeff) %>%
-    arrange(rgn_id, species, species_code, year) %>%
+    group_by(rgn_id, species_code, sust_coeff) %>%
+    arrange(rgn_id, species_code, year) %>%
     mutate(sm_tonnes = zoo::rollapply(tonnes, 4, mean, na.rm=TRUE, partial=TRUE)) %>%
     ungroup()
   
@@ -846,7 +844,7 @@ CS <- function(layers){
   write.csv(dp, 'temp/cs_hab_contributions.csv', row.names=FALSE)
   
   ## status and trend models; ensure at least one habitat-region has extent (km2) > 0, otherwise set NA.
-  if (sum(d$km2) > 0){
+  if (sum(d$km2, na.rm=TRUE) > 0){
     # status
     scores_CS <- d %>%
       filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
@@ -990,7 +988,7 @@ CP <- function(layers){
   write.csv(dp, 'temp/cp_hab_contributions.csv', row.names=FALSE)
   
   ## status and trend models; ensure at least one habitat-region has extent (km2) > 0, otherwise set NA.
-  if (sum(d$km2) > 0){
+  if (sum(d$km2, na.rm=TRUE) > 0){
     # status
     scores_CP <- d %>%
       filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
