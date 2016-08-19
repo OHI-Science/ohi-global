@@ -230,7 +230,7 @@ Data sources:
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","score","pressure score","fp_targetharvest.csv","rgn_id",,,,"score",,TRUE,,,0,1,TRUE,,,,34,FALSE
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)","pressure_score","pressure score","fp_targetharvest.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,1,TRUE,,,,34,FALSE
 "pressures","hd_intertidal","Coastal population density as a proxy for intertidal habitat destruction","Coastal population, defined as the total population inland of 10 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -242,7 +242,7 @@ Data sources:
 
 Data sources:
 
-- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","value","pressure score","hd_subtidal_hb.csv","rgn_id",,,,"value",,TRUE,,,1.3e-05,0.253665689,TRUE,,,,34,FALSE
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","pressure_score","pressure score","hd_subtidal_hb.csv","rgn_id",,,,"pressure_score",,TRUE,,,1.3e-05,0.253665689,TRUE,,,,34,FALSE
 "pressures","hd_subtidal_sb","Demersal destructive commercial fishing practices relative to soft-bottom habitat area as a proxy for soft bottom habitat destruction","Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
 
 Data sources:
