@@ -231,7 +231,7 @@ pressures,fp_targetharvest,ohiprep:globalprep/FAO_targetedharvest/data,rgn_fao_t
 
 Data sources:
 
-- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)",score,pressure score,TRUE,,,ohiprep:globalprep/FAO_targetedharvest/data,rgn_fao_targeted_2015a_gf.csv,equal,global pressures data were applied equally to all regions.
+- [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/FAO_targetedharvest/data,rgn_fao_targeted_2015a_gf.csv,equal,global pressures data were applied equally to all regions.
 pressures,hd_intertidal,neptune_data:model/GL-NCEAS-Pressures_v2013a/data,hd_intertidal_2012_NEW.csv,neptune_data:model/GL-NCEAS-Pressures_v2013a/data,hd_intertidal_2013_NEW.csv,,,,,,,Coastal population density as a proxy for intertidal habitat destruction,"Coastal population, defined as the total population inland of 10 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
@@ -243,7 +243,7 @@ pressures,hd_subtidal_hb,neptune_data:model/GL-NCEAS-Pressures_v2013a/data,p_hd_
 
 Data sources:
 
-- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ",value,pressure score,TRUE,,,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012_gf.csv,equal,global pressures data were applied equally to all regions.
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012_gf.csv,equal,global pressures data were applied equally to all regions.
 pressures,hd_subtidal_sb,neptune_data:model/GL-NCEAS-subtidal_softbottom_v2013a/data,po_rgn_hd_subtidal_sb_2012a.csv,neptune_data:model/GL-NCEAS-subtidal_softbottom_v2013a/data,po_rgn_hd_subtidal_sb_2013a.csv,,,,,,,Demersal destructive commercial fishing practices relative to soft-bottom habitat area as a proxy for soft bottom habitat destruction,"Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
 
 Data sources:
