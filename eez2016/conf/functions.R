@@ -743,6 +743,7 @@ NP <- function(scores, layers, status_year, debug = FALSE){
 
 CS <- function(layers){
   
+  ## read in layers
   extent <- layers$data[['hab_extent']] %>%
     select(rgn_id, habitat, km2) %>%
     mutate(habitat = as.character(habitat))
@@ -755,16 +756,17 @@ CS <- function(layers){
     select(rgn_id, habitat, trend) %>%
     mutate(habitat = as.character(habitat))
   
-  # join layer data
+  ## join layer data
   d <-  extent %>%
     full_join(health, by=c("rgn_id", "habitat")) %>%
     full_join(trend, by=c("rgn_id", "habitat"))
   
-  # limit to CS habitats and add rank
+  ## set ranks for each habitat
   habitat.rank <- c('mangrove'         = 139,
                     'saltmarsh'        = 210,
                     'seagrass'         = 83)
   
+  ## limit to CS habitats and add rank
   d <- d %>%
     filter(habitat %in% names(habitat.rank)) %>%
     mutate(
@@ -783,8 +785,8 @@ CS <- function(layers){
     select(rgn_id, habitat, prop_score)
   write.csv(dp, 'temp/cs_hab_contributions.csv', row.names=FALSE)
   
-  
-  if (nrow(d) > 0){
+  ## status and trend models; ensure at least one habitat-region has extent (km2) > 0, otherwise set NA.
+  if (sum(d$km2) > 0){
     # status
     scores_CS <- d %>%
       filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
@@ -831,13 +833,25 @@ CS <- function(layers){
       mutate(
         goal = 'CS') %>%
       select(region_id=rgn_id, goal, dimension, score)
-  } else {
-    scores_CS <- data.frame(
-      goal      = character(0),
-      dimension = character(0),
-      region_id = integer(0),
-      score     = numeric())
-  }
+    
+  } else { ## else -- if sum(d$km2) is not greater than 0
+    
+     ## set status and trend to NA for all regions
+      message('CS status and trend are NA, consider removing goal if no CS habitats in assessment area')
+
+      rgns <-layers$data[['rgn_labels']]
+      scores_CS <- bind_rows(
+        rgns %>%
+        mutate(goal      = 'CS',
+               dimension = 'status',
+               score     = NA),
+      rgns %>%
+        mutate(goal      = 'CS',
+               dimension = 'trend',
+               score     = NA)) %>%
+        select(goal, dimension, region_id = rgn_id, score)
+  
+  } ## end -- if (sum(d$km2) > 0)
   
   ## reference points
   rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
@@ -854,11 +868,21 @@ CS <- function(layers){
 
 CP <- function(layers){
   
+  ## read in layers
   extent <- layers$data[['hab_extent']] %>%
     select(rgn_id, habitat, km2) %>%
     mutate(habitat = as.character(habitat))
   
-  # sum mangrove_offshore + mangrove_inland1km = mangrove to match with extent and trend
+  health <-  layers$data[['hab_health']] %>%
+    select(rgn_id, habitat, health) %>%
+    mutate(habitat = as.character(habitat))
+  
+  trend <-layers$data[['hab_trend']] %>%
+    select(rgn_id, habitat, trend) %>%
+    mutate(habitat = as.character(habitat))
+  
+  
+  ## sum mangrove_offshore + mangrove_inland1km = mangrove to match with extent and trend
   mangrove_extent <- extent %>%
     filter(habitat %in% c('mangrove_inland1km','mangrove_offshore')) 
   
@@ -874,29 +898,19 @@ CP <- function(layers){
     filter(!habitat %in% c('mangrove','mangrove_inland1km','mangrove_offshore')) %>%  #do not use all mangrove
     rbind(mangrove_extent)  #just the inland 1km and offshore
   
-  
-  health <-  layers$data[['hab_health']] %>%
-    select(rgn_id, habitat, health) %>%
-    mutate(habitat = as.character(habitat))
-  
-  trend <-layers$data[['hab_trend']] %>%
-    select(rgn_id, habitat, trend) %>%
-    mutate(habitat = as.character(habitat))
-  
-  # join layer data
+  ## join layer data
   d <-  extent %>%
     full_join(health, by=c("rgn_id", "habitat")) %>%
     full_join(trend, by=c("rgn_id", "habitat"))
   
-  
-  
-  # limit to CP habitats and add rank
+  ## set ranks for each habitat
   habitat.rank <- c('coral'            = 4,
                     'mangrove'         = 4,
                     'saltmarsh'        = 3,
                     'seagrass'         = 1,
                     'seaice_shoreline' = 4)
   
+  ## limit to CP habitats and add rank
   d <- d %>%
     filter(habitat %in% names(habitat.rank)) %>%
     mutate(
@@ -915,12 +929,14 @@ CP <- function(layers){
     select(rgn_id, habitat, prop_score)
   write.csv(dp, 'temp/cp_hab_contributions.csv', row.names=FALSE)
   
-  if (nrow(d) > 0){
+  ## status and trend models; ensure at least one habitat-region has extent (km2) > 0, otherwise set NA.
+  if (sum(d$km2) > 0){
     # status
     scores_CP <- d %>%
       filter(!is.na(rank) & !is.na(health) & !is.na(extent)) %>%
       group_by(rgn_id) %>%
-      summarize(score = pmin(1, sum(rank * health * extent, na.rm=TRUE) / (sum(extent * rank, na.rm=TRUE)) ) * 100) %>%
+      summarize(score = pmin(1, sum(rank * health * extent, na.rm=TRUE) / 
+                               (sum(extent * rank, na.rm=TRUE)) ) * 100) %>%
       mutate(dimension = 'status') %>%
       ungroup()
     
@@ -955,19 +971,31 @@ CP <- function(layers){
       arrange(rgn_id, habitat) %>%
       left_join(scores_check, by="rgn_id") 
     write.csv(d_check, sprintf('temp/cp_data_%s.csv', scenario), row.names=FALSE)    
-    ### end: output...   
     
+    ## finalize scores_CP
     scores_CP <- scores_CP %>%
       mutate(
         goal = 'CP') %>%
       select(region_id=rgn_id, goal, dimension, score)
-  } else {
-    scores_CP <- data.frame(
-      goal      = character(0),
-      dimension = character(0),
-      region_id = integer(0),
-      score     = numeric())
-  }
+  
+  } else { ## else -- if sum(d$km2) is not greater than 0
+    
+    ## set status and trend to NA for all regions
+    message('CP status and trend are NA, consider removing goal if no CP habitats in assessment area')
+    
+    rgns <-layers$data[['rgn_labels']]
+    scores_CP <- bind_rows(
+      rgns %>%
+        mutate(goal      = 'CP',
+               dimension = 'status',
+               score     = NA),
+      rgns %>%
+        mutate(goal      = 'CP',
+               dimension = 'trend',
+               score     = NA)) %>%
+      select(goal, dimension, region_id = rgn_id, score)
+    
+  } ## end -- if (sum(d$km2) > 0)
   
   ## reference points
   rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
@@ -978,6 +1006,7 @@ CP <- function(layers){
   
   # return scores
   return(scores_CP)
+  
 }
 
 
@@ -1781,13 +1810,10 @@ HAB = function(layers){
     warning("Some regions/habitats have extent data, but no health data.  Consider estimating these values.")
   }  
   
-  d <- d %>%
-    group_by(rgn_id) 
   
-  
-  # calculate scores
-  
+  ## calculate scores 
   status <- d %>%
+    group_by(rgn_id) %>%
     filter(!is.na(health)) %>%
     summarize(      
       score = pmin(1, sum(health) / sum(w)) * 100,
