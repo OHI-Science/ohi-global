@@ -1011,25 +1011,19 @@ CP <- function(layers){
 
 
 TR = function(layers, status_year, pct_ref = 90) {
-  #Inputs:
-  # * S_score  = tr_sustainability.csv:   TTCI score, not normalized (1-7)
-  # * Ep = tr_jobs_pct_tourism.csv: Percent of direct tourism jobs
-  # formula:
-  #  E       = Ep    # Ep is direct percentage of labor in tourism
-  #  S       = (S_score - 1) / (7 - 1)                      # S_score is raw score (from 1:7).  Subtract 1 and normalize.
-  #  Xtr     = E * S 
   
-  # # get regions
-  # rgn_names = layers$data[[conf$config$layer_region_labels]] %>%
-  #   select(rgn_id, rgn_name = label) %>%
-  #   mutate(rgn_name = as.character(rgn_name))
-  
-  tr_data  <- layers$data[['tr_jobs_pct_tourism']] %>% 
-                select(-layer)                     %>%
-    full_join(layers$data[['tr_sustainability']]   %>% 
-                select(-layer),
-              by = c('rgn_id'))                    %>%
-    # full_join(rgn_names, by = 'rgn_id')            %>%
+   ## formula:
+  ##  E   = Ep                         # Ep: % of direct tourism jobs. tr_jobs_pct_tourism.csv
+  ##  S   = (S_score - 1) / (7 - 1)    # S_score: raw TTCI score, not normalized (1-7). tr_sustainability.csv
+  ##  Xtr = E * S
+
+  ## read in layers
+  tr_data  <- full_join(
+    layers$data[['tr_jobs_pct_tourism']] %>%
+      select(-layer),
+    layers$data[['tr_sustainability']] %>%
+      select(-layer),
+    by = c('rgn_id'))%>%
     filter(year <= status_year)
   
   tr_model <- tr_data %>%
@@ -1045,16 +1039,23 @@ TR = function(layers, status_year, pct_ref = 90) {
   ### but the other datasets will lag
   scenario_year <- as.numeric(substring(scenario, 4,7)) 
   offset_years <- scenario_year - status_year 
-  # regions with Travel Warnings 
-  rgn_travel_warnings <- layers$data[['tr_travelwarnings']] %>%
-    select(rgn_id, year, multiplier) %>%
-    mutate(year = year - offset_years)
   
-     
-  tr_model <- tr_model %>%
-    left_join(rgn_travel_warnings, by = c('rgn_id', 'year')) %>%
-    mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
-    select(-multiplier)
+  if (exists('scenarios')) { ## if global scenarios
+    scenario_year <- as.numeric(substring(scenario, 4,7))
+    offset_years <- scenario_year - status_year
+    
+    ## read in layers for regions with Travel Warnings
+    rgn_travel_warnings <- layers$data[['tr_travelwarnings']] %>%
+      select(rgn_id, year, multiplier) %>%
+      mutate(year = year - offset_years)
+
+    ## incorporate Travel Warnings
+    tr_model <- tr_model %>%
+      left_join(rgn_travel_warnings, by = c('rgn_id', 'year')) %>%
+      mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
+      select(-multiplier)
+    
+  } ## end if (exists('scenarios'))
   
   ### Calculate status based on quantile reference (see function call for pct_ref)
   tr_model <- tr_model %>%
@@ -1115,7 +1116,9 @@ TR = function(layers, status_year, pct_ref = 90) {
     select(region_id=rgn_id, goal, dimension, score)
   
   return(scores)
+  
 }
+
 LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year){
   
   g.component = c('LIV'='livelihood','ECO'='economy')[[subgoal]]
