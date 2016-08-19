@@ -1116,7 +1116,6 @@ TR = function(layers, status_year, pct_ref = 90) {
     select(region_id=rgn_id, goal, dimension, score)
   
   return(scores)
-  
 }
 
 LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year){
@@ -1820,13 +1819,16 @@ HAB = function(layers){
     filter(!is.na(health)) %>%
     summarize(      
       score = pmin(1, sum(health) / sum(w)) * 100,
-      dimension = 'status')
+      dimension = 'status') %>%
+    ungroup()
   
   trend <- d %>%
+    group_by(rgn_id) %>%
     filter(!is.na(trend)) %>%      
     summarize(      
       score =  sum(trend) / sum(w),
-      dimension = 'trend') 
+      dimension = 'trend')  %>%
+    ungroup()
   
   scores_HAB <- rbind(status, trend) %>%
     mutate(goal = "HAB") %>%
