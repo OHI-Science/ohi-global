@@ -371,6 +371,8 @@ MAR = function(layers, status_year){
   
   return(scores)
 }
+
+
 FP = function(layers, scores){
   
   # weights
@@ -492,15 +494,15 @@ AO = function(layers,
 }
 
 NP <- function(scores, layers, status_year, debug = FALSE){
-  # TODO: add smoothing a la PLoS 2013 manuscript # ??? CCO: done? is this the NP data_prep smoothing?
-  
+
   ### new code version - load combined harvest variables
-  r_cyanide    = layers$data[['np_cyanide']]
-  r_blast      = layers$data[['np_blast']]  
-  hab_extent   = layers$data[['hab_extent']]
+  r_cyanide    = layers$data[['np_cyanide']] # cyanide & blast used to calculate risk variable
+  r_blast      = layers$data[['np_blast']]   
+  hab_extent   = layers$data[['hab_extent']] # used to calculate exposure variable
   
-  ### FIS status for fish oil exposure
-  FIS_status   <-  scores %>% 
+  ### FIS status for fish oil sustainability
+  FIS_status <- read.csv('scores.csv')%>%
+  #FIS_status   <-  scores %>% 
     filter(goal == 'FIS' & dimension == 'status') %>%
     select(rgn_id = region_id, score)  
   
@@ -549,7 +551,7 @@ NP <- function(scores, layers, status_year, debug = FALSE){
   
   np_calc_exposure <- function(np_harvest, hab_extent, FIS_status) {
     ### calculates NP exposure based on habitats (for corals, seaweeds, 
-    ### ornamentals, shells, sponges) and FIS status scores (for fish oil).
+    ### ornamentals, shells, sponges).
     ### Returns the first input data frame with a new column for exposure:
     ### [rgn_id rgn_name product year tonnes tonnes_rel prod_weight exposure]
     #########################################.
@@ -609,9 +611,7 @@ NP <- function(scores, layers, status_year, debug = FALSE){
         expos_raw = ifelse(tonnes > 0 & km2 > 0, (tonnes / km2), 0)) %>%
       group_by(product) %>%
       mutate(
-        expos_prod_max = (1 - .35)*max(expos_raw, na.rm = TRUE)) %>%
-      ### Reduced max exposure:
-      ###   .35 is the threshold for harvest peak used in status
+        expos_prod_max = (1 - .35)*max(expos_raw, na.rm = TRUE)) %>% 
       ungroup() %>%
       mutate(
         exposure = (log(expos_raw + 1) / log(expos_prod_max + 1)),
@@ -630,25 +630,10 @@ NP <- function(scores, layers, status_year, debug = FALSE){
       mutate(mean_exp = mean(exposure, na.rm = TRUE)) %>%
       mutate(exposure = ifelse(is.na(exposure), mean_exp, exposure)) %>%
       select(-mean_exp) %>%
-      ungroup()
-    
-    ### add exposure for fish_oil
-    np_exp <- np_exp %>% bind_rows(
-      np_harvest %>%
-        filter(product=='fish_oil') %>%
-        left_join(
-          FIS_status %>%
-            mutate(exposure = score / 100) %>%
-            #              mutate(exposure = ifelse(is.na(exposure), 0, exposure)) %>% 
-            ### ??? adding this ^^^ from below - now will filter only NAs in fish_oil exposure, not seaweeds and coral exposure
-            select(rgn_id, exposure),
-          by = 'rgn_id')) %>%
+      ungroup() %>%
       mutate(product = as.character(product))
     
-    # ??? CCO: This assigns exposure to zero for ANY product with NA (fish oil, seaweeds, corals)
-    #     np_exp <- np_exp %>% 
-    #      mutate(exposure = ifelse(is.na(exposure), 0, exposure))
-    
+
     return(np_exp)
   }
   
@@ -712,6 +697,23 @@ NP <- function(scores, layers, status_year, debug = FALSE){
       rowwise() %>% 
       mutate(sustainability = 1 - mean(c(exposure, risk), na.rm = TRUE))
     
+    ### add in fish_oil sustainability based on FIS scores calculated above:
+    ### add fish_oil (no exposure calculated, sustainability is based on FIS score only, and not exposure/risk components)
+    fish_oil_sust <-   FIS_status %>%
+      mutate(sustainability = score / 100) %>%
+      mutate(sustainability = ifelse(is.na(sustainability), 0, sustainability)) %>% 
+      select(rgn_id, sustainability)
+      
+    np_sus_fis_oil <- np_harvest %>%
+      filter(product=='fish_oil') %>%
+      mutate(exposure = NA) %>%
+      mutate(risk = NA) %>%
+      left_join(fish_oil_sust, by='rgn_id')
+    
+    np_exp <- np_sust %>% 
+      bind_rows(np_sus_fis_oil)
+      
+
     ### calculate rgn-product-year status
     np_sust <- np_sust %>% 
       mutate(product_status = tonnes_rel * sustainability) %>%
