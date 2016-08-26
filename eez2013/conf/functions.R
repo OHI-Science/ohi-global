@@ -633,26 +633,7 @@ NP <- function(scores, layers, status_year, debug = FALSE){
       ungroup() %>%
       mutate(product = as.character(product))
     
-    # ### add fish_oil (no exposure calculated, sustainability is based on FIS score only, and not exposure/risk components)
-    # np_exp <- np_exp %>% bind_rows(
-    #   np_harvest %>%
-    #     filter(product=='fish_oil') %>%
-    #     mutate(exposure = NA)) %>%
-    #   mutate(product = as.character(product))
-    #     
-      #   left_join(
-      #     FIS_status %>%
-      #       mutate(exposure = score / 100) %>%
-      #       #              mutate(exposure = ifelse(is.na(exposure), 0, exposure)) %>% 
-      #       ### ??? adding this ^^^ from below - now will filter only NAs in fish_oil exposure, not seaweeds and coral exposure
-      #       select(rgn_id, exposure),
-      #     by = 'rgn_id')) %>%
-      # mutate(product = as.character(product))
-    
-    # ??? CCO: This assigns exposure to zero for ANY product with NA (fish oil, seaweeds, corals)
-    #     np_exp <- np_exp %>% 
-    #      mutate(exposure = ifelse(is.na(exposure), 0, exposure))
-    
+
     return(np_exp)
   }
   

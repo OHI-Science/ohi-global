@@ -198,7 +198,7 @@ Data sources:
 - [AVHRR Pathfinder Version 5.0 SST data](http://pathfinder.nodc.noaa.gov) 
 - Casey, K. S., Brandon, T. B., Cornillon, P., and Evans, R. (2010). **The past, present and future of the AVHRR Pathfinder SST Program**, _Oceanography from Space: Revisited_, eds. V. Barale, J. F. R. Gower, and L. Alberotanza, Springer. [doi:10.1007/978-90-481-8681-5_16](http://dx.doi.org/10.1007/978-90-481-8681-5_16)
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SST) ",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,sst_eez_2015_gf.csv,raster | equal,
-pressures,cc_uv,ohiprep:globalprep/PressuresRegionExtract/data,uv_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,uv_eez_2015.csv,,,,,,,UV radiation,"Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC.
+pressures,cc_uv,ohiprep:globalprep/prs_uv/v2016/output,uv_2012.csv,ohiprep:globalprep/prs_uv/v2016/output,uv_2013.csv,ohiprep:globalprep/prs_uv/v2016/output,uv_2014.csv,ohiprep:globalprep/prs_uv/v2016/output,uv_2015.csv,ohiprep:globalprep/prs_uv/v2016/output,uv_2016.csv,UV radiation,"Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC.
 
 Data sources:
 
