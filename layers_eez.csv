@@ -269,11 +269,11 @@ pressures,sp_alien,ohiprep:globalprep/pressures_alien/v2013/data,p_sp_alien_2013
 Data sources:
 
 - Molnar, J. L., Gamboa, R. L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)",pressures.score,pressure score,TRUE,,,ohiprep:globalprep/pressures_alien/v2013/data,p_sp_alien_2013a_gf.csv,equal,global pressures data were applied equally to all regions.
-pressures,sp_genetic,neptune_data:model/GL-NCEAS-Pressures-GenEsc_v2013a/data,GenEsc_v2012a.csv,neptune_data:model/GL-NCEAS-Pressures-GenEsc_v2013a/data,GenEsc_v2013a.csv,,,,,,,Introduced species as a proxy for genetic escapes ,"Statistics on native or introduced species from the Mariculture Sustainibility Index (MSI). 
+pressures,sp_genetic,ohiprep:globalprep/mar/v2016/output,GenEsc_v2012.csv,ohiprep:globalprep/mar/v2016/output,GenEsc_v2013.csv,ohiprep:globalprep/mar/v2016/output,GenEsc_v2014.csv,ohiprep:globalprep/mar/v2016/output,GenEsc_v2015.csv,ohiprep:globalprep/mar/v2016/output,GenEsc_v2016.csv,Introduced species as a proxy for genetic escapes ,"Statistics on native or introduced species from the Mariculture Sustainibility Index (MSI). 
 
 Data sources:
 
-- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.",pressures.score,pressure score,TRUE,,,ohiprep:globalprep/mariculture_status/data,GenEsc_v2013a_gf.csv,equal,global pressures data were applied equally to all regions.
+- Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/mariculture_status/data,GenEsc_v2013a_gf.csv,equal,global pressures data were applied equally to all regions.
 pressures,ss_wgi,ohiprep:globalprep/prs_res_wgi/v2015/data,rgn_wb_wgi_2012a_inverse.csv,ohiprep:globalprep/prs_res_wgi/v2015/data,rgn_wb_wgi_2013a_inverse.csv,ohiprep:globalprep/prs_res_wgi/v2015/data,rgn_wb_wgi_2014a_inverse.csv,ohiprep:globalprep/prs_res_wgi/v2015/data,rgn_wb_wgi_2015a_inverse.csv,,,Weakness of governance indicated with the WGI,"Inverse of World Governance Indicators (WGI) six combined scores.
 
 Data sources:
