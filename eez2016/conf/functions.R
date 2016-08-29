@@ -91,7 +91,7 @@ FIS = function(layers, status_year){
   #  ***********************************************
   
   penaltyTable <- data.frame(TaxonPenaltyCode=1:6, 
-                             penalty=c(0.01, 0.25, 0.5, 0.8, 0.9, 1))
+                             penalty=c(0.1, 0.25, 0.5, 0.8, 0.9, 1))
   
   data_fis_gf <- data_fis_gf %>%
     mutate(TaxonPenaltyCode = as.numeric(substring(taxon_key, 1, 1))) %>%
@@ -236,7 +236,8 @@ FIS = function(layers, status_year){
   
   status_data <- status_data %>%
     group_by(rgn_id, year) %>%
-    summarize(status = prod(score^wprop)) %>%
+    summarize(status = weighted.mean(score, wprop)) %>%
+#    summarize(status = prod(score^wprop)) %>%
     ungroup()
   
   

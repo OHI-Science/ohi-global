@@ -219,10 +219,29 @@ for (i in 1:length(scenarios)){  #i=2
 
 ### make a plot to compare different commits within a scenario
 
-change_plot(repo = "ohi-global", scenario="eez2015", commit="previous", 
-           fileSave="eez2015_prs_genEscapes", save_csv=FALSE, save_png=FALSE)
+change_plot(repo = "ohi-global", scenario="eez2015", commit="102408a", 
+           fileSave="eez2015_fis_weighted_mean_taxa_penalty", save_csv=FALSE, save_png=FALSE)
 
 source('../ohiprep/src/R/VisGlobal.R')
 # looking within a goal:
-scatterPlot(repo="ohi-global", scenario="antarctica2014", commit="previous", goal="HAB", dim="pressure", fileSave="antarctica_hd_sea_ice_2014")
-goalHistogram(scenario="antarctica2014", goal="HAB", dim="status", fileSave="HAB_new_sea_ice")
+scatterPlot(repo="ohi-global", scenario="eez2015", commit="102408a", goal="FIS", dim="status", fileSave="FIS_status_weight_mean_taxa_penalty")
+
+goalHistogram(scenario="eez2015", goal="FIS", dim="status", fileSave="FIS_weighted_mean_taxa_penalty_hist")
+
+## make an interactive table
+
+library(hwriter)
+names <- read.csv("eez2013/layers/rgn_labels.csv") %>%
+  filter(type=="eez") %>%
+  select(region_id=rgn_id, label)
+
+
+data <- read.csv('eez2015/scores.csv')%>%
+  filter(goal=='FIS', dimension=="status") %>%
+  filter(region_id !=0) %>%
+  left_join(names) %>%
+  select(country=label, goal, dimension, score) %>%
+  arrange(score)
+hwrite(data, "changePlot_figures/status_eez2015_FIS.html", br=TRUE, center=TRUE, border=0, 
+       row.style=list(goal='text-align:center'))
+
