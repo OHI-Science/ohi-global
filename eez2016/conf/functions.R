@@ -38,8 +38,8 @@ FIS = function(layers, status_year){
     mutate(bmsy = as.numeric(bmsy)) %>%
     mutate(rgn_id = as.numeric(as.character(rgn_id))) %>%
     mutate(year = as.numeric(as.character(year))) %>%
-    mutate(stock_id = as.character(stock_id))  %>%
-    mutate(bmsy = ifelse(bmsy>1, 1, bmsy))         #eliminate the underfishing penalty
+    mutate(stock_id = as.character(stock_id))  
+  
   
   # ------------------------------------------------------------------------
   # STEP 1. Calculate scores for Bbmsy values
@@ -59,6 +59,7 @@ FIS = function(layers, status_year){
                           1 - alpha*(b$bmsy - upperBuffer), 
                           beta))
   1-alpha*(1.12 - upperBuffer)
+  
   # ------------------------------------------------------------------------
   # STEP 1. Merge the b/bmsy data with catch data
   # -----------------------------------------------------------------------
@@ -130,11 +131,8 @@ FIS = function(layers, status_year){
   
   status_data <- status_data %>%
     group_by(rgn_id, year) %>%
-    summarize(status = weighted.mean(score, wprop)) %>%
-#    summarize(status = prod(score^wprop)) %>%
+    summarize(status = prod(score^wprop)) %>%
     ungroup()
-  
-  
   
   # ------------------------------------------------------------------------
   # STEP 5. Get yearly status and trend  
