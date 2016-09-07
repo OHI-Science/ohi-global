@@ -37,7 +37,9 @@ FIS = function(layers, status_year){
   b <- b %>%
     mutate(bmsy = as.numeric(bmsy)) %>%
     mutate(rgn_id = as.numeric(as.character(rgn_id))) %>%
-    mutate(year = as.numeric(as.character(year)))
+    mutate(year = as.numeric(as.character(year))) %>%
+    mutate(stock_id = as.character(stock_id))  %>%
+    mutate(bmsy = ifelse(bmsy>1, 1, bmsy))         #eliminate the underfishing penalty
   
   # ------------------------------------------------------------------------
   # STEP 1. Calculate scores for Bbmsy values
@@ -62,8 +64,9 @@ FIS = function(layers, status_year){
   # -----------------------------------------------------------------------
   data_fis <- c %>%
     left_join(b, by=c('rgn_id', 'stock_id', 'year')) %>%
-    select(rgn_id, stock_id, year, taxon_key, catch, bmsy, score)
+    select(rgn_id, stock_id, year, taxon_key, catch, bmsy, score) 
   
+
   # ------------------------------------------------------------------------
   # STEP 2. Estimate scores for taxa without b/bmsy values
   # Median score of other fish in the region is the starting point
@@ -100,35 +103,7 @@ FIS = function(layers, status_year){
     mutate(score_gapfilled = ifelse(is.na(score), "Median gapfilled", "none")) %>%
     mutate(score = ifelse(is.na(score), score_gf, score))
   
-  #   #########################################
-  #   ## comparing:
-  #   tmp <- data.frame(filter(data_fis_gf, rgn_id==17 & year==2010) %>%
-  #                       arrange(catch))
-  #   mean(tmp$score)
-  #   weighted.mean(tmp$score, tmp$catch)
-  #   
-  #   tmp <- data.frame(filter(data_fis_gf, rgn_id==5 & year==2010) %>%
-  #                       arrange(catch))
-  #   mean(tmp$score)
-  #   weighted.mean(tmp$score, tmp$catch)
-  #   
-  #   tmp <- data.frame(filter(data_fis_gf, rgn_id==7 & year==2010) %>%
-  #                       arrange(catch))
-  #   mean(tmp$score)
-  #   weighted.mean(tmp$score, tmp$catch)
-  #   
-  #   tmp <- data.frame(filter(data_fis_gf, rgn_id==232 & year==2010) %>%
-  #                       arrange(catch))
-  #   mean(tmp$score)
-  #   weighted.mean(tmp$score, tmp$catch)
-  #   
-  #   tmp <- data.frame(filter(data_fis_gf, rgn_id==247 & year==2010) %>%
-  #                       arrange(catch))
-  #   mean(tmp$score)
-  #   weighted.mean(tmp$score, tmp$catch)
-  # 
-  # ########################################  
-  
+
   gap_fill_data <- data_fis_gf %>%
     mutate(gap_fill = ifelse(is.na(penalty), "none", "median")) %>%
     select(rgn_id, stock_id, taxon_key, year, catch, score, gap_fill) %>%
@@ -152,87 +127,6 @@ FIS = function(layers, status_year){
     mutate(SumCatch = sum(catch)) %>%
     ungroup() %>%
     mutate(wprop = catch/SumCatch)
-  
-  # ###############################################################
-  # ## checking:
-  # tmp <- data.frame(filter(status_data, rgn_id==17 & year==2010) %>%
-  #                     arrange(catch))
-  # mean(tmp$score)
-  # weighted.mean(tmp$score, tmp$catch)
-  # 
-  # tmp <- data.frame(filter(status_data, rgn_id==5 & year==2010) %>%
-  #                     arrange(catch))
-  # mean(tmp$score)
-  # weighted.mean(tmp$score, tmp$catch)
-  # prod(tmp$score^tmp$wprop)
-  # 
-  # tmp <- data.frame(filter(status_data, rgn_id==7 & year==2010) %>%
-  #                     arrange(catch))
-  # mean(tmp$score)
-  # weighted.mean(tmp$score, tmp$catch)
-  # prod(tmp$score^tmp$wprop)
-  # 
-  # tmp <- data.frame(filter(status_data, rgn_id==232 & year==2010) %>%
-  #                     arrange(catch))
-  # mean(tmp$score)
-  # weighted.mean(tmp$score, tmp$catch)
-  # prod(tmp$score^tmp$wprop)
-  # 
-  # tmp <- data.frame(filter(status_data, rgn_id==247 & year==2010) %>%
-  #                     arrange(catch))
-  # mean(tmp$score)
-  # weighted.mean(tmp$score, tmp$catch)
-  # prod(tmp$score^tmp$wprop)
-  # 
-  # ###################################################################
-  
-  # old_b <- read.csv('../eez2015/layers/fis_b_bmsy.csv')
-  # filter(old_b, taxon_name == "Katsuwonus pelamis" & fao_id==71)
-  # old_c <- read.csv('../eez2015/layers/fis_meancatch.csv')
-  # tmp <- filter(old_c, fao_saup_id == "71_598" & year==2010) %>%
-  #   arrange(mean_catch)
-  # 9.931796e+04/sum(tmp$mean_catch)
-  # 
-  # old_b <- read.csv('../eez2015/layers/fis_b_bmsy.csv')
-  # filter(old_b, taxon_name == "Thunnus alalunga" & fao_id==71)
-  # filter(old_b, taxon_name == "Thunnus albacares" & fao_id==71)
-  # old_c <- read.csv('../eez2015/layers/fis_meancatch.csv')
-  # tmp <- filter(old_c, fao_saup_id == "71_540" & year==2010) %>%
-  #   arrange(mean_catch)
-  # 1.051714e+03/sum(tmp$mean_catch)
-  # 9.262410e+03/sum(tmp$mean_catch)
-  # 4.253756e+02/sum(tmp$mean_catch)
-  # 
-  # old_c <- read.csv('../eez2015/layers/fis_meancatch.csv')
-  # tmp <- filter(old_c, fao_saup_id == "71_90" & year==2010) %>%
-  #   arrange(mean_catch)
-  # 6.214872e+04/sum(tmp$mean_catch)
-  # 
-  # 
-  # old_b <- read.csv('../eez2015/layers/fis_b_bmsy.csv')
-  # filter(old_b, fao_id==71 & year == 2010)
-  # filter(old_b, taxon_name == "Thunnus albacares" & fao_id==71)
-  # old_c <- read.csv('../eez2015/layers/fis_meancatch.csv')
-  # tmp <- filter(old_c, fao_saup_id == "71_540" & year==2010) %>%
-  #   arrange(mean_catch)
-  # 1.051714e+03/sum(tmp$mean_catch)
-  # 9.262410e+03/sum(tmp$mean_catch)
-  # 4.253756e+02/sum(tmp$mean_catch)
-  # 
-  # filter(old_b, fao_id==37 & year == 2010)
-  # old_c <- read.csv('../eez2015/layers/fis_meancatch.csv')
-  # tmp <- filter(old_c, fao_saup_id == "37_70" & year==2010) %>%
-  #   arrange(mean_catch)
-  # 2.801469e+02/sum(tmp$mean_catch)
-  # 
-  # filter(old_b, fao_id==71 & year == 2010)
-  # old_c <- read.csv('../eez2015/layers/fis_meancatch.csv')
-  # tmp <- filter(old_c, fao_saup_id == "71_96" & year==2010) %>%
-  #   arrange(mean_catch)
-  # 2.801469e+02/sum(tmp$mean_catch)
-  
-  #  4b. The "score" and "weight" values per taxon per region are used to  
-  #    calculate a geometric weighted mean across taxa for each region
   
   status_data <- status_data %>%
     group_by(rgn_id, year) %>%
