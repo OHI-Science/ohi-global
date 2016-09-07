@@ -7,6 +7,8 @@ Setup = function(){
 }
 
 FIS = function(layers, status_year){
+ 
+  
   #catch data
   c = SelectLayersData(layers, layers='fis_meancatch', narrow = TRUE) %>%
     select(
@@ -21,8 +23,19 @@ FIS = function(layers, status_year){
       stock_id      = category,
       year,
       bmsy           = val_num)
+
+# The following stocks are fished in multiple regions and have high b/bmsy values
+# Due to the underfishing penalty, this actually penalizes the regions that have the highest
+# proportion of catch of these stocks.  The following corrects this problem:
+#  filter(b, stock_id %in% c('Katsuwonus_pelamis-71', 'Clupea_harengus-27', 'Trachurus_capensis-47'))
+
+high_bmsy <- c('Katsuwonus_pelamis-71', 'Clupea_harengus-27', 'Trachurus_capensis-47')
+    
+b <- b %>%
+  mutate(bmsy = ifelse(stock_id %in% high_bmsy, 1, bmsy))
   
-  # separate out the stock_id and taxonkey:
+  
+    # separate out the stock_id and taxonkey:
   c <- c %>% 
     mutate(stock_id_taxonkey = as.character(stock_id_taxonkey)) %>%
     mutate(taxon_key = str_sub(stock_id_taxonkey, -6, -1)) %>%
