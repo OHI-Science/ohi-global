@@ -277,7 +277,7 @@ Data sources:
 
 Data sources:
 
-- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","pressure score","../ohiprep/globalprep/prs_res_wgi/v2015/data/rgn_wb_wgi_2012a_inverse.csv",TRUE,"ss_wgi.csv","eez2012/layers/ss_wgi.csv"
+- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","pressure_score","pressure score","../ohiprep/globalprep/prs_res_wgi/v2016/output/wgi_prs_2012.csv",TRUE,"ss_wgi.csv","eez2012/layers/ss_wgi.csv"
 "pressures CW","po_chemicals_3nm","Coastal chemical pollution within 3 nm offshore","Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015), primarily land-based chemical pollution due to 3nm offshore buffer.
 
 Data sources:
@@ -382,7 +382,7 @@ Data sources:
 
 Data sources:
 
-- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","score","resilience score","../ohiprep/globalprep/prs_res_wgi/v2015/data/rgn_wb_wgi_2012a.csv",TRUE,"wgi_all.csv","eez2012/layers/wgi_all.csv"
+- [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","resilience_score","resilience score","../ohiprep/globalprep/prs_res_wgi/v2016/output/wgi_res_2012.csv",TRUE,"wgi_all.csv","eez2012/layers/wgi_all.csv"
 "spatial","cntry_georegions","Georegion ids per country, at 3 georegion levels","Lookup table of country codes and UN georegions at 3 georegion levels.
 
 Data sources:
