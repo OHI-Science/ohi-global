@@ -29,7 +29,7 @@ FIS = function(layers, status_year){
 # proportion of catch of these stocks.  The following corrects this problem:
 #  filter(b, stock_id %in% c('Katsuwonus_pelamis-71', 'Clupea_harengus-27', 'Trachurus_capensis-47'))
 
-high_bmsy <- c('Katsuwonus_pelamis-71', 'Clupea_harengus-27', 'Trachurus_capensis-47')
+high_bmsy <- c('Katsuwonus_pelamis-71', 'Clupea_harengus-27', 'Trachurus_capensis-47', 'Sardinella_aurita-34', 'Scomberomorus_cavalla-31')
     
 b <- b %>%
   mutate(bmsy = ifelse(stock_id %in% high_bmsy, 1, bmsy))
