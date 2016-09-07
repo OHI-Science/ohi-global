@@ -227,7 +227,7 @@ Data sources:
 
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
 ",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,catch_06_10_npp_hb_eez_gf.csv,equal,global pressures data were applied equally to all regions.
-pressures,fp_targetharvest,ohiprep:globalprep/FAO_targetedharvest/data,rgn_fao_targeted_2012a.csv,ohiprep:globalprep/FAO_targetedharvest/data,rgn_fao_targeted_2013a.csv,ohiprep:globalprep/FAO_targetedharvest/data,rgn_fao_targeted_2014a.csv,ohiprep:globalprep/FAO_targetedharvest/data,rgn_fao_targeted_2015a.csv,,,Targeted harvest of cetaceans and sea turtles,"Targeted harvest of cetaceans and marine turtles, from FAO fisheries data.
+pressures,fp_targetharvest,ohiprep:globalprep/prs_targetedharvest/v2016/output,fao_targeted_2012.csv,ohiprep:globalprep/prs_targetedharvest/v2016/output,fao_targeted_2013.csv,ohiprep:globalprep/prs_targetedharvest/v2016/output,fao_targeted_2014.csv,ohiprep:globalprep/prs_targetedharvest/v2016/output,fao_targeted_2015.csv,ohiprep:globalprep/prs_targetedharvest/v2016/output,fao_targeted_2016.csv,Targeted harvest of cetaceans and sea turtles,"Targeted harvest of cetaceans and marine turtles, from FAO fisheries data.
 
 Data sources:
 
