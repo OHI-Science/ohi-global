@@ -71,7 +71,7 @@ b <- b %>%
                    ifelse(1 - alpha*(b$bmsy - upperBuffer) > beta,
                           1 - alpha*(b$bmsy - upperBuffer), 
                           beta))
-  1-alpha*(1.12 - upperBuffer)
+
   
   # ------------------------------------------------------------------------
   # STEP 1. Merge the b/bmsy data with catch data
@@ -407,8 +407,8 @@ NP <- function(scores, layers, status_year, debug = FALSE){
   hab_extent   = layers$data[['hab_extent']] # used to calculate exposure variable
   
   ### FIS status for fish oil sustainability
-  FIS_status <- read.csv('scores.csv')%>%
-  #FIS_status   <-  scores %>% 
+  #FIS_status <- read.csv('scores.csv')%>%
+  FIS_status   <-  scores %>% 
     filter(goal == 'FIS' & dimension == 'status') %>%
     select(rgn_id = region_id, score)  
   
