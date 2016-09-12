@@ -61,7 +61,7 @@ Data sources:
 - UNEP-WCMC (2005). **Global distribution of seagrasses - points dataset**.
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)
 - Burke, L., Reytar, K., Spalding, M.,  et al. (2011). **Reefs at Risk Revisited**. _World Resources Institute, Washington, DC_.
-","km2","km^2","../ohiprep/globalprep/hab_combined/v2015/data/habitat_extent_v2015.csv",TRUE,"hab_extent.csv","eez2014/layers/hab_extent.csv"
+","km2","km^2","../ohiprep/globalprep/hab_combined/v2016/output/habitat_extent_v2015.csv",TRUE,"hab_extent.csv","eez2014/layers/hab_extent.csv"
 "HAB CS CP","hab_health","Habitat health","Habitat health/condition
 
 Data sources:
@@ -75,7 +75,7 @@ Data sources:
 - Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_. http://dx.doi.org/10.5067/8GQ8LZQVL0VL.
 - Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009), **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381.
 - Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons.** _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711
-- Schutte, V. G. W., Selig, E. R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122. ","health","proportion","../ohiprep/globalprep/hab_combined/v2015/data/habitat_health_2014.csv",TRUE,"hab_health.csv","eez2014/layers/hab_health.csv"
+- Schutte, V. G. W., Selig, E. R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122. ","health","proportion","../ohiprep/globalprep/hab_combined/v2016/output/habitat_health_2014.csv",TRUE,"hab_health.csv","eez2014/layers/hab_health.csv"
 "HAB CS CP","hab_trend","Habitat health trend","Habitat health trend
 
 Data sources:
@@ -89,7 +89,7 @@ Data sources:
 - Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_ (http://dx.doi.org/10.5067/8GQ8LZQVL0VL)
 - Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009). **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381.
 - Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons**. _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711
-- Schutte, V. G. W., Selig, E.R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122.","trend","trend score","../ohiprep/globalprep/hab_combined/v2015/data/habitat_trend_2014.csv",TRUE,"hab_trend.csv","eez2014/layers/hab_trend.csv"
+- Schutte, V. G. W., Selig, E.R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115â122.","trend","trend score","../ohiprep/globalprep/hab_combined/v2016/output/habitat_trend_2014.csv",TRUE,"hab_trend.csv","eez2014/layers/hab_trend.csv"
 "ICO","ico_spp_iucn_status","IUCN extinction risk category for iconic species","International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
 
 Data sources:
