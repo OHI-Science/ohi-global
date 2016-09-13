@@ -1,12 +1,1 @@
 "goal","method","reference_point"
-"MAR","spatial 95th quantile","region id: 181 value: 0.0140116524112661"
-"AO","??",NA
-"NP","Harvest peak within region times 0.65 buffer","varies for each region"
-"CS","Health/condition variable based on current vs. historic extent","varies for each region/habitat"
-"CP","Health/condition variable based on current vs. historic extent","varies for each region/habitat"
-"TR","spatial: 90th quantile","0.054490193720129"
-"ICO","scaled IUCN risk categories",NA
-"LSP","30% marine protected area; 30% coastal protected area","varies by area of region's eez and 1 km inland"
-"CW","spatial: pressures scaled from 0-1 at raster level",NA
-"HAB","Health/condition variable based on current vs. historic extent","varies for each region/habitat"
-"SPP","Average of IUCN risk categories, scaled to historic extinction",NA

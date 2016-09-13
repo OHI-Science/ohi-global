@@ -1,6 +1,11 @@
 
 # STEP 1: be sure to pull ohiprep
 
+### NOTE: There is a warning that some regions have a MAR score, but a zero weight
+###  This seems fine.  It appears to be because we use a running average to calculate MAR scores
+###  but a running average isn't used to calculate the weights.  In these cases, the score is entirely based
+###  on the FIS score.
+
 library(devtools)
 #devtools::install_github("ohi-science/ohicore@dev_resil") 
 devtools::install_github("ohi-science/ohicore@dev") 
@@ -29,33 +34,33 @@ do.other      = F
 
 # scenario list (need to add new scenarios here)
 scenarios = list(
-  eez2016     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2016a',
-    fld_fn       = 'fn_2016a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-
-  eez2015     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2015a',
-    fld_fn       = 'fn_2015a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T) ,
-
-  eez2014     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2014a',
-    fld_fn       = 'fn_2014a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-
-  eez2013     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
+  # eez2016     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2016a',
+  #   fld_fn       = 'fn_2016a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T),
+  # 
+  # eez2015     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2015a',
+  #   fld_fn       = 'fn_2015a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T) ,
+  # 
+  # eez2014     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2014a',
+  #   fld_fn       = 'fn_2014a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T),
+  # 
+  # eez2013     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2013a',
+  #   fld_fn       = 'fn_2013a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T),
 
   eez2012     = list(
     layer   = 'layers_eez',
@@ -219,8 +224,8 @@ for (i in 1:length(scenarios)){  #i=2
 
 ### make a plot to compare different commits within a scenario
 
-change_plot(repo = "ohi-global", scenario="eez2015", commit="previous", 
-           fileSave="eez2015_habitat_seaice_trend", save_csv=FALSE, save_png=FALSE)
+change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
+           fileSave="eez2016_fp_weights", save_csv=FALSE, save_png=FALSE)
 
 source('../ohiprep/src/R/VisGlobal.R')
 # looking within a goal:
