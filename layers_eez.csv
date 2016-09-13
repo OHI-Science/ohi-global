@@ -43,7 +43,7 @@ Data sources:
 
 - [FAO Major Fishing Areas](http://www.fao.org/fishery/area/search/en)
 - [Sea Around Us Project (SAUP)](http://www.seaaroundus.org)",mean_catch,metric tons,TRUE,,,NA,NA,,
-FP,fp_wildcaught_weight,ohiprep:globalprep/food_provision/data,wildcaught_weight_v2012.csv,ohiprep:globalprep/food_provision/data,wildcaught_weight_v2013.csv,ohiprep:globalprep/food_provision/data,wildcaught_weight_v2014.csv,ohiprep:globalprep/food_provision/data,wildcaught_weight_v2015.csv,,,Fisheries weighting factor,"Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
+FP,fp_wildcaught_weight,ohiprep:globalprep/fp/v2016/output,wildcaught_weight_v2012.csv,ohiprep:globalprep/fp/v2016/output,wildcaught_weight_v2013.csv,ohiprep:globalprep/fp/v2016/output,wildcaught_weight_v2014.csv,ohiprep:globalprep/fp/v2016/output,wildcaught_weight_v2015.csv,ohiprep:globalprep/fp/v2016/output,wildcaught_weight_v2016.csv,Fisheries weighting factor,"Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
 
 Data sources:
 
