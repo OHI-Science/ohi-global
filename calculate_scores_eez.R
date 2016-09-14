@@ -225,7 +225,7 @@ for (i in 1:length(scenarios)){  #i=2
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-           fileSave="eez2016_fis_trend_revise", save_csv=FALSE, save_png=FALSE)
+           fileSave="eez2016_mar_trend_revise", save_csv=FALSE, save_png=FALSE)
 
 source('../ohiprep/src/R/VisGlobal.R')
 # looking within a goal:
@@ -251,6 +251,9 @@ hwrite(data, "changePlot_figures/status_eez2015_FIS.html", br=TRUE, center=TRUE,
        row.style=list(goal='text-align:center'))
 
 
+tmp <- read.csv('changePlot_figures/MAR_trend_compare_eez2016.csv')
+plot(tmp$old_score, tmp$score, xlab="old trends", ylab="new trends")
+abline(0,1, col="red")
 #### compare fis data from previous commit
 repo = "ohi-global"
 scenario="eez2016"
