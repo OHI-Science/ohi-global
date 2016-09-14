@@ -7,8 +7,7 @@ Setup = function(){
 }
 
 FIS = function(layers, status_year){
- 
-  
+
   #catch data
   c = SelectLayersData(layers, layers='fis_meancatch', narrow = TRUE) %>%
     select(
@@ -159,16 +158,19 @@ b <- b %>%
     select(region_id=rgn_id, score, dimension)
   
   trend_years <- status_year:(status_year-4)
+  first_trend_year <- min(trend_years)
   
   trend <- status_data %>%
     filter(year %in% trend_years) %>%
     group_by(rgn_id) %>%
-    do(mdl = lm(status ~ year, data=.)) %>%
+    do(mdl = lm(status ~ year, data=.),
+       adjust_trend = .$status[.$year == first_trend_year]) %>%
     summarize(region_id = rgn_id,
-              score = round(coef(mdl)['year'] * 5, 2),
+              score = round(coef(mdl)['year']/adjust_trend * 5, 2),
               dimension = 'trend') %>%
-    ungroup()
-  
+    ungroup() %>%
+    mutate(score = ifelse(score > 1, 1, score)) %>%
+    mutate(score = ifelse(score < -1, -1, score))
   
   # assemble dimensions
   scores <- rbind(status, trend) %>% 
