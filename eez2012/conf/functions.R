@@ -8,6 +8,7 @@ Setup = function(){
 
 FIS = function(layers, status_year){
  
+  
   #catch data
   c = SelectLayersData(layers, layers='fis_meancatch', narrow = TRUE) %>%
     select(
@@ -179,7 +180,6 @@ b <- b %>%
 }
 
 MAR = function(layers, status_year){  
-  browser()
    # layers used: mar_harvest_tonnes, mar_harvest_species, mar_sustainability_score, mar_coastalpopn_inland25mi, mar_trend_years
   harvest_tonnes <- SelectLayersData(layers, layers='mar_harvest_tonnes', narrow = TRUE) %>%
     select(rgn_id=id_num, species_code=category, year, tonnes=val_num)
