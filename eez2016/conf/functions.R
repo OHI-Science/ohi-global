@@ -170,7 +170,7 @@ b <- b %>%
               dimension = 'trend') %>%
     ungroup() %>%
     mutate(score = ifelse(score > 1, 1, score)) %>%
-    mutate(score = ifelse(score < -1, -1, score))
+    mutate(score = ifelse(score < (-1), (-1), score))
   
   # assemble dimensions
   scores <- rbind(status, trend) %>% 
@@ -181,8 +181,9 @@ b <- b %>%
   return(scores)
 }
 
-MAR = function(layers, status_year){  
-   # layers used: mar_harvest_tonnes, mar_harvest_species, mar_sustainability_score, mar_coastalpopn_inland25mi, mar_trend_years
+MAR = function(layers, status_year){
+  
+    # layers used: mar_harvest_tonnes, mar_harvest_species, mar_sustainability_score, mar_coastalpopn_inland25mi, mar_trend_years
   harvest_tonnes <- SelectLayersData(layers, layers='mar_harvest_tonnes', narrow = TRUE) %>%
     select(rgn_id=id_num, species_code=category, year, tonnes=val_num)
   
@@ -251,29 +252,30 @@ MAR = function(layers, status_year){
     select(rgn_id, status) %>%
     mutate(status = round(status*100, 2))
   
+  trend_years <- (status_year-4):(status_year)
+  first_trend_year <- min(trend_years)
   
   # get MAR trend
   trend = ry %>%
     group_by(rgn_id) %>%
-    do(mdl = lm(status ~ year, data=., subset=year %in% (status_year-4):(status_year))) %>%
-    summarize(rgn_id, trend = coef(mdl)['year'] * 5) %>%
+    do(mdl = lm(status ~ year, data=., subset=year %in% trend_years),
+       adjust_trend = .$status[.$year == first_trend_year]) %>%
+    summarize(rgn_id, trend = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
     ungroup()
   
   trend <- trend %>%
     mutate(trend = ifelse(trend>1, 1, trend)) %>%
     mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
-    mutate(trend = round(trend, 2))
+    mutate(trend = round(trend, 2)) %>%
+    select(region_id = rgn_id, score = trend) %>%
+    mutate(dimension = "trend")
   
   # return scores
   scores = status %>%
     select(region_id = rgn_id,
            score     = status) %>%
     mutate(dimension='status') %>%
-    rbind(
-      trend %>%
-        select(region_id = rgn_id,
-               score     = trend) %>%
-        mutate(dimension = 'trend')) %>%
+    rbind(trend) %>%
     mutate(goal='MAR')
   
   return(scores)
