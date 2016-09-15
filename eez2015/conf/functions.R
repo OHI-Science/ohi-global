@@ -377,18 +377,6 @@ AO = function(layers,
     mutate(trend = ifelse(trend>1, 1, trend)) %>%
     mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
     mutate(trend = round(trend, 2)) 
-
-  # old_trend <- read.csv('scores.csv') %>%
-  #   filter(goal=="AO") %>%
-  #   filter(dimension=="trend") %>%
-  #   select(region_id, old_score=score) %>%
-  #   left_join(trend, by="region_id")
-  # plot(old_trend$old_score, old_trend$score, xlab="old trends", ylab="new trends")
-  # abline(0,1, col="red")
-  # write.csv(old_trend, "../changePlot_figures/AO_trend_compare_eez2016.csv", row.names=FALSE)
-  # 
-  # filter(ry, region_id==6 & year %in% trend_years)
-  
     
   ## reference points
   rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
@@ -410,15 +398,15 @@ AO = function(layers,
 }
 
 NP <- function(scores, layers, status_year, debug = FALSE){
-
+  
   ### new code version - load combined harvest variables
   r_cyanide    = layers$data[['np_cyanide']] # cyanide & blast used to calculate risk variable
   r_blast      = layers$data[['np_blast']]   
   hab_extent   = layers$data[['hab_extent']] # used to calculate exposure variable
   
   ### FIS status for fish oil sustainability
-  #FIS_status <- read.csv('scores.csv')%>%
-  FIS_status   <-  scores %>% 
+   # FIS_status <- read.csv('scores.csv')%>%  ## this is for troubleshooting
+   FIS_status   <-  scores %>% 
     filter(goal == 'FIS' & dimension == 'status') %>%
     select(rgn_id = region_id, score)  
   
@@ -654,7 +642,6 @@ NP <- function(scores, layers, status_year, debug = FALSE){
     ### aggregate across products to rgn-year status, weighting by usd_rel
     np_status_all <- np_sust %>%
       filter(!is.na(product_status) & !is.na(prod_weight)) %>%
-      ### ??? CCO: guadeloupe & martinique have NA for ornamental prod_weight.  Is this a gap-filling error?
       select(rgn_name, rgn_id, year, product, product_status, prod_weight) %>%
       group_by(rgn_id, year) %>%
       summarize(status = weighted.mean(product_status, prod_weight)) %>%
@@ -673,17 +660,33 @@ NP <- function(scores, layers, status_year, debug = FALSE){
       max(np_status_current$score, na.rm = TRUE) <= 100)
     
     ### trend 
-    np_trend <- np_status_all %>%
-      filter(year <= status_year & year > (status_year - 5) & !is.na(status)) %>%
+
+    trend_years <- (status_year-4):(status_year)
+    adj_trend_year <- min(trend_years)
+    
+    np_trend = np_status_all %>%
       group_by(rgn_id) %>%
-      do(mdl = lm(status ~ year, data=.)) %>%
-      summarize(
-        rgn_id    = rgn_id,
-        dimension = 'trend',
-        score     = max(-1, min(1, coef(mdl)[['year']] * 5)))
-    stopifnot(min(np_trend$score) >= -1, max(np_trend$score) <= 1)
+      do(mdl = lm(status ~ year, data=., subset=year %in% trend_years),
+         adjust_trend = .$status[.$year == adj_trend_year]) %>%
+      summarize(rgn_id, trend = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
+      ungroup() %>%
+      mutate(trend = ifelse(trend>1, 1, trend)) %>%
+      mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
+      mutate(trend = round(trend, 2)) %>%
+      select(rgn_id, score = trend) %>%
+      mutate(dimension = "trend")
     
-    
+#     old_trend <- read.csv('scores.csv') %>%
+#       filter(goal=="NP") %>%
+#       filter(dimension=="trend") %>%
+#       select(rgn_id = region_id, old_score=score) %>%
+#       left_join(np_trend, by="rgn_id")
+#     plot(old_trend$old_score, old_trend$score, xlab="old trends", ylab="new trends")
+#     abline(0,1, col="red")
+# #    write.csv(old_trend, "../changePlot_figures/NP_trend_compare_eez2016.csv", row.names=FALSE)
+
+    filter(np_status_all, rgn_id%in% c(71, 152, 214) & year %in% trend_years)
+
     ### return scores
     np_scores <- np_status_current %>%
       full_join(np_trend, by=c('rgn_id', 'dimension', 'score')) %>%
