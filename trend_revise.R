@@ -1,10 +1,10 @@
 trend_years <- (status_year-4):(status_year)
-first_trend_year <- min(trend_years)
+adj_trend_year <- min(trend_years)
 
 trend = ry %>%
   group_by(rgn_id) %>%
   do(mdl = lm(status ~ year, data=., subset=year %in% trend_years),
-     adjust_trend = .$status[.$year == first_trend_year]) %>%
+     adjust_trend = .$status[.$year == adj_trend_year]) %>%
   summarize(rgn_id, trend = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
   ungroup() %>%
   mutate(trend = ifelse(trend>1, 1, trend)) %>%

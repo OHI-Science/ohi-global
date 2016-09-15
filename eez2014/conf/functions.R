@@ -336,11 +336,9 @@ FP = function(layers, scores){
 AO = function(layers, 
               status_year, 
               Sustainability=1.0){
-  
+
   # cast data
   layers_data = SelectLayersData(layers, targets='AO')
-  
-  year_min=max(min(layers_data$year, na.rm = TRUE), status_year - 10)
   
   r <- layers_data %>%
     filter(layer == 'ao_access') %>%
@@ -357,32 +355,41 @@ AO = function(layers,
   
   ry <- ry %>%
     mutate(Du = (1 - need) * (1 - access)) %>%
-    mutate(statusData = (1 - Du) * Sustainability)
+    mutate(status = (1 - Du) * Sustainability)
   
   # status
   r.status <- ry %>%
     filter(year==status_year) %>%
-    select(region_id, statusData) %>%
-    mutate(status=statusData*100)
-  summary(r.status); dim(r.status)
+    select(region_id, status) %>%
+    mutate(status=status*100)
   
   # trend
-  r.trend <- ry %>%
-    filter(year >= year_min) %>%
-    filter(!is.na(statusData)) %>%
+
+  trend_years <- (status_year-4):(status_year)
+  adj_trend_year <- min(trend_years)
+  
+  r.trend = ry %>%
     group_by(region_id) %>%
-    arrange(year) %>%
-    top_n(5, year) %>%
-    ungroup()
+    do(mdl = lm(status ~ year, data=., subset=year %in% trend_years),
+       adjust_trend = .$status[.$year == adj_trend_year]) %>%
+    summarize(region_id, trend = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
+    ungroup() %>%
+    mutate(trend = ifelse(trend>1, 1, trend)) %>%
+    mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
+    mutate(trend = round(trend, 2)) 
+
+  # old_trend <- read.csv('scores.csv') %>%
+  #   filter(goal=="AO") %>%
+  #   filter(dimension=="trend") %>%
+  #   select(region_id, old_score=score) %>%
+  #   left_join(trend, by="region_id")
+  # plot(old_trend$old_score, old_trend$score, xlab="old trends", ylab="new trends")
+  # abline(0,1, col="red")
+  # write.csv(old_trend, "../changePlot_figures/AO_trend_compare_eez2016.csv", row.names=FALSE)
+  # 
+  # filter(ry, region_id==6 & year %in% trend_years)
   
-  
-  r.trend <- r.trend %>%
-    group_by(region_id) %>%
-    do(mdl = lm(statusData ~ year, data=.)) %>%
-    summarize( region_id = region_id, 
-               trend = coef(mdl)['year']*5) %>%
-    ungroup()
-  
+    
   ## reference points
   rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
     rbind(data.frame(goal = "AO", method = "??", 
