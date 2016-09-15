@@ -1531,8 +1531,8 @@ LE = function(scores, layers, eez2012 = FALSE){
 }
 
 ICO = function(layers, status_year){
-  
-  layers_data = SelectLayersData(layers, layers=c('ico_spp_iucn_status'))  
+
+    layers_data = SelectLayersData(layers, layers=c('ico_spp_iucn_status'))  
   
   rk <- layers_data %>%
     select(region_id = id_num, sciname = category, iucn_cat=val_chr, year, layer) %>%
@@ -1585,17 +1585,6 @@ ICO = function(layers, status_year){
     mutate(trend = round(trend, 2)) %>%
     select(region_id, score = trend) %>%
     mutate(dimension = "trend")
-  
-  # old_trend <- read.csv('scores.csv') %>%
-  #   filter(goal=="ICO") %>%
-  #   filter(dimension=="trend") %>%
-  #   select(region_id, old_score=score) %>%
-  #   left_join(r.trend, by="region_id")
-  # plot(old_trend$old_score, old_trend$score, xlab="old trends", ylab="new trends")
-  # abline(0,1, col="red")
-  # write.csv(old_trend, "../changePlot_figures/ICO_trend_compare_eez2016.csv", row.names=FALSE)
-  # 
-  # filter(r.status, region_id==215 & year %in% trend_years)
   
   
   ####### status
