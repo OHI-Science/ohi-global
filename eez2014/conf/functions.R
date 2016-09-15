@@ -979,7 +979,7 @@ CP <- function(layers){
 
 
 TR = function(layers, status_year, pct_ref = 90) {
-browser()
+  
      ## formula:
   ##  E   = Ep                         # Ep: % of direct tourism jobs. tr_jobs_pct_tourism.csv
   ##  S   = (S_score - 1) / (7 - 1)    # S_score: raw TTCI score, not normalized (1-7). tr_sustainability.csv
@@ -1060,18 +1060,6 @@ browser()
     mutate(trend = round(trend, 2)) %>%
     select(rgn_id, score = trend) %>%
     mutate(dimension = "trend")  
-
-  # old_trend <- read.csv('scores.csv') %>%
-  #   filter(goal=="TR") %>%
-  #   filter(dimension=="trend") %>%
-  #   select(rgn_id = region_id, old_score=score) %>%
-  #   left_join(tr_trend, by="rgn_id")
-  # plot(old_trend$old_score, old_trend$score, xlab="old trends", ylab="new trends")
-  # abline(0,1, col="red")
-  # write.csv(old_trend, "../changePlot_figures/TR_trend_compare_eez2016.csv", row.names=FALSE)
-  # 
-  # filter(tr_model, rgn_id==4)
-  
     
   # get status (as last year's value)
   tr_status <- tr_model %>%
@@ -1582,14 +1570,33 @@ ICO = function(layers, status_year){
   
   ####### trend
   trend_years <- c(status_year:(status_year - 9)) # trend based on 10 years of data, due to infrequency of IUCN assessments 
+  adj_trend_year <- min(trend_years)
+  
+
   r.trend <- r.status %>%
-    filter(year %in% trend_years) %>%
     group_by(region_id) %>%
-    do(mdl = lm(score ~ year, data=.)) %>%
-    summarize(region_id = region_id,
-              score = coef(mdl)['year'] * 5) %>%
+    do(mdl = lm(score ~ year, data=., subset=year %in% trend_years),
+                adjust_trend = .$score[.$year == adj_trend_year]) %>%
+    summarize(region_id, 
+              trend = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
     ungroup() %>%
+    mutate(trend = ifelse(trend>1, 1, trend)) %>%
+    mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
+    mutate(trend = round(trend, 2)) %>%
+    select(region_id, score = trend) %>%
     mutate(dimension = "trend")
+  
+  # old_trend <- read.csv('scores.csv') %>%
+  #   filter(goal=="ICO") %>%
+  #   filter(dimension=="trend") %>%
+  #   select(region_id, old_score=score) %>%
+  #   left_join(r.trend, by="region_id")
+  # plot(old_trend$old_score, old_trend$score, xlab="old trends", ylab="new trends")
+  # abline(0,1, col="red")
+  # write.csv(old_trend, "../changePlot_figures/ICO_trend_compare_eez2016.csv", row.names=FALSE)
+  # 
+  # filter(r.status, region_id==215 & year %in% trend_years)
+  
   
   ####### status
   r.status <- r.status %>%
