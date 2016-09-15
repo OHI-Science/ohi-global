@@ -676,14 +676,6 @@ NP <- function(scores, layers, status_year, debug = FALSE){
       select(rgn_id, score = trend) %>%
       mutate(dimension = "trend")
     
-#     old_trend <- read.csv('scores.csv') %>%
-#       filter(goal=="NP") %>%
-#       filter(dimension=="trend") %>%
-#       select(rgn_id = region_id, old_score=score) %>%
-#       left_join(np_trend, by="rgn_id")
-#     plot(old_trend$old_score, old_trend$score, xlab="old trends", ylab="new trends")
-#     abline(0,1, col="red")
-# #    write.csv(old_trend, "../changePlot_figures/NP_trend_compare_eez2016.csv", row.names=FALSE)
 
     filter(np_status_all, rgn_id%in% c(71, 152, 214) & year %in% trend_years)
 
@@ -987,8 +979,8 @@ CP <- function(layers){
 
 
 TR = function(layers, status_year, pct_ref = 90) {
-  
-   ## formula:
+browser()
+     ## formula:
   ##  E   = Ep                         # Ep: % of direct tourism jobs. tr_jobs_pct_tourism.csv
   ##  S   = (S_score - 1) / (7 - 1)    # S_score: raw TTCI score, not normalized (1-7). tr_sustainability.csv
   ##  Xtr = E * S
@@ -999,7 +991,7 @@ TR = function(layers, status_year, pct_ref = 90) {
       select(-layer),
     layers$data[['tr_sustainability']] %>%
       select(-layer),
-    by = c('rgn_id'))%>%
+    by = c('rgn_id')) %>%
     filter(year <= status_year)
   
   tr_model <- tr_data %>%
@@ -1051,18 +1043,36 @@ TR = function(layers, status_year, pct_ref = 90) {
   write.csv(rp, 'temp/referencePoints.csv', row.names=FALSE)
   
   
+  adj_trend_year <- min(tr_model$year)
+  
   
   # calculate trend
   tr_trend <- tr_model %>%
     filter(!is.na(Xtr_rq)) %>%
     arrange(year, rgn_id) %>%
     group_by(rgn_id) %>%
-    do(mod = lm(Xtr_rq ~ year, data = .)) %>%
-    do(data.frame(
-      rgn_id    = .$rgn_id,
-      dimension = 'trend',
-      score     =  max(min(coef(.$mod)[['year']] * 5, 1), -1)))
+    do(mdl = lm(Xtr_rq ~ year, data=.),
+       adjust_trend = .$Xtr_rq[.$year == adj_trend_year]) %>%
+    summarize(rgn_id, trend = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
+    ungroup() %>%
+    mutate(trend = ifelse(trend>1, 1, trend)) %>%
+    mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
+    mutate(trend = round(trend, 2)) %>%
+    select(rgn_id, score = trend) %>%
+    mutate(dimension = "trend")  
+
+  # old_trend <- read.csv('scores.csv') %>%
+  #   filter(goal=="TR") %>%
+  #   filter(dimension=="trend") %>%
+  #   select(rgn_id = region_id, old_score=score) %>%
+  #   left_join(tr_trend, by="rgn_id")
+  # plot(old_trend$old_score, old_trend$score, xlab="old trends", ylab="new trends")
+  # abline(0,1, col="red")
+  # write.csv(old_trend, "../changePlot_figures/TR_trend_compare_eez2016.csv", row.names=FALSE)
+  # 
+  # filter(tr_model, rgn_id==4)
   
+    
   # get status (as last year's value)
   tr_status <- tr_model %>%
     arrange(year, rgn_id) %>%
