@@ -1612,8 +1612,8 @@ ICO = function(layers, status_year){
 }
 
 LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year){
-  
-  trend_years = (status_year-4):status_year
+
+      trend_years = (status_year-4):status_year
   
   # select data ----
   r = SelectLayersData(layers, layers=c('rgn_area_inland1km', 'rgn_area_offshore3nm'))  #total offshore/inland areas
@@ -1654,18 +1654,27 @@ r.yrs = r.yrs %>%
   r.status = r.yrs %>%
     filter(year==status_year) %>%
     select(region_id, status=prop_protected) %>%
-    mutate(status=status*100) 
+    mutate(status=status*100) %>%
+    select(region_id, score = status) %>%
+    mutate(dimension = "status")
   
   # calculate trend
-  r.trend =   r.yrs %>%
-    filter(year %in% trend_years) %>%
-    group_by(region_id) %>%
-    do(mdl = lm(prop_protected ~ year, data=.)) %>%
-    summarize(
-      region_id = region_id,
-      trend = min(1, max(0, 5*coef(mdl)['year']))) %>% # set boundaries so trend does not go below 0 or above 1
-    ungroup()
   
+  adj_trend_year <- min(trend_years)
+  
+  r.trend =   r.yrs %>%
+    group_by(region_id) %>%
+    do(mdl = lm(prop_protected ~ year, data=., subset=year %in% trend_years),
+       adjust_trend = .$prop_protected[.$year == adj_trend_year]) %>%
+    summarize(region_id, trend = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
+    ungroup() %>%
+    mutate(trend = ifelse(trend>1, 1, trend)) %>%
+    mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
+    mutate(trend = round(trend, 2)) %>%
+    select(region_id, score = trend) %>%
+    mutate(dimension = "trend")
+  
+    
   ## reference points
   rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
     rbind(data.frame(goal = "LSP", method = paste0(ref_pct_cmpa, "% marine protected area; ", 
@@ -1675,15 +1684,8 @@ r.yrs = r.yrs %>%
   
   
   # return scores
-  scores = bind_rows(
-    within(r.status, {
-      goal      = 'LSP'
-      dimension = 'status'
-      score     = status}),
-    within(r.trend, {
-      goal      = 'LSP'
-      dimension = 'trend'
-      score     = trend}))
+  scores = bind_rows(r.status, r.trend) %>%
+    mutate(goal = "LSP")
   return(scores[,c('region_id','goal','dimension','score')])    
 }
 
