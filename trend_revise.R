@@ -9,7 +9,7 @@ trend = ry %>%
   ungroup() %>%
   mutate(trend = ifelse(trend>1, 1, trend)) %>%
   mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
-  mutate(trend = round(trend, 2)) %>%
+  mutate(trend = round(trend, 4)) %>%
   select(region_id = rgn_id, score = trend) %>%
   mutate(dimension = "trend")
 
