@@ -1612,8 +1612,7 @@ ICO = function(layers, status_year){
 }
 
 LSP = function(layers, ref_pct_cmpa=30, ref_pct_cp=30, status_year){
-browser()
-  
+
       trend_years = (status_year-4):status_year
   
   # select data ----
@@ -1674,18 +1673,6 @@ r.yrs = r.yrs %>%
     mutate(trend = round(trend, 2)) %>%
     select(region_id, score = trend) %>%
     mutate(dimension = "trend")
-    
-  # old_trend <- read.csv('scores.csv') %>%
-  #   filter(goal=="LSP") %>%
-  #   filter(dimension=="trend") %>%
-  #   select(region_id, old_score=score) %>%
-  #   left_join(r.trend, by="region_id")
-  # plot(old_trend$old_score, old_trend$score, xlab="old trends", ylab="new trends")
-  # abline(0,1, col="red")
-  # write.csv(old_trend, "../changePlot_figures/LSP_trend_compare_eez2016.csv", row.names=FALSE)
-  # 
-  # filter(r.yrs, region_id==244 & year %in% trend_years)
-  
   
     
   ## reference points
