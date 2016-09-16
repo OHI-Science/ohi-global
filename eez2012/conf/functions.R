@@ -166,7 +166,7 @@ b <- b %>%
     do(mdl = lm(status ~ year, data=.),
        adjust_trend = .$status[.$year == first_trend_year]) %>%
     summarize(region_id = rgn_id,
-              score = round(coef(mdl)['year']/adjust_trend * 5, 2),
+              score = round(coef(mdl)['year']/adjust_trend * 5, 4),
               dimension = 'trend') %>%
     ungroup() %>%
     mutate(score = ifelse(score > 1, 1, score)) %>%
@@ -266,7 +266,7 @@ MAR = function(layers, status_year){
   trend <- trend %>%
     mutate(trend = ifelse(trend>1, 1, trend)) %>%
     mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
-    mutate(trend = round(trend, 2)) %>%
+    mutate(trend = round(trend, 4)) %>%
     select(region_id = rgn_id, score = trend) %>%
     mutate(dimension = "trend")
   
@@ -376,7 +376,7 @@ AO = function(layers,
     ungroup() %>%
     mutate(trend = ifelse(trend>1, 1, trend)) %>%
     mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
-    mutate(trend = round(trend, 2)) 
+    mutate(trend = round(trend, 4)) 
     
   ## reference points
   rp <- read.csv('temp/referencePoints.csv', stringsAsFactors=FALSE) %>%
@@ -672,7 +672,7 @@ NP <- function(scores, layers, status_year, debug = FALSE){
       ungroup() %>%
       mutate(trend = ifelse(trend>1, 1, trend)) %>%
       mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
-      mutate(trend = round(trend, 2)) %>%
+      mutate(trend = round(trend, 4)) %>%
       select(rgn_id, score = trend) %>%
       mutate(dimension = "trend")
     
@@ -1057,7 +1057,7 @@ TR = function(layers, status_year, pct_ref = 90) {
     ungroup() %>%
     mutate(trend = ifelse(trend>1, 1, trend)) %>%
     mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
-    mutate(trend = round(trend, 2)) %>%
+    mutate(trend = round(trend, 4)) %>%
     select(rgn_id, score = trend) %>%
     mutate(dimension = "trend")  
     
@@ -1582,7 +1582,7 @@ ICO = function(layers, status_year){
     ungroup() %>%
     mutate(trend = ifelse(trend>1, 1, trend)) %>%
     mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
-    mutate(trend = round(trend, 2)) %>%
+    mutate(trend = round(trend, 4)) %>%
     select(region_id, score = trend) %>%
     mutate(dimension = "trend")
   
@@ -1670,7 +1670,7 @@ r.yrs = r.yrs %>%
     ungroup() %>%
     mutate(trend = ifelse(trend>1, 1, trend)) %>%
     mutate(trend = ifelse(trend<(-1), (-1), trend)) %>%
-    mutate(trend = round(trend, 2)) %>%
+    mutate(trend = round(trend, 4)) %>%
     select(region_id, score = trend) %>%
     mutate(dimension = "trend")
   
