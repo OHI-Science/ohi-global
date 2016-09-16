@@ -23,7 +23,7 @@ Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
 ",trend,trend score,TRUE,,,ohiprep:globalprep/whounicef_sanitation/v2015/data,pathogens_popdensity25mi_trend_2015a_gf.csv,equal,global trends were applied equally to all regions.
-CW,cw_chemical_trend,ohiprep:globalprep/prs_chem/v2015/output,cw_chemical_trend_2012.csv,ohiprep:globalprep/prs_chem/v2015/output,cw_chemical_trend_2013.csv,ohiprep:globalprep/prs_chem/v2015/output,cw_chemical_trend_2014.csv,ohiprep:globalprep/prs_chem/v2015/output,cw_chemical_trend_2015.csv,ohiprep:globalprep/prs_chem/v2016/output,cw_chemical_trend_2016.csv,Trends in chemical pollution,"Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
+CW,cw_chemical_trend,ohiprep:globalprep/prs_chem/v2016/output,cw_chemical_trend_2012_new.csv,ohiprep:globalprep/prs_chem/v2016/output,cw_chemical_trend_2013_new.csv,ohiprep:globalprep/prs_chem/v2016/output,cw_chemical_trend_2014_new.csv,ohiprep:globalprep/prs_chem/v2016/output,cw_chemical_trend_2015_new.csv,ohiprep:globalprep/prs_chem/v2016/output,cw_chemical_trend_2016_new.csv,Trends in chemical pollution,"Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
 
 Data sources:
 
