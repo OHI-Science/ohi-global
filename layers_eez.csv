@@ -244,12 +244,12 @@ pressures,hd_subtidal_hb,neptune_data:model/GL-NCEAS-Pressures_v2013a/data,p_hd_
 Data sources:
 
 - [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012_gf.csv,equal,global pressures data were applied equally to all regions.
-pressures,hd_subtidal_sb,neptune_data:model/GL-NCEAS-subtidal_softbottom_v2013a/data,po_rgn_hd_subtidal_sb_2012a.csv,neptune_data:model/GL-NCEAS-subtidal_softbottom_v2013a/data,po_rgn_hd_subtidal_sb_2013a.csv,,,,,,,Demersal destructive commercial fishing practices relative to soft-bottom habitat area as a proxy for soft bottom habitat destruction,"Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
+pressures,hd_subtidal_sb,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2012.csv,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2013.csv,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2014.csv,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2015.csv,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2016.csv,Demersal destructive commercial fishing practices relative to soft-bottom habitat area as a proxy for soft bottom habitat destruction,"Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
 
 Data sources:
 
 - [Sea Around Us Project (SAUP)](http://www.seaaroundus.org/)
-",pressures.score,pressure score,TRUE,,,neptune_data:model/GL-NCEAS-subtidal_softbottom_v2013a/data,po_rgn_hd_subtidal_sb_2013a_gf.csv,equal,global pressures data were applied equally to all regions.
+",pressure_score,pressure score,TRUE,,,neptune_data:model/GL-NCEAS-subtidal_softbottom_v2013a/data,po_rgn_hd_subtidal_sb_2013a_gf.csv,equal,global pressures data were applied equally to all regions.
 pressures CW,po_chemicals_3nm,ohiprep:globalprep/prs_chem/v2015/output,cw_chemical_score_3nm_2012.csv,ohiprep:globalprep/prs_chem/v2015/output,cw_chemical_score_3nm_2013.csv,ohiprep:globalprep/prs_chem/v2015/output,cw_chemical_score_3nm_2014.csv,ohiprep:globalprep/prs_chem/v2015/output,cw_chemical_score_3nm_2015.csv,ohiprep:globalprep/prs_chem/v2016/output,cw_chemical_score_3nm_2016.csv,Coastal chemical pollution within 3 nm offshore,"Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015), primarily land-based chemical pollution due to 3nm offshore buffer.
 
 Data sources:
