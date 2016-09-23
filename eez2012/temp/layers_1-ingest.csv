@@ -155,13 +155,13 @@ Data sources:
 Data sources:
 
 - [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) 
-","score","pressure score","../ohiprep/Global/WRI-ReefsAtRisk_v2013/data/gl_thr_blast_3nm_rgn2013.csv",TRUE,"np_blast.csv","eez2012/layers/np_blast.csv"
+","score","pressure score","../ohiprep/globalprep/np_prs_poison_blast_fishing/v2013/data/gl_thr_blast_3nm_rgn2013.csv",TRUE,"np_blast.csv","eez2012/layers/np_blast.csv"
 "NP","np_cyanide","Areas of observed poison fishing","Destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
 
 Data sources:
 
 - [Reefs at Risk Revisited](www.wri.org/publication/reefs-at-risk-revisited) 
-","score","pressure score","../ohiprep/Global/WRI-ReefsAtRisk_v2013/data/gl_thr_poison_3nm_rgn2013.csv",TRUE,"np_cyanide.csv","eez2012/layers/np_cyanide.csv"
+","score","pressure score","../ohiprep/globalprep/np_prs_poison_blast_fishing/v2013/data/gl_thr_poison_3nm_rgn2013.csv",TRUE,"np_cyanide.csv","eez2012/layers/np_cyanide.csv"
 "NP","np_harvest_product_weight","Product peak harvest in USD divided by sum of all product peak harvest values, per region","Ratio of harvest USD of of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO. Used to weight contribution of each product to final score.
 
 Data sources:
@@ -242,7 +242,7 @@ Data sources:
 
 Data sources:
 
-- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","pressure_score","pressure score","/home/shares/ohi/model/GL-NCEAS-Pressures_v2013a/data/p_hd_subtidal_hb_v2013a.csv",TRUE,"hd_subtidal_hb.csv","eez2012/layers/hd_subtidal_hb.csv"
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","pressures.score","pressure score","../ohiprep/globalprep/pressures_artisanal_fp/v2012/data/p_fp_art_hb_disaggregateNature2012.csv",TRUE,"hd_subtidal_hb.csv","eez2012/layers/hd_subtidal_hb.csv"
 "pressures","hd_subtidal_sb","Demersal destructive commercial fishing practices relative to soft-bottom habitat area as a proxy for soft bottom habitat destruction","Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
 
 Data sources:
