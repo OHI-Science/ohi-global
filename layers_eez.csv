@@ -204,11 +204,11 @@ Data sources:
 
 - [Goddard Earth Sciences Data and Information Services Center (GES DISC)](http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml)
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_UV) ",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,uv_eez_2015_gf.csv,raster | equal,
-pressures,fp_art_hb,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012.csv,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012.csv,,,,,,,High bycatch caused by artisanal fishing ,"The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
+pressures,fp_art_hb,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data,blast_poison_3nm.csv,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data,blast_poison_3nm.csv,,,,,,,High bycatch caused by artisanal fishing ,"The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
 
 Data sources:
 
-- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ",pressures.score,pressure score,TRUE,,,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012_gf.csv,equal,global pressures data were applied equally to all regions.
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012_gf.csv,equal,global pressures data were applied equally to all regions.
 pressures,fp_art_lb,ohiprep:globalprep/prs_fish/v2016/output,artisanal_fish_lb_2013.csv,ohiprep:globalprep/prs_fish/v2016/output,artisanal_fish_lb_2013.csv,ohiprep:globalprep/prs_fish/v2016/output,artisanal_fish_lb_2014.csv,ohiprep:globalprep/prs_fish/v2016/output,artisanal_fish_lb_2015.csv,ohiprep:globalprep/prs_fish/v2016/output,artisanal_fish_lb_2016.csv,Low bycatch caused by artisanal fishing ,"Modeled low bycatch artisanal fishing using non-destructive practices (Halpern et al. 2008) based on FAO fisheries statistics.
 
 Data sources:
@@ -239,11 +239,11 @@ Data sources:
 - Center for International Earth Science Information Network (CIESIN)/Columbia University 
 - CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. [NASA Socioeconomic Data and Applications Center (SEDAC)](http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates)
 - Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)",pressure_score,pressure score,TRUE,,,neptune_data:model/GL-NCEAS-Pressures_v2013a/data,hd_intertidal_2013_NEW_gf.csv,population_inland25km,global intertidal pressures were applied to each region after weighting by each region's coastal population.
-pressures,hd_subtidal_hb,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012.csv,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012.csv,,,,,,,High bycatch artisanal fishing practices as a proxy for subtidal hard bottom habitat destruction,"The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
+pressures,hd_subtidal_hb,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data,gl_thr_blast_3nm_rgn2013.csv,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data,gl_thr_blast_3nm_rgn2013.csv,,,,,,,High bycatch artisanal fishing practices as a proxy for subtidal hard bottom habitat destruction,"The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
 
 Data sources:
 
-- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ",pressures.score,pressure score,TRUE,,,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012_gf.csv,equal,global pressures data were applied equally to all regions.
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ",score,pressure score,TRUE,,,ohiprep:globalprep/pressures_artisanal_fp/v2012/data,p_fp_art_hb_disaggregateNature2012_gf.csv,equal,global pressures data were applied equally to all regions.
 pressures,hd_subtidal_sb,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2012.csv,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2013.csv,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2014.csv,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2015.csv,ohiprep:globalprep/prs_hd_subtidal_soft_bottom/v2016/output,hd_sb_subtidal_2016.csv,Demersal destructive commercial fishing practices relative to soft-bottom habitat area as a proxy for soft bottom habitat destruction,"Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
 
 Data sources:
