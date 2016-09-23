@@ -225,7 +225,7 @@ for (i in 1:length(scenarios)){  #i=2
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2015", commit="previous", 
-           fileSave="eez2015_prs_art_lb", save_csv=FALSE, save_png=FALSE)
+           fileSave="eez2015_prs_art_hb_and_hd_hard_bottom", save_csv=FALSE, save_png=FALSE)
 
 data <- read.csv('changePlot_figures/NP_trend_compare_eez2016.csv')
 plot(data$old_score, data$score, xlab="old trends", ylab="new trends")

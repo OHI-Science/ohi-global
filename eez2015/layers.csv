@@ -207,7 +207,7 @@ Data sources:
 
 Data sources:
 
-- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","pressures.score","pressure score","fp_art_hb.csv","rgn_id",,,,"pressures.score",,TRUE,,,1.295083288e-05,0.25366568914956,TRUE,,,,34,FALSE
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","pressure_score","pressure score","fp_art_hb.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.00790365073391053,1,TRUE,,,,34,FALSE
 "pressures","fp_art_lb","Low bycatch caused by artisanal fishing ","Modeled low bycatch artisanal fishing using non-destructive practices (Halpern et al. 2008) based on FAO fisheries statistics.
 
 Data sources:
@@ -242,7 +242,7 @@ Data sources:
 
 Data sources:
 
-- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","pressures.score","pressure score","hd_subtidal_hb.csv","rgn_id",,,,"pressures.score",,TRUE,,,1.295083288e-05,0.25366568914956,TRUE,,,,34,FALSE
+- [Reefs at Risk Revisited](http://www.wri.org/publication/reefs-at-risk-revisited) ","score","pressure score","hd_subtidal_hb.csv","rgn_id",,,,"score",,TRUE,,,0.006865107932434,0.874460499155564,TRUE,,,,34,FALSE
 "pressures","hd_subtidal_sb","Demersal destructive commercial fishing practices relative to soft-bottom habitat area as a proxy for soft bottom habitat destruction","Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
 
 Data sources:
