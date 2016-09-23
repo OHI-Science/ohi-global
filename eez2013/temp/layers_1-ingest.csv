@@ -189,7 +189,7 @@ Data sources:
 
 - Nicholls R.J. and Cazenave A. (2010). **Sea-level rise and its impact on coastal zones**. _Science_ 328: 1517-1520. [doi:10.1126/science.1185782](http://dx.doi.org/10.1126/science.1185782). 
 - [AVISO Satellite Altimetry Data](http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html)
-- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SeaLevelRise/v2015) ","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/slr_eez_2015.csv",TRUE,"cc_slr.csv","eez2013/layers/cc_slr.csv"
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SeaLevelRise/v2015) ","pressure_score","pressure score","../ohiprep/globalprep/prs_slr/v2016/output/slr_2013.csv",TRUE,"cc_slr.csv","eez2013/layers/cc_slr.csv"
 "pressures","cc_sst","Sea surface temperature (SST) anomalies","Sea surface temperature based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
 
 Data sources:
