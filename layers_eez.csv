@@ -232,7 +232,7 @@ pressures,fp_targetharvest,ohiprep:globalprep/prs_targetedharvest/v2016/output,f
 Data sources:
 
 - [FAO fisheries statistics](http://www.fao.org/fishery/statistics/global-capture-production/en)",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/FAO_targetedharvest/data,rgn_fao_targeted_2015a_gf.csv,equal,global pressures data were applied equally to all regions.
-pressures,hd_intertidal,neptune_data:model/GL-NCEAS-Pressures_v2013a/data,hd_intertidal_2012_NEW.csv,neptune_data:model/GL-NCEAS-Pressures_v2013a/data,hd_intertidal_2013_NEW.csv,,,,,,,Coastal population density as a proxy for intertidal habitat destruction,"Coastal population, defined as the total population inland of 10 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
+pressures,hd_intertidal,ohiprep:globalprep/mar_prs_population/v2016/output,prs_pop_density_2012.csv,ohiprep:globalprep/mar_prs_population/v2016/output,prs_pop_density_2013.csv,ohiprep:globalprep/mar_prs_population/v2016/output,prs_pop_density_2014.csv,ohiprep:globalprep/mar_prs_population/v2016/output,prs_pop_density_2015.csv,ohiprep:globalprep/mar_prs_population/v2016/output,prs_pop_density_2016.csv,Coastal population density as a proxy for intertidal habitat destruction,"Coastal population, defined as the total population inland of 10 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
 
