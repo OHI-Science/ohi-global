@@ -136,7 +136,7 @@ LSP,lsp_prot_area_offshore3nm,ohiprep:globalprep/lsp/v2016/output,lsp_protected_
 Data sources:
 
 - United Nations - World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through [Protected Planet](http://www.protectedplanet.net)",a_prot_3nm,3nm^2,TRUE,,,ohiprep:globalprep/WDPA_MPA/v2015/data,lsp_protarea_gf.csv,raster | area_offshore3nm,
-MAR,mar_coastalpopn_inland25mi,neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data,rgn_popsum2005to2015_inland25mi.csv,neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data,rgn_popsum2005to2015_inland25mi.csv,neptune_data:model/GL-NCEAS-CoastalPopulation_v2013/data,rgn_popsum2005to2015_inland25mi.csv,,,,,Coastal population inland 25 miles,"Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
+MAR,mar_coastalpopn_inland25mi,ohiprep:globalprep/mar_prs_population/v2016/output,mar_pop_25mi.csv,ohiprep:globalprep/mar_prs_population/v2016/output,mar_pop_25mi.csv,,,,,,,Coastal population inland 25 miles,"Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
 
 Data sources:
 

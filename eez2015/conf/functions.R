@@ -182,7 +182,6 @@ b <- b %>%
 }
 
 MAR = function(layers, status_year){
-  
     # layers used: mar_harvest_tonnes, mar_harvest_species, mar_sustainability_score, mar_coastalpopn_inland25mi, mar_trend_years
   harvest_tonnes <- SelectLayersData(layers, layers='mar_harvest_tonnes', narrow = TRUE) %>%
     select(rgn_id=id_num, species_code=category, year, tonnes=val_num)
@@ -191,7 +190,8 @@ MAR = function(layers, status_year){
     select(rgn_id=id_num, species_code=category, sust_coeff=val_num)
   
   popn_inland25mi <- SelectLayersData(layers, layers='mar_coastalpopn_inland25mi', narrow = TRUE) %>%
-    select(rgn_id=id_num, year, popsum=val_num)
+    select(rgn_id=id_num, year, popsum=val_num) %>%
+    mutate(popsum = popsum + 1)
   
   
   rky <-  harvest_tonnes %>%
@@ -258,7 +258,9 @@ MAR = function(layers, status_year){
   # get MAR trend
   trend = ry %>%
     group_by(rgn_id) %>%
-    do(mdl = lm(status ~ year, data=., subset=year %in% trend_years),
+    filter(year %in% trend_years) %>%
+    filter(!is.na(popsum)) %>%
+    do(mdl = lm(status ~ year, data=.),
        adjust_trend = .$status[.$year == first_trend_year]) %>%
     summarize(rgn_id, trend = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
     ungroup()

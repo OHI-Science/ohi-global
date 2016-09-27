@@ -224,8 +224,8 @@ for (i in 1:length(scenarios)){  #i=2
 
 ### make a plot to compare different commits within a scenario
 
-change_plot(repo = "ohi-global", scenario="eez2013", commit="previous", 
-           fileSave="eez2013_hd_intertidal_pressure", save_csv=FALSE, save_png=FALSE)
+change_plot(repo = "ohi-global", scenario="eez2015", commit="previous", 
+           fileSave="eez2015_mar_population_update", save_csv=FALSE, save_png=FALSE)
 
 
 source('../ohiprep/src/R/VisGlobal.R')
