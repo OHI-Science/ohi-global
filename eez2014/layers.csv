@@ -273,6 +273,7 @@ Data sources:
 Data sources:
 
 - Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28â56.","pressure_score","pressure score","sp_genetic.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.1,1,TRUE,,,,34,FALSE
+"pressures","ss_spi","1 minus Social Progress Index","Inverse of the average of 3 categories evaluating social progress","pressure_score","pressure score","ss_spi.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0991,0.629592741607178,TRUE,,,,34,FALSE
 "pressures","ss_wgi","Weakness of governance indicated with the WGI","Inverse of World Governance Indicators (WGI) six combined scores.
 
 Data sources:
@@ -361,6 +362,7 @@ Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
 ","resilience score","resilience score","po_water.csv","rgn_id",,,,"resilience.score",,TRUE,,,0,1,TRUE,,,,34,FALSE
+"resilience","res_spi","Social Progress Index","Average of 3 categories evaluating social progress","resilience_score","resilience score","res_spi.csv","rgn_id",,,,"resilience_score",,TRUE,,,0.370407258392822,0.9009,TRUE,,,,34,FALSE
 "resilience","sp_alien_species","CBD survey: alien species","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
