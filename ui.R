@@ -1,49 +1,101 @@
-# see global.R
+dashboardPage(
+  
+  dashboardHeader(title="Ocean Health Index"),
+  
+  dashboardSidebar(
+    
+    sidebarMenu(
+      id = 'sidebarmenu',
+      
+      menuItem("Introduction",tabName = 'intro',icon=icon("info-circle",lib='font-awesome')),
+      
+      menuItem("Explore Data", tabName='explore',icon=icon("globe",lib='font-awesome'), selected=T),
+      
+      htmlOutput('ui_commit'),
 
-#cat(ls(), file='~/Downloads/ohicore_ui_ls.txt'); system('open ~/Downloads/ohicore_ui_ls.txt')
+      conditionalPanel(
+        "input.sidebarmenu === 'explore'",
 
-#---- customize for leaflet map
-customHeaderPanel <- function(title,windowTitle=title){
-  tagList(tags$head(
-    tags$title(windowTitle),
-    tags$script(src='spatial/regions_gcs.js')))}      # assume regions geojson variable set by spatial/regions_gcs.js
+        selectInput(
+          'sel_scenario', 
+          label    = '0. Choose scenario:', 
+          choices  = sort(y$scenario_dirs), 
+          selected = y$scenario_dirs[1]),
+            
+        selectInput(
+          'sel_type', 
+          label='1. Choose type:', 
+          choices=c('Input Layer'='input', 'Output Score'='output'), 
+          selected='output'),
+        
+        conditionalPanel(
+          condition = "input.sel_type == 'output'",
+          
+          selectInput(
+            'sel_output_goal',
+            label    = '2. Choose goal:', 
+            choices  = output_goals, 
+            selected = 'Index'),
+          
+          uiOutput('ui_sel_output')),
+      
+        conditionalPanel(
+          condition = "input.sel_type == 'input'",
+          
+          selectInput(
+            'sel_input_target',
+            label    = '2. Choose target:', 
+            choices  = with(layer_targets, setNames(target, target_label))),
+          
+          uiOutput('ui_sel_input')),
+        
+        htmlOutput('var_description', class='shiny-input-container') ))),
+  
+  dashboardBody(
+    tabItems(
+      
+      tabItem(
+        tabName='intro',
+        includeMarkdown(sprintf('%s_intro.md', y$gh_repo))),
+      
+      tabItem(
+        tabName='explore',
+        h2("Explore Data"),
 
-#---- define ui
-shinyUI(bootstrapPage(div(
-  class='container-fluid',
-
-  # browser title
-  div(
-    class= "row-fluid",
-    customHeaderPanel(sprintf('OHI App for %s', study_area))),
-
-  div(
-    class = "row-fluid",
-    HTML('<table><tr><td>Branch/Scenario:</td><td>'),
-    selectInput(
-      'sel_branch_scenario', label='',
-      choices=branches_scenarios,
-      selected=sprintf('%s/%s', default_branch, default_scenario), multiple=F, selectize=T),
-    HTML('</td></tr></table>')),
-
-  htmlOutput('git_commit'),
-  htmlOutput('ls_files'),
-
-  div(
-    class = "row-fluid",
-    uiOutput('ui_tabsetpanel')),
-
-  div(
-    class = "row-fluid",
-    HTML(renderMarkdown(
-      file=NULL,
-      text=paste0(
-        with(
-          ohicore_app,
-          sprintf(
-            'Versions -- App: [%s@%.7s](https://github.com/%s/%s/commit/%.7s)',
-            git_repo, git_commit, git_owner, git_repo, git_commit)),
-        sprintf(
-          ', Data: [%s@%.7s](https://github.com/%s/%s/commit/%.7s)',
-          git_repo, repo_head@sha, git_owner, git_repo, repo_head@sha)))))
-)))
+        fluidRow(
+          tabBox(width=12, selected='Map',
+          #tabBox(width=12, selected='Elements',
+          
+            tabPanel(
+              'Map', #title    = 'Map', status='primary', collapsible=T, 
+              width=12, 
+              div(
+                position = 'relative',
+  
+                # leaflet map
+                leafletOutput('map1', height = 550),
+                
+                # hover text showing info on hover area
+                absolutePanel(
+                  bottom=10, left=10, style='background-color:white',
+                  textOutput('hoverText')),
+                
+                # region info, possibly with aster chart
+                absolutePanel(
+                  top=10, right=10, # class='floater', # draggable=T, # style='background-color:white', # class='floater', # width='200px', height='200px', 
+                  div(class='well', style='margin-right: 15px; margin-top: 44px; text-align: right; overflow: hidden;',
+                    htmlOutput('rgnInfo'),
+                    conditionalPanel(
+                      condition = "input.sel_type === 'output' & input.sel_output_goal=='Index' & input.sel_output_goal_dimension=='score'",
+                      style     = 'float:right; display:block;',
+                      asterOutput(outputId = "aster", width='100px', height='100px')))))),
+            
+              tabPanel(
+                'Elements',
+                #visNetworkOutput("network")))),
+                sunburstOutput("sunburst"),
+                textOutput("selection")))),
+        
+        uiOutput('ui_msg')
+        
+        ))))
