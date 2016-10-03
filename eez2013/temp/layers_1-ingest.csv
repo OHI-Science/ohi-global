@@ -196,7 +196,7 @@ Data sources:
 
 - [AVHRR Pathfinder Version 5.0 SST data](http://pathfinder.nodc.noaa.gov) 
 - Casey, K. S., Brandon, T. B., Cornillon, P., and Evans, R. (2010). **The past, present and future of the AVHRR Pathfinder SST Program**, _Oceanography from Space: Revisited_, eds. V. Barale, J. F. R. Gower, and L. Alberotanza, Springer. [doi:10.1007/978-90-481-8681-5_16](http://dx.doi.org/10.1007/978-90-481-8681-5_16)
-- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SST) ","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/sst_eez_2013.csv",TRUE,"cc_sst.csv","eez2013/layers/cc_sst.csv"
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SST) ","pressure_score","pressure score","../ohiprep/globalprep/prs_sst/v2016/output/sst_2013.csv",TRUE,"cc_sst.csv","eez2013/layers/cc_sst.csv"
 "pressures","cc_uv","UV radiation","Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC.
 
 Data sources:
@@ -305,7 +305,7 @@ Data sources:
 
 - Eriksen M., Lebreton, L. C. M., Carson, H. S., Thiel, M., Moore, C. J. and Borerro, J. C.  (2014). 
 **Plastic pollution in the worldâs oceans: more than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea**. _PLoS ONE_ 9:e111913. [doi:10.1371/journal.pone.0111913](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0111913). 
-- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash) ","pressure_score","pressure score","../ohiprep/globalprep/PressuresRegionExtract/data/trash_eez_2015.csv",TRUE,"po_trash.csv","eez2013/layers/po_trash.csv"
+- J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash) ","pressure_score","pressure score","../ohiprep/globalprep/cw_pressure_trash/v2015/output/trash_eez_2015.csv",TRUE,"po_trash.csv","eez2013/layers/po_trash.csv"
 "pressures resilience","element_wts_cp_km2_x_protection","Used to weight elements of coastal protection goal","Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass","extent_rank","extent*rank","../ohiprep/globalprep/hab_combined/v2015/data/cp_habitat_extent_rank.csv",TRUE,"element_wts_cp_km2_x_protection.csv","eez2013/layers/element_wts_cp_km2_x_protection.csv"
 "pressures resilience","element_wts_cs_km2_x_storage","Used to weight elements of carbon storage goal","Habitat extent mulitiplied by habitat carbon storage capacity for: mangrove, saltmarsh and seagrass","extent_rank","extent*CS capacity","../ohiprep/globalprep/hab_combined/v2015/data/cs_habitat_extent_rank.csv",TRUE,"element_wts_cs_km2_x_storage.csv","eez2013/layers/element_wts_cs_km2_x_storage.csv"
 "pressures resilience","element_wts_hab_pres_abs","Used to weight elements of habitat goal","List of regions with habitat (all habitats are weighted equally)","boolean","boolean","../ohiprep/globalprep/hab_combined/v2015/data/hab_habitat_presence.csv",TRUE,"element_wts_hab_pres_abs.csv","eez2013/layers/element_wts_hab_pres_abs.csv"
