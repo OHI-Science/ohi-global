@@ -191,7 +191,7 @@ Data sources:
 - Nicholls R.J. and Cazenave A. (2010). **Sea-level rise and its impact on coastal zones**. _Science_ 328: 1517-1520. [doi:10.1126/science.1185782](http://dx.doi.org/10.1126/science.1185782). 
 - [AVISO Satellite Altimetry Data](http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html)
 - J. Afflerbach et al. (2015). [Methods](https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SeaLevelRise/v2015) ",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,slr_eez_2015_gf.csv,raster | equal,
-pressures,cc_sst,ohiprep:globalprep/PressuresRegionExtract/data,sst_eez_2012.csv,ohiprep:globalprep/PressuresRegionExtract/data,sst_eez_2013.csv,ohiprep:globalprep/PressuresRegionExtract/data,sst_eez_2014.csv,ohiprep:globalprep/PressuresRegionExtract/data,sst_eez_2015.csv,,,Sea surface temperature (SST) anomalies,"Sea surface temperature based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
+pressures,cc_sst,ohiprep:globalprep/prs_sst/v2016/output,sst_2012.csv,ohiprep:globalprep/prs_sst/v2016/output,sst_2013.csv,ohiprep:globalprep/prs_sst/v2016/output,sst_2014.csv,ohiprep:globalprep/prs_sst/v2016/output,sst_2015.csv,ohiprep:globalprep/prs_sst/v2016/output,sst_2016.csv,Sea surface temperature (SST) anomalies,"Sea surface temperature based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
 
 Data sources:
 
@@ -301,7 +301,7 @@ Data sources:
 
 - [World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)](http://www.wssinfo.org/data-estimates/table)
 ",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/whounicef_sanitation/v2015/data,po_pathogens_popdensity25mi_2015a_gf.csv,raster,spatial data was extracted for each region. 
-pressures CW,po_trash,ohiprep:globalprep/PressuresRegionExtract/data,trash_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,trash_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,trash_eez_2015.csv,ohiprep:globalprep/PressuresRegionExtract/data,trash_eez_2015.csv,,,Trash pollution,"Global marine plastics (Eriksen et al. 2014)
+pressures CW,po_trash,ohiprep:globalprep/cw_pressure_trash/v2015/output,trash_eez_2015.csv,ohiprep:globalprep/cw_pressure_trash/v2015/output,trash_eez_2015.csv,ohiprep:globalprep/cw_pressure_trash/v2015/output,trash_eez_2015.csv,ohiprep:globalprep/cw_pressure_trash/v2015/output,trash_eez_2015.csv,,,Trash pollution,"Global marine plastics (Eriksen et al. 2014)
 
 Data sources:
 
