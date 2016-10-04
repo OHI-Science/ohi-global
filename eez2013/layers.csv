@@ -383,11 +383,6 @@ Data sources:
 Data sources:
 
 - [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)","resilience_score","resilience score","wgi_all.csv","rgn_id",,,,"resilience_score",,TRUE,,,0.0425215125083923,0.8728018561999,TRUE,,,,34,FALSE
-"spatial","cntry_georegions","Georegion ids per country, at 3 georegion levels","Lookup table of country codes and UN georegions at 3 georegion levels.
-
-Data sources:
-
-- [UN geographical region and composition](http://unstats.un.org/unsd/methods/m49/m49regin.htm)","georgn_id","georegion id","cntry_georegions.csv",,"cntry_key","level",,"georgn_id",,TRUE,,,1,999,FALSE,,,,34,FALSE
 "spatial","cntry_rgn","Regions per country","Lookup table of country codes (based on ISO 3166 country codes) and Ocean Health Index region idenifiers.
 
 Data sources:
@@ -407,12 +402,6 @@ Data sources:
 
 - [VLIZ Maritime Boundaries Geodatabase, version 7](http://www.marineregions.org/)
 ","area","3nm^2","rgn_area_offshore3nm.csv","rgn_id",,,,"area",,TRUE,,,12.75,621887.75,FALSE,,,,34,FALSE
-"spatial","rgn_georegion_labels","Georegion labels per region, at 3 georegion levels","Lookup table of Ocean Health Index regions and UN georegion names at 3 georegion levels.
-
-Data sources:
-
-- [UN geographical region and composition](http://unstats.un.org/unsd/methods/m49/m49regin.htm)
-","label","label","rgn_georegion_labels.csv","rgn_id",,"level",,,"label",TRUE,,,,,FALSE,,,,34,
 "spatial","rgn_georegions","Georegion ids per region, at 3 georegion levels","Lookup table of Ocean Health Index regions and UN georegion identifiers at 3 georegion levels.
 
 Data sources:
