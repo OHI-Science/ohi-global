@@ -124,8 +124,6 @@ LE,le_wage_sector_year,ohiprep:globalprep/le/v2013/data,le_eez2012_trend_wage_se
 LE,le_workforcesize_adj,ohiprep:globalprep/le_world_bank/v2014/data,cntry_wb_tlf_2012a_ratio-gapfilled.csv,ohiprep:globalprep/le_world_bank/v2014/data,cntry_wb_tlf_2013a_ratio-gapfilled.csv,ohiprep:globalprep/le_world_bank/v2014/data,cntry_wb_tlf_2014a_ratio-gapfilled.csv,,,,,Modeled Livelihoods & Economies data,adjusted workforce size,jobs,jobs,TRUE,,,NA,NA,population_inland25km,global workforce data were applied to each region after weighting by each region's coastal population.
 LE pressures,le_sector_weight,ohiprep:globalprep/le/v2015/data,le_sector_weight.csv,ohiprep:globalprep/le/v2015/data,le_sector_weight.csv,,,,,,,Jobs weighting,Jobs weighting by sector (defaulting to 1),weight,value,TRUE,exclude,,NA,NA,equal,
 LIV ECO,le_popn,ohiprep:globalprep/le_world_bank/v2013/data,rgn_wb_pop_2013a_updated.csv,ohiprep:globalprep/le_world_bank/v2013/data,rgn_wb_pop_2013a_updated.csv,,,,,,,Total population by subregion,Population data from The World Bank,count,count,TRUE,,,NA,NA,equal,
-LIV ECO,liveco_status,neptune_data:model/GL-NCEAS-LayersDisaggregated_v2013a/data,rgn_liv.eco_status_2012a.csv,neptune_data:model/GL-NCEAS-LayersDisaggregated_v2013a/data,rgn_liv.eco_status_2013a.csv,,,,,,,Modeled livelihoods and economies status,Modeled livelihoods and economies status based on new approach,value,status score,FALSE,,,NA,NA,equal,
-LIV ECO,liveco_trend,neptune_data:model/GL-NCEAS-LayersDisaggregated_v2013a/data,rgn_liv.eco_trend_2012a.csv,neptune_data:model/GL-NCEAS-LayersDisaggregated_v2013a/data,rgn_liv.eco_trend_2013a.csv,,,,,,,Modeled livelihoods and economies trend,Modeled livelihoods and economies trend based on new approach,value,trend score,FALSE,,,NA,NA,equal,
 LSP,lsp_prot_area_inland1km,ohiprep:globalprep/lsp/v2016/output,lsp_protected_inland1km.csv,ohiprep:globalprep/lsp/v2016/output,lsp_protected_inland1km.csv,,,,,,,Coastal protected areas inland 1km,"Coastal protected areas inland to 1km from the UN WDPA. 
 
 Data sources:
@@ -264,7 +262,7 @@ Data sources:
 - [FAOâs statistical database FAOSTAT](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E).
 - Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
 Communications_ 6(7615). [doi: 10.1038/ncomms8615](http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html)",pressure_score,pressure score,TRUE,,,ohiprep:globalprep/PressuresRegionExtract/data,cw_fertilizer_score_2015_gf.csv,raster | equal,
-pressures,sp_alien,ohiprep:globalprep/pressures_alien/v2013/data,p_sp_alien_2013a.csv,ohiprep:globalprep/pressures_alien/v2013/data,p_sp_alien_2013a.csv,,,,,,,Alien species,"The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
+pressures,sp_alien,ohiprep:globalprep/prs_alien/v2013/data,p_sp_alien_2013a.csv,ohiprep:globalprep/prs_alien/v2013/data,p_sp_alien_2013a.csv,,,,,,,Alien species,"The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
 
 Data sources:
 
@@ -311,22 +309,22 @@ Data sources:
 pressures,ss_spi,ohiprep:globalprep/prs_res_spi/v2016/output,spi_prs.csv,ohiprep:globalprep/prs_res_spi/v2016/output,spi_prs.csv,,,,,,,1 minus Social Progress Index,Inverse of the average of 3 categories evaluating social progress,pressure_score,pressure score,TRUE,,,,,equal,global resilience data were applied equally to all regions.
 pressures resilience,element_wts_hab_pres_abs,ohiprep:globalprep/hab_combined/v2015/data,hab_habitat_presence.csv,ohiprep:globalprep/hab_combined/v2015/data,hab_habitat_presence.csv,,,,,,,Used to weight elements of habitat goal,List of regions with habitat (all habitats are weighted equally),boolean,boolean,TRUE,,,ohiprep:globalprep/hab_combined/v2015/data,hab_habitat_presence.csv,equal,global pressures data were applied equally to all regions.
 resilience,res_spi,ohiprep:globalprep/prs_res_spi/v2016/output,spi_res.csv,ohiprep:globalprep/prs_res_spi/v2016/output,spi_res.csv,,,,,,,Social Progress Index,Average of 3 categories evaluating social progress,resilience_score,resilience score,TRUE,,,,,equal,global resilience data were applied equally to all regions.
-resilience,sp_alien_species,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_alien_species_Nature2012disaggregated.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_alien_species_Nature2012disaggregated.csv,,,,,,,CBD survey: alien species,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,sp_alien_species,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_alien_species_Nature2012disaggregated.csv,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_alien_species_Nature2012disaggregated.csv,,,,,,,CBD survey: alien species,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)",resilience score,resilience score,TRUE,neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a,CBDaliens_whence.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_alien_species_Nature2012disaggregated_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,g_cites,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2012.csv,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2013.csv,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2014.csv,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2015.csv,,,Resilience from commitment to CITES,"Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
+resilience,g_cites,ohiprep:globalprep/res_cites_signatories/v2015/data,rgn_cites_eez2012.csv,ohiprep:globalprep/res_cites_signatories/v2015/data,rgn_cites_eez2013.csv,ohiprep:globalprep/res_cites_signatories/v2015/data,rgn_cites_eez2014.csv,ohiprep:globalprep/res_cites_signatories/v2015/data,rgn_cites_eez2015.csv,,,Resilience from commitment to CITES,"Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
 
 Data sources:
 
 - [CITES List of Contracting Parties](http://www.cites.org/eng/disc/parties/chronolo.php)
 
 ",resilience_score,resilience score,TRUE,neptune_data:model/GL-CITES-Signatories_v2013/data,rgn_cites_2013_all_whence.csv,ohiprep:globalprep/cites_signatories/v2015/data,rgn_cites_eez2015_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,hd_habitat,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,,,,,,,CBD survey: habitat,"Convention on Biological Diversity (Habitat related regulations and protections)
+resilience,hd_habitat,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_habitat_2013a.csv,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_habitat_2013a.csv,,,,,,,CBD survey: habitat,"Convention on Biological Diversity (Habitat related regulations and protections)
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)",resilience score,resilience score,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,fp_habitat,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a.csv,,,,,,,CBD survey: habitat,"Convention on Biological Diversity (Habitat related regulations and protections)
+resilience,fp_habitat,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_habitat_2013a.csv,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_habitat_2013a.csv,,,,,,,CBD survey: habitat,"Convention on Biological Diversity (Habitat related regulations and protections)
 
 - [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)",resilience score,resilience score,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_habitat_2013a_gf.csv,equal,global resilience data were applied equally to all regions.
 resilience,fp_mora,ohiprep:globalprep/res_mora_ao/v2013/data,r_mora_2013a.csv,ohiprep:globalprep/res_mora_ao/v2013/data,r_mora_2013a.csv,,,,,,,Commercial fishing regulations,"Convention on Biological Diversity (Fishing related regulations and protections)
@@ -341,14 +339,14 @@ Data sources:
 
 - [World Economic Forum](http://www.weforum.org/issues/global-competitiveness)
 ",score,resilience score,TRUE,ohiprep:Global/WEF-Economics_v2014/data,rgn_wef_gci_2014a.csv,ohiprep:globalprep/WEF-Economics/v2015/data,rgn_wef_gci_2015_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,li_sector_evenness,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_li_sector_evenness_2013a.csv,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_li_sector_evenness_2013a.csv,,,,,,,Sector evenness as a measure of economic diversity,Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.,resilience score,resilience score,TRUE,,,ohiprep:globalprep/Resilience_sector_evenness,r_li_sector_evenness_2013a_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,g_mariculture,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_mariculture_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_mariculture_2013a.csv,,,,,,,CBD survey: mariculture,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,li_sector_evenness,ohiprep:globalprep/res_li_sector_evenness/v2013,r_li_sector_evenness_2013a.csv,ohiprep:globalprep/res_li_sector_evenness/v2013,r_li_sector_evenness_2013a.csv,,,,,,,Sector evenness as a measure of economic diversity,Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.,resilience score,resilience score,TRUE,,,ohiprep:globalprep/Resilience_sector_evenness,r_li_sector_evenness_2013a_gf.csv,equal,global resilience data were applied equally to all regions.
+resilience,g_mariculture,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_mariculture_2013a.csv,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_mariculture_2013a.csv,,,,,,,CBD survey: mariculture,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
 ",resilience score,resilience score,TRUE,,,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_mariculture_2013a_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,g_msi_gov,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_msi_gov_2013a.csv,neptune_data:model/GL-NCEAS-Resilience_v2013a/data,r_msi_gov_2013a.csv,,,,,,, MSI sustainability and regulations,"Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI). 
+resilience,g_msi_gov,ohiprep:/globalprep/res_mariculture_sustainability/v2013,r_msi_gov_2013a.csv,ohiprep:/globalprep/res_mariculture_sustainability/v2013,r_msi_gov_2013a.csv,,,,,,, MSI sustainability and regulations,"Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI). 
 
 Data sources:
 
@@ -365,13 +363,13 @@ Data sources:
 
 - [International Union for Conservation of Nature (IUCN)](http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme)
 ",score,resilience score,TRUE,,,ohiprep:globalprep/spp_ico/v2015/data,spp_status_3nm_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,g_tourism,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_tourism_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_tourism_2013a.csv,,,,,,,CBD survey: tourism,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,g_tourism,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_tourism_2013a.csv,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_tourism_2013a.csv,,,,,,,CBD survey: tourism,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
 - [Convention on Biological Diversity (CBD)](http://www.cbd.int/reports/search/default.shtml)
 ",resilience score,resilience score,TRUE,neptune_data:model/GL-NCEAS-Resilience_v2013a/whence_2013a,CBDtourism_whence.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_tourism_2013a_gf.csv,equal,global resilience data were applied equally to all regions.
-resilience,po_water,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_water_2013a.csv,ohiprep:globalprep/resilience_cbd_habitat/resilience_v2014/data,r_water_2013a.csv,,,,,,,CBD survey: water,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+resilience,po_water,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_water_2013a.csv,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_water_2013a.csv,,,,,,,CBD survey: water,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 Data sources:
 
@@ -386,12 +384,12 @@ resilience,wgi_all,ohiprep:globalprep/prs_res_wgi/v2016/output,wgi_res_2012.csv,
 Data sources:
 
 - [Worldwide Governance Indicators (WGI)](http://info.worldbank.org/governance/wgi/index.asp)",resilience_score,resilience score,TRUE,neptune_data:model/GL-WorldBank-WGI_v2011/data,rgn_wb_wgi_2013a_whence.csv,ohiprep:globalprep/worldbank_wgi/data,rgn_wb_wgi_2015a_gf.csv,equal,global resilience data were applied equally to all regions.
-spatial,cntry_georegions,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output,cntry_georegions_long_2013b.csv,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output,cntry_georegions_long_2013b.csv,,,,,,,"Georegion ids per country, at 3 georegion levels","Lookup table of country codes and UN georegions at 3 georegion levels.
+spatial,cntry_georegions,ohiprep:globalprep/spatial/v2013,cntry_georegions_long_2013b.csv,ohiprep:globalprep/spatial/v2013,cntry_georegions_long_2013b.csv,,,,,,,"Georegion ids per country, at 3 georegion levels","Lookup table of country codes and UN georegions at 3 georegion levels.
 
 Data sources:
 
-- [UN geographical region and composition](http://unstats.un.org/unsd/methods/m49/m49regin.htm)",georgn_id,georegion id,TRUE,,,,cntry_georegions_long_2013b_dc.csv,raster,spatial data was extracted for each region. 
-spatial,cntry_rgn,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output,cntry_rgn_2013.csv,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output,cntry_rgn_2013.csv,,,,,,,Regions per country,"Lookup table of country codes (based on ISO 3166 country codes) and Ocean Health Index region idenifiers.
+- [UN geographical region and composition](http://unstats.un.org/unsd/methods/m49/m49regin.htm)",georgn_id,georegion id,FALSE,,,,cntry_georegions_long_2013b_dc.csv,raster,spatial data was extracted for each region. 
+spatial,cntry_rgn,ohiprep:globalprep/spatial/v2013,cntry_rgn_2013.csv,ohiprep:globalprep/spatial/v2013,cntry_rgn_2013.csv,,,,,,,Regions per country,"Lookup table of country codes (based on ISO 3166 country codes) and Ocean Health Index region idenifiers.
 
 Data sources:
 
@@ -410,20 +408,20 @@ Data sources:
 
 - [VLIZ Maritime Boundaries Geodatabase, version 7](http://www.marineregions.org/)
 ",area,3nm^2,TRUE,,,,rgn_area_offshore3nm_dr.csv,raster,spatial data was extracted for each region.
-spatial,rgn_georegion_labels,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output,rgn_georegions_labels_long_2013b.csv,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output,rgn_georegions_labels_long_2013b.csv,,,,,,,"Georegion labels per region, at 3 georegion levels","Lookup table of Ocean Health Index regions and UN georegion names at 3 georegion levels.
+spatial,rgn_georegion_labels,ohiprep:globalprep/spatial/v2013,rgn_georegions_labels_long_2013b.csv,ohiprep:globalprep/spatial/v2013,rgn_georegions_labels_long_2013b.csv,,,,,,,"Georegion labels per region, at 3 georegion levels","Lookup table of Ocean Health Index regions and UN georegion names at 3 georegion levels.
 
 Data sources:
 
 - [UN geographical region and composition](http://unstats.un.org/unsd/methods/m49/m49regin.htm)
-",label,label,TRUE,,,,rgn_georegions_labels_long_2013b_dr.csv,raster,spatial data was extracted for each region.
-spatial,rgn_georegions,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output,rgn_georegions_long_2013b.csv,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/manual_output,rgn_georegions_long_2013b.csv,,,,,,,"Georegion ids per region, at 3 georegion levels","Lookup table of Ocean Health Index regions and UN georegion identifiers at 3 georegion levels.
+",label,label,FALSE,,,,rgn_georegions_labels_long_2013b_dr.csv,raster,spatial data was extracted for each region.
+spatial,rgn_georegions,ohiprep:globalprep/spatial/v2013,rgn_georegions_long_2013b.csv,ohiprep:globalprep/spatial/v2013,rgn_georegions_long_2013b.csv,,,,,,,"Georegion ids per region, at 3 georegion levels","Lookup table of Ocean Health Index regions and UN georegion identifiers at 3 georegion levels.
 
 Data sources:
 
 - [UN geographical region and composition](http://unstats.un.org/unsd/methods/m49/m49regin.htm)
 ",georgn_id,georegion id,TRUE,,,,rgn_georegions_long_2013b_dr.csv,raster,spatial data was extracted for each region.
-spatial,rgn_global,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data,rgn_global.csv,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data,rgn_global.csv,,,,,,,"regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed ","Regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed. ",label,label,TRUE,,,,rgn_global_dr.csv,raster,spatial data was extracted for each region.
-spatial,rgn_labels,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data,rgn_labels.csv,neptune_data:model/GL-NCEAS-OceanRegions_v2013a/data,rgn_labels.csv,,,,,,,"regions by type (eez, subocean, unclaimed) and label","Ocean Health Index regions by type (eez, subocean, unclaimed) and label",label,label,TRUE,,,,rgn_labels_dr.csv,raster,spatial data was extracted for each region.
+spatial,rgn_global,ohiprep:globalprep/spatial/v2013,rgn_global.csv,ohiprep:globalprep/spatial/v2013,rgn_global.csv,,,,,,,"regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed ","Regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed. ",label,label,TRUE,,,,rgn_global_dr.csv,raster,spatial data was extracted for each region.
+spatial,rgn_labels,ohiprep:globalprep/spatial/v2013,rgn_labels.csv,ohiprep:globalprep/spatial/v2013,rgn_labels.csv,,,,,,,"regions by type (eez, subocean, unclaimed) and label","Ocean Health Index regions by type (eez, subocean, unclaimed) and label",label,label,TRUE,,,,rgn_labels_dr.csv,raster,spatial data was extracted for each region.
 SPP,spp_status,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,ohiprep:globalprep/spp_ico/v2016/output,spp_status_global.csv,Species lists and IUCN threat categories as a proxy for iconic species status,"International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
 
 Data sources:
