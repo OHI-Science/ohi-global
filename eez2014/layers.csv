@@ -123,8 +123,6 @@ Data sources:
 "LE","le_workforcesize_adj","Modeled Livelihoods & Economies data","adjusted workforce size","jobs","jobs","le_workforcesize_adj.csv",,"cntry_key",,"year","jobs",,TRUE,1990,2012,0,791711771.342352,FALSE,,,,34,FALSE
 "LE pressures","le_sector_weight","Jobs weighting","Jobs weighting by sector (defaulting to 1)","weight","value","le_sector_weight.csv","rgn_id",,"sector",,"weight",,TRUE,,,1,1,TRUE,,,,34,FALSE
 "LIV ECO","le_popn","Total population by subregion","Population data from The World Bank","count","count","le_popn.csv","rgn_id",,,"year","count",,TRUE,1960,2012,0,1350695000,FALSE,,,,34,FALSE
-"LIV ECO","liveco_status","Modeled livelihoods and economies status","Modeled livelihoods and economies status based on new approach","value","status score","liveco_status.csv","rgn_id",,"component",,"value",,TRUE,,,0.000380686126825058,1,TRUE,,,,34,FALSE
-"LIV ECO","liveco_trend","Modeled livelihoods and economies trend","Modeled livelihoods and economies trend based on new approach","value","trend score","liveco_trend.csv","rgn_id",,"component",,"value",,TRUE,,,-0.998437811712268,0.999964535332029,FALSE,,,,34,FALSE
 "LSP","lsp_prot_area_inland1km","Coastal protected areas inland 1km","Coastal protected areas inland to 1km from the UN WDPA. 
 
 Data sources:
