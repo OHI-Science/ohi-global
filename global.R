@@ -3,7 +3,6 @@
 # refresh fitz.nceas.ucsb.edu after `sudo R` to gain write permissions on R library path:
 #   remove.packages(c('leaflet','ohicore','htmlwidgets','aster','sunburstR'))
 #   update.packages(ask=F)
-#   sudo apt-get install -y libv8-dev # for V8
 #   # then run up to and including `install_packages(pkgs_df)` below
 
 if (!'devtools'  %in% installed.packages()[,1]) install.packages('devtools')
@@ -24,12 +23,10 @@ pkgs_df = tibble::tribble(
   'shinydashboard',   'CRAN',                                                               '',           '',
   'htmltools',        'CRAN',                                                               '',           '',
   'markdown',         'CRAN',                                                               '',           '',
+  'geojsonio',        'CRAN',                                                               '',           '',
   'jsonlite',         'CRAN',                                                               '',           '',
-  'visNetwork',       'CRAN',                                                               '',           '',
   'yaml',             'CRAN',                                                               '',           '',
-  'V8',               'CRAN',                                                               '',           '',
   'leaflet',        'Github',                                     list(repo='rstudio/leaflet'),           '',
-  'geojsonio',      'Github',                                  list(repo='ropensci/geojsonio'),           '',
   'ohicore',        'Github',                     list(repo='ohi-science/ohicore' , ref='dev'),           '',
   'htmlwidgets',    'Github',        list(repo='ramnathv/htmlwidgets', ref=github_pull('237')),           '',
   'aster',          'Github', list(repo='FrissAnalytics/ohi-aster' , subdir='asterHTMLwidget'),           '',
@@ -70,9 +67,11 @@ init = function(){
     'ohirepos_commit','last_updated')
   y_missing = setdiff(y_vars, names(y))
   if (length(y_missing) > 0) stop(paste0('Missing variables in app.yml: ', paste(y_missing, collapse=', ')))
-  y$gh_slug <<- sprintf('%s/%s', y$gh_owner, y$gh_repo)
-  y$gh_url  <<- sprintf('https://github.com/%s.git', y$gh_slug)
-  dir_data  <<- sprintf('%s_%s', y$gh_repo, y$gh_branch_data)
+  y$gh_slug    <<- sprintf('%s/%s', y$gh_owner, y$gh_repo)
+  y$gh_url     <<- sprintf('https://github.com/%s.git', y$gh_slug)
+  dir_data     <<- sprintf('%s_%s', y$gh_repo, y$gh_branch_data)
+  scenario     <<- y$scenario_dirs[1]
+  dir_scenario <<- file.path(dir_data, scenario)
 }
 init()
 
@@ -89,9 +88,10 @@ load_scenario = function(scenario){
 #options(warn = 0) # warnings: into errors (2) or print as occur (1), store and print (0) or ignore (-1)
 #cat(file=stderr(), input$map1_bounds)
 #y$debug = F # toggles ui_msg output
+options(shiny.error=traceback)
 
 create_scenario_rdata = function(scenario, rdata){
-  
+
   # check for data branch folder
   dir_data  = sprintf('%s_%s', y$gh_repo, y$gh_branch_data)
   if (!file.exists(dir_data)){
@@ -113,9 +113,9 @@ create_scenario_rdata = function(scenario, rdata){
   config = new.env()
   source(file.path(dir_scenario, 'conf/config.R'), config)
   dims = data_frame(
-    dimension   = names(config$dimension_descriptions), 
+    dimension   = names(config$dimension_descriptions),
     description = config$dimension_descriptions)
-    
+
   # read goals and layers
   files = list(
     layers            = 'layers.csv',
@@ -131,10 +131,11 @@ create_scenario_rdata = function(scenario, rdata){
 
   # get spatial data path from config
   if (!'geojson' %in% names(config)) stop(sprintf('Missing geojson path variable in %s/conf/config.R', dir_scenario))
-  geojson = file.path(dir_scenario, config$geojson)
+  geojson = normalizePath(file.path(dir_scenario, config$geojson))
 
   # read spatial (can simplify with R package rmapshaper)
   if (!file.exists(geojson)) stop(sprintf('GeoJSON file specified in %s/conf/config.R not found: %s', dir_scenario, geojson))
+  cat(file=stderr(), 'read rgns from geojson\n')
   rgns = geojsonio::geojson_read(geojson, what="sp")
   if ('rgn_nam' %in% names(rgns@data) & !'rgn_name' %in% names(rgns@data)) rgns@data = rgns@data %>% mutate(rgn_name = rgn_nam)
 
@@ -143,12 +144,11 @@ create_scenario_rdata = function(scenario, rdata){
 
     # [leaflet/proj4Leaflet.R#L36-L55 · rstudio/leaflet](https://github.com/rstudio/leaflet/blob/1bc41eebd5220735a309c5b4bcfae6784cc9026d/inst/examples/proj4Leaflet.R#L36-L55)
     # addProviderTiles('Stamen.TonerLite') does not work, so use country polygons
-    library(sp)
-    srcURL <- "https://cdn.rawgit.com/turban/Leaflet.Graticule/master/examples/lib/countries-110m.js"
-    v8 <- V8::v8()
-    v8$source(srcURL)
-    geoJSON <- geojsonio::as.json(v8$get('countries'))
-    countries <- geojsonio::geojson_sp(geoJSON)
+    # countries: would use https://github.com/datasets/geo-countries/blob/master/data/countries.geojson, except 23 MB
+    cat(file=stderr(), 'read countries from github.com/datasets/geo-boundaries-world-110m\n')
+    countries = geojsonio::geojson_read(
+      'https://github.com/datasets/geo-boundaries-world-110m/raw/master/countries.geojson', what='sp')
+    cat(file=stderr(), 'read countries finished!\n')
   }
 
   # NOTE: skipping other spatial fields 'saup_id','fao_id'
@@ -415,13 +415,13 @@ local_sha  = devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
 
 # check if github remote differs from local
 if (devtools:::different_sha(remote_sha, local_sha)){
-  
-  # git pull
-  system(sprintf('cd %s; git pull', dir_scenario))
-  
+
+  # git fetch & overwrite
+  system(sprintf('cd %s; git fetch %s; git reset --hard origin/%s', dir_data, y$gh_branch_data, y$gh_branch_data))
+
   # update local git commit sha
   local_sha = devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
-  
+
   # wipe [scenario].Rdata files
   for (scenario in y$scenario_dirs){
     unlink(sprintf('%s_%s.Rdata', y$gh_repo, scenario))

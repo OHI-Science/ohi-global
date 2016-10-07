@@ -2,10 +2,10 @@ shinyServer(function(input, output, session) {
 
   # read_csv('draft/eez2012/scores.csv') %>% filter(goal=='Index', dimension=='score', region_id==0) %>% .$score
   # read_csv('draft/eez2015/scores.csv') %>% filter(goal=='Index', dimension=='score', region_id==0) %>% .$score
-  # 
+  #
   # read_csv('draft/eez2012/scores.csv') %>% filter(goal=='Index', dimension=='score', region_id==163) %>% .$score
   # read_csv('draft/eez2015/scores.csv') %>% filter(goal=='Index', dimension=='score', region_id==163) %>% .$score
-  
+
   # write remote git commit hash every 5 seconds to compare with remote
   log_gitsha <- observe({
     # Invalidate this observer every 2 seconds (2000 milliseconds)
@@ -14,81 +14,81 @@ shinyServer(function(input, output, session) {
     # write remote git commit sha
     gh_write_remote(y$gh_slug, y$gh_branch_data, remote_sha_txt)
   })
-  
+
   # monitor file for changes every 1 seconds (1000 milliseconds)
   fileReaderData <- reactiveFileReader(
     1000, session, remote_sha_txt, readLines)
-  
+
   ## get_selected() ----
   get_selected = reactive({
-    
+
     req(input$sel_scenario)
     req(input$sel_type)
 
     if (input$sel_scenario != scenario){
       load_scenario(input$sel_scenario)
-    }  
+    }
 
     switch(input$sel_type,
 
-      # case: output
-      output = {
-        req(input$sel_output_goal)
-        req(input$sel_output_goal_dimension)
+           # case: output
+           output = {
+             req(input$sel_output_goal)
+             req(input$sel_output_goal_dimension)
 
-        list(
-          data = scores %>%
-            filter(
-              goal      == input$sel_output_goal,
-              dimension == input$sel_output_goal_dimension) %>%
-            select(
-              rgn_id = region_id,
-              value  = score) %>%
-            select(rgn_id, value),
-          label = sprintf('%s - %s', input$sel_output_goal, input$sel_output_goal_dimension),
-          description = dims %>%
-            filter(dimension == input$sel_output_goal_dimension)  %>%
-            markdownToHTML(text = .$description, fragment.only=T)) },
+             list(
+               data = scores %>%
+                 filter(
+                   goal      == input$sel_output_goal,
+                   dimension == input$sel_output_goal_dimension) %>%
+                 select(
+                   rgn_id = region_id,
+                   value  = score) %>%
+                 select(rgn_id, value),
+               label = sprintf('%s - %s', input$sel_output_goal, input$sel_output_goal_dimension),
+               description = dims %>%
+                 filter(dimension == input$sel_output_goal_dimension)  %>%
+                 markdownToHTML(text = .$description, fragment.only=T)) },
 
-      # case: input
-      input = {
-        req(input$sel_input_target_layer)
+           # case: input
+           input = {
+             req(input$sel_input_target_layer)
 
-        fld_category = filter(layers, layer==input$sel_input_target_layer) %>% .$fld_category
-        fld_year     = filter(layers, layer==input$sel_input_target_layer) %>% .$fld_year
+             fld_category = filter(layers, layer==input$sel_input_target_layer) %>% .$fld_category
+             fld_year     = filter(layers, layer==input$sel_input_target_layer) %>% .$fld_year
 
-        # get data
-        data = d_lyrs %>%
-            filter(layer == input$sel_input_target_layer) %>%
-            mutate(
-              rgn_id = fld_id_num,
-              value  = fld_val_num)
+             # get data
+             data = d_lyrs %>%
+               filter(layer == input$sel_input_target_layer) %>%
+               mutate(
+                 rgn_id = fld_id_num,
+                 value  = fld_val_num)
 
-        # if layer has category, filter
-        if (!is.na(fld_category)){
-          req(input$sel_input_target_layer_category)
-          data = data %>%
-            filter(fld_category == input$sel_input_target_layer_category)
-        }
+             # if layer has category, filter
+             if (!is.na(fld_category)){
+               req(input$sel_input_target_layer_category)
+               data = data %>%
+                 filter(fld_category == input$sel_input_target_layer_category)
+             }
 
-        # if layer has category year, filter
-        if (!is.na(fld_year)){
-          req(input$sel_input_target_layer_category_year)
-          data = data %>%
-            filter(fld_year == input$sel_input_target_layer_category_year)
-        }
+             # if layer has category year, filter
+             if (!is.na(fld_year)){
+               req(input$sel_input_target_layer_category_year)
+               data = data %>%
+                 filter(fld_year == input$sel_input_target_layer_category_year)
+             }
 
 
-        # return list
-        list(
-          data = data %>%
-            select(rgn_id, value),
-          label = input$sel_input_target_layer,
-          description = layers %>%
-            filter(layer == input$sel_input_target_layer) %>%
-            markdownToHTML(text = .$description, fragment.only=T))
-      })
-    })
+             # return list
+             list(
+               data = data %>%
+                 select(rgn_id, value),
+               label = input$sel_input_target_layer,
+               description = layers %>%
+                 filter(layer == input$sel_input_target_layer) %>%
+                 markdownToHTML(text = .$description, fragment.only=T))
+           })
+  })
 
   ## output$ui_sel_output ----
   output$ui_sel_output <- renderUI({
@@ -103,7 +103,7 @@ shinyServer(function(input, output, session) {
         .$dimension,
       selected = 'score')
 
-    })
+  })
 
   # output$ui_sel_input ----
   output$ui_sel_input <- renderUI({
@@ -155,15 +155,15 @@ shinyServer(function(input, output, session) {
             .$fld_year
 
           ui = tagList(ui, selectInput(
-          'sel_input_target_layer_category_year',
-          label    = '5. Choose year:',
-          choices  = years,
-          selected = ifelse(
-            is.null(input$sel_input_target_layer_category_year),
-            years[1],
-            input$sel_input_target_layer_category_year)))  }}}
+            'sel_input_target_layer_category_year',
+            label    = '5. Choose year:',
+            choices  = years,
+            selected = ifelse(
+              is.null(input$sel_input_target_layer_category_year),
+              years[1],
+              input$sel_input_target_layer_category_year)))  }}}
 
-   return(ui) })
+    return(ui) })
 
   # output$var_description ----
   # update description of input layer or output goal dimension
@@ -205,40 +205,40 @@ shinyServer(function(input, output, session) {
     b = bbox_shrink(rgns, y$map_shrink_pct)
 
     map_render_mouseover = "
-      function(el, t) {
-        var defaultStyle = {
-          // stroke, ie polygon border
-            opacity:     0.5,
-            weight:      2,
-          // fill, ie polygon interior
-            fillOpacity: 0.5,
-        };
-        var highlightStyle = {
-          // stroke, ie polygon border
-            opacity:     0.9,
-            weight:      6,
-          // fill, ie polygon interior
-            fillOpacity: 0.9,
-        };
+    function(el, t) {
+    var defaultStyle = {
+    // stroke, ie polygon border
+    opacity:     0.5,
+    weight:      2,
+    // fill, ie polygon interior
+    fillOpacity: 0.5,
+    };
+    var highlightStyle = {
+    // stroke, ie polygon border
+    opacity:     0.9,
+    weight:      6,
+    // fill, ie polygon interior
+    fillOpacity: 0.9,
+    };
 
-        var myMap = this;
-        var layers = myMap._layers;
-        for(var i in layers) {
-          var layer = layers[i];
-          if(layer.label) {
-            layer.on('mouseover',
-              function(e) {
-                this.setStyle(highlightStyle);
-                // this.bringToFront();
-            });
-            layer.on('mouseout',
-              function(e) {
-                this.setStyle(defaultStyle);
-                // this.bringToBack();
-            });
-          }
-        }
-      }"
+    var myMap = this;
+    var layers = myMap._layers;
+    for(var i in layers) {
+    var layer = layers[i];
+    if(layer.label) {
+    layer.on('mouseover',
+    function(e) {
+    this.setStyle(highlightStyle);
+    // this.bringToFront();
+    });
+    layer.on('mouseout',
+    function(e) {
+    this.setStyle(defaultStyle);
+    // this.bringToBack();
+    });
+    }
+    }
+    }"
 
     if ('projection' %in% names(y) && y$projection == 'Mollweide'){
       # [leaflet/proj4Leaflet.R#L36-L55 · rstudio/leaflet](https://github.com/rstudio/leaflet/blob/1bc41eebd5220735a309c5b4bcfae6784cc9026d/inst/examples/proj4Leaflet.R#L36-L55)
@@ -290,7 +290,7 @@ shinyServer(function(input, output, session) {
           values = selected$data$value, title = selected$label) %>%
         fitBounds(lng1 = b[1], lat1 = b[2], lng2 = b[3], lat2 = b[4]) %>%
         htmlwidgets::onRender(map_render_mouseover)
-      }
+    }
 
   })
 
@@ -320,9 +320,9 @@ shinyServer(function(input, output, session) {
 
     #if (input$map1_shape_mouseover$group == 'regions'){
     if (!input$map1_shape_mouseover$group == 'regions') return()
-      v$hi_id <- as.integer(sub('_hi', '', as.character(input$map1_shape_click$id)))
-      v$hi_freeze <- T
-      isolate(v$msg <- paste(now_s(), '-- map1_shape_click | hi_id=', v$hi_id, br(), v$msg))
+    v$hi_id <- as.integer(sub('_hi', '', as.character(input$map1_shape_click$id)))
+    v$hi_freeze <- T
+    isolate(v$msg <- paste(now_s(), '-- map1_shape_click | hi_id=', v$hi_id, br(), v$msg))
     #}
   })
 
@@ -351,7 +351,7 @@ shinyServer(function(input, output, session) {
     # if (input$sel_scenario != scenario){
     #   load_scenario(input$sel_scenario)
     # }
-    
+
     # if default input Index score, show aster
     if (input$sel_type=='output' & input$sel_output_goal=='Index' & input$sel_output_goal_dimension=='score'){
       aster(
@@ -392,7 +392,7 @@ shinyServer(function(input, output, session) {
     }
     format(txt)
   })
-  
+
   output$ui_commit = renderText({
     sha_txt = sprintf('%s/%s', y$gh_slug, str_sub(local_sha, end=7))
     sha_url = sprintf('https://github.com/%s/commit/%s', y$gh_slug, local_sha)
@@ -411,44 +411,44 @@ shinyServer(function(input, output, session) {
         subset(rgns@data, rgn_id==v$hi_id, rgn_name, drop=T),
         format(round(subset(rgns@data, rgn_id==v$hi_id, area_km2, drop=T)), big.mark =','))
     }
-    
+
     # get remote_sha from file
     remote_sha <- fileReaderData()
-    
+
     # check if github remote differs from local
     if (devtools:::different_sha(remote_sha, local_sha)){
-      
+
       # show progress bar while updating
       withProgress(
-        message = sprintf('Updating data "%s" with newer commit(s) at github.com/%s', dir_data, y$gh_slug), 
+        message = sprintf('Updating data "%s" with newer commit(s) at github.com/%s', dir_data, y$gh_slug),
         value = 0, {
-          
+
           # increment
           n = length(y$scenario_dirs) + 2
-          
-          # git pull
-          incProgress(1/n, detail = 'git pull')
-          system(sprintf('cd %s; git pull', dir_scenario))
+
+          # git fetch & overwrite
+          incProgress(1/n, detail = 'git fetch & reset')
+          system(sprintf('cd %s; git fetch %s; git reset --hard origin/%s', dir_data, y$gh_branch_data, y$gh_branch_data))
           local_sha <<- devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
-          
+
           # redo [scenario].Rdata files
           for (i in 1:length(y$scenario_dirs)){
             scenario = sort(y$scenario_dirs)[i]
             rdata = sprintf('%s_%s.Rdata', y$gh_repo, scenario)
-            
+
             incProgress((i+1)/n, detail = sprintf("creating scenario %s", rdata))
             unlink(rdata)
             create_scenario_rdata(scenario, rdata)
           }
-          
+
           # load default scenario
           incProgress(n, detail = sprintf("loading selected scenario %s", input$sel_scenario))
           load_scenario(input$sel_scenario)
         })
-      
+
       return(remote_sha)
     }
-    
+
   })
 
 
@@ -499,6 +499,6 @@ shinyServer(function(input, output, session) {
           title='Messages', color='yellow', collapsible = T, width = 12, collapsed=F,
           'debug=T in app.yml\n',
           HTML(v$msg))) }
-    })
+  })
 
-})
+  })
