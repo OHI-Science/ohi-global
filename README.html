@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="_sass/main.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OHI-GLOBAL</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="app.html">App</a>
+</li>
+<li>
+  <a href="regions.html">Regions</a>
+</li>
+<li>
+  <a href="layers.html">Layers</a>
+</li>
+<li>
+  <a href="goals.html">Goals</a>
+</li>
+<li>
+  <a href="scores.html">Scores</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="ohi-shiny-app" class="section level1">
+<h1>OHI Shiny app</h1>
+<p>These files provide the template for creating a Shiny app that visualizes a data branch of an Ocean Health Index (OHI) repository.</p>
+<p>Normally these files are translated from template files into a live Shiny app using the <code>ohirepos::deploy_app()</code> function, like so:</p>
+<pre class="r"><code>library(ohirepos)
+
+# ohi-global
+deploy_app(&#39;ohi-global&#39;, &#39;Global&#39;, &#39;eez2015&#39;)
+
+# baltic
+deploy_app(&#39;ohi-global&#39;, &#39;Baltic&#39;, c(&#39;eez2015&#39;,&#39;eez2012&#39;,&#39;eez2013&#39;,&#39;eez2014&#39;,&#39;eez2016&#39;))</code></pre>
+<p>When the Shiny app first launches (eg with <a href="https://www.rdocumentation.org/packages/shiny/versions/0.13.2/topics/runApp"><code>shiny::runApp()</code></a>), the github repository specified in <code>app.yml</code> will get downloaded for the specified <code>default_branch</code> from Github with <code>git clone</code> and all the scenarios (specified by <code>scenario_dirs</code>) will be processed into a <code>[scenario].Rdata</code> file(s) before launching the app.</p>
+<div id="debugging" class="section level2">
+<h2>Debugging</h2>
+<p>In practice, for developing this Shiny app, I launch RStudio with <code>app.Rproj</code> to set the working directory here, and create the <code>app.yml</code> and <code>[repo]_intro.md</code> for whichever repo before launching the app:</p>
+<pre class="r"><code># vars for ohi-global
+gh_repo    = &#39;ohi-global&#39;
+app_title  = &#39;Global&#39;
+scenario_dirs  = c(&#39;eez2015&#39;,&#39;eez2012&#39;,&#39;eez2013&#39;,&#39;eez2014&#39;,&#39;eez2016&#39;)
+projection = &#39;Mollweide&#39;
+
+# vars for bhi
+gh_repo    = &#39;bhi&#39;
+app_title  = &#39;Baltic&#39;
+scenario_dirs  = &#39;baltic2015&#39;
+projection = &#39;Mercator&#39;
+
+# common vars
+gh_owner       = &#39;OHI-Science&#39;
+gh_branch_data = &#39;draft&#39;
+gh_branch_app  = &#39;app&#39;
+map_shrink_pct = 10
+debug          = F
+
+# derived vars
+app_url         = sprintf(&#39;http://ohi-science.nceas.ucsb.edu/%s&#39;, gh_repo)
+ohirepos_commit = devtools:::local_sha(&#39;ohirepos&#39;)
+
+readr::write_file(
+    yaml::as.yaml(list(
+    app_title       = app_title,
+    gh_owner        = gh_owner,
+    gh_repo         = gh_repo,
+    gh_branch_data  = gh_branch_data,
+    app_url         = app_url,
+    scenario_dirs       = scenario_dirs,
+    projection      = projection,
+    map_shrink_pct  = map_shrink_pct,
+    debug           = F,
+    ohirepos_commit = ohirepos_commit,
+    last_updated    = Sys.Date())),
+    &#39;app.yml&#39;)
+
+# brew intro.md
+brew::brew(&#39;intro.brew.md&#39;, sprintf(&#39;%s_intro.md&#39;, gh_repo))
+
+# run app
+shiny::runApp()</code></pre>
+<p>Notice that the existing <code>.gitignore</code> includes <code>app.yml</code>,<code>intro.md</code>, <code>baltic2015.Rdata</code> files and <code>draft</code> folder, so these will not be uploaded to the generic app template on Github. For working with various apps, I move them to a prefix (eg <code>bhi_</code>*) and add to <code>.gitignore</code>.</p>
+</div>
+<div id="credit" class="section level2">
+<h2>Credit</h2>
+<p>The majority of this Shiny application was coded by <a href="http://benbestphd.com">Ben Best</a> with significant inputs from Julie Lowndes. Special thanks to Herman Sontrop who developed the <a href="https://github.com/FrissAnalytics/ohi-aster">ohi-aster</a> htmlwidget and these <a href="http://shiny.rstudio.com/tutorial/">Shiny JavaScript tutorials</a>.</p>
+</div>
+<div id="geojson-simplification" class="section level2">
+<h2>GeoJSON Simplification</h2>
+<p>The initial loading time and overall performance of the Shiny app in a web browser is very dependent on the size of the GeoJSON file used to render the regions spatially. The path of this geojson file is specified as the <code>geojson</code> variable in the <code>config.R</code> of the data branch’s scenario subfolder (eg for Baltic draft branch, baltic2015 scenario: <a href="https://github.com/OHI-Science/bhi/blob/673f8b67f1eb0e42e7e59117880cb07032aaf750/baltic2015/conf/config.R#L26">config.R</a> -&gt; <a href="https://github.com/OHI-Science/bhi/blob/draft/baltic2015/spatial/regions_gcs.geojson">spatial/regions_gcs.geojson</a>:</p>
+<pre class="r"><code>geojson = &#39;spatial/regions_gcs.geojson&#39;</code></pre>
+<p>Here’s how the high resolution global EEZ shapefile was greatly simplified with the excellent <a href="https://github.com/ateucher/rmapshaper#usage"><code>rmapshaper::ms_simplify</code></a> to <a href="https://github.com/OHI-Science/ohi-global/blob/b2abb0b63822c94c447bc04afa3c901511c48a6c/eez2015/spatial/rgn_offshore_gcs_mapshaper-simplify_x2_eez-only.geojson">ohi-global/rgn_offshore_gcs_mapshaper-simplify_x2_eez-only.geojson</a>…</p>
+<script src="https://embed.github.com/view/geojson/OHI-Science/ohi-global/b2abb0b63822c94c447bc04afa3c901511c48a6c/eez2015/spatial/rgn_offshore_gcs_mapshaper-simplify_x2_eez-only.geojson"></script>
+<pre class="r"><code>## install.packages(&quot;devtools&quot;)
+library(dplyr)
+library(sp)
+library(rgdal)
+library(geojsonio)  # install_github(&quot;ropensci/geojsonio&quot;)
+library(rmapshaper) # install_github(&quot;ateucher/rmapshaper&quot;)
+
+# downloaded from sftp://neptune.nceas.ucsb.edu/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/rgn_offshore_gcs.shp
+shp = &#39;~/Documents/OHI/spatial/rgn_offshore_gcs.shp&#39;
+
+# read in polygon
+ply = readOGR(normalizePath(dirname(shp)), basename(tools::file_path_sans_ext(shp)), verbose=F)
+
+# subset
+sub = ply[ply@data$rgn_name %in% c(&#39;Costa Rica&#39;,&#39;Nicaragua&#39;),]
+
+# plot
+plot(sub, col=&#39;gray&#39;)
+
+# simplify using default parameters
+ply_simp0 = ms_simplify(ply)
+plot(ply_simp0, col=&#39;gray&#39;)
+
+# write out as geojson
+geojson_write(ply_simp0, file=&#39;data/rgn_offshore_gcs_mapshaper-simplify.geojson&#39;)
+})
+
+# simplify from existing geojson, plot and write out
+ply_simp0 = readOGR(&#39;data/rgn_offshore_gcs_mapshaper-simplify.geojson&#39;, &#39;OGRGeoJSON&#39;, verbose=F)
+plot(ply_simp0, col=&#39;gray&#39;)
+ply_simp1 = ms_simplify(ply_simp0)
+plot(ply_simp1, col=&#39;gray&#39;)
+geojson_write(ply_simp1, file=&#39;data/rgn_offshore_gcs_mapshaper-simplify_x2.geojson&#39;)
+
+# remove non-eez shapes
+ply_simp2 = ply_simp1[ply_simp1$rgn_type==&#39;eez&#39; &amp; ply_simp1$rgn_name!=&#39;Antarctica&#39;,]
+plot(ply_simp2, col=&#39;gray&#39;)
+geojson_write(ply_simp2, file=&#39;data/rgn_offshore_gcs_mapshaper-simplify_x2_eez-only.geojson&#39;)</code></pre>
+</div>
+</div>
+
+<footer role="contentinfo" id="site-footer">
+<!-- /.bottom-menu -->
+	<p class="copyright">&#169; 2016,
+		created by <a href="http://github.com/bbest">Ben Best</a> and <a href="http://github.com/jules32">Julie Lowndes</a>,
+		powered by <a href="http://www.r-project.org">R</a> + <a href="http://rmarkdown.rstudio.com">RMarkdown</a> +
+	             <a href="http://shiny.rstudio.com">Shiny</a> + <a href="http://github.com">Github</a>.</p>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

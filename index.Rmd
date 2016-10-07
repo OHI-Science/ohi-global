@@ -1,0 +1,46 @@
+---
+title: "Welcome"
+---
+---
+title: Welcome
+---
+```{r, echo=F}
+source("./_site.R")
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- Note: most of this language was borrowed from www.su.se/ostersjocentrum/english/baltic-eye/research/baltic-health-index -->
+
+<div class="page-lead" style="background-image:url(images/regions_1600x800.png)">
+<div class="wrap page-lead-content">
+<h2>An Ocean Health Index assessment for `r web_title`</h2>
+
+</div><!-- /.page-lead-content. -->
+</div><!-- /.page-lead -->
+
+<div class="tiles">
+
+<div class="tile">
+<h2 class="post-title"><i class="fa fa-book fa-2x"></i> Project</h2>
+<p class="post-excerpt">
+The `r web_title` Health Index (BHI) is a regional study applying the Ocean Health Index framework. The aim is to initiate the development of a tool that can be used by decision-makers to guide management of the Baltic Sea region towards increased sustainability. 
+</p>
+</div>
+
+<div class="tile">
+<h2 class="post-title"><i class="fa fa-cubes fa-2x"></i> Our team</h2>
+<p class="post-excerpt">
+BHI is jointly led by Stockholm Resilience Centre (SRC) and [Baltic Eye](http://www.su.se/ostersjocentrum/english/baltic-eye) at the Baltic Sea Centre, both at Stockholm University, together with the Ocean Health Index team. The project is funded by [Baltic Ecosystem Adaptive Management](http://www.su.se/ostersjocentrum/english/beam), Baltic Eye, and the Johansson Family Foundation.
+</p>
+</div>
+
+<div class="tile">
+<h2 class="post-title"><i class="fa fa-globe fa-2x"></i> Ocean Health Index </h2>
+<p class="post-excerpt">
+The Ocean Health Index ('OHI') is a scientific framework to measure how healthy oceans are. Understanding the state of our oceans is a first step towards ensuring they can continue providing humans benefits now and in the future. Learn more at [ohi-science.org](http://ohi-science.org).
+</p>
+</div>
+</div>

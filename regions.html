@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Regions</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/yeti.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="_sass/main.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 45px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+
+.section h2 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h3 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h4 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h5 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+.section h6 {
+  padding-top: 50px;
+  margin-top: -50px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">OHI-GLOBAL</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="app.html">App</a>
+</li>
+<li>
+  <a href="regions.html">Regions</a>
+</li>
+<li>
+  <a href="layers.html">Layers</a>
+</li>
+<li>
+  <a href="goals.html">Goals</a>
+</li>
+<li>
+  <a href="scores.html">Scores</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Regions</h1>
+
+</div>
+
+<div id="TOC">
+true
+</div>
+
+<p>Regions are the fundamental spatial units of analysis for the Ocean Health Index. Scores are calculated for each region individually and then combined (with an offshore area-weighted average) to produce scores for the entire study area, {{ site.study_area }}. These template regions can be modified with some effort. They were identified as the largest subcountry division within {{ site.study_area }}.</p>
+<nav class="navbar navbar-default" role="navigation">
+<div class="container-fluid">
+<pre><code> &lt;div class=&quot;navbar-header&quot;&gt;       &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Branch/Scenario&lt;/a&gt;     &lt;/div&gt;     &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbar-1&quot;&gt;       &lt;ul class=&quot;nav navbar-nav&quot;&gt;         &lt;li class=&quot;dropdown&quot;&gt;           &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;published/baltic2015&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;           &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot;&gt;                       &lt;li&gt;&lt;a href=&quot;{{ site.baseurl }}/draft/baltic2015/regions/&quot;&gt;draft/baltic2015&lt;/a&gt;&lt;/li&gt;                     &lt;/ul&gt;         &lt;/li&gt;       &lt;/ul&gt;     &lt;/div&gt;   &lt;/div&gt; &lt;/nav&gt; </code></pre>
+<div class="figure">
+<img src="%7B%7B%20site.baseurl%20%7D%7D/results/%7B%7B%20page.branch_scenario%20%7D%7D/figures/regions_600x400.png" />
+
+</div>
+<p>Or see the <a href="https://github.com/OHI-Science/%7B%7B%20site.git_repo%20%7D%7D/blob/%7B%7B%20page.branch_scenario%20%7D%7D/spatial/regions_gcs.geojson">interactive map of the offshore regions on Github</a>.</p>
+<p>OHI {{ site.study_area }} has the following subcountry regions, each with a unique identifier (ID):</p>
+<p>{% capture regions_csv %}regions_{{ page.branch_scenario | replace:‘/’,’_’ }}{% endcapture %} {% assign regions = site.data[regions_csv] %}</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">ID</th>
+<th align="left">NAME</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">{% for rgn in regions %}</td>
+<td align="left">{{ rgn.region_id }}</td>
+</tr>
+</tbody>
+</table>
+<p>{% endfor %}</p>
+<p>IDs for subcountry regions were assigned geographically by increasing longitude. The entire study area ({{ site.study_area }}) has a special region ID of 0.</p>
+<p>Exclusive economic zones (EEZs) were identified by <a href="http://www.marineregions.org">MarineRegions.org</a> and the largest subcountry regions were identified by the generalized administrative boundary database <a href="http://www.gadm.org">GADM.org</a>. Region boundaries were extended offshore to divide the EEZ of {{ site.study_area }} into offshore regions. It is possible to use different regions than the ones provided here. See <a href="http://ohi-science.org/pages/create_regions.html">Create Regions</a> for more details.</p>
+<p>Regions were generated with the following inland and offshore buffers relative to the shoreline, which are visualized in the graphic above within increasing transparency away from the shoreline.</p>
+<ul>
+<li>offshore</li>
+<li>offshore1km</li>
+<li>offshore3nm</li>
+<li>inland</li>
+<li>inland1km</li>
+<li>inland25km</li>
+</ul>
+<p>These data are available as shapefiles as well as csv files summarizing total area per region. Since shapefiles are binary and can be large, they’re best stored outside the <strong>{{ site.git_repo }}</strong> Github repository. Instead, download the zipped set of shapefiles:</p>
+<ul>
+<li><a href="http://ohi.nceas.ucsb.edu/data/subcountry2014/%7B%7B%20site.git_repo%20%7D%7D_shapefiles.zip">{{ site.git_repo }}_shapefiles.zip</a></li>
+</ul>
+
+<footer role="contentinfo" id="site-footer">
+<!-- /.bottom-menu -->
+	<p class="copyright">&#169; 2016,
+		created by <a href="http://github.com/bbest">Ben Best</a> and <a href="http://github.com/jules32">Julie Lowndes</a>,
+		powered by <a href="http://www.r-project.org">R</a> + <a href="http://rmarkdown.rstudio.com">RMarkdown</a> +
+	             <a href="http://shiny.rstudio.com">Shiny</a> + <a href="http://github.com">Github</a>.</p>
+</footer>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

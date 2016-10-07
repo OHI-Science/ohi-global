@@ -1,0 +1,25 @@
+name: "Global Ocean Health Index"
+navbar:
+  title: "OHI-GLOBAL"
+  left:
+    - text: "About"
+      href: about.html
+    - text: "App"
+      href: app.html
+    - text: "Regions"
+      href: regions.html
+    - text: "Layers"
+      href: layers.html
+    - text: "Goals"
+      href: goals.html
+    - text: "Scores"
+      href: scores.html
+output_dir: "."
+output:
+  html_document:
+    theme: yeti
+    highlight: textmate
+    include:
+      after_body: _footer.html
+    css:
+      - "_sass/main.css"

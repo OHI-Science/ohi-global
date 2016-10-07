@@ -1,0 +1,14 @@
+---
+output:
+  html_document:
+    css:
+      - "./_sass/styles_app.css"
+---
+
+```{r, echo=F}
+source("./_site.R")
+```
+
+<iframe frameborder='0' width='100%' height='850' src='`r app_url`'></iframe>
+
+For details on how to use this App, see [App documentation](../docs/#toc2).
