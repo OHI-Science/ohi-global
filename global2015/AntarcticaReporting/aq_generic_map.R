@@ -15,9 +15,9 @@ data <- read.csv('../ohiprep/Antarctica/Other/rgn_labels_ccamlr.csv') %>%
   select(ccamlr_id=ccamlr_id2, sp_id) %>%
   mutate(sp_id = as.character(sp_id))
 
-colors <- data.frame(sp_id = data$sp_id, col= c('#feedde', '#fdd0a2', '#fdae6b', '#fd8d3c', '#e6550d', '#a63603',
-  '#fcfbfd', '#efedf5', '#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#54278f', '#3f007d', '#807dba',
-  '#6baed6', '#2171b5', '#084594')) %>%
+colors <- data.frame(sp_id = data$sp_id, col= c('#feeddebf', '#fdd0a2bf', '#fdae6bbf', '#fd8d3cbf', '#e6550dbf', '#a63603bf',
+  '#fcfbfdbf', '#efedf5bf', '#dadaebbf', '#bcbddcbf', '#9e9ac8bf', '#807dbabf', '#6a51a3bf', '#54278fbf', '#3f007dbf', '#807dbabf',
+  '#6baed6bf', '#2171b5bf', '#084594bf')) %>%
   mutate(sp_id = as.character(sp_id)) %>%
   mutate(col = as.character(col))
   
@@ -52,28 +52,28 @@ ccamlr_f <- fortify(ccamlr, region = "sp_id") %>%
 
   fig <- ggplot(ccamlr_f, aes(long, lat)) +
     geom_polygon(aes(fill = sp_id, group=group), colour="gray90") +
-    scale_fill_manual(values = c('248100' = '#fd8d3c',
-                                 '248200' = '#fdd0a2',
-                                 '248300' = '#fdae6b', 
-                                 '248400' = '#fd8d3c',
-                                 '248500' = '#e6550d',
-                                 '248600' = '#a63603', 
-                                 '258410' = '#3f007d',
-                                 '258420' = '#9e9ac8',
-                                 '258431' = '#dadaeb',
-                                 '258432' = '#bcbddc',
-                                 '258441' = '#9e9ac8',
-                                 '258442' = '#807dba',
-                                 '258510' = '#6a51a3',
-                                 '258520' = '#54278f',
-                                 '258600' = '#3f007d',
-                                 '258700' = '#807dba',
-                                 '288100' = '#6baed6',
-                                 '288200' = '#2171b5',
-                                 '288300' = '#084594')) + 
+    scale_fill_manual(values = c('248100' = '#fd8d3c99',
+                                 '248200' = '#fdd0a299',
+                                 '248300' = '#fdae6b99', 
+                                 '248400' = '#fd8d3c99',
+                                 '248500' = '#e6550d99',
+                                 '248600' = '#a6360399', 
+                                 '258410' = '#3f007d99',
+                                 '258420' = '#9e9ac899',
+                                 '258431' = '#dadaeb99',
+                                 '258432' = '#bcbddc99',
+                                 '258441' = '#9e9ac899',
+                                 '258442' = '#807dba99',
+                                 '258510' = '#6a51a399',
+                                 '258520' = '#54278f99',
+                                 '258600' = '#3f007d99',
+                                 '258700' = '#807dba99',
+                                 '288100' = '#6baed699',
+                                 '288200' = '#2171b599',
+                                 '288300' = '#08459499')) + 
     geom_polygon(data = eez_f, aes(group=group), fill = 'white', size = 0.25)  +
     geom_polygon(data = land_f, aes(group=group), color = 'gray90', fill = 'gray90', size = 0.25)  +
-    geom_text(data=pop.df, aes(label=id, x= Longitude_c, y = Latitude_c), color = 'gray90') +
+    #geom_text(data=pop.df, aes(label=id, x= Longitude_c, y = Latitude_c), color = 'gray90') +
     theme(axis.line = element_blank(),
           axis.text.x = element_blank(),
           axis.text.y = element_blank(),

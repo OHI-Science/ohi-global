@@ -3,9 +3,8 @@
 # main difference will be that this will load the old version of ohicore (prior to the changes made to resilience)
 
 library(devtools)
-#devtools::install_github("ohi-science/ohicore@dev") # when testing changes to ohicore
-devtools::install_github("ohi-science/ohicore@master")
-#install_github('rCharts', 'ramnathv')
+# This uses the old archived version of ohicore. Eventually, we will want to make updates and move to the new version, but not yet.
+devtools::install_github("ohi-science/ohicore@master_a2015") 
 library(ohicore)
 library(zoo)
 
