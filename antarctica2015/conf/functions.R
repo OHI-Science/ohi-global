@@ -604,7 +604,6 @@ CW = function(layers){
 
 
 HAB = function(layers, status_year){
-  
   ## data to calculate status/trend
   sea_ice <-  SelectLayersData(layers, layers='hab_sea_ice', narrow=TRUE) %>%
     select(region_id=id_num, year, days=val_num)
