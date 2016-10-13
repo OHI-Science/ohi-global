@@ -86,12 +86,6 @@ shinyServer(function(input, output, session) {
     req(input$sel_scenario)
     req(input$sel_type)
 
-    # TODO:
-    # - make value A - B
-    # - update Table with label
-    # - Plot tab, conditional on compare
-    # - if score, then compare all goals
-
     if (input$sel_scenario != scenario){
       load_scenario(input$sel_scenario)
     }
