@@ -8,10 +8,10 @@ Normally these files are translated from template files into a live Shiny app us
 library(ohirepos)
 
 # ohi-global
-deploy_app('ohi-global', 'Global', 'eez2015')
+deploy_app('ohi-global', 'Global', c('eez2015','eez2012','eez2013','eez2014','eez2016'), projection='Mollweide')
 
-# baltic
-deploy_app('ohi-global', 'Baltic', c('eez2015','eez2012','eez2013','eez2014','eez2016'))
+# bhi
+deploy_app('bhi', 'Baltic', 'baltic2015')
 ```
 
 When the Shiny app first launches (eg with [`shiny::runApp()`](https://www.rdocumentation.org/packages/shiny/versions/0.13.2/topics/runApp)), the github repository specified in `app.yml` will get downloaded for the specified `default_branch` from Github with `git clone` and all the scenarios (specified by `scenario_dirs`) will be processed into a `[scenario].Rdata` file(s) before launching the app.
@@ -22,16 +22,16 @@ In practice, for developing this Shiny app, I launch RStudio with `app.Rproj` to
 
 ```r
 # vars for ohi-global
-gh_repo    = 'ohi-global'
-app_title  = 'Global'
+gh_repo        = 'ohi-global'
+app_title      = 'Global'
 scenario_dirs  = c('eez2015','eez2012','eez2013','eez2014','eez2016')
-projection = 'Mollweide'
+projection     = 'Mollweide'
 
 # vars for bhi
-gh_repo    = 'bhi'
-app_title  = 'Baltic'
+gh_repo        = 'bhi'
+app_title      = 'Baltic'
 scenario_dirs  = 'baltic2015'
-projection = 'Mercator'
+projection     = 'Mercator'
 
 # common vars
 gh_owner       = 'OHI-Science'
@@ -50,17 +50,18 @@ readr::write_file(
     gh_owner        = gh_owner,
     gh_repo         = gh_repo,
     gh_branch_data  = gh_branch_data,
+    gh_branch_app   = gh_branch_app,
     app_url         = app_url,
-    scenario_dirs       = scenario_dirs,
+    scenario_dirs   = scenario_dirs,
     projection      = projection,
     map_shrink_pct  = map_shrink_pct,
     debug           = F,
     ohirepos_commit = ohirepos_commit,
     last_updated    = Sys.Date())),
-    'app.yml')
+    'inst/app/app.yml')
 
 # brew intro.md
-brew::brew('intro.brew.md', sprintf('%s_intro.md', gh_repo))
+brew::brew('inst/app/intro.brew.md', sprintf('inst/app/%s_intro.md', gh_repo))
 
 # run app
 shiny::runApp()
@@ -90,7 +91,7 @@ Here's how the high resolution global EEZ shapefile was greatly simplified with 
 library(dplyr)
 library(sp)
 library(rgdal)
-library(geojsonio)  # install_github("ropensci/geojsonio")
+library(geojsonio)
 library(rmapshaper) # install_github("ateucher/rmapshaper")
 
 # downloaded from sftp://neptune.nceas.ucsb.edu/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/rgn_offshore_gcs.shp

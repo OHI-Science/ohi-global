@@ -13,24 +13,26 @@ library(tidyverse, quietly=T)
 
 pkgs_df = tibble::tribble(
   ~package   ,     ~location,                                                    ~install_args, ~version_min,
-  'dplyr',            'CRAN',                                                               '',           '',
-  'tidyr',            'CRAN',                                                               '',           '',
-  'readr',            'CRAN',                                                               '',           '',
-  'stringr',          'CRAN',                                                               '',           '',
-  'lubridate',        'CRAN',                                                               '',           '',
-  'rgdal',            'CRAN',                                                               '',           '',
-  'shiny',            'CRAN',                                                               '',           '',
-  'shinydashboard',   'CRAN',                                                               '',           '',
-  'htmltools',        'CRAN',                                                               '',           '',
-  'markdown',         'CRAN',                                                               '',           '',
-  'geojsonio',        'CRAN',                                                               '',           '',
-  'jsonlite',         'CRAN',                                                               '',           '',
-  'yaml',             'CRAN',                                                               '',           '',
-  'leaflet',        'Github',                                     list(repo='rstudio/leaflet'),           '',
-  'ohicore',        'Github',                     list(repo='ohi-science/ohicore' , ref='dev'),           '',
-  'htmlwidgets',    'Github',        list(repo='ramnathv/htmlwidgets', ref=github_pull('237')),           '',
-  'aster',          'Github', list(repo='FrissAnalytics/ohi-aster' , subdir='asterHTMLwidget'),           '',
-  'sunburstR',      'Github',                           list(repo='timelyportfolio/sunburstR'),           '')
+  'dplyr',              'CRAN',                                                               '',           '',
+  'tidyr',              'CRAN',                                                               '',           '',
+  'readr',              'CRAN',                                                               '',           '',
+  'stringr',            'CRAN',                                                               '',           '',
+  'lubridate',          'CRAN',                                                               '',           '',
+  'rgdal',              'CRAN',                                                               '',           '',
+  'shiny',              'CRAN',                                                               '',           '',
+  'shinydashboard',     'CRAN',                                                               '',           '',
+  'htmltools',          'CRAN',                                                               '',           '',
+  'markdown',           'CRAN',                                                               '',           '',
+  'geojsonio',          'CRAN',                                                               '',           '',
+  'jsonlite',           'CRAN',                                                               '',           '',
+  'yaml',               'CRAN',                                                               '',           '',
+  'DT',                 'CRAN',                                                               '',           '',
+  'leaflet',           'Github',                                    list(repo='rstudio/leaflet'),           '',
+  'explodingboxplotR', 'Github',                  list(repo='timelyportfolio/explodingboxplotR'),           '',
+  'ohicore',           'Github',                    list(repo='ohi-science/ohicore' , ref='dev'),           '',
+  'htmlwidgets',       'Github',       list(repo='ramnathv/htmlwidgets', ref=github_pull('237')),           '',
+  'aster',             'Github',   list(repo='ohi-science/ohi-aster' , subdir='asterHTMLwidget'),           '',
+  'sunburstR',         'Github',                          list(repo='timelyportfolio/sunburstR'),           '')
 
 install_packages = function(pkgs){
   for (i in 1:nrow(pkgs)){ # i = 11
@@ -51,6 +53,11 @@ install_packages(pkgs_df)
 for (p in pkgs_df$package){
   library(p, character.only=T, quietly=T)
 }
+
+# DEBUG explodingboxplotR
+library(shiny)
+library(explodingboxplotR)
+data(iris)
 
 now_s = function(){
   format(now(), format='%H:%M:%S')
@@ -75,12 +82,12 @@ init = function(){
 }
 init()
 
-load_scenario = function(scenario){
+load_scenario = function(scenario, env=.GlobalEnv){
   # load new scenario data
   scenario     <<- scenario
   dir_scenario <<- file.path(dir_data, scenario)
   rdata        <<- sprintf('%s_%s.Rdata', y$gh_repo, scenario)
-  load(rdata, envir=.GlobalEnv)
+  load(rdata, envir=env)
   init()
 }
 
@@ -88,10 +95,9 @@ load_scenario = function(scenario){
 #options(warn = 0) # warnings: into errors (2) or print as occur (1), store and print (0) or ignore (-1)
 #cat(file=stderr(), input$map1_bounds)
 #y$debug = F # toggles ui_msg output
-options(shiny.error=traceback)
+#options(shiny.error=traceback)
 
-create_scenario_rdata = function(scenario, rdata){
-
+check_dir_data = function(){
   # check for data branch folder
   dir_data  = sprintf('%s_%s', y$gh_repo, y$gh_branch_data)
   if (!file.exists(dir_data)){
@@ -99,8 +105,13 @@ create_scenario_rdata = function(scenario, rdata){
     # git clone data branch
     system(sprintf(
       'git clone --quiet --branch %s %s %s', y$gh_branch_data, y$gh_url, dir_data))
-
   }
+}
+
+create_scenario_rdata = function(scenario, rdata){
+
+  # check for data branch folder
+  check_dir_data()
 
   # check dir_scenario subfolder exists
   dir_scenario = file.path(dir_data, scenario)
@@ -138,6 +149,7 @@ create_scenario_rdata = function(scenario, rdata){
   cat(file=stderr(), 'read rgns from geojson\n')
   rgns = geojsonio::geojson_read(geojson, what="sp")
   if ('rgn_nam' %in% names(rgns@data) & !'rgn_name' %in% names(rgns@data)) rgns@data = rgns@data %>% mutate(rgn_name = rgn_nam)
+  # TODO: check for rgn_area_km2 or remove
 
   # get countries for Mollweide projection
   if ('projection' %in% names(y) && y$projection == 'Mollweide'){
@@ -409,6 +421,7 @@ gh_write_remote = function(gh_slug, gh_branch, txt=sprintf('%s_remote_sha.txt', 
   return(remote_sha)
 }
 
+check_dir_data()
 remote_sha_txt = sprintf('%s_remote_sha.txt', dir_data)
 remote_sha = gh_write_remote(y$gh_slug, y$gh_branch_data, remote_sha_txt)
 local_sha  = devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
@@ -417,18 +430,18 @@ local_sha  = devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
 if (devtools:::different_sha(remote_sha, local_sha)){
 
   # git fetch & overwrite
-  system(sprintf('cd %s; git fetch %s; git reset --hard origin/%s', dir_data, y$gh_branch_data, y$gh_branch_data))
+  system(sprintf('cd %s; git fetch; git reset --hard origin/%s', dir_data, y$gh_branch_data))
 
   # update local git commit sha
-  local_sha = devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
+  local_sha <<- devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
 
   # wipe [scenario].Rdata files
-  for (scenario in y$scenario_dirs){
+  for (scenario in sort(y$scenario_dirs)){
     unlink(sprintf('%s_%s.Rdata', y$gh_repo, scenario))
   }
 }
 
-for (scenario in y$scenario_dirs){
+for (scenario in sort(y$scenario_dirs)){
   rdata = sprintf('%s_%s.Rdata', y$gh_repo, scenario)
   if (!file.exists(rdata)){
     # create [scenario].Rdata files

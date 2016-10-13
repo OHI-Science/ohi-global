@@ -1,10 +1,7 @@
 shinyServer(function(input, output, session) {
 
-  # read_csv('draft/eez2012/scores.csv') %>% filter(goal=='Index', dimension=='score', region_id==0) %>% .$score
-  # read_csv('draft/eez2015/scores.csv') %>% filter(goal=='Index', dimension=='score', region_id==0) %>% .$score
-  #
-  # read_csv('draft/eez2012/scores.csv') %>% filter(goal=='Index', dimension=='score', region_id==163) %>% .$score
-  # read_csv('draft/eez2015/scores.csv') %>% filter(goal=='Index', dimension=='score', region_id==163) %>% .$score
+
+  # get_scenario ----
 
   # write remote git commit hash every 5 seconds to compare with remote
   log_gitsha <- observe({
@@ -16,8 +13,72 @@ shinyServer(function(input, output, session) {
   })
 
   # monitor file for changes every 1 seconds (1000 milliseconds)
-  fileReaderData <- reactiveFileReader(
-    1000, session, remote_sha_txt, readLines)
+  fileReaderData <- reactiveFileReader(1000, session, remote_sha_txt, readLines)
+
+  # get_scenario ----
+  get_scenario = function(env=.GlobalEnv){
+
+    switch(
+      input$sel_type,
+
+      # case: output
+      output = {
+        req(input$sel_output_goal)
+        req(input$sel_output_goal_dimension)
+
+        list(
+          data = env$scores %>%
+            filter(
+              goal      == input$sel_output_goal,
+              dimension == input$sel_output_goal_dimension) %>%
+            select(
+              rgn_id = region_id,
+              value  = score) %>%
+            select(rgn_id, value),
+          label = sprintf('%s - %s', input$sel_output_goal, input$sel_output_goal_dimension),
+          description = env$dims %>%
+            filter(dimension == input$sel_output_goal_dimension)  %>%
+            markdownToHTML(text = .$description, fragment.only=T)) },
+
+      # case: input
+      input = {
+        req(input$sel_input_target_layer)
+
+        env$fld_category = filter(env$layers, layer==input$sel_input_target_layer) %>% .$fld_category
+        env$fld_year     = filter(env$layers, layer==input$sel_input_target_layer) %>% .$fld_year
+
+        # get data
+        env$data = env$d_lyrs %>%
+          filter(layer == input$sel_input_target_layer) %>%
+          mutate(
+            rgn_id = fld_id_num,
+            value  = fld_val_num)
+
+        # if layer has category, filter
+        if (!is.na(fld_category)){
+          req(input$sel_input_target_layer_category)
+          env$data = env$data %>%
+            filter(fld_category == input$sel_input_target_layer_category)
+        }
+
+        # if layer has category year, filter
+        if (!is.na(env$fld_year)){
+          req(input$sel_input_target_layer_category_year)
+          env$data = env$data %>%
+            filter(fld_year == input$sel_input_target_layer_category_year)
+        }
+
+        # return list
+        list(
+          data = env$data %>%
+            select(rgn_id, value),
+          label = input$sel_input_target_layer,
+          description = env$layers %>%
+            filter(layer == input$sel_input_target_layer) %>%
+            markdownToHTML(text = .$description, fragment.only=T))
+
+    }) # end switch
+  }
 
   ## get_selected() ----
   get_selected = reactive({
@@ -25,70 +86,60 @@ shinyServer(function(input, output, session) {
     req(input$sel_scenario)
     req(input$sel_type)
 
+    # TODO:
+    # - make value A - B
+    # - update Table with label
+    # - Plot tab, conditional on compare
+    # - if score, then compare all goals
+
     if (input$sel_scenario != scenario){
       load_scenario(input$sel_scenario)
     }
 
-    switch(input$sel_type,
+    results = get_scenario()
+    if (input$sidebarmenu == 'compare'){
+      req(input$sel_scenario_b)
+      env_a = new.env()
+      env_b = new.env()
+      load_scenario(input$sel_scenario  , env=env_a)
+      load_scenario(input$sel_scenario_b, env=env_b)
+      res_a = get_scenario(env_a)
+      res_b = get_scenario(env_b)
 
-           # case: output
-           output = {
-             req(input$sel_output_goal)
-             req(input$sel_output_goal_dimension)
+      data = res_a$data %>%
+        mutate(value_a = value) %>%
+        select(rgn_id, value_a) %>%
+        left_join(
+          res_b$data %>%
+            mutate(value_b = value) %>%
+            select(rgn_id, value_b),
+          by='rgn_id') %>%
+        mutate(
+          value = value_a - value_b)
 
-             list(
-               data = scores %>%
-                 filter(
-                   goal      == input$sel_output_goal,
-                   dimension == input$sel_output_goal_dimension) %>%
-                 select(
-                   rgn_id = region_id,
-                   value  = score) %>%
-                 select(rgn_id, value),
-               label = sprintf('%s - %s', input$sel_output_goal, input$sel_output_goal_dimension),
-               description = dims %>%
-                 filter(dimension == input$sel_output_goal_dimension)  %>%
-                 markdownToHTML(text = .$description, fragment.only=T)) },
+      dif_scenario <<- sprintf('%s - %s', input$sel_scenario, input$sel_scenario_b)
+      compare = bind_rows(
+        res_a$data %>%
+          mutate(
+            scenario = input$sel_scenario),
+        res_b$data %>%
+          mutate(
+            scenario = input$sel_scenario_b),
+        data  %>%
+          mutate(
+            scenario = dif_scenario)) %>%
+        select(rgn_id, scenario, value)
 
-           # case: input
-           input = {
-             req(input$sel_input_target_layer)
+      results = list(
+        data = data %>%
+          select(rgn_id, value),
+        compare = compare,
+        label = res_a$label,
+        description = res_a$description)
+    }
 
-             fld_category = filter(layers, layer==input$sel_input_target_layer) %>% .$fld_category
-             fld_year     = filter(layers, layer==input$sel_input_target_layer) %>% .$fld_year
-
-             # get data
-             data = d_lyrs %>%
-               filter(layer == input$sel_input_target_layer) %>%
-               mutate(
-                 rgn_id = fld_id_num,
-                 value  = fld_val_num)
-
-             # if layer has category, filter
-             if (!is.na(fld_category)){
-               req(input$sel_input_target_layer_category)
-               data = data %>%
-                 filter(fld_category == input$sel_input_target_layer_category)
-             }
-
-             # if layer has category year, filter
-             if (!is.na(fld_year)){
-               req(input$sel_input_target_layer_category_year)
-               data = data %>%
-                 filter(fld_year == input$sel_input_target_layer_category_year)
-             }
-
-
-             # return list
-             list(
-               data = data %>%
-                 select(rgn_id, value),
-               label = input$sel_input_target_layer,
-               description = layers %>%
-                 filter(layer == input$sel_input_target_layer) %>%
-                 markdownToHTML(text = .$description, fragment.only=T))
-           })
-  })
+    return(results)
+    })
 
   ## output$ui_sel_output ----
   output$ui_sel_output <- renderUI({
@@ -103,7 +154,7 @@ shinyServer(function(input, output, session) {
         .$dimension,
       selected = 'score')
 
-  })
+    })
 
   # output$ui_sel_input ----
   output$ui_sel_input <- renderUI({
@@ -155,20 +206,95 @@ shinyServer(function(input, output, session) {
             .$fld_year
 
           ui = tagList(ui, selectInput(
-            'sel_input_target_layer_category_year',
-            label    = '5. Choose year:',
-            choices  = years,
-            selected = ifelse(
-              is.null(input$sel_input_target_layer_category_year),
-              years[1],
-              input$sel_input_target_layer_category_year)))  }}}
+          'sel_input_target_layer_category_year',
+          label    = '5. Choose year:',
+          choices  = years,
+          selected = ifelse(
+            is.null(input$sel_input_target_layer_category_year),
+            years[1],
+            input$sel_input_target_layer_category_year)))  }}}
 
-    return(ui) })
+   return(ui) })
 
   # output$var_description ----
   # update description of input layer or output goal dimension
   output$var_description = renderText({
     get_selected()$description })
+
+  # output$table ----
+  output$table = renderDataTable({
+
+    if (input$sidebarmenu == 'compare'){
+      rgns@data %>%
+        select(rgn_id, rgn_name) %>%
+        left_join(
+          get_selected()$compare, by='rgn_id') %>%
+        spread(scenario, value)
+    } else {
+      rgns@data %>%
+        select(rgn_id, rgn_name) %>%
+        left_join(get_selected()$data, by='rgn_id')
+    }
+  })
+
+  # Compare sidebar, Plot boxplot ----
+
+  output$ui_sel_scenario_b <- renderUI({
+    req(input$sel_scenario)
+
+    if (input$sidebarmenu == 'compare'){
+
+      ui = selectInput(
+        'sel_scenario_b',
+        label    = '0.B. Choose other scenario:',
+        choices  = setdiff(sort(y$scenario_dirs), input$sel_scenario))
+
+    } else {
+      ui = NULL
+    }
+    return(ui)
+  })
+
+  observeEvent(input$sidebarmenu, {
+    if (input$sidebarmenu != 'compare'){
+      updateSelectInput(session, 'sel_scenario', label = '0. Choose scenario:')
+    } else {
+      updateSelectInput(session, 'sel_scenario', label = '0.A. Choose scenario:')
+    }
+  })
+
+  output$ui_boxplot <- renderUI({
+    if (input$sidebarmenu != 'compare'){
+      return(
+        'This boxplot is currently only available when choosing to Compare scenarios from sidebar.')
+    } else {
+      exploding_boxplotOutput('boxplot', width='600px')
+    }
+  })
+
+  output$boxplot <- renderExploding_boxplot({
+    req(input$sidebarmenu, input$sel_scenario, input$sel_scenario_b)
+
+    if (input$sidebarmenu != 'compare') return()
+
+    d = rgns@data %>%
+      select(rgn_id, rgn_name) %>%
+      left_join(
+        get_selected()$compare %>%
+          filter(scenario == dif_scenario),
+        by='rgn_id')
+
+    #saveRDS(d, 'tmp_d.Rdata')
+    #browser()
+    #setwd('~/github/ohirepos/inst/app'); d = readRDS('tmp_d.Rdata')
+
+    exploding_boxplot(
+      d,
+      y = 'value',
+      group = 'scenario',
+      color = 'scenario',
+      label = 'rgn_name')
+  })
 
   # output$map1 ----
 
@@ -205,40 +331,40 @@ shinyServer(function(input, output, session) {
     b = bbox_shrink(rgns, y$map_shrink_pct)
 
     map_render_mouseover = "
-    function(el, t) {
-    var defaultStyle = {
-    // stroke, ie polygon border
-    opacity:     0.5,
-    weight:      2,
-    // fill, ie polygon interior
-    fillOpacity: 0.5,
-    };
-    var highlightStyle = {
-    // stroke, ie polygon border
-    opacity:     0.9,
-    weight:      6,
-    // fill, ie polygon interior
-    fillOpacity: 0.9,
-    };
+      function(el, t) {
+        var defaultStyle = {
+          // stroke, ie polygon border
+            opacity:     0.5,
+            weight:      2,
+          // fill, ie polygon interior
+            fillOpacity: 0.5,
+        };
+        var highlightStyle = {
+          // stroke, ie polygon border
+            opacity:     0.9,
+            weight:      6,
+          // fill, ie polygon interior
+            fillOpacity: 0.9,
+        };
 
-    var myMap = this;
-    var layers = myMap._layers;
-    for(var i in layers) {
-    var layer = layers[i];
-    if(layer.label) {
-    layer.on('mouseover',
-    function(e) {
-    this.setStyle(highlightStyle);
-    // this.bringToFront();
-    });
-    layer.on('mouseout',
-    function(e) {
-    this.setStyle(defaultStyle);
-    // this.bringToBack();
-    });
-    }
-    }
-    }"
+        var myMap = this;
+        var layers = myMap._layers;
+        for(var i in layers) {
+          var layer = layers[i];
+          if(layer.label) {
+            layer.on('mouseover',
+              function(e) {
+                this.setStyle(highlightStyle);
+                // this.bringToFront();
+            });
+            layer.on('mouseout',
+              function(e) {
+                this.setStyle(defaultStyle);
+                // this.bringToBack();
+            });
+          }
+        }
+      }"
 
     if ('projection' %in% names(y) && y$projection == 'Mollweide'){
       # [leaflet/proj4Leaflet.R#L36-L55 · rstudio/leaflet](https://github.com/rstudio/leaflet/blob/1bc41eebd5220735a309c5b4bcfae6784cc9026d/inst/examples/proj4Leaflet.R#L36-L55)
@@ -290,8 +416,21 @@ shinyServer(function(input, output, session) {
           values = selected$data$value, title = selected$label) %>%
         fitBounds(lng1 = b[1], lat1 = b[2], lng2 = b[3], lat2 = b[4]) %>%
         htmlwidgets::onRender(map_render_mouseover)
+      }
+
+  })
+
+  # zoom to region
+  observeEvent(input$sel_rgn, {
+
+    if (input$sel_rgn==y$app_title){
+      b = bbox(rgns)
+    } else {
+      b = bbox(subset(rgns, rgn_name == input$sel_rgn))
     }
 
+    leafletProxy('map1',session) %>%
+      fitBounds(lng1 = b[1],lat1 = b[2],lng2 = b[3],lat2 = b[4])
   })
 
   # aster hover ----
@@ -320,9 +459,9 @@ shinyServer(function(input, output, session) {
 
     #if (input$map1_shape_mouseover$group == 'regions'){
     if (!input$map1_shape_mouseover$group == 'regions') return()
-    v$hi_id <- as.integer(sub('_hi', '', as.character(input$map1_shape_click$id)))
-    v$hi_freeze <- T
-    isolate(v$msg <- paste(now_s(), '-- map1_shape_click | hi_id=', v$hi_id, br(), v$msg))
+      v$hi_id <- as.integer(sub('_hi', '', as.character(input$map1_shape_click$id)))
+      v$hi_freeze <- T
+      isolate(v$msg <- paste(now_s(), '-- map1_shape_click | hi_id=', v$hi_id, br(), v$msg))
     #}
   })
 
@@ -354,18 +493,31 @@ shinyServer(function(input, output, session) {
 
     # if default input Index score, show aster
     if (input$sel_type=='output' & input$sel_output_goal=='Index' & input$sel_output_goal_dimension=='score'){
-      aster(
-        data = scores %>%
-          filter(
-            region_id == v$hi_id,
-            dimension == 'score') %>%
-          left_join(goals, by='goal') %>%
-          filter(is.na(parent), !is.na(order_color)) %>%
-          arrange(order_color) %>%
-          mutate(label=NA) %>%
-          select(id=goal, order=order_color, score, weight, color, label),
+
+      data = scores %>%
+        filter(region_id == v$hi_id, dimension == 'score') %>%
+        left_join(goals, by='goal') %>%
+        filter(is.na(parent), !is.na(order_color)) %>%
+        arrange(order_color) %>%
+        mutate(label=name) %>%
+        select(id=goal, order=order_color, score, weight, color, label)
+
+      data = bind_rows(
+        data %>%
+          filter(!is.na(score)),
+        data %>%
+          filter(is.na(score)) %>%
+          mutate(
+            score = 100,
+            color = '#BEBEBE')) # gplots::col2hex('gray')
+
+      score = scores %>%
+        filter( region_id == v$hi_id, dimension == 'score', goal == 'Index') %>%
+        .$score
+
+      aster(data, score,
         background_color = "transparent",
-        font_color = "black", stroke = "blue", font_size_center = "12px", font_size = "8px",
+        font_color = "black", stroke = "black", font_size_center = "12px", font_size = "8px",
         margin_top=5, margin_right=5, margin_bottom=5, margin_left=5)
     }
   })
@@ -402,16 +554,18 @@ shinyServer(function(input, output, session) {
         'data:', a(sha_txt, href=sha_url))))
   })
 
-  output$hoverText <- renderText({
-    if (v$hi_id == 0){
-      sprintf("Global: %s km2", format(area_global, big.mark =','))
-    } else {
-      sprintf(
-        "%s: %s km2",
-        subset(rgns@data, rgn_id==v$hi_id, rgn_name, drop=T),
-        format(round(subset(rgns@data, rgn_id==v$hi_id, area_km2, drop=T)), big.mark =','))
-    }
+  # output$hoverText <- renderText({
+  #   if (v$hi_id == 0){
+  #     sprintf("Global: %s km2", format(area_global, big.mark =','))
+  #   } else {
+  #     sprintf(
+  #       "%s: %s km2",
+  #       subset(rgns@data, rgn_id==v$hi_id, rgn_name, drop=T),
+  #       format(round(subset(rgns@data, rgn_id==v$hi_id, area_km2, drop=T)), big.mark =','))
+  #   }
+  #   })
 
+  observeEvent(fileReaderData(), {
     # get remote_sha from file
     remote_sha <- fileReaderData()
 
@@ -428,7 +582,7 @@ shinyServer(function(input, output, session) {
 
           # git fetch & overwrite
           incProgress(1/n, detail = 'git fetch & reset')
-          system(sprintf('cd %s; git fetch %s; git reset --hard origin/%s', dir_data, y$gh_branch_data, y$gh_branch_data))
+          system(sprintf('cd %s; git fetch; git reset --hard origin/%s', dir_data, y$gh_branch_data))
           local_sha <<- devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
 
           # redo [scenario].Rdata files
@@ -488,8 +642,47 @@ shinyServer(function(input, output, session) {
     input$sunburst_mouseover
   })
 
-  output$selection <- renderUI(
-    selection())
+  output$selection <- renderUI({
+    v = selection()
+    if (is.null(v)) return(NULL)
+
+    n = length(v)
+    g = goals %>%
+        filter(goal == v[1])
+
+    if (n == 1){
+      return(HTML(sprintf(
+        'goal: <b>%s</b>\n<br>description: <i>%s</i>', g$name, g$description)))
+    }
+    if (n >= 2){
+      sg = goals %>%
+        filter(goal == v[2])
+      sg_name = ifelse(
+        v[1] == v[2],
+        sprintf('<b>%s</b> (%s)', g$name, v[1]),
+        sprintf('<b>%s</b> (%s) > <b>%s</b> (%s)', g$name, v[1], sg$name, v[2]))
+      sg_description = sg$description
+    }
+    if (n == 2){
+      return(HTML(sprintf(
+        'goal: %s (%s)\n<br>description: <i>%s</i>', sg_name, v[2], sg_description)))
+    }
+    #browser()
+    if (n == 3){
+      l_dim = c(p='pressure',r='resilience',s='status')[str_sub(v[3],1,1)]
+      l_id = str_sub(v[3], 3)
+      l = layers %>%
+        filter(layer == l_id)
+      return(HTML(sprintf(
+        'goal: %s\n<br>%s layer: <b>%s</b> (%s) \n<br>description: <i>%s</i>', sg_name, l_dim, l$name, l_id, l$description)))
+    }
+    # TODO: populate description
+    # el1: goal: name (code)
+    #  el2: subgoal: name (code) if goal != subgoal
+    #    el3: <status|pressures> layer: name (code)
+    # description: descriptions[length(v)]
+
+    })
 
   # message ----
   output$ui_msg <- renderUI({
@@ -499,6 +692,6 @@ shinyServer(function(input, output, session) {
           title='Messages', color='yellow', collapsible = T, width = 12, collapsed=F,
           'debug=T in app.yml\n',
           HTML(v$msg))) }
-  })
+    })
 
-  })
+})
