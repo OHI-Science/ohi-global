@@ -1,11 +1,16 @@
 gh_repo: ohi-global
 app_title: Global
-scenario_dirs: eez2015
+scenario_dirs:
+- eez2015
+- eez2012
+- eez2013
+- eez2014
+- eez2016
 gh_owner: OHI-Science
 gh_branch_data: draft
 gh_branch_app: app
 app_url: http://ohi-science.nceas.ucsb.edu/ohi-global
-projection: Mercator
+projection: Mollweide
 map_shrink_pct: 10.0
 debug: no
 ohirepos_commit: b28d60bd8412d4658998900e2e785b5499c4bf34
