@@ -187,4 +187,7 @@ scores_si <- read.csv('antarctica2015_seaice_explore/scores.csv') %>%
   rename(scores_si_ref=score)
 
 scores <- read.csv('antarctica2015/scores.csv') %>%
-  left_join(scores_si)
+  left_join(scores_si) %>%
+  mutate(change_in_score = scores_si_ref - score)
+
+write.csv(scores, "antarctica2015_seaice_explore/change_in_score.csv", row.names=FALSE)
