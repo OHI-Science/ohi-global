@@ -11,7 +11,11 @@ dashboardPage(
 
       menuItem("Explore", tabName='explore',icon=icon("globe",lib='font-awesome'), selected=T),
 
-      menuItem("Compare", tabName='compare',icon=icon("exchange",lib='font-awesome'), selected=F),
+      if(length(y$scenario_dirs) > 1){
+        menuItem("Compare", tabName='compare',icon=icon("exchange",lib='font-awesome'), selected=F)
+      } else {
+        span()
+      },
 
       selectInput(
         'sel_scenario',
@@ -102,9 +106,15 @@ dashboardPage(
               sunburstOutput("sunburst"),
               uiOutput("selection")),
 
-            tabPanel(
-              'Plot',
-              uiOutput('ui_boxplot')))),
+            if(length(y$scenario_dirs) > 1){
+              tabPanel(
+                'Plot',
+                uiOutput('ui_boxplot'))
+            } else {
+              span()
+            }
+            
+            )),
 
         uiOutput('ui_msg')
 

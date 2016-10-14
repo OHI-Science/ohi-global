@@ -1,5 +1,12 @@
 shinyServer(function(input, output, session) {
 
+  # hide compare ----
+  observeEvent(input$sidebarmenu, {
+    if (length(y$scenario_dirs) == 1){
+      shinyjs::hide(selector = "a[data-value=='compare']")    
+    }
+  })
+  
 
   # get_scenario ----
 
