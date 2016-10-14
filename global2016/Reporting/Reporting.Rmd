@@ -17,19 +17,17 @@ output:
 ---
 
 
-This document summarizes some of the results of the OHI 2016 global assessment.
+This document describes results from the OHI 2016 global assessment.
 
 Scores are broken down as follows: 
+
 1. Description of reference datasets and figures
-* Complete datasets (developed for website)
-* Figures that provide an overview of scores
 2. The global picture
-* Average global goal and index scores across years
-3. A closer look at the regions 
-* Regional goal and index scores for 2016
+3. A closer look at regions 
 4. Change over time: five year trends in scores
 5. Comparison of assessment years (what's changed do due to changes to models and/or data sources)
 6. A closer look at goals 
+7. Additional checks
 
 ```{r data set up, include=FALSE}
 
@@ -91,28 +89,28 @@ rgn_names$country[rgn_names$region_id == 157] <- "Phoenix Islands (Kiribati)"
 radical1 <- FALSE
 radical2 <- FALSE
 
+### code to run (change these if data is updated, otherwise takes a while to run):
+map_create=FALSE
+goal_hists=FALSE
+flower_plots=FALSE
 
 ```
 
 # Description of reference datasets and figures
-These datasets and figures include the complete data for the OHI 2016 assessment.
+The following datasets and figures include the complete data for the OHI 2016 assessment.
 
-## Complete datasets (compiled for website)
-Data files to generate content for http://www.oceanhealthindex.org/.
+### Datasets (compiled for website)
+Data files to generate content for the Ocean Health Index [website](http://www.oceanhealthindex.org/).
 
 Output files: 
 
 * [radical_*date*.csv](`r sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/radical_%s.csv', saveFile, radicalFile)`). This file is also used to generate the tables and figures in this document.
-* [`r sprintf('radicalv2_eez%s_*date*.csv', scenario)`](`r sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/radicalv2_eez2015_%s.csv', saveFile, radicalFile)`)
+    + File includes the EEZ (updated in 2012-2016), Antarctica (most recently calculated in 2015), and High Seas (most recently calculated in 2014) data.  However, years 2012 and 2013 do not have Antarctica or High Seas data.  And, the same High Seas and Antarctica data are used for years 2014, 2015, and 2016.
+    + Region 0 is the global average scores, which are calculated using an area-weighted average of the scores (status, likely future state, and score dimensions) for EEZ, Antarctica, and High Seas regions.
+    + Region 300 is the eez average scores, which are calculated using an area-weighted average of the scores (status, likely future state, and score dimensions) for the EEZ regions. 
+* [`r sprintf('radicalv2_eez%s_*date*.csv', scenario)`](`r sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/radicalv2_eez2016_%s.csv', saveFile, radicalFile)`). This file includes only the 2016 data, and is used in the Data Explorer.
 
-Some details about the files:
 
-* File includes the EEZ (updated in 2012-2016), Antarctica (most recently calculated in 2015), and High Seas (most recently calculated in 2014) data.  However, years 2012 and 2013 do not have Antarctica or High Seas data.  And, the same High Seas and Antarctica data are used for years 2014, 2015, and 2016.
-
-* Region 0 is the global average scores, which are calculated using an area-weighted average of the scores (status, likely future state, and score dimensions) for EEZ, Antarctica, and High Seas regions.
-
-* Region 300 is the eez average scores, which are calculated using an area-weighted average of the scores (status, likely future state, and score dimensions) for the EEZ regions. 
- 
 ```{r websites data, include=FALSE}
 
 ## These are run and saved if radical1 and radical2 arguments are TRUE
@@ -132,19 +130,18 @@ source('../Radical_scores_v2.R')
 
 ```
 
-## Figures that provide an overview of scores
-This carpet plot figure ([available as high resolution png]() provides a full overview of the scores from 2016 assessment.  
+### Figures that provide an overview of scores
+This carpet plot figure ([download as high resolution png](https://github.com/OHI-Science/ohi-global/raw/draft/global2016/Reporting/figures/carpetPlot_2016.png)) provides a full overview of the scores from the 2016 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 5 years of data.  Black regions indicate no data.
 
-Another resource that can be useful for examining scores is this [interactive plot]().  These plots can be used to (some example screen shots): 
+*Don't try too hard to interpret the results for specific countries/goals/years!!*
 
-*explore the distribution of scores*
-![](figures/GoogleVis_histogram.png) 
+This plot is good for providing a quick overview of things like:
 
-*compare different goal scores* 
-![](figures/GoogleVis_scatter.png) 
+* What is the range of scores?
+* Which goals tend to have high scores across most regions (species, habitat)
+* Which goals have a lot of variation across regions (tourism & recreation, lasting special places)
+* Which goals are volatile across years (natural products, tourism & recreation)
 
-*observe change over time*
-![](figures/GoogleVis_time.png) 
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 
@@ -179,6 +176,17 @@ ggsave(sprintf("figures/carpetPlot_%s.png", scenario), width=20, height=25, unit
 
 ```
 
+Another resource that can be useful for examining scores is this [interactive plot](https://rawgit.com/OHI-Science/ohi-global/draft/global2016/Reporting/figures/GoogleVisScores.html).  This can be used to (some example screen shots): 
+
+*explore the distribution of scores*
+![](figures/GoogleVis_histogram.png) 
+
+*compare different goal scores* 
+![](figures/GoogleVis_scatter.png) 
+
+*observe change over time*
+
+![](figures/GoogleVis_time.png) 
 
 ```{r GoogleVis, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -207,16 +215,16 @@ Motion=gvisMotionChart(data,
 print(Motion, file=sprintf('figures/GoogleVisScores.html', saveFile))
 
 ```
-## More figure resources
+### More figure resources
 
-* The location of maps describing goal and index scores are located [here]()
-* Flower plots are located [here]()
+* The location of maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2016/Reporting/figures/maps_by_goal_mol)
+* Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2016/Reporting/figures/FlowerPlots)
 
 
 # The global picture 
 This section describes global patterns in index and goal scores. If you are more interested in what is happening at the region scale, skip to the next section.
 
-## Average global goal and index scores across years
+### Average global goal and index scores across years
 
 (NOTE: Livelihood and economy goals are not included here)
 
@@ -265,9 +273,9 @@ kable(data_spread)
 # A closer look at the regions
 This section explores goal and index scores at the region level.  I mostly focus on the 2016 scores.
 
-## Regional goal and index scores for 2016
+### Regional goal and index scores for 2016
 
-This interactive table describes the index and goal scores for the regions in 2016 (and a [link]() to a color coded table, and a csv file can also be [downloaded]()).  
+This interactive table describes the index and goal scores for the regions in 2016 (and here's a [link](https://rawgit.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2016.html) to a color coded table, and a csv file can also be [downloaded](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2016.csv)).  
 ```{r score table, echo=FALSE}
 
 ## create a score dataframe 
@@ -304,7 +312,7 @@ data_final_inlay <- data_final %>%
   select(-region_id)
 
 datatable(data_final_inlay,
-          caption = '2015 OHI scores')
+          caption = '2016 OHI scores')
 
 
 ## make an html file that is color coded:
@@ -330,7 +338,7 @@ hwrite(data_final, sprintf('data/scores_eez%s.html', scenario), br=TRUE, center=
 ```
 
 
-## Distribution of scores
+### Distribution of scores
 The median index score was `r median(data_final$Index)`. The highest score was 91 for Howland Island and Baker Island, and the lowest score was 44 for Sierra Leone.  
 
 The following histogram describes the distribution of overall index scores:
@@ -368,16 +376,16 @@ low <- hist_data %>%
 kable(low)
 ```
 
-## Map of index scores
+### Map of index scores
 
-Map png files can be downloaded [here]().
+Map png files can be downloaded [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2016/Reporting/figures/maps_by_goal_mol).
 
-(Maps of goal scores will be presented later)
+(Maps of goal scores are described below)
 
 ![](figures/maps_by_goal_mol/global_map_Index_2016_mol.png) 
 
 
-``` {r Maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+``` {r Maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=map_create}
 
 ## Making the maps of goal scores that will be reported, these figures are not reported here, but will be called in 
 ## different parts of the text.
@@ -417,7 +425,9 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 # Change over time: five year trends in scores
 
-Color-coded table of 5 year trends available [here](), and a corresponding [csv file]().  This is calculated using a linear model of scores for each region/goal over the past 5 years.  Positive values indicate potentially increasing scores during the past 5 years and negative values indicate potentially decreasing scores.
+A color-coded table of 5 year trends is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/trends_2016.html) (and a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/trends_2016.csv)).  
+
+These values are calculated using a linear model of scores for each region/goal over the past 5 years.  Positive values indicate potentially increasing scores during the past 5 years and negative values indicate potentially decreasing scores.
 
 NOTE: Currently, these data include the livelihoods and economies goal but this trends should probably be calculated without this goal.
 
@@ -484,8 +494,8 @@ hwrite(trends_spread, sprintf('data/trends_%s.html', scenario), br=TRUE, center=
 
 ```
 
-## Trends of regional index scores
-The global average suggests a slight (but, probably negligeable) decrease in index scores during the past five years (-0.11), but there was a good deal of variation among regions.  The following histogram describes the distribution of trends in index scores:
+### Trends of regional index scores
+The global average suggests a slight (but, probably negligible) decrease in index scores during the past five years (-0.11), but there was a good deal of variation among regions.  The following histogram describes the distribution of trends in index scores:
 
 ```{r trend histogram, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 trends_hist <- trends %>%
@@ -525,7 +535,7 @@ kable(trends_order[(bottom-9):bottom, ])
 
 ```
 
-#### Trends of goal scores
+### Trends of goal scores
 Here is a summary of the mean and standard deviation of the trends for different goals:
 
 ```{r trend goals, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -545,6 +555,7 @@ kable(trends_goals)
 ```
 
 These scores require a closer look, but possible patterns include:
+
 * Scores for the artisanal opportunities goal appear to have increased by relatively small amounts for the majority of regions
 * Scores for the fisheries goal appear to be increasing for the majority of regions
 * Scores for the natural products appear to be overall decreasing, but there is a lot of variation, and some regions have had large increases
@@ -556,20 +567,20 @@ These scores require a closer look, but possible patterns include:
 
 The following is a comparison of the global status scores generated for 2015 by this year's assessment vs. last year's assessment. 
 
-If the models and source data remains the same, these scores should be exactly the same.  Differences indicate changes in methods or source data ([described here]()).  
+If the models and source data remains the same, these scores should be exactly the same.  Differences indicate changes in methods or source data ([described in this downloadable document](https://github.com/OHI-Science/ohi-global/raw/draft/global2016/Reporting/OHI%202016%20summary_v1.docx)).  
 
 These changes do not reflect changes in actual system health!   
 
 
-## Global averages
+### Global averages
 The following goals had the largest changes:
 
-* Artisanal opportunity (biggest change: +11 points): Reference point of need layer adjusted to avoid scores being driven by outliers
+* Artisanal opportunity (biggest change: +11 points): Reference point of need data adjusted to avoid scores being driven by outliers
 * Species condition/biodiversity (+8 points): Addition of bird species tended to increase status scores
 * Mariculture (+6 points): Changes to source data
-* Fisheries (-4 points): Decrease is due primarily to increase in number of stocks classified as "unidentified" in source data
+* Fisheries (-4 points): Decrease is due primarily to increase in number of stocks classified as "unidentified" in source data (plus, a lot of other changes)
 
-The rest of the goals/subgoals changed by less than 3 points.
+The rest of the goals/subgoals changed by less than 3 points (on average, although regions might be highly variable).
 
 ```{r compare assessments, echo=FALSE}
 
@@ -603,17 +614,13 @@ kable(data_old)
 
 ```
 
-## Regional data
+### Regional data
 
-## Comparing assessment years: regional scores
-
-This colorcoded [dataset]() compares the 2015 index scores generated for each region and goal between this year's and last year's assessment.  
-
-Although a goal may have had little average change, some regions may have very different scores.  
+This color-coded [table](https://rawgit.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/change_in_scores_benchmark2015_eez2016.html) compares the 2015 index scores generated for each region/goal between this year's and last year's assessment.  
 
 Because these are index scores, changes reflect updates to pressure and resilience scores as well as status.  
 
-The following plot provides an overview of how the 2015 scores changed between the 2015 and 2016 assessment.
+The following interactive plot provides an overview of how the 2015 scores changed between the 2015 and 2016 assessment for all goals and dimensions.
 
 ```{r compare plot, echo=FALSE}
 
@@ -730,14 +737,15 @@ hwrite(compare_wide, sprintf('data/change_in_scores_benchmark%s_eez%s.html', ben
 ```
 
 Some general pattern in these data:
-* Fisheries/Food provisioning: Lots of changes all over the place due to changes in source data
+
+* Fisheries/Food provisioning: Lots of changes all over the place due to changes in source data and other changes to methods
 * Artisanal opportunity: consistently increased for most regions due to change in reference point
 
 # A closer look at goals
 
 This section takes a closer look at each goal/subgoal.  I do not include goals that are comprised of multiple subgoals, although the subgoals are described.
 
-```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
 
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
@@ -770,7 +778,8 @@ ggsave(g, filename=sprintf("figures/goal_histograms/%s_scores.png", goal))
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=AO) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -799,7 +808,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=SPP) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -827,7 +837,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=HAB) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -835,7 +846,7 @@ kable(top)
 ```
 
 ### Bottom 10 performers
-```{bottom HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+```{r bottom HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
@@ -856,7 +867,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=CP) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -885,7 +897,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=CS) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -913,7 +926,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=CW) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -941,7 +955,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=FIS) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -969,7 +984,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=MAR) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -997,7 +1013,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=AO) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -1025,7 +1042,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=LSP) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -1053,7 +1071,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=NP) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -1081,7 +1100,8 @@ kable(bottom)
 data <- read.csv('data/scores_eez2016.csv') %>%
   filter(region_id != 0) %>%
   select(country, score=TR) %>%
-  arrange(-score)
+  arrange(-score) %>%
+  filter(!is.na(score))
 
 top <- data[1:10, ]
 kable(top)
@@ -1097,9 +1117,43 @@ kable(bottom)
 
 ```
 
+# Additional checks
+This table describes the years of data that were used for each goal for each assessment year.
 
 
-```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4, fig.height=4}
+```{r status years, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+
+# Creates a table showing years of data used for each goal
+scenarios <- 2012:scenario
+
+data <- data.frame(goals = goals[-1])
+
+for (scenarioYear in scenarios){ # scenarioYear = 2015
+
+    f <-  read.csv(sprintf('../../eez%s/conf/goals.csv', scenarioYear)) %>%
+      select(goal, preindex_function)
+
+goalsYears <- c()    
+    for(goal in goals[-1]){ # goal = "FIS"  goal = "AO"
+    g <- f[f$goal == goal, ]
+    year <- as.numeric(gsub("[^\\d]+", "", g$preindex_function, perl=TRUE))
+    
+    year <- ifelse(length(year)==0, NA, year)
+    goalsYears <- c(goalsYears, year)
+    }
+
+goalsYears <- data.frame(goalsYears)
+names(goalsYears) <- paste('eez', scenarioYear, sep="_")
+data <- cbind(data, goalsYears)
+}
+
+kable(data,format="pandoc",caption="Years used in analysis")
+
+```
+
+
+
+```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4, fig.height=4, eval = flower_plots}
 
 # This generates the flower plots:
 
@@ -1254,39 +1308,6 @@ print(p)
 ```
 
 
-
-
-```{r status years, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
-
-# Creates a table showing years of data used for each goal
-setwd(dir_global)
-
-scenarios <- 2012:scenario
-
-data <- data.frame(goals = goals[-1])
-
-for (scenarioYear in scenarios){ # scenarioYear = 2015
-
-    f <-  read.csv(sprintf('eez%s/conf/goals.csv', scenarioYear)) %>%
-      select(goal, preindex_function)
-
-goalsYears <- c()    
-    for(goal in goals[-1]){ # goal = "FIS"  goal = "AO"
-    g <- f[f$goal == goal, ]
-    year <- as.numeric(gsub("[^\\d]+", "", g$preindex_function, perl=TRUE))
-    
-    year <- ifelse(length(year)==0, NA, year)
-    goalsYears <- c(goalsYears, year)
-    }
-
-goalsYears <- data.frame(goalsYears)
-names(goalsYears) <- paste('eez', scenarioYear, sep="_")
-data <- cbind(data, goalsYears)
-}
-
-kable(data,format="pandoc",caption="Years used in analysis")
-
-```
 
 
 
