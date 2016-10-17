@@ -160,10 +160,6 @@ le_sector_weight,LE pressures,description,Jobs weighting by sector (defaulting t
 le_sector_weight,LE pressures,data_prep_url,
 le_popn,LIV ECO,description,Population data from The World Bank
 le_popn,LIV ECO,data_prep_url,
-liveco_status,LIV ECO,description,Modeled livelihoods and economies status based on new approach
-liveco_status,LIV ECO,data_prep_url,
-liveco_trend,LIV ECO,description,Modeled livelihoods and economies trend based on new approach
-liveco_trend,LIV ECO,data_prep_url,
 lsp_prot_area_inland1km,LSP,description,"Coastal protected areas inland to 1km from the UN WDPA. 
 
 "
@@ -347,6 +343,8 @@ sp_genetic,pressures,description,"Statistics on native or introduced species fro
 "
 sp_genetic,pressures,source1,"Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28'56."
 sp_genetic,pressures,data_prep_url,
+ss_spi,pressures,description,Inverse of the average of 3 categories evaluating social progress
+ss_spi,pressures,data_prep_url,
 ss_wgi,pressures,description,"Inverse of World Governance Indicators (WGI) six combined scores.
 
 "
@@ -458,6 +456,8 @@ po_water,resilience,source1,Convention on Biological Diversity (CBD)
 po_water,resilience,source_url1,"http://www.cbd.int/reports/search/default.shtml
 "
 po_water,resilience,data_prep_url,
+res_spi,resilience,description,Average of 3 categories evaluating social progress
+res_spi,resilience,data_prep_url,
 sp_alien_species,resilience,description,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
 
 "
@@ -484,12 +484,6 @@ wgi_all,resilience,description,"World Governance Indicators (WGI) six combined s
 wgi_all,resilience,source1,Worldwide Governance Indicators (WGI)
 wgi_all,resilience,source_url1,http://info.worldbank.org/governance/wgi/index.asp
 wgi_all,resilience,data_prep_url,
-cntry_georegions,spatial,description,"Lookup table of country codes and UN georegions at 3 georegion levels.
-
-"
-cntry_georegions,spatial,source1,UN geographical region and composition
-cntry_georegions,spatial,source_url1,http://unstats.un.org/unsd/methods/m49/m49regin.htm
-cntry_georegions,spatial,data_prep_url,
 cntry_rgn,spatial,description,"Lookup table of country codes (based on ISO 3166 country codes) and Ocean Health Index region idenifiers.
 
 "
@@ -513,13 +507,6 @@ rgn_area_offshore3nm,spatial,source1,"VLIZ Maritime Boundaries Geodatabase, vers
 rgn_area_offshore3nm,spatial,source_url1,"http://www.marineregions.org/
 "
 rgn_area_offshore3nm,spatial,data_prep_url,
-rgn_georegion_labels,spatial,description,"Lookup table of Ocean Health Index regions and UN georegion names at 3 georegion levels.
-
-"
-rgn_georegion_labels,spatial,source1,UN geographical region and composition
-rgn_georegion_labels,spatial,source_url1,"http://unstats.un.org/unsd/methods/m49/m49regin.htm
-"
-rgn_georegion_labels,spatial,data_prep_url,
 rgn_georegions,spatial,description,"Lookup table of Ocean Health Index regions and UN georegion identifiers at 3 georegion levels.
 
 "
