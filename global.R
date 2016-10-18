@@ -31,7 +31,7 @@ pkgs_df = tibble::tribble(
   'explodingboxplotR', 'Github',                  list(repo='timelyportfolio/explodingboxplotR'),           '',
   'ohicore',           'Github',                    list(repo='ohi-science/ohicore' , ref='dev'),           '',
   'htmlwidgets',       'Github',       list(repo='ramnathv/htmlwidgets', ref=github_pull('237')),           '',
-  'aster',             'Github',   list(repo='ohi-science/ohi-aster' , subdir='asterHTMLwidget'),           '',
+  'ohiaster',          'Github',   list(repo='ohi-science/ohi-aster' , subdir='asterHTMLwidget'),           '',
   'sunburstR',         'Github',                          list(repo='timelyportfolio/sunburstR'),           '')
 
 install_packages = function(pkgs){
