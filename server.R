@@ -516,7 +516,7 @@ shinyServer(function(input, output, session) {
         filter( region_id == v$hi_id, dimension == 'score', goal == 'Index') %>%
         .$score
 
-      aster(data, score,
+      ohiaster(data, score,
         background_color = "transparent",
         font_color = "black", stroke = "black", font_size_center = "12px", font_size = "8px",
         margin_top=5, margin_right=5, margin_bottom=5, margin_left=5)
