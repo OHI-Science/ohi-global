@@ -1,16 +1,21 @@
 "targets","layer","fld_value","filename","fld_id_num","fld_id_chr","fld_category","fld_year","fld_val_num","fld_val_chr","file_exists","year_min","year_max","val_min","val_max","val_0to1","flds_unused","flds_missing","rows_duplicated","num_ids_unique","data_na"
 "AO","ao_access","value","ao_access.csv","rgn_id",,,,"value",,TRUE,,,0,0.854,TRUE,,,,34,FALSE
 "AO","ao_need","value","ao_need.csv","rgn_id",,,"year","value",,TRUE,2005,2015,0.0107294720608492,1,TRUE,,,,34,FALSE
+"CP CS HAB","hab_extent","km2","hab_extent.csv","rgn_id",,"habitat",,"km2",,TRUE,,,0,3804040,FALSE,,,,34,FALSE
+"CP CS HAB","hab_health","health","hab_health.csv","rgn_id",,"habitat",,"health",,TRUE,,,0,1,TRUE,,,,34,FALSE
+"CP CS HAB","hab_trend","trend","hab_trend.csv","rgn_id",,"habitat",,"trend",,TRUE,,,-1,1,FALSE,,,,34,FALSE
 "CW","cw_chemical_trend","trend","cw_chemical_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.3383,0.3489,FALSE,,,,34,FALSE
 "CW","cw_nutrient_trend","trend","cw_nutrient_trend.csv","rgn_id",,,,"trend",,TRUE,,,-1,1,FALSE,,,,34,FALSE
 "CW","cw_pathogen_trend","trend","cw_pathogen_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.53,0.46,FALSE,,,,34,FALSE
 "CW","cw_trash_trend","trend","cw_trash_trend.csv","rgn_id",,,,"trend",,TRUE,,,-0.209086973997465,1,FALSE,,,,34,FALSE
+"CW pressures","po_chemicals_3nm","pressure_score","po_chemicals_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000314089840492316,0.989136420903632,TRUE,,,,34,FALSE
+"CW pressures","po_nutrients_3nm","pressure_score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.573679033815291,TRUE,,,,34,FALSE
+"CW pressures","po_pathogens","pressure_score","po_pathogens.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.909090909090909,TRUE,,,,34,FALSE
+"CW pressures","po_trash","pressure_score","po_trash.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0223096329122635,0.843154478466252,TRUE,,,,34,FALSE
+"ECO LIV","le_popn","count","le_popn.csv","rgn_id",,,"year","count",,TRUE,1960,2012,0,1350695000,FALSE,,,,34,FALSE
 "FIS","fis_b_bmsy","bbmsy","fis_b_bmsy.csv","rgn_id",,"stock_id","year","bbmsy",,TRUE,2001,2010,0.0154,10.7,FALSE,,,,34,FALSE
 "FIS","fis_meancatch","mean_catch","fis_meancatch.csv","rgn_id",,"stock_id_taxonkey","year","mean_catch",,TRUE,2001,2010,3.36290652419971e-17,6153125.16129057,FALSE,,,,34,FALSE
 "FP","fp_wildcaught_weight","w_fis","fp_wildcaught_weight.csv","rgn_id",,,,"w_fis",,TRUE,,,0.177077502464229,1,TRUE,,,,34,FALSE
-"HAB CS CP","hab_extent","km2","hab_extent.csv","rgn_id",,"habitat",,"km2",,TRUE,,,0,3804040,FALSE,,,,34,FALSE
-"HAB CS CP","hab_health","health","hab_health.csv","rgn_id",,"habitat",,"health",,TRUE,,,0,1,TRUE,,,,34,FALSE
-"HAB CS CP","hab_trend","trend","hab_trend.csv","rgn_id",,"habitat",,"trend",,TRUE,,,-1,1,FALSE,,,,34,FALSE
 "ICO","ico_spp_iucn_status","category","ico_spp_iucn_status.csv","rgn_id",,"sciname","year",,"category",TRUE,2000,2016,,,FALSE,"iucn_sid",,8432,34,
 "LE","le_gdp","usd","le_gdp.csv",,"cntry_key",,"year","usd",,TRUE,1996,2011,22820838.02,14675462506263.5,FALSE,,,,34,FALSE
 "LE","le_gdp_pc_ppp","usd","le_gdp_pc_ppp.csv",,"cntry_key",,"year","usd",,TRUE,1980,2012,82.65764088,86506.63612,FALSE,,,,34,FALSE
@@ -33,9 +38,10 @@
 "LE","le_wage_sector_year","value","le_wage_sector_year.csv",,"cntry_key","sector","year","value",,TRUE,1993,2008,0,436558.72173255,FALSE,,,,34,FALSE
 "LE","le_workforcesize_adj","jobs","le_workforcesize_adj.csv",,"cntry_key",,"year","jobs",,TRUE,1990,2012,0,791711771.342352,FALSE,,,,34,FALSE
 "LE pressures","le_sector_weight","weight","le_sector_weight.csv","rgn_id",,"sector",,"weight",,TRUE,,,1,1,TRUE,,,,34,FALSE
-"LIV ECO","le_popn","count","le_popn.csv","rgn_id",,,"year","count",,TRUE,1960,2012,0,1350695000,FALSE,,,,34,FALSE
 "LSP","lsp_prot_area_inland1km","a_prot_1km","lsp_prot_area_inland1km.csv","rgn_id",,,"year","a_prot_1km",,TRUE,2000,2015,0,30449.5,FALSE,,,,34,FALSE
 "LSP","lsp_prot_area_offshore3nm","a_prot_3nm","lsp_prot_area_offshore3nm.csv","rgn_id",,,"year","a_prot_3nm",,TRUE,2000,2015,0,99060,FALSE,,,,34,FALSE
+"LSP","rgn_area_inland1km","area","rgn_area_inland1km.csv","rgn_id",,,,"area",,TRUE,,,1,175147,FALSE,,,,34,FALSE
+"LSP","rgn_area_offshore3nm","area","rgn_area_offshore3nm.csv","rgn_id",,,,"area",,TRUE,,,12.75,621887.75,FALSE,,,,34,FALSE
 "MAR","mar_coastalpopn_inland25mi","popsum","mar_coastalpopn_inland25mi.csv","rgn_id",,,"year","popsum",,TRUE,2005,2015,0,254433578,FALSE,,,,34,FALSE
 "MAR","mar_harvest_tonnes","tonnes","mar_harvest_tonnes.csv","rgn_id",,"taxa_code","year","tonnes",,TRUE,1950,2014,0,4352694,FALSE,,,,34,FALSE
 "MAR","mar_sustainability_score","sust_coeff","mar_sustainability_score.csv","rgn_id",,"taxa_code",,"sust_coeff",,TRUE,,,0.1,1,TRUE,,,,34,FALSE
@@ -62,10 +68,6 @@
 "pressures","sp_genetic","pressure_score","sp_genetic.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.1,1,TRUE,,,,34,FALSE
 "pressures","ss_spi","pressure_score","ss_spi.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0991,0.629592741607178,TRUE,,,,34,FALSE
 "pressures","ss_wgi","pressure_score","ss_wgi.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.130868633588155,0.94853341182073,TRUE,,,,34,FALSE
-"pressures CW","po_chemicals_3nm","pressure_score","po_chemicals_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.000314089840492316,0.989136420903632,TRUE,,,,34,FALSE
-"pressures CW","po_nutrients_3nm","pressure_score","po_nutrients_3nm.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.573679033815291,TRUE,,,,34,FALSE
-"pressures CW","po_pathogens","pressure_score","po_pathogens.csv","rgn_id",,,,"pressure_score",,TRUE,,,0,0.909090909090909,TRUE,,,,34,FALSE
-"pressures CW","po_trash","pressure_score","po_trash.csv","rgn_id",,,,"pressure_score",,TRUE,,,0.0223096329122635,0.843154478466252,TRUE,,,,34,FALSE
 "pressures resilience","element_wts_cp_km2_x_protection","extent_rank","element_wts_cp_km2_x_protection.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.000108,2800227.27272727,FALSE,,,,34,FALSE
 "pressures resilience","element_wts_cs_km2_x_storage","extent_rank","element_wts_cs_km2_x_storage.csv","rgn_id",,"habitat",,"extent_rank",,TRUE,,,0.003753,3317914.748642,FALSE,,,,34,FALSE
 "pressures resilience","element_wts_hab_pres_abs","boolean","element_wts_hab_pres_abs.csv","rgn_id",,"habitat",,"boolean",,TRUE,,,1,1,TRUE,,,,34,FALSE
@@ -91,8 +93,6 @@
 "resilience","wgi_all","resilience_score","wgi_all.csv","rgn_id",,,,"resilience_score",,TRUE,,,0.0514665881792704,0.869131366411845,TRUE,,,,34,FALSE
 "spatial","cntry_rgn","rgn_id","cntry_rgn.csv",,"cntry_key",,,"rgn_id",,TRUE,,,1,250,FALSE,,,,34,FALSE
 "spatial","rgn_area","area_km2","rgn_area.csv","rgn_id",,,,"area_km2",,TRUE,,,12.7630587776,31886958.884907,FALSE,,,,34,FALSE
-"spatial","rgn_area_inland1km","area","rgn_area_inland1km.csv","rgn_id",,,,"area",,TRUE,,,1,175147,FALSE,,,,34,FALSE
-"spatial","rgn_area_offshore3nm","area","rgn_area_offshore3nm.csv","rgn_id",,,,"area",,TRUE,,,12.75,621887.75,FALSE,,,,34,FALSE
 "spatial","rgn_georegions","georgn_id","rgn_georegions.csv","rgn_id",,"level",,"georgn_id",,TRUE,,,1,999,FALSE,,,,34,FALSE
 "spatial","rgn_global","label","rgn_global.csv","rgn_id",,,,,"label",TRUE,,,,,FALSE,,,,34,
 "spatial","rgn_labels","label","rgn_labels.csv","rgn_id",,"type",,,"label",TRUE,,,,,FALSE,,,,34,
