@@ -5,18 +5,13 @@ if(radical2 == TRUE){
 ## See issue #515 for details
 ###############################################
 
-# library(dplyr)
-# library(tidyr)
-# setwd("~/ohi-global")
-
-# scenario <- "2015"
 
 ## data needs to be in this order: component_id, component_name, goal, dimension, scenario, region_id, value, units, source
-layers <- read.csv(sprintf('%s/layers_2015.csv', saveFile)) %>%
+layers <- read.csv(sprintf('../layers_%s.csv', scenario)) %>%
   filter(radical_include=="yes") %>%
-  select(component_id, component_name, component_label, goal, dimension, scenario, units, source, url, location)
+  select(component_id, component_label, goal, dimension, scenario, units, source, url, location)
 table(layers$goal) 
-
+sort(layers$component_id)
 
 ## Note: the layers for the following goals were not added due to formatting that does not lend itself to the data playground
 # FIS: There are an undefined number of fish records for each region and most regions have a lot of records
@@ -24,7 +19,6 @@ table(layers$goal)
 # MAR: There are an undefined number of mariculture records for each region (however, there might be some intermediate data that we can use for this)
 # ICO: There are an undefined number of iconic species records for each region and most regions have a lot of records
 # SPP: The layers are the trend/status (calculated outside the toolbox); consequently, this information only duplicates the results
-# tr_travelwarnings (part of the TR goal): These data are reported for the country rather than the region; the other TR layers are provided
 
 # BD and SP are calculated from subgoals
 
@@ -38,7 +32,7 @@ pressures <- layers %>%
   filter(goal=="pressures") %>%
   select(-goal)
 
-pMatrix <- read.csv(sprintf('eez%s/conf/pressures_matrix.csv', scenario))
+pMatrix <- read.csv(sprintf('../../eez%s/conf/pressures_matrix.csv', scenario))
 
 pMatrix <- gather(pMatrix, "component_id", "weight", 4:ncol(pMatrix)) %>%
   group_by(goal, component_id) %>%
@@ -66,7 +60,7 @@ res <- layers %>%
   filter(goal=="resilience") %>%
   select(-goal)
 
-rMatrix <- read.csv(sprintf('eez%s/conf/resilience_matrix.csv', scenario))
+rMatrix <- read.csv(sprintf('../../eez%s/conf/resilience_matrix.csv', scenario))
 
 rMatrix <- gather(rMatrix, "component_id", "weight", 3:ncol(rMatrix)) %>%
   filter(weight != "") %>%
@@ -108,7 +102,7 @@ pres_res_data <- data.frame()
 
 for(comp in p_components) { # comp="wgi_all"
   location <- unique(layers$location[layers$component_id %in% comp]) 
-  data <- read.csv(sprintf('eez%s/%s/%s.csv', scenario, location, comp))
+  data <- read.csv(sprintf('../../eez%s/%s/%s.csv', scenario, location, comp))
   
   names(data)[which(names(data)=="rgn_id")] <- "region_id"
   names(data)[which(names(data) != "region_id")] <- "value"
@@ -158,16 +152,17 @@ for(goal in goals_sub){ # goal='NP'
   
 status_components <- stat_trend_layers$component_id[stat_trend_layers$goal == goal]
 
+# These have subcomponents
 status_components <- status_components[! status_components %in%  c("np_harvest_product_weight", "np_harvest_tonnes", "np_harvest_tonnes_relative")] # remove these because they have subcomponents
 
 s_t_radical_comp <- data.frame()
 
 for(comp in status_components) { # comp="np_blast"
   location <- unique(layers$location[layers$component_id %in% comp]) 
-  data <- read.csv(sprintf('eez%s/%s/%s.csv', scenario, location, comp))  
+  data <- read.csv(sprintf('../../eez%s/%s/%s.csv', scenario, location, comp))  
   
-if(sum(grepl("year", names(data)))>0){    
-  f <-  read.csv(sprintf('eez%s/conf/goals.csv', scenario)) %>%
+if(sum(grepl("year", names(data)))>0){ ## if there is a year variable, have to select the correct year    
+  f <-  read.csv(sprintf('../../eez%s/conf/goals.csv', scenario)) %>%
     select(goal, preindex_function)
   f <- f[f$goal == goal, ]
   year <- as.numeric(gsub("[^\\d]+", "", f$preindex_function, perl=TRUE))
@@ -179,7 +174,7 @@ if(sum(grepl("year", names(data)))>0){
 names(data)[which(names(data)=="rgn_id")] <- "region_id"
 names(data)[which(names(data) != "region_id")] <- "value"
 data$component_id = comp
-data$component_name = unique(layers$component_name[layers$component_id == comp])
+#data$component_name = unique(layers$component_name[layers$component_id == comp])
 data$component_label = unique(layers$component_label[layers$component_id == comp])
 data$goal = goal
 data$url = unique(layers$url[layers$component_id == comp])
@@ -202,10 +197,10 @@ np_components <- np_components[! (np_components %in% c('np_blast', 'np_cyanide')
 for(comp in np_components) { # comp='np_harvest_tonnes_relative'
   
   location <- unique(layers$location[layers$component_id %in% comp]) 
-  data <- read.csv(sprintf('eez%s/%s/%s.csv', scenario, location, comp))
+  data <- read.csv(sprintf('../../eez%s/%s/%s.csv', scenario, location, comp))
   
 if(sum(grepl("year", names(data)))>0){
-    f <-  read.csv(sprintf('eez%s/conf/goals.csv', scenario)) %>%
+    f <-  read.csv(sprintf('../../eez%s/conf/goals.csv', scenario)) %>%
       select(goal, preindex_function)
     f <- f[f$goal == "NP", ]
     year <- as.numeric(gsub("[^\\d]+", "", f$preindex_function, perl=TRUE))
@@ -218,7 +213,7 @@ if(sum(grepl("year", names(data)))>0){
   names(data)[which(names(data)=="rgn_id")] <- "region_id"
   names(data)[which(!(names(data) %in% c("region_id", "product")))] <- "value"
   data$component_id = comp
-  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$product)
+#  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$product)
   data$component_label = paste0(unique(layers$component_label[layers$component_id == comp]), 
                                 ": ", data$product)
   data$subcomponent_id = data$product
@@ -228,7 +223,9 @@ if(sum(grepl("year", names(data)))>0){
   
     
   data <- data %>%
-    select(region_id, value, component_id, component_name, component_label, goal, url, subcomponent_id)
+    select(region_id, value, component_id, 
+           #component_name, 
+           component_label, goal, url, subcomponent_id)
   
   s_t_radical <- rbind(s_t_radical, data)    
 }
@@ -245,13 +242,13 @@ hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %
 for(comp in hab_components) { # comp="hab_extent"
   
   location <- unique(layers$location[layers$component_id %in% comp]) 
-  data <- read.csv(sprintf('eez%s/%s/%s.csv', scenario, location, comp)) %>%
+  data <- read.csv(sprintf('../../eez%s/%s/%s.csv', scenario, location, comp)) %>%
   filter(habitat %in% c('coral','mangrove','saltmarsh','seaice_edge','seagrass','soft_bottom'))
   
   names(data)[which(names(data)=="rgn_id")] <- "region_id"
   names(data)[which(!(names(data) %in% c("region_id", "habitat")))] <- "value"
   data$component_id = comp
-  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
+#  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
   data$component_label = paste0(unique(layers$component_label[layers$component_id == comp & layers$goal == 'HAB']),
                                 ": ", 
                                 data$habitat)
@@ -261,7 +258,9 @@ for(comp in hab_components) { # comp="hab_extent"
   
     
   data <- data %>%
-    select(region_id, value, component_id, component_name, component_label, goal, url, subcomponent_id) %>%
+    select(region_id, value, component_id, 
+           #component_name, 
+           component_label, goal, url, subcomponent_id) %>%
     unique()
   
   s_t_radical <- rbind(s_t_radical, data)    
@@ -276,14 +275,14 @@ hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %
 for(comp in hab_components) { # comp="cp_hab_contributions"
   
      location <- unique(layers$location[layers$component_id %in% comp]) 
-      data <- read.csv(sprintf('eez%s/%s/%s.csv', scenario, location, comp)) %>%
-      filter(habitat %in% c('coral','mangrove','saltmarsh','seagrass'))
+      data <- read.csv(sprintf('../../eez%s/%s/%s.csv', scenario, location, comp)) %>%
+      filter(habitat %in% c('coral','mangrove','saltmarsh','seagrass', 'seaice_edge'))
       
       
   names(data)[which(names(data)=="rgn_id")] <- "region_id"
   names(data)[which(!(names(data) %in% c("region_id", "habitat")))] <- "value"
   data$component_id = comp
-  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
+#  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
   data$goal = 'CP'
   data$subcomponent_id = data$habitat
   data$component_label = paste0(unique(layers$component_label[layers$component_id == comp & layers$goal=="CP"]), ": ",
@@ -292,7 +291,9 @@ for(comp in hab_components) { # comp="cp_hab_contributions"
   
 
   data <- data %>%
-    select(region_id, value, component_id, component_name, component_label, goal, url, subcomponent_id) %>%
+    select(region_id, value, component_id, 
+           #component_name, 
+           component_label, goal, url, subcomponent_id) %>%
     unique()
   
   s_t_radical <- rbind(s_t_radical, data)    
@@ -307,13 +308,13 @@ hab_components <- unique(stat_trend_layers$component_id[stat_trend_layers$goal %
 for(comp in hab_components) { # comp="cs_hab_contributions"
   
   location <- unique(layers$location[layers$component_id %in% comp]) 
-  data <- read.csv(sprintf('eez%s/%s/%s.csv', scenario, location, comp)) %>%
+  data <- read.csv(sprintf('../../eez%s/%s/%s.csv', scenario, location, comp)) %>%
     filter(habitat %in% c('mangrove','saltmarsh','seagrass'))
   
   names(data)[which(names(data)=="rgn_id")] <- "region_id"
   names(data)[which(!(names(data) %in% c("region_id", "habitat")))] <- "value"
   data$component_id = comp
-  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
+#  data$component_name = paste0(layers$component_name[layers$component_id == comp], ": ", data$habitat)  
   data$goal = 'CS'
   data$subcomponent_id = data$habitat
   data$component_label = paste0(unique(layers$component_label[layers$component_id == comp & layers$goal=="CS"]), 
@@ -321,7 +322,9 @@ for(comp in hab_components) { # comp="cs_hab_contributions"
   data$url = unique(layers$url[layers$component_id == comp])
   
   data <- data %>%
-    select(region_id, value, component_id, component_name, component_label, goal, url, subcomponent_id) %>%
+    select(region_id, value, component_id, 
+           #component_name, 
+           component_label, goal, url, subcomponent_id) %>%
     unique()
   
   s_t_radical <- rbind(s_t_radical, data)    
@@ -348,13 +351,15 @@ radical <- p_r_radical %>%
   filter(!is.na(region_id)) %>%
   filter(region_id <= 250) %>%
   filter(region_id != 213) %>%
-  select(component_id, subcomponent_id, component_name, component_label, goal, dimension, scenario, region_id, value, units, source, url)
+  select(component_id, subcomponent_id, 
+         #component_name, 
+         component_label, goal, dimension, scenario, region_id, value, units, source, url)
  
 #-----------------------------------------------------------------------------------
 ### adding trend data
 #-----------------------------------------------------------------------------------
 
-trends <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
+trends <-  read.csv(sprintf('../../eez%s/scores.csv', scenario)) %>%
   filter(dimension=="trend") %>%
   mutate(component_id = paste0("trend_", goal)) %>%
   mutate(subcomponent_id = NA) %>%
@@ -364,7 +369,9 @@ trends <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
   mutate(units = NA) %>%
   mutate(source = "toolbox calculation: change in status during past 5 years") %>%
   mutate(url = NA) %>%
-  select(component_id, subcomponent_id, component_name, component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
+  select(component_id, subcomponent_id, 
+         #component_name, 
+         component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
   
 radical_final <- rbind(radical, trends)
 
@@ -372,36 +379,40 @@ radical_final <- rbind(radical, trends)
 ### adding score/status data for subgoals/goals without data layers that can easily be used
 #-----------------------------------------------------------------------------------
 
-scores <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
+scores <-  read.csv(sprintf('../../eez%s/scores.csv', scenario)) %>%
   filter(goal %in% c('FIS', 'LIV', 'ECO', 'MAR', 'ICO', 'SPP')) %>%
   filter(dimension=="score") %>%
   mutate(component_id = paste0("score_", goal)) %>%
   mutate(subcomponent_id = NA) %>%
-  mutate(component_name = paste0("score: ", goal)) %>%
+#  mutate(component_name = paste0("score: ", goal)) %>%
   mutate(component_label = paste0("Calculated Score: ", goal)) %>%
-  mutate(scenario = "2015") %>%
+  mutate(scenario = "2016") %>%
   mutate(units = NA) %>%
   mutate(source = "toolbox calculated value") %>%
   mutate(url = NA) %>%
   mutate(score = score/100) %>%  ### NOTE: This is in response to the website needing all values between 0-1
-  select(component_id, subcomponent_id, component_name, component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
+  select(component_id, subcomponent_id, 
+         #component_name, 
+         component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
 
 radical_final <- rbind(radical_final, scores)
 
 
-status <-  read.csv(sprintf('eez%s/scores.csv', scenario)) %>%
+status <-  read.csv(sprintf('../../eez%s/scores.csv', scenario)) %>%
   filter(goal %in% c('FIS', 'LIV', 'ECO', 'MAR', 'ICO', 'SPP')) %>%
   filter(dimension=="status") %>%
   mutate(component_id = paste0("status_", goal)) %>%
   mutate(subcomponent_id = NA) %>%
-  mutate(component_name = paste0("status: ", goal)) %>%
+#  mutate(component_name = paste0("status: ", goal)) %>%
   mutate(component_label = paste0("Calculated Status: ", goal)) %>%
-  mutate(scenario = "2015") %>%
+  mutate(scenario = "2016") %>%
   mutate(units = NA) %>%
   mutate(source = "toolbox calculated value") %>%
   mutate(url = NA) %>%
   mutate(score = score/100) %>%  ### NOTE: This is in response to the website needing all values between 0-1
-  select(component_id, subcomponent_id, component_name, component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
+  select(component_id, subcomponent_id, 
+         #component_name, 
+         component_label, goal, dimension, scenario, region_id, value=score, units, source, url)
 
 radical_final <- rbind(radical_final, status)
 
@@ -412,11 +423,13 @@ radical_final <- rbind(radical_final, status)
 radical_final <-  radical_final %>%
   mutate(radical_component_id = paste(component_id, subcomponent_id, goal, substring(dimension, 1,1), sep="_")) %>%
   select(ohi_component_id = component_id, component_id = radical_component_id, subcomponent_id, 
-         component_label, component_name, goal, dimension, scenario, region_id, value, units, source)
+         component_label, 
+         #component_name, 
+         goal, dimension, scenario, region_id, value, units, source)
 
 
 ## add component urls (email 10/2/2015)
-url <- read.csv('global2015/component_urls.csv') %>%
+url <- read.csv('../component_urls.csv') %>%
   select(component_id = ohi_id, url)
 setdiff(url$component_id, radical_final$component_id)
 setdiff(radical_final$component_id, url$component_id)
@@ -428,14 +441,12 @@ radical_final <- radical_final %>%
 rgn_names2 <- rgn_names %>%
   mutate(country = as.character(country)) 
 
-rgn_names2$country[rgn_names2$region_id == 212] <- "Gilbert Islands (Kiribati)"
-rgn_names2$country[rgn_names2$region_id == 148] <- "Line Islands (Kiribati)"
-rgn_names2$country[rgn_names2$region_id == 157] <- "Phoenix Islands (Kiribati)"
-
 radical_final <- radical_final %>%
   left_join(rgn_names2) %>%
   select(ohi_component_id, component_id, subcomponent_id, 
-         component_label, component_name, goal, dimension, scenario, region_id, country, value, units, source, url)
+         component_label, 
+         #component_name, 
+         goal, dimension, scenario, region_id, country, value, units, source, url)
 
 ## data check ##
 data.frame(filter(radical_final, goal=="CW" & region_id==1) %>%
@@ -450,17 +461,17 @@ data.frame(filter(radical_final, goal=="HAB" & region_id==163) %>%
              select(-source) %>%
              arrange(dimension))
 data.frame(filter(radical_final, goal=="FIS" & region_id==163) %>%
-             select(-source, -component_name) %>%
+             select(-source) %>%
              arrange(dimension))
 
 # all the combinations of data seem to match
-setdiff(layers$component_id, radical_final$ohi_component_id)
+setdiff(layers$component_id, radical_final$ohi_component_id) # li_gci and li_sector_evenness are ok, get added in resilience section because they are in the matrix
 setdiff(radical_final$ohi_component_id, layers$component_id)  # trend data is ok and scores for ECO, FIS, ICO, LIV, MAR, SPP...this was added secondarily
 
 sum(duplicated(paste(radical_final$component_id, radical_final$region_id)))
 ## end data check
 
 
-write.csv(radical_final, sprintf('%s/radicalv2_%s_%s.csv', saveFile, scenario, Sys.Date()),
+write.csv(radical_final, sprintf('../radicalv2_%s_%s.csv', scenario, Sys.Date()),
           row.names=FALSE, na="") 
 }
