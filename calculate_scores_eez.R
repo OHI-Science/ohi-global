@@ -141,7 +141,7 @@ for (i in 1:length(scenarios)){  #i=2
         path_out = sprintf('%s/layers/%s', scenario, filename)) %>%
       select(
         targets, layer, name, description, 
-        fld_value, units,
+        fld_value=name_data_fld, units,
         path_in, path_in_exists, filename, path_out) %>%
       arrange(targets, layer)
     write.csv(lyrs, sprintf('%s/temp/layers_1-ingest.csv', scenario), na='', row.names=F)

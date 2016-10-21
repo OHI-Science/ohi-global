@@ -44,7 +44,9 @@ library(sp)
 library(rgdal)
 library(DT)
 
- # setwd("global2016/Reporting")
+# Set working directory when not knitting:
+# setwd("global2016/Reporting")
+
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
 goal_names <- data.frame(goal=goals, long_goal=c("Index", 
                                                   "Artisanal opportunities",
@@ -275,7 +277,8 @@ This section explores goal and index scores at the region level.  I mostly focus
 
 ### Regional goal and index scores for 2016
 
-This interactive table describes the index and goal scores for the regions in 2016 (and here's a [link](https://rawgit.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2016.html) to a color coded table, and a csv file can also be [downloaded](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2016.csv)).  
+This interactive table describes the index and goal scores for the regions in 2016 (and here's a [link](https://rawgit.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2016.html) to a color coded table, and a csv file can also be [downloaded](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2016.csv)). 
+
 ```{r score table, echo=FALSE}
 
 ## create a score dataframe 
