@@ -472,6 +472,6 @@ sum(duplicated(paste(radical_final$component_id, radical_final$region_id)))
 ## end data check
 
 
-write.csv(radical_final, sprintf('../radicalv2_%s_%s.csv', scenario, Sys.Date()),
+write.csv(radical_final, sprintf('../DataExplorer_%s_%s.csv', scenario, Sys.Date()),
           row.names=FALSE, na="") 
 }
