@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <link rel="stylesheet"
@@ -164,6 +167,100 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -212,4029 +309,521 @@ $(document).ready(function () {
 
 </div>
 
-<div id="TOC">
-true
-</div>
 
-<p>The following data layers are used in Ocean Health Index calculations for goal status, trend, pressures, and resilience. Values for {{ site.study_area }} were extracted from the global assessment and saved for each region to serve as a template as you gather higher-resolution data and indicators. Note that many values do not have a range because they were equally extracted from the global data layer.</p>
-<div id="alien_species" class="section level2">
-<h2>alien_species</h2>
-<p>Alien species</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>alien_species_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.5 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). <strong>Assessing the global threat of invasive species to marine biodiversity</strong>. <em>Frontiers in Ecology and the Environment</em> 6(485). <a href="http://dx.doi.org/10.1890/070064">doi:10.1890/070064</a>
-</li>
-</ul>
-</div>
+<p>The following data layers are used in Ocean Health Index calculations for goal status, trend, pressures, and resilience. Values for Global were extracted from the global assessment and saved for each region to serve as a template as you gather higher-resolution data and indicators. Note that many values do not have a range because they were equally extracted from the global data layer.</p>
 <div id="ao_access" class="section level2">
 <h2>ao_access</h2>
 <p>Fisheries management effectiveness and opportunity</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>ao_access_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>value</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.484 to 0.704592</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global management effectiveness scores were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-The opportunity for artisanal and recreational fishing based on the quality of management of the small- scale fishing sector (Mora et al 2009).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., Worm, B. (2009). <strong>Management Effectiveness of the World�����s Marine Fisheries</strong>. <em>PLoS Biol</em>, 7(6), e1000131. <a href="http://dx.doi.org/10.1371/journal.pbio.1000131">doi:10.1371/journal.pbio.1000131</a>
-</li>
-</ul>
+<p>The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
 </div>
 <div id="ao_need" class="section level2">
 <h2>ao_need</h2>
-<p>Purchasing power parity as a proxy for subsistence fishing need, by region</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>ao_need_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>value</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.067333 to 0.337682</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global purchasing power parity information was applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-The per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-The World Bank <a href="http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD">GDP per capita, PPP (current international $)</a>
-</li>
-</ul>
+<p>Purchasing power parity as a proxy for subsistence fishing need</p>
+<p>The per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP</p>
 </div>
 <div id="cc_acid" class="section level2">
 <h2>cc_acid</h2>
 <p>Ocean acidification</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cc_acid_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0135662 to 0.564895</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled distribution of the aragonite saturation state (AAS) of the ocean in pre-industrial (~1870) and modern times (2000-2009) (Halpern et al. 2008).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-</ul>
+<p>Ocean acidification pressure scaled using biological thresholds</p>
 </div>
 <div id="cc_slr" class="section level2">
 <h2>cc_slr</h2>
 <p>Sea level rise</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cc_slr_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.130349 to 0.452863</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled sea level rise (Nicholls and Cazenave 2010).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Nicholls R.J. and Cazenave A. (2010). <strong>Sea-level rise and its impact on coastal zones</strong>. <em>Science</em> 328: 1517-1520. <a href="http://dx.doi.org/10.1126/science.1185782">doi:10.1126/science.1185782</a>.
-</li>
-<li>
-<a href="http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html">AVISO Satellite Altimetry Data</a>
-</li>
-</ul>
+<p>Sea level rise pressure</p>
 </div>
 <div id="cc_sst" class="section level2">
 <h2>cc_sst</h2>
-<p>Sea surface temperature (SST) anomalies</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cc_sst_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0873233 to 0.230379</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled sea surface temperature (Halpern et al. 2008) based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-<li>
-<a href="http://pathfinder.nodc.noaa.gov">AVHRR Pathfinder Version 5.0 SST data</a>
-</li>
-<li>
-Casey, K.S., Brandon, T.B., Cornillon, P., and Evans, R. (2010). <strong>The Past, Present and Future of the AVHRR Pathfinder SST Program</strong>, <em>Oceanography from Space: Revisited</em>, eds. V. Barale, J.F.R. Gower, and L. Alberotanza, Springer. <a href="http://dx.doi.org/10.1007/978-90-481-8681-5_16">doi:10.1007/978-90-481-8681-5_16</a>
-</li>
-</ul>
+<p>Sea surface temperature anomolies</p>
+<p>Sea surface temperature anomolies</p>
 </div>
 <div id="cc_uv" class="section level2">
 <h2>cc_uv</h2>
-<p>UV radiation</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cc_uv_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0587046 to 0.901569</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled UV radiation (Halpern et al. 2008) based on Erythemal UV Irradiance data provided by GES DISC.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-<li>
-<a href="http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml">Goddard Earth Sciences Data and Information Services Center (GES DISC)</a>
-</li>
-</ul>
+<p>UV radiation pressure</p>
+<p>Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC.</p>
 </div>
-<div id="cites" class="section level2">
-<h2>cites</h2>
-<p>Resilience from commitment to CITES</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cites_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>1 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cites.org/eng/disc/parties/chronolo.php">CITES List of Contracting Parties</a>
-</li>
-</ul>
+<div id="cntry_rgn" class="section level2">
+<h2>cntry_rgn</h2>
+<p>ISO country codes</p>
+<p>Lookup table of country codes (based on ISO 3166 country codes) and Ocean Health Index region idenifiers.</p>
 </div>
-<div id="cp_habitat_extent_rank" class="section level2">
-<h2>cp_habitat_extent_rank</h2>
-<p>Habitat extent * rank, per Coastal Protection habitats</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cp_habitat_extent_rank_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>rank</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>2.46 to 1840750</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Habitat extent * habitat rank for Coastal Protection habitats: coral, mangrove offshore 1km, mangrove inland 1km, saltmarsh, seaice_shoreline and seagrass
-</p>
+<div id="cw_chemical_trend" class="section level2">
+<h2>cw_chemical_trend</h2>
+<p>Chemical pollution trend</p>
+<p>Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use</p>
 </div>
-<div id="cs_habitat_extent" class="section level2">
-<h2>cs_habitat_extent</h2>
-<p>Habitat extent * rank, per Carbon Storage habitats</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cs_habitat_extent_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>km^2</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.82 to 2729.73</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>area_offshore_3nm: global habitat extent was applied to each region after weighting by each region’s offshore area to 3nm.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Habitat extent * habitat rank for Carbon Storage habitats: mangrove, saltmarsh and seagrass
-</p>
-</div>
-<div id="cw_coastalpopn_trend" class="section level2">
-<h2>cw_coastalpopn_trend</h2>
-<p>Coastal human population as a proxy for trend in trash</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cw_coastalpopn_trend_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>trend score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>-0.127109 to 0.00634518</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global trends were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Center for International Earth Science Information Network (CIESIN)/Columbia University
-</li>
-<li>
-CIESIN &amp; CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, &amp; Centro Internacional de Agricultura Tropical (CIAT)) (2005). <strong>Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates</strong>. Palisades, NY. <a href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates">NASA Socioeconomic Data and Applications Center (SEDAC)</a>
-</li>
-</ul>
-</div>
-<div id="cw_fertilizer_trend" class="section level2">
-<h2>cw_fertilizer_trend</h2>
-<p>Fertilizer consumption as a proxy for trend in nutrient pollution</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cw_fertilizer_trend_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>trend score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>-1 to 0.483484</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global trends were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Statistics on fertilizer consumption from the Food and Agricultural Organization (FAO).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E">FAO<cc><ce><e5><a2>̴<cc>
-<dd>
-̴<e5><bb>s statistical database FAOSTAT</a>.
-</li>
-</ul>
-</div>
-<div id="cw_nu_status" class="section level2">
-<h2>cw_nu_status</h2>
-<p>Nutrient pollution status based on winter DIP concentrations</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cw_nu_status_placeholder.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>status score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.5 to 0.5</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal:</td>
-</tr>
-</tbody>
-</table>
-<p>
-Winter DIP levels normalised to HELCOM target level
-</p>
-</div>
-<div id="cw_nu_trend" class="section level2">
-<h2>cw_nu_trend</h2>
-<p>Nutrient pollution trend based on winter DIP concentrations from year 2000 to latest available data</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cw_nu_trend_placeholder.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>trend score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 0</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal:</td>
-</tr>
-</tbody>
-</table>
-<p>
-Trend in winter DIP levels, slope of normalized status
-</p>
+<div id="cw_nutrient_trend" class="section level2">
+<h2>cw_nutrient_trend</h2>
+<p>Nutrient pollution trend</p>
+<p>Modeled data based on fertilizer consumption as a proxy for nutrient pollution</p>
 </div>
 <div id="cw_pathogen_trend" class="section level2">
 <h2>cw_pathogen_trend</h2>
-<p>Trends in access to improved sanitation as a proxy for pathogen pollution trend</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cw_pathogen_trend_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>trend score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>-0.0150988 to 0.0029483</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global trends were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Trends in percent of population with access to improved sanitation facilities.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.wssinfo.org/data-estimates/table">World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)</a>
-</li>
-</ul>
+<p>Pathogen pollution trend</p>
+<p>Trends in percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
 </div>
-<div id="cw_pesticide_trend" class="section level2">
-<h2>cw_pesticide_trend</h2>
-<p>Pesticide consumption as a proxy for trend in chemical pollution</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>cw_pesticide_trend_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>trend score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>-0.440675 to 0.218233</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global trends were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Statistics on pesticide consumption from the Food and Agricultural Organization (FAO).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E">FAO̢���s statistical database FAOSTAT</a>.
-</li>
-</ul>
+<div id="cw_trash_trend" class="section level2">
+<h2>cw_trash_trend</h2>
+<p>Plastic trash trends</p>
+<p>Trends in trash estimated using improperly disposed of plastics</p>
+</div>
+<div id="element_wts_cp_km2_x_protection" class="section level2">
+<h2>element_wts_cp_km2_x_protection</h2>
+<p>Coastal protection weights</p>
+<p>Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass</p>
+</div>
+<div id="element_wts_cs_km2_x_storage" class="section level2">
+<h2>element_wts_cs_km2_x_storage</h2>
+<p>Carbon storage weights</p>
+<p>Habitat extent multiplied by carbon storage capacity for: mangrove (offshore and inland 1km), saltmarsh, and sea ice</p>
+</div>
+<div id="element_wts_hab_pres_abs" class="section level2">
+<h2>element_wts_hab_pres_abs</h2>
+<p>Habitat weights</p>
+<p>List of habitats in each region</p>
 </div>
 <div id="fis_b_bmsy" class="section level2">
 <h2>fis_b_bmsy</h2>
-<p>B/Bmsy estimates obtained using the catch-MSY method</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fis_b_bmsy_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>B / B_msy</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.05435161 to 1.986959</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global b_bmsy information was applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-The ratio of population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell &amp; Froese, 2013).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Martell, S., &amp; Froese, R. (2013). <strong>A simple method for estimating MSY from catch and resilience</strong>. <em>Fish and Fisheries</em> 14(4): 504-514. <a href="https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x">doi:10.1111/j.1467-2979.2012.00485.x</a>
-</li>
-</ul>
+<p>B/Bmsy estimates obtained using RAM data (when available) and the catch-MSY method</p>
+<p>The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield</p>
 </div>
 <div id="fis_meancatch" class="section level2">
 <h2>fis_meancatch</h2>
-<p>Catch data for each Taxon/FAO/SAUP region averaged across years (1980-2011)</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fis_meancatch_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>metric tons</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>8.17638e-18 to 4787770</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global mean catch information was applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Mean catch-per-taxon values within each FAO major fishing area.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/area/search/en">FAO Major Fishing Areas</a>
-</li>
-</ul>
-</div>
-<div id="fis_proparea_saup2rgn" class="section level2">
-<h2>fis_proparea_saup2rgn</h2>
-<p>area of each saup/total OHI reporting region</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fis_proparea_saup2rgn_sc2014-area-offshore.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>proportion of area</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>3.35312e-07 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>area_offshore: global proportional area were applied to each region after weighting by each region’s offshore area.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Lookup table of Sea Around Us Project regions to Ocean Health Index region identifiers.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.seaaroundus.org">Sea Around Us Project (SAUP)</a>
-</li>
-</ul>
-</div>
-<div id="fishing_v1" class="section level2">
-<h2>fishing_v1</h2>
-<p>CBD survey: coastal fishing v1</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fishing_v1_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.700905 to 0.835015</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
-</div>
-<div id="fishing_v1_eez" class="section level2">
-<h2>fishing_v1_eez</h2>
-<p>CBD survey: ocean fishing v1</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fishing_v1_eez_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.700905 to 0.835015</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
-</div>
-<div id="fishing_v2_eez" class="section level2">
-<h2>fishing_v2_eez</h2>
-<p>CBD survey: ocean fishing v2</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fishing_v2_eez_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.683679 to 0.765761</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
-</div>
-<div id="fishing_v3" class="section level2">
-<h2>fishing_v3</h2>
-<p>CBD survey: coastal fishing v3</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fishing_v3_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.723794 to 0.84703</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
-</div>
-<div id="fishing_v3_eez" class="section level2">
-<h2>fishing_v3_eez</h2>
-<p>CBD survey: ocean fishing v3</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fishing_v3_eez_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.723794 to 0.84703</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
+<p>Fishery catch data</p>
+<p>Mean commercial catch for each OHI region (averaged across years)</p>
 </div>
 <div id="fp_art_hb" class="section level2">
 <h2>fp_art_hb</h2>
-<p>High bycatch caused by artisanal fishing</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fp_art_hb_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0320959 to 0.0320959</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.wri.org/publication/reefs-at-risk-revisited">Reefs at Risk Revisited</a>
-</li>
-</ul>
+<p>High bycatch due to artisanal fishing</p>
+<p>The presence of destructive artisanal blast and poison (cyanide) fishing.</p>
 </div>
 <div id="fp_art_lb" class="section level2">
 <h2>fp_art_lb</h2>
-<p>Low bycatch caused by artisanal fishing</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fp_art_lb_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0203157 to 0.564288</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled low bycatch artisanal fishing using non-destructive practices (Halpern et al. 2008) based on FAO fisheries statistics.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-capture-production/en">FAO fisheries statistics</a>
-</li>
-</ul>
+<p>Low bycatch due to artisanal fishing</p>
+<p>Artisanal fishing using non-destructive practices</p>
 </div>
 <div id="fp_com_hb" class="section level2">
 <h2>fp_com_hb</h2>
-<p>High bycatch caused by commercial fishing</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fp_com_hb_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0477411 to 0.201743</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled destructive commercial fishing practices by 5 different gear types (Halpern et al. 2008).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-</ul>
+<p>High bycatch due to commercial fishing</p>
+<p>Modeled destructive commercial fishing practices by 5 gear types</p>
 </div>
 <div id="fp_com_lb" class="section level2">
 <h2>fp_com_lb</h2>
-<p>Low bycatch caused by commercial fishing</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fp_com_lb_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0745499 to 0.528343</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled least destructive commercial fishing practices by 2 different gear types (Halpern et al. 2008).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-</ul>
+<p>Low bycatch due to commercial fishing</p>
+<p>Modeled destructive commercial fishing practices by 2 gear types</p>
+</div>
+<div id="fp_habitat" class="section level2">
+<h2>fp_habitat</h2>
+<p>Management and protection of habitat to preserve biodiversity</p>
+<p>Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+</div>
+<div id="fp_mora" class="section level2">
+<h2>fp_mora</h2>
+<p>Commercial fishing management</p>
+<p>Regulations and management of commerical fishing</p>
+</div>
+<div id="fp_mora_artisanal" class="section level2">
+<h2>fp_mora_artisanal</h2>
+<p>Artisanal fishing management</p>
+<p>Regulations and management of artisanal fishing</p>
+</div>
+<div id="fp_mpa_coast" class="section level2">
+<h2>fp_mpa_coast</h2>
+<p>Coastal protected marine areas to protect fishery resources</p>
+<p>Protected marine areas within 3nm of coastline (lasting special places goal calculated for coastal zone)</p>
+</div>
+<div id="fp_mpa_eez" class="section level2">
+<h2>fp_mpa_eez</h2>
+<p>EEZ protected marine areas to protect fishery resources</p>
+<p>Protected marine areas within EEZ to protect fishery resource (lasting special places goal results)</p>
 </div>
 <div id="fp_targetharvest" class="section level2">
 <h2>fp_targetharvest</h2>
-<p>Targeted harvest of cetaceans and sea turtles</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fp_targetharvest_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 0.133129</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Targeted harvest of cetaceans and marine turtles, from FAO fisheries data.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-capture-production/en">FAO fisheries statistics</a>
-</li>
-</ul>
+<p>Targeted harvest of cetaceans and marine turtles</p>
+<p>Targeted harvest of cetaceans and marine turtles</p>
 </div>
 <div id="fp_wildcaught_weight" class="section level2">
 <h2>fp_wildcaught_weight</h2>
-<p>Fisheries weighting factor</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>fp_wildcaught_weight_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>value</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.345668 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global weights were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-capture-production/en">FAO fisheries statistics</a>
-</li>
-</ul>
+<p>Food provision weights</p>
+<p>Proportion of wild caught fisheries to mariculture</p>
+</div>
+<div id="g_cites" class="section level2">
+<h2>g_cites</h2>
+<p>Resilience from commitment to CITES</p>
+<p>Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories</p>
+</div>
+<div id="g_mariculture" class="section level2">
+<h2>g_mariculture</h2>
+<p>Management of mariculture practices to preserve biodiversity</p>
+<p>Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: mariculture related questions</p>
+</div>
+<div id="g_msi_gov" class="section level2">
+<h2>g_msi_gov</h2>
+<p>Mariculture Sustainability Index</p>
+<p>Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI)</p>
+</div>
+<div id="g_tourism" class="section level2">
+<h2>g_tourism</h2>
+<p>Management of tourism to preserve biodiversity</p>
+<p>Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
 </div>
 <div id="hab_extent" class="section level2">
 <h2>hab_extent</h2>
 <p>Habitat extent</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>hab_extent_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>km^2</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 3804040</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled combined habitat extent
-</p>
+<p>Area of habitats: mangrove, saltmarsh, seagrass, soft-bottom, seaice, coral</p>
 </div>
 <div id="hab_health" class="section level2">
 <h2>hab_health</h2>
-<p>Habitat health</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>hab_health_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>value</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0915825 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global habitat health was applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled combined habitat health condition trend
-</p>
-</div>
-<div id="hab_presence" class="section level2">
-<h2>hab_presence</h2>
-<p>Habitat presence</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>hab_presence_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>boolean</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>1 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled combined habitat presence
-</p>
+<p>Habitat condition</p>
+<p>Current condition of habitat relative to historical condition</p>
 </div>
 <div id="hab_trend" class="section level2">
 <h2>hab_trend</h2>
-<p>Habitat health trend</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>hab_trend_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>trend score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>-0.07201 to 0.5</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global trends were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled combined habitat health trend
-</p>
+<p>Habitat condition trend</p>
+<p>Estimated change in habitat condition during most recent 5 years</p>
 </div>
-<div id="habitat" class="section level2">
-<h2>habitat</h2>
-<p>CBD survey: habitat</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>habitat_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.727273 to 0.954545</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
-</div>
-<div id="habitat_combo" class="section level2">
-<h2>habitat_combo</h2>
-<p>CBD survey: coastal habitat</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>habitat_combo_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.769691 to 0.977273</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
-</div>
-<div id="habitat_combo_eez" class="section level2">
-<h2>habitat_combo_eez</h2>
-<p>CBD survey: ocean habitat</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>habitat_combo_eez_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.769691 to 0.977273</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
+<div id="hd_habitat" class="section level2">
+<h2>hd_habitat</h2>
+<p>Management and protection of habitat to preserve biodiversity</p>
+<p>Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
 </div>
 <div id="hd_intertidal" class="section level2">
 <h2>hd_intertidal</h2>
+<p>Intertidal habitat destruction</p>
 <p>Coastal population density as a proxy for intertidal habitat destruction</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>hd_intertidal_sc2014-popn-inland25km.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.00115885 to 0.131684</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>population_inland25km: global intertidal pressures were applied to each region after weighting by each region’s coastal population.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Coastal population, defined as the total population inland of 10 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Center for International Earth Science Information Network (CIESIN)/Columbia University
-</li>
-<li>
-CIESIN &amp; CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, &amp; Centro Internacional de Agricultura Tropical (CIAT)) (2005). <strong>Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates</strong>. Palisades, NY. <a href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates">NASA Socioeconomic Data and Applications Center (SEDAC)</a>
-</li>
-</ul>
+</div>
+<div id="hd_mpa_coast" class="section level2">
+<h2>hd_mpa_coast</h2>
+<p>Coastal protected marine areas to protect against habitat destruction</p>
+<p>Protected marine areas within 3nm of coastline (lasting special places goal calculated for coastal zone)</p>
+</div>
+<div id="hd_mpa_eez" class="section level2">
+<h2>hd_mpa_eez</h2>
+<p>Protected marine areas within EEZ to protect against habitat destruction</p>
+<p>Protected marine areas within EEZ (lasting special places goal results)</p>
 </div>
 <div id="hd_subtidal_hb" class="section level2">
 <h2>hd_subtidal_hb</h2>
-<p>High bycatch artisanal fishing practices as a proxy for subtidal hard bottom habitat destruction</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>hd_subtidal_hb_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0332417 to 0.0332417</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.wri.org/publication/reefs-at-risk-revisited">Reefs at Risk Revisited</a>
-</li>
-</ul>
+<p>Subtidal hardbottom habitat destruction</p>
+<p>High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
 </div>
 <div id="hd_subtidal_sb" class="section level2">
 <h2>hd_subtidal_sb</h2>
-<p>High bycatch commercial fishing practices as a proxy for subtidal soft bottom habitat destruction</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>hd_subtidal_sb_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 0.176336</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.seaaroundus.org/">Sea Around Us Project (SAUP)</a>
-</li>
-</ul>
+<p>Subtidal softbottom habitat destruction</p>
+<p>Demersal destructive commercial fishing practices in softbottom habitat as a proxy for soft bottom habitat destruction</p>
 </div>
-<div id="ico_spp_extinction_status" class="section level2">
-<h2>ico_spp_extinction_status</h2>
-<p>IUCN extinction risk category for iconic species</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>ico_spp_extinction_status_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>category</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>NA to NA</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global status was applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme">International Union for Conservation of Nature (IUCN)</a>
-</li>
-</ul>
-</div>
-<div id="ico_spp_popn_trend" class="section level2">
-<h2>ico_spp_popn_trend</h2>
-<p>IUCN population trend as a proxy for iconic species trend</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>ico_spp_popn_trend_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>trend score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>NA to NA</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global trends were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme">International Union for Conservation of Nature (IUCN)</a>
-</li>
-</ul>
+<div id="ico_spp_iucn_status" class="section level2">
+<h2>ico_spp_iucn_status</h2>
+<p>IUCN extinction risk</p>
+<p>IUCN extinction risk category for iconic species located within each region</p>
 </div>
 <div id="le_gdp" class="section level2">
 <h2>le_gdp</h2>
 <p>GDP</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>le_gdp_sc2014-popn-inland25km.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>2010 USD</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>142211000 to 1.22571e+12</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>population_inland25km: global GDP data were applied to each region after weighting by each region’s coastal population.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Gross Domestic Product (GDP) data (reported in 2012 US dollars) from The World Bank.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="data.worldbank.org/indicator/NY.GDP.MKTP.CD">The World Bank</a>
-</li>
-</ul>
+<p>Gross Domestic Product (GDP)</p>
+</div>
+<div id="le_gdp_pc_ppp" class="section level2">
+<h2>le_gdp_pc_ppp</h2>
+<p>GDP per capita PPP</p>
+<p>Gross domestic product per person at purchasing power parity</p>
+</div>
+<div id="le_jobs_cur_adj_value" class="section level2">
+<h2>le_jobs_cur_adj_value</h2>
+<p>Current jobs adjusted</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_jobs_cur_base_value" class="section level2">
+<h2>le_jobs_cur_base_value</h2>
+<p>Current jobs base</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_jobs_ref_adj_value" class="section level2">
+<h2>le_jobs_ref_adj_value</h2>
+<p>Reference jobs adjusted</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_jobs_ref_base_value" class="section level2">
+<h2>le_jobs_ref_base_value</h2>
+<p>Reference jobs base</p>
+<p>Modeled LE data</p>
 </div>
 <div id="le_jobs_sector_year" class="section level2">
 <h2>le_jobs_sector_year</h2>
 <p>Jobs</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>le_jobs_sector_year_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>jobs</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 410244</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global trends were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-gapfilled
-</p>
+<p>Modeled LE data</p>
 </div>
 <div id="le_popn" class="section level2">
 <h2>le_popn</h2>
-<p>Total population by subregion</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>le_popn_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>count</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>1215650 to 148689000</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal:</td>
-</tr>
-</tbody>
-</table>
-<p>
-Population data from The World Bank
-</p>
+<p>Total population</p>
+<p>Population of the OHI region</p>
+</div>
+<div id="le_rev_cur_adj_value" class="section level2">
+<h2>le_rev_cur_adj_value</h2>
+<p>Current revenue adjusted</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_rev_cur_base_value" class="section level2">
+<h2>le_rev_cur_base_value</h2>
+<p>Current revenue base</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_rev_ref_adj_value" class="section level2">
+<h2>le_rev_ref_adj_value</h2>
+<p>Reference revenue adjusted</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_rev_ref_base_value" class="section level2">
+<h2>le_rev_ref_base_value</h2>
+<p>Reference revenue base</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_rev_sector_year" class="section level2">
+<h2>le_rev_sector_year</h2>
+<p>Revenue</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_revenue_adj" class="section level2">
+<h2>le_revenue_adj</h2>
+<p>Revenue adjusted</p>
+<p>Modeled LE data</p>
 </div>
 <div id="le_sector_weight" class="section level2">
 <h2>le_sector_weight</h2>
-<p>Jobs weighting</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>le_sector_weight_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>value</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>1 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal:</td>
-</tr>
-</tbody>
-</table>
-<p>
-Jobs weighting by sector (defaulting to 1)
-</p>
+<p>Sector weight by jobs</p>
+<p>Proportion of jobs within each sector</p>
 </div>
 <div id="le_unemployment" class="section level2">
 <h2>le_unemployment</h2>
 <p>Unemployment</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>le_unemployment_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>percent unemployed</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>3.32031 to 19.6448</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global unemployment percentages were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-gapfilled
-</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_wage_cur_adj_value" class="section level2">
+<h2>le_wage_cur_adj_value</h2>
+<p>Current wages adjusted</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_wage_cur_base_value" class="section level2">
+<h2>le_wage_cur_base_value</h2>
+<p>Current wages base</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_wage_ref_adj_value" class="section level2">
+<h2>le_wage_ref_adj_value</h2>
+<p>Reference wages adjusted</p>
+<p>Modeled LE data</p>
+</div>
+<div id="le_wage_ref_base_value" class="section level2">
+<h2>le_wage_ref_base_value</h2>
+<p>Reference wages base</p>
+<p>Modeled LE data</p>
 </div>
 <div id="le_wage_sector_year" class="section level2">
 <h2>le_wage_sector_year</h2>
 <p>Wages</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>le_wage_sector_year_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>2010 USD</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>307.699 to 238506</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global wages were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-gapfilled
-</p>
+<p>Modeled LE data</p>
 </div>
 <div id="le_workforcesize_adj" class="section level2">
 <h2>le_workforcesize_adj</h2>
-<p>Modeled Livelihoods &amp; Economies data</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>le_workforcesize_adj_sc2014-popn-inland25km.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>jobs</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>12598.3 to 14542100</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>population_inland25km: global workforce data were applied to each region after weighting by each region’s coastal population.</td>
-</tr>
-</tbody>
-</table>
-<p>
-adjusted workforce size
-</p>
+<p>Adjusted workforce size</p>
+<p>Modeled LE data</p>
 </div>
 <div id="li_gci" class="section level2">
 <h2>li_gci</h2>
-<p>GCI: competitiveness in achieving sustained economic prosperity</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>li_gci_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.607143 to 0.791429</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Global Competitiveness Index (GCI) scores from the World Economic Forum.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.weforum.org/issues/global-competitiveness">World Economic Forum</a>
-</li>
-</ul>
+<p>Competitiveness in achieving sustained economic prosperity</p>
+<p>Global Competitiveness Index (GCI) scores from the World Economic Forum</p>
 </div>
 <div id="li_sector_evenness" class="section level2">
 <h2>li_sector_evenness</h2>
 <p>Sector evenness as a measure of economic diversity</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>li_sector_evenness_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0130472 to 0.518765</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.
-</p>
+<p>Shannon’s Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector</p>
 </div>
 <div id="lsp_prot_area_inland1km" class="section level2">
 <h2>lsp_prot_area_inland1km</h2>
-<p>Coastal protected areas inland 1km</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>lsp_prot_area_inland1km_placeholder.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>km^2</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>10 to 10</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster</td>
-</tr>
-</tbody>
-</table>
-<p>
-Coastal protected areas inland to 1km from the UN WDPA.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-United Nations - World Conservation Monitoring Centre<cc><ce><e5><a2>̴<cc>
-<dd>
-̴<e5><bb>s World Database on Protected Areas (WDPA) through <a href="http://www.protectedplanet.net">Protected Planet</a>
-</li>
-</ul>
+<p>Inland coastal protected areas</p>
+<p>Protected areas located 1 km inland</p>
 </div>
 <div id="lsp_prot_area_offshore3nm" class="section level2">
 <h2>lsp_prot_area_offshore3nm</h2>
-<p>Coastal marine protected areas offshore 3km</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>lsp_prot_area_offshore3nm_placeholder.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>km^2</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>10 to 10</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster</td>
-</tr>
-</tbody>
-</table>
-<p>
-Coastal protected areas offshore to 3nm from the UN WDPA.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-United Nations - World Conservation Monitoring Centre<cc><ce><e5><a2>̴<cc>
-<dd>
-̴<e5><bb>s World Database on Protected Areas (WDPA) through <a href="http://www.protectedplanet.net">Protected Planet</a>
-</li>
-</ul>
+<p>Offshore coastal protected areas</p>
+<p>Protected areas located 3nm offshore</p>
 </div>
-<div id="mar_coastalpopn_inland25km" class="section level2">
-<h2>mar_coastalpopn_inland25km</h2>
-<p>Coastal population inland 25 kilometers</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>mar_coastalpopn_inland25km_sc2014-raster.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>people</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>11849.5 to 2290750</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Coastal population, defined as the total population inland of 25 kilometers, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Center for International Earth Science Information Network (CIESIN)/Columbia University
-</li>
-<li>
-CIESIN &amp; CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, &amp; Centro Internacional de Agricultura Tropical (CIAT)) (2005). <strong>Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates</strong>. Palisades, NY. <a href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates">NASA Socioeconomic Data and Applications Center (SEDAC)</a>
-</li>
-</ul>
-</div>
-<div id="mar_harvest_species" class="section level2">
-<h2>mar_harvest_species</h2>
-<p>Mariculture species harvested</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>mar_harvest_species_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>species name</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>NA to NA</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global mariculture species were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Lookup table for mariculture: species Latin names and species code.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-aquaculture-production/en">FAO global aquaculture production</a>
-</li>
-</ul>
+<div id="mar_coastalpopn_inland25mi" class="section level2">
+<h2>mar_coastalpopn_inland25mi</h2>
+<p>Inland coastal population</p>
+<p>Total coastal population within 25 miles of coast.</p>
 </div>
 <div id="mar_harvest_tonnes" class="section level2">
 <h2>mar_harvest_tonnes</h2>
 <p>Mariculture harvest</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>mar_harvest_tonnes_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>tons</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 3948817</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>area_offshore_3nm: global mariculture harvest (tonnes) data were applied to each region after weighting by each region’s offshore area to 3nm.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Mariculture harvest from the FAO.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-aquaculture-production/en">FAO global aquaculture production</a>
-</li>
-</ul>
+<p>Tonnes of mariculture harvest</p>
 </div>
 <div id="mar_sustainability_score" class="section level2">
 <h2>mar_sustainability_score</h2>
 <p>Mariculture sustainability score</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>mar_sustainability_score_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>sustainability</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.1 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global mariculture sustainability scores were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Mariculture sustainability and mariculture regulations indicated by the Mariculture Sustainability Index (MSI).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Trujillo P. (2008). <strong>Using a mariculture sustainability index to rank countries<cc><ce><e5><a2>̴<cc>
-<dd>
-̴<e5><bb> performances</strong>. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countries<cc><ce><e5><a2>̴<cc>
-<dd>
-̴<e5><bb> Exclusive Economic Zones, Alder J, Pauly D, editors. <em>Fisheries Centre Research Report</em>, vol. 16(7) p. 28<cc><ce><e5><a2>̴<cc>
-<dd>
-̴<cc><d5>56.
-</li>
-</ul>
-</div>
-<div id="mar_trend_years" class="section level2">
-<h2>mar_trend_years</h2>
-<p>Mariculture years used for trend</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>mar_trend_years_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>year string</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>NA to NA</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global trends were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Mariculture years used for trend
-</p>
-</div>
-<div id="mariculture" class="section level2">
-<h2>mariculture</h2>
-<p>CBD survey: mariculture</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>mariculture_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.625 to 0.958333</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
-</div>
-<div id="msi_gov" class="section level2">
-<h2>msi_gov</h2>
-<p>MSI sustainability and regulations</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>msi_gov_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.466667 to 0.733333</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Trujillo P. (2008). <strong>Using a mariculture sustainability index to rank countries̢��� performances</strong>. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countries̢��� Exclusive Economic Zones, Alder J, Pauly D, editors. <em>Fisheries Centre Research Report</em>, vol. 16(7) p. 28̢����56.
-</li>
-</ul>
+<p>Mariculture sustainability from the Mariculture Sustainability Index (MSI).</p>
 </div>
 <div id="np_blast" class="section level2">
 <h2>np_blast</h2>
-<p>Areas of observed blast (dynamite) fishing</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>np_blast_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.182184 to 0.182184</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global scores were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.wri.org/publication/reefs-at-risk-revisited">Reefs at Risk Revisited</a>
-</li>
-</ul>
+<p>Areas of blast fishing</p>
+<p>Destructive artisanal blast fishing</p>
 </div>
 <div id="np_cyanide" class="section level2">
 <h2>np_cyanide</h2>
-<p>Areas of observed poison fishing</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>np_cyanide_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.168335 to 0.168335</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global scores were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-The presence of destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="www.wri.org/publication/reefs-at-risk-revisited">Reefs at Risk Revisited</a>
-</li>
-</ul>
+<p>Areas of poison fishing</p>
+<p>Destructive artisanal poison (cyanide) fishing</p>
 </div>
 <div id="np_harvest_product_weight" class="section level2">
 <h2>np_harvest_product_weight</h2>
-<p>Ratio of product peak harvest value (in 2010 USD) divided by sum of all product peak harvest values, per region</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>np_harvest_product_weight_placeholder.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.2 to 0.2</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global weights were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Ratio of harvest of of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-capture-production/en">FAO fisheries statistics</a>
-</li>
-</ul>
+<p>Relative harvest value</p>
+<p>Value of harvest of each product relative to total harvest of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish). Used to weight contribution of each product to final score.</p>
 </div>
 <div id="np_harvest_tonnes" class="section level2">
 <h2>np_harvest_tonnes</h2>
-<p>Harvest yield of marine natural products, smoothed</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>np_harvest_tonnes_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>metric tonnes</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 165729</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>area_offshore_3nm: global harvest (tonnes) was applied to each region after weighting by each region’s offshore area to 3nm.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-capture-production/en">FAO fisheries statistics</a>
-</li>
-</ul>
+<p>Natural product harvest</p>
+<p>Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO</p>
 </div>
 <div id="np_harvest_tonnes_relative" class="section level2">
 <h2>np_harvest_tonnes_relative</h2>
-<p>Harvest ratio to peak yeild of marine natural products</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>np_harvest_tonnes_relative_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global scores were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-capture-production/en">FAO fisheries statistics</a>
-</li>
-</ul>
-</div>
-<div id="np_harvest_usd" class="section level2">
-<h2>np_harvest_usd</h2>
-<p>Harvest value of marine natural products, smoothed</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>np_harvest_usd_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>2010 USD</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 225438</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global harvest (usd), used as a weighting score, was applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Value in 2010 US dollars of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-capture-production/en">FAO fisheries statistics</a>
-</li>
-</ul>
-</div>
-<div id="np_harvest_usd_relative" class="section level2">
-<h2>np_harvest_usd_relative</h2>
-<p>Harvest ratio to peak value of marine natural products</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>np_harvest_usd_relative_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global scores were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Ratio to max value (2010 USD) of product peak of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.fao.org/fishery/statistics/global-capture-production/en">FAO fisheries statistics</a>
-</li>
-</ul>
+<p>Relative harvest tonnes</p>
+<p>Tonnes of harvest of each product relative to total harvest of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish). Used to weight contribution of each product to final score.</p>
 </div>
 <div id="po_chemicals" class="section level2">
 <h2>po_chemicals</h2>
-<p>Ocean-based chemical pollution</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>po_chemicals_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0194018 to 0.231829</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled ocean-based chemical pollution from commercial shipping traffic and ports and harbors (Halpern et al. 2008).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-</ul>
+<p>Chemical pollution</p>
+<p>Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use</p>
 </div>
 <div id="po_chemicals_3nm" class="section level2">
 <h2>po_chemicals_3nm</h2>
-<p>Land-based chemical pollution</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>po_chemicals_3nm_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.0371493 to 0.462487</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled land-based organic pollution at 1km2 resolution (Halpern et al. 2008).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-</ul>
+<p>Coastal chemical pollution</p>
+<p>Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use</p>
 </div>
 <div id="po_nutrients" class="section level2">
 <h2>po_nutrients</h2>
-<p>Ocean nutrient pollution</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>po_nutrients_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.000823323 to 0.0618079</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled ocean nutrient pollution (Halpern et al. 2008).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-</ul>
+<p>Nutrient pollution</p>
+<p>Modeled data based on fertilizer consumption from the Food and Agricultural Organization</p>
 </div>
 <div id="po_nutrients_3nm" class="section level2">
 <h2>po_nutrients_3nm</h2>
 <p>Coastal nutrient pollution</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>po_nutrients_3nm_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.00987382 to 0.310258</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster</td>
-</tr>
-</tbody>
-</table>
-<p>
-Modeled coastal nutrient pollution (Halpern et al. 2008).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) <strong>A global map of human impact on marine ecosystems</strong>. <em>Science</em>, 3199(5865): 948-952. <a href="http://dx.doi.org/10.1126/science.1149345">doi:10.1126/science.1149345</a>
-</li>
-</ul>
+<p>Modeled data based on fertilizer consumption from the Food and Agricultural Organization</p>
 </div>
 <div id="po_pathogens" class="section level2">
 <h2>po_pathogens</h2>
-<p>Access to improved sanitation as a proxy for pathogen pollution</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>po_pathogens_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 0.400922</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Percent of population with access to improved sanitation facilities.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.wssinfo.org/data-estimates/table">World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)</a>
-</li>
-</ul>
+<p>Pathogen pollution</p>
+<p>Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
 </div>
 <div id="po_trash" class="section level2">
 <h2>po_trash</h2>
-<p>Trash pollution</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>po_trash_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.482173 to 0.559469</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Density of trash from coastal land and sea (Ocean Conservancy).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.oceanconservancy.org/our-work/international-coastal-cleanup/2012-ocean-trash-index.html">Ocean Conservancy International Coastal Cleanup 2012</a>
-</li>
-</ul>
+<p>Marine plastics</p>
+<p>Global marine plastics</p>
+</div>
+<div id="po_water" class="section level2">
+<h2>po_water</h2>
+<p>Management and regulations to control water pollution to preserve biodiversity</p>
+<p>Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+</div>
+<div id="res_spi" class="section level2">
+<h2>res_spi</h2>
+<p>Social Progress Index</p>
+<p>Social Progress Index scores</p>
 </div>
 <div id="rgn_area" class="section level2">
 <h2>rgn_area</h2>
-<p>Region area of total EEZ ocean</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>rgn_area_sc2014-area.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>km^2</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>98.6209 to 31239.7</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Area of Ocean Health Index regions based on exclusive economic zones (VLIZ 2012).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.marineregions.org/">VLIZ Maritime Boundaries Geodatabase, version 7</a>
-</li>
-</ul>
+<p>Region areas based on EEZ boundaries</p>
+<p>Area of Ocean Health Index regions modified from exclusive economic zones</p>
 </div>
 <div id="rgn_area_inland1km" class="section level2">
 <h2>rgn_area_inland1km</h2>
-<p>Region area 1 km inland</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>rgn_area_inland1km_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>km^2</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>5 to 5</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-inland area 1 km from shore.
-</p>
+<p>Inland area</p>
+<p>Inland area of OHI regions within 1km of shoreline</p>
 </div>
 <div id="rgn_area_offshore3nm" class="section level2">
 <h2>rgn_area_offshore3nm</h2>
-<p>Region area offshore 3nm</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>rgn_area_offshore3nm_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>km^2</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>5 to 5</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Area of Ocean Health Index regions to 3nm (VLIZ 2012).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.marineregions.org/">VLIZ Maritime Boundaries Geodatabase, version 7</a>
-</li>
-</ul>
-</div>
-<div id="rgn_georegion_labels" class="section level2">
-<h2>rgn_georegion_labels</h2>
-<p>Georegion labels per region, at 3 georegion levels</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>rgn_georegion_labels_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>label</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>NA to NA</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Lookup table of Ocean Health Index regions and UN georegion names at 3 georegion levels.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://unstats.un.org/unsd/methods/m49/m49regin.htm">UN geographical region and composition</a>
-</li>
-</ul>
+<p>Offshore area</p>
+<p>Offshore area of OHI regions within 3nm of shoreline</p>
 </div>
 <div id="rgn_georegions" class="section level2">
 <h2>rgn_georegions</h2>
-<p>Georegion ids per region, at 3 georegion levels</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>rgn_georegions_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>georegion id</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>1 to 154</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Lookup table of Ocean Health Index regions and UN georegion identifiers at 3 georegion levels.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://unstats.un.org/unsd/methods/m49/m49regin.htm">UN geographical region and composition</a>
-</li>
-</ul>
+<p>UN geopolitical region classifications</p>
+<p>Lookup table of Ocean Health Index regions and UN geopolitical regions (3 levels), often used for gapfilling missing data</p>
 </div>
 <div id="rgn_global" class="section level2">
 <h2>rgn_global</h2>
-<p>regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>rgn_global_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>label</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>NA to NA</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed.
-</p>
+<p>OHI regions</p>
+<p>Subset of regions that are not deleted or disputed</p>
 </div>
 <div id="rgn_labels" class="section level2">
 <h2>rgn_labels</h2>
-<p>regions by type (eez, subocean, unclaimed) and label</p>
-<table>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>rgn_labels.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>label</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>NA to NA</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>raster: spatial data was extracted for each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Ocean Health Index regions by type (eez, subocean, unclaimed) and label
-</p>
+<p>Regions</p>
+<p>Regions by type (eez, subocean, unclaimed)</p>
 </div>
 <div id="sp_alien" class="section level2">
 <h2>sp_alien</h2>
-<p>Alien species</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>sp_alien_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.00177656 to 0.044364</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Molnar, J.L., Gamboa, R.L., Revenga C., Spalding, M. (2008). <strong>Assessing the global threat of invasive species to marine biodiversity</strong>. <em>Frontiers in Ecology and the Environment</em> 6(485). <a href="http://dx.doi.org/10.1890/070064">doi:10.1890/070064</a>
-</li>
-</ul>
+<p>Nonindigenous species</p>
+<p>The number and type of invasive and harmful invasive species in each marine ecoregion</p>
+</div>
+<div id="sp_alien_species" class="section level2">
+<h2>sp_alien_species</h2>
+<p>Management of nonindigenous species</p>
+<p>Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: invasive species related questions</p>
 </div>
 <div id="sp_genetic" class="section level2">
 <h2>sp_genetic</h2>
-<p>Introduced species as a proxy for genetic escapes</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>sp_genetic_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 0.996002</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Statistics on native or introduced species from the Mariculture Sustainibility Index (MSI).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-Trujillo P. (2008). <strong>Using a mariculture sustainability index to rank countries<cc><ce><e5><a2>̴<cc>
-<dd>
-̴<e5><bb> performances</strong>. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countries<cc><ce><e5><a2>̴<cc>
-<dd>
-̴<e5><bb> Exclusive Economic Zones, Alder J, Pauly D, editors. <em>Fisheries Centre Research Report</em>, vol. 16(7) p. 28<cc><ce><e5><a2>̴<cc>
-<dd>
-̴<cc><d5>56.
-</li>
-</ul>
-</div>
-<div id="species_diversity" class="section level2">
-<h2>species_diversity</h2>
-<p>Ocean ecological integrity</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>species_diversity_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.840336 to 0.930309</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme">International Union for Conservation of Nature (IUCN)</a>
-</li>
-</ul>
+<p>Genetic escapes</p>
+<p>Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes</p>
 </div>
 <div id="species_diversity_3nm" class="section level2">
 <h2>species_diversity_3nm</h2>
-<p>Coastal ecological integrity</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>species_diversity_3nm_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.865451 to 0.932633</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme">International Union for Conservation of Nature (IUCN)</a>
-</li>
-</ul>
+<p>Measure of coastal ecological integrity</p>
+<p>Marine species condition (results from species subgoal) calculated within 3 nm of shoreline as a proxy for ecological integrity</p>
+</div>
+<div id="species_diversity_eez" class="section level2">
+<h2>species_diversity_eez</h2>
+<p>Measure of ecological integrity</p>
+<p>Marine species condition (results from species subgoal) as a proxy for ecological integrity</p>
 </div>
 <div id="spp_status" class="section level2">
 <h2>spp_status</h2>
-<p>Species lists and IUCN threat categories as a proxy for iconic species status</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>spp_status_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>status score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.840336 to 0.930309</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global scores were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme">International Union for Conservation of Nature (IUCN)</a>
-</li>
-</ul>
+<p>Average species condition</p>
+<p>Species condition based on average of IUCN threat categories</p>
 </div>
 <div id="spp_trend" class="section level2">
 <h2>spp_trend</h2>
-<p>Species lists and IUCN threat categories as a proxy for iconic species trend</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>spp_trend_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>trend score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>-0.120011 to 0.0200251</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global trends were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme">International Union for Conservation of Nature (IUCN)</a>
-</li>
-</ul>
+<p>Average species trends</p>
+<p>Species trends based on average of IUCN population trend data</p>
+</div>
+<div id="ss_spi" class="section level2">
+<h2>ss_spi</h2>
+<p>Weakness of social progress</p>
+<p>Inverse of Social Progress Index scores</p>
 </div>
 <div id="ss_wgi" class="section level2">
 <h2>ss_wgi</h2>
-<p>Weakness of governance indicated with the WGI</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>ss_wgi_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>pressure score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.126633 to 0.646772</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global pressures data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Inverse of World Governance Indicators (WGI) six combined scores.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://info.worldbank.org/governance/wgi/index.asp">Worldwide Governance Indicators (WGI)</a>
-</li>
-</ul>
+<p>Weakness of governance</p>
+<p>Inverse of World Governance Indicators (WGI) six combined scores</p>
 </div>
-<div id="tourism" class="section level2">
-<h2>tourism</h2>
-<p>CBD survey: tourism</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>tourism_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.555556 to 0.833333</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
-</div>
-<div id="tr_jobs_total" class="section level2">
-<h2>tr_jobs_total</h2>
-<p>Total labor force</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>tr_jobs_total_sc2014-popn-inland25km.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>jobs</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>12598.3 to 14542100</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>population_inland25km: global total labor force data were applied to each region after weighting by each region’s coastal population.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Total labor force (number of people 15 years old and older who can supply labor for the production of goods and services) from World Bank assessments.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://data.worldbank.org/indicator/SL.TLF.TOTL.IN">The World Bank</a>
-</li>
-</ul>
-</div>
-<div id="tr_jobs_tourism" class="section level2">
-<h2>tr_jobs_tourism</h2>
-<p>Direct employment in tourism</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>tr_jobs_tourism_sc2014-popn-inland25km.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>jobs</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0 to 356393</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>population_inland25km: global tourism employee data were applied to each region after weighting by each region’s coastal population.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Direct employment in tourism (WTTC).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.wttc.org/research/economic-data-search-tool/">World Travel and Tourism Council (WTTC)</a>
-</li>
-</ul>
+<div id="tr_jobs_pct_tourism" class="section level2">
+<h2>tr_jobs_pct_tourism</h2>
+<p>Percent direct employment in tourism</p>
+<p>Percent direct employment in tourism</p>
 </div>
 <div id="tr_sustainability" class="section level2">
 <h2>tr_sustainability</h2>
-<p>Sustainability index</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>tr_sustainability_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>4.16 to 5.39</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal : global scores were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Tourism Competitiveness Index (TTCI) from the World Economic Forum
-</p>
+<p>Tourism sustainability index</p>
+<p>Tourism Competitiveness Index (TTCI)</p>
 </div>
-<div id="tr_unemployment" class="section level2">
-<h2>tr_unemployment</h2>
-<p>Percent unemployment</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>tr_unemployment_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>percent unemployed</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.6 to 20.2</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global unemployment percentages were applied equally to each region.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Percent unemployment (The World Bank).
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS">The World Bank</a>
-</li>
-</ul>
-</div>
-<div id="water" class="section level2">
-<h2>water</h2>
-<p>CBD survey: water</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>water_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>1 to 1</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005)
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://www.cbd.int/reports/search/default.shtml">Convention on Biological Diversity (CBD)</a>
-</li>
-</ul>
+<div id="tr_travelwarnings" class="section level2">
+<h2>tr_travelwarnings</h2>
+<p>US State Department travel warnings</p>
+<p>Countries with US State Department travel warnings</p>
 </div>
 <div id="wgi_all" class="section level2">
 <h2>wgi_all</h2>
-<p>Strength of governance indicated with the WGI</p>
-<table style="width:100%;">
-<colgroup>
-<col width="21%" />
-<col width="78%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>metadata</th>
-<th>value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>filename</td>
-<td>wgi_all_gl2014.csv</td>
-</tr>
-<tr class="even">
-<td>value units</td>
-<td>resilience score</td>
-</tr>
-<tr class="odd">
-<td>value range</td>
-<td>0.353228 to 0.873367</td>
-</tr>
-<tr class="even">
-<td>global extraction</td>
-<td>equal: global resilience data were applied equally to all regions.</td>
-</tr>
-</tbody>
-</table>
-<p>
-World Governance Indicators (WGI) six combined scores.
-</p>
-<p>
-Data sources:
-</p>
-<ul>
-<li>
-<a href="http://info.worldbank.org/governance/wgi/index.asp">Worldwide Governance Indicators (WGI)</a>
-</li>
-</ul>
+<p>Strength of governance</p>
+<p>World Governance Indicators (WGI) six combined scores</p>
 </div>
 
 <footer role="contentinfo" id="site-footer">
+
 <!-- /.bottom-menu -->
 	<p class="copyright">&#169; 2016,
 		created by <a href="http://github.com/bbest">Ben Best</a> and <a href="http://github.com/jules32">Julie Lowndes</a>,
@@ -4243,6 +832,8 @@ Data sources:
 </footer>
 
 
+</div>
+</div>
 
 </div>
 

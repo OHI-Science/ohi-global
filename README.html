@@ -212,118 +212,60 @@ $(document).ready(function () {
 </div>
 
 
-<div id="ohi-shiny-app" class="section level1">
-<h1>OHI Shiny app</h1>
-<p>These files provide the template for creating a Shiny app that visualizes a data branch of an Ocean Health Index (OHI) repository.</p>
-<p>Normally these files are translated from template files into a live Shiny app using the <code>ohirepos::deploy_app()</code> function, like so:</p>
-<pre class="r"><code>library(ohirepos)
+<div id="ohi-gh-pages-branch" class="section level1">
+<h1>OHI gh-pages branch</h1>
+<p>These files provide the template for creating a website for an OHI repository per <a href="http://pages.github.com">Github Pages</a> by populating the HTML files from Rmarkdown into the gh-pages branch of the Github repo.</p>
+<p>Normally these files are translated from template files into the website using <code>ohirepos::deploy_website()</code> function, like so:</p>
+<pre class="r"><code>library(ohirepos) # devtools::install_github(&#39;ohi-science/ohirepos&#39;)
 
 # ohi-global
-deploy_app(&#39;ohi-global&#39;, &#39;Global&#39;, &#39;eez2015&#39;)
+deploy_website(&#39;ohi-global&#39;, &#39;Global&#39;, &#39;eez2015&#39;, dir_out=&#39;~/Desktop/ohirepos_tmp&#39;, del_out=F, open_url=T)
+#  cannot open file &#39;./ohi-global_draft/eez2015/conf/goals.Rmd&#39;: No such file or directory
 
 # baltic
-deploy_app(&#39;ohi-global&#39;, &#39;Baltic&#39;, c(&#39;eez2015&#39;,&#39;eez2012&#39;,&#39;eez2013&#39;,&#39;eez2014&#39;,&#39;eez2016&#39;))</code></pre>
-<p>When the Shiny app first launches (eg with <a href="https://www.rdocumentation.org/packages/shiny/versions/0.13.2/topics/runApp"><code>shiny::runApp()</code></a>), the github repository specified in <code>app.yml</code> will get downloaded for the specified <code>default_branch</code> from Github with <code>git clone</code> and all the scenarios (specified by <code>scenario_dirs</code>) will be processed into a <code>[scenario].Rdata</code> file(s) before launching the app.</p>
-<div id="debugging" class="section level2">
-<h2>Debugging</h2>
-<p>In practice, for developing this Shiny app, I launch RStudio with <code>app.Rproj</code> to set the working directory here, and create the <code>app.yml</code> and <code>[repo]_intro.md</code> for whichever repo before launching the app:</p>
-<pre class="r"><code># vars for ohi-global
-gh_repo    = &#39;ohi-global&#39;
-app_title  = &#39;Global&#39;
-scenario_dirs  = c(&#39;eez2015&#39;,&#39;eez2012&#39;,&#39;eez2013&#39;,&#39;eez2014&#39;,&#39;eez2016&#39;)
-projection = &#39;Mollweide&#39;
+deploy_website(&#39;bhi&#39;, &#39;Baltic&#39;, &#39;baltic2015&#39;, dir_out=&#39;~/Desktop/ohirepos_tmp&#39;, del_out=F, open_url=T)</code></pre>
+<p>When <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html"><code>rmarkdown::render_site(dir_web)</code></a> runs, it knits each Rmarkdown (*.Rmd) based on parameters in <code>_site.R</code> and <code>_site.yml</code> before pushing the files back to Github. These Rmd files also pull from the <code>data_branch</code>, typically <code>draft</code>, that gets copied into <code>[gh_repo]_[gh_branch_data]</code>.</p>
+<div id="development" class="section level2">
+<h2>Development</h2>
+<p>In practice, for developing these Rmarkdown files, I launch RStudio with <code>ohirepos/inst/gh-pages/gh-pages.Rproj</code> to set the working directory here, and create the <code>_site.yml</code> and <code>_site.R</code> for whichever repo, knit with the Build tab in RStudio &gt; Build Website, and add the <code>[gh_repo]_[gh_branch_data]</code> folder to <code>.gitignore</code>.</p>
+<p>Here’s how to generate the <code>_site.yml</code> and <code>_site.R</code> manually for local development in <code>ohirepos/inst/gh-pages</code>:</p>
+<pre class="r"><code># library(devtools); load_all()
 
-# vars for bhi
-gh_repo    = &#39;bhi&#39;
-app_title  = &#39;Baltic&#39;
-scenario_dirs  = &#39;baltic2015&#39;
-projection = &#39;Mercator&#39;
+# ohi-global
+gh_repo=&#39;ohi-global&#39;; study_area=&#39;Global&#39;; scenario_dir=&#39;eez2015&#39;
 
-# common vars
-gh_owner       = &#39;OHI-Science&#39;
-gh_branch_data = &#39;draft&#39;
-gh_branch_app  = &#39;app&#39;
-map_shrink_pct = 10
-debug          = F
+# bhi
+gh_repo=&#39;bhi&#39;       ; study_area=&#39;Baltic&#39;; scenario_dir=&#39;baltic2015&#39;
 
-# derived vars
-app_url         = sprintf(&#39;http://ohi-science.nceas.ucsb.edu/%s&#39;, gh_repo)
+# vars
+gh_branch_data=&#39;draft&#39;
+app_url=sprintf(&#39;http://ohi-science.nceas.ucsb.edu/%s&#39;, gh_repo); 
 ohirepos_commit = devtools:::local_sha(&#39;ohirepos&#39;)
+dir_data = sprintf(&#39;%s_%s&#39;, gh_repo, gh_branch_data)
 
-readr::write_file(
-    yaml::as.yaml(list(
-    app_title       = app_title,
-    gh_owner        = gh_owner,
-    gh_repo         = gh_repo,
-    gh_branch_data  = gh_branch_data,
-    app_url         = app_url,
-    scenario_dirs       = scenario_dirs,
-    projection      = projection,
-    map_shrink_pct  = map_shrink_pct,
-    debug           = F,
-    ohirepos_commit = ohirepos_commit,
-    last_updated    = Sys.Date())),
-    &#39;app.yml&#39;)
+# brew config files
+brew::brew(system.file(&#39;gh-pages/_site.brew.yml&#39;, package=&#39;ohirepos&#39;), &#39;_site.yml&#39;)
+brew::brew(system.file(&#39;gh-pages/_site.brew.R&#39;  , package=&#39;ohirepos&#39;), &#39;_site.R&#39;  )
 
-# brew intro.md
-brew::brew(&#39;intro.brew.md&#39;, sprintf(&#39;%s_intro.md&#39;, gh_repo))
+# get data branch 
+system(sprintf(&#39;git clone https://github.com/ohi-science/%s.git %s&#39;, dir_data))
+# OR copy from local
+system(sprintf(&#39;cp -rf ~/github/%s %s&#39;, gh_repo, dir_data))
 
-# run app
-shiny::runApp()</code></pre>
-<p>Notice that the existing <code>.gitignore</code> includes <code>app.yml</code>,<code>intro.md</code>, <code>baltic2015.Rdata</code> files and <code>draft</code> folder, so these will not be uploaded to the generic app template on Github. For working with various apps, I move them to a prefix (eg <code>bhi_</code>*) and add to <code>.gitignore</code>.</p>
-</div>
-<div id="credit" class="section level2">
-<h2>Credit</h2>
-<p>The majority of this Shiny application was coded by <a href="http://benbestphd.com">Ben Best</a> with significant inputs from Julie Lowndes. Special thanks to Herman Sontrop who developed the <a href="https://github.com/FrissAnalytics/ohi-aster">ohi-aster</a> htmlwidget and these <a href="http://shiny.rstudio.com/tutorial/">Shiny JavaScript tutorials</a>.</p>
-</div>
-<div id="geojson-simplification" class="section level2">
-<h2>GeoJSON Simplification</h2>
-<p>The initial loading time and overall performance of the Shiny app in a web browser is very dependent on the size of the GeoJSON file used to render the regions spatially. The path of this geojson file is specified as the <code>geojson</code> variable in the <code>config.R</code> of the data branch’s scenario subfolder (eg for Baltic draft branch, baltic2015 scenario: <a href="https://github.com/OHI-Science/bhi/blob/673f8b67f1eb0e42e7e59117880cb07032aaf750/baltic2015/conf/config.R#L26">config.R</a> -&gt; <a href="https://github.com/OHI-Science/bhi/blob/draft/baltic2015/spatial/regions_gcs.geojson">spatial/regions_gcs.geojson</a>:</p>
-<pre class="r"><code>geojson = &#39;spatial/regions_gcs.geojson&#39;</code></pre>
-<p>Here’s how the high resolution global EEZ shapefile was greatly simplified with the excellent <a href="https://github.com/ateucher/rmapshaper#usage"><code>rmapshaper::ms_simplify</code></a> to <a href="https://github.com/OHI-Science/ohi-global/blob/b2abb0b63822c94c447bc04afa3c901511c48a6c/eez2015/spatial/rgn_offshore_gcs_mapshaper-simplify_x2_eez-only.geojson">ohi-global/rgn_offshore_gcs_mapshaper-simplify_x2_eez-only.geojson</a>…</p>
-<script src="https://embed.github.com/view/geojson/OHI-Science/ohi-global/b2abb0b63822c94c447bc04afa3c901511c48a6c/eez2015/spatial/rgn_offshore_gcs_mapshaper-simplify_x2_eez-only.geojson"></script>
-<pre class="r"><code>## install.packages(&quot;devtools&quot;)
-library(dplyr)
-library(sp)
-library(rgdal)
-library(geojsonio)  # install_github(&quot;ropensci/geojsonio&quot;)
-library(rmapshaper) # install_github(&quot;ateucher/rmapshaper&quot;)
+# update data branch with latest on Github
+system(sprintf(&#39;cd %s; git reset -q --hard origin/%s&#39;, dir_data, gh_branch_data))
 
-# downloaded from sftp://neptune.nceas.ucsb.edu/var/data/ohi/git-annex/Global/NCEAS-Regions_v2014/data/rgn_offshore_gcs.shp
-shp = &#39;~/Documents/OHI/spatial/rgn_offshore_gcs.shp&#39;
+# be sure to add to .gitignore
+cat(sprintf(&#39;\n%s&#39;, dir_data), file=&#39;.gitignore&#39;, append=T)
 
-# read in polygon
-ply = readOGR(normalizePath(dirname(shp)), basename(tools::file_path_sans_ext(shp)), verbose=F)
-
-# subset
-sub = ply[ply@data$rgn_name %in% c(&#39;Costa Rica&#39;,&#39;Nicaragua&#39;),]
-
-# plot
-plot(sub, col=&#39;gray&#39;)
-
-# simplify using default parameters
-ply_simp0 = ms_simplify(ply)
-plot(ply_simp0, col=&#39;gray&#39;)
-
-# write out as geojson
-geojson_write(ply_simp0, file=&#39;data/rgn_offshore_gcs_mapshaper-simplify.geojson&#39;)
-})
-
-# simplify from existing geojson, plot and write out
-ply_simp0 = readOGR(&#39;data/rgn_offshore_gcs_mapshaper-simplify.geojson&#39;, &#39;OGRGeoJSON&#39;, verbose=F)
-plot(ply_simp0, col=&#39;gray&#39;)
-ply_simp1 = ms_simplify(ply_simp0)
-plot(ply_simp1, col=&#39;gray&#39;)
-geojson_write(ply_simp1, file=&#39;data/rgn_offshore_gcs_mapshaper-simplify_x2.geojson&#39;)
-
-# remove non-eez shapes
-ply_simp2 = ply_simp1[ply_simp1$rgn_type==&#39;eez&#39; &amp; ply_simp1$rgn_name!=&#39;Antarctica&#39;,]
-plot(ply_simp2, col=&#39;gray&#39;)
-geojson_write(ply_simp2, file=&#39;data/rgn_offshore_gcs_mapshaper-simplify_x2_eez-only.geojson&#39;)</code></pre>
+# render and launch
+rmarkdown::render_site(&#39;.&#39;)
+utils::browseURL(&#39;index.html&#39;)</code></pre>
 </div>
 </div>
 
 <footer role="contentinfo" id="site-footer">
+
 <!-- /.bottom-menu -->
 	<p class="copyright">&#169; 2016,
 		created by <a href="http://github.com/bbest">Ben Best</a> and <a href="http://github.com/jules32">Julie Lowndes</a>,

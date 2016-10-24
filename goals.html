@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <link rel="stylesheet"
@@ -164,6 +167,100 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -212,523 +309,216 @@ $(document).ready(function () {
 
 </div>
 
-<div id="TOC">
-true
+
+<p>Goals are constructed from input layers based on equations represented below.</p>
+<div id="food-provision-fisheries" class="section level2">
+<h2>Food Provision: Fisheries</h2>
+<p>Amount of sustainable wild-caught seafood compared to the max sustainable</p>
+<p><span class="math display">\[
+x_{FIS} =  (\prod_{g=1}^{6} SS_{i,g}^{C_{i,g}})^\frac{1}{\sum{C_{i,g}}}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(SS\)</span> stock status score, based on B/Bmsy (biomass / maximum sustainable yield of biomass) and an underharvest penalty adjustment</p></li>
+<li><p><span class="math inline">\(C\)</span> total catch</p></li>
+<li><p><span class="math inline">\(i\)</span> OHI reporting region</p></li>
+<li><p><span class="math inline">\(g\)</span> level of taxonomic grouping (ISSCAAP)</p></li>
+</ul>
+</div>
+<div id="food-provision-mariculture" class="section level2">
+<h2>Food Provision: Mariculture</h2>
+<p>Amount of sustainable farm-raised seafood compared to max sustainable</p>
+<p><span class="math display">\[
+x_{MAR} =  \frac{Y_{c}}{Y_{r}}
+\]</span></p>
+<p><span class="math display">\[
+Y_{c} = \frac{\sum{1}^{k} Y_{k} * S_{M,k}}{P_{c}}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(Y\)</span> = current sustainably harvested total yield, current [<span class="math inline">\(c\)</span>] or reference [<span class="math inline">\(r\)</span>]</p></li>
+<li><p><span class="math inline">\(S_{M,k}\)</span> = Sustainability score for each species <span class="math inline">\(k\)</span></p></li>
+<li><p><span class="math inline">\(P_{c}\)</span> = Coastal population within 100km</p></li>
+<li><p><span class="math inline">\(Y_{r} = max(Y_{c})\)</span></p></li>
+</ul>
+</div>
+<div id="artisanal-fishing-opportunity" class="section level2">
+<h2>Artisanal Fishing Opportunity</h2>
+<p>the opportunity to fish artisanally, independent of how many fish are caught</p>
+<p><span class="math display">\[
+x_{AO} = (1 - D_{U}) * S_{AO}
+\]</span></p>
+<p><span class="math display">\[
+D_{U} = (1 - P) * (1 - O_{AO})
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(D_{U}\)</span> = unmet demand</p></li>
+<li><p><span class="math inline">\(S_{AO}\)</span> = sustainability of fishing methods</p></li>
+<li><p><span class="math inline">\(O_{AO}\)</span> = access to artisanal fishing</p></li>
+<li><p><span class="math inline">\(P\)</span> = gross domestic product (GDP) per capita, adjusted by purchasing power parity (PPP)</p></li>
+</ul>
+</div>
+<div id="natural-products" class="section level2">
+<h2>Natural Products</h2>
+<p>Level of protection of the coast from inundation and erosion compared to the local natural potential</p>
+<p><span class="math display">\[
+x_{NP} = \frac{\sum_{p=1}^{N} w_p * x_p}{N}  
+\]</span></p>
+<p><span class="math display">\[
+x_p = H_p * S_p
+\]</span></p>
+<p><span class="math display">\[
+S_p = 1 - (\frac{E + R}{N})  
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(w_p\)</span> = proportional peak US dollar value of product <span class="math inline">\(p\)</span></p></li>
+<li><p><span class="math inline">\(x_p\)</span> = sustainable-harvest score for product <span class="math inline">\(p\)</span></p></li>
+<li><p><span class="math inline">\(H_p\)</span> = harvest yield for product <span class="math inline">\(p\)</span></p></li>
+<li><p><span class="math inline">\(S_p\)</span> = sustainability of product <span class="math inline">\(p\)</span></p></li>
+<li><p><span class="math inline">\(E\)</span> = exposure term</p></li>
+<li><p><span class="math inline">\(R\)</span> = risk term</p></li>
+</ul>
+<p>￼products:aquaria fishes, corals, sponges, shells, seaweeds, fish oil</p>
+</div>
+<div id="carbon-storage" class="section level2">
+<h2>Carbon Storage</h2>
+<p>Extent and condition of coastal habitats that store and sequester atmospheric carbon</p>
+<p><span class="math display">\[
+x_{CS} =  \sum_{1}^{k} \frac{C_{s}}{C_{r}} * \frac{A_{k}}{A_{T}}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(C\)</span> = condition of habitat <span class="math inline">\(k\)</span>, current [<span class="math inline">\(c\)</span>] or reference[<span class="math inline">\(r\)</span>]</p></li>
+<li><p><span class="math inline">\(A\)</span> = area of habitat <span class="math inline">\(k\)</span>, current [<span class="math inline">\(c\)</span>] or total area covered by all habitats assessed [T]</p></li>
+</ul>
+<p>habitats: seagrass beds, salt marshes, mangroves</p>
+</div>
+<div id="coastal-protection" class="section level2">
+<h2>Coastal Protection</h2>
+<p>Protection from inundation or erosion compared to the local natural potential</p>
+<p><span class="math display">\[
+x_{CP} =  \sum_{k}^{n} \alpha_{k} * \frac{C_{c,k}}{C_{r,k}}
+\]</span></p>
+<p><span class="math display">\[
+\alpha_{k} = \frac{w_{k}*A_{k}}{\sum{w_{k}*A_{k}}}
+\]</span></p>
+<p><span class="math display">\[
+w_{k} = \frac{r_{k}}{\sum{r_{k}}}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(C\)</span> = condition of habitat <span class="math inline">\(k\)</span>, current [<span class="math inline">\(c\)</span>] and reference [<span class="math inline">\(r\)</span>]</p></li>
+<li><p><span class="math inline">\(\alpha\)</span> = weighted area of habitat <span class="math inline">\(k\)</span></p></li>
+<li><p><span class="math inline">\(A\)</span> = area of habitat <span class="math inline">\(k\)</span></p></li>
+<li><p><span class="math inline">\(r\)</span> = habitat protective ability rank weight</p></li>
+</ul>
+<p>habitats: salt marshes, seagrass beds, mangroves, coral reefs, sea ice</p>
+</div>
+<div id="tourism-recreation" class="section level2">
+<h2>Tourism &amp; Recreation</h2>
+<p>Tourism &amp; recreation value, independent of monetary exchange</p>
+<p><span class="math display">\[
+x_{TR} = E_{t} * S_{t} 
+\]</span></p>
+<p><span class="math display">\[
+E_{t} = E_{W} / (L_{t} - L_{t} * U_{t})
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(E\)</span> = tourism employment proportion</p></li>
+<li><p><span class="math inline">\(S\)</span> = sustainability measure</p></li>
+<li><p><span class="math inline">\(E_{W}\)</span> = number of employees in travel and tourism sectors</p></li>
+<li><p><span class="math inline">\(L\)</span> = total labor force</p></li>
+<li><p><span class="math inline">\(U\)</span> = percent unemployment</p></li>
+<li><p><span class="math inline">\(t\)</span> = current year</p></li>
+</ul>
+</div>
+<div id="livelihoods-economies-livelihoods" class="section level2">
+<h2>Livelihoods &amp; Economies: Livelihoods</h2>
+<p>Number of jobs and job quality from marine-associated sectors</p>
+<p><span class="math display">\[
+x_{LIV} = \frac{\frac{\sum_{i=1}^{k} j_{c,k}}{\sum_{i=1}^{k} j_{r,k}} + \frac{\sum_{i=1}^{k} g_{m,k}}{\sum_{i=1}^{k} g_{r,k}}}{2}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(j\)</span> = number of jobs within sector <span class="math inline">\(k\)</span> at current [<span class="math inline">\(c\)</span>] or reference [<span class="math inline">\(r\)</span>] time</p></li>
+<li><p><span class="math inline">\(g\)</span> = average wages per job for sector <span class="math inline">\(k\)</span> at current [<span class="math inline">\(m\)</span>] or reference [<span class="math inline">\(r\)</span>] region</p></li>
+<li><p>sectors (<span class="math inline">\(k\)</span>): tourism, commercial fishing, marine mammal watching, aquarium fishing, wave &amp; tidal energy, mariculture, transportation &amp; shipping, ports &amp; harbors, ship &amp; boatbuilding</p></li>
+</ul>
+</div>
+<div id="livelihoods-economies-economies" class="section level2">
+<h2>Livelihoods &amp; Economies: Economies</h2>
+<p>Revenue from marine associated sectors</p>
+<p><span class="math display">\[
+x_{ECO} = \sum_{i=1}^{k} \frac{e_{c,k}}{e_{r,k}} 
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(e\)</span> = total adjusted revenue generated from each sector <span class="math inline">\(k\)</span> at current [<span class="math inline">\(c\)</span>] or reference [<span class="math inline">\(r\)</span>] time</p></li>
+<li><p>sectors (<span class="math inline">\(k\)</span>): tourism, commercial fishing, marine mammal watching, aquarium fishing, wave &amp; tidal energy, mariculture, transportation &amp; shipping, ports &amp; harbors, ship &amp; boatbuilding</p></li>
+</ul>
+</div>
+<div id="sense-of-place-iconic-species" class="section level2">
+<h2>Sense of Place: Iconic Species</h2>
+<p>Aesthetic connections to and cultural identity with a given region measured through the status of iconic species</p>
+<p><span class="math display">\[
+x_{ICO} = \frac{\sum_{i=1}^{N} S_{i} * w_{i}}{\sum_{i=1}^{N} S_{i}} 
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(S\)</span> = number of assessed species in each threat category <span class="math inline">\(i\)</span></p></li>
+<li><p><span class="math inline">\(w\)</span> = status weight assigned per threat category <span class="math inline">\(i\)</span></p></li>
+<li><p><span class="math inline">\(N\)</span> = 6 threat categories</p></li>
+</ul>
+<p>iconic species list: WWF Priority Species</p>
+<p>threat categories: IUCN</p>
+</div>
+<div id="sense-of-place-lasting-special-places" class="section level1">
+<h1>Sense of Place: Lasting Special Places</h1>
+<p>Aesthetic connections to and cultural identity with a given region measured through the status of meaningful locations</p>
+<p><span class="math display">\[
+x_{LSP} = \frac{(\frac{M}{M_{r}} + \frac{C}{C_{r}})}{2} 
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(M\)</span> = percent protected marine coastal area compared to reference [<span class="math inline">\(r\)</span>] <span class="math inline">\(C\)</span> = percent protected coastline compared to reference [<span class="math inline">\(r\)</span>]</p></li>
+<li><p><span class="math inline">\(C\)</span> = managed area on coastal land (0-1mi)</p></li>
+<li><p><span class="math inline">\(C_{t}\)</span> = total coastal land area</p></li>
+</ul>
+<div id="clean-waters" class="section level2">
+<h2>Clean Waters</h2>
+<p>The degree to which coastal waters are free of contaminants</p>
+<p><span class="math display">\[
+x_{CW} = \sqrt[4]{a * u * l * d}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(a\)</span> = number of coastal people without access to sanitation</p></li>
+<li><p><span class="math inline">\(u\)</span> = 1 – (nutrient input)</p></li>
+<li><p><span class="math inline">\(l\)</span> = 1 – (chemical input)</p></li>
+<li><p><span class="math inline">\(d\)</span> = 1 – (marine debris input, by country)</p></li>
+</ul>
+</div>
+<div id="biodiversity-habitats" class="section level2">
+<h2>Biodiversity: Habitats</h2>
+<p>Existence values people hold for biodiversity measured through the status of key habitats</p>
+<p><span class="math display">\[
+x_{HAB} =  \sum_{i=1}^{k} \frac{C_{c,k}}{C_{r,k}} * \frac{A_{c,k}}{A_{T}}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(C\)</span> = condition of habitat k, current [<span class="math inline">\(c\)</span>] or reference[<span class="math inline">\(r\)</span>]</p></li>
+<li><p><span class="math inline">\(A\)</span> = area of habitat k, current [<span class="math inline">\(c\)</span>] or total of all habitats [T]</p></li>
+</ul>
+<p>habitats: seagrass beds, salt marshes, subtidal soft-bottom habitats, mangroves, coral reefs, sea ice edge</p>
+</div>
+<div id="biodiversity-species" class="section level2">
+<h2>Biodiversity: Species</h2>
+<p>Existence values people hold for biodiversity measured through the status of native species</p>
+<p><span class="math display">\[
+x_{SPP} = \frac{\sum_{k=1}^{M} (\frac{\sum_{i=1}^{N} w_{i}}{N}) * A_{C}}{A_{T}} 
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(M\)</span> = number of grid cells in the assessment region</p></li>
+<li><p><span class="math inline">\(N\)</span> = number species in a grid cell <span class="math inline">\(c\)</span></p></li>
+<li><p><span class="math inline">\(A\)</span> = total area of a grid cell [<span class="math inline">\(c\)</span>] the assessment region [T]</p></li>
+<li><p><span class="math inline">\(w_{i}\)</span> = status weight assigned per threat</p></li>
+</ul>
+<p>assessed species list and maps: IUCN</p>
+</div>
 </div>
 
-<p>The following goal models are from the global assessment in 2014. These models should be modified when better data or indicators are available.</p>
-<nav class="navbar navbar-default" role="navigation">
-<div class="container-fluid">
-<pre><code> &lt;div class=&quot;navbar-header&quot;&gt;       &lt;a class=&quot;navbar-brand&quot; href=&quot;#&quot;&gt;Branch/Scenario&lt;/a&gt;     &lt;/div&gt;     &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;navbar-1&quot;&gt;       &lt;ul class=&quot;nav navbar-nav&quot;&gt;         &lt;li class=&quot;dropdown&quot;&gt;           &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot;&gt;published/baltic2015&lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;&lt;/a&gt;           &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot;&gt;                       &lt;li&gt;&lt;a href=&quot;{{ site.baseurl }}/draft/baltic2015/goals/&quot;&gt;draft/baltic2015&lt;/a&gt;&lt;/li&gt;                     &lt;/ul&gt;         &lt;/li&gt;       &lt;/ul&gt;     &lt;/div&gt;   &lt;/div&gt; &lt;/nav&gt; </code></pre>
-<h2>
-Food Provision: Fisheries
-</h2>
-<p>
-Amount of sustainable wild-caught seafood compared to the max sustainable
-</p>
-<p>
-<span class="math display">\[
-x_{FIS} =  (\prod_{g=1}^{6} SS_{i,g}^{C_{i,g}})^\frac{1}{\sum{C_{i,g}}}
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(SS\)</span> stock status score, based on B/Bmsy (biomass / maximum sustainable yield of biomass) and an underharvest penalty adjustment
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(C\)</span> total catch
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(i\)</span> OHI reporting region
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(g\)</span> level of taxonomic grouping (ISSCAAP)
-</p>
-</li>
-</ul>
-<h2>
-Food Provision: Mariculture
-</h2>
-<p>
-Amount of sustainable farm-raised seafood compared to max sustainable
-</p>
-<p>
-<span class="math display">\[
-x_{MAR} =  \frac{Y_{c}}{Y_{r}}
-\]</span>
-</p>
-<p>
-<span class="math display">\[
-Y_{c} = \frac{\sum{1}^{k} Y_{k} * S_{M,k}}{P_{c}}
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(Y\)</span> = current sustainably harvested total yield, current [<span class="math inline">\(c\)</span>] or reference [<span class="math inline">\(r\)</span>]
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(S_{M,k}\)</span> = Sustainability score for each species <span class="math inline">\(k\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(P_{c}\)</span> = Coastal population within 100km
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(Y_{r} = max(Y_{c})\)</span>
-</p>
-</li>
-</ul>
-<h2>
-Artisanal Fishing Opportunity
-</h2>
-<p>
-the opportunity to fish artisanally, independent of how many fish are caught
-</p>
-<p>
-<span class="math display">\[
-x_{AO} = (1 - D_{U}) * S_{AO}
-\]</span>
-</p>
-<p>
-<span class="math display">\[
-D_{U} = (1 - P) * (1 - O_{AO})
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(D_{U}\)</span> = unmet demand
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(S_{AO}\)</span> = sustainability of fishing methods
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(O_{AO}\)</span> = access to artisanal fishing
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(P\)</span> = gross domestic product (GDP) per capita, adjusted by purchasing power parity (PPP)
-</p>
-</li>
-</ul>
-<h2>
-Natural Products
-</h2>
-<p>
-Level of protection of the coast from inundation and erosion compared to the local natural potential
-</p>
-<p>
-<span class="math display">\[
-x_{NP} = \frac{\sum_{p=1}^{N} w_p * x_p}{N}  
-\]</span>
-</p>
-<p>
-<span class="math display">\[
-x_p = H_p * S_p
-\]</span>
-</p>
-<p>
-<span class="math display">\[
-S_p = 1 - (\frac{E + R}{N})  
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(w_p\)</span> = proportional peak US dollar value of product <span class="math inline">\(p\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(x_p\)</span> = sustainable-harvest score for product <span class="math inline">\(p\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(H_p\)</span> = harvest yield for product <span class="math inline">\(p\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(S_p\)</span> = sustainability of product <span class="math inline">\(p\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(E\)</span> = exposure term
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(R\)</span> = risk term
-</p>
-</li>
-</ul>
-<p>
-￼products:aquaria fishes, corals, sponges, shells, seaweeds, fish oil
-</p>
-<h2>
-Carbon Storage
-</h2>
-<p>
-Extent and condition of coastal habitats that store and sequester atmospheric carbon
-</p>
-<p>
-<span class="math display">\[
-x_{CS} =  \sum_{1}^{k} \frac{C_{s}}{C_{r}} * \frac{A_{k}}{A_{T}}
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(C\)</span> = condition of habitat <span class="math inline">\(k\)</span>, current [<span class="math inline">\(c\)</span>] or reference[<span class="math inline">\(r\)</span>]
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(A\)</span> = area of habitat <span class="math inline">\(k\)</span>, current [<span class="math inline">\(c\)</span>] or total area covered by all habitats assessed [T]
-</p>
-</li>
-</ul>
-<p>
-habitats: seagrass beds, salt marshes, mangroves
-</p>
-<h2>
-Coastal Protection
-</h2>
-<p>
-Protection from inundation or erosion compared to the local natural potential
-</p>
-<p>
-<span class="math display">\[
-x_{CP} =  \sum_{k}^{n} \alpha_{k} * \frac{C_{c,k}}{C_{r,k}}
-\]</span>
-</p>
-<p>
-<span class="math display">\[
-\alpha_{k} = \frac{w_{k}*A_{k}}{\sum{w_{k}*A_{k}}}
-\]</span>
-</p>
-<p>
-<span class="math display">\[
-w_{k} = \frac{r_{k}}{\sum{r_{k}}}
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(C\)</span> = condition of habitat <span class="math inline">\(k\)</span>, current [<span class="math inline">\(c\)</span>] and reference [<span class="math inline">\(r\)</span>]
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(\alpha\)</span> = weighted area of habitat <span class="math inline">\(k\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(A\)</span> = area of habitat <span class="math inline">\(k\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(r\)</span> = habitat protective ability rank weight
-</p>
-</li>
-</ul>
-<p>
-habitats: salt marshes, seagrass beds, mangroves, coral reefs, sea ice
-</p>
-<h2>
-Tourism &amp; Recreation
-</h2>
-<p>
-Tourism &amp; recreation value, independent of monetary exchange
-</p>
-<p>
-<span class="math display">\[
-x_{TR} = E_{t} * S_{t} 
-\]</span>
-</p>
-<p>
-<span class="math display">\[
-E_{t} = E_{W} / (L_{t} - L_{t} * U_{t})
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(E\)</span> = tourism employment proportion
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(S\)</span> = sustainability measure
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(E_{W}\)</span> = number of employees in travel and tourism sectors
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(L\)</span> = total labor force
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(U\)</span> = percent unemployment
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(t\)</span> = current year
-</p>
-</li>
-</ul>
-<h2>
-Livelihoods &amp; Economies: Livelihoods
-</h2>
-<p>
-Number of jobs and job quality from marine-associated sectors
-</p>
-<p>
-<span class="math display">\[
-x_{LIV} = \frac{\frac{\sum_{i=1}^{k} j_{c,k}}{\sum_{i=1}^{k} j_{r,k}} + \frac{\sum_{i=1}^{k} g_{m,k}}{\sum_{i=1}^{k} g_{r,k}}}{2}
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(j\)</span> = number of jobs within sector <span class="math inline">\(k\)</span> at current [<span class="math inline">\(c\)</span>] or reference [<span class="math inline">\(r\)</span>] time
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(g\)</span> = average wages per job for sector <span class="math inline">\(k\)</span> at current [<span class="math inline">\(m\)</span>] or reference [<span class="math inline">\(r\)</span>] region
-</p>
-</li>
-<li>
-<p>
-sectors (<span class="math inline">\(k\)</span>): tourism, commercial fishing, marine mammal watching, aquarium fishing, wave &amp; tidal energy, mariculture, transportation &amp; shipping, ports &amp; harbors, ship &amp; boatbuilding
-</p>
-</li>
-</ul>
-<h2>
-Livelihoods &amp; Economies: Economies
-</h2>
-<p>
-Revenue from marine associated sectors
-</p>
-<p>
-<span class="math display">\[
-x_{ECO} = \sum_{i=1}^{k} \frac{e_{c,k}}{e_{r,k}} 
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(e\)</span> = total adjusted revenue generated from each sector <span class="math inline">\(k\)</span> at current [<span class="math inline">\(c\)</span>] or reference [<span class="math inline">\(r\)</span>] time
-</p>
-</li>
-<li>
-<p>
-sectors (<span class="math inline">\(k\)</span>): tourism, commercial fishing, marine mammal watching, aquarium fishing, wave &amp; tidal energy, mariculture, transportation &amp; shipping, ports &amp; harbors, ship &amp; boatbuilding
-</p>
-</li>
-</ul>
-<h2>
-Sense of Place: Iconic Species
-</h2>
-<p>
-Aesthetic connections to and cultural identity with a given region measured through the status of iconic species
-</p>
-<p>
-<span class="math display">\[
-x_{ICO} = \frac{\sum_{i=1}^{N} S_{i} * w_{i}}{\sum_{i=1}^{N} S_{i}} 
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(S\)</span> = number of assessed species in each threat category <span class="math inline">\(i\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(w\)</span> = status weight assigned per threat category <span class="math inline">\(i\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(N\)</span> = 6 threat categories
-</p>
-</li>
-</ul>
-<p>
-iconic species list: WWF Priority Species
-</p>
-<p>
-threat categories: IUCN
-</p>
-<h1>
-Sense of Place: Lasting Special Places
-</h1>
-<p>
-Aesthetic connections to and cultural identity with a given region measured through the status of meaningful locations
-</p>
-<p>
-<span class="math display">\[
-x_{LSP} = \frac{(\frac{M}{M_{r}} + \frac{C}{C_{r}})}{2} 
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(M\)</span> = percent protected marine coastal area compared to reference [<span class="math inline">\(r\)</span>] <span class="math inline">\(C\)</span> = percent protected coastline compared to reference [<span class="math inline">\(r\)</span>]
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(C\)</span> = managed area on coastal land (0-1mi)
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(C_{t}\)</span> = total coastal land area
-</p>
-</li>
-</ul>
-<h2>
-Clean Waters
-</h2>
-<p>
-The degree to which coastal waters are free of contaminants
-</p>
-<p>
-<span class="math display">\[
-x_{CW} = \sqrt[4]{a * u * l * d}
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(a\)</span> = number of coastal people without access to sanitation
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(u\)</span> = 1 – (nutrient input)
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(l\)</span> = 1 – (chemical input)
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(d\)</span> = 1 – (marine debris input, by country)
-</p>
-</li>
-</ul>
-<h2>
-Biodiversity: Habitats
-</h2>
-<p>
-Existence values people hold for biodiversity measured through the status of key habitats
-</p>
-<p>
-<span class="math display">\[
-x_{HAB} =  \sum_{i=1}^{k} \frac{C_{c,k}}{C_{r,k}} * \frac{A_{c,k}}{A_{T}}
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(C\)</span> = condition of habitat k, current [<span class="math inline">\(c\)</span>] or reference[<span class="math inline">\(r\)</span>]
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(A\)</span> = area of habitat k, current [<span class="math inline">\(c\)</span>] or total of all habitats [T]
-</p>
-</li>
-</ul>
-<p>
-habitats: seagrass beds, salt marshes, subtidal soft-bottom habitats, mangroves, coral reefs, sea ice edge
-</p>
-<h2>
-Biodiversity: Species
-</h2>
-<p>
-Existence values people hold for biodiversity measured through the status of native species
-</p>
-<p>
-<span class="math display">\[
-x_{SPP} = \frac{\sum_{k=1}^{M} (\frac{\sum_{i=1}^{N} w_{i}}{N}) * A_{C}}{A_{T}} 
-\]</span>
-</p>
-<ul>
-<li>
-<p>
-<span class="math inline">\(M\)</span> = number of grid cells in the assessment region
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(N\)</span> = number species in a grid cell <span class="math inline">\(c\)</span>
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(A\)</span> = total area of a grid cell [<span class="math inline">\(c\)</span>] the assessment region [T]
-</p>
-</li>
-<li>
-<p>
-<span class="math inline">\(w_{i}\)</span> = status weight assigned per threat
-</p>
-</li>
-</ul>
-<p>
-assessed species list and maps: IUCN
-</p>
-<script>
-// add bootstrap table styles to pandoc tables
-$(document).ready(function () {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-});
-
-// dynamically load mathjax for compatibility with self-contained
-(function () {
-  var script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-  document.getElementsByTagName("head")[0].appendChild(script);
-})();
-</script>
-
 <footer role="contentinfo" id="site-footer">
+
 <!-- /.bottom-menu -->
 	<p class="copyright">&#169; 2016,
 		created by <a href="http://github.com/bbest">Ben Best</a> and <a href="http://github.com/jules32">Julie Lowndes</a>,
@@ -737,6 +527,8 @@ $(document).ready(function () {
 </footer>
 
 
+</div>
+</div>
 
 </div>
 
