@@ -1,0 +1,553 @@
+layer,targets,field_name,field_info
+ao_access,AO,description,"The opportunity for artisanal and recreational fishing based on the quality of management of the small- scale fishing sector (Mora et al 2009).
+
+"
+ao_access,AO,source1,"Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., Worm, B. (2009). **Management Effectiveness of the World's Marine Fisheries**. _PLoS Biol_, 7(6), e1000131. doi:10.1371/journal.pbio.1000131"
+ao_access,AO,source_url1,http://dx.doi.org/10.1371/journal.pbio.1000131
+ao_access,AO,data_prep_url,
+ao_need,AO,description,"The per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP.
+
+"
+ao_need,AO,source1,"The World Bank GDP per capita, PPP (current international $)"
+ao_need,AO,source_url1,http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD
+ao_need,AO,data_prep_url,
+cw_chemical_trend,CW,description,"Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
+
+"
+cw_chemical_trend,CW,source1,FAOâs statistical database FAOSTAT
+cw_chemical_trend,CW,source_url1,http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E.
+cw_chemical_trend,CW,source2," Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). doi: 10.1038/ncomms8615"
+cw_chemical_trend,CW,source_url2,http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html
+cw_chemical_trend,CW,data_prep_url,
+cw_nutrient_trend,CW,description,"Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO; Halpern et al. 2015). 
+
+"
+cw_nutrient_trend,CW,source1,FAOâs statistical database FAOSTAT
+cw_nutrient_trend,CW,source_url1,http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E
+cw_nutrient_trend,CW,source2," Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). doi: 10.1038/ncomms8615"
+cw_nutrient_trend,CW,source_url2,http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html
+cw_nutrient_trend,CW,data_prep_url,
+cw_pathogen_trend,CW,description,"Trends in percent of population without access to improved sanitation facilities.
+
+"
+cw_pathogen_trend,CW,source1,World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)
+cw_pathogen_trend,CW,source_url1,"http://www.wssinfo.org/data-estimates/table
+"
+cw_pathogen_trend,CW,data_prep_url,
+cw_trash_trend,CW,description,Trend estimated using 2010 data and estimated 2025 data for improperly disposed of trash data.
+cw_trash_trend,CW,data_prep_url,
+fis_b_bmsy,FIS,description,"The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield, obtained from the catch-MSY model (Martell & Froese, 2013).
+
+"
+fis_b_bmsy,FIS,source1,"Martell, S., & Froese, R. (2013). **A simple method for estimating MSY from catch and resilience**. _Fish and Fisheries_ 14(4): 504-514. doi:10.1111/j.1467-2979.2012.00485.x"
+fis_b_bmsy,FIS,source_url1,"https://dx/doi/org/10.1111/j.1467-2979.2012.00485.x
+"
+fis_b_bmsy,FIS,data_prep_url,
+fis_meancatch,FIS,description,"Mean catch-per-taxon values within each Sea Around Us/FAO fishing area.
+
+"
+fis_meancatch,FIS,source1,FAO Major Fishing Areas
+fis_meancatch,FIS,source_url1,http://www.fao.org/fishery/area/search/en
+fis_meancatch,FIS,source2, Sea Around Us Project (SAUP)
+fis_meancatch,FIS,source_url2,http://www.seaaroundus.org
+fis_meancatch,FIS,data_prep_url,
+fp_wildcaught_weight,FP,description,"Proportion of wild caught fisheries yield to mariculture yield, based on FAO fisheries statistics.
+
+"
+fp_wildcaught_weight,FP,source1,FAO fisheries statistics
+fp_wildcaught_weight,FP,source_url1,http://www.fao.org/fishery/statistics/global-capture-production/en
+fp_wildcaught_weight,FP,data_prep_url,
+hab_extent,HAB CS CP,description,"Habitat extent
+
+"
+hab_extent,HAB CS CP,source1,"Hamilton, S. & Casey, D. (2014). **Creation of a high spatiotemporal resolution global database of continuous mangrove forest cover for the 21st Century (CGMFC-21): a big-data fusion approach**. arXiv:1412.0722"
+hab_extent,HAB CS CP,source_url1,http://arxiv.org/ftp/arxiv/papers/1412/1412.0722.pdf
+hab_extent,HAB CS CP,source2," Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). **The carbon balance of North American Wetlands**. _Wetlands_ 26: 889-916."
+hab_extent,HAB CS CP,source3," Dahl, T. E. (2000). **Status and trends of wetlands in the conterminous United States 1986 to 1997**. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C."
+hab_extent,HAB CS CP,source4, Ministry for the Environment (2007). **Environment New Zealand** (http://www.mfe.govt.nz/sites/default/files/environment-nz07-dec07.pdf)
+hab_extent,HAB CS CP,source5," Joint Nature Conservation Committee, JNCC. (2004). **UK Lowland wetland habitats** (http://jncc.defra.gov.uk/page-1433) "
+hab_extent,HAB CS CP,source6, European Environment Agency (2008). 
+hab_extent,HAB CS CP,source7," Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_. http://dx.doi.org/10.5067/8GQ8LZQVL0VL."
+hab_extent,HAB CS CP,source8, UNEP-WCMC (2005). **Global distribution of seagrasses - points dataset**.
+hab_extent,HAB CS CP,source9," Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. [doi:10.1126/science.1149345](http://dx.doi.org/10.1126/science.1149345)"
+hab_extent,HAB CS CP,source10," Burke, L., Reytar, K., Spalding, M.,  et al. (2011). **Reefs at Risk Revisited**. _World Resources Institute, Washington, DC_.
+"
+hab_extent,HAB CS CP,data_prep_url,
+hab_health,HAB CS CP,description,"Habitat health/condition
+
+"
+hab_health,HAB CS CP,source1,FAO. (2007). **The world's mangroves 1980-2005**. _FAO Forestry Paper_ 153.
+hab_health,HAB CS CP,source2," Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). **The carbon balance of North American Wetlands**. _Wetlands_ 26: 889-916."
+hab_health,HAB CS CP,source3," Dahl, T. E. (2000). **Status and trends of wetlands in the conterminous United States 1986 to 1997**. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C."
+hab_health,HAB CS CP,source4, Ministry for the Environment (2007). **Environment New Zealand** (http://www.mfe.govt.nz/sites/default/files/environment-nz07-dec07.pdf)
+hab_health,HAB CS CP,source5," Joint Nature Conservation Committee, JNCC. (2004). **UK Lowland wetland habitats** (http://jncc.defra.gov.uk/page-1433) "
+hab_health,HAB CS CP,source6, European Environment Agency (2008). 
+hab_health,HAB CS CP,source7," Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_. http://dx.doi.org/10.5067/8GQ8LZQVL0VL."
+hab_health,HAB CS CP,source8," Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009), **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381."
+hab_health,HAB CS CP,source9," Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons.** _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711"
+hab_health,HAB CS CP,source10," Schutte, V. G. W., Selig, E. R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115'122."
+hab_health,HAB CS CP,data_prep_url,
+hab_trend,HAB CS CP,description,"Habitat health trend
+
+"
+hab_trend,HAB CS CP,source1,"Hamilton, S. & Casey, D. (2014). **Creation of a high spatiotemporal resolution global database of continuous mangrove forest cover for the 21st Century (CGMFC-21): a big-data fusion approach**. arXiv:1412.0722"
+hab_trend,HAB CS CP,source_url1,http://arxiv.org/ftp/arxiv/papers/1412/1412.0722.pdf
+hab_trend,HAB CS CP,source2," Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). **The carbon balance of North American wetlands**. _Wetlands_ 26: 889-916."
+hab_trend,HAB CS CP,source3," Dahl, T. E. (2000). **Status and trends of wetlands in the conterminous United States 1986 to 1997**. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C."
+hab_trend,HAB CS CP,source4, Ministry for the Environment (2007). **Environment New Zealand** (http://www.mfe.govt.nz/sites/default/files/environment-nz07-dec07.pdf)
+hab_trend,HAB CS CP,source5," Joint Nature Conservation Committee, JNCC. (2004). **UK Lowland wetland habitats** (http://jncc.defra.gov.uk/page-1433) "
+hab_trend,HAB CS CP,source6, European Environment Agency (2008). 
+hab_trend,HAB CS CP,source7," Cavalieri, D. J., Parkinson, C. L., Gloersen, P. and Zwally, H. (2014). **Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014**. _Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center_ (http://dx.doi.org/10.5067/8GQ8LZQVL0VL)"
+hab_trend,HAB CS CP,source8," Waycott, M., Duarte, C. M., Carruthers, T. J. B., Orth, R. J. et al. (2009). **Accelerating loss of seagrasses across the globe threatens coastal ecosystems**. _Proceedings of the National Academy of Sciences_ 106(30):12377-12381."
+hab_trend,HAB CS CP,source9," Bruno, J. F. & Selig, E. R. (2007) **Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons**. _PLoS ONE_ 2(8): e711. doi:10.1371/journal.pone.0000711"
+hab_trend,HAB CS CP,source10," Schutte, V. G. W., Selig, E.R. & Bruno, J. F. (2010).  **Regional spatio-temporal trends in Caribbean coral reef benthic communities**. _Marine Ecology Progress Series_ 402: 115'122."
+hab_trend,HAB CS CP,data_prep_url,
+ico_spp_iucn_status,ICO,description,"International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists 
+
+"
+ico_spp_iucn_status,ICO,source1,International Union for Conservation of Nature (IUCN)
+ico_spp_iucn_status,ICO,source_url1,"http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme
+"
+ico_spp_iucn_status,ICO,data_prep_url,
+le_gdp,LE,description,"Gross Domestic Product (GDP) data (reported in 2012 US dollars) from The World Bank.
+
+"
+le_gdp,LE,source1,The World Bank
+le_gdp,LE,source_url1,"data.worldbank.org/indicator/NY.GDP.MKTP.CD
+"
+le_gdp,LE,data_prep_url,
+le_gdp_pc_ppp,LE,description,gross domestic product per person at purchasing power parity
+le_gdp_pc_ppp,LE,data_prep_url,
+le_jobs_cur_adj_value,LE,description,One of current or reference and base or adjusted value
+le_jobs_cur_adj_value,LE,data_prep_url,
+le_jobs_cur_base_value,LE,description,One of current or reference and base or adjusted value
+le_jobs_cur_base_value,LE,data_prep_url,
+le_jobs_ref_adj_value,LE,description,One of current or reference and base or adjusted value
+le_jobs_ref_adj_value,LE,data_prep_url,
+le_jobs_ref_base_value,LE,description,One of current or reference and base or adjusted value
+le_jobs_ref_base_value,LE,data_prep_url,
+le_jobs_sector_year,LE,description,gapfilled
+le_jobs_sector_year,LE,data_prep_url,
+le_rev_cur_adj_value,LE,description,One of current or reference and base or adjusted value
+le_rev_cur_adj_value,LE,data_prep_url,
+le_rev_cur_base_value,LE,description,One of current or reference and base or adjusted value
+le_rev_cur_base_value,LE,data_prep_url,
+le_rev_ref_adj_value,LE,description,One of current or reference and base or adjusted value
+le_rev_ref_adj_value,LE,data_prep_url,
+le_rev_ref_base_value,LE,description,One of current or reference and base or adjusted value
+le_rev_ref_base_value,LE,data_prep_url,
+le_rev_sector_year,LE,description,gapfilled
+le_rev_sector_year,LE,data_prep_url,
+le_revenue_adj,LE,description,adjusted revenue
+le_revenue_adj,LE,data_prep_url,
+le_unemployment,LE,description,gapfilled
+le_unemployment,LE,data_prep_url,
+le_wage_cur_adj_value,LE,description,One of current or reference and base or adjusted value
+le_wage_cur_adj_value,LE,data_prep_url,
+le_wage_cur_base_value,LE,description,One of current or reference and base or adjusted value
+le_wage_cur_base_value,LE,data_prep_url,
+le_wage_ref_adj_value,LE,description,One of current or reference and base or adjusted value
+le_wage_ref_adj_value,LE,data_prep_url,
+le_wage_ref_base_value,LE,description,One of current or reference and base or adjusted value
+le_wage_ref_base_value,LE,data_prep_url,
+le_wage_sector_year,LE,description,gapfilled
+le_wage_sector_year,LE,data_prep_url,
+le_workforcesize_adj,LE,description,adjusted workforce size
+le_workforcesize_adj,LE,data_prep_url,
+le_sector_weight,LE pressures,description,Jobs weighting by sector (defaulting to 1)
+le_sector_weight,LE pressures,data_prep_url,
+le_popn,LIV ECO,description,Population data from The World Bank
+le_popn,LIV ECO,data_prep_url,
+lsp_prot_area_inland1km,LSP,description,"Coastal protected areas inland to 1km from the UN WDPA. 
+
+"
+lsp_prot_area_inland1km,LSP,source1,United Nations World Conservation Monitoring Centreâs World Database on Protected Areas (WDPA) through Protected Planet
+lsp_prot_area_inland1km,LSP,source_url1,http://www.protectedplanet.net
+lsp_prot_area_inland1km,LSP,data_prep_url,
+lsp_prot_area_offshore3nm,LSP,description,"Coastal protected areas offshore to 3nm from the UN WDPA. 
+
+"
+lsp_prot_area_offshore3nm,LSP,source1,United Nations World Conservation Monitoring Centre's World Database on Protected Areas (WDPA) through Protected Planet
+lsp_prot_area_offshore3nm,LSP,source_url1,http://www.protectedplanet.net
+lsp_prot_area_offshore3nm,LSP,data_prep_url,
+mar_coastalpopn_inland25mi,MAR,description,"Coastal population, defined as the total population inland of 25 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
+
+"
+mar_coastalpopn_inland25mi,MAR,source1,"CIESIN & CIAT (Center for International Earth Science Information Network /Columbia University & Centro Internacional de Agricultura Tropical) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. NASA Socioeconomic Data and Applications Center (SEDAC)"
+mar_coastalpopn_inland25mi,MAR,source_url1,http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates
+mar_coastalpopn_inland25mi,MAR,data_prep_url,
+mar_harvest_tonnes,MAR,description,"Mariculture harvest from the FAO. 
+
+"
+mar_harvest_tonnes,MAR,source1,FAO global aquaculture production
+mar_harvest_tonnes,MAR,source_url1,http://www.fao.org/fishery/statistics/global-aquaculture-production/en
+mar_harvest_tonnes,MAR,data_prep_url,
+mar_sustainability_score,MAR,description,"Mariculture sustainability and mariculture regulations indicated by the Mariculture Sustainability Index (MSI). 
+
+"
+mar_sustainability_score,MAR,source1,"Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28'56."
+mar_sustainability_score,MAR,data_prep_url,
+np_blast,NP,description,"Destructive artisanal blast fishing (Reefs at Risk Revisited).
+
+"
+np_blast,NP,source1,Reefs at Risk Revisited
+np_blast,NP,source_url1,"http://www.wri.org/publication/reefs-at-risk-revisited 
+"
+np_blast,NP,data_prep_url,
+np_cyanide,NP,description,"Destructive artisanal poison (cyanide) fishing (Reefs at Risk Revisited).
+
+"
+np_cyanide,NP,source1,Reefs at Risk Revisited
+np_cyanide,NP,source_url1,"www.wri.org/publication/reefs-at-risk-revisited 
+"
+np_cyanide,NP,data_prep_url,
+np_harvest_product_weight,NP,description,"Ratio of harvest USD of of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO. Used to weight contribution of each product to final score.
+
+"
+np_harvest_product_weight,NP,source1,FAO fisheries statistics
+np_harvest_product_weight,NP,source_url1,http://www.fao.org/fishery/statistics/global-commodities-production/en
+np_harvest_product_weight,NP,data_prep_url,
+np_harvest_tonnes,NP,description,"Yield in metric tonnes of six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.  Used to calculate exposure component of natural products goal.
+
+"
+np_harvest_tonnes,NP,source1,FAO fisheries statistics
+np_harvest_tonnes,NP,source_url1,http://www.fao.org/fishery/statistics/global-commodities-production/en
+np_harvest_tonnes,NP,data_prep_url,
+np_harvest_tonnes_relative,NP,description,"Ratio to max yield (tonnes) of product peak for six marine products (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) from FAO.
+
+"
+np_harvest_tonnes_relative,NP,source1,FAO fisheries statistics
+np_harvest_tonnes_relative,NP,source_url1,http://www.fao.org/fishery/statistics/global-commodities-production/en
+np_harvest_tonnes_relative,NP,data_prep_url,
+cc_acid,pressures,description,"Change in current year's modeled aragonite saturation state (Feely et al. 2010) relative to historical mean (1880-1889).
+
+"
+cc_acid,pressures,source1,"Feely, R., Doney, S. & Cooley, S. (2009) **Ocean acidification: present conditions and future changes in a high-CO2 world**.
+_Oceanography_ 22:36-47. doi:10.5670/oceanog.2009.95"
+cc_acid,pressures,source_url1,http://www.tos.org/oceanography/archive/22-4_feely.html
+cc_acid,pressures,source2, J. Afflerbach et al. (2015). Methods
+cc_acid,pressures,source_url2,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_OceanAcidification/v2015
+cc_acid,pressures,data_prep_url,
+cc_slr,pressures,description,"Modeled sea level rise (Nicholls and Cazenave 2010).
+
+"
+cc_slr,pressures,source1,Nicholls R.J. and Cazenave A. (2010). **Sea-level rise and its impact on coastal zones**. _Science_ 328: 1517-1520. doi:10.1126/science.1185782
+cc_slr,pressures,source_url1,http://dx.doi.org/10.1126/science.1185782. 
+cc_slr,pressures,source2, AVISO Satellite Altimetry Data
+cc_slr,pressures,source_url2,http://www.aviso.oceanobs.com/en/news/ocean-indicators/mean-sea-level/processing-corrections.html
+cc_slr,pressures,source3, J. Afflerbach et al. (2015). Methods
+cc_slr,pressures,source_url3,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SeaLevelRise/v2015
+cc_slr,pressures,data_prep_url,
+cc_sst,pressures,description,"Sea surface temperature based on temperature anomolies provided by GHRSST and the US National Oceanographic Data Center.
+
+"
+cc_sst,pressures,source1,AVHRR Pathfinder Version 5.0 SST data
+cc_sst,pressures,source_url1,http://pathfinder.nodc.noaa.gov 
+cc_sst,pressures,source2," Casey, K. S., Brandon, T. B., Cornillon, P., and Evans, R. (2010). **The past, present and future of the AVHRR Pathfinder SST Program**, _Oceanography from Space: Revisited_, eds. V. Barale, J. F. R. Gower, and L. Alberotanza, Springer. doi:10.1007/978-90-481-8681-5_16"
+cc_sst,pressures,source_url2,http://dx.doi.org/10.1007/978-90-481-8681-5_16
+cc_sst,pressures,source3, J. Afflerbach et al. (2015). Methods
+cc_sst,pressures,source_url3,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_SST
+cc_sst,pressures,data_prep_url,
+cc_uv,pressures,description,"Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC.
+
+"
+cc_uv,pressures,source1,Goddard Earth Sciences Data and Information Services Center (GES DISC)
+cc_uv,pressures,source_url1,http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml
+cc_uv,pressures,source2, J. Afflerbach et al. (2015). Methods
+cc_uv,pressures,source_url2,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/Pressures_UV
+cc_uv,pressures,data_prep_url,
+fp_art_hb,pressures,description,"The presence of destructive artisanal blast and poison (cyanide) fishing (Reefs at Risk Revisited).
+
+"
+fp_art_hb,pressures,source1,Reefs at Risk Revisited
+fp_art_hb,pressures,source_url1,http://www.wri.org/publication/reefs-at-risk-revisited
+fp_art_hb,pressures,data_prep_url,
+fp_art_lb,pressures,description,"Modeled low bycatch artisanal fishing using non-destructive practices (Halpern et al. 2008) based on FAO fisheries statistics.
+
+"
+fp_art_lb,pressures,source1,"Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. doi:10.1126/science.1149345"
+fp_art_lb,pressures,source_url1,http://dx.doi.org/10.1126/science.1149345
+fp_art_lb,pressures,source2, FAO fisheries statistics
+fp_art_lb,pressures,source_url2,http://www.fao.org/fishery/statistics/global-capture-production/en
+fp_art_lb,pressures,data_prep_url,
+fp_com_hb,pressures,description,"Modeled destructive commercial fishing practices by 5 different gear types (Halpern et al. 2008).
+
+"
+fp_com_hb,pressures,source1,"Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. doi:10.1126/science.1149345"
+fp_com_hb,pressures,source_url1,"http://dx.doi.org/10.1126/science.1149345
+"
+fp_com_hb,pressures,data_prep_url,
+fp_com_lb,pressures,description,"Modeled least destructive commercial fishing practices by 2 different gear types (Halpern et al. 2008).
+
+"
+fp_com_lb,pressures,source1,"Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. doi:10.1126/science.1149345"
+fp_com_lb,pressures,source_url1,"http://dx.doi.org/10.1126/science.1149345
+"
+fp_com_lb,pressures,data_prep_url,
+fp_targetharvest,pressures,description,"Targeted harvest of cetaceans and marine turtles, from FAO fisheries data.
+
+"
+fp_targetharvest,pressures,source1,FAO fisheries statistics
+fp_targetharvest,pressures,source_url1,http://www.fao.org/fishery/statistics/global-capture-production/en
+fp_targetharvest,pressures,data_prep_url,
+hd_intertidal,pressures,description,"Coastal population, defined as the total population inland of 10 miles, extracted from Gridded Population of the World (GPW) Population Density Grid Future Estimates.
+
+"
+hd_intertidal,pressures,source1,Center for International Earth Science Information Network (CIESIN)/Columbia University 
+hd_intertidal,pressures,source2," CIESIN & CIAT (Center for International Earth Science Information Network (CIESIN)/Columbia University, & Centro Internacional de Agricultura Tropical (CIAT)) (2005). **Gridded Population of the World, Version 3 (GPWv3): Population Density Grid, Future Estimates**. Palisades, NY. NASA Socioeconomic Data and Applications Center (SEDAC)"
+hd_intertidal,pressures,source_url2,http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density-future-estimates
+hd_intertidal,pressures,source3," Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008) **A global map of human impact on marine ecosystems**. _Science_, 3199(5865): 948-952. doi:10.1126/science.1149345"
+hd_intertidal,pressures,source_url3,http://dx.doi.org/10.1126/science.1149345
+hd_intertidal,pressures,data_prep_url,
+hd_subtidal_hb,pressures,description,"The presence of destructive artisanal blast fishing (Reefs at Risk Revisited).
+
+"
+hd_subtidal_hb,pressures,source1,Reefs at Risk Revisited
+hd_subtidal_hb,pressures,source_url1,http://www.wri.org/publication/reefs-at-risk-revisited
+hd_subtidal_hb,pressures,data_prep_url,
+hd_subtidal_sb,pressures,description,"Spatially distributed commercial catch data by fishing gear type, developed by Sea Around Us Project and habitat data.
+
+"
+hd_subtidal_sb,pressures,source1,Sea Around Us Project (SAUP)
+hd_subtidal_sb,pressures,source_url1,"http://www.seaaroundus.org/
+"
+hd_subtidal_sb,pressures,data_prep_url,
+po_chemicals,pressures,description,"Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015).
+
+"
+po_chemicals,pressures,source1,FAOâs statistical database FAOSTAT
+po_chemicals,pressures,source_url1,http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E.
+po_chemicals,pressures,source2," Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). doi: 10.1038/ncomms8615"
+po_chemicals,pressures,source_url2,http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html
+po_chemicals,pressures,data_prep_url,
+po_nutrients,pressures,description,"Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
+
+"
+po_nutrients,pressures,source1,FAOâs statistical database FAOSTAT
+po_nutrients,pressures,source_url1,http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E.
+po_nutrients,pressures,source2," Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). doi: 10.1038/ncomms8615"
+po_nutrients,pressures,source_url2,http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html
+po_nutrients,pressures,data_prep_url,
+sp_alien,pressures,description,"The number and type of invasive and harmful invasive species in each marine ecoregion (Molnar et al. 2008). 
+
+"
+sp_alien,pressures,source1,"Molnar, J. L., Gamboa, R. L., Revenga C., Spalding, M. (2008). **Assessing the global threat of invasive species to marine biodiversity**. _Frontiers in Ecology and the Environment_ 6(485). doi:10.1890/070064"
+sp_alien,pressures,source_url1,http://dx.doi.org/10.1890/070064
+sp_alien,pressures,data_prep_url,
+sp_genetic,pressures,description,"Statistics on native or introduced species from the Mariculture Sustainibility Index (MSI). 
+
+"
+sp_genetic,pressures,source1,"Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28'56."
+sp_genetic,pressures,data_prep_url,
+ss_spi,pressures,description,Inverse of the average of 3 categories evaluating social progress
+ss_spi,pressures,data_prep_url,
+ss_wgi,pressures,description,"Inverse of World Governance Indicators (WGI) six combined scores.
+
+"
+ss_wgi,pressures,source1,Worldwide Governance Indicators (WGI)
+ss_wgi,pressures,source_url1,http://info.worldbank.org/governance/wgi/index.asp
+ss_wgi,pressures,data_prep_url,
+po_chemicals_3nm,pressures CW,description,"Modeled chemical pollution from commercial shipping traffic, ports and harbors, and pesticide use (Halpern et al. 2015), primarily land-based chemical pollution due to 3nm offshore buffer.
+
+"
+po_chemicals_3nm,pressures CW,source1,FAOâs statistical database FAOSTAT
+po_chemicals_3nm,pressures CW,source_url1,http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E.
+po_chemicals_3nm,pressures CW,source2," Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). doi: 10.1038/ncomms8615"
+po_chemicals_3nm,pressures CW,source_url2,http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html
+po_chemicals_3nm,pressures CW,data_prep_url,
+po_nutrients_3nm,pressures CW,description,"Modeled data based on fertilizer consumption from the Food and Agricultural Organization (FAO, Halpern et al. 2015). 
+
+"
+po_nutrients_3nm,pressures CW,source1,FAOâs statistical database FAOSTAT
+po_nutrients_3nm,pressures CW,source_url1,http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E.
+po_nutrients_3nm,pressures CW,source2," Halpern, B. S. et al. (2015). **Spatial and temporal changes in cumulative human impacts on the world's ocean**. _Nature
+Communications_ 6(7615). doi: 10.1038/ncomms8615"
+po_nutrients_3nm,pressures CW,source_url2,http://www.nature.com/ncomms/2015/150714/ncomms8615/full/ncomms8615.html
+po_nutrients_3nm,pressures CW,data_prep_url,
+po_pathogens,pressures CW,description,"Population without access to improved sanitation facilities. 
+
+"
+po_pathogens,pressures CW,source1,World Health Organization and United Nations Children's Fund's Joint Monitoring Programme (WHO/UNICEF's JMP)
+po_pathogens,pressures CW,source_url1,"http://www.wssinfo.org/data-estimates/table
+"
+po_pathogens,pressures CW,data_prep_url,
+po_trash,pressures CW,description,"Global marine plastics (Eriksen et al. 2014)
+
+"
+po_trash,pressures CW,source1,"Eriksen M., Lebreton, L. C. M., Carson, H. S., Thiel, M., Moore, C. J. and Borerro, J. C.  (2014). 
+**Plastic pollution in the worldâs oceans: more than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea**. _PLoS ONE_ 9:e111913. doi:10.1371/journal.pone.0111913"
+po_trash,pressures CW,source_url1,http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0111913. 
+po_trash,pressures CW,source2, J. Afflerbach et al. (2015). Methods
+po_trash,pressures CW,source_url2,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/CW_pressure_trash
+po_trash,pressures CW,data_prep_url,
+element_wts_cp_km2_x_protection,pressures resilience,description,"Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass"
+element_wts_cp_km2_x_protection,pressures resilience,data_prep_url,
+element_wts_cs_km2_x_storage,pressures resilience,description,"Habitat extent mulitiplied by habitat carbon storage capacity for: mangrove, saltmarsh and seagrass"
+element_wts_cs_km2_x_storage,pressures resilience,data_prep_url,
+element_wts_hab_pres_abs,pressures resilience,description,List of regions with habitat (all habitats are weighted equally)
+element_wts_hab_pres_abs,pressures resilience,data_prep_url,
+fp_habitat,resilience,description,"Convention on Biological Diversity (Habitat related regulations and protections)
+
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)"
+fp_habitat,resilience,data_prep_url,
+fp_mora,resilience,description,"Convention on Biological Diversity (Fishing related regulations and protections)
+
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)"
+fp_mora,resilience,data_prep_url,
+fp_mora_artisanal,resilience,description,"Convention on Biological Diversity (Artisanal fishing related regulations and protections)
+
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)"
+fp_mora_artisanal,resilience,data_prep_url,
+fp_mpa_coast,resilience,description,LSP scores
+fp_mpa_coast,resilience,data_prep_url,
+fp_mpa_eez,resilience,description,LSP model applied to eez
+fp_mpa_eez,resilience,data_prep_url,
+g_cites,resilience,description,"Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories.
+
+"
+g_cites,resilience,source1,CITES List of Contracting Parties
+g_cites,resilience,source_url1,http://www.cites.org/eng/disc/parties/chronolo.php
+g_cites,resilience,data_prep_url,
+g_mariculture,resilience,description,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+"
+g_mariculture,resilience,source1,Convention on Biological Diversity (CBD)
+g_mariculture,resilience,source_url1,"http://www.cbd.int/reports/search/default.shtml
+"
+g_mariculture,resilience,data_prep_url,
+g_msi_gov,resilience,description,"Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI). 
+
+"
+g_msi_gov,resilience,source1,"Trujillo P. (2008). **Using a mariculture sustainability index to rank countriesâ performances**. In: A comparative assessment of biodiversity, fisheries and aquaculture in 53 countriesâ Exclusive Economic Zones, Alder J, Pauly D, editors. _Fisheries Centre Research Report_, vol. 16(7) p. 28'56."
+g_msi_gov,resilience,data_prep_url,
+g_tourism,resilience,description,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+"
+g_tourism,resilience,source1,Convention on Biological Diversity (CBD)
+g_tourism,resilience,source_url1,"http://www.cbd.int/reports/search/default.shtml
+"
+g_tourism,resilience,data_prep_url,
+hd_habitat,resilience,description,"Convention on Biological Diversity (Habitat related regulations and protections)
+
+- [Convention on Biological Diversity (CBD) Third National Report (habitat related questions) 2005](http://www.cbd.int/reports/search/default.shtml)"
+hd_habitat,resilience,data_prep_url,
+hd_mpa_coast,resilience,description,LSP scores
+hd_mpa_coast,resilience,data_prep_url,
+hd_mpa_eez,resilience,description,LSP model applied to eez
+hd_mpa_eez,resilience,data_prep_url,
+li_gci,resilience,description,"Global Competitiveness Index (GCI) scores from the World Economic Forum.
+
+"
+li_gci,resilience,source1,World Economic Forum
+li_gci,resilience,source_url1,"http://www.weforum.org/issues/global-competitiveness
+"
+li_gci,resilience,data_prep_url,
+li_sector_evenness,resilience,description,Shannon's Diversity Index calculated sector evenness based on the total number of sectors and the proportion of jobs belonging to any sector.
+li_sector_evenness,resilience,data_prep_url,
+po_water,resilience,description,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+"
+po_water,resilience,source1,Convention on Biological Diversity (CBD)
+po_water,resilience,source_url1,"http://www.cbd.int/reports/search/default.shtml
+"
+po_water,resilience,data_prep_url,
+res_spi,resilience,description,Average of 3 categories evaluating social progress
+res_spi,resilience,data_prep_url,
+sp_alien_species,resilience,description,"Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report (2005) 
+
+"
+sp_alien_species,resilience,source1,Convention on Biological Diversity (CBD)
+sp_alien_species,resilience,source_url1,http://www.cbd.int/reports/search/default.shtml
+sp_alien_species,resilience,data_prep_url,
+species_diversity_3nm,resilience,description,"Marine species diversity as a proxy for ecological integrity: coastal (IUCN).
+
+"
+species_diversity_3nm,resilience,source1,International Union for Conservation of Nature (IUCN)
+species_diversity_3nm,resilience,source_url1,"http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme
+"
+species_diversity_3nm,resilience,data_prep_url,
+species_diversity_eez,resilience,description,"Marine species diversity as a proxy for ecological integrity: ocean (IUCN).
+
+"
+species_diversity_eez,resilience,source1,International Union for Conservation of Nature (IUCN)
+species_diversity_eez,resilience,source_url1,"http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme
+"
+species_diversity_eez,resilience,data_prep_url,
+wgi_all,resilience,description,"World Governance Indicators (WGI) six combined scores.
+
+"
+wgi_all,resilience,source1,Worldwide Governance Indicators (WGI)
+wgi_all,resilience,source_url1,http://info.worldbank.org/governance/wgi/index.asp
+wgi_all,resilience,data_prep_url,
+cntry_rgn,spatial,description,"Lookup table of country codes (based on ISO 3166 country codes) and Ocean Health Index region idenifiers.
+
+"
+cntry_rgn,spatial,source1,ISO 3166 country codes
+cntry_rgn,spatial,source_url1,"http://en.wikipedia.org/wiki/ISO_3166-1
+"
+cntry_rgn,spatial,data_prep_url,
+rgn_area,spatial,description,"Area of Ocean Health Index regions based on exclusive economic zones (VLIZ 2012). 
+
+"
+rgn_area,spatial,source1,"VLIZ Maritime Boundaries Geodatabase, version 7"
+rgn_area,spatial,source_url1,"http://www.marineregions.org/
+"
+rgn_area,spatial,data_prep_url,
+rgn_area_inland1km,spatial,description,inland area 1 km from shore.
+rgn_area_inland1km,spatial,data_prep_url,
+rgn_area_offshore3nm,spatial,description,"Area of Ocean Health Index regions to 3nm (VLIZ 2012). 
+
+"
+rgn_area_offshore3nm,spatial,source1,"VLIZ Maritime Boundaries Geodatabase, version 7"
+rgn_area_offshore3nm,spatial,source_url1,"http://www.marineregions.org/
+"
+rgn_area_offshore3nm,spatial,data_prep_url,
+rgn_georegions,spatial,description,"Lookup table of Ocean Health Index regions and UN georegion identifiers at 3 georegion levels.
+
+"
+rgn_georegions,spatial,source1,UN geographical region and composition
+rgn_georegions,spatial,source_url1,"http://unstats.un.org/unsd/methods/m49/m49regin.htm
+"
+rgn_georegions,spatial,data_prep_url,
+rgn_global,spatial,description,"Regions used in global analysis for Nature 2012, subset of regions_labels by type=eez and not deleted or disputed."
+rgn_global,spatial,data_prep_url,
+rgn_labels,spatial,description,"Ocean Health Index regions by type (eez, subocean, unclaimed) and label"
+rgn_labels,spatial,data_prep_url,
+spp_status,SPP,description,"International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
+
+"
+spp_status,SPP,source1,International Union for Conservation of Nature (IUCN)
+spp_status,SPP,source_url1,"http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme
+"
+spp_status,SPP,data_prep_url,
+spp_trend,SPP,description,"International Union for Conservation of Nature (IUCN) Red List threat categories with aggregated species lists.
+
+"
+spp_trend,SPP,source1,International Union for Conservation of Nature (IUCN)
+spp_trend,SPP,source_url1,"http://www.iucnredlist.org/technical-documents/classification-schemes/threats-classification-scheme
+"
+spp_trend,SPP,data_prep_url,
+tr_jobs_pct_tourism,TR,description,"Percent direct employment in tourism (WTTC).
+
+"
+tr_jobs_pct_tourism,TR,source1,World Travel and Tourism Council (WTTC)
+tr_jobs_pct_tourism,TR,source_url1,"http://www.wttc.org/research/economic-data-search-tool/
+"
+tr_jobs_pct_tourism,TR,data_prep_url,
+tr_sustainability,TR,description,"Tourism Competitiveness Index (TTCI) from the World Economic Forum
+
+"
+tr_sustainability,TR,source1,World Economic Forum
+tr_sustainability,TR,source_url1,http://reports.weforum.org/travel-and-tourism-competitiveness-report-2015/index-results-the-travel-tourism-competitiveness-index-ranking-2015/
+tr_sustainability,TR,data_prep_url,
+tr_travelwarnings,TR,description,"Countries with US State Department travel warnings.
+
+"
+tr_travelwarnings,TR,source1,U.S. Department of State
+tr_travelwarnings,TR,source_url1,http://travel.state.gov/content/passports/english/alertswarnings.html
+tr_travelwarnings,TR,data_prep_url,
