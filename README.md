@@ -14,22 +14,25 @@ deploy_app('ohi-global', 'Global', c('eez2015','eez2012','eez2013','eez2014','ee
 deploy_app('bhi', 'Baltic', 'baltic2015')
 ```
 
-When the Shiny app first launches (eg with [`shiny::runApp()`](https://www.rdocumentation.org/packages/shiny/versions/0.13.2/topics/runApp)), the github repository specified in `app.yml` will get downloaded for the specified `default_branch` from Github with `git clone` and all the scenarios (specified by `scenario_dirs`) will be processed into a `[scenario].Rdata` file(s) before launching the app.
+When the Shiny app first launches (eg with [`shiny::runApp()`](https://www.rdocumentation.org/packages/shiny/versions/0.13.2/topics/runApp)), the github repository specified in `app.yml` will be git cloned into the `[gh_repo]_[gh_branch_data]` folder from Github and all the scenarios (specified by `scenario_dirs`) will be loaded into `[gh_repo]_[scenario].Rdata` file(s) before launching the app.
 
 ## Debugging
 
 In practice, for developing this Shiny app, I launch RStudio with `app.Rproj` to set the working directory here, and create the `app.yml` and `[repo]_intro.md` for whichever repo before launching the app:
 
 ```r
+# set working directory
+setwd('~/github/ohirepos/inst/app')
+
 # vars for ohi-global
 gh_repo        = 'ohi-global'
-app_title      = 'Global'
+study_area     = 'Global'
 scenario_dirs  = c('eez2015','eez2012','eez2013','eez2014','eez2016')
 projection     = 'Mollweide'
 
 # vars for bhi
 gh_repo        = 'bhi'
-app_title      = 'Baltic'
+study_area     = 'Baltic'
 scenario_dirs  = 'baltic2015'
 projection     = 'Mercator'
 
@@ -46,7 +49,7 @@ ohirepos_commit = devtools:::local_sha('ohirepos')
 
 readr::write_file(
     yaml::as.yaml(list(
-    app_title       = app_title,
+    study_area      = study_area,
     gh_owner        = gh_owner,
     gh_repo         = gh_repo,
     gh_branch_data  = gh_branch_data,
@@ -58,10 +61,7 @@ readr::write_file(
     debug           = F,
     ohirepos_commit = ohirepos_commit,
     last_updated    = Sys.Date())),
-    'inst/app/app.yml')
-
-# brew intro.md
-brew::brew('inst/app/intro.brew.md', sprintf('inst/app/%s_intro.md', gh_repo))
+    'app.yml')
 
 # run app
 shiny::runApp()
