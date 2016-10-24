@@ -1,0 +1,258 @@
+---
+output: html_document
+---
+
+## Food Provision: Fisheries
+Amount of sustainable wild-caught seafood compared to the max sustainable
+
+$$
+x_{FIS} =  (\prod_{g=1}^{6} SS_{i,g}^{C_{i,g}})^\frac{1}{\sum{C_{i,g}}}
+$$
+
+- $SS$ stock status score, based on B/Bmsy (biomass / maximum sustainable yield of biomass) and an underharvest penalty adjustment
+
+- $C$ total catch
+
+- $i$ OHI reporting region
+
+- $g$ level of taxonomic grouping (ISSCAAP)
+
+
+## Food Provision: Mariculture
+Amount of sustainable farm-raised seafood compared to max sustainable
+
+$$
+x_{MAR} =  \frac{Y_{c}}{Y_{r}}
+$$
+
+$$
+Y_{c} = \frac{\sum{1}^{k} Y_{k} * S_{M,k}}{P_{c}}
+$$
+
+- $Y$ = current sustainably harvested total yield, current [$c$] or reference [$r$] 
+
+- $S_{M,k}$ = Sustainability score for each species $k$
+
+- $P_{c}$ = Coastal population within 100km
+
+- $Y_{r} = max(Y_{c})$
+
+
+## Artisanal Fishing Opportunity 
+the opportunity to fish artisanally, independent of how many fish are caught
+
+$$
+x_{AO} = (1 - D_{U}) * S_{AO}
+$$
+
+$$
+D_{U} = (1 - P) * (1 - O_{AO})
+$$
+
+- $D_{U}$ = unmet demand
+
+- $S_{AO}$ = sustainability of fishing methods   
+
+- $O_{AO}$ = access to artisanal fishing
+
+- $P$ = gross domestic product (GDP) per capita, adjusted by purchasing power parity (PPP)
+
+
+## Natural Products
+Level of protection of the coast from inundation and erosion compared to the local natural potential
+
+$$
+x_{NP} = \frac{\sum_{p=1}^{N} w_p * x_p}{N}  
+$$
+
+$$
+x_p = H_p * S_p
+$$
+
+$$
+S_p = 1 - (\frac{E + R}{N})  
+$$
+
+- $w_p$ = proportional peak US dollar value of product $p$  
+
+- $x_p$ = sustainable-harvest score for product $p$  
+
+- $H_p$ = harvest yield for product $p$  
+
+- $S_p$ = sustainability of product $p$ 
+
+- $E$ = exposure term 
+
+- $R$ = risk term
+
+￼products:aquaria fishes, corals, sponges, shells, seaweeds, fish oil
+
+
+## Carbon Storage
+Extent and condition of coastal habitats that store and sequester atmospheric carbon 
+
+$$
+x_{CS} =  \sum_{1}^{k} \frac{C_{s}}{C_{r}} * \frac{A_{k}}{A_{T}}
+$$
+
+- $C$ = condition of habitat $k$, current [$c$] or reference[$r$]
+
+- $A$ = area of habitat $k$, current [$c$] or total area covered by all habitats assessed [T]
+
+habitats: seagrass beds, salt marshes, mangroves
+
+
+## Coastal Protection
+Protection from inundation or erosion compared to the local natural potential
+
+$$
+x_{CP} =  \sum_{k}^{n} \alpha_{k} * \frac{C_{c,k}}{C_{r,k}}
+$$
+
+$$
+\alpha_{k} = \frac{w_{k}*A_{k}}{\sum{w_{k}*A_{k}}}
+$$
+
+$$
+w_{k} = \frac{r_{k}}{\sum{r_{k}}}
+$$
+
+- $C$ = condition of habitat $k$, current [$c$] and reference [$r$]
+
+- $\alpha$ = weighted area of habitat $k$  
+
+- $A$ = area of habitat $k$ 
+
+- $r$ = habitat protective ability rank weight 
+
+habitats: salt marshes, seagrass beds, mangroves, coral reefs, sea ice
+
+
+## Tourism & Recreation
+Tourism & recreation value, independent of monetary exchange
+
+$$
+x_{TR} = E_{t} * S_{t} 
+$$
+
+$$
+E_{t} = E_{W} / (L_{t} - L_{t} * U_{t})
+$$
+
+- $E$ = tourism employment proportion
+
+- $S$ = sustainability measure
+
+- $E_{W}$ = number of employees in travel and tourism sectors
+
+- $L$ = total labor force
+
+- $U$ = percent unemployment
+
+- $t$ = current year
+
+
+## Livelihoods & Economies: Livelihoods
+Number of jobs and job quality from marine-associated sectors
+
+$$
+x_{LIV} = \frac{\frac{\sum_{i=1}^{k} j_{c,k}}{\sum_{i=1}^{k} j_{r,k}} + \frac{\sum_{i=1}^{k} g_{m,k}}{\sum_{i=1}^{k} g_{r,k}}}{2}
+$$
+
+- $j$ = number of jobs within sector $k$ at current [$c$] or reference [$r$] time
+
+- $g$ = average wages per job for sector $k$  at current [$m$] or reference [$r$] region
+
+- sectors ($k$): tourism, commercial fishing, marine mammal watching, aquarium fishing, wave & tidal energy, mariculture, transportation & shipping, ports & harbors, ship & boatbuilding
+
+
+## Livelihoods & Economies: Economies
+Revenue from marine associated sectors
+
+$$
+x_{ECO} = \sum_{i=1}^{k} \frac{e_{c,k}}{e_{r,k}} 
+$$
+
+- $e$ = total adjusted revenue generated from each sector $k$ at current [$c$] or reference [$r$] time
+
+- sectors ($k$): tourism, commercial fishing, marine mammal watching, aquarium fishing, wave & tidal energy, mariculture, transportation & shipping, ports & harbors, ship & boatbuilding
+
+
+## Sense of Place: Iconic Species
+Aesthetic connections to and cultural identity with a given region measured through the status of iconic species
+
+$$
+x_{ICO} = \frac{\sum_{i=1}^{N} S_{i} * w_{i}}{\sum_{i=1}^{N} S_{i}} 
+$$
+
+- $S$ = number of assessed species in each threat category $i$ 
+
+- $w$ = status weight assigned per threat category $i$ 
+
+- $N$ = 6 threat categories 
+
+iconic species list: WWF Priority Species
+
+threat categories: IUCN
+
+
+# Sense of Place: Lasting Special Places
+Aesthetic connections to and cultural identity with a given region measured through the status of meaningful locations
+
+$$
+x_{LSP} = \frac{(\frac{M}{M_{r}} + \frac{C}{C_{r}})}{2} 
+$$
+
+- $M$ = percent protected marine coastal area compared to reference [$r$] $C$ = percent protected coastline compared to reference [$r$]
+
+- $C$ = managed area on coastal land (0-1mi)
+
+- $C_{t}$ = total coastal land area 
+
+
+## Clean Waters
+The degree to which coastal waters are free of contaminants
+
+$$
+x_{CW} = \sqrt[4]{a * u * l * d}
+$$
+
+- $a$  = number of coastal people without access to sanitation  
+
+- $u$ = 1 – (nutrient input)  
+
+- $l$ = 1 – (chemical input)  
+
+- $d$ = 1 – (marine debris input, by country)  
+
+
+## Biodiversity: Habitats
+Existence values people hold for biodiversity measured through the status of key habitats
+
+$$
+x_{HAB} =  \sum_{i=1}^{k} \frac{C_{c,k}}{C_{r,k}} * \frac{A_{c,k}}{A_{T}}
+$$
+
+- $C$ = condition of habitat k, current [$c$] or reference[$r$]
+
+- $A$ = area of habitat k, current [$c$] or total of all habitats [T]
+
+habitats: seagrass beds, salt marshes, subtidal soft-bottom habitats, mangroves, coral reefs, sea ice edge
+
+
+## Biodiversity: Species
+Existence values people hold for biodiversity measured through the status of native species
+
+$$
+x_{SPP} = \frac{\sum_{k=1}^{M} (\frac{\sum_{i=1}^{N} w_{i}}{N}) * A_{C}}{A_{T}} 
+$$
+
+- $M$ = number of grid cells in the assessment region
+
+- $N$ = number species in a grid cell $c$
+
+- $A$ = total area of a grid cell [$c$] the assessment region [T]
+
+- $w_{i}$ = status weight assigned per threat 
+
+assessed species list and maps: IUCN
