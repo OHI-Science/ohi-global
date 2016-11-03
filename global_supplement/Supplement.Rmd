@@ -1,0 +1,61 @@
+---
+title: 'OHI 2016: Summary of results'
+csl: methods-in-ecology-and-evolution.csl
+output:
+  html_document:
+    code_folding: show
+    highlight: haddock
+    includes:
+      in_header: ../../ohiprep/src/templates/ohi_hdr.html
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+  pdf_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+bibliography: OHI.bib
+---
+Compiled on `r date()`.
+
+
+```{r, echo=FALSE}
+library(knitr)
+library(xtable)
+library(pander)
+
+# sections to run:
+main_model <- TRUE
+pressure <- TRUE
+resilience <- TRUE
+```
+
+# Ocean Health Index Assessement for 2016
+
+We measure ocean health as the sustainable delivery of ten widely-held public goals for oceans (Table ??). The Index therefore recognizes linkages between human societies and ocean ecosystems, and that people are part of coastal and ocean systems. The Index emphasizes sustainability and values both conservation and extractive use. Because our analysis focuses on such a wide range of public goals at a global scale, data sources span more than a single year. Therefore, our results quantify ocean health in its recent current state based on the best available data. 
+
+Our strong focus on sustainability and coupled human-natural systems drives our methods for calculating a score for each goal. Sustainability requires that both the current status and likely direction of change in status influence the score; we explicitly penalize scenarios that maximize value today with no concern for future conditions. However, we also explicitly focus on the nearterm future (roughly 5 years) rather than longerterm sustainability because near-term time frames are most relevant to policy makers and longterm future states are difficult to predict. Longterm consequences from pressures like habitat loss and climate change are clearly also important but not assessed here.
+
+The focus on coupled systems requires that both ecological and social data drive the score. Therefore, each goal score is calculated along four dimensions – current status, recent trend, existing pressures, and expected resilience in the near-term based on current management actions. Each of these dimensions includes ecological and social data (where and when appropriate). Below we describe in detail our entire methodology and provide a conceptual diagram of how we calculated an Index score based on this framework (Fig. S1).
+
+The Index is designed to be flexible to accommodate different scales and geographies of interest and different and new types of data. However, two constraints must be adhered to for the Index scores to be comparable across geographies and be easily recalculated at future dates. First, every unit of assessment within the scope of analysis (in our case, individual or combinations of EEZs within the global analysis; see section 3 below) must have a value for each data layer included in the analysis, unless it is known to not be relevant to a location. In other words, missing data are not acceptable. Adhering to this criterion is critical to avoid influencing the Index score simply because of inclusion (or absence) of a particular data layer for any reporting region. 
+
+The second constraint requires the use of only existing datasets, and thus did not permit new data
+collection. This was necessary both to complete the project in a reasonable amount of time and to enable relatively easy recalculation of the Index in the future. Consequently, we give a particularly
+high premium to the inclusion of publically available datasets that have strong external support to be gathered and processed each year, although future iterations of the Index could use new datasets as they become available. 
+
+We emphasize that our approach is intended to indicate current and near-term ocean health, not predict what it will be at any given time in the future. Although one can calculate a percent change to current status in the near-term future based on our models, we do not support this as a method for predicting future status. We do not model socio-ecological systems mechanistically or develop and use production functions that would allow one to run predictive scenarios. Such an endeavor is complex and beyond the scope of this project.
+
+
+```{r child = 'main_model.Rmd', eval=chap1_eval}
+```
+
+```{r child = 'pressure.Rmd', eval=chap2_eval}
+```
+
+```{r child = 'resilience.Rmd', eval=chap2_eval}
+```
+
+
+# References
