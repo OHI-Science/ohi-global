@@ -1884,7 +1884,7 @@ FinalizeScores = function(layers, conf, scores){
                        goal      = c(conf$goals$goal, 'Index')), stringsAsFactors = FALSE); head(d)
   d = subset(d, 
              !(dimension %in% c('pressures','resilience','trend') & region_id==0) & 
-               !(dimension %in% c('pressures','resilience','status','trend') & goal=='Index'))
+               !(dimension %in% c('pressures','resilience','trend', 'status') & goal=='Index'))
   scores = merge(scores, d, all = TRUE)[,c('goal','dimension','region_id','score')]
   
   # order
