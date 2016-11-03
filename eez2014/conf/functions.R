@@ -1533,7 +1533,6 @@ LE = function(scores, layers, eez2012 = FALSE){
 }
 
 ICO = function(layers, status_year){
-
     layers_data = SelectLayersData(layers, layers=c('ico_spp_iucn_status'))  
   
   rk <- layers_data %>%
@@ -1608,6 +1607,12 @@ ICO = function(layers, status_year){
     mutate('goal'='ICO') %>%
     select(goal, dimension, region_id, score) %>%
     data.frame()
+  
+  ## Gapfill Oecussi Ambeno (rgn 237) with East Timor (rgn 231) data
+  ## Oecussi Ambeno is an enclave within East Timor, so the data should be very similar
+  go <- filter(scores, region_id == 231) %>%
+    mutate(region_id = 237)
+  scores <- rbind(scores, go)
   
   return(scores)  
   
