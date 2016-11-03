@@ -225,7 +225,11 @@ for (i in 1:length(scenarios)){  #i=2
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-           fileSave="eez2016_check walkback")
+           fileSave="eez2016_ico_gf")
+
+ico <- read.csv("eez2016/scores.csv") %>%
+  filter(goal == "ICO") %>%
+  filter(dimension == "status")
 
 source('../ohiprep/src/R/VisGlobal.R')
 # looking within a goal:
