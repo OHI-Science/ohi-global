@@ -1614,6 +1614,40 @@ ICO = function(layers, status_year){
     mutate(region_id = 237)
   scores <- rbind(scores, go)
   
+  ######################################
+  ## gapfill missing regions with average scores/trends of regions that share same UN geopolitical region 
+  un_regions <- georegions %>%
+    select(region_id=rgn_id, r2)
+  # ID missing regions:
+  regions <- SelectLayersData(layers, layers=c('rgn_global')) %>%
+    select(region_id = id_num)
+  regions_NA <- setdiff(regions$region_id, scores$region_id)
+   scores_NA <- data.frame(goal="ICO", 
+                          dimension=rep(c("status", "trend"), 
+                                        each=length(regions_NA)), 
+                          region_id=regions_NA, score=NA)
+  
+  scores <- scores %>%
+    rbind(scores_NA) %>%
+    mutate(region_id = as.numeric(region_id)) %>%
+    left_join(un_regions, by="region_id") %>%
+    group_by(dimension, r2) %>%
+    mutate(score_gf = mean(score, na.rm=TRUE)) %>%
+    arrange(dimension, region_id) %>%
+    data.frame()
+  
+  # save gapfilling records
+  scores_gf <- scores %>%
+    mutate(gapfilled = ifelse(is.na(score) & !is.na(score_gf), "1", "0")) %>%
+    mutate(method = ifelse(is.na(score) & !is.na(score_gf), "UN geopolitical avg. (r2)", NA)) %>%
+    select(goal, dimension, region_id, gapfilled, method) 
+  write.csv(scores_gf, "temp/ICO_status_trend_gf.csv", row.names=FALSE)  
+  
+  scores <- scores %>%
+    mutate(score2 = ifelse(is.na(score), score_gf, score)) %>%
+    select(goal, dimension, region_id, score=score2) %>%
+    data.frame()
+  
   return(scores)  
   
 }
