@@ -227,9 +227,18 @@ for (i in 1:length(scenarios)){  #i=2
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
            fileSave="eez2016_ico_gf")
 
+geos <- georegions %>%
+  select(region_id = rgn_id, r1, r2)
 ico <- read.csv("eez2016/scores.csv") %>%
   filter(goal == "ICO") %>%
-  filter(dimension == "status")
+  filter(dimension == "status") %>%
+  left_join(geos) %>%
+  filter(region_id != 0) %>%
+  arrange(r2)
+
+mod <- lm(score ~ as.factor(r2), data=ico)
+summary(mod)
+anova(mod)
 
 source('../ohiprep/src/R/VisGlobal.R')
 # looking within a goal:
