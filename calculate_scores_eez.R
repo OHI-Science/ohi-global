@@ -40,7 +40,6 @@ scenarios = list(
     fld_fn       = 'fn_2016a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T),
-
   eez2015     = list(
     layer   = 'layers_eez',
     fld_dir      = 'dir_2015a',
@@ -225,7 +224,17 @@ for (i in 1:length(scenarios)){  #i=2
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-           fileSave="eez2016_ico_gf")
+           fileSave="eez2016_liv")
+
+change_plot(repo = "ohi-global", scenario="eez2012", commit="previous", 
+            fileSave="eez2012_liv")
+
+change_plot(repo = "ohi-global", scenario="eez2013", commit="previous", 
+            fileSave="eez2013_liv")
+
+change_plot(repo = "ohi-global", scenario="eez2014", commit="previous", 
+            fileSave="eez2014_liv")
+
 
 geos <- georegions %>%
   select(region_id = rgn_id, r1, r2)
