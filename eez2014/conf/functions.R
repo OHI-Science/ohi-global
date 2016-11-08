@@ -1092,7 +1092,7 @@ TR = function(layers, status_year, pct_ref = 90) {
 }
 
 LIV_ECO = function(layers, subgoal, liv_workforcesize_year, eco_rev_adj_min_year){
-  
+
   g.component = c('LIV'='livelihood','ECO'='economy')[[subgoal]]
   
   # get status_model
