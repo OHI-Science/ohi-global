@@ -339,19 +339,14 @@ AO = function(layers,
               status_year, 
               Sustainability=1.0){
 
-  # cast data
-  layers_data = SelectLayersData(layers, targets='AO')
-  
-  r <- layers_data %>%
-    filter(layer == 'ao_access') %>%
+
+  r <- SelectLayersData(layers, layers = 'ao_access', narrow=TRUE) %>%
     select(region_id=id_num, access=val_num)
   r <- na.omit(r)
   
-  ry <- layers_data %>%
-    filter(layer == 'ao_need') %>%
+  ry <- SelectLayersData(layers, layers = 'ao_need', narrow=TRUE) %>%
     select(region_id = id_num, year, need=val_num) %>%
     left_join(r, by="region_id")
-  
   
   # model
   

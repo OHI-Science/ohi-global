@@ -138,11 +138,16 @@ for (i in 1:length(scenarios)){  #i=2
         path_in_exists = file.exists(path_in),
         filename = sprintf('%s.csv', layer),
         path_out = sprintf('%s/layers/%s', scenario, filename)) %>%
+      # select(
+      #   targets, layer, name, description, 
+      #   fld_value=name_data_fld, units,
+      #   path_in, path_in_exists, filename, path_out) %>%
       select(
-        targets, layer, name, description, 
-        fld_value=name_data_fld, units,
+        targets, layer, 
+        fld_value=name_data_fld,
         path_in, path_in_exists, filename, path_out) %>%
       arrange(targets, layer)
+     #arrange(targets, layer)
     write.csv(lyrs, sprintf('%s/temp/layers_1-ingest.csv', scenario), na='', row.names=F)
     
     # checks that all data layers are available based on file paths 
@@ -224,21 +229,22 @@ for (i in 1:length(scenarios)){  #i=2
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-           fileSave="eez2016_liv")
+           fileSave="eez2016_hd_sb_hab")
 
 change_plot(repo = "ohi-global", scenario="eez2012", commit="previous", 
-            fileSave="eez2012_liv")
-
-change_plot(repo = "ohi-global", scenario="eez2013", commit="previous", 
-            fileSave="eez2013_liv")
-
-change_plot(repo = "ohi-global", scenario="eez2014", commit="previous", 
-            fileSave="eez2014_liv")
+            fileSave="eez2012_hd_sb_hab")
 
 
-geos <- georegions %>%
-  select(region_id = rgn_id, r1, r2)
-ico <- read.csv("eez2016/scores.csv") %>%
+new_health <- read.csv("../ohiprep/globalprep/hab_combined/v2016/output/habitat_health_2016.csv")
+filter(new_health, rgn_id==80)
+
+new_health <- read.csv("../ohiprep/globalprep/hab_prs_hd_subtidal_soft_bottom/v2016/output/hd_sb_subtidal_v2010.csv")
+filter(new_health, rgn_id==67)
+
+new_health <- read.csv("../ohiprep/globalprep/hab_prs_hd_subtidal_soft_bottom/v2016/output/hd_sb_subtidal_v2006.csv")
+filter(new_health, rgn_id==67)
+
+
   filter(goal == "ICO") %>%
   filter(dimension == "status") %>%
   left_join(geos) %>%
