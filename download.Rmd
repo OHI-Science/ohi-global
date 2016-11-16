@@ -7,7 +7,13 @@ output: html_document
 source("./_site.R")
 ```
 
-TO UPDATE; STOLEN FROM http://ohi-science.org/resources/tools/
+TO UPDATE; STOLEN FROM http://ohi-science.org/resources/tools/.  
+
+Must add: 
+
+- scores.csv for all years
+
+-----
 
 ### Download data and methods from OHI global assessments
 
