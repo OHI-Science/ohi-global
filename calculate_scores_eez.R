@@ -228,7 +228,7 @@ for (i in 1:length(scenarios)){  #i=2
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-           fileSave="eez2016_hd_sb_hab")
+           fileSave="eez2016_hab_sb_trend_correct")
 
 change_plot(repo = "ohi-global", scenario="eez2012", commit="previous", 
             fileSave="eez2012_hd_sb_hab")
