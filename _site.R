@@ -24,13 +24,26 @@ map_shrink_pct  = 5
 # derived vars
 dir_data        = sprintf('%s_%s', gh_repo, gh_branch_data)
 dir_scenario    = sprintf('%s/%s', dir_data, scenario_dir)
+gh_url          = sprintf('https://github.com/OHI-Science/%s.git', gh_repo)
 
 # knitr options
 knitr::opts_chunk$set(echo = F, message = F, warning = F)
 
-# if dir_data not found, then git clone
+run_cmd = function(cmd){
+   system.time(system(cmd))
+ }
+
+ # data branch: fetch existing, or clone new
 if (!file.exists(dir_data)){
-  system(sprintf('git clone https://github.com/ohi-science/%s.git %s', dir_data))
+
+  # clone data branch, shallowly and quietly
+  run_cmd(sprintf('git clone -q --depth 1 --branch %s %s %s', gh_branch_data, gh_url, dir_data))
+
+} else {
+
+  # git fetch & overwrite
+  run_cmd(sprintf('cd %s; git fetch -q; git reset -q --hard origin/%s; git checkout -q %s; git pull -q', dir_data, gh_branch_data, gh_branch_data))
+
 }
 
 # read config
