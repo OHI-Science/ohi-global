@@ -2,12 +2,12 @@ name: "Global Ocean Health Index"
 navbar:
   title: "OHI-GLOBAL"
   left:
-    - text: "About"
-      href: about.html
+    - text: "Overview"
+      href: overview.html
     - text: "App"
       href: app.html
-    - text: "Regions"
-      href: regions.html
+    - text: "Download"
+      href: download.html
     - text: "Layers"
       href: layers.html
     - text: "Goals"

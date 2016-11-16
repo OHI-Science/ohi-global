@@ -1,5 +1,5 @@
 ---
-title: "Welcome"
+title: "Global Ocean Health Index Assessments"
 ---
 
 ```{r setup, echo=F, warning=FALSE, message=F}
@@ -8,7 +8,7 @@ source("./_site.R")
 
 <div class="page-lead" style="background-image:url(images/regions_1600x800.png)">
 <div class="wrap page-lead-content">
-<h2>An Ocean Health Index assessment for `r study_area`</h2>
+<h2>Sweet photo/viz here</h2>
 
 </div><!-- /.page-lead-content. -->
 </div><!-- /.page-lead -->
@@ -20,7 +20,7 @@ source("./_site.R")
 <p class="post-excerpt">
 
 <!-- Suggested instructions: Add several sentences describing the project here.  -->
-This is a study of the `r study_area` using the  Ocean Health Index framework...
+Replace these columns with text like: OHI assessments have been repeated at the global scale from 2012-2016...
 
 
 </p>
@@ -31,15 +31,12 @@ This is a study of the `r study_area` using the  Ocean Health Index framework...
 <p class="post-excerpt">
 
 <!-- Suggested instructions: Add several sentences describing the team here.  -->
-The `r study_area` Ocean Health Index team consists of...
+
 
 </p>
 </div>
 
 <div class="tile">
 <h2 class="post-title"><i class="fa fa-globe fa-2x"></i> Ocean Health Index </h2>
-<p class="post-excerpt">
-The Ocean Health Index ('OHI') is a scientific framework to measure how healthy oceans are. Understanding the state of our oceans is a step towards their being able to continue providing humans benefits now and in the future. Learn more at [ohi-science.org](http://ohi-science.org).
-</p>
 </div>
 </div>

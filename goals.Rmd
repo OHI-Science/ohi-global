@@ -10,7 +10,7 @@ output:
 source("./_site.R")
 ```
 
-Goals are constructed from input layers based on equations represented below.
+TO BE REDONE WITHOUT EQUATIONS, LIKE ≤http://ohi-science.org/bhi/goals>
 
 ```{r, child=sprintf('%s/conf/goals.Rmd', dir_scenario)}
 ```
