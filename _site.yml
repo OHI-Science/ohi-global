@@ -4,16 +4,16 @@ navbar:
   left:
     - text: "Overview"
       href: overview.html
-    - text: "App"
+    - text: "Data Explorer"
       href: app.html
-    - text: "Download"
-      href: download.html
-    - text: "Layers"
-      href: layers.html
+#    - text: "Layers" # can remove this from header
+#      href: layers.html
     - text: "Goals"
       href: goals.html
     - text: "Scores"
       href: scores.html
+    - text: "Download"
+      href: download.html
 output_dir: "."
 output:
   html_document:

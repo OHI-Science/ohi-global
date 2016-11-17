@@ -10,7 +10,29 @@ output:
 source("./_site.R")
 ```
 
-TO BE REDONE WITHOUT EQUATIONS, LIKE ≤http://ohi-science.org/bhi/goals>
+TO BE REDONE WITHOUT EQUATIONS, LIKE ≤http://ohi-science.org/bhi/goals>. 
+
+SEASIDE CHAT NOTES: 
+- remove layers page and instead list them below the goals
+- show Mel's pie chart
 
 ```{r, child=sprintf('%s/conf/goals.Rmd', dir_scenario)}
 ```
+
+
+Artisanal Opportunity [little icon figures!]
+
+afjldkajfdl
+
+Data sets: 
+
+Status and Trend: 
+- [Artisanal fisheries management effectiveness and opportunity](go to the layers.html#ao_need, where there's more description, info about gapfilling, whether it was updated in that year)
+Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector
+
+Pressures: (be explicit about how this ties to goals)
+
+Resilience: 
+
+Tiny figures showing relative contributions
+

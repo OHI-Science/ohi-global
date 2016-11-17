@@ -16,7 +16,7 @@ suppressPackageStartupMessages({
 study_area      = "Global"
 gh_repo         = "ohi-global"
 gh_branch_data  = "draft"
-scenario_dir    = "eez2015"
+scenario_dir    = "eez2016"
 app_url         = "http://ohi-science.nceas.ucsb.edu/ohi-global"
 ohirepos_commit = "91f077d8e3f5fc08e21b04eab26c87d2050b6e9e"
 map_shrink_pct  = 5

@@ -11,7 +11,11 @@ output:
 source("./_site.R")
 ```
 
-Scores displayed below are based on template data that were extracted from the global assessment. These scores will update when data layers are modified.
+Scores displayed below are based on template data that were extracted from the global assessment. These scores will update when data layers are modified. SAY WHAT YEAR THIS IS FROM OR DISPLAY TABLE WITH MULTIPLE YEARS
+
+TABLES:
+- SHOW 5 years of scores 
+- also add Index
 
 ```{r plot flowers}
 redo_flowers = F
