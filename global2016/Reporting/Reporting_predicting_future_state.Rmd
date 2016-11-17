@@ -1,0 +1,238 @@
+# Analyses of data
+
+One thing we have been interested in is how well the likely future state score actually predicts the future score.
+
+My initial conclusions are that the trend/pressure/resilience components of the likely future state score are not improving our predictions.
+
+### Observed vs. predicted 2016 scores
+
+*Methods:* I compared the likely future status scores in 2012 to the observed status in 2016.  
+
+*Results:* At first glance, this appears promising because there is actaully a nice correlation between the values:
+  
+```{r future state dataprep, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+meta <- read.csv('../../eez2016/conf/goals.csv', stringsAsFactors=FALSE) %>%
+  mutate(parent = ifelse(parent=="", goal, parent)) %>%
+  mutate(supragoal = ifelse(goal == parent, "supragoal", NA)) %>%
+  filter(supragoal == "supragoal") %>%
+  select(goal=parent, weight)
+
+data <- read.csv(sprintf('../radical_%s.csv', radicalFile)) 
+
+### getting index status scores (it seems like this should be output in ohicore,
+### I think this change would occur in line 207 in CalculateAll.R)
+index_status <- data %>%
+  filter(goal != "Index") %>%
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  filter(region_id != 300) %>%
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213) %>%
+  filter(dimension == "status") %>%
+  left_join(meta, by="goal") %>%
+  filter(goal %in% meta$goal) %>%
+  group_by(scenario, region_id) %>%
+  summarize(value = weighted.mean(value, weight, na.rm=TRUE)) %>%
+  mutate(goal = "Index") %>%
+  mutate(dimension = "status") %>%
+  select(scenario, goal, dimension, region_id, value) %>%
+  data.frame()
+
+data_and_status <- data %>%
+  rbind(index_status) %>%
+  filter(goal == "Index") %>%
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  filter(region_id != 300) %>%
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(variable= paste(dimension, scenario, sep="_")) %>%
+  select(region_id, value, country, variable) %>%
+  data.frame()
+
+data_sp <- spread(data_and_status, variable, value) %>%
+  mutate(pred_change = likely_future_state_2012 - status_2012) %>%
+  mutate(obs_change = status_2016 - status_2012)
+
+```
+
+
+```{r future state first, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+p <-   ggplot(data_sp, aes(x=likely_future_state_2012, y=status_2016)) +
+  geom_point(shape=19) +
+  theme_bw() + 
+  labs(x="Predicted 2016 status (from 2012 data)", y="Observed 2016 status") +
+  geom_abline(slope=1, intercept=0, color="red") +
+  xlim(0, 100) +
+  ylim(0, 100)
+print(p)
+
+```
+
+And, the slope estimate isn't too far from 1 (0.76) and the R2 value is fairly high (0.75):
+```{r future state first model, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+mod <- lm(status_2016 ~ likely_future_state_2012, data=data_sp)
+summary(mod)
+```
+
+### Scores 2012 vs. scores 2016
+*Methods:* I compared the 2012 and 2016 status scores to get a feel for how well the 2012 scores predicted the 2016 scores.
+
+*Results:* The 2012 scores alone do a better job predicting 2016 scores than incorporating the trend/pressure/resilience data.  The additional information seems to, overall, make our predictions worse:
+
+```{r future state second, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+p <-   ggplot(data_sp, aes(x=status_2012, y=status_2016)) +
+geom_point(shape=19) +
+theme_bw() + 
+labs(y="Observed 2016 status", x="Observed 2012 status") +
+geom_abline(slope=1, intercept=0, color="red") +
+xlim(0, 100) +
+ylim(0, 100)
+print(p)
+
+mod <- lm(status_2016 ~ status_2012, data=data_sp)
+summary(mod)
+
+```
+
+### Predicted change in score vs. observed change in score (from 2012 to 2016)
+*Methods:* Another way to look at these is to compare the predicted and observed changes in status from 2012 to 2016.  
+
+The predicted change in status was calculated as: status (2012) minus likely future score (2012).
+The observed change in score was calcualted as status (2012) minus status (2016).
+
+*Results:* There was no correlation between the predicted change in status and the observed change in status:
+```{r future state third, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+p <-   ggplot(data_sp, aes(x=pred_change, y=obs_change)) +
+geom_point(shape=19) +
+theme_bw() + 
+labs(y="Observed change in score", x="Predicted change in score") +
+geom_abline(slope=1, intercept=0, color="red")
+print(p)
+
+mod <- lm(obs_change ~ pred_change, data=data_sp)
+summary(mod)
+
+```
+
+### Looking more closely at patterns within goals/subgoals
+The next step in the above analysis is to look within each goal/subgoal to get a better feel for possible relationships between trend and pressure/resilience components.
+
+```{r future state goal dataprep, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(sprintf('../radical_%s.csv', radicalFile)) 
+
+data <- data %>%
+filter(goal != "Index") %>%
+filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+filter(region_id != 300) %>%
+filter(region_id <= 250) %>%       # get rid of high seas regions
+filter(region_id != 213)  %>%
+left_join(rgn_names, by=c('region_id'))
+
+data_goal <- function(data, goal="AO"){ #goal="CP"
+data_g <- data[data$goal==goal, ]
+
+data_g <- data_g %>%
+filter(scenario %in% c(2012, 2016)) %>%
+mutate(dim_scen = paste(dimension, scenario, sep="_")) %>%
+select(dim_scen, region_id, country, value) %>%
+spread(dim_scen, value) %>%
+mutate(pred_change = likely_future_state_2012 - status_2012) %>%
+mutate(obs_change = status_2016 - status_2012) %>%
+mutate(r_minus_p = resilience_2012 - pressures_2012)
+
+p <-   ggplot(data_g, aes(x=pred_change, y=obs_change)) +
+geom_point(shape=19) +
+theme_bw() + 
+labs(title=goal, y="Observed change in status", x="Predicted change in status") +
+geom_abline(slope=1, intercept=0, color="red")
+print(p)
+
+mod <- lm(obs_change ~ pred_change, data=data_g)
+print(summary(mod))    
+
+mod2 <- lm(obs_change ~ trend_2012 + r_minus_p, data=data_g)
+print(summary(mod2))
+
+mod3 <- lm(obs_change ~ trend_2012 + pressures_2012 + resilience_2012, data=data_g)
+print(summary(mod3))
+}
+
+
+```
+
+### AO: A closer look
+```{r future state AO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="AO")
+
+```
+
+### BD/SPP: A closer look
+```{r future state SPP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="SPP")
+
+```
+
+### BD/HAB: A closer look
+```{r future state HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="HAB")
+
+```
+
+### CP: A closer look
+```{r future state CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="CP")
+
+```
+
+### CS: A closer look
+```{r future state CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="CS")
+
+```
+
+### CW: A closer look
+```{r future state CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="CW")
+
+```
+
+### FP/FIS: A closer look
+```{r future state FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="FIS")
+
+```
+
+### FP/MAR: A closer look
+```{r future state MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="MAR")
+
+```
+
+### SP/ICO: A closer look
+```{r future state ICO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="ICO")
+
+```
+
+### SP/LSP: A closer look
+```{r future state LSP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="LSP")
+
+```
+
+### NP: A closer look
+```{r future state NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="NP")
+
+```
+
+### TR: A closer look
+```{r future state TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+data_goal(data, goal="TR")
+
+```
