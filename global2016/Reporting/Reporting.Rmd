@@ -43,6 +43,7 @@ library(ohicore)
 library(sp)
 library(rgdal)
 library(DT)
+library(broom)
 
 # Set working directory when not knitting:
 # setwd("global2016/Reporting")
@@ -70,7 +71,7 @@ goal_names <- data.frame(goal=goals, long_goal=c("Index",
 
 ## General settings to control
 scenario <- "2016" #identify scenario of focus (this can be changed to obtain data for other years)
-radicalFile = '2016-11-08' #date extension on the radical data files that are used for all tables/figures
+radicalFile = '2016-11-17' #date extension on the radical data files that are used for all tables/figures
 benchmark = 2015  # year that is used for old vs. new OHI analyses
 oldCommit = '1d4dcb1abb82dc1d20817acca33c7e7d2ef1b52f' # '4da6b4a1d69d694264ea68456359a939b0c03f9c' = commit for 2014 analysis
 colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
@@ -92,9 +93,11 @@ radical1 <- FALSE
 radical2 <- FALSE
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
-map_create=TRUE
-goal_hists=TRUE
-flower_plots=TRUE
+update_data = FALSE
+map_create = FALSE
+goal_hists = FALSE
+flower_plots = FALSE
+predicting_future = FALSE
 
 ```
 
@@ -113,7 +116,7 @@ Output files:
 * [`r sprintf('DataExplorer_eez%s_*date*.csv', scenario)`](`r sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/%s/DataExplorer_eez2016_%s.csv', saveFile, radicalFile)`). This file includes only the 2016 data, and is used in the Data Explorer.
 
 
-```{r websites data, include=FALSE}
+```{r websites data, eval=update_data, include=FALSE}
 
 ## These are run and saved if radical1 and radical2 arguments are TRUE
 # NOTE: radical_scores.R, compiles all scenarios using the following combinations:
@@ -129,6 +132,35 @@ source('../radical_scores.R')
 ## the metadata for each layer file.  This will need to be updated if any of the 
 ## layers change in future analyses.
 source('../Radical_scores_v2.R')
+
+
+## create a radical version with region names
+rad <- read.csv(sprintf('../radical_%s.csv', radicalFile)) %>%
+  left_join(rgn_names, by= "region_id") %>%
+  mutate(country = ifelse(region_id == 0, "global average (EEZ, Antarctica, High Seas)", country)) %>%
+  mutate(country = ifelse(region_id == 300, "global average (EEZ only)", country)) %>%
+  select(scenario, goal, dimension, region_id, region_id=country, value)
+
+write.csv(rad, sprintf("../radical_with_region_names_%s.csv", radicalFile), row.names=FALSE)
+
+## create a version of data with scores wide
+rad_wide <- read.csv(sprintf('../radical_%s.csv', radicalFile)) %>%
+  left_join(rgn_names, by= "region_id") %>%
+  mutate(country = ifelse(region_id == 0, "global average (EEZ, Antarctica, High Seas)", country)) %>%
+  mutate(country = ifelse(region_id == 300, "global average (EEZ only)", country)) %>%
+  filter(dimension == "score") %>%
+  filter(goal == "Index") %>%
+  select(scenario, region_id, region_name=country, value) %>%
+  spread(scenario, value)
+
+eez_avg <- filter(rad_wide, region_id == 300)
+
+rad_wide <- rad_wide %>%
+  filter(region_id != 300)
+
+rad_wide <- rbind(eez_avg, rad_wide)
+
+write.csv(rad_wide, "data/all_years/Index_all_years.csv", row.names=FALSE)
 
 ```
 
@@ -265,13 +297,7 @@ This section describes global patterns in index and goal scores. If you are more
 
 Overall, there weren't dramatic changes across years.
 
-The Index score for 2016 (eez area weighted average of region scores) was: 71.  This value was essentially constant from 2012 to 2016.
-
-I haven't done a formal analysis, but it looks like over time:
-
-* Clean water scores may be slightly decreasing
-* Lasting special places may be slightly increasing
-* Natural products decreases rather dramatically
+The Index score for 2016 (eez area weighted average of region scores) was: 71.  The value did not statistically significantly vary from 2012 to 2016 (p = 0.16).
 
 ```{r overview, echo=FALSE}
 
@@ -284,7 +310,7 @@ data_filter <- data %>%
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
   left_join(rgn_names, by=c('region_id')) %>%
   mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
-  mutate(value = round(value, 1))
+  mutate(value = round(value, 2))
 
 data_index <- data_filter %>%
   filter(region_id == 0) %>%
@@ -303,6 +329,36 @@ data_spread <- spread(data_index, scenario, value) %>%
 kable(data_spread)
 ```
 
+Although, the overall index score did not statistically significantly change over time, several goals did have significant changes (based on a regression analysis of the average scores for each goal, although this should be considered a preliminary analysis).  Here are some conclusions from this analysis (p values < 0.05 are considered to be statistically significant - i.e., "real" - effects):
+
+#### Declining scores
+* Natural products declined by over 2.5 points per year on average (p = 0.013)
+* Coastal protection declined by 0.12 points per year on average (p = 0.03)
+* Clean waters declined by 0.15 points per year on average (but it was marginally non-significant, p =  0.056)
+
+#### Improving scores
+* Lasting special places scores increased by an average of 0.5 points per year (p = 0.049)
+* Artisanal opportunities scores increased by just over 0.15 points per year (p = 0.03)
+* Species condition scores improved by a small, but statistically signficant, 0.03 points per year (p = < 0.01)
+
+```{r Global goal trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+### analysis:
+data_lm <- data_index %>%
+  group_by(goal) %>%
+  do(mdl = lm(value ~ scenario, data = .))
+
+#data.frame(glance(data_lm, mdl))
+results_lm <- tidy(data_lm, mdl) %>%
+  ungroup() %>%
+  filter(term == "scenario") %>%
+  arrange(estimate) %>%
+  left_join(goal_names) %>%
+  select(goal=long_goal, average_change_per_year = estimate, p.value) %>%
+  data.frame()
+  
+kable(results_lm)
+
+```
 
 
 # A closer look at the regions
@@ -330,7 +386,7 @@ data <- data %>%
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
   left_join(rgn_names, by=c('region_id')) %>%
   mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
-  mutate(value = round(value, 0))
+  mutate(value = round(value, 2))
 
 data <- spread(data, goal, value)
 
@@ -545,7 +601,7 @@ hwrite(trends_spread, sprintf('data/trends_%s.html', scenario), br=TRUE, center=
 ```
 
 ### Trends of regional index scores
-The global average suggests a slight (but, probably negligible) decrease in index scores during the past five years (-0.11), but there was a good deal of variation among regions.  The following histogram describes the distribution of trends in index scores:
+The global average decreased by 0.14 points per year, although this is may not be statistically significant.  There was a good deal of variation in trend among regions.  The following histogram describes the distribution of trend (e.g., change in score per year) in index scores:
 
 ```{r trend histogram, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 trends_hist <- trends %>%
@@ -607,7 +663,6 @@ kable(trends_goals)
 These scores require a closer look, but possible patterns include:
 
 * Scores for the artisanal opportunities goal appear to have increased by relatively small amounts for the majority of regions
-* Scores for the fisheries goal appear to be increasing for the majority of regions
 * Scores for the natural products appear to be overall decreasing, but there is a lot of variation, and some regions have had large increases
 * Tourism trends vary strongly from region to region
 * Lasting special places trends are fairly variable due to large increases in scores for a few regions
@@ -786,10 +841,6 @@ hwrite(compare_wide, sprintf('data/change_in_scores_benchmark%s_eez%s.html', ben
 
 ```
 
-Some general pattern in these data:
-
-* Fisheries/Food provisioning: Lots of changes all over the place due to changes in source data and other changes to methods
-* Artisanal opportunity: consistently increased for most regions due to change in reference point
 
 # A closer look at goals
 
@@ -1358,242 +1409,5 @@ print(p)
 ```
 
 
-
-# Analyses of data
-
-One thing we have been interested in is how well the likely future state score actually predicts the future score.
-
-My initial conclusions are that the trend/pressure/resilience components of the likely future state score are not improving our predictions.
-
-### Observed vs. predicted 2016 scores
-
-*Methods:* I compared the likely future status scores in 2012 to the observed status in 2016.  
-
-*Results:* At first glance, this appears promising because there is actaully a nice correlation between the values:
-
-```{r future state dataprep, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-
-meta <- read.csv('../../eez2016/conf/goals.csv', stringsAsFactors=FALSE) %>%
-  mutate(parent = ifelse(parent=="", goal, parent)) %>%
-  mutate(supragoal = ifelse(goal == parent, "supragoal", NA)) %>%
-  filter(supragoal == "supragoal") %>%
-  select(goal=parent, weight)
-
-data <- read.csv(sprintf('../radical_%s.csv', radicalFile)) 
-
-### getting index status scores (it seems like this should be output in ohicore,
-### I think this change would occur in line 207 in CalculateAll.R)
-index_status <- data %>%
-  filter(goal != "Index") %>%
-  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
-  filter(region_id != 300) %>%
-  filter(region_id <= 250) %>%       # get rid of high seas regions
-  filter(region_id != 213) %>%
-  filter(dimension == "status") %>%
-  left_join(meta, by="goal") %>%
-  filter(goal %in% meta$goal) %>%
-  group_by(scenario, region_id) %>%
-  summarize(value = weighted.mean(value, weight, na.rm=TRUE)) %>%
-  mutate(goal = "Index") %>%
-  mutate(dimension = "status") %>%
-  select(scenario, goal, dimension, region_id, value) %>%
-  data.frame()
-
-data_and_status <- data %>%
-  rbind(index_status) %>%
-  filter(goal == "Index") %>%
-  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
-  filter(region_id != 300) %>%
-  filter(region_id <= 250) %>%       # get rid of high seas regions
-  filter(region_id != 213)  %>%
-  left_join(rgn_names, by=c('region_id')) %>%
-  mutate(variable= paste(dimension, scenario, sep="_")) %>%
-  select(region_id, value, country, variable) %>%
-  data.frame()
-
-data_sp <- spread(data_and_status, variable, value) %>%
-  mutate(pred_change = likely_future_state_2012 - status_2012) %>%
-  mutate(obs_change = status_2016 - status_2012)
-
-```
-
-
-```{r future state first, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-
-p <-   ggplot(data_sp, aes(x=likely_future_state_2012, y=status_2016)) +
-    geom_point(shape=19) +
-    theme_bw() + 
-    labs(x="Predicted 2016 status (from 2012 data)", y="Observed 2016 status") +
-    geom_abline(slope=1, intercept=0, color="red") +
-  xlim(0, 100) +
-  ylim(0, 100)
-print(p)
-
-```
-
-And, the slope estimate isn't too far from 1 (0.76) and the R2 value is fairly high (0.75):
-```{r future state first model, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-
-mod <- lm(status_2016 ~ likely_future_state_2012, data=data_sp)
-summary(mod)
-```
-
-### Scores 2012 vs. scores 2016
-*Methods:* I compared the 2012 and 2016 status scores to get a feel for how well the 2012 scores predicted the 2016 scores.
-
-*Results:* The 2012 scores alone do a better job predicting 2016 scores than incorporating the trend/pressure/resilience data.  The additional information seems to, overall, make our predictions worse:
-
-```{r future state second, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-p <-   ggplot(data_sp, aes(x=status_2012, y=status_2016)) +
-    geom_point(shape=19) +
-    theme_bw() + 
-    labs(y="Observed 2016 status", x="Observed 2012 status") +
-    geom_abline(slope=1, intercept=0, color="red") +
-  xlim(0, 100) +
-  ylim(0, 100)
-print(p)
-
-mod <- lm(status_2016 ~ status_2012, data=data_sp)
-summary(mod)
-
-```
-
-### Predicted change in score vs. observed change in score (from 2012 to 2016)
-*Methods:* Another way to look at these ata is to compare the predicted and observed changes in status from 2012 to 2016.  
-
-The predicted change in status was calculated as: status (2012) minus likely future score (2012).
-The observed change in score was calcualted as status (2012) minus status (2016).
-
-*Results:* There was no correlation between the predicted change in status and the observed change in status:
-```{r future state third, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-
-p <-   ggplot(data_sp, aes(x=pred_change, y=obs_change)) +
-    geom_point(shape=19) +
-    theme_bw() + 
-    labs(y="Observed change in score", x="Predicted change in score") +
-    geom_abline(slope=1, intercept=0, color="red")
-print(p)
-
-mod <- lm(obs_change ~ pred_change, data=data_sp)
-summary(mod)
-
-```
-
-### Looking more closely at patterns within goals/subgoals
-The next step in the above analysis is to look within each goal/subgoal to get a better feel for possible relationships between trend and pressure/resilience components.
-
-```{r future state goal dataprep, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-
-data <- read.csv(sprintf('../radical_%s.csv', radicalFile)) 
-
-data <- data %>%
-  filter(goal != "Index") %>%
-  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
-  filter(region_id != 300) %>%
-  filter(region_id <= 250) %>%       # get rid of high seas regions
-  filter(region_id != 213)  %>%
-  left_join(rgn_names, by=c('region_id'))
-
-data_goal <- function(data, goal="AO"){ #goal="CP"
-  data_g <- data[data$goal==goal, ]
-  
-  data_g <- data_g %>%
-    filter(scenario %in% c(2012, 2016)) %>%
-    mutate(dim_scen = paste(dimension, scenario, sep="_")) %>%
-    select(dim_scen, region_id, country, value) %>%
-    spread(dim_scen, value) %>%
-    mutate(pred_change = likely_future_state_2012 - status_2012) %>%
-    mutate(obs_change = status_2016 - status_2012) %>%
-    mutate(r_minus_p = resilience_2012 - pressures_2012)
-
-p <-   ggplot(data_g, aes(x=pred_change, y=obs_change)) +
-    geom_point(shape=19) +
-    theme_bw() + 
-    labs(title=goal, y="Observed change in status", x="Predicted change in status") +
-    geom_abline(slope=1, intercept=0, color="red")
-print(p)
-
-mod <- lm(obs_change ~ pred_change, data=data_g)
-print(summary(mod))    
-
-mod2 <- lm(obs_change ~ trend_2012 + r_minus_p, data=data_g)
-print(summary(mod2))
-
-mod3 <- lm(obs_change ~ trend_2012 + pressures_2012 + resilience_2012, data=data_g)
-print(summary(mod3))
-}
-
-
-```
-
-### AO: A closer look
-```{r future state AO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="AO")
-
-```
-
-### BD/SPP: A closer look
-```{r future state SPP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="SPP")
-
-```
-
-### BD/HAB: A closer look
-```{r future state HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="HAB")
-
-```
-
-### CP: A closer look
-```{r future state CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="CP")
-
-```
-
-### CS: A closer look
-```{r future state CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="CS")
-
-```
-
-### CW: A closer look
-```{r future state CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="CW")
-
-```
-
-### FP/FIS: A closer look
-```{r future state FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="FIS")
-
-```
-
-### FP/MAR: A closer look
-```{r future state MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="MAR")
-
-```
-
-### SP/ICO: A closer look
-```{r future state ICO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="ICO")
-
-```
-
-### SP/LSP: A closer look
-```{r future state LSP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="LSP")
-
-```
-
-### NP: A closer look
-```{r future state NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="NP")
-
-```
-
-### TR: A closer look
-```{r future state TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
-data_goal(data, goal="TR")
-
+```{r child = 'Reporting_predicting_future_state.Rmd', eval=predicting_future}
 ```
