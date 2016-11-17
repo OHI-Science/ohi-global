@@ -1,42 +1,93 @@
 ---
-title: "Global Ocean Health Index Assessments"
+title: "Global Assessments"
 ---
 
 ```{r setup, echo=F, warning=FALSE, message=F}
 source("./_site.R")
 ```
 
-<div class="page-lead" style="background-image:url(images/regions_1600x800.png)">
-<div class="wrap page-lead-content">
-<h2>Sweet photo/viz here</h2>
 
-</div><!-- /.page-lead-content. -->
-</div><!-- /.page-lead -->
-
-<div class="tiles">
-
-<div class="tile">
-<h2 class="post-title"><i class="fa fa-book fa-2x"></i> Project</h2>
-<p class="post-excerpt">
-
-<!-- Suggested instructions: Add several sentences describing the project here.  -->
-Replace these columns with text like: OHI assessments have been repeated at the global scale from 2012-2016...
+BACKGROUND ABOUT 5 ASSESSMENTS, WHAT CHANGED, ETC
 
 
-</p>
-</div>
+Regions are the fundamental spatial units of analysis for the Ocean Health Index. Scores are calculated for each region individually and then combined (with an offshore area-weighted average) to produce scores for the entire study area, `r study_area`. These template regions can be modified with some effort. They were identified as the largest subcountry division within `r study_area`.
 
-<div class="tile">
-<h2 class="post-title"><i class="fa fa-cubes fa-2x"></i> Our team</h2>
-<p class="post-excerpt">
+Show a static map of 2016 scores instead of the regions. 
 
-<!-- Suggested instructions: Add several sentences describing the team here.  -->
+Explore more on the Data Explorer page
+Download on the download page...
 
 
-</p>
-</div>
+```{r}
+if (!'geojson' %in% names(config)) stop(sprintf('Missing geojson path variable in %s/conf/config.R', dir_scenario))
+geojson = normalizePath(file.path(dir_scenario, config$geojson))
 
-<div class="tile">
-<h2 class="post-title"><i class="fa fa-globe fa-2x"></i> Ocean Health Index </h2>
-</div>
-</div>
+# read spatial (can simplify with R package rmapshaper)
+if (!file.exists(geojson)) stop(sprintf('GeoJSON file specified in %s/conf/config.R not found: %s', dir_scenario, geojson))
+cat(file=stderr(), 'read rgns from geojson\n')
+rgns = geojsonio::geojson_read(geojson, what="sp")
+if ('rgn_nam' %in% names(rgns@data) & !'rgn_name' %in% names(rgns@data)) rgns@data = rgns@data %>% mutate(rgn_name = rgn_nam)
+
+# get bbox to shrink
+bbox_shrink = function(p, pct){
+  b = bbox(p)
+  dx = (b[3] - b[1]) * (pct/100)
+  dy = (b[4] - b[2]) * (pct/100)
+  c(b[1] + dx, b[2] + dy, b[3] - dx, b[4] - dy)
+}
+b = bbox_shrink(rgns, map_shrink_pct)
+
+leaflet() %>%
+  addProviderTiles('Stamen.TonerLite') %>%
+  addPolygons(
+    data = rgns, 
+    layerId = ~rgn_id,
+    label = mapply(function(n) {
+      HTML(sprintf("<em>%s</em>", htmlEscape(n)))},
+      rgns$rgn_name, SIMPLIFY = F),
+    stroke = TRUE, opacity=0.5, weight=2, fillOpacity = 0.5, smoothFactor = 0.5,
+    color = ~colorNumeric('RdYlBu', rgns$rgn_id)(rgn_id)) %>%
+  fitBounds(lng1 = b[1], lat1 = b[2], lng2 = b[3], lat2 = b[4]) %>%
+  htmlwidgets::onRender("
+  function(el, t) {
+    var defaultStyle = {
+      // stroke, ie polygon border
+        opacity:     0.5,
+        weight:      2,
+      // fill, ie polygon interior
+        fillOpacity: 0.5,
+    };
+    var highlightStyle = {
+      // stroke, ie polygon border
+        opacity:     0.9,
+        weight:      6,
+      // fill, ie polygon interior
+        fillOpacity: 0.9,
+    };
+
+    var myMap = this;
+    var layers = myMap._layers;
+    for(var i in layers) {
+      var layer = layers[i];
+      if(layer.label) {
+        layer.on('mouseover',
+          function(e) {
+            this.setStyle(highlightStyle);
+            // this.bringToFront();
+        });
+        layer.on('mouseout',
+          function(e) {
+            this.setStyle(defaultStyle);
+            // this.bringToBack();
+        });
+      }
+    }
+  }")
+```
+
+
+
+IDs for subcountry regions were assigned geographically by increasing longitude. The entire study area `r study_area` has a special region ID of 0.
+
+Exclusive economic zones (EEZs) were identified by [MarineRegions.org](http://www.marineregions.org) and the largest subcountry regions were identified by the generalized administrative boundary database [GADM.org](http://www.gadm.org). Region boundaries were extended offshore to divide the EEZ of `r study_area` into offshore regions. It is possible to use different regions than the ones provided here. See [Create Regions](http://ohi-science.org/pages/create_regions.html) for more details.
+

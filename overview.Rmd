@@ -12,6 +12,8 @@ BACKGROUND ABOUT 5 ASSESSMENTS, WHAT CHANGED, ETC
 
 Regions are the fundamental spatial units of analysis for the Ocean Health Index. Scores are calculated for each region individually and then combined (with an offshore area-weighted average) to produce scores for the entire study area, `r study_area`. These template regions can be modified with some effort. They were identified as the largest subcountry division within `r study_area`.
 
+Show a static map of 2016 scores instead of the regions 
+
 
 ```{r}
 if (!'geojson' %in% names(config)) stop(sprintf('Missing geojson path variable in %s/conf/config.R', dir_scenario))
@@ -80,14 +82,6 @@ leaflet() %>%
   }")
 ```
 
-
-OHI `r study_area` has the following regions, each with a unique identifier (ID):
-
-```{r}
-datatable(
-  rgns@data %>%
-  select(rgn_id, rgn_name))
-```
 
 
 IDs for subcountry regions were assigned geographically by increasing longitude. The entire study area `r study_area` has a special region ID of 0.

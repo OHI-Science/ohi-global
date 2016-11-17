@@ -1,9 +1,7 @@
 name: "Global Ocean Health Index"
 navbar:
-  title: "OHI-GLOBAL"
+  title: "HOME"
   left:
-    - text: "Overview"
-      href: overview.html
     - text: "Data Explorer"
       href: app.html
 #    - text: "Layers" # can remove this from header
