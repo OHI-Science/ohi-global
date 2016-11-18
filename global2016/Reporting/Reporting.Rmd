@@ -89,14 +89,14 @@ rgn_names$country[rgn_names$region_id == 157] <- "Phoenix Islands (Kiribati)"
 
 # if the ohi-global data is updated these should be changed to TRUE
 # (note: these files are then read in for all subsequent tables/figures)
-radical1 <- FALSE
-radical2 <- FALSE
+radical1 <- TRUE
+radical2 <- TRUE
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
-update_data = FALSE
-map_create = FALSE
-goal_hists = FALSE
-flower_plots = FALSE
+update_data = TRUE
+map_create = TRUE
+goal_hists = TRUE
+flower_plots = TRUE
 predicting_future = FALSE
 
 ```
