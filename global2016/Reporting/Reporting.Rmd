@@ -1266,7 +1266,7 @@ kable(data,format="pandoc",caption="Years used in analysis")
 
 
 
-```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4, fig.height=4, eval = flower_plots}
+```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval = flower_plots}
 
 # This generates the flower plots:
 
