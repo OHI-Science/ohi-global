@@ -71,7 +71,6 @@ goal_names <- data.frame(goal=goals, long_goal=c("Index",
 
 ## General settings to control
 scenario <- "2016" #identify scenario of focus (this can be changed to obtain data for other years)
-radicalFile = '2016-11-17' #date extension on the radical data files that are used for all tables/figures
 benchmark = 2015  # year that is used for old vs. new OHI analyses
 oldCommit = '1d4dcb1abb82dc1d20817acca33c7e7d2ef1b52f' # '4da6b4a1d69d694264ea68456359a939b0c03f9c' = commit for 2014 analysis
 colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
@@ -89,15 +88,19 @@ rgn_names$country[rgn_names$region_id == 157] <- "Phoenix Islands (Kiribati)"
 
 # if the ohi-global data is updated these should be changed to TRUE
 # (note: these files are then read in for all subsequent tables/figures)
-radical1 <- FALSE
-radical2 <- FALSE
+radical1 <- FALSE  # This updates the score data used for the Ocean Health Index website, if this is updated, 
+                   # the date in the below variable must be updated (for the results to reflect the new data)
+radicalFile = '2016-11-17' #date extension on the radical data files that are used for all tables/figures
+
+radical2 <- FALSE # This updates the layer data used for the Data Explorer component of the Ocean Health Index website.
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
-update_data = FALSE
-map_create = FALSE
-goal_hists = FALSE
-flower_plots = FALSE
-predicting_future = FALSE
+update_data = FALSE           # This will update the datasets
+map_create = FALSE            # Updates the map figures (takes a while to run)
+goal_hists = FALSE            # Updates the goal histograms
+flower_plots = FALSE          # Updates the flower plot figures
+predicting_future = FALSE     # This is an in-depth analysis of how well likely future state predicts future status.
+                              # This is useful as a second level analysis...but not really for just examining the data.
 
 ```
 
@@ -139,7 +142,7 @@ rad <- read.csv(sprintf('../radical_%s.csv', radicalFile)) %>%
   left_join(rgn_names, by= "region_id") %>%
   mutate(country = ifelse(region_id == 0, "global average (EEZ, Antarctica, High Seas)", country)) %>%
   mutate(country = ifelse(region_id == 300, "global average (EEZ only)", country)) %>%
-  select(scenario, goal, dimension, region_id, region_id=country, value)
+  select(scenario, goal, dimension, region_id, region_name=country, value)
 
 write.csv(rad, sprintf("../radical_with_region_names_%s.csv", radicalFile), row.names=FALSE)
 
@@ -160,7 +163,16 @@ rad_wide <- rad_wide %>%
 
 rad_wide <- rbind(eez_avg, rad_wide)
 
-write.csv(rad_wide, "data/all_years/Index_all_years.csv", row.names=FALSE)
+write.csv(rad_wide, sprintf("data/all_years/Index_all_years_%s.csv", radicalFile), row.names=FALSE)
+
+# sp <- read.csv(sprintf('../radical_with_region_names_%s.csv', radicalFile)) %>%
+#   filter(region_name %in% c("North Korea", "Saint Helena", "Qatar", "Line Islands (Kiribati)",
+#                             "Sudan", "Syria", "Yemen", "Eritrea", "Tokelau", "Bahrain", "Jordan",
+#                             "Iraq", "Bouvet Island")) %>%
+#   filter(dimension == "score") %>%
+#   filter(goal %in% c("SP", "LSP", "ICO")) %>%
+#   spread(goal, value) %>%
+#   filter(scenario == '2016')
 
 ```
 
