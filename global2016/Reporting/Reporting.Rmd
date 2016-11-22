@@ -165,14 +165,24 @@ rad_wide <- rbind(eez_avg, rad_wide)
 
 write.csv(rad_wide, sprintf("data/all_years/Index_all_years_%s.csv", radicalFile), row.names=FALSE)
 
-# sp <- read.csv(sprintf('../radical_with_region_names_%s.csv', radicalFile)) %>%
-#   filter(region_name %in% c("North Korea", "Saint Helena", "Qatar", "Line Islands (Kiribati)",
-#                             "Sudan", "Syria", "Yemen", "Eritrea", "Tokelau", "Bahrain", "Jordan",
-#                             "Iraq", "Bouvet Island")) %>%
-#   filter(dimension == "score") %>%
-#   filter(goal %in% c("SP", "LSP", "ICO")) %>%
-#   spread(goal, value) %>%
-#   filter(scenario == '2016')
+### create a version of the data that averages all 5 years of scores
+### so the best/worst overall can be identified
+index_avg <- read.csv(sprintf('../radical_%s.csv', radicalFile)) %>%
+  left_join(rgn_names, by= "region_id") %>%
+  mutate(country = ifelse(region_id == 0, "global average (EEZ, Antarctica, High Seas)", country)) %>%
+  mutate(country = ifelse(region_id == 300, "global average (EEZ only)", country)) %>%
+  filter(dimension == "score") %>%
+  group_by(goal, region_id, country) %>%
+  summarize(avg_score = mean(value, na.rm=TRUE)) %>%
+  ungroup()
+
+index_avg$goal <- factor(index_avg$goal, levels = goals)
+
+index_avg_spread <- spread(index_avg, goal, avg_score) %>%
+  arrange(-Index) %>%
+  data.frame()
+
+write.csv(index_avg_spread, sprintf("data/avg_5_year_scores_%s.csv", radicalFile), row.names=FALSE)
 
 ```
 
@@ -1381,44 +1391,42 @@ if(colorScheme == "new"){
 
 ```
 
-```{r scatter plot: old vs new, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=FALSE}
 
-# Scatterplots comparing the current assessment and the 2015 assessment: not including at this point...seems adequately covered elsewhere
-# but will keep as reference 
-#-------------------------
-  criteria <- ~dimension == score
-#-------------------------
+# Comparing trend and average index scores
 
-# uses compare data calculated above
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2016) and the trends for each region.
 
+Of most concern are regions that have poor scores and declining trends.
 
-for(goal in goals){ # goal = "AO"
+The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
 
-data_new <- compare %>%
-    group_by(goal) %>% 
-    mutate(mean = mean(change_in_score, na.rm=TRUE),
-           sd =  sd(change_in_score, na.rm=TRUE)) %>%
-    ungroup() %>%
-    mutate(z_score = (change_in_score - mean)/sd) %>%
-    mutate(z_greater_1 = ifelse(abs(z_score) > 1, "yes", "no")) %>%
-    filter(region_id != 0) %>%
-    mutate(plotLabel = ifelse(z_greater_1=="yes", as.character(country), NA))
-  
-  data_new <- data_new[data_new$goal==goal,]  
+```{r trend vs avg index, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=TRUE}
 
-p <-   ggplot(data_new, aes(x=old_value, y=value)) +
-    geom_point(shape=19) +
+index <- read.csv(sprintf("data/avg_5_year_scores_%s.csv", radicalFile)) %>%
+  select(region_id, country, index_avg = Index)
+
+trend <- read.csv(sprintf("data/trends_%s.csv", scenario)) %>%
+  select(region_id, index_trend = Index) %>%
+  left_join(index, by= "region_id")
+
+avg_index <- index %>%
+  filter(region_id != 0) %>%
+  summarize(mean(index_avg, na.rm=TRUE))
+
+  p <- ggplot2::ggplot(trend, aes(x=index_avg, y=index_trend)) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
+    geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
+    geom_vline(xintercept = 67.6, color="red", size=.5, linetype=3) +
     theme_bw() + 
-    labs(title=paste(benchmark, goal, sep=": "), y="New scores", x="Old scores") +
-    geom_abline(slope=1, intercept=0, color="red") +
-    geom_text(aes(label=plotLabel), vjust=1.5, size=2) +
-  xlim(0, 100) +
-  ylim(0, 100)
+    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2016 scores)") 
+    
 
-print(p)
-}
+  plotly_fig <- plotly::ggplotly(p)
+  plotly_fig
 
+  
 ```
+
 
 
 ```{r child = 'Reporting_predicting_future_state.Rmd', eval=predicting_future}

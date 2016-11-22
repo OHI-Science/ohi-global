@@ -3,8 +3,9 @@
 ###############################################
 library(dplyr)
 
+dataDate <- "2016-11-17"
 
-data <- read.csv("global2016/radical_2016-11-08.csv") %>%
+data <- read.csv(sprintf("../radical_%s.csv", dataDate)) %>%
   filter(region_id != 0) %>%      # no global summary (eez, hs, ant)
   filter(region_id <= 250) %>%    # no global summary (eez only, region 300)
   filter(region_id != 213) %>%    # no Antarctica
@@ -18,7 +19,7 @@ data <- data %>%
 
 
 #### Add in ISO3 code
-iso <- read.csv('eez2016/layers/cntry_rgn.csv')
+iso <- read.csv('../../eez2016/layers/cntry_rgn.csv')
 
 dups <- iso$rgn_id[duplicated(iso$rgn_id)]
 filter(iso, rgn_id %in% dups)
@@ -37,7 +38,7 @@ data <- data %>%
   left_join(iso, by="region_id")
 
 #### Add in country name
-rgn_name <- read.csv('eez2016/layers/rgn_global.csv') %>%
+rgn_name <- read.csv('../../eez2016/layers/rgn_global.csv') %>%
   select(region_id = rgn_id, region_name = label)
 
 data <- data %>%
@@ -47,7 +48,7 @@ data <- data %>%
 data <- data %>%
   select(year, region_id, iso3, region_name, score)
   
-write.csv(data, "global2016/DiversityDashboard/Sample_OHI_data.csv", row.names=FALSE)
+write.csv(data, sprintf("../DiversityDashboard/OHI_data_%s.csv", dataDate), row.names=FALSE)
 
 ##################################################
 ##### Preparing spatial data
