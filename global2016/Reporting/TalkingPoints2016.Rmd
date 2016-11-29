@@ -1,0 +1,92 @@
+---
+title: "Talking Points 2016"
+author: "Julie Lowndes"
+date: "November 29, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+*Note: borrowed heavily from Mel's [Reporting.html](https://rawgit.com/OHI-Science/ohi-global/draft/global2016/Reporting/Reporting.html) and Steve's writeup.
+
+## Background
+The Ocean Health Index (OHI) is a scientific method to assess the benefits the ocean provides to people, and was developed because of the need for a quantifiable and easily communicated method to define, measure, and evaluate ‘ocean health’. 
+The OHI method can be tailored to different geographies with different contexts, data, and priorities, and can be used to inform policy - particularly when assessments are repeated to track changes through time.
+
+The Ocean Health Index is a joint project of the National Center for Ecological Analysis and Synthesis (NCEAS) at UC Santa Barbara and Conservation International. 
+It defines a healthy ocean as one that 'sustainably delivers a range of benefits to people now and in the future.’
+
+
+##[The Global Picture](https://rawgit.com/OHI-Science/ohi-global/draft/global2016/Reporting/Reporting.html#the_global_picture)
+
+5 annual global OHI assessments have been completed from 2012-2016, assessing the EEZ boundaries of all (220) coastal nations and territories. 
+These assessments use available data to model and score ten goals (‘goals’ are the benefits the ocean provides to people in the OHI framework) and sub-goals that together represent ocean health. 
+Newly available data have been included in each annual assessment, with analytical approaches incrementally improving with increased understanding and better data availability through internal and external feedback. 
+
+Overall, there weren’t dramatic changes in the last 5 years.
+
+The Index score for 2016 (eez area weighted average of region scores) was: 71. The value did not statistically significantly vary from 2012 to 2016 (p = 0.16).
+
+Although, the overall index score did not statistically significantly change over time, several goals did have significant changes:
+
+*Declining scores*
+
+- Natural products declined by over 2.5 points per year on average (p = 0.013)
+- Coastal protection declined by 0.12 points per year on average (p = 0.03)
+- Clean waters declined by 0.15 points per year on average (but it was marginally non-significant, p = 0.056)
+
+*Improving scores*
+
+- Lasting special places scores increased by an average of 0.5 points per year (p = 0.049)
+- Artisanal opportunities scores increased by just over 0.15 points per year (p = 0.03)
+- Species condition scores improved by a small, but statistically signficant, 0.03 points per year (p = < 0.01)
+
+**Mel's takehome:**
+
+- The big improvements in SP (specifically, LSP) due to the creation of marine protected areas!
+- The potential improvements in fisheries scores (of course most recent data are from 2010, so hard to say what is currently happening)
+- The biggest loser is Natural Products. Not sure if this is a market/economy issue or, a move toward preservation goals
+- Declines in CP are due to loss of coastal sea ice in northern latitudes
+- CW has small but significant declines
+
+**Steve's Take home messages**
+
+- The average score, 71 out of 100, sends a message that the ocean isn’t ‘dying’ as many people think, but that people and marine life will fare much better when we use it in more sustainable ways.
+- Regions with stable and effective governments score much higher than regions where poverty, corruption, war and civil strife are endemic. Achieving ocean health at regional and global scales will depend on improvements in social conditions and quality of governance and management. 
+
+
+## Region patterns
+
+As in previous years, remote uninhabited islands achieved the highest scores. 
+Although the OHI emphasizes that a healthy ocean is one that sustainably provides benefits to people now and in the future, not surprisingly, relatively undeveloped locations can still score high. 
+Lowest scoring countries tend to be developing nations, and many have a recent history of conflict, dictatorship or natural disasters. Those conditions likely impact their ocean health scores. 
+
+Scores for individual regions ranged from 91 down to 43. The two top scoring regions, Jarvis Island and Howland and Baker Island (both 91 and located near Kiribati) are remote and uninhabited islands.  
+The highest scoring populated areas were Germany (85, 4th ranked, population 81 million) and Seychelles (84, 8th ranked, population about 97,000). 
+Both have effective systems for social and environmental management.  
+The lowest scoring regions were Libya and Sierra Leone (both 43). Nine of the ten lowest scoring regions are in Africa and one in Central America. 
+
+
+## [Updated Methods](https://rawgit.com/OHI-Science/ohi-global/draft/global2016/Reporting/Reporting.html#comparing_assessment_years)
+
+We made some improvements to methods
+
+- Artisanal opportunity (biggest change: +11 points): Reference point of need data adjusted to avoid scores being driven by outliers
+- Species condition/biodiversity (+8 points): Addition of bird species tended to increase status scores
+- Mariculture (+6 points): Changes to source data
+- Fisheries (-4 points): Decrease is due primarily to increase in number of stocks classified as “unidentified” in source data (plus, a lot of other changes)
+
+Like any assessment methodology, the OHI benefits from constant evaluation and improvement aimed at incorporating new knowledge, data and understanding. 
+For example, there is continual work to improve technical aspects of the OHI Toolbox, including how information quality and uncertainty is traced throughout the assessment (Frazier et al. 2016). 
+In completing five annual global assessments, models have been improved by updating data sources as new options become available. 
+For example, goal models for wild-caught fisheries and tourism and recreation have been redeveloped to accommodate new information and understanding, reference points for mariculture have been fine-tuned, and data processing workflows have been more standardized for natural products and species.
+
+## Other
+
+Global assessments have enabled deliberate focus on reproducibility, transparency, and communication in applied environmental science. 
+Development of the Ocean Health Index Toolbox software has enabled global assessments to be repeated annually in less time, and has also enabled independent groups to lead their own OHI assessments at smaller geographies (Lowndes et al. 2015). 
+With over twenty OHI assessments underway or completed, the OHI is a tool that can used to improve the ways marine systems are represented, understood, and managed (http://ohi-science.org).
+
+
+
