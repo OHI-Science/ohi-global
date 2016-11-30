@@ -1,5 +1,5 @@
 ---
-title: "Global Assessments"
+title: "Global Ocean Health Index Assessments"
 ---
 
 ```{r setup, echo=F, warning=FALSE, message=F}
@@ -7,87 +7,29 @@ source("./_site.R")
 ```
 
 
-BACKGROUND ABOUT 5 ASSESSMENTS, WHAT CHANGED, ETC
+### Global scores are calculated annually and released each fall.
+
+----
+
+2016 marks the fifth year of Global OHI scores, representing the EEZ boundaries of all (220) coastal nations and territories. Each year since 2012, global assessments use the best and most recent available data to model and score ten goals and sub-goals that together represent ocean health. 
+
+**The average overall Index score for 2016 was 71 out of 100**. Average global Index scores have not dramatically changed in the last five years, which could be expected at a global scale. This can be interpreted that there is work to do to keep oceans healthy since people and marine life fare much better when we use the ocean in more sustainable ways.
+
+![](`r sprintf('%s/FlowerPlots/flower_GLOBAL_2016.png', dir_figs)`)
+
+<!---
+Although the average global Index score did not dramatically change over time, many individual regions had large increases or decreases in their Index score. Additionally, several goals did have fairly large overall changes, with the Lasting Special Places subgoal increasing on average 0.5 points per year due to the creation of marine protected areas.  
+--->
+
+----
+
+The OHI framework, i.e., that goals are scored individually based on current status, trend, and external pressures and resilience measures before being combined together, has not changed since its inception in 2012 ([*Halpern et al. 2012*](http://www.nature.com/nature/journal/v488/n7413/full/nature11397.html)). However, like any assessment methodology, the OHI benefits from constant evaluation and improvement aimed at incorporating new knowledge, data and understanding. In completing five annual global assessments, models have been improved by updating data sources as new options become available. For example, goal models for wild-caught fisheries and tourism and recreation have been redeveloped to accommodate new information and understanding, and data processing workflows have been more standardized for all goals ([*Halpern et al. 2015*](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117863); [*Lowndes et al. 2015*](https://peerj.com/articles/1503)).
 
 
-Regions are the fundamental spatial units of analysis for the Ocean Health Index. Scores are calculated for each region individually and then combined (with an offshore area-weighted average) to produce scores for the entire study area, `r study_area`. These template regions can be modified with some effort. They were identified as the largest subcountry division within `r study_area`.
 
+<!--- TODO:
 Show a static map of 2016 scores instead of the regions. 
 
 Explore more on the Data Explorer page
 Download on the download page...
-
-
-```{r}
-if (!'geojson' %in% names(config)) stop(sprintf('Missing geojson path variable in %s/conf/config.R', dir_scenario))
-geojson = normalizePath(file.path(dir_scenario, config$geojson))
-
-# read spatial (can simplify with R package rmapshaper)
-if (!file.exists(geojson)) stop(sprintf('GeoJSON file specified in %s/conf/config.R not found: %s', dir_scenario, geojson))
-cat(file=stderr(), 'read rgns from geojson\n')
-rgns = geojsonio::geojson_read(geojson, what="sp")
-if ('rgn_nam' %in% names(rgns@data) & !'rgn_name' %in% names(rgns@data)) rgns@data = rgns@data %>% mutate(rgn_name = rgn_nam)
-
-# get bbox to shrink
-bbox_shrink = function(p, pct){
-  b = bbox(p)
-  dx = (b[3] - b[1]) * (pct/100)
-  dy = (b[4] - b[2]) * (pct/100)
-  c(b[1] + dx, b[2] + dy, b[3] - dx, b[4] - dy)
-}
-b = bbox_shrink(rgns, map_shrink_pct)
-
-leaflet() %>%
-  addProviderTiles('Stamen.TonerLite') %>%
-  addPolygons(
-    data = rgns, 
-    layerId = ~rgn_id,
-    label = mapply(function(n) {
-      HTML(sprintf("<em>%s</em>", htmlEscape(n)))},
-      rgns$rgn_name, SIMPLIFY = F),
-    stroke = TRUE, opacity=0.5, weight=2, fillOpacity = 0.5, smoothFactor = 0.5,
-    color = ~colorNumeric('RdYlBu', rgns$rgn_id)(rgn_id)) %>%
-  fitBounds(lng1 = b[1], lat1 = b[2], lng2 = b[3], lat2 = b[4]) %>%
-  htmlwidgets::onRender("
-  function(el, t) {
-    var defaultStyle = {
-      // stroke, ie polygon border
-        opacity:     0.5,
-        weight:      2,
-      // fill, ie polygon interior
-        fillOpacity: 0.5,
-    };
-    var highlightStyle = {
-      // stroke, ie polygon border
-        opacity:     0.9,
-        weight:      6,
-      // fill, ie polygon interior
-        fillOpacity: 0.9,
-    };
-
-    var myMap = this;
-    var layers = myMap._layers;
-    for(var i in layers) {
-      var layer = layers[i];
-      if(layer.label) {
-        layer.on('mouseover',
-          function(e) {
-            this.setStyle(highlightStyle);
-            // this.bringToFront();
-        });
-        layer.on('mouseout',
-          function(e) {
-            this.setStyle(defaultStyle);
-            // this.bringToBack();
-        });
-      }
-    }
-  }")
-```
-
-
-
-IDs for subcountry regions were assigned geographically by increasing longitude. The entire study area `r study_area` has a special region ID of 0.
-
-Exclusive economic zones (EEZs) were identified by [MarineRegions.org](http://www.marineregions.org) and the largest subcountry regions were identified by the generalized administrative boundary database [GADM.org](http://www.gadm.org). Region boundaries were extended offshore to divide the EEZ of `r study_area` into offshore regions. It is possible to use different regions than the ones provided here. See [Create Regions](http://ohi-science.org/pages/create_regions.html) for more details.
-
+--->

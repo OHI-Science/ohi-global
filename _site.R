@@ -25,6 +25,7 @@ map_shrink_pct  = 5
 dir_data        = sprintf('%s_%s', gh_repo, gh_branch_data)
 dir_scenario    = sprintf('%s/%s', dir_data, scenario_dir)
 gh_url          = sprintf('https://github.com/OHI-Science/%s.git', gh_repo)
+dir_figs        = sprintf('%s/global2016/Reporting/figures', dir_data)
 
 # knitr options
 knitr::opts_chunk$set(echo = F, message = F, warning = F)
