@@ -1430,4 +1430,5 @@ avg_index <- index %>%
 
 
 ```{r child = 'Reporting_predicting_future_state.Rmd', eval=predicting_future}
+
 ```
