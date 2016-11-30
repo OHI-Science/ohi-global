@@ -1,9 +1,5 @@
 
 # load libraries:
-library(broom)
-library(tidyr)
-library(dplyr)
-library(ggplot2)
 library(nlme)
 
 # set up the data:
@@ -82,6 +78,136 @@ g <- ggplot(filter(results_lm, goal == "Index"), aes(x=average_change_per_year))
 plot(g)
 
 data$region_id <- factor(data$region_id)
-model0 <- gls(value ~ scenario,  data = filter(data, goal=="Index"))
-model <- lme(value ~ scenario, random = ~1 | region_id, data = filter(data, goal=="Index"))
-summary(model)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="Index"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="Index"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="AO"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="AO"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="BD"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="BD"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="CP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="CP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="CS"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="CS"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="CW"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="CW"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="FIS"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="FIS"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="FP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="FP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="HAB"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="HAB"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="ICO"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="ICO"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="MAR"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="MAR"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="LSP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="LSP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="NP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="NP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="SP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="SP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="SPP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="SPP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="TR"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="TR"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
