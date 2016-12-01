@@ -1,5 +1,5 @@
 ---
-title: "Download data and methods from global assessments"
+title: "Download data and methods"
 output: 
   html_document:
      includes: 
@@ -9,8 +9,14 @@ output:
 ```{r setup, echo=F, warning=FALSE, message=F}
 source("./_site.R")
 ```
+<br>
+Global assessments require synthesizing freely available information that is highly heterogeneous from nearly one hundred sources. Before being incorporated into OHI models, data from each source must be organized, transformed, rescaled, formatted and potentially gap-filled by our collaborative team, who also document metadata and processing decisions.  
 
-TO UPDATE; STOLEN FROM http://ohi-science.org/resources/tools/.  
+Reproducibility and transparency have always been fundamental to global assessments. We work collaboratively by coding and using version control. Here we  the entire ; here we provide our R scripts and data p COME BACK 
+
+We thank all the groups that collect data at the global scale and provide it to the public for free. 
+
+TO UPDATE
 
 Must add: 
 
