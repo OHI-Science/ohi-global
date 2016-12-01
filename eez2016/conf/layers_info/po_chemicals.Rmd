@@ -1,0 +1,21 @@
+Melanie will do this one.
+
+See description for chemical pollution layer [po_chemicals].
+
+Trend in pesticide consumption comes
+from the FAO Statistical Yearbook 201182. These data
+span 1999-2009 and have country spatial resolution.
+We obtained total pesticide consumption data (in
+metric tons of active ingredients) from FAO 82 which
+uses survey methods to measure quantities of
+pesticides applied to crops and seeds in the
+agriculture sector, and includes insecticides, mineral
+oils, herbicides, fungicides, seed treatments
+insecticides, seed treatments fungicides, plant growth
+regulators and rodenticides. For each OHI region we
+report the metric tons of active ingredients per km2,
+calculate a linear regression per region over the 1999-
+2009 timeframe, and then compute the Trend value
+for each region.
+
+

@@ -1,0 +1,31 @@
+Melanie will do this one.
+
+See description for nutrient pollution layer [po_nutrients].
+
+Raw data were drawn from modeled
+plumes of land-based nitrogen pollution, as developed
+by Halpern et al. 3, that provided intensity of pollution
+at 1km2 resolution. The model distributed countrylevel
+fertilizer use onto land-use classes (via
+dasymetric mapping techniques) and then aggregated
+the spatialized data by watersheds as a proxy measure
+for likely amount of this pollution that reached river
+mouths. Plumes were then distributed using a
+diffusive model. Each ocean pixel was then rescaled
+0-1 based on the global maximum pixel value (see ref
+3 for details).These rescaled raw data were used in
+two ways. For the Clean Waters goal and for coastal
+Pressure, which focused on the first 3 nmi of ocean
+adjacent to land, the layer was clipped to 3 nmi
+offshore, weighted by habitat-type, and then the perpixel
+average calculated for each reporting unit
+(EEZ). This zonal mean gives an average intensity
+score that accounts for the large differences in area
+per reporting unit, but is also weighted by habitat type
+using weighting factors in Halpern et al.3. We
+therefore rescaled the zonal mean by dividing by
+maximum value (7.58). For a Status score, we used 1
+minus the pressures score. For EEZ Pressure, we
+calculated the zonal mean of the rescaled raw data for
+each EEZ.
+
