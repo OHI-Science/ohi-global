@@ -301,223 +301,41 @@ div.tocify {
 </div>
 
 
-<p><strong>TO BE REDONE WITHOUT EQUATIONS, LIKE <a href="http://ohi-science.org/bhi/goals" class="uri">http://ohi-science.org/bhi/goals</a>.</strong> This has a separate .md file for each goal that is a knit-child here, as well as wherever else (in the prep files? or SOM perhaps?)</p>
-<p><a href="https://github.com/OHI-Science/issues/issues/665#issuecomment-261118749">SEASIDE CHAT NOTES</a></p>
+<p>OHI assessments categorize and score goals representing ocean-derived benefits to people.</p>
+<p><strong>Global assessments score 10 goals, some of which have sub-goals</strong>.<br />
+Here you will find information about how goals were represented, including how they are affected by pressures and resilience measures. You can also learn how data were processed.</p>
+<hr />
+<div id="artisanal-fishing-opportunity" class="section level2">
+<h2>Artisanal Fishing Opportunity</h2>
+<div id="goal-description" class="section level3">
+<h3>Goal Description</h3>
+<p>Artisanal fishing, often also called small-scale fishing, provides a critical source of food, nutrition, poverty alleviation and livelihood opportunities for many people around the world, in particular in developing nations. This goal measure whether people who need to fish on a small, local scale have the opportunity to do so. It has three sub-components: stock, access, and need. A score of 100 means the country or region is meeting the needs of artisanal fishermen or communities by implementing institutional supports, providing access to near-shore water, and maintaining the health of targeted species.</p>
+<p><strong>For Global assessments….</strong></p>
+</div>
+<div id="model-data" class="section level3">
+<h3>Model &amp; Data</h3>
+<p>The AO model assesses …: Below are the data sets for this goal.</p>
+<p><strong>Status and Trend:</strong></p>
+<ul>
+<li><a href="go%20to%20the%20layers.html#ao_need,%20where%20there&#39;s%20more%20description,%20info%20about%20gapfilling,%20whether%20it%20was%20updated%20in%20that%20year">Artisanal fisheries management effectiveness and opportunity</a> Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
+</ul>
+<p><strong>Pressures:</strong></p>
+<p><strong>Resilience:</strong></p>
+</div>
+<div id="reference-points" class="section level3">
+<h3>Reference points</h3>
+<p>Reference point is ….</p>
+<p>Tiny figures showing relative contributions</p>
+<p><a href=""><strong>Full data preparation information and code</strong></a></p>
+<hr />
+<p><strong>TO CONSIDER</strong> (and see <a href="https://github.com/OHI-Science/issues/issues/665#issuecomment-261118749">SEASIDE CHAT NOTES</a>)</p>
 <ul>
 <li>remove layers page and instead list layers and links to data prep below the goals</li>
 <li>show Mel’s pie chart</li>
-</ul>
-<div id="food-provision-fisheries" class="section level2">
-<h2>Food Provision: Fisheries</h2>
-<p>Amount of sustainable wild-caught seafood compared to the max sustainable</p>
-<p><span class="math display">\[
-x_{FIS} =  (\prod_{g=1}^{6} SS_{i,g}^{C_{i,g}})^\frac{1}{\sum{C_{i,g}}}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(SS\)</span> stock status score, based on B/Bmsy (biomass / maximum sustainable yield of biomass) and an underharvest penalty adjustment</p></li>
-<li><p><span class="math inline">\(C\)</span> total catch</p></li>
-<li><p><span class="math inline">\(i\)</span> OHI reporting region</p></li>
-<li><p><span class="math inline">\(g\)</span> level of taxonomic grouping (ISSCAAP)</p></li>
+<li>[little icon figures!]</li>
+<li>Tiny figures showing relative contributions?</li>
 </ul>
 </div>
-<div id="food-provision-mariculture" class="section level2">
-<h2>Food Provision: Mariculture</h2>
-<p>Amount of sustainable farm-raised seafood compared to max sustainable</p>
-<p><span class="math display">\[
-x_{MAR} =  \frac{Y_{c}}{Y_{r}}
-\]</span></p>
-<p><span class="math display">\[
-Y_{c} = \frac{\sum{1}^{k} Y_{k} * S_{M,k}}{P_{c}}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(Y\)</span> = current sustainably harvested total yield, current [<span class="math inline">\(c\)</span>] or reference [<span class="math inline">\(r\)</span>]</p></li>
-<li><p><span class="math inline">\(S_{M,k}\)</span> = Sustainability score for each species <span class="math inline">\(k\)</span></p></li>
-<li><p><span class="math inline">\(P_{c}\)</span> = Coastal population within 100km</p></li>
-<li><p><span class="math inline">\(Y_{r} = max(Y_{c})\)</span></p></li>
-</ul>
-</div>
-<div id="artisanal-fishing-opportunity" class="section level2">
-<h2>Artisanal Fishing Opportunity</h2>
-<p>the opportunity to fish artisanally, independent of how many fish are caught</p>
-<p><span class="math display">\[
-x_{AO} = (1 - D_{U}) * S_{AO}
-\]</span></p>
-<p><span class="math display">\[
-D_{U} = (1 - P) * (1 - O_{AO})
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(D_{U}\)</span> = unmet demand</p></li>
-<li><p><span class="math inline">\(S_{AO}\)</span> = sustainability of fishing methods</p></li>
-<li><p><span class="math inline">\(O_{AO}\)</span> = access to artisanal fishing</p></li>
-<li><p><span class="math inline">\(P\)</span> = gross domestic product (GDP) per capita, adjusted by purchasing power parity (PPP)</p></li>
-</ul>
-</div>
-<div id="natural-products" class="section level2">
-<h2>Natural Products</h2>
-<p>Level of protection of the coast from inundation and erosion compared to the local natural potential</p>
-<p><span class="math display">\[
-x_{NP} = \frac{\sum_{p=1}^{N} w_p * x_p}{N}  
-\]</span></p>
-<p><span class="math display">\[
-x_p = H_p * S_p
-\]</span></p>
-<p><span class="math display">\[
-S_p = 1 - (\frac{E + R}{N})  
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(w_p\)</span> = proportional peak US dollar value of product <span class="math inline">\(p\)</span></p></li>
-<li><p><span class="math inline">\(x_p\)</span> = sustainable-harvest score for product <span class="math inline">\(p\)</span></p></li>
-<li><p><span class="math inline">\(H_p\)</span> = harvest yield for product <span class="math inline">\(p\)</span></p></li>
-<li><p><span class="math inline">\(S_p\)</span> = sustainability of product <span class="math inline">\(p\)</span></p></li>
-<li><p><span class="math inline">\(E\)</span> = exposure term</p></li>
-<li><p><span class="math inline">\(R\)</span> = risk term</p></li>
-</ul>
-<p>￼products:aquaria fishes, corals, sponges, shells, seaweeds, fish oil</p>
-</div>
-<div id="carbon-storage" class="section level2">
-<h2>Carbon Storage</h2>
-<p>Extent and condition of coastal habitats that store and sequester atmospheric carbon</p>
-<p><span class="math display">\[
-x_{CS} =  \sum_{1}^{k} \frac{C_{s}}{C_{r}} * \frac{A_{k}}{A_{T}}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(C\)</span> = condition of habitat <span class="math inline">\(k\)</span>, current [<span class="math inline">\(c\)</span>] or reference[<span class="math inline">\(r\)</span>]</p></li>
-<li><p><span class="math inline">\(A\)</span> = area of habitat <span class="math inline">\(k\)</span>, current [<span class="math inline">\(c\)</span>] or total area covered by all habitats assessed [T]</p></li>
-</ul>
-<p>habitats: seagrass beds, salt marshes, mangroves</p>
-</div>
-<div id="coastal-protection" class="section level2">
-<h2>Coastal Protection</h2>
-<p>Protection from inundation or erosion compared to the local natural potential</p>
-<p><span class="math display">\[
-x_{CP} =  \sum_{k}^{n} \alpha_{k} * \frac{C_{c,k}}{C_{r,k}}
-\]</span></p>
-<p><span class="math display">\[
-\alpha_{k} = \frac{w_{k}*A_{k}}{\sum{w_{k}*A_{k}}}
-\]</span></p>
-<p><span class="math display">\[
-w_{k} = \frac{r_{k}}{\sum{r_{k}}}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(C\)</span> = condition of habitat <span class="math inline">\(k\)</span>, current [<span class="math inline">\(c\)</span>] and reference [<span class="math inline">\(r\)</span>]</p></li>
-<li><p><span class="math inline">\(\alpha\)</span> = weighted area of habitat <span class="math inline">\(k\)</span></p></li>
-<li><p><span class="math inline">\(A\)</span> = area of habitat <span class="math inline">\(k\)</span></p></li>
-<li><p><span class="math inline">\(r\)</span> = habitat protective ability rank weight</p></li>
-</ul>
-<p>habitats: salt marshes, seagrass beds, mangroves, coral reefs, sea ice</p>
-</div>
-<div id="tourism-recreation" class="section level2">
-<h2>Tourism &amp; Recreation</h2>
-<p>Tourism &amp; recreation value, independent of monetary exchange</p>
-<p><span class="math display">\[
-x_{TR} = E_{t} * S_{t} 
-\]</span></p>
-<p><span class="math display">\[
-E_{t} = E_{W} / (L_{t} - L_{t} * U_{t})
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(E\)</span> = tourism employment proportion</p></li>
-<li><p><span class="math inline">\(S\)</span> = sustainability measure</p></li>
-<li><p><span class="math inline">\(E_{W}\)</span> = number of employees in travel and tourism sectors</p></li>
-<li><p><span class="math inline">\(L\)</span> = total labor force</p></li>
-<li><p><span class="math inline">\(U\)</span> = percent unemployment</p></li>
-<li><p><span class="math inline">\(t\)</span> = current year</p></li>
-</ul>
-</div>
-<div id="livelihoods-economies-livelihoods" class="section level2">
-<h2>Livelihoods &amp; Economies: Livelihoods</h2>
-<p>Number of jobs and job quality from marine-associated sectors</p>
-<p><span class="math display">\[
-x_{LIV} = \frac{\frac{\sum_{i=1}^{k} j_{c,k}}{\sum_{i=1}^{k} j_{r,k}} + \frac{\sum_{i=1}^{k} g_{m,k}}{\sum_{i=1}^{k} g_{r,k}}}{2}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(j\)</span> = number of jobs within sector <span class="math inline">\(k\)</span> at current [<span class="math inline">\(c\)</span>] or reference [<span class="math inline">\(r\)</span>] time</p></li>
-<li><p><span class="math inline">\(g\)</span> = average wages per job for sector <span class="math inline">\(k\)</span> at current [<span class="math inline">\(m\)</span>] or reference [<span class="math inline">\(r\)</span>] region</p></li>
-<li><p>sectors (<span class="math inline">\(k\)</span>): tourism, commercial fishing, marine mammal watching, aquarium fishing, wave &amp; tidal energy, mariculture, transportation &amp; shipping, ports &amp; harbors, ship &amp; boatbuilding</p></li>
-</ul>
-</div>
-<div id="livelihoods-economies-economies" class="section level2">
-<h2>Livelihoods &amp; Economies: Economies</h2>
-<p>Revenue from marine associated sectors</p>
-<p><span class="math display">\[
-x_{ECO} = \sum_{i=1}^{k} \frac{e_{c,k}}{e_{r,k}} 
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(e\)</span> = total adjusted revenue generated from each sector <span class="math inline">\(k\)</span> at current [<span class="math inline">\(c\)</span>] or reference [<span class="math inline">\(r\)</span>] time</p></li>
-<li><p>sectors (<span class="math inline">\(k\)</span>): tourism, commercial fishing, marine mammal watching, aquarium fishing, wave &amp; tidal energy, mariculture, transportation &amp; shipping, ports &amp; harbors, ship &amp; boatbuilding</p></li>
-</ul>
-</div>
-<div id="sense-of-place-iconic-species" class="section level2">
-<h2>Sense of Place: Iconic Species</h2>
-<p>Aesthetic connections to and cultural identity with a given region measured through the status of iconic species</p>
-<p><span class="math display">\[
-x_{ICO} = \frac{\sum_{i=1}^{N} S_{i} * w_{i}}{\sum_{i=1}^{N} S_{i}} 
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(S\)</span> = number of assessed species in each threat category <span class="math inline">\(i\)</span></p></li>
-<li><p><span class="math inline">\(w\)</span> = status weight assigned per threat category <span class="math inline">\(i\)</span></p></li>
-<li><p><span class="math inline">\(N\)</span> = 6 threat categories</p></li>
-</ul>
-<p>iconic species list: WWF Priority Species</p>
-<p>threat categories: IUCN</p>
-</div>
-<div id="sense-of-place-lasting-special-places" class="section level2">
-<h2>Sense of Place: Lasting Special Places</h2>
-<p>Aesthetic connections to and cultural identity with a given region measured through the status of meaningful locations</p>
-<p><span class="math display">\[
-x_{LSP} = \frac{(\frac{M}{M_{r}} + \frac{C}{C_{r}})}{2} 
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(M\)</span> = percent protected marine coastal area compared to reference [<span class="math inline">\(r\)</span>] <span class="math inline">\(C\)</span> = percent protected coastline compared to reference [<span class="math inline">\(r\)</span>]</p></li>
-<li><p><span class="math inline">\(C\)</span> = managed area on coastal land (0-1mi)</p></li>
-<li><p><span class="math inline">\(C_{t}\)</span> = total coastal land area</p></li>
-</ul>
-</div>
-<div id="clean-waters" class="section level2">
-<h2>Clean Waters</h2>
-<p>The degree to which coastal waters are free of contaminants</p>
-<p><span class="math display">\[
-x_{CW} = \sqrt[4]{a * u * l * d}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(a\)</span> = number of coastal people without access to sanitation</p></li>
-<li><p><span class="math inline">\(u\)</span> = 1 – (nutrient input)</p></li>
-<li><p><span class="math inline">\(l\)</span> = 1 – (chemical input)</p></li>
-<li><p><span class="math inline">\(d\)</span> = 1 – (marine debris input, by country)</p></li>
-</ul>
-</div>
-<div id="biodiversity-habitats" class="section level2">
-<h2>Biodiversity: Habitats</h2>
-<p>Existence values people hold for biodiversity measured through the status of key habitats</p>
-<p><span class="math display">\[
-x_{HAB} =  \sum_{i=1}^{k} \frac{C_{c,k}}{C_{r,k}} * \frac{A_{c,k}}{A_{T}}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(C\)</span> = condition of habitat k, current [<span class="math inline">\(c\)</span>] or reference[<span class="math inline">\(r\)</span>]</p></li>
-<li><p><span class="math inline">\(A\)</span> = area of habitat k, current [<span class="math inline">\(c\)</span>] or total of all habitats [T]</p></li>
-</ul>
-<p>habitats: seagrass beds, salt marshes, subtidal soft-bottom habitats, mangroves, coral reefs, sea ice edge</p>
-</div>
-<div id="biodiversity-species" class="section level2">
-<h2>Biodiversity: Species</h2>
-<p>Existence values people hold for biodiversity measured through the status of native species</p>
-<p><span class="math display">\[
-x_{SPP} = \frac{\sum_{k=1}^{M} (\frac{\sum_{i=1}^{N} w_{i}}{N}) * A_{C}}{A_{T}} 
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(M\)</span> = number of grid cells in the assessment region</p></li>
-<li><p><span class="math inline">\(N\)</span> = number species in a grid cell <span class="math inline">\(c\)</span></p></li>
-<li><p><span class="math inline">\(A\)</span> = total area of a grid cell [<span class="math inline">\(c\)</span>] the assessment region [T]</p></li>
-<li><p><span class="math inline">\(w_{i}\)</span> = status weight assigned per threat</p></li>
-</ul>
-<p>assessed species list and maps: IUCN</p>
-<p>Artisanal Opportunity [little icon figures!]</p>
-<p>afjldkajfdl</p>
-<p>Data sets:</p>
-<p>Status and Trend: - <a href="go%20to%20the%20layers.html#ao_need,%20where%20there&#39;s%20more%20description,%20info%20about%20gapfilling,%20whether%20it%20was%20updated%20in%20that%20year">Artisanal fisheries management effectiveness and opportunity</a> Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
-<p>Pressures: (be explicit about how this ties to goals)</p>
-<p>Resilience:</p>
-<p>Tiny figures showing relative contributions</p>
 </div>
 
 <footer role="contentinfo" id="site-footer">

@@ -12,33 +12,18 @@ source("./_site.R")
 
 OHI assessments categorize and score goals representing ocean-derived benefits to people.
 
-Global assessments score 10 goals, some of which have sub-goals.
+**Global assessments score 10 goals, some of which have sub-goals**.  
 Here you will find information about how goals were represented, including how they are affected by pressures and resilience measures. You can also learn how data were processed.
 
-**TO BE REDONE WITHOUT EQUATIONS, LIKE <http://ohi-science.org/bhi/goals>.** This has a separate .md file for each goal that is a knit-child here, as well as wherever else (in the prep files? or SOM perhaps?)  
-
-[SEASIDE CHAT NOTES](https://github.com/OHI-Science/issues/issues/665#issuecomment-261118749)
-
-- remove layers page and instead list layers and links to data prep below the goals
-- show Mel's pie chart
 
 ```{r, child=sprintf('%s/conf/goals.Rmd', dir_scenario)}
 ```
 
+----
 
-Artisanal Opportunity [little icon figures!]
+**TO CONSIDER** (and see [SEASIDE CHAT NOTES](https://github.com/OHI-Science/issues/issues/665#issuecomment-261118749))
 
-afjldkajfdl
-
-Data sets: 
-
-Status and Trend: 
-- [Artisanal fisheries management effectiveness and opportunity](go to the layers.html#ao_need, where there's more description, info about gapfilling, whether it was updated in that year)
-Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector
-
-Pressures: (be explicit about how this ties to goals)
-
-Resilience: 
-
-Tiny figures showing relative contributions
-
+- remove layers page and instead list layers and links to data prep below the goals
+- show Mel's pie chart
+- [little icon figures!]
+- Tiny figures showing relative contributions?
