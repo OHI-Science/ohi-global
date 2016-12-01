@@ -174,14 +174,11 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">HOME</a>
+      <a class="navbar-brand" href="index.html">GLOBAL</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="app.html">Data Explorer</a>
-</li>
-<li>
   <a href="goals.html">Goals</a>
 </li>
 <li>
@@ -208,54 +205,8 @@ $(document).ready(function () {
 
 <div id="ohi-gh-pages-branch" class="section level1">
 <h1>OHI gh-pages branch</h1>
-<p>These files provide the template for creating a website for an OHI repository per <a href="http://pages.github.com">Github Pages</a> by populating the HTML files from Rmarkdown into the gh-pages branch of the Github repo.</p>
-<p>Normally these files are translated from template files into the website using <code>ohirepos::deploy_website()</code> function, like so:</p>
-<pre class="r"><code>library(ohirepos) # devtools::install_github(&#39;ohi-science/ohirepos&#39;)
-
-# ohi-global
-deploy_website(&#39;ohi-global&#39;, &#39;Global&#39;, &#39;eez2015&#39;, dir_out=&#39;~/Desktop/ohirepos_tmp&#39;, del_out=F, open_url=T)
-#  cannot open file &#39;./ohi-global_draft/eez2015/conf/goals.Rmd&#39;: No such file or directory
-
-# baltic
-deploy_website(&#39;bhi&#39;, &#39;Baltic&#39;, &#39;baltic2015&#39;, dir_out=&#39;~/Desktop/ohirepos_tmp&#39;, del_out=F, open_url=T)</code></pre>
-<p>When <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html"><code>rmarkdown::render_site(dir_web)</code></a> runs, it knits each Rmarkdown (*.Rmd) based on parameters in <code>_site.R</code> and <code>_site.yml</code> before pushing the files back to Github. These Rmd files also pull from the <code>data_branch</code>, typically <code>draft</code>, that gets copied into <code>[gh_repo]_[gh_branch_data]</code>.</p>
-<div id="development" class="section level2">
-<h2>Development</h2>
-<p>In practice, for developing these Rmarkdown files, I launch RStudio with <code>ohirepos/inst/gh-pages/gh-pages.Rproj</code> to set the working directory here, and create the <code>_site.yml</code> and <code>_site.R</code> for whichever repo, knit with the Build tab in RStudio &gt; Build Website, and add the <code>[gh_repo]_[gh_branch_data]</code> folder to <code>.gitignore</code>.</p>
-<p>Here’s how to generate the <code>_site.yml</code> and <code>_site.R</code> manually for local development in <code>ohirepos/inst/gh-pages</code>:</p>
-<pre class="r"><code># library(devtools); load_all()
-
-# ohi-global
-gh_repo=&#39;ohi-global&#39;; study_area=&#39;Global&#39;; scenario_dir=&#39;eez2015&#39;
-
-# bhi
-gh_repo=&#39;bhi&#39;       ; study_area=&#39;Baltic&#39;; scenario_dir=&#39;baltic2015&#39;
-
-# vars
-gh_branch_data=&#39;draft&#39;
-app_url=sprintf(&#39;http://ohi-science.nceas.ucsb.edu/%s&#39;, gh_repo); 
-ohirepos_commit = devtools:::local_sha(&#39;ohirepos&#39;)
-dir_data = sprintf(&#39;%s_%s&#39;, gh_repo, gh_branch_data)
-
-# brew config files
-brew::brew(system.file(&#39;gh-pages/_site.brew.yml&#39;, package=&#39;ohirepos&#39;), &#39;_site.yml&#39;)
-brew::brew(system.file(&#39;gh-pages/_site.brew.R&#39;  , package=&#39;ohirepos&#39;), &#39;_site.R&#39;  )
-
-# get data branch 
-system(sprintf(&#39;git clone https://github.com/ohi-science/%s.git %s&#39;, dir_data))
-# OR copy from local
-system(sprintf(&#39;cp -rf ~/github/%s %s&#39;, gh_repo, dir_data))
-
-# update data branch with latest on Github
-system(sprintf(&#39;cd %s; git reset -q --hard origin/%s&#39;, dir_data, gh_branch_data))
-
-# be sure to add to .gitignore
-cat(sprintf(&#39;\n%s&#39;, dir_data), file=&#39;.gitignore&#39;, append=T)
-
-# render and launch
-rmarkdown::render_site(&#39;.&#39;)
-utils::browseURL(&#39;index.html&#39;)</code></pre>
-</div>
+<p>To build the website, run <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html"><code>rmarkdown::render_site()</code></a>, which knits each Rmarkdown (*.Rmd) based on parameters in <code>_site.R</code> and <code>_site.yml</code> before pushing the files back to Github. These Rmd files also pull from the <code>data_branch</code>, typically <code>draft</code>, that gets copied into <code>[gh_repo]_[gh_branch_data]</code>.</p>
+<p>The majority of this website architecture was coded by <a href="https://github.com/bbest">Ben Best</a> with significant inputs from <a href="https://github.com/jules32">Julie Lowndes</a>.</p>
 </div>
 
 <footer role="contentinfo" id="site-footer">

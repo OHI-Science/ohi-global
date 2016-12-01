@@ -10,10 +10,11 @@ output:
 source("./_site.R")
 ```
 
-TO BE REDONE WITHOUT EQUATIONS, LIKE ≤http://ohi-science.org/bhi/goals>. 
+**TO BE REDONE WITHOUT EQUATIONS, LIKE <http://ohi-science.org/bhi/goals>.** This has a separate .md file for each goal that is a knit-child here, as well as wherever else (in the prep files? or SOM perhaps?)  
 
-SEASIDE CHAT NOTES: 
-- remove layers page and instead list them below the goals
+[SEASIDE CHAT NOTES](https://github.com/OHI-Science/issues/issues/665#issuecomment-261118749)
+
+- remove layers page and instead list layers and links to data prep below the goals
 - show Mel's pie chart
 
 ```{r, child=sprintf('%s/conf/goals.Rmd', dir_scenario)}
