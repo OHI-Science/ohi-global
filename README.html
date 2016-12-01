@@ -11,7 +11,7 @@
 
 
 
-<title>Five years of global assessments</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,46 +197,15 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Five years of global assessments</h1>
 
 </div>
 
 
-<!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
-Put in your css file or directly in rmarkdown--->
-<style>
-  .col2 {
-    columns: 2 200px;         /* number of columns and width in pixels*/
-    -webkit-columns: 2 200px; /* chrome, safari */
-    -moz-columns: 2 200px;    /* firefox */
-  }
-</style>
-<p><br> 2016 marks the fifth year of annual global assessments, with scores representing ocean health for 220 coastal nations and territories using the best available data each year.</p>
-<hr />
-<div class="col2">
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="288" /> <br> <br> <br> <br> <strong>The average 2016 Index score was 71 out of 100</strong>.<br />
-Average Index scores have not dramatically changed over five years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.<br />
-<br></p>
-<ul>
-<li><a href="http://ohi-science.org/ohi-global/goals">Explore how goals are represented</a><br />
-</li>
-<li><a href="http://ohi-science.org/ohi-global/scores">Explore scores by region and goal</a><br />
-</li>
-<li><a href="http://ohi-science.org/ohi-global/download">Download information from global assessments</a></li>
-<li><a href="http://www.oceanhealthindex.org/">Learn more at oceanhealthindex.org</a></li>
-</ul>
+<div id="ohi-gh-pages-branch" class="section level1">
+<h1>OHI gh-pages branch</h1>
+<p>To build the website, run <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html"><code>rmarkdown::render_site()</code></a>, which knits each Rmarkdown (*.Rmd) based on parameters in <code>_site.R</code> and <code>_site.yml</code> before pushing the files back to Github. These Rmd files also pull from the <code>data_branch</code>, typically <code>draft</code>, that gets copied into <code>[gh_repo]_[gh_branch_data]</code>.</p>
+<p>The majority of this website architecture was coded by <a href="https://github.com/bbest">Ben Best</a> with significant inputs from <a href="https://github.com/jules32">Julie Lowndes</a>.</p>
 </div>
-<!---
-Although the average global Index score did not dramatically change over time, many individual regions had large increases or decreases in their Index score. Additionally, several goals did have fairly large overall changes, with the Lasting Special Places subgoal increasing on average 0.5 points per year due to the creation of marine protected areas.  
---->
-<hr />
-<p>The OHI framework has not changed since its inception in 2012 (<a href="http://www.nature.com/nature/journal/v488/n7413/full/nature11397.html"><em>Halpern et al. 2012</em></a>). Goals are scored individually based on current status, trend, and external pressures and resilience measures for each coastal nation before being combined together. However, like any assessment methodology, the OHI benefits from constant evaluation and improvement aimed at incorporating new knowledge, data and understanding. Over five years, models have been improved incrementally as new options become available. For example, goal models for Fisheries and Tourism &amp; Recreation have been redeveloped to accommodate new information and understanding. For further information, see <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117863"><em>Halpern et al. 2015</em></a> and <a href="https://peerj.com/articles/1503"><em>Lowndes et al. 2015</em></a>.</p>
-<!--- TODO:
-Show a static map of 2016 scores instead of the regions. 
-
-Explore more on the Data Explorer page
-Download on the download page...
---->
 
 
 
