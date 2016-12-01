@@ -2,10 +2,6 @@
 output: html_document
 ---
 
----
-output: html_document
----
-
 ## Food Provision: Fisheries
 
 ```{r, child='goals/FIS.Rmd', results='asis', echo=FALSE}
