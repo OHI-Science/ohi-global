@@ -1,6 +1,9 @@
 ---
-title: "Download"
-output: html_document  
+title: "Download data and methods from global assessments"
+output: 
+  html_document:
+     includes: 
+      in_header: '~/github/ohiprep/src/templates/ohi_hdr.html'
 ---
 
 ```{r setup, echo=F, warning=FALSE, message=F}
@@ -14,8 +17,6 @@ Must add:
 - scores.csv for all years
 
 -----
-
-### Download data and methods from OHI global assessments
 
 Data and scripts from OHI global assessments are available for 2012, 2013, 2014, and 2015. Explore the <a href="https://github.com/OHI-Science/ohi-global/releases" target="_blank">data and methods used for these assessments (including Antarctica and the High Seas)</a>, stored on GitHub. 
 
