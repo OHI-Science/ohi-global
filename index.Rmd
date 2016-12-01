@@ -1,11 +1,29 @@
 ---
 title: "Global Ocean Health Index Assessments"
+output:
+  html_document:
+    fig_width: 1
 ---
 
 ```{r setup, echo=F, warning=FALSE, message=F}
 source("./_site.R")
 ```
 
+<!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
+Put in your css file or directly in rmarkdown--->
+
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+  .col3 {
+    columns: 3 100px;
+    -webkit-columns: 3 100px;
+    -moz-columns: 3 100px;
+  }
+</style>
 
 ### Global scores are calculated annually and released each fall.
 
@@ -13,21 +31,26 @@ source("./_site.R")
 
 2016 marks the fifth year of Global OHI scores, representing the EEZ boundaries of all (220) coastal nations and territories. Each year since 2012, global assessments use the best and most recent available data to model and score ten goals and sub-goals that together represent ocean health. 
 
-**The average overall Index score for 2016 was 71 out of 100**. Average global Index scores have not dramatically changed in the last five years, which could be expected at a global scale. This can be interpreted that there is work to do to keep oceans healthy since people and marine life fare much better when we use the ocean in more sustainable ways.
 
-<!---
+<!---![](`r sprintf('%s/FlowerPlots/flower_GLOBAL_2016.png', dir_figs)`)
 <figure>
 <p align = 'center'>
 <img src="`r sprintf('%s/FlowerPlots/flower_GLOBAL_2016.png', dir_figs)`" height="100px" />
 </figure>
+--->
 
-```{r fig.width=1, fig.height=10,echo=FALSE}
+<div class="col2">
+```{r fig.width=4,echo=FALSE}
 library(png)
 library(grid)
 img <- readPNG(sprintf('%s/FlowerPlots/flower_GLOBAL_2016.png', dir_figs))
 grid.raster(img)
 ```
---->
+<br>
+<br>
+<br>
+**The average 2016 Index score was 71 out of 100**. Average global Index scores have not dramatically changed in the last five years, which could be expected at a global scale. This can be interpreted that there is work to do to keep oceans healthy since people and marine life fare much better when we use the ocean in more sustainable ways.
+</div>
 
 <!---
 Although the average global Index score did not dramatically change over time, many individual regions had large increases or decreases in their Index score. Additionally, several goals did have fairly large overall changes, with the Lasting Special Places subgoal increasing on average 0.5 points per year due to the creation of marine protected areas.  
@@ -37,7 +60,6 @@ Although the average global Index score did not dramatically change over time, m
 ----
 
 The OHI framework, i.e., that goals are scored individually based on current status, trend, and external pressures and resilience measures before being combined together, has not changed since its inception in 2012 ([*Halpern et al. 2012*](http://www.nature.com/nature/journal/v488/n7413/full/nature11397.html)). However, like any assessment methodology, the OHI benefits from constant evaluation and improvement aimed at incorporating new knowledge, data and understanding. In completing five annual global assessments, models have been improved by updating data sources as new options become available. For example, goal models for wild-caught fisheries and tourism and recreation have been redeveloped to accommodate new information and understanding, and data processing workflows have been more standardized for all goals ([*Halpern et al. 2015*](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117863); [*Lowndes et al. 2015*](https://peerj.com/articles/1503)).
-
 
 
 <!--- TODO:
