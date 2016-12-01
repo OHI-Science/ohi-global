@@ -10,6 +10,11 @@ output:
 source("./_site.R")
 ```
 
+OHI assessments categorize and score goals representing ocean-derived benefits to people.
+
+Global assessments score 10 goals, some of which have sub-goals.
+Here you will find information about how goals were represented, including how they are affected by pressures and resilience measures. You can also learn how data were processed.
+
 **TO BE REDONE WITHOUT EQUATIONS, LIKE <http://ohi-science.org/bhi/goals>.** This has a separate .md file for each goal that is a knit-child here, as well as wherever else (in the prep files? or SOM perhaps?)  
 
 [SEASIDE CHAT NOTES](https://github.com/OHI-Science/issues/issues/665#issuecomment-261118749)
