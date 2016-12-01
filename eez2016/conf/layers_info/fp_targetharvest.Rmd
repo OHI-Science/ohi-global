@@ -1,0 +1,18 @@
+Mel
+
+old description:
+This data layer compiles data from FAO
+82 on catch of cetaceans and marine turtles. We
+searched and extracted all catch titles that could
+include cetaceans or marine turtles and aggregated to
+create a total reported catch count for cetaceans and
+tonnes caught for marine turtles for each country.
+Reported catch for 2009 was used for most countries
+unless data were unavailable for 2009 and there was a
+reported catch for 2008. In those cases, 2008 data
+were used. For both cetaceans and marine turtles the
+summed catch was rescaled from 0-1, with 1 = 110%
+the maximum value across all countries. The two
+scores were then averaged to create a single “targeted
+harvest” score.
+
