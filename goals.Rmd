@@ -15,6 +15,14 @@ OHI assessments categorize and score goals representing ocean-derived benefits t
 **Global assessments score 10 goals, some of which have sub-goals**.  
 Here you will find information about how goals were represented, including how they are affected by pressures and resilience measures. You can also learn how data were processed.
 
+ADD: link to goals page to see how other OHI assessments have approached each goal
+
+Link to layer.html
+
+
+<!--- link to supplement --->
+
+
 
 ```{r, child=sprintf('%s/conf/goals.Rmd', dir_scenario)}
 ```
