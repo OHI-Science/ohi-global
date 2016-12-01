@@ -22,12 +22,11 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="site_libs/highlight/textmate.css"
-      type="text/css" />
-<script src="site_libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -155,7 +154,6 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -181,7 +179,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -240,8 +238,9 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.9em;
-  padding-left: 5px;
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -303,10 +302,14 @@ div.tocify {
 
 <p>OHI assessments categorize and score goals representing ocean-derived benefits to people.</p>
 <p><strong>Global assessments score 10 goals, some of which have sub-goals</strong>.<br />
-Here you will find information about how goals were represented, including how they are affected by pressures and resilience measures. You can also learn how data were processed.</p>
+Here you will find information about how goals were represented, including how they are affected by pressures and resilience measures, and the underlying data and data processing.</p>
+<p>See <a href="http://ohi-science.org/">the goals page</a> to learn how other OHI assessments have have approached each goal.<br />
+See <a href="http://ohi-science.org/ohi-global/layers.html">the global data page</a> for a complete list of data and data processing.<br />
+<!--- TODO: link to supplement ---></p>
 <hr />
 <div id="artisanal-fishing-opportunity" class="section level2">
 <h2>Artisanal Fishing Opportunity</h2>
+<p>AO.Rmd – Ning works on this</p>
 <div id="goal-description" class="section level3">
 <h3>Goal Description</h3>
 <p>Artisanal fishing, often also called small-scale fishing, provides a critical source of food, nutrition, poverty alleviation and livelihood opportunities for many people around the world, in particular in developing nations. This goal measure whether people who need to fish on a small, local scale have the opportunity to do so. It has three sub-components: stock, access, and need. A score of 100 means the country or region is meeting the needs of artisanal fishermen or communities by implementing institutional supports, providing access to near-shore water, and maintaining the health of targeted species.</p>
@@ -316,16 +319,20 @@ Here you will find information about how goals were represented, including how t
 <h3>Model &amp; Data</h3>
 <p>The AO model assesses …:<br />
 Below are the data sets for this goal.</p>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li><a href="go%20to%20the%20layers.html#ao_need,%20where%20there&#39;s%20more%20description,%20info%20about%20gapfilling,%20whether%20it%20was%20updated%20in%20that%20year">Artisanal fisheries management effectiveness and opportunity</a> Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
 </div>
 <div id="reference-points" class="section level3">
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
+</div>
+</div>
+<div id="this-is-now-ao_layers.rmd-mel" class="section level2">
+<h2>This is now AO_layers.Rmd – Mel</h2>
+<p><strong>Status and Trend:</strong></p>
+<ul>
+<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
+</ul>
+<p><strong>Pressures:</strong></p>
+<p><strong>Resilience:</strong></p>
 <p><a href=""><strong>Full data preparation information and code</strong></a></p>
 <hr />
 <p><strong>TO CONSIDER</strong> (and see <a href="https://github.com/OHI-Science/issues/issues/665#issuecomment-261118749">SEASIDE CHAT NOTES</a>)</p>
@@ -335,7 +342,6 @@ Below are the data sets for this goal.</p>
 <li>[little icon figures!]</li>
 <li>Tiny figures showing relative contributions?</li>
 </ul>
-</div>
 </div>
 
 <footer role="contentinfo" id="site-footer">
@@ -356,8 +362,11 @@ Below are the data sets for this goal.</p>
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 
