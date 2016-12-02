@@ -205,11 +205,23 @@ $(document).ready(function () {
 </div>
 
 
+<!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
+Put in your css file or directly in rmarkdown--->
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+</style>
 <p><br> Global Ocean Health Index assessments require synthesizing highly heterogeneous information that is freely available from nearly one hundred sources. Before being incorporated into OHI models, data from each source must be organized, transformed, rescaled, formatted, and potentially gap-filled. This workflow, including all metadata and processing decisions, is fully documented and available here.</p>
 <p>Reproducibility and transparency have always been fundamental to OHI assessments and we now code and use version control collaboratively and openly. Here we provide our code, data, and workflows, as well as calculated scores for global assessments.</p>
 <hr />
-<div id="global-assessment-scores" class="section level2">
-<h2>Global assessment scores</h2>
+<div id="some-header" class="section level2">
+<h2>Some header</h2>
+<p>With each annual global assessment we have incrementally improved data processing and modelling methods based on new information, knowledge, and feedback. Thus, for annual scores to be comparable with previous years, we recalculate assessments from previous years with the most recent methods for each past assessment year.</p>
+<div class="col2">
+<p><strong>Global assessment scores</strong></p>
 <p>Quick access to <em>.csv</em> files of calculated global scores.</p>
 <ul>
 <li><a href="">2012</a></li>
@@ -218,15 +230,15 @@ $(document).ready(function () {
 <li><a href="">2015</a></li>
 <li><a href="">2016</a></li>
 </ul>
-<blockquote>
 <p>The headers in these files are: TODO! Do we want to use <a href="https://github.com/OHI-Science/ohi-global/blob/draft/global2016/radical_with_region_names_2016-11-17.csv">radical_with_region_names</a> or modify scores.csvs directly? We could do that right in this Rmd… - goal: TODO explain 2/3 letter codes or write it out, and Index - dimension: identifies status, trend, pressures, resilience, likely future state, or final score - region_id: TODO - score: calculated score between 0-100.</p>
-</blockquote>
-<p>TODO!</p>
+<p><strong>Full data and code</strong></p>
+<p>All code and most data are available online in our repositories on GitHub.</p>
+<ul>
+<li><a href="https://github.com/OHI-Science/ohiprep/releases">data preparation releases</a></li>
+<li><a href="https://github.com/OHI-Science/ohi-global/releases">score calculation releases</a></li>
+</ul>
+<p>If you are interested in using our data and methods, please read the <a href="http://ohi-science.org/manual">OHI assessment manual</a> and see our <a href="http://ohi-science.org/citation-policy/">Citation Policy</a> <br> <br> <br> <br> <br> <br></p>
 </div>
-<div id="full-data-and-code" class="section level2">
-<h2>Full data and code</h2>
-<p>TODO</p>
-<p>Data and scripts from OHI global assessments are available for 2012, 2013, 2014, and 2015. Explore the <a href="https://github.com/OHI-Science/ohi-global/releases" target="_blank">data and methods used for these assessments (including Antarctica and the High Seas)</a>, stored on GitHub.</p>
 </div>
 <div id="thanks" class="section level2">
 <h2>Thanks</h2>

@@ -9,6 +9,16 @@ output:
 ```{r setup, echo=F, warning=FALSE, message=F}
 source("./_site.R")
 ```
+<!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
+Put in your css file or directly in rmarkdown--->
+<style>
+  .col2 {
+    columns: 2 200px;         /* number of columns and width in pixels*/
+    -webkit-columns: 2 200px; /* chrome, safari */
+    -moz-columns: 2 200px;    /* firefox */
+  }
+</style>
+
 <br>
 Global Ocean Health Index assessments require synthesizing highly heterogeneous information that is freely available from nearly one hundred sources. Before being incorporated into OHI models, data from each source must be organized, transformed, rescaled, formatted, and potentially gap-filled. This workflow, including all metadata and processing decisions, is fully documented and available here.  
 
@@ -16,7 +26,13 @@ Reproducibility and transparency have always been fundamental to OHI assessments
 
 -----
 
-## Global assessment scores
+## Some header
+
+With each annual global assessment we have incrementally improved data processing and modelling methods based on new information, knowledge, and feedback. Thus, for annual scores to be comparable with previous years, we recalculate assessments from previous years with the most recent methods for each past assessment year. 
+
+
+<div class="col2">
+**Global assessment scores**
 
 Quick access to *.csv* files of calculated global scores.  
 
@@ -26,23 +42,33 @@ Quick access to *.csv* files of calculated global scores.
 - [2015]()
 - [2016]()
 
-> The headers in these files are: 
+The headers in these files are: 
 TODO! Do we want to use [radical_with_region_names](https://github.com/OHI-Science/ohi-global/blob/draft/global2016/radical_with_region_names_2016-11-17.csv) or modify scores.csvs directly? We could do that right in this Rmd...
 - goal: TODO explain 2/3 letter codes or write it out, and Index
 - dimension: identifies status, trend, pressures, resilience, likely future state, or final score
 - region_id: TODO 
 - score: calculated score between 0-100.  
 
-TODO! 
+
+**Full data and code**
+
+All code and most data are available online in our repositories on GitHub. 
+
+- [data preparation releases](https://github.com/OHI-Science/ohiprep/releases)
+- [score calculation releases](https://github.com/OHI-Science/ohi-global/releases)
+
+If you are interested in using our data and methods, please read the [OHI assessment manual](http://ohi-science.org/manual) and see our [Citation Policy](http://ohi-science.org/citation-policy/)
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
+</div>
 
-
-## Full data and code
-
-TODO
-
-Data and scripts from OHI global assessments are available for 2012, 2013, 2014, and 2015. Explore the <a href="https://github.com/OHI-Science/ohi-global/releases" target="_blank">data and methods used for these assessments (including Antarctica and the High Seas)</a>, stored on GitHub. 
+---- 
 
 ## Thanks
 
