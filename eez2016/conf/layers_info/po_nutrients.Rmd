@@ -2,6 +2,12 @@ Melanie will do this one.
 
 See description for nutrient pollution layer [po_nutrients].
 
+First, we produced annual values for land-based nutrient and organic pollution (a component of the ‘chemical’ pollution variable used in the model, which also incorporates land-based inorganic and ocean-based), such that each year of assessment has a unique value and the trend in these values is now directly measured from these annual changes rather than from a proxy measure (as was done previously, using FAO fertilizer and pesticide data). 
+
+). Third, we clipped pollution plume data to the 3nm offshore boundary, as was originally done (Halpern et al. 2012) but incorrectly not subsequently (Halpern et al. 2015).
+
+Once plumed data were produced, values were log(X+1)-transformed and rescaled to the 99.99th quantile across all available years.
+
 Raw data were drawn from modeled
 plumes of land-based nitrogen pollution, as developed
 by Halpern et al. 3, that provided intensity of pollution
@@ -28,4 +34,11 @@ maximum value (7.58). For a Status score, we used 1
 minus the pressures score. For EEZ Pressure, we
 calculated the zonal mean of the rescaled raw data for
 each EEZ.
+
+From S1_PLoS_OHI2015:
+Updated fertilizer consumption data were available through 2010 from FAO’s statistical database FAOSTAT ((http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E). Data were summed across all fertilizer compounds and reported in metric tons. Upon inspection the data included multiple 0 values that are most likely data gaps in the time-series, so they were treated as such and replaced with NA. In addition, regions with only 1 data point and regions where the most recent data point was prior to 2005 were excluded. The data gaps were then filled using coastal population trends for the corresponding reporting region. Uninhabited countries were assumed to have no fertilizer use and thus excluded. Nine regions were inhabited but had no fertilizer or population data. Of these, two were considered close enough to large countries to receive influence of their pollution and were gap-filled using regional trends (i.e., Juan da Nova and Glorioso Islands), and the remaining 7 were considered too remote, hence their trend was assumed to be 0. For the 2013 assessment, the 2010 values were used as the most recent year. When data for 2010 was missing, the trend for 2013 is identical to the trend for the 2012 assessment.
+
+and:
+
+To allow for more direct comparison between assessments from last year (input data from 2003-2006) and this year (input data from 2007-2010, the most recent available), we recalculated this layer using updated data but the same methods as before. In particular, we used FAO data on annual country-level fertilizer use, averaged over the time periods, with missing values filled in by regression between fertilizer and pesticides (see chemical pollution: land-based organic, described above) when possible, and when not possible with agricultural GDP as a proxy (see Halpern et al. 2008 for methods details). These country-level values were then dasymetrically distributed over a country’s landscape using global landcover data from the years 2005 (for the 2003-2006 time period) and 2009 (for the 2007-2010 time period), derived from the MODIS satellite at ~500m resolution (following methods described in Halpern et al. 2008 but with updated MODIS data not available previously). These values were then aggregated by ~140,000 global basins (developed for and presented in Halpern et al. 2008), and diffusive plumes were modeled from each basin’s pourpoint. The final non-zero plumes (about ~76,000) were aggregated into ~1km Mollweide (wgs84) projection rasters to produce a single plume-aggregated pollution raster. These raw values were then log(x+1) transformed and normalized to 0-1. A simple visual and pixel-count comparison of the agriculture landcover classes shows that, globally, these classes have not changed much during the two time periods (at the 500m resolution of the data). However, global fertilizer consumption has shown a small, but significant increase globally (roughly 4-8% over our time period).
 
