@@ -4,11 +4,17 @@ Coral: 7.17
 
 Mangroves: Mel write this section
 
+For mangrove data, we used a new global data layer (Hamilton and Casey 2014) that has much higher spatial and temporal resolution.  Yearly data are provided at 30m raster cell resolution (with the estimated area of mangrove cover in each cell) for improved estimates of mangrove extent and direct estimates of the change in mangrove extent. We summarized these data at 500m resolution (to facilitate global calculations).
+
+For mangrove data, we used a new global data layer (Hamilton and Casey 2014) that has much higher spatial and temporal resolution.  Yearly data (2000-2012) are provided at 30m raster cell resolution (with the estimated area of mangrove cover in each cell) for improved estimates of mangrove extent and direct estimates of the change in mangrove extent. We summarized these data at 500m resolution (to facilitate global calculations).
+
 Salt marsh: 7.56
 
 Rocky reef: 7.55
 
 Sea ice: 7.57
+
+For sea ice, we changed our reference period to be from the start of the data (1979) until the year 2000 (vs. until the current year) as recommended by the National Snow & Ice Data Center (Cavalieri et al. 2014; https://nsidc.org/cryosphere/quickfacts/seaice.html). 
 
 Seagrass: 7.59
 
