@@ -19,7 +19,10 @@ TABLES:
 - SHOW 5 years of scores 
 - also add Index
 
-```{r plot flowers}
+2012-2016 Global scores using 2016 Methods
+
+
+```{r plot flowers for current scenario year}
 redo_flowers = F
 
 # vars
@@ -30,7 +33,7 @@ regions_csv = sprintf('%s/layers/%s.csv', dir_scenario, config$layer_region_labe
 
 # data
 scores  = read_csv(scores_csv)  # View(scores)
-regions = read_csv(regions_csv) # View(regions)
+regions = read_csv(regions_csv) %>% filter(label != 'Antarctica') # View(regions)
 goals   = read_csv(goals_csv)   # View(goals)
 
 # prep
@@ -96,33 +99,72 @@ for (rid in regions$rgn_id){ # rid = regions$rgn_id[1]
 }
 ```
 
-```{r print scores, results='asis'}
-for (rid in regions$rgn_id){ # r_label = sort(regions$label)[1]
+```{r table all years, results='asis'}
+
+## TODO: move past this for loop
+# files <- list.files(path=sprintf('%s/data', dir_report), pattern = 'scores_eez*.csv', full.names = TRUE)
+
+## create data frame of all years
+data_all_years <- data.frame()
+
+for(yr in 2012:2016){ #yr=2012
+  
+  data <- read.csv(sprintf('%s/data/scores_eez%s.csv', dir_report, yr),
+                   stringsAsFactors=FALSE) %>% 
+    mutate(year = yr)
+  
+  data_all_years <- rbind(data_all_years, data)
+}
+data_all_years$country[data_all_years$country == 'eez_weighted_avg'] = 'Global'
+
+## loop through and display each rgn_id
+for (rid in regions$rgn_id){ # rid = regions$rgn_id[1]
   
   # rgn
   r = filter(regions, rgn_id==rid)
-
+  
+  ## TODO for now skip Kiribati labels -- need to deal with separately
+  if (!r$rgn_id %in% c(212, 148, 157)) {
+  
   # header, flower
   cat(sprintf('## %s\n\n![](%s)\n\n', r$label, r$flower_png))
   
-  # table
-  kable(
-    data_frame(
-      goal       = names(goal_labels),
-      goal_label = gsub('\\n', '', goal_labels)) %>%
-      left_join(
-        scores %>%
-        filter(
-          region_id == r$rgn_id,
-          dimension %in% c('score','status','future')) %>%
-          spread(dimension, score) %>%
-          select(-region_id),
-        by='goal') %>%
-      select(
-        goal = goal_label, score, status, future)) %>%
+  ## filter rgn_id and transpose
+  rid_score <- data_all_years %>% 
+    filter(country == r$label) %>%
+    select(-region_id, -country) %>%
+    gather(key=goal, value=scores, -year) %>%
+    spread(year, scores)
+  
+  ## reorder as set in goal_labels
+  rid_score <- data_frame(
+    goal = c('Index', names(goal_labels))) %>%
+      left_join(rid_score, by='goal')
+  
+  ## replace 2/3-letter code
+  rid_score <- rid_score %>%
+    mutate(goal = str_replace_all(goal, "FP", "Food Provision"),
+           goal = str_replace_all(goal, "FIS", "Wild Caught Fisheries"),
+           goal = str_replace_all(goal, "MAR", "Mariculture"),
+           goal = str_replace_all(goal, "AO", "Artisanal Fishing Opportunity"),
+           goal = str_replace_all(goal, "NP", "Natural Products"),
+           goal = str_replace_all(goal, "CS", "Carbon Storage"),
+           goal = str_replace_all(goal, "CP", "Coastal Protection"),
+           goal = str_replace_all(goal, "LE", "Livelihoods and Economies"),
+           goal = str_replace_all(goal, "LIV", "Coastal Livelihoods"),
+           goal = str_replace_all(goal, "ECO", "Coastal Economies"),
+           goal = str_replace_all(goal, "TR", "Tourism and Recreation"),
+           goal = str_replace_all(goal, "LSP", "Lasting Special Places"),
+           goal = str_replace_all(goal, "ICO", "Iconic Species"),
+           goal = str_replace_all(goal, "CW", "Clean Waters"),
+           goal = str_replace_all(goal, "BD", "Biodiversity"),
+           goal = str_replace_all(goal, "SPP", "Species"),
+           goal = str_replace_all(goal, "SP", "Sense of Place"),
+           goal = str_replace_all(goal, "HAB", "Habitats"))
+  
+  kable(rid_score) %>%
     print()
   cat('\n\n')
+  }
 }
 ```
-
-

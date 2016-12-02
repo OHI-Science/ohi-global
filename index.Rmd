@@ -28,7 +28,7 @@ Put in your css file or directly in rmarkdown--->
 ```{r fig.width=5, fig.height=5,echo=FALSE}
 library(png)
 library(grid)
-img <- readPNG(sprintf('%s/FlowerPlots/flower_GLOBAL_2016.png', dir_figs))
+img <- readPNG(sprintf('%s/figures/FlowerPlots/flower_GLOBAL_2016.png', dir_report))
 grid.raster(img)
 ```
 <br>

@@ -2,6 +2,7 @@ suppressPackageStartupMessages({
   library(readr)
   library(dplyr)
   library(tidyr)
+  library(stringr)
   library(sp)
   library(geojsonio)
   library(leaflet)
@@ -25,7 +26,7 @@ map_shrink_pct  = 5
 dir_data        = sprintf('%s_%s', gh_repo, gh_branch_data)
 dir_scenario    = sprintf('%s/%s', dir_data, scenario_dir)
 gh_url          = sprintf('https://github.com/OHI-Science/%s.git', gh_repo)
-dir_figs        = sprintf('%s/global2016/Reporting/figures', dir_data)
+dir_report      = sprintf('%s/global2016/Reporting', dir_data)
 
 # knitr options
 knitr::opts_chunk$set(echo = F, message = F, warning = F)
