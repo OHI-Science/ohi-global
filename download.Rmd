@@ -10,21 +10,45 @@ output:
 source("./_site.R")
 ```
 <br>
-Global assessments require synthesizing freely available information that is highly heterogeneous from nearly one hundred sources. Before being incorporated into OHI models, data from each source must be organized, transformed, rescaled, formatted and potentially gap-filled by our collaborative team, who also document metadata and processing decisions.  
+Global Ocean Health Index assessments require synthesizing highly heterogeneous information that is freely available from nearly one hundred sources. Before being incorporated into OHI models, data from each source must be organized, transformed, rescaled, formatted, and potentially gap-filled. This workflow, including all metadata and processing decisions, is fully documented and available here.  
 
-Reproducibility and transparency have always been fundamental to global assessments. We work collaboratively by coding and using version control. Here we  the entire ; here we provide our R scripts and data p COME BACK 
-
-We thank all the groups that collect data at the global scale and provide it to the public for free. 
-
-TO UPDATE
-
-Must add: 
-
-- scores.csv for all years
+Reproducibility and transparency have always been fundamental to OHI assessments and we now code and use version control collaboratively and openly. Here we provide our code, data, and workflows, as well as calculated scores for global assessments.
 
 -----
 
+## Global assessment scores
+
+Quick access to *.csv* files of calculated global scores.  
+
+- [2012]()
+- [2013]()
+- [2014]()
+- [2015]()
+- [2016]()
+
+> The headers in these files are: 
+TODO! Do we want to use [radical_with_region_names](https://github.com/OHI-Science/ohi-global/blob/draft/global2016/radical_with_region_names_2016-11-17.csv) or modify scores.csvs directly? We could do that right in this Rmd...
+- goal: TODO explain 2/3 letter codes or write it out, and Index
+- dimension: identifies status, trend, pressures, resilience, likely future state, or final score
+- region_id: TODO 
+- score: calculated score between 0-100.  
+
+TODO! 
+
+
+
+
+## Full data and code
+
+TODO
+
 Data and scripts from OHI global assessments are available for 2012, 2013, 2014, and 2015. Explore the <a href="https://github.com/OHI-Science/ohi-global/releases" target="_blank">data and methods used for these assessments (including Antarctica and the High Seas)</a>, stored on GitHub. 
+
+## Thanks
+
+TODO
+
+We thank all the groups that collect and share data openly, as well as the developers that make free software tools available.
 
 ### For more information 
 
