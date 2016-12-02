@@ -32,7 +32,7 @@ With each annual global assessment we have incrementally improved data processin
 <div class="col2">
 **Global assessment scores**
 
-Quick access to *.csv* files of calculated global scores. View [metadata for these files]() -> an md with header info
+Quick access to *.csv* files of calculated global scores. View [metadata for these files]() -> an md with header info. Mel will make this as an .md in the same folder: https://github.com/OHI-Science/ohi-global/blob/draft/global2016/Reporting/data/::: do this as a README
 
 - [2012]()
 - [2013]()
@@ -40,6 +40,7 @@ Quick access to *.csv* files of calculated global scores. View [metadata for the
 - [2015]()
 - [2016]()
 
+USE the one from Erich's reports
 TODO! Do we want to use [radical_with_region_names](https://github.com/OHI-Science/ohi-global/blob/draft/global2016/radical_with_region_names_2016-11-17.csv), modify scores.csv in this Rmd, or provide a lookup?? 
 <br>
 <br>
@@ -52,31 +53,20 @@ TODO! Do we want to use [radical_with_region_names](https://github.com/OHI-Scien
 
 All code and most data are available online on GitHub. We do annual 'releases', which include the newest methods for current and previous years.
 
-- [supplemental materials]() -> do we want to list all supplemental docs here? or in instruction section?
-- [data preparation releases](https://github.com/OHI-Science/ohiprep/releases)
-- [score calculation releases](https://github.com/OHI-Science/ohi-global/releases)
+- [data preparation releases (`ohiprep`)](https://github.com/OHI-Science/ohiprep/releases) --> Mel will move globalprep into a new repo: ohi-global-prep
+- [score calculation releases (`ohi-global`)](https://github.com/OHI-Science/ohi-global/releases)
 - [scores are calculated with the `ohicore` R package](https://github.com/OHI-Science/ohicore)
-- [EEZ regions]() TODO
-- [other large data files](https://mazu.nceas.ucsb.edu/ohi-data) -> TODO: link to mazu's ohi-data
+- COMING SOON: mazu stuff: [EEZ regions shapefile]() TODO
 <br>
 <br>
 <br>
 
 </div>
 
-----
-
-**TODO: Instruction section?**
+**Documentation and Instruction**
 
 We could list: 
-
-- supplemental 2012 (Halpern et al 2012)
-- supplemental 2013 (Halpern et al 2015)
-- supplemental 2014
-- supplemental 2016
-- link to publication page
-- link to presentations
-- link to manual
+- link to publication page - link to presentations - link to manual
 
 ---- 
 
