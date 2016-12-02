@@ -20,21 +20,19 @@ Put in your css file or directly in rmarkdown--->
 </style>
 
 <br>
-Global Ocean Health Index assessments require synthesizing highly heterogeneous information that is freely available from nearly one hundred sources. Before being incorporated into OHI models, data from each source must be organized, transformed, rescaled, formatted, and potentially gap-filled. This workflow, including all metadata and processing decisions, is fully documented and available here.  
-
-Reproducibility and transparency have always been fundamental to OHI assessments and we now code and use version control collaboratively and openly. Here we provide our code, data, and workflows, as well as calculated scores for global assessments.
+Global assessments require synthesizing highly heterogeneous information that is freely available from nearly one hundred sources. Data from each source are prepared and modeled using freely available coding and version control software. You may freely download and use any data, code, or instructional guides, but please see our [Citation Policy](http://ohi-science.org/citation-policy/).  
 
 -----
 
-## Some header
+## Some header here
 
-With each annual global assessment we have incrementally improved data processing and modelling methods based on new information, knowledge, and feedback. Thus, for annual scores to be comparable with previous years, we recalculate assessments from previous years with the most recent methods for each past assessment year. 
+With each annual global assessment we have incrementally improved data processing and modeling methods based on new information, knowledge, and feedback. Thus, for annual scores to be comparable with previous years, we recalculate assessments from previous years with the most recent methods for each past assessment year. 
 
 
 <div class="col2">
 **Global assessment scores**
 
-Quick access to *.csv* files of calculated global scores.  
+Quick access to *.csv* files of calculated global scores. View [metadata for these files]() -> an md with header info
 
 - [2012]()
 - [2013]()
@@ -42,40 +40,47 @@ Quick access to *.csv* files of calculated global scores.
 - [2015]()
 - [2016]()
 
-The headers in these files are: 
-TODO! Do we want to use [radical_with_region_names](https://github.com/OHI-Science/ohi-global/blob/draft/global2016/radical_with_region_names_2016-11-17.csv) or modify scores.csvs directly? We could do that right in this Rmd...
-- goal: TODO explain 2/3 letter codes or write it out, and Index
-- dimension: identifies status, trend, pressures, resilience, likely future state, or final score
-- region_id: TODO 
-- score: calculated score between 0-100.  
+TODO! Do we want to use [radical_with_region_names](https://github.com/OHI-Science/ohi-global/blob/draft/global2016/radical_with_region_names_2016-11-17.csv), modify scores.csv in this Rmd, or provide a lookup?? 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
+**Full methods and data**
 
-**Full data and code**
+All code and most data are available online on GitHub. We do annual 'releases', which include the newest methods for current and previous years.
 
-All code and most data are available online in our repositories on GitHub. 
-
+- [supplemental materials]() -> do we want to list all supplemental docs here? or in instruction section?
 - [data preparation releases](https://github.com/OHI-Science/ohiprep/releases)
 - [score calculation releases](https://github.com/OHI-Science/ohi-global/releases)
-
-If you are interested in using our data and methods, please read the [OHI assessment manual](http://ohi-science.org/manual) and see our [Citation Policy](http://ohi-science.org/citation-policy/)
+- [scores are calculated with the `ohicore` R package](https://github.com/OHI-Science/ohicore)
+- [EEZ regions]() TODO
+- [other large data files](https://mazu.nceas.ucsb.edu/ohi-data) -> TODO: link to mazu's ohi-data
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-
 
 </div>
 
+----
+
+**TODO: Instruction section?**
+
+We could list: 
+
+- supplemental 2012 (Halpern et al 2012)
+- supplemental 2013 (Halpern et al 2015)
+- supplemental 2014
+- supplemental 2016
+- link to publication page
+- link to presentations
+- link to manual
+
 ---- 
 
-## Thanks
+## Acknowledgements
 
-TODO
+We thank all the groups that collect and share data openly; please see the [global layers page](https://github.com/OHI-Science/ohi-global/layers.html) for a full list. We also thank developers that make and teach free software tools, in particular [R](https://cran.r-project.org/), [RStudio](https://www.rstudio.com), [git](https://git-scm.com/), and [GitHub](https://github.com/). 
 
-We thank all the groups that collect and share data openly, as well as the developers that make free software tools available.
-
-### For more information 
-
-Please see [publications](/resources/publications) about the OHI framework, assessments and supporting research, view [presentations](/resources/downloads) describing the framework, explore [current and on-going assessments](/projects), and learn more about [OHI goals](/goals).
