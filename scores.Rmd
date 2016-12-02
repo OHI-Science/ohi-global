@@ -1,5 +1,5 @@
 ---
-title: "Scores"
+title: "2012-2016 Global scores using 2016 Methods"
 output:
   html_document:
     toc: true
@@ -19,7 +19,14 @@ TABLES:
 - SHOW 5 years of scores 
 - also add Index
 
-2012-2016 Global scores using 2016 Methods
+The flower plots show year 2016 and petals mean X.
+
+
+
+Scores for each goal included in an OHI assessment are calculated for multiple Regions within the overall Assessment Area, and then scores for each Region are averaged (weighted by area) to obtain a single score for the entire Assessment Area. For example, if an Assessment Area was a country, Regions could be coastal provinces or states within that country. Scores are comparable among all Regions within an Assessment Area because all are calculated with the same methods. Calculating scores for each Region allows one to discover any spatial heterogeneity across the Assessment Area and identify geographic or thematic priorities for Regional management actions.
+
+Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index scoare . For global assessments, regions are the 
+
 
 
 ```{r plot flowers for current scenario year}

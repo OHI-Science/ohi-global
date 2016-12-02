@@ -20,53 +20,40 @@ Put in your css file or directly in rmarkdown--->
 </style>
 
 <br>
-Global assessments require synthesizing highly heterogeneous information that is freely available from nearly one hundred sources. Data from each source are prepared and modeled using freely available coding and version control software. You may freely download and use any data, code, or instructional guides, but please see our [Citation Policy](http://ohi-science.org/citation-policy/).  
+Global assessments require synthesizing highly heterogeneous information that is freely available from nearly one hundred sources. Data from each source are prepared and modeled using freely available coding and version control software. You may freely download and use any data, code, or instructional guides, but please see our [Citation policy](http://ohi-science.org/citation-policy/).  
+
+With each annual global assessment we have incrementally improved data processing and modeling methods based on new information, knowledge, and feedback. Thus, for annual scores to be comparable with previous years, we recalculate previous assessments with the most recent methods for each past assessment year. All code and most data are available online on GitHub.  
 
 -----
-
-## Some header here
-
-With each annual global assessment we have incrementally improved data processing and modeling methods based on new information, knowledge, and feedback. Thus, for annual scores to be comparable with previous years, we recalculate assessments from previous years with the most recent methods for each past assessment year. 
-
 
 <div class="col2">
 **Global assessment scores**
 
-Quick access to *.csv* files of calculated global scores. View [metadata for these files]() -> an md with header info. Mel will make this as an .md in the same folder: https://github.com/OHI-Science/ohi-global/blob/draft/global2016/Reporting/data/::: do this as a README
+Quick access to *.csv* files of calculated global scores.  
+Select a year and right-click to Save As. View the [metadata for these files](https://github.com/OHI-Science/ohi-global/blob/draft/global2016/Reporting/data).
+<!----TODO: an md with header info. Mel will make this as a README, with lookup --->
 
-- [2012]()
-- [2013]()
-- [2014]()
-- [2015]()
-- [2016]()
-
-USE the one from Erich's reports
-TODO! Do we want to use [radical_with_region_names](https://github.com/OHI-Science/ohi-global/blob/draft/global2016/radical_with_region_names_2016-11-17.csv), modify scores.csv in this Rmd, or provide a lookup?? 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+- [2012](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2012.csv)
+- [2013](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2013.csv)
+- [2014](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2014.csv)
+- [2015](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2015.csv)
+- [2016](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2016/Reporting/data/scores_eez2016.csv)
 
 **Full methods and data**
 
-All code and most data are available online on GitHub. We do annual 'releases', which include the newest methods for current and previous years.
+We do annual 'releases', which include the newest methods for current and previous years.
 
-- [data preparation releases (`ohiprep`)](https://github.com/OHI-Science/ohiprep/releases) --> Mel will move globalprep into a new repo: ohi-global-prep
+- [data preparation releases (`ohiprep`)](https://github.com/OHI-Science/ohiprep/releases) <!---TODO: change link Mel will move globalprep into a new repo: ohi-global-prep --->
 - [score calculation releases (`ohi-global`)](https://github.com/OHI-Science/ohi-global/releases)
 - [scores are calculated with the `ohicore` R package](https://github.com/OHI-Science/ohicore)
-- COMING SOON: mazu stuff: [EEZ regions shapefile]() TODO
+- COMING SOON: shapefiles, including global regions
 <br>
-<br>
-<br>
-
 </div>
 
+<br>
 **Documentation and Instruction**
 
-We could list: 
-- link to publication page - link to presentations - link to manual
+• [Peer-reviewed publications](http://ohi-science.org/resources/publications/) • [Assessment Manual (including how to use `ohicore`)](http://ohi-science.org/manual)
 
 ---- 
 
