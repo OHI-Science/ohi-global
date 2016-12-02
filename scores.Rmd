@@ -1,5 +1,5 @@
 ---
-title: "2012-2016 Global scores using 2016 Methods"
+title: "Global Ocean Health Index scores"
 output:
   html_document:
     toc: true
@@ -11,23 +11,11 @@ output:
 source("./_site.R")
 ```
 
-## TO UPDATE!!!
+Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index score. Methods have incrementally improved each year with new information and knowledge. Thus, for annual scores to be comparable through time, previous scores are recalculated with the most recent methods for each past assessment year. **All scores below use 2016 methods**.
 
-Scores displayed below are based on template data that were extracted from the global assessment. These scores will update when data layers are modified. SAY WHAT YEAR THIS IS FROM OR DISPLAY TABLE WITH MULTIPLE YEARS
+Below are five years of global assessment scores for 220 regions (coastal nations and territories). Flower plots present the 2016 scores. Each petal represents an individual goal and the length of the petal conveys the score of the goal, thus longer petals are closer to achieving their target. Only goals that are relevant to a region are scored, otherwise they are set to NA with grey petals. All scores are on a scale from 0-100, and the center number is the region's Index score.
 
-TABLES:
-- SHOW 5 years of scores 
-- also add Index
-
-The flower plots show year 2016 and petals mean X.
-
-
-
-Scores for each goal included in an OHI assessment are calculated for multiple Regions within the overall Assessment Area, and then scores for each Region are averaged (weighted by area) to obtain a single score for the entire Assessment Area. For example, if an Assessment Area was a country, Regions could be coastal provinces or states within that country. Scores are comparable among all Regions within an Assessment Area because all are calculated with the same methods. Calculating scores for each Region allows one to discover any spatial heterogeneity across the Assessment Area and identify geographic or thematic priorities for Regional management actions.
-
-Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index scoare . For global assessments, regions are the 
-
-
+----
 
 ```{r plot flowers for current scenario year}
 redo_flowers = F
@@ -124,23 +112,18 @@ for(yr in 2012:2016){ #yr=2012
 }
 data_all_years$country[data_all_years$country == 'eez_weighted_avg'] = 'Global'
 
+
 ## loop through and display each rgn_id
 for (rid in regions$rgn_id){ # rid = regions$rgn_id[1]
   
-  # rgn
+  ## prepare ----
   r = filter(regions, rgn_id==rid)
-  
-  ## TODO for now skip Kiribati labels -- need to deal with separately
-  if (!r$rgn_id %in% c(212, 148, 157)) {
-  
-  # header, flower
-  cat(sprintf('## %s\n\n![](%s)\n\n', r$label, r$flower_png))
   
   ## filter rgn_id and transpose
   rid_score <- data_all_years %>% 
-    filter(country == r$label) %>%
-    select(-region_id, -country) %>%
-    gather(key=goal, value=scores, -year) %>%
+    filter(region_id == r$rgn_id) %>%
+    select(-region_id) %>%
+    gather(key=goal, value=scores, -country, -year) %>%
     spread(year, scores)
   
   ## reorder as set in goal_labels
@@ -150,28 +133,33 @@ for (rid in regions$rgn_id){ # rid = regions$rgn_id[1]
   
   ## replace 2/3-letter code
   rid_score <- rid_score %>%
-    mutate(goal = str_replace_all(goal, "FP", "Food Provision"),
+    mutate(goal = str_replace_all(goal, "FP",  "Food Provision"),
            goal = str_replace_all(goal, "FIS", "Wild Caught Fisheries"),
            goal = str_replace_all(goal, "MAR", "Mariculture"),
-           goal = str_replace_all(goal, "AO", "Artisanal Fishing Opportunity"),
-           goal = str_replace_all(goal, "NP", "Natural Products"),
-           goal = str_replace_all(goal, "CS", "Carbon Storage"),
-           goal = str_replace_all(goal, "CP", "Coastal Protection"),
-           goal = str_replace_all(goal, "LE", "Livelihoods and Economies"),
+           goal = str_replace_all(goal, "AO",  "Artisanal Fishing Opportunity"),
+           goal = str_replace_all(goal, "NP",  "Natural Products"),
+           goal = str_replace_all(goal, "CS",  "Carbon Storage"),
+           goal = str_replace_all(goal, "CP",  "Coastal Protection"),
+           goal = str_replace_all(goal, "LE",  "Livelihoods and Economies"),
            goal = str_replace_all(goal, "LIV", "Coastal Livelihoods"),
            goal = str_replace_all(goal, "ECO", "Coastal Economies"),
-           goal = str_replace_all(goal, "TR", "Tourism and Recreation"),
+           goal = str_replace_all(goal, "TR",  "Tourism and Recreation"),
            goal = str_replace_all(goal, "LSP", "Lasting Special Places"),
            goal = str_replace_all(goal, "ICO", "Iconic Species"),
-           goal = str_replace_all(goal, "CW", "Clean Waters"),
-           goal = str_replace_all(goal, "BD", "Biodiversity"),
+           goal = str_replace_all(goal, "CW",  "Clean Waters"),
+           goal = str_replace_all(goal, "BD",  "Biodiversity"),
            goal = str_replace_all(goal, "SPP", "Species"),
-           goal = str_replace_all(goal, "SP", "Sense of Place"),
+           goal = str_replace_all(goal, "SP",  "Sense of Place"),
            goal = str_replace_all(goal, "HAB", "Habitats"))
   
-  kable(rid_score) %>%
+  ## display ----
+  
+  # header, flower
+  cat(sprintf('## %s\n\n![](%s)\n\n', unique(rid_score$country), r$flower_png))
+  
+  kable(rid_score %>% select(-country)) %>%
     print()
   cat('\n\n')
-  }
+#  cat('----')
 }
 ```

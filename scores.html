@@ -11,7 +11,7 @@
 
 
 
-<title>Scores</title>
+<title>Global Ocean Health Index scores</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,11 +22,12 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -154,6 +155,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -179,7 +181,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -238,9 +240,8 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
+  font-size: 0.9em;
+  padding-left: 5px;
 }
 
 .tocify .list-group-item {
@@ -295,17 +296,14 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Scores</h1>
+<h1 class="title toc-ignore">Global Ocean Health Index scores</h1>
 
 </div>
 
 
-<div id="to-update" class="section level2">
-<h2>TO UPDATE!!!</h2>
-<p>Scores displayed below are based on template data that were extracted from the global assessment. These scores will update when data layers are modified. SAY WHAT YEAR THIS IS FROM OR DISPLAY TABLE WITH MULTIPLE YEARS</p>
-<p>TABLES: - SHOW 5 years of scores - also add Index</p>
-<p>2012-2016 Global scores using 2016 Methods</p>
-</div>
+<p>Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index score. Methods have incrementally improved each year with new information and knowledge. Thus, for annual scores to be comparable through time, previous scores are recalculated with the most recent methods for each past assessment year. <strong>All scores below use 2016 methods</strong>.</p>
+<p>Below are five years of global assessment scores for 220 regions (coastal nations and territories). Flower plots present the 2016 scores. Each petal represents an individual goal and the length of the petal conveys the score of the goal, thus longer petals are closer to achieving their target. Only goals that are relevant to a region are scored, otherwise they are set to NA with grey petals. All scores are on a scale from 0-100, and the center number is the region’s Index score.</p>
+<hr />
 <div id="global" class="section level2">
 <h2>Global</h2>
 <div class="figure">
@@ -15957,6 +15955,147 @@ div.tocify {
 </tbody>
 </table>
 </div>
+<div id="gilbert-islands-kiribati" class="section level2">
+<h2>Gilbert Islands (Kiribati)</h2>
+<div class="figure">
+<img src="images/flower_Kiribati.png" />
+
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">goal</th>
+<th align="right">2012</th>
+<th align="right">2013</th>
+<th align="right">2014</th>
+<th align="right">2015</th>
+<th align="right">2016</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Index</td>
+<td align="right">74.63</td>
+<td align="right">73.00</td>
+<td align="right">71.76</td>
+<td align="right">68.82</td>
+<td align="right">66.74</td>
+</tr>
+<tr class="even">
+<td align="left">Wild Caught Fisheries</td>
+<td align="right">81.28</td>
+<td align="right">80.68</td>
+<td align="right">79.94</td>
+<td align="right">80.69</td>
+<td align="right">83.75</td>
+</tr>
+<tr class="odd">
+<td align="left">Mariculture</td>
+<td align="right">0.28</td>
+<td align="right">0.30</td>
+<td align="right">0.21</td>
+<td align="right">0.24</td>
+<td align="right">0.18</td>
+</tr>
+<tr class="even">
+<td align="left">Artisanal Fishing Opportunity</td>
+<td align="right">53.76</td>
+<td align="right">53.82</td>
+<td align="right">53.81</td>
+<td align="right">53.82</td>
+<td align="right">53.96</td>
+</tr>
+<tr class="odd">
+<td align="left">Natural Products</td>
+<td align="right">56.85</td>
+<td align="right">37.99</td>
+<td align="right">35.62</td>
+<td align="right">33.15</td>
+<td align="right">3.60</td>
+</tr>
+<tr class="even">
+<td align="left">Carbon Storage</td>
+<td align="right">87.18</td>
+<td align="right">87.18</td>
+<td align="right">87.21</td>
+<td align="right">87.17</td>
+<td align="right">87.25</td>
+</tr>
+<tr class="odd">
+<td align="left">Coastal Protection</td>
+<td align="right">99.49</td>
+<td align="right">99.49</td>
+<td align="right">99.49</td>
+<td align="right">99.49</td>
+<td align="right">99.49</td>
+</tr>
+<tr class="even">
+<td align="left">Tourism and Recreation</td>
+<td align="right">100.00</td>
+<td align="right">98.23</td>
+<td align="right">88.44</td>
+<td align="right">62.32</td>
+<td align="right">65.20</td>
+</tr>
+<tr class="odd">
+<td align="left">Coastal Livelihoods</td>
+<td align="right">67.09</td>
+<td align="right">78.21</td>
+<td align="right">78.18</td>
+<td align="right">78.05</td>
+<td align="right">78.16</td>
+</tr>
+<tr class="even">
+<td align="left">Coastal Economies</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Iconic Species</td>
+<td align="right">65.13</td>
+<td align="right">67.35</td>
+<td align="right">67.41</td>
+<td align="right">67.48</td>
+<td align="right">65.49</td>
+</tr>
+<tr class="even">
+<td align="left">Lasting Special Places</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Clean Waters</td>
+<td align="right">64.19</td>
+<td align="right">64.33</td>
+<td align="right">64.37</td>
+<td align="right">64.37</td>
+<td align="right">64.43</td>
+</tr>
+<tr class="even">
+<td align="left">Habitats</td>
+<td align="right">88.63</td>
+<td align="right">84.56</td>
+<td align="right">85.57</td>
+<td align="right">82.75</td>
+<td align="right">89.30</td>
+</tr>
+<tr class="odd">
+<td align="left">Species</td>
+<td align="right">86.38</td>
+<td align="right">86.45</td>
+<td align="right">86.33</td>
+<td align="right">86.21</td>
+<td align="right">86.55</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="kuwait" class="section level2">
 <h2>Kuwait</h2>
 <div class="figure">
@@ -16658,6 +16797,147 @@ div.tocify {
 <td align="right">82.60</td>
 <td align="right">82.37</td>
 <td align="right">82.05</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="line-islands-kiribati" class="section level2">
+<h2>Line Islands (Kiribati)</h2>
+<div class="figure">
+<img src="images/flower_Line_Group.png" />
+
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">goal</th>
+<th align="right">2012</th>
+<th align="right">2013</th>
+<th align="right">2014</th>
+<th align="right">2015</th>
+<th align="right">2016</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Index</td>
+<td align="right">68.90</td>
+<td align="right">69.91</td>
+<td align="right">70.15</td>
+<td align="right">74.00</td>
+<td align="right">72.57</td>
+</tr>
+<tr class="even">
+<td align="left">Wild Caught Fisheries</td>
+<td align="right">64.55</td>
+<td align="right">74.34</td>
+<td align="right">73.34</td>
+<td align="right">73.40</td>
+<td align="right">59.08</td>
+</tr>
+<tr class="odd">
+<td align="left">Mariculture</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Artisanal Fishing Opportunity</td>
+<td align="right">58.27</td>
+<td align="right">58.61</td>
+<td align="right">58.55</td>
+<td align="right">58.56</td>
+<td align="right">59.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Natural Products</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Carbon Storage</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Coastal Protection</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+</tr>
+<tr class="even">
+<td align="left">Tourism and Recreation</td>
+<td align="right">52.25</td>
+<td align="right">44.04</td>
+<td align="right">34.79</td>
+<td align="right">65.77</td>
+<td align="right">68.49</td>
+</tr>
+<tr class="odd">
+<td align="left">Coastal Livelihoods</td>
+<td align="right">77.17</td>
+<td align="right">79.63</td>
+<td align="right">79.58</td>
+<td align="right">79.44</td>
+<td align="right">79.36</td>
+</tr>
+<tr class="even">
+<td align="left">Coastal Economies</td>
+<td align="right">58.83</td>
+<td align="right">68.16</td>
+<td align="right">68.11</td>
+<td align="right">68.03</td>
+<td align="right">68.01</td>
+</tr>
+<tr class="odd">
+<td align="left">Iconic Species</td>
+<td align="right">59.84</td>
+<td align="right">61.09</td>
+<td align="right">61.10</td>
+<td align="right">61.12</td>
+<td align="right">60.41</td>
+</tr>
+<tr class="even">
+<td align="left">Lasting Special Places</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+<td align="right">0.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Clean Waters</td>
+<td align="right">83.44</td>
+<td align="right">83.26</td>
+<td align="right">95.19</td>
+<td align="right">95.19</td>
+<td align="right">95.19</td>
+</tr>
+<tr class="even">
+<td align="left">Habitats</td>
+<td align="right">99.29</td>
+<td align="right">98.86</td>
+<td align="right">99.54</td>
+<td align="right">99.25</td>
+<td align="right">99.39</td>
+</tr>
+<tr class="odd">
+<td align="left">Species</td>
+<td align="right">90.24</td>
+<td align="right">90.26</td>
+<td align="right">90.26</td>
+<td align="right">90.27</td>
+<td align="right">90.37</td>
 </tr>
 </tbody>
 </table>
@@ -22439,6 +22719,147 @@ div.tocify {
 <td align="right">83.81</td>
 <td align="right">83.92</td>
 <td align="right">84.10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="phoenix-islands-kiribati" class="section level2">
+<h2>Phoenix Islands (Kiribati)</h2>
+<div class="figure">
+<img src="images/flower_Phoenix_Group.png" />
+
+</div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">goal</th>
+<th align="right">2012</th>
+<th align="right">2013</th>
+<th align="right">2014</th>
+<th align="right">2015</th>
+<th align="right">2016</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Index</td>
+<td align="right">79.29</td>
+<td align="right">79.92</td>
+<td align="right">79.04</td>
+<td align="right">81.66</td>
+<td align="right">81.66</td>
+</tr>
+<tr class="even">
+<td align="left">Wild Caught Fisheries</td>
+<td align="right">88.60</td>
+<td align="right">93.85</td>
+<td align="right">91.85</td>
+<td align="right">93.85</td>
+<td align="right">89.58</td>
+</tr>
+<tr class="odd">
+<td align="left">Mariculture</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Artisanal Fishing Opportunity</td>
+<td align="right">58.96</td>
+<td align="right">59.39</td>
+<td align="right">59.39</td>
+<td align="right">59.07</td>
+<td align="right">59.57</td>
+</tr>
+<tr class="odd">
+<td align="left">Natural Products</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Carbon Storage</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Coastal Protection</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+</tr>
+<tr class="even">
+<td align="left">Tourism and Recreation</td>
+<td align="right">52.61</td>
+<td align="right">44.34</td>
+<td align="right">35.08</td>
+<td align="right">66.41</td>
+<td align="right">69.25</td>
+</tr>
+<tr class="odd">
+<td align="left">Coastal Livelihoods</td>
+<td align="right">77.37</td>
+<td align="right">79.86</td>
+<td align="right">79.84</td>
+<td align="right">79.52</td>
+<td align="right">79.52</td>
+</tr>
+<tr class="even">
+<td align="left">Coastal Economies</td>
+<td align="right">58.99</td>
+<td align="right">68.35</td>
+<td align="right">68.32</td>
+<td align="right">68.14</td>
+<td align="right">68.17</td>
+</tr>
+<tr class="odd">
+<td align="left">Iconic Species</td>
+<td align="right">60.57</td>
+<td align="right">61.84</td>
+<td align="right">61.83</td>
+<td align="right">61.83</td>
+<td align="right">61.11</td>
+</tr>
+<tr class="even">
+<td align="left">Lasting Special Places</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+<td align="right">100.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Clean Waters</td>
+<td align="right">97.03</td>
+<td align="right">96.90</td>
+<td align="right">96.67</td>
+<td align="right">96.75</td>
+<td align="right">96.83</td>
+</tr>
+<tr class="even">
+<td align="left">Habitats</td>
+<td align="right">86.43</td>
+<td align="right">88.50</td>
+<td align="right">97.29</td>
+<td align="right">74.59</td>
+<td align="right">76.56</td>
+</tr>
+<tr class="odd">
+<td align="left">Species</td>
+<td align="right">90.82</td>
+<td align="right">91.17</td>
+<td align="right">91.37</td>
+<td align="right">90.35</td>
+<td align="right">90.71</td>
 </tr>
 </tbody>
 </table>
@@ -31055,11 +31476,8 @@ div.tocify {
 <script>
 
 // add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
 $(document).ready(function () {
-  bootstrapStylePandocTables();
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
 
 
