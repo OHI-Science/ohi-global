@@ -1,5 +1,5 @@
 ---
-title: "Goals"
+title: "Goals in global OHI assessments"
 output:
   html_document:
     toc: true
@@ -10,15 +10,14 @@ output:
 source("./_site.R")
 ```
 
-OHI assessments categorize and score goals representing ocean-derived benefits to people.
-
-**Global assessments score 10 goals, some of which have sub-goals**.  
+**Global Ocean Health Index assessments score 10 goals, some of which have sub-goals**.  
 Here you will find information about how goals were represented, including how they are affected by pressures and resilience measures, and the underlying data and data processing.  
 
-- [Explore a complete list of global data and data processing](http://ohi-science.org/ohi-global/layers.html)  
-- [Explore how OHI+ assessments have have approached each goal](http://ohi-science.org/goals)
+- [Explore a complete list of global data](http://ohi-science.org/ohi-global/layers.html)  
+- [Explore OHI+ goal approaches](http://ohi-science.org/goals)
 <!--- TODO: link to supplement --->
 
+![](https://docs.google.com/drawings/d/e/2PACX-1vQr-cykqFsiuUZ-XuSv4qxL5FjztCNztfb98ryLg0hHDn3eU6e-febTqJuMARZAvH-eZNMig3484DC_/pub?w=1344&h=432)
 
 
 ```{r, child=sprintf('%s/conf/goals.Rmd', dir_scenario)}
