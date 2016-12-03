@@ -1,0 +1,3 @@
+7.50 Supplement 2012
+
+Second, we improved our method of estimating missing values by using a tiered approach that uses the best available data. FAO provides yearly data for the tonnes and dollar value generated for each natural product, however, countries often provide only one of these variables (and the data provided varies across years). To estimate these missing data, we used country-specific linear models to predict tonnes based on the dollar value of a product (or, vice versa). For the countries that did not have enough data to develop an adequate model, our models included the data for all the countries within a georegion. When there wasn’t enough data at the georegion scale, we used all the global data to predict missing values.  
