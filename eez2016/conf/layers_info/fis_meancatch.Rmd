@@ -2,3 +2,43 @@ Mel/Jamie
 
 Look in 2015 supplement
 
+2012 Supplement:
+Fisheries catch data come from FAO
+global fisheries catch statistics, data from
+international and national fisheries agencies, and
+reconstructed catch datasets that have been spatialized
+to half-degree resolution in WGS84 geographic
+projection by the Sea Around Us Project31 and then
+aggregated to each reporting region. All gaps in catch
+reporting were treated as true zeros; six countries had
+poor data reporting for early years in the time series
+and so these were treated as zeros (Bahamas,
+Dominican Republic, Kenya, Sudan, Mozambique,
+and South Georgia & Sandwich Islands). We used
+data from 2006 as the current estimate because they
+are the most recent data spatialized by the Sea Around
+Us Project. During rasterization, cells that spanned an
+EEZ boundary were allocated to the EEZ proportional
+to the area of the cell within the EEZ. When more
+than one EEZ fell within a single one of our reporting
+units, we calculated a weighted average based on the
+relative area in the particular EEZ.
+We smoothed annual catch data for each species
+using a 4-year moving window average and then
+summed values across all species to get the total catch
+for each year during 1953-2006. Smoothed values
+were used instead of raw reported values to reduce
+potential bias from values that change due to changes
+in reporting rather than actual changes in landings.
+For example, we found anomalous values in
+Mediterranean European countries in 2005 that were
+due to changes in how data were reported.
+
+
+This data layer is derived from annual FAO fisheries wild caught statistics, which are reported by FAO major fishing areas rather than EEZs or countries, and represents total annual catch per Index reporting region for 2007-2011. The proportion of catch in each FAO major fishing area that was spatially allocated to each Sea Around Us Project reporting region (Watson et al. 2004) for 2006 (as in Halpern et al. 2008, Halpern et al. 2012) was used to spatially allocate the more recent FAO catch data. In other words, all the rules used to spatially allocate the 2006 catch data were presumed to have remained the same.
+A key first step for doing this spatial re-allocation of catch data over time is to resolve differences in taxonomic reporting of catch across years and regions. In some cases, FAO taxon names are different because they differ from the most current scientific naming structure used by Sea Around Us and found in FishBase (www.FishBase.org), countries have started reporting new taxa to FAO, or coarse taxonomic groupings found in FAO country reports were assigned to finer taxa by the Sea Around Us Project based on inference rules developed as part of the spatial allocation process. For all non-matching taxa in FAO, we attempted to rectify the names so that each taxon name in the FAO data was linked to a corresponding official taxonomic name used by Sea Around Us in their 2006 spatially allocated data (hereafter SAU_data).
+FAO reports catch at one of six different taxonomic levels. The coarsest level taxa (level one) are broad miscellaneous groups (e.g., ‘Finfishes’ or ‘Pelagic fishes’), level two consists of subphyla or subclasses (e.g., ‘Crustacea’ or ‘Elasmobranchii’), level three consists of orders (e.g., ‘Teuthida’ or ‘Rajiformes’), level four consists of families (e.g., ‘Serranidae’), level five consists of genera (e.g., ‘Thunnus’), and level six consists of species identified by their scientific binomena (e.g., ‘Thunnus obesus’). We examined (by FAO statistical area) the taxa that could not be matched and for all non-matching taxa at level six, we identified the taxon at the next closest lower taxonomic group. For example, if Clupea harengus was found in the FAO data and not in SAU_data, we first looked for the genus Clupea, and then the family Clupeidae, and so on. For non-matching taxa at level five, we first looked in SAU_data for species belonging to the genus in question. If we located species, we checked the FAO data to see if catch for those species had been reported. If not, we allocated proportionally the genus level catch in the FAO to the species in SAU_data. This mismatch occurred frequently with the genus ‘Thunnus’. In all FAO regions, relatively large quantities of ‘Thunnus’ were reported. Conversely, in SAU_data, there was much higher prevalence of individual ‘Thunnus’ species due to previous disaggregation of Thunnus genera by the Sea Around Us project. For taxa at levels 2-4, we assigned the taxa to the closest lower taxonomic group found in SAU_data. These corrections were performed based on a case-by-case inspection of mismatches, rather than an automated process, as it was not possible to generate broadly applicable rules. All taxa in the FAO data were matched to a SAU taxon.
+Once these naming inconsistencies were resolved, we summed the SAU_data from 2006 by species within each FAO major fishing area and matched these catches to the FAO catches in each of the most recent five years. We could then calculate the proportions of each species in the SAU_data within each EEZ in an FAO statistical area. We multiplied these proportions by the recent (2007-2011) FAO catch statistics by FAO major fishing area in order to obtain updated values per taxon per EEZ within which it was caught. The results are commercial fisheries catch time series from 1950 to 2011 at the resolution of the Sea Around Us reporting regions (i.e., EEZ or in some cases finer, see Table G). When gapfilling B/BMSY, if a country belonged to an FAO region that improved its taxonomic reporting since SAUP 2006 data, we did not apply the
+36
+penalties for under reporting (Eq. S3) and simply used the average of available B/BMSY estimates in those cases.
+
