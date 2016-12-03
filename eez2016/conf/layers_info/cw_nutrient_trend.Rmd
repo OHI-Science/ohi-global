@@ -1,4 +1,3 @@
-Melanie will do this one.
-
 See description for nutrient pollution layer [po_nutrients].
 
+The inverse of the pressure data (1 - value) from the po_nutrients layer (including only the 3nm offshore region) was used to estimate nutrient trends for the clean water goal. The proportional yearly change in nutrient pressure values were estimated using a linear regression model of the most recent five years of data (i.e., slope divided by data from the earliest year included in the regression model).  The slope was then multiplied by five to get the predicted change in 5 years.  

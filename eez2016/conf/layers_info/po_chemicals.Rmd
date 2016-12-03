@@ -1,33 +1,20 @@
-Melanie will do this one.
+This pressure layer is calculated using data for land-based organic pollution (pesticide data), land-based inorganic pollution (using impermeable surfaces as a proxy), and ocean pollution (shipping and ports). These global data are provided at ~1km resolution, with values scaled from 0-1 (Halpern et al. 2008, 2015). To obtain the final pressure values, the three raster layers were summed (with cell values capped at <= 1).   
 
-See description for chemical pollution layer [po_chemicals].
+#### Land-based organic pollution
+Data were calculated using modeled plumes of land-based pesticide pollution that provide intensity of pollution at 1km2 resolution (Halpern et al. 2008). 
 
-First, we produced annual values for land-based nutrient and organic pollution (a component of the ‘chemical’ pollution variable used in the model, which also incorporates land-based inorganic and ocean-based), such that each year of assessment has a unique value and the trend in these values is now directly measured from these annual changes rather than from a proxy measure (as was done previously, using FAO fertilizer and pesticide data). 
+Organic pollution was estimated from FAO data on annual country-level pesticide use (http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E), measured in metric tons of active ingredients.  FAO  uses survey methods to measure quantities of pesticides applied to crops and seeds in the agriculture sector, and includes insecticides, mineral oils, herbicides, fungicides, seed treatments insecticides, seed treatments fungicides, plant growth regulators and rodenticides. Missing values were estimated by regression between fertilizer and pesticides (see chemical pollution: land-based organic, described above) when possible, and when not possible with agricultural GDP as a proxy.  Data were summed across all pesticide compounds and reported in metric tons. Upon inspection the data included multiple 0 values that are most likely data gaps in the time-series, so they were treated as such and replaced with NA. In addition, regions with only 1 data point and regions where the most recent data point was prior to 2005 were excluded. The data gaps were then filled using coastal population trends for the corresponding reporting region. Uninhabited countries were assumed to have no pesticide use and thus excluded. 
 
-). Third, we clipped pollution plume data to the 3nm offshore boundary, as was originally done (Halpern et al. 2012) but incorrectly not subsequently (Halpern et al. 2015).
+These country-level pollution values were then dasymetrically distributed over a country’s landscape using global landcover data from the years 2005 (for the 2003-2006 time period) and 2009 (for the 2007-2010 time period), derived from the MODIS satellite at ~500m resolution. These values were then aggregated by ~140,000 global basins, and diffusive plumes were modeled from each basin’s pourpoint. The final non-zero plumes (about ~76,000) were aggregated into ~1km Mollweide (wgs84) projection rasters to produce a single plume-aggregated pollution raster. 
 
-Once plumed data were produced, values were log(X+1)-transformed and rescaled to the 99.99th quantile across all available years.
+These raw values were then ln(X+1) transformed and normalized to 0-1 by dividing by the 99.99th quantile of raster values across all years.  The zonal mean was then calculated for each region.  
 
-This includes pesticides (land-based organics), shipping, harbors, land-based inorganic
+#### Land-based inorganic pollution
+These data are from Halpern et al. (2008, 2015), and available from Knowledge Network for Biocomplexity (KNB, https://knb.ecoinformatics.org/#view/doi:10.5063/F19021PC, rescaled_2013_inorganic_mol). Non-point source inorganic pollution was modeled with global 1 km2 impervious surface area data (http://www.ngdc.noaa.gov/dmsp/) under the assumption that most of this pollution comes from urban runoff. These data will not capture point-sources of pollution or nonpoint sources where paved roads do not exist (e.g., select places in developing countries). Third, values for these three anthropogenic drivers were then aggregated to the watershed and distributed to the pour point (i.e., stream and river mouths) for the watershed with raster statistics (i.e., aggregation by watershed).
 
-Trend in pesticide consumption comes
-from the FAO Statistical Yearbook 201182. These data
-span 1999-2009 and have country spatial resolution.
-We obtained total pesticide consumption data (in
-metric tons of active ingredients) from FAO 82 which
-uses survey methods to measure quantities of
-pesticides applied to crops and seeds in the
-agriculture sector, and includes insecticides, mineral
-oils, herbicides, fungicides, seed treatments
-insecticides, seed treatments fungicides, plant growth
-regulators and rodenticides. For each OHI region we
-report the metric tons of active ingredients per km2,
-calculate a linear regression per region over the 1999-
-2009 timeframe, and then compute the Trend value
-for each region.
+#### Ocean pollution (shipping lanes, ports)
+These data are from Halpern et al. (2015), and available from the Knowledge Network for Biocomplexity (KNB, https://knb.ecoinformatics.org/#view/doi:10.5063/F1DR2SDD, rescaled_2013_one_ocean_pollution_mol). Ocean-based pollution is assumed to derive from commercial and recreational ship activity and combines commercial shipping traffic data (see Commercial Activity) and port data (see Invasive Species).  
 
-Additional information from S1_PloS_OHI2015:
-To allow for more direct comparison between assessments from 2012 (input data from 2003-2006, as was done previously) and 2013 (input data from 2007-2010, the most recent available), we recalculated this layer using updated data but the same methods as before. In particular, we used FAO data on annual country-level pesticide use, averaged over the time periods, with missing values filled in by regression between fertilizer (see nutrient pollution, below) and pesticides when possible, and when not possible with agricultural GDP as proxy (see Halpern et al. 2008 for methods). These country-level values were then dasymetrically distributed over a country’s landscape using global land cover data from the years 2005 (for the 2003-2006 time period) and 2009 (for the 2007-2010 time period), derived from the MODIS satellite at ~500m resolution (following methods described in Halpern et al. 2008 but with updated MODIS data not available previously). These values were then aggregated by ~140,000 global basins (developed for and presented in Halpern et al. 2008), and diffusive plumes were modeled from each basin’s pourpoint. The final non-zero plumes (about ~76,000) were aggregated into ~1km Mollweide (wgs84) projection rasters to produce a single plume-aggregated pollution raster. These raw values were then log(x+1) transformed and normalized to 0-1. A simple visual and pixel-count comparison of the agriculture land cover classes shows that, globally, these classes have not changed much during the two time periods (at the 500m resolution of the data). However, global pesticide consumption has shown a small, but significant increase globally (roughly 4-8% over our time period).
+Shipping data was obtained from two sources:  (1) Over the past 20 years, 10-20% of the vessel fleet has voluntarily participated in collecting meteorological data for the open ocean, which includes location at the time of measurement, as part of the Volunteer Observing System (VOS). (2) In order to improve maritime safety, in 2002 the International Maritime Organization SOLAS agreement required all vessels over 300 gross tonnage (GT) and vessels carrying passengers to equip Automatic Identification System (AIS) transceivers, which use the Global Positioning System (GPS) to precisely locate vessels.  
 
-
-
+Port data was obtained from  using the volume (measured in tonnes) of goods transported through commercial ports as a proxy measure of port traffic. Total cargo volume data by port was collected from regional and national statistical organizations, and from published port rankings.  
