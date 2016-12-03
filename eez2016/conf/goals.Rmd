@@ -4,9 +4,15 @@ output: html_document
 
 ---- 
 
+## Food Provision: Fisheries
+
+```{r, child='goals/FIS.Rmd', results='asis', echo=FALSE}
+```
+
+----
+
 ## Artisanal Fishing Opportunity 
 
 ```{r, child='goals/AO.Rmd', results='asis', echo=FALSE}
 ```
 
-[**Full data preparation information and code**]()
