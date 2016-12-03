@@ -1,0 +1,7 @@
+2012 Supplement 7.68 (although I think there was a slight change to the calculation)
+
+o	For TTCI sustainability score, gaps were filled using a georegional regression against per capita GDP: https://github.com/OHI-Science/ohiprep/blob/master/globalprep/TourismRecreation/data_prep.R#L108-L120
+
+Third, we made a slight change to how we rescale the sustainability index used in the calculations, in that we cut it out as it cancels out in the math. 
+
+Updated assessments of the TTCI were accessed from the 2014-2015 Report (WEF 2015, http://reports.weforum.org/travel-and-tourism-competitiveness-report-2015). There were up from 140 in 2012-2013 and 139 in 2010-2011. Gabon, Angola, Tunisia, Bhutan, Lao PDR and Myanmar were added, and previously assessed Benin, Bosnia and Herzegovina, Brunei Darussalam, Ecuador and Ukraine were excluded due to insufficient data. For countries not assessed, values were estimated using a georegional regression against per-capita GDP.
