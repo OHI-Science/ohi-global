@@ -37,6 +37,13 @@ output: html_document
 
 ---- 
 
+## Coastal Protection
+
+```{r, child='goals/CP.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
 ## Tourism & Recreation
 
 ```{r, child='goals/TR.Rmd', results='asis', echo=FALSE}
@@ -72,28 +79,21 @@ output: html_document
 
 ---- 
 
-## Clean Waters: Nutrients
+## Clean Waters
 
-```{r, child='goals/NUT.Rmd', results='asis', echo=FALSE}
+```{r, child='goals/CW.Rmd', results='asis', echo=FALSE}
 ```
 
 ---- 
 
-## Clean Waters: Trash
+## Biodiversity: Species
 
-```{r, child='goals/TRA.Rmd', results='asis', echo=FALSE}
+```{r, child='goals/SPP.Rmd', results='asis', echo=FALSE}
 ```
 
 ---- 
 
-## Clean Waters: Contaminants
+## Biodiversity: Habitats
 
-```{r, child='goals/CON.Rmd', results='asis', echo=FALSE}
-```
-
----- 
-
-## Biodiversity
-
-```{r, child='goals/BD.Rmd', results='asis', echo=FALSE}
+```{r, child='goals/HAB.Rmd', results='asis', echo=FALSE}
 ```
