@@ -1,4 +1,5 @@
-Melanie will do this one.
-
 See description for chemical pollution layer [po_chemicals].
 
+Methods follow those described for the po_chemicals layer.  However, the rescaled data were clipped to include only the pixels within 3nm offshore, and the zonal mean for each region was calculated from these data.
+
+For the clean waters goal calculations, the inverse of these pressure values are used (1 minus chemical pressure).

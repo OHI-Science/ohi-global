@@ -1,0 +1,9 @@
+This layer describes the relative value of the habitats to the coastal protection goal in each region. These data are called internally by ohicore functions (see: conf/config.R to see how these data are specified) to weight the the data used to calculate pressure and resilience values. These data are created by multiplying habitat extent by the habitat protection rank for: coral, mangrove (offshore and inland 1km), sea ice (shoreline), saltmarsh, and seagrass.
+
+habitat protection rank
+------- | --------------
+coral   | 4
+mangrove | 4
+seaice | 4
+salt marsh |3
+seagrass | 1

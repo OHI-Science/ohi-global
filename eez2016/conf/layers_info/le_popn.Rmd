@@ -1,6 +1,2 @@
-Copy Description: 7.65 from Nature 2012 supplement.
-
-From: S1_PLoS_OHI2015:
-
-Updated population data were available through 2012 from the World Bank (data.worldbank.org/indicator/SP.POP.TOTL). For the three EEZs that fall within the China region (China, Macau, and Hong Kong), we combined the values by summing. For 59 regions, data were not reported and so we searched Wikipedia for population estimates. Those estimates were for a single year, so to fill missing years we calculated the average per-year change in population across all regions in the World Bank data, and then applied those percent changes to the single year data from Wikipedia.
+Population data are from the World Bank (data.worldbank.org/indicator/SP.POP.TOTL). For the three EEZs that fall within the China region (China, Macau, and Hong Kong), we combined the values by summing. For 59 regions, data were not reported and Wikipedia data was used for population estimates. Those estimates were for a single year, so to fill missing years we calculated the average per-year change in population across all regions in the World Bank data, and then applied those percent changes to the single year data from Wikipedia.
 

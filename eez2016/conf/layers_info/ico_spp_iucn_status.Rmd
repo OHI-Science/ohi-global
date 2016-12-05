@@ -1,5 +1,20 @@
-2012 Supplement 7.27 Description 
+Casey: can you review this, and if you think it is necessary, add information about how the IUCN status data was harvested (or other relevant details)?  
 
-In some cases, we were able to use regionally specific IUCN status and trend data for subpopulations
+This data layer provides the risk category and the year the species was assessed from the IUCN Red List of Threatened Species (http://www.iucnredlist.org/) for the iconic species in each region.  In some cases, we were able to use regionally specific IUCN status data for subpopulations.   
 
-Casey: will add in a section on how the IUCN status data was harvested.
+The OHI global iconic species list was created by combining three species lists from WWF Global: global priorities, regional and local priorities, and flagship species. The criteria for including species within those WWF lists overlapped with key points from OHI’s definition of iconic species. OHI defines iconic species as species recognized as relevant to local cultural identity through the species’ relationship to traditional
+activities such as fishing, hunting, commerce or involvement in local ethnic or religious practices; and species with locally-recognized aesthetic value (e.g., touristic attractions/common artistic subjects such as whales). Habitat forming species were not included in this definition of iconic species. Lists were not used when the only criteria for species inclusion included that the species are impacted by human activities or have a threatened population status. Once the species lists were obtained, each species was assigned to a region based on range countries from the IUCN Red List. Additionally, national priority and flagship species lists were included for those specific countries only.
+
+Most of the iconic species are not region specific (i.e., a global list was created that is applied to most regions).  However, as more regional assessments are conducted (http://ohi-science.org/projects/), we will use the iconic species list developed by those countries/regions in our model.
+
+Iconic List   | Source 
+-------------- | ---------------
+Priority Species | http://wwf.panda.org/what_we_do/endangered_species/
+Flagship Species | http://wwf.panda.org/what_we_do/endangered_species/
+Australia’s Flagship Species | http://www.wwf.org.au/our_work/saving_the_natural_world/wildlife_and_habitats/australian_priority_species/ 
+Pakistan’s Priority Species | http://www.wwfpak.org/species/priority_species.php
+India’s Priority Species | http://www.wwfindia.org/about_wwf/priority_species/
+Madagascar’s Flagship Species | http://www.wwf.mg/ourwork/cssp/species_report/wwf_madagascar_s_flagship_species/
+Malaysia’s Flagship Species | http://www.wwf.org.my/about_wwf/what_we_do/species_main/
+Portugal’s Flagship Species | http://www.wwf.pt/o_nosso_planeta/especies/top_5_das_especies_de_portugal___as_cinco_especies_mais_ameacadas_e_ emblematicas_de_portugal/
+Peru’s Priority Species | http://peru.panda.org/nuestro_trabajo/iniciativas_globales/

@@ -1,7 +1,3 @@
-These data were used in the tourism and recreation goal as an indicator of the number of tourists visiting the coast (assuming that employment in the travel and tourism sectors are dynamic and change to reflect increases or decreases in tourism). These data measure employment that is directly linked to the travel and tourism sectors (such as hotels, airlines, airports, travel agents and leisure & recreation services that deal directly with tourists). Data are available for 181 countries from 1988-2012 (www.wttc.org/research/economic-data-search-tool/); here we use data for 2007-2012.
+World Travel & Tourism Council (www.wttc.org/research/economic-data-search-tool/) provides country data describing the percent employment in the travel and tourism sectors (such as hotels, airlines, airports, travel agents and leisure & recreation services that deal directly with tourists).  We used the percent employment in "direct" tourism jobs as an indicator of the number of tourists visiting the coast.
 
-Previously the direct contribution to employment was calculated from the number of direct tourism jobs divided by the total employed labor force.  This year, data on direct tourism jobs contribution to employment as a percent were available directly, eliminating the need for calculation.  Gaps were filled using a georegional average value.
-
-
-
-Georegional mean gapfilling of percent employment of tourism: https://github.com/OHI-Science/ohiprep/blob/master/globalprep/TourismRecreation/data_prep.R#L124-L132
+Regions without data were gapfilled using the average values of UN geopolitical regions.

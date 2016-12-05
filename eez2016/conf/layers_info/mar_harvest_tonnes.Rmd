@@ -1,8 +1,2 @@
-2012 supplement 7.31
-
-Some possible additional notes from S1_PLoS_OHI2015 (will want to edit out the things that will not apply next year):
-
-Updated mariculture yield data were available from 1950-2011 from FAO using FishstatJ 2.0.0 (www.fao.org/fishery/statistics/software/fishstatj/en; accessed in July, 2013). Mariculture was defined as the production of marine taxa from marine and brackish water environments as assigned by FAO, excluding seaweeds from these environments (seaweeds are included in the Natural Products goal). Values were smoothed with a 4-year running mean to help minimize reporting errors, as was done previously (Halpern et al. 2012). If no mariculture yield
-27
-was reported in the most recent year (2011), the US dollar value from the previous year (2010) was used to calculate status and trend; this does not penalize a country with recent mariculture yields but lacking a monetary value in 2011, potentially because of reporting issues. This one-year allowance does penalize the country if it has not reported for more than one year previous. For the three EEZs that fall within the China region (China, Macau, and Hong Kong), we combined the values by summing across these EEZs.
+Mariculture production comes from the FAO Global Aquaculture Production Quantity dataset. Only production classified in the "Marine" and "Brackishwater" environments were included in the analysis (all "Freshwater" production was excluded). Seaweeds were excluded because they  are included in the natural products goal. All species produced within a country were summed to give a single production value for each country in each year that production took place. For the three EEZs that fall within the China region (China, Macau, and Hong Kong), we combined the values by summing across these EEZs.
 
