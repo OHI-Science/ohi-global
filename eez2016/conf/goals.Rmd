@@ -2,17 +2,98 @@
 output: html_document
 ---
 
----- 
-
 ## Food Provision: Fisheries
 
 ```{r, child='goals/FIS.Rmd', results='asis', echo=FALSE}
 ```
 
-----
+---- 
+
+## Food Provision: Mariculture
+
+```{r, child='goals/MAR.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
 
 ## Artisanal Fishing Opportunity 
 
 ```{r, child='goals/AO.Rmd', results='asis', echo=FALSE}
 ```
 
+---- 
+
+## Natural Products
+
+```{r, child='goals/NP.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Carbon Storage
+
+```{r, child='goals/CS.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Tourism & Recreation
+
+```{r, child='goals/TR.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Livelihoods & Economies: Livelihoods
+
+```{r, child='goals/LIV.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Livelihoods & Economies: Economies
+
+```{r, child='goals/ECO.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Sense of Place: Iconic Species
+
+```{r, child='goals/ICO.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Sense of Place: Lasting Special Places
+
+```{r, child='goals/LSP.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Clean Waters: Nutrients
+
+```{r, child='goals/NUT.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Clean Waters: Trash
+
+```{r, child='goals/TRA.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Clean Waters: Contaminants
+
+```{r, child='goals/CON.Rmd', results='asis', echo=FALSE}
+```
+
+---- 
+
+## Biodiversity
+
+```{r, child='goals/BD.Rmd', results='asis', echo=FALSE}
+```
