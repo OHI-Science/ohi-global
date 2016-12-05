@@ -11,9 +11,9 @@ source("./_site.R")
 ```
 
 **Global Ocean Health Index assessments score 10 goals, some of which have sub-goals**.  
-Here you will find information about how goals were represented, including how they are affected by pressures and resilience measures, and the underlying data and data processing.  
+Here you will find a description about how goals are represented in global assessments. Goal-by-goal, you can explore the data used to model status and trend, as well as the pressures and resilience measures contributing to goal scores. Click on a data set to access metadata and data processing information.  
 
-- [Explore a complete list of global data](http://ohi-science.org/ohi-global/layers.html)  
+- [Explore the complete list of global data](http://ohi-science.org/ohi-global/layers.html)  
 - [Explore OHI+ goal approaches](http://ohi-science.org/goals)
 <!--- TODO: link to supplement --->
 
@@ -25,9 +25,5 @@ Here you will find information about how goals were represented, including how t
 
 ----
 
-**TO CONSIDER** (and see [SEASIDE CHAT NOTES](https://github.com/OHI-Science/issues/issues/665#issuecomment-261118749))
-
-- remove layers page and instead list layers and links to data prep below the goals
-- show Mel's pie chart
-- [little icon figures!]
-- Tiny figures showing relative contributions?
+[<img src="https://docs.google.com/drawings/d/1633uvIYgsBhiKBddQAaTlvYDJgOK1uiDB6wkooNyhFc/pub?w=576&h=288" width="100px">](http://ohi-science.org)  
+[ohi-science.org home](http://ohi-science.org)
