@@ -48,9 +48,12 @@ layers_Rmd <- layers_Rmd[grep(".Rmd", layers_Rmd)]
 layers_Rmd <- gsub(".Rmd", "", layers_Rmd)
 layers <- read.csv("eez_layers_meta_data/layers_eez_base.csv", stringsAsFactors = FALSE)
 
-## extra Rmd file (or is mislabeled):
+## extra Rmd file (or is mislabeled)
+## can ignore the "layers_all" file, but there should be no others:
 setdiff(layers_Rmd, layers$layer)
-## a layer that is missing an Rmd file:
+
+## a layer that is missing an Rmd file
+## Should be none:
 setdiff(layers$layer, layers_Rmd)
 
 ### Grab each layer description and add to master Rmd file!
