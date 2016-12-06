@@ -1,11 +1,20 @@
 Casey: can you review this, and if you think it is necessary, add information about how the IUCN status data was harvested (or other relevant details)?  
 
-This data layer provides the risk category and the year the species was assessed from the IUCN Red List of Threatened Species (http://www.iucnredlist.org/) for the iconic species in each region.  In some cases, we were able to use regionally specific IUCN status data for subpopulations.   
+This data layer provides the risk category and the year the species was assessed from the IUCN Red List of Threatened Species (http://www.iucnredlist.org/) for the iconic species in each region.  
+Regionally specific IUCN risk category data for subpopulations are included where available.
 
-The OHI global iconic species list was created by combining three species lists from WWF Global: global priorities, regional and local priorities, and flagship species. The criteria for including species within those WWF lists overlapped with key points from OHI’s definition of iconic species. OHI defines iconic species as species recognized as relevant to local cultural identity through the species’ relationship to traditional
-activities such as fishing, hunting, commerce or involvement in local ethnic or religious practices; and species with locally-recognized aesthetic value (e.g., touristic attractions/common artistic subjects such as whales). Habitat forming species were not included in this definition of iconic species. Lists were not used when the only criteria for species inclusion included that the species are impacted by human activities or have a threatened population status. Once the species lists were obtained, each species was assigned to a region based on range countries from the IUCN Red List. Additionally, national priority and flagship species lists were included for those specific countries only.
+OHI defines iconic species as species recognized as relevant to local cultural identity through the species’ relationship to traditional activities such as fishing, hunting, commerce or involvement in local ethnic or religious practices; 
+and species with locally-recognized aesthetic value (e.g., touristic attractions/common artistic subjects such as whales). 
+Habitat forming species are excluded in this definition of iconic species.
+The OHI global iconic species list combines three species lists from WWF Global: global priorities, regional and local priorities, and flagship species.  
+The criteria for including species within these WWF lists overlaps with key points from OHI’s definition of iconic species. 
+Once the species lists were obtained, each species was assigned to a region based on native range countries from the IUCN Red List. 
 
-Most of the iconic species are not region specific (i.e., a global list was created that is applied to most regions).  However, as more regional assessments are conducted (http://ohi-science.org/projects/), we will use the iconic species list developed by those countries/regions in our model.
+Most of the iconic species are not region specific, and the global list is applied across all regions.  
+However, some countries have developed national priority and flagship species lists in conjunction with WWF.  
+These region-specific iconic species lists supplement the global list for those specific countries only.
+
+In addition, as countries and regions conduct OHI regional assessments (http://ohi-science.org/projects/), we will use the iconic species list developed by those countries/regions to supplement our global model.  For example, iconic species identified for the Baltic Health Index regional assessment have been included for all countries bordering the Baltic Sea.
 
 Iconic List   | Source 
 -------------- | ---------------
