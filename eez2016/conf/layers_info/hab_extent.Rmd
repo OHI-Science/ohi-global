@@ -1,6 +1,6 @@
-#### Table. Overview of the habitats used in different goal calculations
+**Table. Overview of the habitats used in different goal calculations**
 
-Habitat | Habitat goal | Coastal Protection | Carbon Storage | Natural Products (exposure) | Pressure: Subtidal soft bottom habitat destruction
+Habitat | Habitat goal | Coastal Protection | Carbon Storage | Natural Products (exposure) 
 -------- | ------------ | ----------------- | -------------- | ---------------------------
 Seagrass | X             | X                | X              |                  |
 Mangrove | X             | X                | X              |                  |
@@ -12,24 +12,24 @@ Rocky reef |            |                    |               | X                
 Soft-bottom subtidal | X |                  |                |                  | X
 
 #### Coral 
-Extent data are derived from the 500m resolution dataset developed for Reefs at Risk Revisited, and we calculate extent area using a resampled version of our EEZ regions to match their 500m resolution.
+Coral extent area (km^2^) are derived from the 500m resolution dataset developed for Reefs at Risk Revisited (Burke et al. 2011).
 
 #### Mangroves 
-Hamilton and Casey's (2014) yearly (2000-2012) mangrove cover data were used to calculate mangrove extent.  Data were provided at 30m raster cell resolution (with the estimated area of mangrove cover in each cell), to facilitate global calculations of area (km2), we converted these data to 500m resolution.
+Hamilton and Casey's (2014) yearly (2000-2012) mangrove cover data were used to calculate mangrove extent (km^2^).  Data were provided at 30m raster cell resolution (with the estimated area of mangrove cover in each cell) which we converted to 500m resolution to facilitate global calculations.
 
 #### Salt marsh 
-Salt marsh data per country come from multiple sources (Bridgham et al. 2006, Dahl 2000, Ministry for the Environment 2007, JNCC 2004, EEA 2008) and are generally reported as habitat area.  In the case of Europe, most data were obtained via the European Environment Agency databases housing information pertaining to the European Union's Habitat Directive.  
+Salt marsh extent area (km^2^) comes from multiple sources (Bridgham et al. 2006, Dahl 2000, Ministry for the Environment 2007, JNCC 2004, EEA 2008).  In the case of Europe, most data were obtained via the European Environment Agency databases housing information pertaining to the European Union's Habitat Directive.  
 
 Severe data gaps exist for several key regions of the world, including the Middle East, South America, and Africa. Extensive salt marshes are believed to exist in the Middle East, bordering the unique salt flat ecosystems known as sabkha, however no numbers concerning extent could be found. Similarly, data on salt marshes in South America were extremely limited, with no estimates on current rates of loss or historical extent from or before the 1970s. The majority of the data included in the model come from North America (United States and Canada), Australia, New Zealand, China, Europe, and the United Kingdom.
 
 #### Rocky reef 
-To create a data layer of global rocky reef habitat we used data created by Halpern et al. (2008) rocky reef intertidal data do not exist globally so rocky reef habitat was assumed to exist in all cells within 1 km of shore globally.
+To estimate rocky reef extent area (km^2^) we used data from Halpern et al. (2008), which assumes rocky reef habitat exists in all cells within 1 km of shore.
 
 #### Sea ice 
-Sea ice extent was calculated using sea ice concentrations from the USA National Snow and Ice Data Center (Cavalieri et al. 2014; https://nsidc.org/cryosphere/quickfacts/seaice.html), which are updated yearly. These raster data are 25km in resolution (625km2 per pixel) in a Stereographic polar projection. Two sea ice metrics are calculated using these data: sea-ice edge and sea ice shoreline (shoreline pixels with >15% ice cover).  Calculations of area are based on 3-year averages (to smooth yearly variation, e.g., 2009 data is the average of 2008-2010) of the pixels meeting the habitat criteria.
+Sea ice extent area (km^2^) was calculated using sea ice concentrations from the USA National Snow and Ice Data Center (Cavalieri et al. 2014; [https://nsidc.org/cryosphere/quickfacts/seaice.html](https://nsidc.org/cryosphere/quickfacts/seaice.html)), which are updated yearly. These raster data are 25km in resolution (625km2 per pixel) in a Stereographic polar projection. Two sea ice metrics are calculated using these data: sea-ice edge (pixels with 10-50% ice cover) and sea ice shoreline (shoreline pixels with >15% ice cover).  Calculations of area are based on 3-year averages (to smooth yearly variation, e.g., 2009 data is the average of 2008-2010) of the pixels meeting the habitat criteria.
 
 #### Seagrass 
-Seagrass extent was calculated from vector-based data from the Global Distribution of Seagrasses (UNEP-WCMC 2005). 
+Seagrass extent area (km^2^) was calculated from vector-based data from the Global Distribution of Seagrasses (UNEP-WCMC 2005). 
 
 #### Soft-bottom subtidal 
-Soft-bottom habitat was defined as the total area of shallow (0-60m) and shelf (60-200m) soft-bottom habitat within the reporting region based on benthic substrate point samples (Halpern et al. 2008). 
+Soft-bottom extent was defined as the total area (km^2^) of shallow (0-60m) and shelf (60-200m) soft-bottom habitat within the reporting region based on benthic substrate point samples (Halpern et al. 2008). 
