@@ -1,5 +1,5 @@
-See description for nutrient pollution layer [po_nutrients].
+See description for **`r layer_meta$name[layer_meta$layer == 'po_nutrients']`**.
 
-Methods follow those described for the po_nutrients layer.  However, the rescaled data were clipped to include only the pixels within 3nm offshore, and the zonal mean for each region was calculated from these data.
+Methods follow those described for the **`r layer_meta$name[layer_meta$layer == 'po_nutrients']`** layer.  However, the rescaled data were clipped to include only pixels within 3nm offshore, and the zonal mean for each region was calculated from these data.
 
 For the clean waters goal calculations, the inverse of these pressure values are used (1 minus nutrient pressure).
