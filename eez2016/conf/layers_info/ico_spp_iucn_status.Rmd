@@ -2,6 +2,7 @@ Casey: can you review this, and if you think it is necessary, add information ab
 
 This data layer provides the risk category and the year the species was assessed from the IUCN Red List of Threatened Species (http://www.iucnredlist.org/) for the iconic species in each region.  
 Regionally specific IUCN risk category data for subpopulations are included where available.
+Trend calculations are based on the change in each species' IUCN risk category over time, based upon past and current IUCN assessments.
 
 OHI defines iconic species as species recognized as relevant to local cultural identity through the species’ relationship to traditional activities such as fishing, hunting, commerce or involvement in local ethnic or religious practices; 
 and species with locally-recognized aesthetic value (e.g., touristic attractions/common artistic subjects such as whales). 
