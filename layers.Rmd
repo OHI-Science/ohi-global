@@ -11,20 +11,10 @@ output:
 source("./_site.R")
 ```
 
+TODO::: REDO TEXT HERE  
+
 The following data layers are used in Ocean Health Index calculations for goal status, trend, pressures, and resilience. Values for `r study_area` were extracted from the global assessment and saved for each region to serve as a template as you gather higher-resolution data and indicators. Note that many values do not have a range because they were equally extracted from the global data layer.
 
-```{r layers, results='asis'}
-layers      = read_csv(sprintf('%s/layers.csv', dir_scenario))      # View(layers)
-layers_meta = read_csv(sprintf('%s/layers_meta.csv', dir_scenario)) # View(layers_meta)
-
-for (lyr in sort(layers$layer)){ # lyr = sort(layers$layer)[1]
-  # get layer data
-  l = layers %>% 
-    filter(layer == lyr)
-  
-  # header, name
-  cat(sprintf('## %s\n\n%s\n\n%s\n\n', lyr, l$name, l$description))
-  
-}
+```{r, child=sprintf('%s/conf/layers_info/layers_all.Rmd', dir_scenario)}
 ```
 
