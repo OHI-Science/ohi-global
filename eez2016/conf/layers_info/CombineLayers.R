@@ -16,7 +16,8 @@ tmp <- capture.output(cat("---",
                           "\n  html_document:",
                           "\n    toc: true",
                           "\n    toc_depth: 1",
-                          "\n    number_sections: true",
+                          "\n    number_sections: false",
+                          "\n    toc_float: yes",
                           "\n---"))
 
 write(tmp, "eez2016/conf/layers_info/layers_all.Rmd")
@@ -55,7 +56,8 @@ setdiff(layers$layer, layers_Rmd)
 ### Grab each layer description and add to master Rmd file!
 
 data <- layers %>%
-  select(layer, name, units)
+  select(layer, name, units) %>%
+  arrange(name)
 
 for(layer_short in data$layer){ #layer_short="ao_need"
 
