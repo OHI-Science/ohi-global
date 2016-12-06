@@ -2,9 +2,69 @@
 output: html_document
 ---
 
+```{r set up, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+library(dplyr)
+library(tidyr)
+
+# data with information
+layers <- read.csv("../../eez_layers_meta_data/layers_eez_base.csv")
+targets <- read.csv("../../eez_layers_meta_data/layers_eez_targets.csv")
+
+# setwd('eez2016/conf/')
+```
+
+
 ## Food Provision: Fisheries
 
 ```{r, child='goals/FIS.Rmd', results='asis', echo=FALSE}
+```
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="FIS", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="FIS", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="FIS", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
 ```
 
 ---- 
@@ -14,11 +74,108 @@ output: html_document
 ```{r, child='goals/MAR.Rmd', results='asis', echo=FALSE}
 ```
 
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="MAR", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="MAR", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="MAR", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
 ---- 
 
 ## Artisanal Fishing Opportunity 
 
 ```{r, child='goals/AO.Rmd', results='asis', echo=FALSE}
+```
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="AO", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="AO", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="AO", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
 ```
 
 ---- 
@@ -28,12 +185,110 @@ output: html_document
 ```{r, child='goals/NP.Rmd', results='asis', echo=FALSE}
 ```
 
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="NP", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="NP", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="NP", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
 ---- 
 
 ## Carbon Storage
 
 ```{r, child='goals/CS.Rmd', results='asis', echo=FALSE}
 ```
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="CS", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="CS", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="CS", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
 
 ---- 
 
@@ -42,6 +297,56 @@ output: html_document
 ```{r, child='goals/CP.Rmd', results='asis', echo=FALSE}
 ```
 
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="CP", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="CP", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="CP", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
 ---- 
 
 ## Tourism & Recreation
@@ -49,11 +354,108 @@ output: html_document
 ```{r, child='goals/TR.Rmd', results='asis', echo=FALSE}
 ```
 
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="TR", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="TR", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="TR", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
 ---- 
 
 ## Livelihoods & Economies: Livelihoods
 
 ```{r, child='goals/LIV.Rmd', results='asis', echo=FALSE}
+```
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="LIV", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="LIV", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="LIV", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
 ```
 
 ---- 
@@ -63,11 +465,108 @@ output: html_document
 ```{r, child='goals/ECO.Rmd', results='asis', echo=FALSE}
 ```
 
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="ECO", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="ECO", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="ECO", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
 ---- 
 
 ## Sense of Place: Iconic Species
 
 ```{r, child='goals/ICO.Rmd', results='asis', echo=FALSE}
+```
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="ICO", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="ICO", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="ICO", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
 ```
 
 ---- 
@@ -77,12 +576,112 @@ output: html_document
 ```{r, child='goals/LSP.Rmd', results='asis', echo=FALSE}
 ```
 
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="LSP", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="LSP", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="LSP", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
 ---- 
 
 ## Clean Waters
 
 ```{r, child='goals/CW.Rmd', results='asis', echo=FALSE}
 ```
+
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="CW", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="CW", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="CW", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
 
 ---- 
 
@@ -91,9 +690,106 @@ output: html_document
 ```{r, child='goals/SPP.Rmd', results='asis', echo=FALSE}
 ```
 
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="SPP", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="SPP", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="SPP", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
 ---- 
 
 ## Biodiversity: Habitats
 
 ```{r, child='goals/HAB.Rmd', results='asis', echo=FALSE}
+```
+
+### Data used in model
+
+**Status & trend**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="HAB", dimension %in% c("status", "trend")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+
+**Pressure**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="HAB", dimension %in% c("pressure")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
+```
+
+**Resilience**
+
+```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
+st <- targets %>%
+  filter(goal=="HAB", dimension %in% c("resilience")) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+
 ```
