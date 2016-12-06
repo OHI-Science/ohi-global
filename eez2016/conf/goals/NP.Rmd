@@ -8,11 +8,9 @@ The goal model measures the harvest level (in metric tons) for a product and the
 
 Six different natural products were assessed: coral, ornamental fish, fish oil, seaweeds and marine plants, shells, and sponges. Status of sustainable harvest of each product (tonnes) was calculated individually first. The overall goal score weights the status of each product by its proportional value (US dollars) relative to other harvested products. 
 
-Below are the data sets for this goal.
-
 ### Reference points 
 
-Reference point is ....
+For each product, the reference point is its maximum value (in 2008 USD) achieved in that country, under the assumption that the maximum achieved at any point in time was likely the maximum possible. This creates a reference point internal to each country. 
 
 ## This is now AO_layers.Rmd -- Mel
 
