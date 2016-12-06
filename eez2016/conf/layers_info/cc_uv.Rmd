@@ -1,16 +1,7 @@
-Jamie working on this one
+The ultraviolet radiation (UV) pressure layer is derived from daily Local Noon Erythemal UV Irradiance (mW/m^2) data. The Aura/OMI satellite provides data at 1x1 degree resolution from September 2004 through present, spanning 180 degrees latitude and 360 degrees longitude. Raster data is provided in HDF5 format by the NASA Goddard Earth Sciences Data and Information Services Center (GESDISC), available here: http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omuvbd_v003.shtml. Raw data was downloaded, translated to GeoTIFFs using R and aggregated to weekly means.
 
-2012 supplement:
-This pressure measures the number of
-times between 2000 and 2004, in each 1 degree cell,
-that the monthly average exceeded the climatological
-mean + 1 standard deviation within the entire dataset
-(1996-2004). These values were summed across the
-12 months to provide a single value, ranging from 0-
-19. We did not use the metric of change in these
-anomalous values from the early period to the current
-period, as was done for SST data, since the entire UV
-dataset covers only 9 years. See Halpern et al.3 for
-full details on this dataset.
+This pressure measures the number of times the weekly average of each 1 degree cell exceeds the climatological mean + 1 standard deviation, defined as an anomalous value. The frequency of weekly anomalies was calculated for each year in the dataset. We then quantified the difference between the number of anomalies in the 5 most recent years and the 5 oldest years in the dataset.
+
+
 
 
