@@ -1,6 +1,6 @@
 See le_jobs_sector_year layer for more information about data and methods.  
 
-Percent employment during the reference year (i.e., earliest year of data) for each sector/region, calculated as (1 - percent unemployment)*total labor force (World Bank).  This value was used to adjust the number of jobs by dividing the number of jobs by this value in the corresponding year.
+Percent employment during the current status year for each sector/region, calculated as (1 - percent unemployment)*total labor force (World Bank).  This value was used to adjust the number of jobs by dividing the number of jobs by this value in the corresponding year.
 
 
 

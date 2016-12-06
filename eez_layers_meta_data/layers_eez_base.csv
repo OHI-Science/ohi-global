@@ -1,0 +1,103 @@
+layer,name,units,description
+ao_access,Artisanal fisheries opportunity & management effectiveness,scaled 0-1,The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector
+ao_need,Economic need for artisanal fishing,scaled 0-1,Per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need
+cc_acid,Ocean acidification,scaled 0-1,Ocean acidification pressure scaled using biological thresholds
+cc_slr,Sea level rise,scaled 0-1,Sea level rise pressure
+cc_sst,Sea surface temperature anomolies,scaled 0-1,Sea surface temperature anomolies
+cc_uv,UV radiation,scaled 0-1,Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC
+cntry_rgn,ISO country codes,region id,Lookup table of country codes (based on ISO 3166 country codes) and Ocean Health Index region identifiers
+cw_chemical_trend,Chemical pollution trend,trend,"Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ "
+cw_nutrient_trend,Nutrient pollution trend,trend,"Trends in nutrient pollution, based on fertilizer consumption as a proxy for nutrient pollution"
+cw_pathogen_trend,Pathogen pollution trend,trend,Trends in percent of population without access to improved sanitation facilities as a proxy for pathogen pollution
+cw_trash_trend,Plastic trash trends,trend,Trends in trash estimated using improperly disposed of plastics
+element_wts_cp_km2_x_protection,Coastal protection weights,extent*rank,"Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass"
+element_wts_cs_km2_x_storage,Carbon storage weights,extent*storage,"Habitat extent multiplied by carbon storage capacity for:  mangrove (offshore and inland 1km), saltmarsh, and sea ice"
+element_wts_hab_pres_abs,Habitat weights,boolean,List of habitats in each region
+fis_b_bmsy,B/Bmsy estimates,B/Bmsy,The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield (RAM data and catch-MSY)
+fis_meancatch,Fishery catch data,tonnes,Mean commercial catch for each OHI region (averaged across years) 
+fp_art_hb,High bycatch due to artisanal fishing ,scaled 0-1,The presence of destructive artisanal blast and poison (cyanide) fishing.
+fp_art_lb,Low bycatch due to artisanal fishing ,scaled 0-1,"Extent of artisanal fishing (including: artisanal, subsistence, and recreational catch)"
+fp_com_hb,High bycatch due to commercial fishing ,scaled 0-1,Modeled destructive commercial fishing practices by 5 gear types and scaled by Net Primary Productivity
+fp_com_lb,Low bycatch due to commercial fishing ,scaled 0-1,Modeled destructive commercial fishing practices by 2 gear types and scaled by Net Primary Productivity
+fp_habitat,Management of habitat to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions
+fp_mora,Commercial fishing management,scaled 0-1,Regulations and management of commerical fishing
+fp_mora_artisanal,Artisanal fisheries opportunity & management effectiveness,scaled 0-1,The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector
+fp_mpa_coast,Coastal protected marine areas,scaled 0-1,Protected marine areas within 3nm of coastline (lasting special places goal status score)
+fp_mpa_eez,EEZ protected marine areas,scaled 0-1,Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)
+fp_targetharvest,Targeted harvest of cetaceans and marine turtles,scaled 0-1,Targeted harvest of cetaceans and marine turtles
+fp_wildcaught_weight,Food provision weights,proportion,"Proportion of wild caught fisheries relative to total food production (e.g., fisheries and mariculture)"
+g_cites,CITES signatories,scaled 0-1,Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories
+g_mariculture,Management of mariculture practices to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: mariculture related questions
+g_msi_gov,Mariculture Sustainability Index,scaled 0-1,Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI)
+g_tourism,Management of tourism to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions
+hab_extent,Habitat extent,km2,"Area of habitats: mangrove, saltmarsh, seagrass, soft-bottom, seaice, coral"
+hab_health,Habitat condition,proportion,Current condition of habitat relative to historical condition
+hab_trend,Habitat condition trend,trend,Estimated change in habitat condition
+hd_habitat,Management of habitat to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions
+hd_intertidal,Intertidal habitat destruction,scaled 0-1,Coastal population density (25 mi from shore)  as a proxy for intertidal habitat destruction
+hd_mpa_coast,Coastal protected marine areas,scaled 0-1,Protected marine areas within 3nm of coastline (lasting special places goal status score)
+hd_mpa_eez,EEZ protected marine areas,scaled 0-1,Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)
+hd_subtidal_hb,Subtidal hardbottom habitat destruction,scaled 0-1,High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction
+hd_subtidal_sb,Subtidal softbottom habitat destruction,scaled 0-1,"Demersal destructive commercial fishing practices (i.e., trawling) in softbottom habitat as a proxy for soft bottom habitat destruction"
+ico_spp_iucn_status,IUCN extinction risk,IUCN risk category,IUCN extinction risk category for iconic species located within each region
+le_gdp,GDP,2012 USD,Gross Domestic Product (GDP)
+le_gdp_pc_ppp,GDP per capita PPP,USD,Gross domestic product per person at purchasing power parity
+le_jobs_cur_adj_value,Adjustment factor for jobs (most current value),value,Percent employment during the current status year for each sector/region
+le_jobs_cur_base_value,"Jobs, most current value",value,Number of jobs in each sector and region for the most recent year of data
+le_jobs_ref_adj_value,Adjustment factor for jobs (reference period),value,"Percent employment during the reference year (i.e., earliest year of data) for each sector/region"
+le_jobs_ref_base_value,"Jobs, reference value",value,Number of jobs in each sector and region for the reference year (earliest year of data for sector/region) of data
+le_jobs_sector_year,Jobs for each sector and year,number of jobs,"Number of jobs in each sector, region, and year."
+le_popn,Total human population,number of people,Human population of OHI regions
+le_rev_cur_adj_value,Adjustment factor for revenue (most current value),value,GDP during the current status year of each sector/region (World Bank)
+le_rev_cur_base_value,"Revenue, most current value",value,Revenue data for the most recent year of data (relative to the assessment year) for each sector/region
+le_rev_ref_adj_value,Adjustment factor for revenue (reference period),value,"GDP during the reference year (i.e., earliest year of data) of each sector/region (World Bank)"
+le_rev_ref_base_value,"Revenue, reference value",value,Revenue data for the earliest year of each sector for each sector/region
+le_rev_sector_year,Revenue for each sector and year,2010 USD,"Revenue for each sector, region, and year"
+le_revenue_adj,GDP,USD,GDP data used to adjust revenue values
+le_sector_weight,Sectors in each region,value,Proportion of jobs within each sector
+le_unemployment,Unemployment,proportion,Unemployment data from the World Bank
+le_wage_cur_adj_value,Adjustment factor for wages (most current value),value,"Values are 1, no subsequent adjustments were made to the wage data"
+le_wage_cur_base_value,"Wages, current value",value,Wage data for the most recent year of data (relative to the assessment year) for each sector/region
+le_wage_ref_adj_value,Adjustment factor for wages (reference period),value,"Values are 1, no subsequent adjustments were made to the wage data"
+le_wage_ref_base_value,"Wages, reference value",value,Wage data for the earliest year of data for each sector/region
+le_wage_sector_year,Wages for each sector and year,2010 USD,"Wages for each sector, region, and year"
+le_workforcesize_adj,Adjusted workforce size,number of jobs,Total labor force (number of people) from the World Bank
+li_gci,Global Competitiveness Index (GCI) scores,scaled,Competitiveness in achieving sustained economic prosperity
+li_sector_evenness,Economic diversity,scaled,Sector eveness based on Shannon's Diversity Index calculated on the proportion of jobs in each sector as a measure of economic diversity
+lsp_prot_area_inland1km,Inland coastal protected areas,km2,Protected areas located 1 km inland
+lsp_prot_area_offshore3nm,Offshore coastal protected areas,km2,Protected areas located 3nm offshore
+mar_coastalpopn_inland25mi,Inland coastal population,number of people,Total coastal population within 25 miles of coast.
+mar_harvest_tonnes,Mariculture harvest,tonnes,Tonnes of mariculture harvest
+mar_sustainability_score,Mariculture sustainability score,score,Mariculture sustainability based on the Mariculture Sustainability Index (MSI)
+np_blast,Areas of blast fishing,score,Destructive artisanal blast fishing
+np_cyanide,Areas of poison fishing,score,Destructive artisanal poison (cyanide) fishing
+np_harvest_product_weight,Relative harvest value,proportion,"Value of harvest of each commodity relative to total harvest of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) for each region and year"
+np_harvest_tonnes,Natural product harvest,tonnes,"Yield in metric tonnes of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish)"
+np_harvest_tonnes_relative,Relative harvest tonnes,proportion,Tonnes of harvest of each commodity relative to maximum harvest (with 35% buffer) of the commodity within the region observed across years. 
+po_chemicals,Chemical pollution,scaled 0-1,"Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ "
+po_chemicals_3nm,Coastal chemical pollution,scaled 0-1,"Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline "
+po_nutrients,Nutrient pollution,scaled 0-1,Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption from the Food and Agricultural Organization
+po_nutrients_3nm,Coastal nutrient pollution,scaled 0-1,Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization
+po_pathogens,Pathogen pollution,scaled 0-1,Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution
+po_trash,Marine plastics,scaled 0-1,Global marine plastic pollution
+po_water,Management of water pollution to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions
+res_spi,Social Progress Index,scaled 0-1,Social Progress Index scores
+rgn_area,Region areas based on EEZ boundaries,km2,Area of Ocean Health Index regions modified from exclusive economic zones 
+rgn_area_inland1km,Inland area,km2,Inland area of OHI regions within 1km of shoreline
+rgn_area_offshore3nm,Offshore area,km2,Offshore area of OHI regions within 3nm of shoreline
+rgn_georegions,UN geopolitical region classifications,UN regions,"UN geopolitical regions (3 levels), often used for gapfilling missing data"
+rgn_global,OHI regions,label,Subset of regions that are not deleted or disputed 
+rgn_labels,Regions ,label,"Regions by type (eez, subocean, unclaimed)"
+sp_alien,Nonindigenous species,scaled 0-1,Measure of harmful invasive species
+sp_alien_species,Management of nonindigenous species,scaled 0-1,Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: invasive species related questions
+sp_genetic,Genetic escapes,scaled 0-1,Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes 
+species_diversity_3nm,Measure of coastal ecological integrity,scaled 0-1,Marine species condition (same calculation and data as the species subgoal status score)  calculated within 3 nm of shoreline as a proxy for ecological integrity
+species_diversity_eez,Measure of ecological integrity,scaled 0-1,Marine species condition (species subgoal status score) as a proxy for ecological integrity
+spp_status,Average species condition,status score,Species condition based on average of IUCN threat categories
+spp_trend,Average species condition trend,trend score,Species trends based on average of IUCN population trend data
+ss_spi,Weakness of social progress,scaled 0-1,Inverse of Social Progress Index scores
+ss_wgi,Weakness of governance,scaled 0-1,Inverse of World Governance Indicators (WGI) six combined scores
+tr_jobs_pct_tourism,Percent direct employment in tourism,proportion,Percent direct employment in tourism
+tr_sustainability,Tourism sustainability index,score,Tourism Competitiveness Index (TTCI)
+tr_travelwarnings,US State Department travel warnings,score,Countries with US State Department travel warnings
+wgi_all,Strength of governance,scaled 0-1,World Governance Indicators (WGI) six combined scores

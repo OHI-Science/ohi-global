@@ -1,0 +1,1034 @@
+--- 
+title: Layers descriptions 
+output: 
+  html_document: 
+    toc: true 
+    toc_depth: 1 
+    number_sections: true 
+---
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, error=FALSE} 
+ library(dplyr) 
+ library(tidyr) 
+ library(knitr) 
+```
+
+ 
+#Artisanal fisheries opportunity & management effectiveness 
+####(ao_access) {-} 
+```{r, child = 'ao_access.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Economic need for artisanal fishing 
+####(ao_need) {-} 
+```{r, child = 'ao_need.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Ocean acidification 
+####(cc_acid) {-} 
+```{r, child = 'cc_acid.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Sea level rise 
+####(cc_slr) {-} 
+```{r, child = 'cc_slr.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Sea surface temperature anomolies 
+####(cc_sst) {-} 
+```{r, child = 'cc_sst.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#UV radiation 
+####(cc_uv) {-} 
+```{r, child = 'cc_uv.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#ISO country codes 
+####(cntry_rgn) {-} 
+```{r, child = 'cntry_rgn.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ region id
+
+ 
+#Chemical pollution trend 
+####(cw_chemical_trend) {-} 
+```{r, child = 'cw_chemical_trend.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Nutrient pollution trend 
+####(cw_nutrient_trend) {-} 
+```{r, child = 'cw_nutrient_trend.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Pathogen pollution trend 
+####(cw_pathogen_trend) {-} 
+```{r, child = 'cw_pathogen_trend.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Plastic trash trends 
+####(cw_trash_trend) {-} 
+```{r, child = 'cw_trash_trend.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Coastal protection weights 
+####(element_wts_cp_km2_x_protection) {-} 
+```{r, child = 'element_wts_cp_km2_x_protection.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ extent*rank
+
+ 
+#Carbon storage weights 
+####(element_wts_cs_km2_x_storage) {-} 
+```{r, child = 'element_wts_cs_km2_x_storage.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ extent*storage
+
+ 
+#Habitat weights 
+####(element_wts_hab_pres_abs) {-} 
+```{r, child = 'element_wts_hab_pres_abs.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ boolean
+
+ 
+#B/Bmsy estimates 
+####(fis_b_bmsy) {-} 
+```{r, child = 'fis_b_bmsy.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ B/Bmsy
+
+ 
+#Fishery catch data 
+####(fis_meancatch) {-} 
+```{r, child = 'fis_meancatch.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ tonnes
+
+ 
+#High bycatch due to artisanal fishing  
+####(fp_art_hb) {-} 
+```{r, child = 'fp_art_hb.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Low bycatch due to artisanal fishing  
+####(fp_art_lb) {-} 
+```{r, child = 'fp_art_lb.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#High bycatch due to commercial fishing  
+####(fp_com_hb) {-} 
+```{r, child = 'fp_com_hb.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Low bycatch due to commercial fishing  
+####(fp_com_lb) {-} 
+```{r, child = 'fp_com_lb.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Management of habitat to preserve biodiversity 
+####(fp_habitat) {-} 
+```{r, child = 'fp_habitat.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Commercial fishing management 
+####(fp_mora) {-} 
+```{r, child = 'fp_mora.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Artisanal fisheries opportunity & management effectiveness 
+####(fp_mora_artisanal) {-} 
+```{r, child = 'fp_mora_artisanal.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Coastal protected marine areas 
+####(fp_mpa_coast) {-} 
+```{r, child = 'fp_mpa_coast.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#EEZ protected marine areas 
+####(fp_mpa_eez) {-} 
+```{r, child = 'fp_mpa_eez.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Targeted harvest of cetaceans and marine turtles 
+####(fp_targetharvest) {-} 
+```{r, child = 'fp_targetharvest.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Food provision weights 
+####(fp_wildcaught_weight) {-} 
+```{r, child = 'fp_wildcaught_weight.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#CITES signatories 
+####(g_cites) {-} 
+```{r, child = 'g_cites.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Management of mariculture practices to preserve biodiversity 
+####(g_mariculture) {-} 
+```{r, child = 'g_mariculture.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Mariculture Sustainability Index 
+####(g_msi_gov) {-} 
+```{r, child = 'g_msi_gov.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Management of tourism to preserve biodiversity 
+####(g_tourism) {-} 
+```{r, child = 'g_tourism.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Habitat extent 
+####(hab_extent) {-} 
+```{r, child = 'hab_extent.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Habitat condition 
+####(hab_health) {-} 
+```{r, child = 'hab_health.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Habitat condition trend 
+####(hab_trend) {-} 
+```{r, child = 'hab_trend.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Management of habitat to preserve biodiversity 
+####(hd_habitat) {-} 
+```{r, child = 'hd_habitat.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Intertidal habitat destruction 
+####(hd_intertidal) {-} 
+```{r, child = 'hd_intertidal.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Coastal protected marine areas 
+####(hd_mpa_coast) {-} 
+```{r, child = 'hd_mpa_coast.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#EEZ protected marine areas 
+####(hd_mpa_eez) {-} 
+```{r, child = 'hd_mpa_eez.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Subtidal hardbottom habitat destruction 
+####(hd_subtidal_hb) {-} 
+```{r, child = 'hd_subtidal_hb.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Subtidal softbottom habitat destruction 
+####(hd_subtidal_sb) {-} 
+```{r, child = 'hd_subtidal_sb.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#IUCN extinction risk 
+####(ico_spp_iucn_status) {-} 
+```{r, child = 'ico_spp_iucn_status.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ IUCN risk category
+
+ 
+#GDP 
+####(le_gdp) {-} 
+```{r, child = 'le_gdp.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ 2012 USD
+
+ 
+#GDP per capita PPP 
+####(le_gdp_pc_ppp) {-} 
+```{r, child = 'le_gdp_pc_ppp.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ USD
+
+ 
+#Adjustment factor for jobs (most current value) 
+####(le_jobs_cur_adj_value) {-} 
+```{r, child = 'le_jobs_cur_adj_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Jobs, most current value 
+####(le_jobs_cur_base_value) {-} 
+```{r, child = 'le_jobs_cur_base_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Adjustment factor for jobs (reference period) 
+####(le_jobs_ref_adj_value) {-} 
+```{r, child = 'le_jobs_ref_adj_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Jobs, reference value 
+####(le_jobs_ref_base_value) {-} 
+```{r, child = 'le_jobs_ref_base_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Jobs for each sector and year 
+####(le_jobs_sector_year) {-} 
+```{r, child = 'le_jobs_sector_year.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ number of jobs
+
+ 
+#Total human population 
+####(le_popn) {-} 
+```{r, child = 'le_popn.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ number of people
+
+ 
+#Adjustment factor for revenue (most current value) 
+####(le_rev_cur_adj_value) {-} 
+```{r, child = 'le_rev_cur_adj_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Revenue, most current value 
+####(le_rev_cur_base_value) {-} 
+```{r, child = 'le_rev_cur_base_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Adjustment factor for revenue (reference period) 
+####(le_rev_ref_adj_value) {-} 
+```{r, child = 'le_rev_ref_adj_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Revenue, reference value 
+####(le_rev_ref_base_value) {-} 
+```{r, child = 'le_rev_ref_base_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Revenue for each sector and year 
+####(le_rev_sector_year) {-} 
+```{r, child = 'le_rev_sector_year.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ 2010 USD
+
+ 
+#GDP 
+####(le_revenue_adj) {-} 
+```{r, child = 'le_revenue_adj.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ USD
+
+ 
+#Sectors in each region 
+####(le_sector_weight) {-} 
+```{r, child = 'le_sector_weight.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Unemployment 
+####(le_unemployment) {-} 
+```{r, child = 'le_unemployment.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Adjustment factor for wages (most current value) 
+####(le_wage_cur_adj_value) {-} 
+```{r, child = 'le_wage_cur_adj_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Wages, current value 
+####(le_wage_cur_base_value) {-} 
+```{r, child = 'le_wage_cur_base_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Adjustment factor for wages (reference period) 
+####(le_wage_ref_adj_value) {-} 
+```{r, child = 'le_wage_ref_adj_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Wages, reference value 
+####(le_wage_ref_base_value) {-} 
+```{r, child = 'le_wage_ref_base_value.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ value
+
+ 
+#Wages for each sector and year 
+####(le_wage_sector_year) {-} 
+```{r, child = 'le_wage_sector_year.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ 2010 USD
+
+ 
+#Adjusted workforce size 
+####(le_workforcesize_adj) {-} 
+```{r, child = 'le_workforcesize_adj.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ number of jobs
+
+ 
+#Global Competitiveness Index (GCI) scores 
+####(li_gci) {-} 
+```{r, child = 'li_gci.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled
+
+ 
+#Economic diversity 
+####(li_sector_evenness) {-} 
+```{r, child = 'li_sector_evenness.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled
+
+ 
+#Inland coastal protected areas 
+####(lsp_prot_area_inland1km) {-} 
+```{r, child = 'lsp_prot_area_inland1km.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Offshore coastal protected areas 
+####(lsp_prot_area_offshore3nm) {-} 
+```{r, child = 'lsp_prot_area_offshore3nm.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Inland coastal population 
+####(mar_coastalpopn_inland25mi) {-} 
+```{r, child = 'mar_coastalpopn_inland25mi.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ number of people
+
+ 
+#Mariculture harvest 
+####(mar_harvest_tonnes) {-} 
+```{r, child = 'mar_harvest_tonnes.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ tonnes
+
+ 
+#Mariculture sustainability score 
+####(mar_sustainability_score) {-} 
+```{r, child = 'mar_sustainability_score.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ score
+
+ 
+#Areas of blast fishing 
+####(np_blast) {-} 
+```{r, child = 'np_blast.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ score
+
+ 
+#Areas of poison fishing 
+####(np_cyanide) {-} 
+```{r, child = 'np_cyanide.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ score
+
+ 
+#Relative harvest value 
+####(np_harvest_product_weight) {-} 
+```{r, child = 'np_harvest_product_weight.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Natural product harvest 
+####(np_harvest_tonnes) {-} 
+```{r, child = 'np_harvest_tonnes.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ tonnes
+
+ 
+#Relative harvest tonnes 
+####(np_harvest_tonnes_relative) {-} 
+```{r, child = 'np_harvest_tonnes_relative.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Chemical pollution 
+####(po_chemicals) {-} 
+```{r, child = 'po_chemicals.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Coastal chemical pollution 
+####(po_chemicals_3nm) {-} 
+```{r, child = 'po_chemicals_3nm.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Nutrient pollution 
+####(po_nutrients) {-} 
+```{r, child = 'po_nutrients.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Coastal nutrient pollution 
+####(po_nutrients_3nm) {-} 
+```{r, child = 'po_nutrients_3nm.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Pathogen pollution 
+####(po_pathogens) {-} 
+```{r, child = 'po_pathogens.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Marine plastics 
+####(po_trash) {-} 
+```{r, child = 'po_trash.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Management of water pollution to preserve biodiversity 
+####(po_water) {-} 
+```{r, child = 'po_water.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Social Progress Index 
+####(res_spi) {-} 
+```{r, child = 'res_spi.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Region areas based on EEZ boundaries 
+####(rgn_area) {-} 
+```{r, child = 'rgn_area.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Inland area 
+####(rgn_area_inland1km) {-} 
+```{r, child = 'rgn_area_inland1km.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Offshore area 
+####(rgn_area_offshore3nm) {-} 
+```{r, child = 'rgn_area_offshore3nm.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#UN geopolitical region classifications 
+####(rgn_georegions) {-} 
+```{r, child = 'rgn_georegions.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ UN regions
+
+ 
+#OHI regions 
+####(rgn_global) {-} 
+```{r, child = 'rgn_global.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ label
+
+ 
+#Regions  
+####(rgn_labels) {-} 
+```{r, child = 'rgn_labels.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ label
+
+ 
+#Nonindigenous species 
+####(sp_alien) {-} 
+```{r, child = 'sp_alien.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Management of nonindigenous species 
+####(sp_alien_species) {-} 
+```{r, child = 'sp_alien_species.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Genetic escapes 
+####(sp_genetic) {-} 
+```{r, child = 'sp_genetic.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Measure of coastal ecological integrity 
+####(species_diversity_3nm) {-} 
+```{r, child = 'species_diversity_3nm.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Measure of ecological integrity 
+####(species_diversity_eez) {-} 
+```{r, child = 'species_diversity_eez.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Average species condition 
+####(spp_status) {-} 
+```{r, child = 'spp_status.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ status score
+
+ 
+#Average species condition trend 
+####(spp_trend) {-} 
+```{r, child = 'spp_trend.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ trend score
+
+ 
+#Weakness of social progress 
+####(ss_spi) {-} 
+```{r, child = 'ss_spi.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Weakness of governance 
+####(ss_wgi) {-} 
+```{r, child = 'ss_wgi.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
+#Percent direct employment in tourism 
+####(tr_jobs_pct_tourism) {-} 
+```{r, child = 'tr_jobs_pct_tourism.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Tourism sustainability index 
+####(tr_sustainability) {-} 
+```{r, child = 'tr_sustainability.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ score
+
+ 
+#US State Department travel warnings 
+####(tr_travelwarnings) {-} 
+```{r, child = 'tr_travelwarnings.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ score
+
+ 
+#Strength of governance 
+####(wgi_all) {-} 
+```{r, child = 'wgi_all.Rmd', echo=FALSE} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
