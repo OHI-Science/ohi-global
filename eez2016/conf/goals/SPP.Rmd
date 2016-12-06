@@ -6,7 +6,7 @@ People value biodiversity in particular for its existence value. The risk of spe
 
 ### Model & Data 
 
-The Species model measures the average number of threatened species in each country, weighted by each species' threat status defined by IUCN Red List and its coverage area. The spatial resolution is 0.5 degree. 
+The Species model measures the average threat status, defined by the IUCN Red List, of species in each country, weighted by each species' area of distribution within the country's EEZ. The spatial resolution is 0.5 degree.
 
 Species list and information on their extinction risks came from three sources: 
 
