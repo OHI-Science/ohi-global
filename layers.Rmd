@@ -11,9 +11,7 @@ output:
 source("./_site.R")
 ```
 
-TODO::: REDO TEXT HERE  
-
-The following data layers are used in Ocean Health Index calculations for goal status, trend, pressures, and resilience. Values for `r study_area` were extracted from the global assessment and saved for each region to serve as a template as you gather higher-resolution data and indicators. Note that many values do not have a range because they were equally extracted from the global data layer.
+The following data layers are used in Ocean Health Index global calculations for goal status, trend, pressures, and resilience. Learn how these layers were incorporated into goal calculations on the [goals page](http://ohi-science.org/ohi-global/goals.html).
 
 ```{r, child=sprintf('%s/conf/layers_info/layers_all.Rmd', dir_scenario)}
 ```
