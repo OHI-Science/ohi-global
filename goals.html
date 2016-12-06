@@ -22,11 +22,12 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -154,6 +155,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -179,7 +181,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -238,9 +240,8 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
+  font-size: 0.9em;
+  padding-left: 5px;
 }
 
 .tocify .list-group-item {
@@ -327,16 +328,35 @@ Here you will find a description about how goals are represented in global asses
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
 </div>
-<div id="data" class="section level3">
-<h3>Data</h3>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[B/Bmsy estimates obtained using RAM data (when available) and the catch-MSY method] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield<br />
-</li>
-<li><a href="#section"></a></li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#fis_b_bmsy">B/Bmsy estimates</a> (fis_b_bmsy): The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield (RAM data and catch-MSY)</p>
+<p><a href="????#fis_meancatch">Fishery catch data</a> (fis_meancatch): Mean commercial catch for each OHI region (averaged across years)</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#fp_art_hb">High bycatch due to artisanal fishing</a> (fp_art_hb): The presence of destructive artisanal blast and poison (cyanide) fishing.</p>
+<p><a href="????#fp_art_lb">Low bycatch due to artisanal fishing</a> (fp_art_lb): Extent of artisanal fishing (including: artisanal, subsistence, and recreational catch)</p>
+<p><a href="????#fp_com_hb">High bycatch due to commercial fishing</a> (fp_com_hb): Modeled destructive commercial fishing practices by 5 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#fp_com_lb">Low bycatch due to commercial fishing</a> (fp_com_lb): Modeled destructive commercial fishing practices by 2 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#hd_subtidal_sb">Subtidal softbottom habitat destruction</a> (hd_subtidal_sb): Demersal destructive commercial fishing practices (i.e., trawling) in softbottom habitat as a proxy for soft bottom habitat destruction</p>
+<p><a href="????#po_chemicals">Chemical pollution</a> (po_chemicals): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ</p>
+<p><a href="????#po_nutrients">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#sp_genetic">Genetic escapes</a> (sp_genetic): Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#fp_habitat">Management of habitat to preserve biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#fp_mora">Commercial fishing management</a> (fp_mora): Regulations and management of commerical fishing</p>
+<p><a href="????#fp_mora_artisanal">Artisanal fisheries opportunity &amp; management effectiveness</a> (fp_mora_artisanal): The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
+<p><a href="????#fp_mpa_eez">EEZ protected marine areas</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#hd_habitat">Management of habitat to preserve biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#hd_mpa_eez">EEZ protected marine areas</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#species_diversity_eez">Measure of ecological integrity</a> (species_diversity_eez): Marine species condition (species subgoal status score) as a proxy for ecological integrity</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
 </div>
 </div>
@@ -354,16 +374,26 @@ Here you will find a description about how goals are represented in global asses
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
 </div>
-</div>
-<div id="section" class="section level2">
-<h2></h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-1" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#mar_coastalpopn_inland25mi">Inland coastal population</a> (mar_coastalpopn_inland25mi): Total coastal population within 25 miles of coast.</p>
+<p><a href="????#mar_harvest_tonnes">Mariculture harvest</a> (mar_harvest_tonnes): Tonnes of mariculture harvest</p>
+<p><a href="????#mar_sustainability_score">Mariculture sustainability score</a> (mar_sustainability_score): Mariculture sustainability based on the Mariculture Sustainability Index (MSI)</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_slr">Sea level rise</a> (cc_slr): Sea level rise pressure</p>
+<p><a href="????#po_chemicals">Chemical pollution</a> (po_chemicals): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#g_mariculture">Management of mariculture practices to preserve biodiversity</a> (g_mariculture): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: mariculture related questions</p>
+<p><a href="????#g_msi_gov">Mariculture Sustainability Index</a> (g_msi_gov): Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI)</p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="artisanal-fishing-opportunity" class="section level2">
 <h2>Artisanal Fishing Opportunity</h2>
@@ -381,16 +411,34 @@ Here you will find a description about how goals are represented in global asses
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
 </div>
-</div>
-<div id="this-is-now-ao_layers.rmd-mel" class="section level2">
-<h2>This is now AO_layers.Rmd – Mel</h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-2" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#ao_access">Artisanal fisheries opportunity &amp; management effectiveness</a> (ao_access): The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
+<p><a href="????#ao_need">Economic need for artisanal fishing</a> (ao_need): Per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#fp_art_hb">High bycatch due to artisanal fishing</a> (fp_art_hb): The presence of destructive artisanal blast and poison (cyanide) fishing.</p>
+<p><a href="????#fp_com_hb">High bycatch due to commercial fishing</a> (fp_com_hb): Modeled destructive commercial fishing practices by 5 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#fp_com_lb">Low bycatch due to commercial fishing</a> (fp_com_lb): Modeled destructive commercial fishing practices by 2 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#hd_subtidal_sb">Subtidal softbottom habitat destruction</a> (hd_subtidal_sb): Demersal destructive commercial fishing practices (i.e., trawling) in softbottom habitat as a proxy for soft bottom habitat destruction</p>
+<p><a href="????#po_chemicals_3nm">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#fp_habitat">Management of habitat to preserve biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#fp_mora">Commercial fishing management</a> (fp_mora): Regulations and management of commerical fishing</p>
+<p><a href="????#fp_mpa_coast">Coastal protected marine areas</a> (fp_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
+<p><a href="????#hd_habitat">Management of habitat to preserve biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#hd_mpa_coast">Coastal protected marine areas</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#species_diversity_3nm">Measure of coastal ecological integrity</a> (species_diversity_3nm): Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="natural-products" class="section level2">
 <h2>Natural Products</h2>
@@ -408,16 +456,47 @@ Here you will find a description about how goals are represented in global asses
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
 </div>
-</div>
-<div id="this-is-now-ao_layers.rmd-mel-1" class="section level2">
-<h2>This is now AO_layers.Rmd – Mel</h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-3" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#np_blast">Areas of blast fishing</a> (np_blast): Destructive artisanal blast fishing</p>
+<p><a href="????#np_cyanide">Areas of poison fishing</a> (np_cyanide): Destructive artisanal poison (cyanide) fishing</p>
+<p><a href="????#np_harvest_product_weight">Relative harvest value</a> (np_harvest_product_weight): Value of harvest of each commodity relative to total harvest of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) for each region and year</p>
+<p><a href="????#np_harvest_tonnes">Natural product harvest</a> (np_harvest_tonnes): Yield in metric tonnes of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish)</p>
+<p><a href="????#np_harvest_tonnes_relative">Relative harvest tonnes</a> (np_harvest_tonnes_relative): Tonnes of harvest of each commodity relative to maximum harvest (with 35% buffer) of the commodity within the region observed across years.</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_acid">Ocean acidification</a> (cc_acid): Ocean acidification pressure scaled using biological thresholds</p>
+<p><a href="????#cc_slr">Sea level rise</a> (cc_slr): Sea level rise pressure</p>
+<p><a href="????#cc_sst">Sea surface temperature anomolies</a> (cc_sst): Sea surface temperature anomolies</p>
+<p><a href="????#cc_uv">UV radiation</a> (cc_uv): Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC</p>
+<p><a href="????#fp_art_hb">High bycatch due to artisanal fishing</a> (fp_art_hb): The presence of destructive artisanal blast and poison (cyanide) fishing.</p>
+<p><a href="????#fp_art_lb">Low bycatch due to artisanal fishing</a> (fp_art_lb): Extent of artisanal fishing (including: artisanal, subsistence, and recreational catch)</p>
+<p><a href="????#fp_com_lb">Low bycatch due to commercial fishing</a> (fp_com_lb): Modeled destructive commercial fishing practices by 2 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#hd_subtidal_sb">Subtidal softbottom habitat destruction</a> (hd_subtidal_sb): Demersal destructive commercial fishing practices (i.e., trawling) in softbottom habitat as a proxy for soft bottom habitat destruction</p>
+<p><a href="????#po_chemicals">Chemical pollution</a> (po_chemicals): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ</p>
+<p><a href="????#po_nutrients">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#fp_habitat">Management of habitat to preserve biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#fp_mora">Commercial fishing management</a> (fp_mora): Regulations and management of commerical fishing</p>
+<p><a href="????#fp_mora_artisanal">Artisanal fisheries opportunity &amp; management effectiveness</a> (fp_mora_artisanal): The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
+<p><a href="????#fp_mpa_coast">Coastal protected marine areas</a> (fp_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
+<p><a href="????#fp_mpa_eez">EEZ protected marine areas</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#g_cites">CITES signatories</a> (g_cites): Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories</p>
+<p><a href="????#hd_habitat">Management of habitat to preserve biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#hd_mpa_coast">Coastal protected marine areas</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
+<p><a href="????#hd_mpa_eez">EEZ protected marine areas</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#species_diversity_3nm">Measure of coastal ecological integrity</a> (species_diversity_3nm): Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity</p>
+<p><a href="????#species_diversity_eez">Measure of ecological integrity</a> (species_diversity_eez): Marine species condition (species subgoal status score) as a proxy for ecological integrity</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="carbon-storage" class="section level2">
 <h2>Carbon Storage</h2>
@@ -436,16 +515,30 @@ Here you will find a description about how goals are represented in global asses
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
 </div>
-</div>
-<div id="this-is-now-ao_layers.rmd-mel-2" class="section level2">
-<h2>This is now AO_layers.Rmd – Mel</h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-4" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#hab_extent">Habitat extent</a> (hab_extent): Area of habitats: mangrove, saltmarsh, seagrass, soft-bottom, seaice, coral</p>
+<p><a href="????#hab_health">Habitat condition</a> (hab_health): Current condition of habitat relative to historical condition</p>
+<p><a href="????#hab_trend">Habitat condition trend</a> (hab_trend): Estimated change in habitat condition</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_acid">Ocean acidification</a> (cc_acid): Ocean acidification pressure scaled using biological thresholds</p>
+<p><a href="????#cc_slr">Sea level rise</a> (cc_slr): Sea level rise pressure</p>
+<p><a href="????#cc_sst">Sea surface temperature anomolies</a> (cc_sst): Sea surface temperature anomolies</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#po_chemicals_3nm">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#hd_habitat">Management of habitat to preserve biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#hd_mpa_coast">Coastal protected marine areas</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="coastal-protection" class="section level2">
 <h2>Coastal Protection</h2>
@@ -462,16 +555,32 @@ Here you will find a description about how goals are represented in global asses
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
 </div>
-</div>
-<div id="this-is-now-ao_layers.rmd-mel-3" class="section level2">
-<h2>This is now AO_layers.Rmd – Mel</h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-5" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#hab_extent">Habitat extent</a> (hab_extent): Area of habitats: mangrove, saltmarsh, seagrass, soft-bottom, seaice, coral</p>
+<p><a href="????#hab_health">Habitat condition</a> (hab_health): Current condition of habitat relative to historical condition</p>
+<p><a href="????#hab_trend">Habitat condition trend</a> (hab_trend): Estimated change in habitat condition</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_acid">Ocean acidification</a> (cc_acid): Ocean acidification pressure scaled using biological thresholds</p>
+<p><a href="????#cc_slr">Sea level rise</a> (cc_slr): Sea level rise pressure</p>
+<p><a href="????#cc_sst">Sea surface temperature anomolies</a> (cc_sst): Sea surface temperature anomolies</p>
+<p><a href="????#cc_uv">UV radiation</a> (cc_uv): Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#po_chemicals_3nm">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#hd_habitat">Management of habitat to preserve biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#hd_mpa_coast">Coastal protected marine areas</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="tourism-recreation" class="section level2">
 <h2>Tourism &amp; Recreation</h2>
@@ -488,69 +597,146 @@ Here you will find a description about how goals are represented in global asses
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
 </div>
-</div>
-<div id="this-is-now-ao_layers.rmd-mel-4" class="section level2">
-<h2>This is now AO_layers.Rmd – Mel</h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-6" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#tr_jobs_pct_tourism">Percent direct employment in tourism</a> (tr_jobs_pct_tourism): Percent direct employment in tourism</p>
+<p><a href="????#tr_sustainability">Tourism sustainability index</a> (tr_sustainability): Tourism Competitiveness Index (TTCI)</p>
+<p><a href="????#tr_travelwarnings">US State Department travel warnings</a> (tr_travelwarnings): Countries with US State Department travel warnings</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_slr">Sea level rise</a> (cc_slr): Sea level rise pressure</p>
+<p><a href="????#po_chemicals_3nm">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_pathogens">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
+<p><a href="????#po_trash">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="livelihoods-economies-livelihoods" class="section level2">
 <h2>Livelihoods &amp; Economies: Livelihoods</h2>
 <div id="goal-description-7" class="section level3">
 <h3>Goal Description</h3>
-<p>The jobs and revenue produced from marine-related industries are clearly of huge value to many people, even for those people who do not directly participate in marine-related industries. People value community identity, tax revenue, and indirect economic and social impacts of a stable coastal economy. This sub-goal Livelihood describes job quantity and quality for people living on the coast. Livelihoods includes two equally important sub-components, the number of jobs, which is a proxy for livelihood quantity, and the per capita average annual wages, which is a proxy for job quality. <strong>For Global assessments….</strong></p>
+<p>The jobs and revenue produced from marine-related industries are clearly of huge value to many people, even for those people who do not directly participate in marine-related industries. People value community identity, tax revenue, and indirect economic and social impacts of a stable coastal economy. This sub-goal Livelihood describes job quantity and quality for people living on the coast. Livelihoods includes two equally important sub-components, the number of jobs, which is a proxy for livelihood quantity, and the per capita average annual wages, which is a proxy for job quality.</p>
 </div>
-<div id="model-data-6" class="section level3">
-<h3>Model &amp; Data</h3>
-<p>The AO model assesses …:<br />
-Below are the data sets for this goal.</p>
+<div id="model-1" class="section level3">
+<h3>Model</h3>
+<p>The Livelihood model is based on job and wage data:</p>
+<ul>
+<li>jobs: the total number of jobs within marine sectors within a country, adjusted by sector- and development status-specific multipliers derived from the literature. The multipliers account not only for direct employment opportunities and revenue, but also indirect and induced economic effects, since activity in the direct industry stimulates additional jobs and revenue in related industries.</li>
+<li>average wages per job within each sector: adjusted for PPP (ie. purchasing power parity) to control for differences in the purchasing power of a dollar across countries with respect to a range of common goods.</li>
+</ul>
+<p>The marine sectors included in this model are: Tourism, Commercial fishing, Marine mammal watching, Aquarium fishing, Wave &amp; tidal energy, Mariculture, Transportation &amp; shipping, Ports &amp; harbors, Ship &amp; boatbuilding</p>
 </div>
 <div id="reference-points-7" class="section level3">
 <h3>Reference points</h3>
-<p>Reference point is ….</p>
+<p>Because there is no absolute reference point for jobs (i.e., a target number of jobs would be completely arbitrary), its reference point is calculated as a relative value on a moving baseline: the value in the current year (or most recent year) relative to the value in a recent moving reference period, defined as 5 years prior to the current year. This reflects an implicit goal of maintaining coastal livelihoods and economies on short time scales, allowing for decadal or generational shifts in what people want and expect for coastal livelihoods and economy.</p>
+<p>For wages we assumed the reference value for average annual wages is the highest value observed across all reporting units.</p>
 </div>
+<div id="data" class="section level3">
+<h3>Data</h3>
 </div>
-<div id="this-is-now-ao_layers.rmd-mel-5" class="section level2">
-<h2>This is now AO_layers.Rmd – Mel</h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-7" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#le_gdp_pc_ppp">GDP per capita PPP</a> (le_gdp_pc_ppp): Gross domestic product per person at purchasing power parity</p>
+<p><a href="????#le_jobs_cur_adj_value">Adjustment factor for jobs (most current value)</a> (le_jobs_cur_adj_value): Percent employment during the current status year for each sector/region</p>
+<p><a href="????#le_jobs_cur_base_value">Jobs, most current value</a> (le_jobs_cur_base_value): Number of jobs in each sector and region for the most recent year of data</p>
+<p><a href="????#le_jobs_ref_adj_value">Adjustment factor for jobs (reference period)</a> (le_jobs_ref_adj_value): Percent employment during the reference year (i.e., earliest year of data) for each sector/region</p>
+<p><a href="????#le_jobs_ref_base_value">Jobs, reference value</a> (le_jobs_ref_base_value): Number of jobs in each sector and region for the reference year (earliest year of data for sector/region) of data</p>
+<p><a href="????#le_jobs_sector_year">Jobs for each sector and year</a> (le_jobs_sector_year): Number of jobs in each sector, region, and year.</p>
+<p><a href="????#le_popn">Total human population</a> (le_popn): Human population of OHI regions</p>
+<p><a href="????#le_sector_weight">Sectors in each region</a> (le_sector_weight): Proportion of jobs within each sector</p>
+<p><a href="????#le_unemployment">Unemployment</a> (le_unemployment): Unemployment data from the World Bank</p>
+<p><a href="????#le_wage_cur_adj_value">Adjustment factor for wages (most current value)</a> (le_wage_cur_adj_value): Values are 1, no subsequent adjustments were made to the wage data</p>
+<p><a href="????#le_wage_cur_base_value">Wages, current value</a> (le_wage_cur_base_value): Wage data for the most recent year of data (relative to the assessment year) for each sector/region</p>
+<p><a href="????#le_wage_ref_adj_value">Adjustment factor for wages (reference period)</a> (le_wage_ref_adj_value): Values are 1, no subsequent adjustments were made to the wage data</p>
+<p><a href="????#le_wage_ref_base_value">Wages, reference value</a> (le_wage_ref_base_value): Wage data for the earliest year of data for each sector/region</p>
+<p><a href="????#le_wage_sector_year">Wages for each sector and year</a> (le_wage_sector_year): Wages for each sector, region, and year</p>
+<p><a href="????#le_workforcesize_adj">Adjusted workforce size</a> (le_workforcesize_adj): Total labor force (number of people) from the World Bank</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_slr">Sea level rise</a> (cc_slr): Sea level rise pressure</p>
+<p><a href="????#fp_art_hb">High bycatch due to artisanal fishing</a> (fp_art_hb): The presence of destructive artisanal blast and poison (cyanide) fishing.</p>
+<p><a href="????#fp_art_lb">Low bycatch due to artisanal fishing</a> (fp_art_lb): Extent of artisanal fishing (including: artisanal, subsistence, and recreational catch)</p>
+<p><a href="????#fp_com_hb">High bycatch due to commercial fishing</a> (fp_com_hb): Modeled destructive commercial fishing practices by 5 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#fp_com_lb">Low bycatch due to commercial fishing</a> (fp_com_lb): Modeled destructive commercial fishing practices by 2 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#hd_subtidal_sb">Subtidal softbottom habitat destruction</a> (hd_subtidal_sb): Demersal destructive commercial fishing practices (i.e., trawling) in softbottom habitat as a proxy for soft bottom habitat destruction</p>
+<p><a href="????#po_chemicals">Chemical pollution</a> (po_chemicals): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ</p>
+<p><a href="????#po_nutrients">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_pathogens">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
+<p><a href="????#po_trash">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#sp_genetic">Genetic escapes</a> (sp_genetic): Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#li_gci">Global Competitiveness Index (GCI) scores</a> (li_gci): Competitiveness in achieving sustained economic prosperity</p>
+<p><a href="????#li_sector_evenness">Economic diversity</a> (li_sector_evenness): Sector eveness based on Shannon’s Diversity Index calculated on the proportion of jobs in each sector as a measure of economic diversity</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="livelihoods-economies-economies" class="section level2">
 <h2>Livelihoods &amp; Economies: Economies</h2>
 <div id="goal-description-8" class="section level3">
 <h3>Goal Description</h3>
 <p>Economies captures the economic value associated with marine industries using revenue from marine sectors. It is composed of a single component, revenue.</p>
-<p><strong>For Global assessments….</strong></p>
 </div>
-<div id="model-data-7" class="section level3">
-<h3>Model &amp; Data</h3>
-<p>The AO model assesses …:<br />
-Below are the data sets for this goal.</p>
+<div id="model-2" class="section level3">
+<h3>Model</h3>
+<p>The Economies model assesses revenue from these marine sectors: Tourism, Commercial fishing, Marine mammal watching, Aquarium fishing, Wave &amp; tidal energy, Mariculture, Transportation &amp; shipping, Ports &amp; harbors, Ship &amp; boatbuilding.</p>
+<p>Revenue is adjusted by sector- and development status-specific multipliers derived from the literature to account not only for direct revenue, but also indirect and induced economic effects, since activity in the direct industry stimulates additional jobs and revenue in related industries.</p>
 </div>
 <div id="reference-points-8" class="section level3">
 <h3>Reference points</h3>
-<p>Reference point is ….</p>
+<p>Because there is no absolute reference point for revenue (i.e., a target number of revenue would be completely arbitrary), its reference point is calculated as a relative value on a moving baseline: the value in the current year (or most recent year) relative to the value in a recent moving reference period, defined as 5 years prior to the current year. This reflects an implicit goal of maintaining coastal livelihoods and economies on short time scales, allowing for decadal or generational shifts in what people want and expect for coastal livelihoods and economy.</p>
 </div>
-</div>
-<div id="this-is-now-ao_layers.rmd-mel-6" class="section level2">
-<h2>This is now AO_layers.Rmd – Mel</h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-8" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#le_gdp">GDP</a> (le_gdp): Gross Domestic Product (GDP)</p>
+<p><a href="????#le_rev_cur_adj_value">Adjustment factor for revenue (most current value)</a> (le_rev_cur_adj_value): GDP during the current status year of each sector/region (World Bank)</p>
+<p><a href="????#le_rev_cur_base_value">Revenue, most current value</a> (le_rev_cur_base_value): Revenue data for the most recent year of data (relative to the assessment year) for each sector/region</p>
+<p><a href="????#le_rev_ref_adj_value">Adjustment factor for revenue (reference period)</a> (le_rev_ref_adj_value): GDP during the reference year (i.e., earliest year of data) of each sector/region (World Bank)</p>
+<p><a href="????#le_rev_ref_base_value">Revenue, reference value</a> (le_rev_ref_base_value): Revenue data for the earliest year of each sector for each sector/region</p>
+<p><a href="????#le_rev_sector_year">Revenue for each sector and year</a> (le_rev_sector_year): Revenue for each sector, region, and year</p>
+<p><a href="????#le_revenue_adj">GDP</a> (le_revenue_adj): GDP data used to adjust revenue values</p>
+<p><a href="????#le_sector_weight">Sectors in each region</a> (le_sector_weight): Proportion of jobs within each sector</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_acid">Ocean acidification</a> (cc_acid): Ocean acidification pressure scaled using biological thresholds</p>
+<p><a href="????#cc_slr">Sea level rise</a> (cc_slr): Sea level rise pressure</p>
+<p><a href="????#cc_sst">Sea surface temperature anomolies</a> (cc_sst): Sea surface temperature anomolies</p>
+<p><a href="????#fp_art_hb">High bycatch due to artisanal fishing</a> (fp_art_hb): The presence of destructive artisanal blast and poison (cyanide) fishing.</p>
+<p><a href="????#fp_art_lb">Low bycatch due to artisanal fishing</a> (fp_art_lb): Extent of artisanal fishing (including: artisanal, subsistence, and recreational catch)</p>
+<p><a href="????#fp_com_hb">High bycatch due to commercial fishing</a> (fp_com_hb): Modeled destructive commercial fishing practices by 5 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#fp_com_lb">Low bycatch due to commercial fishing</a> (fp_com_lb): Modeled destructive commercial fishing practices by 2 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#hd_subtidal_sb">Subtidal softbottom habitat destruction</a> (hd_subtidal_sb): Demersal destructive commercial fishing practices (i.e., trawling) in softbottom habitat as a proxy for soft bottom habitat destruction</p>
+<p><a href="????#po_chemicals">Chemical pollution</a> (po_chemicals): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ</p>
+<p><a href="????#po_nutrients">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_pathogens">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
+<p><a href="????#po_trash">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#sp_genetic">Genetic escapes</a> (sp_genetic): Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#li_gci">Global Competitiveness Index (GCI) scores</a> (li_gci): Competitiveness in achieving sustained economic prosperity</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="sense-of-place-iconic-species" class="section level2">
 <h2>Sense of Place: Iconic Species</h2>
@@ -558,19 +744,43 @@ Below are the data sets for this goal.</p>
 <h3>Goal Description</h3>
 <p>Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value (e.g., touristic attractions/common subjects for art such as whales). Habitat-forming species are not included in this definition of iconic species, nor are species that are harvested solely for economic or utilitarian purposes (even though they may be iconic to a sector or individual). This sub-goal assesses how well those species are conserved.</p>
 </div>
-<div id="model-data-8" class="section level3">
+<div id="model-data-6" class="section level3">
 <h3>Model &amp; Data</h3>
 <p>The Iconic Species model measures the percentage of iconic species in each extinction risk category. Species list is drawn from the World Wildlife Fund’s global and regional lists for Priority Species (especially important to people for their health, livelihoods, and/or culture) and Flagship Species (‘charismatic’ and/or well-known). Threat weights were assigned based on the IUCN threat categories status of each species.</p>
 </div>
 <div id="reference-points-9" class="section level3">
 <h3>Reference points</h3>
-<p>The reference point is to have the risk status of all assessed species as Least Concern.</p>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+</div>
+<div id="data-used-in-model-9" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#ico_spp_iucn_status">IUCN extinction risk</a> (ico_spp_iucn_status): IUCN extinction risk category for iconic species located within each region</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_acid">Ocean acidification</a> (cc_acid): Ocean acidification pressure scaled using biological thresholds</p>
+<p><a href="????#cc_sst">Sea surface temperature anomolies</a> (cc_sst): Sea surface temperature anomolies</p>
+<p><a href="????#fp_art_hb">High bycatch due to artisanal fishing</a> (fp_art_hb): The presence of destructive artisanal blast and poison (cyanide) fishing.</p>
+<p><a href="????#fp_com_hb">High bycatch due to commercial fishing</a> (fp_com_hb): Modeled destructive commercial fishing practices by 5 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#fp_targetharvest">Targeted harvest of cetaceans and marine turtles</a> (fp_targetharvest): Targeted harvest of cetaceans and marine turtles</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#po_chemicals_3nm">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_trash">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#fp_habitat">Management of habitat to preserve biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#fp_mora">Commercial fishing management</a> (fp_mora): Regulations and management of commerical fishing</p>
+<p><a href="????#fp_mora_artisanal">Artisanal fisheries opportunity &amp; management effectiveness</a> (fp_mora_artisanal): The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
+<p><a href="????#fp_mpa_eez">EEZ protected marine areas</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#g_cites">CITES signatories</a> (g_cites): Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories</p>
+<p><a href="????#hd_habitat">Management of habitat to preserve biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#hd_mpa_eez">EEZ protected marine areas</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#species_diversity_eez">Measure of ecological integrity</a> (species_diversity_eez): Marine species condition (species subgoal status score) as a proxy for ecological integrity</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
 </div>
 </div>
@@ -580,7 +790,7 @@ Below are the data sets for this goal.</p>
 <h3>Goal Description</h3>
 <p>Sense of Place goal tries to capture the aspects of the coastal and marine system that people value as part of their cultural identity. This definition includes people living near the ocean and those who live far from it but still derive a sense of identity or value from knowing particular places or species exist. The sub-goal of Lasting Special Places focuses on those geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. A score of 100 means the species and places important for cultural identity are protected and conserved.</p>
 </div>
-<div id="model-1" class="section level3">
+<div id="model-3" class="section level3">
 <h3>Model</h3>
 <p>The model measures the percentage of coastal marine protected area and protected coastline in each country, against a reference percentage. We focus only on coastal waters (within 3nmi of shore) for marine special places because it was assumed that lasting special places are primarily in coastal areas; we wanted our estimates of % area protected to be bounded to this coastal region. For coastlines, we focused only on the first km-wide strip of land as a way to increase the likelihood that the area being protected by terrestrial parks is connected to the marine system in some way.</p>
 </div>
@@ -588,14 +798,30 @@ Below are the data sets for this goal.</p>
 <h3>Reference points</h3>
 <p>Assuming that all countries have roughly the same percentage of their coastal waters and coastline that qualify as lasting special places. In other words, they all have the same reference target (as a percentage of the total area). The target reference level is 30% of area protected.</p>
 </div>
-</div>
-<div id="data-1" class="section level2">
-<h2>Data</h2>
-<p>This is now AO_layers.Rmd – Mel</p>
-<p>[KASDOJy] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-10" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#lsp_prot_area_inland1km">Inland coastal protected areas</a> (lsp_prot_area_inland1km): Protected areas located 1 km inland</p>
+<p><a href="????#lsp_prot_area_offshore3nm">Offshore coastal protected areas</a> (lsp_prot_area_offshore3nm): Protected areas located 3nm offshore</p>
+<p><a href="????#rgn_area_inland1km">Inland area</a> (rgn_area_inland1km): Inland area of OHI regions within 1km of shoreline</p>
+<p><a href="????#rgn_area_offshore3nm">Offshore area</a> (rgn_area_offshore3nm): Offshore area of OHI regions within 3nm of shoreline</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_slr">Sea level rise</a> (cc_slr): Sea level rise pressure</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#po_chemicals_3nm">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_trash">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#hd_habitat">Management of habitat to preserve biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="clean-waters" class="section level2">
 <h2>Clean Waters</h2>
@@ -603,7 +829,7 @@ Below are the data sets for this goal.</p>
 <h3>Goal Description</h3>
 <p>People value marine waters that are free of pollution and debris for aesthetic and health reasons. Contamination of waters comes from oil spills, chemicals, eutrophication, algal blooms, disease pathogens (e.g., fecal coliform, viruses, and parasites from sewage outflow), floating trash, and mass kills of organisms due to pollution. People are sensitive to these phenomena occurring in areas that they access for recreation or other purposes as well as for simply knowing that clean waters exist. The Clean Water goal captures the degree to which local waters are unpolluted by natural and human-made causes. This goal scores highest when the contamination level is zero.</p>
 </div>
-<div id="model-2" class="section level3">
+<div id="model-4" class="section level3">
 <h3>Model</h3>
 <p>CW goal score is calculated as the geometric mean of its four components: eutrophication (nutrients), chemicals, pathogens and marine debris. They are meant to represent a comprohensive list of contamination categories that are commonly considered in assessments of coastal clean waters and for which we could obtain datasets. <em>Chemical pollution</em> was measured as the average of land-based organic and inorganic pollution from agricultural pesticide use and runoff from impervious surfaces, respectively, and ocean-based pollution from commercial shipping and ports. The modeled input of land-based nitrogen input from (Halpern et al. 2008) was used as a proxy for <em>nutrient</em> input. Due to a lack of information on direct measurements of human pathogen in the coastal water, we used a proxy measure for pathogen: the number of people in coastal areas without access to improved sanitation facilities, assuming that locations with fewer people with access to improved facilities would lead to a a higher likelihood of coastal water contamination from human pathogens. The status of <em>trash pollution</em> was estimated using globally-available coastal beach cleanup data from the Ocean Conservancy, which records the weight of trash per year that were collected (Halpern 2012).</p>
 </div>
@@ -611,14 +837,28 @@ Below are the data sets for this goal.</p>
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
 </div>
-<div id="data-2" class="section level3">
-<h3>Data</h3>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-11" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#cw_chemical_trend">Chemical pollution trend</a> (cw_chemical_trend): Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ</p>
+<p><a href="????#cw_nutrient_trend">Nutrient pollution trend</a> (cw_nutrient_trend): Trends in nutrient pollution, based on fertilizer consumption as a proxy for nutrient pollution</p>
+<p><a href="????#cw_pathogen_trend">Pathogen pollution trend</a> (cw_pathogen_trend): Trends in percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
+<p><a href="????#cw_trash_trend">Plastic trash trends</a> (cw_trash_trend): Trends in trash estimated using improperly disposed of plastics</p>
+<p><a href="????#po_chemicals_3nm">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_pathogens">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
+<p><a href="????#po_trash">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#po_chemicals_3nm">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_pathogens">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
+<p><a href="????#po_trash">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
 </div>
 </div>
@@ -629,7 +869,7 @@ Below are the data sets for this goal.</p>
 <p>People value biodiversity in particular for its existence value. The risk of species extinction generates great emotional and moral concern for many people. As such, Biodiversity goal assesses the conservation status of species based on the best available global data. This sub-goal of Species assesses the health of all marine species present in a region, including endangered species and species in relatively good conditions. The presence of higher-risk species leads to a higher score.</p>
 <p><strong>For Global assessments….</strong></p>
 </div>
-<div id="model-data-9" class="section level3">
+<div id="model-data-7" class="section level3">
 <h3>Model &amp; Data</h3>
 <p>The Species model measures the average number of threatened species in each country, weighted by each species’ threat status defined by IUCN Red List and its coverage area. The spatial resolution is 0.5 degree.</p>
 <p>Species list and information on their extinction risks came from three sources:</p>
@@ -644,16 +884,45 @@ Below are the data sets for this goal.</p>
 <h3>Reference points</h3>
 <p>The upper reference point for the Species sub-goal is to have all species at a risk status of Least Concern. We also scaled the lower end of the goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions66 and would constitute a catastrophic loss of biodiversity.</p>
 </div>
-</div>
-<div id="this-is-now-ao_layers.rmd-mel-7" class="section level2">
-<h2>This is now AO_layers.Rmd – Mel</h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-12" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#spp_status">Average species condition</a> (spp_status): Species condition based on average of IUCN threat categories</p>
+<p><a href="????#spp_trend">Average species condition trend</a> (spp_trend): Species trends based on average of IUCN population trend data</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_acid">Ocean acidification</a> (cc_acid): Ocean acidification pressure scaled using biological thresholds</p>
+<p><a href="????#cc_sst">Sea surface temperature anomolies</a> (cc_sst): Sea surface temperature anomolies</p>
+<p><a href="????#cc_uv">UV radiation</a> (cc_uv): Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC</p>
+<p><a href="????#fp_art_hb">High bycatch due to artisanal fishing</a> (fp_art_hb): The presence of destructive artisanal blast and poison (cyanide) fishing.</p>
+<p><a href="????#fp_art_lb">Low bycatch due to artisanal fishing</a> (fp_art_lb): Extent of artisanal fishing (including: artisanal, subsistence, and recreational catch)</p>
+<p><a href="????#fp_com_hb">High bycatch due to commercial fishing</a> (fp_com_hb): Modeled destructive commercial fishing practices by 5 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#fp_com_lb">Low bycatch due to commercial fishing</a> (fp_com_lb): Modeled destructive commercial fishing practices by 2 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#fp_targetharvest">Targeted harvest of cetaceans and marine turtles</a> (fp_targetharvest): Targeted harvest of cetaceans and marine turtles</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#hd_subtidal_sb">Subtidal softbottom habitat destruction</a> (hd_subtidal_sb): Demersal destructive commercial fishing practices (i.e., trawling) in softbottom habitat as a proxy for soft bottom habitat destruction</p>
+<p><a href="????#po_chemicals">Chemical pollution</a> (po_chemicals): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ</p>
+<p><a href="????#po_nutrients">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#po_trash">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#sp_genetic">Genetic escapes</a> (sp_genetic): Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#fp_habitat">Management of habitat to preserve biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#fp_mora">Commercial fishing management</a> (fp_mora): Regulations and management of commerical fishing</p>
+<p><a href="????#fp_mora_artisanal">Artisanal fisheries opportunity &amp; management effectiveness</a> (fp_mora_artisanal): The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
+<p><a href="????#fp_mpa_eez">EEZ protected marine areas</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#g_cites">CITES signatories</a> (g_cites): Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories</p>
+<p><a href="????#g_mariculture">Management of mariculture practices to preserve biodiversity</a> (g_mariculture): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: mariculture related questions</p>
+<p><a href="????#g_tourism">Management of tourism to preserve biodiversity</a> (g_tourism): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#hd_habitat">Management of habitat to preserve biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#hd_mpa_eez">EEZ protected marine areas</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
+</div>
 </div>
 <div id="biodiversity-habitats" class="section level2">
 <h2>Biodiversity: Habitats</h2>
@@ -661,7 +930,7 @@ Below are the data sets for this goal.</p>
 <h3>Goal Description</h3>
 <p>Habitats conditions are considered as a proxy for condition of the broad suite of species that depend on them. The Habitats sub-goal includes all habitats in the study area, and assess their health condition and coverage area.</p>
 </div>
-<div id="model-data-10" class="section level3">
+<div id="model-data-8" class="section level3">
 <h3>Model &amp; Data</h3>
 <p>The Habitat model assessed all habitats for which at least some global data were available, specifically: mangroves, coral reefs, seagrass beds, salt marshes, sea ice edge, and subtidal soft-bottom habitats. Status was calculated as the average of the condition estimates for each habitat present in a region, measured as the loss of habitat and/or percent degradation of remaining habitat.</p>
 <p>Below are the data sets for this goal.</p>
@@ -670,18 +939,49 @@ Below are the data sets for this goal.</p>
 <h3>Reference points</h3>
 <p>Reference point is ….</p>
 </div>
-</div>
-<div id="this-is-now-ao_layers.rmd-mel-8" class="section level2">
-<h2>This is now AO_layers.Rmd – Mel</h2>
-<p><strong>Status and Trend:</strong></p>
-<ul>
-<li>[Artisanal fisheries management effectiveness and opportunity] (go to the layers.html#ao_need, where there’s more description, whether it was updated in that year, relevant refs, link to data prep) (some day, info about gapfilling) Accompanying text: The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</li>
-</ul>
-<p><strong>Pressures:</strong></p>
-<p><strong>Resilience:</strong></p>
+<div id="data-used-in-model-13" class="section level3">
+<h3>Data used in model</h3>
+<p><strong>Status &amp; trend</strong></p>
+<p><a href="????#hab_extent">Habitat extent</a> (hab_extent): Area of habitats: mangrove, saltmarsh, seagrass, soft-bottom, seaice, coral</p>
+<p><a href="????#hab_health">Habitat condition</a> (hab_health): Current condition of habitat relative to historical condition</p>
+<p><a href="????#hab_trend">Habitat condition trend</a> (hab_trend): Estimated change in habitat condition</p>
+<p><strong>Pressure</strong></p>
+<p><a href="????#cc_acid">Ocean acidification</a> (cc_acid): Ocean acidification pressure scaled using biological thresholds</p>
+<p><a href="????#cc_slr">Sea level rise</a> (cc_slr): Sea level rise pressure</p>
+<p><a href="????#cc_sst">Sea surface temperature anomolies</a> (cc_sst): Sea surface temperature anomolies</p>
+<p><a href="????#cc_uv">UV radiation</a> (cc_uv): Modeled UV radiation based on Erythemal UV Irradiance data provided by GES DISC</p>
+<p><a href="????#fp_art_hb">High bycatch due to artisanal fishing</a> (fp_art_hb): The presence of destructive artisanal blast and poison (cyanide) fishing.</p>
+<p><a href="????#fp_art_lb">Low bycatch due to artisanal fishing</a> (fp_art_lb): Extent of artisanal fishing (including: artisanal, subsistence, and recreational catch)</p>
+<p><a href="????#fp_com_hb">High bycatch due to commercial fishing</a> (fp_com_hb): Modeled destructive commercial fishing practices by 5 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#fp_com_lb">Low bycatch due to commercial fishing</a> (fp_com_lb): Modeled destructive commercial fishing practices by 2 gear types and scaled by Net Primary Productivity</p>
+<p><a href="????#hd_intertidal">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
+<p><a href="????#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): High bycatch artisanal fishing practices (blast fishing) as a proxy for subtidal hard bottom habitat destruction</p>
+<p><a href="????#hd_subtidal_sb">Subtidal softbottom habitat destruction</a> (hd_subtidal_sb): Demersal destructive commercial fishing practices (i.e., trawling) in softbottom habitat as a proxy for soft bottom habitat destruction</p>
+<p><a href="????#po_chemicals_3nm">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within 3nm of coastline</p>
+<p><a href="????#po_nutrients_3nm">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption from the Food and Agricultural Organization</p>
+<p><a href="????#sp_alien">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
+<p><a href="????#ss_spi">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
+<p><a href="????#ss_wgi">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Resilience</strong></p>
+<p><a href="????#fp_habitat">Management of habitat to preserve biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#fp_mora">Commercial fishing management</a> (fp_mora): Regulations and management of commerical fishing</p>
+<p><a href="????#fp_mora_artisanal">Artisanal fisheries opportunity &amp; management effectiveness</a> (fp_mora_artisanal): The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
+<p><a href="????#fp_mpa_coast">Coastal protected marine areas</a> (fp_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
+<p><a href="????#fp_mpa_eez">EEZ protected marine areas</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#g_mariculture">Management of mariculture practices to preserve biodiversity</a> (g_mariculture): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: mariculture related questions</p>
+<p><a href="????#g_tourism">Management of tourism to preserve biodiversity</a> (g_tourism): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#hd_habitat">Management of habitat to preserve biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: habitat related questions</p>
+<p><a href="????#hd_mpa_coast">Coastal protected marine areas</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
+<p><a href="????#hd_mpa_eez">EEZ protected marine areas</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
+<p><a href="????#po_water">Management of water pollution to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biologicial Diversity (CBD) Third National Report: tourism related questions</p>
+<p><a href="????#res_spi">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
+<p><a href="????#species_diversity_3nm">Measure of coastal ecological integrity</a> (species_diversity_3nm): Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity</p>
+<p><a href="????#species_diversity_eez">Measure of ecological integrity</a> (species_diversity_eez): Marine species condition (species subgoal status score) as a proxy for ecological integrity</p>
+<p><a href="????#wgi_all">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
 <hr />
 <p><br> <br> <a href="http://ohi-science.org"><img src="https://docs.google.com/drawings/d/1633uvIYgsBhiKBddQAaTlvYDJgOK1uiDB6wkooNyhFc/pub?w=576&h=288" width="100px"></a><br />
 <a href="http://ohi-science.org">ohi-science.org home</a></p>
+</div>
 </div>
 
 
@@ -694,11 +994,8 @@ Below are the data sets for this goal.</p>
 <script>
 
 // add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
 $(document).ready(function () {
-  bootstrapStylePandocTables();
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
 
 
