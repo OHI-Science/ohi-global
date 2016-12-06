@@ -24,6 +24,7 @@ write(tmp, "eez2016/conf/layers_info/layers_all.Rmd")
 
 ######################################################
 ### Load libraries in Rmd
+### and get master list of layers
 #######################################################
 
 tmp <- capture.output( cat(paste0("\n```{r, message=FALSE, echo=FALSE, warning=FALSE, error=FALSE}"),
@@ -33,6 +34,9 @@ tmp <- capture.output( cat(paste0("\n```{r, message=FALSE, echo=FALSE, warning=F
                            "library(tidyr)",
                            "\n",
                            "library(knitr)",
+                           "\n",
+                           "layer_meta <- read.csv('../../../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE)",
+                           "\n",
                            "\n```"))
                            
 write(tmp, "eez2016/conf/layers_info/layers_all.Rmd", append=TRUE)
@@ -71,7 +75,7 @@ tmp <- capture.output( cat("\n",
                           paste0("\n#", layer_long),
                           paste0("\n####(", layer_short, ") {-}"),
                           
-                          paste0("\n```{r,",sprintf(" child = '%s.Rmd'", layer_short), ", echo=FALSE}"),
+                          paste0("\n```{r,",sprintf(" child = '%s.Rmd'", layer_short), ", echo=FALSE, results='asis'}"),
                           "\n",
                           "\n```",
                           
