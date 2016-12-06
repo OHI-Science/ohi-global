@@ -1,5 +1,5 @@
-Area (km2) located from each region's land-sea interface to 1 km inland. 
+See **`r layer_meta$name[layer_meta$layer == 'rgn_area']`** layer for more information.
+
+Area (km^2^) located from each region's land-sea interface to 1 km inland. 
 
 For coastal land (inland) areas, we extracted hi-resolution country boundary data from ESRI (2010), and rasterized it with a resolution to match our land-sea interface model. We grew this raster by 50 pixels to bridge gaps between the ESRI data and our land-sea model. The ESRI data have Taiwan as part of China, so we manually extracted the mainland of Taiwan to calculate land area.  Area values do not include inland lakes or EEZs.
-
-See rgn_area layer for more information.
