@@ -9,7 +9,7 @@ library(tidyr)
 # data with information
 layers <- read.csv("../../eez_layers_meta_data/layers_eez_base.csv")
 targets <- read.csv("../../eez_layers_meta_data/layers_eez_targets.csv")
-
+layers_web <- "http://ohi-science.org/ohi-global/layers.html"
 # setwd('eez2016/conf/')
 ```
 
@@ -30,7 +30,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+  mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -46,7 +49,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -61,7 +67,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -85,7 +94,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -101,7 +113,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -116,7 +131,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -141,7 +159,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -157,7 +178,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -172,7 +196,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -196,7 +223,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -212,7 +242,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -227,7 +260,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -252,7 +288,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -268,7 +307,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -283,7 +325,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -309,7 +354,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -325,7 +373,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -340,7 +391,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -365,7 +419,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -381,7 +438,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -396,7 +456,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -421,7 +484,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -437,7 +503,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -452,7 +521,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -477,7 +549,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -493,7 +568,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -508,7 +586,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -532,7 +613,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -548,7 +632,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -563,7 +650,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -588,7 +678,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -604,7 +697,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -619,7 +715,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -645,7 +744,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -661,7 +763,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -676,7 +781,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -702,7 +810,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -718,7 +829,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -733,7 +847,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -757,7 +874,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -773,7 +893,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
@@ -788,7 +911,10 @@ st <- targets %>%
   unique()
 
 st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(info = sprintf("[%s](????#%s) (%s): %s", name, layer, layer, description))
+ mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 
