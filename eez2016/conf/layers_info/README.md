@@ -6,5 +6,5 @@
 
 If you need to update the description, do it in the .Rmd files located in ohi_global/eez2016/conf/layers_info.
 
-If you need to update any of the other information (name, units, references, etc.), do this in the csv files located in ohi-global/eez_layers_meta_data
+If you need to update any of the other information (name, units, references, etc.), do this in the csv files located in ohi-global/eez_layers_meta_data.  NOTE: **DO NOT** change the "layer"" name....this will mess everything up.
 
