@@ -1,3 +1,7 @@
+*Pressure*
+*Category: ecological*
+*Subcategory: fishing pressure*
+
 This pressure layer uses **Industrial** fish catch reconstruction data from the [Sea Around Us Project](http://www.seaaroundus.org/) (SAUP) to model commercial fishing using high bycatch gear at a resolution of 0.5 degrees globally. Total catch (tons) per 0.5 degree cell is distributed between high and low bycatch fishing gear using data layers from Halpern et al. (2008), which assign catch per 0.5 degree cell across five unique commercial fishing gear types. High bycatch commercial fishing is measured as total catch caught by demersal destructive (e.g., trawl), demersal non-destructive high bycatch (e.g., pots, traps) and pelagic high bycatch (e.g., long-line) gear. The proportion of catch caught within each category is calculated from the Halpern et al. (2008) data layers and subsequently applied to the catch reconstruction data to produce a single layer representing commercial fishing utilizing high bycatch gear.
 
 Catch per cell is then standardized by mean net primary productivity (mg C/m^2^/day) derived from monthly output from the Vertically Generalized Production Model (VGPM) available here: [http://www.science.oregonstate.edu/ocean.productivity/](http://www.science.oregonstate.edu/ocean.productivity/). Standardizing catch by primary productivity accounts for the same fishing pressure having different impacts depending on the productivity in the region. The layer is rescaled from 0 to 1 using the 99.99th quantile of the entire data layer.

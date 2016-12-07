@@ -1,3 +1,7 @@
+*Pressure*
+*Category: ecological*
+*Subcategory: pollution*
+
 This pressure layer is calculated using modeled data for land-based organic pollution (pesticide data), land-based inorganic pollution (using impermeable surfaces as a proxy), and ocean pollution (shipping and ports). These global data are provided at ~1km resolution, with values scaled from 0-1 (Halpern et al. 2008, 2015). To obtain the final pressure values, the three raster layers were summed (with cell values capped at 1).   
 
 #### Land-based organic pollution
