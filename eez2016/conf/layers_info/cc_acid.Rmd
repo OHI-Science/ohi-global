@@ -1,6 +1,0 @@
-*Pressure*
-*Category: ecological*
-*Subcategory: climate change*
-
-This pressure layer models the difference in global distribution of the aragonite saturation state (&Omega;~arag~) of the ocean in the pre-industrial era and modern times. Global estimates through time (Feely et al. 2009) are modeled at 1-degree resolution. Changes in the saturation state can be attributed to changes in the concentration of CO~2~ and thus we use the difference between the pre-industrial and modern times as a proxy for ocean acidification due to human influences. Values are rescaled from 0 to 1 using the threshold at which seawater becomes undersaturated, where &Omega;~arag~ =1.
-

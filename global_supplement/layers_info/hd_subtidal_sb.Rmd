@@ -1,0 +1,9 @@
+*Pressure*
+
+*Category: ecological*
+
+*Subcategory: habitat destruction*
+
+See **`r layer_meta$name[layer_meta$layer == 'hab_health']`** layer to get more information about this layer.
+
+The Pressure score was calculated as one minus soft-bottom habitat condition.
