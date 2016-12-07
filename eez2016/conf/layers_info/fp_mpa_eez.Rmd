@@ -1,5 +1,0 @@
-*Resilience*
-*Category: ecological/regulatory*
-*Subcategory: fishing*
-
-These data are calculated using the lasting special places status subgoal model (except this calculation is based on the entire eez region vs. 3 nm offshore).  The total marine protected area (km^2^) within the offshore eez region is determined (see the **`r layer_meta$name[layer_meta$layer == 'lsp_prot_area_offshore3nm']`** layer for information about the data). Following to the lasting special places model, a reference point of 30% is used, such that any region with 30%, or more, protected area receives a score of 1. 

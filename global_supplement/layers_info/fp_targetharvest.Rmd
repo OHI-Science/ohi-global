@@ -1,0 +1,7 @@
+*Pressure*
+
+*Category: ecological*
+
+*Subcategory: fishing pressure*
+
+This data layer describes the pressure on cetaceans and marine turtles for each country based on FAO data (FAO Global Capture Production Quantity). We extracted all catch records from the FAO data for cetaceans or marine turtles and aggregated to create a total reported catch count for each region. The summed catch was rescaled from 0-1, using the 95th quantile across all years (including and prior to the assessment year) and regions (values > 1 were capped at 1).

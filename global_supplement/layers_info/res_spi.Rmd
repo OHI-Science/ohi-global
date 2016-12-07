@@ -1,0 +1,5 @@
+*Resilience*
+
+*Category: social*
+
+The Social Progress Index ([http://www.socialprogressimperative.org/global-index/](http://www.socialprogressimperative.org/global-index/)) includes several quality of life measures.  The SPI score is calculated by averaging the score of 3 dimensions, and each dimension is calculated by averaging the scores of 4 components.  Each component includes several indicators that are scaled from 0 to 100.  The SPI is not calculated for any region with 1 or more missing subcomponents.  In these cases, we used a linear regression model of the subcomponents with data to estimate the missing subcomponent values.  Regions without data were gapfilled with predicted values from a linear regression model that included UN geopolitical region and WGI values as predictor variables.  Uninhabited regions received no score.  

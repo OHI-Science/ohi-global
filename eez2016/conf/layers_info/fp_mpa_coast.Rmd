@@ -1,5 +1,0 @@
-*Resilience*
-*Category: ecological/regulatory*
-*Subcategory: fishing*
-
-These data are calculated using the lasting special places status subgoal model.  The total marine protected area (km^2^) within 3 nm offshore is determined (see **`r layer_meta$name[layer_meta$layer == 'lsp_prot_area_offshore3nm']`** layer for information about the data). Following the lasting special places model, a reference point of 30% is used, such that any region with 30%, or more, protected area receives a score of 1. 
