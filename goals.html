@@ -22,11 +22,12 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/textmate.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -154,6 +155,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -179,7 +181,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -238,9 +240,8 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
+  font-size: 0.9em;
+  padding-left: 5px;
 }
 
 .tocify .list-group-item {
@@ -309,18 +310,18 @@ Put in your css file or directly in rmarkdown--->
     -moz-columns: 2 200px;    /* firefox */
   }
 </style>
-<p><strong>Global Ocean Health Index assessments score 10 goals, some of which have sub-goals</strong>. Here you will find a description about how goals are represented in global assessments. Goal-by-goal, you can explore the data used to model status and trend, as well as the pressures and resilience measures contributing to goal scores.</p>
+<p><br> <strong>Global Ocean Health Index assessments score 10 goals, some of which have sub-goals</strong>. Here you will find a description about how goals are represented in global assessments. Goal-by-goal, you can explore the data used to model status and trend, as well as the pressures and resilience measures contributing to goal scores.</p>
 <div class="figure">
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vQr-cykqFsiuUZ-XuSv4qxL5FjztCNztfb98ryLg0hHDn3eU6e-febTqJuMARZAvH-eZNMig3484DC_/pub?w=1344&amp;h=432" />
+<img src="https://docs.google.com/drawings/d/1P2srN6mcimxVgurWMVooFiI2kIgltz_q8e02FG296Ww/pub?w=1344&amp;h=432" />
 
 </div>
-<p><br></p>
+<hr />
 <div class="col2">
 <div class="figure">
 <img src="https://docs.google.com/drawings/d/1O08iEoo3qxOZRoK6Ohv-jdouTBsN_kafJjIhEEqb-yg/pub?w=960&amp;h=720" />
 
 </div>
-<p><br> <br> <strong>Goal scores are calculated by modeling data first as Present Status and Likely Future State.</strong><br />
+<p><br> <strong>Goal scores are calculated by modeling data first as Present Status and Likely Future State.</strong><br />
 Likely Future State is a combination of status, trend, pressures and resilience calculations, all of which require the best available data but ultimately contribute to goals scores unequally. Scroll down and click on a data set to access metadata and data processing information, or explore <a href="http://ohi-science.org/ohi-global/layers.html">the complete list of global data</a>, or <a href="http://ohi-science.org/goals">OHI+ goal approaches</a>. <!--- TODO: link to supplement ---></p>
 </div>
 <hr />
@@ -1000,11 +1001,8 @@ The model is based on single-species assessments of stock status and thus cannot
 <script>
 
 // add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
 $(document).ready(function () {
-  bootstrapStylePandocTables();
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
 
 
