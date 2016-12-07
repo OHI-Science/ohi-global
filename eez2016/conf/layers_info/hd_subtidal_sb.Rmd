@@ -1,3 +1,3 @@
-See hab_health layer to get more information about this layer.
+See **`r layer_meta$name[layer_meta$layer == 'hab_health']`** layer to get more information about this layer.
 
-The Pressure score was calculated as one minus the soft-bottom habitat condition metric.
+The Pressure score was calculated as one minus soft-bottom habitat condition.

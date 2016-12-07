@@ -1,4 +1,4 @@
-See le_rev_sector_year layer for informationa about data and methods.  
+See **`r layer_meta$name[layer_meta$layer == 'le_rev_sector_year']`** layer for information about data and methods.  
 
-This layer describes revenue data (from the le_rev_sector_year layer) for the most recent year of data (relative to the assessment year) for each sector/region.
+This layer describes revenue data (from the **`r layer_meta$name[layer_meta$layer == 'le_rev_sector_year']`** layer) for the most recent year of data (relative to the assessment year) for each sector/region.
 

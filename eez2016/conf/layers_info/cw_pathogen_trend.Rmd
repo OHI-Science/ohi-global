@@ -1,6 +1,4 @@
-Melanie will do this one.
-
-See description of data and methods in po_pathogens layer.
+See description of data and methods in **`r layer_meta$name[layer_meta$layer == 'po_pathogens']`** layer.
 
 The proportional yearly change in pathogen pressure values were estimated using a linear regression model of the most recent five years of data (i.e., slope divided by data from the earliest year included in the regression model).  The slope was then multiplied by five to get the predicted change in 5 years.  
 

@@ -1,6 +1,6 @@
 The need for artisanal fishing opportunities is measured as purchasing power parity adjusted per capita gross domestic product (ppppcgdp) in "constant" USD (World Bank, [http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD)). Gross domestic product (gdp) was obtained in  US dollars from The World Bank. The World Bank defines gdp as the gross value of all resident producers in the economy plus product taxes and minus and subsidies not included in the value of the products. The gdp was then adjusted by population size to get per capita output and by purchasing power parity (ppp) to account for the difference in exchange rates between countries.  These values are then rescaled to have values between zero and one by taking the natural log of the values and then dividing by the 99th quantile value across all years/regions (2005 to most recent year). 
 
-When a region is missing some year's of data, a within region linear model is used to estimate the missing values.
+When a region is missing some years of data, a within region linear model is used to estimate the missing values.
 
 This is actually a measure of prosperity, but it is converted to need in the artisanal opportunities goal model (1 minus ppppcgdp).
 
