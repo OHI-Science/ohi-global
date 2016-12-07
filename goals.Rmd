@@ -20,24 +20,20 @@ Put in your css file or directly in rmarkdown--->
   }
 </style>
  
-**Global Ocean Health Index assessments score 10 goals, some of which have sub-goals**. Here you will find a description about how goals are represented in global assessments.   
+**Global Ocean Health Index assessments score 10 goals, some of which have sub-goals**. Here you will find a description about how goals are represented in global assessments. Goal-by-goal, you can explore the data used to model status and trend, as well as the pressures and resilience measures contributing to goal scores.    
 
 ![](https://docs.google.com/drawings/d/e/2PACX-1vQr-cykqFsiuUZ-XuSv4qxL5FjztCNztfb98ryLg0hHDn3eU6e-febTqJuMARZAvH-eZNMig3484DC_/pub?w=1344&h=432)
 
-Scroll down and click on a data set to access metadata and data processing information. Goal-by-goal, you can explore the data used to model status and trend, as well as the pressures and resilience measures contributing to goal scores. Data are modeled, and contribute to goals scores unequally, as the figure below shows.
+<br>
 
 <div class="col2">
-<br>
-<br>
-<br>
-<br>
-<br>
-
-- [Explore the complete list of global data](http://ohi-science.org/ohi-global/layers.html)  
-- [Explore OHI+ goal approaches](http://ohi-science.org/goals)
-<!--- TODO: link to supplement --->
-
 ![](https://docs.google.com/drawings/d/1O08iEoo3qxOZRoK6Ohv-jdouTBsN_kafJjIhEEqb-yg/pub?w=960&h=720)
+
+<br>
+<br>
+**Goal scores are calculated by modeling data first as Present Status and Likely Future State.**  
+Likely Future State is a combination of status, trend, pressures and resilience calculations, all of which require the best available data but ultimately contribute to goals scores unequally. Scroll down and click on a data set to access metadata and data processing information, or explore [the complete list of global data](http://ohi-science.org/ohi-global/layers.html), or [OHI+ goal approaches](http://ohi-science.org/goals).
+<!--- TODO: link to supplement --->
 
 </div>
 ----
