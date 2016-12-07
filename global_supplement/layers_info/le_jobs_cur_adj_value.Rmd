@@ -1,6 +1,6 @@
 See **`r layer_meta$name[layer_meta$layer == 'le_jobs_sector_year']`** layer for more information about data and methods.  
 
-Percent employment during the current status year for each sector/region, calculated as (1 - percent unemployment)*total labor force (World Bank).  The current number of jobs was adjusted by dividing by the percent employment in the corresponding year.
+Percent employment during the current status year for each sector/region, calculated as (1 - percent unemployment)*total labor force (World Bank).  Jobs data for the livelihoods subgoal were adjusted by dividing by the percent employment in the corresponding year.
 
 
 

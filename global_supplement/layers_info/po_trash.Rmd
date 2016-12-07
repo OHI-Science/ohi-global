@@ -4,4 +4,4 @@
 
 *Subcategory: pollution*
 
-Marine plastic pollution is modeled using data on the global distribution of floating marine plastics at 0.2 degree resolution (Erikson et al. 2014). Specifically, weight of floating plastics (g/km^2^) across four different size classes are aggregated to represent total weight of plastic debris per km^2^. These data are log transformed and rescaled from 0 to 1 using the 99.99th quantile as the reference point.
+Marine plastic pollution is modeled using data on the global distribution of floating marine plastics at 0.2 degree resolution (Erikson et al. 2014). Specifically, weight of floating plastics (g/km^2^) across four different size classes were aggregated to represent total weight of plastic debris per km^2^. These data were log transformed and rescaled from 0 to 1 using the 99.99th quantile as the reference point.

@@ -1,6 +1,6 @@
 See **`r layer_meta$name[layer_meta$layer == 'le_jobs_sector_year']`** layer for more information about data and methods.  
 
-Percent employment during the reference year (i.e., earliest year of data) for each sector/region, calculated as (1 - percent unemployment)*total labor force (World Bank).  The reference number of jobs was adjusted by dividing by the percent unemployment of the corresponding year.
+Percent employment during the reference year (i.e., earliest year of data) for each sector/region, calculated as (1 - percent unemployment)*total labor force (World Bank).  Jobs data for the livelihoods subgoal was adjusted by dividing by the percent employment of the corresponding year.
 
 
 
