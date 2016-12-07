@@ -1,7 +1,9 @@
-Trends in trash was estimated using data on improperly disposed of plastics (Jambeck et al. 2016). Data are from the supplement, and describe mismanaged plastic waste in 2010 and estimates mismanaged plastic waste in 2025. Using these data, we estimate proportional trash trends during a 5 year period: 
+Trend in trash was estimated using data on improperly disposed of plastics (Jambeck et al. 2016). Data are from the supplement, and describe mismanaged plastic waste in 2010 and projected mismanaged plastic waste in 2025. Using these data, we estimates proportional trash trends during a 5 year period as follows: 
 
-trend_15year = (2025 value - 2010 value)/2010 value)trend_15yr
+trend_15year = (2025 value - 2010 value)/2010 value
+
 trend_1year = trend_15year/15
+
 The trend_1year value was then multiplied by 5 to get the estimated proportional change in 5 years.
 
 Missing data was gapfilled using a linear regression model with population as a predictor.

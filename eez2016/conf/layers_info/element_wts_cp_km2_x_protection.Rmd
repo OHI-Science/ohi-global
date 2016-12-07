@@ -1,4 +1,4 @@
-This layer describes the relative value of the habitats in each region to coastal protection. These data are called internally by ohicore functions (see: conf/config.R to see how these data are specified) to weight the the data used to calculate pressure and resilience values. These data are created by multiplying habitat extent by the habitat protection rank.
+This layer describes the relative value of the habitats in each region to coastal protection. These data are called internally by ohicore functions (see: conf/config.R to see how these data are specified) to weight the data used to calculate pressure and resilience values. These data are created by multiplying habitat extent by the habitat protection rank.
 
 Habitat | Protection rank
 ------------- | -------------
