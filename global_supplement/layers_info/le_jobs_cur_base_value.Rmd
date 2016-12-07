@@ -1,6 +1,6 @@
 See **`r layer_meta$name[layer_meta$layer == 'le_jobs_sector_year']`** layer for information about data and methods.  
 
-This layer includes the jobs data (from the **`r layer_meta$name[layer_meta$layer == 'le_job_sector_year layer']`**) for the most recent year of data (relative to the assessment year) for each sector/region.
+This layer includes the jobs data (from the **`r layer_meta$name[layer_meta$layer == 'le_job_sector_year']`**) for the most recent year of data (relative to the assessment year) for each sector/region.
 
 
 

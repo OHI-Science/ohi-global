@@ -35,7 +35,11 @@ tmp <- capture.output( cat(paste0("\n```{r, message=FALSE, echo=FALSE, warning=F
                            "\n",
                            "library(knitr)",
                            "\n",
+                           "\n",
                            "layer_meta <- read.csv('../../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE)",
+                           "\n",
+                           "layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers'",
+                           "\n",
                            "\n",
                            "\n```"))
                            
@@ -73,12 +77,10 @@ units <- data$units[data$layer == layer_short]
 
 tmp <- capture.output( cat("\n",  
                           paste0("\n#", layer_long),
-                          paste0("\n####(", layer_short, ") {-}"),
-                          
+                          paste0("\n####[", layer_short, "]", "(", file.path(layer_path, layer_short), ".csv) {-}"),
                           paste0("\n```{r,",sprintf(" child = '../../global_supplement/layers_info/%s.Rmd'", layer_short), ", echo=FALSE, results='asis'}"),
                           "\n",
                           "\n```",
-                          
                           "\n",
                           "\n####Units {-}",
                           "\n",

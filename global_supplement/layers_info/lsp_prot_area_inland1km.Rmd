@@ -1,1 +1,1 @@
-This includes protected areas 1km inland, but otherwise follows the methods described in lsp_prot_area_offshore3nm.  
+This includes protected areas 1km inland, but otherwise follows the methods described in **`r layer_meta$name[layer_meta$layer == 'lsp_prot_area_offshore3nm']`**.  
