@@ -15,6 +15,6 @@ The following data layers are used in Ocean Health Index global calculations for
 
 ----
 
-```{r, child=sprintf('%s/conf/layers_info/layers_all.Rmd', dir_scenario)}
+```{r, child=sprintf('%s/conf/layers_all.Rmd', dir_scenario)}
 ```
 
