@@ -7,8 +7,8 @@ library(dplyr)
 library(tidyr)
 
 # data with information
-layers <- read.csv("../../eez_layers_meta_data/layers_eez_base.csv")
-targets <- read.csv("../../eez_layers_meta_data/layers_eez_targets.csv")
+layers <- read.csv("../../../eez_layers_meta_data/layers_eez_base.csv")
+targets <- read.csv("../../../eez_layers_meta_data/layers_eez_targets.csv")
 layers_web <- "http://ohi-science.org/ohi-global/layers.html"
 # setwd('eez2016/conf/')
 ```
