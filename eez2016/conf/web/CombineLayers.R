@@ -20,7 +20,7 @@ tmp <- capture.output(cat("---",
                           "\n    toc_float: yes",
                           "\n---"))
 
-write(tmp, "eez2016/conf/layers_all.Rmd")
+write(tmp, "eez2016/conf/web/layers_all.Rmd")
 
 ######################################################
 ### Load libraries in Rmd
@@ -43,7 +43,7 @@ tmp <- capture.output( cat(paste0("\n```{r, message=FALSE, echo=FALSE, warning=F
                            "\n",
                            "\n```"))
                            
-write(tmp, "eez2016/conf/layers_all.Rmd", append=TRUE)
+write(tmp, "eez2016/conf/web/layers_all.Rmd", append=TRUE)
 
 
 ######################################################
@@ -89,6 +89,6 @@ tmp <- capture.output( cat("\n",
                           # "\n###References {-}"
                           ))
 
-write(tmp, "eez2016/conf/layers_all.Rmd", append=TRUE)
+write(tmp, "eez2016/conf/web/layers_all.Rmd", append=TRUE)
 }      
 
