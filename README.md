@@ -1,17 +1,50 @@
 ohi-global
 ==========
   
-Global scenarios of the Ocean Health Index 
-=======
-# Various information about ohi-global
+### Global assessments (EEZ, Antarctica, and High Seas) and scenarios (2012-2016) of the Ocean Health Index 
 
-### Creating a new scenario (e.g., eez2012, highseas2015, antarctica2014)
-1. Copy the folder of a similar scenario and change the year to the scenario year
-2. Update the layers_*region*.csv file with the file paths and names of the data for each scenario (see below for variable metadata) 
-3. Update following files within the scenario conf folder: goals.csv (scenario years, etc.); pressures_matrix.csv, resilience_matrix.csv, resilience_weights.csv
-4. Update the calculate_scores_all.R as follows:
- - Add the "scenario" to the scenario list (we might want to move this information to a table at some point):
- 
+#### Anatomy of the file structure
+
+General information about file structure is here: http://ohi-science.org/manual/#file-system-organization
+
+Three OHI assessments (for a range of scenario years) are included in this folder:
+
+* eez (scenarios: 2012 - 2016): OHI for 220 country/territorial EEZ regions, this is typically considered the "OHI global assessment"
+* antarctica (scenarios: 2014 - 2015): OHI for Antarctica CCAMLR regions (includes the high seas/FAO and EEZ regions)
+* high seas (scenarios: 2014 - 2015): OHI for high seas regions (FAO regions without the EEZ regions or Antarctica/CCAMLR regions)
+
+
+Additional files/folders include:
+
+* eez_layers_meta_data: Database for the EEZ data layers (data sources, names, etc.) and functions to create different data formats
+* global_supplement: Descriptions of data layers and goals 
+* global (2014-2016): Post assessment analysis and visualization of data
+* calculate\_scores_??.R: These files provide the code to calculate scores for the corresponding OHI assessment
+* layers\_??.csv: These files provide the location of the data layers used to calculate the OHI assessments.  This file is created by data and functions in the eez_layers_meta_data folder, and they are used by calculate_scores_??.R.  
+* other files can be ignored
+
+Important files within the "eez", "antarctica", and "high seas" folders include:
+
+* scores.csv: The OHI scores
+* layers: All the data layers used by the OHI models to calculate scores
+* conf: Files that are used to set up the OHI model parameters
+    - config.R: define model parameters, weighting files, etc.
+    - functions.R: functions used to calculate goal/subgoal status and trend scores
+    - goals.csv: list of goals and corresponding weights (also where status years are defined for each assessment year)
+    - pressures_matrix.csv: Weights for each pressure layer and goal
+    - pressure_categories: Defines the pressure category for each pressure layer
+    - resilience_matrix.csv: Indicates which resilience layers affect which goals
+    - resilience_categories: Defines the resilience category for each resilience layer
+   
+
+### Creating a new scenario within an assessment (e.g., eez2012, eez2016, etc.)
+1. Copy the folder of a previous scenario and change the year
+2. Update the eez_layers_meta_data/layers_eez_file_locations.csv with the file paths and names of the data for each scenario
+3. Update conf/goals.csv with appropriate status_year information (which year in the data layer is used for the scenario)
+4. Update the calculate_scores_??.R as follows:
+   - Add the "scenario" to the scenario list (we might want to move this information to a table at some point):
+   - And update the sync functions so the functions.R files stay consistent
+
 ```
  # scenario list (need to add new scenarios here)
 scenarios = list(
@@ -26,10 +59,6 @@ scenarios = list(
   
 ```
 
-
-1. **global2013**
-1. **global2012** must follow global2013 in order to load global2013/scores.csv for LE Eritrea issue
-=======
 ```
  ### sync functions.R: 
 # overwrite eez2012, eez2014, eez2015, with eez2013
@@ -46,31 +75,3 @@ for (dir in c('highseas2015')){
 }
 
 ```
-
-### Metadata for layers_*region*.csv files (e.g., layers_eez.csv)
-
-The layers files for some of the regions do not necessarily include all these variables. Additional variables can be added for record keeping or metadata purposes.  This will not effect the function of the toolbox.
-
-variable   |   example    | description    
----------- | ------------ | -------------
-targets    | AO, pressures | goal/s, pressure, resilience the layer is used to calculate
-layer      | ao_access, fis_b_bmsy | internal toolbox name used for layer; NOTE: changes to these names will require changing functions.R
-dir_*year*a | ohiprep:Global/WorldBank-Statistics_v2012/data | directory location of layer file; "neptune_data" indicates directory is on neptune server; "ohiprep" is located on [Github](https://github.com/OHI-Science/ohiprep)
-fn_*year*a   | r_mora_s4_2013a.csv, mean_catch.csv | filename of .csv layer
-name  | Fisheries management effectiveness and opportunity | descriptive name
-decription | ... | longer description of data with related references
-fld_value | trend, b_bmsy | This should correspond to a variable name in the .csv file with the data (if this variable name changes in the .csv file, it should be changed here)
-units | value, km^2 | description of the units of the fld_value
-src_*year*a | N, Y | whether the data was updated for a particular scenario year, this isn't used by the toolbox, but it helps us keep updated records
-dir_gap_fill_*year*  | ohiprep:Global/FAO-CW-Trends_v2011/data | directory of a file describing where/how missing data was gap-filled
-fn_gap_fill_*year*  | rgn_cw_fertilizers_trends_2013a.csv | file describing where/how missing data was gap-filled
-clip_n_ship_disag, clip_n_ship_disag_description, uninhabited_expect | ... | information used to create web applications  
-
-
-
-### Reporting for OHI 2015 Global:
-https://rawgit.com/OHI-Science/ohi-global/draft/global2015/Reporting/Reporting.html
-(it may take a while)
-
-### Information used to update data for 2015 analysis
-"Preparing for 2015" info placed into issue # 515 for reference...

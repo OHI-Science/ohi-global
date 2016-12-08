@@ -1,0 +1,13 @@
+### Goal Description
+
+In many countries the harvest of non-food natural products is important for local economies and can also be traded internationally. The sustainable harvest of these products is therefore an important component of a healthy ocean. This goal assesses the ability of countries to maximize the sustainable harvest of living marine resources, such as corals, shells, seaweeds, and fish for the aquarium trade. It does not include bioprospecting which focuses on potential (and largely unknowable and potentially infinite) value rather than current realized value, or non-living products such as oil and gas or mining products which by definition are not sustainable.
+
+### Model & Data 
+
+The goal model measures the harvest level (in metric tons) for a product and the sustainability of that harvest. The _sustabinality factor_ of each product was accounted for by adjusting its harvest level with a sustainability term based on the intensity of harvest per km2 of coral and/or rocky reef relative to the global maximum (its ‘_exposure_’). For ornamental fish and corals, the sustainability factor also includes the ‘_risk_’ that is associated with known unsustainable harvest practices (i.e., the intensity of cyanide fishing for ornamental fish, and any harvest of corals since they are CITES protected species). 
+
+Six different natural products were assessed: coral, ornamental fish, fish oil, seaweeds and marine plants, shells, and sponges. Status of sustainable harvest of each product (tonnes) was calculated individually first. The overall goal score weights the status of each product by its proportional value (US dollars) relative to other harvested products. 
+
+### Reference points 
+
+For each product, the reference point is its maximum value (in 2008 USD) achieved in that country with a 65% buffer, under the assumption that the maximum achieved at any point in time was likely the maximum possible. This creates a reference point internal to each country. The buffer was added to accommodate uncertainty. 
