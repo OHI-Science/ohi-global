@@ -41,7 +41,7 @@ Scroll down to access metadata and data processing information, or explore [the 
 </div>
 ----
 
-```{r, child=sprintf('%s/conf/goals.Rmd', dir_scenario)}
+```{r, child=sprintf('%s/conf/web/goals.Rmd', dir_scenario)}
 ```
 
 ----
