@@ -1,0 +1,26 @@
+---
+output:
+ html_document:
+   toc: true
+   number_sections: true
+bibliography: OHI_global_and_pressures.bib
+# csl: ecology-letters.csl
+
+---
+
+The Status of the Mariculture subgoal (x<sub>MAR</sub>), was defined as production of strictly marine taxa from both the marine and brackish water FAO categories, excluding aquatic plants such as kelps and seaweeds, which were assumed to contribute predominantly to medicinal and cosmetic uses rather than as a source of food. The data reported by FAO does not always separate clearly if harvest is derived through mariculture or from land-based facilities. Wherever possible, we excluded species that could not possibly have been harvested from coastal waters, such as freshwater cyclids. Mariculture Status was therefore assessed as the current sustainably-harvested yield (Y<sub>C</sub>) within each country, such that:
+
+x<sub>MAR</sub> = $$ \log _{10}{({Y}_{c}+1)} $$
+
+where
+
+Y<sub>C</sub>  = $$ \frac { \sum _{ 1 }^{ k }{ { Y }_{ k }{ S }_{ M,k } }  }{ { P }_{ C } } $$
+
+
+where Y<sub>k</sub> is the 4-year moving window average from FAO data for all k mariculature species that are currently or at one time cultured within a country, S<sub>M,k</sub> is the sustainability score for each k mariculture species, and P<sub>C</sub> is the population within 25km of the coast in the country.
+
+A basic problem facing assessments of mariculture is the lack of an ecologically- and socially-based reference point for the potential yield of every suitable mariculture species for every type of geographic habitat and location and accounting for every other use of the oceans that would limit space for mariculture. Determining such reference points for every country at global scale is a daunting challenge, not only because so much information is lacking, but also because species, genotypes and habitats are likely to change. Consequently we based the reference point on proxy information - harvested tonnes per coastal inhabitant. Harvest data (Y<sub>C</sub>) is therefore adjusted for coastal population density within a country, under the assumption that production depends on the presence of coastal communities that can provide the labor force, infrastructures, and economic demand to support the development and economic viability of mariculture facilities. Thus, two regions with an equal number of coastal inhabitants harvesting an equal tonnage of cultured seafood will score the same, as productivity is commensurate to each region’s socio-economic potential to develop mariculture. Stated another way, mariculture development is assumed to scale proportionally with coastal population, which is a proxy for potential logistic limitations to farm development, e.g., presence of infrastructures, coastal access, and locally available workforce. Given the very high skew in the status values per country, we set the reference point to the 95th percentile region (Thailand), with all regions above that value set to a status score = 1.0.
+
+The sustainability score (S<sub>M,k</sub>) for each species in each country is based on the Mariculture Sustainability Index (MSI) [@summerson_recruitment_1990]. We used the three sub-indices that directly measured long-term renewability of a given mariculture practice: the wastewater treatment index, the origin of feed index (i.e. fishmeal or other) and the origin of seed (i.e. hatchery or wild caught). These scores are country and species-specific, and we require each species’ yield Y<sub>k</sub> to have a corresponding sustainability score S<sub>M,k</sub>. However, if a country farms a species that was not assessed by the MSI for that country, but it was assessed in other countries, a global average score is used for that species and country. If a country farms a species that was not assessed at all by the MSI but a species within the same genus was assessed, a global average for the genus was used. Finally, if these scores were not available for the categories above, we used the global average for broad taxonomic grouping (e.g., crustaceans, algae, bivalves, etc.). We are aware that there is some bias associated with using scores derived as averages across countries because they were originally assigned to specific species-country pairs, nevertheless this is preferable to applying a sustainability score solely based on a subset of the species harvested. In addition, since plant and algae species are most commonly used for purposes other than food (as discussed above), we also excluded them from these analyses.
+
+The Trend in Mariculture was calculated as the slope of the yield in the past five years (2011- 2015), as described in the general methodology **(section 2B)**. Only a few pollution-related ecological pressures and the general social pressures were assessed for the Mariculture subgoal **(Table S22)**. Resilience measures included a number of measures directed at sustainable aquaculture **(Table S22)**. If a country was not assessed on these measures, it was excluded from calculation rather than gap-filled.
