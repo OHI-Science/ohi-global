@@ -65,7 +65,7 @@ for (rgn_id in rgn_names2){  #rgn_id=248100
   res=150
   ## start plot
   png(sprintf('global2015/AntarcticaReporting/flowers/flower_%s_%s.png', unique(g_x$region_id), scenario),
-      width=res*6, height=res*6, bg = "transparent")
+      width=res*4, height=res*4, bg = "transparent")
   #par(oma=c(0,0,3,0), mar=c(6, 4, 0, 2) + 0.1)
   PlotFlower(main = unique(g_x$region_id),
              lengths=ifelse(
@@ -90,3 +90,4 @@ for (rgn_id in rgn_names2){  #rgn_id=248100
   
   
   }
+
