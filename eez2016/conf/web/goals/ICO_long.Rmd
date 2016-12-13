@@ -1,0 +1,39 @@
+---
+output:
+ html_document:
+   toc: true
+   number_**section**s: true
+bibliography: OHI_global_and_pressures.bib
+# csl: ecology-letters.csl
+
+---
+
+
+**ask casey to edit**
+
+Additional: Supra-goal descript if needed
+
+Sense of Place
+
+With this goal we tried to capture the aspects of the coastal and marine system that people value as part of their cultural identity. This definition includes people living near the ocean and those who live far from it but still derive a sense of identity or value from knowing particular places or species exist. We divided this goal into two sub-goals: Iconic Species and Lasting Special Places, and weighted them equally when combining to create a single goal score.
+
+Iconic Species sub-goal:
+
+Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value (e.g., touristic attractions/common subjects for art such as whales). Habitat-forming species are not included in this definition of iconic species, nor are species that are harvested solely for economic or utilitarian purposes (even though they may be iconic to a sector or individual).
+
+To define the list of iconic species for each country, we compiled lists of country-specific iconic species with lists of global iconic species to create the total list of iconic species per country (see ‘Iconic species’ in section 7). Species were drawn from the World Wildlife Fund’s global and regional lists for Priority Species (especially important to people for their health, livelihoods, and/or culture) and Flagship Species (‘charismatic’ and/or well-known).
+
+Ultimately, almost any species can be iconic to someone, and so the intent with this goal was to focus on those species widely seen as iconic within a country, and iconic from a cultural or existence value (rather than for a livelihoods or extractive reason). Many lists exist for globally important, threatened, endemic, etc. species, but in all cases it is not clear if or to what extent these species represent culturally iconic species. The lists we used from World Wildlife Fund are the only source that included cultural reasons for listing iconic species.
+
+The Status of this sub-goal (xICO) is therefore simply the % of iconic species in each threat category (as defined by the IUCN Red List54,55), such that:
+
+􀂦 􀂦 􀀠 􀀠 􀀠 6 1 6 1 * i i i ii ICO S wS x , (Eq. S36)
+
+where for each IUCN threat category i, Si is the number of assessed species in category i and wi is the status weight assigned (see Table S11 for IUCN threat categories and weights) following the methods described by Butchart et al.56. This formulation gives partial credit to species that still exist but are in one of the other threat categories. The reference point is to have the risk status of all assessed species as Least Concern (i.e., a goal score = 1.0). Species that have not been assessed or labeled as data deficient are not included in the calculation.
+
+The IUCN provides information about whether assessed species are increasing, stable or decreasing in population size, or whether the trend is unknown. We report the Trend as the average of the recorded (categorical) trend (excluding unknown trends) for all the iconic species assessed by IUCN in each country, giving scores of 0.5 (increasing population), 0.0 (stable), and -0.5 (decreasing population) to each species. Pressures are considered across all iconic species and are weighted as shown in Table S25. An additional pressure was added for this sub-goal only (targeted harvest, see section 7) to account for the fishing pressure on iconic species taxa. For Resilience, we used being a signatory on a number of conventions and treaties as a measure of regulatory response to ecological pressures, ecological integrity across the entire EEZ, and WGI measures to assess the overall Resilience for this goal (see Table S22), following the general modeling approach outlined in section 2C and 2D.
+
+2015:
+
+Update: additional year(s) and data available
+Description: We limited data to all species having IUCN habitat system of "marine" based on the 2013.1 release of the IUCN Red List of Threatened Species (IUCN 2013). Updated species extinction risk category data were available, but only 15 species changed extinction risk category. However, 47 previously-assessed species were missing an extinction risk category in 2013, and 3842 new species assessments were added. For population trend, 2 species changed their trend, 7 previously-assessed species were missing trends for 2013, and 1346 species had new reported trends in 2013. We newly included seabirds using distributions from Birdlife International (BirdLife International and NatureServe 2012). Where neither IUCN nor BirdLife International distributions were available, we again supplemented with AquaMaps (Kaschner et al. 2013) using a 0.4 or higher threshold to convert from a continuous probability of encounter to a binary range map. Table D provides the species count per taxa.

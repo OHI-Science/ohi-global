@@ -1,0 +1,46 @@
+---
+output:
+ html_document:
+   toc: true
+   number_**section**s: true
+bibliography: OHI_global_and_pressures.bib
+# csl: ecology-letters.csl
+
+---
+
+2012:
+
+This goal aims to assess the amount of protection provided by marine and coastal habitats to coastal areas that people value, both inhabited (homes and other structures) and uninhabited (parks, special places, etc.). At local and regional scales data may exist on all these variables at a high enough resolution to map and calculate exactly which habitats are providing how much protection to which coastal areas. At global scales, such data do not exist and so we focused on EEZ-scale assessments, even though this scale does not allow one to account for the spatial configuration of habitats relative to coastal areas and human populations. Consequently, we assumed that all coastal areas have value (and equal value) and assessed the total area and condition of key habitats within each EEZ (without regard to their precise location relative to coastal areas). The habitats that provide protection to coastal areas for which we have global data include mangroves, coral reefs, seagrasses, salt marshes, and sea ice.
+
+
+The Status of this goal (xCP) was calculated to be a function of the amount and/or condition of marine habitat(s) relative to their reference states and the ranked protective ability of each habitat type, such that:
+
+ 􀂦􀀠 􀂸 􀂸􀂹 􀂷 􀂨 􀂨􀂩 􀂧 􀀠 k i T kk r c CP A A w w C x C 1 max ** , (Eq. S29)
+
+ where C is the condition at current (c) and reference (r) time points, and w is the rank weight of the protective ability, and A is the area within an EEZ for each k habitat type, proportional to either the maximum (max) ranks of any habitats present or total (T) current amount of all protective habitats. We employed several different methods for calculating condition scores depending on habitat and available data (see Table S8). The maximum rank of only existing habitats (rather than all possible habitats) is used so that countries that never had mangroves, coral reefs, or sea ice do not get penalized for not having them. See Biodiversity goal (section 6J) for details on how habitat data were processed. For mangroves, we focused only on forests in the ocean (1km coastal strip) as they are main source of coastal protection. Total area of protective habitats (AT) is simply the sum of the total known area of all protective habitat types within an EEZ, such that:
+
+􀂦􀀠 􀀠 k i T k AA 1 . (Eq. S30)
+
+We scale each habitat’s area to AT for two reasons. First, it avoids penalizing a country that does not have one of the habitats naturally for not having it (e.g., Canada does not have mangroves). Second, it ensures that habitats influence the goal score proportionately to their area of extent. This rewards the protection of large extents of habitat but does not assign a higher weight to higher habitat diversity. As such, our measure likely underestimates the actual amount of coastal protection being done by these coastal habitats (because we cannot account for habitats we do not know exist). As with the Carbon Storage goal, reference area for each habitat is treated as a fixed value; in cases where current area might exceed this reference value (e.g., through restoration), we cap the score at the maximum value (1.0). Although this does not give credit for restoration efforts improving things, data tend to be of poor quality making it difficult to determine true increases, and in general habitat restoration beyond reference values is extremely unlikely. Rank weights for the protective ability of each habitat (Rk) come from previous work48 that ranks mangroves, corals and sea ice as 4, salt marshes as 3, and seagrasses as 1 (higher values are better).
+
+
+
+The Trend for this goal is then the annual change in ranked condition weighted (averaged) according to the relative proportion of the habitat (Ak/AT) and then converted to a 5-year time horizon, as per general methods in section 2B. Because of variable data availability and quality for each habitat, slightly different methods were used for each habitat (see Table S8).
+
+We identified a subset of possible pressures that affect the condition of the key protective habitats and therefore the potential delivery of this goal, including chemical and nutrient pollution, alien species, subtidal and intertidal habitat destruction, destructive artisanal fishing, and changes in sea surface temperature (SST), ocean acidification, and UV radiation (Table S22 and section 2C for details). Resilience was measured as the average of the regulatory measures (G) related to pollution mitigation and habitat protection, and the social integrity measures captured by the World Bank’s WGI. See general methodology above (section 2D) for details on how the Resilience layers were combined.
+
+2015:
+
+Important changes were made to the goal model and sea ice and mangrove habitat data. We altered the goal calculation to prevent penalizing countries with healthy habitats that do not provide high coastal protection (e.g., seagrass). Status is now based on the relative health of the habitats that provide shoreline protection and weighted by their area and protectiveness rank:
+
+$$
+x_{cp} = \frac { \sum _{ i=1 }^{ k }{ { (h }_{ k } } \times { w }_{ k }\times { A }_{ k }) }{ \sum _{ i=1 }^{ k }{ { (w }_{ k }\times { A }_{ k }) }  }
+$$
+
+Where:
+
+$$
+h = \frac { C_{ c } }{ { C }_{ r } }
+$$
+
+C is the condition at current (c) and reference (r) time points, w is the rank weight of the habitat’s protective ability, and A is the area within a region for each k habitat type. For changes in habitat data, see details below in Biodiversity, Habitat subgoal.

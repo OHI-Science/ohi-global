@@ -1,0 +1,40 @@
+---
+output:
+ html_document:
+   toc: true
+   number_**section**s: true
+bibliography: OHI_global_and_pressures.bib
+# csl: ecology-letters.csl
+
+---
+
+### Biodiversity
+Biodiversity People value biodiversity in particular for its existence value. The risk of species extinction generates great emotional and moral concern for many people. As such, this goal assesses the conservation status of species based on the best available global data through two sub-goals: Species and Habitats. Species were assessed because they are what one typically thinks of in relation to biodiversity. Because only a small proportion of marine species worldwide have been mapped and assessed, we also assessed Habitats as part of this goal, and considered them a proxy for condition of the broad suite of species that depend on them.
+
+For the Species sub-goal, we used recent assessments by the International Union for Conservation of Nature (IUCN)- Global Marine Species Assessment of the extinction risk status of 2377 species for which distribution maps also exist across a wide range of taxa to provide a geographic snapshot of how total marine biodiversity is faring, even though it is a very small sub-sample of overall subgoals separately and treat them equally when calculating the overall goal score.
+
+#### Species sub-goal:
+
+The target for the Species sub-goal is to have all species at a risk status of Least Concern. We scaled the lower end of the biodiversity goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions66 and would constitute a catastrophic loss of biodiversity. The Status of assessed species was calculated as the areaand threat status-weighted average of the number of threatened species within each 0.5 degree grid cell. Species distribution and threat category data came from the IUCN Global Marine Species Assessment results55,67,68. We calculated the average species status (instead of other statistics) to account for different species richness values in different locations around the world. Taxa included in the analysis are listed in Table S17. Threat weights (wi) were assigned based on the IUCN threat categories status of each i species, following the weighting schemes developed by Butchart et al.56 (see Table S11 for IUCN threat category weights). For the purposes of this analysis, we included only data for extant species for which sufficient data were available to conduct an assessment. We did not include the Data Deficient classification as assessed species following previously published guidelines for a mid-point approach69,70.. The Status score in the Species sub-goal (xSPP) was calculated as the region’s area-weighted average species risk status. For each 0.5 degree grid cell (c) the risk status (w) for each species (i) present is summed and divided by the total number of species present in the cell (N). This average species risk is subtracted from on so that the presence of more threatened species produces a higher score (see Table S11), and multiplied by the ocean area (Ac) occupied by the cell (km2):
+
+T c M k N i i SPP A A N w x 􀂘 􀂸 􀂸 􀂸 􀂸 􀂹 􀂷 􀂨 􀂨 􀂨 􀂨 􀂩 􀂧 􀀐 􀀠 􀂦 􀂦 􀀠 􀀠 1 1 1 , (Eq. S39)
+
+These values are summed for all the region’s cells (M) and divided by the total amount of the region’s ocean area (AT). It is important to note that the IUCN Red List assessments provide a global, rather than country- or region- specific threat status for each species.
+
+**Table ???. Weight values for assessment of Species, based on IUCN risk categories.**
+
+|Risk Category |IUCN code |Weight|
+|---|---|---|
+|Extinct | EX |0.0 |
+|Critically Endangered| CR | 0.2 |
+|Endangered | EN | 0.4 |
+|Vulnerable | VU | 0.6 |
+|Near Threatened | NT | 0.8 |
+|Least Concern | LC | 1.0 |
+
+We calculated Trend as the average of the population trend assessments for all species within a region, with species’ trends assigned a value of 0.5 for increasing, 0 for stable, and -0.5 for decreasing using the population trend data associated with the species assessment conducted by IUCN. Pressures to species biodiversity included all pressures except human pathogens and social pressures derived from the WGI data (see Table S22). Resilience measures used for the Species sub-goal include nearly all available regulations and other institutional measures and the social resilience from the WGI data (see Table S22). We did not include ecological integrity measures as they are based on the same data used to calculate Status and Trend.
+
+2015:
+
+Update: additional year(s) and data available
+Description: We limited data to all species having IUCN habitat system of "marine" based on the 2013.1 release of the IUCN Red List of Threatened Species (IUCN 2013). Updated species extinction risk category data were available, but only 15 species changed extinction risk category. However, 47 previously-assessed species were missing an extinction risk category in 2013, and 3842 new species assessments were added. For population trend, 2 species changed their trend, 7 previously-assessed species were missing trends for 2013, and 1346 species had new reported trends in 2013. We newly included seabirds using distributions from Birdlife International (BirdLife International and NatureServe 2012). Where neither IUCN nor BirdLife International distributions were available, we again supplemented with AquaMaps (Kaschner et al. 2013) using a 0.4 or higher threshold to convert from a continuous probability of encounter to a binary range map. Table D provides the species count per taxa.

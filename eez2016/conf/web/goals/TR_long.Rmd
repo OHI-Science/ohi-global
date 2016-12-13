@@ -1,0 +1,46 @@
+---
+output:
+ html_document:
+   toc: true
+   number_**section**s: true
+bibliography: OHI_global_and_pressures.bib
+# csl: ecology-letters.csl
+
+---
+
+The tourism & recreation goal aims to capture the number of people, and the quality of their experience, visiting coastal and marine areas and attractions. Although coastal tourism industries can be important contributors to coastal economies, the tourism & recreation goal is assessed separately from its economic benefits, which are reported in the coastal livelihoods & economies goal. Few non-economic indicators of tourism and recreation exist at the global scale, and thus the original approach in the 2012 assessment approximated this goal by measuring the number of international tourists arriving by airplane to coastal regions, adjusting these values to the region’s population density to allow comparability across regions, and accounting for their average length of stay. This approach was sub-optimal in part because it did not account for domestic tourism, which is a large part of tourism in many regions, especially large regions such as Canada, Russia, Australia and the USA. In the 2013 assessment we develop a different model to capture the tourism and recreation goal, one that better accounts for both international and domestic tourism.We used employment in the tourism sector as a reasonable proxy measure for the total number of people engaged in coastal tourism and recreation activities. Employment within this sector should respond dynamically to the number of people participating in tourist activities, based on the assumption that the number of hotel employees, travel agents and employees of other affiliated professions will increase or decrease with changing tourism demand within different regions.
+
+Ideally there would be data available specifically for employment in coastal tourism industries, however the best data available at a global scale report total number of jobs, not just coastal jobs, within the travel and tourism industries (World Travel and Tourism Council (WTTC)). These data include jobs for both leisure and business that are directly connected to the tourism industry, including accommodation services, food and beverage services, retail trade, transportation services, and cultural, sports and recreational services, but exclude investment industries and suppliers (WTTC 2013). Unfortunately it was not possible to determine the proportion of jobs affiliated with strictly leisure tourism. However, some (unknown) proportion of business travelers also enjoy the coast for leisure during their visit to coastal areas, such that we assumed all travel and tourism employment was related to tourism and recreation values. Regional applications of the Index can make use of better-resolved data and more direct measures of tourism, as has been done within the US West Coast (Halpern et al. in review), where
+data for participation in coastal recreational activities across 19 different sectors were
+available.
+
+To best capture coastal travel and tourism employment using WTTC data, we
+calculated the proportion of direct employment in the tourism industry relative to total
+labor force (Et). As in 2012, we used the tourism competitiveness index (TTCI) from the
+World Economic Forum (WEF 2013) to capture the sustainability (St) of the tourism
+industry.
+
+Therefore, the status of the tourism & recreation (xTR) is:
+TR d t x  E  S , (Eq. S5)
+
+where Ed is defined as the proportion of employees directly involved in the travel and
+tourism industry (Et) relative to the total employees in that region, calculated as the
+country’s total labor force (Lt) corrected by the percent of the population that is
+unemployed (Ut), such that:
+
+ (Eq. S6)
+
+Because we do not know how employment patterns vary geographically within sectors
+for each region, we assume that the proportion employed in the tourism industry is the
+same in coastal areas as it is away from the coast, and thus Ei is the same whether applied
+solely to coastal areas or to the entire region. As such, the status of this goal could be
+increased by increasing a) the number people employed in the tourist industry relative to
+changes in the labor force and unemployment within the whole region or b) the
+sustainability of tourism and recreation (as measured by the TTCI).
+
+Data for Et existed for 148 regions (i.e., data were missing for 63 reporting
+regions; see Fig. S3). To fill the gaps for missing regions we used final goal scores rather
+than Et values for the 148 regions and then followed the gap-filling guidelines described
+in section 6 of the Supplementary Information. We avoided gap-filling the Et data layer
+because doing so created cases where the number of tourism jobs exceeded the reported
+labor force (data from the World Bank).
