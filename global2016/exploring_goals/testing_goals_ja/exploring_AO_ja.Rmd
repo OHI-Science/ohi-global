@@ -1,0 +1,307 @@
+---
+title: "Exploring AO"
+author: "Jamie Afflerbach"
+date: "11/7/2016"
+output: html_document
+---
+
+```{r setup, echo=F, warning=F,message=F}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE, echo=F,fig.width = 8, fig.height = 6)
+
+options(digits = 2)
+
+source('~/github/ohiprep/src/R/common.R')
+library(readr)
+library(ggplot2)
+library(plotly)
+
+goalname <- 'AO'
+scenario <- c('eez2012', 'eez2013', 'eez2014', 'eez2015', 'eez2016')
+dim_test <- 'score'
+
+georegion_labels <- read_csv('~/github/ohicore/inst/extdata/georegion_labels.csv') %>%
+  select(rgn_id, r1 = r1_label, r2 = r2_label, rgn_name = rgn_label) %>%
+  group_by(r1) %>%
+  mutate(n_r1 = n()) %>%
+  ungroup()
+
+
+```
+
+
+
+***
+
+### Georegional trends in AO scores
+```{r}
+
+scores_df <- lapply(scenario, FUN = function(x) {
+      read_csv(file.path('~/github/ohi-global', x, 'scores.csv')) %>%
+        mutate(scenario = x)
+    }) %>%
+  bind_rows() %>%
+  filter(goal == goalname) %>%
+  rename(rgn_id = region_id) %>%
+  inner_join(georegion_labels, by = 'rgn_id')
+
+status_line <- ggplot(scores_df %>% 
+                        filter(dimension == dim_test), 
+                      aes(x = scenario, y = score, group = rgn_id, color = r1, text = rgn_name)) +
+  geom_line(size = 1, alpha = .8) +
+  facet_wrap("r1")+
+  labs(color = 'georegion',
+       title = paste0(goalname, ' ', dim_test))+ theme(legend.position="none")+ theme(legend.position="none")
+
+print(status_line)
+ggsave(paste0('testing_goals_ja/', goalname, '_', dim_test, '.png'))
+```
+
+
+```{r}
+#looking at mean 
+
+mean_geo_score <- ggplot(scores_df%>%
+                    group_by(r1, scenario,dimension)%>%
+                    summarise(mean_score = mean(score),
+                              sd_score = sd(score)),
+                    aes(x=scenario, y = mean_score, group = dimension, color = dimension, text = r1))+
+    facet_wrap('r1')+
+  #geom_errorbar(aes(ymin=mean_score-sd_score, ymax=mean_score+sd_score), width=.1)+
+  geom_line(size=1,alpha=0.7)+
+theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(color = 'georegion',
+       title = paste0("Dimensions of ", goalname, ' through time'))
+
+print(mean_geo_score)
+
+
+# looking at mean trend
+
+mean_geo_trend <- ggplot(scores_df%>%
+                            filter(dimension == 'trend')%>%
+                    group_by(r1, scenario)%>%
+                    summarise(mean_trend = mean(score),
+                              sd_score = sd(score)),
+                    aes(x=scenario, y = mean_trend, group = r1, color = r1, text = r1))+
+    facet_wrap('r1')+
+  geom_errorbar(aes(ymin=mean_trend-sd_score, ymax=mean_trend+sd_score), width=.1)+
+  geom_line(size=1,alpha=0.7)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(color = 'georegion',
+       title = paste0("Mean ", goalname, ' ', 'trend through time'))+ theme(legend.position="none")
+
+print(mean_geo_trend)
+
+
+```
+
+
+***
+
+### Countries with increased AO scores
+```{r score_changes}
+
+diffs_df <- scores_df %>%
+            filter(dimension == dim_test) %>%
+            group_by(rgn_id) %>%
+            mutate(incr_score = first(score) < last(score),
+                   decr_score = first(score) > last(score)) %>%
+            ungroup()
+
+incr_df <- diffs_df %>% 
+  filter(incr_score)
+
+  incr_status_line <- ggplot(incr_df, 
+                             aes(x = scenario, y = score, group = rgn_id, color = r1, text = rgn_name)) +
+    facet_wrap(~r1)+
+    geom_line(size = 1, alpha = .8) +
+    # scale_color_brewer(palette = 'RdYlBu') +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    labs(color = 'georegion',
+         title = paste0('increase in ', goalname, ' ', dim_test, '; n = ', length(incr_df$rgn_id %>% unique())))
+  
+ggplotly(incr_status_line, tooltip = c('text', 'y'))
+ggsave(paste0('testing_goals_ja/', goalname, '_', dim_test, '_incr.png'))
+  
+  incr_df1 <- incr_df %>%
+    select(rgn_id, rgn_name, r1, n_r1) %>%
+    distinct() %>%
+    group_by(r1) %>%
+    mutate(prop_incr = n()/n_r1) %>%
+    ungroup() %>%
+    select(r1, prop_incr) %>%
+    distinct()
+  
+```
+
+#### Proportion of region with increasing scores
+```{r}
+  DT::datatable(incr_df1)
+
+```
+
+***
+
+### Countries with decreased AO scores
+
+```{r ao_decr}
+decr_df <- diffs_df %>% 
+  filter(decr_score)
+
+  decr_status_line <- ggplot(decr_df, 
+                             aes(x = scenario, y = score, group = rgn_id, color = r1, text = rgn_name)) +
+    geom_line(size = 1, alpha = .8) +
+    facet_wrap(~r1)+
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+    labs(color = 'georegion',
+         title = paste0('decrease in ', goalname, ' ', dim_test, '; n = ', length(decr_df$rgn_id %>% unique())))
+  
+  ggplotly(decr_status_line,tooltip = c('text', 'y'))
+  ggsave(paste0('testing_goals_ja/', goalname, '_', dim_test, '_decr.png'))
+  
+  decr_df1 <- decr_df %>%
+    select(rgn_id, rgn_name, r1, n_r1) %>%
+    distinct() %>%
+    group_by(r1) %>%
+    mutate(prop_dec = n()/n_r1) %>%
+    ungroup() %>%
+    select(r1, prop_dec) %>%
+    distinct()
+```
+
+#### Proportion of regions with decreasing scores
+```{r}
+
+  DT::datatable(decr_df1)
+
+```
+
+***
+
+### Countries with no change
+
+```{r}
+
+same_df <- diffs_df %>% 
+  filter(!decr_score & !incr_score)
+
+  same_df_check <- same_df %>%
+    select(-scenario) %>%
+    distinct() %>%
+    group_by(rgn_id) %>%
+    mutate(dupes = n() > 1) %>%
+    ungroup()
+  
+  same_status_pt <- ggplot(same_df %>% 
+                              filter(!decr_score & !incr_score) %>%
+                             filter(scenario == 'eez2016'), 
+                           aes(x = scenario, y = score, color = r1, text = rgn_name)) +
+    geom_jitter(height = 0) +
+    labs(color = 'georegion',
+         title = paste0('no change in ', goalname, ' ', dim_test, '; n = ', length(same_df$rgn_id %>% unique())))
+  
+ ggplotly(same_status_pt,tooltip = c('text', 'y'))
+  ggsave(paste0('testing_goals_ja/', goalname, '_', dim_test, '_same.png'))
+  
+  same_df1 <- same_df %>%
+    select(rgn_id, rgn_name, r1, n_r1) %>%
+    distinct() %>%
+    group_by(r1) %>%
+    mutate(prop_same = n()/n_r1) %>%
+    ungroup() %>%
+    select(r1, prop_same) %>%
+    distinct()
+  
+  DT::datatable(same_df1)
+
+```
+
+***
+
+### Countries with NA for AO goal
+
+There are no countries with NA for the AO goal.
+```{r nas_ao}
+
+na_df <- scores_df %>%
+  filter(dimension == dim_test & is.na(score)) %>%
+  mutate(blah = paste0(scenario, '_', rgn_name))
+
+message('NAs in ', goalname, ' ', dim_test, ':\n  ', paste0(na_df$blah, collapse = '\n  '))
+
+```
+
+### Taking a closer look at Africa
+
+Libya has a large increase between 2012-2013 then slow decrease. Equatorial guinea strongest decreasing trend.
+
+```{r}
+### some additional testing/plotting to examine by specific regions
+
+scores_df %>% 
+  filter(str_detect(r2, 'Africa')) %>% ### filter by r2 to access sub-region names; by r1 for georegion names
+  filter(dimension == dim_test) %>%
+  .$score %>% 
+  hist(main = "AO scores of African Countries")
+
+af <- ggplot(scores_df %>% 
+         filter(str_detect(r2, 'Africa')) %>% ### can filter by r1 regions or r2 subregions here;
+         filter(dimension == dim_test), 
+       aes(text=rgn_name, x = scenario, y = score, group = rgn_id, color = r2, text = rgn_name)) + ### color = r2 so codes by sub-regions
+  geom_line(size = 1, alpha = .8) +
+  facet_wrap(~r2)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(color = 'georegion',
+       title = paste0(goalname, ' ', dim_test, "-Africa"))
+
+ggplotly(af, tooltip = c('text', 'y'))
+```
+
+
+#### Looking at Asia
+
+```{r}
+scores_df %>% 
+  filter(str_detect(r2, 'Asia')) %>% ### filter by r2 to access sub-region names; by r1 for georegion names
+  filter(dimension == dim_test) %>%
+  .$score %>% 
+  hist(main = "AO scores of Asian Countries")
+
+as <- ggplot(scores_df %>% 
+         filter(str_detect(r2, 'Asia')) %>% ### can filter by r1 regions or r2 subregions here;
+         filter(dimension == dim_test), 
+       aes(text=rgn_name, x = scenario, y = score, group = rgn_id, color = r2, text = rgn_name)) + ### color = r2 so codes by sub-regions
+  facet_wrap(~r2)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  geom_line(size = 1, alpha = .8) +
+  labs(color = 'georegion',
+       title = paste0(goalname, ' ', dim_test,"-Asia"))
+
+ggplotly(as, tooltip = c('text', 'y'))
+
+
+```
+
+
+Looking at Oman, Equatorial Guinea and Libya
+
+```{r}
+ctrs <- c("Libya", "Equatorial Guinea","Oman")
+
+new_df <- scores_df%>%
+          filter(rgn_name %in% ctrs)
+
+ctry <- ggplot(new_df,aes(x = scenario, y = score, group = dimension, color = dimension, text = dimension))+
+  geom_line(size = 1, alpha = 0.7)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  facet_wrap(~rgn_name)
+
+ggplotly(ctry, tooltip = c('text','y'))
+
+```
+
+
+
+
+
+
