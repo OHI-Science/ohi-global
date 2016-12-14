@@ -18,7 +18,7 @@ For countries that never harvested a product, we assumed they cannot produce it 
 􀂦 􀂦 􀀠 􀀠 􀀠 5 1 5 1 , * k k k kk NP t N wN S , (Eq. S24)
 where N is the number of species in each k category of exploitation and w is the weight assigned to each category of exploitation status (Table S6).
 
-The Status of each natural product p (xNPp) is therefore: XNPp = Hp * Sp , (Eq. S25) where Hp is the harvest level for a product relative to its own (buffered) peak reference point, Sp is the sustainability of that harvest, with: v p N RES 􀀎 􀀐􀀠 1 , (Eq. S26) where E is the exposure term, R is the risk term and is set to 1.0 for corals and to the relative intensity of cyanide fishing for ornamental fish, and Nv = 1 or 2 depending on whether or not a viability term is used.
+The Status of each natural product p (x<sub>NPp</sub>) is therefore: x<sub>NPp</sub> = Hp * Sp , (Eq. S25) where Hp is the harvest level for a product relative to its own (buffered) peak reference point, Sp is the sustainability of that harvest, with: v p N RES 􀀎 􀀐􀀠 1 , (Eq. S26) where E is the exposure term, R is the risk term and is set to 1.0 for corals and to the relative intensity of cyanide fishing for ornamental fish, and Nv = 1 or 2 depending on whether or not a viability term is used.
 
 Using Eq. S25 above we calculated the Status score for each product for the previous five years, and then used the slope of these Status scores to calculate the Trend for each product. For Pressures, we treated each product separately because different pressures affect each of the products differently, and therefore we calculate a unique Pressures score for each product (see Table S25 for stressors used for each product and the relative weights applied). We also calculated unique Resilience scores for each product since the regulation (Reg) Resilience measures are connected to specific stressors (see section 2D above). As such, we were able to calculate a total Index score for each product.
 
@@ -35,6 +35,17 @@ NP
 where N is the number of products that have ever been harvested and wp is the proportional peak dollar value of each product relative to the total peak dollar value of all products (in 2008USD). If a product had a peak value, but was missing a harvest value for that product in a given year, then we used wp = 0 during the aggregation for that year. Note that for the Trend calculation, some regions have staggered years between products for the slope calculations (2003-2007 for Corals, Ornamental Fish, and Shells and 2004-2008 for the rest).
 
 There are several important caveats about the approach we used to assess the Status of natural product harvest. First, our approach is supply (export) based. If declining demand for a natural product causes a decline in production, the producing country’s score declines even if it could (sustainably) produce more. Similarly, if a country chose to reduce or halt production of a natural product in order to improve conservation or sustainability, its score might still decline, although this decline might be buffered by improvement in the Resilience dimension. Additionally, such decline would likely be compensated by increased scores in several other goals resulting from decreased harvest pressures. Second, we do not have MSY estimates for any of the six natural products evaluated. When such estimates become available in the future they can easily be incorporated here, as is done in the wildcaught Fisheries sub-goal of the Food Provision goal. These caveats may lead to decreases in the score for a country despite maintenance or even improvement of the sustainable harvest of natural products; we instituted the 35% buffer around peak harvest (described above) as a way to help mitigate these potential issues. Finally, our estimate of the sustainability of many of the harvest practices is likely overly optimistic. For example, fishing for ornamental trade often employs unsustainable techniques such as cyanide fishing, but we have few data to inform such an estimate of sustainability in the Status calculation for ornamental fish.
+
+
+**Table ????. Definitions and weights assigned for each category of exploitation status**
+
+|Exploitation Status| w | Definition |
+|---|---|---|
+|Developing | 1.0 | Stock landings have not reached a peak or peak occurs in the last year of the time series|
+|Fully exploited | 1.0 | Stock landings are between 50-100% of peak |
+|Overexploited | 0.5 | Stock landings are between 10-50% of peak |
+|Collapsed | 0.0 | Stock landings are <10% of peak & recent trend is <0 |
+|Rebuilding | 0.25 | Stock landings are between 10-50% of peak & recent trend is >0 |
 
 2015:
 
