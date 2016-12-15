@@ -11,7 +11,7 @@ bibliography: OHI_global_and_pressures.bib
 This goal aims to assess the amount of protection provided by marine and coastal habitats to coastal areas that people value, both inhabited (homes and other structures) and uninhabited (parks, special places, etc.). At local and regional scales data may exist on all these variables at a high enough resolution to map and calculate exactly which habitats are providing how much protection to which coastal areas. At global scales, such data do not exist and so we focused on EEZ-scale assessments, even though this scale does not allow one to account for the spatial configuration of habitats relative to coastal areas and human populations. Consequently, we assumed that all coastal areas have value (and equal value) and assessed the total area and condition of key habitats within each EEZ (without regard to their precise location relative to coastal areas). The habitats that provide protection to coastal areas for which we have global data include mangroves, coral reefs, seagrasses, salt marshes, and sea ice.
 
 
-The Status of this goal (x<sub>CP</sub>) was calculated to be a function of the relative health of the habitats that provide shoreline protection and weighted by their area and protectiveness rank, such that:
+The Status of this goal ($x_{CP}$) was calculated to be a function of the relative health of the habitats that provide shoreline protection and weighted by their area and protectiveness rank, such that:
 
 $$
 x_{cp} = \frac { \sum _{ i=1 }^{ k }{ { (h }_{ k } } \times { w }_{ k }\times { A }_{ k }) }{ \sum _{ i=1 }^{ k }{ { (w }_{ k }\times { A }_{ k }) }  }
@@ -23,11 +23,11 @@ $$
 h = \frac { C_{ c } }{ { C }_{ r } }
 $$
 
-_C_ is the condition at current (_c_) and reference (_r_) time points, _w_ is the rank weight of the habitat’s protective ability, and _A_ is the area within a region for each k habitat type.
+$_{C}$ is the condition at current ($_{c}$) and reference ($_{r}$) time points, $_{w}$ is the rank weight of the habitat’s protective ability, and $_{A}$ is the area within a region for each k habitat type.
 
 We employed several different methods for calculating condition scores depending on habitat and available data (see Table S8). The maximum rank of only existing habitats (rather than all possible habitats) is used so that countries that never had mangroves, coral reefs, or sea ice do not get penalized for not having them. See Biodiversity goal (**section 6J**) for details on how habitat data were processed. For mangroves, we focused only on forests in the ocean (1km coastal strip) as they are main source of coastal protection.
 
-As with the Carbon Storage goal, reference area for each habitat is treated as a fixed value; in cases where current area might exceed this reference value (e.g., through restoration), we cap the score at the maximum value (1.0). Although this does not give credit for restoration efforts improving things, data tend to be of poor quality making it difficult to determine true increases, and in general habitat restoration beyond reference values is extremely unlikely. Rank weights for the protective ability of each habitat (_w<sub>k</sub>_) come from previous work [@ncp__2011] that ranks mangroves, corals and sea ice as 4, salt marshes as 3, and seagrasses as 1 (higher values are better).
+As with the Carbon Storage goal, reference area for each habitat is treated as a fixed value; in cases where current area might exceed this reference value (e.g., through restoration), we cap the score at the maximum value (1.0). Although this does not give credit for restoration efforts improving things, data tend to be of poor quality making it difficult to determine true increases, and in general habitat restoration beyond reference values is extremely unlikely. Rank weights for the protective ability of each habitat ($w_{k}$) come from previous work [@ncp__2011] that ranks mangroves, corals and sea ice as 4, salt marshes as 3, and seagrasses as 1 (higher values are better).
 
 The Trend for this goal is then the annual change in ranked condition converted to a 5-year time horizon, as per general methods in section 2B. Because of variable data availability and quality for each habitat, slightly different methods were used for each habitat (see **Table S8**).
 
