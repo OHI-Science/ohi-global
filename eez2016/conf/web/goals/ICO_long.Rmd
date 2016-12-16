@@ -8,27 +8,39 @@ bibliography: OHI_global_and_pressures.bib
 
 ---
 
-**ask casey to edit**
-
-
 ### Sense of Place
 
 With this goal we tried to capture the aspects of the coastal and marine system that people value as part of their cultural identity. This definition includes people living near the ocean and those who live far from it but still derive a sense of identity or value from knowing particular places or species exist. We divided this goal into two sub-goals: Iconic Species and Lasting Special Places, and weighted them equally when combining to create a single goal score.
 
 #### Iconic Species sub-goal:
 
-Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value (e.g., touristic attractions/common subjects for art such as whales). Habitat-forming species are not included in this definition of iconic species, nor are species that are harvested solely for economic or utilitarian purposes (even though they may be iconic to a sector or individual).
+Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value (e.g., touristic attractions/common subjects for art such as whales). 
+Habitat-forming species are not included in this definition of iconic species, nor are species that are harvested solely for economic or utilitarian purposes (even though they may be iconic to a sector or individual).
 
-To define the list of iconic species for each country, we compiled lists of country-specific iconic species with lists of global iconic species to create the total list of iconic species per country (see ‘Iconic species’ in **section 7**). Species were drawn from the World Wildlife Fund’s global and regional lists for Priority Species (especially important to people for their health, livelihoods, and/or culture) and Flagship Species (‘charismatic’ and/or well-known).
+To define the list of iconic species for each country, we compiled lists of country-specific iconic species with lists of global iconic species to create the total list of iconic species per country (see ‘Iconic species’ in **section 7**). 
+Species were drawn from the World Wildlife Fund’s global and regional lists for Priority Species (especially important to people for their health, livelihoods, and/or culture) and Flagship Species (‘charismatic’ and/or well-known).
 
-Ultimately, almost any species can be iconic to someone, and so the intent with this goal was to focus on those species widely seen as iconic within a country, and iconic from a cultural or existence value (rather than for a livelihoods or extractive reason). Many lists exist for globally important, threatened, endemic, etc. species, but in all cases it is not clear if or to what extent these species represent culturally iconic species. The lists we used from World Wildlife Fund are the only source that included cultural reasons for listing iconic species.
+Ultimately, almost any species can be iconic to someone, and so the intent with this goal was to focus on those species widely seen as iconic within a country, and iconic from a cultural or existence value (rather than for a livelihoods or extractive reason).
+Many lists exist for globally important, threatened, endemic, etc. species, but in all cases it is not clear if or to what extent these species represent culturally iconic species. The lists we used from World Wildlife Fund are the only source that included cultural reasons for listing iconic species.
 
 The Status of this sub-goal ($x_{ICO}$) is therefore simply the % of iconic species in each threat category (as defined by the IUCN Red List [@iucn_iucn_2001; @iucn_red_2015]), such that:
 
+<!--
 $$
-x_{ICO} = \frac { \sum _{ i=1 }^{ 6 }{ { S }_{ i }\times { w }_{ i } }  }{ \sum _{ i=1 }^{ 6 }{ { S }_{ i } }  } \quad \quad (Eq.\quad S36)
+x_{ICO} = \frac { \displaystyle\sum_{i=1}^{6}{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{i=1}^{6}{ S_{i} } } \quad \quad (Eq.\quad S36)
+$$
+-->
+
+<!-- note the code above is the original version from 2012; I like this version below, which simply replaces the category numbers 1-6 with letters from EX (Extinct) to LC (Least Concern), which are directly referenced in Table 11.-->
+
+$$
+x_{ICO} = \frac { \displaystyle\sum_{ i=EX }^{ LC }{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{ i=EX }^{ LC }{ S_{i} }  } \quad \quad (Eq.\quad S36)
 $$
 
-where for each IUCN threat category $_{i}$, $S_{i}$ is the number of assessed species in category $_{i}$ and $w_{i}$ is the status weight assigned (see **Table S11** for IUCN threat categories and weights) following the methods described by Butchart et al. [-@butchart_improvements_2007]. This formulation gives partial credit to species that still exist but are in one of the other threat categories. The reference point is to have the risk status of all assessed species as Least Concern (i.e., a goal score = 1.0). Species that have not been assessed or labeled as data deficient are not included in the calculation.
+where for each IUCN threat category $i$, $S_{i}$ is the number of assessed species in category $i$ and $w_{i}$ is the status weight assigned (see **Table S11** for IUCN threat categories and weights) following the methods described by Butchart et al. [-@butchart_improvements_2007]. This formulation gives partial credit to species that still exist but are in one of the other threat categories. The reference point is to have the risk status of all assessed species as Least Concern (i.e., a goal score = 1.0). Species that have not been assessed or labeled as data deficient are not included in the calculation.
 
-The IUCN provides information about whether assessed species are increasing, stable or decreasing in population size, or whether the trend is unknown. We report the Trend as the average of the recorded (categorical) trend (excluding unknown trends) for all the iconic species assessed by IUCN in each country, giving scores of 0.5 (increasing population), 0.0 (stable), and -0.5 (decreasing population) to each species. Pressures are considered across all iconic species and are weighted as shown in **Table S25**. An additional pressure was added for this sub-goal only (targeted harvest, see **section 7**) to account for the fishing pressure on iconic species taxa. For Resilience, we used being a signatory on a number of conventions and treaties as a measure of regulatory response to ecological pressures, ecological integrity across the entire EEZ, and WGI measures to assess the overall Resilience for this goal (see **Table S22**), following the general modeling approach outlined in section **2C and 2D**.
+The IUCN provides information about current and past assessments for species, which we use to create a time series of risk status for each species.  Because IUCN assessments are infrequent, we derive the trend as the annual change in risk status for each species across the previous ten years (2006-2015), rather than a five-year window typical of other goals.  We report the Trend as the mean trend in risk status for all iconic species within each country.
+
+<!--The IUCN provides information about whether assessed species are increasing, stable or decreasing in population size, or whether the trend is unknown. We report the Trend as the average of the recorded (categorical) trend (excluding unknown trends) for all the iconic species assessed by IUCN in each country, giving scores of 0.5 (increasing population), 0.0 (stable), and -0.5 (decreasing population) to each species. -->
+
+Pressures are considered across all iconic species and are weighted as shown in **Table S25**. An additional pressure was added for this sub-goal only (targeted harvest, see **section 7**) to account for the fishing pressure on iconic species taxa. For Resilience, we used being a signatory on a number of conventions and treaties as a measure of regulatory response to ecological pressures, ecological integrity across the entire EEZ, and WGI measures to assess the overall Resilience for this goal (see **Table S22**), following the general modeling approach outlined in section **2C and 2D**.
