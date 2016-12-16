@@ -118,24 +118,45 @@ $(document).ready(function () {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#sense-of-place">Sense of Place</a></li>
+</ul>
+</div>
 
-<p>The ‘Lasting Special Places’ sub-goal focuses instead on those geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons <span class="citation">(TRC 2004)</span>. This sub-goal is particularly hard to quantify. Ideally one would survey every community around the world to determine the top list of special places, and then assess how those locations are faring relative to a desired state (e.g., protected or well managed). The reality is that such lists do not exist. Instead, we assume areas that are protected represent these special places (i.e. the effort to protect them suggests they are important places). Clearly this is an imperfect assumption but in many cases it will be true.</p>
-<p>Using lists of protected areas as the catalogue of special places then creates the problem of determining a reference condition. We do not know how many special places have yet to be protected, and so we end up having all identified special places also being protected. To solve this problem we make two important assumptions. First, we assume that all countries have roughly the same percentage of their coastal waters and coastline that qualify as lasting special places. In other words, they all have the same reference target (as a percentage of the total area). Second, we assume that the target reference level is 30% of area protected <span class="citation">(Hughes 2003)</span>.</p>
-<p>As such, we calculate the Status of this goal as:</p>
+<div id="sense-of-place" class="section level3">
+<h3>Sense of Place</h3>
+<p>With this goal we tried to capture the aspects of the coastal and marine system that people value as part of their cultural identity. This definition includes people living near the ocean and those who live far from it but still derive a sense of identity or value from knowing particular places or species exist. We divided this goal into two sub-goals: Iconic Species and Lasting Special Places, and weighted them equally when combining to create a single goal score.</p>
+<div id="iconic-species-sub-goal" class="section level4">
+<h4>Iconic Species sub-goal:</h4>
+<p>Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value (e.g., touristic attractions/common subjects for art such as whales). Habitat-forming species are not included in this definition of iconic species, nor are species that are harvested solely for economic or utilitarian purposes (even though they may be iconic to a sector or individual).</p>
+<p>To define the list of iconic species for each country, we compiled lists of country-specific iconic species with lists of global iconic species to create the total list of iconic species per country (see ‘Iconic species’ in <strong>section 7</strong>). Species were drawn from the World Wildlife Fund’s global and regional lists for Priority Species (especially important to people for their health, livelihoods, and/or culture) and Flagship Species (‘charismatic’ and/or well-known).</p>
+<p>Ultimately, almost any species can be iconic to someone, and so the intent with this goal was to focus on those species widely seen as iconic within a country, and iconic from a cultural or existence value (rather than for a livelihoods or extractive reason). Many lists exist for globally important, threatened, endemic, etc. species, but in all cases it is not clear if or to what extent these species represent culturally iconic species. The lists we used from World Wildlife Fund are the only source that included cultural reasons for listing iconic species.</p>
+<p>The Status of this sub-goal (<span class="math inline">\(x_{ICO}\)</span>) is therefore simply the % of iconic species in each threat category (as defined by the IUCN Red List <span class="citation">(IUCN 2001; IUCN 2015)</span>), such that:</p>
+<!--
+$$
+x_{ICO} = \frac { \displaystyle\sum_{i=1}^{6}{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{i=1}^{6}{ S_{i} } } \quad \quad (Eq.\quad S36)
+$$
+-->
+<!-- note the code above is the original version from 2012; I like this version below, which simply replaces the category numbers 1-6 with letters from EX (Extinct) to LC (Least Concern), which are directly referenced in Table 11.-->
 <p><span class="math display">\[
-x_{LSP} = \frac { \left( \frac{\%_{CMPA}}{\%_{Ref_{CMPA}}} + \frac {\%_{CP}}{\%_{Ref_{CP}}} \right) }{ 2 } \quad \quad (Eq.\quad S37)
+x_{ICO} = \frac { \displaystyle\sum_{ i=EX }^{ LC }{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{ i=EX }^{ LC }{ S_{i} }  } \quad \quad (Eq.\quad S36)
 \]</span></p>
-<p>where <span class="math inline">\(\%_{CMPA}\)</span> = proportion of coastal marine protected area, <span class="math inline">\(\%_{CP}\)</span> = proportion of coastline protected, and <span class="math inline">\(\%_{Ref}\)</span> = 30% for both measures. We focus only on coastal waters (within 3 nautical miles of shore) for marine special places because it was assumed that lasting special places are primarily in coastal areas; we wanted our estimates of % area protected to be bounded to this coastal region. For coastlines, we focused only on the first 1-km-wide strip of land as a way to increase the likelihood that the area being protected by terrestrial parks is connected to the marine system in some way. We found that the coastal (terrestrial) protected area extent scales linearly from 1 to 9 km inland (R<sup>2</sup> = 0.98), such that our decision to use a 1 km<sup>2</sup> buffer should not affect results at all. We use the compiled list of protected areas provided by the United Nation’s World Database on Protected Areas (WDPA) to derive these % protected values <span class="citation">(UNEP-WCMC 2015)</span>. The WDPA aggregates several key databases: IUCN’s World Commission on Protected Areas, Global Marine Protected Areas, UNESCO World Heritage Marine sites, National Parks and Nature Reserves, and the United Nations List of Protected Places.</p>
-<p>In most of these cases the year of designation is listed for each protected area, and so we use the annual increase in % area (or % coastline), relative to the reference point, across the five most recent years (2011-2015) to derive the trend in protected sites, and therefore the Trend in Status of Lasting Special Places. Pressures to this goal derive primarily from pollution and habitat destruction (see <strong>Table S22</strong>). Resilience measures for this goal come from CBD questions relating to pollution and habitat destruction, the amount of money (proportional to GDP) invested into protected areas, and the WGI indicators.</p>
+<p>where for each IUCN threat category <span class="math inline">\(i\)</span>, <span class="math inline">\(S_{i}\)</span> is the number of assessed species in category <span class="math inline">\(i\)</span> and <span class="math inline">\(w_{i}\)</span> is the status weight assigned (see <strong>Table S11</strong> for IUCN threat categories and weights) following the methods described by Butchart et al. <span class="citation">(2007)</span>. This formulation gives partial credit to species that still exist but are in one of the other threat categories. The reference point is to have the risk status of all assessed species as Least Concern (i.e., a goal score = 1.0). Species that have not been assessed or labeled as data deficient are not included in the calculation.</p>
+<p>The IUCN provides information about current and past assessments for species, which we use to create a time series of risk status for each species. Because IUCN assessments are infrequent, we derive the trend as the annual change in risk status for each species across the previous ten years (2006-2015), rather than a five-year window typical of other goals. We report the Trend as the mean trend in risk status for all iconic species within each country.</p>
+<!--The IUCN provides information about whether assessed species are increasing, stable or decreasing in population size, or whether the trend is unknown. We report the Trend as the average of the recorded (categorical) trend (excluding unknown trends) for all the iconic species assessed by IUCN in each country, giving scores of 0.5 (increasing population), 0.0 (stable), and -0.5 (decreasing population) to each species. -->
+<p>Pressures are considered across all iconic species and are weighted as shown in <strong>Table S25</strong>. An additional pressure was added for this sub-goal only (targeted harvest, see <strong>section 7</strong>) to account for the fishing pressure on iconic species taxa. For Resilience, we used being a signatory on a number of conventions and treaties as a measure of regulatory response to ecological pressures, ecological integrity across the entire EEZ, and WGI measures to assess the overall Resilience for this goal (see <strong>Table S22</strong>), following the general modeling approach outlined in section <strong>2C and 2D</strong>.</p>
 <div id="refs" class="references">
-<div id="ref-hughes_climate_2003">
-<p>Hughes, T. P. 2003. “Climate Change, Human Impacts, and the Resilience of Coral Reefs.” <em>Science</em> 301 (5635): 929–33. doi:<a href="https://doi.org/10.1126/science.1085046">10.1126/science.1085046</a>.</p>
+<div id="ref-butchart_improvements_2007">
+<p>Butchart, Stuart H.M., H. Resit Akçakaya, Janice Chanson, Jonathan E.M. Baillie, Ben Collen, Suhel Quader, Will R. Turner, Rajan Amin, Simon N. Stuart, and Craig Hilton-Taylor. 2007. “Improvements to the Red List Index.” Edited by David Lusseau. <em>PLoS ONE</em> 2 (1): e140. doi:<a href="https://doi.org/10.1371/journal.pone.0000140">10.1371/journal.pone.0000140</a>.</p>
 </div>
-<div id="ref-trc_inventory_2004">
-<p>TRC. 2004. “Inventory of Coastal Areas of Local or Regional Significance in the Taranaki Region.” Stratford: Taranaki Regional Council. <a href="http://docs.niwa.co.nz/library/public/TRCInve2004.pdf" class="uri">http://docs.niwa.co.nz/library/public/TRCInve2004.pdf</a>.</p>
+<div id="ref-iucn_iucn_2001">
+<p>IUCN. 2001. <em>IUCN Red List Categories and Criteria (Version 3.1)</em>. Gland, Switzerland: IUCN (International Union for Conservation of Nature).</p>
 </div>
-<div id="ref-unep-wcmc_world_2015">
-<p>UNEP-WCMC. 2015. “World Database on Protected Areas User Manual.” UNEP-WCMC: Cambridge, UK. <a href="http://wcmc.io/WDPA_Manual" class="uri">http://wcmc.io/WDPA_Manual</a>.</p>
+<div id="ref-iucn_red_2015">
+<p>———. 2015. “Red List of Threatened Species.” <a href="http://www.iucnredlist.org/" class="uri">http://www.iucnredlist.org/</a>.</p>
+</div>
+</div>
 </div>
 </div>
 
