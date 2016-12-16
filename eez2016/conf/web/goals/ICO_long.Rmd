@@ -33,13 +33,21 @@ $$
 
 <!-- note the code above is the original version from 2012; I like this version below, which simply replaces the category numbers 1-6 with letters from EX (Extinct) to LC (Least Concern), which are directly referenced in Table 11.-->
 
+<!--
 $$
 x_{ICO} = \frac { \displaystyle\sum_{ i=EX }^{ LC }{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{ i=EX }^{ LC }{ S_{i} }  } \quad \quad (Eq.\quad S36)
 $$
 
 where for each IUCN threat category $i$, $S_{i}$ is the number of assessed species in category $i$ and $w_{i}$ is the status weight assigned (see **Table S11** for IUCN threat categories and weights) following the methods described by Butchart et al. [-@butchart_improvements_2007]. This formulation gives partial credit to species that still exist but are in one of the other threat categories. The reference point is to have the risk status of all assessed species as Least Concern (i.e., a goal score = 1.0). Species that have not been assessed or labeled as data deficient are not included in the calculation.
+-->
 
-The IUCN provides information about current and past assessments for species, which we use to create a time series of risk status for each species.  Because IUCN assessments are infrequent, we derive the trend as the annual change in risk status for each species across the previous ten years (2006-2015), rather than a five-year window typical of other goals.  We report the Trend as the mean trend in risk status for all iconic species within each country.
+$$
+x_{ICO} = \frac { \displaystyle\sum_{i=1}^{N} w_{i}} {N} \quad \quad (Eq. \quad S36)
+$$
+
+where for each species $i$, $w_{i}$ is the status weight assigned (see **Table S11** for IUCN threat categories and weights) following the methods described by Butchart et al. [-@butchart_improvements_2007]. These values are summed across all iconic species found within a region's EEZ, and divided by the total number of species within the region, resulting in an unweighted average risk status of all iconic species within the region.  This formulation gives partial credit to species that still exist but are in one of the other threat categories. The reference point is to have the risk status of all assessed species as Least Concern (i.e., a goal score = 1.0). Species that have not been assessed or labeled as data deficient are not included in the calculation.
+
+The IUCN provides information about current and past assessments for species, which we use to create a time series of risk status for each species.  Because IUCN assessments are generally infrequent for any given species, we derive the trend as the annual change in risk status for each species across the previous ten years (2006-2015), rather than a five-year window typical of other goals.  We report the Trend as the mean trend in risk status for all iconic species within each country.
 
 <!--The IUCN provides information about whether assessed species are increasing, stable or decreasing in population size, or whether the trend is unknown. We report the Trend as the average of the recorded (categorical) trend (excluding unknown trends) for all the iconic species assessed by IUCN in each country, giving scores of 0.5 (increasing population), 0.0 (stable), and -0.5 (decreasing population) to each species. -->
 
