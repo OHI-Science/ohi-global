@@ -120,48 +120,89 @@ $(document).ready(function () {
 
 <div id="TOC">
 <ul>
-<li><a href="#sense-of-place">Sense of Place</a></li>
+<li><a href="#biodiversity">Biodiversity</a></li>
 </ul>
 </div>
 
-<div id="sense-of-place" class="section level3">
-<h3>Sense of Place</h3>
-<p>With this goal we tried to capture the aspects of the coastal and marine system that people value as part of their cultural identity. This definition includes people living near the ocean and those who live far from it but still derive a sense of identity or value from knowing particular places or species exist. We divided this goal into two sub-goals: Iconic Species and Lasting Special Places, and weighted them equally when combining to create a single goal score.</p>
-<div id="iconic-species-sub-goal" class="section level4">
-<h4>Iconic Species sub-goal:</h4>
-<p>Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value (e.g., touristic attractions/common subjects for art such as whales). Habitat-forming species are not included in this definition of iconic species, nor are species that are harvested solely for economic or utilitarian purposes (even though they may be iconic to a sector or individual).</p>
-<p>To define the list of iconic species for each country, we compiled lists of country-specific iconic species with lists of global iconic species to create the total list of iconic species per country (see ‘Iconic species’ in <strong>section 7</strong>). Species were drawn from the World Wildlife Fund’s global and regional lists for Priority Species (especially important to people for their health, livelihoods, and/or culture) and Flagship Species (‘charismatic’ and/or well-known).</p>
-<p>Ultimately, almost any species can be iconic to someone, and so the intent with this goal was to focus on those species widely seen as iconic within a country, and iconic from a cultural or existence value (rather than for a livelihoods or extractive reason). Many lists exist for globally important, threatened, endemic, etc. species, but in all cases it is not clear if or to what extent these species represent culturally iconic species. The lists we used from World Wildlife Fund are the only source that included cultural reasons for listing iconic species.</p>
-<p>The Status of this sub-goal (<span class="math inline">\(x_{ICO}\)</span>) is therefore simply the % of iconic species in each threat category (as defined by the IUCN Red List <span class="citation">(IUCN 2001; IUCN 2015)</span>), such that:</p>
-<!--
-$$
-x_{ICO} = \frac { \displaystyle\sum_{i=1}^{6}{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{i=1}^{6}{ S_{i} } } \quad \quad (Eq.\quad S36)
-$$
--->
-<!-- note the code above is the original version from 2012; I like this version below, which simply replaces the category numbers 1-6 with letters from EX (Extinct) to LC (Least Concern), which are directly referenced in Table 11.-->
-<!--
-$$
-x_{ICO} = \frac { \displaystyle\sum_{ i=EX }^{ LC }{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{ i=EX }^{ LC }{ S_{i} }  } \quad \quad (Eq.\quad S36)
-$$
-
-where for each IUCN threat category $i$, $S_{i}$ is the number of assessed species in category $i$ and $w_{i}$ is the status weight assigned (see **Table S11** for IUCN threat categories and weights) following the methods described by Butchart et al. [-@butchart_improvements_2007]. This formulation gives partial credit to species that still exist but are in one of the other threat categories. The reference point is to have the risk status of all assessed species as Least Concern (i.e., a goal score = 1.0). Species that have not been assessed or labeled as data deficient are not included in the calculation.
--->
+<div id="biodiversity" class="section level3">
+<h3>Biodiversity</h3>
+<p>Biodiversity People value biodiversity in particular for its existence value. The risk of species extinction generates great emotional and moral concern for many people. As such, this goal assesses the conservation status of species based on the best available global data through two sub-goals: Species and Habitats. Species were assessed because they are what one typically thinks of in relation to biodiversity. Because only a small proportion of marine species worldwide have been mapped and assessed, we also assessed Habitats as part of this goal, and considered them a proxy for condition of the broad suite of species that depend on them.</p>
+<p>For the Species sub-goal, we used recent assessments by the International Union for Conservation of Nature (IUCN)- Global Marine Species Assessment of the extinction risk status of 2377 species for which distribution maps also exist across a wide range of taxa to provide a geographic snapshot of how total marine biodiversity is faring, even though it is a very small sub-sample of overall subgoals separately and treat them equally when calculating the overall goal score.</p>
+<div id="species-sub-goal" class="section level4">
+<h4>Species sub-goal:</h4>
+<p>The target for the Species sub-goal is to have all species at a risk status of Least Concern. We scaled the lower end of the biodiversity goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions <span class="citation">(Barnosky et al. 2011)</span> and would constitute a catastrophic loss of biodiversity. The Status of assessed species was calculated as the area and threat status-weighted average of the number of threatened species within each 0.5 degree grid cell. Marine species distribution and threat category data mostly came from IUCN Red List of Threatened Species, and we limited data to all species having IUCN habitat system of “marine” <span class="citation">(IUCN 2015)</span>. Seabird distributions data came from Birdlife International (<strong>BirdLife International and NatureServe 2012 –&gt;no bib in 2015 paper</strong>). For some species for which neither IUCN nor BirdLife International distributions were available, we supplemented with AquaMaps <span class="citation">(Kaschner et al. 2015)</span> using any non-zero probability of occurrence to indicate species presence to create a binary range map.</p>
+<p>We calculated the average species threat assessment status (instead of other statistics) to account for different species richness values in different locations around the world. Taxa included in the analysis are listed in <strong>Table S17</strong>. Threat weights (<span class="math inline">\(w_{i}\)</span>) were assigned based on the IUCN threat categories status of each <span class="math inline">\(i\)</span> species, following the weighting schemes developed by Butchart et al. <span class="citation">(2007)</span> (see <strong>Table S11</strong> for IUCN threat category weights). For the purposes of this analysis, we included only data for extant species for which sufficient data were available to conduct an assessment. We did not include the Data Deficient classification as assessed species following previously published guidelines for a mid-point approach <span class="citation">(Schipper et al. 2008; Hoffmann et al. 2010)</span>.</p>
+<p>The Status score in the Species sub-goal (<span class="math inline">\(x_{SPP}\)</span>) was calculated as the region’s area-weighted average species risk status. For each 0.5 degree grid cell (<span class="math inline">\(c\)</span>), the risk status (<span class="math inline">\(w\)</span>) for each species (<span class="math inline">\(i\)</span>) present is summed and multiplied by cell area <span class="math inline">\(A_c\)</span>, to get an area- and count-weighted species risk for each cell. This value is summed across all cells within a region, then divided by the sum of count-weighted area <span class="math inline">\(A_c \times N_c\)</span> across all cells within the region. The result is the area-weighted mean species risk across the entire region.</p>
 <p><span class="math display">\[
-x_{ICO} = \frac { \displaystyle\sum_{i=1}^{N} w_{i}} {N} \quad \quad (Eq. \quad S36)
+\bar R_{SPP} = \frac { \displaystyle\sum_{ c=1 }^{ M } \left( \displaystyle\sum _{ i=1 }^{N_c} w_i \right) \times A_c } 
+                { \displaystyle\sum_{ c=1 }^{ M } A_c \times N_c }
+\quad \quad (Eq. \quad S39a)
+\]</span> <span class="math display">\[
+x_{SPP} = max \left( \frac { \bar R_{SPP} - .25 }{ .75 }, 0 \right)
+\quad \quad (Eq. \quad S39b)
 \]</span></p>
-<p>where for each species <span class="math inline">\(i\)</span>, <span class="math inline">\(w_{i}\)</span> is the status weight assigned (see <strong>Table S11</strong> for IUCN threat categories and weights) following the methods described by Butchart et al. <span class="citation">(2007)</span>. These values are summed across all iconic species found within a region’s EEZ, and divided by the total number of species within the region, resulting in an unweighted average risk status of all iconic species within the region. This formulation gives partial credit to species that still exist but are in one of the other threat categories. The reference point is to have the risk status of all assessed species as Least Concern (i.e., a goal score = 1.0). Species that have not been assessed or labeled as data deficient are not included in the calculation.</p>
-<p>The IUCN provides information about current and past assessments for species, which we use to create a time series of risk status for each species. Because IUCN assessments are generally infrequent for any given species, we derive the trend as the annual change in risk status for each species across the previous ten years (2006-2015), rather than a five-year window typical of other goals. We report the Trend as the mean trend in risk status for all iconic species within each country.</p>
-<!--The IUCN provides information about whether assessed species are increasing, stable or decreasing in population size, or whether the trend is unknown. We report the Trend as the average of the recorded (categorical) trend (excluding unknown trends) for all the iconic species assessed by IUCN in each country, giving scores of 0.5 (increasing population), 0.0 (stable), and -0.5 (decreasing population) to each species. -->
-<p>Pressures are considered across all iconic species and are weighted as shown in <strong>Table S25</strong>. An additional pressure was added for this sub-goal only (targeted harvest, see <strong>section 7</strong>) to account for the fishing pressure on iconic species taxa. For Resilience, we used being a signatory on a number of conventions and treaties as a measure of regulatory response to ecological pressures, ecological integrity across the entire EEZ, and WGI measures to assess the overall Resilience for this goal (see <strong>Table S22</strong>), following the general modeling approach outlined in section <strong>2C and 2D</strong>.</p>
+<p>To convert the area-weighted mean risk status for each region into a score, we set a floor at 25% (representing a catastrophic loss of biodiversity, as noted above) and then rescale to produce a <span class="math inline">\(x_{SPP}\)</span> value between zero and one.</p>
+<p><strong>Table 11. Weight values for assessment of Species, based on IUCN risk categories.</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Risk Category</th>
+<th>IUCN code</th>
+<th>Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Extinct</td>
+<td>EX</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td>Critically Endangered</td>
+<td>CR</td>
+<td>0.2</td>
+</tr>
+<tr class="odd">
+<td>Endangered</td>
+<td>EN</td>
+<td>0.4</td>
+</tr>
+<tr class="even">
+<td>Vulnerable</td>
+<td>VU</td>
+<td>0.6</td>
+</tr>
+<tr class="odd">
+<td>Near Threatened</td>
+<td>NT</td>
+<td>0.8</td>
+</tr>
+<tr class="even">
+<td>Least Concern</td>
+<td>LC</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+<p>We calculated Trend as the average of the population trend assessments for all species within a region, with species’ trends assigned a value of 0.5 for increasing, 0 for stable, and -0.5 for decreasing using the population trend data associated with the species assessment conducted by IUCN. Pressures to species biodiversity included all pressures except human pathogens and social pressures derived from the WGI data (see <strong>Table S22 -&gt; pressures</strong>). Resilience measures used for the Species sub-goal include nearly all available regulations and other institutional measures and the social resilience from the WGI data (see <strong>Table S22</strong>). We did not include ecological integrity measures as they are based on the same data used to calculate Status and Trend.</p>
 <div id="refs" class="references">
+<div id="ref-barnosky_has_2011">
+<p>Barnosky, Anthony D., Nicholas Matzke, Susumu Tomiya, Guinevere O. U. Wogan, Brian Swartz, Tiago B. Quental, Charles Marshall, et al. 2011. “Has the Earth’s Sixth Mass Extinction Already Arrived?” <em>Nature</em> 471 (7336): 51–57. doi:<a href="https://doi.org/10.1038/nature09678">10.1038/nature09678</a>.</p>
+</div>
 <div id="ref-butchart_improvements_2007">
 <p>Butchart, Stuart H.M., H. Resit Akçakaya, Janice Chanson, Jonathan E.M. Baillie, Ben Collen, Suhel Quader, Will R. Turner, Rajan Amin, Simon N. Stuart, and Craig Hilton-Taylor. 2007. “Improvements to the Red List Index.” Edited by David Lusseau. <em>PLoS ONE</em> 2 (1): e140. doi:<a href="https://doi.org/10.1371/journal.pone.0000140">10.1371/journal.pone.0000140</a>.</p>
 </div>
-<div id="ref-iucn_iucn_2001">
-<p>IUCN. 2001. <em>IUCN Red List Categories and Criteria (Version 3.1)</em>. Gland, Switzerland: IUCN (International Union for Conservation of Nature).</p>
+<div id="ref-hoffmann_impact_2010">
+<p>Hoffmann, M., C. Hilton-Taylor, A. Angulo, M. Bohm, T. M. Brooks, S. H. M. Butchart, K. E. Carpenter, et al. 2010. “The Impact of Conservation on the Status of the World’s Vertebrates.” <em>Science</em> 330 (6010): 1503–9. doi:<a href="https://doi.org/10.1126/science.1194442">10.1126/science.1194442</a>.</p>
 </div>
 <div id="ref-iucn_red_2015">
-<p>———. 2015. “Red List of Threatened Species.” <a href="http://www.iucnredlist.org/" class="uri">http://www.iucnredlist.org/</a>.</p>
+<p>IUCN. 2015. “Red List of Threatened Species.” <a href="http://www.iucnredlist.org/" class="uri">http://www.iucnredlist.org/</a>.</p>
+</div>
+<div id="ref-kaschner_aquamaps:_2015">
+<p>Kaschner, K., K. Kesner-Reyes, C. Garilao, J. Rius-Barile, T. Rees, and R. Froese. 2015. <em>AquaMaps: Predicted Range Maps for Aquatic Species</em>. Vol. Version 08/2015. <a href="www.aquamaps.org" class="uri">www.aquamaps.org</a>.</p>
+</div>
+<div id="ref-schipper_status_2008">
+<p>Schipper, J., J. S. Chanson, F. Chiozza, N. A. Cox, M. Hoffmann, V. Katariya, J. Lamoreux, et al. 2008. “The Status of the World’s Land and Marine Mammals: Diversity, Threat, and Knowledge.” <em>Science</em> 322 (5899): 225–30. doi:<a href="https://doi.org/10.1126/science.1165115">10.1126/science.1165115</a>.</p>
 </div>
 </div>
 </div>

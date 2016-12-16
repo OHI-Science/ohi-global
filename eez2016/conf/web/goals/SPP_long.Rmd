@@ -15,27 +15,33 @@ For the Species sub-goal, we used recent assessments by the International Union 
 
 #### Species sub-goal:
 
-The target for the Species sub-goal is to have all species at a risk status of Least Concern. We scaled the lower end of the biodiversity goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions [@barnosky_has_2011] and would constitute a catastrophic loss of biodiversity. The Status of assessed species was calculated as the area and threat status-weighted average of the number of threatened species within each 0.5 degree grid cell. Marine species distribution and threat category data mostly came from IUCN Red List of Threatened Species, and we limited data to all species having IUCN habitat system of "marine" [@iucn_red_2015]. Seabirds distributions data came from Birdlife International (**BirdLife International and NatureServe 2012 -->no bib in 2015 paper**). For some species for which neither IUCN nor BirdLife International distributions were available, we supplemented with AquaMaps [@kaschner_aquamaps:_2015] using a 0.4 or higher threshold to convert from a continuous probability of encounter to a binary range map.
+The target for the Species sub-goal is to have all species at a risk status of Least Concern. We scaled the lower end of the biodiversity goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions [@barnosky_has_2011] and would constitute a catastrophic loss of biodiversity. The Status of assessed species was calculated as the area and threat status-weighted average of the number of threatened species within each 0.5 degree grid cell. Marine species distribution and threat category data mostly came from IUCN Red List of Threatened Species, and we limited data to all species having IUCN habitat system of "marine" [@iucn_red_2015]. Seabird distributions data came from Birdlife International (**BirdLife International and NatureServe 2012 -->no bib in 2015 paper**). For some species for which neither IUCN nor BirdLife International distributions were available, we supplemented with AquaMaps [@kaschner_aquamaps:_2015] using any non-zero probability of occurrence to indicate species presence to create a binary range map.
 
-We calculated the average species status (instead of other statistics) to account for different species richness values in different locations around the world. Taxa included in the analysis are listed in **Table S17**. Threat weights ($w_{i}$) were assigned based on the IUCN threat categories status of each _i_ species, following the weighting schemes developed by Butchart et al. [-@butchart_improvements_2007] (see **Table S11** for IUCN threat category weights). For the purposes of this analysis, we included only data for extant species for which sufficient data were available to conduct an assessment. We did not include the Data Deficient classification as assessed species following previously published guidelines for a mid-point approach [@schipper_status_2008; @hoffmann_impact_2010].
+We calculated the average species threat assessment status (instead of other statistics) to account for different species richness values in different locations around the world. Taxa included in the analysis are listed in **Table S17**. Threat weights ($w_{i}$) were assigned based on the IUCN threat categories status of each $i$ species, following the weighting schemes developed by Butchart et al. [-@butchart_improvements_2007] (see **Table S11** for IUCN threat category weights). For the purposes of this analysis, we included only data for extant species for which sufficient data were available to conduct an assessment. We did not include the Data Deficient classification as assessed species following previously published guidelines for a mid-point approach [@schipper_status_2008; @hoffmann_impact_2010].
 
-The Status score in the Species sub-goal ($x_{SPP}$) was calculated as the region’s area-weighted average species risk status. For each 0.5 degree grid cell ($_{c}$) the risk status ($_{w}$) for each species ($_{i}$) present is summed and divided by the total number of species present in the cell ($_{N}$). This average species risk is subtracted from on so that the presence of more threatened species produces a higher score (see **Table S11**), and multiplied by the ocean area ($A_{c}$) occupied by the cell (km2):
+The Status score in the Species sub-goal ($x_{SPP}$) was calculated as the region’s area-weighted average species risk status. For each 0.5 degree grid cell ($c$), the risk status ($w$) for each species ($i$) present is summed and multiplied by cell area $A_c$, to get an area- and count-weighted species risk for each cell.  This value is summed across all cells within a region, then divided by the sum of count-weighted area $A_c \times N_c$ across all cells within the region.  The result is the area-weighted mean species risk across the entire region.
 
 $$
-x_{SPP} = \frac { \sum _{ k=1 }^{ M }{ (1-\frac { \sum _{ i=1 }^{ N }{ { w }_{ i } }  }{ N } )\ast { A }_{ c } }  }{ { A }_{ t } } (Eq. S39)
+\bar R_{SPP} = \frac { \displaystyle\sum_{ c=1 }^{ M } \left( \displaystyle\sum _{ i=1 }^{N_c} w_i \right) \times A_c } 
+                { \displaystyle\sum_{ c=1 }^{ M } A_c \times N_c }
+\quad \quad (Eq. \quad S39a)
+$$
+$$
+x_{SPP} = max \left( \frac { \bar R_{SPP} - .25 }{ .75 }, 0 \right)
+\quad \quad (Eq. \quad S39b)
 $$
 
-These values are summed for all the region’s cells (M) and divided by the total amount of the region’s ocean area ($A_{t}$). It is important to note that the IUCN Red List assessments provide a global, rather than country- or region- specific threat status for each species.
+To convert the area-weighted mean risk status for each region into a score, we set a floor at 25% (representing a catastrophic loss of biodiversity, as noted above) and then rescale to produce a $x_{SPP}$ value between zero and one.
 
 **Table 11. Weight values for assessment of Species, based on IUCN risk categories.**
 
-|Risk Category |IUCN code |Weight|
-|---|---|---|
-|Extinct | EX |0.0 |
-|Critically Endangered| CR | 0.2 |
-|Endangered | EN | 0.4 |
-|Vulnerable | VU | 0.6 |
-|Near Threatened | NT | 0.8 |
-|Least Concern | LC | 1.0 |
+| Risk Category   | IUCN code | Weight|
+|-----------------|-----------|-------|
+| Extinct         |     EX    |  0.0  |
+| Critically Endangered | CR  |  0.2  |
+| Endangered      |     EN    |  0.4  |
+| Vulnerable      |     VU    |  0.6  |
+| Near Threatened |     NT    |  0.8  |
+| Least Concern   |     LC    |  1.0  |
 
 We calculated Trend as the average of the population trend assessments for all species within a region, with species’ trends assigned a value of 0.5 for increasing, 0 for stable, and -0.5 for decreasing using the population trend data associated with the species assessment conducted by IUCN. Pressures to species biodiversity included all pressures except human pathogens and social pressures derived from the WGI data (see **Table S22 -> pressures**). Resilience measures used for the Species sub-goal include nearly all available regulations and other institutional measures and the social resilience from the WGI data (see **Table S22**). We did not include ecological integrity measures as they are based on the same data used to calculate Status and Trend.
