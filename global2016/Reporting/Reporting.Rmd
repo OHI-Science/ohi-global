@@ -515,6 +515,12 @@ source('map_fxns.R')
 ### set scenario and desired map projection
 prj      <- 'mol'    ### note: 'gcs' is way faster.
 
+# brewer.pal(10, "RdYlBu")
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+colors <-   c(reds, blues)
+
+
 ### get OHI data and rename column headings
 
 for(year in 2012:scenario){ #year=2012
@@ -542,7 +548,8 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
     fig_save = sprintf('figures/maps_by_goal_%s/year_%s/global_map_%s_%s_%s.png', prj, year, fld, year, prj)
     }
   
-   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save)
+   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
+                                 colors_spec = colors)
    
    #print(ohiplot)
 }
@@ -619,6 +626,47 @@ hwrite(trends_spread, sprintf('data/trends_%s.html', scenario), br=TRUE, center=
                         AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
                         ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
                         SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
+
+```
+
+```{r trend maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+source('map_fxns_trend.R')
+
+### set scenario and desired map projection
+prj      <- 'mol'    ### note: 'gcs' is way faster.
+values <-   brewer.pal(11, "RdYlBu")
+values <- colorRampPalette(values, space = 'Lab')(13)
+col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
+
+### get OHI data and rename column headings
+
+scores_df <- read.csv(sprintf('data/trends_%s.csv', scenario), stringsAsFactors = FALSE) %>%
+  rename(rgn_name = country, rgn_id = region_id)
+
+### load region data frame, so doesn't need to reload every time through the loop.  Also
+### load the land data frame, if plotting in Mollweide projection.
+rgn_df <- get_rgn_df(prj = prj)
+if(prj == 'mol' & !exists('land_poly')) {
+  land_poly  <- get_land_df()
+  ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
+}
+
+
+### establish list of fields for mapping
+
+mapFlds   <- names(scores_df %>% select(-rgn_name, -rgn_id))
+
+### Loop over each field, plotting each map in turn and saving to file.
+for (fld in mapFlds) { # fld <- mapFlds[1]
+
+    fig_save = sprintf('figures/maps_trends/trends_map_%s_%s_%s.png', fld, year, prj)
+
+   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save)
+   
+   #print(ohiplot)
+}
+
 
 ```
 

@@ -1,0 +1,41 @@
+# Calculating trends
+
+The Trend is calculated as the proportion change in Status based on recent data. In most cases, trend is calculated by: 1. estimating the yearly change in status using a linear regression model of status data from the most recent five years of data
+2. dividing the slope by the status value of the first year of data (to estimate proportional change), and 
+3. then mulitiplying by five to estimate the change in status five years into the future.
+
+Because status values range from 0-1, Trends will typically range from -1.0 to 1.0; and we constrained values to this range if they fell outside it.
+
+For all goals we
+included non-significant trends as their non-zero
+slopes. We chose to include these values for two
+key reasons: 1) We were not trying to predict the
+future but instead only indicate likely condition. 2)
+In nearly all cases we did not have sufficient data
+to conduct more rigorous trend analyses.
+
+We multiply the slope estimate by five because our goal is to look beyond
+just a single year into the future when assessing
+likely future condition (i.e. sustainability), but we
+know that many things affect Trends in the nearterm
+future that will modify them from being a
+simple linear trend (as we presume here),
+including altered pressures and resilience
+responses, nonlinear patterns in system response,
+stochastic environmental and biological
+variability, and simple bounding conditions (Status
+cannot go below zero or above 1.0, and so the
+Trend must level off as it approaches these
+values).
+
+In some cases, it isn't possible, due to data limitations, to estimate trend from status data.  In these cases, we used alternative methods to estimate trend.  For example, for the Species condition goal, we converted IUCN trend information (e.g., "increasing", "decreasing", etc.) to numeric values and then averaged these for each region. In the sections that describe calculating current status for each goal we also include specific information about trend calculations.
+
+It is important to note that the Trend does not
+distinguish between different causes of the same
+potential Trend. For example, declines due to
+unsustainable harvest of a resource can look
+identical to declines due to restrictions placed on resource users to allow the resource to recover. It
+also may be too short a time frame to determine
+true trends or the causes of those trends, but the
+intent here is more about informing the likely
+near-term trajectory.
