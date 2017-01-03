@@ -1,12 +1,12 @@
 ### These notes are from the 2012 Supplement (this section needs added figures and table and equations an citations).
 
 
-## Resilience calculations
+** Note, should we change the regulatory component symbol to something besides G?  At one point, the focus was on goals-based resilience, but actually many of them are based on regulatory catagories that are parallel to the pressures.
 
-To calculate Resilience for each goal (rx) we
+To calculate Resilience for each goal and region (rx) we
 assess three types of measures: ecological integrity
-(YE), goal-specific regulations aimed at addressing
-ecological pressures (G), and social integrity (YS).
+(YE), regulations aimed at addressing
+ecological pressures (G), and social integrity (YS) (Figure: piechart similar to the score calculations, but for goals, Table: something like the one here: ohi-global/eez2016/conf/resilience_categories). 
 The first two measures address ecological
 resilience while the third addresses social
 resilience. When all three aspects are relevant to a
@@ -29,30 +29,32 @@ were equivalent, based on the same rationale as for
 ecological pressures vs. social pressures, with the
 intent, as best as possible, to have Resilience
 measures directly matched with Pressures.
-Ecological integrity, i.e. food web integrity, is
+
+Each category of resilience is composed of 1 or more data layers that describe a resilience score for each region (link to example) that is scaled from 0-1.  Each resilience data layer is assigned a weight (Table) and a matrix (include matrix table: ohi-global/eez2016/conf/resilience_matrix.csv) describes which goals the data layers influence.  This information is used to calculate a score for each resilience category.     
+
+#### Ecological resilience
+
+##### Ecosystem integrity resilience 
+
+Ecosystem integrity, e.g., food web integrity, is
 measured as relative condition of assessed species
-in a given location (see ‘marine species’ data layer
-description in section 7). As measured, it is not
-directly relevant to all goals and so is omitted in
-those instances, in which case rx = (G + YS)/2. The
-goals where ecological integrity is not directly
-relevant include Coastal Livelihoods and
-Economies, Clean Waters, Tourism and
-Recreation, the Mariculture sub-goal of Food
-Provision, Coastal Protection, Carbon Storage, and
-the Lasting Special Places sub-goal of Sense of
-Place. In each of these cases there is little evidence
-that the overall ecological integrity of the natural
-system as measured here directly affects the value
-of the goal (or sub-goal) in a broad sense; clearly
-specific contrary examples exist. Methods for
-calculating ecological integrity are described
-below (section 7, Specific Data Layers).
-Goal-specific regulations (G) are intended to
-describe the factors that set rules and regulations
-to address ecological pressures, and are measured
-as laws and other institutional measures related to
-a specific goal. Governance is a function of 1)
+in a given location (scores from the species subgoal were used as an estimate of ecosystem integrity). For some goals, there is little evidence that our index of ecosystem integrity directly affects the value of the goal (or subgoal). 
+
+In these instances, ecological integrity falls out of the resilience model, such that:
+rx = (G + YS)/2.  
+
+
+For the global assessments, we only have one data layer describing ecosystem integrity, however, if there were multiple layers the overall score for ecosystem integrity would be a weighted mean (wi) of the data layers (YEi, Table with weights) that influence the goal (Matrix table):
+
+YE = sum(i, M) wi YEi/M 
+
+
+##### Regulatory resilience
+Regulatory factors (G) 
+describe the insitutional measures (e.g., rules, regulations, and laws)
+designed to address ecological pressures. Parallel to the pressure categories, the regulatory resilience datasets are grouped into five categories that address the 5 pressure categories: fishing pressure, habitat destruction, climate change (including ocean acidification), water pollution, and species introductions (invasive species and genetic escapes). There is also an additional category for goal-specific regulations that apply to a goal or goals, but do not address a larger pressure category.  
+
+Weights were based effectiveness of governance. Governance is a function of 1)
 institutional structures that address the intended
 objective, 2) a clear process for implementing the
 institution is in place, and 3) whether the
@@ -65,46 +67,21 @@ information on institutions that enabled us to
 assess whether they would contribute to effective
 management, and thus, increased ocean health. In
 those latter cases, we gave more weight to those
-measures. Specifically, we calculated G as a
-weighted average:
-
- 
-i
-i i
-w
-w G
-G , (Eq. 12)
-where Gi is the specific regulatory measure
-(dataset), and wi is the weight for each i dataset
-used to assess G based on the quality of
-information contained in the datasets vis-à-vis
-estimates of regulation effectiveness (see Table
-S3). For habitat resilience and fishing resilience
-(all versions), and the CITES signatories
-(Convention on the International Trade of
-Endangered Species), any country without a score
-is given Gi = 0; otherwise, any country without
-data for Gi is excluded from Eq. 12 for that
-country.
+measures (see table). 
 
+For each region and goal, we calculated a score for each regulatory category (ri) as a weighted mean of the resilience datasets (ri) that influence the goal (matrix table):
+
+Gi = sum(i, M) wi ri/M
+
+where wi are the weights in Table ??.
+
+To calculate the overall regulatory resilience, we averaged the scores for each regulatory category.  
+
+#### Social integrity resilience
 Social integrity is intended to describe those
 processes internal to a community that affect its
 Resilience. It is a function of a wide range of
-aspects of social structure, nearly all of which lack
-global data. As such, we rely primarily on WGI
-data for each goal as a measure of social integrity,
-using the average of the 6 components of WGI in
-all cases (see section 2C above for a description of
-WGI data and how WGI scores are used for both
-Pressures and Resilience). This same approach and
-reliance on these WGI data has been used in a
-wide variety of other sector-specific ocean related
-indices10. For the Coastal Livelihoods and
-Economies goal, we also measure sector diversity
-(see section 7, Specific Data Layers, for more
-details) and the Global Competiveness Index
-rescaled from 0 to 1.0 (see Pressures description
-above). Social Integrity per goal (YS,x) is therefore:
+aspects of social structure. Social Integrity per goal for each region (YS,x) is therefore:
 N
 Y
 Y
@@ -117,7 +94,8 @@ S x
 ,
 , , (Eq. S13)
 where YS,i are the social integrity measures specific
-to the goal (in general, only the WGI score).
+to the goal.
+
 Ideally, assessments of social resilience would
 include state and federal level rules and other
 relevant institutional mechanisms as well.

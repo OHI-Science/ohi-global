@@ -1,15 +1,45 @@
-## Overall model
+## Overall model: Calculating index scores for a region
 
-### These notes are from the 2012 Supplement (this section needs added figures and table and equations an citations).
+(These notes are from 2012 Supplement "2A.Model" and "2E.Calculating Global and Regional Scores" (this section needs added figures and table and equations an citations).  I also did some rearranging.
+
+#### Regional and global index scores
+The overall index score for each region is calculated as a weighted average of the scores for the 10 goals (I1, I2, . . . , I10), such that:
+
+I =  , (Eq. S6)
+where, U is the sum of the maximum posssible values of the goal scores.
+
+The weights (αi) that are applied to the ten
+goals to calculate the single Index score (equation
+S7) were assumed to be equal, even though we
+know this assumption does not hold for the value
+sets of most individuals, or likely even averaged
+across individuals within communities.  Ideally
+these weights would be derived empirically, but
+such an effort would require surveying a full
+spectrum of people from every single country.
+This was beyond the scope of this project, but may
+be possible in a future application of the Index.
+
+In many places certain goals are not relevant,
+for example uninhabited islands where most
+production-focused goals do not apply, or places
+that do not have coastal ecosystems that store
+carbon or provide coastal protection. In these cases
+we redistributed equally the weights from the
+goals that are not relevant to the remaining goals.
 
 
-The overall Index  score is calculated as a linear weighted sum of the scores for each of the
-public goal indices (I1, I2, . . . , I10) and the appropriate weights for each of the goals (α1, α2,..., α10), such that:
+Using the regional index scores, we calculate an overall global score, as:
 
-S =  , (Eq. S1)
-where  1 i.
+(Eq. S14)
 
-Derivation and application of the weights (αi) is described below (section 4).
+where Az is the area of ocean region z (in general
+an EEZ; see Section 3 below on ‘Reporting Units’)
+and Iz is the Index score for that region.
+
+There are two ways to derive this number: a) goal scores are averaged within a region (currently with equal weighting) to create an overall Index score that is then averaged with scores from other regions (weighted by the area of each region) to give the global score, or b) goal scores from every region are averaged (weighted by the area of each region) to give a global score for each goal, and then these global goal scores are averaged (currently with equal weighting) to create the single global Index score. The two methods produce slightly different single global scores because of the order in which area-weighted averaging is done. In method a) a high or low goal score is treated equally with the other nine goal scores when calculating the overall Index, and then area-weighting occurs when combining country-level Index scores to create a global Index score (i.e., area-weighting happens second), whereas in method b) a high or low goal score is weighted by area when calculating global goal scores before being combined into a single Index score (i.e., area-weighting happens first). A variation of this emerges when goals are not relevant to some countries (e.g., mangrove condition in temperate countries or livelihoods and economies in uninhabited regions), where instead of a low or high score, a goal ‘drops out’ of assessment. Deriving the single global score from the area-weighted average of country-level Index scores (method a) best captures the core principle that ocean health is the result of interactions among the ten goals, in a location. If one were to first calculate global goal scores and then average across those scores (method b), these interactions would be ignored.
+
+#### Goals scores: calculations based on current status and likely future status
 
 Each goal score, Ii, is a function of its present status i x and an indication of its likely near-term
 future status:
@@ -17,6 +47,27 @@ future status:
 
 The present status of goal i, xi, is its present status value, (Xi), relative to a reference point, Xi,R, uniquely chosen for each goal and rescaled 0-100 such that:
  . (Eq. S3)
+
+The reference point, Xi,R, can be determined in
+four potential ways, depending on the conceptual
+and data constraints for each goal2. Reference
+points can be estimated mechanistically using a
+production function (e.g., maximum sustainable
+yield, MSY, for fisheries), spatially by means of
+comparison with another region (e.g., country X
+represents the best possible known case),
+temporally using a past benchmark (e.g., historical
+habitat extent), or in some cases via known (e.g.,
+zero pollution) or established (e.g., 20% of waters
+set aside in MPAs) targets. Past benchmarks can
+either be a fixed point in time or a moving target
+(e.g., five years prior to most current data). The
+type of reference point used (Table S1) can have
+important implications for interpretations of how a
+goal is doing in any given country (see specific
+goal models, section 6).
+
+(add table here about reference points...might be able to improve this table, but I want to keep it very general.)
 
 The estimate of a goal’s likely near-term future status is a function of the present status modified by: recent trends in status (over the past ~5 years); current cumulative pressures acting on the goal (pi); and social and ecological resilience to negative pressures (measured as a function of governance and social institutions in place to protect or regulate the system and the ecological condition of the system; ri).  
 
@@ -30,30 +81,6 @@ Both ri and pi are scaled such that 0  ,  1 i i r p , with 1 being the max
 Where Beta (β) represents the relative importance of the Trend versus the Resilience and
 Pressure terms in determining the likely trajectory of the goal status into the future. We assume β=0.67 based on the idea that the direct measure of Trend is a better indicator of future (five years) condition than indirect measures of Pressure and Resilience. This assumption makes Trend twice as important.
 
-The likely future status cannot exceed the maximum possible value for Status for each goal, which is 1.0. In reality data are rarely perfect, creating potential situations where likely future condition exceeds 1.0. To address these cases, we implemented two rules. First, if current Status = 1.0, then trend is set = 0.0, since any Trend > 0.0 in those cases must be due to incomplete or imperfect data. Second, Status and Likely Future Status scores were constrained to maximum value of 1.
-
-We can therefore calculate the Index (I):
-
-This formulation also allows for the assessment to be conducted using the goals that are of interest/use for a particular location. For example, few extractive use public goals are relevant to or valued in uninhabited regions, so calculation of the Index for these areas is based on a subset of goals. In this way, uninhabited areas that are pristine areas could score very high, even though they are not delivering more direct market-based benefits to people.
-
-
-
-
-### add these details later
-add a few notes on trend calculations here (now proportional change in trends)
-
-
-
-
-
-
-
 The role of the Resilience and Pressure dimensions is to improve our understanding of the likely near-term future condition by incorporating additional information beyond that provided by the recent trend, Ti. Pressure or Resilience measures that were in existence in the past may have a cumulative effect that has not yet manifested itself in trend (e.g., for p: fishing pressure may have increasingly negative impacts as successive year classes of fish become increasingly less abundant; for r: establishment of a marine protected area (MPA) may require a number of years before its benefits become apparent). In addition, the recent trend does not capture the effect of current levels of Resilience (r) and Pressures (p). The expectation of a likely future condition suggested by the Trend will become more or less optimistic depending on the effects of r and p. If the effects are equal they cancel each other out.
 
-
-
-
-
-The reference point, Xi,R, can be determined in four potential ways, depending on the conceptual
-and data constraints for each goal2. Reference points can be estimated mechanistically using a
-production function (e.g., maximum sustainable yield, MSY, for fisheries), spatially by means of comparison with another region (e.g., country X represents the best possible known case), temporally using a past benchmark (e.g., historical
+The likely future status cannot exceed the maximum possible value for Status for each goal, which is 1.0. In reality data are rarely perfect, creating potential situations where likely future condition exceeds 1.0. To address these cases, we implemented two rules. First, if current Status = 1.0, then trend is set = 0.0, since any Trend > 0.0 in those cases must be due to incomplete or imperfect data. Second, Status and Likely Future Status scores were constrained to maximum value of 1.

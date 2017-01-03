@@ -29,38 +29,53 @@ library(pander)
 # setwd("global_supplement")
 
 # sections to run:
+table_10goals <- TRUE
 main_model <- TRUE
 pressure <- TRUE
 resilience <- TRUE
-table_10goals <- TRUE
+
 
 ```
 
 # Ocean Health Index Assessement for 2016
 
-We measure ocean health as the sustainable delivery of ten widely-held public goals for oceans (Table 1). The Index therefore recognizes linkages between human societies and ocean ecosystems, and that people are part of coastal and ocean systems. The Index emphasizes sustainability and values both conservation and extractive use. 
+We measure ocean health as the sustainable delivery of ten widely-held public goals for ocean ecosystems (Table 1). These goals represent the full suite of benefits that people want and need from the ocean, including the traditional ‘goods and services’ people often consider (e.g., fish to eat, coastal protection from nearshore habitats) as well as benefits less commonly accounted for, such as cultural values or biodiversity, and others that are not identified as services, most notably livelihoods and coastal economies derived from the ocean.
 
 ```{r table1, eval = table_10goals}
 goals <- read.csv("tables/ten_goals.csv", caption = "Table 1. The 10 goals of the Ocean Health Index")
 kable(goals)
 ```
 
-Our strong focus on sustainability and coupled human-natural systems drives our methods for calculating a score for each goal. Sustainability requires that both the current status and likely direction of change in status influence the score; we explicitly penalize scenarios that maximize value today with no concern for future conditions. However, 
+The score for each goal is the average of its current status and likely future status.  The Index assesses the current status of each goal relative to a reference point.  Likely future state is estimated using recent trends in current status, existing negative pressures that can stress the system and could thus make future delivery of benefits worse, and governance, institutional and ecological factors that provide social and ecological resilience to such pressures (figure). 
 
-Each goal score is calculated along four dimensions: current status, recent trend, existing pressures, and expected resilience in the near-term based on current management actions. The final three dimensions (trend, pressures, resilience) are used to calculate likely future state. Each of these dimensions includes ecological and social data (where and when appropriate). We focus on the nearterm future (roughly 5 years) rather than longerterm sustainability because near-term time frames are most relevant to policy makers and longterm future states are difficult to predict. Longterm consequences from pressures like habitat loss and climate change are clearly also important but not assessed here. Below we describe in detail our entire methodology and provide a conceptual diagram of how we calculated an Index score based on this framework (Fig. 1....Ning..what do you recommend for this?).
+[add figure here of pie chart with the dimensions of the scores]
 
-[add figure here]
+The Index recognizes linkages between human societies and ocean ecosystems, and that people are part of coastal and ocean systems. The Index emphasizes sustainability and values both conservation and extractive use. For six of the ten goals, production (or delivery) of the goal involves activities by people that can negatively feed back on the potential of the goal to be realized (e.g., overfishing ultimately reduces the total catch that is available). The six goals include Food Provision, Artisanal Fishing Opportunity, Natural Products, Tourism and Recreation, Coastal Livelihoods and Economies, and Sense of Place (e.g., visiting cultural sites can negatively impact them). 
 
-The Index is designed to be flexible to accommodate different scales and geographies of interest and different and new types of data. However, two constraints must be adhered to for the Index scores to be comparable across geographies and be easily recalculated at future dates. First, every unit of assessment within the scope of analysis must have a value for each data layer included in the analysis, unless it is known to not be relevant to a location. In other words, missing data are not acceptable. Adhering to this criterion is critical to avoid influencing the Index score simply because of inclusion (or absence) of a particular data layer for any reporting region. 
+The global Ocean Health Index has been calculated every year since 2012 (yearly calculations are referred to as assessments). Our primary goal is to incorporate the new year's data provided by data sources, where possible.  Often, in addition to incorporating an additional year of data, we make improvements to existing models or data sources.  To ensure that the scores for all years are calculated using the same methods and data sources, we recalculate scores for all previous years during each asessment (years within an assessment are referred to as scenarios).  For example, the 2016 assessment includes scores from 2012 to 2016.  Consequently, comparisons among years should always be performed with data from the same assessment year so trends in scores reflect changes to ocean health (and not methods).  
 
-The second constraint requires the use of only existing datasets, and thus did not permit new data collection. This was necessary both to complete the project in a reasonable amount of time and to enable relatively easy recalculation of the Index in the future. Consequently, we give a particularly high premium to the inclusion of publically available datasets that have strong external support to be gathered and processed each year, although future iterations of the Index could use new datasets as they become available. 
+Not all data layers are reported through the most current assessment year, and consequently, the OHI scores are calculated using the most recent year of available data.  Details on which years are used for each data layer are provided in Table ??. 
 
-Because our analysis focuses on such a wide range of public goals at a global scale, data sources span more than a single year. Therefore, our results quantify ocean health in its recent current state based on the best available data. 
+The Index is designed to be flexible to accommodate different scales and geographies of interest and different and new types of data (reference to Julie's paper,  http://ohi-science.org). For more information about the philosophy of the Ocean Health Index and model development see Halpern et al. (2012) and http://ohi-science.org/ohi-global/, which includes information about downloading global ocean health data.
 
-We emphasize that our approach is intended to indicate current and near-term ocean health, not predict what it will be at any given time in the future. Although one can calculate a percent change to current status in the near-term future based on our models, we do not support this as a method for predicting future status. We do not model socio-ecological systems mechanistically or develop and use production functions that would allow one to run predictive scenarios. Such an endeavor is complex and beyond the scope of this project.
+## Models used to calculate Index scores
+This section describes the heirarchy of models used to calculate: 
 
+1) Regional index scores (overall score for each region based on scores of 10 goals)
+2) Global index scores (overall global score based on scores of all regions)
+3) Goal index scores (based on dimensions: current status and likely future status)
+4) Goal likely future status scores (based on trend, pressure, and resilience) 
 
 ```{r child = 'main_model.Rmd', eval=chap1_eval}
+```
+## Regions
+
+For the global assessment, we calculate Ocean Health Index scores for 220 coastal countries and territorial regions (Table...based on these data).  Regions are based on EEZ (VLIZ25, using Version 6.0) boundaries.  However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.).  We do not estimate OHI values for disputed or unclaimed areas.
+
+## Calculating likely future state: dimensions 
+Three dimensions are used to calculate likely future state: Trends, Pressure, and Resilience.  This section describes the calculations underlying these three dimensions.
+
+```{r child = 'trend.Rmd', eval=chap2_eval}
 ```
 
 ```{r child = 'pressure.Rmd', eval=chap2_eval}
@@ -69,5 +84,36 @@ We emphasize that our approach is intended to indicate current and near-term oce
 ```{r child = 'resilience.Rmd', eval=chap2_eval}
 ```
 
+## Calculating the current status and trend of each goal 
+This section describes how the current status of each goal was calculated and provides specific details about trend calculations.
+
+Question: shoud we discuss reference points here?  Or, just assume that our discussion in each goal section is adequate? (see section 3 of PLoS 2015 paper)
+
+(add children for goals/subgoals)
+
+Question: Should we create a table that shows the data layers that go into calculating each goal?  Something similar to Table S22?
+
+## Data inclusion and data gaps
+
+We focused on using global datasets so that differences in Index scores across regions were due to differences in ocean health rather than variation in the data. Although, in reality, many global datasets are compilations of local or regional datasets and their quality varies spatially. In some cases data for a particular component or dimension of a goal were available for most but not all countries. Gaps in these data were known to not be true zero values. Rather than exclude use of these data layers, we employed several different methods to fill these data gaps (see below).  
+
+These guidelines both motivated and constrained our methods. The development of the model frameworks for each goal (including reference points) was heavily dictated by the availability of global datasets. And, ultimately, several key elements related to ocean health could not be included due to lack of existing or appropriate global datasets. As new and better data become available in the future, details of how goals or dimensions are modeled will likely change, although the framework we have developed can easily accomodate these changes. 
+
+Regional and local assessments should use the best available data for those areas, but this decision limits the ability to compare across scales. For direct comparisons among locations to be valid, they must use consistent data.
+
+For Index scores to be comparable, every region must have a value for each data layer included in the analysis, unless it is known to not be relevant to a region. In other words, missing data are not acceptable. Adhering to this criterion is critical to avoid influencing the Index score simply because of inclusion (or absence) of a particular data layer for any reporting region.  
+
+Gaps in data are common; many developing countries lack the resources to gather detailed datasets, and even developed, data-rich countries have inevitable data gaps.  We use a variety of methods to estimate missing data, including: averages of closely related groups (e.g., regions sharing ecological, spatial, political attributes; taxonomic groups; etc.), spatial or temporal interpolation (e.g., raster or time-series data), and predictive models (e.g., regression analysis, machine learning, etc.). Gapfilling is a major source of uncertainty, especially for certain goals and regions. Given how common gaps in data are, clear documentation of gapfilling is a critical step of index development because it provides a measure of the reliability of index scores.  
+
+One of the ongoing goals of the Ocean Health Index (OHI) has been to improve our approach to dealing with missing data, by quantifying the potential influence of gapfilled data on index scores, and developing effective methods of tracking, quantifying, and communicating this information (reference to Frazier gapfilling paper).
+
+
+# Specific data layers
+(Create an Rmd file that includes the information we want to include on the data layers...this will be similar to the file we created for the website.)
+
+I think we might also want to create a table version of this information to include at the beginning.. I will think about this...something similar to Table S23. Maybe we should just include the table and then link to the descriptions online?
+
+# Data source descriptions
+(I need to get these data together...but I think this will be in a table format.)
 
 # References
