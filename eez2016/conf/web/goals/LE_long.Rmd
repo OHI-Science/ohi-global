@@ -1,0 +1,106 @@
+The jobs and revenue produced from marine-related industries are clearly of huge value to many people, even those who do not directly participate in the industries but value community identity, tax revenue, and indirect economic and social impacts of a stable coastal economy. We track the two halves of this goal separately because the number and quality of jobs and the amount of revenue produced are both of considerable interest to stakeholders and governments, and could show very different patterns in some cases (e.g., high revenue sectors do not necessarily provide large employment opportunities). This goal aims to maintain, i.e., avoid the loss of, coastal and ocean-dependent livelihoods (i.e., jobs) and productive coastal economies (i.e., revenues), while also maximizing livelihood quality (relative wages). It does not attempt to capture any aspects of job identity (i.e. the reputation, desirability or other social or cultural perspectives associated with different jobs), although one can examine the component parts that make up this goal to evaluate individual sectors and infer implications for job identity. We make the assumption that all marine-related jobs are equivalent, such that, for example, a fisherman could transition to a job in mariculture or ship-building without affecting the score of this goal. While job identity has social and cultural value, there are not adequate data to track individual workers and assess their job satisfaction on a global scale. We also do not include any measure of petroleum extraction, as we do not consider these practices to be related to the biophysical state of the system and, since they rely on a non-renewable resource, they are inherently unsustainable. Furthermore, because of data constraints, this goal does not provide more credit for sectors or economic activities that are more ecologically sustainable. Future, finer scale applications of the Index will incorporate these key considerations.
+
+The goal is composed of two equally important sub-goals, Livelihoods (L) and Economies (E), which are assessed across as many marine-related sectors (fishing, aquaculture, tourism, transportation, recreation, energy, oil extraction, transportation and shipping, etc.) as possible. The full list of which sectors had available data for each sub-goal is in **Table**S9. Livelihoods (L) includes two equally important sub-components, the number of jobs (j), which is a proxy for livelihood quantity, and the per capita average annual wages (w), which is a proxy for job quality. Economies is composed of a single component, revenue (e), measured in 2015 USD.
+
+
+**Table**S9. Sectors for which data were available for each of the three measures for this goal.
+
+|Sector| Jobs data | Wages data | Revenue data |
+|---|---|---|---|
+|Tourism | X | X |  X |
+|Commercial fishing | X | X | X |
+|Marine mammal watching | X |  |  |
+|Aquarium fishing| | | X |
+|Wave & renewable energy | X | | X|
+|Mariculture | X | | X |
+|Transportation & shipping | | X | |
+|Ports & harbors|  | X |  |
+|Ship & boatbuilding|  | X | |
+
+For both jobs and revenue, we used sector- and development status-specific multipliers derived from the literature to account not only for direct employment opportunities and revenue, but also indirect and induced economic effects (see below for more detail). Because there is no absolute reference point for jobs and revenue (i.e., a target number of jobs or total revenue would be completely arbitrary), these two sub-goals employ a moving baseline. The two metrics (j, e) are calculated as relative values: the For both jobs and revenue, we used sector- and development status-specific multipliers derived from the literature to account not only for direct employment opportunities and revenue, but also indirect and induced economic effects (see below for more detail). Because there is no absolute reference point for jobs and revenue (i.e., a target number of jobs or total revenue would be completely arbitrary), these two sub-goals employ a moving baseline. The two metrics (j, e) are calculated as relative values: the value in the current year (or most recent year), c, relative to the value in a recent moving reference period, r, defined as 5 years prior to c. This reflects an implicit goal of maintaining coastal livelihoods and economies (L&E) on short time scales, allowing for decadal or generational shifts in what people want and expect for coastal L&E. The most recent year c must be 2000 or later in order for the data to be included. We allowed for a longer or shorter gap between the current and recent years if a 5 year span was not available from the data, but the gap could not be greater than 10 years. Our preferred gap between years was as follows (in order of preference): 5, 6, 4, 7, 3, 8, 2, 9, 1, and 10 years.
+
+For wages (w) we assumed the target value for average annual wages is the highest value observed across all reporting units. Average annual wages, in 2015 USD, were first adjusted for purchasing power parity (PPP; see Artisanal Fishing Opportunities section 6B above) to control for differences in the purchasing power of a dollar across countries with respect to a range of common goods.
+
+The Status of this goal ($x_{LE}$) is the average of the
+Status of two sub-goals: Livelihoods ($x_{LIV}$) and
+Economies ($x_{ECO}$):
+
+$$
+x_{LE} = \frac { { x }_{ LIV }\quad +\quad { x }_{ ECO } }{ 2 }  (Eq. S31)
+$$
+
+The Livelihoods sub-goal is measured as:
+
+$$
+x_{LIV} = \frac { \frac { \sum _{ 1 }^{ k }{ { j }_{ c,k } }  }{ \sum _{ 1 }^{ k }{ { j }_{ r,k } }  } \quad +\quad \frac { \sum _{ 1 }^{ k }{ { g }_{ m,k } }  }{ \sum _{ 1 }^{ k }{ { g }_{ r,k } }  }  }{ 2 } (Eq. S32)
+$$
+
+where _j_ is the adjusted (see below) number of direct
+and indirect jobs within sector _k_ within a country and
+_g_ is the average PPP-adjusted (see below) wages per
+job within sector _k_. Jobs are summed across sectors
+and measured at current (_c_) and reference (_r_) time
+points. Wages are averaged across sectors within each
+country (_m_) and the reference country (_r_) with the
+highest average wages across all sectors.
+
+The Status of the Economies sub-goal ($x_{ECO}$) is measured as:
+
+$$
+x_{ECO} = \frac { \sum _{ 1 }^{ k }{ { e }_{ c,k } }  }{ \sum _{ 1 }^{ k }{ { e }_{ r,k } }  } (Eq. S33)
+$$
+
+where e is the total adjusted (see below) revenue generated directly and indirectly from sector _k_, at current (_c_) and reference (_r_) time points.
+
+The total value of economic industries cannot be captured fully by measuring only the jobs and revenue generated directly by those industries, since activity in the direct industry stimulates additional jobs and revenue in related industries. For example, the fishing industry provides direct jobs to fishers, indirect jobs to fishing gear manufacturing companies, and induced jobs to the restaurants and movie theaters where those manufacturing employees spend their income. In the case of tourism, data describing total jobs and revenue (direct plus indirect and induced) were available from the primary data source, and so we used that information as the best estimate of total employment and total revenue for that sector. For all other sectors where the data sources only provided direct jobs or direct revenue, we used sector- and development status-specific multipliers derived from the literature to estimate total job or revenue impacts. We did not apply multiplier values to wages since the cascading effects of earned income are more contentious.
+Jobs data were further adjusted by dividing by percent
+employment for the corresponding year: (1 – percent unemployment) * total labor force (data from the World Bank).
+
+We assumed that sector-specific job and revenue multipliers are static and globally consistent, but distinct for developed versus developing countries (when such information was available), because we do not have data to resolve temporal or regional differences (see **Table**S10 for the multiplier values used). Countries were classified as developed or developing using the Human Development Index (HDI) 2015 Report [@undp_human_2010], with all countries falling under the HDI “very high human development” category classified as developed and all others as developing. For locations not assessed by the HDI but containing data for L&E, we classified the location by compiling information used to calculate the HDI score (schooling, life expectancy and per capita Gross National Income (pcGNI) statistics), calculating an HDI score, and classifying the country based on the 2015 HDI categorizations.
+
+**Table S10**. Sector-specific multipliers used to
+calculate total jobs and total revenue created by
+sector-based employment in developing and
+developed nations. N/A (not applicable) indicates
+total employment or total revenue (direct plus indirect
+and induced) data provided by primary data source,
+eliminating the need for a multiplier value. ND
+indicates no data available for that sector.
+
+| | Developed Countries | | Developing Countries| |
+|---|---|---|---|---|
+|**Sector**| **Jobs** | **Revenue** | **Jobs** | **Revenue** |
+|Tourism | N/A | N/A | N/A | N/A |
+|Commercial fishing | 1.582 | 1.568 | 1.582 | 1.568 |
+|Marine mammal watching | 1.915 | 1.0 | 1.915 | 1.0 |
+|Aquarium fishing | ND | 1.568 | ND | 1.568 |
+|Wave & tidal energy | 1.88 | 1.652 | 1.88 | 1.652 |
+|Mariculture | 2.7 | 2.377 | 1.973 | 1.59 |
+
+Income (wages) and revenue data were converted to a standard dollar year to control for inflation/deflation. Wage data was divided by the inflation conversion factor for **2015** (?) so that wage data across years would be comparable in 2015 US dollars (inflation conversion factors were downloaded from http://oregonstate.edu/cla/polisci/sahr/sahr). These data were also multiplied by the purchasing power parity-adjusted per capita GDP (PPPpcGDP). Revenue data were adjusted by dividing by GDP per country (reported in **2015** USD; data from the World Bank).
+
+Absolute values for _j, g,_ and _e_ in the current and reference periods (or for wages, in the assessed country and reference country) were lumped across all sectors before calculating relative values (even though the current and reference years will not be exactly the same for all sectors), allowing a decrease in one sector to be balanced by an increase in another sector. As such, we do not track the Status of individual sectors and instead always focus on the Status of all sectors together. For wages, we use the most current data available for each country and each sector, but only use data from 1990 on, assuming that wages are relatively slow to change over time (apart from inflation adjustments, which we control for by using real dollars) and thus can be compared across sectors and countries without controlling for year.
+
+To account for broader economic forces that may affect jobs independent of changes in ocean health (e.g., a global recession), we adjusted (as noted above) relative values for the number of jobs by changes in national employment rates. For example, if unemployment increased from the reference to the current period, we would expect the number of marine-related jobs to decrease by a comparable proportion, without causing a lower score for the goal. Therefore, the objective of the goal is actually no loss of jobs and jobs must keep pace with growth in employment rates or sustain losses no greater than national increases in unemployment rates. We made a similar correction to revenue based on a country's GDP (“no loss and must keep pace with growth in GDP or can sustain losses comparable to national declines in GDP”). The current and reference years used for unemployment and GDP data were based on the average current year and average reference year across the sector data sources used for number of jobs and revenue, respectively.
+
+Gaps were filled in the adjustment datasets (national GDP and national employment) by first determining the average metric value (e.g., average employment rate) in geographical regions (see **Table**S24 for regions) for each year based on all countries in that region for which there are data. Using these regional average time series, we fit nonlinear models to the adjustment data. Using the model fit, we determined the slope between each year. To fill in missing data points in country time series, we apply the slope (percent change in the metric) between the missing year and the following year (or previous year, if necessary). We prioritized filling in backwards (e.g., if a country has data from 2006 and 2008, to fill in 2007, one would use the regional delta between 2008 and 2007), but filled forwards when there were no data for a subsequent year.
+
+For a sector to be included in our assessment it needed to report at least two time points, with the current year falling within **2000-2010**, and have data for all or most coastal countries (reported separately, not as a single global number). However, a sector did not need to have data for all three measures – jobs, wages, and revenue – as this would have eliminated almost every sector. Consequently, the sectors that comprise each of the three measures differ (see **Table**S9 for details), and there is variation across countries in which sectors and measures comprise the Status score (because of gaps in datasets and the fact that not all sectors exist in all countries). If a country only had one data layer (a single sector for only one measure), a Status score was not calculated specific to that country, but rather a regional average was applied. We used a weighted average from the country’s region, where revenue is weighted by each country’s GDP and jobs are weighted by each country’s workforce size, whereas wages are filled as an unweighted average.
+
+The target value for the Status of this goal is to be equal to or greater than 1.0, but we do not give credit for values greater than 1.0 as that would define an optimal growth rate that may not be environmentally sustainable. All scores greater than 1.0 were capped at the maximum score of 1.0.
+
+The Trend was calculated as the slope in the individual sector values (not summed sectors) for j, w, and e over the most recent five years (as opposed to the status, which examines changes between two points in time, current versus five years prior to current), corrected by national trends in employment rates, average wages, and GDP, respectively. We then calculated the average trend for jobs across all sectors, with the average weighted by the number of jobs in each sector. We calculated the average trend for wages across all sectors. We calculated the average for revenue by averaging slopes across sectors weighted by the revenue in each sector. We then averaged the wages and jobs average slopes to get a Trend value for Livelihoods (xL) and the weighted average slope for revenue is the Trend value for Economies (xE).
+
+For ecological pressures we evaluated the potential stressors to each sector and then used the average weight across all the sectors as the multiplier for each stressor intensity value (see **Table**S25 for relevant stressors and their weights), with a different average for the Livelihoods and Economies sub-goals based on which sector data we had for each in each country. We used this averaging approach because we could not track the Status of individual sectors. For the social pressures, we used [(1-SectorEvenness) + (1- WGI) + (1-GCI)] / 3 for the Livelihoods subcomponent and [(1-WGI) + (1-GCI)] / 2 for the Economies sub-component (see below for explanation of GCI). The overall Pressures score was then the average of the ecological and social pressures scores, as described in the general model framework (section 2C).
+
+For Resilience, we used three measures of factors that influence social integrity: sector evenness (SE), the Global Competitive Index (GCI), and the WGI (**Table S22**). Sector evenness was measured using Shannon’s Diversity Index, a common measure of ecological and economic diversity that has been applied previously to economic sectors[@attaran_industrial_1986]. The Diversity Index is computed as ${ H }^{ ' }/{ H }_{ max }$ where:
+
+$$
+{ H }^{ ' } = \sum _{ i }^{ z }{ { f }_{ i }\ast  } \ln { { (f }_{ i }) } (Eq. S34)
+$$
+
+and Z is the total number of sectors, fi is the frequency of the ith sector (the probability that any given job belongs to the sector), and $H_{max} = \ln { Z } $. The GCI measures 12 different aspects of economic competitiveness (see data layer description in Section 7 below). The GCI scores can in theory span from 1 to 7, and thus we rescaled the measures to a 0 to 1 scale based on this range. We did not include ecological integrity as a Resilience measure because there is no evidence that food web integrity influences any of the sectors enough to merit inclusion. This assessment would, of course, change if we were able to distinguish sustainable vs. unsustainable livelihoods and economic activities. As such, Resilience was calculated as (SE + WGI + GCI)/3 for Livelihoods and (WGI + GCI)/2 for Economies, where terms are omitted when data for a country are not available.
+
+A number of sectors were not included primarily because sufficient data do not exist. In the future, particularly in finer scale applications, it would be desirable to include these sectors, including (but not limited to) ecotourism (beyond just cetacean watching), sailing/kayaking/boating, surfing/kiteboarding, etc., offshore wind and wave energy, navigation assistance, safety and security, coastal development, scientific research, and restoration and conservation.
+
+We assessed the potential consequence of the decision to cap Status scores at 1.0 prior to calculation of the sub-goal overall Index score and found that it made no difference. The only cases where this decision would affect the outcome is when the Status score was greater than 1.0 (before capping) and the Trend was negative (i.e. capping at 1.0 and then calculating the Index score with a negative Trend could bring the Index score below 1.0 when it would not have been less than 1.0 without the capping). For the Livelihoods sub-goal there were 10 cases of Status > 1.0 and a negative Trend; for the Economies sub-goal there were 5 cases. For all, the Trend was between zero and -0.05 and the overall Index score was therefore only slightly below 1.0.
