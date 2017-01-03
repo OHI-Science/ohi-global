@@ -29,8 +29,10 @@ library(pander)
 # setwd("global_supplement")
 
 # sections to run:
-table_10goals <- TRUE
+ten_goals <- TRUE
 main_model <- TRUE
+table_regions <- TRUE
+trend <- TRUE
 pressure <- TRUE
 resilience <- TRUE
 
@@ -41,18 +43,18 @@ resilience <- TRUE
 
 We measure ocean health as the sustainable delivery of ten widely-held public goals for ocean ecosystems (Table 1). These goals represent the full suite of benefits that people want and need from the ocean, including the traditional ‘goods and services’ people often consider (e.g., fish to eat, coastal protection from nearshore habitats) as well as benefits less commonly accounted for, such as cultural values or biodiversity, and others that are not identified as services, most notably livelihoods and coastal economies derived from the ocean.
 
-```{r table1, eval = table_10goals}
+```{r ten_goals, eval = table_10goals}
 goals <- read.csv("tables/ten_goals.csv", caption = "Table 1. The 10 goals of the Ocean Health Index")
 kable(goals)
 ```
 
 The score for each goal is the average of its current status and likely future status.  The Index assesses the current status of each goal relative to a reference point.  Likely future state is estimated using recent trends in current status, existing negative pressures that can stress the system and could thus make future delivery of benefits worse, and governance, institutional and ecological factors that provide social and ecological resilience to such pressures (figure). 
 
-[add figure here of pie chart with the dimensions of the scores]
+[add figure here of the pie chart with the score dimensions]
 
 The Index recognizes linkages between human societies and ocean ecosystems, and that people are part of coastal and ocean systems. The Index emphasizes sustainability and values both conservation and extractive use. For six of the ten goals, production (or delivery) of the goal involves activities by people that can negatively feed back on the potential of the goal to be realized (e.g., overfishing ultimately reduces the total catch that is available). The six goals include Food Provision, Artisanal Fishing Opportunity, Natural Products, Tourism and Recreation, Coastal Livelihoods and Economies, and Sense of Place (e.g., visiting cultural sites can negatively impact them). 
 
-The global Ocean Health Index has been calculated every year since 2012 (yearly calculations are referred to as assessments). Our primary goal is to incorporate the new year's data provided by data sources, where possible.  Often, in addition to incorporating an additional year of data, we make improvements to existing models or data sources.  To ensure that the scores for all years are calculated using the same methods and data sources, we recalculate scores for all previous years during each asessment (years within an assessment are referred to as scenarios).  For example, the 2016 assessment includes scores from 2012 to 2016.  Consequently, comparisons among years should always be performed with data from the same assessment year so trends in scores reflect changes to ocean health (and not methods).  
+The global Ocean Health Index has been calculated every year since 2012 (yearly calculations are referred to as assessments). Our primary goal is to incorporate the new year's data provided by data sources, where possible.  Often, in addition to incorporating an additional year of data, we make improvements to models or data sources.  To ensure that the scores for all years are calculated using the same methods and data sources, we recalculate scores for all previous years during each asessment (years within an assessment are referred to as scenarios).  For example, the 2016 assessment includes scores from 2012 to 2016.  Consequently, comparisons among years should always be performed with data from the same assessment year so trends in scores reflect changes to ocean health (and not methods).  
 
 Not all data layers are reported through the most current assessment year, and consequently, the OHI scores are calculated using the most recent year of available data.  Details on which years are used for each data layer are provided in Table ??. 
 
@@ -70,10 +72,29 @@ This section describes the heirarchy of models used to calculate:
 ```
 ## Regions
 
-For the global assessment, we calculate Ocean Health Index scores for 220 coastal countries and territorial regions (Table...based on these data).  Regions are based on EEZ (VLIZ25, using Version 6.0) boundaries.  However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.).  We do not estimate OHI values for disputed or unclaimed areas.
+For the global assessment, we calculate Ocean Health Index scores for 220 coastal countries and territorial regions (Table...based on these data).  Regions are based on EEZ (VLIZ25, using Version 6.0) boundaries.  However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.).  We have also modified some boundaries.  We do not estimate OHI values for disputed or unclaimed areas.
 
-## Calculating likely future state: dimensions 
-Three dimensions are used to calculate likely future state: Trends, Pressure, and Resilience.  This section describes the calculations underlying these three dimensions.
+**Table. Global regions.**
+```{r table_regions, eval = table_10goals}
+
+regions <- read.csv("../../../ohiprep/src/LookupTables/eez_rgn_2013master.csv", stringsAsFactors = FALSE) %>%
+  filter(rgn_typ == "eez") %>%
+  filter(rgn_id_2013 <= 250) %>%
+  filter(rgn_id_2013 != 213) %>%
+  select(region_id = rgn_id_2013, region_name = rgn_nam_2013, iso_id = eez_iso3, administrative_country=sov_nam) %>%
+  unique() %>%
+  arrange(region_id) %>%
+  mutate(status = ifelse(region_name == administrative_country, "country", "territory")) %>%
+  mutate(administrative_country = ifelse(region_name == administrative_country, "", administrative_country)) %>%
+  select("region"=region_name, "region ID"=region_id, "ISO code"=iso_id, type=status, "administrative country" =administrative_country)
+
+
+kable(regions)
+```
+
+
+## Calculating dimensions of likely future state
+Three dimensions are used to calculate likely future state: trends, pressure, and resilience.  This section describes the calculations underlying these three dimensions.
 
 ```{r child = 'trend.Rmd', eval=chap2_eval}
 ```
