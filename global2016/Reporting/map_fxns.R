@@ -85,7 +85,7 @@ expand_fld <- function(fld) {
 
 
 plot_scores <- function(rgn_df, fld, fig_save = NULL, prj = 'gcs',
-                        title = NULL, leg_title = FALSE, leg_on = TRUE) {
+                        title = NULL, leg_title = FALSE, leg_on = TRUE, colors_spec = brewer.pal(10, 'RdYlBu')) {
   if(is.null(title)) {
     fld_name <- expand_fld(fld)
     title <- sprintf('Scores: %s (%s)', fld, fld_name)
@@ -98,7 +98,7 @@ plot_scores <- function(rgn_df, fld, fig_save = NULL, prj = 'gcs',
           text = element_text(family = 'Helvetica', color = 'gray30', size = 12),
           plot.title = element_text(size = rel(1.5), hjust = 0, face = 'bold'),
           legend.position = ifelse(leg_on, 'right', 'none')) + 
-    scale_fill_gradientn(colours = brewer.pal(10, 'RdYlBu'), space = 'Lab', na.value = 'gray80',
+    scale_fill_gradientn(colours = colors_spec, space = 'Lab', na.value = 'gray80',
                          breaks = col.brks, labels = col.brks, limits = c(0, 100)) + 
     labs(title = title, 
          fill  = ifelse(leg_title & leg_on, fld, ''),
@@ -136,7 +136,7 @@ plot_scores <- function(rgn_df, fld, fig_save = NULL, prj = 'gcs',
 
 
 plot_scores_easy <- function(scores_df, fld, rgn_df = NULL, fig_save = NULL, prj = 'gcs',
-                             title = NULL, leg_title = FALSE, leg_on = TRUE) {
+                             title = NULL, leg_title = FALSE, leg_on = TRUE, colors_spec=brewer.pal(10, 'RdYlBu')) {
   ### Separate out a simple data frame of rgn_id and field value; rename field to 'val'
   ### so it's easier to call with dplyr and ggplot functions
   
@@ -162,6 +162,6 @@ plot_scores_easy <- function(scores_df, fld, rgn_df = NULL, fig_save = NULL, prj
   ### Call plot_scores function; with fig_save parameter will only save, not plot.
   ### But the function returns the plot invisibly, so can assign it to ohiplot and then plot it.
   ohiplot <- plot_scores(fld_data, fld, fig_save = fig_save, title = title, 
-                         leg_title = leg_title, leg_on = leg_on, prj = prj)
+                         leg_title = leg_title, leg_on = leg_on, prj = prj, colors_spec=colors)
   return(ohiplot)
 }
