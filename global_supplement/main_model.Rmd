@@ -5,7 +5,10 @@
 #### Regional and global index scores
 The overall index score for each region is calculated as a weighted average of the scores for the 10 goals (I1, I2, . . . , I10), such that:
 
-I =  , (Eq. S6)
+$$
+I =  \frac { \sum _{ i=1 }^{ N }{ { \alpha  }_{ i }{ I }_{ i } }  }{ U }  , (Eq. S6)
+$$
+
 where, U is the sum of the maximum posssible values of the goal scores.
 
 The weights (αi) that are applied to the ten
@@ -31,7 +34,9 @@ goals that are not relevant to the remaining goals.
 
 Using the regional index scores, we calculate an overall global score, as:
 
-(Eq. S14)
+$$
+{ I }_{ Global }\quad =\quad \frac { \sum _{ z }^{ N }{ { A }_{ z }{ I }_{ z } }  }{ \sum _{ z }^{ N }{ { A }_{ z } }  } (Eq. S14)
+$$
 
 where Az is the area of ocean region z (in general
 an EEZ; see Section 3 below on ‘Reporting Units’)
@@ -43,10 +48,16 @@ There are two ways to derive this number: a) goal scores are averaged within a r
 
 Each goal score, Ii, is a function of its present status i x and an indication of its likely near-term
 future status:
- . (Eq. S2)
+
+$$
+{ I }_{ i }\quad =\quad \frac { { x }_{ i }+{ \hat { x }  }_{ i,F } }{ 2 }   (Eq. S2)
+$$
 
 The present status of goal i, xi, is its present status value, (Xi), relative to a reference point, Xi,R, uniquely chosen for each goal and rescaled 0-100 such that:
- . (Eq. S3)
+
+$$
+{ x }_{ i }\quad =\quad \frac { X_{ i } }{ { X }_{ i,F } }  (Eq. S3)
+$$
 
 The reference point, Xi,R, can be determined in
 four potential ways, depending on the conceptual
@@ -72,7 +83,10 @@ goal models, section 6).
 The estimate of a goal’s likely near-term future status is a function of the present status modified by: recent trends in status (over the past ~5 years); current cumulative pressures acting on the goal (pi); and social and ecological resilience to negative pressures (measured as a function of governance and social institutions in place to protect or regulate the system and the ecological condition of the system; ri).  
 
 The likely future status is then defined as:
-   i F i i i i xˆ 1 1 1 T (1 )(r p ) x ,        (Eq. S4)
+
+$$
+{ \hat { x }  }_{ i,F }\quad =\quad { (1+\delta ) }^{ -1 }\left[ 1+\beta { T }_{ i }+(1-\beta )({ r }_{ i }-{ p }_{ i } \right] { x }_{ i } x ,        (Eq. S4)
+$$
 
 [Note: we need to cut the discount stuff because there are errors in it]
 

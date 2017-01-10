@@ -3,24 +3,12 @@
 
 ** Note, should we change the regulatory component symbol to something besides G?  At one point, the focus was on goals-based resilience, but actually many of them are based on regulatory catagories that are parallel to the pressures.
 
-To calculate Resilience for each goal and region (rx) we
-assess three types of measures: ecological integrity
-(YE), regulations aimed at addressing
-ecological pressures (G), and social integrity (YS) (Figure: piechart similar to the score calculations, but for goals, Table: something like the one here: ohi-global/eez2016/conf/resilience_categories). 
-The first two measures address ecological
-resilience while the third addresses social
-resilience. When all three aspects are relevant to a
-goal, Resilience is calculated as:
-S
-E
-x r Y G (1 )*Y
-2
-*     
-
-
-
- 
- , (Eq. S11)
+To calculate Resilience for each goal and region ($r_{x}$) we assess three types of measures: ecological integrity ($Y_{E}$), regulations aimed at addressing ecological pressures ($G$), and social integrity ($Y_{S}$) (Figure: piechart similar to the score calculations, but for goals, Table: something like the one here: ohi-global/eez2016/conf/resilience_categories).  The first two measures address ecological resilience while the third addresses social resilience. When all three aspects are relevant to a goal, Resilience is calculated as:
+
+$$
+{ r }_{ x }\quad =\quad \gamma *(\frac { { Y }_{ E }+G }{ 2 } )+(1-\gamma )*{ Y }_{ S } (Eq. S11)
+$$
+
 where the three types of measures are all scaled 0-
 1, and gamma is assumed to be 0.5. We chose γ =
 0.5 so that the weight of Resilience components
@@ -32,21 +20,58 @@ measures directly matched with Pressures.
 
 Each category of resilience is composed of 1 or more data layers that describe a resilience score for each region (link to example) that is scaled from 0-1.  Each resilience data layer is assigned a weight (Table) and a matrix (include matrix table: ohi-global/eez2016/conf/resilience_matrix.csv) describes which goals the data layers influence.  This information is used to calculate a score for each resilience category.     
 
+**Table ??** Resilience Matrix 
+
+| goal | element          | po_water | hd_mpa_coast | hd_mpa_eez | hd_habitat | sp_alien_species | fp_mpa_coast | fp_mpa_eez | fp_habitat | fp_mora | fp_mora_artisanal | g_tourism | g_mariculture | g_msi_gov | g_cites | species_diversity_3nm | species_diversity_eez | wgi_all | res_spi | li_gci | li_sector_evenness |
+|------|------------------|----------|--------------|------------|------------|------------------|--------------|------------|------------|---------|-------------------|-----------|---------------|-----------|---------|-----------------------|-----------------------|---------|---------|--------|--------------------|
+| AO   |    |   | x     |     | x   |    | x     |     | x   | x       |     |    |        |    |  | x       |         | x       | x       | |      |
+| CP   | coral     | x | x     |     | x   |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| CP   | mangrove  |   | x     |     | x   |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| CP   | saltmarsh | x | x     |     | x   |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| CP   | seagrass  | x | x     |     | x   |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| CP   | seaice_shoreline |   |       |     |     |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| CS   | mangrove  |   | x     |     | x   |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| CS   | saltmarsh | x | x     |     | x   |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| CS   | seagrass  | x | x     |     | x   |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| CW   |    | x |       |     |     |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| ECO  |    |   |       |     |     |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | x      |      |
+| FIS  |    |   |       | x   | x   |    |       | x   | x   | x       | x   |    |        |    |  |         | x       | x       | x       | |      |
+| HAB  | coral     | x | x     |     | x   |    | x     |     | x   |  | x   | x  | x      |    |  | x       |         | x       | x       | |      |
+| HAB  | mangrove  |   | x     |     | x   |    |       |     |     |  |     | x  | x      |    |  | x       |         | x       | x       | |      |
+| HAB  | saltmarsh | x | x     |     | x   |    |       |     |     |  |     | x  | x      |    |  | x       |         | x       | x       | |      |
+| HAB  | seagrass | x | x     |     | x   |    |       |     |     |  |     | x  | x      |    |  | x       |         | x       | x       | |      |
+| HAB  | seaice_edge |   |       |     |     |    |       |     |     |  |     | x  | x      |    |  |         | x       | x       | x       | |      |
+| HAB  | soft_bottom      | x |       | x   | x   |    |       | x   | x   | x       |     | x  | x      |    |  |         | x       | x       | x       | |      |
+| ICO  |    | x |   | x   | x   |    |       | x   | x   | x       | x   |    |        |    | x       |         | x       | x       | x       | |      |
+| SPP  |    | x |       | x   | x   |    |       | x   | x   | x       | x   | x  | x      |    | x       |         |         | x       | x       | |      |
+| LIV  |    |   |       |     |     |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | x      | x    |
+| LSP  |    | x |       |     | x   |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+| MAR  |    | x |       |     |     |    |       |     |     |  |     |    | x      | x  |  |         |         | x       | x       | |      |
+| NP   | corals | x | x     |     | x   |    |       |     |     |  |     |    |        |    | x       | x       |         | x       | x       | |      |
+| NP   | fish_oil | x |       | x   | x   |    |       | x   | x   | x       |     |    |        |    | x       |         | x       | x       | x       | |      |
+| NP   | ornamentals  | x | x     |     | x   |    | x     |     | x   |  | x   |    |        |    | x       | x       |         | x       | x       | |      |
+| NP   | seaweeds | x |       |     |     |    |       |     |     |  |     |    |        |    | x       | x       |         | x       | x       | |      |
+| NP   | shells |   | x     |     | x   |    |       |     |     |  |     |    |        |    | x       | x       |         | x       | x       | |      |
+| NP   | sponges |   | x     |     | x   |    |       |     |     |  |     |    |        |    | x       | x       |         | x       | x       | |      |
+| TR   |    | x |       |     |     |    |       |     |     |  |     |    |        |    |  |         |         | x       | x       | |      |
+
 #### Ecological resilience
 
 ##### Ecosystem integrity resilience 
 
-Ecosystem integrity, e.g., food web integrity, is
-measured as relative condition of assessed species
-in a given location (scores from the species subgoal were used as an estimate of ecosystem integrity). For some goals, there is little evidence that our index of ecosystem integrity directly affects the value of the goal (or subgoal). 
+Ecosystem integrity, e.g., food web integrity, is measured as relative condition of assessed species in a given location (scores from the species subgoal were used as an estimate of ecosystem integrity). For some goals, there is little evidence that our index of ecosystem integrity directly affects the value of the goal (or subgoal). 
 
 In these instances, ecological integrity falls out of the resilience model, such that:
-rx = (G + YS)/2.  
 
+$$
+r_{x} = (G + Y_{S})/2.  
+$$
 
 For the global assessments, we only have one data layer describing ecosystem integrity, however, if there were multiple layers the overall score for ecosystem integrity would be a weighted mean (wi) of the data layers (YEi, Table with weights) that influence the goal (Matrix table):
 
-YE = sum(i, M) wi YEi/M 
+$$
+{ Y }_{ E }\quad =\quad \frac { \sum _{ i }^{ M }{ { w }_{ i }{ Y }_{ E,i } }  }{ M } 
+$$
 
 
 ##### Regulatory resilience
@@ -69,9 +94,11 @@ management, and thus, increased ocean health. In
 those latter cases, we gave more weight to those
 measures (see table). 
 
-For each region and goal, we calculated a score for each regulatory category (ri) as a weighted mean of the resilience datasets (ri) that influence the goal (matrix table):
+For each region and goal, we calculated a score for each regulatory category ($r_{i}$) as a weighted mean of the resilience datasets ($r_{i}$) that influence the goal (matrix table):
 
-Gi = sum(i, M) wi ri/M
+$$
+G_{ i }\quad =\quad \frac { \sum _{ i }^{ M }{ { w }_{ i }{ r }_{ i } }  }{ M } 
+$$
 
 where wi are the weights in Table ??.
 
@@ -81,33 +108,14 @@ To calculate the overall regulatory resilience, we averaged the scores for each 
 Social integrity is intended to describe those
 processes internal to a community that affect its
 Resilience. It is a function of a wide range of
-aspects of social structure. Social Integrity per goal for each region (YS,x) is therefore:
-N
-Y
-Y
-N
-i
-S i
-S x
-
-
-,
-, , (Eq. S13)
-where YS,i are the social integrity measures specific
+aspects of social structure. Social Integrity per goal for each region ($Y_{S,x}$) is therefore:
+
+ $$
+ Y_{ S,x }\quad =\quad \frac { \sum _{ i }^{ N }{ { Y }_{ S,i } }  }{ N } (Eq. S13)
+ $$
+ 
+where $Y_{S,i}$ are the social integrity measures specific
 to the goal.
 
-Ideally, assessments of social resilience would
-include state and federal level rules and other
-relevant institutional mechanisms as well.
-However, such information is extremely difficult
-to access for every single country, and so we relied
-on global datasets that focus on international
-treaties and assessments. Another key gap is
-information on social norms and community (and
-other local-scale) institutions (such as tenure or
-use rights) that influence resource use and
-management in many settings. Information on
-these institutions is also extremely difficult to find
-at a global scale, although the WGI partly
-measures their effectiveness through its inclusion
-of corruption indices.
+Ideally, assessments of social resilience would include state and federal level rules and other relevant institutional mechanisms as well.
+However, such information is extremely difficult to access for every single country, and so we relied on global datasets that focus on international treaties and assessments. Another key gap is information on social norms and community (and other local-scale) institutions (such as tenure or use rights) that influence resource use and management in many settings. Information on these institutions is also extremely difficult to find at a global scale, although the WGI partly measures their effectiveness through its inclusion of corruption indices.
