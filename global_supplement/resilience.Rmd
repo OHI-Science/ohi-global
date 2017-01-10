@@ -3,22 +3,16 @@
 
 ** Note, should we change the regulatory component symbol to something besides G?  At one point, the focus was on goals-based resilience, but actually many of them are based on regulatory catagories that are parallel to the pressures.
 
-To calculate Resilience for each goal and region ($r_{x}$) we assess three types of measures: ecological integrity ($Y_{E}$), regulations aimed at addressing ecological pressures ($G$), and social integrity ($Y_{S}$) (Figure: piechart similar to the score calculations, but for goals, Table: something like the one here: ohi-global/eez2016/conf/resilience_categories).  The first two measures address ecological resilience while the third addresses social resilience. When all three aspects are relevant to a goal, Resilience is calculated as:
+To calculate Resilience for each goal and region ($r_{x}$) we assess three types of measures: ecological integrity ($Y_{E}$), regulations aimed at addressing ecological pressures ($G$), and social integrity ($Y_{S}$) (Figure: **piechart similar to the score calculations, but for goals,**?? Table: something like the one here: ohi-global/eez2016/conf/resilience_categories).  The first two measures address ecological resilience while the third addresses social resilience. When all three aspects are relevant to a goal, Resilience is calculated as:
 
 $$
 { r }_{ x }\quad =\quad \gamma *(\frac { { Y }_{ E }+G }{ 2 } )+(1-\gamma )*{ Y }_{ S } (Eq. S11)
 $$
 
-where the three types of measures are all scaled 0-
-1, and gamma is assumed to be 0.5. We chose γ =
-0.5 so that the weight of Resilience components
-that address ecological systems vs. social systems
-were equivalent, based on the same rationale as for
-ecological pressures vs. social pressures, with the
-intent, as best as possible, to have Resilience
-measures directly matched with Pressures.
+where the three types of measures are all scaled 0-1, and gamma is assumed to be 0.5. We chose γ = 0.5 so that the weight of Resilience components
+that address ecological systems vs. social systems were equivalent, based on the same rationale as for ecological pressures vs. social pressures, with the intent, as best as possible, to have Resilience measures directly matched with Pressures.
 
-Each category of resilience is composed of 1 or more data layers that describe a resilience score for each region (link to example) that is scaled from 0-1.  Each resilience data layer is assigned a weight (Table) and a matrix (include matrix table: ohi-global/eez2016/conf/resilience_matrix.csv) describes which goals the data layers influence.  This information is used to calculate a score for each resilience category.     
+Each category of resilience is composed of 1 or more data layers that describe a resilience score for each region (link to example) that is scaled from 0-1.  Each resilience data layer is assigned a **weight (Table)**?? and a matrix (include matrix table: ohi-global/eez2016/conf/resilience_matrix.csv) describes which goals the data layers influence.  This information is used to calculate a score for each resilience category.     
 
 **Table ??** Resilience Matrix 
 
@@ -75,24 +69,9 @@ $$
 
 
 ##### Regulatory resilience
-Regulatory factors (G) 
-describe the insitutional measures (e.g., rules, regulations, and laws)
-designed to address ecological pressures. Parallel to the pressure categories, the regulatory resilience datasets are grouped into five categories that address the 5 pressure categories: fishing pressure, habitat destruction, climate change (including ocean acidification), water pollution, and species introductions (invasive species and genetic escapes). There is also an additional category for goal-specific regulations that apply to a goal or goals, but do not address a larger pressure category.  
+Regulatory factors (G)  describe the insitutional measures (e.g., rules, regulations, and laws) designed to address ecological pressures. Parallel to the pressure categories, the regulatory resilience datasets are grouped into five categories that address the 5 pressure categories: fishing pressure, habitat destruction, climate change (including ocean acidification), water pollution, and species introductions (invasive species and genetic escapes). There is also an additional category for goal-specific regulations that apply to a goal or goals, but do not address a larger pressure category.  
 
-Weights were based effectiveness of governance. Governance is a function of 1)
-institutional structures that address the intended
-objective, 2) a clear process for implementing the
-institution is in place, and 3) whether the
-institution has been effective at meeting stated
-objectives9. At global scales it is very difficult to
-assess these three elements; we usually only had
-information on whether institutions exist.
-However, in some cases we had detailed
-information on institutions that enabled us to
-assess whether they would contribute to effective
-management, and thus, increased ocean health. In
-those latter cases, we gave more weight to those
-measures (see table). 
+Weights were based effectiveness of governance. Governance is a function of 1) institutional structures that address the intended objective, 2) a clear process for implementing the institution is in place, and 3) whether the institution has been effective at meeting stated objectives9. At global scales it is very difficult to assess these three elements; we usually only had information on whether institutions exist. However, in some cases we had detailed information on institutions that enabled us to assess whether they would contribute to effective management, and thus, increased ocean health. In those latter cases, we gave more weight to those measures (see table). 
 
 For each region and goal, we calculated a score for each regulatory category ($r_{i}$) as a weighted mean of the resilience datasets ($r_{i}$) that influence the goal (matrix table):
 
@@ -105,6 +84,7 @@ where wi are the weights in Table ??.
 To calculate the overall regulatory resilience, we averaged the scores for each regulatory category.  
 
 #### Social integrity resilience
+
 Social integrity is intended to describe those
 processes internal to a community that affect its
 Resilience. It is a function of a wide range of
@@ -119,3 +99,4 @@ to the goal.
 
 Ideally, assessments of social resilience would include state and federal level rules and other relevant institutional mechanisms as well.
 However, such information is extremely difficult to access for every single country, and so we relied on global datasets that focus on international treaties and assessments. Another key gap is information on social norms and community (and other local-scale) institutions (such as tenure or use rights) that influence resource use and management in many settings. Information on these institutions is also extremely difficult to find at a global scale, although the WGI partly measures their effectiveness through its inclusion of corruption indices.
+

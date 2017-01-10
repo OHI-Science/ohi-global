@@ -1,0 +1,586 @@
+---
+title: 'OHI 2016 Supplement: results'
+author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+output: 
+  html_document:
+    code_folding: show
+    toc: true
+    toc_depth: 3
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+      in_header: '../../../ohiprep/src/templates/ohi_hdr.html'
+  pdf_document:
+    toc: true
+---
+
+
+```{r data set up, include=FALSE}
+
+#load libraries
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(hwriter)
+library(RColorBrewer)
+library(knitr)
+library(googleVis)
+library(ohicore)
+library(sp)
+library(rgdal)
+library(DT)
+library(broom)
+library(nlme)
+
+# Set working directory when not knitting:
+ setwd("global2016/Reporting")
+
+goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+goal_names <- data.frame(goal=goals, long_goal=c("Index", 
+                                                  "Artisanal opportunities",
+                                                  "Species condition\n(Biodiversity)",
+                                                  "Biodiversity",
+                                                  "Habitat\n(Biodiversity)",
+                                                  "Coastal protection",
+                                                  "Carbon storage",
+                                                  "Clean water",
+                                                  "Economies",
+                                                  "Livelihoods & economies",
+                                                  "Livelihoods",
+                                                  "Fisheries\n(Food provisioning)",
+                                                  "Food provisioning",
+                                                  "Mariculture\n(Food provisioning)",
+                                                  "Iconic species\nSense of place)",
+                                                  "Sense of place",
+                                                  "Lasting special places\n(Sense of place)",
+                                                  "Natural products",
+                                                  "Tourism & recreation"))
+
+## General settings to control
+scenario <- "2016" #identify scenario of focus (this can be changed to obtain data for other years)
+benchmark = 2015  # year that is used for old vs. new OHI analyses
+oldCommit = '1d4dcb1abb82dc1d20817acca33c7e7d2ef1b52f' # '4da6b4a1d69d694264ea68456359a939b0c03f9c' = commit for 2014 analysis
+colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
+saveFile <- 'global2016' #location where files that are created are to be saved
+
+## General files to load
+rgn_names <- read.csv(sprintf('../../eez%s/layers/rgn_global.csv', scenario)) %>%
+  dplyr::select(region_id = rgn_id, country = label) %>%
+  dplyr::mutate(country = as.character(country))
+
+rgn_names$country[rgn_names$region_id == 212] <- "Gilbert Islands (Kiribati)"
+rgn_names$country[rgn_names$region_id == 148] <- "Line Islands (Kiribati)"
+rgn_names$country[rgn_names$region_id == 157] <- "Phoenix Islands (Kiribati)"
+
+
+radicalFile = '2016-11-17' #date extension on the radical data files that are used for all tables/figures
+
+```
+
+### Trend vs scores
+(figure out which regions to label)
+
+```{r trend vs score}
+
+index <- read.csv("data/scores_eez2016.csv") %>%
+  select(region_id, country, Index)
+
+vaxis <- index$Index[index$region_id==0]
+
+trend <- read.csv(sprintf("data/trends_%s.csv", scenario)) %>%
+  select(region_id, index_trend = Index) %>%
+  left_join(index, by= "region_id") %>%
+  filter(region_id != 0)
+
+
+  p <- ggplot2::ggplot(trend, aes(x=Index, y=index_trend)) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
+    geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
+    geom_vline(xintercept = vaxis, color="red", size=.5, linetype=3) +
+    theme_bw() + 
+    labs(y="Trend (change OHI per year)", x="OHI score (2016)") 
+
+plot(p)   
+ggsave("figures/trend vs score.jpg")
+
+  plotly_fig <- plotly::ggplotly(p)
+  plotly_fig
+
+```
+
+### Comparison of ranks
+
+```{r rank analysis}
+
+index_2016 <- read.csv("data/scores_eez2016.csv") %>%
+  select(region_id, country, index2016 = Index) %>%
+  filter(region_id != 0) %>%
+  arrange(index2016) %>%
+  mutate(rank_2016 = min_rank(desc(index2016)))
+
+index_2012 <- read.csv("data/scores_eez2012.csv") %>%
+  select(region_id, country, index2012 = Index) %>%
+  filter(region_id != 0) %>%
+  arrange(index2012) %>%
+  mutate(rank_2012 = min_rank(desc(index2012))) %>%
+  left_join(index_2016, by=c("region_id", "country")) %>%
+  mutate(index_delta = index2016 - index2012) %>%
+  mutate(rank_delta = rank_2016 - rank_2012)
+  
+
+## compare 2012 vs 2016 ranks
+  p <- ggplot2::ggplot(index_2012, aes(x=rank_2012, y=rank_2016)) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
+    theme_bw()  + 
+    geom_abline(slope = 1, intercept=0, color="red", size=0.5) + 
+    labs(y="2016 rank of OHI scores", x="2012 rank of OHI scores") 
+
+plot(p)   
+ggsave("figures/ranks_2012_2016.jpg")
+
+  plotly_fig <- plotly::ggplotly(p)
+  plotly_fig
+
+## compare change in ranks vs change in scores
+  p <- ggplot2::ggplot(index_2012, aes(x= index_delta, y=rank_delta)) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
+    theme_bw()  + 
+   labs(y="change in rank (2016-2012)", x="change in score (2016-2012)") 
+
+plot(p)   
+ggsave("figures/delta_ranks_scores.jpg")
+
+  plotly_fig <- plotly::ggplotly(p)
+  plotly_fig
+
+  
+  
+```
+
+## pairwise comparison of goal scores
+```{r pairwise comparisons}
+index_2016 <- read.csv("data/scores_eez2016.csv") %>%
+  filter(region_id != 0) %>%
+  select(-c(country, region_id)) %>%
+  select(-c(SPP, HAB, ECO, LIV, FIS, MAR, ICO, LSP, Index))
+
+panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...){
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- abs(cor(x, y, use="na.or.complete"))
+  txt <- format(c(r, 0.123456789), digits=digits)[1]
+  txt <- paste(prefix, txt, sep="")
+  if(missing(cex.cor)) cex.cor <- 0.8/strwidth(txt)
+  text(0.5, 0.5, txt, cex = (cex.cor * r + .15)*3)
+}
+
+pairs(index_2016,
+      lower.panel=panel.smooth, upper.panel=panel.cor, 
+      pch=16, cex=.5)
+## export as pdf with 7x7 dimensions
+
+
+#seeing ones were significant
+# panel.cor <- function(x, y, digits=2, prefix="", cex.cor) 
+# {
+#   usr <- par("usr"); on.exit(par(usr)) 
+#   par(usr = c(0, 1, 0, 1)) 
+#   r <- abs(cor(x, y)) 
+#   txt <- format(c(r, 0.123456789), digits=digits)[1] 
+#   txt <- paste(prefix, txt, sep="") 
+#   if(missing(cex.cor)) cex <- 0.8/strwidth(txt) 
+#   
+#   test <- cor.test(x,y) 
+#   # borrowed from printCoefmat
+#   Signif <- symnum(test$p.value, corr = FALSE, na = FALSE, 
+#                    cutpoints = c(0, 0.001, 0.01, 0.05, 0.1, 1),
+#                    symbols = c("***", "**", "*", ".", " ")) 
+#   
+#   text(0.5, 0.5, txt, cex = cex * r) 
+#   text(.8, .8, Signif, cex=cex, col=2) 
+# }
+# pairs(index_2016,
+#       lower.panel=panel.smooth, upper.panel=panel.cor)
+
+
+```
+
+### Carpet plot of trends
+
+```{r carpplot trend}
+
+data <- read.csv(sprintf('../radical_%s.csv', radicalFile)) 
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%
+  mutate(value = round(value, 0)) %>%
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame()
+  
+
+trends <- read.csv(sprintf("data/trends_%s.csv", scenario)) %>%
+  gather(goal, "value", -(1:2)) %>%
+  select(-region_id, region = country) %>%
+  filter(region != "eez_weighted_avg")
+
+region_order <- trends %>%
+  filter(goal=="Index") %>%
+  arrange(value)
+
+values <-   brewer.pal(11, "RdYlBu")
+col.values <- colorRampPalette(values, space = 'Lab')(12)
+col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
+
+trends$goal <- factor(trends$goal, levels = goals)
+trends$region <- factor(trends$region, levels=region_order$region)
+trends$trend_category <- cut(trends$value, breaks = col.brks)
+  
+
+p <- ggplot(trends, aes(y=region, x=goal, fill=trend_category)) +   
+  geom_tile(aes(text = paste0("trend = ", value))) +
+  scale_fill_manual(values = col.values, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5)) +
+  ylab("") + 
+  xlab("") +
+  theme_bw()
+plot(p)
+
+ggsave("figures/trend_heatplot.png", width = 20, height=25, units="in")
+ggplotly(p)
+
+```
+
+
+### Scores vs. population, HDI, and CHI
+
+```{r pop hdi chi}
+
+index <- read.csv("data/scores_eez2016.csv") %>%
+  select(rgn_id = region_id, country, Index) %>%
+  filter(rgn_id != 0) 
+
+hdi <- read.csv("../../../ohiprep/globalprep/supplementary_information/v2016/HDI_data.csv") %>%
+  select(rgn_id, hdi=value)
+
+# coastal population
+pop <- read.csv("../../../ohiprep/globalprep/mar_prs_population/v2016/output/mar_pop_25mi.csv") %>%
+  filter(year == 2015) %>%
+  select(rgn_id, coastal_pop = popsum) %>%
+  mutate(log_coastal_pop = log(coastal_pop + 1))
+
+## chi data
+chi <- read.csv("../../../ohiprep/globalprep/supplementary_information/v2016/CHI_data.csv") %>%
+  filter(sp_type == "eez") %>%
+  select(rgn_id, chi=mean)
+
+
+data <- index %>%
+  left_join(pop, by="rgn_id") %>%
+  left_join(chi, by="rgn_id") %>%
+  left_join(hdi, by="rgn_id")
+
+mod <- lm(Index ~ log_coastal_pop + chi + hdi, data=data)
+summary(mod)
+mod1 <- lm(Index ~ chi + hdi, data=data)
+summary(mod1)
+mod2 <- lm(Index ~ log_coastal_pop + hdi, data=data)
+summary(mod2)
+mod3 <- lm(Index ~ log_coastal_pop + chi, data=data)
+summary(mod3)
+mod4 <- lm(Index ~ hdi, data=data)
+summary(mod4)
+mod5 <- lm(Index ~ log_coastal_pop, data=data)
+summary(mod5)
+mod6 <- lm(Index ~ chi, data=data)
+summary(mod6)
+AIC(mod, mod1, mod2, mod3, mod4, mod5, mod6)
+
+mod7 <- lm(chi ~ log_coastal_pop, data=data)
+summary(mod7)
+
+mod8 <- lm(hdi ~ log_coastal_pop, data=data)
+summary(mod8)
+
+p <- ggplot2::ggplot(data, aes(x=Index, y=hdi)) +
+    geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
+    theme_bw()  + 
+    stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
+    labs(y="Human Development Index", x="OHI score") 
+
+plot(p)   
+ggsave("figures/OHIvsHDI.jpg")
+
+p <- ggplot2::ggplot(data, aes(x=Index, y=chi)) +
+    geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
+    theme_bw()  + 
+    stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
+    labs(y="Cumulative Human Impact", x="OHI score") 
+
+plot(p)   
+ggsave("figures/OHIvsCHI.jpg")
+
+p <- ggplot2::ggplot(data, aes(x=Index, y=log_coastal_pop)) +
+    geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
+    theme_bw()  + 
+    stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
+    labs(y="Coastal population (ln)", x="OHI score") 
+
+plot(p)   
+ggsave("figures/OHIvsCoastalPop.jpg")
+
+p <- ggplot2::ggplot(data, aes(x=chi, y=log_coastal_pop)) +
+    geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
+    theme_bw()  + 
+    stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
+    labs(y="Coastal population (ln)", x="Cumulative Human Impact") 
+
+plot(p)   
+ggsave("figures/CHIvsCoastalPop.jpg")
+
+
+```
+
+
+### Trend analysis
+```{r trend analysis}
+### prepare data:
+data <- read.csv(sprintf('../radical_%s.csv', radicalFile)) 
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213) %>%
+  filter(!is.na(value))
+
+```
+
+```{r trend calcs}
+## Analysis of overall region index scores
+
+data_lm <- data %>%
+  group_by(goal, region_id) %>%
+  do(mdl = lm(value ~ scenario, data = .))
+
+#data.frame(glance(data_lm, mdl))
+results_lm <- tidy(data_lm, mdl) %>%
+  ungroup() %>%
+  filter(term == "scenario") %>%
+  arrange(goal, estimate) %>%
+  left_join(goal_names) %>%
+  left_join(rgn_names) %>%
+  select(goal=goal, goal_long=long_goal, region_name = country, average_change_per_year = estimate, p.value) %>%
+  data.frame()
+
+```
+
+```{r trend histograms}
+
+g <- ggplot(filter(results_lm, goal == "Index"), aes(x=average_change_per_year)) +
+  geom_histogram(color = "gray", fill="gray") +
+  labs(y="Number of regions", x="Trend (avg. change in score per year)") + 
+  geom_vline(xintercept=0, color="red") + 
+  theme_bw()]
+
+plot(g)
+
+```
+
+## Comparing random effect models
+The following analyses indicate that adding the region as a random effect is a good idea, according to AIC.
+
+```{r model check}
+
+data$region_id <- factor(data$region_id)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="Index"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="Index"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="AO"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="AO"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="BD"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="BD"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="CP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="CP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="CS"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="CS"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="CW"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="CW"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="FIS"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="FIS"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="FP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="FP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="HAB"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="HAB"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="ICO"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="ICO"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="MAR"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="MAR"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="LSP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="LSP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="NP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="NP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="SP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="SP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="SPP"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="SPP"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="TR"), method="REML")
+model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="TR"), method="REML")
+# ctrl <- lmeControl(opt='optim')
+# model2 <- lme(value ~ 1 + scenario, random = ~1 + scenario | region_id, data = filter(data, goal=="Index"), 
+#               method="REML", control=ctrl)
+AIC(model0, model1)
+summary(model1)
+
+```
+
+### Analyses for figures
+
+```{r trend calcs}
+## Analysis of overall region index scores
+
+nlme_results <- data.frame(goal=goals, trend=NA, p_value=NA)
+
+for(goal in goals){ # goal = "AO"
+  mod_data <- data[data$goal == goal, ]
+  mdl = lme(value ~ 1 + scenario, random = ~1 | region_id, data = mod_data, method="REML")
+  nlme_results$trend[nlme_results$goal == goal] <- mdl$coefficients$fixed[2]
+  nlme_results$p_value[nlme_results$goal==goal] <- summary(mdl)$tTable[2,"p-value"]
+}
+
+results_lm_summary <- results_lm %>%
+  group_by(goal, goal_long) %>%
+  summarize(quant_5 = quantile(average_change_per_year, c(0.05)),
+            quant_95 = quantile(average_change_per_year, c(0.95)))
+
+
+nlme_results <- nlme_results %>%
+  left_join(results_lm_summary, by="goal") %>%
+  arrange(trend) %>%
+  mutate(sig = ifelse(p_value < 0.05, "1", "0")) 
+
+ggplot(filter(nlme_results, !(goal %in% c("ECO","LIV", "LE"))), 
+       aes(x=trend, y=reorder(goal_long, trend), color=sig)) +
+  geom_point(size=3) +
+  theme_bw() +
+  geom_vline(xintercept = 0, color="red", linetype=3) + 
+  labs(y="", x="trend (average change in score per year)") +
+  scale_colour_manual(values = c("#313695", "grey80"), limits=c(1, 0), guide=FALSE) +
+  theme(axis.text.y = element_text(angle=0, hjust=1),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_line(color="grey60", linetype="dashed"))
+
+```
+
+```{r save model results}
+
+nlme_table <- nlme_results %>%
+  select(goal, trend, p_value, quant_5, quant_95)
+
+write.csv(nlme_table, "data/nlme_results_goal_summary.csv", row.names=FALSE)
+
