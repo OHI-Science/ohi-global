@@ -14,32 +14,17 @@ where γ is the relative weight for ecological vs. social pressures and is set e
 
 (Table S2, grab and display the table from here, but need to improve names of layers for display: ohi-global/eez2016/conf/pressure_categories.csv)
 
-Table S2. Pressures Categories
+```{r pressure categories, echo=FALSE}
+full_lyr_names <- read.csv("../eez_layers_meta_data/layers_eez_base.csv") %>% 
+  select(layer, name)
 
-| layer            | category   | subcategory         |
-|------------------|------------|---------------------|
-| po_chemicals     | ecological | pollution           |
-| po_chemicals_3nm | ecological | pollution           |
-| po_pathogens     | ecological | pollution           |
-| po_nutrients     | ecological | pollution           |
-| po_nutrients_3nm | ecological | pollution           |
-| po_trash         | ecological | pollution           |
-| sp_alien         | ecological | alien_species       |
-| sp_genetic       | ecological | alien_species       |
-| hd_subtidal_sb   | ecological | habitat_destruction |
-| hd_subtidal_hb   | ecological | habitat_destruction |
-| hd_intertidal    | ecological | habitat_destruction |
-| fp_com_hb        | ecological | fishing_pressure    |
-| fp_com_lb        | ecological | fishing_pressure    |
-| fp_art_lb        | ecological | fishing_pressure    |
-| fp_art_hb        | ecological | fishing_pressure    |
-| fp_targetharvest | ecological | fishing_pressure    |
-| cc_sst           | ecological | climate_change      |
-| cc_acid          | ecological | climate_change      |
-| cc_uv            | ecological | climate_change      |
-| cc_slr           | ecological | climate_change      |
-| ss_wgi           | social     | social              |
-| ss_spi           | social     | social              |
+pressure_cat <- read.csv("../eez2016/conf/pressure_categories.csv") %>% 
+  left_join(full_lyr_names, by = "layer") %>% 
+  select(Data = name, Category = category, Subcategory = subcategory)
+
+kable(pressure_cat, caption = "Pressures Categories", align = "l")
+
+```
 
 ### Ecological pressure: calculating the five pressure categories
 We assessed five broad, globally-relevant categories of ecological stressors: fishing pressure, habitat destruction, climate change (including ocean acidification), water pollution, and species introductions (invasive species and genetic escapes). The five categories are intended to capture known pressures to the social-ecological system associated with each goal. Each pressure category may include several stressors. The intensity of each stressor within each OHI region (and, year) is described on a scale of 0 to 1, with one indicating the highest pressure (i.e., the pressure data layers, link to example dataset).
@@ -87,6 +72,5 @@ There were a number of ecological pressures not included in our assessment, incl
 
 The calculation of ecological pressures is sensitive to the number of stressors within each category (but not to the number of categories). Inclusion of additional stressors within categories would require careful calibration of ranks so that the cumulative effect of a larger number of
 stressors does not exceed the maximum weighted stressor intensity to quickly simply because of including a greater number of stressors.
-
 
 A key assumption in our assessment of ecological pressures is that each goal has a linear and additive response to increases in intensity of the stressors. Clearly many ecosystems respond non-linearly to increased stressor intensity, exhibiting threshold responses, and there are likely nonlinear interactions among stressors. Unfortunately little is known about the nature of these types of nonlinearities and interactions6,8, and so we could not include them in any meaningful way here.
