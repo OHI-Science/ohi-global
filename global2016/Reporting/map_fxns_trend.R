@@ -114,7 +114,7 @@ plot_scores <- function(rgn_df=fld_data, fld, fig_save = NULL, prj = 'gcs',
     
     df_plot <- df_plot +
       theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank()) +
-      geom_polygon(data = ocean_poly, color = 'gray92', fill = 'gray92', size = 0.25) +
+      geom_polygon(data = ocean_poly, color = 'gray97', fill = 'gray97', size = 0.25) +
       geom_polygon(color = 'gray80', size = 0.1) +
       geom_polygon(data = land_poly, color = 'gray85', fill = 'gray80', size = 0.25)
     ### df_plot order: oceans (light grey), then EEZ score polygons, then land polygons (dark grey).
@@ -159,7 +159,7 @@ plot_scores_easy <- function(scores_df, fld, rgn_df = NULL, fig_save = NULL, prj
   scenario <- ifelse('year' %in% names(scores_df),     paste(' ', scores_df$year[1], sep = ''),
                      ifelse('scenario' %in% names(scores_df), paste(' ', scores_df$scenario[1], sep = ''),
                             ''))
-  title <- sprintf('OHI%s Scores: %s (%s)', scenario, fld, fld_name)
+  title <- sprintf(fld_name)
   
   ### Call plot_scores function; with fig_save parameter will only save, not plot.
   ### But the function returns the plot invisibly, so can assign it to ohiplot and then plot it.

@@ -1,9 +1,6 @@
 # Calculating trends
 
-The Trend is calculated as the proportion change in Status based on recent data. In most cases, trend is calculated by: 
-1. estimating the yearly change in status using a linear regression model of status data from the most recent five years of data
-2. dividing the slope by the status value of the first year of data (to estimate proportional change), and 
-3. then multiplying by five to estimate the change in status five years into the future.
+The Trend is calculated as the proportion change in Status based on recent data. In most cases, trend is calculated by estimating the yearly change in status with a linear regression model (i.e., slope estimate) of the five most recent years of status data and multiply this value by 5 to estimate the change in status five years into the future.  To determine proportional change, we divide the slope estimate by the earliest year of data used in the model to estimate proportional change.
 
 Because status values range from 0-1, Trends will typically range from -1.0 to 1.0; and we constrained values to this range if they fell outside it.
 

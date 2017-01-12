@@ -35,7 +35,7 @@ library(broom)
 library(nlme)
 
 # Set working directory when not knitting:
- setwd("global2016/Reporting")
+# setwd("global2016/Reporting")
 
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
 goal_names <- data.frame(goal=goals, long_goal=c("Index", 
@@ -107,6 +107,33 @@ ggsave("figures/trend vs score.jpg")
 
   plotly_fig <- plotly::ggplotly(p)
   plotly_fig
+  
+### adding labels
+  labels1 <- c("Bosnia and Herzegovina", "Vietnam", "Philippines",
+              "Eritrea", "Equatorial Guinea", "Nicaragua", "Republique du Congo", "Turkey", "Somalia", "Costa Rica",
+          "Glorioso Islands", "American Samoa", "Croatia",
+              "Estonia", "New Zealand", "Bahamas")
+  
+  labels2 <- c("South Georgia and the South Sandwich Islands")
+  
+setdiff(labels1, trend$country)
+
+trend <- trend %>%
+  mutate(label1 = ifelse(country %in% labels1, as.character(country), NA)) %>%
+  mutate(label2 = ifelse(country %in% labels2, as.character(country), NA)) 
+  
+
+  p <- ggplot2::ggplot(trend, aes(x=Index, y=index_trend)) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
+    geom_text(aes(label=label1), hjust=0, nudge_x=0.4, size=2.7) + 
+    geom_text(aes(label=label2), vjust=0, nudge_y=0.1, nudge_x=-5, size=2.7) + 
+    geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
+    geom_vline(xintercept = vaxis, color="red", size=.5, linetype=3) +
+    theme_bw() + 
+    labs(y="Trend (change OHI per year)", x="OHI score (2016)") 
+
+plot(p)   
+ggsave("figures/trend vs score.jpg")
 
 ```
 
@@ -155,8 +182,6 @@ ggsave("figures/delta_ranks_scores.jpg")
   plotly_fig <- plotly::ggplotly(p)
   plotly_fig
 
-  
-  
 ```
 
 ## pairwise comparison of goal scores
@@ -179,7 +204,8 @@ panel.cor <- function(x, y, digits=2, prefix="", cex.cor, ...){
 pairs(index_2016,
       lower.panel=panel.smooth, upper.panel=panel.cor, 
       pch=16, cex=.5)
-## export as pdf with 7x7 dimensions
+## export as png with 700 x 700 dimensions
+
 
 
 #seeing ones were significant
@@ -289,54 +315,57 @@ data <- index %>%
   left_join(chi, by="rgn_id") %>%
   left_join(hdi, by="rgn_id")
 
-mod <- lm(Index ~ log_coastal_pop + chi + hdi, data=data)
-summary(mod)
-mod1 <- lm(Index ~ chi + hdi, data=data)
-summary(mod1)
-mod2 <- lm(Index ~ log_coastal_pop + hdi, data=data)
-summary(mod2)
-mod3 <- lm(Index ~ log_coastal_pop + chi, data=data)
-summary(mod3)
-mod4 <- lm(Index ~ hdi, data=data)
-summary(mod4)
-mod5 <- lm(Index ~ log_coastal_pop, data=data)
-summary(mod5)
-mod6 <- lm(Index ~ chi, data=data)
-summary(mod6)
-AIC(mod, mod1, mod2, mod3, mod4, mod5, mod6)
+data_noNA <- na.omit(data)
 
-mod7 <- lm(chi ~ log_coastal_pop, data=data)
+mod1 <- lm(Index ~ chi, data=data_noNA)
+summary(mod1)
+mod2 <- lm(Index ~ hdi, data=data_noNA)
+summary(mod2)
+mod3 <- lm(Index ~ log_coastal_pop, data=data_noNA)
+summary(mod3)
+mod4 <- lm(Index ~ chi + hdi, data=data_noNA)
+summary(mod4)
+mod5 <- lm(Index ~ log_coastal_pop + hdi, data=data_noNA)
+summary(mod5)
+mod6 <- lm(Index ~ log_coastal_pop + chi, data=data_noNA)
+summary(mod6)
+mod7 <- lm(Index ~ log_coastal_pop + chi + hdi, data=data_noNA)
 summary(mod7)
 
-mod8 <- lm(hdi ~ log_coastal_pop, data=data)
+AIC(mod1, mod2, mod3, mod4, mod5, mod6, mod7)
+
+mod8 <- lm(chi ~ log_coastal_pop, data=data)
 summary(mod8)
 
-p <- ggplot2::ggplot(data, aes(x=Index, y=hdi)) +
+mod9 <- lm(hdi ~ log_coastal_pop, data=data)
+summary(mod9)
+
+p <- ggplot2::ggplot(data, aes(y=Index, x=hdi)) +
     geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
     theme_bw()  + 
     stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
-    labs(y="Human Development Index", x="OHI score") 
+    labs(y="Human Development Index", x="OHI index score") 
 
 plot(p)   
-ggsave("figures/OHIvsHDI.jpg")
+ggsave("figures/OHIvsHDI.png", height=4, width=4.5)
 
-p <- ggplot2::ggplot(data, aes(x=Index, y=chi)) +
+p <- ggplot2::ggplot(data, aes(y=Index, x=chi)) +
     geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
     theme_bw()  + 
     stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
-    labs(y="Cumulative Human Impact", x="OHI score") 
+    labs(y="Cumulative Human Impact", x="OHI index score") 
 
 plot(p)   
-ggsave("figures/OHIvsCHI.jpg")
+ggsave("figures/OHIvsCHI.png", height=4, width=4.5)
 
-p <- ggplot2::ggplot(data, aes(x=Index, y=log_coastal_pop)) +
+p <- ggplot2::ggplot(data, aes(y=Index, x=log_coastal_pop)) +
     geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
     theme_bw()  + 
     stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
-    labs(y="Coastal population (ln)", x="OHI score") 
+    labs(y="Coastal population (ln)", x="OHI index score") 
 
 plot(p)   
-ggsave("figures/OHIvsCoastalPop.jpg")
+ggsave("figures/OHIvsCoastalPop.png", height=4, width=4.5)
 
 p <- ggplot2::ggplot(data, aes(x=chi, y=log_coastal_pop)) +
     geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
@@ -345,7 +374,7 @@ p <- ggplot2::ggplot(data, aes(x=chi, y=log_coastal_pop)) +
     labs(y="Coastal population (ln)", x="Cumulative Human Impact") 
 
 plot(p)   
-ggsave("figures/CHIvsCoastalPop.jpg")
+ggsave("figures/CHIvsCoastalPop.png", height=4, width=4.5)
 
 
 ```
@@ -379,20 +408,55 @@ results_lm <- tidy(data_lm, mdl) %>%
   arrange(goal, estimate) %>%
   left_join(goal_names) %>%
   left_join(rgn_names) %>%
-  select(goal=goal, goal_long=long_goal, region_name = country, average_change_per_year = estimate, p.value) %>%
+  select(goal=goal, goal_long=long_goal, region_name = country, region_id, average_change_per_year = estimate, p.value) %>%
   data.frame()
 
-```
+weights <- read.csv("../../eez2016/layers/rgn_area.csv") %>%
+  select(region_id=rgn_id, area_km2)
 
-```{r trend histograms}
+results_lm <- results_lm %>%
+  left_join(weights, by="region_id")
+
+summary_lm <- results_lm %>%
+  group_by(goal, goal_long) %>%
+  summarize(mean=mean(average_change_per_year),
+            mean_wt=weighted.mean(average_change_per_year, w=area_km2))
 
 g <- ggplot(filter(results_lm, goal == "Index"), aes(x=average_change_per_year)) +
   geom_histogram(color = "gray", fill="gray") +
   labs(y="Number of regions", x="Trend (avg. change in score per year)") + 
   geom_vline(xintercept=0, color="red") + 
-  theme_bw()]
+  theme_bw()
 
 plot(g)
+
+# color coded histogram
+
+
+# trends_hist <- trends %>%
+#   filter(goal=="Index") %>%
+#   filter(region_id != 0) %>%
+#   arrange(trend)
+# 
+# values <-   brewer.pal(11, "RdYlBu")
+# values <- colorRampPalette(values, space = 'Lab')(13)[2:13]
+# col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
+# 
+# trends_hist$colors <- cut(trends_hist$trend, breaks=col.brks, include.lowest=TRUE, labels=values)
+# cols <- as.character(unique(trends_hist$colors))
+# 
+# 
+# g <- ggplot(trends_hist, aes(x=trend)) +
+# geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
+# scale_fill_manual("", breaks=colors, values=cols, guide=FALSE) +
+# labs(y="Number of regions", x="Index scores: 5 year trend") + 
+# geom_vline(xintercept=0, color="red") +  
+# theme_bw()
+# 
+# print(g)
+# 
+# ggsave("figures/trend_histogram_color.png", width=5, height=4)
+# 
 
 ```
 
@@ -400,8 +464,6 @@ plot(g)
 The following analyses indicate that adding the region as a random effect is a good idea, according to AIC.
 
 ```{r model check}
-
-data$region_id <- factor(data$region_id)
 
 model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="Index"), method="REML")
 model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="Index"), method="REML")
@@ -538,7 +600,7 @@ summary(model1)
 
 ```
 
-### Analyses for figures
+### Random effects model for global trend patterns (data for figure)
 
 ```{r trend calcs}
 ## Analysis of overall region index scores
@@ -563,17 +625,74 @@ nlme_results <- nlme_results %>%
   arrange(trend) %>%
   mutate(sig = ifelse(p_value < 0.05, "1", "0")) 
 
+### nlme model with eez area weights
+eez_area <- read.csv("../../eez2016/layers/rgn_area.csv") %>%
+  select(region_id=rgn_id, area_km2) %>%
+  mutate(region_id = as.character(region_id))
+
+data_wts <- data %>%
+  mutate(region_id = as.character(region_id)) %>%
+  left_join(eez_area, by="region_id")
+
+nlme_results_wts <- data.frame(goal=goals, trend_wts=NA, p_value_wts=NA)
+
+for(goal in goals){ # goal = "AO"
+  mod_data <- data_wts[data_wts$goal == goal, ]
+  mdl = lme(value ~ 1 + scenario, random = ~1 | region_id, data = mod_data, method="REML", weights=~1/area_km2)
+  nlme_results_wts$trend_wts[nlme_results_wts$goal == goal] <- mdl$coefficients$fixed[2]
+  nlme_results_wts$p_value_wts[nlme_results_wts$goal==goal] <- summary(mdl)$tTable[2,"p-value"]
+}
+
+nlme_results <- nlme_results %>%
+  left_join(nlme_results_wts, by="goal") %>%
+  arrange(trend) %>%
+  mutate(sig_wts = ifelse(p_value_wts < 0.05, "1", "0")) %>%
+  left_join(goal_names) %>%
+  mutate(goal_long = as.factor(long_goal))
+
+
+## plot the data:
+
 ggplot(filter(nlme_results, !(goal %in% c("ECO","LIV", "LE"))), 
-       aes(x=trend, y=reorder(goal_long, trend), color=sig)) +
-  geom_point(size=3) +
+       aes(x=trend, y=reorder(goal_long, trend))) +
+  geom_point(size=3, color="#313695") +
   theme_bw() +
   geom_vline(xintercept = 0, color="red", linetype=3) + 
   labs(y="", x="trend (average change in score per year)") +
-  scale_colour_manual(values = c("#313695", "grey80"), limits=c(1, 0), guide=FALSE) +
+#  scale_colour_manual(values = c("#313695", "grey80"), limits=c(1, 0), guide=FALSE) +
   theme(axis.text.y = element_text(angle=0, hjust=1),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
-        panel.grid.major.y = element_line(color="grey60", linetype="dashed"))
+        panel.grid.major.y = element_line(color="grey60", linetype="dashed")) + 
+  geom_point(data=filter(nlme_results, !(goal %in% c("ECO","LIV", "LE"))), 
+       aes(x=trend_wts, y=goal_long), size=3, color="orange")
+
+
+
+## another plot of the data
+order_goal <- filter(nlme_results, !(goal %in% c("ECO","LIV", "LE"))) %>%
+  arrange(-trend)
+
+data_trend <- data %>%
+  group_by(scenario, goal, dimension) %>%
+  summarize(min_score = min(value, na.rm=TRUE),
+            max_score = max(value, na.rm=TRUE),
+            mean_score = mean(value, na.rm=TRUE)) %>%
+  ungroup() %>%
+  mutate(goal = factor(goal, levels=order_goal$goal)) %>%
+  filter(!is.na(goal))
+
+
+ggplot(data_trend, aes(x=scenario, y=mean_score)) +
+  geom_line() + 
+  facet_grid(goal ~ ., scales="free") + 
+  theme_bw() +
+    theme(axis.title.y=element_blank(),
+        axis.text.y=element_blank(),
+        axis.ticks.y=element_blank(),
+        strip.text.y = element_text(size = 8, angle = 0))
+  
+ggsave("figures/scores_scenario_grid.png", height=6, width=2)
 
 ```
 
@@ -583,4 +702,6 @@ nlme_table <- nlme_results %>%
   select(goal, trend, p_value, quant_5, quant_95)
 
 write.csv(nlme_table, "data/nlme_results_goal_summary.csv", row.names=FALSE)
+
+```
 
