@@ -60,13 +60,14 @@ data_sp <- spread(data_and_status, variable, value) %>%
 ```{r future state first, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 p <-   ggplot(data_sp, aes(x=likely_future_state_2012, y=status_2016)) +
-  geom_point(shape=19) +
+  geom_point(shape=19, size=1) +
   theme_bw() + 
   labs(x="Predicted 2016 status (from 2012 data)", y="Observed 2016 status") +
   geom_abline(slope=1, intercept=0, color="red") +
   xlim(0, 100) +
   ylim(0, 100)
 print(p)
+ggsave("figures/pred_obs_status.png", width = 4, height=4)
 
 ```
 
