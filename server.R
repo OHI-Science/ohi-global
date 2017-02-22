@@ -10,17 +10,17 @@ shinyServer(function(input, output, session) {
 
   # get_scenario ----
 
-  # write remote git commit hash every 5 seconds to compare with remote
-  log_gitsha <- observe({
-    # Invalidate this observer every 2 seconds (2000 milliseconds)
-    invalidateLater(2000, session)
-
-    # write remote git commit sha
-    gh_write_remote(y$gh_slug, y$gh_branch_data, remote_sha_txt)
-  })
-
-  # monitor file for changes every 1 seconds (1000 milliseconds)
-  fileReaderData <- reactiveFileReader(1000, session, remote_sha_txt, readLines)
+  # # write remote git commit hash every 5 seconds to compare with remote
+  # log_gitsha <- observe({
+  #   # Invalidate this observer every 2 seconds (2000 milliseconds)
+  #   invalidateLater(2000, session)
+  #
+  #   # write remote git commit sha
+  #   gh_write_remote(y$gh_slug, y$gh_branch_data, remote_sha_txt)
+  # })
+  #
+  # # monitor file for changes every 1 seconds (1000 milliseconds)
+  # fileReaderData <- reactiveFileReader(1000, session, remote_sha_txt, readLines)
 
   # get_scenario ----
   get_scenario = function(env=.GlobalEnv){
@@ -566,45 +566,45 @@ shinyServer(function(input, output, session) {
   #   }
   #   })
 
-  observeEvent(fileReaderData(), {
-    # get remote_sha from file
-    remote_sha <- fileReaderData()
-
-    # check if github remote differs from local
-    if (devtools:::different_sha(remote_sha, local_sha)){
-
-      # show progress bar while updating
-      withProgress(
-        message = sprintf('Updating data "%s" with newer commit(s) at github.com/%s', dir_data, y$gh_slug),
-        value = 0, {
-
-          # increment
-          n = length(y$scenario_dirs) + 2
-
-          # git fetch & overwrite
-          incProgress(1/n, detail = 'git fetch & reset')
-          system(sprintf('cd %s; git fetch; git reset --hard origin/%s', dir_data, y$gh_branch_data))
-          local_sha <<- devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
-
-          # redo [scenario].Rdata files
-          for (i in 1:length(y$scenario_dirs)){
-            scenario = sort(y$scenario_dirs)[i]
-            rdata = sprintf('%s_%s.Rdata', y$gh_repo, scenario)
-
-            incProgress((i+1)/n, detail = sprintf("creating scenario %s", rdata))
-            unlink(rdata)
-            create_scenario_rdata(scenario, rdata)
-          }
-
-          # load default scenario
-          incProgress(n, detail = sprintf("loading selected scenario %s", input$sel_scenario))
-          load_scenario(input$sel_scenario)
-        })
-
-      return(remote_sha)
-    }
-
-  })
+  # observeEvent(fileReaderData(), {
+  #   # get remote_sha from file
+  #   remote_sha <- fileReaderData()
+  #
+  #   # check if github remote differs from local
+  #   if (devtools:::different_sha(remote_sha, local_sha)){
+  #
+  #     # show progress bar while updating
+  #     withProgress(
+  #       message = sprintf('Updating data "%s" with newer commit(s) at github.com/%s', dir_data, y$gh_slug),
+  #       value = 0, {
+  #
+  #         # increment
+  #         n = length(y$scenario_dirs) + 2
+  #
+  #         # git fetch & overwrite
+  #         incProgress(1/n, detail = 'git fetch & reset')
+  #         system(sprintf('cd %s; git fetch; git reset --hard origin/%s', dir_data, y$gh_branch_data))
+  #         local_sha <<- devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
+  #
+  #         # redo [scenario].Rdata files
+  #         for (i in 1:length(y$scenario_dirs)){
+  #           scenario = sort(y$scenario_dirs)[i]
+  #           rdata = sprintf('%s_%s.Rdata', y$gh_repo, scenario)
+  #
+  #           incProgress((i+1)/n, detail = sprintf("creating scenario %s", rdata))
+  #           unlink(rdata)
+  #           create_scenario_rdata(scenario, rdata)
+  #         }
+  #
+  #         # load default scenario
+  #         incProgress(n, detail = sprintf("loading selected scenario %s", input$sel_scenario))
+  #         load_scenario(input$sel_scenario)
+  #       })
+  #
+  #     return(remote_sha)
+  #   }
+  #
+  # })
 
 
   # elements tab ----
