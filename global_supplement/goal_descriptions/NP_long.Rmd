@@ -48,7 +48,7 @@ For the fish oil commodity sustainability was estimated using the fisheries scor
 To estimate the status score, $x_{np}$, for each region and year we took the weighted average of the individual product scores, $P_c$, such that:
 
 $$
-x_{np} = \frac { \sum _{ c=1 }^{ N }{ { P }_{ c }\ast { w }_{ c } }  }{ { { N } }  }, (Eq. 5.16)
+x_{np} = \frac { \displaystyle\sum _{ c=1 }^{ N }{ { P }_{ c }\ast { w }_{ c } }  }{ { { N } }  }, (Eq. 5.16)
 $$
 
 where ${N}$ is the number of product categories, $c$, that were harvested, and $w_{c}$ is the relative contribution of each product to the overall status of the goal. $w_c$ was calculated as the ratio of the maximum US dollar value for a product (from the smoothed, gap-filled data) across all years of data for the product, relative to the sum of maximum values for all products harvested in the country.

@@ -1,7 +1,7 @@
 The overall index score for each region ($I_{region}$) is calculated as a weighted average of all the scores ($G$), for each goal ($g$) such that:
 
 $$
-{ I_{region} }\quad =\quad \frac { \sum _{ g=1 }^{ N }{ { w }_{ g }{ G }_{ g } }  }{ \sum _{ g=1 }^{ N }{ { w }_{ g } }  }, (Eq. 4.1) 
+{ I_{region} }\quad =\quad \frac { \displaystyle\sum_{ g=1 }^{ N }{ { w }_{ g }{ G }_{ g } }  }{ \displaystyle\sum _{ g=1 }^{ N }{ { w }_{ g } }  }, (Eq. 4.1) 
 $$
 
 
@@ -14,7 +14,7 @@ In many places certain goals are not relevant, for example, production-focused g
 The overall global index score ($I_{global}$) is calculated as the area weighted average of the index scores ($I_{region}$) for each region ($i$): 
 
 $$
-{ I }_{ global }\quad =\quad \frac { \sum _{ i=1 }^{ N }{ { a }_{ i }{ I }_{ region,i } }  }{ \sum _{ i=1 }^{ N }{ { a }_{ i } }  }, (Eq. 4.2) 
+{ I }_{ global }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { a }_{ i }{ I }_{ region,i } }  }{ \displaystyle\sum _{ i=1 }^{ N }{ { a }_{ i } }  }, (Eq. 4.2) 
 $$
 
 where, $a_{i}$ is each region's ocean area, based on the EEZ area.

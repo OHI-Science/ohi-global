@@ -12,7 +12,7 @@ $$
 where, $Y_{c,ref}$ is the $Y_c$ value that corresponds to the 95th quantile across all regions and years (including and prior to the year of the assessment year data), and $Y_c$ is: 
 
 $$
-Y_{c}  = \frac { \sum _{ k }^{ N }{ { Y }_{ k }{ S }_{ k,r } }  }{ { P }_{ r } }, (Eq. 5.11)
+Y_{c}  = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { Y }_{ k }{ S }_{ k,r } }  }{ { P }_{ r } }, (Eq. 5.11)
 $$
 
 

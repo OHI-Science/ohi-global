@@ -9,7 +9,7 @@ Data availability remains a major challenge for species and habitat assessments.
 The status of the habitat sub-goal, $x_{hab}$, was assessed as the average of the condition estimates, $C$, for each habitat, $k$, present in a region; measured as the loss of habitat and/or % degradation of remaining habitat, such that:
 
 $$
-x_{hab} = \frac { \sum _{ k=1 }^{ N }{ { C }_{ k } }  }{ N}, \quad \quad (Eq. 5.3)
+x_{hab} = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { C }_{ k } }  }{ N}, \quad \quad (Eq. 5.3)
 $$
 
 where, $C_{k} = C_{c}/C_{r}$ and $N$ is the number of habitats in a region. $C_{c}$ is the current condition and $C_{r}$ is the reference condition specific to each $k$ habitat present in the region (Table 5.2). This formulation ensures that each country is assessed only for those habitats that can exist (e.g., Canada is not assessed on the status of its nonexistent coral reefs).  We generally considered the reference years to be between 1980-1995 and the current years to be between 2001-2010, although these varied by habitat due to data availability.

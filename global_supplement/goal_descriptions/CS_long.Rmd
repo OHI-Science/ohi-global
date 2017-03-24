@@ -9,7 +9,7 @@ We measured the status of carbon storage, $x_{cs}$, as a function of the carbon 
 
 
 $$
-x_{cs} = \frac { \sum _{ k=1 }^{ N }{ { (h }_{ k } } \times { w }_{ k }\times { A }_{ k }) }{ \sum _{ k=1 }^{ N }{ { (w }_{ k }\times { A }_{ k }) }  }, (Eq. 5.7)
+x_{cs} = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { (h }_{ k } } \times { w }_{ k }\times { A }_{ k }) }{ \displaystyle\sum _{ k=1 }^{ N }{ { (w }_{ k }\times { A }_{ k }) }  }, (Eq. 5.7)
 $$
 
 where:
