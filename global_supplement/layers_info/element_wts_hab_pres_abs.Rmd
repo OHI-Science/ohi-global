@@ -1,1 +1,1 @@
-This layer describes the habitats present in each region (based on the habitat extent data) and is called internally by ohicore functions (see: conf/config.R to see how these data are specified) to calculate pressure and resilience values based on the habitats present in each region.
+This layer describes the habitats present in each region (based on the habitat extent data) and is called internally by ohicore functions to calculate pressure and resilience values based on the habitats present in each region.

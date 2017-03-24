@@ -1,0 +1,53 @@
+### Habitat (subgoal of biodiversity)
+
+The habitat subgoal measures the average condition of marine habitats present in each region that provide critical habitat for a broad range of species (mangroves, coral reefs, seagrass beds, salt marshes, sea ice edge, and subtidal soft bottom).  This subgoal is considered a proxy for the condition of the broad suite of marine species.
+
+Data availability remains a major challenge for species and habitat assessments. We compiled and analyzed the best available data in both cases, but key gaps remain. Although several efforts have been made in recent years to create or compile the data necessary to look at the status and trends of marine habitats, most efforts are still hampered by limited geographical and temporal sampling [@joppa_filling_2016], although mangroves [@giri_status_2011] and sea ice [@cavalieri_sea_1996] data are exceptions. In addition, most marine habitats have only been monitored since the late 1970s at the earliest, many sites were only sampled over a short period of time, and very few sites were monitored before the late 1990s so establishing reference points was difficult. Salt marshes and seagrasses were the most data-limited of the habitats included in the analysis. 
+
+
+#### Current status
+The status of the habitat sub-goal, $x_{hab}$, was assessed as the average of the condition estimates, $C$, for each habitat, $k$, present in a region; measured as the loss of habitat and/or % degradation of remaining habitat, such that:
+
+$$
+x_{hab} = \frac { \sum _{ k=1 }^{ N }{ { C }_{ k } }  }{ N}, \quad \quad (Eq. 5.3)
+$$
+
+where, $C_{k} = C_{c}/C_{r}$ and $N$ is the number of habitats in a region. $C_{c}$ is the current condition and $C_{r}$ is the reference condition specific to each $k$ habitat present in the region (Table 5.2). This formulation ensures that each country is assessed only for those habitats that can exist (e.g., Canada is not assessed on the status of its nonexistent coral reefs).  We generally considered the reference years to be between 1980-1995 and the current years to be between 2001-2010, although these varied by habitat due to data availability.
+
+**Table 5.2. Habitat data**
+Description of condition, extent, and trend calculations for habitat data (Note: extent is not used to calculate the habitat subgoal, but is used for the coastal protection and carbon storage goals). More information about the sources used to generate these values is located in Section 6 and Table 6.1. 
+
+Habitat | Condition | Extent | Trend
+-------- | --------------------- | ----------------- | ------------------
+Seagrass | Current % cover or hectares of habitat divided by reference % cover or hectares | Seagrass extent per oceanic region (vector based) | Calculated across data from 1975-2010
+Coral reefs | Current % cover divided by reference % cover | Coral reef extent per oceanic region (500 m resolution) | Calculated across data from 1975-2006
+Mangroves | Current hectares divided by reference hectares, for coastal mangroves only | Mangrove extent per oceanic region (raster based) | Calculated using 5 most recent years of data
+Salt marsh | Increasing or stable trend assigned condition = 1.0; decreasing trend assigned condition = 0.5 | Salt marsh extent per oceanic region | Categorical trend assessments (increasing = 0.5, stable = 0, or decreasing = -0.5) 
+Sea ice edge | Current % cover of sea ice with 10-50% cover divided by reference % cover average from 1979-2000 | Same as condition | Calculated from the fitted slope of % deviation from reference per year of most recent 5 years of data (each year of data is based on 3-year average)
+Soft bottom | Soft-bottom destructive fishing practices rescaled to 0-1 using the 99.99th quantile at the 0.5$^{\circ}$ scale and averaged per region  | Halpern et al. (2008) | Calculated using 5 most recent years of condition data
+
+
+A significant amount of pre-processing of the habitat data was needed to fill data gaps and resolve data quality issues (Section 6). Because consistent habitat monitoring data was unavailable for many countries, anomalous values can occur. This is particularly true for highly variable habitats like seagrasses or coral reefs which can have significant site-to-site and year-to-year differences in extent and condition [@bruno_regional_2007; @orth_global_2006]. Biases may also have been introduced from spatial (e.g., protected or impacted sites) and temporal (e.g., directly after a disturbance event) selections in sampling. In regions where we had a limited number of surveys in a particular country, overall status can be under- or overestimated because of these fluctuations.
+
+#### Trend
+Trend in habitat data were calculated as the linear trend in extent or condition with slight variations depending on habitat type. Coral reef habitat trends were calculated on a per country basis, using all available data. For seagrasses we calculated trends on a per site basis. For mangroves we used the rate of change in areal extent over the most recent 5 years of available data. For sea ice we calculated the slope across the most recent 5 years of data, where each year of data is based on a three-year moving averages to smooth out potential climate variation. For soft bottom habitat we simply calculated the slope of the recent change in condition over the past five years, i.e., the change in proportion of catch from trawl fishing per unit area of habitat within a region.
+
+#### Data
+_Status and trend_
+
+```{r HAB data st, results="asis", echo=FALSE}
+data_layers(goal="HAB", dimension=c("status", "trend"))
+```
+
+_Pressure_
+
+```{r HAB data p, results="asis", echo=FALSE}
+data_layers(goal="HAB", dimension=c("pressure"))
+```
+
+_Resilience_
+
+```{r HAB r, results="asis", echo=FALSE}
+data_layers(goal="HAB", dimension=c("resilience"))
+
+```

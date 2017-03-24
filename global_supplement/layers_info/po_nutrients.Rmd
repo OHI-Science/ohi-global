@@ -10,4 +10,4 @@ Nitrogen pollution was estimated from FAO data on annual country-level fertilize
 
 These country-level pollution values were then dasymetrically distributed over a country’s landscape using global landcover data from 2009, derived from the MODIS satellite at ~500m resolution. These values were then aggregated by ~140,000 global basins, and diffusive plumes were modeled from each basin’s pourpoint. The final non-zero plumes (about ~76,000) were aggregated into ~1km Mollweide (wgs84) projection rasters to produce a single plume-aggregated pollution raster. 
 
-These raw values were then ln(X+1) transformed and normalized to 0-1 by dividing by the 99.99th quantile of raster values across all years.  The zonal mean was then calculated for each region.  
+These raw values were then $ln(X+1)$ transformed and normalized to 0-1 by dividing by the 99.99th quantile of raster values across all years.  The zonal mean was then calculated for each region.  

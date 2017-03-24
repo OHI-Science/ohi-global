@@ -1,76 +1,94 @@
-### These notes are from the 2012 Supplement (this section needs relevant: figures, tables, equations and citations).
+### Pressure
 
-## Pressure calculations
-
-The pressure score describes the cumulative pressures acting on a goal, resulting in an expected decrease in the goal score.  Pressure scores, which range from 0 to 1, are calculated for each goal ($p_{x}$) and region based on both ecological ($p_{E}$) and social pressures ($p_{S}$) (Table and Figure...I am thinking this could be similar to the main pie chart for the overall goal, but only inclue pressures), such that:
+The pressure score, $p$, describes the cumulative pressures acting on a goal which suppress the goal score.  Pressure scores range from 0 to 1, and they are calculated for each goal and region and include both ecological ($p_{E}$) and social pressures ($p_{S}$) (Table 4.1, Figure 4.2), such that:
 
 $$
-{ p }_{ x }\quad =\quad \gamma *{ p }_{ E }\quad +\quad (1-\gamma )*{ p }_{ S } (Eq. S7)
+{ p }\quad =\quad \gamma *{ p }_{ E }\quad +\quad (1-\gamma )*{ p }_{ S }, (Eq. 4.6)
 $$
 
-where γ is the relative weight for ecological vs. social pressures and is set equal to 0.5. At global scales, little evidence exists to support unequal weighting of ecological and social pressures for most goals; furthermore, unequal weighting would require unique values for each goal and there is currently no empirical work to guide such decisions. At local or regional scales there may be clear evidence for unequal weights per goal and γ should be adjusted accordingly.
+where $\gamma$ is the relative weight for ecological vs. social pressures and equals 0.5 for the global assessment. At global scales, little evidence exists to support unequal weighting of ecological and social pressures for most goals; furthermore, unequal weighting would require unique values for each goal and there is currently no empirical work to guide such decisions. At local or regional scales there may be clear evidence for unequal weights per goal and $\gamma$ should be adjusted accordingly.
 
-![figure pressure pie chart](https://docs.google.com/drawings/d/1kRFHH5Ss7H82m8EVi-zre2-LfWK54PkgPFUVR8ILxto/pub?w=960&h=720)
+**Figure 4.2. Pressure components**
+Pressure is calculated using both social and ecological pressures.  Ecological pressures include 5 subcategories (fishing pressure, habitat destruction, climate change, water pollution, and species/genetic introductions).  
 
-(Table S2, grab and display the table from here, but need to improve names of layers for display: ohi-global/eez2016/conf/pressure_categories.csv)
+![](figures/PressureComponentsPieChart.png)
 
-```{r pressure categories, echo=FALSE}
+**Table 4.1. Pressure data and categories**
+Description of the stressor data layers used to calculate overall pressure for each goal and region for the global assessment (descriptions of pressure data in section 6).  Each data layer is assigned to an ecological or social category, and ecological data are assigned to one of five subcategories. 
+
+```{r pressure categories, echo=FALSE, warning=FALSE, message=FALSE, error=FALSE}
+
 full_lyr_names <- read.csv("../eez_layers_meta_data/layers_eez_base.csv") %>% 
-  select(layer, name)
+  select(layer, name, description)
 
 pressure_cat <- read.csv("../eez2016/conf/pressure_categories.csv") %>% 
   left_join(full_lyr_names, by = "layer") %>% 
-  select(Data = name, Category = category, Subcategory = subcategory)
+  mutate(subcategory = gsub("_", " ", subcategory)) %>%
+  select(Data = name, "Short name" = layer, Category = category, Subcategory = subcategory, Description = description)
 
-kable(pressure_cat, caption = "Pressures Categories", align = "l")
+kable(pressure_cat, align = "l")
 
 ```
 
-### Ecological pressure: calculating the five pressure categories
-We assessed five broad, globally-relevant categories of ecological stressors: fishing pressure, habitat destruction, climate change (including ocean acidification), water pollution, and species introductions (invasive species and genetic escapes). The five categories are intended to capture known pressures to the social-ecological system associated with each goal. Each pressure category may include several stressors. The intensity of each stressor within each OHI region (and, year) is described on a scale of 0 to 1, with one indicating the highest pressure (i.e., the pressure data layers, link to example dataset).
+#### Ecological pressure
+We assessed five broad, globally-relevant categories of ecological stressors: fishing pressure, habitat destruction, climate change (including ocean acidification), water pollution, and species introductions (invasive species and genetic escapes). The five categories are intended to capture known pressures to the social-ecological system associated with each goal. Each pressure category may include several stressors. The intensity of each stressor within each OHI region is scaled from 0 to 1, with 1 indicating the highest stress (e.g., example of one of these data layers is [sea surface temperature](https://github.com/OHI-Science/ohi-global/blob/draft/eez2016/layers/cc_sst.csv)).
 
-We determined the sensitivity rank of each stressor on each goal/subgoal (or, when possible a component of the goal, such as a specific habitat).  We ranked ecological pressures as having ‘high’ (score = 3), ‘medium’ (score = 2), ‘low’ (score = 1), or 'no' (score = NA) impact (Table ??, use this table: ohi-gobal/eez2016/conf/pressures_matrix.csv, but we probably need to use better names for pressures..probably the names here will be good: ohi-global/eez_layers_meta_data/layers_eez_base.csv). Wherever possible we relied on peer-reviewed literature to establish these rankings (see Table S28, maybe just reference the supplement rather than recreate?), and relied on our collective expert judgment in other cases where information is not available in the literature.  The pressure ranks are based on a rough estimate of the global average intensity and frequency of the stressor. We recognize that this will create over- and under-estimates for different places around the planet, but to address such variance in a meaningful way would require a separate weighting matrix for every single region on the planet, which is not feasible at this time.
+We determined the rank sensitivity of each goal/subgoal to each stressor (or, when possible, an element of the goal, such as a specific habitat).  We ranked ecological pressures as having ‘high’ (score = 3), ‘medium’ (score = 2), ‘low’ (score = 1), or 'no' (score = NA) impact (Table 4.2). Wherever possible we relied on peer-reviewed literature to establish these rankings, and relied on our collective expert judgment in cases with no available literature (Table S28 in Halpern et al. 2012).  The pressure ranks are based on a rough estimate of the global average intensity and frequency of the stressor. We recognize that this will create over- and under-estimates for different places around the planet, but to address such variance in a meaningful way would require a separate weighting matrix for every single region on the planet, which is not feasible at this time.
 
-To account for the cumulative effect of ecological stressors, we summed the weighted intensities of each stressor within a Pressure category (pi) and divided by the maximum weighted intensity that could be achieved by the worst stressor (max = 3.0) such that:
+**Table 4.2. Pressure matrix**
+Rank sensitivity of each goal (or, goal element) to each stressor.
+
+```{r pressure matrix, echo=FALSE}
+
+pressure_matrix <- read.csv("../eez2016/conf/pressures_matrix.csv", na.strings=c("","NA"), stringsAsFactors = FALSE) %>%
+  mutate(element = ifelse(is.na(element_name), element, element_name)) %>%
+  select(-element_name) %>%
+  gather("layer", "rank", -(1:2)) %>%
+  spread(layer, rank, fill="") %>%
+  mutate(element = gsub("_", " ", element))
+
+
+kable(pressure_matrix, align = "l")
+
+```
+
+
+To estimate the cumulative effect of the ecological pressures, $P_E$, we first determined the cumulative pressure, $p$, within each ecological category, $i$ (e.g., pollution, fishing, etc.):
 
 $$
-{ p }_{ i }\quad =\quad \frac { \sum _{ i }^{ M }{ { w }_{ i }{ s }_{ i } }  }{ 3 } (Eq. S8)
+{ p }_{ i }\quad =\quad \frac { \sum _{ i }^{ N }{ { w }_{ i }{ s }_{ i } }  }{ 3 }, (Eq. 4.7)
 $$
 
-Where wi is the sensitivity ranks (i.e., 1, 2, 3) describing the relative sensitivity of each each goal to each stressor.  The si term describes the intensity of the stressor in each region on a scale of 0-1 (point to a pressure layer for an example dataset).  
+Where $w_i$ is the sensitivity ranks (Table 4.2) describing the relative sensitivity of each goal to each stressor, and $s_i$ is intensity of the stressor in each region on a scale of 0-1. We divided by the maximum weighted intensity that could be achieved by the worst stressor (max = 3.0).
 
-If pi > 1.0, we set the value equal to 1.0. This formulation assumes that any cumulative pressure load greater than the maximum intensity of the worst stressor is equivalent to maximum stressor intensity.
+If $p_i$ > 1.0, we set the value equal to 1.0. This formulation assumes that any cumulative pressure load greater than the maximum intensity of the worst stressor is equivalent to maximum stressor intensity.
 
-For the goals for which sensitivity ranks were assigned for specific habitats or livelihood sectors (i.e., goal components), we calculated the weighted sum of the pressures for only those habitats or sectors that are present in the country, where the weights are mean weights across all habitats or sectors in that country and where a weight for a pressure is zero if a habitat or sector doesn't use a pressure but one or more habitats or sectors within the country do.
+For the goals for which sensitivity ranks were assigned for specific habitats or livelihood sectors (i.e., goal elements), we calculated the weighted sum of the pressures for only those habitats or sectors that were present in the country.
 
-
-Overall ecological pressure (pE) acting on each goal and region is  calculated as the weighted-average of the Pressure categories relevant to each goal, with weights set as the maximum rank in each Pressure category
-(wi_max), such that:
+The overall ecological pressure, $p_E$, acting on each goal and region was calculated as the weighted-average of the pressure scores, $p$, for each category, $i$, with weights set as the maximum rank in each pressure category ($w_{i\_max}$) for each goal, such that:
 
 $$
-{ p }_{ E }\quad =\quad \frac { \sum _{ i }^{ N }{ { (w }_{ i\_ max }*{ p }_{ i }) }  }{ \sum { { w }_{ i\_ max } }  }  (Eq. S9)
+{ p }_{ E }\quad =\quad \frac { \sum _{ i }^{ N }{ { (w }_{ i\_ max }*{ p }_{ i }) }  }{ \sum_{ i }^{ N } { { w }_{ i\_ max } }  },  (Eq. 4.8)
 $$
 
 Stressors that have no impact drop out rather than being assigned a rank of zero, which would affect the average score.
 
 
-### Social pressures
+#### Social pressures
 
-Social pressures describe the lack of effectiveness of government and social institutions.  Social stressors are described for each region on a scale of 0 to 1 (with one indicating the highest presssure). Social pressure is then calculated as:
+Social pressures describe the lack of effectiveness of government and social institutions.  Social stressors are described for each region on a scale of 0 to 1 (with one indicating the highest pressure). Social pressure is then calculated as the average of the social stressors:
 
 $$
-{ p }_{ S }\quad =\quad \frac { \sum _{ i }^{ N }{ z_{ i } }  }{ N } (Eq. S10)
+{ p }_{ S }\quad =\quad \frac { \sum _{ i }^{ N }{ z_{ i } }  }{ N }, (Eq. 4.9)
 $$
 
 where $z_{i}$ are the social pressure measures specific to the goal. Unequal weighting may be appropriate in some cases but is difficult to assess currently, particularly at the global scale. 
 
 
-### Caveats
+#### Caveats
 
+There were a number of ecological pressures not included in our assessment, including altered sediment regimes, noise and light pollution, toxic chemicals from point sources, nutrient pollution from atmospheric deposition and land-based sources other than fertilizer application to agricultural land. In all cases, global data do not exist in a format that would allow for adequate comparisons within and among countries. Future global or regional iterations of the Index could include these data as they become available.
 
-There were a number of ecological pressures not included in our assessment, including altered sediment regimes, noise and light pollution, many toxic chemicals from point sources, nutrient pollution from atmospheric deposition and land-based sources other than fertilizer application to agricultural land, and sea level rise. In all cases, global data do not exist in a format that would allow for adequate comparisons within and among countries. Future global or regional iterations of the Index could easily include these data where and when they are available using the above pressure assessment methodology. In cases where the cumulative impact of pressures for which we have data is less than 1.0, future inclusion of these additional pressures will increase the pressures score and decrease the goal and Index scores.
+The calculation of ecological pressures is sensitive to the number of stressors within each category (but not to the number of categories). Inclusion of additional stressors within categories would require careful calibration of ranks so that the cumulative effect of a larger number of stressors does not overestimate pressure.
 
-The calculation of ecological pressures is sensitive to the number of stressors within each category (but not to the number of categories). Inclusion of additional stressors within categories would require careful calibration of ranks so that the cumulative effect of a larger number of
-stressors does not exceed the maximum weighted stressor intensity to quickly simply because of including a greater number of stressors.
-
-A key assumption in our assessment of ecological pressures is that each goal has a linear and additive response to increases in intensity of the stressors. Clearly many ecosystems respond non-linearly to increased stressor intensity, exhibiting threshold responses, and there are likely nonlinear interactions among stressors. Unfortunately little is known about the nature of these types of nonlinearities and interactions6,8, and so we could not include them in any meaningful way here.
+A key assumption in our assessment of ecological pressures is that each goal has a linear and additive response to increases in intensity of the stressors. Clearly many ecosystems respond non-linearly to increased stressor intensity, exhibiting threshold responses, and there are likely nonlinear interactions among stressors. Unfortunately little is known about the nature of these types of nonlinearities and interactions so we could not include them in any meaningful way.
