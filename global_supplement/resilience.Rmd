@@ -50,7 +50,7 @@ Ecosystem integrity, e.g., food web integrity, is measured as relative condition
 For the global assessments, we only have one data layer describing ecosystem integrity, however, if there were multiple layers the overall score for ecosystem integrity would be a weighted mean of all the data layers, $i$, that describe ecosystem integrity ($y_{E,i}$) and influence the goal:
 
 $$
-{ Y }_{ E }\quad =\quad \frac { \sum _{ i }^{ N }{ { w }_{ i }{ y_E}_{i} }  }{ \sum _{ i }^{ N }{ { w }_{ i }}}, (Eq. 4.11) 
+{ Y }_{ E }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }{ y_E}_{i} }  }{ \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }}}, (Eq. 4.11) 
 $$
 
 
@@ -62,7 +62,7 @@ Weights were based effectiveness of governance. Governance is a function of 1) i
 For each region and goal, we calculated a score for each regulatory category, $y_{R, i}$, as a weighted mean of the resilience data layers, $r_{i}$, that influence the goal (Table 4.4):
 
 $$
-y_{R, i}\quad =\quad \frac { \sum _{ i }^{ N }{ { w }_{ i }{ r }_{ i } }  }{ \sum _{ i }^{ N }{w_i} }, (Eq. 4.12) 
+y_{R, i}\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }{ r }_{ i } }  }{ \displaystyle\sum _{ i=1 }^{ N }{w_i} }, (Eq. 4.12) 
 $$
 
 where, $w_i$ is the weight in Table 4.3.
@@ -74,7 +74,7 @@ To calculate the overall regulatory resilience, $Y_{R}$, we averaged the scores 
 Social integrity is intended to describe those processes internal to a community that affect its resilience. It is a function of a wide range of aspects of social structure. Social Integrity per goal for each region, $Y_{S}$, is therefore:
 
  $$
- Y_{ S}\quad =\quad \frac { \sum _{ i }^{ N }{ { y }_{ S,i } }  }{ N }, (Eq. 4.13)
+ Y_{ S}\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { y }_{ S,i } }  }{ N }, (Eq. 4.13)
  $$
  
 where $y_{S,i}$ are the social integrity measures specific to the goal.
