@@ -1,4 +1,4 @@
-**Table. Overview of the habitats used in different goal calculations**
+**Table 6.5. Habitats used in goal/subgoal calculations**
 
 Habitat | Habitat goal | Coastal Protection | Carbon Storage | Natural Products (exposure) 
 -------- | ------------ | ----------------- | -------------- | ---------------------------
@@ -6,10 +6,10 @@ Seagrass | X             | X                | X              |                  
 Mangrove | X             | X                | X              |                  |
 Saltmarsh | X            | X                | X              |                  |
 Coral     | X            | X                |                | X                |
-Sea ice shoreline |      | X                 |               |                  |
-Sea ice edge | X         |                   |               |                  |
+Sea-ice shoreline |      | X                 |               |                  |
+Sea-ice edge | X         |                   |               |                  |
 Rocky reef |            |                    |               | X                |
-Soft-bottom subtidal | X |                  |                |                  | X
+Soft bottom subtidal | X |                  |                |                  | X
 
 #### Coral 
 Coral extent area (km^2^) are derived from the 500m resolution dataset developed for Reefs at Risk Revisited (Burke et al. 2011).
@@ -25,11 +25,11 @@ Severe data gaps exist for several key regions of the world, including the Middl
 #### Rocky reef 
 To estimate rocky reef extent area (km^2^) we used data from Halpern et al. (2008), which assumes rocky reef habitat exists in all cells within 1 km of shore.
 
-#### Sea ice 
-Sea ice extent area (km^2^) was calculated using sea ice concentrations from the USA National Snow and Ice Data Center (Cavalieri et al. 2014; [https://nsidc.org/cryosphere/quickfacts/seaice.html](https://nsidc.org/cryosphere/quickfacts/seaice.html)), which are updated yearly. These raster data are 25km in resolution (625km2 per pixel) in a Stereographic polar projection. Two sea ice metrics are calculated using these data: sea-ice edge (pixels with 10-50% ice cover) and sea ice shoreline (shoreline pixels with >15% ice cover).  Calculations of area are based on 3-year averages (to smooth yearly variation, e.g., 2009 data is the average of 2008-2010) of the pixels meeting the habitat criteria.
+#### Sea-ice 
+Sea-ice extent area (km^2^) was calculated using sea-ice concentrations from the USA National Snow and Ice Data Center (Cavalieri et al. 2014; [https://nsidc.org/cryosphere/quickfacts/seaice.html](https://nsidc.org/cryosphere/quickfacts/seaice.html)), which are updated yearly. These raster data are 25km in resolution (625km^2^ per pixel) in a Stereographic polar projection. Two sea-ice metrics are calculated using these data: sea-ice edge (pixels with 10-50% ice cover) and sea-ice shoreline (shoreline pixels with >15% ice cover).  Calculations of area are based on 3-year averages (to smooth yearly variation, e.g., 2009 data is the average of 2008-2010) of the pixels meeting the habitat criteria.
 
 #### Seagrass 
 Seagrass extent area (km^2^) was calculated from vector-based data from the Global Distribution of Seagrasses (UNEP-WCMC 2005). 
 
-#### Soft-bottom subtidal 
-Soft-bottom extent was defined as the total area (km^2^) of shallow (0-60m) and shelf (60-200m) soft-bottom habitat within the reporting region based on benthic substrate point samples (Halpern et al. 2008). 
+#### Soft bottom subtidal 
+Soft bottom extent was defined as the total area (km^2^) of shallow (0-60m) and shelf (60-200m) soft-bottom habitat within the reporting region based on benthic substrate point samples (Halpern et al. 2008). 

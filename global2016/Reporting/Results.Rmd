@@ -35,26 +35,26 @@ library(broom)
 library(nlme)
 
 # Set working directory when not knitting:
-# setwd("global2016/Reporting")
+setwd("global2016/Reporting")
 
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
 goal_names <- data.frame(goal=goals, long_goal=c("Index", 
                                                   "Artisanal opportunities",
-                                                  "Species condition\n(Biodiversity)",
+                                                  "Species condition (Biodiversity)",
                                                   "Biodiversity",
-                                                  "Habitat\n(Biodiversity)",
+                                                  "Habitat (Biodiversity)",
                                                   "Coastal protection",
                                                   "Carbon storage",
                                                   "Clean water",
                                                   "Economies",
                                                   "Livelihoods & economies",
                                                   "Livelihoods",
-                                                  "Fisheries\n(Food provisioning)",
+                                                  "Fisheries (Food provisioning)",
                                                   "Food provisioning",
-                                                  "Mariculture\n(Food provisioning)",
-                                                  "Iconic species\nSense of place)",
+                                                  "Mariculture (Food provisioning)",
+                                                  "Iconic species (Sense of place)",
                                                   "Sense of place",
-                                                  "Lasting special places\n(Sense of place)",
+                                                  "Lasting special places (Sense of place)",
                                                   "Natural products",
                                                   "Tourism & recreation"))
 
@@ -82,7 +82,7 @@ radicalFile = '2016-11-17' #date extension on the radical data files that are us
 ### Trend vs scores
 (figure out which regions to label)
 
-```{r trend vs score}
+```{r trend vs score fig 3}
 
 index <- read.csv("data/scores_eez2016.csv") %>%
   select(region_id, country, Index)
@@ -95,26 +95,28 @@ trend <- read.csv(sprintf("data/trends_%s.csv", scenario)) %>%
   filter(region_id != 0)
 
 
+mod <- lm(index_trend ~ Index, data=trend)
+summary(mod)
+
   p <- ggplot2::ggplot(trend, aes(x=Index, y=index_trend)) +
-    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.75) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.75) +
     geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
     geom_vline(xintercept = vaxis, color="red", size=.5, linetype=3) +
+    stat_smooth(method=lm, se=FALSE, color="black", size=0.5) +
     theme_bw() + 
-    labs(y="Trend (change OHI per year)", x="OHI score (2016)") 
-
-plot(p)   
-ggsave("figures/trend vs score.jpg")
+    labs(y="Average change in OHI score per year)", x="OHI score (2016)") 
 
   plotly_fig <- plotly::ggplotly(p)
   plotly_fig
   
 ### adding labels
   labels1 <- c("Bosnia and Herzegovina", "Vietnam", "Philippines",
-              "Eritrea", "Equatorial Guinea", "Nicaragua", "Republique du Congo", "Turkey", "Somalia", "Costa Rica",
+              "Eritrea", "Equatorial Guinea", "Nicaragua", "Turkey", "Somalia", "Costa Rica",
           "Glorioso Islands", "American Samoa", "Croatia",
               "Estonia", "New Zealand", "Bahamas")
   
-  labels2 <- c("South Georgia and the South Sandwich Islands")
+  labels2 <- c("South Georgia and the South Sandwich Islands", "Republique du Congo")
   
 setdiff(labels1, trend$country)
 
@@ -124,34 +126,37 @@ trend <- trend %>%
   
 
   p <- ggplot2::ggplot(trend, aes(x=Index, y=index_trend)) +
-    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
-    geom_text(aes(label=label1), hjust=0, nudge_x=0.4, size=2.7) + 
-    geom_text(aes(label=label2), vjust=0, nudge_y=0.1, nudge_x=-5, size=2.7) + 
-    geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
-    geom_vline(xintercept = vaxis, color="red", size=.5, linetype=3) +
+    geom_point(shape=19, size=1.75, color="black", alpha = 0.5) +
+    geom_text(aes(label=label1), hjust=0, nudge_x=0.4, size=2.2) + 
+    geom_text(aes(label=label2), vjust=0, nudge_y=0.1, nudge_x=-5, size=2.2) +
+   geom_point(data=filter(trend, country %in% label1), aes(x=Index, y=index_trend), shape=19, size=1.75, color="darkorange") +
+   geom_point(data=filter(trend, country %in% label2), aes(x=Index, y=index_trend), shape=19, size=1.75, color="darkorange") +
+    geom_hline(yintercept = 0, color="red", size=.2, linetype=3) +
+    geom_vline(xintercept = vaxis, color="red", size=.2, linetype=3) +
+      stat_smooth(method=lm, se=FALSE, color="black", size=0.3) +
     theme_bw() + 
-    labs(y="Trend (change OHI per year)", x="OHI score (2016)") 
+    labs(y="Average change in Index score per year", x="OHI score, 2016") 
 
 plot(p)   
-ggsave("figures/trend vs score.jpg")
+ggsave("figures/trend vs score.png", width=6, height=4)
 
 ```
 
 ### Comparison of ranks
 
-```{r rank analysis}
+```{r rank analysis fig6}
 
 index_2016 <- read.csv("data/scores_eez2016.csv") %>%
   select(region_id, country, index2016 = Index) %>%
   filter(region_id != 0) %>%
   arrange(index2016) %>%
-  mutate(rank_2016 = min_rank(desc(index2016)))
+  mutate(rank_2016 = min_rank((index2016)))
 
 index_2012 <- read.csv("data/scores_eez2012.csv") %>%
   select(region_id, country, index2012 = Index) %>%
   filter(region_id != 0) %>%
   arrange(index2012) %>%
-  mutate(rank_2012 = min_rank(desc(index2012))) %>%
+  mutate(rank_2012 = min_rank((index2012))) %>%
   left_join(index_2016, by=c("region_id", "country")) %>%
   mutate(index_delta = index2016 - index2012) %>%
   mutate(rank_delta = rank_2016 - rank_2012)
@@ -159,28 +164,56 @@ index_2012 <- read.csv("data/scores_eez2012.csv") %>%
 
 ## compare 2012 vs 2016 ranks
   p <- ggplot2::ggplot(index_2012, aes(x=rank_2012, y=rank_2016)) +
-    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="black", alpha = 0.5) +
     theme_bw()  + 
     geom_abline(slope = 1, intercept=0, color="red", size=0.5) + 
     labs(y="2016 rank of OHI scores", x="2012 rank of OHI scores") 
 
 plot(p)   
-ggsave("figures/ranks_2012_2016.jpg")
+ggsave("figures/ranks_2012_2016.jpg", width=4, height=3)
 
   plotly_fig <- plotly::ggplotly(p)
   plotly_fig
 
 ## compare change in ranks vs change in scores
-  p <- ggplot2::ggplot(index_2012, aes(x= index_delta, y=rank_delta)) +
-    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
+  
+tmp <- filter(index_2012, index_delta<=(-7) & index_delta>=(-8))  
+  min(tmp$index_delta)
+  max(tmp$index_delta)
+  min(tmp$rank_delta)
+  max(tmp$rank_delta)
+  
+  p <- ggplot2::ggplot(index_2012, aes(x=index_delta, y=rank_delta)) +
+        #geom_rect(xmax=max(tmp$index_delta), xmin=min(tmp$index_delta), ymin=-145, ymax=max(tmp$rank_delta), alpha=0.01, col="#ffd27f", fill="#ffd27f", size=0) +
+     geom_segment(aes(x=-7.52, xend=-7.52, y=-140, yend=-12), size=0.1, color="darkorange3") +
+     geom_segment(aes(x=-7.92, xend=-7.92, y=-140, yend=-78), size=0.1, color="olivedrab4") +
+     geom_segment(aes(x=-7.5, xend=-25, y=-12, yend=-12), size=0.1, color="darkorange3") +
+     geom_segment(aes(x=-7.92, xend=-25, y=-78, yend=-78), size=0.1, color="olivedrab4") +
+    annotate("text", x=-15, y=-2, label="Republique du Congo", color="darkorange3", size=2.5) +
+    annotate("text", x=-15, y=-70, label="Gilbert Islands", color="olivedrab4", size=2.5) +
+    #     geom_segment(aes(x=-6.09, xend=-6.09, y=-145, yend=-8), size=0.4, color="gray30", linetype=3) +
+        # geom_rect(xmax=max(tmp$index_delta), xmin=-21, ymin=min(tmp$rank_delta), ymax=max(tmp$rank_delta), alpha=.01, col="#ffd27f", fill="#ffd27f", size=0) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=1.75, color="gray30", alpha = 0.50) +
+    geom_point(data = filter(index_2012, index_delta>0 & rank_delta<0), shape=19, size=1.75, color="red") +
+    geom_point(data = filter(index_2012, index_delta<0 & rank_delta>0), shape=19, size=1.75, color="blue")  +
+     geom_point(data = filter(index_2012, country=="Republique du Congo"), shape=19, size=1.75, color="darkorange3")  +
+     geom_point(data = filter(index_2012, country=="Gilbert Islands (Kiribati)"), shape=19, size=1.75, color="olivedrab4")  +
     theme_bw()  + 
-   labs(y="change in rank (2016-2012)", x="change in score (2016-2012)") 
+    coord_cartesian(ylim=c(-125, 100), xlim=c(-20, 11)) +
+#    scale_y_reverse() +
+   labs(y="Rank change", x="Score change") +
+    geom_smooth(method=lm, se=FALSE, color="black", size=0.5)
+
 
 plot(p)   
-ggsave("figures/delta_ranks_scores.jpg")
+ggsave("figures/delta_ranks_scores.png", height=3, width=4)
 
   plotly_fig <- plotly::ggplotly(p)
   plotly_fig
+  
+  
+filter(index_2012, index_delta>0 & rank_delta<0)
+filter(index_2012, index_delta<0 & rank_delta>0)
 
 ```
 
@@ -394,9 +427,9 @@ data <- data %>%
 
 ```
 
-```{r trend calcs}
-## Analysis of overall region index scores
+```{r fig 1B hist}
 
+## Fig 1B
 data_lm <- data %>%
   group_by(goal, region_id) %>%
   do(mdl = lm(value ~ scenario, data = .))
@@ -410,55 +443,87 @@ results_lm <- tidy(data_lm, mdl) %>%
   left_join(rgn_names) %>%
   select(goal=goal, goal_long=long_goal, region_name = country, region_id, average_change_per_year = estimate, p.value) %>%
   data.frame()
-
-weights <- read.csv("../../eez2016/layers/rgn_area.csv") %>%
-  select(region_id=rgn_id, area_km2)
-
-results_lm <- results_lm %>%
-  left_join(weights, by="region_id")
-
-summary_lm <- results_lm %>%
-  group_by(goal, goal_long) %>%
-  summarize(mean=mean(average_change_per_year),
-            mean_wt=weighted.mean(average_change_per_year, w=area_km2))
-
-g <- ggplot(filter(results_lm, goal == "Index"), aes(x=average_change_per_year)) +
-  geom_histogram(color = "gray", fill="gray") +
-  labs(y="Number of regions", x="Trend (avg. change in score per year)") + 
-  geom_vline(xintercept=0, color="red") + 
-  theme_bw()
-
-plot(g)
-
-# color coded histogram
-
-
-# trends_hist <- trends %>%
-#   filter(goal=="Index") %>%
-#   filter(region_id != 0) %>%
-#   arrange(trend)
 # 
-# values <-   brewer.pal(11, "RdYlBu")
-# values <- colorRampPalette(values, space = 'Lab')(13)[2:13]
-# col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
+# weights <- read.csv("../../eez2016/layers/rgn_area.csv") %>%
+#   select(region_id=rgn_id, area_km2)
 # 
-# trends_hist$colors <- cut(trends_hist$trend, breaks=col.brks, include.lowest=TRUE, labels=values)
-# cols <- as.character(unique(trends_hist$colors))
+# results_lm <- results_lm %>%
+#   left_join(weights, by="region_id")
 # 
-# 
-# g <- ggplot(trends_hist, aes(x=trend)) +
-# geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
-# scale_fill_manual("", breaks=colors, values=cols, guide=FALSE) +
-# labs(y="Number of regions", x="Index scores: 5 year trend") + 
-# geom_vline(xintercept=0, color="red") +  
-# theme_bw()
-# 
-# print(g)
-# 
-# ggsave("figures/trend_histogram_color.png", width=5, height=4)
-# 
+# summary_lm <- results_lm %>%
+#   group_by(goal, goal_long) %>%
+#   summarize(mean=mean(average_change_per_year),
+#             mean_wt=weighted.mean(average_change_per_year, w=area_km2))
+
+
+# color coded histogram of trends
+
+trends_hist <- results_lm %>%
+  filter(goal=="Index") %>%
+  arrange(average_change_per_year)
+
+values <-   brewer.pal(11, "RdYlBu")
+values <- colorRampPalette(values, space = 'Lab')(13)[2:13]
+col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
+
+trends_hist$colors <- cut(trends_hist$average_change_per_year, breaks=col.brks, include.lowest=TRUE, labels=values)
+cols <- as.character(unique(trends_hist$colors))
+
+
+g <- ggplot(trends_hist, aes(x=average_change_per_year)) +
+geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
+scale_fill_manual("", breaks=colors, values=cols, guide=FALSE) +
+labs(y="Number of regions", x="Average yearly change") +
+geom_vline(xintercept=0, color="red") +
+theme_bw()
+
+print(g)
+
+ ggsave("figures/trend_histogram_color.png", width=4, height=3)
+ 
 
 ```
+
+
+```{r fig 1A hist}
+
+## Fig 1A
+data_scores <- data %>%
+  filter(goal=="Index") %>%
+  filter(scenario == 2016) 
+
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(66)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"), space="Lab")(35)
+colors <-   c(reds, blues)
+
+col.brks <- seq(0,100, by=1)
+col.assign <- cut(col.brks, breaks=col.brks, include.lowest = TRUE)
+colors_df <- data.frame(colors_plot=colors, col.assign)
+colors_df$col.assign <- as.character(colors_df$col.assign) 
+
+data_scores$col.assign <- cut(data_scores$value, breaks=col.brks, include.lowest=TRUE) 
+data_scores$col.assign <- as.character(data_scores$col.assign)
+
+data_scores <- left_join(data_scores, colors_df, by="col.assign") %>%
+  mutate(colors_plot = as.character(colors_plot)) %>%
+  arrange(value)
+
+cols <- as.character(unique(data_scores$colors_plot))
+
+g <- ggplot(data_scores, aes(x=value)) +
+#geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
+geom_histogram(aes(fill=col.assign), bins=31) +  
+scale_fill_manual("", values=cols, guide=FALSE) +
+xlim(c(0, 100)) +
+labs(y="Number of regions", x="Index score") +
+theme_bw()
+
+print(g)
+
+ ggsave("figures/score_histogram_color.png", width=4, height=3)
+
+```
+
 
 ## Comparing random effect models
 The following analyses indicate that adding the region as a random effect is a good idea, according to AIC.
@@ -602,7 +667,7 @@ summary(model1)
 
 ### Random effects model for global trend patterns (data for figure)
 
-```{r trend calcs}
+```{r trend calcs fig 2}
 ## Analysis of overall region index scores
 
 nlme_results <- data.frame(goal=goals, trend=NA, p_value=NA)
@@ -646,40 +711,48 @@ for(goal in goals){ # goal = "AO"
 nlme_results <- nlme_results %>%
   left_join(nlme_results_wts, by="goal") %>%
   arrange(trend) %>%
-  mutate(sig_wts = ifelse(p_value_wts < 0.05, "1", "0")) %>%
-  left_join(goal_names) %>%
-  mutate(goal_long = as.factor(long_goal))
+  mutate(sig_wts = ifelse(p_value_wts < 0.05, "1", "0"))
 
 
-## plot the data:
+## plot the data (Fig 2A):
+
+levels_goals <- c("Index", as.character(rev(nlme_results$goal_long[nlme_results$goal!="Index"][order(nlme_results$trend[nlme_results$goal!="Index"])])))
+
+nlme_results <- nlme_results %>%
+  mutate(goal_long = factor(goal_long, levels = rev(levels_goals))) %>%
+  arrange(goal_long)
 
 ggplot(filter(nlme_results, !(goal %in% c("ECO","LIV", "LE"))), 
-       aes(x=trend, y=reorder(goal_long, trend))) +
+       aes(x=trend, y=goal_long)) +
   geom_point(size=3, color="#313695") +
   theme_bw() +
   geom_vline(xintercept = 0, color="red", linetype=3) + 
-  labs(y="", x="trend (average change in score per year)") +
+  labs(y="", x="Average change in score per year") +
+  xlim(c(-4, 1)) +
 #  scale_colour_manual(values = c("#313695", "grey80"), limits=c(1, 0), guide=FALSE) +
   theme(axis.text.y = element_text(angle=0, hjust=1),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         panel.grid.major.y = element_line(color="grey60", linetype="dashed")) + 
   geom_point(data=filter(nlme_results, !(goal %in% c("ECO","LIV", "LE"))), 
-       aes(x=trend_wts, y=goal_long), size=3, color="orange")
+       aes(x=trend_wts, y=goal_long), size=3, color="orange") +
+  geom_point(data = filter(nlme_results, !goal %in% c("ECO", "LIV", "LE") & sig==0),
+             aes(x=trend, y=goal_long), color="white", size=2) +
+  geom_point(data = filter(nlme_results, !goal %in% c("ECO", "LIV", "LE") & sig_wts==0),
+             aes(x=trend_wts, y=goal_long), color="white", size=2)
 
+ggsave("figures/nlme_trend_results.png", width=6, height=4)
 
-
-## another plot of the data
-order_goal <- filter(nlme_results, !(goal %in% c("ECO","LIV", "LE"))) %>%
-  arrange(-trend)
+## another plot of the data (Fig 2b)
 
 data_trend <- data %>%
-  group_by(scenario, goal, dimension) %>%
+  filter(!(goal %in% c("ECO", "LIV", "LE"))) %>%
+  group_by(scenario, goal) %>%
   summarize(min_score = min(value, na.rm=TRUE),
             max_score = max(value, na.rm=TRUE),
             mean_score = mean(value, na.rm=TRUE)) %>%
   ungroup() %>%
-  mutate(goal = factor(goal, levels=order_goal$goal)) %>%
+  mutate(goal = factor(goal, levels=rev(nlme_results$goal))) %>%
   filter(!is.na(goal))
 
 
@@ -690,7 +763,8 @@ ggplot(data_trend, aes(x=scenario, y=mean_score)) +
     theme(axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         axis.ticks.y=element_blank(),
-        strip.text.y = element_text(size = 8, angle = 0))
+   #     strip.text.y = element_text(size = 8, angle = 0))
+        strip.text.y = element_blank())
   
 ggsave("figures/scores_scenario_grid.png", height=6, width=2)
 
@@ -705,3 +779,471 @@ write.csv(nlme_table, "data/nlme_results_goal_summary.csv", row.names=FALSE)
 
 ```
 
+```{r NP changes}
+
+rel = read.csv("../../eez2016/layers/np_harvest_tonnes_relative.csv") 
+tons_proc = read.csv("../../eez2016/layers/np_harvest_tonnes.csv")
+
+tons <- read.csv("../../../ohiprep/globalprep/np/v2016/int/tonnes.csv") %>%
+  group_by(rgn_id, rgn_name, year, product) %>%
+  summarize(tonnes= sum(tonnes, na.rm=TRUE)) %>%
+  arrange(product, year)
+
+usd <- read.csv("../../../ohiprep/globalprep/np/v2016/int/usd.csv") %>%
+  group_by(rgn_id, rgn_name, year, product) %>%
+  summarize(usd= sum(usd, na.rm=TRUE)) %>%
+  arrange(product, year)
+
+#### Big declines
+#Eritrea
+filter(rel, rgn_id==45)
+filter(tons_proc, rgn_id==45)
+data.frame(filter(tons, rgn_id==45))
+
+tmp <- filter(tons, rgn_id==45 & year >= 1995 & product=="ornamentals")
+mean(tmp$tonnes)
+sum(tmp$tonnes==0)/length(tmp$tonnes)
+
+tmp <- read.csv("../radical_with_region_names_2016-11-17.csv") %>%
+  filter(region_id == 45) %>%
+  filter(goal == "NP") %>%
+  filter(dimension == "score")
+
+#Estonia
+filter(rel, rgn_id==70)
+filter(tons_proc, rgn_id==70)
+data.frame(filter(tons, rgn_id==70))
+
+# Bonaire
+filter(rel, rgn_id==245)
+filter(tons_proc, rgn_id==245)
+data.frame(filter(tons, rgn_id==245))
+data.frame(filter(usd, rgn_id==245))
+
+# Costa Rica
+filter(rel, rgn_id==130)
+filter(tons_proc, rgn_id==130)
+data.frame(filter(tons, rgn_id==130))
+data.frame(filter(usd, rgn_id==130))
+
+
+# US
+filter(rel, rgn_id==163)
+filter(tons_proc, rgn_id==163)
+data.frame(filter(tons, rgn_id==163))
+data.frame(filter(usd, rgn_id==163))
+
+
+# Mozambique
+filter(rel, rgn_id==41)
+filter(tons_proc, rgn_id==41)
+data.frame(filter(tons, rgn_id==41))
+data.frame(filter(usd, rgn_id==41))
+
+# Samoa
+filter(rel, rgn_id==152)
+filter(tons_proc, rgn_id==152)
+data.frame(filter(tons, rgn_id==152))
+data.frame(filter(usd, rgn_id==152))
+
+
+```
+
+```{r FIS changes}
+
+trends <- read.csv("data/trends_2016.csv") %>%
+  arrange(FIS) %>%
+  select(country, region_id, FIS)
+
+### Does status seem to be increasing?
+fis_status <- read.csv("../../global2016/radical_2016-11-17.csv") %>%
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  filter(region_id <= 250) %>%
+  filter(dimension=="status") %>%
+  filter(goal == "FIS")
+
+data_lm_status <- fis_status %>%
+  group_by(region_id) %>%
+  do(mdl = lm(value ~ scenario, data = .))
+
+#data.frame(glance(data_lm, mdl))
+lm_status <- tidy(data_lm_status, mdl) %>%
+  ungroup() %>%
+  filter(term == "scenario") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+median(lm_status$estimate)
+mean(lm_status$estimate)
+sum(lm_status$estimate>0)
+sum(lm_status$estimate<0)
+
+### Does trend seem to be increasing?
+fis_trend <- read.csv("../../global2016/radical_2016-11-17.csv") %>%
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  filter(region_id <= 250) %>%
+  filter(dimension=="trend") %>%
+  filter(goal == "FIS") %>%
+  filter(scenario == 2016)
+
+median(fis_trend$value)
+mean(fis_trend$value)
+sum(fis_trend$value>0)
+sum(fis_trend$value<0)
+
+fis_trend <- read.csv("../../global2016/radical_2016-11-17.csv") %>%
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  filter(region_id <= 250) %>%
+  filter(dimension=="trend") %>%
+  filter(goal == "FIS")
+
+data_lm_trend <- fis_trend %>%
+  group_by(region_id) %>%
+  do(mdl = lm(value ~ scenario, data = .))
+
+#data.frame(glance(data_lm, mdl))
+lm_trend <- tidy(data_lm_trend, mdl) %>%
+  ungroup() %>%
+  filter(term == "scenario") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+median(lm_trend$estimate)
+mean(lm_trend$estimate)
+sum(lm_trend$estimate>0)
+sum(lm_trend$estimate<0)
+
+
+### Pressures
+fis_pressures <- read.csv("../../global2016/radical_2016-11-17.csv") %>%
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  filter(region_id <= 250) %>%
+  filter(dimension=="pressures") %>%
+  filter(goal == "FIS")
+
+data_lm_pressures <- fis_pressures %>%
+  group_by(region_id) %>%
+  do(mdl = lm(value ~ scenario, data = .))
+
+#data.frame(glance(data_lm, mdl))
+lm_pressures <- tidy(data_lm_pressures, mdl) %>%
+  ungroup() %>%
+  filter(term == "scenario") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+median(lm_pressures$estimate)
+mean(lm_pressures$estimate)
+sum(lm_pressures$estimate>0)
+sum(lm_pressures$estimate<0)
+
+
+
+## Norway
+catch <- read.csv("../../eez2016/layers/fis_meancatch.csv") %>%
+  filter(rgn_id == 223) %>%
+  filter(year==2010) %>%
+  arrange(mean_catch)
+
+bmsy <- read.csv("../../eez2016/layers/fis_b_bmsy.csv") %>%
+  filter(rgn_id == 223) %>%
+  arrange(stock_id, year) %>%
+  group_by(stock_id) %>%
+  mutate(avg_bbmsy = mean(bbmsy)) %>%
+  ungroup()
+
+data_lm_low <- bmsy %>%
+  filter(avg_bbmsy < 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+#data.frame(glance(data_lm, mdl))
+results_lm_low <- tidy(data_lm_low, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_low$estimate>0)
+sum(results_lm_low$estimate<0)
+median(results_lm_low$estimate)
+
+data_lm_high <- bmsy %>%
+  filter(avg_bbmsy > 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+results_lm_high <- tidy(data_lm_high, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_high$estimate>0)
+sum(results_lm_high$estimate<0)
+median(results_lm_high$estimate)
+
+
+
+## Vietnam
+catch <- read.csv("../../eez2016/layers/fis_meancatch.csv") %>%
+  filter(rgn_id == 207) %>%
+  filter(year==2010) %>%
+  arrange(mean_catch)
+
+bmsy <- read.csv("../../eez2016/layers/fis_b_bmsy.csv") %>%
+  filter(rgn_id == 207) %>%
+  arrange(stock_id, year) %>%
+  group_by(stock_id) %>%
+  mutate(avg_bbmsy = mean(bbmsy)) %>%
+  ungroup()
+
+data_lm_low <- bmsy %>%
+  filter(avg_bbmsy < 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+#data.frame(glance(data_lm, mdl))
+results_lm_low <- tidy(data_lm_low, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_low$estimate>0)
+sum(results_lm_low$estimate<0)
+median(results_lm_low$estimate)
+
+data_lm_high <- bmsy %>%
+  filter(avg_bbmsy > 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+results_lm_high <- tidy(data_lm_high, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_high$estimate>0)
+sum(results_lm_high$estimate<0)
+median(results_lm_high$estimate)
+
+
+## Madagascar
+catch <- read.csv("../../eez2016/layers/fis_meancatch.csv") %>%
+  filter(rgn_id == 42) %>%
+  filter(year==2010) %>%
+  arrange(mean_catch)
+
+bmsy <- read.csv("../../eez2016/layers/fis_b_bmsy.csv") %>%
+  filter(rgn_id == 42) %>%
+  arrange(stock_id, year) %>%
+  group_by(stock_id) %>%
+  mutate(avg_bbmsy = mean(bbmsy)) %>%
+  ungroup()
+
+data_lm_low <- bmsy %>%
+  filter(avg_bbmsy < 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+#data.frame(glance(data_lm, mdl))
+results_lm_low <- tidy(data_lm_low, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_low$estimate>0)
+sum(results_lm_low$estimate<0)
+median(results_lm_low$estimate)
+
+data_lm_high <- bmsy %>%
+  filter(avg_bbmsy > 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+results_lm_high <- tidy(data_lm_high, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_high$estimate>0)
+sum(results_lm_high$estimate<0)
+median(results_lm_high$estimate)
+
+
+
+## Canada
+catch <- read.csv("../../eez2016/layers/fis_meancatch.csv") %>%
+  filter(rgn_id == 218) %>%
+  filter(year==2010) %>%
+  arrange(mean_catch)
+
+bmsy <- read.csv("../../eez2016/layers/fis_b_bmsy.csv") %>%
+  filter(rgn_id == 218) %>%
+  arrange(stock_id, year) %>%
+  group_by(stock_id) %>%
+  mutate(avg_bbmsy = mean(bbmsy)) %>%
+  ungroup()
+
+data_lm_low <- bmsy %>%
+  filter(avg_bbmsy < 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+#data.frame(glance(data_lm, mdl))
+results_lm_low <- tidy(data_lm_low, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_low$estimate>0)
+sum(results_lm_low$estimate<0)
+median(results_lm_low$estimate)
+
+data_lm_high <- bmsy %>%
+  filter(avg_bbmsy > 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+results_lm_high <- tidy(data_lm_high, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_high$estimate>0)
+sum(results_lm_high$estimate<0)
+median(results_lm_high$estimate)
+
+
+
+## Norfolk Island
+catch <- read.csv("../../eez2016/layers/fis_meancatch.csv") %>%
+  filter(rgn_id == 3) %>%
+  filter(year==2010) %>%
+  arrange(mean_catch)
+
+bmsy <- read.csv("../../eez2016/layers/fis_b_bmsy.csv") %>%
+  filter(rgn_id == 3) %>%
+  arrange(stock_id, year) %>%
+  group_by(stock_id) %>%
+  mutate(avg_bbmsy = mean(bbmsy)) %>%
+  ungroup()
+
+tmp <- read.csv("../../../ohiprep/globalprep/fis/v2016/data/fis_bbmsy_gf.csv") %>%
+  filter(stock_id == "Thunnus_alalunga-81")
+
+bmsy %>%
+  group_by(year) %>%
+  summarize(median_bbmsy = median(bbmsy))
+
+# Thunnus_alalunga
+# Arripis_trutta
+# Xiphias_gladius
+# Scomber_australasicus
+# Arripis_trutta
+# Xiphias_gladius
+
+data_lm_low <- bmsy %>%
+  filter(avg_bbmsy < 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+#data.frame(glance(data_lm, mdl))
+results_lm_low <- tidy(data_lm_low, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_low$estimate>0)
+sum(results_lm_low$estimate<0)
+median(results_lm_low$estimate)
+
+data_lm_high <- bmsy %>%
+  filter(avg_bbmsy > 1) %>%
+  filter(year >= 2006) %>%
+  group_by(stock_id) %>%
+  do(mdl = lm(bbmsy ~ year, data = .))
+
+results_lm_high <- tidy(data_lm_high, mdl) %>%
+  ungroup() %>%
+  filter(term == "year") %>%
+  arrange(estimate) %>%
+  data.frame()
+
+sum(results_lm_high$estimate>0)
+sum(results_lm_high$estimate<0)
+median(results_lm_high$estimate)
+
+
+```
+
+
+
+```{r CP changes}
+
+trends <- read.csv("data/trends_2016.csv") %>%
+  arrange(CP) %>%
+  select(country, region_id, CP)
+
+### Does status seem to be increasing?
+cp_status <- read.csv("../../global2016/radical_with_region_names_2016-11-17.csv") %>%
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  filter(region_id <= 250) %>%
+  filter(dimension=="score") %>%
+  filter(goal == "CP") %>%
+  spread(scenario, value) %>%
+  data.frame()
+
+cp_status$diff <- cp_status$X2016 - cp_status$X2012
+
+cp_status <- cp_status %>%
+  arrange(diff)
+
+```
+
+
+```{r Norfolk Island}
+
+read.csv("../../global2016/radical_with_region_names_2016-11-17.csv") %>%
+  filter(region_name == "Norfolk Island") %>%
+  filter(dimension == "status") %>%
+  spread(goal, value)
+49-29
+92-73
+
+## TR goal
+read.csv("../../eez2016/layers/tr_jobs_pct_tourism.csv") %>%
+  filter(rgn_id==3)
+
+read.csv("../../eez2012/layers/tr_jobs_pct_tourism.csv") %>%
+  filter(rgn_id==3)
+
+read.csv("../../eez2016/layers/tr_sustainability.csv") %>%
+  filter(rgn_id==3)
+read.csv("../../eez2012/layers/tr_sustainability.csv") %>%
+  filter(rgn_id==3)
+
+read.csv("../../eez2016/layers/tr_travelwarnings.csv") %>%
+  filter(rgn_id==3)
+```
