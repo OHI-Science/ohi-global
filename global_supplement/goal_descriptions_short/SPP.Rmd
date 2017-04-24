@@ -1,0 +1,22 @@
+### Goal Description
+
+People value biodiversity in particular for its existence value. The risk of species extinction generates great emotional and moral concern for many people. As such, Biodiversity goal assesses the conservation status of species based on the best available global data. This sub-goal of Species assesses the health of all marine species present in a region, including endangered species and species in relatively good conditions. The presence of higher-risk species leads to a higher score.
+
+**For Global assessments....** 
+
+### Model & Data 
+
+The Species model measures the average threat status, defined by the IUCN Red List, of species in each country, weighted by each species' area of distribution within the country's EEZ. The spatial resolution is 0.5 degree.
+
+Species list and information on their extinction risks came from three sources: 
+
+- marine species from IUCN Red List of Threatened Species 
+- seabirds using distributions from Birdlife International (BirdLife International and NatureServe 2012). 
+- AquaMaps where neither IUCN nor BirdLife International distributions were available (Kaschner et al. 2013)
+
+Below are the data sets for this goal.
+
+### Reference points 
+
+The upper reference point for the Species sub-goal is to have all species at a risk status of Least Concern. We also scaled the lower end of the goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions66 and would constitute a catastrophic loss of biodiversity.
+
