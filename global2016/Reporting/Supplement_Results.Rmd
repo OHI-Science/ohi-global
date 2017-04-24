@@ -1,5 +1,5 @@
 ---
-title: 'OHI 2016 Supplement: results'
+title: 'S1 Results'
 output: 
   html_document:
     code_folding: show
@@ -78,8 +78,8 @@ radicalFile = '2016-11-17' #date extension on the radical data files that are us
 
 ### Overview of goals and subgoals
 
-##### Table S1. Description of 10 goals used to calculate OHI scores.
-In several table and figures we refer to the goals and subgoals by their abbreviation.  Goals and subgoals have a 2 and 3 character abbreviation, respectively.
+##### Table 1. Description of 10 goals used to calculate OHI scores.
+In several tables and figures we refer to the goals and subgoals by their abbreviation.  Goals and subgoals have a 2 and 3 character abbreviation, respectively.
 
 ```{r goal description, echo=FALSE}
 
@@ -88,7 +88,8 @@ kable(data)
 
 ```
 
-##### Table S2. Description of subgoals used to calculate OHI scores for biodiversity, food provision, sense of place, livelihoods and economies goals.
+##### Table 2. Description of subgoals used to calculate OHI scores.
+The following goals are comprised of 2 subgoals:biodiversity, food provision, sense of place, livelihoods and economies goals.
 
 ```{r subgoal description, echo=FALSE}
 data <- read.csv("../../global_supplement/tables/Subgoal_Descriptions.csv")
@@ -98,17 +99,19 @@ kable(data)
 
 
 ### Datasets and additional information
-The data from the 2016 assessment is [available] (https://github.com/OHI-Science/ohi-global/raw/draft/global2016/radical_with_region_names_2016-11-17.csv). These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 5 assessment years (2012-2016).
 
-Simplified versions of the full dataset which include only the final index scores are available for the 2012-2016 scenarios: [2016](ohi-global/global2016/Reporting/data/scores_eez2016.csv), [2015](ohi-global/global2016/Reporting/data/scores_eez2015.csv), [2014](ohi-global/global2016/Reporting/data/scores_eez2014.csv), [2013](ohi-global/global2016/Reporting/data/scores_eez2013.csv), and [2012](ohi-global/global2016/Reporting/data/scores_eez2012.csv).
+For more information about the models used to calculate OHI scores as well as the underlying data see the S1 Methods document.
 
-The data layers (Supplementary Methods, Table S?) and functions used to calculate scores can be downloaded from Github: [ohi-global v2016.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
+CSV formatted data from the 2016 assessment is [available](https://github.com/OHI-Science/ohi-global/raw/draft/global2016/radical_with_region_names_2016-11-17.csv). These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 5 assessment years (2012-2016).
+
+Simplified versions of the full dataset, which include only the final index scores, are available for the 2012-2016 scenarios: [2016](ohi-global/global2016/Reporting/data/scores_eez2016.csv), [2015](ohi-global/global2016/Reporting/data/scores_eez2015.csv), [2014](ohi-global/global2016/Reporting/data/scores_eez2014.csv), [2013](ohi-global/global2016/Reporting/data/scores_eez2013.csv), and [2012](ohi-global/global2016/Reporting/data/scores_eez2012.csv).
+
+The data layers (section 6 in S2 Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2016.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
 
 The files used to prepare data layers for the ohi-global assessment can be downloaded from Github: [ohiprep v2016.1: Preparation of data for 2016 Ocean Health Index global assessment](https://github.com/OHI-Science/ohiprep/releases).
 
-The core functions used to calculate OHI scores can be downloaded as a package from Github: 
+The core functions used to calculate OHI scores can be downloaded as a package from Github, using the following code in the [R](https://cran.r-project.org/): 
 
-For more information about the models used to calculate OHI scores as well as the underlying data see the Supplementary Methods document.
 
 ```{r install ohicore, eval=FALSE}
 
@@ -122,24 +125,29 @@ library(ohicore)
 
 ### Summary of score results
 
-##### Figure S1A. Map and flowerplot of OHI scores for overall index for 2016.
+##### Figure 1. Map and flowerplot of 2016 OHI index scores.
+The map (A) describes the overal index scores for each OHI region.  The flowerplot (B) describes the global average scores for each goal/subgoal, weighted by each region's eez area. 
 
 ```{r score figures, echo=FALSE, fig.height=10, fig.width=10}
 ## Figure created in Reporting.Rmd
 
 ## including multiple figures on a page
 ## https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html
+## https://github.com/baptiste/gridextra/wiki/arranging-ggplot
 
 Index_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/global_map_Index_2016_mol.png"), interpolate=TRUE)
+map_label <- textGrob("A", just=19, gp=gpar(fontsize=18))
 Index_flower <- rasterGrob(readPNG("figures/FlowerPlots/flower_GLOBAL_2016.png"), interpolate=TRUE)
+flower_label <- textGrob("B", just=19, gp=gpar(fontsize=18))
 
-grid.arrange(Index_map, Index_flower,
-             ncol=1, heights=c(5,5))
+grid.arrange(map_label, Index_map, flower_label, Index_flower,
+             ncol=1, heights=c(1,5,1,6))
 
 #knitr::include_graphics("figures/maps_by_goal_mol/global_map_Index_2016_mol.png")
 ```
 
-##### Figure S1B. Maps and histograms of OHI goal scores for 2016.
+##### Figure 2. Maps and histograms of 2016 OHI goal scores.
+The scores for each of the 10 OHI goals (A-J) displayed for each region (left) and as a histogram (right).
 
 ```{r testing images, echo=FALSE, fig.height=30, fig.width=10}
 
@@ -147,119 +155,116 @@ grid.arrange(Index_map, Index_flower,
 
 AO_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_AO_2016_mol.png"), interpolate=TRUE)
 AO_hist <- rasterGrob(readPNG("figures/goal_histograms/AO_scores.png"), interpolate=TRUE)
+AO_text <- textGrob("A", gp=gpar(fontsize=14), vjust=-9.5)
 
 BD_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_BD_2016_mol.png"), interpolate=TRUE)
 BD_hist <- rasterGrob(readPNG("figures/goal_histograms/BD_scores.png"), interpolate=TRUE)
+BD_text <- textGrob("B", gp=gpar(fontsize=14), vjust=-9.5)
 
 CP_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_CP_2016_mol.png"), interpolate=TRUE)
 CP_hist <- rasterGrob(readPNG("figures/goal_histograms/CP_scores.png"), interpolate=TRUE)
+CP_text <- textGrob("C", gp=gpar(fontsize=14), vjust=-9.5)
 
 CS_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_CS_2016_mol.png"), interpolate=TRUE)
 CS_hist <- rasterGrob(readPNG("figures/goal_histograms/CS_scores.png"), interpolate=TRUE)
+CS_text <- textGrob("D", gp=gpar(fontsize=14), vjust=-9.5)
 
 CW_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_CW_2016_mol.png"), interpolate=TRUE)
 CW_hist <- rasterGrob(readPNG("figures/goal_histograms/CW_scores.png"), interpolate=TRUE)
+CW_text <- textGrob("E", gp=gpar(fontsize=14), vjust=-9.5)
 
 FP_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_FP_2016_mol.png"), interpolate=TRUE)
 FP_hist <- rasterGrob(readPNG("figures/goal_histograms/FP_scores.png"), interpolate=TRUE)
+FP_text <- textGrob("F", gp=gpar(fontsize=14), vjust=-9.5)
 
 LE_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_LE_2016_mol.png"), interpolate=TRUE)
 LE_hist <- rasterGrob(readPNG("figures/goal_histograms/LE_scores.png"), interpolate=TRUE)
+LE_text <- textGrob("G", gp=gpar(fontsize=14), vjust=-9.5)
 
 NP_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_NP_2016_mol.png"), interpolate=TRUE)
 NP_hist <- rasterGrob(readPNG("figures/goal_histograms/NP_scores.png"), interpolate=TRUE)
+NP_text <- textGrob("H", gp=gpar(fontsize=14), vjust=-9.5)
 
 SP_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_SP_2016_mol.png"), interpolate=TRUE)
 SP_hist <- rasterGrob(readPNG("figures/goal_histograms/SP_scores.png"), interpolate=TRUE)
+SP_text <- textGrob("I", gp=gpar(fontsize=14), vjust=-9.5)
 
 TR_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_TR_2016_mol.png"), interpolate=TRUE)
 TR_hist <- rasterGrob(readPNG("figures/goal_histograms/TR_scores.png"), interpolate=TRUE)
+TR_text <- textGrob("J", gp=gpar(fontsize=14), vjust=-9.5)
 
-grid.arrange(AO_map, AO_hist,
-             BD_map, BD_hist,
-             CP_map, CP_hist,
-             CS_map, CS_hist,
-             CW_map, CW_hist,
-             FP_map, FP_hist,
-             LE_map, LE_hist,
-             NP_map, NP_hist,
-             SP_map, SP_hist,
-             TR_map, TR_hist,
-             ncol=2, widths=c(5,4))
+grid.arrange(AO_text, AO_map, AO_hist,
+             BD_text, BD_map, BD_hist,
+             CP_text, CP_map, CP_hist,
+             CS_text, CS_map, CS_hist,
+             CW_text, CW_map, CW_hist,
+             FP_text, FP_map, FP_hist,
+             LE_text, LE_map, LE_hist,
+             NP_text, NP_map, NP_hist,
+             SP_text, SP_map, SP_hist,
+             TR_text, TR_map, TR_hist,
+             ncol=3, widths=c(1,5,4))
              
 
 ```
 
-##### Figure S1C. Map and histogram of OHI scores for subgoals of biodiversity, foob provisioning, sense of place, and livelihoods and economies.
+##### Figure 3. Maps and histograms of 2016 OHI subgoal scores.
+The subgoal scores for the following goals: biodiversity (A), foob provisioning (B), sense of place (C), and livelihoods and economies (D).  The scores are displayed as a map (left) and histogram (right).
 
-###### Biodiversity
+```{r subgoal scores, echo=FALSE, fig.width=10, fig.height=25}
 
-```{r subgoal BD, echo=FALSE}
-
+# BD
+BD <- textGrob("A Biodiversity", gp=gpar(fontsize=12), just="left", x=0)
+bd <- textGrob("")
 HAB_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_HAB_2016_mol.png"), interpolate=TRUE)
 HAB_hist <- rasterGrob(readPNG("figures/goal_histograms/HAB_scores.png"), interpolate=TRUE)
-
 SPP_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_SPP_2016_mol.png"), interpolate=TRUE)
 SPP_hist <- rasterGrob(readPNG("figures/goal_histograms/SPP_scores.png"), interpolate=TRUE)
 
-
-grid.arrange(HAB_map, HAB_hist,
-             SPP_map, SPP_hist,
-             ncol=2, widths=c(5,4))
-```
-
-###### Food Provision
-
-```{r subgoal FP, echo=FALSE}
-
+## FP
+FP <- textGrob("B Food provisioning", gp=gpar(fontsize=12), just="left", x=0)
+fp <- textGrob("")
 FIS_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_FIS_2016_mol.png"), interpolate=TRUE)
 FIS_hist <- rasterGrob(readPNG("figures/goal_histograms/FIS_scores.png"), interpolate=TRUE)
 
 MAR_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_MAR_2016_mol.png"), interpolate=TRUE)
 MAR_hist <- rasterGrob(readPNG("figures/goal_histograms/MAR_scores.png"), interpolate=TRUE)
 
-
-grid.arrange(FIS_map, FIS_hist,
-             MAR_map, MAR_hist,
-             ncol=2, widths=c(5,4))
-```
-
-
-###### Sense of place
-
-```{r subgoal SP, echo=FALSE}
-
+SP <- textGrob("C Sense of place", gp=gpar(fontsize=12), just="left", x=0)
+sp <- textGrob("")
 LSP_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_LSP_2016_mol.png"), interpolate=TRUE)
 LSP_hist <- rasterGrob(readPNG("figures/goal_histograms/LSP_scores.png"), interpolate=TRUE)
 
 ICO_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_ICO_2016_mol.png"), interpolate=TRUE)
 ICO_hist <- rasterGrob(readPNG("figures/goal_histograms/ICO_scores.png"), interpolate=TRUE)
 
-
-grid.arrange(LSP_map, LSP_hist,
-             ICO_map, ICO_hist,
-             ncol=2, widths=c(5,4))
-```
-
-
-###### Livelihoods and economies
-
-```{r subgoal LE, echo=FALSE}
-
+# LE
+LE <- textGrob("D Livelihoods & economies", gp=gpar(fontsize=12), just="left", x=0)
+le <- textGrob("")
 LIV_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_LIV_2016_mol.png"), interpolate=TRUE)
 LIV_hist <- rasterGrob(readPNG("figures/goal_histograms/LIV_scores.png"), interpolate=TRUE)
 
 ECO_map <- rasterGrob(readPNG("figures/maps_by_goal_mol/year_2016_nolegend/global_map_ECO_2016_mol.png"), interpolate=TRUE)
 ECO_hist <- rasterGrob(readPNG("figures/goal_histograms/ECO_scores.png"), interpolate=TRUE)
 
-
-grid.arrange(LIV_map, LIV_hist,
+grid.arrange(BD, bd,
+             HAB_map, HAB_hist,
+             SPP_map, SPP_hist,
+             FP, fp,
+             FIS_map, FIS_hist, 
+             MAR_map, MAR_hist,
+             SP, sp,
+             ICO_map, ICO_hist,
+             LSP_map, LSP_hist,
+             LE, le,
+             LIV_map, LIV_hist, 
              ECO_map, ECO_hist,
-             ncol=2, widths=c(5,4))
+             ncol=2, widths=c(5,4), heights=c(0.6, 5, 5, 0.6, 5,5, 0.6, 5,5, 0.6, 5,5))
+
 ```
 
-##### Figure S2. Carpet plot describing scores for each region and year.
-This figure provides an overview of the scores from the 2016 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 5 years of data.  Black regions indicate no data.  Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/global2016/Reporting/figures/carpetPlot_2016.png) to zoom in to see specific regions.
+##### Figure 4. Carpet plot describing scores for each region and year.
+Overview of the scores from the 2016 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 5 years of data.  Black regions indicate no data.  Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/global2016/Reporting/figures/carpetPlot_2016.png) to zoom in to see specific regions.
 
 This plot is good for providing a quick overview of:
 
@@ -275,15 +280,22 @@ This plot is good for providing a quick overview of:
 knitr::include_graphics("figures/carpetPlot_2016.png")
 ```
 
-### Summary of trend results
+### Summary of average annual change in scores
 
-##### Figure S3A. Maps of score trends for overall Index and 10 goals.
-The values represented on the maps are the slope estimate from a linear regression model of the scores from 2012 to 2016 for each region and goal.
+##### Figure 5. Average annual change in OHI Index scores.
+Map of the slope estimates from a linear regression model of the Index scores from 2012 to 2016 for each region.
+
+
+
 ```{r trends index, echo=FALSE}
 ## Figure created in Reporting.Rmd
 
 knitr::include_graphics("figures/maps_trends/trends_map_Index_2016_mol.png")
 ```
+
+
+##### Figure 6. Average annual change in OHI goal scores.
+Map of the slope estimates from a linear regression model of the 10 goal scores from 2012 to 2016 for each region.
 
 ```{r trends goals, echo=FALSE, fig.height=15, fig.width=10}
 
@@ -324,26 +336,28 @@ grid.arrange(AO_map,
 
 ```
 
-##### Figure S3B. Maps of trends in OHI scores for subgoals of biodiversity, foob provision, sense of place, and livelihoods and economies
+##### Figure 7. Average annual change in OHI subgoal scores.
+Map of the slope estimates from a linear regression model of the 10 subgoal scores from 2012 to 2016 for each region. The subgoal scores for the following goals: biodiversity (A), foob provisioning (B), sense of place (C), and livelihoods and economies (D).  The scores are displayed as a map (left) and histogram (right).
 
-```{r subgoal BD trend, echo=FALSE, fig.width=10, fig.height=15}
+<br>
+```{r subgoal trends, echo=FALSE, fig.width=10, fig.height=15}
 
-BD <- textGrob("Biodiversity")
+BD <- textGrob("A Biodiversity", gp=gpar(fontsize=12), just="left", x=0)
 bd <- textGrob("")
 HAB_map <- rasterGrob(readPNG("figures/maps_trends/trends_map_HAB_2016_mol.png"), interpolate=TRUE)
 SPP_map <- rasterGrob(readPNG("figures/maps_trends/trends_map_SPP_2016_mol.png"), interpolate=TRUE)
 
-FP <- textGrob("Food provision")
+FP <- textGrob("B Food provision", gp=gpar(fontsize=12), just="left", x=0)
 fp <- textGrob("")
 FIS_map <- rasterGrob(readPNG("figures/maps_trends/trends_map_FIS_2016_mol.png"), interpolate=TRUE)
 MAR_map <- rasterGrob(readPNG("figures/maps_trends/trends_map_MAR_2016_mol.png"), interpolate=TRUE)
 
-SP <- textGrob("Sense of place")
+SP <- textGrob("C Sense of place", gp=gpar(fontsize=12), just="left", x=0)
 sp <- textGrob("")
 ICO_map <- rasterGrob(readPNG("figures/maps_trends/trends_map_ICO_2016_mol.png"), interpolate=TRUE)
 LSP_map <- rasterGrob(readPNG("figures/maps_trends/trends_map_LSP_2016_mol.png"), interpolate=TRUE)
 
-LE <- textGrob("Livelihoods and economies")
+LE <- textGrob("D Livelihoods and economies", gp=gpar(fontsize=12), just="left", x=0)
 le <- textGrob("")
 LIV_map <- rasterGrob(readPNG("figures/maps_trends/trends_map_LIV_2016_mol.png"), interpolate=TRUE)
 ECO_map <- rasterGrob(readPNG("figures/maps_trends/trends_map_ECO_2016_mol.png"), interpolate=TRUE)
@@ -360,7 +374,7 @@ grid.arrange(BD, bd,
 ```
 
 
-##### Figure S4. Barplot of goal trends for each region.
+##### Figure 8. Barplot of average annual change in goal trends for each region.
 The values are the slope estimate from a linear regression model of the scores from 2012 to 2016 for each region and goal.
 
 ```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
@@ -372,20 +386,21 @@ knitr::include_graphics("Trend_barplot.png")
 
 ### Relationship between goal scores
 
-##### Figure S5. Pairwise comparison of goal scores.
-Two-letter codes in the diagonal are goal labels (FP = food provision, AO = artisanal fishing
-opportunity, NP = natural products, CS = carbon storage, CP = coastal protection, LE = coastal livelihoods and economies, TR = tourism and recreation, SP = sense of place, CW = clean water, and BD = biodiversity). Values in the upper right are the correlation coefficients for each comparison, with larger font size indicating stronger significance of the result. Plots in lower left are scatterplots of the data with locally-weighted polynomial regression (LOWESS) fits shown in red.
+##### Figure 9. Pairwise comparison of goal scores.
+Two-letter codes in the diagonal are goal abbreviations (FP = food provision, AO = artisanal fishing
+opportunity, NP = natural products, CS = carbon storage, CP = coastal protection, LE = coastal livelihoods and economies, TR = tourism and recreation, SP = sense of place, CW = clean water, and BD = biodiversity). Values in the upper right are correlation coefficients for each comparison, with larger font sizes indicating larger coefficients. Plots in lower left are scatterplots of the data with locally-weighted polynomial regression (LOWESS) fits shown in red.
 
 ![](./figures/pairwise.png)
 
 
-### Relationship between OHI Index scores and other region variables
+### Relationship between OHI Index scores and social variables
 
 We explored several models to determine whether there was a relationship between OHI scores and the [Human Development Index](http://hdr.undp.org/en/content/human-development-index-hdi), [Cumulative Human Impacts to marine systems](https://www.nceas.ucsb.edu/globalmarine), and coastal population (ln population, 10 miles from shoreline).  
 
 OHI scores tended to be higher for regions with higher Human Development Index scores and lower for regions with more marine pressures (i.e., cumulative human impacts).  
 
-##### Table S3. Model comparison (AIC) to determine the relationship between OHI Index scores and the Human Development Index (HDI), Cumulative Human Impacts (CHI), and coastal population.
+##### Table 3. Relationship between Index scores and social variables
+Model comparison to determine the relationship between OHI Index scores and the Human Development Index (HDI), Cumulative Human Impacts (CHI), and coastal population.  The model with the lowest AIC score is best supported.  All the best supported models included the HDI.
 
 Model     | df   | AIC   | R^2^ (adj)
 ---------- | ------ | ------- | --------
@@ -397,22 +412,28 @@ ln(pop) + HDI | 4   | 990  | 0.27
 ln(pop) + CHI | 4   | 1029 | 0.041
 ln(pop) + CHI + HDI | 5 | 980 | 0.32
 
-##### Figure S6. Relationship between OHI Index and other variables
+##### Figure 10. Relationship between OHI Index and social variables
+Higher OHI Index scores are associated with higher Human Development Index scores (HDI, the three best performing models included this variable).  Lower OHI Index scores are associated with higher cumulative human impacts (CHI) and coastal populations, although the best model only included CHI.  This relationship is difficult to resolve given there is a positive relationship between CHI and coastal population.  
 
-```{r OHI vs HDI CHI pop, echo=FALSE, fig.width=10, fig.height=4}
-HDI <- rasterGrob(readPNG("figures/OHIvsHDI.png"), interpolate=TRUE)
-CHI <- rasterGrob(readPNG("figures/OHIvsCHI.png"), interpolate=TRUE)
-pop <- rasterGrob(readPNG("figures/OHIvsCoastalPop.png"), interpolate=TRUE)
+```{r OHI vs HDI CHI pop, echo=FALSE, fig.width=10, fig.height=6}
 
-#dev.new(width=10, height=5)
-#grid.arrange(HDI, CHI, pop, ncol=3, nrow=1, widths=unit(0.5, "npc"), heights=unit(0.5, "npc"))
-grid.arrange(HDI, CHI, pop, ncol=3, nrow=1)
+HDI <- rasterGrob(readPNG("figures/OHIvsHDI.png"), interpolate=TRUE, y=.7)
+HDI_txt <- textGrob("A", gp=gpar(fontsize=12), just="left", x=0.15, y=0)
+
+CHI <- rasterGrob(readPNG("figures/OHIvsCHI.png"), interpolate=TRUE, y=.7)
+CHI_txt <- textGrob("B", gp=gpar(fontsize=12), just="left", x=0.15, y=0)
+
+pop <- rasterGrob(readPNG("figures/OHIvsCoastalPop.png"), interpolate=TRUE, y=.7)
+pop_txt <- textGrob("C", gp=gpar(fontsize=12), just="left", x=0.15, y=0)
+
+grid.arrange(HDI_txt, CHI_txt, pop_txt, HDI, CHI, pop, ncol=3, nrow=2, heights=c(0.2, 4))
 
 ```
 
 ### Comparison of scores vs. ranks
 
-##### Figure S7A. Comparison of change in score vs. change in rank for 10 goals.
+##### Figure 11. Change in score vs. rank for the 10 OHI goals
+Change is determined by subtracting the 2012 data (ranks or scores) from the 2016 data.  The changes in rank and scores are strongly correlated, but in some instances, small (probably non-significant) changes in scores can lead to large changes in rank.
 
 ```{r rank analysis, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, fig.width=5, fig.height=5}
 
@@ -420,7 +441,7 @@ data <- read.csv(sprintf('../radical_with_region_names_%s.csv', radicalFile))
 
 ### function to make interactive plot
 
-rank <- function(goal_rank){
+rank <- function(goal_rank, subplot=""){
   
 data_sub <- data[data$goal %in% goal_rank, ] %>%
   filter(dimension=="score") %>%
@@ -449,80 +470,138 @@ data_sub <- data[data$goal %in% goal_rank, ] %>%
 # plotly_fig <- plotly::ggplotly(p)
 # plotly_fig
 
+
 ## compare change in ranks vs change in scores
   p <- ggplot2::ggplot(data_sub, aes(x= index_delta, y=rank_delta)) +
     geom_point(aes(text=paste0("rgn = ", region_name)), shape=19, size=2, color="gray", alpha = 0.5) +
     theme_bw()  + #c( top, right, bottom, and left margins) 
-   labs(y="change in rank (2016-2012)", x="change in score (2016-2012)", title = as.character(goal_names$long_goal[goal_names$goal==goal_rank])) + 
+   labs(y="Rank change", x="Score change") + #,  
+        #title = paste(subplot, as.character(goal_names$long_goal[goal_names$goal==goal_rank])), sep="  ") +
     stat_smooth(method = lm, se=FALSE, size=0.5, color="black") +
-    theme(plot.margin=unit(c(5.5, 5.5, 40, 5.5),"pt"))
+    theme(plot.margin=unit(c(5.5, 5.5, 40, 5.5),"pt"), plot.title=element_text(hjust = 0))
 
 # plot(p)   
 # ggsave(sprintf("figures/rank_figs/delta_ranks_vs_delta_score/delta_ranks_scores_%s.png", goal_rank))
 
+  title.grob <- textGrob(paste(subplot,
+                                as.character(goal_names$long_goal[goal_names$goal==goal_rank]),
+                                sep="  "),
+                         x=unit(1, "lines"),
+                         y=unit(.1, "lines"),
+                         hjust=0, vjust=0,
+                         gp=gpar(fontsize=12))
+
+  
   plotly_fig <- plotly::ggplotly(p)
-  plotly_fig
+  # plotly_fig # this will plot interactive plots, not functional with grobs however.
+
+  p1 <- arrangeGrob(p, top=title.grob)
+  grid.arrange(p1)
 }
 
-rank("AO")
+rank("AO", "A")
 
-rank("BD")
+rank("BD", "B")
 
-rank("CP")
+rank("CP", "C")
 
-rank("CS")
+rank("CS", "D")
 
-rank("CW")
+rank("CW", "E")
 
-rank("FP")
+rank("FP", "F")
 
-rank("LE")
+rank("LE", "G")
 
-rank("NP")
+rank("NP", "H")
 
-rank("SP")
+rank("SP", "I")
 
-rank("TR")
+rank("TR", "J")
 ```
 
 
+##### Figure 12. Change in score vs. rank for OHI subgoals
+Data for subgoals of biodiversity (A), food provision (B), sense of place (C), and livelihoods and economies (D). Change is determined by subtracting the 2012 data (ranks or scores) from the 2016 data.  The changes in rank and scores are strongly correlated, but in some instances, small (probably non-significant) changes in scores can lead to large changes in rank.
 
-##### Figure S7B. Comparison of change in score vs. change in rank for subgoals of biodiversity, food provision, sense of place, and livelihoods and economies.
+```{r subgoal score vs rank, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, fig.width=5, fig.height=10}
 
-##### Biodiversity
+rank_sub <- function(goal_rank){
+  
+data_sub <- data[data$goal %in% goal_rank, ] %>%
+  filter(dimension=="score") %>%
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  filter(region_id <= 250) %>%
+  mutate(scenario = paste0("scenario", scenario)) %>%
+  spread(scenario, value) %>%  
+  mutate(rank_2016 = min_rank(desc(scenario2016))) %>%
+  mutate(rank_2012 = min_rank(desc(scenario2012))) %>%
+  mutate(rank_delta = rank_2016 - rank_2012) %>%
+  mutate(index_delta = scenario2016 - scenario2012) %>%
+  arrange(rank_2016)
 
-```{r subgoal BD score vs rank, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, fig.width=5, fig.height=5}
 
-rank("HAB")
-rank("SPP")
+## compare change in ranks vs change in scores
+  p <- ggplot2::ggplot(data_sub, aes(x= index_delta, y=rank_delta)) +
+    geom_point(aes(text=paste0("rgn = ", region_name)), shape=19, size=2, color="gray", alpha = 0.5) +
+    theme_bw()  + #c( top, right, bottom, and left margins) 
+   labs(y="Rank change", x="Score change",  
+        title = as.character(goal_names$long_goal[goal_names$goal==goal_rank])) +
+    stat_smooth(method = lm, se=FALSE, size=0.5, color="black") +
+    theme(plot.margin=unit(c(5.5, 5.5, 40, 5.5),"pt"), plot.title=element_text(hjust = 0))
 
+p   
+}
+
+# Biodiversity
+title <- textGrob("A",
+                         x=unit(1, "lines"),
+                         y=unit(0.1, "lines"),
+                         hjust=0, vjust=0,
+                         gp=gpar(fontsize=12))
+x <- rank_sub("HAB")
+y <- rank_sub("SPP")
+  
+  p1 <- arrangeGrob(x, y, top=title)
+  grid.arrange(p1)
+
+# Food provision
+  title <- textGrob("B",
+                         x=unit(1, "lines"),
+                         y=unit(0.1, "lines"),
+                         hjust=0, vjust=0,
+                         gp=gpar(fontsize=12))
+x <- rank_sub("FIS")
+y <- rank_sub("MAR")
+  
+  p1 <- arrangeGrob(x, y, top=title)
+  grid.arrange(p1)
+  
+# Sense of place
+  title <- textGrob("C",
+                         x=unit(1, "lines"),
+                         y=unit(0.1, "lines"),
+                         hjust=0, vjust=0,
+                         gp=gpar(fontsize=12))
+x <- rank_sub("ICO")
+y <- rank_sub("LSP")
+  
+  p1 <- arrangeGrob(x, y, top=title)
+  grid.arrange(p1)
+
+# LE
+  title <- textGrob("D",
+                         x=unit(1, "lines"),
+                         y=unit(0.1, "lines"),
+                         hjust=0, vjust=0,
+                         gp=gpar(fontsize=12))
+x <- rank_sub("ECO")
+y <- rank_sub("LIV")
+  
+  p1 <- arrangeGrob(x, y, top=title)
+  grid.arrange(p1)
+  
+      
 ```
 
-##### Food Provision
-
-```{r subgoal score vs rank, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, fig.width=5, fig.height=5}
-
-rank("FIS")
-rank("MAR")
-
-```
-
-
-##### Sense of place
-
-```{r subgoal SP score vs rank, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, fig.width=5, fig.height=5}
-
-rank("LSP")
-rank("ICO")
-
-```
-
-
-##### Livelihoods and economies
-
-```{r subgoal LE score vs rank, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, fig.width=5, fig.height=5}
-
-rank("LIV")
-rank("ECO")
-
-```

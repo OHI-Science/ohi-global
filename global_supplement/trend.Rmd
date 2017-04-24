@@ -8,7 +8,7 @@ $x(1 + trend)$,
 
 where, $x$ is the current status.  Given this, if $x=50$, and we expect trend to increase by 10% over 5 years, then likely future status would be: $50(1 + 0.10) = 55$.
 
-Because status values range from 0-1, Trends typically range from -1.0 to 1.0, and we constrained values to this range if they fell outside it.
+Trends indicate proportinal change in status, so they typically range from -100% to +100% (or, -1.0 to +1.0), therefore we constrained values to this range.
 
 For all goals we included the trend estimate, even if the linear model was not statistically significant (i.e., P<0.05). We chose to include these values for two key reasons: 1) we were not trying to predict the future but instead only indicate likely condition. 2) in nearly all cases we did not have sufficient data to conduct more rigorous trend analyses.
 

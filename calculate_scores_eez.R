@@ -1,17 +1,23 @@
 
-# STEP 1: be sure to pull ohiprep
+# STEP 1: Be sure to pull ohiprep before running!!
 
-### NOTE: There is a warning that some regions have a MAR score, but a zero weight
-###  This seems fine.  It appears to be because we use a running average to calculate MAR scores
-###  but a running average isn't used to calculate the weights.  In these cases, the score is entirely based
-###  on the FIS score.
-
+# STEP 2: Install the appropriate ohicore, if necessary:
 library(devtools)
-#devtools::install_github("ohi-science/ohicore@dev_resil") 
-devtools::install_github("ohi-science/ohicore@dev") 
-#devtools::install_github("ohi-science/ohicore@master")
-#devtools::install_github("ohi-science/ohicore@master_a2015")
-#install_github('rCharts', 'ramnathv')
+devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
+#devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+#devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
+
+# STEP 3: If changes are made to any of the files in eez_layers_meta_data, run these:
+# updates the layers_eez.csv file to be toolbox compatible
+source("eez_layers_meta_data/layers_eez_script.R") 
+
+# updates the "layers_eez_targets.csv" file when a pressure/resilience data layer is added 
+# to the pressures or resilience matrix in 
+s_folder <- "eez2016" #indicate the scenario with the most recent pressures/resilience matrix data
+source("eez_layers_meta_data/update_targets_with_pre_res.R") 
+
+
+# STEP 4: Revise relevant code below and run assessments!
 library(ohicore)
 library(zoo)
 
@@ -225,190 +231,21 @@ for (i in 1:length(scenarios)){  #i=2
 }
 
 
+### NOTE: There is a warning that some regions have a MAR score, but a zero weight
+###  This seems fine.  It appears to be because we use a running average to calculate MAR scores
+###  but a running average isn't used to calculate the weights.  In these cases, the score is entirely based
+###  on the FIS score.
+
+
+### Some methods for visualizing the data
+source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-           fileSave="eez2016_new_fis_pressures")
+            fileSave="eez2016_new_fis_pressures")
 
-change_plot(repo = "ohi-global", scenario="eez2012", commit="previous", 
-            fileSave="eez2012_hd_sb_hab")
-
-
-new_health <- read.csv("../ohiprep/globalprep/hab_combined/v2016/output/habitat_health_2016.csv")
-filter(new_health, rgn_id==80)
-
-new_health <- read.csv("../ohiprep/globalprep/hab_prs_hd_subtidal_soft_bottom/v2016/output/hd_sb_subtidal_v2010.csv")
-filter(new_health, rgn_id==67)
-
-new_health <- read.csv("../ohiprep/globalprep/hab_prs_hd_subtidal_soft_bottom/v2016/output/hd_sb_subtidal_v2006.csv")
-filter(new_health, rgn_id==67)
-
-
-  filter(goal == "ICO") %>%
-  filter(dimension == "status") %>%
-  left_join(geos) %>%
-  filter(region_id != 0) %>%
-  arrange(r2)
-
-mod <- lm(score ~ as.factor(r2), data=ico)
-summary(mod)
-anova(mod)
-
-source('../ohiprep/src/R/VisGlobal.R')
 # looking within a goal:
 scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")
 
 goalHistogram(scenario="eez2016", goal="AO", dim="status", fileSave="AO_need_eez2016")
 
-## make an interactive table
-
-library(hwriter)
-names <- read.csv("eez2013/layers/rgn_labels.csv") %>%
-  filter(type=="eez") %>%
-  select(region_id=rgn_id, label)
-
-
-data <- read.csv('eez2015/scores.csv')%>%
-  filter(goal=='FIS', dimension=="status") %>%
-  filter(region_id !=0) %>%
-  left_join(names) %>%
-  select(country=label, goal, dimension, score) %>%
-  arrange(score)
-hwrite(data, "changePlot_figures/status_eez2015_FIS.html", br=TRUE, center=TRUE, border=0, 
-       row.style=list(goal='text-align:center'))
-
-
-tmp <- read.csv('changePlot_figures/MAR_trend_compare_eez2016.csv')
-plot(tmp$old_score, tmp$score, xlab="old trends", ylab="new trends")
-abline(0,1, col="red")
-#### compare fis data from previous commit
-repo = "ohi-global"
-scenario="eez2016"
-commit="previous"
-
-repo2 <- sprintf("../%s", repo)
-
-if (commit == "previous") {
-  commit2 = substring(git2r::commits(git2r::repository(repo2))[[1]]@sha, 
-                      1, 7)
-} else {
-  if (commit == "final_2014") {
-    commit2 = "4da6b4a"
-  } else {
-    commit2 = commit
-  }
-}
-
-tmp <- git2r::remote_url(git2r::repository(repo2))
-org <- stringr::str_split(tmp, "/")[[1]][4]
-path = paste0(scenario, "/layers/fis_meancatch.csv")
-data_old <- read_git_csv(paste(org, repo, sep = "/"), commit2, path) %>%
-  filter(rgn_id==188) %>%
-  filter(year==2010) %>%
-  select(rgn_id, stock_id_taxonkey, year, mean_catch_old=mean_catch)
-
-data_new <- read.csv('eez2016/layers/fis_meancatch.csv') %>%
-  filter(year==2010) %>%
-  filter(rgn_id==188) %>%
-  left_join(data_old)
-
-path = paste0(scenario, "/layers/fis_b_bmsy.csv")
-data_old <- read_git_csv(paste(org, repo, sep = "/"), commit2, path) %>%
-  filter(rgn_id==188) %>%
-  filter(year==2010) %>%
-  select(rgn_id, stock_id, year, bbmsy_old=bbmsy) %>%
-  arrange(stock_id)
-
-data_new <- read.csv('eez2016/layers/fis_b_bmsy.csv') %>%
-  filter(year==2010) %>%
-  filter(rgn_id==188) %>%
-#  left_join(data_old) %>%
-  arrange(stock_id)
-
-####################################################  
-###### Checking different fishery scores
-
-repo = "ohi-global"
-scenario="eez2015"
-commit="final_2015"
-
-if (commit == "previous") {
-  commit2 = substring(git2r::commits(git2r::repository(repo2))[[1]]@sha, 
-                      1, 7)
-} else {
-  if (commit == "final_2015") {
-    commit2 = "1d4dcb1"                              ### final_2014 == "4da6b4a"
-  } else {
-    commit2 = commit
-  }
-}
-
-repo2 <- sprintf("../%s", repo)
-tmp <- git2r::remote_url(git2r::repository(repo2))
-org <- stringr::str_split(tmp, "/")[[1]][4]
-path = paste0(scenario, "/scores.csv")
-data_old <- read_git_csv(paste(org, repo, sep = "/"), commit2, path) %>%
-  filter(goal == "FIS") %>%
-  filter(dimension == "score") %>%
-  select(region_id, data2015_methods2015=score)
-write.csv(data_old, "changePlot_figures/FIS_compare_data/scores_2015data_2015methods.csv", row.names=FALSE)
-
-## Model 2
-data <- read.csv('eez2016/scores.csv')%>%
-  filter(goal == "FIS") %>%
-  filter(dimension == "score") %>%
-  select(region_id, data2016_methods2015=score)
-write.csv(data, "changePlot_figures/FIS_compare_data/scores_2016data_2015methods.csv", row.names=FALSE)
-
-## Model 3
-data <- read.csv('eez2016/scores.csv')%>%
-  filter(goal == "FIS") %>%
-  filter(dimension == "score") %>%
-  select(region_id, data2016_methods_taxa_penalty=score)
-write.csv(data, "changePlot_figures/FIS_compare_data/scores_2016data_taxa_penalty.csv", row.names=FALSE)
-
-## Model 4
-data <- read.csv('eez2016/scores.csv')%>%
-  filter(goal == "FIS") %>%
-  filter(dimension == "score") %>%
-  select(region_id, data2016_methods_wt_mean=score)
-write.csv(data, "changePlot_figures/FIS_compare_data/scores_2016data_wt_mean.csv", row.names=FALSE)
-
-## Model 5
-data <- read.csv('eez2016/scores.csv')%>%
-  filter(goal == "FIS") %>%
-  filter(dimension == "score") %>%
-  select(region_id, data2016_methods_taxa_penalty_wt_mean=score)
-write.csv(data, "changePlot_figures/FIS_compare_data/scores_2016data_taxa_penalty_wt_mean.csv", row.names=FALSE)
-
-## Model 6
-data <- read.csv('eez2016/scores.csv')%>%
-  filter(goal == "FIS") %>%
-  filter(dimension == "score") %>%
-  select(region_id, data2016_methods_penalty_no_underfish=score)
-write.csv(data, "changePlot_figures/FIS_compare_data/scores_2016data_no_underfish_pen.csv", row.names=FALSE)
-
-##
-
-### Now compare the data
-s1 <- read.csv("changePlot_figures/FIS_compare_data/scores_2015data_2015methods.csv")
-s2 <- read.csv("changePlot_figures/FIS_compare_data/scores_2016data_2015methods.csv")
-s3 <- read.csv("changePlot_figures/FIS_compare_data/scores_2016data_taxa_penalty.csv") 
-s4 <- read.csv("changePlot_figures/FIS_compare_data/scores_2016data_wt_mean.csv") 
-s5 <- read.csv("changePlot_figures/FIS_compare_data/scores_2016data_taxa_penalty_wt_mean.csv")
-s6 <- read.csv("changePlot_figures/FIS_compare_data/scores_2016data_no_underfish_pen.csv")
-
-data <- cbind(s1,s2,s3,s4,s5,s6)
-names(data)
-repeats <- which(names(data)=="region_id")
-repeats <- repeats[-1]
-data <- data[, -repeats]
-
-labels <- read.csv('eez2016/layers/rgn_labels.csv') %>%
-  select(region_id=rgn_id, country=label) %>%
-  unique()
-
-data <- data %>%
-  left_join(labels)
-
-write.csv(data, 'changePlot_figures/FIS_compare_data/allData.csv', row.names=FALSE)
