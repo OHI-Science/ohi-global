@@ -41,12 +41,11 @@ Select a year and right-click to Save As. View the [metadata for these files](ht
 **Full methods and data**
 
 Final scores and methods are released annually each fall. Ongoing work is available in our [**OHI-Science**](https://github.com/OHI-Science) GitHub repositories.
-
-- [data preparation releases (`ohiprep`)](https://github.com/OHI-Science/ohiprep/releases) <!---TODO: change link Mel will move globalprep into a new repo: ohi-global-prep --->
-- [score calculation releases (`ohi-global`)](https://github.com/OHI-Science/ohi-global/releases)
-- [`R` package to calculate scores (`ohicore`](https://github.com/OHI-Science/ohicore/releases))
-- COMING SOON: large data files
-    - global regions shapefiles
+A description of file organization [is available](https://rawgit.com/OHI-Science/ohiprep/master/src/dataOrganization_SOP.html).
+- [data preparation releases (`ohiprep` repository)](https://github.com/OHI-Science/ohiprep/releases): 
+- [score calculation releases (`ohi-global` repository)](https://github.com/OHI-Science/ohi-global/releases)
+- [`R` package to calculate scores (`ohicore` repository](https://github.com/OHI-Science/ohicore/releases))
+- [Large data files](https://mazu.nceas.ucsb.edu/data/): Download data too large to host on GitHub (region shapefiles, pressure raster data, etc.), 
 </div>
 
 <br>
