@@ -5,7 +5,7 @@ output:
     fig_width: 1
 ---
 
-```{r setup, echo=F, warning=FALSE, message=F}
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
 source("./_site.R")
 ```
 
