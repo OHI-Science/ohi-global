@@ -5,17 +5,33 @@
 #   update.packages(ask=F)
 #   # then run up to and including `install_packages(pkgs_df)` below
 
+gh_update = F
+
 if (!'devtools'  %in% installed.packages()[,1]) install.packages('devtools')
 if (!'tidyverse' %in% installed.packages()[,1]) install.packages('tidyverse')
 # TODO: check that all packages below are actually needed, including specific tidyverse packages
 library(devtools , quietly=T)
 library(tidyverse, quietly=T)
+library(stringr)
+library(lubridate)
+library(rgdal)
+library(shiny)
+library(shinydashboard)
+library(htmltools)
+library(markdown)
+library(geojsonio)
+library(jsonlite)
+library(yaml)
+library(DT)
+library(leaflet)
+library(explodingboxplotR)
+library(ohicore)
+library(htmlwidgets)
+library(ohiaster)
+library(sunburstR)
 
 pkgs_df = tibble::tribble(
   ~package   ,     ~location,                                                    ~install_args, ~version_min,
-  'dplyr',              'CRAN',                                                               '',           '',
-  'tidyr',              'CRAN',                                                               '',           '',
-  'readr',              'CRAN',                                                               '',           '',
   'stringr',            'CRAN',                                                               '',           '',
   'lubridate',          'CRAN',                                                               '',           '',
   'rgdal',              'CRAN',                                                               '',           '',
@@ -421,13 +437,17 @@ gh_write_remote = function(gh_slug, gh_branch, txt=sprintf('%s_remote_sha.txt', 
   return(remote_sha)
 }
 
-check_dir_data()
-remote_sha_txt = sprintf('%s_remote_sha.txt', dir_data)
-remote_sha = gh_write_remote(y$gh_slug, y$gh_branch_data, remote_sha_txt)
-local_sha  = devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
+if (gh_update){
+  check_dir_data()
+  remote_sha_txt = sprintf('%s_remote_sha.txt', dir_data)
+  remote_sha = gh_write_remote(y$gh_slug, y$gh_branch_data, remote_sha_txt)
+  local_sha = devtools:::git_sha1(path=dir_data, n=nchar(remote_sha))
+} else {
+  local_sha = y$ohirepos_commit
+}
 
 # check if github remote differs from local
-if (devtools:::different_sha(remote_sha, local_sha)){
+if (gh_update && devtools:::different_sha(remote_sha, local_sha)){
 
   # git fetch & overwrite
   system(sprintf('cd %s; git fetch; git reset --hard origin/%s', dir_data, y$gh_branch_data))
