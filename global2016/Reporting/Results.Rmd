@@ -49,9 +49,9 @@ goal_names <- data.frame(goal=goals, long_goal=c("Index",
                                                   "Economies",
                                                   "Livelihoods & economies",
                                                   "Livelihoods",
-                                                  "Fisheries (Food provisioning)",
-                                                  "Food provisioning",
-                                                  "Mariculture (Food provisioning)",
+                                                  "Fisheries (Food provision)",
+                                                  "Food provision",
+                                                  "Mariculture (Food provision)",
                                                   "Iconic species (Sense of place)",
                                                   "Sense of place",
                                                   "Lasting special places (Sense of place)",
@@ -138,7 +138,8 @@ trend <- trend %>%
     labs(y="Average change in Index score per year", x="OHI score, 2016") 
 
 plot(p)   
-ggsave("figures/trend vs score.png", width=6, height=4)
+ggsave("figures/trend vs score.png", width=7.5, height=5, units=c("in"), dpi=600)
+ggsave("figures/trend vs score.tiff", width=6, height=4, units=c("in"), dpi=375)
 
 ```
 
@@ -194,8 +195,8 @@ tmp <- filter(index_2012, index_delta<=(-7) & index_delta>=(-8))
     #     geom_segment(aes(x=-6.09, xend=-6.09, y=-145, yend=-8), size=0.4, color="gray30", linetype=3) +
         # geom_rect(xmax=max(tmp$index_delta), xmin=-21, ymin=min(tmp$rank_delta), ymax=max(tmp$rank_delta), alpha=.01, col="#ffd27f", fill="#ffd27f", size=0) +
     geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=1.75, color="gray30", alpha = 0.50) +
-    geom_point(data = filter(index_2012, index_delta>0 & rank_delta<0), shape=19, size=1.75, color="red") +
-    geom_point(data = filter(index_2012, index_delta<0 & rank_delta>0), shape=19, size=1.75, color="blue")  +
+    geom_point(data = filter(index_2012, index_delta>0 & rank_delta<0), shape=19, size=1.75, color="#D73027", alpha=0.75) +
+    geom_point(data = filter(index_2012, index_delta<0 & rank_delta>0), shape=19, size=1.75, color="#4575B4", alpha=0.75)  +
      geom_point(data = filter(index_2012, country=="Republique du Congo"), shape=19, size=1.75, color="darkorange3")  +
      geom_point(data = filter(index_2012, country=="Gilbert Islands (Kiribati)"), shape=19, size=1.75, color="olivedrab4")  +
     theme_bw()  + 
@@ -208,6 +209,8 @@ tmp <- filter(index_2012, index_delta<=(-7) & index_delta>=(-8))
 plot(p)   
 ggsave("figures/delta_ranks_scores.png", height=3, width=4)
 
+ggsave("figures/delta_ranks_scores.tiff", width=6, height=4, units=c("in"), dpi=375)
+
   plotly_fig <- plotly::ggplotly(p)
   plotly_fig
   
@@ -218,7 +221,7 @@ filter(index_2012, index_delta<0 & rank_delta>0)
 ```
 
 ## pairwise comparison of goal scores
-```{r pairwise comparisons}
+```{r pairwise comparisons supplement}
 index_2016 <- read.csv("data/scores_eez2016.csv") %>%
   filter(region_id != 0) %>%
   select(-c(country, region_id)) %>%
@@ -268,7 +271,7 @@ pairs(index_2016,
 
 ### Carpet plot of trends
 
-```{r carpplot trend}
+```{r carpplot trend supplement}
 
 data <- read.csv(sprintf('../radical_%s.csv', radicalFile)) 
 
@@ -322,7 +325,7 @@ ggplotly(p)
 
 ### Scores vs. population, HDI, and CHI
 
-```{r pop hdi chi}
+```{r pop hdi chi supplement}
 
 index <- read.csv("data/scores_eez2016.csv") %>%
   select(rgn_id = region_id, country, Index) %>%
@@ -377,7 +380,7 @@ p <- ggplot2::ggplot(data, aes(y=Index, x=hdi)) +
     geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
     theme_bw()  + 
     stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
-    labs(y="Human Development Index", x="OHI index score") 
+    labs(x="Human Development Index", y="OHI index score") 
 
 plot(p)   
 ggsave("figures/OHIvsHDI.png", height=4, width=4.5)
@@ -386,7 +389,7 @@ p <- ggplot2::ggplot(data, aes(y=Index, x=chi)) +
     geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
     theme_bw()  + 
     stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
-    labs(y="Cumulative Human Impact", x="OHI index score") 
+    labs(x="Cumulative Human Impact", y="OHI index score") 
 
 plot(p)   
 ggsave("figures/OHIvsCHI.png", height=4, width=4.5)
@@ -395,7 +398,7 @@ p <- ggplot2::ggplot(data, aes(y=Index, x=log_coastal_pop)) +
     geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
     theme_bw()  + 
     stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
-    labs(y="Coastal population (ln)", x="OHI index score") 
+    labs(x="Coastal population (ln)", y="OHI index score") 
 
 plot(p)   
 ggsave("figures/OHIvsCoastalPop.png", height=4, width=4.5)
@@ -404,7 +407,7 @@ p <- ggplot2::ggplot(data, aes(x=chi, y=log_coastal_pop)) +
     geom_point(shape=19, size=2, color="gray", alpha = 0.5) +
     theme_bw()  + 
     stat_smooth(method=lm, se=FALSE, color="black", size = 0.5)+
-    labs(y="Coastal population (ln)", x="Cumulative Human Impact") 
+    labs(x="Coastal population (ln)", y="Cumulative Human Impact") 
 
 plot(p)   
 ggsave("figures/CHIvsCoastalPop.png", height=4, width=4.5)
@@ -427,9 +430,8 @@ data <- data %>%
 
 ```
 
-```{r fig 1B hist}
+```{r fig 1D hist}
 
-## Fig 1B
 data_lm <- data %>%
   group_by(goal, region_id) %>%
   do(mdl = lm(value ~ scenario, data = .))
@@ -474,20 +476,19 @@ g <- ggplot(trends_hist, aes(x=average_change_per_year)) +
 geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
 scale_fill_manual("", breaks=colors, values=cols, guide=FALSE) +
 labs(y="Number of regions", x="Average yearly change") +
-geom_vline(xintercept=0, color="red") +
+#geom_vline(xintercept=0, color="red") +
 theme_bw()
 
 print(g)
 
- ggsave("figures/trend_histogram_color.png", width=4, height=3)
+ ggsave("figures/trend_histogram_color.tiff", width=4, height=3, units=c("in"), dpi=300)
  
 
 ```
 
 
-```{r fig 1A hist}
+```{r fig 1B hist}
 
-## Fig 1A
 data_scores <- data %>%
   filter(goal=="Index") %>%
   filter(scenario == 2016) 
@@ -520,7 +521,7 @@ theme_bw()
 
 print(g)
 
- ggsave("figures/score_histogram_color.png", width=4, height=3)
+ ggsave("figures/score_histogram_color.tiff", width=4, height=3, units=c("in"), dpi=300)
 
 ```
 
@@ -528,7 +529,7 @@ print(g)
 ## Comparing random effect models
 The following analyses indicate that adding the region as a random effect is a good idea, according to AIC.
 
-```{r model check}
+```{r model check analyze}
 
 model0 <- gls(value ~ 1 + scenario,  data = filter(data, goal=="Index"), method="REML")
 model1 <- lme(value ~ 1 + scenario, random = ~1 | region_id, data = filter(data, goal=="Index"), method="REML")
@@ -739,9 +740,11 @@ ggplot(filter(nlme_results, !(goal %in% c("ECO","LIV", "LE"))),
   geom_point(data = filter(nlme_results, !goal %in% c("ECO", "LIV", "LE") & sig==0),
              aes(x=trend, y=goal_long), color="white", size=2) +
   geom_point(data = filter(nlme_results, !goal %in% c("ECO", "LIV", "LE") & sig_wts==0),
-             aes(x=trend_wts, y=goal_long), color="white", size=2)
+             aes(x=trend_wts, y=goal_long), color="white", size=2) +
+  annotate("text", label="Unweighted", x=-3.9, y=1.6, hjust=0, family="Ariel", color="#313695", size=2.6) +
+  annotate("text", label="Area weighted", x=-2.8, y=1.6, hjust=0, family="Ariel", color="orange", size=2.6)
 
-ggsave("figures/nlme_trend_results.png", width=6, height=4)
+ggsave("figures/nlme_trend_results.png", width=6, height=4, units=c("in"), dpi=400)
 
 ## another plot of the data (Fig 2b)
 
@@ -766,11 +769,11 @@ ggplot(data_trend, aes(x=scenario, y=mean_score)) +
    #     strip.text.y = element_text(size = 8, angle = 0))
         strip.text.y = element_blank())
   
-ggsave("figures/scores_scenario_grid.png", height=6, width=2)
+ggsave("figures/scores_scenario_grid.png", height=6, width=2, units=c("in"), dpi=400)
 
 ```
 
-```{r save model results}
+```{r save model results analyze}
 
 nlme_table <- nlme_results %>%
   select(goal, trend, p_value, quant_5, quant_95)
@@ -779,7 +782,7 @@ write.csv(nlme_table, "data/nlme_results_goal_summary.csv", row.names=FALSE)
 
 ```
 
-```{r NP changes}
+```{r NP changes analyze}
 
 rel = read.csv("../../eez2016/layers/np_harvest_tonnes_relative.csv") 
 tons_proc = read.csv("../../eez2016/layers/np_harvest_tonnes.csv")
@@ -849,7 +852,7 @@ data.frame(filter(usd, rgn_id==152))
 
 ```
 
-```{r FIS changes}
+```{r FIS changes analyze}
 
 trends <- read.csv("data/trends_2016.csv") %>%
   arrange(FIS) %>%
@@ -1199,7 +1202,7 @@ median(results_lm_high$estimate)
 
 
 
-```{r CP changes}
+```{r CP changes analyze}
 
 trends <- read.csv("data/trends_2016.csv") %>%
   arrange(CP) %>%
@@ -1247,3 +1250,79 @@ read.csv("../../eez2012/layers/tr_sustainability.csv") %>%
 read.csv("../../eez2016/layers/tr_travelwarnings.csv") %>%
   filter(rgn_id==3)
 ```
+
+
+```{trend barplot fig 4 and supplement}
+
+data <- read.csv("data/trends_2016.csv") %>%
+  filter(region_id != 0) %>%
+  select(-region_id, -SPP, -HAB, -ECO, -LIV, -FIS, -MAR, -ICO, -LSP) %>%
+  gather("goal", "trend", -country) %>%
+  left_join(goal_names, by='goal') %>%
+  select(country, goal=long_goal, trend)
+
+index <- filter(data, goal=="Index") %>%
+  mutate(country = as.character(country)) %>%
+  arrange(trend)
+
+data <- data %>%
+  mutate(country=as.character(country)) %>%
+  mutate(country = factor(country, levels=index$country))
+
+myPalette <- brewer.pal(10, "Spectral")
+
+p <- ggplot(data=filter(data, goal != "Index"), aes(x=country, y=trend, fill=goal)) + 
+  geom_bar(stat="identity") +
+  scale_fill_manual(values=myPalette) +
+  coord_flip() +
+  theme_bw() +
+  labs(y="Average change in score per year", x="") + 
+  guides(fill=guide_legend(reverse=TRUE)) +
+  theme(axis.text.y=element_text(size=10),
+        legend.justification=c(1,0), legend.position=c(.3,.875)) +
+  geom_point(data=index, aes(y=trend, x=country), fill="black", shape="|") +
+  geom_hline(yintercept=0, color="black")
+p
+
+ggsave('Trend_barplot.pdf', height=25, width=10)
+ggsave('Trend_barplot.png', height=25, width=10)
+
+max <- length(index$country)
+countries_mid <- c("Johnston Atoll", "Jarvis Island", "Ile Europa", "Libya", "Russia",
+                   "Cook Islands", "Norfolk Island", "Lithuania", "Egypt", "Sao Tome and Principe")
+
+regions_subset <- rbind(index[1:15, ], index[index$country %in% countries_mid, ], index[(max-14):max, ])
+regions_subset <- as.character(regions_subset$country)  
+
+data_subset <- data %>%
+  mutate(country = as.character(country)) %>%
+  filter(country %in% regions_subset) %>%
+  mutate(country = factor(country, levels=index$country))
+  
+index_subset <- filter(data_subset, goal=="Index")  
+
+
+p <- ggplot(data=filter(data_subset, goal != "Index"), aes(x=country, y=trend, fill=goal)) + 
+  geom_bar(stat="identity") +
+  scale_fill_manual(values=myPalette) +
+  coord_flip() +
+  theme_bw() +
+  labs(y="Average change in score per year", x="") + 
+  guides(fill=guide_legend(reverse=TRUE)) +
+  theme(axis.text.y=element_text(size=10),
+        legend.justification=c(1,0), legend.position=c(.3,.60)) +
+  geom_point(data=index_subset, aes(y=trend, x=country), fill="black", shape="|", size=4) +
+  geom_vline(xintercept=15.5, color="black") +
+  geom_vline(xintercept=26.5, color="black") +
+  geom_hline(yintercept=0, color="black") +
+  theme(panel.border = element_blank(),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+p
+ggsave('Trend_barplot_subset.pdf', height=8, width=10)
+ggsave('Trend_barplot_subset.png', height=8, width=10)
+ggsave('Trend_barplot_subset.tiff', height=8, width=10, units=c("in"), dpi=600)
+
+
+```
+

@@ -1,5 +1,5 @@
 ---
-title: 'OHI 2016: Summary of results'
+title: 'OHI 2016: Summary of results (internal file for data checking and make map/flower plots)'
 author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
 output: 
   html_document:
@@ -61,7 +61,7 @@ goal_names <- data.frame(goal=goals, long_goal=c("Index",
                                                   "Livelihoods & economies",
                                                   "Livelihoods",
                                                   "Fisheries (subgoal)",
-                                                  "Food provisioning",
+                                                  "Food provision",
                                                   "Mariculture (subgoal)",
                                                   "Iconic species (subgoal)",
                                                   "Sense of place",
@@ -218,15 +218,21 @@ data <- data %>%
   ungroup() %>%
   data.frame()
   
+order_rgn <- data %>%
+  select(country, meanIndex) %>%
+  unique() %>%
+  arrange(meanIndex)
+
 data$goal <- factor(data$goal, levels = goals)
+data$country <- factor(data$country, levels=order_rgn$country)
 
 reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
 blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
 myPalette <-   c(reds, blues)
 
 
-ggplot(data, aes(y=factor(country, levels=(country)[order(meanIndex)]), x=scenario, fill=value)) + 
-  geom_tile(aes(order=meanIndex)) +
+ggplot(data, aes(y=country, x=scenario, fill=value)) + 
+  geom_tile() +
   facet_grid(~goal) + 
   scale_fill_gradientn(colours=myPalette, na.value="black") +
   theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=15)) +
