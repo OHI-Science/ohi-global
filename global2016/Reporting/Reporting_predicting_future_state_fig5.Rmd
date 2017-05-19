@@ -153,7 +153,7 @@ ggsave("figures/pred_obs_status.png", width = 4, height=3)
 
 ```
 
-### Predicted change in score vs. observed change in score (from 2012 to 2016)
+### Predicted change in status vs. observed change in status (from 2012 to 2016)
 *Methods:* Another way to look at these is to compare the predicted and observed changes in status from 2012 to 2016.  
 
 The predicted change in status was calculated as: status (2012) minus likely future score (2012).
