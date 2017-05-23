@@ -4,26 +4,6 @@ library(stringr)
 library(tmap)
 library(RColorBrewer)
 
-### read data for raster (used to plot species)
-message('Reading in raster info...')
-loiczid_raster <- raster('data/loiczid_raster.tif') %>%
-  setNames('loiczid')
-
-display_extents <- extent(-180, 180, -84, 85)
-
-land <- rgdal::readOGR(dsn   = 'data/ne_110m_land', 
-                       layer = 'ne_110m_land') %>%
-  crop(display_extents)
-
-bathy_rast <- subs(loiczid_raster, 
-                   read_csv('data/bathy_cells.csv'),
-                   by = 'loiczid', which = 'deep') %>%
-  crop(display_extents)
-
-fao_rgn <- rgdal::readOGR(dsn   = 'data/fao_rgns', 
-                          layer = 'fao_rgns_app') %>%
-  crop(display_extents)
-
 # create a blank ggplot theme
 ggtheme_basic <- function(textsize = 10) {
   theme_bw() +
@@ -38,26 +18,7 @@ ggtheme_basic <- function(textsize = 10) {
           plot.title = element_text(size = textsize * 1.5))
 }
 
-### read in spp cell files
-### this may be slowing down the initial display of the app... load elsewhere?
-iucn_spp_cells <- read_csv('data/iucn_cells_app.csv', col_types = 'dd')
-am_spp_cells   <- read_csv('data/am_cells_app.csv',   col_types = 'cd')
 
-### read in quad plot files and establish means
-quad_list <- read_csv('data/spp_list_quads_app.csv')
-
-area_align_mean <- mean(quad_list$area_ratio, na.rm = TRUE)
-dist_align_mean <- mean(quad_list$dist_align, na.rm = TRUE)
-
-### read in coral species pre- and post-clipping
-spp_coral_align <- read_csv('data/coral_align_app.csv')
-spp_coral_cells <- read_csv(file.path('data', 'coral_cells_app.csv'))
-
-quad_gp_list <- read_csv('data/spp_gp_quads_app.csv') %>%
-  mutate(expert = FALSE) %>%
-  bind_rows(read_csv('data/spp_gp_quads_ex_app.csv') %>%
-              mutate(expert = TRUE))
-  
 #################################.
 ##### Species Map Functions #####
 #################################.
