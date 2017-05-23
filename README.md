@@ -12,7 +12,7 @@ Three OHI assessments (for a range of scenario years) are included in this folde
 * eez (scenarios: 2012 - 2016): OHI for 220 country/territorial EEZ regions, this is typically considered the "OHI global assessment"
 * antarctica (scenarios: 2014 - 2015): OHI for Antarctica CCAMLR regions (includes the high seas/FAO and EEZ regions)
 * high seas (scenarios: 2014 - 2015): OHI for high seas regions (FAO regions without the EEZ regions or Antarctica/CCAMLR regions)
-
+ 
 
 Additional files/folders include:
 
