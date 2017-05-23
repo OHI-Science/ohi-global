@@ -1,0 +1,299 @@
+---
+title: 'Data prep for Shiny app'
+author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+output: 
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_depth: 3
+    toc_float: yes
+    number_sections: true
+    theme: cerulean
+    highlight: haddock
+  pdf_document:
+    toc: true
+---
+
+```{r setup, echo = FALSE, warning = FALSE, message = FALSE}
+
+# Libraries and Paths
+
+library(maps)
+library(data.table)
+library(raster)
+library(tidyverse)
+library(stringr)
+
+dir_M <- c('Windows' = '//mazu.nceas.ucsb.edu/ohi',
+           'Darwin'  = '/Volumes/ohi',    ### connect (cmd-K) to smb://mazu/ohi
+           'Linux'   = '/home/shares/ohi')[[ Sys.info()[['sysname']] ]]
+
+dir_git   <- '~/github/IUCN-AquaMaps' %>% path.expand()
+dir_shiny <- file.path(dir_git, 'shiny_am_iucn')
+
+dir_anx <- file.path(dir_M, 'git-annex/globalprep/spp_ico/v2016')
+
+# if(basename(getwd()) != 'data_explore') setwd('data_explore')
+source(file.path(dir_git, 'data_explore', 'data_explore_fxns.R'))
+### When knitting this, it automatically sets WD to be this directory...
+### the 'setwd()' is there for running by chunk
+```
+
+
+# Set up IUCN and AquaMaps species lists and cell lists
+
+Things to consider when choosing species to include in the app:
+
+* The pull down menus get unwieldy when long.
+* Maps with more area (i.e. more cells) look better.
+* We want a good cross section of species from each quadrant.
+* We want a good cross section of species that are expert reviewed?
+
+``` {r choose_species_to_map}
+
+### copy and trim the list of overlapping species
+comnames <- read_csv(file.path(dir_shiny, 'data/sci_to_common.csv'))
+
+spp_list_quads <- read_csv(file.path(dir_git, 'data', 'spp_list_quads.csv')) %>%
+  select(sciname, iucn_sid, am_sid, 
+         area_iucn, area_am,
+         dist_align = sm_perc, area_ratio, 
+         spp_group_text, 
+         reviewed, occurcells, 
+         n_spp, quad) %>%
+  left_join(comnames, by = 'sciname') %>%
+  mutate(reviewed = ifelse(!is.na(reviewed), TRUE, FALSE),
+         name = ifelse(is.na(common) | common == 'Null', sciname, common)) %>%
+  select(-fbname)
+write_csv(spp_list_quads, file.path(dir_shiny, 'data', 'spp_list_quads_app.csv'))
+
+### copy the barchart files too
+file.copy(file.path(dir_git, 'data', 'spp_gp_quads.csv'), file.path(dir_shiny, 'data', 'spp_gp_quads_app.csv'))
+file.copy(file.path(dir_git, 'data', 'spp_gp_quads_ex.csv'), file.path(dir_shiny, 'data', 'spp_gp_quads_ex_app.csv'))
+
+### Because we're using newer cell data (2016), and the quads list is based
+### on 2015 data, cut any spp whose IDs have changed or otherwise gone awol.
+if(!exists('iucn_cells')) {
+  iucn_cells <- read_csv(file.path(dir_anx, 'int', 'iucn_cells_spp.csv'), col_types = 'ciid__')
+}
+
+if(!exists('am_cells')) {
+  am_cells <- read_csv(file.path(dir_anx, 'int', 'am_cells_spp_prob0.csv'), col_types = 'cd')
+}
+
+spp_list_quads2016 <- spp_list_quads %>%
+  filter(iucn_sid %in% iucn_cells$iucn_sid & am_sid %in% am_cells$am_sid)
+
+### determine species list from IUCN area and AquaMaps area, as well as quadrant.
+### Knock out anything below first quartile for both; also knock out the really huge ones?
+# summary(spp_list_quads$area_iucn)
+     # Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+     # 8383   1308000   4427000  13050000  16260000 355400000 
+# summary(spp_list_quads$area_am)
+     # Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+     # 2940   1425000   4495000  10960000  10100000 364700000
+spp_list_med_areas <- spp_list_quads2016 %>%
+  filter(area_iucn > quantile(area_iucn, .25)) %>%
+  filter(area_am > quantile(area_am, .25)) %>%
+  filter(area_am < quantile(area_am, .75) | area_iucn < quantile(area_iucn, .75))
+
+### Start with a sample of 15% of the medium-area species; this is about 170 spp.
+### Then group by species group and quadrant, and for each, ensure a minimum
+### representation by selecting the first two (or one, if group is only 1).
+### Force the list to keep the spp mentioned in the paper:
+spp_in_si <- spp_list_quads2016 %>%
+  filter(sciname %in% c('Conus episcopatus', 'Kajikia albida', 'Acanthurus nigroris', 'Conus magnificus', 'Thunnus alalunga'))
+
+spp_list_samples <- spp_list_med_areas %>%
+  bind_rows(spp_in_si) %>%
+  mutate(keep_spp = ifelse(runif(n()) <= .15, TRUE, FALSE)) %>%
+  group_by(spp_group_text, quad) %>%
+  mutate(n_spp_gp = n(),
+         keep_spp = ifelse(iucn_sid == first(iucn_sid), TRUE, keep_spp),
+         keep_spp = ifelse(iucn_sid == nth(iucn_sid, 2) & n_spp_gp >= 2, TRUE, keep_spp),
+         keep_spp = ifelse(sciname %in% spp_in_si$sciname, TRUE, keep_spp),
+         kept     = sum(keep_spp)) %>%
+  ungroup() %>%
+  filter(keep_spp) %>%
+  select(iucn_sid, am_sid, sciname, name, spp_group_text) %>%
+  distinct()
+
+write_csv(spp_list_samples, file.path(dir_shiny, 'data', 'spp_list_app.csv'))
+
+```
+
+``` {r prep_cells_files}
+
+spp_list <- read_csv(file.path(dir_shiny, 'data', 'spp_list_app_stable.csv'))
+
+### read IUCN cells from spp_ico/v2016, trim to just overlapping species cells
+if(!exists('iucn_cells')) {
+  iucn_cells <- read_csv(file.path(dir_anx, 'int', 'iucn_cells_spp.csv'), col_types = 'ciid__')
+}
+
+iucn_cells_map <- iucn_cells %>%
+  filter(presence != 5) %>%
+  filter(iucn_sid %in% spp_list$iucn_sid) %>%
+  select(-sciname, -presence) %>%
+  distinct()
+
+write_csv(iucn_cells_map, file.path(dir_shiny, 'data', 'iucn_cells_app.csv'))
+
+if(!exists('am_cells')) {
+  am_cells <- read_csv(file.path(dir_anx, 'int', 'am_cells_spp_prob0.csv'), col_types = 'cd')
+}
+
+am_cells_map <- am_cells %>%
+  filter(am_sid %in% spp_list$am_sid) %>%
+  distinct()
+
+write_csv(am_cells_map, file.path(dir_shiny, 'data', 'am_cells_app.csv'))
+
+```
+
+
+
+## Get FAO regions
+
+``` {r copy_fao_rgns}
+
+# fao_files <- list.files(file.path(dir_git, 'clip_fao/fao_rgns'), pattern = 'fao_rgns')
+# 
+# file.copy(from = file.path(dir_git, 'clip_fao/fao_rgns', fao_files),
+#           to   = file.path(dir_shiny, 'data', fao_files %>%
+#                              str_replace('\\.', '_app.')))
+# fao_rgn <- rgdal::readOGR(dsn = 'data', layer = "fao_rgns2_app") %>%
+#   crop(extent(-180, 180, -90, 90))
+# rgdal::writeOGR(fao_rgn, dsn = 'data', layer = "fao_rgns2_app", driver = 'ESRI Shapefile', overwrite.layer = TRUE)
+
+```
+
+## Coral species
+
+Get coral species alignment file and bring it over here; clean it up a bit for easier processing.
+
+``` {r get_coral_spp_info}
+spp_coralmaps <- read_csv(file.path(dir_git, 'clip_depth', 'coral_spp_areas.csv'))
+
+comnames <- read_csv(file.path(dir_shiny, 'data', 'spp_list_quads_app.csv')) %>%
+  dplyr::select(iucn_sid, sciname, name)
+
+
+### recalc areas and overlaps
+iucn_coral_fixed <- spp_coralmaps %>%
+  gather(dist, dist_align, c(sm_perc_raw, sm_perc_shallow)) %>%
+  gather(area, area_ratio, c(area_ratio_raw, area_ratio_shallow)) %>%
+  filter(!(str_detect(dist, 'raw') & !(str_detect(area, 'raw')))) %>%
+  filter(!(str_detect(dist, 'shallow') & !(str_detect(area, 'shallow')))) %>%
+  mutate(method = ifelse(str_detect(dist, 'shallow'), '200 m clip', 'all depth')) %>%
+  select(iucn_sid, am_sid, sciname, dist_align, area_ratio, method) %>%
+  distinct() %>%
+  left_join(comnames, by = c('iucn_sid', 'sciname'))
+
+write_csv(iucn_coral_fixed, file.path(dir_shiny, 'data', 'coral_align_app.csv'))
+
+```
+
+### Get coral cells and info for mapping
+
+``` {r get_coral_info}
+
+### load iucn spp_cells from main analysis; clip to just those in app
+spp_list <- read_csv(file.path(dir_shiny, 'data', 'spp_list_app_stable.csv'))
+
+coral_cells_app <- read_csv(file.path(dir_git, 'clip_depth', 'coral_cells_iucn.csv')) %>%
+  filter(iucn_sid %in% spp_list$iucn_sid)
+# length(unique(coral_cells_app$iucn_sid))
+write_csv(coral_cells_app, file.path(dir_shiny, 'data', 'coral_cells_app.csv'))
+
+coral_spp_list  <- spp_list %>%
+  select(iucn_sid, sciname, name) %>%
+  filter(iucn_sid %in% coral_cells_app$iucn_sid) %>%
+  distinct()
+write_csv(coral_spp_list, file.path(dir_shiny, 'data', 'coral_spp_list.csv'))
+
+coral_quad_sum <- read_csv(file.path(dir_git, 'clip_depth', 'iucn_coral_quad_sum.csv'))
+write_csv(coral_quad_sum, file.path(dir_shiny, 'data', 'coral_quads_app.csv'))
+
+```
+
+
+``` {r simplify_bathymetry}
+library(maptools)
+library(tmap)
+
+bathy_shp_orig <- rgdal::readOGR(dsn = file.path(dir_git, 'clip_depth/ne_10m_bathymetry_K_200'),
+                            layer = 'ne_10m_bathymetry_K_200') %>%
+  rgeos::gUnaryUnion()
+
+keep_df <- data.frame(
+  id   = 1:length(bathy_shp_orig@polygons[[1]]@Polygons),
+  area = lapply(bathy_shp_orig@polygons, function(x) sapply(x@Polygons, function(y) y@area)) %>%
+    unlist(),
+  hole = lapply(bathy_shp_orig@polygons, function(x) sapply(x@Polygons, function(y) y@hole)) %>%
+    unlist()
+)
+quantile(keep_df$area)
+#           0%          25%          50%          75%         100% 
+# 2.319330e-10 2.026033e-02 3.717621e-02 9.453268e-02 4.108813e+04 
+
+### ditch the small polys.  Tolerance? 6e-2 (.06) is .25° x .25°; can go bigger,
+### perhaps up to a single .5° cell, or .25?
+hole_thresh <- .0625
+feat_thresh <- 2
+
+keep_df1 <- keep_df %>%
+  mutate(keep = TRUE,
+         # keep = ifelse(area < hole_thresh, FALSE, keep))
+         keep = ifelse(hole == TRUE  & area < hole_thresh, FALSE, keep),
+         keep = ifelse(hole == FALSE & area < feat_thresh, FALSE, keep))
+
+keep_ids <- keep_df1$id[keep_df1$keep]
+
+bathy_shp <- bathy_shp_orig
+
+bathy_shp@polygons[[1]]@Polygons <- bathy_shp@polygons[[1]]@Polygons[keep_ids]
+bathy_shp@polygons[[1]]@plotOrder <- 1:length(bathy_shp@polygons[[1]]@Polygons)
+bathy_shp@plotOrder <- 1:length(bathy_shp@polygons)
+
+### need to repair comments... ugh
+slot(bathy_shp, "polygons") <- lapply(slot(bathy_shp, "polygons"), checkPolygonsHoles) 
+
+# # will assign comments, seen by: 
+# lapply(slot(bathy_shp, "polygons"), comment) 
+# 
+# # or remove them by: 
+# slot(bathy_shp, "polygons") <- lapply(slot(bathy_shp, "polygons"), 
+#    "comment<-", NULL) 
+
+### convert to spatial polygons dataframe
+bathy_shp1 <- bathy_shp %>%
+  SpatialPolygonsDataFrame(data = data.frame('depth' = 200))
+
+### check new map against original map
+tm_shape(bathy_shp_orig) + 
+  tm_polygons(col = 'blue', lwd = 0) + 
+  tm_shape(bathy_shp1) + 
+  tm_polygons(col = 'red', 
+              border.col = 'red3', 
+              lwd = 0, alpha = .8)
+
+writePolyShape(bathy_shp1,
+               file.path(dir_shiny, 'data/ne_10m_bathymetry_K_200/bathy_app_simple'))
+file.copy(from = file.path(dir_git, 'clip_depth/ne_10m_bathymetry_K_200/ne_10m_bathymetry_K_200.prj'),
+          to   = file.path(dir_shiny, 'data/ne_10m_bathymetry_K_200/bathy_app_simple.prj'),
+          overwrite = FALSE)
+# rgdal::writeOGR(bathy_shp,
+#                 dsn    = path.expand(file.path(dir_shiny, 'data/ne_10m_bathymetry_K_200')),
+#                 layer  = 'bathy_app_simple',
+#                 driver = 'ESRI Shapefile',
+#                 overwrite_layer = TRUE)
+
+```
+
+***
+
+``` {r prov_footer, results = 'asis'}
+prov_wrapup(commit_outputs = FALSE)
+```
+
