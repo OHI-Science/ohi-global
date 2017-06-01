@@ -5,6 +5,9 @@
 ## format used by the toolbox
 #####################################
 
+library(dplyr)
+library(tidyr)
+
 targets <- read.csv('eez_layers_meta_data/layers_eez_targets.csv', stringsAsFactors=FALSE) %>%
   mutate(dimension = ifelse(dimension %in% c("status", "trend"), NA, dimension)) %>%
   filter(!is.na(dimension) | !is.na(goal)) %>%

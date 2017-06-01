@@ -3,8 +3,8 @@
 
 # STEP 2: Install the appropriate ohicore, if necessary:
 library(devtools)
-devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
-#devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+#devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
+devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 # STEP 3: If changes are made to any of the files in eez_layers_meta_data, run these:
@@ -20,6 +20,7 @@ source("eez_layers_meta_data/update_targets_with_pre_res.R")
 # STEP 4: Revise relevant code below and run assessments!
 library(ohicore)
 library(zoo)
+library(stringr)
 
 setwd("../ohi-global")
 
@@ -45,34 +46,35 @@ scenarios = list(
     fld_dir      = 'dir_2016a',
     fld_fn       = 'fn_2016a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-  eez2015     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2015a',
-    fld_fn       = 'fn_2015a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T) ,
-
-  eez2014     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2014a',
-    fld_fn       = 'fn_2014a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-
-  eez2013     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2013a',
-    fld_fn       = 'fn_2013a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T),
-
-  eez2012     = list(
-    layer   = 'layers_eez',
-    fld_dir      = 'dir_2012a',
-    fld_fn       = 'fn_2012a',
-    f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
     do           = T)
+  # ,
+  # eez2015     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2015a',
+  #   fld_fn       = 'fn_2015a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T) ,
+  # 
+  # eez2014     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2014a',
+  #   fld_fn       = 'fn_2014a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T),
+  # 
+  # eez2013     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2013a',
+  #   fld_fn       = 'fn_2013a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T),
+  # 
+  # eez2012     = list(
+  #   layer   = 'layers_eez',
+  #   fld_dir      = 'dir_2012a',
+  #   fld_fn       = 'fn_2012a',
+  #   f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
+  #   do           = T)
 )
 
 ### sync functions.R: 
@@ -81,9 +83,7 @@ for (dir in c('eez2012','eez2013', 'eez2014', 'eez2015')){
   stopifnot(file.copy('eez2016/conf/functions.R', file.path(dir, 'conf/functions.R'), overwrite=T))
 }
 
-
-
-for (i in 1:length(scenarios)){  #i=2
+for (i in 1:length(scenarios)){  #i=1
   
   # vars
   scenario   = names(scenarios)[[i]]
@@ -92,10 +92,10 @@ for (i in 1:length(scenarios)){  #i=2
   layer = scenarios[[i]][['layer']]
   do         = scenarios[[i]][['do']]
   
-    print(scenario)
-    print(fld_dir)
-    print(fld_fn)
-    print(do)
+  print(scenario)
+  print(fld_dir)
+  print(fld_fn)
+  print(do)
   
   
   if (!do) next()
@@ -109,11 +109,11 @@ for (i in 1:length(scenarios)){  #i=2
   }
   
   if (do.layercopy){
-
-## Read in the layers.csv file with paths to the data files
- g <- read.csv(sprintf("%s.csv", layer), stringsAsFactors = FALSE, na.strings='')    
- 
- # carry forward file paths and names when no data for 2014 and/or 2015
+    
+    ## Read in the layers.csv file with paths to the data files
+    g <- read.csv(sprintf("%s.csv", layer), stringsAsFactors = FALSE, na.strings='')    
+    
+    # carry forward file paths and names when no data for 2014 and/or 2015
     if (as.numeric(gsub("[a-z]", "", scenario)) > 2013){
       g = g %>%
         dplyr::mutate(
@@ -125,7 +125,7 @@ for (i in 1:length(scenarios)){  #i=2
         dplyr::mutate(
           dir_2016a = ifelse(is.na(dir_2016a), dir_2015a, dir_2016a),
           fn_2016a = ifelse(is.na(fn_2016a), fn_2015a, fn_2016a))
-      }
+    }
     
     # replaces 'ohiprep' and 'neptune_data' parts of the filepath with the full file paths
     # 'ohiprep' files are located here: https://github.com/OHI-Science/ohiprep
@@ -189,11 +189,11 @@ for (i in 1:length(scenarios)){  #i=2
   if (do.calculate){
     # calculate scores from directory of scenario
     setwd(sprintf('%s', scenario)) # load_all(dirs$ohicore)
-   
+    
     # load configuration and layers
     conf   = Conf('conf')
     layers = Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
-  
+    layers$data$scenario_year <-  as.numeric(substring(scenario, 4,7)) 
     
     # calculate scores
     #try({    })
@@ -231,6 +231,10 @@ for (i in 1:length(scenarios)){  #i=2
 }
 
 
+
+
+
+
 ### NOTE: There is a warning that some regions have a MAR score, but a zero weight
 ###  This seems fine.  It appears to be because we use a running average to calculate MAR scores
 ###  but a running average isn't used to calculate the weights.  In these cases, the score is entirely based
@@ -242,7 +246,7 @@ source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-            fileSave="eez2016_new_fis_pressures")
+            fileSave="eez2016_new_CW")
 
 # looking within a goal:
 scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")
