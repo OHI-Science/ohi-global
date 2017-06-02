@@ -44,66 +44,61 @@ ui <- navbarPage(
     )
   ),
 
-  tabPanel('Map alignment',
+  tabPanel('Trend v Score',
     sidebarPanel(
-      includeMarkdown('pages/align_tab_side1.md'),
-      selectInput('taxa_quad', 'Choose a taxon:',
-                  choices = c('all', unique(spp_list$spp_group_text) %>% sort()),
-                  selected = 'all'),
-      radioButtons('expert_rev', label = 'AquaMaps review status',
-                   choices = list('All'             = 'all',
-                                  'Expert reviewed' = 'expert'),
-                   selected = 'all'),
+      # includeMarkdown('pages/trend_v_score_tab_side1.md'),
+      selectInput('tvs_georegion', 'Choose a georegion to view:',
+                  choices = c('Global', continents %>% sort()),
+                  selected = 'Global'),
+      checkboxInput('tvs_colors', 
+                    label = 'Color-code regions?',
+                    value = FALSE),
       includeMarkdown('pages/footer_sidebar.md')
     ),
     mainPanel(
-      includeMarkdown('pages/align_tab_main1.md'),
-      # plotlyOutput('quad_plot', height = '300px'),
-      hr(),
-      includeMarkdown('pages/align_tab_main2.md')
+      # includeMarkdown('pages/tvs_tab_main1.md'),
+      plotlyOutput('tvs_plot', height = '300px'),
+      hr()
+      # includeMarkdown('pages/tvs_tab_main2.md')
       # plotOutput('barchart', height = '300px')
     )
   ),
-
-  tabPanel('Species maps',
+  
+  tabPanel('Change in Rank',
     sidebarPanel(
-      includeMarkdown('pages/map_tab_side1.md'),
-      selectInput('spp_group', 'Select a taxonomic group:',
-                  choices = unique(spp_list$spp_group_text) %>% sort()),
-      selectInput('species', 'Then select a species:',
-                  choices = unique(spp_list$name) %>% sort()),
-      radioButtons('show_maps', label = 'Data source',
-                   choices = list('AquaMaps' = 'am',
-                                  'IUCN'     = 'iucn',
-                                  'Both'     = 'both'),
-                   selected = 'both'),
-      includeMarkdown('pages/map_tab_side2.md'),
-      # plotOutput('mini_quad', height = '150px'),
+      # includeMarkdown('pages/trend_v_score_tab_side1.md'),
+      selectInput('rankchange_georgn', 'Choose a georegion to view:',
+                  choices = c('Global', continents %>% sort()),
+                  selected  = 'Global'),
+      checkboxInput('rankchange_colors', 
+                    label = 'Color-code regions?',
+                    value = FALSE),
       includeMarkdown('pages/footer_sidebar.md')
     ),
     mainPanel(
-      # includeMarkdown('pages/map_tab_main1.md'),
-      # plotOutput('compare_map') #, width = '100%')
+      # includeMarkdown('pages/tvs_tab_main1.md'),
+      plotlyOutput('rankchange_plot', height = '300px'),
+      hr()
+      # includeMarkdown('pages/tvs_tab_main2.md')
+      # plotOutput('barchart', height = '300px')
     )
   ),
-
-  tabPanel('Coral depth',
-    sidebarPanel(
-      includeMarkdown('pages/coral_tab_side1.md'),
-      selectInput('coral_spp', 'Select a coral species:',
-                  choices = coral_spp_list$name %>%
-                                     sort()),
-      includeMarkdown('pages/coral_tab_side2.md'),
-      # plotOutput('coral_quad', height = '150px'),
-      includeMarkdown('pages/footer_sidebar.md')
-    ),
-    mainPanel(
-      includeMarkdown('pages/coral_tab_main1.md'),
-      # plotOutput('coral_map'),
-      includeMarkdown('pages/coral_tab_main2.md'),
-      div(img(src='barchart_coral_quads.png', height = 158, width = 750), style="text-align: center;")
-      # plotOutput('coral_barchart', height = '250px')
-    )
+  
+  tabPanel('Fig 2',
+           sidebarPanel(
+             # includeMarkdown('pages/trend_v_score_tab_side1.md'),
+             checkboxInput('fig2_show_all', 
+                           label = 'Show individual countries?',
+                           value = FALSE),
+             includeMarkdown('pages/footer_sidebar.md')
+           ),
+           mainPanel(
+             # includeMarkdown('pages/tvs_tab_main1.md'),
+             plotlyOutput('fig2_plot', height = '300px'),
+             hr()
+             # includeMarkdown('pages/tvs_tab_main2.md')
+             # plotOutput('barchart', height = '300px')
+           )
   ),
   
   tabPanel('Tables',

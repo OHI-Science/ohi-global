@@ -1,39 +1,12 @@
 ### server.R
 
-# source('server_fxns.R')
+source('server_fxns.R')
 
 server <- shinyServer(function(input, output, session) {
   
-  ### Species Map Function ###
-  spp_map   <- reactiveValues()
-  coral_map <- reactiveValues()
-  ### This function takes a single species scientific name as input, then grabs 
-  ### all occurrence cells and associated probability per cell
-  
-  ### for Species Map tab: upon selecting a group, update species list choices
-  # observeEvent(input$spp_group, 
-  #   {
-  #     message('Observed change in spp_group; updating select input')
-  #     spp_choices <- spp_list %>%
-  #       filter(spp_group_text == input$spp_group) %>%
-  #       distinct() %>%
-  #       .$name %>%
-  #       sort()
-  #     updateSelectInput(session, inputId = "species",
-  #                       choices = spp_choices)
-  #   }
-  # )
-  
-  ### For Species map tab:  upon selecting a species, get map cells
-  # observeEvent(
-  #   {input$species}, 
-  #   {
-  #     message('observed change in input$species; getting spp_map dataframe')
-  #     spp_map$df <- get_spp_map_df(input$species)
-  #     print(head(spp_map$df))
-  #   }
-  # )
-  
+
+  ### For Trend v Status tab:  upon selecting a georegion and/or checkbox:
+
   ### For Species map tab:  upon a change in the spp_map$df OR the input$show_maps,
   ### create the map to show AM, IUCN, or Both
   # create_map <- observeEvent(
@@ -54,10 +27,38 @@ server <- shinyServer(function(input, output, session) {
   #   spp_map$map
   # }) 
   # 
-  # ### For Map Alignment tab
-  # output$quad_plot <- renderPlotly({
-  #   create_quadplot(input$taxa_quad, input$expert_rev)
-  # })
+  ### For Map Alignment tab
+  output$tvs_plot <- renderPlotly({
+    
+    if(input$tvs_georegion == 'Global') {
+      tvs_plot <- create_tvs_plot_global(input$tvs_colors)
+    } else {
+      tvs_plot <- create_tvs_plot_georgn(input$tvs_georegion, input$tvs_colors)
+    }
+    
+    tvs_plot
+    
+  })
+  
+  output$rankchange_plot <- renderPlotly({
+    
+    if(input$rankchange_georgn == 'Global') {
+      rankchange_plot <- create_rankchange_plot_global(input$rankchange_colors)
+    } else {
+      rankchange_plot <- create_rankchange_plot_georgn(input$rankchange_georgn, input$rankchange_colors)
+    }
+    
+    rankchange_plot
+    
+  })
+  
+  output$fig2_plot <- renderPlotly({
+    
+    fig2_plot <- create_fig2_plot(input$fig2_show_all)
+    
+  })
+  
+  
   # 
   # output$barchart <- renderPlot({
   #   create_barchart(input$expert_rev)

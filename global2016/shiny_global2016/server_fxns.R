@@ -1,8 +1,9 @@
 ### server_fxns.R
-library(raster)
-library(stringr)
-library(tmap)
-library(RColorBrewer)
+# library(stringr)
+# library(tmap)
+# library(RColorBrewer)
+
+### Set up basic stuff
 
 # create a blank ggplot theme
 ggtheme_basic <- function(textsize = 10) {
@@ -18,457 +19,358 @@ ggtheme_basic <- function(textsize = 10) {
           plot.title = element_text(size = textsize * 1.5))
 }
 
+goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+goal_names <- data.frame(goal = goals, 
+                         goal_long = c("Index", 
+                                       "Artisanal opportunities",
+                                       "Species condition (Biodiversity)",
+                                       "Biodiversity",
+                                       "Habitat (Biodiversity)",
+                                       "Coastal protection",
+                                       "Carbon storage",
+                                       "Clean water",
+                                       "Economies",
+                                       "Livelihoods & economies",
+                                       "Livelihoods",
+                                       "Fisheries (Food provision)",
+                                       "Food provision",
+                                       "Mariculture (Food provision)",
+                                       "Iconic species (Sense of place)",
+                                       "Sense of place",
+                                       "Lasting special places (Sense of place)",
+                                       "Natural products",
+                                       "Tourism & recreation"))
 
-#################################.
-##### Species Map Functions #####
-#################################.
-# These functions take a single species scientific name as input, then grab all 
-# occurrence cells and associated Aquamaps probability and/or IUCN proportional area
-# per cell
+############################.
+##### Load data frames #####
+############################.
 
-get_spp_map_df <- function(species) { ### species <- spp_list$name[1]
-  message('in get_spp_map_df(), looking for species: ', species)
+# setwd('~/github/ohi-global/global2016/shiny_global2016')
+index_2016 <- read_csv('data/scores_eez2016.csv') %>%
+  select(region_id, country, index_score = Index)
 
-  spp_id <- spp_list %>%
-    filter(name == species) %>%
-    dplyr::select(am_sid, iucn_sid, name) %>%
-    distinct()
+index_2012 <- read_csv("data/scores_eez2012.csv") %>%
+  select(region_id, country, index_score = Index)
+
+trend_2016 <- read_csv('data/trends_2016.csv') %>%
+  select(region_id, index_trend = Index)
+
+georgns <- read_csv('data/georegion_labels.csv') %>%
+  select(-world, -country) ### country already in index2016
+
+index_gl2016 <- index_2016$index_score[index_2016$region_id == 0]
+trend_gl2016 <- trend_2016$index_trend[trend_2016$region_id == 0]
+
+### set up dataframes for plots
+trend_v_score_df <- trend_2016 %>%
+  left_join(index_2016, by = 'region_id') %>%
+  left_join(georgns,   by = 'region_id') %>%
+  filter(region_id != 0)
+
+rank_2016 <- index_2016 %>%
+  select(region_id, country, score2016 = index_score) %>%
+  filter(region_id != 0) %>%
+  arrange(score2016) %>%
+  mutate(rank2016 = min_rank(score2016))
+
+rank_2012 <- index_2012 %>%
+  select(region_id, country, score2012 = index_score) %>%
+  filter(region_id != 0) %>%
+  arrange(score2012) %>%
+  mutate(rank2012 = min_rank(score2012))
+
+rankchange_all_df <- rank_2012 %>%
+  left_join(rank_2016, by=c("region_id", "country")) %>%
+  left_join(georgns, by = 'region_id') %>%
+  mutate(score_delta = score2016 - score2012) %>%
+  mutate(rank_delta = rank2016 - rank2012)
+
+
+############################################.
+##### Functions for trend-vs-score tab #####
+############################################.
+
+create_tvs_plot_global <- function(georgn_color) {
+  ### In this version, use georgn_color == TRUE to distinguish continents
+  ### by color; otherwise simply include as a key.
   
-  iucn_spp_map <- iucn_spp_cells %>%
-    filter(iucn_sid %in% spp_id$iucn_sid) %>%
-    group_by(loiczid) %>%        
-    summarize(iucn_sid = first(iucn_sid))
-      ### The group_by() and summarize() are to eliminate duped cells (e.g. 
-      ### one am_sid matching two iucn_sids)
-    
-  am_spp_map   <- am_spp_cells %>%
-    filter(am_sid == spp_id$am_sid)
+  message('in create_tvs_plot_global()')
   
-  spp_map_df <- full_join(iucn_spp_map, am_spp_map, by = 'loiczid') %>%
-    mutate(am   = ifelse(is.na(am_sid), NA, 1),
-           iucn = ifelse(is.na(iucn_sid), NA, 2)) %>%
-    dplyr::select(loiczid, am, iucn) %>%
-    mutate(both = ifelse(!is.na(iucn), ### IUCN presence, so...
-                              ifelse(is.na(am), 2, 3), ### if no AM, assign 2; if AM, assign 3. 
-                              am))          ### no IUCN, so assign 1 for AM and NA for none
+  tvs_df <- trend_v_score_df
   
-  return(spp_map_df)
-}
-
-get_rast <- function(spp_map_df, type, legend_classes = c(1, 2, 3)) {
-  ### legend classes is to force the legend to include all, even if
-  ### some classes are missing. 
-  ### e.g. c(1, 2, 3) for AM/IUCN/Both, c(1, 2) for shallow/deep corals
-  message('in get_rast()')
-  message('... rasterizing to type = ', type)
-
-  force_legend <- data.frame(loiczid = legend_classes)
-  force_legend[type] <- legend_classes
-      ### annoying but adding back in one of each value, to force the legend
-
-  spp_map_type <- spp_map_df %>%
-    bind_rows(force_legend)
-  rast_obj <- raster::subs(loiczid_raster, spp_map_type, 
-                     by    = 'loiczid', 
-                     which = type, 
-                     subsWithNA = TRUE) %>%
-    setNames('presence')
+  tvs_plot <- ggplot2::ggplot(tvs_df, aes(x = index_score, y = index_trend)) +
+    ggtheme_basic()
   
-  return(rast_obj)
-}
-
-assemble_map_tmap <- function(map_rast, spp) {
-  message('in assemble_map_tmap()')
-  map_obj <- tm_shape(fao_rgn) +
-    tm_polygons(border.col = 'grey40',
-                col = '#f6f8ff',
-                lwd = .25) +
-    tm_shape(land, is.master = TRUE) +
-      tm_polygons(border.col = 'grey25', 
-                  col = 'grey80', 
-                  lwd = 0.25) + 
-    tm_shape(map_rast) +
-      tm_raster(# palette = c('#FFAEB9', '#41B6C4', '#0C2C84'),
-                palette = c('#1b9e77', '#d95f02', '#7520b3'),
-                style   = 'cat',
-                breaks  = c(1, 2, 3),
-                labels  = c('Aquamaps',   'IUCN',    'Both'),
-                auto.palette.mapping = FALSE,
-                colorNA = NULL,
-                showNA  = TRUE,
-                title = spp,
-                alpha = 1)  +
-    tm_layout(legend.text.size = 1,
-              legend.title.size = 1.2,
-              legend.outside = FALSE,
-              legend.position = c('left', 'bottom'),
-              legend.bg.color = '#f6f8ff',
-              legend.bg.alpha = .9,
-              outer.margins = 0, inner.margins = 0, asp = 2.1)
-        
-  return(map_obj)
-}
-
-#####################################################.
-##### Functions for quadplots and barcharts tab #####
-#####################################################.
-
-create_barchart <- function(expt_rev) {
-  message('in create_barchart()')
-  
-  if(expt_rev != 'all') {
-    spp_gp_quadrants <- quad_gp_list %>%
-      filter(expert)
+  if(georgn_color) {
+    tvs_plot <- tvs_plot +
+      geom_point(aes(color = continent, text = paste0('country: ', country)),
+                 shape = 19, size = 2, alpha = 0.5) +
+      scale_color_brewer(palette = 'Dark2')
   } else {
-    spp_gp_quadrants <- quad_gp_list %>%
-      filter(!expert)
+    tvs_plot <- tvs_plot +
+      geom_point(aes(key = continent, text = paste0('country: ', country)),
+                 shape = 19, size = 2, color = 'grey20', alpha = 0.5)
   }
   
-  quad_names <- data.frame('quad' = c('q4', 'q3', 'q2', 'q1'),
-                           'quad_name' = factor(c('poorly aligned', 
-                                                  'area-aligned', 
-                                                  'dist-aligned',
-                                                  'well-aligned'),
-                                                ordered = TRUE))
-  break_nums <- seq(0, 100, 20)
+  tvs_plot <- tvs_plot +
+    ### add zero trend indicator:
+    geom_hline(yintercept = 0, color = 'red', size = .5, linetype = 3, alpha = .5) +
+    ### add global mean status indicator:
+    geom_vline(xintercept = index_gl2016, color = 'red', size = .5, linetype = 3, alpha = .5) +
+    ### add global linear model line:
+    stat_smooth(method = lm, se = FALSE, color = 'grey20', size = 0.5) +
+    labs(y = 'Average change in OHI score per year)', 
+         x = 'OHI score (2016)') 
   
-  spp_gp_quadrants <- spp_gp_quadrants %>% 
-    mutate(quad = factor(quad, levels = c('q4', 'q3', 'q2', 'q1'))) %>%
-    transform(spp_group_text = reorder(spp_group_text, pct_q1))
-  
-  barchart_spp_gp_quads <- ggplot(spp_gp_quadrants, 
-                                  aes(x = spp_group_text, 
-                                      y = pct_quad,
-                                      fill = quad, 
-                                      weight = pct_quad)) +
-    ggtheme_basic(textsize = 12) +
-    geom_bar(stat = 'identity', alpha = 1) +
-    scale_fill_manual(values = c('q1' = '#4dac26',
-                                 'q2' = '#b8e186', 
-                                 'q3' = '#f1b6da',
-                                 'q4' = '#d01c8b'),
-                      labels = quad_names$quad_name,
-                      guide = guide_legend(reverse = TRUE)) +
-    scale_y_continuous(expand = c(0, 0), 
-                       limits = c(0, 1.1),
-                       breaks = break_nums/100,
-                       labels = sprintf('%s%%', break_nums)) + 
-    ### add grid lines; horizontal but then get flipped
-    geom_hline(yintercept = break_nums/100, size = 0.25, color = 'white', alpha = .5) +
-    ### add text
-    geom_text(aes(label = sprintf('n = %s', n_spp), y = 1.01), hjust = 0, 
-              size = 3,
-              color = 'grey30') +
-    coord_flip() +
-    labs(x = 'Taxonomic Group', 
-         y = 'Percent of species by quadrant', 
-         fill = 'Alignment')
-  
-  return(barchart_spp_gp_quads)
+  return(tvs_plot)
   
 }
 
-create_quadplot <- function(taxa_sel, expt_rev) {
-  message('in create_quadplot()')
+create_tvs_plot_georgn <- function(georgn, georgn_color) {
+  ### In this version, use georgn_color == TRUE to distinguish subregions
+  ### by color; otherwise simply include as a key.
   
-  if(taxa_sel == 'all') {
-    quad_list_tmp <- quad_list
+  message('in create_tvs_plot_georgn()')
+  
+  tvs_df <- trend_v_score_df %>%
+    filter(continent == georgn)
+  
+  tvs_plot <- ggplot2::ggplot(tvs_df) +
+    ggtheme_basic() +
+    geom_point(data = trend_v_score_df, aes(x = index_score, y = index_trend),
+               color = 'grey40', shape = 19, size = 2, alpha = 0.1)
+    
+  if(georgn_color) {
+    tvs_plot <- tvs_plot +
+      geom_point(aes(x = index_score, y = index_trend, 
+                     color = subregion, text = paste0('country: ', country)),
+                 shape = 19, size = 2, alpha = 0.7) +
+    scale_color_brewer(palette = 'Dark2')
   } else {
-    quad_list_tmp <- quad_list %>%
-      filter(spp_group_text == taxa_sel)
+    tvs_plot <- tvs_plot +
+      geom_point(aes(x = index_score, y = index_trend, 
+                     key = subregion, text = paste0('country: ', country)),
+                 shape = 19, size = 2, color = 'grey20', alpha = 0.5)
   }
   
-  if(expt_rev != 'all') {
-    quad_list_tmp <- quad_list_tmp %>%
-      filter(reviewed)
+  tvs_plot <- tvs_plot +
+    ### add zero trend indicator:
+    geom_hline(yintercept = 0, color = 'red', size = .5, linetype = 3, alpha = .5) +
+    ### add global mean status indicator:
+    geom_vline(xintercept = index_gl2016, color = 'red', size = .5, linetype = 3, alpha = .5) +
+    ### add global linear model line:
+    stat_smooth(data = trend_v_score_df,
+                aes(x = index_score, y = index_trend),
+                method = lm, se = FALSE,
+                color = 'grey70', size = 0.5, alpha = .3) +
+    ### add regional linear model line:
+    stat_smooth(method = lm, se = FALSE, 
+                aes(x = index_score, y = index_trend),
+                color = 'grey20', size = 0.5, alpha = 1, fullrange = TRUE) +
+    labs(y = 'Average change in OHI score per year)', 
+         x = 'OHI score (2016)') 
+  
+  return(tvs_plot)
+  
+}
+
+############################################.
+##### Functions for change-in-rank tab #####
+############################################.
+
+create_rankchange_plot_global <- function(georgn_color) {
+  ### In this version, use georgn_color == TRUE to distinguish subregions
+  ### by color; otherwise simply include as a key.
+  
+  message('in create_rankchange_plot_georgn()')
+  
+  rankchange_df <- rankchange_all_df
+  
+  rankchange_plot <- ggplot2::ggplot(rankchange_df, aes(x = score_delta, y = rank_delta)) +
+    ggtheme_basic()
+  
+  if(georgn_color) {
+    rankchange_plot <- rankchange_plot +
+      geom_point(aes(color = continent, text = paste0('country: ', country)),
+                 shape = 19, size = 2, alpha = 0.7) +
+      scale_color_brewer(palette = 'Dark2')
+  } else {
+    rankchange_plot <- rankchange_plot +
+      geom_point(aes(key = continent, text = paste0('country: ', country)),
+                 shape = 19, size = 2, color = 'grey20', alpha = 0.5)
   }
   
-  ### define windows for labels
-  q1 <- c('x1' = 84, 'x2' = 98, 'y1' = 92.5, 'y2' = 97.5)
-  q2 <- c('x1' =  2, 'x2' = 22, 'y1' = 92.5, 'y2' = 97.5)
-  q3 <- c('x1' = 84, 'x2' = 98, 'y1' =  2.5, 'y2' = 7.5)
-  q4 <- c('x1' =  2, 'x2' = 18, 'y1' =  2.5, 'y2' = 7.5)
+  rankchange_plot <- rankchange_plot +
+    ### what are these points?
+    geom_point(data = rankchange_df %>% filter(score_delta > 0 & rank_delta < 0), 
+               aes(key = subregion, text = paste0('country: ', country)),
+               shape=19, size=1.75, color="#D73027", alpha=0.75) +
+    geom_point(data = rankchange_df %>% filter(score_delta < 0 & rank_delta > 0), 
+               aes(key = subregion, text = paste0('country: ', country)),
+               shape=19, size=1.75, color="#4575B4", alpha=0.75) +
+    coord_cartesian(ylim = c(-125, 100), xlim = c(-20, 11)) +
+    ### add global linear model line:
+    stat_smooth(data = rankchange_all_df,
+                method = lm, se = FALSE,
+                color = 'grey70', size = 0.5, alpha = .3) +
+    labs(y = 'Rank change (2012 to 2016)', 
+         x = 'Score change (2012 to 2016)') 
   
-  quad_list_labs <- quad_list_tmp %>%
-    rename(x = area_ratio, y = dist_align) %>%
-    mutate(fade = FALSE,
-           fade = ifelse((x > q1[1] & x < q1[2] & y > q1[3] & y < q1[4]), TRUE, fade),
-           fade = ifelse((x > q2[1] & x < q2[2] & y > q2[3] & y < q2[4]), TRUE, fade),
-           fade = ifelse((x > q3[1] & x < q3[2] & y > q3[3] & y < q3[4]), TRUE, fade),
-           fade = ifelse((x > q4[1] & x < q4[2] & y > q4[3] & y < q4[4]), TRUE, fade)) %>%
-    rename(area_ratio = x, dist_align = y)
+  return(rankchange_plot)
+  
+}
+
+create_rankchange_plot_georgn <- function(georgn, georgn_color) {
+  ### In this version, use georgn_color == TRUE to distinguish subregions
+  ### by color; otherwise simply include as a key.
+  
+  message('in create_rankchange_plot_georgn()')
+  
+  rankchange_df <- rankchange_all_df %>%
+    filter(continent == georgn)
+  
+  rankchange_plot <- ggplot2::ggplot(rankchange_df, aes(x = score_delta, y = rank_delta)) +
+    ggtheme_basic() +
+    geom_point(data = rankchange_all_df,
+               color = 'grey40', shape = 19, size = 2, alpha = 0.1)
+  
+  if(georgn_color) {
+    rankchange_plot <- rankchange_plot +
+      geom_point(aes(color = subregion, text = paste0('country: ', country)),
+                 shape = 19, size = 2, alpha = 0.7) +
+      scale_color_brewer(palette = 'Dark2')
+  } else {
+    rankchange_plot <- rankchange_plot +
+      geom_point(aes(key = subregion, text = paste0('country: ', country)),
+                 shape = 19, size = 2, color = 'grey20', alpha = 0.5)
+  }
+  
+  rankchange_plot <- rankchange_plot +
+    ### what are these points?
+    # geom_point(data = rankchange_df %>% filter(score_delta > 0 & rank_delta < 0), 
+    #            aes(key = subregion, text = paste0('country: ', country)),
+    #            shape=19, size=1.75, color="#D73027", alpha=0.75) +
+    # geom_point(data = rankchange_df %>% filter(score_delta < 0 & rank_delta > 0), 
+    #            aes(key = subregion, text = paste0('country: ', country)),
+    #            shape=19, size=1.75, color="#4575B4", alpha=0.75) +
+    coord_cartesian(ylim = c(-125, 100), xlim = c(-20, 11)) +
+    ### add global linear model line:
+    stat_smooth(data = rankchange_all_df,
+                method = lm, se = FALSE,
+                color = 'grey70', size = 0.5, alpha = .3) +
+    ### add regional linear model line:
+    stat_smooth(method = lm, se = FALSE, 
+                color = 'grey20', size = 0.5, alpha = 1, fullrange = TRUE) +
+    labs(y = 'Rank change (2012 to 2016)', 
+         x = 'Score change (2012 to 2016)') 
+  
+  return(rankchange_plot)
+  
+}
+
+### NMLE trend plot
+### set up dataframes:
+
+nlme_results_noLE <- read_csv('data/nlme_results_noLE.csv') %>%
+  mutate(trend = round(trend, 5),
+         trend_wts = round(trend_wts, 5))
+
+levels_goals <- c("Index", as.character(rev(nlme_results_noLE$goal_long[nlme_results_noLE$goal!="Index"][order(nlme_results_noLE$trend[nlme_results_noLE$goal!="Index"])])))
+
+nlme_results_noLE <- nlme_results_noLE %>%
+  mutate(goal_long = factor(goal_long, levels = rev(levels_goals))) %>%
+  arrange(goal_long)
+
+nlme_data_noLE <- read_csv('data/nlme_data_noLE.csv') %>%
+  mutate(trend     = round(trend, 5),
+         goal_long = factor(goal_long, levels = rev(levels_goals))) %>%
+  left_join(index_2016 %>%
+              select(region_id, country),
+            by = 'region_id')
+
+create_fig2_plot <- function(fig2_show_pts) {
+  
+  if(!exists('fig2_show_pts')) fig2_show_pts <- TRUE # fig2_show_pts <- FALSE
     
+  ### Initialize plot
+  fig2_plot <- ggplot(nlme_results_noLE, aes(x = trend, y = goal_long)) +
+    ggtheme_basic()
   
-  
-  scatter_quadplot <- ggplot(quad_list_labs,
-                             aes(x = area_ratio, 
-                                 y = dist_align,
-                                 key = name,
-                                 key2 = reviewed)) +
-    ggtheme_basic(textsize = 12) +
-    ### color the quadrant backgrounds:
-    annotate('rect', xmin = area_align_mean, xmax = 100, 
-             ymin = dist_align_mean, ymax = 100, 
-             alpha = .3, 
-             fill= '#4dac26')  + 
-    annotate('rect', xmax = area_align_mean, xmin =   0, 
-             ymin = dist_align_mean, ymax = 100, 
-             alpha = .3, 
-             fill= '#b8e186') + 
-    annotate('rect', xmin = area_align_mean, xmax = 100, 
-             ymax = dist_align_mean, ymin =   0, 
-             alpha = .3, 
-             fill= '#f1b6da') + 
-    annotate('rect', xmax = area_align_mean, xmin =   0, 
-             ymax = dist_align_mean, ymin =   0, 
-             alpha = .3, 
-             fill= '#d01c8b') + 
-    geom_point(data = quad_list_labs %>% filter(!fade),
-               color = '#4d4dac', alpha = .6) + 
-    geom_point(data = quad_list_labs %>% filter(fade),
-               color = '#4d4dac', alpha = .15)
-  
-  ### Manage scales for color and size 
-  scatter_quadplot <- scatter_quadplot +
-    scale_x_continuous(expand = c(0, 0), 
-                       limits = c(-1, 101),
-                       breaks = c(seq(0, 100, 25)),
-                       labels = c('0%', '25%', '50%', '75%', '100%')) +
-    scale_y_continuous(expand = c(0, 0),
-                       limits = c(-1, 101),
-                       breaks = c(seq(0, 100, 25)),
-                       labels = c('0%', '25%', '50%', '75%', '100%'))
-  
-  ### here are quadrant and mean labels:
-  scatter_quadplot <- scatter_quadplot +
-    annotate('text', x = 91, y = 95, hjust = 1, vjust = .5, size = 3, color = 'grey20', 
-             fontface = 'bold', label = 'Well-aligned') + 
-    annotate('text', x =  12, y = 95, hjust = 0, vjust = .5, size = 3, color = 'grey20',
-             fontface = 'bold', label = 'Distribution-aligned') + 
-    annotate('text', x = 91, y =  5, hjust = 1, vjust = .5, size = 3, color = 'grey20',
-             fontface = 'bold', label = 'Area-aligned') + 
-    annotate('text', x =  10, y =  5, hjust = 0, vjust = .5, size = 3, color = 'grey20',
-             fontface = 'bold', label = 'Poorly aligned') +
-  
-    annotate(geom = 'text',
-             x = area_align_mean, y = 5,
-             hjust = 0, vjust = 0,
-             color = 'grey30', 
-             size = 2,
-             fontface = 'bold.italic', angle = 90,
-             label = sprintf('Mean = %s%%', round(area_align_mean, 1))) +
-    annotate(geom = 'text',
-             x = 5, y = dist_align_mean,
-             hjust = 0, vjust = 0,
-             color = 'grey30', 
-             size = 2,
-             fontface = 'bold.italic', angle = 0,
-             label = sprintf('Mean = %s%%', round(dist_align_mean, 1)))
-  
-  scatter_quadplot <- scatter_quadplot +
-    labs(x = 'Area ratio', 
-         y = 'Distribution alignment')
-  
-  return(scatter_quadplot)
-}
-
-create_miniquad <- function(spp_sel) {
-  message('in create_miniquad()')
-  
-  scatter_miniquad <- ggplot(quad_list %>% 
-                               filter(name == spp_sel),
-                             aes(x = area_ratio, 
-                                 y = dist_align)) +
-    ggtheme_basic(textsize = 8) +
-    theme(panel.grid.major = element_line(color = 'grey80'),
-          axis.text  = element_blank()) +
-    ### color the quadrant backgrounds:
-    annotate('rect', xmin = area_align_mean, xmax = 100, 
-             ymin = dist_align_mean, ymax = 100, 
-             alpha = .3, 
-             fill= '#4dac26')  + 
-    annotate('rect', xmax = area_align_mean, xmin =   0, 
-             ymin = dist_align_mean, ymax = 100, 
-             alpha = .3, 
-             fill= '#b8e186') + 
-    annotate('rect', xmin = area_align_mean, xmax = 100, 
-             ymax = dist_align_mean, ymin =   0, 
-             alpha = .3, 
-             fill= '#f1b6da') + 
-    annotate('rect', xmax = area_align_mean, xmin =   0, 
-             ymax = dist_align_mean, ymin =   0, 
-             alpha = .3, 
-             fill= '#d01c8b') + 
-    geom_point(data = quad_list, 
-               aes(x = area_ratio, y = dist_align),
-               # color = '#4d4dac', alpha = .2) +
-               color = 'grey50', alpha = .1) +
-    geom_point(color = 'red3', size = 3, alpha = .8) +
-    labs(x = 'Area ratio', 
-         y = 'Dist. align') +
+  ### Add greyed-in points for all rgn-level values
+  if(fig2_show_pts == TRUE) {
+    fig2_plot <- fig2_plot +
+      geom_jitter(data = nlme_data_noLE, aes(label = country),
+                  alpha = .1)
     
-    coord_cartesian(xlim = c(0, 100), ylim = c(0, 100), expand = FALSE)
-  
-  return(scatter_miniquad)
-}
-
-########################################.
-##### functions for coral maps tab #####
-########################################.
-
-create_coralquad <- function(coral_spp) {
-  message('in create_coralquad()')
-  ### basically a mini-quad showing the before and after of the coral species
-  # coral_spp <- spp_coral_align$name[1]
-  
-  spp_coralmap <- spp_coral_align %>%
-    filter(name == coral_spp & method == 'all depth') %>%
-    dplyr::select(name, area_ratio, dist_align) %>%
-    left_join(spp_coral_align %>%
-                filter(name == coral_spp & method != 'all depth') %>%
-                dplyr::select(name, area_ratio_clip = area_ratio, dist_align_clip = dist_align),
-              by = 'name')
-                
-  coral_quad <- ggplot(spp_coralmap,
-                          aes(x = area_ratio, y = dist_align)) +
-    ggtheme_basic(textsize = 8) +
-    theme(panel.grid.major = element_line(color = 'grey80'),
-          axis.text  = element_blank()) +
-    ### color the quadrant backgrounds:
-    annotate('rect', xmin = area_align_mean, xmax = 100, 
-             ymin = dist_align_mean, ymax = 100, 
-             alpha = .3, 
-             fill= '#4dac26')  + 
-    annotate('rect', xmax = area_align_mean, xmin =   0, 
-             ymin = dist_align_mean, ymax = 100, 
-             alpha = .3, 
-             fill= '#b8e186') + 
-    annotate('rect', xmin = area_align_mean, xmax = 100, 
-             ymax = dist_align_mean, ymin =   0, 
-             alpha = .3, 
-             fill= '#f1b6da') + 
-    annotate('rect', xmax = area_align_mean, xmin =   0, 
-             ymax = dist_align_mean, ymin =   0, 
-             alpha = .3, 
-             fill= '#d01c8b') + 
-    geom_point(data = quad_list, 
-               aes(x = area_ratio, y = dist_align),
-               # color = '#4d4dac', alpha = .2) +
-               color = 'grey50', alpha = .1) +
-    geom_point(data = spp_coral_align %>%
-                 filter(method == 'all depth'), 
-               aes(x = area_ratio, y = dist_align, group = iucn_sid),
-               color = 'grey60', alpha = .1) +
-    ### plot start point, then end point, then segment
-    geom_segment(aes(xend = area_ratio_clip, yend = dist_align_clip),
-                 color = 'grey30', size = .6,
-                 arrow = arrow(angle = 15, type = 'closed', length = unit(.16, 'inches'))) +
-    geom_point(color = 'grey40', size = 3, show.legend = FALSE) +
-    geom_point(aes(x = area_ratio_clip, y = dist_align_clip), 
-               color = 'red3', size = 3, show.legend = FALSE) +
-    labs(x = 'Area ratio', 
-         y = 'Dist. align') +
+    dot_alpha = 1.0
     
-    coord_cartesian(xlim = c(0, 100), ylim = c(0, 100), expand = FALSE)
+  } else {
+    fig2_plot <- fig2_plot +
+      xlim(c(-4, 1))
+    
+    dot_alpha = 0.7
+    
+  }
   
-  return(coral_quad)
+  fig2_plot <- fig2_plot +
+    ### add unweighted mean trend points:
+    geom_point(size = 3, color = "#313695", alpha = dot_alpha) +
+    ### add zero line:
+    geom_vline(xintercept = 0, color = "red", linetype = 3) +
+    ### add weighted points, and white circles for insignificant results
+    geom_point(data = nlme_results_noLE %>%
+                 filter(sig == 0),
+               aes(x = trend, y = goal_long), color = "white", size = 2) +
+    geom_point(data = nlme_results_noLE,
+               aes(x = trend_wts, y = goal_long), 
+               size = 3, color = "orange", alpha = dot_alpha) +
+    geom_point(data = nlme_results_noLE %>% 
+                 filter(sig_wts == 0),
+               aes(x = trend_wts, y = goal_long), 
+               color = "white", size = 2) +
+    ### labels, theme, and flip it
+    labs(y = "Average change in score per year") +
+    theme(axis.title.x       = element_blank(),
+          panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank(),
+          panel.grid.major.y = element_line(color = "grey70", linetype = "dashed"))
+  
+  if(fig2_show_pts == FALSE) {
+    ### annotate Natural Products points
+    fig2_plot <- fig2_plot +
+      annotate("text", label = "Unweighted",
+               x = -3.9, y = 1.6,
+               hjust = 0, ### tie to NP values
+               family = "Arial", color = "#313695", size = 2.6) +
+      annotate("text", label = "Area weighted",
+               x = -2.8, y = 1.6,
+               hjust = 0, ### tie to NP values
+               family = "Arial", color = "orange", size = 2.6)
+  }
+  
+  return(fig2_plot)
+  
 }
 
-create_coral_map <- function(coral_spp) {
-  message('in create_coral_map()')
-  
-  coral_spp_id <- coral_spp_list %>%
-    filter(name == coral_spp)
-  
-  coral_cells <- spp_coral_cells %>%
-    filter(iucn_sid == coral_spp_id$iucn_sid) %>%
-    distinct()
-  
-  rast_coral_depth <- raster::subs(x = loiczid_raster, 
-                                  y = coral_cells %>% dplyr::select(loiczid, deep), 
-                                  by = 'loiczid', which = 'deep', 
-                                  subsWithNA = TRUE) %>%
-    crop(extent(c(-180, 180, -63, 85)))
-  
-  map_coral_depth <- 
-    tm_shape(bathy_rast) +
-    tm_raster(breaks = c(0, 1, Inf),
-              palette = c('#f6faff', '#d6daee'),
-              auto.palette.mapping = FALSE,
-              labels  = c('< 200 m', '> 200 m'),
-              colorNA = NULL,
-              title = 'Ocean depth',
-              alpha = 1) +
-    tm_shape(rast_coral_depth) +
-      tm_raster(breaks = c(0, 1),
-                style   = 'cat',
-                palette = c('coral1', 'coral4'),
-                auto.palette.mapping = FALSE,
-                labels  = c('< 200 m', '> 200 m'),
-                colorNA = NULL,
-                title = 'IUCN coral presence',
-                alpha = 1) +
-    tm_shape(land, is.master = TRUE) +
-      tm_polygons(border.col = 'grey25', 
-                  col = 'grey80', 
-                  lwd = 0.25)
-  
-  map_coral_depth <- map_coral_depth +
-    tm_layout(bg.color = '#f6faff',
-              legend.text.size = 1,
-              legend.title.size = 1.2,
-              legend.outside = FALSE,
-              legend.position = c('left', 'bottom'),
-              legend.bg.color = 'white',
-              legend.bg.alpha = .5,
-              outer.margins = 0, inner.margins = 0, asp = 2.1)
-  
-  return(map_coral_depth)
-}
+## another plot of the data (Fig 2b)
 
-# create_coral_barchart <- function() {
-#   message('in create_coral_barchart()')
-#   
-#   coral_quads <- read_csv('data/coral_quads_app.csv')
+# data_trend <- data %>%
+#   filter(!(goal %in% c("ECO", "LIV", "LE"))) %>%
+#   group_by(scenario, goal) %>%
+#   summarize(min_score = min(value, na.rm=TRUE),
+#             max_score = max(value, na.rm=TRUE),
+#             mean_score = mean(value, na.rm=TRUE)) %>%
+#   ungroup() %>%
+#   mutate(goal = factor(goal, levels=rev(nlme_results$goal))) %>%
+#   filter(!is.na(goal))
 # 
-#   coral_quads <- coral_quads %>%
-#     mutate(quad_name = factor(quad_name, 
-#                               levels = c('poorly aligned', 
-#                                          'area-aligned', 
-#                                          'dist-aligned',
-#                                          'well-aligned'),
-#                               ordered = TRUE),
-#            quad      = factor(quad, levels = c('q4', 'q3', 'q2', 'q1'), 
-#                               ordered = TRUE))
 # 
-#   quad_names <- c('poorly aligned', 'area-aligned', 
-#                   'dist-aligned',   'well-aligned')
-#   break_nums <- seq(0, 100, 20)
-#   
-#   ### Plot the bar chart
-#   barchart_coral_quads <- ggplot(coral_quads, 
-#                                  aes(x = method, fill = quad, weight = pct_quad)) +
-#     ggtheme_basic(textsize = 12) +
-#     geom_bar(stat = 'count', alpha = 1) +
-#     scale_fill_manual(values = c('q4' = '#d01c8b', 
-#                                  'q3' = '#f1b6da', 
-#                                  'q2' = '#b8e186',
-#                                  'q1' = '#4dac26'),
-#                       labels = quad_names,
-#                       guide = guide_legend(reverse = TRUE)) +
-#     scale_y_continuous(expand = c(0, 0), 
-#                        limits = c(0, 1),
-#                        breaks = break_nums/100,
-#                        labels = sprintf('%s%%', break_nums)) + 
-#     ### add grid lines; horizontal but then get flipped
-#     geom_hline(yintercept = break_nums/100, size = 0.25, color = 'white', alpha = .5) +
-#     coord_flip() +
-#     labs(x = 'Depth limit', 
-#          y = 'Percent of corals by quadrant', 
-#          fill = 'Alignment')
-#   
-#   # barchart_coral_quads
-#   
-#   return(barchart_coral_quads)
-#   
-# }
+# ggplot(data_trend, aes(x=scenario, y=mean_score)) +
+#   geom_line() + 
+#   facet_grid(goal ~ ., scales="free") + 
+#   theme_bw() +
+#   theme(axis.title.y=element_blank(),
+#         axis.text.y=element_blank(),
+#         axis.ticks.y=element_blank(),
+#         #     strip.text.y = element_text(size = 8, angle = 0))
+#         strip.text.y = element_blank())
