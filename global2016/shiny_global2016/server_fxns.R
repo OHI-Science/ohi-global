@@ -6,18 +6,32 @@
 ### Set up basic stuff
 
 # create a blank ggplot theme
-ggtheme_basic <- function(textsize = 10) {
+ggtheme_blank <- function(textsize = 10) {
   theme_bw() +
-  theme_update(panel.grid.minor = element_blank(),
-          panel.grid.major = element_blank(),
-          panel.background = element_blank(),
-          plot.background = element_blank(),
-          panel.border = element_blank(),
-          axis.line = element_blank(),
-          axis.ticks = element_blank(),
-          text = element_text(size = textsize),
-          plot.title = element_text(size = textsize * 1.5))
+    theme_update(panel.grid.minor = element_blank(),
+                 panel.grid.major = element_blank(),
+                 panel.background = element_blank(),
+                 plot.background = element_blank(),
+                 panel.border = element_blank(),
+                 axis.line = element_blank(),
+                 axis.ticks = element_blank(),
+                 text = element_text(size = textsize),
+                 plot.title = element_text(size = textsize * 1.5))
 }
+
+ggtheme_grid <- function(textsize = 10) {
+  theme_bw() +
+    theme_update(panel.grid.minor = element_blank(),
+                 panel.grid.major = element_line(color = 'grey92'),
+                 panel.background = element_blank(),
+                 plot.background = element_blank(),
+                 panel.border = element_rect(fill = NA, color = 'grey92'),
+                 axis.line = element_blank(),
+                 axis.ticks = element_blank(),
+                 text = element_text(size = textsize),
+                 plot.title = element_text(size = textsize * 1.5))
+}
+
 
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
 goal_names <- data.frame(goal = goals, 
@@ -98,8 +112,8 @@ create_tvs_plot_global <- function(georgn_color) {
   
   tvs_df <- trend_v_score_df
   
-  tvs_plot <- ggplot2::ggplot(tvs_df, aes(x = index_score, y = index_trend)) +
-    ggtheme_basic()
+  tvs_plot <- ggplot(tvs_df, aes(x = index_score, y = index_trend)) +
+    ggtheme_grid()
   
   if(georgn_color) {
     tvs_plot <- tvs_plot +
@@ -135,8 +149,8 @@ create_tvs_plot_georgn <- function(georgn, georgn_color) {
   tvs_df <- trend_v_score_df %>%
     filter(continent == georgn)
   
-  tvs_plot <- ggplot2::ggplot(tvs_df) +
-    ggtheme_basic() +
+  tvs_plot <- ggplot(tvs_df) +
+    ggtheme_grid() +
     geom_point(data = trend_v_score_df, aes(x = index_score, y = index_trend),
                color = 'grey40', shape = 19, size = 2, alpha = 0.1)
     
@@ -186,8 +200,8 @@ create_rankchange_plot_global <- function(georgn_color) {
   
   rankchange_df <- rankchange_all_df
   
-  rankchange_plot <- ggplot2::ggplot(rankchange_df, aes(x = score_delta, y = rank_delta)) +
-    ggtheme_basic()
+  rankchange_plot <- ggplot(rankchange_df, aes(x = score_delta, y = rank_delta)) +
+    ggtheme_grid()
   
   if(georgn_color) {
     rankchange_plot <- rankchange_plot +
@@ -229,8 +243,8 @@ create_rankchange_plot_georgn <- function(georgn, georgn_color) {
   rankchange_df <- rankchange_all_df %>%
     filter(continent == georgn)
   
-  rankchange_plot <- ggplot2::ggplot(rankchange_df, aes(x = score_delta, y = rank_delta)) +
-    ggtheme_basic() +
+  rankchange_plot <- ggplot(rankchange_df, aes(x = score_delta, y = rank_delta)) +
+    ggtheme_grid() +
     geom_point(data = rankchange_all_df,
                color = 'grey40', shape = 19, size = 2, alpha = 0.1)
   
@@ -246,13 +260,6 @@ create_rankchange_plot_georgn <- function(georgn, georgn_color) {
   }
   
   rankchange_plot <- rankchange_plot +
-    ### what are these points?
-    # geom_point(data = rankchange_df %>% filter(score_delta > 0 & rank_delta < 0), 
-    #            aes(key = subregion, text = paste0('country: ', country)),
-    #            shape=19, size=1.75, color="#D73027", alpha=0.75) +
-    # geom_point(data = rankchange_df %>% filter(score_delta < 0 & rank_delta > 0), 
-    #            aes(key = subregion, text = paste0('country: ', country)),
-    #            shape=19, size=1.75, color="#4575B4", alpha=0.75) +
     coord_cartesian(ylim = c(-125, 100), xlim = c(-20, 11)) +
     ### add global linear model line:
     stat_smooth(data = rankchange_all_df,
@@ -294,7 +301,7 @@ create_fig2_plot <- function(fig2_show_pts) {
     
   ### Initialize plot
   fig2_plot <- ggplot(nlme_results_noLE, aes(x = trend, y = goal_long)) +
-    ggtheme_basic()
+    ggtheme_blank()
   
   ### Add greyed-in points for all rgn-level values
   if(fig2_show_pts == TRUE) {
