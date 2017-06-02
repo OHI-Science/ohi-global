@@ -1841,10 +1841,17 @@ CW = function(layers){
   prs_lyrs <- c('po_pathogens', 'po_nutrients_3nm', 'po_chemicals_3nm', 'po_trash')
   
 # get pressure data together:  
-  d <-  SelectLayersData(layers, layers=prs_lyrs)  %>%
-    select(region_id = id_num, layer, value = val_num)
-
-  d_pressures <- d %>%
+  
+  prs_data <- data.frame()
+  for(l in prs_lyrs){ #l="po_chemicals_3nm"
+    
+    prs_data_new <- get_data_year(layer_nm=l, layers=layers) %>%
+      dplyr::filter(scenario_year == scen_year) %>%
+      select(region_id = rgn_id, value=pressure_score)
+    prs_data <- rbind(prs_data, prs_data_new)
+  }
+  
+  d_pressures <- prs_data %>%
     mutate(pressure = 1 - value) %>%  # invert pressures
     group_by(region_id) %>%
     summarize(score = geometric.mean2(pressure, na.rm=TRUE)) %>% # take geometric mean
@@ -1857,8 +1864,6 @@ CW = function(layers){
 trend_data <- data.frame()
 for(l in trend_lyrs){ #l="cw_pathogen_trend"
 
-   scen_year <- layers$data$scenario_year
-  
     trend_data_new <- get_data_year(layer_nm=l, layers=layers) %>%
     dplyr::filter(scenario_year == scen_year) %>%
     select(region_id = rgn_id, value=trend)

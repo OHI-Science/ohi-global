@@ -232,21 +232,12 @@ for (i in 1:length(scenarios)){  #i=1
 
 
 
-
-
-
-### NOTE: There is a warning that some regions have a MAR score, but a zero weight
-###  This seems fine.  It appears to be because we use a running average to calculate MAR scores
-###  but a running average isn't used to calculate the weights.  In these cases, the score is entirely based
-###  on the FIS score.
-
-
 ### Some methods for visualizing the data
 source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-            fileSave="eez2016_new_CW")
+            fileSave="eez2016_new_CW_v3")
 
 # looking within a goal:
 scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")
