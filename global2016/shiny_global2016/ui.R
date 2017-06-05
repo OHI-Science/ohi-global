@@ -46,23 +46,23 @@ ui <- navbarPage(
 
   tabPanel('Fig 2',
            sidebarPanel(
-             # includeMarkdown('pages/fig2_tab_side1.md'),
+             includeMarkdown('pages/fig2_tab_side1.md'),
              checkboxInput('fig2_show_all', 
                            label = 'Show individual countries?',
                            value = FALSE),
              includeMarkdown('pages/footer_sidebar.md')
            ),
            mainPanel(
-             # includeMarkdown('pages/fig2_tab_main1.md'),
+             includeMarkdown('pages/fig2_tab_main1.md'),
              plotlyOutput('fig2_plot', height = '300px'),
              hr()
-             # includeMarkdown('pages/fig2_tab_main2.md')
+             includeMarkdown('pages/fig2_tab_main2.md')
            )
   ),
   
   tabPanel('Trend v Score',
     sidebarPanel(
-      # includeMarkdown('pages/fig3_tab_side1.md'),
+      includeMarkdown('pages/fig3_tab_side1.md'),
       selectInput('tvs_georegion', 'Choose a georegion to view:',
                   choices = c('Global', continents %>% sort()),
                   selected = 'Global'),
@@ -72,16 +72,16 @@ ui <- navbarPage(
       includeMarkdown('pages/footer_sidebar.md')
     ),
     mainPanel(
-      # includeMarkdown('pages/fig3_tab_main1.md'),
+      includeMarkdown('pages/fig3_tab_main1.md'),
       plotlyOutput('tvs_plot', height = '300px'),
       hr()
-      # includeMarkdown('pages/fig3_tab_main2.md')
+      includeMarkdown('pages/fig3_tab_main2.md')
     )
   ),
   
   tabPanel('Change in Rank',
     sidebarPanel(
-      # includeMarkdown('pages/fig6_tab_side1.md'),
+      includeMarkdown('pages/fig6_tab_side1.md'),
       selectInput('rankchange_georgn', 'Choose a georegion to view:',
                   choices = c('Global', continents %>% sort()),
                   selected  = 'Global'),
@@ -91,10 +91,10 @@ ui <- navbarPage(
       includeMarkdown('pages/footer_sidebar.md')
     ),
     mainPanel(
-      # includeMarkdown('pages/fig6_tab_main1.md'),
+      includeMarkdown('pages/fig6_tab_main1.md'),
       plotlyOutput('rankchange_plot', height = '300px'),
       hr()
-      # includeMarkdown('pages/fig6_tab_main2.md')
+      includeMarkdown('pages/fig6_tab_main2.md')
     )
   ),
   
