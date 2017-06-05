@@ -10,7 +10,6 @@ Ning Jiang^1 •
 Erich Pacheco^4 •
 Courtney Scarborough^1 •
 Johanna Polsenberg^4
-</font>
 
 <font size = 1>
 <ol>

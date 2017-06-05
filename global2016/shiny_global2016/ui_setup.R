@@ -6,3 +6,4 @@ continents <- read_csv('data/georegion_labels.csv') %>%
   .$continent %>%
   unique()
 
+print(list.files('pages'))

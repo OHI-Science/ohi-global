@@ -44,20 +44,20 @@ ui <- navbarPage(
     )
   ),
 
-  tabPanel('Fig 2',
+  tabPanel('Score trends',
            sidebarPanel(
-             # includeMarkdown('pages/fig2_tab_side1.md'),
-             includeMarkdown('pages/acknowledgments.md'),
+             includeMarkdown('pages/scoretrend_side1.md'),
+             # includeMarkdown('pages/acknowledgments.md'),
              checkboxInput('fig2_show_all', 
                            label = 'Show individual countries?',
                            value = FALSE),
              includeMarkdown('pages/footer_sidebar.md')
            ),
            mainPanel(
-             includeMarkdown('pages/fig2_tab_main1.md'),
+             includeMarkdown('pages/scoretrend_main1.md'),
              plotlyOutput('fig2_plot', height = '300px'),
              hr(),
-             includeMarkdown('pages/fig2_tab_main2.md')
+             includeMarkdown('pages/scoretrend_main2.md')
            )
   ),
   
