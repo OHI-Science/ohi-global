@@ -46,7 +46,8 @@ ui <- navbarPage(
 
   tabPanel('Fig 2',
            sidebarPanel(
-             includeMarkdown('pages/fig2_tab_side1.md'),
+             # includeMarkdown('pages/fig2_tab_side1.md'),
+             includeMarkdown('pages/acknowledgments.md'),
              checkboxInput('fig2_show_all', 
                            label = 'Show individual countries?',
                            value = FALSE),
