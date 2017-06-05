@@ -55,7 +55,7 @@ ui <- navbarPage(
            mainPanel(
              includeMarkdown('pages/fig2_tab_main1.md'),
              plotlyOutput('fig2_plot', height = '300px'),
-             hr()
+             hr(),
              includeMarkdown('pages/fig2_tab_main2.md')
            )
   ),
@@ -74,7 +74,7 @@ ui <- navbarPage(
     mainPanel(
       includeMarkdown('pages/fig3_tab_main1.md'),
       plotlyOutput('tvs_plot', height = '300px'),
-      hr()
+      hr(),
       includeMarkdown('pages/fig3_tab_main2.md')
     )
   ),
@@ -93,7 +93,7 @@ ui <- navbarPage(
     mainPanel(
       includeMarkdown('pages/fig6_tab_main1.md'),
       plotlyOutput('rankchange_plot', height = '300px'),
-      hr()
+      hr(),
       includeMarkdown('pages/fig6_tab_main2.md')
     )
   ),
