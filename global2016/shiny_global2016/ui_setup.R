@@ -6,4 +6,6 @@ continents <- read_csv('data/georegion_labels.csv') %>%
   .$continent %>%
   unique()
 
-print(list.files('pages'))
+warning(list.files('pages') %>% paste(collapse = ', '))
+
+warning('pages/scoretrend_side1.md File exists? ', file.exists('pages/scoretrend_side1.md'))
