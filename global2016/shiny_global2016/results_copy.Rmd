@@ -1180,8 +1180,6 @@ median(results_lm_high$estimate)
 
 ```
 
-
-
 ```{r CP changes analyze}
 
 trends <- read_csv("data/trends_2016.csv") %>%

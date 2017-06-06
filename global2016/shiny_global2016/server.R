@@ -4,78 +4,60 @@ source('server_fxns.R')
 
 server <- shinyServer(function(input, output, session) {
   
-
-  ### For Trend v Status tab:  upon selecting a georegion and/or checkbox:
-
-  ### For Species map tab:  upon a change in the spp_map$df OR the input$show_maps,
-  ### create the map to show AM, IUCN, or Both
-  # create_map <- observeEvent(
-  #   {spp_map$df; input$show_maps}, 
-  #     ### triggered by change in spp_map$am_rast (which may also include 
-  #     ### change in iucn_rast) or a change in the selected maps to display
-  #   {
-  #     message('observed change in spp_map$df or input$show_maps; creating map')
-  #     message('input$show_maps = ', input$show_maps, '; input$species = ', input$species)
-  #     map_rast <- get_rast(spp_map$df, type = input$show_maps)
-  #     map_obj  <- assemble_map_tmap(map_rast, spp = input$species)
-  #     
-  #     spp_map$map <- map_obj
-  #   }
-  # )
-  
-  # output$compare_map <- renderPlot({
-  #   spp_map$map
-  # }) 
-  # 
-  ### For Map Alignment tab
-  output$tvs_plot <- renderPlotly({
-    
-    if(input$tvs_georegion == 'Global') {
-      tvs_plot <- create_tvs_plot_global(input$tvs_colors)
-    } else {
-      tvs_plot <- create_tvs_plot_georgn(input$tvs_georegion, input$tvs_colors)
-    }
-    
-    tvs_plot
-    
-  })
-  
-  output$rankchange_plot <- renderPlotly({
-    
-    if(input$rankchange_georgn == 'Global') {
-      rankchange_plot <- create_rankchange_plot_global(input$rankchange_colors)
-    } else {
-      rankchange_plot <- create_rankchange_plot_georgn(input$rankchange_georgn, input$rankchange_colors)
-    }
-    
-    rankchange_plot
-    
-  })
-  
   output$fig2_plot <- renderPlotly({
-    
     fig2_plot <- create_fig2_plot(input$fig2_show_all)
-    
+  })
+
+  output$fig3_plot <- renderPlotly({
+    if(input$fig3_georgn == 'Global') {
+      fig3_plot <- create_fig3_plot_global(input$fig3_colors)
+    } else {
+      fig3_plot <- create_fig3_plot_georgn(input$fig3_georgn, 
+                                           input$fig3_colors)
+    }
+    fig3_plot
+  })
+  
+  output$fig4_plot <- renderPlotly({
+    fig4_plot <- create_fig4_plot(input$fig4_filter, 
+                                  input$fig4_georgn,
+                                  input$fig4_overall)
+  })
+  
+  output$fig4_plot.ui <- renderUI({
+    fig4_height <- ifelse((input$fig4_filter == 'georgn' & input$fig4_georgn == 'Global'),
+                          '1500px', '400px')
+    # fig4_height <- '401px'
+    message('fig4_height = ', fig4_height)
+    plotlyOutput('fig4_plot', height = fig4_height)
+  })
+  
+  output$fig5a_plot <- renderPlotly({
+    fig5a_plot <- create_fig5a_plot(input$fig5_colors, 
+                                    input$fig5_georgn,
+                                    input$fig5_lm)
+  })
+  output$fig5b_plot <- renderPlotly({
+    fig5b_plot <- create_fig5b_plot(input$fig5_colors, 
+                                    input$fig5_georgn,
+                                    input$fig5_lm)
+  })
+  output$fig5c_plot <- renderPlotly({
+    fig5c_plot <- create_fig5c_plot(input$fig5_colors, 
+                                    input$fig5_georgn,
+                                    input$fig5_lm)
   })
   
   
-  # 
-  # output$barchart <- renderPlot({
-  #   create_barchart(input$expert_rev)
-  # })
-  # 
-  # output$mini_quad <- renderPlot({
-  #   create_miniquad(input$species)
-  # })
-  # 
-  # ### For Coral Depth tab
-  # output$coral_quad <- renderPlot({
-  #   create_coralquad(input$coral_spp)
-  # })
-  # 
-  # output$coral_map <- renderPlot({
-  #   create_coral_map(input$coral_spp)
-  # })
+  output$fig6_plot <- renderPlotly({
+    if(input$fig6_georgn == 'Global') {
+      fig6_plot <- create_fig6_plot_global(input$fig6_colors)
+    } else {
+      fig6_plot <- create_fig6_plot_georgn(input$fig6_georgn, 
+                                           input$fig6_colors)
+    }
+    fig6_plot
+  })
   
   output$table_display <- renderDataTable({
       read_csv(file.path('tables', paste0(input$table_file, '.csv'))) 
