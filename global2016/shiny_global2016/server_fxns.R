@@ -115,7 +115,7 @@ create_fig2_plot <- function(fig2_show_pts) {
   if(fig2_show_pts == TRUE) {
     fig2_plot <- fig2_plot +
       geom_jitter(data = nlme_df_noLE, aes(label = country),
-                  alpha = .1)
+                  height = .25, width = 0, alpha = .1)
     
     dot_alpha = 1.0
     
@@ -399,6 +399,24 @@ fig5_df <- read_csv('data/fig5_data.csv') %>%
 # mod <- lm(score_2016 ~ score_2012, data = fig5_df)
 # summary(mod)
 
+lm_clean <- function(formula, data_df) {
+  mdl <- lm(formula, data = data_df) %>%
+    summary()
+  mdl_clean <- mdl %>%
+    broom::tidy() %>%
+    mutate(sig = ifelse(p.value < .1, '*', ''),
+           sig = ifelse(p.value < .01, '**', sig),
+           sig = ifelse(p.value < .001, '***', sig))
+  form_text <- as.character(formula)[c(2, 1, 3)] %>%
+    paste(collapse = ' ')
+  mdl_text <- sprintf('%s:\n  slope: %.3f%s\n  intercept: %.3f%s\n  adj. R^2: %.3f',
+                      form_text, 
+                      mdl_clean$estimate[2], mdl_clean$sig[2],
+                      mdl_clean$estimate[1], mdl_clean$sig[1],
+                      mdl$adj.r.squared)
+  return(list('mdl_text' = mdl_text, 'slope' = mdl_clean$estimate[2], 'intercept' = mdl_clean$estimate[1]))
+}
+
 create_fig5a_plot <- function(fig5_colors, fig5_georgn, fig5_lm) {
   
   if(fig5_georgn != 'Global') {
@@ -407,9 +425,6 @@ create_fig5a_plot <- function(fig5_colors, fig5_georgn, fig5_lm) {
   } else {
     fig5_df_sub <- fig5_df
   }
-  
-  mod <- lm(score_2016 ~ score_2012, data = fig5_df_sub)
-  summary(mod)
   
   fig5a_plot <- ggplot(fig5_df_sub, aes(x = score_2012, y = score_2016)) +
     ggtheme_grid()
@@ -434,9 +449,13 @@ create_fig5a_plot <- function(fig5_colors, fig5_georgn, fig5_lm) {
     ylim(0, 100)
   
   if(fig5_lm) {
+    mdl_clean <- lm_clean(score_2016 ~ score_2012, fig5_df_sub) 
     fig5a_plot <- fig5a_plot +
-      stat_smooth(method = lm, se = FALSE,
-                  color = 'darkblue', size = 0.5)
+      geom_abline(slope = mdl_clean$slope, intercept = mdl_clean$intercept,
+                  color = 'darkblue', size = 0.5) +
+      annotate('text', x = 75, y = 20, 
+               label = mdl_clean$mdl_text, 
+               color = 'grey20', size = 3)
   }
 
   return(fig5a_plot)
@@ -475,9 +494,13 @@ create_fig5b_plot <- function(fig5_colors, fig5_georgn, fig5_lm) {
     ylim(0, 100)
   
   if(fig5_lm) {
+    mdl_clean <- lm_clean(status_2016 ~ likely_future_state_2012, fig5_df_sub) 
     fig5b_plot <- fig5b_plot +
-      stat_smooth(method = lm, se = FALSE,
-                  color = 'darkblue', size = 0.5)
+      geom_abline(slope = mdl_clean$slope, intercept = mdl_clean$intercept,
+                  color = 'darkblue', size = 0.5) +
+      annotate('text', x = 75, y = 20, 
+               label = mdl_clean$mdl_text, 
+               color = 'grey20', size = 3)
   }
   
   return(fig5b_plot)
@@ -513,9 +536,13 @@ create_fig5c_plot <- function(fig5_colors, fig5_georgn, fig5_lm) {
          x = 'Predicted change in status')
   
   if(fig5_lm) {
+    mdl_clean <- lm_clean(obs_change ~ pred_change, fig5_df_sub) 
     fig5c_plot <- fig5c_plot +
-      stat_smooth(method = lm, se = FALSE,
-                  color = 'darkblue', size = 0.5)
+      geom_abline(slope = mdl_clean$slope, intercept = mdl_clean$intercept,
+                  color = 'darkblue', size = 0.5) +
+      annotate('text', x = 75, y = 20, 
+               label = mdl_clean$mdl_text, 
+               color = 'grey20', size = 3)
   }
   
   return(fig5c_plot)
