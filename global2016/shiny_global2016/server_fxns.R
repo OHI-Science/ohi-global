@@ -1,8 +1,8 @@
 ### server_fxns.R
 
 ### create warning with date to help with log output
-warning(sprintf('\n\nExecuting shiny app: %s\n', Sys.time()))
-warning(sprintf('Current working directory: %s\n', getwd()))
+cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s\n', Sys.time()))
+cat(file = stderr(), sprintf('Current working directory: %s\n', getwd()))
 
 ### Set up basic stuff
 
