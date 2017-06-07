@@ -4,8 +4,12 @@ library(tidyverse)
 library(plotly)
 library(shinythemes)
 
+### create warning with date to help with log output
+cat(file = stderr(), sprintf('\n\nExecuting shiny app (from ui.R): %s\n', Sys.time()))
+cat(file = stderr(), sprintf('Current working directory: %s\n', getwd()))
+
 ### initialize variables needed by ui.R
-continents <- read_csv('data/georegion_labels.csv') %>%
+continents <- read_csv('data/georegion_labels2.csv') %>%
   .$continent %>%
   unique()
 
