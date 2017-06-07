@@ -9,9 +9,6 @@ continents <- read_csv('data/georegion_labels.csv') %>%
   .$continent %>%
   unique()
 
-### create warning with date to help with log output
-warning(sprintf('\n\nExecuting shiny app: %s\n', Sys.time()))
-warning(sprintf('Current working directory: %s\n', getwd()))
 
 ui <- navbarPage(
   

@@ -1,5 +1,9 @@
 ### server_fxns.R
 
+### create warning with date to help with log output
+warning(sprintf('\n\nExecuting shiny app: %s\n', Sys.time()))
+warning(sprintf('Current working directory: %s\n', getwd()))
+
 ### Set up basic stuff
 
 # create a blank ggplot theme
