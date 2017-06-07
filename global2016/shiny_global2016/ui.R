@@ -6,9 +6,11 @@ library(shinythemes)
 
 ### create warning with date to help with log output
 cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s\n', Sys.time()))
-cat(file = stderr(), sprintf('Current working directory: %s\n', getwd()))
+tmp <- getwd()
+cat(file = stderr(), sprintf('Current working directory: %s\n', tmp))
 cat(file = stderr(), 'did the current working directory get printed?\n')
-cat(file = stderr(), paste(list.files, '\n'), '\n')
+tmp <- paste(list.files(), collapse = '\n')
+cat(file = stderr(), tmp, '\n')
 
 
 
