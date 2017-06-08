@@ -1,6 +1,7 @@
 #ui.r
 
 library(tidyverse) 
+library(stringr)
 library(plotly)
 library(shinythemes)
 
@@ -8,8 +9,7 @@ library(shinythemes)
 cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s\n', Sys.time()))
 tmp <- getwd()
 cat(file = stderr(), sprintf('Current working directory: %s\n', tmp))
-cat(file = stderr(), 'did the current working directory get printed?\n')
-tmp <- paste(list.files(), collapse = '\n')
+tmp <- paste('  ', list.files(), collapse = '\n')
 cat(file = stderr(), tmp, '\n')
 
 
@@ -19,6 +19,27 @@ continents <- read_csv('data/georegion_labels2.csv') %>%
   .$continent %>%
   unique()
 
+goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+goal_names <- data.frame(goal_code = goals, 
+                         goal = c('Index', 
+                                  'Artisanal opportunities',
+                                  'Species condition (Biodiversity)',
+                                  'Biodiversity',
+                                  'Habitat (Biodiversity)',
+                                  'Coastal protection',
+                                  'Carbon storage',
+                                  'Clean water',
+                                  'Economies',
+                                  'Livelihoods & economies',
+                                  'Livelihoods',
+                                  'Fisheries (Food provision)',
+                                  'Food provision',
+                                  'Mariculture (Food provision)',
+                                  'Iconic species (Sense of place)',
+                                  'Sense of place',
+                                  'Lasting special places (Sense of place)',
+                                  'Natural products',
+                                  'Tourism & recreation'))
 
 ui <- navbarPage(
   
@@ -36,34 +57,34 @@ ui <- navbarPage(
     )
   ),
 
-  tabPanel('Figures',
-    sidebarPanel(
-      includeMarkdown('pages/article_info.md')
-    ),
-    mainPanel(
-      h4('Figures from manuscript'),
-      h5('Figure 1:'),
-      includeMarkdown('pages/fig1.md'),
-      hr(),
-      h5('Figure 2:'),
-      includeMarkdown('pages/fig2.md'),
-      hr(),
-      h5('Figure 3:'),
-      includeMarkdown('pages/fig3.md'),
-      hr(),
-      h5('Figure 4:'),
-      includeMarkdown('pages/fig4.md'),
-      hr(),
-      h5('Figure 5:'),
-      includeMarkdown('pages/fig5.md'),
-      hr(),
-      h5('Figure 6:'),
-      includeMarkdown('pages/fig6.md')
-    )
-  ),
+  # tabPanel('Figures',
+  #   sidebarPanel(
+  #     includeMarkdown('pages/article_info.md')
+  #   ),
+  #   mainPanel(
+  #     h4('Figures from manuscript'),
+  #     h5('Figure 1:'),
+  #     includeMarkdown('pages/fig1.md'),
+  #     hr(),
+  #     h5('Figure 2:'),
+  #     includeMarkdown('pages/fig2.md'),
+  #     hr(),
+  #     h5('Figure 3:'),
+  #     includeMarkdown('pages/fig3.md'),
+  #     hr(),
+  #     h5('Figure 4:'),
+  #     includeMarkdown('pages/fig4.md'),
+  #     hr(),
+  #     h5('Figure 5:'),
+  #     includeMarkdown('pages/fig5.md'),
+  #     hr(),
+  #     h5('Figure 6:'),
+  #     includeMarkdown('pages/fig6.md')
+  #   )
+  # ),
 
   tabPanel('Fig 2',
-           sidebarPanel(
+           sidebarPanel(width = 3,
              includeMarkdown('pages/fig2_tab_side1.md'),
              checkboxInput('fig2_show_all', 
                            label = 'Show individual countries?',
@@ -77,7 +98,7 @@ ui <- navbarPage(
   ),
   
   tabPanel('Trend v score',
-    sidebarPanel(
+    sidebarPanel(width = 3,
       includeMarkdown('pages/fig3_tab_side1.md'),
       selectInput('fig3_georgn', 'Choose a georegion to view:',
                   choices = c('Global', continents %>% sort()),
@@ -94,7 +115,7 @@ ui <- navbarPage(
   ),
   
   tabPanel('Trend bars',
-    sidebarPanel(
+    sidebarPanel(width = 3,
       includeMarkdown('pages/fig4_tab_side1.md'),
       radioButtons('fig4_filter', 'Filter countries by:',
                    choices = c('High-mid-low' = 'himidlo',
@@ -109,12 +130,18 @@ ui <- navbarPage(
     mainPanel(
       includeMarkdown('pages/fig4_tab_main1.md'),
       uiOutput('fig4_plot.ui')
+      # uiOutput('fig4_plotly.ui')
     )
   ),
   
   tabPanel('Model eval',
-    sidebarPanel(
+    sidebarPanel(width = 3,
       includeMarkdown('pages/fig5_tab_side1.md'),
+      selectInput('fig5_goal', 'Choose a goal to view:',
+                  choices = goal_names %>%
+                    filter(!goal_code %in% c('SP', 'LE', 'FP', 'BD')) %>%
+                    .$goal,
+                  selected  = 'Index'),
       selectInput('fig5_georgn', 'Choose a georegion to view:',
                   choices = c('Global', continents %>% sort()),
                   selected  = 'Global'),
@@ -128,16 +155,12 @@ ui <- navbarPage(
     ),
     mainPanel(
       includeMarkdown('pages/fig5_tab_main1.md'),
-      plotlyOutput('fig5a_plot', height = '300px'),
-      hr(),
-      plotlyOutput('fig5b_plot', height = '300px'),
-      hr(),
-      plotlyOutput('fig5c_plot', height = '300px')
+      uiOutput('fig5goal_plotly.ui')
     )
   ),
   
   tabPanel('Rank change',
-    sidebarPanel(
+    sidebarPanel(width = 3,
       includeMarkdown('pages/fig6_tab_side1.md'),
       selectInput('fig6_georgn', 'Choose a georegion to view:',
                   choices = c('Global', continents %>% sort()),
@@ -155,26 +178,29 @@ ui <- navbarPage(
   
   
   tabPanel('Tables',
-    sidebarPanel(
-      includeMarkdown('pages/article_info.md'),
+    sidebarPanel(width = 3,
+      includeMarkdown('pages/table_tab_side1.md'),
       radioButtons('table_file', label = 'Table: ',
                   choices = c('Table 1 Updates to status and trend data and models' = 'table1',
                               'Table 2 Updates to pressure data and models' = 'table2'),
                   selected = 'table1')
     ),
     mainPanel(
-      dataTableOutput('table_display')
-    )
-  ),
-
-  tabPanel('References',
-    sidebarPanel(
-      includeMarkdown('pages/article_info.md'),
-      includeMarkdown('pages/acknowledgments.md')
-    ),
-    mainPanel(
-      includeMarkdown('pages/references.md')
+      h4(textOutput('table_title')),
+      includeMarkdown('pages/table_main1.md'),
+      dataTableOutput('table_display'),
+      includeMarkdown('pages/table_main2.md')
     )
   )
+
+  # tabPanel('References',
+  #   sidebarPanel(
+  #     includeMarkdown('pages/article_info.md'),
+  #     includeMarkdown('pages/acknowledgments.md')
+  #   ),
+  #   mainPanel(
+  #     includeMarkdown('pages/references.md')
+  #   )
+  # )
 
 )
