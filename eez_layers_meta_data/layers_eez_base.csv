@@ -13,7 +13,6 @@ ao_access,Artisanal fisheries opportunity,scaled 0-1,The opportunity for artisan
 spp_status,Average species condition,status score,Species condition based on average of IUCN threat categories
 spp_trend,Average species condition trend,trend score,Species trends based on average of IUCN population trend data
 fis_b_bmsy,B/Bmsy estimates,B/Bmsy,The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield (RAM data and catch-MSY)
-element_wts_cs_km2_x_storage,Carbon storage weights,extent*storage,"Habitat extent multiplied by carbon storage capacity for:  mangrove (offshore and inland 1km), saltmarsh, and sea ice"
 po_chemicals,Chemical pollution,scaled 0-1,"Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)"
 cw_chemical_trend,Chemical pollution trend,trend,"Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ "
 g_cites,CITES signatories,0 or 1,Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories
@@ -101,3 +100,13 @@ le_wage_cur_base_value,"Wages, current value",value,Wage data for the most recen
 le_wage_ref_base_value,"Wages, reference value",value,Wage data for the earliest year of data for each sector/region
 ss_wgi,Weakness of governance,scaled 0-1,Inverse of World Governance Indicators (WGI) six combined scores
 ss_spi,Weakness of social progress,scaled 0-1,Inverse of Social Progress Index scores
+hab_mangrove_extent,Habitat extent of mangrove,km2,Area of mangrove habitat
+hab_mangrove_health,Habitat condition of mangrove,proportion,Current condition of mangrove habitat relative to historical condition
+hab_mangrove_trend,Habitat condition trend of mangrove,trend,Estimated change in mangrove condition
+hab_saltmarsh_extent,Habitat extent of saltmarsh,km2,Area of saltmarsh habitat
+hab_saltmarsh_health,Habitat condition of saltmarsh,proportion,Current condition of saltmarsh habitat relative to historical condition
+hab_saltmarsh_trend,Habitat condition trend of saltmarsh,trend,Estimated change in saltmarsh condition
+hab_seagrass_extent,Habitat extent of saltmarsh,km2,Area of seagrass habitat
+hab_seagrass_health,Habitat condition of seagrass,proportion,Current condition of seagrass habitat relative to historical condition
+hab_seagrass_trend,Habitat condition trend of seagrass,trend,Estimated change in seagrass condition
+element_wts_cs_km2_x_storage,Carbon storage weights,extent*storage,"Habitat extent multiplied by carbon storage capacity for: mangrove, saltmarsh, and seagrass"
