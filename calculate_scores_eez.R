@@ -148,11 +148,7 @@ for (i in 1:length(scenarios)){  #i=1
         targets, layer, name, description,
         fld_value=name_data_fld, units,
         path_in, path_in_exists, filename, path_out) %>%
-      # select(
-      #   targets, layer, 
-      #   fld_value=name_data_fld,
-      #   path_in, path_in_exists, filename, path_out) %>%
-      arrange(targets, layer)
+          arrange(targets, layer)
     write.csv(lyrs, sprintf('%s/temp/layers_1-ingest.csv', scenario), na='', row.names=F)
     
     # checks that all data layers are available based on file paths 
@@ -171,8 +167,12 @@ for (i in 1:length(scenarios)){  #i=1
     files_extra = setdiff(list.files(sprintf('%s/layers',scenario)), as.character(lyrs$filename))
     unlink(sprintf('%s/layers/%s', scenario, files_extra))
     
-    # layers registry
-    write.csv(dplyr::select(lyrs, -path_in, -path_in_exists, -path_out), sprintf('%s/layers.csv', scenario), row.names=F, na='')
+    # layers registry (this includes files that are ingest=FALSE)
+    lyrs_reg = lyrs %>%
+      select(
+        targets, layer, name, description,
+        fld_value, units, filename)
+    write.csv(lyrs_reg, sprintf('%s/layers.csv', scenario), row.names=F, na='')
   }
   
   if (do.layercheck){
@@ -203,10 +203,6 @@ for (i in 1:length(scenarios)){  #i=1
     # restore working directory
     setwd('..') 
     
-    # archive scores on disk (out of github, for easy retrieval later)
-    csv = sprintf('%s/git-annex/Global/NCEAS-OHI-Scores-Archive/scores/scores_%s_%s.csv', 
-                  dirs$neptune_data, scenario, format(Sys.Date(), '%Y-%m-%d'))
-    write.csv(scores, csv, na='', row.names=F)    
   }
   
   if (do.other){
@@ -233,12 +229,25 @@ for (i in 1:length(scenarios)){  #i=1
 
 
 ### Some methods for visualizing the data
+
 source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-            fileSave="eez2016_new_CW_v3")
+            fileSave="eez2016_new_ohicore_cs_weights", save_csv = TRUE)
 
+## check for changes in NA's
+## Both should equal 0
+compare <- read.csv('changePlot_figures/eez2016_new_ohicore_cs_weights_diff_data_2017-06-08.csv')
+NA_compare <- compare %>%
+  mutate(NA_same = ifelse(is.na(score) & is.na(old_score), 1, 0)) %>%
+  mutate(NA_new = ifelse(is.na(score), 1, 0)) %>%
+  mutate(NA_old = ifelse(is.na(old_score), 1, 0)) %>%
+  mutate(diff_new = NA_new - NA_same) %>%
+  mutate(diff_old = NA_old - NA_same) %>%
+  summarize(new = sum(diff_new),
+            old = sum(diff_old))
+NA_compare
 # looking within a goal:
 scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")
 
