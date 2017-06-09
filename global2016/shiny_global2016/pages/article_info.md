@@ -1,5 +1,6 @@
 #### [Drivers and implications of change in global ocean health over the past five years](https://www.google.com)
 
+<font size = 2>
 [Benjamin S. Halpern](mailto:halpern@nceas.ucsb.edu)^1,2,3* • 
 Melanie Frazier^1 •
 Jamie Afflerbach^1 •
