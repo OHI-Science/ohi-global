@@ -119,7 +119,7 @@ ui <- navbarPage(
       includeMarkdown('pages/fig4_tab_side1.md'),
       radioButtons('fig4_filter', 'Filter countries by:',
                    choices = c('High-mid-low' = 'himidlo',
-                               'Georegion' = 'georgn')),
+                               'Global or georegion' = 'georgn')),
       selectInput('fig4_georgn', 'Choose a georegion to view:',
                   choices = c('Global', continents %>% sort()),
                   selected = 'Global'),
