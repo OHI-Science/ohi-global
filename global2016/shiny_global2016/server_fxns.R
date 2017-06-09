@@ -471,7 +471,7 @@ lm_clean <- function(formula, data_df) {
     paste(collapse = ' ')
   
   if(is.nan(mdl$r.squared)) {
-    return(list('mdl_text' = sprintf('%s: \n  linear model not valid', form_text),
+    return(list('mdl_text' = sprintf('%s: <br>  linear model not valid', form_text),
                 'slope' = NA, 'intercept' = NA))
   } else {
     mdl_clean <- mdl %>%
@@ -481,11 +481,11 @@ lm_clean <- function(formula, data_df) {
              sig = ifelse(p.value < .001, '***', sig))
     mdl_slopes <- mdl_clean %>%
       filter(term != '(Intercept)') %>%
-      mutate(slope_text = sprintf('  slope (%s): %.3f%s', term, estimate, sig)) %>%
-      summarize(slope_text = paste(slope_text, collapse = '\n')) %>%
+      mutate(slope_text = sprintf('slope (%s): %.3f%s', term, estimate, sig)) %>%
+      summarize(slope_text = paste(slope_text, collapse = '<br>')) %>%
       .$slope_text
     
-    mdl_text <- sprintf('%s:\n  %s\n  intercept: %.3f%s\n  adj. R^2: %.3f',
+    mdl_text <- sprintf('<b><i>%s</i></b>:<br>%s<br>intercept: %.3f%s<br>adj. R<sup>2</sup>: %.3f',
                         form_text, 
                         mdl_slopes,
                         mdl_clean$estimate[1], mdl_clean$sig[1],
