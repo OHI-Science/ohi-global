@@ -471,7 +471,7 @@ lm_clean <- function(formula, data_df) {
     paste(collapse = ' ')
   
   if(is.nan(mdl$r.squared)) {
-    return(list('mdl_text' = sprintf('%s: <br>  linear model not valid', form_text),
+    return(list('mdl_text' = sprintf('<b><i>%s</i></b>:<br>linear model not valid', form_text),
                 'slope' = NA, 'intercept' = NA))
   } else {
     mdl_clean <- mdl %>%
