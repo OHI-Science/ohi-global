@@ -485,11 +485,11 @@ lm_clean <- function(formula, data_df) {
       summarize(slope_text = paste(slope_text, collapse = '<br>')) %>%
       .$slope_text
     
-    mdl_text <- sprintf('<b><i>%s</i></b>:<br>%s<br>intercept: %.3f%s<br>adj. R<sup>2</sup>: %.3f',
+    mdl_text <- sprintf('<b><i>%s</i></b>:<br>%s<br>intercept: %.3f%s<br>R<sup>2</sup>: %.3f',
                         form_text, 
                         mdl_slopes,
                         mdl_clean$estimate[1], mdl_clean$sig[1],
-                        mdl$adj.r.squared)
+                        mdl$r.squared)
     
     return(list('mdl_text' = mdl_text, 'slope' = mdl_clean$estimate[2:nrow(mdl_clean)], 'intercept' = mdl_clean$estimate[1]))
   }
@@ -573,9 +573,9 @@ create_fig5_plot <- function(fig5_colors, fig5_georgn,
       y_pt <- 25
     } else {
       x_pt <- ifelse(mdl_clean$slope[1] > 0 | is.na(mdl_clean$slope[1]), 
-                     (min(fig5_df_sub[ , x_var], na.rm = TRUE) + 4 * max(fig5_df_sub[ , x_var], na.rm = TRUE))/5,
-                     (min(fig5_df_sub[ , x_var], na.rm = TRUE) * 4 + max(fig5_df_sub[ , x_var], na.rm = TRUE))/5)
-      y_pt <- (min(fig5_df_sub[ , y_var],  na.rm = TRUE) * 4 + max(fig5_df_sub[ , y_var],  na.rm = TRUE))/5 + 1
+                     (min(fig5_df_sub[ , x_var], na.rm = TRUE) + 3 * max(fig5_df_sub[ , x_var], na.rm = TRUE))/4,
+                     (min(fig5_df_sub[ , x_var], na.rm = TRUE) * 3 + max(fig5_df_sub[ , x_var], na.rm = TRUE))/4)
+      y_pt <- (min(fig5_df_sub[ , y_var],  na.rm = TRUE) * 3 + max(fig5_df_sub[ , y_var],  na.rm = TRUE))/4 + 1
     }
     fig5_plot <- fig5_plot +
       annotate('text', x = x_pt, y = y_pt,

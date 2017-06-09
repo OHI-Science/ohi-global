@@ -157,9 +157,7 @@ ui <- navbarPage(
       includeMarkdown('pages/fig5_tab_main1.md'),
       # uiOutput('fig5goal_plotly.ui')
       plotlyOutput('fig5a_plot'),
-      includeMarkdown('pages/fig5_tab_main2.md'),
       plotlyOutput('fig5b_plot'),
-      includeMarkdown('pages/fig5_tab_main3.md'),
       plotlyOutput('fig5c_plot')
     )
   ),
