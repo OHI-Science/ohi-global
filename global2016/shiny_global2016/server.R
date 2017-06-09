@@ -7,7 +7,7 @@ server <- shinyServer(function(input, output, session) {
   output$fig2_plot <- renderPlotly({
     fig2_plot <- create_fig2_plot(input$fig2_show_all)
   })
-
+  
   output$fig3_plot <- renderPlotly({
     if(input$fig3_georgn == 'Global') {
       fig3_plot <- create_fig3_plot_global(input$fig3_colors)
@@ -49,46 +49,49 @@ server <- shinyServer(function(input, output, session) {
   # })
   
   output$fig5a_plot <- renderPlotly({
-    fig5a_plot <- create_fig5a_plot(input$fig5_colors, 
-                                    input$fig5_georgn,
-                                    input$fig5_lm)
+    message('rendering fig5a_plot')
+    fig5a_plot <- create_fig5_plot(input$fig5_colors, input$fig5_georgn, 
+                                   input$fig5_lm, input$fig5_goal,
+                                   y_var = 'score_2016', x_var = 'score_2012',
+                                   y_lab = 'Observed 2016 score',
+                                   x_lab = 'Observed 2012 score')
   })
+  
   output$fig5b_plot <- renderPlotly({
-    fig5b_plot <- create_fig5b_plot(input$fig5_colors, 
-                                    input$fig5_georgn,
-                                    input$fig5_lm)
+    message('rendering fig5b_plot')
+    fig5b_plot <- create_fig5_plot(input$fig5_colors, input$fig5_georgn, 
+                                   input$fig5_lm, input$fig5_goal,
+                                   y_var = 'status_2016', x_var = 'likely_future_state_2012',
+                                   x_lab = 'Predicted 2016 status (from 2012 data)', 
+                                   y_lab = 'Observed 2016 status')
   })
   output$fig5c_plot <- renderPlotly({
-    fig5c_plot <- create_fig5c_plot(input$fig5_colors, 
-                                    input$fig5_georgn,
-                                    input$fig5_lm)
+    message('rendering fig5c_plot')
+    fig5c_plot <- create_fig5_plot(input$fig5_colors, input$fig5_georgn, 
+                                   input$fig5_lm, input$fig5_goal,
+                                   y_var = 'obs_change', x_var = 'pred_change', 
+                                   y_lab = 'Observed change in status', 
+                                   x_lab = 'Predicted change in status',
+                                   lim_0_100 = FALSE)
   })
-  output$fig5goal_plot <- renderPlotly({
-    message('Here I am calling the rendering the Plotly output for ', input$fig5_goal)
-    
-    fig5goal_plot <- create_fig5goal_plot(input$fig5_colors, 
-                                          input$fig5_georgn,
-                                          input$fig5_lm,
-                                          input$fig5_goal)
-  })
+
+  # output$fig5goal_modeltext <- reactive(create_fig5goal_text(input$fig5_georgn, input$fig5_goal))
   
-  output$fig5goal_modeltext <- reactive(create_fig5goal_text(input$fig5_georgn, input$fig5_goal))
-  
-  output$fig5goal_plotly.ui <- renderUI({
-    if(input$fig5_goal == 'Index') {
-      return(list(plotlyOutput('fig5a_plot', height = '300px'), 
-                  hr(), 
-                  plotlyOutput('fig5b_plot', height = '300px'), 
-                  hr(), 
-                  plotlyOutput('fig5c_plot', height = '300px')))
-    } else {
-      message('Here I am calling the plotlyOutput for ', input$fig5_goal)
-      return(list(plotlyOutput('fig5goal_plot', height = '400px'),
-                  uiOutput('fig5goal_modeltext')
-            )
-        )
-    }
-  })
+  # output$fig5goal_plotly.ui <- renderUI({
+  #   if(input$fig5_goal == 'Index') {
+  #     return(list(plotlyOutput('fig5a_plot', height = '300px'), 
+  #                 hr(), 
+  #                 plotlyOutput('fig5b_plot', height = '300px'), 
+  #                 hr(), 
+  #                 plotlyOutput('fig5c_plot', height = '300px')))
+  #   } else {
+  #     message('Here I am calling the plotlyOutput for ', input$fig5_goal)
+  #     return(list(plotlyOutput('fig5goal_plot', height = '400px'),
+  #                 uiOutput('fig5goal_modeltext')
+  #           )
+  #       )
+  #   }
+  # })
   
   
   
@@ -103,10 +106,10 @@ server <- shinyServer(function(input, output, session) {
   })
   
   output$table_display <- renderDataTable({
-      read_csv(file.path('tables', paste0(input$table_file, '.csv'))) 
-    },
-    options = list(paging = FALSE),
-    escape = FALSE)
+    read_csv(file.path('tables', paste0(input$table_file, '.csv'))) 
+  },
+  options = list(paging = FALSE),
+  escape = FALSE)
   output$table_title <- renderText({
     table_title <- ifelse(input$table_file == 'table1', 
                           'Table 1 Updates to status and trend data and models',

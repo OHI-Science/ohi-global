@@ -83,9 +83,9 @@ ui <- navbarPage(
   #   )
   # ),
 
-  tabPanel('Fig 2',
+  tabPanel('Trends by goal',
            sidebarPanel(width = 3,
-             includeMarkdown('pages/fig2_tab_side1.md'),
+             includeMarkdown('pages/clean_side1.md'),
              checkboxInput('fig2_show_all', 
                            label = 'Show individual countries?',
                            value = FALSE),
@@ -97,9 +97,9 @@ ui <- navbarPage(
            )
   ),
   
-  tabPanel('Trend v score',
+  tabPanel('Trend v. score',
     sidebarPanel(width = 3,
-      includeMarkdown('pages/fig3_tab_side1.md'),
+      includeMarkdown('pages/clean_side1.md'),
       selectInput('fig3_georgn', 'Choose a georegion to view:',
                   choices = c('Global', continents %>% sort()),
                   selected = 'Global'),
@@ -123,8 +123,8 @@ ui <- navbarPage(
       selectInput('fig4_georgn', 'Choose a georegion to view:',
                   choices = c('Global', continents %>% sort()),
                   selected = 'Global'),
-      checkboxInput('fig4_overall', 'Show overall trend as black bar?',
-                    value = FALSE),
+      checkboxInput('fig4_overall', 'Show overall trend (as black bar)?',
+                    value = TRUE),
       includeMarkdown('pages/footer_sidebar.md')
     ),
     mainPanel(
@@ -136,7 +136,7 @@ ui <- navbarPage(
   
   tabPanel('Model eval',
     sidebarPanel(width = 3,
-      includeMarkdown('pages/fig5_tab_side1.md'),
+      includeMarkdown('pages/clean_side1.md'),
       selectInput('fig5_goal', 'Choose a goal to view:',
                   choices = goal_names %>%
                     filter(!goal_code %in% c('SP', 'LE', 'FP', 'BD')) %>%
@@ -155,13 +155,18 @@ ui <- navbarPage(
     ),
     mainPanel(
       includeMarkdown('pages/fig5_tab_main1.md'),
-      uiOutput('fig5goal_plotly.ui')
+      # uiOutput('fig5goal_plotly.ui')
+      plotlyOutput('fig5a_plot'),
+      includeMarkdown('pages/fig5_tab_main2.md'),
+      plotlyOutput('fig5b_plot'),
+      includeMarkdown('pages/fig5_tab_main3.md'),
+      plotlyOutput('fig5c_plot')
     )
   ),
   
   tabPanel('Rank change',
     sidebarPanel(width = 3,
-      includeMarkdown('pages/fig6_tab_side1.md'),
+      includeMarkdown('pages/clean_side1.md'),
       selectInput('fig6_georgn', 'Choose a georegion to view:',
                   choices = c('Global', continents %>% sort()),
                   selected  = 'Global'),
@@ -179,11 +184,12 @@ ui <- navbarPage(
   
   tabPanel('Tables',
     sidebarPanel(width = 3,
-      includeMarkdown('pages/table_tab_side1.md'),
+      includeMarkdown('pages/clean_side1.md'),
       radioButtons('table_file', label = 'Table: ',
                   choices = c('Table 1 Updates to status and trend data and models' = 'table1',
                               'Table 2 Updates to pressure data and models' = 'table2'),
-                  selected = 'table1')
+                  selected = 'table1'),
+      includeMarkdown('pages/footer_sidebar.md')
     ),
     mainPanel(
       h4(textOutput('table_title')),

@@ -1,7 +1,9 @@
 #### Global average yearly change in goal scores from 2012-2016
 
 <font size = 2>
-Average annual change in global status for each goal and subgoal, unweighted (blue dots) and weighted by size of EEZ (orange dots). Solid circles indicate trends significantly different from zero; open circles are non-significant. Plots on the right show change over time in the global goal score (y-axis scaled to the range of values for each goal). Large differences between unweighted and weighted values (e.g. natural products and fisheries) result from countries with large EEZs having scores significantly different from the global average.
+Average annual change in global status for each goal and subgoal, unweighted (blue dots) and weighted by size of EEZ (orange dots). Solid circles indicate trends significantly different from zero; open circles are non-significant. 
 
-This plot is analogous to Fig 2 in the published paper.
+Within a country, changes in goal scores could be fairly dramatic (select the "Show individual countries" on the left to observe these data); however, there were relatively small absolute changes at the global scale. The largest increase was for the lasting special places subgoal goal (nearly +1 point increase per year, unweighted) and the largest decrease was for the natural products goal (nearly -4 point decrease per year, unweighted). Natural products, coastal protection, and carbon storage all saw steady declines over the five years; lasting special places, fisheries, artisanal fishing opportunities and species biodiversity all saw steady increases. Within regions, the changes in goal scores could be dramatic.
+
+This plot corresponds to Fig 2 in the published paper.
 </font>

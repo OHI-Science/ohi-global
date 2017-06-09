@@ -119,7 +119,7 @@ create_fig2_plot <- function(fig2_show_pts) {
     fig2_plot <- fig2_plot +
       geom_jitter(data = nlme_df_noLE,
                   aes(x = trend, y = goal, label = country),
-                  height = .25, width = 0, color = grey80, alpha = .3)
+                  height = .25, width = 0, color = 'grey80', alpha = .3)
     
     dot_alpha = 1.0
     
@@ -136,7 +136,7 @@ create_fig2_plot <- function(fig2_show_pts) {
     geom_vline(xintercept = 0, color = 'red', linetype = 3) +
     ### add unweighted mean trend points:
     geom_point(aes(x = trend, y = goal), alpha = 0, size = 0) +
-      ### add this in to set x axis
+    ### add this in to set x axis
     geom_point(data = nlme_results_noLE %>%
                  filter(sig == 'significant'),
                aes(x = trend, y = goal, 
@@ -282,7 +282,7 @@ create_fig3_plot_georgn <- function(georgn, georgn_color) {
       geom_point(aes(x = index_score, y = index_trend, 
                      color = subregion, text = paste0('country: ', country)),
                  shape = 19, size = 2, alpha = 0.7) +
-    scale_color_brewer(palette = 'Dark2')
+      scale_color_brewer(palette = 'Dark2')
   } else {
     fig3_plot <- fig3_plot +
       geom_point(aes(x = index_score, y = index_trend, 
@@ -335,7 +335,7 @@ fig4_df <- fig4_df %>%
   mutate(country = factor(country, levels = fig4_order$country))
 
 create_fig4_plot <- function(fig4_filter, fig4_georgn, fig4_overall) {
-    
+  
   if(fig4_filter == 'himidlo') {
     ### set up dataframe of top 15, middle 10, bottom 15
     n_rgn <- length(fig4_order$country)
@@ -378,7 +378,7 @@ create_fig4_plot <- function(fig4_filter, fig4_georgn, fig4_overall) {
     
     fig4_plot <- fig4_plot +
       scale_x_discrete() + ### otherwise, geom_rect would coerce to continuous,
-        ### which wouldn't work for geom_bar()
+      ### which wouldn't work for geom_bar()
       annotate('rect', 
                xmin = 15.5, xmax = 26.5, ymin = yrange[1] - 3, ymax = yrange[2] + 3,
                color = NA, fill = 'grey50', alpha = .1) 
@@ -390,7 +390,7 @@ create_fig4_plot <- function(fig4_filter, fig4_georgn, fig4_overall) {
     scale_fill_manual(values = RColorBrewer::brewer.pal(10, 'Spectral')) +
     guides(fill = guide_legend(reverse = TRUE)) +
     geom_hline(yintercept = 0, color = 'white', size = .5)
-      ### plotly messes up with coord_flip, so add as vline
+  ### plotly messes up with coord_flip, so add as vline
   
   if(fig4_overall == TRUE) {
     ### show overall trend as little bars if desired
@@ -432,7 +432,32 @@ create_fig4_plot <- function(fig4_filter, fig4_georgn, fig4_overall) {
 
 ##### Note first section is for 'Index' selection
 
-fig5_df <- read_csv('data/fig5_data.csv') %>%
+rad_df <- read_csv('data/radical_2016-11-17.csv') %>%
+  # filter(goal != "Index") %>%
+  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  filter(region_id != 300) %>%
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%
+  left_join(georgns, by=c('region_id'))
+
+data_goal <- function(rad_df, goal_code) { # goal_code <- "Index"
+  
+  data_g <- rad_df %>%
+    filter(goal == goal_code)
+  
+  data_g <- data_g %>%
+    filter(scenario %in% c(2012, 2016)) %>%
+    mutate(dim_scen = paste(dimension, scenario, sep = "_")) %>%
+    select(dim_scen, region_id, country, continent, value) %>%
+    spread(dim_scen, value) %>%
+    mutate(pred_change = likely_future_state_2012 - status_2012,
+           obs_change  = status_2016 - status_2012,
+           r_minus_p   = resilience_2012 - pressures_2012)
+  
+  return(data_g)
+}
+
+fig5_df_index <- read_csv('data/fig5_data.csv') %>%
   select(-country) %>%
   left_join(georgns, by = 'region_id')
 # mod <- lm(score_2016 ~ score_2012, data = fig5_df)
@@ -465,292 +490,146 @@ lm_clean <- function(formula, data_df) {
                         mdl_slopes,
                         mdl_clean$estimate[1], mdl_clean$sig[1],
                         mdl$adj.r.squared)
-
+    
     return(list('mdl_text' = mdl_text, 'slope' = mdl_clean$estimate[2:nrow(mdl_clean)], 'intercept' = mdl_clean$estimate[1]))
   }
 }
 
-create_fig5a_plot <- function(fig5_colors, fig5_georgn, fig5_lm) {
+create_fig5_plot <- function(fig5_colors, fig5_georgn, 
+                             fig5_lm, fig5_goal, 
+                             y_var, x_var,
+                             y_lab, x_lab,
+                             lim_0_100 = TRUE) {
   
-  if(fig5_georgn != 'Global') {
-    fig5_df_sub <- fig5_df %>%
-      filter(continent == fig5_georgn)
+  message('in create_fig5_plot')
+  
+  if(fig5_goal == 'Index') {
+    fig5_df <- fig5_df_index
   } else {
-    fig5_df_sub <- fig5_df
-  }
-  
-  fig5a_plot <- ggplot(fig5_df_sub, aes(x = score_2012, y = score_2016)) +
-    ggtheme_grid()
-  
-  if(fig5_georgn != 'Global') {
-    fig5a_plot <- fig5a_plot +
-      geom_point(data = fig5_df, 
-                 color = 'grey80', shape = 19, size = 1.75, 
-                 alpha = 0.3)
-  }
-  
-  if(fig5_colors) {
-    fig5a_plot <- fig5a_plot +
-      geom_point(aes(text = country, color = continent), 
-                 shape = 19, size = 1.75, 
-                 alpha = 0.5) +
-      scale_color_brewer(palette = 'Dark2')
-  } else {
-    fig5a_plot <- fig5a_plot +
-      geom_point(aes(text = country), 
-               shape = 19, size = 1.75, 
-               color = 'darkblue', alpha = 0.5)
-  }
-  fig5a_plot <- fig5a_plot +
-    geom_abline(slope = 1, intercept = 0, color = 'red', alpha = .3) +
-    labs(x = 'Observed 2012 score', 
-         y = 'Observed 2016 score') +
-    xlim(0, 100) +
-    ylim(0, 100)
-  
-  if(fig5_lm) {
-    mdl_clean <- lm_clean(score_2016 ~ score_2012, fig5_df_sub) 
-    x_pt <- 75
-    y_pt <- 25
-    fig5a_plot <- fig5a_plot +
-      geom_abline(slope = mdl_clean$slope, intercept = mdl_clean$intercept,
-                  color = 'darkred', size = 0.5) +
-      annotate('text', x = x_pt, y = y_pt,
-               label = mdl_clean$mdl_text, 
-               color = 'grey20', size = 3)
-  }
-
-  return(fig5a_plot)
-}
-
-
-create_fig5b_plot <- function(fig5_colors, fig5_georgn, fig5_lm) {
-  
-  if(fig5_georgn != 'Global') {
-    fig5_df_sub <- fig5_df %>%
-      filter(continent == fig5_georgn)
-  } else {
-    fig5_df_sub <- fig5_df
-  }
-  
-  fig5b_plot <- ggplot(fig5_df_sub, aes(x = likely_future_state_2012, y = status_2016)) +
-    ggtheme_grid()
-  
-  if(fig5_georgn != 'Global') {
-    fig5b_plot <- fig5b_plot +
-      geom_point(data = fig5_df, 
-                 color = 'grey80', shape = 19, size = 1.75, 
-                 alpha = 0.3)
-  }
-  
-  if(fig5_colors) {
-    fig5b_plot <- fig5b_plot +
-      geom_point(aes(text = country, color = continent), 
-                 shape = 19, size = 1.75, 
-                 alpha = 0.5) +
-      scale_color_brewer(palette = 'Dark2')
-  } else {
-    fig5b_plot <- fig5b_plot +
-      geom_point(aes(text = country), 
-                 shape = 19, size = 1.75, 
-                 color = 'darkblue', alpha = 0.5)
-  }
-  fig5b_plot <- fig5b_plot +
-    geom_abline(slope = 1, intercept = 0, color = 'red', alpha = .3) +
-    labs(x = 'Predicted 2016 status (from 2012 data)', 
-         y = 'Observed 2016 status') +
-    xlim(0, 100) +
-    ylim(0, 100)
-  
-  if(fig5_lm) {
-    mdl_clean <- lm_clean(status_2016 ~ likely_future_state_2012, fig5_df_sub) 
-    x_pt <- 75
-    y_pt <- 25
-    fig5b_plot <- fig5b_plot +
-      geom_abline(slope = mdl_clean$slope, intercept = mdl_clean$intercept,
-                  color = 'darkred', size = 0.5) +
-      annotate('text', x = x_pt, y = y_pt,
-               label = mdl_clean$mdl_text, 
-               color = 'grey20', size = 3)
-  }
-  
-  return(fig5b_plot)
-}
-
-create_fig5c_plot <- function(fig5_colors, fig5_georgn, fig5_lm) {
-  
-  if(fig5_georgn != 'Global') {
-    fig5_df_sub <- fig5_df %>%
-      filter(continent == fig5_georgn)
-  } else {
-    fig5_df_sub <- fig5_df
-  }
-  
-  fig5c_plot <- ggplot(fig5_df_sub, aes(x = pred_change, y = obs_change)) +
-    ggtheme_grid()
-  
-  if(fig5_georgn != 'Global') {
-    fig5c_plot <- fig5c_plot +
-      geom_point(data = fig5_df, 
-                 color = 'grey80', shape = 19, size = 1.75, 
-                 alpha = 0.3)
-  }
-  
-  if(fig5_colors) {
-    fig5c_plot <- fig5c_plot +
-      geom_point(aes(text = country, color = continent), 
-                 shape = 19, size = 1.75, 
-                 alpha = 0.5) +
-      scale_color_brewer(palette = 'Dark2')
-  } else {
-    fig5c_plot <- fig5c_plot +
-      geom_point(aes(text = country), 
-                 shape = 19, size = 1.75, 
-                 color = 'darkblue', alpha = 0.5)
-  }
-  fig5c_plot <- fig5c_plot +
-    geom_abline(slope = 1, intercept = 0, color = 'red', alpha = .3) +
-    labs(y = 'Observed change in status', 
-         x = 'Predicted change in status')
-  
-  if(fig5_lm) {
-    mdl_clean <- lm_clean(obs_change ~ pred_change, fig5_df_sub) 
-    x_pt <- (min(fig5_df_sub$pred_change, na.rm = TRUE) + 4 * max(fig5_df_sub$pred_change, na.rm = TRUE))/5
-    y_pt <- (min(fig5_df_sub$obs_change,  na.rm = TRUE) * 4 + max(fig5_df_sub$obs_change,  na.rm = TRUE))/5 + 1
+    goal_code <- goal_names %>%
+      mutate(goal_code = as.character(goal_code)) %>%
+      filter(goal == fig5_goal) %>%
+      .$goal_code
     
-    fig5c_plot <- fig5c_plot +
-      geom_abline(slope = mdl_clean$slope, intercept = mdl_clean$intercept,
-                  color = 'darkred', size = 0.5) +
-      annotate('text', x = x_pt, y = y_pt, 
-               label = mdl_clean$mdl_text, 
-               color = 'grey20', size = 3)
+    fig5_df <- data_goal(rad_df, goal_code) 
   }
   
-  return(fig5c_plot)
-}
-
-##### Note second section is for non-'Index' selection
-
-rad_df <- read_csv('data/radical_2016-11-17.csv') %>%
-  filter(goal != "Index") %>%
-  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
-  filter(region_id != 300) %>%
-  filter(region_id <= 250) %>%       # get rid of high seas regions
-  filter(region_id != 213)  %>%
-  left_join(georgns, by=c('region_id'))
-
-data_goal <- function(rad_df, goal_code) { # goal <- "CP"
-  
-  data_g <- rad_df %>%
-    filter(goal == goal_code)
-  
-  data_g <- data_g %>%
-    filter(scenario %in% c(2012, 2016)) %>%
-    mutate(dim_scen = paste(dimension, scenario, sep = "_")) %>%
-    select(dim_scen, region_id, country, continent, value) %>%
-    spread(dim_scen, value) %>%
-    mutate(pred_change = likely_future_state_2012 - status_2012,
-           obs_change  = status_2016 - status_2012,
-           r_minus_p   = resilience_2012 - pressures_2012)
-
-  return(data_g)
-}
-
-create_fig5goal_plot <- function(fig5_colors, fig5_georgn, fig5_lm, fig5_goal) {
-  ### fig5_goal <- 'Tourism & recreation'
-  ### fig5_goal <- 'Carbon storage'
-  goal_code <- goal_names %>%
-    mutate(goal_code = as.character(goal_code)) %>%
-    filter(goal == fig5_goal) %>%
-    .$goal_code
-  fig5goal_df <- data_goal(rad_df, goal_code)
-  
   if(fig5_georgn != 'Global') {
-    fig5goal_df_sub <- fig5goal_df %>%
+    fig5_df_sub <- fig5_df %>%
       filter(continent == fig5_georgn)
   } else {
-    fig5goal_df_sub <- fig5goal_df
+    fig5_df_sub <- fig5_df
   }
   
-  fig5goal_plot <- ggplot(fig5goal_df_sub, aes(x = pred_change, y = obs_change)) +
+  fig5_df_sub <- fig5_df_sub %>%
+    select_('region_id', 'country', 'continent', x_var, y_var)
+  
+  message('Fig 5 for ', fig5_goal, ' in ', fig5_georgn, ' x = ', x_var, ' y = ', y_var)
+  print(head(fig5_df_sub))
+  
+  fig5_plot <- ggplot(fig5_df_sub, aes_string(x = x_var, y = y_var)) +
     ggtheme_grid() +
-    labs(title = fig5_goal,
-         y = 'Observed change in status', 
-         x = 'Predicted change in status')
+    labs(x = x_lab, 
+         y = y_lab)
   
   if(fig5_georgn != 'Global') {
-    fig5goal_plot <- fig5goal_plot +
-      geom_point(data = fig5goal_df, 
+    fig5_plot <- fig5_plot +
+      geom_point(data = fig5_df, 
                  color = 'grey80', shape = 19, size = 1.75, 
                  alpha = 0.3)
   }
   
   if(fig5_colors) {
-    fig5goal_plot <- fig5goal_plot +
+    fig5_plot <- fig5_plot +
       geom_point(aes(text = country, color = continent), 
                  shape = 19, size = 1.75, 
                  alpha = 0.5) +
       scale_color_brewer(palette = 'Dark2')
   } else {
-    fig5goal_plot <- fig5goal_plot +
+    fig5_plot <- fig5_plot +
       geom_point(aes(text = country), 
                  shape = 19, size = 1.75, 
                  color = 'darkblue', alpha = 0.5)
   }
-
-  mdl1 <- lm_clean(obs_change ~ pred_change, fig5goal_df_sub) 
   
-  if(!is.na(mdl1$slope)) {
-    ### don't add 1:1 line for NA linear model
-    fig5goal_plot <- fig5goal_plot +
+  mdl_formula <- as.formula(sprintf('%s ~ %s', y_var, x_var))
+  mdl_clean <- lm_clean(mdl_formula, fig5_df_sub) 
+  
+  if(!is.na(mdl_clean$slope)) {
+    fig5_plot <- fig5_plot +
       geom_abline(slope = 1, intercept = 0, color = 'red', alpha = .3)
   }
   
+  if(lim_0_100) {
+    fig5_plot <- fig5_plot +
+      xlim(0, 100) +
+      ylim(0, 100)
+  }
+  
   if(fig5_lm) {
-    if(!is.na(mdl1$slope)) {
-      fig5goal_plot <- fig5goal_plot +
-        geom_abline(slope = mdl1$slope[1], intercept = mdl1$intercept,
+    ### print linear model line and box
+    if(lim_0_100) {
+      x_pt <- ifelse(mdl_clean$slope[1] > 0, 75, 25)
+      y_pt <- 25
+    } else {
+      x_pt <- ifelse(mdl_clean$slope[1] > 0 | is.na(mdl_clean$slope[1]), 
+                     (min(fig5_df_sub[ , x_var], na.rm = TRUE) + 4 * max(fig5_df_sub[ , x_var], na.rm = TRUE))/5,
+                     (min(fig5_df_sub[ , x_var], na.rm = TRUE) * 4 + max(fig5_df_sub[ , x_var], na.rm = TRUE))/5)
+      y_pt <- (min(fig5_df_sub[ , y_var],  na.rm = TRUE) * 4 + max(fig5_df_sub[ , y_var],  na.rm = TRUE))/5 + 1
+    }
+    fig5_plot <- fig5_plot +
+      annotate('text', x = x_pt, y = y_pt,
+               label = mdl_clean$mdl_text, 
+               color = 'grey20', size = 3) +
+      expand_limits(y = y_pt + 1)
+    
+    if(!is.na(mdl_clean$slope)) {
+      fig5_plot <- fig5_plot +
+        geom_abline(slope = mdl_clean$slope, intercept = mdl_clean$intercept,
                     color = 'darkred', size = 0.5)
     }
   }
   
-  return(fig5goal_plot)
-  
+  return(fig5_plot)
 }
 
-create_fig5goal_text <- function(fig5_georgn, fig5_goal) {
-  ### fig5_goal <- 'Tourism & recreation'
-  ### fig5_goal <- 'Carbon storage'
-  message('in create_fig5goal_text, for ', fig5_goal, 'in ', fig5_georgn)
 
-  goal_code <- goal_names %>%
-    mutate(goal_code = as.character(goal_code)) %>%
-    filter(goal == fig5_goal) %>%
-    .$goal_code
-  fig5goal_df <- data_goal(rad_df, goal_code) 
 
-  if(fig5_georgn != 'Global') {
-    fig5goal_df <- fig5goal_df %>%
-        filter(continent == fig5_georgn)
-  }
-  
-  mdl1 <- lm_clean(obs_change ~ pred_change, data = fig5goal_df)
-  
-  mdl2 <- lm_clean(obs_change ~ trend_2012 + r_minus_p, data = fig5goal_df)
-  
-  mdl3 <- lm_clean(obs_change ~ trend_2012 + pressures_2012 + resilience_2012, data = fig5goal_df)
-  
-  fig5goal_text <- paste(ifelse(!is.na(mdl1$slope), 
-                                '<b>Linear regression models (first model is plotted in dark red above):</b>', 
-                                '<b>Linear regression models:</b>'),
-                          mdl1$mdl_text, mdl2$mdl_text, mdl3$mdl_text,
-                          sep = '<p>') %>%
-    str_replace_all('\\n', '<br>• ') %>%
-    str_replace_all('\\^2', '<sup>2</sup>')  
-  
-  return(fig5goal_text)
-  
-}
+
+
+# create_fig5goal_text <- function(fig5_georgn, fig5_goal) {
+#   ### fig5_goal <- 'Tourism & recreation'
+#   ### fig5_goal <- 'Carbon storage'
+#   message('in create_fig5goal_text, for ', fig5_goal, 'in ', fig5_georgn)
+#   
+#   goal_code <- goal_names %>%
+#     mutate(goal_code = as.character(goal_code)) %>%
+#     filter(goal == fig5_goal) %>%
+#     .$goal_code
+#   fig5goal_df <- data_goal(rad_df, goal_code) 
+#   
+#   if(fig5_georgn != 'Global') {
+#     fig5goal_df <- fig5goal_df %>%
+#       filter(continent == fig5_georgn)
+#   }
+#   
+#   mdl1 <- lm_clean(obs_change ~ pred_change, data = fig5goal_df)
+#   
+#   mdl2 <- lm_clean(obs_change ~ trend_2012 + r_minus_p, data = fig5goal_df)
+#   
+#   mdl3 <- lm_clean(obs_change ~ trend_2012 + pressures_2012 + resilience_2012, data = fig5goal_df)
+#   
+#   fig5goal_text <- paste(ifelse(!is.na(mdl1$slope), 
+#                                 '<b>Linear regression models (first model is plotted in dark red above):</b>', 
+#                                 '<b>Linear regression models:</b>'),
+#                          mdl1$mdl_text, mdl2$mdl_text, mdl3$mdl_text,
+#                          sep = '<p>') %>%
+#     str_replace_all('\\n', '<br>• ') %>%
+#     str_replace_all('\\^2', '<sup>2</sup>')  
+#   
+#   return(fig5goal_text)
+#   
+# }
 
 ##################################################.
 ##### Functions for Fig 6 change-in-rank tab #####
@@ -837,7 +716,7 @@ create_fig6_plot_georgn <- function(georgn, georgn_color) {
     ### add global linear model line:
     geom_abline(slope = fig6_mdl_gl$slope, intercept = fig6_mdl_gl$intercept,
                 color = 'grey70', size = 0.5, alpha = .3)
-    
+  
   if(georgn_color) {
     fig6_plot <- fig6_plot +
       geom_point(aes(color = subregion, text = paste0('country: ', country)),

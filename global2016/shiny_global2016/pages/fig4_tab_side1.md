@@ -2,6 +2,6 @@
 
 <hr> 
 <font size = 2>
-description of the variables and controls over here</font>
+'High-mid-low' shows the 15 regions with largest increases and decreases in scores and 10 representative regions in between (denoted by grey background) (Fig 4 from published paper). 'Georegion' enables selection of Global (Fig G from SI) or georegional groupings.</font>
 
 <font size = 2>
