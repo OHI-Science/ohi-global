@@ -119,7 +119,7 @@ ui <- navbarPage(
     ),
     mainPanel(
       includeMarkdown('pages/fig2_tab_main1.md'),
-      plotlyOutput('fig2_plot', height = '400px')
+      plotlyOutput('fig2_plot', height = '400px', width = '700px')
     )
   ),
   
@@ -136,7 +136,7 @@ ui <- navbarPage(
     ),
     mainPanel(
       includeMarkdown('pages/fig3_tab_main1.md'),
-      plotlyOutput('fig3_plot', height = '400px', width = '650px')
+      plotlyOutput('fig3_plot', height = '400px', width = '700px')
     )
   ),
   
@@ -182,9 +182,9 @@ ui <- navbarPage(
     mainPanel(
       includeMarkdown('pages/fig5_tab_main1.md'),
       # uiOutput('fig5goal_plotly.ui')
-      plotlyOutput('fig5a_plot', height = '300px', width = '650px'),
-      plotlyOutput('fig5b_plot', height = '300px', width = '650px'),
-      plotlyOutput('fig5c_plot', height = '300px', width = '650px')
+      plotlyOutput('fig5a_plot', height = '300px', width = '700px'),
+      plotlyOutput('fig5b_plot', height = '300px', width = '700px'),
+      plotlyOutput('fig5c_plot', height = '300px', width = '700px')
     )
   ),
   
@@ -201,7 +201,7 @@ ui <- navbarPage(
     ),
     mainPanel(
       includeMarkdown('pages/fig6_tab_main1.md'),
-      plotlyOutput('fig6_plot', height = '400px', width = '650px')
+      plotlyOutput('fig6_plot', height = '400px', width = '700px')
     )
   ),
   
