@@ -1,7 +1,7 @@
 ### server_setup.R
 
 ### Set up basic stuff
-library(sf)
+# library(sf)
 library(RColorBrewer)
 library(plotly)
 
