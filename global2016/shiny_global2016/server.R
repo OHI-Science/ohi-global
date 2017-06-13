@@ -1,12 +1,35 @@
 ### server.R
 
-source('server_fxns.R')
+source('src/server_setup.R')
+source('src/server_fxns.R')
 
 server <- shinyServer(function(input, output, session) {
+  
+  ##### Fig 1: Score maps #####################################################
+  
+  output$scoremap <- renderImage({
+    # message('in output$scoremap: ', input$map_scen, ' ', input$map_goal)
+    map_file <- get_map_file(input$map_scen, input$map_goal)
+    # message('in output$scoremap, map_file = ', map_file)
+    return(list(src = map_file))
+  }, deleteFile = FALSE)
+  
+  output$scorehist <- renderPlot({
+    if(input$map_scen == 'annual_change_2016') {
+      scorehist <- create_fig1_trend_hist(input$map_goal)
+    } else {
+      scorehist <- create_fig1_score_hist(input$map_scen, input$map_goal)
+    }
+    return(scorehist)
+  })
+  
+  ##### Fig 2: Trend by goal  #################################################
   
   output$fig2_plot <- renderPlotly({
     fig2_plot <- create_fig2_plot(input$fig2_show_all)
   })
+  
+  ##### Fig 3: Trend vs. Score ################################################
   
   output$fig3_plot <- renderPlotly({
     if(input$fig3_georgn == 'Global') {
@@ -17,6 +40,8 @@ server <- shinyServer(function(input, output, session) {
     }
     fig3_plot
   })
+  
+  ##### Fig 4: Trend bar charts ###############################################
   
   output$fig4_plot <- renderPlot({
     fig4_plot <- create_fig4_plot(input$fig4_filter,
@@ -34,19 +59,7 @@ server <- shinyServer(function(input, output, session) {
     plotOutput('fig4_plot', height = fig4_height)
   })
   
-  # output$fig4_plotly <- renderPlotly({
-  #   fig4_plot <- create_fig4_plot(input$fig4_filter, 
-  #                                 input$fig4_georgn,
-  #                                 input$fig4_overall)
-  # })
-  
-  # output$fig4_plotly.ui <- renderUI({
-  #   fig4_height <- ifelse((input$fig4_filter == 'georgn' & input$fig4_georgn == 'Global'),
-  #                         '1500px', '400px')
-  #   # fig4_height <- '401px'
-  #   message('fig4_height = ', fig4_height)
-  #   plotlyOutput('fig4_plotly', height = fig4_height)
-  # })
+  ##### Fig 5: Model Eval #####################################################
   
   output$fig5a_plot <- renderPlotly({
     message('rendering fig5a_plot')
@@ -74,26 +87,8 @@ server <- shinyServer(function(input, output, session) {
                                    x_lab = 'Predicted change in status',
                                    lim_0_100 = FALSE)
   })
-
-  # output$fig5goal_modeltext <- reactive(create_fig5goal_text(input$fig5_georgn, input$fig5_goal))
   
-  # output$fig5goal_plotly.ui <- renderUI({
-  #   if(input$fig5_goal == 'Index') {
-  #     return(list(plotlyOutput('fig5a_plot', height = '300px'), 
-  #                 hr(), 
-  #                 plotlyOutput('fig5b_plot', height = '300px'), 
-  #                 hr(), 
-  #                 plotlyOutput('fig5c_plot', height = '300px')))
-  #   } else {
-  #     message('Here I am calling the plotlyOutput for ', input$fig5_goal)
-  #     return(list(plotlyOutput('fig5goal_plot', height = '400px'),
-  #                 uiOutput('fig5goal_modeltext')
-  #           )
-  #       )
-  #   }
-  # })
-  
-  
+  ##### Fig 6: Rank Change ####################################################
   
   output$fig6_plot <- renderPlotly({
     if(input$fig6_georgn == 'Global') {
@@ -104,6 +99,37 @@ server <- shinyServer(function(input, output, session) {
     }
     fig6_plot
   })
+  
+  ##### Data display and download #############################################
+  
+  output$data_display <- renderDataTable({
+    data_view_df <- read_csv('tables/data_view.csv') 
+    if(!'rgn' %in% input$data_view)
+      data_view_df <- data_view_df %>%
+        select(-georegion, -subregion, -country)
+    if(!'goal' %in% input$data_view)
+      data_view_df <- data_view_df %>%
+        select(-goal)
+    return(data_view_df)
+  },
+  options = list(paging = TRUE, pageLength = 100),
+  escape = FALSE)
+  
+  download_df <- reactive({
+    get_data_download(input$data_request)
+  })
+  
+  output$data_download <- downloadHandler(
+    filename = function() { 
+      ifelse('all_vals' %in% input$data_request,
+             'ohi_all_dimensions_2012_2016.csv',
+             'ohi_scores_2012_2016.csv') },
+    content  = function(file) {
+      write_csv(download_df(), file)
+    }
+  )
+  
+  ##### Table display #########################################################
   
   output$table_display <- renderDataTable({
     read_csv(file.path('tables', paste0(input$table_file, '.csv'))) 

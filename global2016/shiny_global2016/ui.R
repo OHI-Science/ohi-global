@@ -2,7 +2,6 @@
 
 library(tidyverse) 
 library(stringr)
-library(plotly)
 library(shinythemes)
 
 ### create warning with date to help with log output
@@ -83,18 +82,45 @@ ui <- navbarPage(
   #   )
   # ),
 
+  tabPanel('Score maps',
+    sidebarPanel(width = 3,
+      includeMarkdown('pages/clean_side1.md'),
+      selectInput('map_scen', 
+                  choices = c('Score 2016'  = 'score_2016',
+                              'Score 2015'  = 'score_2015',
+                              'Score 2014'  = 'score_2014',
+                              'Score 2013'  = 'score_2013',
+                              'Score 2012'  = 'score_2012',
+                              'Annual change 2016'  = 'annual_change_2016'),
+                  selected = 'score_2016',
+                  label = 'Scenario to display?'),
+      HTML('<p><b>Note:</b> Score color scale is fixed from 0-100.',
+           'Annual Change color scale is rescaled depending on the', 
+           'values for each goal.'),
+      selectInput('map_goal', choices = goal_names$goal,
+                  selected  = 'Index',
+                  label = 'Goal to display?'),
+      includeMarkdown('pages/footer_sidebar.md')
+    ),
+    mainPanel(
+      includeMarkdown('pages/map_main1.md'),
+      imageOutput('scoremap'),
+      plotOutput('scorehist', height = '250px', width = '550px')
+    )
+  ),
+  
   tabPanel('Trends by goal',
-           sidebarPanel(width = 3,
-             includeMarkdown('pages/clean_side1.md'),
-             checkboxInput('fig2_show_all', 
-                           label = 'Show individual countries?',
-                           value = FALSE),
-             includeMarkdown('pages/footer_sidebar.md')
-           ),
-           mainPanel(
-             includeMarkdown('pages/fig2_tab_main1.md'),
-             plotlyOutput('fig2_plot', height = '400px')
-           )
+    sidebarPanel(width = 3,
+      includeMarkdown('pages/clean_side1.md'),
+      checkboxInput('fig2_show_all', 
+                    label = 'Show individual countries?',
+                    value = FALSE),
+      includeMarkdown('pages/footer_sidebar.md')
+    ),
+    mainPanel(
+      includeMarkdown('pages/fig2_tab_main1.md'),
+      plotlyOutput('fig2_plot', height = '400px')
+    )
   ),
   
   tabPanel('Trend v. score',
@@ -183,7 +209,7 @@ ui <- navbarPage(
   tabPanel('Tables',
     sidebarPanel(width = 3,
       includeMarkdown('pages/clean_side1.md'),
-      radioButtons('table_file', label = 'Table: ',
+      radioButtons('table_file', label = 'Table from published paper: ',
                   choices = c('Table 1 Updates to status and trend data and models' = 'table1',
                               'Table 2 Updates to pressure data and models' = 'table2'),
                   selected = 'table1'),
@@ -194,6 +220,36 @@ ui <- navbarPage(
       includeMarkdown('pages/table_main1.md'),
       dataTableOutput('table_display'),
       includeMarkdown('pages/table_main2.md')
+    )
+  ),
+  
+  tabPanel('Data',
+    sidebarPanel(width = 3,
+      includeMarkdown('pages/clean_side1.md'),
+      checkboxGroupInput('data_view', label = 'View additional columns:',
+                         choices = c('Region information' = 'rgn',
+                                     'Full goal name'     = 'goal'),
+                         selected = c()),
+      p('Country, region, and goal names may be helpful to',
+        'filter/search the data.'),
+      hr(),
+      h5('Download OHI score data'),
+      checkboxGroupInput('data_request', 'Select data to include:',
+                         choices = c('All dimensions (see below)' = 'all_vals',
+                                     'Region information'    = 'rgn',
+                                     'Goal long names'       = 'goal'),
+                         selected = c('all_vals', 'rgn', 'goal')),
+      downloadButton('data_download', label = 'Download data'),
+      p('Selecting "All dimensions" will download OHI score values as well as',
+        'values for current status, trend, likely future state, resilience, ',
+        'and pressure.  Unchecking this will download only the score values.'),
+      hr(),
+      includeMarkdown('pages/footer_sidebar.md')
+    ),
+    mainPanel(
+      includeMarkdown('pages/data_main1.md'),
+      dataTableOutput('data_display'),
+      includeMarkdown('pages/data_main2.md')
     )
   )
 

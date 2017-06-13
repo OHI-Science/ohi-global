@@ -1,81 +1,93 @@
 ### server_fxns.R
 
+####################################################.
+##### Functions for Fig 1 score/trend maps tab #####
+####################################################.
 
-### Set up basic stuff
+fig1_scores <- rad_df %>%
+  filter(dimension == 'score')
 
-# create a blank ggplot theme
-ggtheme_blank <- function(textsize = 10) {
-  theme_bw() +
-    theme_update(panel.grid.minor = element_blank(),
-                 panel.grid.major = element_blank(),
-                 panel.background = element_blank(),
-                 plot.background = element_blank(),
-                 panel.border = element_blank(),
-                 axis.line = element_blank(),
-                 axis.ticks = element_blank(),
-                 text = element_text(size = textsize),
-                 plot.title = element_text(size = textsize * 1.5))
+fig1_colors <- c(colorRampPalette(brewer.pal(11, 'RdYlBu'))(101))
+
+col_brks   <- seq(0, 100, by = 1)
+col_assign <- cut(col_brks, breaks = col_brks, include.lowest = TRUE)
+colors_df  <- data.frame(colors_plot = fig1_colors, col_assign, stringsAsFactors = FALSE)
+
+fig1_scores$col_assign <- cut(fig1_scores$value, breaks = col_brks, include.lowest = TRUE)
+
+fig1_scores <- left_join(fig1_scores, colors_df, by = 'col_assign') %>%
+  arrange(value)
+
+fig1_trend_df <- annual_change_df %>%
+  arrange(goal_code, annual_change) %>%
+  left_join(goal_names, by = c('goal_code')) %>%
+  select(goal_code, goal, region_id, annual_change)
+
+get_trend_breaks <- function(data_df) {
+  x <- range(data_df$annual_change, na.rm = TRUE) %>% abs() %>% max()
+  trend_breaks <- c(1, 2, 5, 10, 20, 30, 50)
+  y <- min(trend_breaks[trend_breaks > x])
+  col_brks  <- seq(-y, y, length.out = 101)
+  # message('range value = ', 
+  #         paste(range(data_df$annual_change, na.rm = TRUE), collapse = ' to '), 
+  #         '; col_brks set to ', paste(col_brks, collapse = ', '))
+  
+  return(col_brks)
 }
 
-ggtheme_grid <- function(textsize = 10) {
-  theme_bw() +
-    theme_update(panel.grid.minor = element_blank(),
-                 panel.grid.major = element_line(color = 'grey92'),
-                 panel.background = element_blank(),
-                 plot.background = element_blank(),
-                 panel.border = element_rect(fill = NA, color = 'grey92'),
-                 axis.line = element_blank(),
-                 axis.ticks = element_blank(),
-                 text = element_text(size = textsize),
-                 plot.title = element_text(size = textsize * 1.5))
+
+create_fig1_score_hist <- function(fig1_scenario, fig1_goal) {
+  ### fig1_scenario <- 2016; fig1_goal <- 'Index'
+  message(fig1_scenario, ' ', fig1_goal)
+  goal_code <- goal_names$goal_code[goal_names$goal == fig1_goal] %>%
+    as.character()
+  fig1_scen_num <- str_extract(fig1_scenario, '[0-9]{4}') %>% as.integer()
+  fig1_scores_sub <- fig1_scores %>%
+    filter(scenario == fig1_scen_num) %>%
+    filter(goal == goal_code)
+  
+  fig1_score_cols <- fig1_scores_sub$colors_plot %>% unique()
+  
+  fig1_hist <- ggplot(fig1_scores_sub, aes(x = value)) +
+    ggtheme_grid() +
+    geom_histogram(aes(fill = col_assign), color = NA, bins = 31) +  
+    scale_fill_manual(values = fig1_score_cols, guide = FALSE) +
+    xlim(c(0, 100)) +
+    labs(y = 'Number of regions', 
+         x = paste0(fig1_goal, ' score ', fig1_scen_num))
 }
 
 
-goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
-goal_names <- data.frame(goal_code = goals, 
-                         goal = c('Index', 
-                                  'Artisanal opportunities',
-                                  'Species condition (Biodiversity)',
-                                  'Biodiversity',
-                                  'Habitat (Biodiversity)',
-                                  'Coastal protection',
-                                  'Carbon storage',
-                                  'Clean water',
-                                  'Economies',
-                                  'Livelihoods & economies',
-                                  'Livelihoods',
-                                  'Fisheries (Food provision)',
-                                  'Food provision',
-                                  'Mariculture (Food provision)',
-                                  'Iconic species (Sense of place)',
-                                  'Sense of place',
-                                  'Lasting special places (Sense of place)',
-                                  'Natural products',
-                                  'Tourism & recreation'))
+create_fig1_trend_hist <- function(fig1_goal) {
+  ### fig1_goal <- 'Index'
+  ### fig1_goal <- 'Species condition (Biodiversity)'
+  fig1_trend_sub <- fig1_trend_df %>%
+    filter(goal == fig1_goal) %>%
+    distinct() %>%
+    arrange(annual_change)
+  
+  trend_colors <- c(colorRampPalette(brewer.pal(11, 'RdYlBu'))(101))
 
-############################.
-##### Load data frames #####
-############################.
+  col_brks <- get_trend_breaks(fig1_trend_sub)
+  col_assign <- cut(col_brks, breaks = col_brks, include.lowest = TRUE)
+  colors_df  <- data.frame(colors_plot = trend_colors, col_assign, stringsAsFactors = FALSE)
+  
+  fig1_trend_sub$col_assign <- cut(fig1_trend_sub$annual_change, breaks = col_brks, include.lowest = TRUE)
+  
+  fig1_trend_sub <- left_join(fig1_trend_sub, colors_df, by = 'col_assign')
+  
+  fig1_trend_cols <- fig1_trend_sub$colors_plot %>% unique()
+  
+  fig1_trend_hist <- ggplot(fig1_trend_sub, aes(x = annual_change)) +
+    ggtheme_grid() +
+    geom_histogram(aes(fill = col_assign), bins = 25, center = 1.01, color = NA, size = .25) +
+    scale_fill_manual(breaks = col_brks, values = fig1_trend_cols, guide = FALSE) +
+    labs(y = 'Number of regions', 
+         x = paste0(fig1_goal, ' average annual change')) +
+    geom_vline(xintercept = 0, color = 'red', alpha = .3) +
+    xlim(min(col_brks), max(col_brks))
 
-# setwd('~/github/ohi-global/global2016/shiny_global2016')
-index_2016_all <- read_csv('data/scores_eez2016.csv') 
-index_2016 <- index_2016_all %>%
-  select(region_id, index_score = Index)
-
-index_2012 <- read_csv('data/scores_eez2012.csv') %>%
-  select(region_id, index_score = Index)
-
-trend_2016_all <- read_csv('data/trends_2016.csv') 
-trend_2016 <- trend_2016_all %>%
-  select(region_id, index_trend = Index)
-
-georgns <- read_csv('data/georegion_labels2.csv') %>%
-  select(-world)
-
-index_gl2016 <- index_2016$index_score[index_2016$region_id == 0]
-trend_gl2016 <- trend_2016$index_trend[trend_2016$region_id == 0]
-
-
+}
 
 ###################################################.
 ##### Functions for Fig 2 trend of scores tab #####
@@ -180,11 +192,11 @@ create_fig2_plot <- function(fig2_show_pts) {
       annotate('text', label = 'Unweighted',
                x = -3.9, y = 1.6,
                hjust = 0, ### tie to NP values
-               family = 'Arial', color = '#313695', size = 2.6) +
+               family = 'Arial', color = '#313695', size = 2.5) +
       annotate('text', label = 'Area weighted',
                x = -2.8, y = 1.6,
                hjust = 0, ### tie to NP values
-               family = 'Arial', color = 'orange', size = 2.6)
+               family = 'Arial', color = 'orange', size = 2.5)
   }
   
   return(fig2_plot)
@@ -254,9 +266,9 @@ create_fig3_plot_global <- function(georgn_color) {
                 color = 'darkred', size = 0.5) +
     annotate('text', x = 82, y = -2.5, 
              label = lm_global$mdl_text, 
-             color = 'grey20', size = 3) +
+             color = 'grey30', size = 2.5) +
     xlim(c(40, 100)) + 
-    labs(y = 'Average change in OHI score per year)', 
+    labs(y = 'Average change in OHI score per year', 
          x = 'OHI score (2016)') 
   
   return(fig3_plot)
@@ -305,7 +317,7 @@ create_fig3_plot_georgn <- function(georgn, georgn_color) {
                 color = 'darkred', size = 0.5, alpha = 1, fullrange = TRUE) +
     annotate('text', x = 82, y = -2.5, 
              label = lm_rgn$mdl_text, 
-             color = 'grey20', size = 3) +
+             color = 'grey30', size = 2.5) +
     xlim(c(40, 100)) + 
     labs(y = 'Average change in OHI score per year)', 
          x = 'OHI score (2016)') 
@@ -430,24 +442,14 @@ create_fig4_plot <- function(fig4_filter, fig4_georgn, fig4_overall) {
 ##### Functions for Fig 5 model evaluation tab #####
 ####################################################.
 
-##### Note first section is for 'Index' selection
-
-rad_df <- read_csv('data/radical_2016-11-17.csv') %>%
-  # filter(goal != "Index") %>%
-  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
-  filter(region_id != 300) %>%
-  filter(region_id <= 250) %>%       # get rid of high seas regions
-  filter(region_id != 213)  %>%
-  left_join(georgns, by=c('region_id'))
-
-data_goal <- function(rad_df, goal_code) { # goal_code <- "Index"
+data_goal <- function(rad_df, goal_code) { # goal_code <- 'Index'
   
   data_g <- rad_df %>%
     filter(goal == goal_code)
   
   data_g <- data_g %>%
     filter(scenario %in% c(2012, 2016)) %>%
-    mutate(dim_scen = paste(dimension, scenario, sep = "_")) %>%
+    mutate(dim_scen = paste(dimension, scenario, sep = '_')) %>%
     select(dim_scen, region_id, country, continent, value) %>%
     spread(dim_scen, value) %>%
     mutate(pred_change = likely_future_state_2012 - status_2012,
@@ -501,7 +503,7 @@ create_fig5_plot <- function(fig5_colors, fig5_georgn,
                              y_lab, x_lab,
                              lim_0_100 = TRUE) {
   
-  message('in create_fig5_plot')
+  # message('in create_fig5_plot')
   
   if(fig5_goal == 'Index') {
     fig5_df <- fig5_df_index
@@ -524,9 +526,8 @@ create_fig5_plot <- function(fig5_colors, fig5_georgn,
   fig5_df_sub <- fig5_df_sub %>%
     select_('region_id', 'country', 'continent', x_var, y_var)
   
-  message('Fig 5 for ', fig5_goal, ' in ', fig5_georgn, ' x = ', x_var, ' y = ', y_var)
-  print(head(fig5_df_sub))
-  
+  # message('Fig 5 for ', fig5_goal, ' in ', fig5_georgn, ' x = ', x_var, ' y = ', y_var)
+
   fig5_plot <- ggplot(fig5_df_sub, aes_string(x = x_var, y = y_var)) +
     ggtheme_grid() +
     labs(x = x_lab, 
@@ -580,7 +581,7 @@ create_fig5_plot <- function(fig5_colors, fig5_georgn,
     fig5_plot <- fig5_plot +
       annotate('text', x = x_pt, y = y_pt,
                label = mdl_clean$mdl_text, 
-               color = 'grey20', size = 3) +
+               color = 'grey30', size = 2.5) +
       expand_limits(y = y_pt + 1)
     
     if(!is.na(mdl_clean$slope)) {
@@ -691,7 +692,7 @@ create_fig6_plot_global <- function(georgn_color) {
                 color = 'darkred', size = 0.5) +
     annotate('text', x = 5, y = -60, 
              label = fig6_mdl$mdl_text, 
-             color = 'grey20', size = 3) +
+             color = 'grey30', size = 2.5) +
     labs(y = 'Rank change (2012 to 2016)', 
          x = 'Score change (2012 to 2016)') 
   
@@ -735,10 +736,63 @@ create_fig6_plot_georgn <- function(georgn, georgn_color) {
                 color = 'darkred', size = 0.5) +
     annotate('text', x = 5, y = -60, 
              label = fig6_mdl_rg$mdl_text, 
-             color = 'grey20', size = 3) +
+             color = 'grey30', size = 2.5) +
     labs(y = 'Rank change (2012 to 2016)', 
          x = 'Score change (2012 to 2016)') 
   
   return(fig6_plot)
   
+}
+
+##### Plotting maps of scores and trends #####
+
+get_map_file <- function(map_scen, map_goal) {
+  goal_code <- goal_names[goal_names$goal == map_goal, 1] %>%
+    as.character() %>% tolower()
+  # message('goal code = ', goal_code, '; map_scen = ', map_scen)
+  map_file <- sprintf('maps/%s/%s_%s.png', map_scen, goal_code, map_scen)
+  # message('map file = ', map_file)
+  # message('File exists? ', file.exists(map_file), list.files())
+  return(map_file)
+}
+
+##### Displaying and downloading data #####
+
+# data_view_df <- rad_df %>%
+#   filter(dimension == 'score') %>%
+#   mutate(scenario = paste0('score_', scenario)) %>%
+#   spread(scenario, value) %>%
+#   select(-dimension, georegion = continent, goal_code = goal) %>%
+#   left_join(goal_names, by = 'goal_code')
+# 
+# write_csv(data_view_df, 'tables/data_view.csv')
+
+# data_download_df <- rad_df %>%
+#   select(-continent, -subregion, -country)
+# rgn_lookup <- rad_df %>%
+#   select(region_id, georegion = continent, subregion, country) %>%
+#   distinct()
+# goal_lookup <- goal_names
+# 
+# write_csv(data_download_df, 'tables/ohi_data_2012_2016.csv')
+# write_csv(rgn_lookup,       'tables/rgn_lookup.csv')
+# write_csv(goal_lookup,      'tables/goal_lookup.csv')
+
+get_data_download <- function(data_request) {
+  data_df <- read_csv('tables/ohi_data_2012_2016.csv') %>%
+    select(year = scenario, region_id, goal, dimension, value)
+  if(!'all_vals' %in% data_request) {
+    data_df <- data_df %>%
+      filter(dimension == 'score') %>%
+      select(-dimension)
+  }
+  if('goal' %in% data_request) {
+    data_df <- data_df %>%
+      left_join(read_csv('tables/goal_lookup.csv'))
+  }
+  if('rgn' %in% data_request) {
+    data_df <- data_df %>%
+      left_join(read_csv('tables/rgn_lookup.csv'))
+  }
+  return(data_df)
 }
