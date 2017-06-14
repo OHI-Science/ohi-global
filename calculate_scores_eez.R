@@ -149,7 +149,6 @@ for (i in 1:length(scenarios)){  #i=1
         fld_value=name_data_fld, units,
         path_in, path_in_exists, filename, path_out) %>%
           arrange(targets, layer)
-    write.csv(lyrs, sprintf('%s/temp/layers_1-ingest.csv', scenario), na='', row.names=F)
     
     # checks that all data layers are available based on file paths 
     if (nrow(filter(lyrs, !path_in_exists)) != 0){
@@ -205,25 +204,6 @@ for (i in 1:length(scenarios)){  #i=1
     
   }
   
-  if (do.other){
-    # spatial  
-    for (f in scenarios[[scenario]][['f_spatial']]){ # f = f_spatial[1]
-      stopifnot(file.exists(f))
-      file.copy(f, sprintf('%s/spatial/%s', scenario, basename(f)))
-    }
-    
-    # delete old shortcut files
-    for (f in c('launchApp.bat','launchApp.command','launchApp_code.R','scenario.R')){
-      path = sprintf('%s/%s',scenario,f)
-      if (file.exists(path)) unlink(path)
-    }
-    
-    # save shortcut files not specific to operating system
-    write_shortcuts(scenario, os_files=0)
-    
-    # launch on Mac # setwd('~/github/ohi-global/eez2013'); launch_app()
-    #system(sprintf('open %s/launch_app.command', scenario))
-  }
 }
 
 
@@ -233,12 +213,12 @@ for (i in 1:length(scenarios)){  #i=1
 source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
-change_plot(repo = "ohi-global", scenario="eez2016", commit="previous", 
-            fileSave="eez2016_new_ohicore_cs_weights", save_csv = TRUE)
+change_plot(repo = "ohi-global", scenario="eez2016", commit="ce63333", 
+            fileSave="eez2016_new_ohicore_mar", save_csv = TRUE)
 
 ## check for changes in NA's
 ## Both should equal 0
-compare <- read.csv('changePlot_figures/eez2016_new_ohicore_cs_weights_diff_data_2017-06-08.csv')
+compare <- read.csv('changePlot_figures/eez2016_new_ohicore_mar_diff_data_2017-06-13.csv')
 NA_compare <- compare %>%
   mutate(NA_same = ifelse(is.na(score) & is.na(old_score), 1, 0)) %>%
   mutate(NA_new = ifelse(is.na(score), 1, 0)) %>%
@@ -248,6 +228,7 @@ NA_compare <- compare %>%
   summarize(new = sum(diff_new),
             old = sum(diff_old))
 NA_compare
+
 # looking within a goal:
 scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")
 

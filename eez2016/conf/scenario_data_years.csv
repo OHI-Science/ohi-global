@@ -157,3 +157,93 @@ hab cp cs,hab_seagrass_trend,2014,2012
 hab cp cs,hab_seagrass_trend,2015,2012
 hab cp cs,hab_seagrass_trend,2016,2012
 hab cp cs,hab_seagrass_trend,2017,2012
+hab cp,hab_seaice_extent,2012,2016
+hab cp,hab_seaice_extent,2013,2016
+hab cp,hab_seaice_extent,2014,2016
+hab cp,hab_seaice_extent,2015,2016
+hab cp,hab_seaice_extent,2016,2016
+hab cp,hab_seaice_extent,2017,2016
+hab cp,hab_seaice_health,2012,2011
+hab cp,hab_seaice_health,2013,2012
+hab cp,hab_seaice_health,2014,2013
+hab cp,hab_seaice_health,2015,2014
+hab cp,hab_seaice_health,2016,2015
+hab cp,hab_seaice_health,2017,2016
+hab cp,hab_seaice_trend,2012,2011
+hab cp,hab_seaice_trend,2013,2012
+hab cp,hab_seaice_trend,2014,2013
+hab cp,hab_seaice_trend,2015,2014
+hab cp,hab_seaice_trend,2016,2015
+hab cp,hab_seaice_trend,2017,2016
+hab cp,hab_coral_extent,2012,2012
+hab cp,hab_coral_extent,2013,2012
+hab cp,hab_coral_extent,2014,2012
+hab cp,hab_coral_extent,2015,2012
+hab cp,hab_coral_extent,2016,2012
+hab cp,hab_coral_extent,2017,2012
+hab cp,hab_coral_health,2012,2012
+hab cp,hab_coral_health,2013,2012
+hab cp,hab_coral_health,2014,2012
+hab cp,hab_coral_health,2015,2012
+hab cp,hab_coral_health,2016,2012
+hab cp,hab_coral_health,2017,2012
+hab cp,hab_coral_trend,2012,2012
+hab cp,hab_coral_trend,2013,2012
+hab cp,hab_coral_trend,2014,2012
+hab cp,hab_coral_trend,2015,2012
+hab cp,hab_coral_trend,2016,2012
+hab cp,hab_coral_trend,2017,2012
+hab,hab_softbottom_extent,2012,2012
+hab,hab_softbottom_extent,2013,2012
+hab,hab_softbottom_extent,2014,2012
+hab,hab_softbottom_extent,2015,2012
+hab,hab_softbottom_extent,2016,2012
+hab,hab_softbottom_extent,2017,2012
+hab,hab_softbottom_health,2012,2006
+hab,hab_softbottom_health,2013,2007
+hab,hab_softbottom_health,2014,2008
+hab,hab_softbottom_health,2015,2009
+hab,hab_softbottom_health,2016,2010
+hab,hab_softbottom_health,2017,2010
+hab,hab_softbottom_trend,2012,2006
+hab,hab_softbottom_trend,2013,2007
+hab,hab_softbottom_trend,2014,2008
+hab,hab_softbottom_trend,2015,2009
+hab,hab_softbottom_trend,2016,2010
+hab,hab_softbottom_trend,2017,2010
+prs,hd_subtidal_sb,2012,2006
+prs,hd_subtidal_sb,2013,2007
+prs,hd_subtidal_sb,2014,2008
+prs,hd_subtidal_sb,2015,2009
+prs,hd_subtidal_sb,2016,2010
+prs,hd_subtidal_sb,2017,2010
+fis,fis_meancatch,2012,2006
+fis,fis_meancatch,2013,2007
+fis,fis_meancatch,2014,2008
+fis,fis_meancatch,2015,2009
+fis,fis_meancatch,2016,2010
+fis,fis_meancatch,2017,2010
+mar,mar_harvest_tonnes,2012,2010
+mar,mar_harvest_tonnes,2013,2011
+mar,mar_harvest_tonnes,2014,2012
+mar,mar_harvest_tonnes,2015,2013
+mar,mar_harvest_tonnes,2016,2014
+mar,mar_harvest_tonnes,2017,2014
+mar,mar_coastalpopn_inland25mi,2012,2010
+mar,mar_coastalpopn_inland25mi,2013,2011
+mar,mar_coastalpopn_inland25mi,2014,2012
+mar,mar_coastalpopn_inland25mi,2015,2013
+mar,mar_coastalpopn_inland25mi,2016,2014
+mar,mar_coastalpopn_inland25mi,2017,2014
+mar,mar_sustainability_score,2012,2012
+mar,mar_sustainability_score,2013,2012
+mar,mar_sustainability_score,2014,2012
+mar,mar_sustainability_score,2015,2012
+mar,mar_sustainability_score,2016,2012
+mar,mar_sustainability_score,2017,2012
+prs,sp_genetic,2012,2012
+prs,sp_genetic,2013,2013
+prs,sp_genetic,2014,2014
+prs,sp_genetic,2015,2015
+prs,sp_genetic,2016,2016
+prs,sp_genetic,2017,2016
