@@ -110,3 +110,12 @@ hab_seagrass_extent,Habitat extent of saltmarsh,km2,Area of seagrass habitat
 hab_seagrass_health,Habitat condition of seagrass,proportion,Current condition of seagrass habitat relative to historical condition
 hab_seagrass_trend,Habitat condition trend of seagrass,trend,Estimated change in seagrass condition
 element_wts_cs_km2_x_storage,Carbon storage weights,extent*storage,"Habitat extent multiplied by carbon storage capacity for: mangrove, saltmarsh, and seagrass"
+hab_seaice_extent,Habitat extent of saltmarsh,km2,Area of seaice (edge and shoreline) habitat
+hab_seaice_health,Habitat condition of seagrass,proportion,Current condition of seaice habitat relative to historical condition
+hab_seaice_trend,Habitat condition trend of seagrass,trend,Estimated change in seaice condition
+hab_coral_extent,Habitat extent of saltmarsh,km2,Area of coral habitat
+hab_coral_health,Habitat condition of seagrass,proportion,Current condition of coral habitat relative to historical condition
+hab_coral_trend,Habitat condition trend of seagrass,trend,Estimated change in coral condition
+hab_softbottom_extent,Habitat extent of softbottom,km2,Area of softbottom habitat
+hab_softbottom_health,Habitat condition of softbottom,proportion,Current condition of softbottom habitat (trawling fishing pressure used as proxy)
+hab_softbottom_trend,Habitat condition trend of softbottom,trend,Estimated change in softbottom condition
