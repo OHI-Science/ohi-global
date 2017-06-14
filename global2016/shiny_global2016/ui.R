@@ -242,8 +242,9 @@ ui <- navbarPage(
                          selected = c('all_vals', 'rgn', 'goal')),
       downloadButton('data_download', label = 'Download data'),
       p('Selecting "All dimensions" will download OHI score values as well as',
-        'values for current status, trend, likely future state, resilience, ',
-        'and pressure.  Unchecking this will download only the score values.'),
+        'values for current status, trend, likely future state, resilience,',
+        'and pressure used to calculate the OHI scores.  Unchecking this will',
+        'download only the score values.'),
       hr(),
       includeMarkdown('pages/footer_sidebar.md')
     ),
