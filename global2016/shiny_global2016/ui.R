@@ -3,6 +3,7 @@
 library(tidyverse) 
 library(stringr)
 library(shinythemes)
+library(plotly)
 
 ### create warning with date to help with log output
 cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s\n', Sys.time()))

@@ -3,7 +3,6 @@
 ### Set up basic stuff
 # library(sf)
 library(RColorBrewer)
-library(plotly)
 
 # create a blank ggplot theme
 ggtheme_blank <- function(textsize = 10) {
