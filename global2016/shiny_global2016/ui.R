@@ -87,20 +87,20 @@ ui <- navbarPage(
     sidebarPanel(width = 3,
       includeMarkdown('pages/clean_side1.md'),
       selectInput('map_scen', 
-                  choices = c('Score 2016'  = 'score_2016',
-                              'Score 2015'  = 'score_2015',
-                              'Score 2014'  = 'score_2014',
-                              'Score 2013'  = 'score_2013',
-                              'Score 2012'  = 'score_2012',
-                              'Annual change 2016'  = 'annual_change_2016'),
+                  choices = c('2016 Score'  = 'score_2016',
+                              '2015 Score'  = 'score_2015',
+                              '2014 Score'  = 'score_2014',
+                              '2013 Score'  = 'score_2013',
+                              '2012 Score'  = 'score_2012',
+                              'Annual change 2012-2016'  = 'annual_change_2016'),
                   selected = 'score_2016',
-                  label = 'Scenario to display?'),
+                  label = 'Select score by year'),
       HTML('<p><b>Note:</b> Score color scale is fixed from 0-100.',
            'Annual Change color scale is rescaled depending on the', 
            'values for each goal.'),
       selectInput('map_goal', choices = goal_names$goal,
                   selected  = 'Index',
-                  label = 'Goal to display?'),
+                  label = 'Ocean Health Goal'),
       includeMarkdown('pages/footer_sidebar.md')
     ),
     mainPanel(
@@ -120,7 +120,7 @@ ui <- navbarPage(
     ),
     mainPanel(
       includeMarkdown('pages/fig2_tab_main1.md'),
-      plotlyOutput('fig2_plot', height = '400px', width = '700px')
+      plotlyOutput('fig2_plot', height = '400px', width = '800px')
     )
   ),
   
@@ -137,7 +137,7 @@ ui <- navbarPage(
     ),
     mainPanel(
       includeMarkdown('pages/fig3_tab_main1.md'),
-      plotlyOutput('fig3_plot', height = '400px', width = '700px')
+      plotlyOutput('fig3_plot', height = '400px', width = '800px')
     )
   ),
   
@@ -183,9 +183,9 @@ ui <- navbarPage(
     mainPanel(
       includeMarkdown('pages/fig5_tab_main1.md'),
       # uiOutput('fig5goal_plotly.ui')
-      plotlyOutput('fig5a_plot', height = '300px', width = '700px'),
-      plotlyOutput('fig5b_plot', height = '300px', width = '700px'),
-      plotlyOutput('fig5c_plot', height = '300px', width = '700px')
+      plotlyOutput('fig5a_plot', height = '300px', width = '800px'),
+      plotlyOutput('fig5b_plot', height = '300px', width = '800px'),
+      plotlyOutput('fig5c_plot', height = '300px', width = '800px')
     )
   ),
   
@@ -202,7 +202,7 @@ ui <- navbarPage(
     ),
     mainPanel(
       includeMarkdown('pages/fig6_tab_main1.md'),
-      plotlyOutput('fig6_plot', height = '400px', width = '700px')
+      plotlyOutput('fig6_plot', height = '400px', width = '800px')
     )
   ),
   
@@ -227,6 +227,7 @@ ui <- navbarPage(
   tabPanel('Data',
     sidebarPanel(width = 3,
       includeMarkdown('pages/clean_side1.md'),
+      h5('View OHI score data'),
       checkboxGroupInput('data_view', label = 'View additional columns:',
                          choices = c('Region information' = 'rgn',
                                      'Full goal name'     = 'goal'),

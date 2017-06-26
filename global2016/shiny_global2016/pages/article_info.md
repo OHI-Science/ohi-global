@@ -24,5 +24,5 @@ Johanna Polsenberg^4
 
 <font size = 1>
 <i>Please cite as:</i> <b>Halpern BS, Frazier M, Afflerbach J, O’Hara C,
-Katona S, Lowndes JSS, Jiang N, Pacheco E, Scarborough C, Polsenberg P (2017) Drivers and implications of change in global ocean health over the past five years. PLoS ONE 12(7): e0178267. doi:10.1371/journal.pone.0178267</b> 
+Katona S, Lowndes JSS, Jiang N, Pacheco E, Scarborough C, Polsenberg P (2017) Drivers and implications of change in global ocean health over the past five years. PLoS ONE 12(7): e0178267. [doi:10.1371/journal.pone.0178267](doi:10.1371/journal.pone.0178267)</b> 
 </font>

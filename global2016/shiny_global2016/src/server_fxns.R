@@ -669,9 +669,24 @@ create_fig6_plot_global <- function(georgn_color) {
                  shape = 19, size = 2, alpha = 0.7) +
       scale_color_brewer(palette = 'Dark2')
   } else {
+    fig6_congo_gilbert <- fig6_df %>%
+      filter(region_id %in% c(100, 119, 212))
+    fig6_all_else <- fig6_df %>%
+      filter(!region_id %in% c(100, 119, 212))
     fig6_plot <- fig6_plot +
-      geom_point(aes(key = continent, text = paste0('country: ', country)),
-                 shape = 19, size = 2, color = 'darkblue', alpha = 0.5)
+      geom_point(data = fig6_all_else,
+                 aes(key = continent, text = paste0('country: ', country)),
+                 shape = 19, size = 2, color = 'darkblue', alpha = 0.5) +
+      geom_point(data = fig6_congo_gilbert,
+                 aes(key = continent, text = paste0('country: ', country)),
+                 shape = 19, size = 2, color = 'darkorange3', alpha = 1) +
+      annotate("text", x = -10, y =  -2, label = "Republique du Congo", 
+               color = "darkorange3", size = 2.5) +
+      annotate("text", x =  -5, y = -88, label = "Gilbert Islands (Kiribati)", 
+               color = "darkorange3", size = 2.5) +
+      annotate("text", x =   3, y = -15, label = "Saint Kitts and Nevis", 
+               color = "darkorange3", size = 2.5)
+       
   }
   
   fig6_mdl <- lm_clean(rank_delta ~ score_delta, fig6_all_df)
@@ -780,7 +795,7 @@ get_map_file <- function(map_scen, map_goal) {
 
 get_data_download <- function(data_request) {
   data_df <- read_csv('tables/ohi_data_2012_2016.csv') %>%
-    select(year = scenario, region_id, goal, dimension, value)
+    select(year = scenario, region_id, goal_code = goal, dimension, value)
   if(!'all_vals' %in% data_request) {
     data_df <- data_df %>%
       filter(dimension == 'score') %>%
@@ -788,11 +803,11 @@ get_data_download <- function(data_request) {
   }
   if('goal' %in% data_request) {
     data_df <- data_df %>%
-      left_join(read_csv('tables/goal_lookup.csv'))
+      left_join(read_csv('tables/goal_lookup.csv'), by = 'goal_code')
   }
   if('rgn' %in% data_request) {
     data_df <- data_df %>%
-      left_join(read_csv('tables/rgn_lookup.csv'))
+      left_join(read_csv('tables/rgn_lookup.csv'), by = 'region_id')
   }
   return(data_df)
 }

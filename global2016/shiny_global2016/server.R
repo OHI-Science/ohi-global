@@ -56,7 +56,7 @@ server <- shinyServer(function(input, output, session) {
       input$fig4_filter == 'georgn' & input$fig4_georgn == 'Americas' ~ '240px',
       input$fig4_filter == 'georgn' & input$fig4_georgn == 'Southern Islands' ~ '240px',
       TRUE                                                            ~ '400px')
-    plotOutput('fig4_plot', height = fig4_height, width = '700px')
+    plotOutput('fig4_plot', height = fig4_height, width = '800px')
   })
   
   ##### Fig 5: Model Eval #####################################################
