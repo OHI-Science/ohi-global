@@ -46,7 +46,7 @@ scenarios = list(
     fld_dir      = 'dir_2016a',
     fld_fn       = 'fn_2016a',
     f_spatial    = c('../ohiprep/Global/NCEAS-Regions_v2014/data/regions_gcs.js'),
-    do           = T)
+    do           = T)  
   # ,
   # eez2015     = list(
   #   layer   = 'layers_eez',
@@ -195,7 +195,6 @@ for (i in 1:length(scenarios)){  #i=1
     layers$data$scenario_year <-  as.numeric(substring(scenario, 4,7)) 
     
     # calculate scores
-    #try({    })
     scores = CalculateAll(conf, layers)
     write.csv(scores, 'scores.csv', na='', row.names=F)
     
@@ -214,11 +213,11 @@ source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez2016", commit="ce63333", 
-            fileSave="eez2016_new_ohicore_mar", save_csv = TRUE)
+            fileSave="eez2016_new_ohicore_etc", save_csv = TRUE)
 
 ## check for changes in NA's
 ## Both should equal 0
-compare <- read.csv('changePlot_figures/eez2016_new_ohicore_mar_diff_data_2017-06-13.csv')
+compare <- read.csv('changePlot_figures/eez2016_new_ohicore_etc2_diff_data_2017-06-26.csv')
 NA_compare <- compare %>%
   mutate(NA_same = ifelse(is.na(score) & is.na(old_score), 1, 0)) %>%
   mutate(NA_new = ifelse(is.na(score), 1, 0)) %>%
@@ -228,6 +227,7 @@ NA_compare <- compare %>%
   summarize(new = sum(diff_new),
             old = sum(diff_old))
 NA_compare
+
 
 # looking within a goal:
 scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")

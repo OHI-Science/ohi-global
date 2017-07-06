@@ -19,16 +19,11 @@ targets <- read.csv('eez_layers_meta_data/layers_eez_targets.csv', stringsAsFact
   summarize(targets = paste(target, collapse= "")) %>%
   data.frame()
 
-tb <- read.csv('eez_layers_meta_data/layers_eez_file_locations.csv')
-
-layers <- tb %>%
-  spread(variable, variable_data) %>%
-  left_join(targets, by="layer")
 
 # add the meta data
 meta <- read.csv("eez_layers_meta_data/layers_eez_base.csv")
+layers <- left_join(meta, targets, by="layer") %>%
+  select(layer, dir, fn, ingest, name_data_fld, targets, name, units, description)
 
-layers <- layers %>%
-  left_join(meta, by="layer")
 
 write.csv(layers, "layers_eez.csv", row.names=FALSE)
