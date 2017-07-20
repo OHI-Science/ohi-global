@@ -1,0 +1,564 @@
+---
+title: "Quantifying gap-filling of OHI 2015 analysis"
+author: "Mel"
+date: "11/24/2015"
+output: html_document
+---
+
+
+
+```{r}
+# load libraries
+library(tidyr)
+library(dplyr)
+library(sp)
+library(rgdal)
+library(RColorBrewer)
+library(ohicore)
+library(DT)
+library(ggplot2)
+
+setwd('/home/frazier/ohi-global/global2015/gapFilling') # comment this out when knitting!!!
+setwd('C:/Users/Melanie/Github/ohi-global/global2015/gapFilling') # comment this out when knitting!!!, local computer path!
+
+# theme for scatterplots
+source('../../../ohiprep/src/R/scatterTheme.txt')
+
+# list of regions:
+regions <- read.csv('../../eez2015/layers/rgn_global.csv') %>%
+  select(region_id=rgn_id, region=label)
+
+# data of gap-filling scores
+scores <- read.csv('scores.csv') %>%
+  left_join(regions)
+
+# some organization of data
+goals <- c('Index', 'AO', 'BD', 'HAB', 'SPP', 'CP', 'CS', 'CW', 'LE', 'ECO','LIV', 'FP', 'FIS',  'MAR',  'NP','SP', 'ICO','LSP','TR')
+goal_names <- data.frame(goal = goals, 
+                          goal_name = c("Index", "Artisanal Fishing Opportunities", "Biodiversity", "Habitats", "Species", 
+                                        "Coastal Protection", "Carbon Storage", "Clean Waters", "Coastal Livelihoods and Economies", "Economies", 
+                                        "Livelihoods", "Food Provision", "Fisheries", "Mariculture", "Natural Products",  "Sense of Place", "Iconic Species",
+                                        "Lasting Special Places",  "Tourism and Recreation"))
+
+
+```
+
+Maps of scores
+
+```{r maps, echo=FALSE}
+
+## read in map data:
+p <- readOGR(dsn='/var/data/ohi/model/GL-NCEAS-OceanRegions_v2013a/data', layer= 'rgn_ocean_cntry_mol')
+
+## This isolates the main map parts: 
+ocean  <-  p[is.na(p@data$ISO_3digit) & p@data$rgn_id==0,]
+land  <-  p[!is.na(p@data$ISO_3digit) & p@data$rgn_id==0,]
+rgnOHI <-  p[p@data$rgn_id>0,]
+
+data <- scores %>%
+  filter(dimension == "score") %>%
+  filter(region_id <= 250) %>%
+  filter(region_id != 0) %>%
+  select(code=region_id, goal, score) %>%
+  left_join(goal_names) %>%
+  mutate(goal = factor(goal_name, levels=goal_names$goal_name)) %>%
+  select(-goal_name)
+
+PlotData <- spread(data, goal, score) 
+rownames(PlotData) <- PlotData$code
+
+mapCols <- 2:ncol(PlotData)
+
+palette <- colorRampPalette(brewer.pal(9, 'YlOrRd'))
+palette <- palette(100)
+col.brks <-  c(0, 10, 20, 40, 60, 70, 80, 85, 90, 95, 100)
+MyColor <- palette[col.brks] 
+## This loop goes through the columns to be plotted and:
+## 1. matches the data row names (rgn_id) to the rgn_id of the OHI regions
+## 2. identifies the break points for colors from: 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+## 3. plots the maps and saves them to the "fig" file in the working directory 
+
+for (i in 1:length(mapCols)){ 
+  #i <- 3
+  s=mapCols[i]
+  # Index map
+  fld = names(PlotData)[s]
+  v= PlotData[match(rgnOHI@data$rgn_id, row.names(PlotData)), fld]    
+  maps = setNames(list(v), fld)  
+  
+  fig = sprintf('figures_tables/maps/global_map_mol_%s.png', fld)
+  
+  col.brks = seq(0,100,length.out=11)
+  
+  # ensure color ramp breaks contain all data
+  stopifnot(max(v,na.rm=T)<=max(col.brks) & min(v,na.rm=T)>=min(col.brks) & length(col.brks)==11)
+  
+  # plot map
+  png(file=fig, width=1200, height=800, res=150, pointsize=18, type='cairo')
+  par(oma=c(0,0,0,0),
+      mar=c(1.5,1,0,1))
+  plot(ocean, col='gray90', border=NA)
+  plot(rgnOHI, border="grey75", add=TRUE,
+       col = MyColor[cut(v, col.brks, labels=1:10, include.lowest=TRUE)])
+  plot(land, col='gray80', border='grey75', add=TRUE)
+  
+  # get plotting dimensions
+  p=par('usr'); px=diff(p[1:2]); py=diff(p[3:4]) # c(x1, x2, y1, y2)
+  
+  # add label
+  text(x=p[1]+px*0.02, y=p[4]-py*0.1, labels=fld, pos=4) # +p.dx*0.1
+  
+  # plot legend
+  yh=0.05; x1=p[1]+px*0.2; x2=p[2]-px*0.2; y1=p[3]; y2=p[3]+py*yh
+  ix = seq(x1, x2, length.out=10)
+  ixd = diff(ix)[1]/2
+  par(xpd=TRUE) # turn off clipping to plot region
+  image(x = ix,
+        y = c(y1, y2),
+        z = matrix(1:10), col = MyColor, add=T)
+  rect(x1-ixd,y1,x2+ixd,y2, border='gray20')
+  rect(x1-ixd*3,y1,x1-ixd,y2, border='gray20')
+  text(x = c(x1-ixd*2, seq(x1-ixd, x2+ixd, length.out=11)),
+       y = y1, cex=0.6, pos=1, # adj=c(0.5,0), # , offset=0.1,
+       labels=c('NA',as.character(col.brks))) 
+  par(xpd=F) # turn back on clipping to plot region
+  
+  # finish fig
+  dev.off() #; system(sprintf('open %s', fig))
+}
+
+
+```
+
+```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4, fig.height=4}
+
+colorScheme = "new"
+palette <- colorRampPalette(brewer.pal(9, 'YlOrRd'))
+palette <- palette(100)
+col.brks <-  c(0, 10, 20, 40, 60, 70, 80, 85, 90, 95, 100)
+MyColor <- palette[col.brks] 
+
+## weights for FIS vs. MAR
+weights <- read.csv("../../eez2015/layers/fp_wildcaught_weight.csv", stringsAsFactors=FALSE)
+weights_global <- data.frame(rgn_id=0, w_fis=mean(weights$w_fis))
+weights <- rbind(weights_global, weights)
+
+# getting the goals that will be plotted:
+conf <-  read.csv("../../eez2015/conf/goals.csv", stringsAsFactors=FALSE) 
+goals_supra = na.omit(unique(conf$parent)) # goals comprised of subgoals, not included in plot
+
+conf <- conf %>%
+  filter(!(goal %in% goals_supra)) %>%
+  select(goal, order_color, order_hierarchy, weight, name_flower) %>%
+  mutate(name_flower = gsub("\\n", "\n", name_flower, fixed = TRUE)) %>%
+  arrange(order_hierarchy)
+
+data <- scores %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213) %>%
+  mutate(region = ifelse(region_id == 0, "GLOBAL", as.character(region))) %>%
+  arrange(region)
+
+
+# loop through regions to plot flowers
+for (rgn_id in unique(data$region_id)){  #rgn_id=0
+   
+  # header md
+  rgn_name = unique(subset(data, region_id==rgn_id, region, drop=T))
+  message(sprintf('\n## %s (%d)\n\n', rgn_name, rgn_id))
+  
+    # region scores    
+  g_x <- subset(data, region_id==rgn_id) %>%
+         inner_join(conf, by="goal") %>%
+         arrange(order_color)
+  x <-  subset(data, region_id==rgn_id & goal == 'Index', score, drop=T)
+
+    # get colors for aster, based on 10 colors, but extended to all goals. subselect for goals.wts
+if(colorScheme == "new"){
+  g_x$cols.goals.all = cut(g_x$score, breaks=seq(0, 100, by=10), include.lowest=TRUE, 
+                       labels=MyColor) } else {
+    g_x$cols.goals.all = colorRampPalette(RColorBrewer::brewer.pal(11, 'Spectral'), space='Lab')(length(goals.all))
+   }
+
+       #weights after correcting for fisheries/mariculture contributions
+  g_x$weight[g_x$goal == "FIS"] <-   weights$w_fis[weights$rgn_id == rgn_id]
+  g_x$weight[g_x$goal == "MAR"] <- 1 - weights$w_fis[weights$rgn_id == rgn_id]
+  
+        
+  # res=72
+      
+  res=150
+   ## start plot
+   png(sprintf('figures_tables/flowerPlots/flower_%s.png', rgn_name),
+          width=res*6, height=res*6, bg = "transparent")
+#par(oma=c(0,0,3,0), mar=c(6, 4, 0, 2) + 0.1)
+   PlotFlower(main = "% gapfilled",
+                 lengths=ifelse(
+                   is.na(g_x$score),
+                   100,
+                   g_x$score),
+                 widths=g_x$weight,
+                 fill.col=ifelse(
+                   is.na(g_x$cols.goals.all), 
+                   'grey80', 
+                   as.character(g_x$cols.goals.all)),
+                 labels  =ifelse(
+                   is.na(g_x$score), 
+                   paste(g_x$name_flower, '-', sep='\n'), 
+                   paste(as.character(g_x$name_flower), paste0(round(g_x$score), '%'), sep='\n')),
+                 center=round(x),
+               #  max.length = 100, disk=0.4, label.cex=0.9, label.offset=0.155, cex=2.2, cex.main=2.5)
+           max.length = 100, disk=0.3, label.cex=1.5, label.offset=0.15, cex=3, cex.main=3)
+
+      dev.off()      
+      #system(sprintf('convert -density 150x150 %s %s', fig_pdf, fig_png)) # imagemagick's convert
+  
+ ## put plots in report:   
+# PlotFlower(main = rgn_name,
+#                  lengths=ifelse(
+#                    is.na(g_x$value),
+#                    100,
+#                    g_x$value),
+#                  widths=g_x$weight,
+#                  fill.col=ifelse(
+#                    is.na(g_x$cols.goals.all), 
+#                    'grey80', 
+#                    as.character(g_x$cols.goals.all)),
+#                  labels  =ifelse(
+#                    is.na(g_x$value), 
+#                    paste(g_x$name_flower, '-', sep='\n'), 
+#                    paste(as.character(g_x$name_flower), round(g_x$value), sep='\n')),
+#                  cewarnter=round(x),
+#                 max.length = 100, disk=0.4, label.cex=0.5, label.offset=0.19, cex=1.2, cex.main=1.2, uin=1)
+  }
+  
+
+```
+
+
+```{r score table, include=FALSE}
+
+data <- scores %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  mutate(country = ifelse(is.na(region), "eez_weighted_avg", as.character(region))) %>%
+  mutate(score = round(score, 0))
+
+data <- spread(data, goal, score)
+
+index <- data %>%
+  filter(region == 'eez_weighted_avg')
+
+data <- data %>%
+  arrange(-Index) %>%
+  filter(region != 'eez_weighted_avg')
+
+data <- rbind(index, data) %>%
+    select(dimension, region, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+
+m <- datatable(data,
+          caption = '2015 OHI scores')
+
+saveWidget(m, file="gapFillingTable.html")
+
+data <- data %>%
+  select(-dimension, -region_id)
+
+write.csv(data, "figures_tables/S3 Table.csv", row.names=FALSE)
+
+```
+
+
+```{r analysis, include=FALSE}
+
+area <- read.csv('../../eez2015/layers/rgn_area.csv') %>%
+  select(region_id = rgn_id, area=area_km2)
+
+territories <- read.csv('../../../ohi-global/global2015/gapFilling/dissaggregated_gap_fill.csv') %>%
+  select(region_id = rgn_id_2013) %>%
+  mutate(territory = "territory")
+
+# add in the uninhabited islands
+noPop <- read.csv('../../../ohiprep/src/LookupTables/rgn_uninhabited_islands.csv') %>%
+  mutate(population = ifelse(Inhabited == 0, 0, NA)) %>%
+  mutate(population = ifelse(rgn_id == 12, 150, population)) %>%
+  mutate(population = ifelse(rgn_id == 38, 4000, population)) %>%
+  mutate(population = ifelse(rgn_id == 144, 18, population)) %>%
+  mutate(population = ifelse(rgn_id == 213, 3000, population)) %>%
+  filter(!is.na(population)) %>%
+  select(region_id = rgn_id, population)
+
+population <- read.csv('../../eez2015/layers/le_popn.csv') %>%
+  filter(year == 2012) %>%
+  select(region_id = rgn_id, population = count) %>%
+    bind_rows(noPop) %>%
+  arrange(region_id)
+
+data <- scores %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  filter(region_id != 0) %>%
+  filter(goal == "Index") %>%
+  mutate(score = round(score, 0)) %>%
+  left_join(population) %>%
+  left_join(area) %>%
+  left_join(territories) %>%
+  mutate(territory = ifelse(is.na(territory), "not territory", territory))
+
+
+## I am going to ignore population because:
+ # 1) it is strongly correlated with area
+ # 2) missing a lot of data
+mod <- lm(population ~ area, data=data)
+summary(mod)
+plot(population ~ area, data=data)
+
+
+ggplot(data, aes(y=score, x=log(area), color=territory)) +
+  geom_point(shape=19, size = 3) + 
+  stat_smooth(method = lm, se=FALSE) + 
+  scale_color_manual(values=c('orangered', 'gray45')) +
+  labs(y="Percent gapfilled", x="Area of EEZ, ln") +
+  scatterTheme +
+  theme(legend.position="none") +
+  annotate('text', label="Territories", x= 11, y=55, color='gray45', size=rel(7)) +
+  annotate('text', label="Countries", x= 5, y=20, color='orangered', size=rel(7))
+  
+ggsave('figures_tables/gap_filled_model.png', width=8, height=6)
+
+mod1 <- lm(score ~ log(area)*territory, data=data)
+summary(mod1)
+mod2 <- lm(score ~ log(area) + territory, data=data)
+summary(mod2)
+mod3 <- lm(score ~ territory, data=data)
+summary(mod3)
+mod4 <- lm(score ~ log(area), data=data)
+summary(mod4)
+AIC(mod1, mod2, mod3, mod4)
+
+plot(predict(mod1), data$score)
+
+
+```
+
+
+```{r histograms, include=FALSE}
+
+palette <- colorRampPalette(brewer.pal(9, 'YlOrRd'))
+palette <- palette(100)
+col.brks <-  c(0, 10, 20, 40, 60, 70, 80, 85, 90, 95, 100)
+MyColor <- palette[col.brks] 
+
+
+tmp <- subset(scores, goal=="Index" & dimension == "score" & region_id != 0) %>%
+  mutate(colors = cut(score, breaks=seq(0, 100, by=10), include.lowest=TRUE, 
+                       labels=MyColor)) %>%
+  filter(region_id != 213)
+mean(tmp$score, na.rm=TRUE) # mean is 23
+sum(tmp$score <= 5)
+sum(tmp$score <= 10)
+filter(tmp, score >= 50)
+
+dim(tmp[tmp$score <= 5, ])
+dim(tmp[tmp$score <= 10, ])
+tmp[tmp$score > 60, ]
+
+
+ggplot(tmp, aes(x=score, fill=colors)) +
+  geom_histogram(color="lightgray", bins=13) + 
+  labs(y="Number of regions", x="Percent gapfilled") +
+  scale_fill_manual(values=c(MyColor), guide=FALSE) +
+  scatterTheme
+ggsave('figures_tables/index_histogram.png', height=6, width=8)
+
+scores$goal <- factor(scores$goal,levels=goals)
+
+ggplot(subset(scores, goal!="Index" & dimension=="score" & region_id != 0), aes(x=score)) +
+  geom_histogram(fill="orange", color="darkgray") + 
+  facet_wrap('goal') +
+  labs(y="# countries", x="% gap-filling") +
+  theme_bw()
+
+
+```
+
+```{r heatmap, include=FALSE}
+
+palette <- colorRampPalette(brewer.pal(9, 'YlOrRd'))
+palette <- palette(100)
+col.brks <-  c(0, 10, 20, 40, 60, 70, 80, 85, 90, 95, 100)
+MyColor <- palette[col.brks] 
+
+data <- scores %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id <= 250) %>%       # get rid of high seas regions
+  filter(region_id != 213)  %>%
+  mutate(score = round(score, 0)) %>%
+  mutate(region = ifelse(is.na(region), "eez_weighted_avg", as.character(region))) %>%
+  left_join(goal_names) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex = mean(score[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame()
+  
+data$goal_name <- factor(data$goal_name, levels = goal_names$goal_name)
+
+myPalette <- colorRampPalette(MyColor)
+
+ggplot(data, aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
+  geom_tile() +
+  scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
+  theme(axis.text.x  = element_text(angle=35, vjust=1, hjust=1, size=20)) +
+  ylab("") + 
+  xlab("")
+ggsave("figures_tables/carpetPlot_all.tiff", width=15, height=25, units="in")
+
+
+## plot over 3 pages:
+tmp <- data %>%
+  select(region, meanIndex) %>%
+  unique() %>%
+  arrange(-meanIndex) %>%
+  filter(region != "eez_weighted_avg")
+set1 <- tmp$region[1:73]
+set2 <- tmp$region[74:(73+73)]
+set3 <- tmp$region[147:(length(tmp$region))]
+
+
+ggplot(subset(data, region %in% set1), aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
+  geom_tile() +
+  scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
+  theme(axis.text.x  = element_text(angle=35, vjust=1, hjust=1)) +
+  ylab("") + 
+  xlab("")
+ggsave("figures/carpetPlot_high.png", width=10, height=12.5, units="in")
+
+ggplot(subset(data, region %in% set2), aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
+  geom_tile() +
+  scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
+  theme(axis.text.x  = element_text(angle=35, vjust=1, hjust=1)) +
+  ylab("") + 
+  xlab("")
+ggsave("figures/carpetPlot_mid.png", width=10, height=12.5, units="in")
+
+ggplot(subset(data, region %in% set3), aes(y=factor(region, levels=unique((region)[order(meanIndex)])), x=goal_name, fill=score)) + 
+  geom_tile() +
+  scale_fill_gradientn(colours=myPalette(100), na.value="darkgray") +
+  theme(axis.text.x  = element_text(angle=35, vjust=1, hjust=1)) +
+  ylab("") + 
+  xlab("")
+ggsave("figures/carpetPlot_low.png", width=10, height=12.5, units="in")
+
+
+
+```
+
+
+```{r stats, include=FALSE}
+goalMeans <- scores %>%
+  filter(!region_id %in% c(0, 213)) %>%
+  filter(dimension == "score") %>%
+  group_by(goal) %>%
+  summarize(score_average = mean(score, na.rm=TRUE),
+            score_sd      = sd(score, na.rm=TRUE)) %>%
+  mutate(goal = factor(goal, levels=goals)) %>%
+  arrange(goal) %>%
+  data.frame()
+
+goalMeans
+
+
+#weighted averages and sd
+
+library(SDMTools)  # need a special package for weighted sd
+citation('SDMTools')
+
+area <- read.csv('../../eez2015/layers/rgn_area.csv') %>%
+  select(region_id = rgn_id, area = area_km2)
+
+goalWmeans <- scores %>%
+  left_join(area) %>%  
+  filter(!region_id %in% c(0, 213)) %>%
+  filter(dimension == "score") %>%
+  group_by(goal) %>%
+  summarize(score_weighted_average = weighted.mean(score, area, na.rm=TRUE),
+            score_weighted_sd      = wt.sd(score, area)) %>%
+    mutate(goal = factor(goal, levels=goals)) %>%
+  arrange(goal) %>%
+  data.frame()
+goalWmeans
+
+## Next do weighted mean and sd
+
+```
+
+```{r pairwise plot, include=FALSE}
+
+library(GGally)
+pairs <- scores %>%
+  filter(!region_id %in% c(0, 213)) %>%
+  filter(dimension == "score") %>%
+  select(goal, region_id, score)
+
+pairs <- spread(pairs, goal, score) %>%
+  select(Index, AO, BD, CP, CS, CW, FP, NP, SP, TR)
+
+plots <- ggpairs(pairs,
+        lower = list(
+          continuous = "smooth"))
+plot2 <- plots + theme_bw()
+plot2
+
+library(Hmisc)
+rcorr(as.matrix(pairs), type="pearson") # type can be pearson or spearman
+
+cor(pairs, use="pairwise.complete.obs", method="pearson") 
+
+## Possible figures
+ggcorr(pairs, geom = "circle", nbreaks = 5, max_size=15, low = "darkred", mid = "white", high = "steelblue", label=TRUE, label_color="white")
+ggcorr(pairs, geom = "text", nbreaks = 5, palette = "RdYlBu", hjust = 1, label_size=7)
+ggcorr(pairs, label=TRUE, label_size=5, low = "darkred", mid = "white", high = "steelblue")
+```
+
+Data layers analysis
+```{r data layers, include=FALSE}
+
+layers <- read.csv("layers_summary.csv")
+
+### histogram of data:
+ggplot(layers, aes(x=proportion_gf*100, fill=component)) +
+  geom_histogram() +
+  labs(y="Number of datasets", x="Percent gapfilled") +
+  scale_fill_manual(breaks = c("resilience", "pressure", "goal"),
+                    values=c("#C55F4B", "#95B8B6", "#534640"),
+                    labels =c("resilience", "pressure", "goal"),
+                    name = "Score\ncomponents") +
+  stat_bin(binwidth=10) +
+  scatterTheme +
+  theme(legend.position=c(.80, .70),
+        legend.text = element_text(size = 16),
+        plot.margin=grid::unit(c(10,10,10,10), "mm")) +
+  scale_x_continuous(breaks = c(0, 20, 40, 60, 80, 100)) +
+  scale_y_continuous(breaks = c(0, 10, 20, 30, 40)) +
+  ylim(c(0, 40)) 
+
+ggsave("figures_tables/dataLayers_histogram.png", height=7, width=9)
+
+I ### general statistics
+mean(layers$proportion_gf)
+sum(!is.na(layers$proportion))
+sum(layers$proportion_gf > 0)/sum(!is.na(layers$proportion)) ## 0.58
+min(layers$proportion_gf) ## 0
+max(layers$proportion_gf) ## 0.92
+mean(layers$proportion_gf) ## 0.18
+sum(layers$proportion_gf < 0.05)/sum(!is.na(layers$proportion)) ## 0.47
+sum(layers$proportion_gf < 0.20)/sum(!is.na(layers$proportion)) ## 0.57
+sum(layers$proportion_gf > 0.50)/sum(!is.na(layers$proportion)) ## 0.09
+
+
+
+
+```
