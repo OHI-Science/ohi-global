@@ -6,7 +6,7 @@ output:
 ---
 
 ```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
-source("./_site.R")
+# source("./_site.R") ## hack to get website up. Redo with new ohirepos approach and ohirepos filepaths
 ```
 
 <!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
@@ -20,9 +20,13 @@ Put in your css file or directly in rmarkdown--->
 </style>
 
 <br>
-2016 marks the fifth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories.  
+2016 marks the fifth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. Completing the fifth consecutive year of the global ocean health assessment provided an opportunity to explore trends and trajectories in ocean health as well as assess how well the Ocean Health Index has performed as an indicator.  
 
-Completing the fifth consecutive year of the global ocean health assessment provided an opportunity to explore trends and trajectories in ocean health as well as assess how well the Ocean Health Index has performed as an indicator.  An Open Channels [webinar](https://www.openchannels.org/webinars/2017/drivers-and-implications-change-global-ocean-health-demonstrated-ocean-health-index) describes our conclusions from the 2016 assessment.    
+
+<center>
+
+• [**Halpern *et al*. 2017, *PLoS ONE***](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267) • [**interactive figures and maps**](http://ohi-science.nceas.ucsb.edu/plos_change_in_global_ocean_health/) • [**Open Channels webinar**](https://www.openchannels.org/webinars/2017/drivers-and-implications-change-global-ocean-health-demonstrated-ocean-health-index) •
+</center>
 
 ----
 
@@ -30,7 +34,7 @@ Completing the fifth consecutive year of the global ocean health assessment prov
 ```{r fig.width=5, fig.height=5,echo=FALSE}
 library(png)
 library(grid)
-img <- readPNG(sprintf('%s/figures/FlowerPlots/flower_GLOBAL_2016.png', dir_report))
+img <- png::readPNG('flower_GLOBAL_2016.png') # hack to get website up 
 grid.raster(img)
 ```
 <br>
