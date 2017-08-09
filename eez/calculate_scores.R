@@ -1,5 +1,8 @@
 # presume that working directory in current scenario directory, eg:
-# setwd('~/ohi-global/eez2014')
+# setwd('~/github/ohi-global/eez')
+
+library(ohicore)
+library(tidyverse)
 
 # load conf
 conf = Conf('conf')
@@ -11,5 +14,5 @@ CheckLayers('layers.csv', 'layers', flds_id=conf$config$layers_id_fields)
 layers = Layers('layers.csv', 'layers')
 
 # calculate scores
-scores = CalculateAll(conf, layers, debug=F)
+scores = CalculateAll(conf, layers)
 write.csv(scores, 'scores.csv', na='', row.names=F)

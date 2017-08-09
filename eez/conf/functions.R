@@ -51,19 +51,19 @@ trend_calc <- function(status_data, status_layer=NA, trend_years=trend_years){
 # conf/scenario_data_years.csv information
 
 get_data_year <- function(layer_nm, layers=layers) { #layer_nm="le_wage_cur_base_value"
-
-all_years <- conf$scenario_data_years %>%
-  mutate(scenario_year= as.numeric(scenario_year),
-         data_year = as.numeric(data_year)) %>%
-  filter(layer_name %in% layer_nm) %>%
-  select(layer_name, scenario_year, year=data_year)
+  
+  all_years <- conf$scenario_data_years %>%
+    mutate(scenario_year= as.numeric(scenario_year),
+           data_year = as.numeric(data_year)) %>%
+    filter(layer_name %in% layer_nm) %>%
+    select(layer_name, scenario_year, year=data_year)
   
   
-layer_vals <- layers$data[[layer_nm]]
+  layer_vals <- layers$data[[layer_nm]]
   
-layers_years <- all_years %>%
-  left_join(layer_vals, by="year") %>%
-  select(-layer)
+  layers_years <- all_years %>%
+    left_join(layer_vals, by="year") %>%
+    select(-layer)
   
   names(layers_years)[which(names(layers_years)=="year")] <- paste0(layer_nm, "_year")  
   
