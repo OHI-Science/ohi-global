@@ -13,7 +13,7 @@ source("eez_layers_meta_data/layers_eez_script.R")
 
 # updates the "layers_eez_targets.csv" file when a pressure/resilience data layer is added 
 # to the pressures or resilience matrix in 
-s_folder <- "eez" #indicate the scenario with the most recent pressures/resilience matrix data
+s_folder <- "eez" #indicate the scenario with the pressures/resilience matrix data
 source("eez_layers_meta_data/update_targets_with_pre_res.R") 
 
 
@@ -86,32 +86,31 @@ g <- read.csv(sprintf("layers_%s.csv", scenario), stringsAsFactors = FALSE, na.s
 
 
 
-# calculate scores for each year scenario:
-   scenario_years <- c(2012:2016)
-    
-  for (s_year in scenario_years){  # s_year=2016
+# calculate scores for each year scenario and save to a single csv file:
+   
+  scenario_years <- c(2012:2016)
+  
+  scores_all_years <- data.frame()
+   
+  for (s_year in scenario_years){  # s_year=2012
       
-  #  setwd(sprintf('%s', scenario)) # load_all(dirs$ohicore)
-    
-    # load configuration and layers
-    conf   = Conf(sprintf('%s/conf', scenario))
-    layers = Layers(layers.csv = sprintf('%s/layers.csv', scenario), layers.dir = sprintf('%s/layers', scenario))
+    conf   <-  Conf(sprintf('%s/conf', scenario))
+    layers <-  Layers(layers.csv = sprintf('%s/layers.csv', scenario), layers.dir = sprintf('%s/layers', scenario))
     layers$data$scenario_year <-  s_year 
     
     # calculate scores
-    scores = CalculateAll(conf, layers)
-    write.csv(scores, 'scores.csv', na='', row.names=F)
-    
+    scores_sy <- CalculateAll(conf, layers) %>%
+      mutate(year = s_year) 
+      
+    scores_all_years <- rbind(scores_all_years, scores_sy)
+
   }
-  
-# restore working directory
-setwd('..') 
 
-}
-
-
+write.csv(scores_all_years, sprintf('%s/scores.csv', scenario), na='', row.names=F)
+   
 
 ### Some methods for visualizing the data
+
 
 source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
