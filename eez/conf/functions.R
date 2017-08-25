@@ -12,7 +12,7 @@ Setup = function(){
 
 # general function to calculate trend
 # select the status_layer that is used as the baseline year
-trend_calc <- function(status_data, status_layer=NA, trend_years=trend_years){   
+trend_calc2 <- function(status_data, status_layer=NA, trend_years=trend_years){   
   # status_data = ry
   # status_layer = "ao_access"
   # trend_years = trend_years  # want to use "data years" rather than scenario years
@@ -257,7 +257,7 @@ FIS = function(layers){
   
   trend_years <- (data_year-4):(data_year)
   
-  trend <- trend_calc(status_data=status_data, 
+  trend <- trend_calc2(status_data=status_data, 
                       status_layer="fis_meancatch", trend_years=trend_years)
   
   ## reference points
@@ -300,7 +300,7 @@ MAR = function(layers){
   
   # fill in gaps with no data
   rky <- spread(rky, year, tonnes)
-  rky <- gather(rky, "year", "tonnes", 4:dim(rky)[2]) %>%
+  rky <- gather(rky, "year", "tonnes", -(1:3)) %>%
     mutate(year = as.numeric(year))
   
   # 4-year rolling mean of data
@@ -352,7 +352,7 @@ MAR = function(layers){
   
   trend_years <- (mar_data_year-4):(mar_data_year)
   
-  trend <- trend_calc(status_data=ry, trend_years = trend_years)
+  trend <- trend_calc2(status_data=ry, trend_years = trend_years)
   
   
   # return scores
@@ -453,7 +453,7 @@ AO = function(layers){
   
   trend_years <- (recent_trend_year-4):(recent_trend_year)
   
-  r.trend <- trend_calc(status_data=ry, status_layer="ao_need", trend_years=trend_years)
+  r.trend <- trend_calc2(status_data=ry, status_layer="ao_need", trend_years=trend_years)
   
   ## reference points
   write_ref_pts(goal   = "AO",
@@ -742,7 +742,7 @@ NP <- function(scores, layers){
     
     trend_years <- (data_year-4):(data_year)
     
-    np_trend <- trend_calc(status_data=np_status_all, trend_years = trend_years)
+    np_trend <- trend_calc2(status_data=np_status_all, trend_years = trend_years)
     
     ### return scores
     np_scores <- np_status_current %>%
@@ -1061,7 +1061,7 @@ TR = function(layers) {
   
   trend_years <- (data_year-4):(data_year)
   
-  tr_trend <- trend_calc(status_data = trend_data, status_layer = "tr_jobs_pct_tourism", trend_years=trend_years)
+  tr_trend <- trend_calc2(status_data = trend_data, status_layer = "tr_jobs_pct_tourism", trend_years=trend_years)
   
   
   # bind status and trend by rows
@@ -1572,7 +1572,7 @@ ICO = function(layers){
   
   trend_years <- (data_year-9):(data_year)
   
-  r.trend <- trend_calc(status_data = r.status, status_layer = "ico_spp_iucn_status", trend_years=trend_years)
+  r.trend <- trend_calc2(status_data = r.status, status_layer = "ico_spp_iucn_status", trend_years=trend_years)
   
   
   ####### status
@@ -1700,7 +1700,7 @@ LSP = function(layers){
   
   trend_years <- (data_year_scen_year-4):(data_year_scen_year)
   
-  r.trend <- trend_calc(status_data = r.yrs, status_layer="data", trend_years=trend_years)
+  r.trend <- trend_calc2(status_data = r.yrs, status_layer="data", trend_years=trend_years)
   
   
   ## reference points

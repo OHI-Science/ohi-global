@@ -21,6 +21,7 @@ source("eez_layers_meta_data/update_targets_with_pre_res.R")
 library(ohicore)
 library(zoo)
 library(stringr)
+library(readr)
 
 setwd("../ohi-global")
 
@@ -88,7 +89,7 @@ g <- read.csv(sprintf("layers_%s.csv", scenario), stringsAsFactors = FALSE, na.s
 
 # calculate scores for each year scenario and save to a single csv file:
    
-  scenario_years <- c(2012:2016)
+  scenario_years <- c(2012:2017)
   
   scores_all_years <- data.frame()
    
@@ -111,17 +112,20 @@ write.csv(scores_all_years, sprintf('%s/scores.csv', scenario), na='', row.names
 
 ### Some methods for visualizing the data
 
-
 source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
-change_plot(repo = "ohi-global", scenario="eez2016", commit="ce63333", 
-            fileSave="eez2016_new_ohicore_etc3", save_csv = TRUE)
+change_plot(repo = "ohi-global", scenario="eez", commit="previous", scenario_year=2016, 
+            fileSave="eez2016_lsp", save_csv = TRUE)
+
+compare <- read.csv("changePlot_figures/eez2016_lsp_diff_data_2017-08-25.csv")
+ggplot(filter(compare, year==2016 & dimension=="status"), aes(old_score, score)) +
+  geom_point()
 
 ## check for changes in NA's
 ## Both should equal 0
-compare <- read.csv('changePlot_figures/eez2016_new_ohicore_etc3_diff_data_2017-06-26.csv')
 NA_compare <- compare %>%
+  filter(year < 2017) %>%
   mutate(NA_same = ifelse(is.na(score) & is.na(old_score), 1, 0)) %>%
   mutate(NA_new = ifelse(is.na(score), 1, 0)) %>%
   mutate(NA_old = ifelse(is.na(old_score), 1, 0)) %>%
