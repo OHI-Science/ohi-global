@@ -93,7 +93,7 @@ g <- read.csv(sprintf("layers_%s.csv", scenario), stringsAsFactors = FALSE, na.s
   
   scores_all_years <- data.frame()
    
-  for (s_year in scenario_years){  # s_year=2012
+  for (s_year in scenario_years){  # s_year=2016
       
     conf   <-  Conf(sprintf('%s/conf', scenario))
     layers <-  Layers(layers.csv = sprintf('%s/layers.csv', scenario), layers.dir = sprintf('%s/layers', scenario))
@@ -116,9 +116,9 @@ source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez", commit="previous", scenario_year=2016, 
-            fileSave="eez2016_lsp", save_csv = TRUE)
+            fileSave="eez2016_lsp_res", save_csv = TRUE)
 
-compare <- read.csv("changePlot_figures/eez2016_lsp_diff_data_2017-08-25.csv")
+compare <- read.csv("changePlot_figures/eez2016_lsp_res_diff_data_2017-08-25.csv")
 ggplot(filter(compare, year==2016 & dimension=="status"), aes(old_score, score)) +
   geom_point()
 

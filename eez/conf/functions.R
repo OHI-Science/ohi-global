@@ -48,6 +48,40 @@ trend_calc2 <- function(status_data, status_layer=NA, trend_years=trend_years){
   return(r.trend)
 }    
 
+trend_calc <- function(status_data, trend_years=trend_years){   
+  # status_data = ry
+  # status_layer = "ao_access"
+  # trend_years = trend_years  # want to use "data years" rather than scenario years
+  # because scenario years may be repeated
+  
+  
+  if(sum(grepl("rgn_id", names(status_data))>0)){
+    names(status_data)[which(names(status_data)=="rgn_id")] <- "region_id"
+  }
+  
+  status_data <- status_data %>%
+    select(region_id, year = scenario_year, status) %>%
+    filter(year %in% trend_years) %>%
+    unique()
+  
+  adj_trend_year <- min(trend_years)
+  
+  r.trend = status_data %>%
+    group_by(region_id) %>%
+    do(mdl = lm(status ~ year, data=.),
+       adjust_trend = .$status[.$year == adj_trend_year]) %>%
+    summarize(region_id, score = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
+    ungroup() %>%
+    mutate(score = ifelse(score>1, 1, score)) %>%
+    mutate(score = ifelse(score<(-1), (-1), score)) %>%
+    mutate(score = round(score, 4)) %>%
+    mutate(dimension = "trend") %>%
+    select(region_id, score, dimension)
+  
+  return(r.trend)
+}    
+
+
 # function to link data and scenario years based on 
 # conf/scenario_data_years.csv information
 
@@ -1637,7 +1671,7 @@ ICO = function(layers){
 }
 
 LSP = function(layers){
-  
+ 
   scen_year <- layers$data$scenario_year
   
   ref_pct_cmpa=30
@@ -1694,13 +1728,10 @@ LSP = function(layers){
   
   # calculate trend
   
-  data_year_scen_year <- year_data %>%
-    filter(scenario_year == scen_year) %>%
-    .$data_year
   
-  trend_years <- (data_year_scen_year-4):(data_year_scen_year)
+  trend_years <- (scen_year-4):(scen_year)
   
-  r.trend <- trend_calc2(status_data = r.yrs, status_layer="data", trend_years=trend_years)
+  r.trend <- trend_calc(status_data = r.yrs, trend_years=trend_years)
   
   
   ## reference points
