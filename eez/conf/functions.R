@@ -1559,8 +1559,8 @@ LE = function(scores, layers){
 }
 
 ICO = function(layers){
-  
-  scen_year <- layers$data$scenario_year
+
+    scen_year <- layers$data$scenario_year
   
   rk <- get_data_year(layer_nm="ico_spp_iucn_status", layers=layers) %>%
     select(region_id = rgn_id, sciname, iucn_cat=category, scenario_year, ico_spp_iucn_status_year) %>%
@@ -1606,7 +1606,7 @@ ICO = function(layers){
   
   trend_years <- (data_year-9):(data_year)
   
-  r.trend <- trend_calc2(status_data = r.status, status_layer = "ico_spp_iucn_status", trend_years=trend_years)
+  r.trend <- trend_calc(status_data = r.status, trend_years=trend_years)
   
   
   ####### status
