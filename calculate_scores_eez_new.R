@@ -116,7 +116,7 @@ source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez", commit="previous", scenario_year=2016, 
-            fileSave="eez2016_spp", save_csv = TRUE)
+            fileSave="eez2016_spp_res", save_csv = TRUE)
 
 compare <- read.csv("changePlot_figures/eez2016_lsp_res_diff_data_2017-08-25.csv")
 ggplot(filter(compare, year==2016 & dimension=="status"), aes(old_score, score)) +
