@@ -26,4 +26,4 @@ layers <- left_join(meta, targets, by="layer") %>%
   select(layer, dir, fn, ingest, name_data_fld, targets, name, units, description)
 
 
-write.csv(layers, "layers_eez.csv", row.names=FALSE)
+write.csv(layers, "eez/layers_eez.csv", row.names=FALSE)
