@@ -59,8 +59,12 @@ trend_calc <- function(status_data, trend_years=trend_years){
     names(status_data)[which(names(status_data)=="rgn_id")] <- "region_id"
   }
   
+  if(sum(grepl("scenario_year", names(status_data)) > 0)) {
+    names(status_data)[which(names(status_data) == "scenario_year")] <- "year"
+  }
+  
   status_data <- status_data %>%
-    select(region_id, year = scenario_year, status) %>%
+    select(region_id, year, status) %>%
     filter(year %in% trend_years) %>%
     unique()
   
@@ -309,8 +313,8 @@ FIS = function(layers){
 }
 
 MAR = function(layers){
-  
-  scen_year <- layers$data$scenario_year
+
+    scen_year <- layers$data$scenario_year
   
   mar_data_year <- conf$scenario_data_years %>%
     filter(layer_name=="mar_harvest_tonnes") %>%
@@ -358,13 +362,11 @@ MAR = function(layers){
     ungroup()
   
   # get reference quantile based on argument years
-  ref_95pct_data <- ry %>%
-    filter(year <= mar_data_year) 
-  
-  ref_95pct <- quantile(ref_95pct_data$mar_pop, 0.95, na.rm=TRUE)
+
+  ref_95pct <- quantile(ry$mar_pop, 0.95, na.rm=TRUE)
   
   # reference information
-  ry_ref = ref_95pct_data %>%
+  ry_ref = ry %>%
     arrange(mar_pop) %>%
     filter(mar_pop >= ref_95pct)
   
@@ -386,7 +388,7 @@ MAR = function(layers){
   
   trend_years <- (mar_data_year-4):(mar_data_year)
   
-  trend <- trend_calc2(status_data=ry, trend_years = trend_years)
+  trend <- trend_calc(status_data=ry, trend_years = trend_years)
   
   
   # return scores

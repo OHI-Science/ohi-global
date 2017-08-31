@@ -32,7 +32,7 @@ source('../ohiprep/src/R/common.R')
 scenario <- "eez"
 
 ## Read in the layers.csv file with paths to the data files
-g <- read.csv(sprintf("layers_%s.csv", scenario), stringsAsFactors = FALSE, na.strings='')    
+g <- read.csv(sprintf("eez/layers_%s.csv", scenario), stringsAsFactors = FALSE, na.strings='')    
 
 
 # replaces 'ohiprep' portion of the filepath with the full file paths
@@ -116,11 +116,13 @@ source('../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 change_plot(repo = "ohi-global", scenario="eez", commit="previous", scenario_year=2016, 
-            fileSave="eez2016_ao_need", save_csv = TRUE)
+            fileSave="eez2016_mar_pop_fao", save_csv = TRUE)
 
-compare <- read.csv("changePlot_figures/eez2016_lsp_res_diff_data_2017-08-25.csv")
-ggplot(filter(compare, year==2016 & dimension=="status"), aes(old_score, score)) +
-  geom_point()
+compare <- read.csv("changePlot_figures/eez2016_mar_pop_fao_diff_data_2017-08-30.csv")
+ggplot(filter(compare, year==2016 & dimension=="status" & goal == "MAR"), aes(old_score, score)) +
+  geom_point() + 
+  geom_abline(slope=1, intercept=0) +
+  theme_bw()
 
 ## check for changes in NA's
 ## Both should equal 0
@@ -134,7 +136,7 @@ NA_compare <- compare %>%
   summarize(new = sum(diff_new),
             old = sum(diff_old))
 NA_compare
-
+filter(compare, is.na(old_score) & !is.na(score))
 
 # looking within a goal:
 scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")
