@@ -97,7 +97,7 @@ po_nutrients_3nm,ohiprep:globalprep/prs_land-based_nutrient/v2016/output,cw_fert
 po_pathogens,ohiprep:globalprep/prs_cw_pathogen/v2016/output,pathogens_popdensity25mi_updated.csv,TRUE,pressure_score,Pathogen pollution,scaled 0-1,Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution
 po_trash,ohiprep:globalprep/cw_pressure_trash/v2015/output,trash_eez_2015_updated.csv,TRUE,pressure_score,Marine plastics,scaled 0-1,Global marine plastic pollution
 po_water,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_water_2013a.csv,TRUE,resilience score,Management of waters to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions
-res_spi,ohiprep:globalprep/prs_res_spi/v2016/output,spi_res_updated.csv,TRUE,resilience_score,Social Progress Index,scaled 0-1,Social Progress Index scores
+res_spi,ohiprep:globalprep/prs_res_spi/v2017/output,spi_res.csv,TRUE,resilience_score,Social Progress Index,scaled 0-1,Social Progress Index scores
 rgn_area,ohiprep:globalprep/spatial/v2015/data,rgn_fao_gcs_area.csv,TRUE,area_km2,Region areas based on EEZ boundaries,km2,Area of Ocean Health Index regions modified from exclusive economic zones 
 rgn_area_inland1km,ohiprep:globalprep/lsp/v2017/output,rgn_area_inland1km.csv,TRUE,area,Inland area,km2,Inland area of OHI regions within 1km of shoreline
 rgn_area_offshore3nm,ohiprep:globalprep/lsp/v2017/output,rgn_area_offshore3nm.csv,TRUE,area,Offshore area,km2,Offshore area of OHI regions within 3nm of shoreline
@@ -111,7 +111,7 @@ species_diversity_3nm,ohiprep:globalprep/spp_ico/v2017/output,spp_status_3nm.csv
 species_diversity_eez,ohiprep:globalprep/spp_ico/v2017/output,spp_status_global.csv,TRUE,score,Measure of ecological integrity,scaled 0-1,Marine species condition (species subgoal status score) as a proxy for ecological integrity
 spp_status,ohiprep:globalprep/spp_ico/v2017/output,spp_status_global.csv,TRUE,score,Average species condition,status score,Species condition based on average of IUCN threat categories
 spp_trend,ohiprep:globalprep/spp_ico/v2017/output,spp_trend_global.csv,TRUE,score,Average species condition trend,trend score,Species trends based on average of IUCN population trend data
-ss_spi,ohiprep:globalprep/prs_res_spi/v2016/output,spi_prs_updated.csv,TRUE,pressure_score,Weakness of social progress,scaled 0-1,Inverse of Social Progress Index scores
+ss_spi,ohiprep:globalprep/prs_res_spi/v2017/output,spi_prs.csv,TRUE,pressure_score,Weakness of social progress,scaled 0-1,Inverse of Social Progress Index scores
 ss_wgi,ohiprep:globalprep/prs_res_wgi/v2017/output,wgi_prs.csv,TRUE,pressure_score,Weakness of governance,scaled 0-1,Inverse of World Governance Indicators (WGI) six combined scores
 tr_jobs_pct_tourism,ohiprep:globalprep/tr/v2016/output,tr_jobs_pct_tourism.csv,TRUE,Ep,Percent direct employment in tourism,proportion,Percent direct employment in tourism
 tr_sustainability,ohiprep:globalprep/tr/v2015/data,tr_sustainability_updated.csv,TRUE,S_score,Tourism sustainability index,score,Tourism Competitiveness Index (TTCI)
