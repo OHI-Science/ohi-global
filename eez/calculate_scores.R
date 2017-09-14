@@ -1,14 +1,20 @@
 
 # STEP 1: Be sure to pull ohiprep before running!!
 
-# STEP 2: Install the appropriate ohicore, if necessary:
+# STEP 2: Set repository name
+setwd("../ohi-global/eez")
+
+
+# STEP 3: Install the appropriate ohicore, if necessary:
 library(devtools)
 #devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
 devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
-# STEP 3: If changes are made to any of the files in eez_layers_meta_data, run these:
+# STEP 4: If changes are made to any of the files in eez_layers_meta_data, run these:
 # updates the layers_eez.csv file to be toolbox compatible
+
+
 source("../eez_layers_meta_data/layers_eez_script.R") 
 
 source("../eez_layers_meta_data/update_targets_with_pre_res.R") 
@@ -19,9 +25,6 @@ library(ohicore)
 library(zoo)
 library(stringr)
 library(readr)
-
-### repository name
-setwd("../ohi-global/eez")
 
 
 source('../../ohiprep/src/R/common.R')
@@ -107,10 +110,10 @@ source('../../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 score_check(commit="previous", scenario_year=2016, 
-            file_name="eez2016_slr", save_csv = TRUE)
+            file_name="eez2016_tr", save_csv = TRUE)
 
-compare <- read.csv("../score_check/eez2016_slr_diff_data_2017-09-14.csv")
-ggplot(filter(compare, year==2016 & dimension=="status" & goal == "MAR"), aes(old_score, score)) +
+compare <- read.csv("../score_check/eez2016_tr_diff_data_2017-09-14.csv")
+ggplot(filter(compare, year==2016 & dimension=="status" & goal == "TR"), aes(old_score, score)) +
   geom_point() + 
   geom_abline(slope=1, intercept=0) +
   theme_bw()
