@@ -4,9 +4,9 @@
 ## to update the layers_eez_targets.csv file
 ####################################################
 
-targets <- read.csv("eez_layers_meta_data/layers_eez_targets.csv")
+targets <- read.csv("../eez_layers_meta_data/layers_eez_targets.csv")
 
-p_matrix <- read.csv(sprintf("%s/conf/pressures_matrix.csv", s_folder)) %>%
+p_matrix <- read.csv("conf/pressures_matrix.csv") %>%
   gather("layer", "weight", -(1:3)) %>%
   group_by(layer, goal) %>%
   summarize(total_weight = sum(weight, na.rm=TRUE)) %>%
@@ -16,7 +16,7 @@ p_matrix <- read.csv(sprintf("%s/conf/pressures_matrix.csv", s_folder)) %>%
   select(layer, goal, dimension) %>%
   data.frame()
 
-r_matrix <- read.csv(sprintf("%s/conf/resilience_matrix.csv", s_folder), na.strings=c(""," ","NA")) %>%
+r_matrix <- read.csv("conf/resilience_matrix.csv", na.strings=c(""," ","NA")) %>%
   gather("layer", "weight", -(1:2)) %>%
   mutate(weight = ifelse(is.na(weight), NA, 1)) %>%
   group_by(layer, goal) %>%
@@ -49,5 +49,5 @@ targets <- targets %>%
   rbind(p_matrix) %>%
   rbind(r_matrix)
 
-write.csv(targets, "eez_layers_meta_data/layers_eez_targets.csv", row.names=FALSE)
+write.csv(targets, "../eez_layers_meta_data/layers_eez_targets.csv", row.names=FALSE)
 

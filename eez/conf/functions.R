@@ -1,12 +1,12 @@
 Setup = function(){
-  if(file.exists(sprintf('%s/temp/reference_pts.csv', scenario)))
-  {file.remove(sprintf('%s/temp/reference_pts.csv', scenario))}
+  if(file.exists('temp/reference_pts.csv'))
+  {file.remove('temp/reference_pts.csv')}
   
   ref_pts <- data.frame(year   = as.integer(),
                         goal   = as.character(),
                         method = as.character(),
                         reference_point = as.character())
-  write_csv(ref_pts, sprintf('%s/temp/reference_pts.csv', scenario))
+  write_csv(ref_pts, 'temp/reference_pts.csv')
   
 }
 
@@ -126,12 +126,12 @@ SelectData2 <- function(layer_names){
 
 write_ref_pts <- function(goal, method, ref_pt) {
   
-  ref_pts <- read.csv(sprintf("%s/temp/reference_pts.csv", scenario))  %>%
+  ref_pts <- read.csv("temp/reference_pts.csv")  %>%
     rbind(data.frame(year   = layers$data$scenario_year,
                      goal   = goal,
                      method = method,
                      reference_point = ref_pt))
-  write_csv(ref_pts, sprintf("%s/temp/reference_pts.csv", scenario))
+  write_csv(ref_pts, "temp/reference_pts.csv")
   
 }
 

@@ -9,12 +9,9 @@ devtools::install_github("ohi-science/ohicore@dev") # used when testing new code
 
 # STEP 3: If changes are made to any of the files in eez_layers_meta_data, run these:
 # updates the layers_eez.csv file to be toolbox compatible
-source("eez_layers_meta_data/layers_eez_script.R") 
+source("../eez_layers_meta_data/layers_eez_script.R") 
 
-# updates the "layers_eez_targets.csv" file when a pressure/resilience data layer is added 
-# to the pressures or resilience matrix in 
-s_folder <- "eez" #indicate the scenario with the pressures/resilience matrix data
-source("eez_layers_meta_data/update_targets_with_pre_res.R") 
+source("../eez_layers_meta_data/update_targets_with_pre_res.R") 
 
 
 # STEP 4: Revise relevant code below and run assessments!
@@ -23,22 +20,17 @@ library(zoo)
 library(stringr)
 library(readr)
 
-setwd("../ohi-global")
+### repository name
+setwd("../ohi-global/eez")
 
-source('../ohiprep/src/R/common.R')
+
+source('../../ohiprep/src/R/common.R')
 
 
-### scenario
-scenario <- "eez"
 
 ## Read in the layers.csv file with paths to the data files
-g <- read.csv(sprintf("eez/layers_%s.csv", scenario), stringsAsFactors = FALSE, na.strings='')    
+g <- read.csv("layers.csv", stringsAsFactors = FALSE, na.strings='')    
 
-
-# replaces 'ohiprep' portion of the filepath with the full file paths
-# 'ohiprep' files are located here: https://github.com/OHI-Science/ohiprep
-    g$dir = gsub("ohiprep:", "../ohiprep/", g$dir)
-    
 # filters the data and determines whether the file is available
     lyrs = g %>%
       filter(ingest==T) %>%
@@ -46,7 +38,7 @@ g <- read.csv(sprintf("eez/layers_%s.csv", scenario), stringsAsFactors = FALSE, 
         path_in        = file.path(dir, fn),
         path_in_exists = file.exists(path_in),
         filename = sprintf('%s.csv', layer),
-        path_out = sprintf('%s/layers/%s.csv', scenario, layer)) %>%
+        path_out = sprintf('layers/%s.csv', layer)) %>%
       select(
         targets, layer, name, description,
         fld_value=name_data_fld, units,
@@ -67,24 +59,23 @@ g <- read.csv(sprintf("eez/layers_%s.csv", scenario), stringsAsFactors = FALSE, 
     }
     
 # delete extraneous files
-    files_extra = setdiff(list.files(sprintf('%s/layers',scenario)), as.character(lyrs$filename))
-    unlink(sprintf('%s/layers/%s', scenario, files_extra))
+    files_extra = setdiff(list.files('layers'), as.character(lyrs$filename))
+    unlink(sprintf('layers/%s', files_extra))
     
 # layers registry (this includes files that are ingest=FALSE)
     lyrs_reg = lyrs %>%
       select(
         targets, layer, name, description,
         fld_value, units, filename)
-    write.csv(lyrs_reg, sprintf('%s/layers.csv', scenario), row.names=F, na='')
+    write.csv(lyrs_reg, 'layers.csv', row.names=F, na='')
 
 
 # Run check on layers      
-    conf   = Conf(sprintf('%s/conf', scenario))
+    conf   = Conf(sprintf('conf'))
     
-    CheckLayers(layers.csv = sprintf('%s/layers.csv', scenario), 
-                layers.dir = sprintf('%s/layers', scenario), 
+    CheckLayers(layers.csv = sprintf('layers.csv'), 
+                layers.dir = sprintf('layers'), 
                 flds_id    = conf$config$layers_id_fields)
-
 
 
 # calculate scores for each year scenario and save to a single csv file:
@@ -95,8 +86,8 @@ g <- read.csv(sprintf("eez/layers_%s.csv", scenario), stringsAsFactors = FALSE, 
    
   for (s_year in scenario_years){  # s_year=2016
       
-    conf   <-  Conf(sprintf('%s/conf', scenario))
-    layers <-  Layers(layers.csv = sprintf('%s/layers.csv', scenario), layers.dir = sprintf('%s/layers', scenario))
+    conf   <-  Conf('conf')
+    layers <-  Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
     layers$data$scenario_year <-  s_year 
     
     # calculate scores
@@ -107,18 +98,18 @@ g <- read.csv(sprintf("eez/layers_%s.csv", scenario), stringsAsFactors = FALSE, 
 
   }
 
-write.csv(scores_all_years, sprintf('%s/scores.csv', scenario), na='', row.names=F)
+write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
    
 
 ### Some methods for visualizing the data
 
-source('../ohiprep/src/R/VisGlobal.R')
+source('../../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
-change_plot(repo = "ohi-global", scenario="eez", commit="previous", scenario_year=2016, 
-            fileSave="eez2016_wgi", save_csv = TRUE)
+score_check(commit="previous", scenario_year=2016, 
+            file_name="eez2016_slr", save_csv = TRUE)
 
-compare <- read.csv("changePlot_figures/eez2016_acid_diff_data_2017-09-01.csv")
+compare <- read.csv("../score_check/eez2016_slr_diff_data_2017-09-14.csv")
 ggplot(filter(compare, year==2016 & dimension=="status" & goal == "MAR"), aes(old_score, score)) +
   geom_point() + 
   geom_abline(slope=1, intercept=0) +
@@ -136,6 +127,8 @@ NA_compare <- compare %>%
   summarize(new = sum(diff_new),
             old = sum(diff_old))
 NA_compare
+
+
 filter(compare, is.na(old_score) & !is.na(score))
 
 # looking within a goal:
