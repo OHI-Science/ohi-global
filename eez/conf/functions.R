@@ -1019,7 +1019,7 @@ CP <- function(layers){
 }
 
 TR = function(layers) {
-  
+
   ## formula:
   ##  E   = Ep                         # Ep: % of direct tourism jobs. tr_jobs_pct_tourism.csv
   ##  S   = (S_score - 1) / (7 - 1)    # S_score: raw TTCI score, not normalized (1-7). tr_sustainability.csv
@@ -1085,19 +1085,14 @@ TR = function(layers) {
     mutate(dimension = 'status')
   
   
-  # calculate trend (rooted in jobs data)
-  data_year <- conf$scenario_data_years %>%
-    filter(scenario_year == scen_year) %>%
-    filter(layer_name == "tr_jobs_pct_tourism") %>%
-    .$data_year
-  
+  # calculate trend 
   
   trend_data <- tr_model %>%
     filter(!is.na(status))
   
-  trend_years <- (data_year-4):(data_year)
+  trend_years <- (scen_year-4):(scen_year)
   
-  tr_trend <- trend_calc2(status_data = trend_data, status_layer = "tr_jobs_pct_tourism", trend_years=trend_years)
+  tr_trend <- trend_calc(status_data = trend_data, trend_years=trend_years)
   
   
   # bind status and trend by rows
