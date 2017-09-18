@@ -110,9 +110,9 @@ source('../../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 score_check(commit="previous", scenario_year=2016, 
-            file_name="eez2016_tr_trend", save_csv = TRUE)
+            file_name="eez2016_test", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("../score_check/eez2016_tr_trend_diff_data_2017-09-15.csv")
+compare <- read.csv("../score_check/eez2016_acid_corr_diff_data_2017-09-15.csv")
 ggplot(filter(compare, year==2016 & dimension=="status" & goal == "TR"), aes(old_score, score)) +
   geom_point() + 
   geom_abline(slope=1, intercept=0) +
