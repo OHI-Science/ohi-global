@@ -8,7 +8,7 @@ setwd("../ohi-global/eez")
 # STEP 3: Install the appropriate ohicore, if necessary:
 library(devtools)
 #devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
-devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+#devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 # STEP 4: If changes are made to any of the files in eez_layers_meta_data, run these:
@@ -110,26 +110,13 @@ source('../../ohiprep/src/R/VisGlobal.R')
 ### make a plot to compare different commits within a scenario
 
 score_check(commit="previous", scenario_year=2016, 
-            file_name="eez2016_test", save_csv = TRUE, NA_compare = TRUE)
+            file_name="eez2016_acid2", save_csv = TRUE, NA_compare = TRUE)
 
 compare <- read.csv("../score_check/eez2016_acid_corr_diff_data_2017-09-15.csv")
 ggplot(filter(compare, year==2016 & dimension=="status" & goal == "TR"), aes(old_score, score)) +
   geom_point() + 
   geom_abline(slope=1, intercept=0) +
   theme_bw()
-
-## check for changes in NA's
-## Both should equal 0
-NA_compare <- compare %>%
-  filter(year < 2017) %>%
-  mutate(NA_same = ifelse(is.na(score) & is.na(old_score), 1, 0)) %>%
-  mutate(NA_new = ifelse(is.na(score), 1, 0)) %>%
-  mutate(NA_old = ifelse(is.na(old_score), 1, 0)) %>%
-  mutate(diff_new = NA_new - NA_same) %>%
-  mutate(diff_old = NA_old - NA_same) %>%
-  summarize(new = sum(diff_new),
-            old = sum(diff_old))
-NA_compare
 
 
 filter(compare, is.na(old_score) & !is.na(score))
