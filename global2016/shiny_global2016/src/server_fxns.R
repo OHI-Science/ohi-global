@@ -115,7 +115,7 @@ nlme_df_noLE <- read_csv('data/nlme_data_noLE.csv') %>%
   mutate(trend = round(trend, 5),
          goal  = factor(goal, levels = rev(levels_goals))) %>%
   left_join(georgns %>%
-              select(region_id, country),
+              select(region_id, region_name),
             by = 'region_id')
 
 create_fig2_plot <- function(fig2_show_pts) {
@@ -130,7 +130,7 @@ create_fig2_plot <- function(fig2_show_pts) {
   if(fig2_show_pts == TRUE) {
     fig2_plot <- fig2_plot +
       geom_jitter(data = nlme_df_noLE,
-                  aes(x = trend, y = goal, label = country),
+                  aes(x = trend, y = goal, label = region_name),
                   height = .25, width = 0, color = 'grey80', alpha = .3)
     
     dot_alpha = 1.0
@@ -246,12 +246,12 @@ create_fig3_plot_global <- function(georgn_color) {
   
   if(georgn_color) {
     fig3_plot <- fig3_plot +
-      geom_point(aes(color = continent, text = paste0('country: ', country)),
+      geom_point(aes(color = continent, text = paste0('region: ', region_name)),
                  shape = 19, size = 2, alpha = 0.5) +
       scale_color_brewer(palette = 'Dark2')
   } else {
     fig3_plot <- fig3_plot +
-      geom_point(aes(key = continent, text = paste0('country: ', country)),
+      geom_point(aes(key = continent, text = paste0('region: ', region_name)),
                  shape = 19, size = 2, color = 'darkblue', alpha = 0.5)
   }
   
@@ -292,13 +292,13 @@ create_fig3_plot_georgn <- function(georgn, georgn_color) {
   if(georgn_color) {
     fig3_plot <- fig3_plot +
       geom_point(aes(x = index_score, y = index_trend, 
-                     color = subregion, text = paste0('country: ', country)),
+                     color = subregion, text = paste0('region: ', region_name)),
                  shape = 19, size = 2, alpha = 0.7) +
       scale_color_brewer(palette = 'Dark2')
   } else {
     fig3_plot <- fig3_plot +
       geom_point(aes(x = index_score, y = index_trend, 
-                     key = subregion, text = paste0('country: ', country)),
+                     key = subregion, text = paste0('region: ', region_name)),
                  shape = 19, size = 2, color = 'darkblue', alpha = 0.5)
   }
   
@@ -331,42 +331,42 @@ create_fig3_plot_georgn <- function(georgn, georgn_color) {
 ##################################################.
 
 fig4_df <- trend_2016_all %>%
-  select(-country) %>%
-  left_join(georgns,   by = 'region_id') %>%
+  select(-region_name) %>%
+  left_join(georgns, by = 'region_id') %>%
   filter(region_id != 0) %>%
   select(-region_id, -SPP, -HAB, -ECO, -LIV, -FIS, -MAR, -ICO, -LSP) %>%
-  gather('goal_code', 'trend', -country, -continent, -subregion) %>%
+  gather('goal_code', 'trend', -region_name, -continent, -subregion) %>%
   left_join(goal_names, by = 'goal_code') %>%
-  select(country, continent, goal, trend)
+  select(region_name, continent, goal, trend)
 
 fig4_order <- fig4_df %>%
   filter(goal == 'Index') %>%
   arrange(trend)
 
 fig4_df <- fig4_df %>%
-  mutate(country = factor(country, levels = fig4_order$country))
+  mutate(region_name = factor(region_name, levels = fig4_order$region_name))
 
 create_fig4_plot <- function(fig4_filter, fig4_georgn, fig4_overall) {
   
   if(fig4_filter == 'himidlo') {
     ### set up dataframe of top 15, middle 10, bottom 15
-    n_rgn <- length(fig4_order$country)
+    n_rgn <- length(fig4_order$region_name)
     countries_mid <- c('Johnston Atoll', 'Jarvis Island', 'Ile Europa', 'Libya', 'Russia',
                        'Cook Islands', 'Norfolk Island', 'Lithuania', 'Egypt', 'Sao Tome/Principe')
     fig4_order_sub <- rbind(fig4_order[1:15, ],
-                            fig4_order[fig4_order$country %in% countries_mid, ],
+                            fig4_order[fig4_order$region_name %in% countries_mid, ],
                             fig4_order[(n_rgn - 14):n_rgn, ])
     fig4_df_sub <- fig4_df %>%
-      filter(country %in% fig4_order_sub$country)  %>%
-      mutate(country = factor(country, levels = fig4_order_sub$country))
+      filter(region_name %in% fig4_order_sub$region_name)  %>%
+      mutate(region_name = factor(region_name, levels = fig4_order_sub$region_name))
     
   } else if (fig4_georgn != 'Global') {
     ### set up dataframe of countries in a given continent
     fig4_order_sub <- fig4_order %>%
       filter(continent == fig4_georgn)
     fig4_df_sub <- fig4_df %>%
-      filter(country %in% fig4_order_sub$country)  %>%
-      mutate(country = factor(country, levels = fig4_order_sub$country))
+      filter(region_name %in% fig4_order_sub$region_name)  %>%
+      mutate(region_name = factor(region_name, levels = fig4_order_sub$region_name))
     
   } else {
     ### use entire dataframe
@@ -377,14 +377,14 @@ create_fig4_plot <- function(fig4_filter, fig4_georgn, fig4_overall) {
   
   fig4_plot <- ggplot(data = fig4_df_sub %>%
                         filter(goal != 'Index'), 
-                      aes(x = country, y = trend)) +
+                      aes(x = region_name, y = trend)) +
     ggtheme_blank(textsize = 10) +
     theme(panel.grid.major = element_line(color = 'grey92', size = .25))
   
   if(fig4_filter == 'himidlo') {
     ### plot a grey band behind the plot to distinguish the middle 10
     yrange <- fig4_df_sub %>%
-      group_by(country) %>%
+      group_by(region_name) %>%
       summarize(tr = sum(trend, na.rm = TRUE)) %>%
       .$tr %>% range()
     
@@ -450,7 +450,7 @@ data_goal <- function(rad_df, goal_code) { # goal_code <- 'Index'
   data_g <- data_g %>%
     filter(scenario %in% c(2012, 2016)) %>%
     mutate(dim_scen = paste(dimension, scenario, sep = '_')) %>%
-    select(dim_scen, region_id, country, continent, value) %>%
+    select(dim_scen, region_id, region_name, continent, value) %>%
     spread(dim_scen, value) %>%
     mutate(pred_change = likely_future_state_2012 - status_2012,
            obs_change  = status_2016 - status_2012,
@@ -460,7 +460,7 @@ data_goal <- function(rad_df, goal_code) { # goal_code <- 'Index'
 }
 
 fig5_df_index <- read_csv('data/fig5_data.csv') %>%
-  select(-country) %>%
+  select(-region_name) %>%
   left_join(georgns, by = 'region_id')
 # mod <- lm(score_2016 ~ score_2012, data = fig5_df)
 # summary(mod)
@@ -524,7 +524,7 @@ create_fig5_plot <- function(fig5_colors, fig5_georgn,
   }
   
   fig5_df_sub <- fig5_df_sub %>%
-    select_('region_id', 'country', 'continent', x_var, y_var)
+    select_('region_id', 'region_name', 'continent', x_var, y_var)
   
   # message('Fig 5 for ', fig5_goal, ' in ', fig5_georgn, ' x = ', x_var, ' y = ', y_var)
 
@@ -542,13 +542,13 @@ create_fig5_plot <- function(fig5_colors, fig5_georgn,
   
   if(fig5_colors) {
     fig5_plot <- fig5_plot +
-      geom_point(aes(text = country, color = continent), 
+      geom_point(aes(text = region_name, color = continent), 
                  shape = 19, size = 1.75, 
                  alpha = 0.5) +
       scale_color_brewer(palette = 'Dark2')
   } else {
     fig5_plot <- fig5_plot +
-      geom_point(aes(text = country), 
+      geom_point(aes(text = region_name), 
                  shape = 19, size = 1.75, 
                  color = 'darkblue', alpha = 0.5)
   }
@@ -665,7 +665,7 @@ create_fig6_plot_global <- function(georgn_color) {
   
   if(georgn_color) {
     fig6_plot <- fig6_plot +
-      geom_point(aes(color = continent, text = paste0('country: ', country)),
+      geom_point(aes(color = continent, text = paste0('region ', region_name)),
                  shape = 19, size = 2, alpha = 0.7) +
       scale_color_brewer(palette = 'Dark2')
   } else {
@@ -675,10 +675,10 @@ create_fig6_plot_global <- function(georgn_color) {
       filter(!region_id %in% c(100, 119, 212))
     fig6_plot <- fig6_plot +
       geom_point(data = fig6_all_else,
-                 aes(key = continent, text = paste0('country: ', country)),
+                 aes(key = continent, text = paste0('region ', region_name)),
                  shape = 19, size = 2, color = 'darkblue', alpha = 0.5) +
       geom_point(data = fig6_congo_gilbert,
-                 aes(key = continent, text = paste0('country: ', country)),
+                 aes(key = continent, text = paste0('region ', region_name)),
                  shape = 19, size = 2, color = 'darkorange3', alpha = 1) +
       annotate("text", x = -10, y =  -2, label = "Republique du Congo", 
                color = "darkorange3", size = 2.5) +
@@ -695,11 +695,11 @@ create_fig6_plot_global <- function(georgn_color) {
     ### what are these points?
     # geom_point(data = fig6_df %>% 
     #              filter(score_delta > 0 & rank_delta < 0), 
-    #            aes(key = subregion, text = paste0('country: ', country)),
+    #            aes(key = subregion, text = paste0('region ', region_name)),
     #            shape=19, size=1.75, color='#D73027', alpha=0.75) +
     # geom_point(data = fig6_df %>% 
     #              filter(score_delta < 0 & rank_delta > 0), 
-    #            aes(key = subregion, text = paste0('country: ', country)),
+    #            aes(key = subregion, text = paste0('region ', region_name)),
     #            shape=19, size=1.75, color='#4575B4', alpha=0.75) +
     coord_cartesian(ylim = c(-125, 100), xlim = c(-20, 11)) +
     ### add global linear model line:
@@ -735,12 +735,12 @@ create_fig6_plot_georgn <- function(georgn, georgn_color) {
   
   if(georgn_color) {
     fig6_plot <- fig6_plot +
-      geom_point(aes(color = subregion, text = paste0('country: ', country)),
+      geom_point(aes(color = subregion, text = paste0('region ', region_name)),
                  shape = 19, size = 2, alpha = 0.7) +
       scale_color_brewer(palette = 'Dark2')
   } else {
     fig6_plot <- fig6_plot +
-      geom_point(aes(key = subregion, text = paste0('country: ', country)),
+      geom_point(aes(key = subregion, text = paste0('region ', region_name)),
                  shape = 19, size = 2, color = 'darkblue', alpha = 0.5)
   }
   
@@ -783,9 +783,9 @@ get_map_file <- function(map_scen, map_goal) {
 # write_csv(data_view_df, 'tables/data_view.csv')
 
 # data_download_df <- rad_df %>%
-#   select(-continent, -subregion, -country)
+#   select(-continent, -subregion, -region_name)
 # rgn_lookup <- rad_df %>%
-#   select(region_id, georegion = continent, subregion, country) %>%
+#   select(region_id, georegion = continent, subregion, region_name) %>%
 #   distinct()
 # goal_lookup <- goal_names
 # 
@@ -795,19 +795,27 @@ get_map_file <- function(map_scen, map_goal) {
 
 get_data_download <- function(data_request) {
   data_df <- read_csv('tables/ohi_data_2012_2016.csv') %>%
-    select(year = scenario, region_id, goal_code = goal, dimension, value)
+    select(year = scenario, region_id, goal_code = goal, dimension, value) %>%
+    left_join(read_csv('tables/goal_lookup.csv'), by = 'goal_code') %>%
+    left_join(read_csv('tables/rgn_lookup.csv'), by = 'region_id') %>%
+    select(year, 
+           region_id, region_name,
+           goal_code, goal,
+           dimension, value, 
+           georegion, subregion)
+  
+  if(!'goal' %in% data_request) {
+    data_df <- data_df %>%
+      select(-goal)
+  }
+  if(!'rgn' %in% data_request) {
+    data_df <- data_df %>%
+      select(-region_name, -georegion, -subregion)
+  }
   if(!'all_vals' %in% data_request) {
     data_df <- data_df %>%
       filter(dimension == 'score') %>%
       select(-dimension)
-  }
-  if('goal' %in% data_request) {
-    data_df <- data_df %>%
-      left_join(read_csv('tables/goal_lookup.csv'), by = 'goal_code')
-  }
-  if('rgn' %in% data_request) {
-    data_df <- data_df %>%
-      left_join(read_csv('tables/rgn_lookup.csv'), by = 'region_id')
   }
   return(data_df)
 }

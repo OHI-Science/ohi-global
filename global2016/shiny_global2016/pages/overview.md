@@ -1,4 +1,12 @@
-#### Abstract
+#### The Ocean Health Index
+
+A healthy ocean sustainably delivers a range of benefits to people now and in the future. The Ocean Health Index is the comprehensive framework used to quantify ocean-derived benefits to humans and to help inform sustainable ocean management using the best available information. Assessments using the OHI framework require synthesizing existing data representing those benefits, using methods that are reproducible and repeatable. Repeated assessments using the same methods enable quantifiable comparison of changes in ocean health through time, which can be used to inform policy and track progress.
+
+Visit (http://www.ohi-science.org/) for more about the science and methods behind the Ocean Health Index, or (http://www.oceanhealthindex.org/) for an overview of the Ocean Health Index project.
+
+#### Abstract of published paper
+
+##### Drivers and implications of change in global ocean health over the past five years
 
 Growing international and national focus on quantitatively measuring and improving ocean health has increased the need for comprehensive, scientific, and repeated indicators to track progress towards achieving policy and societal goals. The Ocean Health Index (OHI) is one of the few indicators available for this purpose. Here we present results from five years of annual global assessment for 220 countries and territories, evaluating potential drivers and consequences of changes and presenting lessons learned about the challenges of using composite indicators to measure sustainability goals. 
 

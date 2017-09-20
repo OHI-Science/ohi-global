@@ -70,7 +70,7 @@ trend_2016_all <- read_csv('data/trends_2016.csv')
 trend_2016 <- trend_2016_all %>%
   select(region_id, index_trend = Index)
 
-georgns <- read_csv('data/georegion_labels2.csv') %>%
+georgns <- read_csv('data/georegion_labels.csv') %>%
   select(-world)
 
 index_gl2016 <- index_2016$index_score[index_2016$region_id == 0]

@@ -15,7 +15,7 @@ cat(file = stderr(), tmp, '\n')
 
 
 ### initialize variables needed by ui.R
-continents <- read_csv('data/georegion_labels2.csv') %>%
+continents <- read_csv('data/georegion_labels.csv') %>%
   .$continent %>%
   unique()
 
@@ -53,7 +53,7 @@ ui <- navbarPage(
       includeMarkdown('pages/acknowledgments.md')
     ),
     mainPanel(
-      includeMarkdown('pages/abstract.md')
+      includeMarkdown('pages/overview.md')
     )
   ),
 
@@ -234,7 +234,7 @@ ui <- navbarPage(
                          choices = c('Region information' = 'rgn',
                                      'Full goal name'     = 'goal'),
                          selected = c()),
-      p('Country, region, and goal names may be helpful to',
+      p('Region names and goal names may be helpful to',
         'filter/search the data.'),
       hr(),
       h5('Download OHI score data'),
