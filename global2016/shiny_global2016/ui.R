@@ -12,6 +12,7 @@ cat(file = stderr(), sprintf('Current working directory: %s\n', tmp))
 tmp <- paste('  ', list.files(), collapse = '\n')
 cat(file = stderr(), tmp, '\n')
 
+cat(file = stderr(), getwd())
 
 
 ### initialize variables needed by ui.R
