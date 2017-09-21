@@ -321,38 +321,34 @@ MAR = function(layers){
 
     scen_year <- layers$data$scenario_year
   
-  mar_data_year <- conf$scenario_data_years %>%
-    filter(layer_name=="mar_harvest_tonnes") %>%
-    filter(scenario_year == scen_year) %>%
-    .$data_year
+  harvest_tonnes <- get_data_year(layer_nm = "mar_harvest_tonnes", layers=layers)  
+    
   
-  harvest_tonnes <- layers$data$mar_harvest_tonnes %>%
-    select(-layer)
+  sustainability_score <- get_data_year(layer_nm = "mar_sustainability_score", layers=layers)
   
-  sustainability_score <- layers$data$mar_sustainability_score %>%
-    select(rgn_id, taxa_code, sust_coeff)
-  
-  popn_inland25mi <- layers$data$mar_coastalpopn_inland25mi %>%
-    select(rgn_id, year, popsum) %>%
-    mutate(popsum = popsum + 1)  # so 0 values do not cause errors when logged
+  popn_inland25mi <- get_data_year(layer_nm = "mar_coastalpopn_inland25mi", layers=layers) %>%
+    mutate(popsum = popsum + 1)
   
   
   rky <-  harvest_tonnes %>%
-    left_join(sustainability_score, by = c('rgn_id', 'taxa_code'))%>%
-    select(rgn_id, year, taxa_code, tonnes, sust_coeff)
+    left_join(sustainability_score, by = c('rgn_id', 'taxa_code', 'scenario_year'))%>%
+    select(rgn_id, scenario_year, taxa_code, tonnes, sust_coeff)
+  
   
   # fill in gaps with no data
-  rky <- spread(rky, year, tonnes)
-  rky <- gather(rky, "year", "tonnes", -(1:3)) %>%
-    mutate(year = as.numeric(year))
+  rky <- spread(rky, scenario_year, tonnes)
+  rky <- gather(rky, "scenario_year", "tonnes", -(1:3)) %>%
+    mutate(scenario_year = as.numeric(scenario_year))
   
+
   # 4-year rolling mean of data
   m <- rky %>%
     group_by(rgn_id, taxa_code, sust_coeff) %>%
-    arrange(rgn_id, taxa_code, year) %>%
+    arrange(rgn_id, taxa_code, scenario_year) %>%
     mutate(sm_tonnes = zoo::rollapply(tonnes, 4, mean, na.rm=TRUE, partial=TRUE)) %>%
     ungroup()
   
+    
   # smoothed mariculture harvest * sustainability coefficient
   m <- m %>%
     mutate(sust_tonnes = sust_coeff * sm_tonnes)
@@ -360,13 +356,13 @@ MAR = function(layers){
   
   # aggregate all weighted timeseries per region, and divide by coastal human population
   ry = m %>%
-    group_by(rgn_id, year) %>%
+    group_by(rgn_id, scenario_year) %>%
     summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm=TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
-    left_join(popn_inland25mi, by = c('rgn_id','year')) %>%
+    left_join(popn_inland25mi, by = c('rgn_id','scenario_year')) %>%
     mutate(mar_pop = sust_tonnes_sum / popsum) %>%
     ungroup()
   
-  # get reference quantile based on argument years
+    # get reference quantile based on argument years
 
   ref_95pct <- quantile(ry$mar_pop, 0.95, na.rm=TRUE)
   
@@ -383,7 +379,7 @@ MAR = function(layers){
                            1, 
                            mar_pop / ref_95pct)) 
   status <- ry %>%
-    filter(year == mar_data_year) %>%
+    filter(scenario_year == scen_year) %>%
     mutate(dimension = "status") %>%
     select(region_id=rgn_id, score=status, dimension) %>%
     mutate(score = round(score*100, 2))
@@ -391,7 +387,7 @@ MAR = function(layers){
   
   # calculate trend  
   
-  trend_years <- (mar_data_year-4):(mar_data_year)
+  trend_years <- (scen_year-4):(scen_year)
   
   trend <- trend_calc(status_data=ry, trend_years = trend_years)
   
@@ -458,15 +454,14 @@ FP = function(layers, scores){
 
 
 AO = function(layers){
-  
+
   Sustainability=1.0
   
   scen_year <- layers$data$scenario_year
   
   r <- get_data_year(layer_nm="ao_access", layers=layers) %>%
-    rename(region_id = rgn_id, access = value)
-  
-  r <- na.omit(r)
+    rename(region_id = rgn_id, access = value) %>%
+    na.omit()
   
   ry <- get_data_year(layer_nm = "ao_need", layers=layers) %>%
     rename(region_id = rgn_id, need=value) %>%
@@ -485,16 +480,11 @@ AO = function(layers){
     select(region_id, score=status) %>%
     mutate(dimension='status') 
   
-  # trend (in this case the trend years are based on need years)
-  recent_trend_year <- ry %>%
-    select(scenario_year, ao_need_year) %>%
-    unique() 
+  # trend
   
-  recent_trend_year <- recent_trend_year$ao_need_year[recent_trend_year$scenario_year==scen_year]
+  trend_years <- (scen_year-4):(scen_year)
   
-  trend_years <- (recent_trend_year-4):(recent_trend_year)
-  
-  r.trend <- trend_calc2(status_data=ry, status_layer="ao_need", trend_years=trend_years)
+  r.trend <- trend_calc(status_data=ry, trend_years=trend_years)
   
   ## reference points
   write_ref_pts(goal   = "AO",
