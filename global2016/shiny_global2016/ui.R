@@ -6,8 +6,9 @@ library(shinythemes)
 library(plotly)
 
 ### create warning with date to help with log output
-cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s in directory %s\n', Sys.time(), getwd()))
+cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s s\n', Sys.time()))
 
+setwd('/srv/shiny-server/plos_change_in_global_ocean_health')
 ### initialize variables needed by ui.R
 continents <- read_csv('data/georegion_labels.csv') %>%
   .$continent %>%
