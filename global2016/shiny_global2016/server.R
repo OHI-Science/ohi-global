@@ -106,7 +106,7 @@ server <- shinyServer(function(input, output, session) {
     data_view_df <- read_csv('tables/data_view.csv') 
     if(!'rgn' %in% input$data_view)
       data_view_df <- data_view_df %>%
-        select(-georegion, -subregion, -country)
+        select(-georegion, -subregion, -region_name)
     if(!'goal' %in% input$data_view)
       data_view_df <- data_view_df %>%
         select(-goal)

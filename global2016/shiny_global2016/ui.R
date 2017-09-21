@@ -6,16 +6,11 @@ library(shinythemes)
 library(plotly)
 
 ### create warning with date to help with log output
-cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s\n', Sys.time()))
-tmp <- getwd()
-cat(file = stderr(), sprintf('Current working directory: %s\n', tmp))
-tmp <- paste('  ', list.files(), collapse = '\n')
-cat(file = stderr(), tmp, '\n')
+cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s s\n', Sys.time()))
 
-
-
+setwd('/srv/shiny-server/plos_change_in_global_ocean_health')
 ### initialize variables needed by ui.R
-continents <- read_csv('data/georegion_labels2.csv') %>%
+continents <- read_csv('data/georegion_labels.csv') %>%
   .$continent %>%
   unique()
 
@@ -53,7 +48,7 @@ ui <- navbarPage(
       includeMarkdown('pages/acknowledgments.md')
     ),
     mainPanel(
-      includeMarkdown('pages/abstract.md')
+      includeMarkdown('pages/overview.md')
     )
   ),
 
@@ -234,7 +229,7 @@ ui <- navbarPage(
                          choices = c('Region information' = 'rgn',
                                      'Full goal name'     = 'goal'),
                          selected = c()),
-      p('Country, region, and goal names may be helpful to',
+      p('Region names and goal names may be helpful to',
         'filter/search the data.'),
       hr(),
       h5('Download OHI score data'),

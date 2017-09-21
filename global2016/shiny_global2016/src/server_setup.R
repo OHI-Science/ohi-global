@@ -58,6 +58,8 @@ goal_names <- data.frame(goal_code = goals,
 ##### Load data frames #####
 ############################.
 
+cat(file = stderr(), 'Loading data frames in server_setup.R\n')
+
 # setwd('~/github/ohi-global/global2016/shiny_global2016')
 index_2016_all <- read_csv('data/scores_eez2016.csv') 
 index_2016 <- index_2016_all %>%
@@ -70,7 +72,8 @@ trend_2016_all <- read_csv('data/trends_2016.csv')
 trend_2016 <- trend_2016_all %>%
   select(region_id, index_trend = Index)
 
-georgns <- read_csv('data/georegion_labels2.csv') %>%
+
+georgns <- read_csv('data/georegion_labels.csv') %>%
   select(-world)
 
 index_gl2016 <- index_2016$index_score[index_2016$region_id == 0]
