@@ -6,7 +6,8 @@ library(shinythemes)
 library(plotly)
 
 ### create warning with date to help with log output
-cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s\n  in directory %s\n', Sys.time(), getwd()))
+cat(file = stderr(), 'testing... ')
+cat(file = stderr(), sprintf('\n\nExecuting shiny app: %s in directory %s\n', Sys.time(), getwd()))
 
 ### initialize variables needed by ui.R
 continents <- read_csv('data/georegion_labels.csv') %>%
