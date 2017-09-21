@@ -1,3 +1,8 @@
+## functions.R.
+## Each OHI goal model is a separate R function. 
+## The function name is the 2- or 3- letter code for each goal or subgoal; 
+## for example, FIS is the Fishing subgoal of Food Provision (FP).
+
 Setup = function(){
   if(file.exists('temp/reference_pts.csv'))
   {file.remove('temp/reference_pts.csv')}
@@ -504,7 +509,7 @@ AO = function(layers){
 }
 
 NP <- function(scores, layers){
-  
+
   scen_year <- layers$data$scenario_year
   
   data_year <- conf$scenario_data_years %>%
@@ -522,7 +527,7 @@ NP <- function(scores, layers){
   
   ### FIS status for fish oil sustainability
   # FIS_status <- read.csv('scores.csv')%>%  ## this is for troubleshooting
-  FIS_status   <-  scores %>% 
+   FIS_status   <-  scores %>% 
     filter(goal == 'FIS' & dimension == 'status') %>%
     select(rgn_id = region_id, score)  
   
@@ -743,7 +748,7 @@ NP <- function(scores, layers){
     return(np_sust)
   }
   
-  np_calc_scores <- function(np_sust, status_year) {
+  np_calc_scores <- function(np_sust) {
     ### Calculates NP status for all production years for each region, based 
     ### upon weighted mean of all products produced. 
     ### From this, reports the most recent year as the NP status.
@@ -768,7 +773,7 @@ NP <- function(scores, layers){
       filter(year == data_year & !is.na(status)) %>%
       mutate(
         dimension = 'status',
-        score     = round(status,4) * 100) %>%
+        score     = round(status, 4) * 100) %>%
       select(region_id = rgn_id, dimension, score)
     stopifnot(
       min(np_status_current$score, na.rm = TRUE) >= 0, 
@@ -778,7 +783,7 @@ NP <- function(scores, layers){
     
     trend_years <- (data_year-4):(data_year)
     
-    np_trend <- trend_calc2(status_data=np_status_all, trend_years = trend_years)
+    np_trend <- trend_calc(status_data=np_status_all, trend_years = trend_years)
     
     ### return scores
     np_scores <- np_status_current %>%
@@ -797,7 +802,7 @@ NP <- function(scores, layers){
   np_exp     <- np_calc_exposure(np_harvest, hab_extent, FIS_status) 
   np_risk    <- np_calc_risk(np_exp, r_cyanide, r_blast)
   np_sust    <- np_calc_sustainability(np_exp, np_risk)
-  np_scores  <- np_calc_scores(np_sust, status_year) 
+  np_scores  <- np_calc_scores(np_sust) 
   
   ## reference points
   write_ref_pts(goal = "NP", method = "Harvest peak within region times 0.65 buffer", 
