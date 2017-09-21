@@ -107,14 +107,14 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 ### Some methods for visualizing the data
 
 
-score_check(commit="previous", scenario_year=2016, 
-            file_name="eez2016_np3", save_csv = TRUE, NA_compare = TRUE)
+score_check(commit="previous", scenario_year=2017, 
+            file_name="eez2017_ico", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("../score_check/eez2016_np3_diff_data_2017-09-21.csv")
+compare <- read.csv("../score_check/eez2016_ico_diff_data_2017-09-21.csv")
 dplyr::filter(compare, is.na(old_score), !is.na(score))
 
 library(ggplot2)
-ggplot(filter(compare, year==2016 & dimension=="status" & goal == "NP"), aes(old_score, score)) +
+ggplot(filter(compare, year==2017 & dimension=="trend" & goal == "ICO"), aes(old_score, score)) +
   geom_point() + 
   geom_abline(slope=1, intercept=0) +
   theme_bw()

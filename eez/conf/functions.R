@@ -502,26 +502,7 @@ NP <- function(scores, layers){
 
   scen_year <- layers$data$scenario_year
   
-  # data_year <- conf$scenario_data_years %>%
-  #   filter(layer_name == "np_harvest_tonnes") %>%
-  #   filter(scenario_year == scen_year) %>%
-  #   .$data_year
-  # 
-  # data_year <- as.numeric(data_year)
-  # 
-  
-  # r_cyanide    = layers$data$np_cyanide # cyanide & blast used to calculate risk variable
-  # r_blast      = layers$data$np_blast   
-  # hab_rocky    = layers$data$hab_rockyreef_extent
-  # hab_coral    = layers$data$hab_coral_extent # habitat data used to calculate exposure variable
 
-  # r_cyanide <- get_data_year(layer_nm = "np_cyanide", layers=layers)
-  # r_blast <- get_data_year(layer_nm = "np_blast", layers=layers)
-  # hab_rocky <- get_data_year(layer_nm = "hab_rockyreef_extent", layers=layers)  
-  # hab_coral <- get_data_year(layer_nm = "hab_coral_extent", layers=layers)
-  
-  
-  
   ###########################################################.
   ### Here I define five main sub-functions.  The main script that
   ### actually calls these functions is at the very end of the NP section.
@@ -537,11 +518,6 @@ NP <- function(scores, layers){
     #########################################.
     
     ## load data from layers dataframe
-   # rgns         <- layers$data$rgn_labels
-   # h_tonnes     <- layers$data$np_harvest_tonnes
-   # h_tonnes_rel <- layers$data$np_harvest_tonnes_relative
-   # h_w          <- layers$data$np_harvest_product_weight
-   # 
     h_tonnes <- get_data_year(layer_nm = "np_harvest_tonnes", layers=layers) %>%
       select(year = scenario_year, region_id=rgn_id, product, tonnes)
     
@@ -551,23 +527,7 @@ NP <- function(scores, layers){
     h_w <- get_data_year(layer_nm = "np_harvest_product_weight", layers=layers) %>%
       select(year = scenario_year, region_id=rgn_id, product, prod_weight = weight)
      
-    # np_harvest <- h_tonnes %>%
-    #   full_join(
-    #     h_tonnes_rel,
-    #     by=c('rgn_id', 'product', 'year')) %>%
-    #   left_join(
-    #     h_w %>%
-    #       select(rgn_id, product, prod_weight = weight),
-    #     by=c('rgn_id', 'product')) %>%
-    #   left_join(
-    #     rgns %>%
-    #       select(rgn_id, rgn_name=label),
-    #     by='rgn_id') %>%
-    #   select(
-    #     rgn_name, rgn_id, product, year, 
-    #     tonnes, tonnes_rel, prod_weight)
-    # 
-    
+
     # merge harvest in tonnes and usd
     np_harvest <- h_tonnes %>%
       full_join( h_tonnes_rel, by=c('region_id', 'product', 'year')) %>%
@@ -595,13 +555,6 @@ NP <- function(scores, layers){
       filter(km2 > 0)
     
         
-    # ### extract habitats used
-    # hab_coral <- hab_coral %>%
-    #   select(rgn_id, km2)
-    # hab_rocky   <- hab_rocky %>%
-    #   select(rgn_id, km2)
-    # 
-    
     ### area for products having single habitats for exposure
     area_single_hab <- bind_rows(
       # corals in coral reef
@@ -1601,33 +1554,26 @@ ICO = function(layers){
     group_by(region_id, scenario_year, ico_spp_iucn_status_year) %>%
     summarize(status = mean(spp_mean, na.rm=TRUE)) %>%
     ungroup() 
-  
-  ####### trend
-  
-  data_year <- conf$scenario_data_years %>%
-    filter(scenario_year == scen_year) %>%
-    filter(layer_name == "ico_spp_iucn_status") %>%
-    .$data_year
-  
-  
-  trend_years <- (data_year-9):(data_year)
-  
-  r.trend <- trend_calc(status_data = r.status, trend_years=trend_years)
-  
-  
+
   ####### status
-  r.status <- r.status %>%
+  status <- r.status %>%
     filter(scenario_year == scen_year) %>%
     mutate(score = status * 100) %>%
     mutate(dimension = "status") %>%
     select(region_id, score, dimension)
+  
+  ####### trend
+  trend_years <- (scen_year-9):(scen_year)
+  
+  trend <- trend_calc(status_data = r.status, trend_years=trend_years)
+  
   
   ## reference points
   write_ref_pts(goal = "ICO", method = "scaled IUCN risk categories",
                 ref_pt = NA)
   
   # return scores
-  scores <-  rbind(r.status, r.trend) %>%
+  scores <-  rbind(status, trend) %>%
     mutate('goal'='ICO') %>%
     select(goal, dimension, region_id, score) %>%
     data.frame()
