@@ -143,24 +143,29 @@ write_ref_pts <- function(goal, method, ref_pt) {
 
 
 FIS = function(layers){
+ 
+   scen_year <- layers$data$scenario_year
   
-  scen_year <- layers$data$scenario_year
-  
-  data_year <- conf$scenario_data_years %>%
-    filter(layer_name == "fis_meancatch") %>%
-    filter(scenario_year == scen_year) %>%
-    .$data_year
-  
-  data_year <- as.numeric(data_year)
-  
+  # data_year <- conf$scenario_data_years %>%
+  #   filter(layer_name == "fis_meancatch") %>%
+  #   filter(scenario_year == scen_year) %>%
+  #   .$data_year
+  # 
+  # data_year <- as.numeric(data_year)
+  # 
   #catch data
-  c <- layers$data$fis_meancatch %>%
-    select(rgn_id, year, stock_id_taxonkey, catch = mean_catch)
-  
-  # b_bmsy data
-  b = layers$data$fis_b_bmsy %>%
-    select(rgn_id, stock_id, year, bbmsy)
-  
+  c <- get_data_year(layer_nm = "fis_meancatch", layers=layers) %>%
+    select(region_id = rgn_id, year = scenario_year, stock_id_taxonkey, catch = mean_catch)
+  # 
+  # c <- layers$data$fis_meancatch %>%
+  #   select(rgn_id, year, stock_id_taxonkey, catch = mean_catch)
+
+  #  b_bmsy data
+  # b = layers$data$fis_b_bmsy %>%
+  #   select(rgn_id, stock_id, year, bbmsy)
+   b <- get_data_year(layer_nm = "fis_b_bmsy", layers=layers) %>%
+     select(region_id = rgn_id, stock_id, year = scenario_year, bbmsy)
+
   # The following stocks are fished in multiple regions and have high b/bmsy values
   # Due to the underfishing penalty, this actually penalizes the regions that have the highest
   # proportion of catch of these stocks.  The following corrects this problem:
@@ -179,14 +184,14 @@ FIS = function(layers){
     mutate(stock_id = substr(stock_id_taxonkey, 1, nchar(stock_id_taxonkey)-7)) %>% 
     mutate(catch = as.numeric(catch)) %>%
     mutate(year = as.numeric(as.character(year))) %>%
-    mutate(rgn_id = as.numeric(as.character(rgn_id))) %>%
+    mutate(region_id = as.numeric(as.character(region_id))) %>%
     mutate(taxon_key = as.numeric(as.character(taxon_key))) %>%
-    select(rgn_id, year, stock_id, taxon_key, catch)
+    select(region_id, year, stock_id, taxon_key, catch)
   
   # general formatting:
   b <- b %>%
     mutate(bbmsy = as.numeric(bbmsy)) %>%
-    mutate(rgn_id = as.numeric(as.character(rgn_id))) %>%
+    mutate(region_id = as.numeric(as.character(region_id))) %>%
     mutate(year = as.numeric(as.character(year))) %>%
     mutate(stock_id = as.character(stock_id))  
   
@@ -214,8 +219,8 @@ FIS = function(layers){
   # STEP 1. Merge the b/bmsy data with catch data
   ####
   data_fis <- c %>%
-    left_join(b, by=c('rgn_id', 'stock_id', 'year')) %>%
-    select(rgn_id, stock_id, year, taxon_key, catch, bbmsy, score) 
+    left_join(b, by=c('region_id', 'stock_id', 'year')) %>%
+    select(region_id, stock_id, year, taxon_key, catch, bbmsy, score) 
   
   
   ###
@@ -226,7 +231,7 @@ FIS = function(layers){
   
   ## this takes the median score within each region
   data_fis_gf <- data_fis %>%
-    group_by(rgn_id, year) %>%
+    group_by(region_id, year) %>%
     mutate(Median_score = quantile(score, probs=c(0.5), na.rm=TRUE)) %>%
     ungroup() 
   
@@ -257,12 +262,12 @@ FIS = function(layers){
   
   gap_fill_data <- data_fis_gf %>%
     mutate(gap_fill = ifelse(is.na(penalty), "none", "median")) %>%
-    select(rgn_id, stock_id, taxon_key, year, catch, score, gap_fill) %>%
-    filter(year == data_year)
+    select(region_id, stock_id, taxon_key, year, catch, score, gap_fill) %>%
+    filter(year == scen_year)
   write.csv(gap_fill_data, 'temp/FIS_summary_gf.csv', row.names=FALSE)
   
   status_data <- data_fis_gf %>%
-    select(region_id=rgn_id, stock_id, year, catch, score)
+    select(region_id, stock_id, year, catch, score)
   
   
   ###
@@ -289,7 +294,7 @@ FIS = function(layers){
   ###
   
   status <-  status_data %>%
-    filter(year==data_year) %>%
+    filter(year == scen_year) %>%
     mutate(
       score     = round(status*100, 1),
       dimension = 'status') %>%
@@ -298,10 +303,9 @@ FIS = function(layers){
   
   # calculate trend  
   
-  trend_years <- (data_year-4):(data_year)
+  trend_years <- (scen_year-4):(scen_year)
   
-  trend <- trend_calc2(status_data=status_data, 
-                      status_layer="fis_meancatch", trend_years=trend_years)
+  trend <- trend_calc(status_data=status_data,trend_years=trend_years)
   
   ## reference points
   write_ref_pts(goal   = "FIS",
@@ -316,6 +320,7 @@ FIS = function(layers){
   
   return(scores)
 }
+
 
 MAR = function(layers){
 
@@ -1630,41 +1635,40 @@ LSP = function(layers){
   ref_pct_cp=30
   
   # select data
-  r <-  rbind(layers$data$rgn_area_inland1km, layers$data$rgn_area_offshore3nm) %>% #total offshore/inland areas
+  total_area <-  rbind(layers$data$rgn_area_inland1km, layers$data$rgn_area_offshore3nm) %>% #total offshore/inland areas
     select(region_id = rgn_id, area, layer) %>%
     spread(layer, area) %>%
     select(region_id, area_inland1km = rgn_area_inland1km,
            area_offshore3nm = rgn_area_offshore3nm)
+
   
-  ry_offshore <-  layers$data$lsp_prot_area_offshore3nm %>%
-    select(region_id = rgn_id, year, cmpa = a_prot_3nm)
-  ry_inland <- layers$data$lsp_prot_area_inland1km %>%
-    select(region_id = rgn_id, year, cp = a_prot_1km)
+  offshore <- get_data_year(layer_nm = "lsp_prot_area_offshore3nm", layers=layers) %>%
+    select(region_id = rgn_id, year = scenario_year, cmpa = a_prot_3nm)
+  inland <- get_data_year(layer_nm = "lsp_prot_area_inland1km", layers=layers) %>%
+    select(region_id = rgn_id, year = scenario_year, cp = a_prot_1km)
   
-  ry <- full_join(ry_offshore, ry_inland, by=c("region_id", "year"))
+  
+  # ry_offshore <-  layers$data$lsp_prot_area_offshore3nm %>%
+  #   select(region_id = rgn_id, year, cmpa = a_prot_3nm)
+  # ry_inland <- layers$data$lsp_prot_area_inland1km %>%
+  #   select(region_id = rgn_id, year, cp = a_prot_1km)
+  # 
+  lsp_data <- full_join(offshore, inland, by=c("region_id", "year"))
   
   # fill in time series for all regions 
-  r.yrs <- expand.grid(region_id = unique(ry$region_id),
-                       year = unique(ry$year)) %>%
-    left_join(ry, by=c('region_id', 'year')) %>%
+  lsp_data_expand <- expand.grid(region_id = unique(lsp_data$region_id),
+                       year = unique(lsp_data$year)) %>%
+    left_join(lsp_data, by=c('region_id', 'year')) %>%
     arrange(region_id, year) %>%
     mutate(cp= ifelse(is.na(cp), 0, cp),
            cmpa = ifelse(is.na(cmpa), 0, cmpa)) %>%
-    mutate(pa     = cp + cmpa) %>%
-    rename(data_year = year)
+    mutate(pa     = cp + cmpa)
   
-  ## associate data_years with scenario years for these data
-  year_data <- conf$scenario_data_years %>%
-    filter(layer_name == "lsp_prot_area_offshore3nm") %>%
-    select(scenario_year, data_year)
-  
-  r.yrs <- left_join(r.yrs, year_data, by="data_year") %>%
-    filter(!is.na(scenario_year))
-  
+
   # get percent of total area that is protected for inland1km (cp) and offshore3nm (cmpa) per year
   # and calculate status score
-  r.yrs <- r.yrs %>%
-    full_join(r, by="region_id") %>%
+  status_data <- lsp_data_expand %>%
+    full_join(total_area, by="region_id") %>%
     mutate(pct_cp    = pmin(cp   / area_inland1km   * 100, 100),
            pct_cmpa  = pmin(cmpa / area_offshore3nm * 100, 100),
            status    = ( pmin(pct_cp / ref_pct_cp, 1) + pmin(pct_cmpa / ref_pct_cmpa, 1) ) / 2) %>%
@@ -1672,18 +1676,17 @@ LSP = function(layers){
   
   # extract status based on specified year
   
-  r.status = r.yrs %>%
-    filter(scenario_year==scen_year) %>%
+  r.status = status_data %>%
+    filter(year==scen_year) %>%
     mutate(score=status*100) %>%
     select(region_id, score) %>%
     mutate(dimension = "status")
   
   # calculate trend
   
-  
   trend_years <- (scen_year-4):(scen_year)
   
-  r.trend <- trend_calc(status_data = r.yrs, trend_years=trend_years)
+  r.trend <- trend_calc(status_data = status_data, trend_years=trend_years)
   
   
   ## reference points
