@@ -108,13 +108,13 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 score_check(commit="previous", scenario_year=2016, 
-            file_name="eez2016_fis", save_csv = TRUE, NA_compare = TRUE)
+            file_name="eez2016_sb_hab", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("../score_check/eez2016_fis_diff_data_2017-09-22.csv")
+compare <- read.csv("../score_check/eez2016_sb_hab_diff_data_2017-09-25.csv")
 dplyr::filter(compare, is.na(old_score), !is.na(score))
 
 library(ggplot2)
-ggplot(filter(compare, year==2017 & dimension=="score" & goal == "FIS"), aes(old_score, score)) +
+ggplot(filter(compare, year==2016 & dimension=="score" & goal == "HAB"), aes(old_score, score)) +
   geom_point() + 
   geom_abline(slope=1, intercept=0) +
   theme_bw()

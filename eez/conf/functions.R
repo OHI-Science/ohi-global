@@ -15,50 +15,11 @@ Setup = function(){
   
 }
 
-# general function to calculate trend
-# select the status_layer that is used as the baseline year
-trend_calc2 <- function(status_data, status_layer=NA, trend_years=trend_years){   
-  # status_data = ry
-  # status_layer = "ao_access"
-  # trend_years = trend_years  # want to use "data years" rather than scenario years
-  # because scenario years may be repeated
-  
-  if(!is.na(status_layer)){
-    names(status_data)[which(names(status_data) == paste0(status_layer, "_year"))] <- "year"
-  }
-  
-  if(sum(grepl("rgn_id", names(status_data))>0)){
-    names(status_data)[which(names(status_data)=="rgn_id")] <- "region_id"
-  }
-  
-  status_data <- status_data %>%
-    select(region_id, year, status) %>%
-    filter(year %in% trend_years) %>%
-    unique()
-  
-  adj_trend_year <- min(trend_years)
-  
-  r.trend = status_data %>%
-    group_by(region_id) %>%
-    do(mdl = lm(status ~ year, data=.),
-       adjust_trend = .$status[.$year == adj_trend_year]) %>%
-    summarize(region_id, score = ifelse(coef(mdl)['year']==0, 0, coef(mdl)['year']/adjust_trend * 5)) %>%
-    ungroup() %>%
-    mutate(score = ifelse(score>1, 1, score)) %>%
-    mutate(score = ifelse(score<(-1), (-1), score)) %>%
-    mutate(score = round(score, 4)) %>%
-    mutate(dimension = "trend") %>%
-    select(region_id, score, dimension)
-  
-  return(r.trend)
-}    
+## general function to calculate trend
+## Data with status values across years needs to be provided, as well 
+## well as the trend years (i.e., 2001:2005)
 
 trend_calc <- function(status_data, trend_years=trend_years){   
-  # status_data = ry
-  # status_layer = "ao_access"
-  # trend_years = trend_years  # want to use "data years" rather than scenario years
-  # because scenario years may be repeated
-  
   
   if(sum(grepl("rgn_id", names(status_data))>0)){
     names(status_data)[which(names(status_data)=="rgn_id")] <- "region_id"
@@ -91,10 +52,13 @@ trend_calc <- function(status_data, trend_years=trend_years){
 }    
 
 
-# function to link data and scenario years based on 
+# function to obtain data in a particular layer.
+# links the data to the appropriate scenario year based on 
 # conf/scenario_data_years.csv information
+# Data from different layers (with different data years) can 
+# then be joined using the scenario year.
 
-get_data_year <- function(layer_nm, layers=layers) { #layer_nm="le_wage_cur_base_value"
+get_data_year <- function(layer_nm, layers_obj=layers) { #layer_nm="le_wage_cur_base_value"
   
   all_years <- conf$scenario_data_years %>%
     mutate(scenario_year= as.numeric(scenario_year),
@@ -103,7 +67,7 @@ get_data_year <- function(layer_nm, layers=layers) { #layer_nm="le_wage_cur_base
     select(layer_name, scenario_year, year=data_year)
   
   
-  layer_vals <- layers$data[[layer_nm]]
+  layer_vals <- layers_obj$data[[layer_nm]]
   
   layers_years <- all_years %>%
     left_join(layer_vals, by="year") %>%
@@ -114,14 +78,12 @@ get_data_year <- function(layer_nm, layers=layers) { #layer_nm="le_wage_cur_base
   return(layers_years)
 }
 
-
-# useful function for compiling multiple data layers 
-# only works when the variable names are the same across datasets
-# (e.g., coral, seagrass, and mangroves)
+# Wrapper for get_data_year when compiling multiple data layers with the 
+# same variable names (e.g., coral, seagrass, and mangroves)
 SelectData2 <- function(layer_names){  
   data <- data.frame()
   for(e in layer_names){ # e="le_jobs_cur_base_value"
-    data_new <- get_data_year(layer_nm=e, layers=layers) 
+    data_new <- get_data_year(layer_nm=e, layers_obj = layers) 
     names(data_new)[which(names(data_new) == paste0(e, "_year"))] <- "data_year"
     data <- rbind(data, data_new)
   }
@@ -146,24 +108,13 @@ FIS = function(layers){
  
    scen_year <- layers$data$scenario_year
   
-  # data_year <- conf$scenario_data_years %>%
-  #   filter(layer_name == "fis_meancatch") %>%
-  #   filter(scenario_year == scen_year) %>%
-  #   .$data_year
-  # 
-  # data_year <- as.numeric(data_year)
-  # 
   #catch data
-  c <- get_data_year(layer_nm = "fis_meancatch", layers=layers) %>%
+  c <- get_data_year(layer_nm = "fis_meancatch", layers_obj=layers) %>%
     select(region_id = rgn_id, year = scenario_year, stock_id_taxonkey, catch = mean_catch)
-  # 
-  # c <- layers$data$fis_meancatch %>%
-  #   select(rgn_id, year, stock_id_taxonkey, catch = mean_catch)
 
   #  b_bmsy data
-  # b = layers$data$fis_b_bmsy %>%
-  #   select(rgn_id, stock_id, year, bbmsy)
-   b <- get_data_year(layer_nm = "fis_b_bmsy", layers=layers) %>%
+  
+   b <- get_data_year(layer_nm = "fis_b_bmsy", layers_obj = layers) %>%
      select(region_id = rgn_id, stock_id, year = scenario_year, bbmsy)
 
   # The following stocks are fished in multiple regions and have high b/bmsy values
@@ -326,12 +277,12 @@ MAR = function(layers){
 
     scen_year <- layers$data$scenario_year
   
-  harvest_tonnes <- get_data_year(layer_nm = "mar_harvest_tonnes", layers=layers)  
+  harvest_tonnes <- get_data_year(layer_nm = "mar_harvest_tonnes", layers_obj = layers)  
     
   
-  sustainability_score <- get_data_year(layer_nm = "mar_sustainability_score", layers=layers)
+  sustainability_score <- get_data_year(layer_nm = "mar_sustainability_score", layers_obj = layers)
   
-  popn_inland25mi <- get_data_year(layer_nm = "mar_coastalpopn_inland25mi", layers=layers) %>%
+  popn_inland25mi <- get_data_year(layer_nm = "mar_coastalpopn_inland25mi", layers_obj = layers) %>%
     mutate(popsum = popsum + 1)
   
   
@@ -409,7 +360,7 @@ FP = function(layers, scores){
   
   scen_year <- layers$data$scenario_year
   
-  w <- get_data_year(layer_nm = "fp_wildcaught_weight", layers=layers)%>%
+  w <- get_data_year(layer_nm = "fp_wildcaught_weight", layers_obj = layers)%>%
     filter(scenario_year == scen_year) %>%
     select(region_id = rgn_id, w_fis)
   
@@ -464,11 +415,11 @@ AO = function(layers){
   
   scen_year <- layers$data$scenario_year
   
-  r <- get_data_year(layer_nm="ao_access", layers=layers) %>%
+  r <- get_data_year(layer_nm="ao_access", layers_obj = layers) %>%
     rename(region_id = rgn_id, access = value) %>%
     na.omit()
   
-  ry <- get_data_year(layer_nm = "ao_need", layers=layers) %>%
+  ry <- get_data_year(layer_nm = "ao_need", layers_obj = layers) %>%
     rename(region_id = rgn_id, need=value) %>%
     left_join(r, by=c("region_id", "scenario_year"))
   
@@ -523,13 +474,13 @@ NP <- function(scores, layers){
     #########################################.
     
     ## load data from layers dataframe
-    h_tonnes <- get_data_year(layer_nm = "np_harvest_tonnes", layers=layers) %>%
+    h_tonnes <- get_data_year(layer_nm = "np_harvest_tonnes", layers_obj = layers) %>%
       select(year = scenario_year, region_id=rgn_id, product, tonnes)
     
-    h_tonnes_rel <- get_data_year(layer_nm = 'np_harvest_tonnes_relative', layers=layers) %>%
+    h_tonnes_rel <- get_data_year(layer_nm = 'np_harvest_tonnes_relative', layers_obj = layers) %>%
       select(year = scenario_year, region_id=rgn_id, product, tonnes_rel)
     
-    h_w <- get_data_year(layer_nm = "np_harvest_product_weight", layers=layers) %>%
+    h_w <- get_data_year(layer_nm = "np_harvest_product_weight", layers_obj = layers) %>%
       select(year = scenario_year, region_id=rgn_id, product, prod_weight = weight)
      
 
@@ -551,11 +502,11 @@ NP <- function(scores, layers){
 
     ### Determine Habitat Areas for Exposure
   
-    hab_rocky <- get_data_year(layer_nm = "hab_rockyreef_extent", layers=layers) %>%
+    hab_rocky <- get_data_year(layer_nm = "hab_rockyreef_extent", layers_obj = layers) %>%
       select(region_id = rgn_id, year = scenario_year, km2) %>%
       filter(km2 > 0)
 
-    hab_coral <- get_data_year(layer_nm = "hab_coral_extent", layers=layers) %>%
+    hab_coral <- get_data_year(layer_nm = "hab_coral_extent", layers_obj = layers) %>%
       select(region_id = rgn_id, year = scenario_year, km2) %>%
       filter(km2 > 0)
     
@@ -629,11 +580,11 @@ NP <- function(scores, layers){
     
     ### Determine Risk
     
-    r_cyanide <- get_data_year(layer_nm = "np_cyanide", layers=layers) %>%
+    r_cyanide <- get_data_year(layer_nm = "np_cyanide", layers_obj = layers) %>%
       filter(!is.na(score) & score > 0) %>%
       select(region_id = rgn_id, year = scenario_year, cyanide = score)   
     
-    r_blast <- get_data_year(layer_nm = "np_blast", layers=layers)  %>%
+    r_blast <- get_data_year(layer_nm = "np_blast", layers_obj = layers)  %>%
       filter(!is.na(score) & score > 0) %>%
       select(region_id = rgn_id, year = scenario_year, blast = score)     
 
@@ -999,9 +950,9 @@ TR = function(layers) {
   
   ## read in layers
   
-  tourism <- get_data_year(layer_nm = "tr_jobs_pct_tourism", layers=layers) %>%
+  tourism <- get_data_year(layer_nm = "tr_jobs_pct_tourism", layers_obj = layers) %>%
     select(-layer_name)
-  sustain <- get_data_year(layer_nm = "tr_sustainability", layers=layers) %>%
+  sustain <- get_data_year(layer_nm = "tr_sustainability", layers_obj = layers) %>%
     select(-layer_name)
   
   tr_data  <- full_join(tourism, sustain, by = c('rgn_id', 'scenario_year'))
@@ -1014,7 +965,7 @@ TR = function(layers) {
   
   
   # regions with Travel Warnings
-  rgn_travel_warnings <- get_data_year(layer_nm = "tr_travelwarnings", layers=layers) %>%
+  rgn_travel_warnings <- get_data_year(layer_nm = "tr_travelwarnings", layers_obj = layers) %>%
     select(-layer_name)
   
   ## incorporate Travel Warnings
@@ -1069,7 +1020,7 @@ TR = function(layers) {
   
   # assign NA for uninhabitated islands
   if (conf$config$layer_region_labels=='rgn_global'){
-    unpopulated = layers$data[['le_popn']] %>%
+    unpopulated = layers$data$le_popn %>%
       group_by(rgn_id) %>%
       filter(count==0) %>%
       select(region_id = rgn_id)
@@ -1196,7 +1147,7 @@ LIV_ECO = function(layers, subgoal){
     mutate(score = pmin(value, 1))
   
   # countries to regions
-  cntry_rgn = layers$data[['cntry_rgn']] %>%
+  cntry_rgn = layers$data$cntry_rgn %>%
     select(rgn_id, cntry_key) %>%
     merge(
       SelectLayersData(layers, layers='rgn_labels') %>%
@@ -1310,15 +1261,15 @@ LIV_ECO = function(layers, subgoal){
   ## This will be revised when we update LE
   a_year <- ifelse(scen_year==2012, 2012, 2013)
   
-  le_unemployment     = layers$data[['le_unemployment']]
-  le_gdp              = layers$data[['le_gdp']]
-  le_jobs_sector_year = layers$data[['le_jobs_sector_year']] %>%
+  le_unemployment     = layers$data$le_unemployment
+  le_gdp              = layers$data$le_gdp
+  le_jobs_sector_year = layers$data$le_jobs_sector_year %>%
     filter(analysis_year == a_year) %>%
     select(-analysis_year)
-  le_rev_sector_year  = layers$data[['le_rev_sector_year']] %>%
+  le_rev_sector_year  = layers$data$le_rev_sector_year %>%
     filter(analysis_year == a_year) %>%
     select(-analysis_year)
-  le_wage_sector_year = layers$data[['le_wage_sector_year']] %>%
+  le_wage_sector_year = layers$data$le_wage_sector_year %>%
     filter(analysis_year == a_year) %>%
     select(-analysis_year)
   
@@ -1526,7 +1477,7 @@ ICO = function(layers){
 
     scen_year <- layers$data$scenario_year
   
-  rk <- get_data_year(layer_nm="ico_spp_iucn_status", layers=layers) %>%
+  rk <- get_data_year(layer_nm="ico_spp_iucn_status", layers_obj = layers) %>%
     select(region_id = rgn_id, sciname, iucn_cat=category, scenario_year, ico_spp_iucn_status_year) %>%
     mutate(iucn_cat = as.character(iucn_cat))
   
@@ -1642,9 +1593,9 @@ LSP = function(layers){
            area_offshore3nm = rgn_area_offshore3nm)
 
   
-  offshore <- get_data_year(layer_nm = "lsp_prot_area_offshore3nm", layers=layers) %>%
+  offshore <- get_data_year(layer_nm = "lsp_prot_area_offshore3nm", layers_obj = layers) %>%
     select(region_id = rgn_id, year = scenario_year, cmpa = a_prot_3nm)
-  inland <- get_data_year(layer_nm = "lsp_prot_area_inland1km", layers=layers) %>%
+  inland <- get_data_year(layer_nm = "lsp_prot_area_inland1km", layers_obj = layers) %>%
     select(region_id = rgn_id, year = scenario_year, cp = a_prot_1km)
   
   
