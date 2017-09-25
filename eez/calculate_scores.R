@@ -108,9 +108,9 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 score_check(commit="previous", scenario_year=2016, 
-            file_name="eez2016_sb_hab", save_csv = TRUE, NA_compare = TRUE)
+            file_name="eez2016_sb_prs", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("../score_check/eez2016_sb_hab_diff_data_2017-09-25.csv")
+compare <- read.csv("../score_check/eez2016_sb_prs_diff_data_2017-09-25.csv")
 dplyr::filter(compare, is.na(old_score), !is.na(score))
 
 library(ggplot2)
