@@ -105,7 +105,7 @@ write_ref_pts <- function(goal, method, ref_pt) {
 
 
 FIS = function(layers){
- 
+
    scen_year <- layers$data$scenario_year
   
   #catch data
@@ -120,12 +120,18 @@ FIS = function(layers){
   # The following stocks are fished in multiple regions and have high b/bmsy values
   # Due to the underfishing penalty, this actually penalizes the regions that have the highest
   # proportion of catch of these stocks.  The following corrects this problem:
-  #  filter(b, stock_id %in% c('Katsuwonus_pelamis-71', 'Clupea_harengus-27', 'Trachurus_capensis-47'))
+  # tmp <- filter(b, stock_id %in% c('Katsuwonus_pelamis-71', 'Clupea_harengus-27', 'Trachurus_capensis-47')) %>%
+  #   arrange(stock_id, year) %>%
+  #   data.frame()
   
-  high_bmsy <- c('Katsuwonus_pelamis-71', 'Clupea_harengus-27', 'Trachurus_capensis-47', 'Sardinella_aurita-34', 'Scomberomorus_cavalla-31')
+  high_bmsy <- c('Katsuwonus_pelamis-71', 
+                 'Clupea_harengus-27', 
+                 'Trachurus_capensis-47', 
+                 'Sardinella_aurita-34', 
+                 'Scomberomorus_cavalla-31')
   
   b <- b %>%
-    mutate(bbmsy = ifelse(stock_id %in% high_bmsy, 1, bbmsy))
+    mutate(bbmsy = ifelse(stock_id %in% high_bmsy & bbmsy > 1, 1, bbmsy))
   
   
   # separate out the stock_id and taxonkey:
@@ -180,13 +186,13 @@ FIS = function(layers){
   # Then a penalty is applied based on the level the taxa are reported at
   ###
   
-  ## this takes the median score within each region
+  ## this takes the median score within each region and year
   data_fis_gf <- data_fis %>%
     group_by(region_id, year) %>%
     mutate(Median_score = quantile(score, probs=c(0.5), na.rm=TRUE)) %>%
     ungroup() 
   
-  ## this takes the median score across all regions (when no stocks have scores within a region)
+  ## this takes the median score across all regions within a year(when no stocks have scores within a region)
   data_fis_gf <- data_fis_gf %>%
     group_by(year) %>%
     mutate(Median_score_global = quantile(score, probs=c(0.5), na.rm=TRUE)) %>%
