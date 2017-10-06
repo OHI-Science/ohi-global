@@ -108,7 +108,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 score_check(commit="previous", scenario_year=2016, 
-            file_name="eez2016_np_fix", save_csv = TRUE, NA_compare = TRUE)
+            file_name="eez2016_fp", save_csv = TRUE, NA_compare = TRUE)
 
 compare <- read.csv("../score_check/eez2016_np_fix_diff_data_2017-10-06.csv")
 dplyr::filter(compare, is.na(old_score), !is.na(score))
@@ -128,4 +128,5 @@ scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP",
 goalHistogram(scenario="eez2016", goal="AO", dim="status", fileSave="AO_need_eez2016")
 
 ##
-np_t <- read.csv("layers/np_harvest_tonnes.csv")
+read.csv("eez/scores.csv") %>%
+  filter(goal %in% c("FIS", "MAR"), region_id == 188, dimension=="score")
