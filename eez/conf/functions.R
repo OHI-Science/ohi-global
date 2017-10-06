@@ -653,7 +653,7 @@ NP <- function(scores, layers){
       left_join(fish_oil_sust, by='region_id') %>%
       mutate(product = as.character(product)) 
     
-    np_exp <- np_sust %>% 
+    np_sust <- np_sust %>% 
       bind_rows(np_sus_fis_oil)
     
     
