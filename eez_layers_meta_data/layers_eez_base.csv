@@ -98,7 +98,7 @@ po_pathogens,ohiprep:globalprep/prs_cw_pathogen/v2016/output,pathogens_popdensit
 po_trash,ohiprep:globalprep/cw_pressure_trash/v2015/output,trash_eez_2015_updated.csv,TRUE,pressure_score,Marine plastics,scaled 0-1,Global marine plastic pollution
 po_water,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_water_2013a.csv,TRUE,resilience score,Management of waters to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions
 res_spi,ohiprep:globalprep/prs_res_spi/v2017/output,spi_res.csv,TRUE,resilience_score,Social Progress Index,scaled 0-1,Social Progress Index scores
-rgn_area,ohiprep:globalprep/spatial/v2015/data,rgn_fao_gcs_area.csv,TRUE,area_km2,Region areas based on EEZ boundaries,km2,Area of Ocean Health Index regions modified from exclusive economic zones 
+rgn_area,ohiprep:globalprep/spatial/v2017/output,rgn_area.csv,TRUE,area_km2,Region areas based on EEZ boundaries,km2,Area of Ocean Health Index regions modified from exclusive economic zones 
 rgn_area_inland1km,ohiprep:globalprep/lsp/v2017/output,rgn_area_inland1km.csv,TRUE,area,Inland area,km2,Inland area of OHI regions within 1km of shoreline
 rgn_area_offshore3nm,ohiprep:globalprep/lsp/v2017/output,rgn_area_offshore3nm.csv,TRUE,area,Offshore area,km2,Offshore area of OHI regions within 3nm of shoreline
 rgn_georegions,ohiprep:globalprep/spatial/v2013,rgn_georegions_long_2013b.csv,TRUE,georgn_id,UN geopolitical region classifications,UN regions,"UN geopolitical regions (3 levels), often used for gapfilling missing data"
