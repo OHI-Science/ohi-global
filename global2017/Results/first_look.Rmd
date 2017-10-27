@@ -90,8 +90,8 @@ flower_plots = FALSE          # Updates the flower plot figures
 
 # Description of reference datasets and figures
 
-### Datasets (compiled for website)
-Data are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2017.
+### Primary dataset
+[Data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_scores_2017-10-24.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2017.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score dimensions).
 
@@ -187,7 +187,7 @@ ggplot(data, aes(y=region_name, x=scenario, fill=value)) +
   geom_tile() +
   facet_grid(~goal) + 
   scale_fill_gradientn(colours=myPalette, na.value="black") +
-  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=15)) +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
   ylab("") + 
   xlab("")
 ggsave(sprintf("figures/carpetPlot.png", scenario), width=20, height=35)
@@ -270,212 +270,8 @@ print(Motion, file=sprintf('figures/GoogleVisScores2.html', saveFile))
 * Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2017/Results/figures/FlowerPlots)
 
 
-# Change over time 
-This section describes global patterns in index and goal scores over time.
-
-### Average global goal and index scores across years
-
-(NOTE: Livelihood and economy goals are not included here)
-
-The Global Index score for 2017 (eez area weighted average of region scores) was: 70.  The following table provides the global scores (eez area weighted average of region scores) for the Index and goals/subgoals.
-
-```{r overview, echo=FALSE}
-
-data <- read.csv(sprintf('../OHI_final_scores_%s.csv', dateFile)) 
-
-data_filter <- data %>%
-  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
-  mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name))) %>%
-  mutate(value = round(value, 2))
-
-data_index <- data_filter %>%
-  filter(region_id == 0) %>%
-  filter(dimension == "score") %>%
-  left_join(goal_names, by="goal") %>%
-  select(scenario, goal, long_goal, value)
-
-data_index$goal <- factor(data_index$goal, levels = goals)
-
-data_spread <- spread(data_index, scenario, value) %>%
-  arrange(goal) %>%
-  filter(!goal %in% c("ECO", "LE", "LIV")) %>%
-  select(-goal) %>%
-  rename(goal = long_goal)
-
-kable(data_spread)
-```
-
-The following is a very preliminary analysis of how the global scores changed over time.  Global index scores decreased by an average 0.19 points per year (although, not significant with this rough analysis), with 138 regions having decreasing trends and 82 having increasing trends. 
-
-#### Declining scores
-* Natural products declined by about 1.4 points per year on average (p = 0.010, 84 regions with decreasing trend and 50 with increasing).  However, there is a lot of variation trends for this goal (i.e., large standard deviation), indicating that some regions have had relatively large increases.
-* Tourism and recreation declined by about 1.2 points per year on average (p = 0.008, 133 regions with decreasing trend and 52 with increasing).  However, this goal had a large amount of variation in trend results.
-* Fisheries declined by about 0.5 points per year on average, which is in contrast to the increases we observed in previous years (0.03, 118 regions with decreasing trend and 102 with increasing trend)
-* Coastal protection declined by 0.22 points per year on average (p = 0.02, 107 regions with decreasing trend and 36 with increasing).  However, there is a fairly large amount of variation suggesting a few regions may be driving this trend, due to seaice loss.
-* Clean waters declined by 0.11 points per year on average (p = 0.04, 123 regions with decreasing trend and 96 with increasing)
-
-#### Improving scores
-* Lasting special places scores increased by an average of 0.15 points per year (p = 0.005, 78 regions with increasing trend and 59 with decreasing)
-* Artisanal opportunities scores increased by just over 0.16 points per year (p = 0.004, 178 regions with increasing trend and 35 with decreasing)
-* Species condition scores improved by a small, but statistically signficant, 0.03 points per year (p=0.002, 125 regions with increasing trend and 94 with decreasing)
-
-
-```{r Global goal trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-### analysis:
-data_lm <- data_index %>%
-  group_by(goal) %>%
-  do(mdl = lm(value ~ scenario, data = .))
-
-#data.frame(glance(data_lm, mdl))
-results_lm <- tidy(data_lm, mdl) %>%
-  ungroup() %>%
-  filter(term == "scenario") %>%
-  arrange(estimate) %>%
-  left_join(goal_names) %>%
-  select(goal=long_goal, average_change_per_year = estimate, p_value = p.value) %>%
-  data.frame()
-
-
-# calculate how many regions with increases vs. decreasing scores
-scores <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile))
-  
-region_trends <- scores %>%
-  filter(dimension == "score") %>%
-  filter(!is.na(value)) %>%
-  group_by(goal, region_id) %>%
-  do(mdl = lm(value ~ scenario, data = .))
-
-#data.frame(glance(data_lm, mdl))
-region_trends <- tidy(region_trends, mdl) %>%
-  ungroup() %>%
-  filter(term == "scenario") %>%
-  left_join(goal_names) %>%
-  filter(region_id != 0) %>%
-  select(region_id, goal=long_goal, estimate, p.value) %>%
-  data.frame() %>%
-  group_by(goal) %>%
-  summarize(num_rgns_pos_trend = sum(estimate > 0),
-            num_rgns_neg_trend = sum(estimate < 0),
-            mean_trend = mean(estimate, na.rm=TRUE),
-            sd_trend = sd(estimate, na.rm=TRUE))
-
-results_lm <- results_lm %>%
-  left_join(region_trends, by = "goal")
-
-kable(results_lm)
-
-```
-
-
-# A closer look at the regions
-This section explores goal and index scores at the region level.  I mostly focus on the 2016 scores.
-
-### Regional goal and index scores for 2017
-
-This interactive table describes the index and goal scores for the regions in 2017 (and here's a [link](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/scores_eez2017.html) to a color coded table, and a csv file can also be [downloaded](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Results/data/scores_eez2017.csv)). 
-
-```{r score table, echo=FALSE}
-
-## create a score dataframe 
-
-data_all <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile))
-
-for(year in 2012:scenario){ # year = 2016
-
-data <- data_all[data_all$scenario == year, ]
-
-data <- data %>%
-  filter(dimension == "score") %>%   # focus only on score data
-  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
-  left_join(rgn_names, by=c('region_id')) %>%
-  mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name))) %>%
-  mutate(value = round(value, 2))
-
-data <- spread(data, goal, value)
-
-index <- data %>%
-  filter(country == 'eez_weighted_avg')
-
-data <- data %>%
-  arrange(-Index) %>%
-  filter(country != 'eez_weighted_avg')
-
-data_final <- rbind(index, data) %>%
-    select(country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
-
-write.csv(data_final, sprintf("data/scores_eez%s.csv", year), row.names = FALSE, na='')
-
-}
-
-data_final <- read.csv(sprintf("data/scores_eez%s.csv", scenario))
-  
-data_final_inlay <- data_final %>%
-  select(-region_id)
-
-datatable(data_final_inlay,
-          caption = '2017 OHI scores')
-
-
-## make an html file that is color coded:
-pal = brewer.pal(10, 'RdYlBu')
-
-cols <- data.frame(country=data_final$country)
-for(goal in goals){ #goal="Index"
-  tmp <- data_final[, goal]
-  tmp <- assign(goal, cut(tmp, breaks=c(0,10,20,30,40,50,60,70,80,90,100), include.lowest = TRUE, labels=pal))
-  tmp <- data.frame(goal=tmp)
-  names(tmp) <- goal
-  cols <- cbind(cols, tmp)
-}
-
-
-hwrite(data_final, sprintf('data/scores_eez%s.html', scenario), br=TRUE, center=TRUE, border=0, 
-       row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
-       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff', region_id='#fff', Index = cols$Index, 
-                        AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
-                        ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
-                        SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
-
-```
-
-
-### Distribution of scores
-The median index score was `r median(data_final$Index)`. The highest score was 95 for Macquarie Island, and the lowest score was 42 for Ivory Coast.  
-
-The following histogram describes the distribution of overall index scores:
-
-```{r histogram, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
-
-hist_data <- data_final %>%
-select(country, Index)
-
-g <- ggplot(hist_data, aes(x=Index)) +
-geom_histogram(color = "gray", fill="gray") +
-labs(y="Number of regions", x="Index scores") + 
-theme_bw()
-
-plot(g)
-```
-
-The regions with index scores of 80 or greater are:
-
-```{r top performers, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
-
-top <- hist_data %>%
-  filter(Index >= 80)
-
-kable(top)
-```
-
-The regions with index scores of 50 or less are:
-
-```{r low performers, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
-
-low <- hist_data %>%
-  filter(Index <= 50)
-
-kable(low)
-```
+# Overview of global scores 
+This section describes global patterns in index and goal scores.
 
 ### Map of index scores
 
@@ -578,14 +374,125 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 ```
 
+### Distribution of scores
 
-# Change over time: six year trends in scores
+```{r data prep score table, echo=FALSE}
 
-A color-coded table of 6 year trends is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/trends_2017.html) (and a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Results/data/trends_2017.csv)).  
+## create a score dataframe 
 
-These values are calculated using a linear model of scores for each region/goal over the past 6 years.  Positive values indicate potentially increasing scores during the past 6 years and negative values indicate potentially decreasing scores.
+data_all <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile))
 
-NOTE: Currently, these data include the livelihoods and economies goal but this trends should probably be calculated without this goal.
+for(year in 2012:scenario){ # year = 2016
+
+data <- data_all[data_all$scenario == year, ]
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name))) %>%
+  mutate(value = round(value, 2))
+
+data <- spread(data, goal, value)
+
+index <- data %>%
+  filter(country == 'eez_weighted_avg')
+
+data <- data %>%
+  arrange(-Index) %>%
+  filter(country != 'eez_weighted_avg')
+
+data_final <- rbind(index, data) %>%
+    select(country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+
+write.csv(data_final, sprintf("data/scores_eez%s.csv", year), row.names = FALSE, na='')
+
+}
+
+data_final <- read.csv(sprintf("data/scores_eez%s.csv", scenario))
+```
+
+
+The median index score was `r median(data_final$Index)`. The highest score was 95 for Macquarie Island, and the lowest score was 42 for Ivory Coast.  
+
+The following histogram describes the distribution of overall index scores:
+
+```{r histogram, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+
+hist_data <- data_final %>%
+select(country, Index)
+
+g <- ggplot(hist_data, aes(x=Index)) +
+geom_histogram(color = "gray", fill="gray") +
+labs(y="Number of regions", x="Index scores") + 
+theme_bw()
+
+plot(g)
+```
+
+The regions with index scores of 80 or greater are:
+
+```{r top performers, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+
+top <- hist_data %>%
+  filter(Index >= 80)
+
+kable(top)
+```
+
+The regions with index scores of 50 or less are:
+
+```{r low performers, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+
+low <- hist_data %>%
+  filter(Index <= 50)
+
+kable(low)
+```
+
+
+
+This interactive table describes the index and goal scores for the regions in 2017 (and here's a [link](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/scores_eez2017.html) to a color coded table, and a csv file can also be [downloaded](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Results/data/scores_eez2017.csv)). 
+
+```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data_final_inlay <- data_final %>%
+  select(-region_id) %>%
+  data.frame()
+
+
+# myTable <- data_final_inlay %>%
+# DT::datatable(caption = '2017 OHI scores')
+
+shiny::div(DT::datatable(data_final_inlay), style = "font-size: 60%; width: 60%")
+
+
+## make an html file that is color coded:
+pal = brewer.pal(10, 'RdYlBu')
+
+cols <- data.frame(country=data_final$country)
+for(goal in goals){ #goal="Index"
+  tmp <- data_final[, goal]
+  tmp <- assign(goal, cut(tmp, breaks=c(0,10,20,30,40,50,60,70,80,90,100), include.lowest = TRUE, labels=pal))
+  tmp <- data.frame(goal=tmp)
+  names(tmp) <- goal
+  cols <- cbind(cols, tmp)
+}
+
+
+hwrite(data_final, sprintf('data/scores_eez%s.html', scenario), br=TRUE, center=TRUE, border=0, 
+       row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
+       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff', region_id='#fff', Index = cols$Index, 
+                        AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
+                        ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
+                        SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
+
+```
+<br>
+<br>
+<br>
+
+# Change over time
 
 ```{r trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -649,6 +556,13 @@ hwrite(trends_spread, sprintf('data/trends_%s.html', scenario), br=TRUE, center=
 
 ```
 
+A color-coded table of 6 year trends is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/trends_2017.html) (and a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Results/data/trends_2017.csv)).  
+
+These values are calculated using a linear model of scores for each region/goal over the past 6 years.  Positive values indicate potentially increasing scores during the past 6 years and negative values indicate potentially decreasing scores.
+
+NOTE: Currently, these data include the livelihoods and economies goal but this trends should probably be calculated without this goal.
+
+
 ```{r trend maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 source('../../global2016/Reporting/map_fxns_trend.R')
@@ -693,7 +607,14 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 ```
 
 ### Trends of regional index scores
-The global average decreased by 0.14 points per year, although this is may not be statistically significant.  There was a good deal of variation in trend among regions.  The following histogram describes the distribution of trend (e.g., change in score per year) in index scores:
+The global average decreased by 0.14 points per year, although this is may not be statistically significant.  There was a good deal of variation in trend among regions.  
+
+(Maps of goal scores are described below)
+
+![](figures/map_trends/trends_map_Index_2017_mol.png) 
+
+
+The following histogram describes the distribution of trend (e.g., change in score per year) in index scores:
 
 ```{r trend histogram, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -745,11 +666,106 @@ kable(trends_order[(bottom-9):bottom, ])
 
 ```
 
+### Exploring change over time of goals
+
+The following table provides the global scores (eez area weighted average of region scores) for the Index and goals/subgoals.
+
+(NOTE: Livelihood and economy goals are not included here)
+
+```{r overview, echo=FALSE}
+
+data <- read.csv(sprintf('../OHI_final_scores_%s.csv', dateFile)) 
+
+data_filter <- data %>%
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name))) %>%
+  mutate(value = round(value, 2))
+
+data_index <- data_filter %>%
+  filter(region_id == 0) %>%
+  filter(dimension == "score") %>%
+  left_join(goal_names, by="goal") %>%
+  select(scenario, goal, long_goal, value)
+
+data_index$goal <- factor(data_index$goal, levels = goals)
+
+data_spread <- spread(data_index, scenario, value) %>%
+  arrange(goal) %>%
+  filter(!goal %in% c("ECO", "LE", "LIV")) %>%
+  select(-goal) %>%
+  rename(goal = long_goal)
+
+kable(data_spread)
+```
+
+The following is a very preliminary analysis of how the global scores changed over time.  Global index scores decreased by an average 0.19 points per year (although, not significant with this rough analysis), with 138 regions having decreasing trends and 82 having increasing trends. 
+
+#### Declining scores
+* Natural products declined by about 1.4 points per year on average (p = 0.010, 84 regions with decreasing trend and 50 with increasing).  However, there is a lot of variation trends for this goal (i.e., large standard deviation), indicating that some regions have had relatively large increases.
+* Tourism and recreation declined by about 1.2 points per year on average (p = 0.008, 133 regions with decreasing trend and 52 with increasing).  However, this goal had a large amount of variation in trend results.
+* Fisheries declined by about 0.5 points per year on average, which is in contrast to the increases we observed in previous years (0.03, 118 regions with decreasing trend and 102 with increasing trend)
+* Coastal protection declined by 0.22 points per year on average (p = 0.02, 107 regions with decreasing trend and 36 with increasing).  However, there is a fairly large amount of variation suggesting a few regions may be driving this trend, due to seaice loss.
+* Clean waters declined by 0.11 points per year on average (p = 0.04, 123 regions with decreasing trend and 96 with increasing)
+
+#### Improving scores
+* Lasting special places scores increased by an average of 0.15 points per year (p = 0.005, 78 regions with increasing trend and 59 with decreasing)
+* Artisanal opportunities scores increased by just over 0.16 points per year (p = 0.004, 178 regions with increasing trend and 35 with decreasing)
+* Species condition scores improved by a small, but statistically signficant, 0.03 points per year (p=0.002, 125 regions with increasing trend and 94 with decreasing)
+
+
+```{r Global goal trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+### analysis:
+data_lm <- data_index %>%
+  group_by(goal) %>%
+  do(mdl = lm(value ~ scenario, data = .))
+
+#data.frame(glance(data_lm, mdl))
+results_lm <- tidy(data_lm, mdl) %>%
+  ungroup() %>%
+  filter(term == "scenario") %>%
+  arrange(estimate) %>%
+  left_join(goal_names) %>%
+  select(goal=long_goal, average_change_per_year = estimate, p_value = p.value) %>%
+  mutate(average_change_per_year = round(average_change_per_year, 2)) %>%
+  mutate(p_value = round(p_value, 4)) %>%
+
+  data.frame()
+
+
+# calculate how many regions with increases vs. decreasing scores
+scores <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile))
+  
+region_trends <- scores %>%
+  filter(dimension == "score") %>%
+  filter(!is.na(value)) %>%
+  group_by(goal, region_id) %>%
+  do(mdl = lm(value ~ scenario, data = .))
+
+#data.frame(glance(data_lm, mdl))
+region_trends <- tidy(region_trends, mdl) %>%
+  ungroup() %>%
+  filter(term == "scenario") %>%
+  left_join(goal_names) %>%
+  filter(region_id != 0) %>%
+  select(region_id, goal=long_goal, estimate, p_value = p.value) %>%
+  data.frame() %>%
+  group_by(goal) %>%
+  summarize(num_rgns_pos_trend = sum(estimate > 0),
+            num_rgns_neg_trend = sum(estimate < 0),
+            mean_trend = round(mean(estimate, na.rm=TRUE), 2),
+            sd_trend = round(sd(estimate, na.rm=TRUE), 2))
+
+results_lm <- results_lm %>%
+  left_join(region_trends, by = "goal")
+
+kable(results_lm)
+
+```
 
 
 # Comparing assessment years
 
-The following is a comparison of the global status scores generated for 2016 by this year's assessment vs. last year's assessment. 
+The following is a comparison of the global status scores generated for the 2016 scenario by this year's assessment vs. last year's assessment. 
 
 If the models and source data remains the same, these scores should be exactly the same.  Differences indicate changes in methods or source data.  
 
@@ -763,9 +779,9 @@ The largest changes were for NP (-4.18) and MAR (-4.39). The change in maricultu
 
 Changes in SPP (-2.41), FIS (-2.67), TR (-2.41) were also observed.  For SPP this reflects the newest data (used for all scenario years) and for TR the newest sustainability data is used for all scenario years (unfortunately, previous years of data are not compatible due to changes in their methods).  FIS had many changes (updated saup data, 4 additional years of data, updates to RAM, gapfilling RAM data, better identification of RAM regions).
 
-Other regiosn changed by less than 2 points.
+Other regions changed by less than 2 points.
 
-```{r compare assessments, echo=FALSE}
+```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 data <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile), stringsAsFactors = FALSE) %>%
   rename("assess2017"=value)
@@ -797,15 +813,15 @@ kable(data_old)
 
 ```
 
-### Regional data
+### Regional data 
 
-This color-coded [table](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/change_in_scores_benchmark2016_eez2017.html) compares the 2015 index scores generated for each region/goal between this year's and last year's assessment.  
+This color-coded [table](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/change_in_scores_benchmark2016_eez2017.html) compares how the 2016 scenario index scores for each region/goal changed from the 2016 to 2017 assessment.  
 
 Because these are index scores, changes reflect updates to pressure and resilience scores as well as status.  
 
-The following interactive plot provides an overview of how the 2016 scores changed between the 2016 and 2017 assessment for all goals and dimensions.
+The following interactive plot provides an overview of how the 2016 scenario scores changed between the 2016 and 2017 assessment for all goals and dimensions.
 
-```{r compare plot, echo=FALSE}
+```{r compare plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4.5, fig.height=3.5}
 
 data <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile), stringsAsFactors = FALSE) %>%
   rename("assess2017"=value)
@@ -836,6 +852,8 @@ data_old <- data_old %>%
   
   plotly_fig <- plotly::ggplotly(p)
   plotly_fig
+  htmlwidgets::saveWidget(plotly::as_widget(plotly_fig), "change_plot.html", 
+        selfcontained = TRUE)
   
 ```
 
@@ -1419,13 +1437,13 @@ if(colorScheme == "new"){
 
 # Comparing trend and average index scores
 
-To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2016) and the trends for each region.
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2017) and the trends for each region.
 
 Of most concern are regions that have poor scores and declining trends.
 
 The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
 
-```{r trend vs avg index, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=TRUE}
+```{r trend vs avg index, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=TRUE, fig.width=4, fig.height=3}
 
 index <- read.csv(sprintf("data/avg_goal_scores_%s.csv", dateFile), stringsAsFactors = FALSE) %>%
   select(region_id, country=region_name, index_avg = Index)
@@ -1443,13 +1461,10 @@ avg_index <- index %>%
     geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
     geom_vline(xintercept = 67.6, color="red", size=.5, linetype=3) +
     theme_bw() + 
-    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2016 scores)") 
+    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2017 scores)") 
     
 
   plotly_fig <- plotly::ggplotly(p)
   plotly_fig
 
-  
 ```
-
-
