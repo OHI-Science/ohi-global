@@ -107,8 +107,8 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 ### Some methods for visualizing the data
 
 
-score_check(commit="previous", scenario_year=2016, 
-            file_name="eez2016_cites", save_csv = TRUE, NA_compare = TRUE)
+score_check(commit="previous", scenario_year=2017, 
+            file_name="eez2017_fp", save_csv = TRUE, NA_compare = TRUE)
 
 compare <- read.csv("../score_check/eez2016_np_fix_diff_data_2017-10-06.csv")
 dplyr::filter(compare, is.na(old_score), !is.na(score))
