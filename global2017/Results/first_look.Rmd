@@ -20,7 +20,7 @@ output:
 This document describes results from the OHI 2017 global assessment.
 
 
-```{r data set up, echo=FALSE}
+```{r data set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
 
 #load libraries
 library(dplyr)
@@ -940,18 +940,18 @@ This section takes a closer look at each goal/subgoal.
 
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
 
-data <- read.csv('data/scores_eez2015.csv') %>%
+data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
   select(-country, -region_id)
 
-for(goal in names(data)){ # goal = "AO"
+for(goal in names(data)){ # goal = "LSP"
   
   data_goal <- data[, goal]
   
 g <- ggplot(data, aes(x=data_goal)) +
 geom_histogram(color = "gray", fill="gray") +
 labs(y="Number of regions", x= "OHI score") +
-xlim(0,100) +
+xlim(-5,105) +
 theme_bw()
 
 ggsave(g, filename=sprintf("figures/goal_histograms/%s_scores.png", goal), height=3, width=4)
@@ -1205,7 +1205,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=AO) %>%
+  select(country, score=ICO) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1228,6 +1228,8 @@ kable(bottom)
 ### Scores
 ![](figures/maps_by_goal_mol/global_map_LSP_2017_mol.png)
 ![](figures/goal_histograms/LSP_scores.png)
+
+
 
 ### Top 10 performers
 ```{r top LSP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
