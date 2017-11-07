@@ -87,7 +87,7 @@ g <- read.csv("layers.csv", stringsAsFactors = FALSE, na.strings='')
   
   scores_all_years <- data.frame()
    
-  for (s_year in scenario_years){  # s_year=2016
+  for (s_year in scenario_years){  # s_year=2017
       
     conf   <-  Conf('conf')
     layers <-  Layers(layers.csv = 'layers.csv', layers.dir = 'layers')

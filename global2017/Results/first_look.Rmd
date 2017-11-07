@@ -20,7 +20,7 @@ output:
 This document describes results from the OHI 2017 global assessment.
 
 
-```{r data set up, include=FALSE}
+```{r data set up, echo=FALSE}
 
 #load libraries
 library(dplyr)
@@ -77,14 +77,14 @@ rgn_names$country[rgn_names$region_id == 148] <- "Line Islands (Kiribati)"
 rgn_names$country[rgn_names$region_id == 157] <- "Phoenix Islands (Kiribati)"
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2017-10-24' #date extension on data files used for all tables/figures
+dateFile = '2017-11-6' #date extension on data files used for all tables/figures
 
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
-update_data = FALSE           # This will update the dataset used to create figures/tables
-map_create = FALSE            # Updates the map figures (takes a while to run)
-goal_hists = FALSE            # Updates the goal histograms
-flower_plots = FALSE          # Updates the flower plot figures
+update_data = TRUE           # This will update the dataset used to create figures/tables
+map_create = TRUE            # Updates the map figures (takes a while to run)
+goal_hists = TRUE            # Updates the goal histograms
+flower_plots = FALSE         # Updates the flower plot figures
 
 ```
 
@@ -181,7 +181,6 @@ data$region_name <- factor(data$region_name, levels=order_rgn$region_name)
 reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
 blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
 myPalette <-   c(reds, blues)
-
 
 ggplot(data, aes(y=region_name, x=scenario, fill=value)) + 
   geom_tile() +
@@ -1315,6 +1314,14 @@ kable(bottom)
 Plot years of data for each data layer....
 
 Generate flower plots using new function...
+
+Table with spark plots for each region showing trends
+
+Julie has plotting suggestion to check out
+
+Stacked trend plot like in 2016 results
+
+Add # of iconic species in list for each country
 
 ```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval = flower_plots}
 

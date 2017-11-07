@@ -1739,6 +1739,7 @@ CW = function(layers){
 
 HAB = function(layers){
   
+
   scen_year <- layers$data$scenario_year
   
   
@@ -1757,12 +1758,12 @@ HAB = function(layers){
   
   health <- SelectData2(health_lyrs) %>%
     filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, habitat, health) %>%
+     select(region_id = rgn_id, habitat, health) %>%
     mutate(habitat = as.character(habitat))
   
   trend <- SelectData2(trend_lyrs) %>%
     filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, habitat, trend) %>%
+     select(region_id = rgn_id, habitat, trend) %>%
     mutate(habitat = as.character(habitat))
   
   
