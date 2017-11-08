@@ -72,9 +72,9 @@ rgn_names <- read.csv(sprintf('../../eez/layers/rgn_global.csv', scenario)) %>%
   dplyr::select(region_id = rgn_id, country = label) %>%
   dplyr::mutate(country = as.character(country))
 
-rgn_names$country[rgn_names$region_id == 212] <- "Gilbert Islands (Kiribati)"
-rgn_names$country[rgn_names$region_id == 148] <- "Line Islands (Kiribati)"
-rgn_names$country[rgn_names$region_id == 157] <- "Phoenix Islands (Kiribati)"
+# rgn_names$country[rgn_names$region_id == 212] <- "Gilbert Islands (Kiribati)"
+# rgn_names$country[rgn_names$region_id == 148] <- "Line Islands (Kiribati)"
+# rgn_names$country[rgn_names$region_id == 157] <- "Phoenix Islands (Kiribati)"
 
 # the date in the below variable must be updated (for the results to reflect the new data)
 dateFile = '2017-11-6' #date extension on data files used for all tables/figures
@@ -98,18 +98,20 @@ Region 0 is the global average scores, which are calculated using an area-weight
 ```{r final_data, eval=update_data, include=FALSE}
 
 # Saves the last version of eez/scores.csv with a date appended to filename.
-# Region names are also added to data.
-
-## create a  version with region names
-ohi_final <- read.csv("../../eez/scores.csv") %>%
-  left_join(rgn_names, by= "region_id") %>%
-  mutate(country = ifelse(region_id == 0, "global average", country)) %>%
-  select(scenario=year, goal, dimension, region_id, region_name=country, value=score)
-
+ohi_final <- read.csv("../../eez/scores.csv")
 write.csv(ohi_final, sprintf("../OHI_final_scores_%s.csv", dateFile), row.names=FALSE)
 
+# User friendly version of data: region names are also added to data and full goal names.
+ohi_final_formatted <- read.csv("../../eez/scores.csv") %>%
+  left_join(rgn_names, by= "region_id") %>%
+  mutate(country = ifelse(region_id == 0, "global average", country)) %>%
+  left_join(goal_names, by="goal") %>%
+  select(scenario=year, goal, long_goal, dimension, region_id, region_name=country, value=score)
+
+write.csv(ohi_final_formatted, sprintf("../OHI_final_formatted_scores_%s.csv", dateFile), row.names=FALSE)
+
 ## create a version of data with region index scores wide
-ohi_final_wide <- read.csv(sprintf('../OHI_final_scores_%s.csv', dateFile)) %>%
+ohi_final_wide <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile)) %>%
   filter(dimension == "score") %>%
   filter(goal == "Index") 
 
@@ -126,7 +128,7 @@ write.csv(ohi_final_wide, sprintf("data/Index_wide_all_years_%s.csv", dateFile),
 
 ### create a version of the data that averages all 5 years of scores
 ### so the best/worst overall can be identified
-index_avg <- read.csv(sprintf('../OHI_final_scores_%s.csv', dateFile), stringsAsFactors = FALSE) %>%
+index_avg <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile), stringsAsFactors = FALSE) %>%
   mutate(region_name = ifelse(region_id == 0, "global average", region_name)) %>%
   filter(dimension == "score") %>%
   group_by(goal, region_id, region_name) %>%
@@ -158,7 +160,7 @@ This plot is good for providing a quick overview of things like:
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 
-data <- read.csv(sprintf('../OHI_final_scores_%s.csv', dateFile)) 
+data <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile)) 
 
 data <- data %>%
   filter(dimension == "score") %>%   # focus only on score data
@@ -210,7 +212,7 @@ Another resource that can be useful for examining scores is this [interactive pl
 
 ## creates a GoogleVis file that can be viewed:
 
-data <- read.csv(sprintf('../OHI_final_scores_%s.csv', dateFile)) 
+data <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile)) 
 
 data <- data %>%
   filter(dimension == "score") %>%   # focus only on score data
@@ -379,7 +381,7 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 ## create a score dataframe 
 
-data_all <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile))
+data_all <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile))
 
 for(year in 2012:scenario){ # year = 2016
 
@@ -495,7 +497,7 @@ hwrite(data_final, sprintf('data/scores_eez%s.html', scenario), br=TRUE, center=
 
 ```{r trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-scores <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile))
+scores <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile))
   
 region_trends <- scores %>%
   filter(dimension == "score") %>%
@@ -673,7 +675,7 @@ The following table provides the global scores (eez area weighted average of reg
 
 ```{r overview, echo=FALSE}
 
-data <- read.csv(sprintf('../OHI_final_scores_%s.csv', dateFile)) 
+data <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile)) 
 
 data_filter <- data %>%
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
@@ -732,7 +734,7 @@ results_lm <- tidy(data_lm, mdl) %>%
 
 
 # calculate how many regions with increases vs. decreasing scores
-scores <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile))
+scores <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile))
   
 region_trends <- scores %>%
   filter(dimension == "score") %>%
@@ -782,7 +784,7 @@ Other regions changed by less than 2 points.
 
 ```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile), stringsAsFactors = FALSE) %>%
+data <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile), stringsAsFactors = FALSE) %>%
   rename("assess2017"=value)
 
 data_old <- read.csv('../../global2016/radical_2016-11-17.csv', stringsAsFactors = FALSE) %>%
@@ -822,7 +824,7 @@ The following interactive plot provides an overview of how the 2016 scenario sco
 
 ```{r compare plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4.5, fig.height=3.5}
 
-data <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile), stringsAsFactors = FALSE) %>%
+data <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile), stringsAsFactors = FALSE) %>%
   rename("assess2017"=value)
 
 data_old <- read.csv('../../global2016/radical_2016-11-17.csv', stringsAsFactors = FALSE) %>%  
@@ -859,7 +861,7 @@ data_old <- data_old %>%
 
 ```{r difference table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv(sprintf("../OHI_final_scores_%s.csv", dateFile), stringsAsFactors = FALSE)
+data <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile), stringsAsFactors = FALSE)
 
 data <- data[data$scenario == benchmark, ]
 
@@ -1327,119 +1329,14 @@ Add # of iconic species in list for each country
 
 ```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval = flower_plots}
 
-# This generates the flower plots:
-
-## weights for FIS vs. MAR
-weights <- read.csv("../../eez/layers/fp_wildcaught_weight.csv", stringsAsFactors=FALSE) %>%
-  filter(year == 2017) %>%
-  select(rgn_id, w_fis)
-
-weights_global <- data.frame(rgn_id=0, w_fis=mean(weights$w_fis))
-weights <- rbind(weights_global, weights)
-
-# getting the goals that will be plotted:
-conf <-  read.csv("../../eez/conf/goals.csv", stringsAsFactors=FALSE) 
-
-goals_supra = na.omit(unique(conf$parent)) # goals comprised of subgoals, not included in plot
-
-conf <- conf %>%
-  filter(!(goal %in% goals_supra)) %>%
-  select(goal, order_color, order_hierarchy, weight, name_flower) %>%
-  mutate(name_flower = gsub("\\n", "\n", name_flower, fixed = TRUE)) %>%
-  arrange(order_hierarchy)
-
-data <- read.csv(sprintf('../OHI_final_scores_%s.csv', dateFile), stringsAsFactors = FALSE) 
-data <- data[data$scenario == scenario, ]
-
-data <- data %>%
-  filter(dimension == "score") %>%   # focus only on score data
-  filter(region_id != 213)
-
-# region names, ordered by GLOBAL and alphabetical
-rgn_names2 = rbind(
-  data.frame(
-    region_id=0, 
-    country='GLOBAL'),
-  rgn_names) %>%
-    arrange(country) %>%
-  filter(region_id != 213)
-
-# loop through regions to plot flowers
-for (rgn_id in unique(rgn_names2$region_id)){  #rgn_id=0
-   
-  # header md
-  rgn_name = subset(rgn_names2, region_id==rgn_id, country, drop=T)
-  message(sprintf('\n## %s (%d)\n\n', rgn_name, rgn_id))
-  
-    # region scores    
-  g_x <- subset(data, region_id==rgn_id) %>%
-         inner_join(conf, by="goal") %>%
-         arrange(order_color)
-  x <-  subset(data, region_id==rgn_id & goal == 'Index', value, drop=T)
-
-    # get colors for aster, based on 10 colors, but extended to all goals. subselect for goals.wts
-if(colorScheme == "new"){
- reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
- blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
- colors <-   c(reds, blues)
-
-  g_x$cols.goals.all = cut(g_x$value, breaks=seq(0, 100, by=1), include.lowest=TRUE, 
-                       labels = colors) } else {
-    g_x$cols.goals.all = colorRampPalette(RColorBrewer::brewer.pal(11, 'Spectral'), space='Lab')(length(goals.all))
-   }
-
-       #weights after correcting for fisheries/mariculture contributions
-  g_x$weight[g_x$goal == "FIS"] <-   weights$w_fis[weights$rgn_id == rgn_id]
-  g_x$weight[g_x$goal == "MAR"] <- 1 - weights$w_fis[weights$rgn_id == rgn_id]
-  
-        
-  # res=72
-      
-  res=150
-   ## start plot
-   png(sprintf('figures/FlowerPlots/flower_%s_%s.png', rgn_name, scenario),
-          width=res*6, height=res*6, bg = "transparent")
-#par(oma=c(0,0,3,0), mar=c(6, 4, 0, 2) + 0.1)
-   PlotFlower(main = ifelse(rgn_name=="GLOBAL", "", as.character(rgn_name)),
-                 lengths=ifelse(
-                   is.na(g_x$value),
-                   100,
-                   g_x$value),
-                 widths=g_x$weight,
-                 fill.col=ifelse(
-                   is.na(g_x$cols.goals.all), 
-                   'grey80', 
-                   as.character(g_x$cols.goals.all)),
-                 labels  =ifelse(
-                   is.na(g_x$value), 
-                   paste(g_x$name_flower, '-', sep='\n'), 
-                   paste(as.character(g_x$name_flower), round(g_x$value), sep='\n')),
-                 center=round(x),
-               #  max.length = 100, disk=0.4, label.cex=0.9, label.offset=0.155, cex=2.2, cex.main=2.5)
-           max.length = 100, disk=0.3, label.cex=1.5, label.offset=0.15, cex=3, cex.main=3)
-
-      dev.off()      
-      #system(sprintf('convert -density 150x150 %s %s', fig_pdf, fig_png)) # imagemagick's convert
-  
-# to have flowers included in report    
-# PlotFlower(main = rgn_name,
-#                  lengths=ifelse(
-#                    is.na(g_x$value),
-#                    100,
-#                    g_x$value),
-#                  widths=g_x$weight,
-#                  fill.col=ifelse(
-#                    is.na(g_x$cols.goals.all), 
-#                    'grey80', 
-#                    as.character(g_x$cols.goals.all)),
-#                  labels  =ifelse(
-#                    is.na(g_x$value), 
-#                    paste(g_x$name_flower, '-', sep='\n'), 
-#                    paste(as.character(g_x$name_flower), round(g_x$value), sep='\n')),
-#                  center=round(x),
-#                 max.length = 100, disk=0.4, label.cex=0.5, label.offset=0.19, cex=1.2, cex.main=1.2, uin=1)
-  }
-  
+source('https://raw.githubusercontent.com/OHI-Science/arc/master/circle2016/plot_flower_local.R')
+PlotFlower(
+  dir_fig_save = "figures/FlowerPlots",
+  assessment_name = "Global average",
+  year_plot = 2017,
+  scores_file = sprintf("../OHI_final_scores_%s.csv", dateFile),
+  scenario_folder = "../../eez"
+)
 
 ```
 
