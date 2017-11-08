@@ -46,7 +46,6 @@ hab_seagrass_trend,ohiprep:globalprep/hab_seagrass/v2012/data,habitat_trend_seag
 hab_seaice_extent,ohiprep:globalprep/hab_seaice/v2017/output,hab_ice_extent_eez.csv,TRUE,km2,Habitat extent of saltmarsh,km2,Area of seaice (edge and shoreline) habitat
 hab_seaice_health,ohiprep:globalprep/hab_seaice/v2017/output,hab_ice_health_eez.csv,TRUE,health,Habitat condition of seagrass,proportion,Current condition of seaice habitat relative to historical condition
 hab_seaice_trend,ohiprep:globalprep/hab_seaice/v2017/output,hab_ice_trend_eez.csv,TRUE,trend,Habitat condition trend of seagrass,trend,Estimated change in seaice condition
-hab_softbottom_extent,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2016/output,habitat_extent_softbottom_updated.csv,TRUE,km2,Habitat extent of softbottom,km2,Area of softbottom habitat
 hab_softbottom_health,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2017/output,habitat_health_softbottom.csv,TRUE,health,Habitat condition of softbottom,proportion,Current condition of softbottom habitat (trawling fishing pressure used as proxy)
 hab_softbottom_trend,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2017/output,habitat_trend_softbottom.csv,TRUE,trend,Habitat condition trend of softbottom,trend,Estimated change in softbottom condition
 hd_habitat,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_habitat_2013a.csv,TRUE,resilience score,Management of habitat to protect habitat biodiversity,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions
@@ -102,8 +101,8 @@ rgn_area,ohiprep:globalprep/spatial/v2017/output,rgn_area.csv,TRUE,area_km2,Regi
 rgn_area_inland1km,ohiprep:globalprep/lsp/v2017/output,rgn_area_inland1km.csv,TRUE,area,Inland area,km2,Inland area of OHI regions within 1km of shoreline
 rgn_area_offshore3nm,ohiprep:globalprep/lsp/v2017/output,rgn_area_offshore3nm.csv,TRUE,area,Offshore area,km2,Offshore area of OHI regions within 3nm of shoreline
 rgn_georegions,ohiprep:globalprep/spatial/v2013,rgn_georegions_long_2013b.csv,TRUE,georgn_id,UN geopolitical region classifications,UN regions,"UN geopolitical regions (3 levels), often used for gapfilling missing data"
-rgn_global,ohiprep:globalprep/spatial/v2013,rgn_global.csv,TRUE,label,OHI regions,label,Subset of regions that are not deleted or disputed 
-rgn_labels,ohiprep:globalprep/spatial/v2013,rgn_labels.csv,TRUE,label,Regions,label,"Regions by type (eez, subocean, unclaimed)"
+rgn_global,ohiprep:globalprep/spatial/v2017/output,rgn_global.csv,TRUE,label,OHI regions,label,Subset of regions that are not deleted or disputed 
+rgn_labels,ohiprep:globalprep/spatial/v2017/output,rgn_labels.csv,TRUE,label,Regions,label,"Regions by type (eez, subocean, unclaimed)"
 sp_alien,ohiprep:globalprep/prs_alien/v2013/data,p_sp_alien_2013a.csv,TRUE,pressures.score,Nonindigenous species,scaled 0-1,Measure of harmful invasive species
 sp_alien_species,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_alien_species_Nature2012disaggregated.csv,TRUE,resilience score,Management of nonindigenous species,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: invasive species related questions
 sp_genetic,ohiprep:globalprep/mar/v2017/output,GenEsc.csv,TRUE,pressure_score,Genetic escapes,scaled 0-1,Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes 
