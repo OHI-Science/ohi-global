@@ -116,3 +116,4 @@ tr_jobs_pct_tourism,ohiprep:globalprep/tr/v2017/output,tr_jobs_pct_tourism.csv,T
 tr_sustainability,ohiprep:globalprep/tr/v2017/output,tr_sustainability.csv,TRUE,S_score,Tourism sustainability index,score,Tourism Competitiveness Index (TTCI)
 tr_travelwarnings,ohiprep:globalprep/tr/v2017/output,tr_travelwarnings.csv,TRUE,multiplier,US State Department travel warnings,score,Countries with US State Department travel warnings
 wgi_all,ohiprep:globalprep/prs_res_wgi/v2017/output,wgi_res.csv,TRUE,resilience_score,Strength of governance,scaled 0-1,World Governance Indicators (WGI) six combined scores
+hab_softbottom_extent,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2016/output,habitat_extent_softbottom_updated.csv,TRUE,km2,Habitat extent of softbottom,km2,Area of softbottom habitat
