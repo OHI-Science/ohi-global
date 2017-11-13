@@ -22,6 +22,11 @@ This document describes results from the OHI 2017 global assessment.
 
 ```{r data set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
 
+## make these changes when data changes:
+ # 1. update dateFile on ~line 83
+ # 2. point to the correct data file ~ line 98
+ # 3. summary of trend data around line 750
+
 #load libraries
 library(dplyr)
 library(tidyr)
@@ -77,7 +82,7 @@ rgn_names <- read.csv(sprintf('../../eez/layers/rgn_global.csv', scenario)) %>%
 # rgn_names$country[rgn_names$region_id == 157] <- "Phoenix Islands (Kiribati)"
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2017-11-6' #date extension on data files used for all tables/figures
+dateFile = '2017-11-9' #date extension on data files used for all tables/figures
 
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
@@ -91,9 +96,9 @@ flower_plots = FALSE         # Updates the flower plot figures
 # Description of reference datasets and figures
 
 ### Primary dataset
-[Data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_scores_2017-10-24.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2017.
+[Data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-9.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2017.
 
-Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score dimensions).
+Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
 ```{r final_data, eval=update_data, include=FALSE}
 
@@ -104,7 +109,7 @@ write.csv(ohi_final, sprintf("../OHI_final_scores_%s.csv", dateFile), row.names=
 # User friendly version of data: region names are also added to data and full goal names.
 ohi_final_formatted <- read.csv("../../eez/scores.csv") %>%
   left_join(rgn_names, by= "region_id") %>%
-  mutate(country = ifelse(region_id == 0, "global average", country)) %>%
+  mutate(country = ifelse(region_id == 0, "Global average", country)) %>%
   left_join(goal_names, by="goal") %>%
   select(scenario=year, goal, long_goal, dimension, region_id, region_name=country, value=score)
 
@@ -126,10 +131,9 @@ ohi_final_wide <- ohi_final_wide %>%
 
 write.csv(ohi_final_wide, sprintf("data/Index_wide_all_years_%s.csv", dateFile), row.names=FALSE)
 
-### create a version of the data that averages all 5 years of scores
+### create a version of the data that averages all years of scores
 ### so the best/worst overall can be identified
 index_avg <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile), stringsAsFactors = FALSE) %>%
-  mutate(region_name = ifelse(region_id == 0, "global average", region_name)) %>%
   filter(dimension == "score") %>%
   group_by(goal, region_id, region_name) %>%
   summarize(avg_score = mean(value, na.rm=TRUE)) %>%
@@ -166,16 +170,25 @@ data <- data %>%
   filter(dimension == "score") %>%   # focus only on score data
   filter(region_id != 213)  %>% # eliminate Antarctica
   mutate(value = round(value, 0)) %>%
-  mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name))) %>%
+  mutate(region_name = as.character(region_name)) %>%
   group_by(region_id) %>% 
   mutate(meanIndex=mean(value[goal=="Index"])) %>%
   ungroup() %>%
   data.frame()
   
+
+global <- data %>%
+  select(region_name, meanIndex) %>%
+  filter(region_name == "Global average") %>%
+  unique()
+
 order_rgn <- data %>%
+  filter(region_name != "Global average") %>%
   select(region_name, meanIndex) %>%
   unique() %>%
   arrange(meanIndex)
+  
+order_rgn <- rbind(order_rgn, global)
 
 data$goal <- factor(data$goal, levels = goals)
 data$region_name <- factor(data$region_name, levels=order_rgn$region_name)
@@ -218,7 +231,7 @@ data <- data %>%
   filter(dimension == "score") %>%   # focus only on score data
   filter(region_id != 213)  %>%
   mutate(value = round(value, 2)) %>%
-  mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name))) %>%
+  mutate(region_name = as.character(region_name)) %>%
   select(year=scenario, goal, country=region_name, score=value)
 
 data <- spread(data, goal, score)
@@ -272,15 +285,43 @@ print(Motion, file=sprintf('figures/GoogleVisScores2.html', saveFile))
 
 
 # Overview of global scores 
-This section describes global patterns in index and goal scores.
 
-### Map of index scores
+```{r data prep score table, echo=FALSE}
 
-Map png files can be downloaded [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2017/Results/figures/maps_by_goal_mol).
+## create a score dataframe 
 
-(Maps of goal scores are described below)
+data_all <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile))
 
-![](figures/maps_by_goal_mol/global_map_Index_2017_mol.png) 
+for(year in 2012:scenario){ # year = 2016
+
+data <- data_all[data_all$scenario == year, ]
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  mutate(region_name = as.character(region_name)) %>%
+  mutate(value = round(value, 2)) %>%
+  select(-long_goal)
+
+data <- spread(data, goal, value)
+
+index <- data %>%
+  filter(region_name == 'Global average')
+
+data <- data %>%
+  arrange(-Index) %>%
+  filter(region_name != 'Global average')
+
+data_final <- rbind(index, data) %>%
+    select(region_name, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+
+write.csv(data_final, sprintf("data/scores_eez%s.csv", year), row.names = FALSE, na='')
+
+}
+
+data_final <- read.csv(sprintf("data/scores_eez%s.csv", scenario))
+```
+This section describes global patterns in index and goal scores.  The overall global score was `data_final %>% filter(region_name == "Global average") %>% select(Index) %>% .[['Index']]`.
 
 
 ``` {r Maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=map_create}
@@ -310,7 +351,7 @@ if(year != scenario){
   }
     
 scores_df <- read.csv(sprintf('data/scores_eez%s.csv', year), stringsAsFactors = FALSE) %>%
-  rename(rgn_name = country, rgn_id = region_id) %>%
+  rename(rgn_name = region_name, rgn_id = region_id) %>%
   mutate(rgn_id = as.character(rgn_id))
 
 ### load region data frame, so doesn't need to reload every time through the loop.  Also
@@ -344,8 +385,9 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 ## save a version of 2017 maps without legend
 year = scenario
+
 scores_df <- read.csv(sprintf('data/scores_eez%s.csv', year), stringsAsFactors = FALSE) %>%
-  rename(rgn_name = country, rgn_id = region_id) %>%
+  rename(rgn_name = region_name, rgn_id = region_id) %>%
   mutate(rgn_id = as.character(rgn_id))
 
 dir.create(sprintf('figures/maps_by_goal_%s/year_%s_nolegend', prj, year))
@@ -375,53 +417,43 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 ```
 
-### Distribution of scores
 
-```{r data prep score table, echo=FALSE}
 
-## create a score dataframe 
+### Map of index scores
 
-data_all <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile))
+Map png files can be downloaded [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2017/Results/figures/maps_by_goal_mol).
 
-for(year in 2012:scenario){ # year = 2016
+(Maps of goal scores are described below)
 
-data <- data_all[data_all$scenario == year, ]
+![](figures/maps_by_goal_mol/global_map_Index_2017_mol.png) 
 
-data <- data %>%
-  filter(dimension == "score") %>%   # focus only on score data
-  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
-  left_join(rgn_names, by=c('region_id')) %>%
-  mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name))) %>%
-  mutate(value = round(value, 2))
+```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval = flower_plots}
 
-data <- spread(data, goal, value)
+source('flowerPlot.R')
+PlotFlower(
+  dir_fig_save = "figures/FlowerPlots",
+  assessment_name = "Global average",
+  year_plot = 2017,
+  scores_file = sprintf("../OHI_final_scores_%s.csv", dateFile),
+  scenario_folder = "../../eez"
+)
 
-index <- data %>%
-  filter(country == 'eez_weighted_avg')
-
-data <- data %>%
-  arrange(-Index) %>%
-  filter(country != 'eez_weighted_avg')
-
-data_final <- rbind(index, data) %>%
-    select(country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
-
-write.csv(data_final, sprintf("data/scores_eez%s.csv", year), row.names = FALSE, na='')
-
-}
-
-data_final <- read.csv(sprintf("data/scores_eez%s.csv", scenario))
 ```
 
 
-The median index score was `r median(data_final$Index)`. The highest score was 95 for Macquarie Island, and the lowest score was 42 for Ivory Coast.  
+Average global performance of the 10 goals:
+![](figures/FlowerPlots/flower_Globalaverage.png) 
+
+### Distribution of scores
+
+The median index score was `r median(data_final$Index)`. The highest score was 92 for South Georgia and the South Sandwich Islands, and the lowest score was 42 for Ivory Coast.  
 
 The following histogram describes the distribution of overall index scores:
 
 ```{r histogram, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 
 hist_data <- data_final %>%
-select(country, Index)
+select(region_name, Index)
 
 g <- ggplot(hist_data, aes(x=Index)) +
 geom_histogram(color = "gray", fill="gray") +
@@ -471,7 +503,7 @@ shiny::div(DT::datatable(data_final_inlay), style = "font-size: 60%; width: 60%"
 ## make an html file that is color coded:
 pal = brewer.pal(10, 'RdYlBu')
 
-cols <- data.frame(country=data_final$country)
+cols <- data.frame(country=data_final$region_name)
 for(goal in goals){ #goal="Index"
   tmp <- data_final[, goal]
   tmp <- assign(goal, cut(tmp, breaks=c(0,10,20,30,40,50,60,70,80,90,100), include.lowest = TRUE, labels=pal))
@@ -518,19 +550,24 @@ region_trends <- region_trends %>%
   left_join(rgn_names, by=c('region_id')) %>%
   mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
   mutate(trend = round(trend, 2)) %>%
-  select(goal, country, region_id, trend) %>%
+  select(goal, country, region_id, trend, p.value) %>%
   data.frame()
 
-trends_spread <- spread(region_trends, goal, trend)
+#filter(region_trends, goal == "Index" & region_id == 0)
+
+trends_spread <- spread(select(region_trends, -p.value), goal, trend)
 
 index <- trends_spread %>%
   filter(country == 'eez_weighted_avg')
 
-trends_spread <- trends_spread %>%
+eez_spread <- trends_spread %>%
   arrange(-Index) %>%
   filter(country != 'eez_weighted_avg')
+# sum(trends_spread$Index>0)
+# sum(trends_spread$Index<0)
+# sum(trends_spread$Index==0)
 
-trends_spread <- rbind(index, trends_spread) %>%
+trends_spread <- rbind(index, eez_spread) %>%
     select(country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
 
 write.csv(trends_spread, sprintf("data/trends_%s.csv", scenario), row.names = FALSE, na='')
@@ -608,7 +645,7 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 ```
 
 ### Trends of regional index scores
-The global average decreased by 0.14 points per year, although this is may not be statistically significant.  There was a good deal of variation in trend among regions.  
+The global average decreased by an average of `index$Index` points per year.  There was a good deal of variation in trend among regions and goals.  
 
 (Maps of goal scores are described below)
 
@@ -679,13 +716,12 @@ data <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile))
 
 data_filter <- data %>%
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
-  mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name))) %>%
+  mutate(region_name = as.character(region_name)) %>%
   mutate(value = round(value, 2))
 
 data_index <- data_filter %>%
   filter(region_id == 0) %>%
   filter(dimension == "score") %>%
-  left_join(goal_names, by="goal") %>%
   select(scenario, goal, long_goal, value)
 
 data_index$goal <- factor(data_index$goal, levels = goals)
@@ -699,7 +735,7 @@ data_spread <- spread(data_index, scenario, value) %>%
 kable(data_spread)
 ```
 
-The following is a very preliminary analysis of how the global scores changed over time.  Global index scores decreased by an average 0.19 points per year (although, not significant with this rough analysis), with 138 regions having decreasing trends and 82 having increasing trends. 
+The following is a very preliminary analysis of how the global scores changed over time.  Global index scores decreased by an average `index$Index` points per year (although, not significant with this rough analysis), with `sum(trends_spread$Index<0)` regions having decreasing trends and `sum(trends_spread$Index>0)` having increasing trends. 
 
 #### Declining scores
 * Natural products declined by about 1.4 points per year on average (p = 0.010, 84 regions with decreasing trend and 50 with increasing).  However, there is a lot of variation trends for this goal (i.e., large standard deviation), indicating that some regions have had relatively large increases.
@@ -711,7 +747,6 @@ The following is a very preliminary analysis of how the global scores changed ov
 #### Improving scores
 * Lasting special places scores increased by an average of 0.15 points per year (p = 0.005, 78 regions with increasing trend and 59 with decreasing)
 * Artisanal opportunities scores increased by just over 0.16 points per year (p = 0.004, 178 regions with increasing trend and 35 with decreasing)
-* Species condition scores improved by a small, but statistically signficant, 0.03 points per year (p=0.002, 125 regions with increasing trend and 94 with decreasing)
 
 
 ```{r Global goal trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -729,37 +764,30 @@ results_lm <- tidy(data_lm, mdl) %>%
   select(goal=long_goal, average_change_per_year = estimate, p_value = p.value) %>%
   mutate(average_change_per_year = round(average_change_per_year, 2)) %>%
   mutate(p_value = round(p_value, 4)) %>%
-
   data.frame()
 
 
 # calculate how many regions with increases vs. decreasing scores
-scores <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile))
-  
-region_trends <- scores %>%
-  filter(dimension == "score") %>%
-  filter(!is.na(value)) %>%
-  group_by(goal, region_id) %>%
-  do(mdl = lm(value ~ scenario, data = .))
 
-#data.frame(glance(data_lm, mdl))
-region_trends <- tidy(region_trends, mdl) %>%
-  ungroup() %>%
-  filter(term == "scenario") %>%
-  left_join(goal_names) %>%
-  filter(region_id != 0) %>%
-  select(region_id, goal=long_goal, estimate, p_value = p.value) %>%
-  data.frame() %>%
+index_vals <- region_trends %>%
+  filter(region_id == 0) %>%
+  select(goal, trend, p.value)
+
+region_summary <- filter(region_trends, region_id != 0) %>%
   group_by(goal) %>%
-  summarize(num_rgns_pos_trend = sum(estimate > 0),
-            num_rgns_neg_trend = sum(estimate < 0),
-            mean_trend = round(mean(estimate, na.rm=TRUE), 2),
-            sd_trend = round(sd(estimate, na.rm=TRUE), 2))
+  summarize(num_rgns_pos_trend = sum(trend > 0),
+            num_rgns_neg_trend = sum(trend < 0),
+            mean_trend = round(mean(trend, na.rm=TRUE), 2),
+            sd_trend = round(sd(trend, na.rm=TRUE), 2))
 
-results_lm <- results_lm %>%
-  left_join(region_trends, by = "goal")
+trend_summary <- region_summary %>%
+  left_join(index_vals, by = "goal") %>%
+  left_join(goal_names) %>%
+  select(long_goal, average_change_per_year=trend,	p_value = p.value,
+         num_rgns_pos_trend, num_rgns_neg_trend, mean_trend, sd_trend) %>%
+  arrange(average_change_per_year)
 
-kable(results_lm)
+kable(trend_summary)
 
 ```
 
@@ -800,7 +828,6 @@ data_old <- read.csv('../../global2016/radical_2016-11-17.csv', stringsAsFactors
 data_old <- data_old %>%
   filter(region_id == 0) %>%
   filter(dimension == "status") %>%
-  left_join(goal_names, by="goal") %>%
   filter(scenario==2016)
 
 data_old$goal <- factor(data_old$goal, levels = goals)
@@ -944,7 +971,7 @@ This section takes a closer look at each goal/subgoal.
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(-country, -region_id)
+  select(-region_name, -region_id)
 
 for(goal in names(data)){ # goal = "LSP"
   
@@ -972,7 +999,7 @@ ggsave(g, filename=sprintf("figures/goal_histograms/%s_scores.png", goal), heigh
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=AO) %>%
+  select(region_name, score=AO) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1002,7 +1029,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=SPP) %>%
+  select(region_name, score=SPP) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1031,7 +1058,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=HAB) %>%
+  select(region_name, score=HAB) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1061,7 +1088,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=CP) %>%
+  select(region_name, score=CP) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1091,7 +1118,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=CS) %>%
+  select(region_name, score=CS) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1120,7 +1147,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=CW) %>%
+  select(region_name, score=CW) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1149,7 +1176,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=FIS) %>%
+  select(region_name, score=FIS) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1178,7 +1205,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=MAR) %>%
+  select(region_name, score=MAR) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1207,7 +1234,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=ICO) %>%
+  select(region_name, score=ICO) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1238,7 +1265,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=LSP) %>%
+  select(region_name, score=LSP) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1267,7 +1294,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=NP) %>%
+  select(region_name, score=NP) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1296,7 +1323,7 @@ kable(bottom)
 
 data <- read.csv('data/scores_eez2017.csv') %>%
   filter(region_id != 0) %>%
-  select(country, score=TR) %>%
+  select(region_name, score=TR) %>%
   arrange(-score) %>%
   filter(!is.na(score))
 
@@ -1327,18 +1354,6 @@ Stacked trend plot like in 2016 results
 
 Add # of iconic species in list for each country
 
-```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval = flower_plots}
-
-source('https://raw.githubusercontent.com/OHI-Science/arc/master/circle2016/plot_flower_local.R')
-PlotFlower(
-  dir_fig_save = "figures/FlowerPlots",
-  assessment_name = "Global average",
-  year_plot = 2017,
-  scores_file = sprintf("../OHI_final_scores_%s.csv", dateFile),
-  scenario_folder = "../../eez"
-)
-
-```
 
 
 # Comparing trend and average index scores
@@ -1365,7 +1380,7 @@ avg_index <- index %>%
   p <- ggplot2::ggplot(trend, aes(x=index_avg, y=index_trend)) +
     geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
     geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
-    geom_vline(xintercept = 67.6, color="red", size=.5, linetype=3) +
+    geom_vline(xintercept = 67, color="red", size=.5, linetype=3) +
     theme_bw() + 
     labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2017 scores)") 
     
