@@ -3,7 +3,10 @@
 *Category: ecological*
 
 *Subcategory: fishing pressure*
+This layer describes the relative pressure of low bycatch artisanal fishing practices for each OHI region. The fishery data (Watson 2017) describe catch (tonnes/km^2^) for each species and gear type at the 0.5 degree raster global scale.  For each raster cell, we summed catch from low bycatch gear types (e.g., hook and line, purse seines; Halpern et al. 2008) for the small scale fishing catch rate (SSF_CR).  
 
-This layer estimates the relative pressure of artisanal fishing using catch reconstruction data from the [Sea Around Us Project](http://www.seaaroundus.org/) (SAUP) at a resolution of 0.5 degrees globally. Artisanal catch (tons) includes 3 of the 4 SAUP reporting sectors: artisanal, subsistence and recreational catch. The catch from these sectors was aggregated for each raster cell, and then standardized by mean net primary productivity (mg C/m^2^/day) derived from monthly output from the Vertically Generalized Production Model (VGPM, [http://www.science.oregonstate.edu/ocean.productivity/](http://www.science.oregonstate.edu/ocean.productivity/)). 
+The catch was then divided by the mean net primary productivity (mg C/m^2^/day) derived from monthly output from the Vertically Generalized Production Model (VGPM,  [http://www.science.oregonstate.edu/ocean.productivity/](http://www.science.oregonstate.edu/ocean.productivity/), 0.5 degree global raster data). Standardizing catch by primary productivity controls for the fact that similar amounts of catch impart different pressures depending on the productivity in the region. 
 
-Catch per cell was then standardized by mean net primary productivity (mg C/m^2^/day) derived from monthly output from the Vertically Generalized Production Model (VGPM,  [http://www.science.oregonstate.edu/ocean.productivity/](http://www.science.oregonstate.edu/ocean.productivity/)). Standardizing catch by primary productivity controls for the fact that similar amounts of catch impart different pressures depending on the productivity in the region. The layer was rescaled from 0 to 1 using the 99.99th quantile of the entire data layer, and the mean value of the raster cells within each OHI region was calculated.
+The layer was rescaled from 0 to 1 using the 99.99th quantile of the entire data layer across all years of data.  
+
+To summarize at the OHI region scale, the mean value of the raster cells within each OHI region was calculated.
