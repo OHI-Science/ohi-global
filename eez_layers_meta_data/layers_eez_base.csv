@@ -30,9 +30,9 @@ g_cites,ohiprep:globalprep/res_cites_signatories/v2017/output,cites.csv,TRUE,res
 g_mariculture,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_mariculture_2013a.csv,TRUE,resilience score,Management of mariculture  to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: mariculture related questions
 g_msi_gov,ohiprep:/globalprep/res_mariculture_sustainability/v2013,r_msi_gov_2013a.csv,TRUE,resilience score,Mariculture Sustainability Index,scaled 0-1,Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI)
 g_tourism,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_tourism_2013a.csv,TRUE,resilience score,Management of tourism to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions
-hab_coral_extent,ohiprep:globalprep/hab_coral/v2012/data,habitat_extent_coral_updated.csv,TRUE,km2,Habitat extent of saltmarsh,km2,Area of coral habitat
-hab_coral_health,ohiprep:globalprep/hab_coral/v2012/data,habitat_health_coral_updated.csv,TRUE,health,Habitat condition of seagrass,proportion,Current condition of coral habitat relative to historical condition
-hab_coral_trend,ohiprep:globalprep/hab_coral/v2012/data,habitat_trend_coral_updated.csv,TRUE,trend,Habitat condition trend of seagrass,trend,Estimated change in coral condition
+hab_coral_extent,ohiprep:globalprep/hab_coral/v2012/data,habitat_extent_coral_updated.csv,TRUE,km2,Habitat extent of coral,km2,Area of coral habitat
+hab_coral_health,ohiprep:globalprep/hab_coral/v2012/data,habitat_health_coral_updated.csv,TRUE,health,Habitat condition of coral,proportion,Current condition of coral habitat relative to historical condition
+hab_coral_trend,ohiprep:globalprep/hab_coral/v2012/data,habitat_trend_coral_updated.csv,TRUE,trend,Habitat condition trend of coral,trend,Estimated change in coral condition
 hab_mangrove_extent,ohiprep:globalprep/hab_mangrove/v2015/data,habitat_extent_mangrove_updated.csv,TRUE,km2,Habitat extent of mangrove,km2,Area of mangrove habitat
 hab_mangrove_health,ohiprep:globalprep/hab_mangrove/v2015/data,habitat_health_mangrove_updated.csv,TRUE,health,Habitat condition of mangrove,proportion,Current condition of mangrove habitat relative to historical condition
 hab_mangrove_trend,ohiprep:globalprep/hab_mangrove/v2015/data,habitat_trend_mangrove_updated.csv,TRUE,trend,Habitat condition trend of mangrove,trend,Estimated change in mangrove condition
@@ -40,12 +40,12 @@ hab_rockyreef_extent,ohiprep:globalprep/hab_rockyreef/v2012/data,habitat_extent_
 hab_saltmarsh_extent,ohiprep:globalprep/hab_saltmarsh/v2012/data,habitat_extent_saltmarsh_updated.csv,TRUE,km2,Habitat extent of saltmarsh,km2,Area of saltmarsh habitat
 hab_saltmarsh_health,ohiprep:globalprep/hab_saltmarsh/v2012/data,habitat_health_saltmarsh_updated.csv,TRUE,health,Habitat condition of saltmarsh,proportion,Current condition of saltmarsh habitat relative to historical condition
 hab_saltmarsh_trend,ohiprep:globalprep/hab_saltmarsh/v2012/data,habitat_trend_saltmarsh_updated.csv,TRUE,trend,Habitat condition trend of saltmarsh,trend,Estimated change in saltmarsh condition
-hab_seagrass_extent,ohiprep:globalprep/hab_seagrass/v2012/data,habitat_extent_seagrass_updated.csv,TRUE,km2,Habitat extent of saltmarsh,km2,Area of seagrass habitat
+hab_seagrass_extent,ohiprep:globalprep/hab_seagrass/v2012/data,habitat_extent_seagrass_updated.csv,TRUE,km2,Habitat extent of seagrass,km2,Area of seagrass habitat
 hab_seagrass_health,ohiprep:globalprep/hab_seagrass/v2012/data,habitat_health_seagrass_updated.csv,TRUE,health,Habitat condition of seagrass,proportion,Current condition of seagrass habitat relative to historical condition
 hab_seagrass_trend,ohiprep:globalprep/hab_seagrass/v2012/data,habitat_trend_seagrass_updated.csv,TRUE,trend,Habitat condition trend of seagrass,trend,Estimated change in seagrass condition
-hab_seaice_extent,ohiprep:globalprep/hab_seaice/v2017/output,hab_ice_extent_eez.csv,TRUE,km2,Habitat extent of saltmarsh,km2,Area of seaice (edge and shoreline) habitat
-hab_seaice_health,ohiprep:globalprep/hab_seaice/v2017/output,hab_ice_health_eez.csv,TRUE,health,Habitat condition of seagrass,proportion,Current condition of seaice habitat relative to historical condition
-hab_seaice_trend,ohiprep:globalprep/hab_seaice/v2017/output,hab_ice_trend_eez.csv,TRUE,trend,Habitat condition trend of seagrass,trend,Estimated change in seaice condition
+hab_seaice_extent,ohiprep:globalprep/hab_seaice/v2017/output,hab_ice_extent_eez.csv,TRUE,km2,Habitat extent of seaice,km2,Area of seaice (edge and shoreline) habitat
+hab_seaice_health,ohiprep:globalprep/hab_seaice/v2017/output,hab_ice_health_eez.csv,TRUE,health,Habitat condition of seaice,proportion,Current condition of seaice habitat relative to historical condition
+hab_seaice_trend,ohiprep:globalprep/hab_seaice/v2017/output,hab_ice_trend_eez.csv,TRUE,trend,Habitat condition trend of seaice,trend,Estimated change in seaice condition
 hab_softbottom_health,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2017/output,habitat_health_softbottom.csv,TRUE,health,Habitat condition of softbottom,proportion,Current condition of softbottom habitat (trawling fishing pressure used as proxy)
 hab_softbottom_trend,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2017/output,habitat_trend_softbottom.csv,TRUE,trend,Habitat condition trend of softbottom,trend,Estimated change in softbottom condition
 hd_habitat,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_habitat_2013a.csv,TRUE,resilience score,Management of habitat to protect habitat biodiversity,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions
