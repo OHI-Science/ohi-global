@@ -21,7 +21,7 @@ Description of the stressor data layers used to calculate overall pressure for e
 full_lyr_names <- read.csv("../eez_layers_meta_data/layers_eez_base.csv") %>% 
   select(layer, name, description)
 
-pressure_cat <- read.csv("../eez2016/conf/pressure_categories.csv") %>% 
+pressure_cat <- read.csv("../eez/conf/pressure_categories.csv") %>% 
   left_join(full_lyr_names, by = "layer") %>% 
   mutate(subcategory = gsub("_", " ", subcategory)) %>%
   select(Data = name, "Short name" = layer, Category = category, Subcategory = subcategory, Description = description)
@@ -31,7 +31,7 @@ kable(pressure_cat, align = "l")
 ```
 
 #### Ecological pressure
-We assessed five broad, globally-relevant categories of ecological stressors: fishing pressure, habitat destruction, climate change (including ocean acidification), water pollution, and species introductions (invasive species and genetic escapes). The five categories are intended to capture known pressures to the social-ecological system associated with each goal. Each pressure category may include several stressors. The intensity of each stressor within each OHI region is scaled from 0 to 1, with 1 indicating the highest stress (e.g., example of one of these data layers is [sea surface temperature](https://github.com/OHI-Science/ohi-global/blob/draft/eez2016/layers/cc_sst.csv)).
+We assessed five broad, globally-relevant categories of ecological stressors: fishing pressure, habitat destruction, climate change (including ocean acidification), water pollution, and species introductions (invasive species and genetic escapes). The five categories are intended to capture known pressures to the social-ecological system associated with each goal. Each pressure category may include several stressors. The intensity of each stressor within each OHI region is scaled from 0 to 1, with 1 indicating the highest stress (e.g., example of one of these data layers is [sea surface temperature](https://github.com/OHI-Science/ohi-global/blob/draft/eez/layers/cc_sst.csv)).
 
 We determined the rank sensitivity of each goal/subgoal to each stressor (or, when possible, an element of the goal, such as a specific habitat).  We ranked ecological pressures as having ‘high’ (score = 3), ‘medium’ (score = 2), ‘low’ (score = 1), or 'no' (score = NA) impact (Table 4.2). Wherever possible we relied on peer-reviewed literature to establish these rankings, and relied on our collective expert judgment in cases with no available literature (Table S28 in Halpern et al. 2012).  The pressure ranks are based on a rough estimate of the global average intensity and frequency of the stressor. We recognize that this will create over- and under-estimates for different places around the planet, but to address such variance in a meaningful way would require a separate weighting matrix for every single region on the planet, which is not feasible at this time.
 
@@ -40,7 +40,7 @@ Rank sensitivity of each goal (or, goal element) to each stressor.
 
 ```{r pressure matrix, echo=FALSE}
 
-pressure_matrix <- read.csv("../eez2016/conf/pressures_matrix.csv", na.strings=c("","NA"), stringsAsFactors = FALSE) %>%
+pressure_matrix <- read.csv("../eez/conf/pressures_matrix.csv", na.strings=c("","NA"), stringsAsFactors = FALSE) %>%
   mutate(element = ifelse(is.na(element_name), element, element_name)) %>%
   select(-element_name) %>%
   gather("layer", "rank", -(1:2)) %>%

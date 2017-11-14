@@ -27,7 +27,7 @@ tmp <- capture.output( cat(paste0("\n```{r, message=FALSE, echo=FALSE, warning=F
                            "\n",
                            "layer_meta <- read.csv('../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE)",
                            "\n",
-                           "layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers'",
+                           "layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'",
                            "\n",
                            "\n",
                            "\n```"))
@@ -63,7 +63,7 @@ for(layer_short in data$layer){ #layer_short="ao_need"
 
 layer_long <- data$name[data$layer == layer_short]
 units <- data$units[data$layer == layer_short]
-layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers'
+layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
 
 tmp <- capture.output( cat("\n",  
                           paste0("\n##", layer_long),

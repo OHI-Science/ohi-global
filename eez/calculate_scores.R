@@ -4,7 +4,7 @@
 # STEP 2: Install the appropriate ohicore, if necessary:
 library(devtools)
 devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
-devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+#devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 # STEP 3: Set repository name

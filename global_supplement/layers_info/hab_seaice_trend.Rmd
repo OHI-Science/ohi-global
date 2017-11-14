@@ -1,4 +1,3 @@
-See **`r layer_meta$name[layer_meta$layer == 'hab_extent']`** layer for more information.
+See **`r layer_meta$name[layer_meta$layer == 'hab_seaice_extent']`** layer for more information.
 
-#### Sea-ice 
 Trends for sea-ice edge and sea-ice shoreline habitats were calculated using sea-ice concentrations from the USA National Snow and Ice Data Center (Cavalieri et al. 2014; [https://nsidc.org/cryosphere/quickfacts/seaice.html](https://nsidc.org/cryosphere/quickfacts/seaice.html)).  The average yearly proportional change in extent was estimated using a linear regression model that included the most recent five years of data (e.g., slope estimate was divided by the extent for earliest year included in the regression model), and this value was multiplied by five to get the predicted change in 5 years.  Each year of data represents a 3-year average, to smooth yearly variation.    

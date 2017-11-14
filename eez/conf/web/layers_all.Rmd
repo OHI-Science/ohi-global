@@ -14,14 +14,14 @@ output:
  library(knitr) 
  
  layer_meta <- read.csv('../../../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE) 
- layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers' 
+ layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers' 
  
  
 ```
 
  
 #Adjusted workforce size 
-####[le_workforcesize_adj](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_workforcesize_adj.csv) {-} 
+####[le_workforcesize_adj](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_workforcesize_adj.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_workforcesize_adj.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -31,7 +31,7 @@ output:
 
  
 #Adjustment factor for jobs (current) 
-####[le_jobs_cur_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_jobs_cur_adj_value.csv) {-} 
+####[le_jobs_cur_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_cur_adj_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_jobs_cur_adj_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -41,7 +41,7 @@ output:
 
  
 #Adjustment factor for jobs (reference) 
-####[le_jobs_ref_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_jobs_ref_adj_value.csv) {-} 
+####[le_jobs_ref_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_ref_adj_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_jobs_ref_adj_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -51,7 +51,7 @@ output:
 
  
 #Adjustment factor for revenue (current) 
-####[le_rev_cur_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_rev_cur_adj_value.csv) {-} 
+####[le_rev_cur_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_cur_adj_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_rev_cur_adj_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -61,7 +61,7 @@ output:
 
  
 #Adjustment factor for revenue (reference) 
-####[le_rev_ref_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_rev_ref_adj_value.csv) {-} 
+####[le_rev_ref_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_ref_adj_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_rev_ref_adj_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -71,7 +71,7 @@ output:
 
  
 #Adjustment factor for wages (current) 
-####[le_wage_cur_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_wage_cur_adj_value.csv) {-} 
+####[le_wage_cur_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_cur_adj_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_wage_cur_adj_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -81,7 +81,7 @@ output:
 
  
 #Adjustment factor for wages (reference) 
-####[le_wage_ref_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_wage_ref_adj_value.csv) {-} 
+####[le_wage_ref_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_ref_adj_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_wage_ref_adj_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -91,7 +91,7 @@ output:
 
  
 #Areas of blast fishing 
-####[np_blast](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/np_blast.csv) {-} 
+####[np_blast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_blast.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/np_blast.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -101,7 +101,7 @@ output:
 
  
 #Areas of poison fishing 
-####[np_cyanide](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/np_cyanide.csv) {-} 
+####[np_cyanide](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_cyanide.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/np_cyanide.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -111,7 +111,7 @@ output:
 
  
 #Artisanal fisheries management effectiveness 
-####[fp_mora_artisanal](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_mora_artisanal.csv) {-} 
+####[fp_mora_artisanal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mora_artisanal.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_mora_artisanal.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -121,7 +121,7 @@ output:
 
  
 #Artisanal fisheries opportunity 
-####[ao_access](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/ao_access.csv) {-} 
+####[ao_access](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_access.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/ao_access.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -131,7 +131,7 @@ output:
 
  
 #Average species condition 
-####[spp_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/spp_status.csv) {-} 
+####[spp_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/spp_status.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/spp_status.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -141,7 +141,7 @@ output:
 
  
 #Average species condition trend 
-####[spp_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/spp_trend.csv) {-} 
+####[spp_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/spp_trend.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/spp_trend.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -151,7 +151,7 @@ output:
 
  
 #B/Bmsy estimates 
-####[fis_b_bmsy](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fis_b_bmsy.csv) {-} 
+####[fis_b_bmsy](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_b_bmsy.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fis_b_bmsy.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -161,7 +161,7 @@ output:
 
  
 #Carbon storage weights 
-####[element_wts_cs_km2_x_storage](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/element_wts_cs_km2_x_storage.csv) {-} 
+####[element_wts_cs_km2_x_storage](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_cs_km2_x_storage.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/element_wts_cs_km2_x_storage.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -171,7 +171,7 @@ output:
 
  
 #Chemical pollution 
-####[po_chemicals](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/po_chemicals.csv) {-} 
+####[po_chemicals](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_chemicals.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/po_chemicals.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -181,7 +181,7 @@ output:
 
  
 #Chemical pollution trend 
-####[cw_chemical_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/cw_chemical_trend.csv) {-} 
+####[cw_chemical_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_chemical_trend.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/cw_chemical_trend.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -191,7 +191,7 @@ output:
 
  
 #CITES signatories 
-####[g_cites](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/g_cites.csv) {-} 
+####[g_cites](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_cites.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/g_cites.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -201,7 +201,7 @@ output:
 
  
 #Coastal chemical pollution 
-####[po_chemicals_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/po_chemicals_3nm.csv) {-} 
+####[po_chemicals_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_chemicals_3nm.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/po_chemicals_3nm.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -211,7 +211,7 @@ output:
 
  
 #Coastal nutrient pollution 
-####[po_nutrients_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/po_nutrients_3nm.csv) {-} 
+####[po_nutrients_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_nutrients_3nm.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/po_nutrients_3nm.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -221,7 +221,7 @@ output:
 
  
 #Coastal protected marine areas (fishing preservation) 
-####[fp_mpa_coast](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_mpa_coast.csv) {-} 
+####[fp_mpa_coast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mpa_coast.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_mpa_coast.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -231,7 +231,7 @@ output:
 
  
 #Coastal protected marine areas (habitat preservation) 
-####[hd_mpa_coast](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/hd_mpa_coast.csv) {-} 
+####[hd_mpa_coast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_mpa_coast.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/hd_mpa_coast.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -241,7 +241,7 @@ output:
 
  
 #Coastal protection weights 
-####[element_wts_cp_km2_x_protection](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/element_wts_cp_km2_x_protection.csv) {-} 
+####[element_wts_cp_km2_x_protection](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_cp_km2_x_protection.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/element_wts_cp_km2_x_protection.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -251,7 +251,7 @@ output:
 
  
 #Commercial fishing management 
-####[fp_mora](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_mora.csv) {-} 
+####[fp_mora](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mora.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_mora.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -261,7 +261,7 @@ output:
 
  
 #Economic diversity 
-####[li_sector_evenness](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/li_sector_evenness.csv) {-} 
+####[li_sector_evenness](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_sector_evenness.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/li_sector_evenness.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -271,7 +271,7 @@ output:
 
  
 #Economic need for artisanal fishing 
-####[ao_need](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/ao_need.csv) {-} 
+####[ao_need](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_need.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/ao_need.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -281,7 +281,7 @@ output:
 
  
 #EEZ protected marine areas (fishing preservation) 
-####[fp_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_mpa_eez.csv) {-} 
+####[fp_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mpa_eez.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_mpa_eez.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -291,7 +291,7 @@ output:
 
  
 #EEZ protected marine areas (habitat preservation) 
-####[hd_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/hd_mpa_eez.csv) {-} 
+####[hd_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_mpa_eez.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/hd_mpa_eez.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -301,7 +301,7 @@ output:
 
  
 #Fishery catch data 
-####[fis_meancatch](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fis_meancatch.csv) {-} 
+####[fis_meancatch](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_meancatch.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fis_meancatch.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -311,7 +311,7 @@ output:
 
  
 #Food provision weights 
-####[fp_wildcaught_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_wildcaught_weight.csv) {-} 
+####[fp_wildcaught_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_wildcaught_weight.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_wildcaught_weight.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -321,7 +321,7 @@ output:
 
  
 #GDP 
-####[le_gdp](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_gdp.csv) {-} 
+####[le_gdp](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_gdp.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_gdp.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -331,7 +331,7 @@ output:
 
  
 #GDP per capita PPP 
-####[le_gdp_pc_ppp](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_gdp_pc_ppp.csv) {-} 
+####[le_gdp_pc_ppp](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_gdp_pc_ppp.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_gdp_pc_ppp.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -341,7 +341,7 @@ output:
 
  
 #Genetic escapes 
-####[sp_genetic](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/sp_genetic.csv) {-} 
+####[sp_genetic](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_genetic.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/sp_genetic.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -351,7 +351,7 @@ output:
 
  
 #Global Competitiveness Index (GCI) scores 
-####[li_gci](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/li_gci.csv) {-} 
+####[li_gci](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_gci.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/li_gci.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -360,9 +360,9 @@ output:
  scaled
 
  
-#Habitat condition 
-####[hab_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/hab_health.csv) {-} 
-```{r, child = '../../../global_supplement/layers_info/hab_health.Rmd', echo=FALSE, results='asis'} 
+#Habitat condition of coral 
+####[hab_coral_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_health.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_coral_health.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
  
@@ -370,9 +370,59 @@ output:
  proportion
 
  
-#Habitat condition trend 
-####[hab_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/hab_trend.csv) {-} 
-```{r, child = '../../../global_supplement/layers_info/hab_trend.Rmd', echo=FALSE, results='asis'} 
+#Habitat condition of mangrove 
+####[hab_mangrove_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_health.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_mangrove_health.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Habitat condition of saltmarsh 
+####[hab_saltmarsh_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_health.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_saltmarsh_health.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Habitat condition of seagrass 
+####[hab_seagrass_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_health.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_seagrass_health.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Habitat condition of seaice 
+####[hab_seaice_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_health.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_seaice_health.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Habitat condition of softbottom 
+####[hab_softbottom_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_health.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_softbottom_health.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
+
+ 
+#Habitat condition trend of coral 
+####[hab_coral_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_trend.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_coral_trend.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
  
@@ -380,9 +430,119 @@ output:
  trend
 
  
-#Habitat extent 
-####[hab_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/hab_extent.csv) {-} 
-```{r, child = '../../../global_supplement/layers_info/hab_extent.Rmd', echo=FALSE, results='asis'} 
+#Habitat condition trend of mangrove 
+####[hab_mangrove_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_trend.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_mangrove_trend.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Habitat condition trend of saltmarsh 
+####[hab_saltmarsh_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_trend.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_saltmarsh_trend.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Habitat condition trend of seagrass 
+####[hab_seagrass_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_trend.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_seagrass_trend.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Habitat condition trend of seaice 
+####[hab_seaice_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_trend.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_seaice_trend.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Habitat condition trend of softbottom 
+####[hab_softbottom_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_trend.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_softbottom_trend.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ trend
+
+ 
+#Habitat extent of coral 
+####[hab_coral_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_extent.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_coral_extent.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Habitat extent of mangrove 
+####[hab_mangrove_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_extent.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_mangrove_extent.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Habitat extent of rocky reef 
+####[hab_rockyreef_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_rockyreef_extent.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_rockyreef_extent.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Habitat extent of saltmarsh 
+####[hab_saltmarsh_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_extent.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_saltmarsh_extent.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Habitat extent of seagrass 
+####[hab_seagrass_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_extent.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_seagrass_extent.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Habitat extent of seaice 
+####[hab_seaice_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_extent.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_seaice_extent.Rmd', echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ km2
+
+ 
+#Habitat extent of softbottom 
+####[hab_softbottom_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_extent.csv) {-} 
+```{r, child = '../../../global_supplement/layers_info/hab_softbottom_extent.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
  
@@ -391,7 +551,7 @@ output:
 
  
 #Habitat weights 
-####[element_wts_hab_pres_abs](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/element_wts_hab_pres_abs.csv) {-} 
+####[element_wts_hab_pres_abs](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_hab_pres_abs.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/element_wts_hab_pres_abs.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -401,7 +561,7 @@ output:
 
  
 #High bycatch due to artisanal fishing 
-####[fp_art_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_art_hb.csv) {-} 
+####[fp_art_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_art_hb.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_art_hb.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -411,7 +571,7 @@ output:
 
  
 #High bycatch due to commercial fishing 
-####[fp_com_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_com_hb.csv) {-} 
+####[fp_com_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_com_hb.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_com_hb.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -421,7 +581,7 @@ output:
 
  
 #Inland area 
-####[rgn_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/rgn_area_inland1km.csv) {-} 
+####[rgn_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_inland1km.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/rgn_area_inland1km.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -431,7 +591,7 @@ output:
 
  
 #Inland coastal population 
-####[mar_coastalpopn_inland25mi](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/mar_coastalpopn_inland25mi.csv) {-} 
+####[mar_coastalpopn_inland25mi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_coastalpopn_inland25mi.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/mar_coastalpopn_inland25mi.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -441,7 +601,7 @@ output:
 
  
 #Inland coastal protected areas 
-####[lsp_prot_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/lsp_prot_area_inland1km.csv) {-} 
+####[lsp_prot_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/lsp_prot_area_inland1km.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/lsp_prot_area_inland1km.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -451,7 +611,7 @@ output:
 
  
 #Intertidal habitat destruction 
-####[hd_intertidal](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/hd_intertidal.csv) {-} 
+####[hd_intertidal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_intertidal.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/hd_intertidal.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -461,7 +621,7 @@ output:
 
  
 #ISO country codes 
-####[cntry_rgn](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/cntry_rgn.csv) {-} 
+####[cntry_rgn](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cntry_rgn.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/cntry_rgn.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -471,7 +631,7 @@ output:
 
  
 #IUCN extinction risk 
-####[ico_spp_iucn_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/ico_spp_iucn_status.csv) {-} 
+####[ico_spp_iucn_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ico_spp_iucn_status.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/ico_spp_iucn_status.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -481,7 +641,7 @@ output:
 
  
 #Jobs for each sector and year 
-####[le_jobs_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_jobs_sector_year.csv) {-} 
+####[le_jobs_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_sector_year.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_jobs_sector_year.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -491,7 +651,7 @@ output:
 
  
 #Jobs, most current value 
-####[le_jobs_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_jobs_cur_base_value.csv) {-} 
+####[le_jobs_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_cur_base_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_jobs_cur_base_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -501,7 +661,7 @@ output:
 
  
 #Jobs, reference value 
-####[le_jobs_ref_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_jobs_ref_base_value.csv) {-} 
+####[le_jobs_ref_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_ref_base_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_jobs_ref_base_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -511,7 +671,7 @@ output:
 
  
 #Low bycatch due to artisanal fishing 
-####[fp_art_lb](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_art_lb.csv) {-} 
+####[fp_art_lb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_art_lb.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_art_lb.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -521,7 +681,7 @@ output:
 
  
 #Low bycatch due to commercial fishing 
-####[fp_com_lb](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_com_lb.csv) {-} 
+####[fp_com_lb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_com_lb.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_com_lb.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -531,7 +691,7 @@ output:
 
  
 #Management of habitat to protect fisheries biodiversity  
-####[fp_habitat](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_habitat.csv) {-} 
+####[fp_habitat](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_habitat.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_habitat.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -541,7 +701,7 @@ output:
 
  
 #Management of habitat to protect habitat biodiversity 
-####[hd_habitat](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/hd_habitat.csv) {-} 
+####[hd_habitat](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_habitat.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/hd_habitat.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -551,7 +711,7 @@ output:
 
  
 #Management of mariculture  to preserve biodiversity 
-####[g_mariculture](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/g_mariculture.csv) {-} 
+####[g_mariculture](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_mariculture.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/g_mariculture.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -561,7 +721,7 @@ output:
 
  
 #Management of nonindigenous species 
-####[sp_alien_species](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/sp_alien_species.csv) {-} 
+####[sp_alien_species](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_alien_species.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/sp_alien_species.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -571,7 +731,7 @@ output:
 
  
 #Management of tourism to preserve biodiversity 
-####[g_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/g_tourism.csv) {-} 
+####[g_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_tourism.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/g_tourism.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -581,7 +741,7 @@ output:
 
  
 #Management of waters to preserve biodiversity 
-####[po_water](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/po_water.csv) {-} 
+####[po_water](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_water.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/po_water.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -591,7 +751,7 @@ output:
 
  
 #Mariculture harvest 
-####[mar_harvest_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/mar_harvest_tonnes.csv) {-} 
+####[mar_harvest_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_harvest_tonnes.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/mar_harvest_tonnes.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -601,7 +761,7 @@ output:
 
  
 #Mariculture Sustainability Index 
-####[g_msi_gov](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/g_msi_gov.csv) {-} 
+####[g_msi_gov](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_msi_gov.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/g_msi_gov.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -611,7 +771,7 @@ output:
 
  
 #Mariculture sustainability score 
-####[mar_sustainability_score](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/mar_sustainability_score.csv) {-} 
+####[mar_sustainability_score](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_sustainability_score.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/mar_sustainability_score.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -621,7 +781,7 @@ output:
 
  
 #Marine plastics 
-####[po_trash](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/po_trash.csv) {-} 
+####[po_trash](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_trash.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/po_trash.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -631,7 +791,7 @@ output:
 
  
 #Measure of coastal ecological integrity 
-####[species_diversity_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/species_diversity_3nm.csv) {-} 
+####[species_diversity_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/species_diversity_3nm.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/species_diversity_3nm.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -641,7 +801,7 @@ output:
 
  
 #Measure of ecological integrity 
-####[species_diversity_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/species_diversity_eez.csv) {-} 
+####[species_diversity_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/species_diversity_eez.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/species_diversity_eez.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -651,7 +811,7 @@ output:
 
  
 #Natural product harvest 
-####[np_harvest_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/np_harvest_tonnes.csv) {-} 
+####[np_harvest_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/np_harvest_tonnes.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -661,7 +821,7 @@ output:
 
  
 #Nonindigenous species 
-####[sp_alien](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/sp_alien.csv) {-} 
+####[sp_alien](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_alien.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/sp_alien.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -671,7 +831,7 @@ output:
 
  
 #Nutrient pollution 
-####[po_nutrients](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/po_nutrients.csv) {-} 
+####[po_nutrients](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_nutrients.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/po_nutrients.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -681,7 +841,7 @@ output:
 
  
 #Nutrient pollution trend 
-####[cw_nutrient_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/cw_nutrient_trend.csv) {-} 
+####[cw_nutrient_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_nutrient_trend.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/cw_nutrient_trend.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -691,7 +851,7 @@ output:
 
  
 #Ocean acidification 
-####[cc_acid](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/cc_acid.csv) {-} 
+####[cc_acid](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_acid.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/cc_acid.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -701,7 +861,7 @@ output:
 
  
 #Offshore area 
-####[rgn_area_offshore3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/rgn_area_offshore3nm.csv) {-} 
+####[rgn_area_offshore3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_offshore3nm.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/rgn_area_offshore3nm.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -711,7 +871,7 @@ output:
 
  
 #Offshore coastal protected areas 
-####[lsp_prot_area_offshore3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/lsp_prot_area_offshore3nm.csv) {-} 
+####[lsp_prot_area_offshore3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/lsp_prot_area_offshore3nm.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/lsp_prot_area_offshore3nm.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -721,7 +881,7 @@ output:
 
  
 #OHI regions 
-####[rgn_global](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/rgn_global.csv) {-} 
+####[rgn_global](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_global.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/rgn_global.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -731,7 +891,7 @@ output:
 
  
 #Pathogen pollution 
-####[po_pathogens](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/po_pathogens.csv) {-} 
+####[po_pathogens](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_pathogens.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/po_pathogens.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -741,7 +901,7 @@ output:
 
  
 #Pathogen pollution trend 
-####[cw_pathogen_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/cw_pathogen_trend.csv) {-} 
+####[cw_pathogen_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_pathogen_trend.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/cw_pathogen_trend.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -751,7 +911,7 @@ output:
 
  
 #Percent direct employment in tourism 
-####[tr_jobs_pct_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/tr_jobs_pct_tourism.csv) {-} 
+####[tr_jobs_pct_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_jobs_pct_tourism.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/tr_jobs_pct_tourism.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -761,7 +921,7 @@ output:
 
  
 #Plastic trash trends 
-####[cw_trash_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/cw_trash_trend.csv) {-} 
+####[cw_trash_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_trash_trend.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/cw_trash_trend.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -771,7 +931,7 @@ output:
 
  
 #Region areas based on EEZ boundaries 
-####[rgn_area](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/rgn_area.csv) {-} 
+####[rgn_area](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/rgn_area.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -781,7 +941,7 @@ output:
 
  
 #Regions 
-####[rgn_labels](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/rgn_labels.csv) {-} 
+####[rgn_labels](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_labels.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/rgn_labels.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -791,7 +951,7 @@ output:
 
  
 #Relative harvest tonnes 
-####[np_harvest_tonnes_relative](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/np_harvest_tonnes_relative.csv) {-} 
+####[np_harvest_tonnes_relative](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes_relative.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/np_harvest_tonnes_relative.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -801,7 +961,7 @@ output:
 
  
 #Relative harvest value 
-####[np_harvest_product_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/np_harvest_product_weight.csv) {-} 
+####[np_harvest_product_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_product_weight.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/np_harvest_product_weight.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -811,7 +971,7 @@ output:
 
  
 #Revenue adjustment (GDP) 
-####[le_revenue_adj](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_revenue_adj.csv) {-} 
+####[le_revenue_adj](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_revenue_adj.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_revenue_adj.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -821,7 +981,7 @@ output:
 
  
 #Revenue for each sector and year 
-####[le_rev_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_rev_sector_year.csv) {-} 
+####[le_rev_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_sector_year.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_rev_sector_year.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -831,7 +991,7 @@ output:
 
  
 #Revenue, most current value 
-####[le_rev_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_rev_cur_base_value.csv) {-} 
+####[le_rev_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_cur_base_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_rev_cur_base_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -841,7 +1001,7 @@ output:
 
  
 #Revenue, reference value 
-####[le_rev_ref_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_rev_ref_base_value.csv) {-} 
+####[le_rev_ref_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_ref_base_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_rev_ref_base_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -851,7 +1011,7 @@ output:
 
  
 #Sea level rise 
-####[cc_slr](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/cc_slr.csv) {-} 
+####[cc_slr](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_slr.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/cc_slr.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -861,7 +1021,7 @@ output:
 
  
 #Sea surface temperature 
-####[cc_sst](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/cc_sst.csv) {-} 
+####[cc_sst](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_sst.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/cc_sst.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -871,7 +1031,7 @@ output:
 
  
 #Sectors in each region 
-####[le_sector_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_sector_weight.csv) {-} 
+####[le_sector_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_sector_weight.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_sector_weight.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -881,7 +1041,7 @@ output:
 
  
 #Social Progress Index 
-####[res_spi](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/res_spi.csv) {-} 
+####[res_spi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/res_spi.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/res_spi.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -891,7 +1051,7 @@ output:
 
  
 #Strength of governance 
-####[wgi_all](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/wgi_all.csv) {-} 
+####[wgi_all](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/wgi_all.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/wgi_all.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -901,7 +1061,7 @@ output:
 
  
 #Subtidal hardbottom habitat destruction 
-####[hd_subtidal_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/hd_subtidal_hb.csv) {-} 
+####[hd_subtidal_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_subtidal_hb.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/hd_subtidal_hb.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -910,8 +1070,8 @@ output:
  scaled 0-1
 
  
-#Subtidal softbottom habitat destruction 
-####[hd_subtidal_sb](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/hd_subtidal_sb.csv) {-} 
+#Subtidal soft bottom habitat destruction 
+####[hd_subtidal_sb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_subtidal_sb.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/hd_subtidal_sb.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -921,7 +1081,7 @@ output:
 
  
 #Targeted harvest of cetaceans and marine turtles 
-####[fp_targetharvest](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/fp_targetharvest.csv) {-} 
+####[fp_targetharvest](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_targetharvest.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/fp_targetharvest.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -931,7 +1091,7 @@ output:
 
  
 #Total human population 
-####[le_popn](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_popn.csv) {-} 
+####[le_popn](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_popn.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_popn.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -941,7 +1101,7 @@ output:
 
  
 #Tourism sustainability index 
-####[tr_sustainability](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/tr_sustainability.csv) {-} 
+####[tr_sustainability](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_sustainability.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/tr_sustainability.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -951,7 +1111,7 @@ output:
 
  
 #Unemployment 
-####[le_unemployment](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_unemployment.csv) {-} 
+####[le_unemployment](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_unemployment.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_unemployment.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -961,7 +1121,7 @@ output:
 
  
 #UN geopolitical region classifications 
-####[rgn_georegions](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/rgn_georegions.csv) {-} 
+####[rgn_georegions](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_georegions.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/rgn_georegions.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -971,7 +1131,7 @@ output:
 
  
 #US State Department travel warnings 
-####[tr_travelwarnings](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/tr_travelwarnings.csv) {-} 
+####[tr_travelwarnings](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_travelwarnings.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/tr_travelwarnings.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -981,7 +1141,7 @@ output:
 
  
 #UV radiation 
-####[cc_uv](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/cc_uv.csv) {-} 
+####[cc_uv](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_uv.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/cc_uv.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -991,7 +1151,7 @@ output:
 
  
 #Wages, current value 
-####[le_wage_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_wage_cur_base_value.csv) {-} 
+####[le_wage_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_cur_base_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_wage_cur_base_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -1001,7 +1161,7 @@ output:
 
  
 #Wages for each sector and year 
-####[le_wage_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_wage_sector_year.csv) {-} 
+####[le_wage_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_sector_year.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_wage_sector_year.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -1011,7 +1171,7 @@ output:
 
  
 #Wages, reference value 
-####[le_wage_ref_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/le_wage_ref_base_value.csv) {-} 
+####[le_wage_ref_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_ref_base_value.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/le_wage_ref_base_value.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -1021,7 +1181,7 @@ output:
 
  
 #Weakness of governance 
-####[ss_wgi](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/ss_wgi.csv) {-} 
+####[ss_wgi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ss_wgi.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/ss_wgi.Rmd', echo=FALSE, results='asis'} 
  
 ``` 
@@ -1031,7 +1191,7 @@ output:
 
  
 #Weakness of social progress 
-####[ss_spi](https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers/ss_spi.csv) {-} 
+####[ss_spi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ss_spi.csv) {-} 
 ```{r, child = '../../../global_supplement/layers_info/ss_spi.Rmd', echo=FALSE, results='asis'} 
  
 ``` 

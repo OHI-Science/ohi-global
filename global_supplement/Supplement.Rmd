@@ -1,5 +1,5 @@
 ---
-title: 'S2 Methods'
+title: 'Ocean Health Index 2017: Methods'
 csl: methods-in-ecology-and-evolution.csl
 output:
   html_document:
@@ -26,7 +26,7 @@ Compiled on `r date()`.
 
 ## Running:
  # 1. Run CombineLayers.R to create the relevant Rmd file for data layers (if any changes to these files), creates layers_all.R
- # 2. Save a new OHI.bib file from Zotero if changes to referenes
+ # 2. Save a new OHI.bib file from Zotero if changes to referenes (Export BibLaTeX)
  # 3. Run BIBcorrect.R to fix a few weird things in the OHI.bib file
  # 4. Knit this file. 
 
@@ -50,7 +50,7 @@ options(knitr.kable.NA = '')
 # exclude when knitting
 # setwd("global_supplement")
 
-assessmentYear <- 2016
+assessmentYear <- 2017
 
 # sections to run:
 ten_goals <- TRUE
@@ -77,7 +77,7 @@ goals <- read.csv("tables/ten_goals.csv") %>%
 kable(goals)
 ```
 
-The global Ocean Health Index has been assessed every year since 2012. The primary goal of each yearly assessment is to calculate a new year of scores using the most recent data released by the data sources.  Often, in addition to incorporating an additional year of data, we make improvements to models or data sources.  To ensure that scores for all years are calculated using the same methods and data sources, and can thus be compared, we recalculate scores for previous scenario years during each assessment.  For the 2016 assessment, for example, in addition to calculating new 2016 scores, we include recalculated scores from 2012 to 2015.  Consequently, comparisons among years should always be performed using data from the same assessment year so trends in scores reflect changes to ocean health rather than changes to methods.  
+The global Ocean Health Index has been assessed every year since 2012. The primary goal of each yearly assessment is to calculate a new year of scores using the most recent data released by the data sources.  Often, in addition to incorporating an additional year of data, we make improvements to models or data sources.  To ensure that scores for all years are calculated using the same methods and data sources, and can thus be compared, we recalculate scores for previous scenario years during each assessment.  For the current assessment, for example, in addition to calculating newest year of scores, we include recalculated scores for every year since 2012.  Consequently, comparisons among years should always be performed using data from the same assessment year so trends in scores reflect changes to ocean health rather than changes to methods.  
 
 Not all data layers are reported through the most current assessment year, and consequently, the OHI scores are calculated using the most recent year of available data.  Details on which years are used for each data layer are provided in Table 6.2. 
 
@@ -149,7 +149,7 @@ Three dimensions are used to calculate likely future status: trends, pressure, a
 # Goal models and data
 In this section we describe how the current status and trend of each goal was calculated. We also indicate which data layers were used to calculate current status, trend (if different from current status), pressure, and resilience.  
 
-The R code used to calculate the goal model is located [here](https://github.com/OHI-Science/ohi-global/blob/draft/eez2016/conf/functions.R) (scroll to the appropriate goal function). To learn more about the data layers used in the model calculations see Section 6: Description of data layers.  Table 6.1 includes links to the code and data used to create the data layers (current calculations are in the folder with the most recent year).  Table 6.2 describes the data sources used to create the data layers.  
+The R code used to calculate the goal model is located [here](https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R) (scroll to the appropriate goal function). To learn more about the data layers used in the model calculations see Section 6: Description of data layers.  Table 6.1 includes links to the code and data used to create the data layers (current calculations are in the folder with the most recent year).  Table 6.2 describes the data sources used to create the data layers.  
 
 
 ```{r goal functions, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
@@ -162,7 +162,7 @@ targets <- read.csv("../eez_layers_meta_data/layers_eez_targets.csv")
 layers_web <- "http://ohi-science.org/ohi-global/layers.html"
 
 # function
-data_layers <- function(dimension, goal){ # goal = "AO"; dimension=c("status", "trend")
+data_layers <- function(dimension, goal){ # goal = "ICO"; dimension=c("status", "trend")
   
   st <- targets[targets$goal == goal, ]
   st <- st[st$dimension %in% dimension, ]
@@ -269,22 +269,22 @@ base <- read.csv("../eez_layers_meta_data/layers_eez_base.csv") %>%
   mutate(Name = paste0("[", name, "](", "http://ohi-science.org/ohi-global/layers#", layer, ")")) %>%
   select(layer, Name, Description = description)
 
-## Get Dimension/targets
-targets <- read.csv("../eez_layers_meta_data/layers_eez_targets.csv", stringsAsFactors = FALSE) %>%
+## Get dimension/targets
+target <- read.csv("../eez_layers_meta_data/layers_eez_targets.csv", stringsAsFactors = FALSE) %>%
   mutate(goal = ifelse(dimension %in% c("pressure", "resilience", "spatial", "weighting"), dimension, goal)) %>%
   select(layer, goal) %>%
     unique() %>%
   group_by(layer) %>%
   summarize(Dimension = paste(goal, collapse = ", "))
 
-# setdiff(base$layer, targets$layer) # the sp_alien_species ends up not being used
-# setdiff(targets$layer, base$layer)
+# setdiff(base$layer, target$layer) # the sp_alien_species ends up not being used
+# setdiff(target$layer, base$layer)
 
-data <- left_join(targets, base, by="layer")
+data <- left_join(target, base, by="layer")
 
 ## Get data prep url (will be a link in description)
 url <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "dataprep_url_2016") %>%
+  filter(variable == "dataprep_url_2017") %>%
   group_by(layer) %>%
   mutate(N = 1) %>%
   mutate(method_count = cumsum(N)) %>%
@@ -319,7 +319,7 @@ data <- data %>%
 
 ### Get method updates
 updates <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "methods_update_2016") %>%
+  filter(variable == "methods_update_2017") %>%
   select(layer, Updates=variable_data) %>%
   unique()
 
@@ -341,29 +341,11 @@ A brief overview of the data sources used to calculate the global OHI.
 
 ### Get datasource primary data
 
-## get relevant data layers
-layers <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "ds_reference") %>%
-  select(layer, ds_reference = variable_data) %>%
-  unique()
-
-## get layer names
-layer_names <- read.csv("../eez_layers_meta_data/layers_eez_base.csv")%>%
-  select(layer, name)
-
-layers <- layers %>%
-  left_join(layer_names, by="layer") %>%
-  group_by(ds_reference) %>%
-  summarize(Layers = paste(name, collapse=", ")) %>%
-  mutate(Layers = gsub("NA, ", "", Layers))
-  
 
 ## get source data
 ds_source <- read.csv("../eez_layers_meta_data/layers_eez_data_sources.csv") %>%
-  left_join(layers, by="ds_reference") %>%
   mutate(ds_reference = paste0("@", ds_reference)) %>%
-  select(Reference = ds_reference, Description = ds_description, Layers, Years=ds_years, Resolution = ds_native_resolution, Updated = ds_updated_2016)
-
+  select(Reference = ds_reference, "Description" = ds_description, Years=ds_years, Resolution = ds_native_resolution, Updated = ds_updated_2017)
 kable(ds_source)
 
 ```

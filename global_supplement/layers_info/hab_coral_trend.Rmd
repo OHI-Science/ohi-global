@@ -1,4 +1,3 @@
-See **`r layer_meta$name[layer_meta$layer == 'hab_extent']`** layer for more information.
+See **`r layer_meta$name[layer_meta$layer == 'hab_coral_extent']`** layer for more information.
 
-#### Coral 
 Coral trend was calculated using condition data from 1975-2006 (Bruno and Selig 2007, Schutte et al. 2010).

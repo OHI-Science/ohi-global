@@ -3,14 +3,35 @@ output: html_document
 ---
 
 ```{r set up, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+
 library(dplyr)
 library(tidyr)
+
+# setwd('eez/conf/web')
 
 # data with information
 layers <- read.csv("../../../eez_layers_meta_data/layers_eez_base.csv")
 targets <- read.csv("../../../eez_layers_meta_data/layers_eez_targets.csv")
 layers_web <- "http://ohi-science.org/ohi-global/layers.html"
-# setwd('eez2016/conf/')
+
+
+# function to grab the info needed for the data layers
+data_grab <- function(goal_code = "FIS", dims = c("status", "trend")){
+
+st <- targets %>%
+  filter(goal==goal_code, dimension %in% dims) %>%
+  select(layer) %>%
+  unique()
+
+st_layers <- filter(layers, layer %in% st$layer) %>%
+  mutate(web_name = gsub(" ", "_", name)) %>%
+  mutate(web_name = tolower(web_name)) %>%
+  mutate(web_name = gsub("/", "", web_name)) %>%
+  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
+
+cat(paste(st_layers$info, collapse="\n\n"))
+}
+
 ```
 
 
@@ -24,18 +45,8 @@ layers_web <- "http://ohi-science.org/ohi-global/layers.html"
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="FIS", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
-  mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "FIS", dims = c("status", "trend"))
 
 ```
 
@@ -43,36 +54,16 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="FIS", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "FIS", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="FIS", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "FIS", dims = "resilience")
 
 ```
 
@@ -84,22 +75,11 @@ cat(paste(st_layers$info, collapse="\n\n"))
 ```
 
 ### Data used in model
-
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="MAR", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "MAR", dims = c("status", "trend"))
 
 ```
 
@@ -107,36 +87,16 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="MAR", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "MAR", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="MAR", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "MAR", dims = "resilience")
 
 ```
 
@@ -153,18 +113,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="AO", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "AO", dims = c("status", "trend"))
 
 ```
 
@@ -172,36 +122,16 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="AO", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "AO", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="AO", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "AO", dims = "resilience")
 
 ```
 
@@ -217,18 +147,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="NP", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "NP", dims = c("status", "trend"))
 
 ```
 
@@ -236,39 +156,18 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="NP", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "NP", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="NP", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "NP", dims = "resilience")
 
 ```
-
 
 ---- 
 
@@ -282,18 +181,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="CS", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "CS", dims = c("status", "trend"))
 
 ```
 
@@ -301,38 +190,19 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="CS", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "CS", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="CS", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "CS", dims = "resilience")
 
 ```
+
 
 
 ---- 
@@ -348,18 +218,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="CP", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "CP", dims = c("status", "trend"))
 
 ```
 
@@ -367,36 +227,16 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="CP", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "CP", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="CP", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "CP", dims = "resilience")
 
 ```
 
@@ -413,18 +253,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="TR", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "TR", dims = c("status", "trend"))
 
 ```
 
@@ -432,38 +262,19 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="TR", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "TR", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="TR", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "TR", dims = "resilience")
 
 ```
+
 
 
 ---- 
@@ -478,18 +289,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="LIV", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "LIV", dims = c("status", "trend"))
 
 ```
 
@@ -497,36 +298,16 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="LIV", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "LIV", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="LIV", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "LIV", dims = "resilience")
 
 ```
 
@@ -543,18 +324,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="ECO", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "ECO", dims = c("status", "trend"))
 
 ```
 
@@ -562,38 +333,19 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="ECO", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "ECO", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="ECO", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "ECO", dims = "resilience")
 
 ```
+
 
 ---- 
 
@@ -607,18 +359,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="ICO", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "ICO", dims = c("status", "trend"))
 
 ```
 
@@ -626,38 +368,19 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="ICO", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "ICO", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="ICO", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "ICO", dims = "resilience")
 
 ```
+
 
 ---- 
 
@@ -672,18 +395,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="LSP", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "LSP", dims = c("status", "trend"))
 
 ```
 
@@ -691,38 +404,19 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="LSP", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "LSP", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="LSP", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "LSP", dims = "resilience")
 
 ```
+
 
 
 ---- 
@@ -738,18 +432,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="CW", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "CW", dims = c("status", "trend"))
 
 ```
 
@@ -757,38 +441,19 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="CW", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "CW", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="CW", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "CW", dims = "resilience")
 
 ```
+
 
 
 ---- 
@@ -798,24 +463,13 @@ cat(paste(st_layers$info, collapse="\n\n"))
 ```{r, child='../../../global_supplement/goal_descriptions_short/SPP.Rmd', results='asis', echo=FALSE}
 ```
 
-
 ### Data used in model
 
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="SPP", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "SPP", dims = c("status", "trend"))
 
 ```
 
@@ -823,38 +477,19 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="SPP", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "SPP", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="SPP", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "SPP", dims = "resilience")
 
 ```
+
 
 ---- 
 
@@ -868,18 +503,8 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Status & trend**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="HAB", dimension %in% c("status", "trend")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "HAB", dims = c("status", "trend"))
 
 ```
 
@@ -887,35 +512,16 @@ cat(paste(st_layers$info, collapse="\n\n"))
 **Pressure**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="HAB", dimension %in% c("pressure")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "HAB", dims = "pressure")
 
 ```
 
 **Resilience**
 
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
-st <- targets %>%
-  filter(goal=="HAB", dimension %in% c("resilience")) %>%
-  select(layer) %>%
-  unique()
 
-st_layers <- filter(layers, layer %in% st$layer) %>%
- mutate(web_name = gsub(" ", "_", name)) %>%
-  mutate(web_name = tolower(web_name)) %>%
-  mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
-
-cat(paste(st_layers$info, collapse="\n\n"))
+data_grab(goal_code = "HAB", dims = "resilience")
 
 ```
+

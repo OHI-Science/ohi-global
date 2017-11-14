@@ -13,7 +13,7 @@ Resilience includes both ecological and social resilience categories.  Ecologica
 
 ![](figures/ResiliencePieChart.png)
 
-Each resilience category is composed of 1 or more data layers (Table 4.3) with values scaled from 0-1, reflecting the magnitude of resilience, for each region (an example of one of these data layers describes [tourism regulations that preserve biodiversity](https://github.com/OHI-Science/ohi-global/blob/draft/eez2016/layers/g_tourism.csv)).  Each resilience data layer is assigned a weight of 0.5 or 1 (Table 4.3) that is applied equally across all the goals (or, goal elements) influenced by the resilience layer (i.e., resilience matrix, Table 4.4). This information is used to calculate a score for each resilience category. The weight reflects information about governance. 
+Each resilience category is composed of 1 or more data layers (Table 4.3) with values scaled from 0-1, reflecting the magnitude of resilience, for each region (an example of one of these data layers describes [tourism regulations that preserve biodiversity](https://github.com/OHI-Science/ohi-global/blob/draft/eez/layers/g_tourism.csv)).  Each resilience data layer is assigned a weight of 0.5 or 1 (Table 4.3) that is applied equally across all the goals (or, goal elements) influenced by the resilience layer (i.e., resilience matrix, Table 4.4). This information is used to calculate a score for each resilience category. The weight reflects information about governance. 
 
 
 **Table 4.3. Resilience categories and weights**
@@ -22,7 +22,7 @@ The data layers used to calculate resilience for each goal and region for the gl
 
 full_lyr_names <- read.csv("../eez_layers_meta_data/layers_eez_base.csv") %>% 
   select(layer, name)
-res_cat <- read.csv("../eez2016/conf/resilience_categories.csv") %>% 
+res_cat <- read.csv("../eez/conf/resilience_categories.csv") %>% 
   left_join(full_lyr_names, by = "layer") %>% 
   mutate(subcategory = gsub("_", " ", subcategory)) %>%
   select(Data = name, "Short name" = layer, Category = category, "Category type" = category_type, Subcategory = subcategory, Weight=weight)
@@ -36,7 +36,7 @@ kable(res_cat, align = "l")
 Describes which goals/subgoals (and goal elements) are influenced by the resilience data layers.
 ```{r Resilience matrix, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 
-res_matrix <- read.csv("../eez2016/conf/resilience_matrix.csv", na.strings="") 
+res_matrix <- read.csv("../eez/conf/resilience_matrix.csv", na.strings="") 
 kable(res_matrix, align = "l")
 
 ```

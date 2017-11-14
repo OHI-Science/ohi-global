@@ -1,4 +1,3 @@
-#### Sea-ice 
 Sea-ice shoreline data are used to calculate the coastal proection goal and sea-ice edge data are used to calculate the habitat subgoal.
 
 Sea-ice extent area (km^2^) was calculated using sea-ice concentrations from the USA National Snow and Ice Data Center (Cavalieri et al. 2014; [https://nsidc.org/cryosphere/quickfacts/seaice.html](https://nsidc.org/cryosphere/quickfacts/seaice.html)), which are updated yearly. These raster data are 25km in resolution (625km^2^ per pixel) in a Stereographic polar projection. Two sea-ice metrics are calculated using these data: sea-ice edge (pixels with 10-50% ice cover) and sea-ice shoreline (shoreline pixels with >15% ice cover).  Calculations of area are based on 3-year averages (to smooth yearly variation, e.g., 2009 data is the average of 2008-2010) of the pixels meeting the habitat criteria.

@@ -20,7 +20,7 @@ tmp <- capture.output(cat("---",
                           "\n    toc_float: yes",
                           "\n---"))
 
-write(tmp, "eez2016/conf/web/layers_all.Rmd")
+write(tmp, "eez/conf/web/layers_all.Rmd")
 
 ######################################################
 ### Load libraries in Rmd
@@ -38,17 +38,19 @@ tmp <- capture.output( cat(paste0("\n```{r, message=FALSE, echo=FALSE, warning=F
                            "\n",
                            "layer_meta <- read.csv('../../../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE)",
                            "\n",
-                           "layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez2016/layers'",
+                           "layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'",
                            "\n",
                            "\n",
                            "\n```"))
                            
-write(tmp, "eez2016/conf/web/layers_all.Rmd", append=TRUE)
+write(tmp, "eez/conf/web/layers_all.Rmd", append=TRUE)
 
 
 ######################################################
 ### Cycle through each layer and add to file
 #######################################################
+
+layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
 
 ## make sure all the Rmd files are in there and no typos!
 layers_Rmd <- list.files("global_supplement/layers_info")
@@ -89,6 +91,6 @@ tmp <- capture.output( cat("\n",
                           # "\n###References {-}"
                           ))
 
-write(tmp, "eez2016/conf/web/layers_all.Rmd", append=TRUE)
+write(tmp, "eez/conf/web/layers_all.Rmd", append=TRUE)
 }      
 
