@@ -45,7 +45,7 @@ A complete list of the data used in the calculations is [available](http://ohi-s
 </div>
 ----
 
-```{r, child=sprintf('%s/conf/web/goals.Rmd', dir_scenario)}
+```{r, child="conf_goals.Rmd"}
 ```
 
 ----

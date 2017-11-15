@@ -4,8 +4,8 @@ navbar:
   left:
 #    - text: "Data Explorer"
 #      href: app.html
-#    - text: "Layers" # can remove this from header
-#      href: layers.html
+    - text: "Layers"
+      href: layers.html
     - text: "Goals"
       href: goals.html
     - text: "Scores"
