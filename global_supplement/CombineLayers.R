@@ -67,8 +67,17 @@ layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
 
 tmp <- capture.output( cat("\n",  
                           paste0("\n##", layer_long),
+                          
                           paste0("\n####[", layer_short, "]", "(", file.path(layer_path, layer_short), ".csv) {-}"),
-                          paste0("\n```{r,",sprintf(" child = 'layers_info/%s.Rmd'", layer_short), ", echo=FALSE, results='asis'}"),
+                          
+                          paste0("\n```{r, echo=FALSE, results='hide'}\n
+                                  x <- tempfile(fileext = 'Rmd')\n
+                                  on.exit(unlink(x))\n
+                                  download.file(", "\"",
+                                 sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/%s.Rmd', 
+                                    layer_short), "\", x)\n```\n"),
+                          
+                          paste0("\n```{r, child = x, echo=FALSE, results='asis'}"),
                           "\n",
                           "\n```",
                           "\n",

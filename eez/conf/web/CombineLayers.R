@@ -36,7 +36,7 @@ tmp <- capture.output( cat(paste0("\n```{r, message=FALSE, echo=FALSE, warning=F
                            "library(knitr)",
                            "\n",
                            "\n",
-                           "layer_meta <- read.csv('../../../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE)",
+                           "layer_meta <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE)",
                            "\n",
                            "layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'",
                            "\n",
