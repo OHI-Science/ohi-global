@@ -7,10 +7,6 @@ output:
 #    keep_md: true
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
-source("./_site.R")
-```
-
 The following data layers are used in Ocean Health Index global calculations for goal status, trend, pressures, and resilience. Learn how these layers were incorporated into goal calculations on the [goals page](http://ohi-science.org/ohi-global/goals.html).
 
 ----

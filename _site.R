@@ -40,7 +40,7 @@ if (RCurl::url.exists(conf_goals_rmd)) {
 }
 
 ## save local copy of conf/web/layers_all.Rmd
-layers_all_rmd <- file.path(dir_scenario_gh, 'conf/web/layers_all.Rmd')
+layers_all_rmd <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_all.Rmd"
 
 if (RCurl::url.exists(layers_all_rmd)) {
   layers_all <- readr::read_lines(layers_all_rmd)
