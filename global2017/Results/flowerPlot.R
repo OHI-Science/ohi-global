@@ -65,7 +65,8 @@ PlotFlower <- function(region_plot     = NA,
   
   
   ## unique regions to plot
-  region_plots <- unique(scores$region_id)
+  region_plots <- unique(scores$region_id) 
+  region_plots <- region_plots[-which(region_plots==213)]
   
   
   ## goals.csv configuration info----
@@ -129,6 +130,7 @@ PlotFlower <- function(region_plot     = NA,
     
     ## read in weights
     w <- read_csv(w_fn) %>%
+      filter(year == max(year)) %>%
       select(rgn_id, w_fis)
     w <- rbind(w, data.frame(rgn_id = 0, w_fis = mean(w$w_fis))) %>%
       arrange(rgn_id)
@@ -197,7 +199,7 @@ PlotFlower <- function(region_plot     = NA,
                                 dir_fig_save,
                                 str_replace_all(region_name, ' ', '')))
   ## write out filenames
-  #readr::write_csv(region_names_all, 'reports/figures/regions_figs.csv')
+  readr::write_csv(region_names_all, '../../eez/conf/web/regions_figs.csv')
   
   ## move into for loop only with region_names to plot
   region_names <- region_names_all %>%
@@ -206,7 +208,7 @@ PlotFlower <- function(region_plot     = NA,
   
   
   ## loop through to save flower plot for each region ----
-  for (region in region_plots) { # region = 301
+  for (region in region_plots) { # region = 213
     
     ## filter region info, setup to plot ----
     plot_df <- score_df %>%

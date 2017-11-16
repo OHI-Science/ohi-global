@@ -77,26 +77,22 @@ rgn_names <- read.csv(sprintf('../../eez/layers/rgn_global.csv', scenario)) %>%
   dplyr::select(region_id = rgn_id, country = label) %>%
   dplyr::mutate(country = as.character(country))
 
-# rgn_names$country[rgn_names$region_id == 212] <- "Gilbert Islands (Kiribati)"
-# rgn_names$country[rgn_names$region_id == 148] <- "Line Islands (Kiribati)"
-# rgn_names$country[rgn_names$region_id == 157] <- "Phoenix Islands (Kiribati)"
-
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2017-11-9' #date extension on data files used for all tables/figures
+dateFile = '2017-11-15' #date extension on data files used for all tables/figures
 
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
 update_data = TRUE           # This will update the dataset used to create figures/tables
-map_create = TRUE            # Updates the map figures (takes a while to run)
+map_create = FALSE            # Updates the map figures (takes a while to run)
 goal_hists = TRUE            # Updates the goal histograms
-flower_plots = FALSE         # Updates the flower plot figures
+flower_plots = TRUE         # Updates the flower plot figures
 
 ```
 
 # Description of reference datasets and figures
 
 ### Primary dataset
-[Data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-9.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2017.
+[Data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-15.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2017.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
@@ -431,6 +427,7 @@ Map png files can be downloaded [here](https://github.com/OHI-Science/ohi-global
 
 source('flowerPlot.R')
 PlotFlower(
+  region_plot     = NA,
   dir_fig_save = "figures/FlowerPlots",
   assessment_name = "Global average",
   year_plot = 2017,
