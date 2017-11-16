@@ -7,10 +7,6 @@ output:
 #    keep_md: true
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
-source("./_site.R")
-```
-
 Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index score. Methods have incrementally improved each year with new information and knowledge. Thus, for annual scores to be comparable through time, previous scores are recalculated with the most recent methods for each past assessment year. **All scores below use 2016 methods**.
 
 Below are five years of global assessment scores for 220 regions (coastal nations and territories). <!---could bring back the Regions page to be only linked from here---> Flower plots display the 2016 scores, with each petal representing an individual goal. Petal lengths convey the score of the goal, thus longer petals are closer to achieving their target. Only goals that are relevant to a region are scored, otherwise they are set to NA with grey petals. All scores are on a scale from 0-100, and the center number is the region's Index score.
@@ -18,146 +14,47 @@ Below are five years of global assessment scores for 220 regions (coastal nation
 ----
 
 ```{r plot flowers for current scenario year}
-redo_flowers = F
-
-# vars
-png_res = 72
-scores_csv  = sprintf('%s/scores.csv', dir_scenario)
-goals_csv   = sprintf('%s/conf/goals.csv', dir_scenario)
-regions_csv = sprintf('%s/layers/%s.csv', dir_scenario, config$layer_region_labels)
-
-# data
-scores  = read_csv(scores_csv)  # View(scores)
-regions = read_csv(regions_csv) %>% filter(label != 'Antarctica') # View(regions)
-goals   = read_csv(goals_csv)   # View(goals)
-
-# prep
-dir.create('images/flowers', showWarnings = F)
-regions = bind_rows(
-  data_frame(                # order regions to start with whole study_area
-    rgn_id = 0,
-    label = study_area),
-  regions %>%
-    arrange(label)) %>%   # followed by regions within alphabetically
-  mutate(
-    flower_png = sprintf('images/flower_%s.png', gsub(' ','_', label)))
-
-# get goals for flowers, all and specific to weights
-goals.all = arrange(goals, order_color)[['goal']]
-
-# get colors for aster, based on 10 colors, but extended to all goals. subselect for goals.wts
-cols.goals.all = colorRampPalette(RColorBrewer::brewer.pal(10, 'Spectral'), space='Lab')(length(goals.all))
-names(cols.goals.all) = goals.all
-
-# get subgoals and goals, not supragoals, for doing flower plot
-goals_supra = na.omit(unique(goals$parent))
-wts = with(
-  subset(goals, !goal %in% goals_supra, c(goal, weight)), 
-  setNames(weight, goal))
-goal_labels = gsub('\\n', '\n', with(
-  goals, setNames(name_flower, goal))[names(wts)], fixed=T)
-
-# generate flower plots
-for (rid in regions$rgn_id){ # rid = regions$rgn_id[1]
-
-  # rgn
-  r = filter(regions, rgn_id==rid)
-
-  # skip if flower png exists and not redoing
-  if (file.exists(r$flower_png) & !redo_flowers) next
-
-  # scores
-  g_x = with(
-    subset(scores, dimension=='score' & region_id==rid),
-    setNames(score, goal))[names(wts)]
-  x   = scores %>%
-    filter(dimension=='score', region_id==rid & goal == 'Index') %>%
-    .$score
-  
-  # plot
-  png(r$flower_png, width=400, height=250, res=png_res)
-  par(omi=c(0,0.85,0,0.85))
-  PlotFlower(
-    lengths=ifelse(
-      is.na(g_x),
-      100,
-      g_x),
-    widths=wts,
-    fill.col=ifelse(
-      is.na(g_x),
-      'grey80',
-      cols.goals.all[names(wts)]),
-    labels = '',
-    center=round(x),
-    max.length = 100, disk=0.4, label.cex=0.9, label.offset=0.155, cex=2.2, cex.main=2.5)
-  dev.off()
-}
+## add code here
+source('_site.R')
 ```
 
 ```{r table all years, results='asis'}
+library(tidyverse)
 
-## TODO: move past this for loop
-# files <- list.files(path=sprintf('%s/data', dir_report), pattern = 'scores_eez*.csv', full.names = TRUE)
+data <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-9.csv') 
 
-## create data frame of all years
-data_all_years <- data.frame()
-
-for(yr in 2012:2016){ #yr=2012
-  
-  data <- read.csv(sprintf('%s/data/scores_eez%s.csv', dir_report, yr),
-                   stringsAsFactors=FALSE) %>% 
-    mutate(year = yr)
-  
-  data_all_years <- rbind(data_all_years, data)
-}
-data_all_years$country[data_all_years$country == 'eez_weighted_avg'] = 'Global'
+regions <- data %>%
+  select(region_id, region_name) %>%
+  distinct()
 
 
 ## loop through and display each rgn_id
-for (rid in regions$rgn_id){ # rid = regions$rgn_id[1]
+for (r in regions$region_id){ # r = regions$region_id[1]
   
-  ## prepare ----
-  r = filter(regions, rgn_id==rid)
+  ## filter region_id and transpose
+  r_scores <- data %>% 
+    filter(region_id == r,
+           dimension == 'score') %>%
+    select(-region_id, -dimension) %>% # maybe move this outside the for loop?
+    spread(scenario, value)
   
-  ## filter rgn_id and transpose
-  rid_score <- data_all_years %>% 
-    filter(region_id == r$rgn_id) %>%
-    select(-region_id) %>%
-    gather(key=goal, value=scores, -country, -year) %>%
-    spread(year, scores)
+  ## reorder as set in conf/goals.csv
+  conf_csv   <- file.path(dir_scenario_gh, 'conf/goals.csv')
+goals  <- readr::read_csv(conf_csv)
+
+  r_scores_ordered <- data_frame(goal = c('Index', goals$goal)) %>%
+      left_join(r_scores, by='goal')
   
-  ## reorder as set in goal_labels
-  rid_score <- data_frame(
-    goal = c('Index', names(goal_labels))) %>%
-      left_join(rid_score, by='goal')
-  
-  ## replace 2/3-letter code
-  rid_score <- rid_score %>%
-    mutate(goal = str_replace_all(goal, "FP",  "Food Provision"),
-           goal = str_replace_all(goal, "FIS", "Wild Caught Fisheries"),
-           goal = str_replace_all(goal, "MAR", "Mariculture"),
-           goal = str_replace_all(goal, "AO",  "Artisanal Fishing Opportunity"),
-           goal = str_replace_all(goal, "NP",  "Natural Products"),
-           goal = str_replace_all(goal, "CS",  "Carbon Storage"),
-           goal = str_replace_all(goal, "CP",  "Coastal Protection"),
-           goal = str_replace_all(goal, "LE",  "Livelihoods and Economies"),
-           goal = str_replace_all(goal, "LIV", "Coastal Livelihoods"),
-           goal = str_replace_all(goal, "ECO", "Coastal Economies"),
-           goal = str_replace_all(goal, "TR",  "Tourism and Recreation"),
-           goal = str_replace_all(goal, "LSP", "Lasting Special Places"),
-           goal = str_replace_all(goal, "ICO", "Iconic Species"),
-           goal = str_replace_all(goal, "CW",  "Clean Waters"),
-           goal = str_replace_all(goal, "BD",  "Biodiversity"),
-           goal = str_replace_all(goal, "SPP", "Species"),
-           goal = str_replace_all(goal, "SP",  "Sense of Place"),
-           goal = str_replace_all(goal, "HAB", "Habitats"))
   
   ## display ----
   
-  # header, flower
-  cat(sprintf('## %s\n\n![](%s)\n\n', unique(rid_score$country), r$flower_png))
+  ## header, flower
+  cat(sprintf('## %s\n\n![](%s)\n\n', unique(r_scores$region_name), "hello!")) #r$flower_png))
   
-  kable(rid_score %>% select(-country)) %>%
+  ## table
+  kable(r_scores_ordered %>% 
+          select(-region_name, -goal) %>%
+          rename(goal = long_goal)) %>%
     print()
   cat('\n\n')
 #  cat('----')

@@ -1,23 +1,21 @@
-name: "Global Ocean Health Index"
+name: Global Ocean Health Index
 navbar:
-  title: "GLOBAL"
+  title: GLOBAL
   left:
-#    - text: "Data Explorer"
-#      href: app.html
-    - text: "Layers"
-      href: layers.html
-    - text: "Goals"
-      href: goals.html
-    - text: "Scores"
-      href: scores.html
-    - text: "Download"
-      href: download.html
-output_dir: "."
+  - text: Layers
+    href: layers.html
+  - text: Goals
+    href: goals.html
+  - text: Scores
+    href: scores.html
+  - text: Download
+    href: download.html
+output_dir: .
 output:
   html_document:
     theme: yeti
     highlight: textmate
-#    include:
-#      after_body: _footer.html
-    css:
-      - "_sass/main.css"
+    css: _sass/main.css
+    lib_dir: site_libs
+    self_contained: no
+
