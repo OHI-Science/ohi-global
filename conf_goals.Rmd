@@ -10,10 +10,10 @@ library(tidyr)
 # setwd('eez/conf/web')
 
 # data with information
-layers <- read.csv("../../../eez_layers_meta_data/layers_eez_base.csv")
-targets <- read.csv("../../../eez_layers_meta_data/layers_eez_targets.csv")
+layers <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv")
+targets <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_targets.csv")
 layers_web <- "http://ohi-science.org/ohi-global/layers.html"
-
+short_goal_web <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/goal_descriptions_short"
 
 # function to grab the info needed for the data layers
 data_grab <- function(goal_code = "FIS", dims = c("status", "trend")){
@@ -37,8 +37,17 @@ cat(paste(st_layers$info, collapse="\n\n"))
 
 ## Food Provision: Fisheries
 
-```{r, child='../../../global_supplement/goal_descriptions_short/FIS.Rmd', results='asis', echo=FALSE}
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "FIS.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+
 
 ### Data used in model
 
@@ -49,7 +58,6 @@ cat(paste(st_layers$info, collapse="\n\n"))
 data_grab(goal_code = "FIS", dims = c("status", "trend"))
 
 ```
-
 
 **Pressure**
 
@@ -71,8 +79,16 @@ data_grab(goal_code = "FIS", dims = "resilience")
 
 ## Food Provision: Mariculture
 
-```{r, child='../../../global_supplement/goal_descriptions_short/MAR.Rmd', results='asis', echo=FALSE}
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "MAR.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 ### Data used in model
 **Status & trend**
@@ -105,8 +121,17 @@ data_grab(goal_code = "MAR", dims = "resilience")
 
 ## Artisanal Fishing Opportunity 
 
-```{r, child='../../../global_supplement/goal_descriptions_short/AO.Rmd', results='asis', echo=FALSE}
+
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "AO.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 ### Data used in model
 
@@ -139,8 +164,16 @@ data_grab(goal_code = "AO", dims = "resilience")
 
 ## Natural Products
 
-```{r, child='../../../global_supplement/goal_descriptions_short/NP.Rmd', results='asis', echo=FALSE}
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "NP.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 ### Data used in model
 
@@ -173,8 +206,17 @@ data_grab(goal_code = "NP", dims = "resilience")
 
 ## Carbon Storage
 
-```{r, child='../../../global_supplement/goal_descriptions_short/CS.Rmd', results='asis', echo=FALSE}
+
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "CS.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 ### Data used in model
 
@@ -209,9 +251,17 @@ data_grab(goal_code = "CS", dims = "resilience")
 
 ## Coastal Protection
 
-```{r, child='../../../global_supplement/goal_descriptions_short/CP.Rmd', results='asis', echo=FALSE}
-```
 
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "CP.Rmd"), x) 
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 ### Data used in model
 
@@ -245,8 +295,16 @@ data_grab(goal_code = "CP", dims = "resilience")
 
 ## Tourism & Recreation
 
-```{r, child='../../../global_supplement/goal_descriptions_short/TR.Rmd', results='asis', echo=FALSE}
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "TR.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 ### Data used in model
 
@@ -281,9 +339,16 @@ data_grab(goal_code = "TR", dims = "resilience")
 
 ## Livelihoods & Economies: Livelihoods
 
-```{r, child='../../../global_supplement/goal_descriptions_short/LIV.Rmd', results='asis', echo=FALSE}
-```
+```{r, echo=FALSE, results='hide'}
 
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "LIV.Rmd"), x) 
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 ### Data used in model
 
 **Status & trend**
@@ -315,8 +380,16 @@ data_grab(goal_code = "LIV", dims = "resilience")
 
 ## Livelihoods & Economies: Economies
 
-```{r, child='../../../global_supplement/goal_descriptions_short/ECO.Rmd', results='asis', echo=FALSE}
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "ECO.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 
 ### Data used in model
@@ -350,9 +423,16 @@ data_grab(goal_code = "ECO", dims = "resilience")
 ---- 
 
 ## Sense of Place: Iconic Species
+```{r, echo=FALSE, results='hide'}
 
-```{r, child='../../../global_supplement/goal_descriptions_short/ICO.Rmd', results='asis', echo=FALSE}
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "ICO.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 ### Data used in model
 
@@ -386,8 +466,16 @@ data_grab(goal_code = "ICO", dims = "resilience")
 
 ## Sense of Place: Lasting Special Places
 
-```{r, child='../../../global_supplement/goal_descriptions_short/LSP.Rmd', results='asis', echo=FALSE}
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "LSP.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 
 ### Data used in model
@@ -423,8 +511,16 @@ data_grab(goal_code = "LSP", dims = "resilience")
 
 ## Clean Waters
 
-```{r, child='../../../global_supplement/goal_descriptions_short/CW.Rmd', results='asis', echo=FALSE}
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "CW.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 
 ### Data used in model
@@ -459,9 +555,16 @@ data_grab(goal_code = "CW", dims = "resilience")
 ---- 
 
 ## Biodiversity: Species
+```{r, echo=FALSE, results='hide'}
 
-```{r, child='../../../global_supplement/goal_descriptions_short/SPP.Rmd', results='asis', echo=FALSE}
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "SPP.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 ### Data used in model
 
@@ -495,8 +598,16 @@ data_grab(goal_code = "SPP", dims = "resilience")
 
 ## Biodiversity: Habitats
 
-```{r, child='../../../global_supplement/goal_descriptions_short/HAB.Rmd', results='asis', echo=FALSE}
+```{r, echo=FALSE, results='hide'}
+
+        x <- tempfile(fileext = 'Rmd')
+        on.exit(unlink(x))
+        download.file(file.path(short_goal_web, "HAB.Rmd"), x) 
 ```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
 
 ### Data used in model
 
