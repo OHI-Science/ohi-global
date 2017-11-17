@@ -1,9 +1,13 @@
 ---
-title: "Annual OHI global assessments"
+title: "Annual global OHI assessments"
 output:
   html_document:
     fig_width: 1
 ---
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+# source("./_site.R") ## hack to get website up. Redo with new ohirepos approach and ohirepos filepaths
+```
 
 <!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
 Put in your css file or directly in rmarkdown--->
@@ -15,9 +19,18 @@ Put in your css file or directly in rmarkdown--->
   }
 </style>
 
+<br>
+<center>
+<font color="red">Coming soon...2017 scores from the sixth annual global OHI assessment</font>  
+
+</center>
 
 <br>
-2017 marks the sixth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. After the fifth consecutive assessment in 2016, we also explored trends and trajectories in ocean health and assessed how well the Ocean Health Index has performed as an indicator. Learn more about the 2016 assessment:
+2016 marks the fifth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. Completing the fifth consecutive year of the global ocean health assessment provided an opportunity to explore trends and trajectories in ocean health as well as assess how well the Ocean Health Index has performed as an indicator.  
+
+
+<center>
+
 • [**Halpern *et al*. 2017, *PLoS ONE***](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267) • [**interactive figures and maps**](http://ohi-science.nceas.ucsb.edu/plos_change_in_global_ocean_health/) • [**Open Channels webinar**](https://www.openchannels.org/webinars/2017/drivers-and-implications-change-global-ocean-health-demonstrated-ocean-health-index) •
 </center>
 
@@ -27,19 +40,19 @@ Put in your css file or directly in rmarkdown--->
 ```{r fig.width=5, fig.height=5,echo=FALSE}
 library(png)
 library(grid)
-img <- png::readPNG('flower_Globalaverage2017.png') # hack to get website up 
+img <- png::readPNG('flower_GLOBAL_2016.png') # hack to get website up 
 grid.raster(img)
 ```
-
 <br>
 <br>
 <br>
-**The average 2017 Index score was 70 out of 100**.  
-Average Index scores have not dramatically changed over six years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.   
+<br>
+<br>
+<br>
+**The average 2016 Index score was 71 out of 100**.  
+Average Index scores have not dramatically changed over five years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.   
 <br> 
 
-- [Read the 2017 Scores Report]()
-- [Read the 2017 Methods](https://cdn.rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html)
 - [Learn about the goals](http://ohi-science.org/ohi-global/goals)    
 - [Explore scores by region and goal](http://ohi-science.org/ohi-global/scores)    
 - [Download data](http://ohi-science.org/ohi-global/download) 
