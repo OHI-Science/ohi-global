@@ -1,7 +1,16 @@
+---
+output: html_document
+csl: methods-in-ecology-and-evolution.csl
+bibliography: OHI.bib
+---
+
 **Data layers used in the OHI 2017 global assessment**
+
 These data layers were used to calculate the OHI 2017 assessment.  Clicking on the layer name in the "Data layer" variable will provide a full description of the data layer (as well as a link to the actual data).  The "Description" variable provides links to the scripts (on Github) used to create the data layers (when available).
 
-```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, messages=FALSE}
+```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+library(tidyverse)
+library(kable)
 
 ## Get list of layers, name, description:
 base <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv") %>%
