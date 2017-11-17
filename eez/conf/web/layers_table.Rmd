@@ -10,7 +10,7 @@ These data layers were used to calculate the OHI 2017 assessment.  Clicking on t
 
 ```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 library(tidyverse)
-library(kable)
+library(knitr)
 
 ## Get list of layers, name, description:
 base <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv") %>%
