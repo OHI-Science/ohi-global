@@ -1,0 +1,74 @@
+**Data layers used in the OHI 2017 global assessment**
+These data layers were used to calculate the OHI 2017 assessment.  Clicking on the layer name in the "Data layer" variable will provide a full description of the data layer (as well as a link to the actual data).  The "Description" variable provides links to the scripts (on Github) used to create the data layers (when available).
+
+```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+library(tidyverse)
+library(knitr)
+## Get list of layers, name, description:
+base <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv") %>%
+  mutate(Name = paste0("[", name, "](", "http://ohi-science.org/ohi-global/layers#", layer, ")")) %>%
+  select(layer, Name, Description = description)
+
+## Get dimension/targets
+target <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_targets.csv", stringsAsFactors = FALSE) %>%
+  mutate(goal = ifelse(dimension %in% c("pressure", "resilience", "spatial", "weighting"), dimension, goal)) %>%
+  select(layer, goal) %>%
+  unique() %>%
+  group_by(layer) %>%
+  summarize(Dimension = paste(goal, collapse = ", "))
+
+# setdiff(base$layer, target$layer) # the sp_alien_species ends up not being used, hab_softbottom_extent is used as a data check in HAB (ok that these are listed)
+# setdiff(target$layer, base$layer)
+
+data <- left_join(target, base, by="layer")
+
+## Get data prep url (will be a link in description)
+url <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_methods.csv") %>%
+  filter(variable == "dataprep_url_2017") %>%
+  group_by(layer) %>%
+  mutate(N = 1) %>%
+  mutate(method_count = cumsum(N)) %>%
+  mutate(total_methods = sum(N)) %>%
+  mutate(count = sum(N)) %>%
+  mutate(url_link = ifelse(count==1,  paste0("[data prep]", "(", variable_data, ")"), 
+                           paste0("[data prep ", method_count, "](", variable_data, ")"))) %>%
+  summarize(url_link = paste(url_link, collapse = ", ")) %>%
+  select(layer, url_link) %>%
+  ungroup()
+
+data <- left_join(data, url, by="layer") %>%
+  mutate(Description = paste0(Description, " (", url_link, ")")) %>%
+  select(layer, Name, Description, Dimension)
+
+## get references:
+refs <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_methods.csv") %>%
+  filter(variable == "ds_reference") %>%
+  select(layer, variable_data) %>%
+  unique() %>%
+  mutate(ref = paste0("@", variable_data)) %>%
+  group_by(layer) %>%
+  summarize(reference = paste(ref, collapse = "; ")) %>%
+  ungroup() %>%
+  #mutate(reference = paste0("[", reference, "]")) %>%
+  select(layer, References=reference)
+
+# setdiff(data$layer, refs$layer) # these are reasonable layers to not have references
+
+data <- data %>%
+  left_join(refs, by="layer")
+
+### Get method updates
+updates <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_methods.csv") %>%
+  filter(variable == "methods_update_2017") %>%
+  select(layer, Updates=variable_data) %>%
+  unique()
+
+data <- data %>%
+  left_join(updates, by="layer") %>%
+  select(-layer) %>%
+  select(Layer=Name, Description, Dimension, References, "2017 Updates" = Updates) %>%
+  arrange(Dimension)
+
+kable(data)
+
+```
