@@ -33,19 +33,33 @@ if (RCurl::url.exists(conf_csv))   goals  <- readr::read_csv(conf_csv)
 weight <- goals %>%
   select(goal, weight)
 
-## save local copy of conf/web/goals.Rmd
-conf_goals_rmd <- file.path(dir_scenario_gh, 'conf/web/goals.Rmd')
 
-if (RCurl::url.exists(conf_goals_rmd)) {
-  conf_goals <- readr::read_lines(conf_goals_rmd)
-  readr::write_lines(conf_goals, path = 'conf_goals.Rmd', append = FALSE)
+## save local copies of Rmds to knit-child ----
+
+dir_raw_draft <- 'https://raw.githubusercontent.com/OHI-Science/ohi-global/draft'
+
+to_copy <- c('eez/conf/web/goals.Rmd',
+             'eez/conf/web/layers_all.Rmd',
+             'eez/conf/web/layers_table.Rmd',
+             'global_supplement/OHI.bib',
+             'global_supplement/methods-in-ecology-and-evolution.csl')
+
+
+for (f in to_copy) { # f <-  'global_supplement/OHI.bib'
+
+  fp <- file.path(dir_raw_draft, f)
+
+  ## if the url exists, save a copy.
+  if (RCurl::url.exists(fp)) {
+    f_web   <- readr::read_lines(fp)
+    if ( tools::file_ext(fp) == 'Rmd' ) {
+      f_local <- paste0('local_', basename(fp))
+    } else {
+      f_local <- basename(fp)
+    }
+    readr::write_lines(f_web, path = f_local, append = FALSE)
+    message(sprintf('saving %s', f_local))
+  } else {
+    message(sprintf('%s does not exist', fp))
+  }
 }
-
-## save local copy of conf/web/layers_all.Rmd
-layers_all_rmd <- file.path(dir_scenario_gh, 'conf/web/layers_all.Rmd')
-
-if (RCurl::url.exists(layers_all_rmd)) {
-  layers_all <- readr::read_lines(layers_all_rmd)
-  readr::write_lines(layers_all, path = 'layers_all.Rmd', append = FALSE)
-}
-

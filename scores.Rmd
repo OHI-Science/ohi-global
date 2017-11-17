@@ -7,54 +7,60 @@ output:
 #    keep_md: true
 ---
 
-Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index score. Methods have incrementally improved each year with new information and knowledge. Thus, for annual scores to be comparable through time, previous scores are recalculated with the most recent methods for each past assessment year. **All scores below use 2016 methods**.
+Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index score. Methods have incrementally improved each year with new information and knowledge. Thus, for annual scores to be comparable through time, previous scores are recalculated with the most recent methods for each past assessment year. **All scores below use the 2017 methods**.
 
-Below are five years of global assessment scores for 220 regions (coastal nations and territories). <!---could bring back the Regions page to be only linked from here---> Flower plots display the 2016 scores, with each petal representing an individual goal. Petal lengths convey the score of the goal, thus longer petals are closer to achieving their target. Only goals that are relevant to a region are scored, otherwise they are set to NA with grey petals. All scores are on a scale from 0-100, and the center number is the region's Index score.
+Below are six years of global assessment scores for 220 regions (coastal nations and territories). <!---could bring back the Regions page to be only linked from here---> Flower plots display the 2017 scores, with each petal representing an individual goal. Petal lengths convey the score of the goal, thus longer petals are closer to achieving their target. Only goals that are relevant to a region are scored, otherwise they are set to NA with grey petals. All scores are on a scale from 0-100, and the center number is the region's Index score.
 
 ----
 
-```{r plot flowers for current scenario year}
-## add code here
-source('_site.R')
-```
-
-```{r table all years, results='asis'}
+```{r table all years, warning=FALSE, message=FALSE, echo=FALSE, results='asis'}
 library(tidyverse)
+source('_site.R')
 
+## read in scores
 data <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-9.csv') 
 
+## read in paths for figures
+regions_figs <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/conf/web/regions_figs.csv')
+
+## list of regions, with flower pngs
 regions <- data %>%
-  select(region_id, region_name) %>%
-  distinct()
+  select(region_id) %>%
+  distinct() %>%
+  left_join(regions_figs, by = ('region_id'))
 
 
 ## loop through and display each rgn_id
-for (r in regions$region_id){ # r = regions$region_id[1]
+for (r in 0:3) { #regions$region_id){ # r = regions$region_id[1]
   
   ## filter region_id and transpose
   r_scores <- data %>% 
     filter(region_id == r,
            dimension == 'score') %>%
-    select(-region_id, -dimension) %>% # maybe move this outside the for loop?
+    select(-region_id, -dimension) %>%
     spread(scenario, value)
   
-  ## reorder as set in conf/goals.csv
-  conf_csv   <- file.path(dir_scenario_gh, 'conf/goals.csv')
-goals  <- readr::read_csv(conf_csv)
-
   r_scores_ordered <- data_frame(goal = c('Index', goals$goal)) %>%
-      left_join(r_scores, by='goal')
+    left_join(r_scores, by='goal') %>%
+    select(-region_name, -goal) %>%
+    rename(goal = long_goal)
   
   
   ## display ----
   
+  ## full flower filepath
+  
+  
+  flower_path <- file.path(
+    'https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Results',
+    regions$flower_png[regions$region_id == r])
+  
   ## header, flower
-  cat(sprintf('## %s\n\n![](%s)\n\n', unique(r_scores$region_name), "hello!")) #r$flower_png))
+  cat(sprintf('## %s\n\n![](%s)\n\n', 
+              unique(r_scores$region_name), flower_path))
   
   ## table
-  kable(r_scores_ordered %>% 
-          select(-region_name, -goal) %>%
-          rename(goal = long_goal)) %>%
+  kable(r_scores_ordered) %>%
     print()
   cat('\n\n')
 #  cat('----')

@@ -1,0 +1,12 @@
+---
+title: "Layers Table"
+output: html_document
+csl: methods-in-ecology-and-evolution.csl
+bibliography: OHI.bib
+---
+
+----
+
+```{r, child="local_layers_table.Rmd"}
+library(tidyverse)
+```
