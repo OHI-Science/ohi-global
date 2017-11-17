@@ -2,10 +2,10 @@ name: Global Ocean Health Index
 navbar:
   title: GLOBAL
   left:
-  - text: Layers
-    href: layers_table.html
   - text: Goals
     href: goals.html
+#  - text: Layers
+#    href: layers_table.html
   - text: Scores
     href: scores.html
   - text: Download
