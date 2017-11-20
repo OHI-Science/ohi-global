@@ -78,12 +78,12 @@ rgn_names <- read.csv(sprintf('../../eez/layers/rgn_global.csv', scenario)) %>%
   dplyr::mutate(country = as.character(country))
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2017-11-15' #date extension on data files used for all tables/figures
+dateFile = '2017-11-20' #date extension on data files used for all tables/figures
 
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
-update_data = TRUE           # This will update the dataset used to create figures/tables
-map_create = FALSE            # Updates the map figures (takes a while to run)
+update_data = FALSE           # Select true if there are updates to the OHI data!!  Also be sure to change dateFile above
+map_create = TRUE            # Updates the map figures (takes a while to run)
 goal_hists = TRUE            # Updates the goal histograms
 flower_plots = TRUE         # Updates the flower plot figures
 
@@ -109,7 +109,7 @@ ohi_final_formatted <- read.csv("../../eez/scores.csv") %>%
   left_join(goal_names, by="goal") %>%
   select(scenario=year, goal, long_goal, dimension, region_id, region_name=country, value=score)
 
-write.csv(ohi_final_formatted, sprintf("../OHI_final_formatted_scores_%s.csv", dateFile), row.names=FALSE)
+write.csv(ohi_final_formatted, sprintf("../OHI_final_formatted_scores_%s.csv", Sys.Date()), row.names=FALSE)
 
 ## create a version of data with region index scores wide
 ohi_final_wide <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile)) %>%
@@ -125,7 +125,7 @@ ohi_final_wide <- ohi_final_wide %>%
   spread(scenario, value) %>%
   left_join(ohi_final_avg, by = "region_id")
 
-write.csv(ohi_final_wide, sprintf("data/Index_wide_all_years_%s.csv", dateFile), row.names=FALSE)
+write.csv(ohi_final_wide, sprintf("data/Index_wide_all_years_%s.csv", Sys.Date()), row.names=FALSE)
 
 ### create a version of the data that averages all years of scores
 ### so the best/worst overall can be identified
@@ -141,7 +141,7 @@ index_avg_spread <- spread(index_avg, goal, avg_score) %>%
   arrange(-Index) %>%
   data.frame()
 
-write.csv(index_avg_spread, sprintf("data/avg_goal_scores_%s.csv", dateFile), row.names=FALSE)
+write.csv(index_avg_spread, sprintf("data/avg_goal_scores_%s.csv", Sys.Date()), row.names=FALSE)
 
 ```
 
