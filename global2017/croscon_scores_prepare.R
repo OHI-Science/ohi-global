@@ -8,20 +8,20 @@ dateFile = '2017-11-20'
 # list of goals:
 goalList <- c('AO', 'BD', 'CP', 'CS', 'CW', 'ECO', 'FIS', 'FP', 'HAB', 'ICO', 'LE', 'LIV', 'LSP', 'MAR', 'NP', 'SP', 'SPP', 'TR')
 
-
+setwd("global2017")
 ## currently pair 2015 Antarctica and 2014 HS data with 2014-2017 EEZ analysis
 
 ###########################################################
 ## Antarctica data: only gets reported as one summary value:
 ###########################################################
 
-antarctica <- read.csv('../../antarctica2015/scores.csv', stringsAsFactors=FALSE) %>%
+antarctica <- read.csv('../antarctica2015/scores.csv', stringsAsFactors=FALSE) %>%
   filter(region_id == 0) %>%
   mutate(region_id = 213) 
 
 # use this to fill in missing values:
 allGoals_ant <- rbind(expand.grid(region_id = 213, 
-                                  scenario = 2012:2016,
+                                  scenario = 2012:2017,
                             goal = goalList, 
                             dimension = c('future', 'score', 'status', 'pressures', 'resilience', 'trend')), 
                       expand.grid(region_id = 213, 
@@ -42,7 +42,7 @@ antarctica_all <- antarctica_all %>%
 ###########################################################
 ## High Seas data
 ###########################################################
-hs <- read.csv('../../highseas2014/scores.csv', stringsAsFactors=FALSE) %>%
+hs <- read.csv('../highseas2014/scores.csv', stringsAsFactors=FALSE) %>%
   filter(region_id != 0)   
 
 # use this to fill in missing values:
@@ -70,10 +70,10 @@ hs_all <- hs_all %>%
 ## EEZ data
 ###########################################################
 ### area data
-area <- read.csv('../../eez/layers/rgn_area.csv') %>%
+area <- read.csv('../eez/layers/rgn_area.csv') %>%
   select(region_id=rgn_id, area_km2)
 
-eez <- read.csv('../../eez/scores.csv', stringsAsFactors=FALSE)
+eez <- read.csv('../eez/scores.csv', stringsAsFactors=FALSE)
 
 eez <- eez %>%
   mutate(region_id = ifelse(region_id==0, 300, region_id)) %>%
@@ -104,10 +104,14 @@ all <- all %>%
 radical <- all %>%
   arrange(scenario, goal, dimension, region_id)
 
-write.csv(radical, sprintf('../radical_%s.csv', dateFile), row.names=FALSE, na="")
+write.csv(radical, sprintf('croscon_ohi_scores_%s.csv', dateFile), row.names=FALSE, na="")
 
 ## check against last year's dimensions
 
-tmp <- filter(radical, scenario %in% 2012:2016) # yep...matches
+tmp <- filter(radical, scenario %in% 2012:2016) # yep...matches, 130360
+dim(tmp)
 
-
+# these should all be the same
+table(radical$region_id > 250, radical$goal)
+table(radical$region_id ==213, radical$goal)
+table(radical$region_id <=250, radical$goal)
