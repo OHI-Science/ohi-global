@@ -70,7 +70,7 @@ rgn_names <- read.csv('../../eez/layers/rgn_global.csv') %>%
   dplyr::mutate(country = as.character(country))
 
 
-saveDate = '2017-11-20' #date extension on the radical data files that are used for all tables/figures
+saveDate = '2017-11-22' #date extension on the radical data files that are used for all tables/figures
 
 ```
 

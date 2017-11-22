@@ -3,7 +3,7 @@
 ###########################################
 library(dplyr)
 saveFile = "global2017"
-dateFile = '2017-11-20'
+dateFile = '2017-11-22'
 
 # list of goals:
 goalList <- c('AO', 'BD', 'CP', 'CS', 'CW', 'ECO', 'FIS', 'FP', 'HAB', 'ICO', 'LE', 'LIV', 'LSP', 'MAR', 'NP', 'SP', 'SPP', 'TR')
@@ -115,3 +115,4 @@ dim(tmp)
 table(radical$region_id > 250, radical$goal)
 table(radical$region_id ==213, radical$goal)
 table(radical$region_id <=250, radical$goal)
+table(radical$scenario)
