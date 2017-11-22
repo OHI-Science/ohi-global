@@ -5,7 +5,7 @@ library(tidyr)
 library(ggplot2)
 library(RColorBrewer)
 
-setwd("global2017/Reporting")
+setwd("global2017/Results")
 
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
 goal_names <- data.frame(goal=goals, long_goal=c("Index", 

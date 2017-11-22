@@ -78,10 +78,6 @@ goal_names2 <- data.frame(goal=goals, long_goal=c("Index",
 
 ## General settings to control
 scenario <- "2017" #identify scenario of focus (this can be changed to obtain data for other years)
-# benchmark = 2016  # year that is used for old vs. new OHI analyses
-# oldCommit = '1d4dcb1abb82dc1d20817acca33c7e7d2ef1b52f' # '4da6b4a1d69d694264ea68456359a939b0c03f9c' = commit for 2014 analysis
-# colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
-# saveFile <- 'global2016' #location where files that are created are to be saved
 
 ## General files to load
 rgn_names <- read.csv('../../eez/layers/rgn_global.csv') %>%
@@ -89,7 +85,7 @@ rgn_names <- read.csv('../../eez/layers/rgn_global.csv') %>%
   dplyr::mutate(country = as.character(country))
 
 
-radicalFile = '2017-11-20' #date extension on the radical data files that are used for all tables/figures
+radicalFile = '2017-11-22' #date extension on the radical data files that are used for all tables/figures
 
 ```
 
