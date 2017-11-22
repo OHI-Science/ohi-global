@@ -127,6 +127,21 @@ ohi_final_wide <- ohi_final_wide %>%
 
 write.csv(ohi_final_wide, sprintf("data/Index_wide_all_years_%s.csv", Sys.Date()), row.names=FALSE)
 
+### create a version of the data that averages all years of scores
+### so the best/worst overall can be identified
+index_avg <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile), stringsAsFactors = FALSE) %>%
+  filter(dimension == "score") %>%
+  group_by(goal, region_id, region_name) %>%
+  summarize(avg_score = mean(value, na.rm=TRUE)) %>%
+  ungroup()
+
+index_avg$goal <- factor(index_avg$goal, levels = goals)
+
+index_avg_spread <- spread(index_avg, goal, avg_score) %>%
+  arrange(-Index) %>%
+  data.frame()
+
+write.csv(index_avg_spread, sprintf("data/avg_goal_scores_%s.csv", Sys.Date()), row.names=FALSE)
 
 ```
 
