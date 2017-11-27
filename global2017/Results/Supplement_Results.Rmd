@@ -113,9 +113,9 @@ kable(data)
 
 ### Datasets and additional information
 
-See the [Methods](link here) document for more information about the models and data used to calculate the global Ocean Health Index.
+See the [Methods](https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
 
-A CSV formatted dataset from the 2017 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-20.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 6 assessment years (2012-2017). See [README](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/README.html) for description of data.
+A CSV formatted dataset from the 2017 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-22.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 6 assessment years (2012-2017). See [README](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/README.html) for description of data.
 
 <!--The data layers (described in section 6 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2016.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
 

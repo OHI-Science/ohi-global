@@ -82,10 +82,10 @@ dateFile = '2017-11-22' #date extension on data files used for all tables/figure
 
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
-update_data = TRUE           # Select true if there are updates to the OHI data!!  Also be sure to change dateFile above
-map_create = TRUE            # Updates the map figures (takes a while to run)
+update_data = FALSE           # Select true if there are updates to the OHI data!!  Also be sure to change dateFile above
+map_create = FALSE            # Updates the map figures (takes a while to run)
 goal_hists = TRUE            # Updates the goal histograms
-flower_plots = TRUE         # Updates the flower plot figures
+flower_plots = FALSE         # Updates the flower plot figures
 
 ```
 
