@@ -7,10 +7,12 @@
 library(dplyr)
 library(tidyr)
 
+file.remove("eez/conf/web/layers_all.Rmd")
+
 ######################################################
 ### Rmd file header information
 #######################################################
-tmp <- capture.output(cat("---", 
+tmp <- capture.output(cat("---",
                           "\ntitle: Layers descriptions",
                           "\noutput:",
                           "\n  html_document:",
@@ -21,6 +23,8 @@ tmp <- capture.output(cat("---",
                           "\n---"))
 
 write(tmp, "eez/conf/web/layers_all.Rmd")
+
+
 
 ######################################################
 ### Load libraries in Rmd
