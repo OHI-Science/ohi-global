@@ -18,20 +18,20 @@ library(tidyverse)
 source('_site.R')
 
 ## read in scores
-data <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-9.csv') 
+data <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-22.csv') 
 
 ## read in paths for figures
 regions_figs <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/conf/web/regions_figs.csv')
 
 ## list of regions, with flower pngs
 regions <- data %>%
-  select(region_id) %>%
-  distinct() %>%
-  left_join(regions_figs, by = ('region_id'))
+  dplyr::select(region_id) %>%
+  dplyr::distinct() %>%
+  dplyr::left_join(regions_figs, by = ('region_id'))
 
 
 ## loop through and display each rgn_id
-for (r in 0:3) { #regions$region_id){ # r = regions$region_id[1]
+for (r in regions$region_id){ # r = regions$region_id[1]
   
   ## filter region_id and transpose
   r_scores <- data %>% 
@@ -65,6 +65,7 @@ for (r in 0:3) { #regions$region_id){ # r = regions$region_id[1]
   cat('\n\n')
 #  cat('----')
 }
+
 ```
 
 [<img src="https://docs.google.com/drawings/d/1633uvIYgsBhiKBddQAaTlvYDJgOK1uiDB6wkooNyhFc/pub?w=576&h=288" width="100px">](http://ohi-science.org)  

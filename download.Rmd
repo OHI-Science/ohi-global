@@ -20,7 +20,7 @@ Put in your css file or directly in rmarkdown--->
 </style>
 
 <br>
-Global assessments require synthesizing highly heterogeneous information that is freely available from nearly one hundred sources. Data from each source are prepared and modeled using freely available coding and version control software. You may freely download and use any data, code, or instructional guides, but please see our [Citation Policy](http://ohi-science.org/citation-policy/).  
+Global OHI assessments require synthesizing highly heterogeneous information that is freely available from nearly one hundred sources. Data from each source are prepared and modeled using freely available coding and version control software. You may freely download and use any data, code, or instructional guides, but please see our [Citation Policy](http://ohi-science.org/citation-policy/).  
 
 With each annual global assessment we have incrementally improved data processing and modeling methods based on new information, knowledge, and feedback. Thus, for annual scores to be comparable with previous years, we recalculate previous assessments with the most recent methods for each past assessment year. All code and most data are available online on GitHub.  
 
@@ -31,13 +31,13 @@ With each annual global assessment we have incrementally improved data processin
 
 Quick access to *.csv* files of calculated global scores.
 
-- [Download by clicking here](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-9.csv), then right-click to Save As.  
-- View the [metadata for these files](https://github.com/OHI-Science/ohi-global/blob/draft/global2017/Reporting/data#global-scores-metadata). <!--- change to  ohi-global/global2017/README.md --->
+- [Download by clicking here](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-22.csv), then right-click to Save As.  
+- [View the metadata](https://github.com/OHI-Science/ohi-global/tree/draft/global2017#ohi-2017-global-metadata).
 
 **Documentation and Instruction**
 
-- [2016 Global OHI Scores Report]() 
-- [2017 Methods](https://cdn.rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html)
+- [2017 Global OHI Scores Report](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/Supplement_Results.html) 
+- [2017 Methods](https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html)
 - [Peer-reviewed publications](http://ohi-science.org/resources/publications/) 
 - [Assessment manual (how to use `ohicore`)](http://ohi-science.org/manual)
 
