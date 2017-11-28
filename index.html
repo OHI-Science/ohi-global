@@ -11,7 +11,7 @@
 
 
 
-<title>Annual global OHI assessments</title>
+<title>Annual OHI global assessments</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,7 +34,7 @@ if (window.hljs) {
   hljs.configure({languages: []});
   hljs.initHighlightingOnLoad();
   if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlightingOnLoad(); }, 0);
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
   }
 }
 </script>
@@ -182,6 +182,9 @@ $(document).ready(function () {
   <a href="goals.html">Goals</a>
 </li>
 <li>
+  <a href="layers_table.html">Layers</a>
+</li>
+<li>
   <a href="scores.html">Scores</a>
 </li>
 <li>
@@ -199,51 +202,43 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Annual global OHI assessments</h1>
+<h1 class="title toc-ignore">Annual OHI global assessments</h1>
 
 </div>
 
 
 <!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
-Put in your css file or directly in rmarkdown--->
+  Put in your css file or directly in rmarkdown--->
 <style>
   .col2 {
     columns: 2 200px;         /* number of columns and width in pixels*/
-    -webkit-columns: 2 200px; /* chrome, safari */
-    -moz-columns: 2 200px;    /* firefox */
+      -webkit-columns: 2 200px; /* chrome, safari */
+      -moz-columns: 2 200px;    /* firefox */
   }
 </style>
-<br>
-<center>
-<p><font color="red">Coming soon…2017 scores from the sixth annual global OHI assessment</font></p>
-</center>
-<p><br> 2016 marks the fifth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. Completing the fifth consecutive year of the global ocean health assessment provided an opportunity to explore trends and trajectories in ocean health as well as assess how well the Ocean Health Index has performed as an indicator.</p>
+<p><br> 2017 marks the sixth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. For the fifth consecutive assessment in 2016, we also explored trends and trajectories in ocean health:</p>
 <center>
 • <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267"><strong>Halpern <em>et al</em>. 2017, <em>PLoS ONE</em></strong></a> • <a href="http://ohi-science.nceas.ucsb.edu/plos_change_in_global_ocean_health/"><strong>interactive figures and maps</strong></a> • <a href="https://www.openchannels.org/webinars/2017/drivers-and-implications-change-global-ocean-health-demonstrated-ocean-health-index"><strong>Open Channels webinar</strong></a> •
 </center>
 <hr />
 <div class="col2">
-<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="480" /> <br> <br> <br> <br> <br> <br> <strong>The average 2016 Index score was 71 out of 100</strong>.<br />
-Average Index scores have not dramatically changed over five years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.<br />
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="480" /></p>
+<p><br> <br> <br> <strong>The average 2017 Index score was 70 out of 100</strong>.<br />
+Average Index scores have not dramatically changed over six years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.<br />
 <br></p>
 <ul>
 <li><a href="http://ohi-science.org/ohi-global/goals">Learn about the goals</a><br />
 </li>
+<li><a href="https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/Supplement_Results.html">Read the 2017 results summary</a></li>
 <li><a href="http://ohi-science.org/ohi-global/scores">Explore scores by region and goal</a><br />
 </li>
 <li><a href="http://ohi-science.org/ohi-global/download">Download data</a></li>
+<li><a href="https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html">Dig deeper with the 2017 methods</a></li>
 <li><a href="http://www.oceanhealthindex.org/">Learn more at oceanhealthindex.org</a></li>
 </ul>
 </div>
-<p>The OHI framework has not changed since its inception in 2012 (<a href="http://www.nature.com/nature/journal/v488/n7413/full/nature11397.html"><em>Halpern et al. 2012</em></a>). We continue to assess ocean health based on the sustainable delivery of 10 goals that are of importance to humans. We score each goal on a scale of 0-100 based on current status, trend, and external pressures and resilience measures. Scores are calculated for each coastal nation before being combined together. However, the OHI benefits from constant evaluation and improvement aimed at incorporating new knowledge, data and understanding, and underlying methods for some goals have been upgraded.<br />
-For further details, see <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117863"><em>Halpern et al. 2015</em></a>, <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267"><em>Halpern et al. 2017</em></a>, <a href="https://peerj.com/articles/1503"><em>Lowndes et al. 2015</em></a>, and <a href="https://www.nature.com/articles/s41559-017-0160"><em>Lowndes et al. 2017</em></a>. <br> <br> <a href="http://ohi-science.org"><img src="https://docs.google.com/drawings/d/1633uvIYgsBhiKBddQAaTlvYDJgOK1uiDB6wkooNyhFc/pub?w=576&h=288" width="150px"></a><br />
-<a href="http://ohi-science.org">ohi-science.org home</a></p>
-<!--- TODO:
-Show a static map of 2016 scores instead of the regions. c
-
-Explore more on the Data Explorer page
-Download on the download page...
---->
+<p>The OHI framework has not changed since its inception in 2012 (<a href="http://www.nature.com/nature/journal/v488/n7413/full/nature11397.html"><em>Halpern et al. 2012</em></a>). We continue to assess ocean health based on the sustainable delivery of a suite of goals that are important to humans. We score each goal on a scale of 0-100 based on current status, trend, and external pressures and resilience measures. Scores are calculated for each coastal nation before being combined together. However, the OHI benefits from constant evaluation and improvement aimed at incorporating new knowledge, data and understanding, and underlying methods for some goals have been upgraded. When upgrades occur, we back-calculate previous years so that all scores are comparable.</p>
+<p>For further details, see <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117863"><em>Halpern et al. 2015</em></a>, <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267"><em>Halpern et al. 2017</em></a>, <a href="https://peerj.com/articles/1503"><em>Lowndes et al. 2015</em></a>, and <a href="https://www.nature.com/articles/s41559-017-0160"><em>Lowndes et al. 2017</em></a>. <br> <br> <!---Erroring 11/27/17, look into it later [<img src="https://docs.google.com/drawings/d/e/2PACX-1vTi4aqn_mn_ddyY9pSmnvebsJTHLWm-917sVfZorvUdF3lmBXWM6gr3vSYYJ1uEg5Bf3BtaO_j7z-gi/pub?w=288&h=120" width="150px">](http://ohi-science.org)  ---> <a href="http://ohi-science.org">ohi-science.org home</a></p>
 
 
 

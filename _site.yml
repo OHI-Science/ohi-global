@@ -4,8 +4,8 @@ navbar:
   left:
   - text: Goals
     href: goals.html
-#  - text: Layers
-#    href: layers_table.html
+  - text: Layers
+    href: layers_table.html
   - text: Scores
     href: scores.html
   - text: Download
@@ -18,4 +18,5 @@ output:
     css: _sass/main.css
     lib_dir: site_libs
     self_contained: no
+exclude: ["layers_all.Rmd", "local_goals.Rmd", "local_layers_all.Rmd", "local_layers_all_no_header.Rmd", "local_layers_table.Rmd"]
 
