@@ -18,5 +18,10 @@ output:
     css: _sass/main.css
     lib_dir: site_libs
     self_contained: no
-exclude: ["layers_all.Rmd", "local_goals.Rmd", "local_layers_all.Rmd", "local_layers_all_no_header.Rmd", "local_layers_table.Rmd"]
+exclude:
+- layers_all.Rmd
+- local_goals.Rmd
+- local_layers_all.Rmd
+- local_layers_all_no_header.Rmd
+- local_layers_table.Rmd
 
