@@ -10,7 +10,7 @@ navbar:
     href: scores.html
   - text: Download
     href: download.html
-output_dir: .
+output_dir: "."
 output:
   html_document:
     theme: yeti

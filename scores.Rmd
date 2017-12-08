@@ -28,6 +28,14 @@ regions <- data %>%
   dplyr::distinct() %>%
   dplyr::left_join(regions_figs, by = ('region_id'))
 
+## arrange by region_name, with Global at the top
+regions <- bind_rows(
+  regions %>%
+    filter(region_id == 0),
+  regions %>%
+    filter(region_id !=0) %>%
+    arrange(region_name))
+
 
 ## loop through and display each rgn_id
 for (r in regions$region_id){ # r = regions$region_id[1]
