@@ -23,7 +23,7 @@ targets <- read.csv('../eez_layers_meta_data/layers_eez_targets.csv', stringsAsF
 # add the meta data
 meta <- read.csv("../eez_layers_meta_data/layers_eez_base.csv")
 layers <- left_join(meta, targets, by="layer") %>%
-  mutate(dir = gsub("ohiprep:", "../../ohiprep/", dir)) %>%
+  mutate(dir = gsub("ohiprep:", "../../ohiprep_v2017/", dir)) %>%
   select(layer, dir, fn, ingest, name_data_fld, targets, name, units, description)
 
 
