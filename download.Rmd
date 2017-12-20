@@ -3,7 +3,7 @@ title: "Download global data and methods"
 output: 
   html_document:
      includes: 
-      in_header: '~/github/ohiprep/src/templates/ohi_hdr.html'
+      in_header: 'ohi_hdr.html'
 ---
 
 ```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
@@ -48,7 +48,7 @@ Quick access to *.csv* files of calculated global scores.
 Final scores and methods are released annually each fall. Ongoing work is available in our [**OHI-Science**](https://github.com/OHI-Science) GitHub repositories.
 A description of file organization [is available](https://rawgit.com/OHI-Science/ohiprep/master/src/dataOrganization_SOP.html).  
 
-- [data preparation releases (`ohiprep` repository)](https://github.com/OHI-Science/ohiprep/releases) 
+- [data preparation releases (`ohiprep` repository)](https://github.com/OHI-Science/ohiprep_v2017/releases) 
 - [score calculation releases (`ohi-global` repository)](https://github.com/OHI-Science/ohi-global/releases)
 - [`R` package to calculate scores (`ohicore` repository)](https://github.com/OHI-Science/ohicore/releases)
 - [Large data files](https://mazu.nceas.ucsb.edu/data/): Download data too large to host on GitHub (region shapefiles, pressure raster data, etc.), 
