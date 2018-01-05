@@ -36,4 +36,6 @@ Important files within the "eez", "antarctica", and "high seas" folders include:
     - resilience_matrix.csv: Indicates which resilience layers affect which goals
     - resilience_categories: Defines the resilience category for each resilience layer
     - scenario_data_years.csv: Links the scenario year to the corresponding year of the data for each data layer
+    
+  * 
    
