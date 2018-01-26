@@ -30,8 +30,6 @@ Compiled on `r date()`.
  # 3. Run BIBcorrect.R to fix a few weird things in the OHI.bib file
  # 4. Knit this file. 
 
-# To do: 
-#   * Courtney about resilience wording for weights
 
 
 # tables in Rmd: https://rpubs.com/benmarwick/tables-rmarkdown
@@ -63,25 +61,75 @@ resilience <- TRUE
 
 ```
 
-# The Ocean Health Index
+# The Theory
 
-We measure ocean health as the sustainable delivery of ten widely-held public goals for ocean ecosystems (Table 1.1). These goals represent the full suite of benefits that people want and need from the ocean, including the traditional ‘goods and services’ people often consider (e.g., fish to eat, coastal protection from nearshore habitats) as well as benefits less commonly accounted for, such as cultural values or biodiversity.  The Index recognizes that people are part of coastal and ocean systems and thus values both conservation and extractive use.   
+## A comprehensive framework to assess ocean health
+The Ocean Health Index assesses ocean health which we define as how well we are sustainably managing the resources that we want and need from the ocean (e.g., tourism and recreation, food provisioning).
+
+The OHI is considered a *composite indicator* because it combines many indicators into a comprehensive framework describing ocean health.  This is in contrast to focusing on individual indicators, such as phosphate levels, sedimentation, biodiversity, etc.  Individual indicators are important, but they provide limited information when it comes to evaluating how well an overall ecosystem is functioning.  Another shortcoming of individual indicators is that they do not directly describe what we actually care about, and consequently, focusing on them can hinder communication.  For example, most people do not directly care about nutrient pollution, however, we do care about its effects on the ocean’s ability to provide recreation and food.  
+
+Without an overall framework to evaluate indicators, certain indicators may be overemphasized relative to their true importance due to researcher bias (most researchers believe their area study is the most important), trends in research (what is currently considered a hot topic and is funded), and availability of data (e.g., some data is easier to collect).  A model that combines multiple indicators will inevitably have flaws, but at least we know which variables are included and how they are weighted.
+
+## The role of humans
+One of the primary contributions of the OHI is that it recognizes people are an important part of the marine system.  Both conservation and extractive use of ocean resources are valued, and consequently, scores are highest when we maximize the benefits we receive while maintaining sustainability so we can continue to receive benefits now and into the future.  One temptation of indicator development is to focus only on the pressures that humans apply to systems.  This makes sense because we want to be sure we are adequately protecting resources.  However, eliminating all pressures on the ocean would require eliminating all contact between humans and the ocean. Beyond being unrealistic, this is undesirable because we would stop receiving all the benefits that we rely on from the ocean. The OHI is unique because it tracks both the pressures we put on oceans as well as the benefits we receive.
+
+## Yearly assessments
+The global Ocean Health Index has been assessed every year since 2012. The primary goal of each yearly assessment is to calculate a new year of scores using the most recent data. Often, in addition to incorporating an additional year of data, we make improvements to models or decide to use different data sources. To ensure that scores for all years are comparable, we recalculate scores for previous scenario years for each assessment using new methods and data sources. For the current assessment, for example, in addition to calculating the current year’s scores, we recalculate scores for every year since 2012. Consequently, comparisons among years should always be performed using data from the same assessment year so trends in scores reflect changes to ocean health rather than changes to methods.
+
+Not all data layers are reported through the most current assessment year, and consequently, the OHI scores are calculated using the most recent year of available data. Details on which years are used for each data layer are provided in Table 6.2.
+
+## For more information
+For more information about the philosophy of the Ocean Health Index and model development see Halpern et al. (2012, 2015) and http://ohi-science.org/ohi-global/, which includes information about downloading global ocean health data.
+
+The Index is designed to be flexible so it can accommodate different scales and geographies of interest and different and new types of data (Lowndes et al. 2015, http://ohi-science.org). Currently, many countries are conducting local OHI assessments.
+
+## Brief anatomy of OHI scores
+We define ocean health as the sustainable delivery of ten widely-held public goals for ocean ecosystems (Table 1.1).  These goals represent the full suite of benefits that people want and need from the ocean, including the traditional ‘goods and services’ people often consider (e.g., fish to eat, coastal protection from nearshore habitats) as well as benefits less commonly accounted for, such as cultural values and biodiversity.  Within each region, scores, ranging from 0 to 100, are calculated for the 10 goals (section 4.2).  Four of the goals are calculated from 2 subgoals.  The subgoals are calculated independently (i.e., they are treated as if they are goals) and then combined into the goal status score (Table 1.2).
+
 
 **Table 1.1. The 10 goals of the Ocean Health Index**
 ```{r ten_goals, eval = ten_goals, echo=FALSE}
 
 goals <- read.csv("tables/ten_goals.csv") %>%
-  select(Goal, Description) %>%
+  select(Goal, Abbreviation, Description) %>%
   arrange(Goal)
 
 kable(goals)
 ```
 
-The global Ocean Health Index has been assessed every year since 2012. The primary goal of each yearly assessment is to calculate a new year of scores using the most recent data released by the data sources.  Often, in addition to incorporating an additional year of data, we make improvements to models or data sources.  To ensure that scores for all years are calculated using the same methods and data sources, and can thus be compared, we recalculate scores for previous scenario years during each assessment.  For the current assessment, for example, in addition to calculating newest year of scores, we include recalculated scores for every year since 2012.  Consequently, comparisons among years should always be performed using data from the same assessment year so trends in scores reflect changes to ocean health rather than changes to methods.  
 
-Not all data layers are reported through the most current assessment year, and consequently, the OHI scores are calculated using the most recent year of available data.  Details on which years are used for each data layer are provided in Table 6.2. 
+**Table 1.2. Subgoals used to calculate 4 of the Ocean Health Index goals**
+```{r subgoals, eval = ten_goals, echo=FALSE}
 
-The Index is designed to be flexible to accommodate different scales and geographies of interest and different and new types of data [@lowndes_best_2015, http://ohi-science.org]. For more information about the philosophy of the Ocean Health Index and model development see Halpern et al. (2012, 2015) and http://ohi-science.org/ohi-global/, which includes information about downloading global ocean health data.
+subgoals <- read.csv("tables/Subgoal_Descriptions.csv") %>%
+  select(Subgoal, Goal, Abbreviation, Description) %>%
+  arrange(Goal)
+
+kable(subgoals)
+```
+
+Goal (and subgoal scores) are calculated using several variables (referred to as “dimensions”, Table 1.3).  Goal scores (Section 4.2) are calculated as the average of current status (Section 5) and likely future status.  Likely future status (Section 4.3) is the current status modified by variables (resilience, pressures, and trend) expected to influence future status.
+
+**Table 1.3. Dimension used to calculate an OHI goal score**
+Goal scores are the average of current and likely future status.  Likely future status adjusts current status scores based on pressures and resilience variables acting on the goal as well as recent trends in status.
+
+Dimension        | Subdimension   | Description                  | More information     | Calculating
+---------------- | ----------- | ---------------------------- | -------------------- | ----------------------
+Current status   |  -          | Current state of the goal relative to the desired "reference point".  Values range from 0-100. | *Section 5. Goal models and data* | Calculated using functions in ohi-global repo: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R and the *scenario_data_years.csv* file (in same folder)
+Predicted future status | Resilience | Variables such as good governance and ecological factors that provide resilience to pressures, and thus, are likely to improve future status.  Values range from 0-100  | *Section 4.3 Likely future status dimensions | Calculated using functions in ohicore package.And, files: *resilience_categories.csv* and *resilience_matrix.csv* located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/conf
+Predicted future status | Pressure  | Pressures stress the system and threaten future delivery of benefits, and thus, are likely to reduce future status. Values range from 0-100  | *Section 4.3 Likely future status dimensions* | Calculated using function in ohicore package.  And, files: *pressure_categories.csv* and *pressures_matrix.csv*, located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/con
+Predicted future status | Trend  | Average yearly change in status (typically estimated using most recent 5 years of data) multiplied by 5 to esimate five years into the future.  Units are proportional change (absolute change/year is divided by the value of the earliest year) and range from -1 to 1  | *Section 4.3 Likely future status dimensions* | Calculated using functions from ohi-global repo: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R and the scenario_data_years.csv file (in same folder)
+
+**Figure 1.1. Relationship between OHI dimensions and scores**
+This figure describes how the dimensions come together to calculate a goal score.  This figure represents equations 4.3 and 4.5. 
+![](figures/OHI dimensions.png)
+
+Finally, an overall Index score for each region is calculated by averaging the goal scores (Figure 1.2).
+
+**Figure 1.2. Flowerplot of goal scores for a region**
+Goal and subgoal scores for Canada.  The middle value is the regional Index score, and is calculated by averaging the goal scores.
+![](figures/flower_Canada.png)
+
 
 # Data inclusion and data gaps
 
@@ -96,8 +144,14 @@ Gaps in data are common; many developing countries lack the resources to gather 
 One of the ongoing goals of the Ocean Health Index (OHI) has been to improve our approach to dealing with missing data, by quantifying the potential influence of gapfilled data on index scores, and developing effective methods of tracking, quantifying, and communicating this information [@frazier_mapping_2016].
 
 # Regions
+One of the first steps of conducting on OHI assessment is defining regions of interest.  These can be based on political and/or ecological boundaries.  The definition of a “region” varies depending on the goals and scale of the OHI assessment.  For the global OHI each region is defined as the EEZ area (300 nm offshore) for all coastal countries and territories (e.g., US Virgin Islands).  
 
-For the global assessment, we calculate Ocean Health Index scores for 220 coastal countries and territorial regions (Table 3.1).  Regions are based on Exclusive Economic Zone boundaries [EEZ, @claus_marine_2012].  However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.).  We have also modified some boundaries [@halpern_index_2012; @halpern_patterns_2015].  We do not estimate OHI values for disputed or unclaimed areas.
+There are 220 global coastal countries and territorial regions (Table 3.1).  Regions are based on Exclusive Economic Zone boundaries [EEZ, @claus_marine_2012].  However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.).  We have also modified some boundaries [@halpern_index_2012; @halpern_patterns_2015].  We do not estimate OHI values for disputed or unclaimed areas.
+
+**Figure 3.1. Global regions**
+Map of the OHI regions (with color corresponding to 2017 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
+
+![](figures/global_map_Index_2017_mol.png)
 
 **Table 3.1. Global regions**
 
