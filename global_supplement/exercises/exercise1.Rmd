@@ -3,7 +3,11 @@ title: "Philosophy and models of the Ocean Health Index"
 output: html_document
 ---
 
-Work together to answer these questions.  I will be around to answer any questions...so don't hesitate to get clarification, extra guidance, or request hints!
+Work together to answer these questions.  
+
+All the information you need should be in the OHI Methods [document](https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html#1_the_theory).
+
+I will be around to answer any questions...so don't hesitate to get clarification, extra guidance, or request hints!
 
 ### OHI score models and data
 1. What is the difference between a goal's "status" and "score"?
@@ -67,11 +71,13 @@ https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/scores.csv
 
 Provide the metadata for each variable (using "score" as an example):
 
-* goal
-* dimension
-* region_id
-* score: numeric score that ranges from 0-100 for all dimensions, except trend (-1 to 1)
-* year
+Variable     | Metadata
+------------ | ------------------
+goal        |
+dimension   |
+region_id   |  
+score       | numeric score that ranges from 0-100 for all dimensions, except trend (-1 to 1)
+year        |
 
 <br>
 <br>
