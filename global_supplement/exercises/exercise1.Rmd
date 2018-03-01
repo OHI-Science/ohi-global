@@ -3,7 +3,11 @@ title: "Philosophy and models of the Ocean Health Index"
 output: html_document
 ---
 
-Work together to answer these questions.  I will be around to answer any questions...so don't hesitate to get clarification, extra guidance, or request hints!
+Work together to answer these questions.  
+
+All the information you need should be in the OHI Methods [document](https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html#1_the_theory).
+
+I will be around to answer any questions...so don't hesitate to get clarification, extra guidance, or request hints!
 
 ### OHI score models and data
 1. What is the difference between a goal's "status" and "score"?
@@ -67,11 +71,13 @@ https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/scores.csv
 
 Provide the metadata for each variable (using "score" as an example):
 
-* goal
-* dimension
-* region_id
-* score: numeric score that ranges from 0-100 for all dimensions, except trend (-1 to 1)
-* year
+Variable     | Metadata
+------------ | ------------------
+goal        |
+dimension   |
+region_id   |  
+score       | numeric score that ranges from 0-100 for all dimensions, except trend (-1 to 1)
+year        |
 
 <br>
 <br>
@@ -192,13 +198,11 @@ a. A data layer for each pressure layer describing the magnitude of the pressure
 
 b. Classifying the pressure category for each data layer. The pressure dimension is based on two types of pressures: Ecological and Social (Figure 4.2).  The ecological pressures are broken into 5 categories (pollution, alien species, habitat destruction, fishing, and climate change).  Each pressure data layer is assigned to a category in this file: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/pressure_categories.csv
 
-QUESTION: How many climate change pressures are there?
-
-QUESTION: Which is more important: Ecological or Social pressures?
+QUESTION: How many climate change pressures are there? 
 
 c. Pressure x goal weighting. Pressures have little or no effect on some goals, but huge effects on others.  The relationship between the goals and the pressure variables is described here: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/pressures_matrix.csv
 
-QUESTION: Which pressure layers affect the Clean Water goal?
+QUESTION: Which pressure layers affect the FIS  subgoal?  How many regulatory pressure layers are there?  How many social layers are there?  Which is more important: Ecological or Social pressures? 
 
 QUESTION: Some goals, like Coastal Protection, have multiple “elements”.  Why? 
 
@@ -243,7 +247,7 @@ c. The relationship between goals and resilience is described here: https://gith
 15. I am obsessed with making reference index cards that I refer to.  Here is an example of one I have made for walking back github changes:
 ![](figures/Git_index_card.jpg)
 
-Design an index card (or, cards) that capture relevant OHI information (e.g., formulas for calculating goal scores and likely future status, table/figure describing dimensions, goal information).  
+Design an index card (or, cards) that capture relevant OHI information (e.g., formulas for calculating goal scores and likely future status; table/figure describing dimensions and/or goals; file locations; how everything links together; etc.).  
 
 The primary goal is to make it useful to you.  But, we will discuss whether we should provide this product through our website or blog.  
 
