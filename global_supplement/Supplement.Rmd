@@ -6,7 +6,7 @@ output:
     code_folding: show
     highlight: haddock
     includes:
-      in_header: ../../ohiprep/src/templates/ohi_hdr.html
+      in_header: ../../ohiprep_v2018/src/templates/ohi_hdr.html
     theme: cerulean
     toc: yes
     toc_depth: 3
@@ -157,7 +157,7 @@ Map of the OHI regions (with color corresponding to 2017 regional index scores).
 
 ```{r table_regions, eval = table_regions, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE}
 
-regions <- read.csv("../../ohiprep/src/LookupTables/eez_rgn_2013master.csv", stringsAsFactors = FALSE) %>%
+regions <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohiprep/master/src/LookupTables/eez_rgn_2013master.csv", stringsAsFactors = FALSE) %>%
   filter(rgn_typ == "eez") %>%
   filter(rgn_id_2013 <= 250) %>%
   filter(rgn_id_2013 != 213) %>%

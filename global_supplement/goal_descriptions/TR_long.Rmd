@@ -7,10 +7,10 @@ The tourism and recreation goal aims to capture the number of people, and the qu
 The model for the status of the tourism & recreation goal, $x_{tr}$, is:
 
 $$
-x_{tr} = \frac{ T_r }{ T_{95th}}, (Eq. 5.19)
+x_{tr} = \frac{ T_r }{ T_{90th}}, (Eq. 5.19)
 $$
 
-where, $T_{95th}$ is the $T_r$ value of the region value that corresponds to the 95th quantile, and:  
+where, $T_{90th}$ is the $T_r$ value of the region value that corresponds to the 90th quantile, and:  
 
 $$
 T_{r} = { E }\times { S }\times{W}, (Eq. 5.20)
@@ -32,7 +32,7 @@ The index is based on 14 pillars that are organized into four subindexes:
     + Safety and Security
     + Health and Hygiene
     + Human Resources and Labour Market
-    +ICT Readiness
+    + ICT Readiness
 * Travel and Tourism Policy and Enabling Conditions (specific policies or strategic aspects that impact the travel and tourism industry more directly)
     + Prioritization of Travel and Tourism
     + International Openness
@@ -51,7 +51,7 @@ The sustainability factor, $S$ is calculated as the average of the 4 subindexes.
 Penalties, $W$ were assigned based on travel warnings issued by the US State Department (Table 5.11). If the travel warning was issued for a region within a country, the penalty was multiplied by 0.5.
 
 **Table 5.11. Travel warning penalties**
-Penalties, $W$, based on level or US State Department travel warnings. 
+Penalties, $W$, based on level or US State Department travel warnings. When a warning applies to only a portion of the country, penalties are discounted by 0.5.
 
 Travel warning | Penalty, $W$
 -------------- | ---------------
