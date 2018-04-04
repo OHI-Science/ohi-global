@@ -5,9 +5,9 @@ date: "April 4, 2018"
 output: html_document
 ---
 
-Extracting data for Moore regions.
+# Extracting data for Moore region proposal.
 
-```{r prep}
+```{r prep, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 
 library(dplyr)
 library(tidyr)
@@ -27,7 +27,7 @@ rgns <- filter(rgn_names, rgn_id %in% regions) %>%
 
 These are slightly modified versions of data from the Social Progress Index (https://www.socialprogressindex.com/) and the Worldwide Governance Indicators (http://info.worldbank.org/governance/wgi/#home).
 
-```{r prep, echo=FALSE, warning=FALSE}
+```{r social, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 
 spi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/res_spi.csv") %>%
   filter(year == 2017) %>%
@@ -49,28 +49,48 @@ kable(social_res)
 ```
 
 
+## Marine Protected Areas
+
+This describes the amount of marine protected area (km2) within 3nm of the coastline.
+
+IUCN and UNEP-WCMC (2016), The World Database on Protected Areas (WDPA) [On-line], May 2016. Cambridge, UK: UNEP-WCMC. Available at: www.protectedplanet.net.
+
+NOTE: This is the protected area for the entire US, not the Gaviota Coast.
+```{r mpa, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+
+mpa <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/lsp_prot_area_offshore3nm.csv") %>%
+  filter(year == 2017) %>%
+  select(rgn_id, MPA = a_prot_3nm)
+
+protected <- rgns %>%
+  left_join(mpa)
+
+
+area <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/rgn_area_offshore3nm.csv") %>%
+  select(rgn_id, rgn_area_3nm = area)
+
+protected <- protected %>%
+  left_join(area) %>%
+  mutate(percent_mpa = round(MPA/rgn_area_3nm * 100))
+
+kable(protected)
+
+```
+
+
 ##Cumulative Human Impact
 
-These are the eez summarized [Cumulative Human Impacts](https://www.nature.com/articles/ncomms8615) data.  This summary includes only the Cumulative Impact values for the regions of interest.  The full data is available [here]().
+These are the eez summarized [Cumulative Human Impacts](https://www.nature.com/articles/ncomms8615) data.  This summary includes only the Cumulative Impact values for the regions of interest.  The full data is available [here](https://github.com/OHI-Science/ohi-global/blob/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv).
 
-```{r prep, echo=FALSE, warning=FALSE}
+NOTE: This is based on the full US extraction!  It will take a bit of work to extract the Gavioata Coast region.  I will do this, but I wanted to provide these data so we could begin thinking about it.
 
-spi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/res_spi.csv") %>%
-  filter(year == 2017) %>%
-  select(rgn_id, SPI = resilience_score)
+```{r chi, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 
-social_res <- rgns %>%
-  left_join(spi)
+chi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv") %>%
+  filter(eez_nam %in% rgns$rgn_name) %>%
+  select(region = eez_nam, Cumulative_impact = global_cumulative_impact_2013_all_layers.gri)
 
-
-wgi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/wgi_all.csv") %>%
-  filter(year == 2015) %>%
-  select(rgn_id, WGI = resilience_score)
-
-social_res <- social_res %>%
-  left_join(wgi)
-
-kable(social_res)
+kable(chi)
 
 ```
 
