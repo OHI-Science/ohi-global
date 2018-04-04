@@ -1,0 +1,136 @@
+---
+title: 'Ocean Health Index summary for the Pacific Oceanscape'
+output:
+  html_document:
+    code_folding: show
+    highlight: haddock
+    includes:
+      in_header: ../../../ohiprep_v2018/src/templates/ohi_hdr.html
+    theme: cerulean
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    number_sections: yes
+  pdf_document:
+    fig_caption: yes
+    number_sections: yes
+    toc: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+Compiled on `r date()`.
+
+```{r set up, include = FALSE}
+
+# load packages
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(DT)
+library(hwriter)
+library(knitr)
+
+#setwd("global2017/Pacific_oceanscape")
+
+# Identify the regions in the Pacific oceanscape
+# based on this: https://www.conservation.org/where/Pages/pacific-oceanscape.aspx
+# didn't include Australia (16) or New Zealand (162)
+
+pac_regions <- c(13, 8, 10, 17, 7, 19, 161, 18, 6, 5,
+                 11, 9, 148, 157, 212, 156, 152, 151,
+                 154, 153, 147, 155)
+
+# focus only on most current scores
+scores <- read.csv("../../eez/scores.csv") %>%
+  filter(region_id %in% pac_regions) %>%
+  filter(dimension == "score") %>%
+  filter(year == 2017) %>%
+  filter(!(goal %in% c("LIV", "ECO", "LE"))) # exclude due to lack of updates
+
+
+# get an area weighted score for the region
+area <- read.csv("../../eez/layers/rgn_area.csv") %>%
+  rename(region_id = rgn_id)
+
+scores_0 <- scores %>%
+  left_join(area, by = "region_id") %>%
+  group_by(goal, dimension, year) %>%
+  summarize(score = weighted.mean(score, area_km2, na.rm=TRUE)) %>%
+  mutate(region_id=0) %>%
+  select(goal, dimension, region_id, score, year)
+
+pac_scores <- bind_rows(scores, scores_0) %>% 
+  mutate(score = round(score, 0))
+
+# add region names
+rgn_names <- read.csv("../../eez/spatial/regions_list.csv") %>%
+  mutate(territory = paste(territory, admin_country_name, sep=", ")) %>%
+  rename(region_id = rgn_id) %>%
+  select(region_id, rgn_name)
+
+pac_scores <- pac_scores %>%
+  left_join(rgn_names, by="region_id")
+
+write.csv(pac_scores, "score.csv", row.names=FALSE)
+
+
+## list of regions
+pac_rgn_names <- rgn_names %>%
+  filter(region_id %in% pac_regions) %>%
+  .$rgn_name
+
+paste(sort(pac_rgn_names), collapse = ", ")
+
+## list of goals
+goals <- read.csv("../../global_supplement/tables/ten_goals.csv", stringsAsFactors = FALSE)
+
+```
+
+## Overview
+
+The Ocean Health Index (OHI) (Halpern et al. 2012) is a comprehensive, ecosystem-level indicator that aggregates many socioeconomic and biological indicators to assess the health of the global oceans. The OHI has been calculated globally every year since 2012 (Halpern et al. 2017), and the Index framework has been adopted at regional and local scales to inform regional policy and decision making (Lowndes et al. 2015). At the global scale, the OHI assesses the ability of 220 countries and territorial regions to sustainably deliver 10 key ocean services, referred to as ‘goals’.
+
+The following provides an overview of the Ocean Health Index (OHI) scores for the regions making up the Pacific oceanscape.  These data were generated for the OHI 2017 global asessment.  In many cases, better local data may be available for these regions; furthermore, different reference points and goal models may be better suited for the Pacific oceanscape.  
+
+This analysis includes the following OHI regions:
+`r paste(sort(pac_rgn_names), collapse = ", ")`
+
+See the [methods](https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html) for more information about the OHI global methods.
+
+## Pacific oceanscape summary
+
+The following are the OHI scores for the Pacific oceanscape.  The scores are the average of the region scores for each goal weighted by the area of the eez. The Index score is the average of all goals.  For reference, the global scores are also provided.
+
+```{r region summary, echo=FALSE, warning=FALSE}
+
+
+region <- pac_scores %>%
+  filter(region_id == 0) %>%
+  rename(Abbreviation = goal, "Pacific score" = score) %>%
+  left_join(goals, by="Abbreviation")
+
+# get global scores
+scores <- read.csv("../../eez/scores.csv") %>%
+  filter(region_id==0 & year == 2017 & dimension == "score") %>%
+  mutate(score = round(score)) %>%
+  rename(Abbreviation = goal, "Global score" = score)
+
+region <- left_join(region, scores, by = "Abbreviation") %>%
+  select(Abbreviation, Goal, Description, "Pacific score", "Global score")
+
+Index <- filter(region, Abbreviation == "Index")
+
+Index$Description <- "Average of all goals"
+Index$Goal <- "Index"
+Index <- select(Index, -Abbreviation)
+
+region <- region %>%
+  filter(!is.na(Goal)) %>%
+  select(Goal, Description, "Pacific score", "Global score")
+
+region <- bind_rows(Index, region)
+
+kable(region)
+
+```

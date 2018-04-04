@@ -1,0 +1,77 @@
+---
+title: "Region_summary"
+author: "Melanie Frazier (UCSB, NCEAS, OHI)"
+date: "April 4, 2018"
+output: html_document
+---
+
+Extracting data for Moore regions.
+
+```{r prep}
+
+library(dplyr)
+library(tidyr)
+library(DT)
+library(knitr)
+
+
+regions <- c(112, 210, 7, 163, 162, 16)
+rgn_names <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/spatial/regions_list.csv")
+
+rgns <- filter(rgn_names, rgn_id %in% regions) %>%
+  select(rgn_id, rgn_name)
+```
+
+
+##Social indicators
+
+These are slightly modified versions of data from the Social Progress Index (https://www.socialprogressindex.com/) and the Worldwide Governance Indicators (http://info.worldbank.org/governance/wgi/#home).
+
+```{r prep, echo=FALSE, warning=FALSE}
+
+spi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/res_spi.csv") %>%
+  filter(year == 2017) %>%
+  select(rgn_id, SPI = resilience_score)
+
+social_res <- rgns %>%
+  left_join(spi)
+
+
+wgi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/wgi_all.csv") %>%
+  filter(year == 2015) %>%
+  select(rgn_id, WGI = resilience_score)
+
+social_res <- social_res %>%
+  left_join(wgi)
+
+kable(social_res)
+
+```
+
+
+##Cumulative Human Impact
+
+These are the eez summarized [Cumulative Human Impacts](https://www.nature.com/articles/ncomms8615) data.  This summary includes only the Cumulative Impact values for the regions of interest.  The full data is available [here]().
+
+```{r prep, echo=FALSE, warning=FALSE}
+
+spi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/res_spi.csv") %>%
+  filter(year == 2017) %>%
+  select(rgn_id, SPI = resilience_score)
+
+social_res <- rgns %>%
+  left_join(spi)
+
+
+wgi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/wgi_all.csv") %>%
+  filter(year == 2015) %>%
+  select(rgn_id, WGI = resilience_score)
+
+social_res <- social_res %>%
+  left_join(wgi)
+
+kable(social_res)
+
+```
+
+
