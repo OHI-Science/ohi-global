@@ -9,15 +9,17 @@ output: html_document
 
 ```{r prep, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 
+knitr::opts_chunk$set(fig.width = 6, fig.height = 4, fig.path = 'figs/',message = FALSE, warning = FALSE)
+
 library(dplyr)
 library(tidyr)
 library(DT)
 library(knitr)
 
-regions <- c(112, 210, 7, 163, 162, 16)
+m_regions <- c(112, 210, 7, 163, 162, 16)
 rgn_names <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/spatial/regions_list.csv")
 
-rgns <- filter(rgn_names, rgn_id %in% regions) %>%
+rgns <- filter(rgn_names, rgn_id %in% m_regions) %>%
   select(rgn_id, rgn_name)
 
 
@@ -148,19 +150,94 @@ DT::datatable(stressors, options = list(
 ```
 
 ### CHI maps
-```{r maps, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+```{r maps, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
+library(raster)
+library(rgdal)
+library(fields)
+library(RColorBrewer)
 
-stressors <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv") %>%
-  dplyr::filter(eez_nam %in% rgns$rgn_name) %>%
-  dplyr::rename(region = eez_nam) %>%
-  dplyr::select(-global_cumulative_impact_2013_all_layers.gri)
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/src/R/spatial_common.R")
 
-stressors <- data.frame(t(stressors))
-colnames(stressors) <- as.character(unlist(stressors[1,]))
-stressors <- stressors[-1, ]
+legend.shrink <- 0.4
+legend.width <- 0.6
 
-DT::datatable(stressors, options = list(
-  pageLength = 19))
+my_breaks <- c(0, 1.781894, 2.377814, 2.986494, 3.316144, 3.558642, 3.750878, 
+               3.923132, 4.127960, 4.384074, 4.571275, 16)
+cols = rev(colorRampPalette(brewer.pal(11, 'Spectral'))(length(my_breaks)+2))[2:12] #stripping extreme ends of the color spectrum
+
+chi <-  raster(file.path(dir_M, 'marine_threats/impact_layers_2013_redo/global_impact_model_2013/normalized_by_one_time_period/averaged_by_num_ecosystems/all_layers/global_cumul_impact_2013_all_layers.tif')) %>%
+  mask(ocean)
+
+
+raster_breaks <- function(raster_data, moore_name, saveLoc, title, title_legend=NULL, myBreaks, cols){
+
+#   par(mar=c(2,2,2,2))
+#   par(oma=c(0,0,0,4))
+
+  moore_rgn <- regions[regions$rgn_name == moore_name, ] 
+  moore_rgn <- as(moore_rgn, "Spatial")
+  
+  
+png(saveLoc, res=500, width=7, height=7, units="in")
+
+raster_data_crop <- crop(raster_data, extent(moore_rgn)) %>%
+  mask(moore_rgn)
+
+plot(raster_data_crop, col=cols, axes=FALSE, box=FALSE, breaks=myBreaks, legend=FALSE, main=title)
+# add axis with fields package function:
+# def_breaks <- seq(0, length(myBreaks), length.out=length(myBreaks))
+# image.plot(raster_data, #zlim = c(min(myBreaks), max(myBreaks)), 
+#            legend.only = TRUE, 
+#            legend.shrink=legend.shrink,
+#            legend.width=legend.width,
+#            col = cols,
+#            legend.lab=title_legend,
+#            breaks=def_breaks,
+#            lab.breaks=round(myBreaks, 1),
+#            axis.args = list(cex.axis = 0.8))
+
+plot(moore_rgn[moore_rgn$rgn_type=="land", ], add=TRUE, border="white", col="gray80", lwd=0.5)
+
+dev.off()
+}
+
+
+for(name in rgns$rgn_name){ #name = rgns$rgn_name[1]
+raster_breaks(raster_data = chi, 
+              moore_name = name, 
+              saveLoc = file.path(dir_M, sprintf("git-annex/globalprep/data_requests/Moore_rgns/CHI_%s.png", name)), 
+              myBreaks = my_breaks, cols=cols,
+              title = name)
+}
+
+
+## New Zealand...cut in half
+moore_name <- "New Zealand"
+
+moore_rgn <- regions[regions$rgn_name == moore_name, ] 
+moore_rgn <- as(moore_rgn, "Spatial")
+
+raster_data_crop <- crop(raster_data, extent(moore_rgn)) %>%
+  mask(moore_rgn) %>%
+  projectRaster(crs=CRS("+init=epsg:3851"), progress="text")
+
+
+## tried: epsg:4167: still divided region
+moore_rgn <- spTransform(moore_rgn, CRS("+init=epsg:4167"))
+
+png(saveLoc, res=500, width=7, height=7, units="in")
+
+plot(raster_data_crop, col=cols, axes=FALSE, box=FALSE, breaks=myBreaks, legend=FALSE, main="New Zealand")
+plot(moore_rgn[moore_rgn$rgn_type=="land", ], add=TRUE, border="white", col="gray80", lwd=0.5)
+
+dev.off()
+
 
 ```
 
+
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Australia.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Cuba.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Japan.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_New Zealand.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Solomon Islands.png)
