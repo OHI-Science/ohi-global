@@ -14,12 +14,13 @@ library(tidyr)
 library(DT)
 library(knitr)
 
-
 regions <- c(112, 210, 7, 163, 162, 16)
 rgn_names <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/spatial/regions_list.csv")
 
 rgns <- filter(rgn_names, rgn_id %in% regions) %>%
   select(rgn_id, rgn_name)
+
+
 ```
 
 
@@ -84,6 +85,40 @@ These are the eez summarized [Cumulative Human Impacts](https://www.nature.com/a
 
 NOTE: This is based on the full US extraction!  It will take a bit of work to extract the Gavioata Coast region.  I will do this, but I wanted to provide these data so we could begin thinking about it.
 
+```{r gaviota, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
+
+# prepare Gaviota coast data
+# data from: https://www.sciencebase.gov/catalog/item/589a2585e4b0efcedb71a5bc
+library(rgdal)
+library(raster)
+library(sf)
+
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/src/R/spatial_common.R")
+
+gav <- sf::st_read(dsn = file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota")
+
+gav_rgn <- gav %>%
+  mutate(MapUnit = 1) %>%
+  group_by(MapUnit) %>%
+  summarize(area = sum(Shape_area))
+
+gav_rgn <- sf::as_Spatial(gav_rgn$geom)
+gav_rgn <- st_zm(gav_rgn)
+
+gav_rgn <- as(gav_rgn, "Spatial")
+
+gav_mol <- spTransform(gav_rgn, CRS(proj4string(ocean)))
+
+regions <- as(regions, "Spatial")
+plot(regions)
+plot(gav_mol, add=TRUE, col="red")
+
+writeOGR(gav_mol, dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol",
+         driver="ESRI Shapefile")
+```
+
+
+### Cumulative Human Impacts
 ```{r chi, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 
 chi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv") %>%
@@ -94,4 +129,38 @@ kable(chi)
 
 ```
 
+
+### Stressor summary
+```{r stresors, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+
+stressors <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv") %>%
+  dplyr::filter(eez_nam %in% rgns$rgn_name) %>%
+  dplyr::rename(region = eez_nam) %>%
+  dplyr::select(-global_cumulative_impact_2013_all_layers.gri)
+
+stressors <- data.frame(t(stressors))
+colnames(stressors) <- as.character(unlist(stressors[1,]))
+stressors <- stressors[-1, ]
+
+DT::datatable(stressors, options = list(
+  pageLength = 19))
+
+```
+
+### CHI maps
+```{r maps, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+
+stressors <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv") %>%
+  dplyr::filter(eez_nam %in% rgns$rgn_name) %>%
+  dplyr::rename(region = eez_nam) %>%
+  dplyr::select(-global_cumulative_impact_2013_all_layers.gri)
+
+stressors <- data.frame(t(stressors))
+colnames(stressors) <- as.character(unlist(stressors[1,]))
+stressors <- stressors[-1, ]
+
+DT::datatable(stressors, options = list(
+  pageLength = 19))
+
+```
 
