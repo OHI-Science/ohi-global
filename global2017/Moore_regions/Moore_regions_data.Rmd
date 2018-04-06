@@ -26,6 +26,43 @@ rgns <- filter(rgn_names, rgn_id %in% m_regions) %>%
 ```
 
 
+
+```{r gaviota, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
+
+# prepare Gaviota coast data
+# data from: https://www.sciencebase.gov/catalog/item/589a2585e4b0efcedb71a5bc
+library(rgdal)
+library(raster)
+library(sf)
+
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/src/R/spatial_common.R")
+
+gav <- sf::st_read(dsn = file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota")
+
+gav_rgn <- gav %>%
+  mutate(MapUnit = 1) %>%
+  group_by(MapUnit) %>%
+  summarize(area = sum(Shape_area))
+
+gav_rgn <- sf::as_Spatial(gav_rgn$geom)
+gav_rgn <- st_zm(gav_rgn)
+
+gav_rgn <- as(gav_rgn, "Spatial")
+
+gav_mol <- spTransform(gav_rgn, CRS(proj4string(ocean)))
+
+regions <- as(regions, "Spatial")
+plot(regions)
+plot(gav_mol, add=TRUE, col="red")
+
+writeOGR(gav_mol, dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol",
+         driver="ESRI Shapefile")
+
+
+```
+
+
+
 ##Social indicators
 
 These are slightly modified versions of data from the Social Progress Index (https://www.socialprogressindex.com/) and the Worldwide Governance Indicators (http://info.worldbank.org/governance/wgi/#home).
@@ -88,11 +125,16 @@ mpa <- file.path(dir_M, "git-annex/globalprep/lsp/v2017/rast/wdpa_2017_moll_500m
 plot(raster(mpa))
 
 moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol")
+moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
 moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
 
+## want a buffer arund Gaviota
+gav_buffer <- buffer(moore_rgn, width=100000)
+gav_buffer_wgs <- spTransform(gav_buffer, CRS("+init=epsg:4326"))
+
 raster_data_crop <- raster(mpa) %>%
-  crop(extent(moore_rgn)) %>%
-  mask(moore_rgn)
+  crop(extent(gav_buffer)) %>%
+  mask(gav_buffer)
 
 raster_data_crop_wgs <- projectRaster(raster_data_crop, crs=crs(moore_wgs))
 rtp <- rasterToPolygons(raster_data_crop_wgs)
@@ -104,7 +146,7 @@ ggmap(m) +
                aes(x=long, y=lat, group=group, fill = rep(rtp$wdpa_2017_moll_500m, each = 5))) +
   scale_fill_gradientn("RasterValues", colors = "darkgreen", guide=FALSE) +
   geom_polygon(data=moore_wgs, 
-               aes(x=long, y=lat), fill="white", alpha=0.5)
+               aes(x=long, y=lat), fill="white", alpha=0.5, color="orange")
 
 
 ggsave(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/MPA_Gaviota.png"))
@@ -121,39 +163,6 @@ The pale blue offshore region indicates the Gaviota coast region, with the green
 These are the eez summarized [Cumulative Human Impacts](https://www.nature.com/articles/ncomms8615) data.  This summary includes only the Cumulative Impact values for the regions of interest.  The full data is available [here](https://github.com/OHI-Science/ohi-global/blob/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv).
 
 NOTE: This is based on the full US extraction!  It will take a bit of work to extract the Gavioata Coast region.  I will do this, but I wanted to provide these data so we could begin thinking about it.
-
-```{r gaviota, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
-
-# prepare Gaviota coast data
-# data from: https://www.sciencebase.gov/catalog/item/589a2585e4b0efcedb71a5bc
-library(rgdal)
-library(raster)
-library(sf)
-
-source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/src/R/spatial_common.R")
-
-gav <- sf::st_read(dsn = file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota")
-
-gav_rgn <- gav %>%
-  mutate(MapUnit = 1) %>%
-  group_by(MapUnit) %>%
-  summarize(area = sum(Shape_area))
-
-gav_rgn <- sf::as_Spatial(gav_rgn$geom)
-gav_rgn <- st_zm(gav_rgn)
-
-gav_rgn <- as(gav_rgn, "Spatial")
-
-gav_mol <- spTransform(gav_rgn, CRS(proj4string(ocean)))
-
-regions <- as(regions, "Spatial")
-plot(regions)
-plot(gav_mol, add=TRUE, col="red")
-
-writeOGR(gav_mol, dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol",
-         driver="ESRI Shapefile")
-```
-
 
 ### Cumulative Human Impacts
 ```{r chi, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
@@ -277,11 +286,17 @@ moore_name <- "Gaviota"
 library(ggmap)
 
 moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol")
+moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
 moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
 
+## want a buffer arund Gaviota
+gav_buffer <- buffer(moore_rgn, width=100000)
+gav_buffer_wgs <- spTransform(gav_buffer, CRS("+init=epsg:4326"))
+
+
 raster_data_crop <- chi %>%
-  crop(extent(moore_rgn)) %>%
-  mask(moore_rgn)
+  crop(extent(gav_buffer)) %>%
+  mask(gav_buffer)
 
 raster_data_crop_wgs <- projectRaster(raster_data_crop, crs=crs(moore_wgs))
 rtp <- rasterToPolygons(raster_data_crop_wgs)
@@ -291,9 +306,12 @@ m <- get_map(location=c(lon = -120.3, lat = 34.44))
 ggmap(m) +
   geom_polygon(data=rtp,
                aes(x=long, y=lat, group=group, fill = rep(rtp$global_cumul_impact_2013_all_layers, each = 5))) +
-  scale_fill_gradientn("RasterValues", colors = cols, breaks = my_breaks, guide=FALSE)
+  scale_fill_gradientn("RasterValues", colors = cols, breaks = my_breaks, guide=FALSE) +
+  geom_polygon(data=moore_wgs, 
+               aes(x=long, y=lat), fill=NA, color="orange")
 
 ggsave(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/CHI_Gaviota.png"))
+
 ```
 
 
