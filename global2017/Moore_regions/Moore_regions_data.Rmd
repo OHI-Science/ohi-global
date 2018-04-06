@@ -78,8 +78,43 @@ protected <- protected %>%
 
 kable(protected)
 
+
 ```
 
+```{r, gaviota mpa, eval=FALSE, echo=FALSE}
+
+## Gaviota map
+mpa <- file.path(dir_M, "git-annex/globalprep/lsp/v2017/rast/wdpa_2017_moll_500m.tif")
+plot(raster(mpa))
+
+moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol")
+moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
+
+raster_data_crop <- raster(mpa) %>%
+  crop(extent(moore_rgn)) %>%
+  mask(moore_rgn)
+
+raster_data_crop_wgs <- projectRaster(raster_data_crop, crs=crs(moore_wgs))
+rtp <- rasterToPolygons(raster_data_crop_wgs)
+
+m <- get_map(location=c(lon = -120.3, lat = 34.44))
+
+ggmap(m) +
+  geom_polygon(data=rtp,
+               aes(x=long, y=lat, group=group, fill = rep(rtp$wdpa_2017_moll_500m, each = 5))) +
+  scale_fill_gradientn("RasterValues", colors = "darkgreen", guide=FALSE) +
+  geom_polygon(data=moore_wgs, 
+               aes(x=long, y=lat), fill="white", alpha=0.5)
+
+
+ggsave(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/MPA_Gaviota.png"))
+
+
+```
+
+#### Gaviota coast
+The pale blue offshore region indicates the Gaviota coast region, with the green indicating the marine protected area.
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/MPA_Gaviota.png)
 
 ##Cumulative Human Impact
 
@@ -217,22 +252,48 @@ moore_name <- "New Zealand"
 moore_rgn <- regions[regions$rgn_name == moore_name, ] 
 moore_rgn <- as(moore_rgn, "Spatial")
 
-raster_data_crop <- crop(raster_data, extent(moore_rgn)) %>%
-  mask(moore_rgn) %>%
-  projectRaster(crs=CRS("+init=epsg:3851"), progress="text")
+raster_data_crop <- chi %>%
+  crop(extent(moore_rgn)) %>%
+  mask(moore_rgn)
 
+moore_rgn <- spTransform(moore_rgn, CRS("+init=epsg:3994"))
 
+raster_data_crop <- projectRaster(raster_data_crop, crs=CRS("+init=epsg:3994"), progress="text") %>%
+  crop(extent(moore_rgn))
+
+## 3851 taking a long time
 ## tried: epsg:4167: still divided region
-moore_rgn <- spTransform(moore_rgn, CRS("+init=epsg:4167"))
 
-png(saveLoc, res=500, width=7, height=7, units="in")
 
-plot(raster_data_crop, col=cols, axes=FALSE, box=FALSE, breaks=myBreaks, legend=FALSE, main="New Zealand")
+png(file.path(dir_M, sprintf("git-annex/globalprep/data_requests/Moore_rgns/CHI_%s.png", moore_name)), res=500, width=7, height=7, units="in")
+plot(raster_data_crop, col=cols, axes=FALSE, box=FALSE, breaks=my_breaks, legend=FALSE, main="New Zealand")
 plot(moore_rgn[moore_rgn$rgn_type=="land", ], add=TRUE, border="white", col="gray80", lwd=0.5)
-
 dev.off()
 
 
+## Gaviota 
+moore_name <- "Gaviota"
+
+library(ggmap)
+
+moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol")
+moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
+
+raster_data_crop <- chi %>%
+  crop(extent(moore_rgn)) %>%
+  mask(moore_rgn)
+
+raster_data_crop_wgs <- projectRaster(raster_data_crop, crs=crs(moore_wgs))
+rtp <- rasterToPolygons(raster_data_crop_wgs)
+
+m <- get_map(location=c(lon = -120.3, lat = 34.44))
+
+ggmap(m) +
+  geom_polygon(data=rtp,
+               aes(x=long, y=lat, group=group, fill = rep(rtp$global_cumul_impact_2013_all_layers, each = 5))) +
+  scale_fill_gradientn("RasterValues", colors = cols, breaks = my_breaks, guide=FALSE)
+
+ggsave(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/CHI_Gaviota.png"))
 ```
 
 
@@ -241,3 +302,4 @@ dev.off()
 ![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Japan.png)
 ![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_New Zealand.png)
 ![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Solomon Islands.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Gaviota.png)
