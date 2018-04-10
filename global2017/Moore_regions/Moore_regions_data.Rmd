@@ -11,21 +11,58 @@ editor_options:
 
 ```{r prep, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 
+knitr::opts_chunk$set(fig.width = 6, fig.height = 4, fig.path = 'figs/',message = FALSE, warning = FALSE)
+
 library(dplyr)
 library(tidyr)
 library(DT)
 library(knitr)
 
-regions <- c(112, 210, 7, 163, 162, 16)
+m_regions <- c(112, 210, 7, 163, 162, 16)
 rgn_names <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/spatial/regions_list.csv")
 
-rgns <- filter(rgn_names, rgn_id %in% regions) %>%
-  dplyr::select(rgn_id, rgn_name)
+rgns <- filter(rgn_names, rgn_id %in% m_regions) %>%
+  select(rgn_id, rgn_name)
 
 #setwd("global2017/Moore_regions")
 
 ```
 
+
+
+```{r gaviota, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
+
+# prepare Gaviota coast data
+# data from: https://www.sciencebase.gov/catalog/item/589a2585e4b0efcedb71a5bc
+library(rgdal)
+library(raster)
+library(sf)
+
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/src/R/spatial_common.R")
+
+gav <- sf::st_read(dsn = file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota")
+
+gav_rgn <- gav %>%
+  mutate(MapUnit = 1) %>%
+  group_by(MapUnit) %>%
+  summarize(area = sum(Shape_area))
+
+gav_rgn <- sf::as_Spatial(gav_rgn$geom)
+gav_rgn <- st_zm(gav_rgn)
+
+gav_rgn <- as(gav_rgn, "Spatial")
+
+gav_mol <- spTransform(gav_rgn, CRS(proj4string(ocean)))
+
+regions <- as(regions, "Spatial")
+plot(regions)
+plot(gav_mol, add=TRUE, col="red")
+
+writeOGR(gav_mol, dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol",
+         driver="ESRI Shapefile")
+
+
+```
 
 
 ##Social indicators
@@ -136,12 +173,11 @@ protected <- protected %>%
 
 kable(protected)
 
+
 ```
 ##Region map
 ```{r gaviota, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
 
-# prepare Gaviota coast data
-# data from: https://www.sciencebase.gov/catalog/item/589a2585e4b0efcedb71a5bc
 library(rgdal)
 library(raster)
 library(sf)
@@ -205,44 +241,51 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 ```
 
+```{r, gaviota mpa, eval=FALSE, echo=FALSE}
+
+## Gaviota map
+mpa <- file.path(dir_M, "git-annex/globalprep/lsp/v2017/rast/wdpa_2017_moll_500m.tif")
+plot(raster(mpa))
+
+moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol")
+moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
+moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
+
+## want a buffer arund Gaviota
+gav_buffer <- buffer(moore_rgn, width=100000)
+gav_buffer_wgs <- spTransform(gav_buffer, CRS("+init=epsg:4326"))
+
+raster_data_crop <- raster(mpa) %>%
+  crop(extent(gav_buffer)) %>%
+  mask(gav_buffer)
+
+raster_data_crop_wgs <- projectRaster(raster_data_crop, crs=crs(moore_wgs))
+rtp <- rasterToPolygons(raster_data_crop_wgs)
+
+m <- get_map(location=c(lon = -120.3, lat = 34.44))
+
+ggmap(m) +
+  geom_polygon(data=rtp,
+               aes(x=long, y=lat, group=group, fill = rep(rtp$wdpa_2017_moll_500m, each = 5))) +
+  scale_fill_gradientn("RasterValues", colors = "darkgreen", guide=FALSE) +
+  geom_polygon(data=moore_wgs, 
+               aes(x=long, y=lat), fill="white", alpha=0.5, color="orange")
+
+
+ggsave(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/MPA_Gaviota.png"))
+
+
+```
+
+#### Gaviota coast
+The pale blue offshore region indicates the Gaviota coast region, with the green indicating the marine protected area.
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/MPA_Gaviota.png)
+
 ##Cumulative Human Impact
 
 These are the eez summarized [Cumulative Human Impacts](https://www.nature.com/articles/ncomms8615) data.  This summary includes only the Cumulative Impact values for the regions of interest.  The full data is available [here](https://github.com/OHI-Science/ohi-global/blob/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv).
 
 NOTE: This is based on the full US extraction!  It will take a bit of work to extract the Gavioata Coast region.  I will do this, but I wanted to provide these data so we could begin thinking about it.
-
-```{r gaviota, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
-
-# prepare Gaviota coast data
-# data from: https://www.sciencebase.gov/catalog/item/589a2585e4b0efcedb71a5bc
-library(rgdal)
-library(raster)
-library(sf)
-
-source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/src/R/spatial_common.R")
-
-gav <- sf::st_read(dsn = file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota")
-
-gav_rgn <- gav %>%
-  mutate(MapUnit = 1) %>%
-  group_by(MapUnit) %>%
-  summarize(area = sum(Shape_area))
-
-gav_rgn <- sf::as_Spatial(gav_rgn$geom)
-gav_rgn <- st_zm(gav_rgn)
-
-gav_rgn <- as(gav_rgn, "Spatial")
-
-gav_mol <- spTransform(gav_rgn, CRS(proj4string(ocean)))
-
-regions <- as(regions, "Spatial")
-plot(regions)
-plot(gav_mol, add=TRUE, col="red")
-
-writeOGR(gav_mol, dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol",
-         driver="ESRI Shapefile")
-```
-
 
 ### Cumulative Human Impacts
 ```{r chi, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
@@ -274,19 +317,130 @@ DT::datatable(stressors, options = list(
 ```
 
 ### CHI maps
-```{r maps, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+```{r maps, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
+library(raster)
+library(rgdal)
+library(fields)
+library(RColorBrewer)
 
-stressors <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv") %>%
-  dplyr::filter(eez_nam %in% rgns$rgn_name) %>%
-  dplyr::rename(region = eez_nam) %>%
-  dplyr::select(-global_cumulative_impact_2013_all_layers.gri)
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/src/R/spatial_common.R")
 
-stressors <- data.frame(t(stressors))
-colnames(stressors) <- as.character(unlist(stressors[1,]))
-stressors <- stressors[-1, ]
+legend.shrink <- 0.4
+legend.width <- 0.6
 
-DT::datatable(stressors, options = list(
-  pageLength = 19))
+my_breaks <- c(0, 1.781894, 2.377814, 2.986494, 3.316144, 3.558642, 3.750878, 
+               3.923132, 4.127960, 4.384074, 4.571275, 16)
+cols = rev(colorRampPalette(brewer.pal(11, 'Spectral'))(length(my_breaks)+2))[2:12] #stripping extreme ends of the color spectrum
+
+chi <-  raster(file.path(dir_M, 'marine_threats/impact_layers_2013_redo/global_impact_model_2013/normalized_by_one_time_period/averaged_by_num_ecosystems/all_layers/global_cumul_impact_2013_all_layers.tif')) %>%
+  mask(ocean)
+
+
+raster_breaks <- function(raster_data, moore_name, saveLoc, title, title_legend=NULL, myBreaks, cols){
+
+#   par(mar=c(2,2,2,2))
+#   par(oma=c(0,0,0,4))
+
+  moore_rgn <- regions[regions$rgn_name == moore_name, ] 
+  moore_rgn <- as(moore_rgn, "Spatial")
+  
+  
+png(saveLoc, res=500, width=7, height=7, units="in")
+
+raster_data_crop <- crop(raster_data, extent(moore_rgn)) %>%
+  mask(moore_rgn)
+
+plot(raster_data_crop, col=cols, axes=FALSE, box=FALSE, breaks=myBreaks, legend=FALSE, main=title)
+# add axis with fields package function:
+# def_breaks <- seq(0, length(myBreaks), length.out=length(myBreaks))
+# image.plot(raster_data, #zlim = c(min(myBreaks), max(myBreaks)), 
+#            legend.only = TRUE, 
+#            legend.shrink=legend.shrink,
+#            legend.width=legend.width,
+#            col = cols,
+#            legend.lab=title_legend,
+#            breaks=def_breaks,
+#            lab.breaks=round(myBreaks, 1),
+#            axis.args = list(cex.axis = 0.8))
+
+plot(moore_rgn[moore_rgn$rgn_type=="land", ], add=TRUE, border="white", col="gray80", lwd=0.5)
+
+dev.off()
+}
+
+
+for(name in rgns$rgn_name){ #name = rgns$rgn_name[1]
+raster_breaks(raster_data = chi, 
+              moore_name = name, 
+              saveLoc = file.path(dir_M, sprintf("git-annex/globalprep/data_requests/Moore_rgns/CHI_%s.png", name)), 
+              myBreaks = my_breaks, cols=cols,
+              title = name)
+}
+
+
+## New Zealand...cut in half
+moore_name <- "New Zealand"
+
+moore_rgn <- regions[regions$rgn_name == moore_name, ] 
+moore_rgn <- as(moore_rgn, "Spatial")
+
+raster_data_crop <- chi %>%
+  crop(extent(moore_rgn)) %>%
+  mask(moore_rgn)
+
+moore_rgn <- spTransform(moore_rgn, CRS("+init=epsg:3994"))
+
+raster_data_crop <- projectRaster(raster_data_crop, crs=CRS("+init=epsg:3994"), progress="text") %>%
+  crop(extent(moore_rgn))
+
+## 3851 taking a long time
+## tried: epsg:4167: still divided region
+
+
+png(file.path(dir_M, sprintf("git-annex/globalprep/data_requests/Moore_rgns/CHI_%s.png", moore_name)), res=500, width=7, height=7, units="in")
+plot(raster_data_crop, col=cols, axes=FALSE, box=FALSE, breaks=my_breaks, legend=FALSE, main="New Zealand")
+plot(moore_rgn[moore_rgn$rgn_type=="land", ], add=TRUE, border="white", col="gray80", lwd=0.5)
+dev.off()
+
+
+## Gaviota 
+moore_name <- "Gaviota"
+
+library(ggmap)
+
+moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol")
+moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
+moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
+
+## want a buffer arund Gaviota
+gav_buffer <- buffer(moore_rgn, width=100000)
+gav_buffer_wgs <- spTransform(gav_buffer, CRS("+init=epsg:4326"))
+
+
+raster_data_crop <- chi %>%
+  crop(extent(gav_buffer)) %>%
+  mask(gav_buffer)
+
+raster_data_crop_wgs <- projectRaster(raster_data_crop, crs=crs(moore_wgs))
+rtp <- rasterToPolygons(raster_data_crop_wgs)
+
+m <- get_map(location=c(lon = -120.3, lat = 34.44))
+
+ggmap(m) +
+  geom_polygon(data=rtp,
+               aes(x=long, y=lat, group=group, fill = rep(rtp$global_cumul_impact_2013_all_layers, each = 5))) +
+  scale_fill_gradientn("RasterValues", colors = cols, breaks = my_breaks, guide=FALSE) +
+  geom_polygon(data=moore_wgs, 
+               aes(x=long, y=lat), fill=NA, color="orange")
+
+ggsave(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/CHI_Gaviota.png"))
 
 ```
 
+
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Australia.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Cuba.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Japan.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_New Zealand.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Solomon Islands.png)
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Gaviota.png)
