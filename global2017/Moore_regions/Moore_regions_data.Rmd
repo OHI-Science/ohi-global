@@ -3,6 +3,8 @@ title: "Region_summary"
 author: "Melanie Frazier (UCSB, NCEAS, OHI)"
 date: "April 4, 2018"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 # Extracting data for Moore region proposal.
@@ -18,10 +20,12 @@ regions <- c(112, 210, 7, 163, 162, 16)
 rgn_names <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/spatial/regions_list.csv")
 
 rgns <- filter(rgn_names, rgn_id %in% regions) %>%
-  select(rgn_id, rgn_name)
+  dplyr::select(rgn_id, rgn_name)
 
+#setwd("global2017/Moore_regions")
 
 ```
+
 
 
 ##Social indicators
@@ -46,6 +50,62 @@ social_res <- social_res %>%
   left_join(wgi)
 
 kable(social_res)
+
+```
+
+
+##Climate pressures
+
+Extracting the climate pressure layers.
+
+```{r social, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+
+slr <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/cc_slr.csv") %>%
+  dplyr::select(rgn_id, year, SLR = pressure_score)
+
+acid <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/cc_acid.csv") %>%
+  dplyr::select(rgn_id, year, OA = pressure_score)
+
+sst <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/cc_sst.csv") %>%
+  dplyr::select(rgn_id, year, SST = pressure_score)
+
+uv <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/cc_uv.csv") %>%
+  dplyr::select(rgn_id, year, UV = pressure_score)
+
+
+pressure <- left_join(slr, acid) %>%
+  left_join(uv) %>%
+  left_join(sst) %>%
+  filter(year %in% 2012:2016)
+
+pressures <- rgns %>%
+  left_join(pressure) 
+
+pressure <- function(location){ # location = "Japan"
+  output <- pressures %>%
+    filter(rgn_name == location) %>%
+    dplyr::select(-rgn_id) %>%
+    gather("pressure", "score", 3:6)
+  
+  average <- output %>%
+    group_by(year) %>%
+    summarize(score = mean(score)) %>%
+    mutate(rgn_name = location) %>%
+    mutate(pressure = "average pressure") %>%
+    dplyr::select(rgn_name, year, pressure, score)
+
+output <- bind_rows(output, average)  %>%
+  spread(year, score)
+
+write.csv(output, sprintf("data/%s_climate_prs.csv", location), row.names=FALSE)
+
+}
+
+pressure("Japan")
+pressure("United States")
+pressure("Cuba")
+pressure("New Zealand")
+
 
 ```
 
@@ -77,7 +137,73 @@ protected <- protected %>%
 kable(protected)
 
 ```
+##Region map
+```{r gaviota, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
 
+# prepare Gaviota coast data
+# data from: https://www.sciencebase.gov/catalog/item/589a2585e4b0efcedb71a5bc
+library(rgdal)
+library(raster)
+library(sf)
+
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/src/R/spatial_common.R")
+
+source('../../global2016/Reporting/map_fxns.R')
+
+### set scenario and desired map projection
+prj      <- 'mol'    ### note: 'gcs' is way faster.
+
+# brewer.pal(10, "RdYlBu")
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+colors <-   c(reds, blues)
+
+
+### get OHI data and rename column headings
+
+for(year in 2012:scenario){ #year=2012
+
+if(year != scenario){
+  if(sum(grepl(sprintf("year_%s", year), list.files("figures/maps_by_goal_mol"))) == 0){
+  dir.create(sprintf("figures/maps_by_goal_mol/year_%s", year))
+  }
+  }
+    
+scores_df <- read.csv(sprintf('data/scores_eez%s.csv', year), stringsAsFactors = FALSE) %>%
+  rename(rgn_name = region_name, rgn_id = region_id) %>%
+  mutate(rgn_id = as.character(rgn_id))
+
+### load region data frame, so doesn't need to reload every time through the loop.  Also
+### load the land data frame, if plotting in Mollweide projection.
+rgn_df <- get_rgn_df(prj = prj)
+if(prj == 'mol' & !exists('land_poly')) {
+  land_poly  <- get_land_df()
+  ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
+}
+
+
+### establish list of fields for mapping
+mapFlds   <- names(scores_df %>% select(-rgn_name, -rgn_id))
+
+### Loop over each field, plotting each map in turn and saving to file.
+for (fld in mapFlds) { # fld <- mapFlds[1]
+
+  if(year==scenario){
+   fig_save = sprintf('figures/maps_by_goal_%s/global_map_%s_%s_%s.png', prj, fld, year, prj)
+} else{ 
+    fig_save = sprintf('figures/maps_by_goal_%s/year_%s/global_map_%s_%s_%s.png', prj, year, fld, year, prj)
+    }
+  
+   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
+                                 colors_spec = colors, leg_on = TRUE)
+   
+   #print(ohiplot)
+}
+}
+
+
+
+```
 
 ##Cumulative Human Impact
 
