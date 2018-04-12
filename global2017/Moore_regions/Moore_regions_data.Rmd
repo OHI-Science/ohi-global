@@ -20,11 +20,10 @@ m_regions <- c(112, 210, 7, 163, 162, 16)
 rgn_names <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/spatial/regions_list.csv")
 
 rgns <- filter(rgn_names, rgn_id %in% m_regions) %>%
-  select(rgn_id, rgn_name)
+  dplyr::select(rgn_id, rgn_name)
 
 
 ```
-
 
 
 ```{r gaviota, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
@@ -37,27 +36,82 @@ library(sf)
 
 source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/src/R/spatial_common.R")
 
-gav <- sf::st_read(dsn = file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota")
+gav <- sf::st_read("global2017/Moore_regions/GaviotaCoast.kml")
 
-gav_rgn <- gav %>%
-  mutate(MapUnit = 1) %>%
-  group_by(MapUnit) %>%
-  summarize(area = sum(Shape_area))
-
-gav_rgn <- sf::as_Spatial(gav_rgn$geom)
-gav_rgn <- st_zm(gav_rgn)
-
+gav_rgn <- st_zm(gav)
 gav_rgn <- as(gav_rgn, "Spatial")
 
 gav_mol <- spTransform(gav_rgn, CRS(proj4string(ocean)))
 
-regions <- as(regions, "Spatial")
-plot(regions)
-plot(gav_mol, add=TRUE, col="red")
+plot(gav_mol, col="red")
 
-writeOGR(gav_mol, dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol",
+writeOGR(gav_mol, dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol_v_court",
          driver="ESRI Shapefile")
 
+
+## Previous version of coastline, no longer using
+# gav <- sf::st_read(dsn = file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota")
+# 
+# gav_rgn <- gav %>%
+#   mutate(MapUnit = 1) %>%
+#   group_by(MapUnit) %>%
+#   summarize(area = sum(Shape_area))
+# 
+# gav_rgn <- sf::as_Spatial(gav_rgn$geom)
+# gav_rgn <- st_zm(gav_rgn)
+# 
+# gav_rgn <- as(gav_rgn, "Spatial")
+# 
+# gav_mol <- spTransform(gav_rgn, CRS(proj4string(ocean)))
+# 
+# regions <- as(regions, "Spatial")
+# plot(regions)
+# plot(gav_mol, add=TRUE, col="red")
+# 
+# writeOGR(gav_mol, dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol",
+#          driver="ESRI Shapefile")
+# 
+
+```
+
+## Region plots
+
+```{r region_maps, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
+
+library(rgdal)
+library(raster)
+library(sf)
+
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/src/R/spatial_common.R")
+
+regions <- as(regions, "Spatial")
+land <- regions[regions$rgn_type %in% c("land", "land-disputed", "land-noeez"), ]
+
+# function to plot general regions
+plot_rgn <- function(rgn){ #rgn="New Zealand"
+  rgn_area <- regions[regions$rgn_name == rgn, ]  
+png(file.path(dir_M,
+        sprintf("git-annex/globalprep/data_requests/Moore_rgns/rgn_map_%s.png", rgn)), res=500, width=7, height=7, units="in")
+plot(regions, col='#e3e7ea', border=NA)
+plot(land, col='gray85', border='grey80', add=TRUE, lwd=0.5)
+plot(rgn_area, col="red", border="red", add=TRUE)
+dev.off()
+}
+
+plot_rgn("New Zealand")
+plot_rgn("Japan")
+plot_rgn("Cuba")
+
+#Gaviota region
+moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol_v_court")
+moore_rgn <- buffer(moore_rgn, width=100000) #trying to get rid of some weird artifact
+
+png(file.path(dir_M,
+        "git-annex/globalprep/data_requests/Moore_rgns/rgn_map_Gaviota.png"), res=500, width=7, height=7, units="in")
+plot(regions, col='#e3e7ea', border=NA)
+plot(land, col='gray80', border='grey75', add=TRUE, lwd=0.5)
+plot(moore_rgn, col="red", border="red", add=TRUE, lwd=4)
+dev.off()
 
 ```
 
@@ -70,16 +124,21 @@ These are slightly modified versions of data from the Social Progress Index (htt
 ```{r social, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 
 spi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/res_spi.csv") %>%
-  filter(year == 2017) %>%
-  select(rgn_id, SPI = resilience_score)
+  dplyr::filter(year == 2017) %>%
+  dplyr::select(rgn_id, SPI = resilience_score)
+
+mean(spi$SPI, na.rm=TRUE)
+median(spi$SPI, na.rm=TRUE)
 
 social_res <- rgns %>%
   left_join(spi)
 
 
 wgi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/wgi_all.csv") %>%
-  filter(year == 2015) %>%
-  select(rgn_id, WGI = resilience_score)
+  dplyr::filter(year == 2015) %>%
+  dplyr::select(rgn_id, WGI = resilience_score)
+mean(wgi$WGI, na.rm=TRUE)
+median(wgi$WGI, na.rm=TRUE)
 
 social_res <- social_res %>%
   left_join(wgi)
@@ -120,12 +179,14 @@ kable(protected)
 
 ```{r, gaviota mpa, eval=FALSE, echo=FALSE}
 
+library(ggmap)
+
 ## Gaviota map
 mpa <- file.path(dir_M, "git-annex/globalprep/lsp/v2017/rast/wdpa_2017_moll_500m.tif")
 plot(raster(mpa))
 
-moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol")
-moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
+moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol_v_court")
+#moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
 moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
 
 ## want a buffer arund Gaviota
@@ -229,16 +290,16 @@ raster_data_crop <- crop(raster_data, extent(moore_rgn)) %>%
 
 plot(raster_data_crop, col=cols, axes=FALSE, box=FALSE, breaks=myBreaks, legend=FALSE, main=title)
 # add axis with fields package function:
-# def_breaks <- seq(0, length(myBreaks), length.out=length(myBreaks))
-# image.plot(raster_data, #zlim = c(min(myBreaks), max(myBreaks)), 
-#            legend.only = TRUE, 
-#            legend.shrink=legend.shrink,
-#            legend.width=legend.width,
-#            col = cols,
-#            legend.lab=title_legend,
-#            breaks=def_breaks,
-#            lab.breaks=round(myBreaks, 1),
-#            axis.args = list(cex.axis = 0.8))
+def_breaks <- seq(0, length(myBreaks), length.out=length(myBreaks))
+image.plot(raster_data, #zlim = c(min(myBreaks), max(myBreaks)),
+           legend.only = TRUE,
+           legend.shrink=legend.shrink,
+           legend.width=legend.width,
+           col = cols,
+           legend.lab=NA,
+           breaks=def_breaks,
+           lab.breaks=c("Low\nimpact", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "High\nimpact"),
+           axis.args = list(cex.axis = 0.8))
 
 plot(moore_rgn[moore_rgn$rgn_type=="land", ], add=TRUE, border="white", col="gray80", lwd=0.5)
 
@@ -255,11 +316,12 @@ raster_breaks(raster_data = chi,
 }
 
 
+###############################
 ## New Zealand...cut in half
+
 moore_name <- "New Zealand"
 
 moore_rgn <- regions[regions$rgn_name == moore_name, ] 
-moore_rgn <- as(moore_rgn, "Spatial")
 
 raster_data_crop <- chi %>%
   crop(extent(moore_rgn)) %>%
@@ -267,15 +329,28 @@ raster_data_crop <- chi %>%
 
 moore_rgn <- spTransform(moore_rgn, CRS("+init=epsg:3994"))
 
-raster_data_crop <- projectRaster(raster_data_crop, crs=CRS("+init=epsg:3994"), progress="text") %>%
-  crop(extent(moore_rgn))
+raster_data_crop <- projectRaster(raster_data_crop, crs=CRS("+init=epsg:3994"), progress="text")
+
+raster_data_crop <- crop(raster_data_crop, extent(moore_rgn))
 
 ## 3851 taking a long time
 ## tried: epsg:4167: still divided region
 
+png(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/CHI_NZ.png"), res=500, width=7, height=7, units="in")
 
-png(file.path(dir_M, sprintf("git-annex/globalprep/data_requests/Moore_rgns/CHI_%s.png", moore_name)), res=500, width=7, height=7, units="in")
 plot(raster_data_crop, col=cols, axes=FALSE, box=FALSE, breaks=my_breaks, legend=FALSE, main="New Zealand")
+# add axis with fields package function:
+def_breaks <- seq(0, length(my_breaks), length.out=length(my_breaks))
+image.plot(raster_data_crop, #zlim = c(min(myBreaks), max(myBreaks)),
+           legend.only = TRUE,
+           legend.shrink=legend.shrink,
+           legend.width=legend.width,
+           col = cols,
+           legend.lab=NA,
+           breaks=def_breaks,
+           lab.breaks=c("Low\nimpact", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, "High\nimpact"),
+           axis.args = list(cex.axis = 0.8))
+
 plot(moore_rgn[moore_rgn$rgn_type=="land", ], add=TRUE, border="white", col="gray80", lwd=0.5)
 dev.off()
 
@@ -285,11 +360,11 @@ moore_name <- "Gaviota"
 
 library(ggmap)
 
-moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol")
-moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
+moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol_v_court")
+#moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
 moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
 
-## want a buffer arund Gaviota
+## want a buffer around Gaviota
 gav_buffer <- buffer(moore_rgn, width=100000)
 gav_buffer_wgs <- spTransform(gav_buffer, CRS("+init=epsg:4326"))
 
