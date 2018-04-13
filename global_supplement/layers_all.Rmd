@@ -4,9 +4,8 @@
  library(tidyr) 
  library(knitr) 
  
-## github urls so we can knit this from the gh-pages branch
-layer_meta <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE) 
-layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers' 
+ layer_meta <- read.csv('../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE) 
+ layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers' 
  
  
 ```
@@ -2083,25 +2082,6 @@ layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
  score
 
  
-##Unemployment 
-####[le_unemployment](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_unemployment.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_unemployment.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- proportion
-
- 
 ##UN geopolitical region classifications 
 ####[rgn_georegions](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_georegions.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -2119,6 +2099,25 @@ layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
  
 ####Units {-} 
  UN regions
+
+ 
+##Unemployment 
+####[le_unemployment](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_unemployment.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_unemployment.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ proportion
 
  
 ##US State Department travel warnings 
@@ -2159,25 +2158,6 @@ layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
  scaled 0-1
 
  
-##Wages, current value 
-####[le_wage_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_cur_base_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_wage_cur_base_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
-
- 
 ##Wages for each sector and year 
 ####[le_wage_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_sector_year.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -2195,6 +2175,25 @@ layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
  
 ####Units {-} 
  2010 USD
+
+ 
+##Wages, current value 
+####[le_wage_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_cur_base_value.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_wage_cur_base_value.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ value
 
  
 ##Wages, reference value 
