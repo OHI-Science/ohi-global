@@ -206,34 +206,97 @@ pressure("New Zealand")
 ```
 
 
-## Marine Protected Areas
+Special extraction of climate pressures and CHI for Gaviota coast.
 
-This describes the amount of marine protected area (km2) within 3nm of the coastline.
+```{r gav climate chi, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
 
-IUCN and UNEP-WCMC (2016), The World Database on Protected Areas (WDPA) [On-line], May 2016. Cambridge, UK: UNEP-WCMC. Available at: www.protectedplanet.net.
+## Gaviota boundary
+moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol_v_court")
+moore_mol_vis <- buffer(moore_mol, width=100000) 
+moore_rast <- rasterize(moore_mol, ocean)
+writeRaster(moore_rast, file.path(dir_M,
+        "git-annex/globalprep/data_requests/Moore_rgns/Gaviota_rast_mol.tif"), overwrite=TRUE)
+# get relevant climate rasters
 
-NOTE: This is the protected area for the entire US, not the Gaviota Coast.
-```{r mpa, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+years <- paste0(2012:2016, collapse="|")
 
-mpa <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/lsp_prot_area_offshore3nm.csv") %>%
-  filter(year == 2017) %>%
-  select(rgn_id, MPA = a_prot_3nm)
+slr <- list.files(file.path(dir_M, "git-annex/globalprep/prs_slr/v2017/output"), pattern = ".tif", full=TRUE)
+slr <- grep(years, slr, value=TRUE)
+slr <- slr[-grep("aux", slr)]
 
-protected <- rgns %>%
-  left_join(mpa)
+acid <- list.files(file.path(dir_M, "git-annex/globalprep/prs_oa/v2017/output"), pattern = ".tif", full=TRUE)
+acid <- grep(years, acid, value=TRUE)
 
 
-area <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/rgn_area_offshore3nm.csv") %>%
-  select(rgn_id, rgn_area_3nm = area)
+sst <- list.files(file.path(dir_M, "git-annex/globalprep/prs_sst/v2016/output"), full=TRUE)
+sst <- grep("2008-2012|2007-2011|2006-2010|2005-2009|2004-2008", sst, value=TRUE)
 
-protected <- protected %>%
-  left_join(area) %>%
-  mutate(percent_mpa = round(MPA/rgn_area_3nm * 100))
+uv <- list.files(file.path(dir_M,'git-annex/globalprep/prs_uv/v2017/output'), full=TRUE, pattern =  "rescaled")
+uv <- grep("2012_2016|2011_2015|2010_2014|2009_2013|2008_2012", uv, value=TRUE)
 
-kable(protected)
+# get chi data
+chi <-  file.path(dir_M, 'marine_threats/impact_layers_2013_redo/global_impact_model_2013/normalized_by_one_time_period/averaged_by_num_ecosystems/all_layers/global_cumul_impact_2013_all_layers.tif')
+  
+stack_data <- c(slr, acid, sst, uv, chi)
+
+climate_stack <- stack(stack_data)
+
+## check that region is landing in correct general area
+plot(climate_stack[[21]])
+plot(moore_mol_vis, col="red", border="red", add=TRUE)
+
+
+## take mean of data within Gaviota region
+regions_stats <- zonal(climate_stack, moore_rast, fun="mean", na.rm=TRUE, progress="text")
+regions_stats2 <- data.frame(regions_stats)
+
+write.csv(regions_stats2, "Gaviata_cc_data.csv")
+
+gav_data <- gather(regions_stats2, "pressure", "score") %>%
+  filter(pressure != "zone")
+
+# formatted data by hand in Excel
+dat <- read.csv("Gaviata_cc_data_long_v2.csv")
+dat <- spread(dat, year, score)
+write.csv(dat, "Gav_cc.csv", row.names=FALSE)
+  
+pressure <- left_join(slr, acid) %>%
+  left_join(uv) %>%
+  left_join(sst) %>%
+  filter(year %in% 2012:2016)
+
+pressures <- rgns %>%
+  left_join(pressure) 
+
+pressure <- function(location){ # location = "Japan"
+  output <- pressures %>%
+    filter(rgn_name == location) %>%
+    dplyr::select(-rgn_id) %>%
+    gather("pressure", "score", 3:6)
+  
+  average <- output %>%
+    group_by(year) %>%
+    summarize(score = mean(score)) %>%
+    mutate(rgn_name = location) %>%
+    mutate(pressure = "average pressure") %>%
+    dplyr::select(rgn_name, year, pressure, score)
+
+output <- bind_rows(output, average)  %>%
+  spread(year, score)
+
+write.csv(output, sprintf("data/%s_climate_prs.csv", location), row.names=FALSE)
+
+}
+
+pressure("Japan")
+pressure("United States")
+pressure("Cuba")
+pressure("New Zealand")
 
 
 ```
+
+
 ##Region map
 ```{r gaviota, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
 
@@ -300,47 +363,6 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 ```
 
-```{r, gaviota mpa, eval=FALSE, echo=FALSE}
-
-library(ggmap)
-
-## Gaviota map
-mpa <- file.path(dir_M, "git-annex/globalprep/lsp/v2017/rast/wdpa_2017_moll_500m.tif")
-plot(raster(mpa))
-
-moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol_v_court")
-#moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
-moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
-
-## want a buffer arund Gaviota
-gav_buffer <- buffer(moore_rgn, width=100000)
-gav_buffer_wgs <- spTransform(gav_buffer, CRS("+init=epsg:4326"))
-
-raster_data_crop <- raster(mpa) %>%
-  crop(extent(gav_buffer)) %>%
-  mask(gav_buffer)
-
-raster_data_crop_wgs <- projectRaster(raster_data_crop, crs=crs(moore_wgs))
-rtp <- rasterToPolygons(raster_data_crop_wgs)
-
-m <- get_map(location=c(lon = -120.3, lat = 34.44))
-
-ggmap(m) +
-  geom_polygon(data=rtp,
-               aes(x=long, y=lat, group=group, fill = rep(rtp$wdpa_2017_moll_500m, each = 5))) +
-  scale_fill_gradientn("RasterValues", colors = "darkgreen", guide=FALSE) +
-  geom_polygon(data=moore_wgs, 
-               aes(x=long, y=lat), fill="white", alpha=0.5, color="orange")
-
-
-ggsave(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/MPA_Gaviota.png"))
-
-
-```
-
-#### Gaviota coast
-The pale blue offshore region indicates the Gaviota coast region, with the green indicating the marine protected area.
-![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/MPA_Gaviota.png)
 
 ##Cumulative Human Impact
 
@@ -355,7 +377,12 @@ chi <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/
   filter(eez_nam %in% rgns$rgn_name) %>%
   select(region = eez_nam, Cumulative_impact = global_cumulative_impact_2013_all_layers.gri)
 
+avg <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Moore_regions/oneYearNorm_2013_eez_zeroData.csv")
+summary(avg)
+
 kable(chi)
+
+
 
 ```
 
@@ -519,3 +546,155 @@ ggsave(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/CHI_Gavio
 ![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_New Zealand.png)
 ![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Solomon Islands.png)
 ![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/CHI_Gaviota.png)
+## Marine Protected Areas
+
+This describes the amount of marine protected area (km2) within 3nm of the coastline.
+
+IUCN and UNEP-WCMC (2016), The World Database on Protected Areas (WDPA) [On-line], May 2016. Cambridge, UK: UNEP-WCMC. Available at: www.protectedplanet.net.
+
+NOTE: This is the protected area for the entire US, not the Gaviota Coast.
+```{r mpa, warning=FALSE, error=FALSE, message=FALSE, echo=FALSE}
+
+mpa <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/lsp_prot_area_offshore3nm.csv") %>%
+  filter(year == 2017) %>%
+  select(rgn_id, MPA = a_prot_3nm)
+
+protected <- rgns %>%
+  left_join(mpa)
+
+
+area <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/rgn_area_offshore3nm.csv") %>%
+  select(rgn_id, rgn_area_3nm = area)
+
+protected <- protected %>%
+  left_join(area) %>%
+  mutate(percent_mpa = round(MPA/rgn_area_3nm * 100))
+
+kable(protected)
+
+
+```
+
+```{r, mpa maps, eval=FALSE, echo=FALSE}
+
+library(raster)
+library(rgdal)
+library(fields)
+library(RColorBrewer)
+library(ggmap)
+
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/src/R/spatial_common.R")
+
+
+## MPA raster
+mpa <- raster(file.path(dir_M, "git-annex/globalprep/lsp/v2017/rast/wdpa_2017_moll_500m.tif"))
+raster::reclassify(mpa, c(-Inf, Inf, 1), 
+            filename= file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/mpa_raster.tif"))
+
+mpa <- raster(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/mpa_raster.tif"))
+plot(mpa)
+
+## Gaviota map
+moore_rgn <- readOGR(dsn=file.path(dir_M, "git-annex/globalprep/_raw_data/Geology_OffshoreGaviota"), layer = "Geology_OffshoreGaviota_mol_v_court")
+#moore_rgn <- buffer(moore_rgn, width=1) #trying to get rid of some weird artifact
+moore_wgs <- spTransform(moore_rgn, CRS("+init=epsg:4326"))
+
+## want a buffer around Gaviota
+gav_buffer <- buffer(moore_rgn, width=100000)
+gav_buffer_wgs <- spTransform(gav_buffer, CRS("+init=epsg:4326"))
+
+raster_data_crop <- raster(mpa) %>%
+  crop(extent(gav_buffer)) %>%
+  mask(gav_buffer)
+
+raster_data_crop_wgs <- projectRaster(raster_data_crop, crs=crs(moore_wgs))
+rtp <- rasterToPolygons(raster_data_crop_wgs)
+
+m <- get_map(location=c(lon = -120.3, lat = 34.44))
+
+ggmap(m) +
+  geom_polygon(data=rtp,
+               aes(x=long, y=lat, group=group, fill = rep(rtp$wdpa_2017_moll_500m, each = 5))) +
+  scale_fill_gradientn("RasterValues", colors = "darkgreen", guide=FALSE) +
+  geom_polygon(data=moore_wgs, 
+               aes(x=long, y=lat), fill="white", alpha=0.5, color="orange")
+
+
+ggsave(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/MPA_Gaviota.png"))
+
+
+## Cuba
+  moore_rgn <- regions[regions$rgn_name == "Cuba", ] 
+  moore_rgn <- as(moore_rgn, "Spatial")
+  moore_land <- moore_rgn[moore_rgn$rgn_type=="land", ]
+
+  back <- as(extent(moore_rgn), 'SpatialPolygons')
+  
+raster_data_crop <- mpa %>%
+  crop(extent(moore_rgn)) %>%
+  mask(moore_rgn)
+
+png(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/MPA_Cuba.png"), res=500, width=7, height=7, units="in")
+
+plot(back, col="#c5e3ed", border="#c5e3ed")
+plot(regions[regions$rgn_type=="land", ], col="lightgray", border="gray", add=TRUE, lwd=0.5)
+plot(moore_rgn, col="#eef7fa", border="#eef7fa", add=TRUE)
+plot(moore_land, col="gray", border="darkgray", add=TRUE)
+plot(raster_data_crop, add=TRUE, col="#0B662373", legend=FALSE)
+
+dev.off()
+
+## Japan
+  moore_rgn <- regions[regions$rgn_name == "Japan", ] 
+  moore_rgn <- as(moore_rgn, "Spatial")
+  moore_land <- moore_rgn[moore_rgn$rgn_type=="land", ]
+
+  back <- as(extent(moore_rgn), 'SpatialPolygons')
+  
+raster_data_crop <- mpa %>%
+  crop(extent(moore_rgn)) %>%
+  mask(moore_rgn)
+
+png(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/MPA_Japan.png"), res=500, width=7, height=7, units="in")
+
+plot(back, col="#c5e3ed", border="#c5e3ed")
+plot(regions[regions$rgn_type=="land", ], col="lightgray", border="gray", add=TRUE, lwd=0.5)
+plot(moore_rgn, col="#eef7fa", border="#eef7fa", add=TRUE)
+plot(moore_land, col="gray", border="darkgray", add=TRUE)
+plot(raster_data_crop, add=TRUE, col="#0B662373", legend=FALSE)
+
+dev.off()
+
+## New Zealand
+
+  moore_rgn <- regions[regions$rgn_name == "New Zealand", ] 
+  moore_rgn <- as(moore_rgn, "Spatial")
+
+raster_data_crop <- mpa %>%
+  crop(extent(moore_rgn)) %>%
+  mask(moore_rgn)
+
+  moore_rgn <- spTransform(moore_rgn, CRS("+init=epsg:3994"))                
+  moore_land <- moore_rgn[moore_rgn$rgn_type=="land", ]
+                
+raster_data_crop <- projectRaster(raster_data_crop, crs=CRS("+init=epsg:3994"), progress="text")
+
+mpa_nz <- crop(raster_data_crop, extent(moore_rgn)) %>%
+  mask(moore_rgn)
+
+png(file.path(dir_M, "git-annex/globalprep/data_requests/Moore_rgns/MPA_NZ.png"), res=500, width=7, height=7, units="in")
+
+plot(back, col="#c5e3ed", border="#c5e3ed")
+plot(regions[regions$rgn_type=="land", ], col="lightgray", border="gray", add=TRUE, lwd=0.5)
+plot(moore_rgn, col="#eef7fa", border="#eef7fa", add=TRUE)
+plot(moore_land, col="gray", border="darkgray", add=TRUE)
+plot(mpa_nz, add=TRUE, col="#0B662373", legend=FALSE)
+
+dev.off()
+
+```
+
+#### Gaviota coast
+The pale blue offshore region indicates the Gaviota coast region, with the green indicating the marine protected area.
+![figure](/home/shares/ohi/git-annex/globalprep/data_requests/Moore_rgns/MPA_Gaviota.png)
+
