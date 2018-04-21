@@ -1,7 +1,7 @@
 layer,variable,variable_data
 ao_access,radical_include,yes
 ao_access,short_name,Artisanal fishing access
-ao_access,source_citation,"Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., & Worm, B. (2009). Management Effectiveness of the World's Marine Fisheries. PLoS Biol, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](http://dx.doi.org/10.1371/journal.pbio.1000131)"
+ao_access,source_citation,"Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., & Worm, B. (2009). Management Effectiveness of the World's Marine Fisheries. PLoS Biol, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](https://doi.org/10.1371/journal.pbio.1000131)"
 ao_need,radical_include,yes
 ao_need,short_name,Economic need
 ao_need,source_citation,The World Bank GDP per capita PPP (current international $) [http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD].
@@ -14,7 +14,7 @@ cc_slr,source_citation,AVISO data [http://www.aviso.altimetry.fr/en/data/product
 cc_sst,radical_include,yes
 cc_sst,short_name,Sea surface temperature
 cc_sst,source_citation,AVHRR Pathfinder Version 5.0 SST data [http://pathfinder.nodc.noaa.gov].
-cc_sst,source_citation,"Casey, K. S., Brandon, T. B., Cornillon, P., & Evans, R. (2010). The past, present and future of the AVHRR Pathfinder SST Program, Oceanography from Space: Revisited, eds. V. Barale, J. F. R. Gower, and L. Alberotanza, Springer. [http://dx.doi.org/10.1007/978-90-481-8681-5_16]."
+cc_sst,source_citation,"Casey, K. S., Brandon, T. B., Cornillon, P., & Evans, R. (2010). The past, present and future of the AVHRR Pathfinder SST Program, Oceanography from Space: Revisited, eds. V. Barale, J. F. R. Gower, and L. Alberotanza, Springer. [https://doi.org/10.1007/978-90-481-8681-5_16]."
 cc_uv,radical_include,yes
 cc_uv,short_name,UV radiation pressure
 cc_uv,source_citation,Goddard Earth Sciences Data and Information Services Center (GES DISC) [http://disc.sci.gsfc.nasa.gov/data-holdings/PIP/erythemal_uv_irradiance.shtml].
@@ -67,21 +67,21 @@ fp_art_lb,short_name,Artisanal low bycatch
 fp_art_lb,source_citation,"Pauly, D, and D Zeller, eds. (2015). Sea around us concepts, design and data. [http://www.seaaroundus.org/]."
 fp_com_hb,radical_include,yes
 fp_com_hb,short_name,Commercial high bycatch
-fp_com_hb,source_citation,"Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008). A global map of human impact on marine ecosystems. Science, 3199(5865): 948-952. [http://dx.doi.org/10.1126/science.1149345]."
+fp_com_hb,source_citation,"Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008). A global map of human impact on marine ecosystems. Science, 3199(5865): 948-952. [https://doi.org/10.1126/science.1149345]."
 fp_com_hb,source_citation,"Pauly, D, and D Zeller, eds. (2015). Sea around us concepts, design and data. [http://www.seaaroundus.org/]."
 fp_com_lb,radical_include,yes
 fp_com_lb,short_name,Commercial low bycatch
-fp_com_lb,source_citation,"Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008). A global map of human impact on marine ecosystems. Science, 3199(5865): 948-952. [http://dx.doi.org/10.1126/science.1149345]."
+fp_com_lb,source_citation,"Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008). A global map of human impact on marine ecosystems. Science, 3199(5865): 948-952. [https://doi.org/10.1126/science.1149345]."
 fp_com_lb,source_citation,"Pauly, D, and D Zeller, eds. (2015). Sea around us concepts, design and data. [http://www.seaaroundus.org/]."
 fp_habitat,radical_include,yes
 fp_habitat,short_name,"Habitat protection, fish"
 fp_habitat,source_citation,Convention on Biological Diversity (CBD) [http://www.cbd.int/reports/search/default.shtml].
 fp_mora,radical_include,yes
 fp_mora,short_name,Fishing management
-fp_mora,source_citation,"Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., & Worm, B. (2009). Management Effectiveness of the World's Marine Fisheries. PLoS Biol, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](http://dx.doi.org/10.1371/journal.pbio.1000131)"
+fp_mora,source_citation,"Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., & Worm, B. (2009). Management Effectiveness of the World's Marine Fisheries. PLoS Biol, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](https://doi.org/10.1371/journal.pbio.1000131)"
 fp_mora_artisanal,radical_include,yes
 fp_mora_artisanal,short_name,Artisanal fishing
-fp_mora_artisanal,source_citation,"Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., & Worm, B. (2009). Management Effectiveness of the World's Marine Fisheries. PLoS Biol, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](http://dx.doi.org/10.1371/journal.pbio.1000131)"
+fp_mora_artisanal,source_citation,"Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., & Worm, B. (2009). Management Effectiveness of the World's Marine Fisheries. PLoS Biol, 7(6), e1000131. [doi:10.1371/journal.pbio.1000131](https://doi.org/10.1371/journal.pbio.1000131)"
 fp_mpa_coast,radical_include,yes
 fp_mpa_coast,short_name,"Fishery protection, coast"
 fp_mpa_coast,source_citation,Internal calculation
@@ -111,7 +111,7 @@ hab_extent,radical_include,no
 hab_extent,short_name,Habitat extent
 hab_extent,source_citation,"Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). The carbon balance of North American Wetlands. Wetlands 26: 889-916."
 hab_extent,source_citation,"Bruno, J. F. & Selig, E. R. (2007). Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons. PLoS ONE 2(8): e711. doi:10.1371/journal.pone.0000711."
-hab_extent,source_citation,"Cavalieri, D. J., Parkinson, C. L., Gloersen, P. & Zwally, H. (2014). Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center. [http://dx.doi.org/10.5067/8GQ8LZQVL0VL]."
+hab_extent,source_citation,"Cavalieri, D. J., Parkinson, C. L., Gloersen, P. & Zwally, H. (2014). Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center. [https://doi.org/10.5067/8GQ8LZQVL0VL]."
 hab_extent,source_citation,"Dahl, T. E. (2000). Status and trends of wetlands in the conterminous United States 1986 to 1997. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C."
 hab_extent,source_citation,"Hamilton, S. & Casey, D. (2014). Creation of a high spatiotemporal resolution global database of continuous mangrove forest cover for the 21st Century (CGMFC-21): a big-data fusion approach. [http://arxiv.org/ftp/arxiv/papers/1412/1412.0722.pdf]."
 hab_extent,source_citation,"Joint Nature Conservation Committee, JNCC. (2004). UK Lowland wetland habitats. [http://jncc.defra.gov.uk/page-1433]."
@@ -122,7 +122,7 @@ hab_health,radical_include,yes
 hab_health,short_name,Habitat condition
 hab_health,source_citation,"Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). The carbon balance of North American Wetlands. Wetlands 26: 889-916."
 hab_health,source_citation,"Bruno, J. F. & Selig, E. R. (2007). Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons. PLoS ONE 2(8): e711. doi:10.1371/journal.pone.0000711."
-hab_health,source_citation,"Cavalieri, D. J., Parkinson, C. L., Gloersen, P. & Zwally, H. (2014). Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center. [http://dx.doi.org/10.5067/8GQ8LZQVL0VL]."
+hab_health,source_citation,"Cavalieri, D. J., Parkinson, C. L., Gloersen, P. & Zwally, H. (2014). Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center. [https://doi.org/10.5067/8GQ8LZQVL0VL]."
 hab_health,source_citation,"Dahl, T. E. (2000). Status and trends of wetlands in the conterminous United States 1986 to 1997. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C."
 hab_health,source_citation,FAO. (2007). The world's mangroves 1980-2005. FAO Forestry Paper 153.
 hab_health,source_citation,"Joint Nature Conservation Committee, JNCC. (2004). UK Lowland wetland habitats. [http://jncc.defra.gov.uk/page-1433]."
@@ -133,7 +133,7 @@ hab_trend,radical_include,yes
 hab_trend,short_name,Habitat condition trend
 hab_trend,source_citation,"Bridgham, S. D. , Megonigal, J. P. , Keller, J. K., et al. (2006). The carbon balance of North American Wetlands. Wetlands 26: 889-916."
 hab_trend,source_citation,"Bruno, J. F. & Selig, E. R. (2007). Regional decline of coral cover in the Indo-Pacific: timing, extent, and subregional comparisons. PLoS ONE 2(8): e711. doi:10.1371/journal.pone.0000711."
-hab_trend,source_citation,"Cavalieri, D. J., Parkinson, C. L., Gloersen, P. & Zwally, H. (2014). Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center. [http://dx.doi.org/10.5067/8GQ8LZQVL0VL]."
+hab_trend,source_citation,"Cavalieri, D. J., Parkinson, C. L., Gloersen, P. & Zwally, H. (2014). Sea ice concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS passive microwave data. 1979-2014. Boulder, Colorado USA: NASA National Snow and Ice Data Center Distributed Active Archive Center. [https://doi.org/10.5067/8GQ8LZQVL0VL]."
 hab_trend,source_citation,"Dahl, T. E. (2000). Status and trends of wetlands in the conterminous United States 1986 to 1997. U.S. Department of the Interior, Fish and Wildlife Service, Washington, D.C."
 hab_trend,source_citation,"Hamilton, S. & Casey, D. (2014). Creation of a high spatiotemporal resolution global database of continuous mangrove forest cover for the 21st Century (CGMFC-21): a big-data fusion approach. [http://arxiv.org/ftp/arxiv/papers/1412/1412.0722.pdf]."
 hab_trend,source_citation,"Joint Nature Conservation Committee, JNCC. (2004). UK Lowland wetland habitats. [http://jncc.defra.gov.uk/page-1433]."
@@ -157,7 +157,7 @@ hd_subtidal_hb,short_name,Hard bottom destruction
 hd_subtidal_hb,source_citation,Reefs at Risk Revisited [http://www.wri.org/publication/reefs-at-risk-revisited].
 hd_subtidal_sb,radical_include,yes
 hd_subtidal_sb,short_name,Softbottom destruction
-hd_subtidal_sb,source_citation,"Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008). A global map of human impact on marine ecosystems. Science, 3199(5865): 948-952. [http://dx.doi.org/10.1126/science.1149345]."
+hd_subtidal_sb,source_citation,"Halpern, B.S., Walbridge S., Selkoe, K.A., Kappel, C.V., Micheli, F., D'Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R., Watson, R. (2008). A global map of human impact on marine ecosystems. Science, 3199(5865): 948-952. [https://doi.org/10.1126/science.1149345]."
 hd_subtidal_sb,source_citation,"Pauly, D, and D Zeller, eds. (2015). Sea around us concepts, design and data. [http://www.seaaroundus.org/]."
 ico_spp_iucn_status,radical_include,no
 ico_spp_iucn_status,short_name,IUCN extinction risk
@@ -313,7 +313,7 @@ rgn_labels,short_name,Regions
 rgn_labels,source_citation,NA
 sp_alien,radical_include,yes
 sp_alien,short_name,Nonindigenous species
-sp_alien,source_citation,"Molnar, J. L., Gamboa, R. L., Revenga C., Spalding, M. (2008). Assessing the global threat of invasive species to marine biodiversity. Frontiers in Ecology and the Environment 6(485). [doi:10.1890/070064](http://dx.doi.org/10.1890/070064)"
+sp_alien,source_citation,"Molnar, J. L., Gamboa, R. L., Revenga C., Spalding, M. (2008). Assessing the global threat of invasive species to marine biodiversity. Frontiers in Ecology and the Environment 6(485). [doi:10.1890/070064](https://doi.org/10.1890/070064)"
 sp_alien_species,radical_include,yes
 sp_alien_species,short_name,Control of alien species
 sp_alien_species,source_citation,Convention on Biological Diversity (CBD) [http://www.cbd.int/reports/search/default.shtml].
