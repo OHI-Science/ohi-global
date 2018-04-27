@@ -10,11 +10,11 @@ cw_chemical_trend,file_loc_2017,ohiprep:globalprep/prs_chem/v2015/output/cw_pest
 cw_nutrient_trend,file_loc_2017,ohiprep:globalprep/prs_land-based_nutrient/v2015/output/cw_fertilizer_trend_2015_gf.csv
 cw_pathogen_trend,file_loc_2017,ohiprep:globalprep/prs_cw_pathogen/v2015/data/pathogens_popdensity25mi_trend_2015a_gf.csv
 cw_trash_trend,file_loc_2017,ohiprep:globalprep/cw_trend_trash/v2016/output/cw_trash_trend_gf.csv
-element_wts_cp_km2_x_protection,file_loc_2017,created in functions.R
-element_wts_cs_km2_x_storage,file_loc_2017,created in functions.R
-element_wts_hab_pres_abs,file_loc_2017,created in functions.R
-fis_b_bmsy,file_loc_2017,created in functions.R
-fis_meancatch,file_loc_2017,created in functions.R
+element_wts_cp_km2_x_protection,file_loc_2017,NA
+element_wts_cs_km2_x_storage,file_loc_2017,NA
+element_wts_hab_pres_abs,file_loc_2017,NA
+fis_b_bmsy,file_loc_2017,ohi-global:eez/temp/FIS_summary_gf.csv
+fis_meancatch,file_loc_2017,NA
 fp_art_hb,file_loc_2017,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data/blast_poison_3nm_gf.csv
 fp_art_lb,file_loc_2017,ohiprep:globalprep/prs_fish/v2017/output/art_gf.csv
 fp_com_hb,file_loc_2017,ohiprep:globalprep/prs_fish/v2017/output/hb_gf.csv
@@ -25,8 +25,8 @@ fp_mora_artisanal,file_loc_2017,ohiprep:globalprep/res_mora/v2013/data/r_mora_s4
 fp_mpa_coast,file_loc_2017,ohiprep:globalprep/lsp/v2017/output/mpa_3nm_updated_gf.csv
 fp_mpa_eez,file_loc_2017,ohiprep:globalprep/lsp/v2017/output/mpa_eez_updated_resilience_gf.csv
 fp_targetharvest,file_loc_2017,ohiprep:globalprep/prs_targetedharvest/v2017/output/fao_targeted_gf.csv
-fp_wildcaught_weight,file_loc_2017,ohiprep:globalprep/fp/v2017/output/wildcaught_weight.csv
-g_cites,file_loc_2017,Update: territories gapfilled
+fp_wildcaught_weight,file_loc_2017,ohiprep:globalprep/fp/v2017/output/wildcaught_weight_gf.csv
+g_cites,file_loc_2017,ohiprep:globalprep/res_cites_signatories/v2017/output/cites_gf.csv
 g_mariculture,file_loc_2017,ohiprep:globalprep/res_cbd_habitat/v2014/data/r_mariculture_2013a_gf.csv
 g_msi_gov,file_loc_2017,ohiprep:globalprep/res_mariculture_sustainability/v2013/r_msi_gov_2013a_gf.csv
 g_tourism,file_loc_2017,ohiprep:globalprep/res_cbd_habitat/v2014/data/r_tourism_2013a_gf.csv
@@ -64,8 +64,8 @@ li_sector_evenness,file_loc_2017,ohiprep:globalprep/res_li_sector_evenness/v2013
 lsp_prot_area_inland1km,file_loc_2017,ohiprep:globalprep/lsp/v2017/output/lsp_prot_area_inland1km_gf.csv
 lsp_prot_area_offshore3nm,file_loc_2017,ohiprep:globalprep/lsp/v2017/output/lsp_prot_area_offshore3nm_gf.csv
 mar_coastalpopn_inland25mi,file_loc_2017,ohiprep:globalprep/mar_prs_population/v2017/output/mar_pop_25mi_gf.csv
-mar_harvest_tonnes,file_loc_2017,ohiprep:globalprep/mar/v2017/output/mar_harvest_tonnes_gf.csv
-mar_sustainability_score,file_loc_2017,ohiprep:globalprep/mar/v2017/output/mar_sustainability_gf.csv
+mar_harvest_tonnes,file_loc_2017,NA
+mar_sustainability_score,file_loc_2017,NA
 np_blast,file_loc_2017,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data/gl_thr_blast_3nm_rgn2013_gf.csv
 np_cyanide,file_loc_2017,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data/gl_thr_poison_3nm_rgn2013_gf.csv
 np_harvest_product_weight,file_loc_2017,NA
@@ -87,7 +87,7 @@ rgn_global,file_loc_2017,NA
 rgn_labels,file_loc_2017,NA
 sp_alien,file_loc_2017,ohiprep:globalprep/prs_alien/v2013/data/p_sp_alien_2013a_gf.csv
 sp_alien_species,file_loc_2017,ohiprep:globalprep/res_cbd_habitat/v2014/data/r_alien_species_Nature2012disaggregated_gf.csv
-sp_genetic,file_loc_2017,ohiprep:globalprep/mar/v2017/output/GenEsc_gf.csv
+sp_genetic,file_loc_2017,NA
 species_diversity_3nm,file_loc_2017,ohiprep:globalprep/spp_ico/v2017/output/spp_status_3nm_gf.csv
 species_diversity_eez,file_loc_2017,ohiprep:globalprep/spp_ico/v2017/output/spp_status_global_gf.csv
 spp_status,file_loc_2017,ohiprep:globalprep/spp_ico/v2017/output/spp_status_global_gf.csv

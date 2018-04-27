@@ -213,13 +213,13 @@ FIS = function(layers){
     mutate(TaxonPenaltyCode = as.numeric(substring(taxon_key, 1, 1))) %>%
     left_join(penaltyTable, by='TaxonPenaltyCode') %>%
     mutate(score_gf = Median_score * penalty) %>%
-    mutate(score_gapfilled = ifelse(is.na(score), "Median gapfilled", "none")) %>%
+    mutate(method = ifelse(is.na(score), "Median gapfilled", NA)) %>%
+    mutate(gapfilled = ifelse(is.na(score), 1, 0)) %>%
     mutate(score = ifelse(is.na(score), score_gf, score))
   
   
   gap_fill_data <- data_fis_gf %>%
-    mutate(gap_fill = ifelse(is.na(penalty), "none", "median")) %>%
-    select(region_id, stock_id, taxon_key, year, catch, score, gap_fill) %>%
+    select(region_id, stock_id, taxon_key, year, catch, score, gapfilled, method) %>%
     filter(year == scen_year)
   write.csv(gap_fill_data, 'temp/FIS_summary_gf.csv', row.names=FALSE)
   
@@ -557,9 +557,10 @@ NP <- function(scores, layers){
     ### clean up columns
     
     gap_fill <- np_exp %>%
-      mutate(gap_fill = ifelse(is.na(exposure), "prod_average", 0)) %>%
-      select(rgn_id=region_id, product, year, gap_fill)
-    write.csv(gap_fill, 'temp/NP_exposure_gapfill.csv', row.names=FALSE)
+      mutate(gapfilled = ifelse(is.na(exposure), 1, 0)) %>%
+      mutate(method = ifelse(is.na(exposure), "prod_average", NA)) %>%
+      select(rgn_id=region_id, product, year, gapfilled, method)
+    write.csv(gap_fill, 'temp/NP_exposure_gf.csv', row.names=FALSE)
     
     ### add exposure for countries with (habitat extent == NA)
     np_exp <- np_exp %>% 

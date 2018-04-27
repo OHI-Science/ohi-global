@@ -1,14 +1,6 @@
 # Summary of gapfilling 
 Project to develop methods of describing the contribution of gapfilled data to OHI scores.  Focus is on the 2015 assessment.
 
-## To do:
-1. Move code to calculate scores (stuff at the end that weights by eez area, etc.) from status_trend and move to scores.Rmd
-2. Calculate pressures gapfilling
-3. Calculate resilience gapfilling
-4. Combine components to calculate likely future state and final scores
-5. Redo figures
-6. Fix problem where instead of keeping NAs for data as NAs, they may have been converted to zeros in gapfilling datasets.
-
 ## Workflow for gapfilling
 
 #### Step 1: layers_download.Rmd (do this if there were updates in dataprep to the layers)
@@ -23,7 +15,7 @@ Calculates percent contribution of gapfilled data to status and trend scores.  S
 #### Step 4: pressure_resilience.Rmd
 Calculates pressure and resilience components for each goal and appends them to scores.csv.
 
-#### Step 5: scores.Rmd
+#### Step 5: scores.R
 Calculates contribution of gapfilling to final OHI scores.
 
 #### Step 6: gapfilling_visualization.Rmd
