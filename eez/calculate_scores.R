@@ -3,8 +3,8 @@
 
 # STEP 2: Install the appropriate ohicore, if necessary:
 library(devtools)
-devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
-#devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+#devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
+devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 # STEP 3: Set repository name
@@ -108,7 +108,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 score_check(commit="previous", scenario_year=2017,
-            file_name="eez2017_com_hb_correct", save_csv = TRUE, NA_compare = TRUE)
+            file_name="ohicore_dev_check", save_csv = TRUE, NA_compare = TRUE)
 
 compare <- read.csv("../score_check/eez2016_np_fix_diff_data_2017-10-06.csv")
 dplyr::filter(compare, is.na(old_score), !is.na(score))
