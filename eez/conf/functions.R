@@ -189,10 +189,11 @@ FIS <- function(layers) {
   trend <-
     CalculateTrend(status_data = status_data, trend_years = trend_years)
   
-  ## reference points
+  ## Reference Point Accounting
   WriteRefPoint(goal   = "FIS",
                 method = "Functional relationship (B/Bmsy)",
                 ref_pt = NA)
+  ## Reference Point End
   
   # assemble dimensions
   scores <- rbind(status, trend) %>%
@@ -258,7 +259,7 @@ MAR <- function(layers) {
   ref_95pct <- quantile(ry$mar_pop, 0.95, na.rm = TRUE)
  
   ## Reference Point Accounting
-  ry_ref = ry %>%
+    ry_ref = ry %>%
     arrange(mar_pop) %>%
     filter(mar_pop >= ref_95pct)
   
@@ -412,11 +413,12 @@ AO <- function(layers) {
   
   r.trend <- CalculateTrend(status_data = ry, trend_years = trend_years)
   
-  ## reference points
-  WriteRefPoint(goal   = "AO",
+## Reference Point Accounting
+    WriteRefPoint(goal   = "AO",
                 method = "XXXXXXXX",
                 ref_pt = NA)
-  
+ ## Reference Point End
+    
   # return scores
   scores <- rbind(r.status, r.trend) %>%
     mutate(goal = 'AO')
@@ -713,10 +715,11 @@ NP <- function(scores, layers) {
   np_sust    <- np_calc_sustainability(np_exp, np_risk)
   np_scores  <- np_calc_scores(np_sust)
   
-  ## reference points
+  ## Reference Point Accounting
   WriteRefPoint(goal = "NP",
                 method = "Harvest peak within region times 0.65 buffer",
                 ref_pt = "varies for each region")
+  ## Reference Point End  
   
   return(np_scores)
 }
@@ -804,10 +807,11 @@ CS <- function(layers) {
     mutate(goal = 'CS') %>%
     select(goal, dimension, region_id, score)
   
-  ## reference points
+  ## Reference Point Accounting
   WriteRefPoint(goal = "CS",
                 method = "Health/condition variable based on current vs. historic extent",
                 ref_pt = "varies for each region/habitat")
+  ## Reference Point End  
   
   ## create weights file for pressures/resilience calculations
   weights <- extent %>%
@@ -958,10 +962,11 @@ CP <- function(layers) {
     mutate(goal = 'CP') %>%
     select(region_id, goal, dimension, score)
   
-  ## reference points
+  ## Reference Point Accounting
   WriteRefPoint(goal = "CP",
                 method = "Health/condition variable based on current vs. historic extent",
                 ref_pt = "varies for each region/habitat")
+  ## Reference Point End  
   
   ## create weights file for pressures/resilience calculations
   
@@ -1034,8 +1039,7 @@ TR <- function(layers) {
     mutate(status  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q)) %>% # rescale to qth percentile, cap at 1
     ungroup()
   
-  
-  ## reference points
+  ## Reference Point Accounting
   ref_point <- tr_model %>%
     filter(scenario_year == scen_year) %>%
     select(Xtr_q) %>%
@@ -1048,6 +1052,7 @@ TR <- function(layers) {
     method = paste0('spatial: ', as.character(pct_ref), "th quantile"),
     ref_pt = as.character(ref_point)
   )
+  ## Reference Point End  
   
   # get status
   tr_status <- tr_model %>%
@@ -1680,10 +1685,11 @@ ICO <- function(layers) {
     CalculateTrend(status_data = r.status, trend_years = trend_years)
   
   
-  ## reference points
+  ## Reference Point Accounting
   WriteRefPoint(goal = "ICO",
                 method = "scaled IUCN risk categories",
                 ref_pt = NA)
+  ## Reference Point End  
   
   # return scores
   scores <-  rbind(status, trend) %>%
@@ -1818,7 +1824,7 @@ LSP <- function(layers) {
     CalculateTrend(status_data = status_data, trend_years = trend_years)
   
   
-  ## reference points
+  ## Reference Point Accounting
   WriteRefPoint(
     goal = "LSP",
     method = paste0(
@@ -1829,6 +1835,7 @@ LSP <- function(layers) {
     ),
     ref_pt = "varies by area of region's eez and 1 km inland"
   )
+  ## Reference Point End  
   
   # return scores
   scores <- bind_rows(r.status, r.trend) %>%
@@ -1913,11 +1920,12 @@ CW <- function(layers) {
     select(region_id, goal, dimension, score) %>%
     data.frame()
   
-  ## reference points
+  ## Reference Point Accounting
   WriteRefPoint(goal   = "CW",
                 method = "spatial: pressures scaled from 0-1 at raster level",
                 ref_pt = NA)
-  
+  ## Reference Point End  
+    
   return(scores)
 }
 
@@ -2020,10 +2028,11 @@ HAB <- function(layers) {
     mutate(goal = "HAB") %>%
     select(region_id, goal, dimension, score)
   
-  ## reference points
+  ## Reference Point Accounting
   WriteRefPoint(goal = "HAB",
                 method = "Health/condition variable based on current vs. historic extent",
                 ref_pt = "varies for each region/habitat")
+  ## Reference Point End    
   
   ## create weights file for pressures/resilience calculations
   
@@ -2062,10 +2071,12 @@ SPP <- function(layers) {
     mutate(score = ifelse(dimension == 'status', score * 100, score)) %>%
     select(region_id = rgn_id, goal, dimension, score)
   
-  ## reference points
+  ## Reference Point Accounting
   WriteRefPoint(goal = "SPP",
                 method = "Average of IUCN risk categories, scaled to historic extinction",
                 ref_pt = NA)
+  ## Reference Point End  
+  
   return(scores)
 }
 
