@@ -256,17 +256,17 @@ MAR <- function(layers) {
   # get reference quantile based on argument years
   
   ref_95pct <- quantile(ry$mar_pop, 0.95, na.rm = TRUE)
-  
-  # reference information
+ 
+  ## Reference Point Accounting
   ry_ref = ry %>%
     arrange(mar_pop) %>%
     filter(mar_pop >= ref_95pct)
   
-  WriteRefPoint(
+   WriteRefPoint(
     goal = "MAR",
     method = "spatial 95th quantile",
-    ref_pt = paste0("region id: ", ry_ref$rgn_id[1], ' value: ', ref_95pct)
-  )
+    ref_pt = paste0("region id: ", ry_ref$rgn_id[1], ' value: ', ref_95pct))
+  ## Reference Point End
   
   ry = ry %>%
     mutate(status = ifelse(mar_pop / ref_95pct > 1,
