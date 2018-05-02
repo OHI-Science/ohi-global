@@ -29,8 +29,6 @@ library(readr)
 
 source('https://raw.githubusercontent.com/OHI-Science/ohiprep/master/src/R/common.R')
 
-
-
 ## Read in the layers.csv file with paths to the data files
 g <- read.csv("layers.csv", stringsAsFactors = FALSE, na.strings='')
 

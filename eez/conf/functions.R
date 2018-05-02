@@ -4,14 +4,21 @@
 ## for example, FIS is the Fishing subgoal of Food Provision (FP).
 
 Setup = function(){
-  if(file.exists('temp/reference_pts.csv'))
-  {file.remove('temp/reference_pts.csv')}
+  
+  if(is.null(layers$data$scenario_year)){
+    scen_year <- format(format(Sys.Date(), "%Y")) 
+  } else {
+  scen_year <- layers$data$scenario_year
+  }
+  
+  if(file.exists(sprintf('temp/reference_pts_%s.csv', scen_year)))
+  {file.remove(sprintf('temp/reference_pts_%s.csv', scen_year))}
   
   ref_pts <- data.frame(year   = as.integer(),
                         goal   = as.character(),
                         method = as.character(),
                         reference_point = as.character())
-  write_csv(ref_pts, 'temp/reference_pts.csv')
+  write_csv(ref_pts, sprintf('temp/reference_pts_%s.csv', scen_year))
   
 }
 
@@ -724,6 +731,8 @@ CS <- function(layers){
     mutate(layer = "element_wts_cs_km2_x_storage") %>%
     select(rgn_id=region_id, habitat, extent_rank, layer)
   
+  write.csv(weights, sprintf("temp/element_wts_cs_km2_x_storage_%s.csv", scen_year), row.names=FALSE)
+  
   layers$data$element_wts_cs_km2_x_storage <- weights
   
   
@@ -848,6 +857,8 @@ CP <- function(layers){
     mutate(layer = "element_wts_cp_km2_x_protection") %>%
     select(rgn_id=region_id, habitat, extent_rank, layer)
   
+  write.csv(weights, sprintf("temp/element_wts_cp_km2_x_protection_%s.csv", scen_year), row.names=FALSE)
+    
   layers$data$element_wts_cp_km2_x_protection <- weights
   
   # return scores
@@ -1736,6 +1747,8 @@ HAB = function(layers){
     mutate(boolean = 1) %>%
     mutate(layer = "element_wts_hab_pres_abs") %>%
     select(rgn_id=region_id, habitat, boolean, layer)
+
+  write.csv(weights, sprintf("temp/element_wts_hab_pres_abs_%s.csv", scen_year), row.names=FALSE)
   
   layers$data$element_wts_hab_pres_abs <- weights
   
