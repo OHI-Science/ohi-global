@@ -1,0 +1,13 @@
+year,goal,method,reference_point
+2013,FIS,Functional relationship (B/Bmsy),NA
+2013,MAR,spatial 95th quantile,region id: 25 value: 0.012472510376656
+2013,AO,XXXXXXXX,NA
+2013,NP,Harvest peak within region times 0.65 buffer,varies for each region
+2013,CS,Health/condition variable based on current vs. historic extent,varies for each region/habitat
+2013,CP,Health/condition variable based on current vs. historic extent,varies for each region/habitat
+2013,TR,spatial: 90th quantile,0.049146907256229
+2013,ICO,scaled IUCN risk categories,NA
+2013,LSP,30% marine protected area; 30% coastal protected area,varies by area of region's eez and 1 km inland
+2013,CW,spatial: pressures scaled from 0-1 at raster level,NA
+2013,HAB,Health/condition variable based on current vs. historic extent,varies for each region/habitat
+2013,SPP,"Average of IUCN risk categories, scaled to historic extinction",NA

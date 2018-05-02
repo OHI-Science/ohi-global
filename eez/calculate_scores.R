@@ -91,6 +91,18 @@ for (s_year in scenario_years){  # s_year=2017
   layers <-  Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
   layers$data$scenario_year <-  s_year
 
+  # clear out the file that keeps track of reference points for each scenario year
+  
+  if(file.exists(sprintf('temp/reference_pts_%s.csv', s_year)))
+  {file.remove(sprintf('temp/reference_pts_%s.csv', s_year))}
+  
+  ref_pts <- data.frame(year   = as.integer(),
+                        goal   = as.character(),
+                        method = as.character(),
+                        reference_point = as.character())
+  write_csv(ref_pts, sprintf('temp/reference_pts_%s.csv', s_year))
+  
+  
   # calculate scores
   scores_sy <- CalculateAll(conf, layers) %>%
     mutate(year = s_year)
