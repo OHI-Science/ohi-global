@@ -44,7 +44,7 @@ scenario_years <- c(2012:2018)
 
 # STEP 7: Make sure the appropriate data year is entered in conf/scenario_data_years.csv
 
-# STEP 8: Run this to update the layers_eez.csv file with the latest information in layers_eez_base.csv
+# STEP 8: Run this to update the layers.csv file with the latest information in layers_eez_base.csv and to reset 
 source("../eez_layers_meta_data/layers_eez_script.R")
 
 # If more complex changes are made to layer: such as changes to layer names, removing/adding layers, etc
@@ -144,7 +144,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 score_check(commit="previous", scenario_year=2017,
-            file_name="NP_update", save_csv = TRUE, NA_compare = TRUE)
+            file_name="add_2018", save_csv = TRUE, NA_compare = TRUE)
 
 compare <- read.csv("score_check/NP_update_diff_data_2018-05-03.csv") 
 
