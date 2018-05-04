@@ -1,7 +1,11 @@
 
-# STEP 1: Be sure to push all ohiprep changes before continuing!!
+##################################
+### Steps 1-5 should be done once at the beginning of the assessment year
+### Steps 6-11 are done as each data layer is updated
+##################################
 
-# STEP 2: Install the appropriate ohicore, if necessary (master unless testing the dev branch):
+# STEP 1: Preparation
+# Install the appropriate ohicore, if necessary (master unless testing the dev branch):
 library(devtools)
 devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
 #devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
@@ -17,15 +21,30 @@ library(readr)
 source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/src/R/common.R')
 
 
-# STEP 3: Set repository name
+# STEP 2: Set repository name
 setwd("eez")
 
+# STEP 3:
+# identify repo where data will be taken from: 
+repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/"
 
-# STEP 4: Update the newest layer's file location and file name in eez_layers_meta_data/layers_eez_base.csv
+# STEP 4: Scenario years in this year's assessment
+scenario_years <- c(2012:2018)
 
-# STEP 5: Make sure the appropriate data year is entered in conf/scenario_data_years.csv
+#############################
 
-# STEP 6: Run this to update the layers_eez.csv file with the latest information in layers_eez_base.csv
+
+#############################
+## After updating a data layer
+#############################
+
+# STEP 5: Be sure to push all ohiprep changes!!
+
+# STEP 6: Update the newest layer's file location and file name in eez_layers_meta_data/layers_eez_base.csv
+
+# STEP 7: Make sure the appropriate data year is entered in conf/scenario_data_years.csv
+
+# STEP 8: Run this to update the layers_eez.csv file with the latest information in layers_eez_base.csv
 source("../eez_layers_meta_data/layers_eez_script.R")
 
 # If more complex changes are made to layer: such as changes to layer names, removing/adding layers, etc
@@ -35,14 +54,6 @@ source("../eez_layers_meta_data/layers_eez_script.R")
 # + eez_layers_meta_data/update_targets_with_pre_res.R to update eez_layers_meta_data/layers_eez_targets.csv 
 #    if layers are added to the resilience/pressures matrices in the eez/conf folder. 
 #    matrices to the 
-
-
-# STEP 7:
-# identify repo where data will be taken from: 
-repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/"
-
-# STEP 8: Scenario years in this year's assessment
-scenario_years <- c(2012:2017)
 
 
 # STEP 9: Run scenarios!
@@ -155,4 +166,4 @@ scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP",
 goalHistogram(scenario="eez2016", goal="AO", dim="status", fileSave="AO_need_eez2016")
 
 
-# STEP 11: Put results in an issue to update team members!
+# STEP 11: Summarize results in an issue to update team members!
