@@ -8,7 +8,7 @@
 library(dplyr)
 library(tidyr)
 
-targets <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_targets.csv', stringsAsFactors=FALSE) %>%
+targets <- read.csv('../eez_layers_meta_data/layers_eez_targets.csv', stringsAsFactors=FALSE) %>%
   mutate(dimension = ifelse(dimension %in% c("status", "trend"), NA, dimension)) %>%
   filter(!is.na(dimension) | !is.na(goal)) %>%
   mutate(goal = ifelse(is.na(goal), dimension, goal)) %>%
@@ -21,7 +21,7 @@ targets <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/dr
 
 
 # add the meta data
-meta <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv")
+meta <- read.csv("../eez_layers_meta_data/layers_eez_base.csv")
 layers <- left_join(meta, targets, by="layer") %>%
   select(layer, dir, fn, ingest, name_data_fld, targets, name, units, description)
 

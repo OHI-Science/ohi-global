@@ -1,50 +1,52 @@
 
 ##################################
-### Steps 1-5 should be done once at the beginning of the assessment year
-### Steps 6-11 are done as each data layer is updated
+### Steps 1-3 should be done once at the beginning of the assessment year
+### Steps 4-11 are done as each data layer is updated
 ##################################
 
-# STEP 1: Preparation
-# Install the appropriate ohicore, if necessary (master unless testing the dev branch):
+## STEP 1: download ohicore package
+## Install the appropriate ohicore:
 library(devtools)
 #devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
 devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
-# and load packages:
+## STEP 2:
+## identify repo where data will be taken from: 
+repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/"
+
+E# STEP 3: Scenario years in this year's assessment
+scenario_years <- c(2012:2018)
+
+***
+
+## STEP 4: Set up
+
+## load packages:
 library(ohicore)
 library(zoo)
 library(stringr)
 library(readr)
 
-# and source file path info depending on operating system
+## source file path info depending on operating system
 source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/src/R/common.R')
 
 
-# STEP 2: Set repository name
+# STEP 5: Set repository name
 setwd("eez")
-
-# STEP 3:
-# identify repo where data will be taken from: 
-repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/"
-
-# STEP 4: Scenario years in this year's assessment
-scenario_years <- c(2012:2018)
-
-#############################
 
 
 #############################
 ## After updating a data layer
 #############################
 
-# STEP 5: Be sure to push all ohiprep changes!!
+# STEP 6: Be sure to push all ohiprep changes!!
 
-# STEP 6: Update the newest layer's file location and file name in eez_layers_meta_data/layers_eez_base.csv
+# STEP 7: Update the newest layer's file location and file name in eez_layers_meta_data/layers_eez_base.csv
 
-# STEP 7: Make sure the appropriate data year is entered in conf/scenario_data_years.csv
+# STEP 8: Make sure the appropriate data year is entered in conf/scenario_data_years.csv
 
-# STEP 8: Run following to update the layers.csv file with the latest information in layers_eez_base.csv and to reset 
+# STEP 9: Run following to update the layers.csv file with the latest information in layers_eez_base.csv and to reset 
 source("../eez_layers_meta_data/layers_eez_script.R")
 
 # If more complex changes are made to layer: such as changes to layer names, removing/adding layers, etc
@@ -56,7 +58,7 @@ source("../eez_layers_meta_data/layers_eez_script.R")
 #    matrices to the 
 
 
-# STEP 9: Run scenarios!
+# STEP 10: Run scenarios!
 
 ## Read in the layers.csv file with paths to the data files
 g <- read.csv("layers.csv", stringsAsFactors = FALSE, na.strings='')
@@ -138,7 +140,7 @@ for (s_year in scenario_years){  # s_year=2018
 write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
-# STEP 10: Review results
+# STEP 11: Review results
 
 ### Some methods for visualizing the data
 
@@ -168,5 +170,5 @@ scatterPlot(repo="ohi-global", scenario="eez", commit="previous",
 goalHistogram(scenario="eez2016", goal="AO", dim="status", fileSave="AO_need_eez2016")
 
 
-# STEP 11: Summarize results in an issue to update team members!
-# STEP 12: Update metadata files
+# STEP 12: Summarize results in an issue to update team members!
+# STEP 13: Update metadata files
