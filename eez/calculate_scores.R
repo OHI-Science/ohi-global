@@ -44,7 +44,7 @@ scenario_years <- c(2012:2018)
 
 # STEP 7: Make sure the appropriate data year is entered in conf/scenario_data_years.csv
 
-# STEP 8: Run this to update the layers.csv file with the latest information in layers_eez_base.csv and to reset 
+# STEP 8: Run following to update the layers.csv file with the latest information in layers_eez_base.csv and to reset 
 source("../eez_layers_meta_data/layers_eez_script.R")
 
 # If more complex changes are made to layer: such as changes to layer names, removing/adding layers, etc

@@ -1,7 +1,7 @@
 ohi-global
 ==========
   
-### Global assessments (EEZ, Antarctica, and High Seas) and scenarios of the Ocean Health Index 
+### Ocean Health Index assessment of global EEZ regions 
 
 #### Anatomy of the file structure
 
@@ -9,15 +9,12 @@ General information about file structure is here: http://ohi-science.org/manual/
 
 This includes files for the OHI global assessment for eez boundaries:
 
-* eez (scenarios: 2012 - 2017): OHI for 220 country/territorial EEZ regions, this is typically considered the "OHI global assessment"
-* antarctica (scenarios: 2014 - 2015): OHI for Antarctica CCAMLR regions (includes the high seas/FAO and EEZ regions)
-* high seas (scenarios: 2014 - 2015): OHI for high seas regions (FAO regions without the EEZ regions or Antarctica/CCAMLR regions)
- 
+* eez (scenarios: 2012 - current): OHI for 220 country/territorial EEZ regions, this is typically considered the "OHI global assessment"
 
 Additional files/folders include:
 
-* eez_layers_meta_data: Database for the EEZ data layers (data sources, names, etc.) and functions to create different data formats
-* global_supplement: Descriptions of data layers and goals 
+* eez_layers_meta_data: Database for the data layers (data sources, names, etc.) and functions to create different data formats
+* global_supplement: documents and code to create methods document 
 * global (2015-2017): Post assessment analysis and visualization of data
 * calculate\_scores_??.R: These files provide the code to calculate scores for the corresponding OHI assessment (the calculate_scores.R for the eez regions is located in the eez folder)
 * layers\_??.csv: These files provide the location of the data layers used to calculate the OHI assessments.  This file is created by data and functions in the eez_layers_meta_data folder, and they are used by calculate_scores_??.R.  
