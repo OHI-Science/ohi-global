@@ -7,8 +7,8 @@
 # STEP 1: Preparation
 # Install the appropriate ohicore, if necessary (master unless testing the dev branch):
 library(devtools)
-devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
-#devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+#devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
+devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 # and load packages:
@@ -108,7 +108,7 @@ CheckLayers(layers.csv = sprintf('layers.csv'),
 
 scores_all_years <- data.frame()
 
-for (s_year in scenario_years){  # s_year=2017
+for (s_year in scenario_years){  # s_year=2018
 
   conf   <-  Conf('conf')
   layers <-  Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
@@ -142,12 +142,13 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 ### Some methods for visualizing the data
 
-
 score_check(commit="previous", scenario_year=2017,
-            file_name="add_2018", save_csv = TRUE, NA_compare = TRUE)
+            file_name="wgi_pres", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("score_check/NP_update_diff_data_2018-05-03.csv") 
-
+compare <- read.csv("score_check/wgi_pres_diff_data_2018-05-04.csv") 
+tmp <- compare %>%
+  filter(change>0)
+table(tmp$goal)
 
 dplyr::filter(compare, is.na(old_score), !is.na(score))
 
@@ -161,9 +162,11 @@ ggplot(filter(compare, year==2017 & dimension=="score" & goal == "MAR"), aes(old
 filter(compare, is.na(old_score) & !is.na(score))
 
 # looking within a goal:
-scatterPlot(repo="ohi-global", scenario="eez2015", commit="previous", goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")
+scatterPlot(repo="ohi-global", scenario="eez", commit="previous", 
+            goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")
 
 goalHistogram(scenario="eez2016", goal="AO", dim="status", fileSave="AO_need_eez2016")
 
 
 # STEP 11: Summarize results in an issue to update team members!
+# STEP 12: Update metadata files
