@@ -430,16 +430,6 @@ NP <- function(scores, layers) {
   scen_year <- layers$data$scenario_year
   
   
-  ###########################################################.
-  ### Here I define five main sub-functions.  The main script that
-  ### actually calls these functions is at the very end of the NP section.
-  ###   np_rebuild_harvest
-  ###   np_calc_exposure
-  ###   np_calc_risk
-  ###   np_calc_sustainability
-  ###   np_calc_scores
-  
-  np_rebuild_harvest <- function(layers) {
     ### Reassembles NP harvest information from separate data layers:
     ### [rgn_name  rgn_id  product  year  tonnes  tonnes_rel  prod_weight]
     #########################################.
@@ -470,12 +460,8 @@ NP <- function(scores, layers) {
     np_harvest <- h_tonnes %>%
       full_join(h_tonnes_rel, by = c('region_id', 'product', 'year')) %>%
       left_join(h_w, by = c('region_id', 'product', 'year'))
-    
-    return(np_harvest)
-  }
+
   
-  
-  np_calc_exposure <- function(np_harvest, hab_extent, FIS_status) {
     ### calculates NP exposure based on habitats (for corals, seaweeds,
     ### ornamentals, shells, sponges).
     ### Returns the first input data frame with a new column for exposure:
@@ -550,11 +536,7 @@ NP <- function(scores, layers) {
       ungroup() %>%
       mutate(product = as.character(product))
     
-    
-    return(np_exp)
-  }
-  
-  np_calc_risk <- function(np_exp, r_cyanide, r_blast) {
+
     ### calculates NP risk based on:
     ###   ornamentals:      risk = 1 if blast or cyanide fishing
     ###   corals:           risk = 1 for all cases
@@ -604,10 +586,7 @@ NP <- function(scores, layers) {
       gather(product, risk,-region_id,-year) %>%
       mutate(product = as.character(product))
     
-    return(np_risk)
-  }
-  
-  np_calc_sustainability <- function(np_exp, np_risk) {
+
     ### calculates NP sustainability coefficient for each natural product, based
     ### on (1 - mean(c(exposure, risk))).  Returns first input dataframe with
     ### new columns for sustainability coefficient, and sustainability-adjusted
@@ -654,15 +633,12 @@ NP <- function(scores, layers) {
       select(-tonnes,-tonnes_rel,-risk,-exposure) %>%
       ungroup()
     
-    return(np_sust)
-  }
-  
-  np_calc_scores <- function(np_sust) {
+
     ### Calculates NP status for all production years for each region, based
     ### upon weighted mean of all products produced.
-    ### From this, reports the most recent year as the NP status.
+    ### Reports scenario year as the NP status.
     ### Calculates NP trend for each region, based upon slope of a linear
-    ### model over the past six years inclusive (five one-year intervals).
+    ### model over the past five years
     ### Returns data frame with status and trend by region:
     ### [goal   dimension   region_id   score]
     #########################################.
@@ -702,19 +678,7 @@ NP <- function(scores, layers) {
       select(goal, dimension, region_id, score) %>%
       arrange(goal, dimension, region_id)
     
-    return(np_scores)
-  }
-  
-  ##########################################.
-  ### Natural Products main starts here:
-  
-  np_harvest <- np_rebuild_harvest(layers)
-  np_exp     <-
-    np_calc_exposure(np_harvest, hab_extent, FIS_status)
-  np_risk    <- np_calc_risk(np_exp, r_cyanide, r_blast)
-  np_sust    <- np_calc_sustainability(np_exp, np_risk)
-  np_scores  <- np_calc_scores(np_sust)
-  
+
   ## Reference Point Accounting
   WriteRefPoint(goal = "NP",
                 method = "Harvest peak within region times 0.65 buffer",
