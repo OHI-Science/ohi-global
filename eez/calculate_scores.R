@@ -145,9 +145,9 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 ### Some methods for visualizing the data
 
 score_check(commit="previous", scenario_year=2017,
-            file_name="wgi_pres", save_csv = TRUE, NA_compare = TRUE)
+            file_name="wgi_res", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("score_check/wgi_pres_diff_data_2018-05-04.csv") 
+compare <- read.csv("score_check/wgi_res_diff_data_2018-05-04.csv") 
 tmp <- compare %>%
   filter(change>0)
 table(tmp$goal)
