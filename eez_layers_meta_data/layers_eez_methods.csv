@@ -295,7 +295,7 @@ le_wage_ref_adj_value,methods_update,
 le_wage_ref_base_value,methods_update,
 le_wage_sector_year,methods_update,
 le_workforcesize_adj,methods_update,
-li_gci,methods_update,
+li_gci,methods_update,additional year data
 li_sector_evenness,methods_update,
 lsp_prot_area_inland1km,methods_update,
 lsp_prot_area_offshore3nm,methods_update,
@@ -435,7 +435,7 @@ le_wage_ref_adj_value,dataprep_url,https://github.com/OHI-Science/ohiprep/tree/m
 le_wage_ref_base_value,dataprep_url,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/le
 le_wage_sector_year,dataprep_url,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/le
 le_workforcesize_adj,dataprep_url,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/le_world_bank
-li_gci,dataprep_url,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/res_gci/v2017
+li_gci,dataprep_url,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/res_gci/v2018
 li_sector_evenness,dataprep_url,https://github.com/OHI-Science/ohiprep/tree/master/globalprep/res_li_sector_evenness
 lsp_prot_area_inland1km,dataprep_url,https://rawgit.com/OHI-Science/ohiprep/master/globalprep/lsp/v2017/lsp_data_prep.html
 lsp_prot_area_offshore3nm,dataprep_url,https://rawgit.com/OHI-Science/ohiprep/master/globalprep/lsp/v2017/lsp_data_prep.html
