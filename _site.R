@@ -16,7 +16,9 @@ suppressPackageStartupMessages({
 ## brewed vars
 study_area      <- "Global"
 key             <- "ohi-global"
-dir_scenario_gh <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez"
+dir_scenario_gh <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/published/eez"
+
+
 
 ## knitr options for all webpages
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
@@ -36,7 +38,6 @@ weight <- goals %>%
 
 ## save local copies of Rmds to knit-child ----
 
-dir_raw_draft <- 'https://raw.githubusercontent.com/OHI-Science/ohi-global/draft'
 
 to_copy <- c('eez/conf/web/goals.Rmd',
              'eez/conf/web/layers_all.Rmd',
@@ -47,7 +48,7 @@ to_copy <- c('eez/conf/web/goals.Rmd',
 
 for (f in to_copy) { # f <-  'global_supplement/OHI.bib'
 
-  fp <- file.path(dir_raw_draft, f)
+  fp <- file.path(dir_scenario_gh, f)
 
   ## if the url exists, save a copy.
   if (RCurl::url.exists(fp)) {
