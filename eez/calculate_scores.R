@@ -112,6 +112,8 @@ scores_all_years <- data.frame()
 
 for (s_year in scenario_years){  # s_year=2018
 
+  print(sprintf("For assessment year %s", s_year))
+  
   conf   <-  ohicore::Conf('conf')
   layers <-  ohicore::Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
   layers$data$scenario_year <-  s_year
@@ -144,8 +146,8 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 ### Some methods for visualizing the data
 
-ohicore::score_check(commit="bbe82f2", scenario_year=2017,
-            file_name="mar_no_seaweed", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="previous", scenario_year=2018,
+            file_name="mar_seaweed", save_csv = TRUE, NA_compare = TRUE)
 
 compare <- read.csv("score_check/wgi_res_diff_data_2018-05-04.csv") 
 tmp <- compare %>%
