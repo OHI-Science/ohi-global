@@ -15,10 +15,10 @@ devtools::install_github("ohi-science/ohicore@dev") # used when testing new code
 ## identify repo where data will be taken from: 
 repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/"
 
-E# STEP 3: Scenario years in this year's assessment
+# STEP 3: Scenario years in this year's assessment
 scenario_years <- c(2012:2018)
 
-***
+#***
 
 ## STEP 4: Set up
 
@@ -66,18 +66,18 @@ g <- read.csv("layers.csv", stringsAsFactors = FALSE, na.strings='')
 
 ## establish locations of layers and save information
 lyrs = g %>%
-  filter(ingest==T) %>%
-  mutate(dir = gsub("ohiprep:", repo_loc, dir)) %>%
-  mutate(
+  dplyr::filter(ingest==T) %>%
+  dplyr::mutate(dir = gsub("ohiprep:", repo_loc, dir)) %>%
+  dplyr::mutate(
     path_in        = file.path(dir, fn),
     #path_in_exists = file.exists(path_in),
     filename = sprintf('%s.csv', layer),
     path_out = sprintf('layers/%s.csv', layer)) %>%
-  select(
+  dplyr::select(
     targets, layer, name, description,
     fld_value=name_data_fld, units,
     path_in, filename, path_out, ingest) %>%  # path_in_exists
-  arrange(targets, layer)
+  dplyr::arrange(targets, layer)
 
 
 # copy layers into layers folder
@@ -92,16 +92,16 @@ unlink(sprintf('layers/%s', files_extra))
 
 # layers registry (this includes files that are ingest=FALSE)
 lyrs_reg = lyrs %>%
-  select(
+  dplyr::select(
     targets, ingest, layer, name, description,
     fld_value, units, filename)
 write.csv(lyrs_reg, 'layers.csv', row.names=F, na='')
 
 
 # Run check on layers
-conf   = Conf(sprintf('conf'))
+conf   = ohicore::Conf(sprintf('conf'))
 
-CheckLayers(layers.csv = sprintf('layers.csv'),
+ohicore::CheckLayers(layers.csv = sprintf('layers.csv'),
             layers.dir = sprintf('layers'),
             flds_id    = conf$config$layers_id_fields)
 
@@ -112,8 +112,8 @@ scores_all_years <- data.frame()
 
 for (s_year in scenario_years){  # s_year=2018
 
-  conf   <-  Conf('conf')
-  layers <-  Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
+  conf   <-  ohicore::Conf('conf')
+  layers <-  ohicore::Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
   layers$data$scenario_year <-  s_year
 
   # clear out the file that keeps track of reference points for each scenario year
@@ -129,8 +129,8 @@ for (s_year in scenario_years){  # s_year=2018
   
   
   # calculate scores
-  scores_sy <- CalculateAll(conf, layers) %>%
-    mutate(year = s_year)
+  scores_sy <- ohicore::CalculateAll(conf, layers) %>%
+    dplyr::mutate(year = s_year)
 
   scores_all_years <- rbind(scores_all_years, scores_sy)
 
@@ -144,24 +144,24 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 ### Some methods for visualizing the data
 
-score_check(commit="previous", scenario_year=2017,
-            file_name="wgi_res", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="bbe82f2", scenario_year=2017,
+            file_name="mar_no_seaweed", save_csv = TRUE, NA_compare = TRUE)
 
 compare <- read.csv("score_check/wgi_res_diff_data_2018-05-04.csv") 
 tmp <- compare %>%
-  filter(change>0)
+  dplyr::filter(change>0)
 table(tmp$goal)
 
 dplyr::filter(compare, is.na(old_score), !is.na(score))
 
 library(ggplot2)
-ggplot(filter(compare, year==2017 & dimension=="score" & goal == "MAR"), aes(old_score, score)) +
+ggplot(dplyr::filter(compare, year==2017 & dimension=="score" & goal == "MAR"), aes(old_score, score)) +
   geom_point() +
   geom_abline(slope=1, intercept=0) +
   theme_bw()
 
 
-filter(compare, is.na(old_score) & !is.na(score))
+dplyr::filter(compare, is.na(old_score) & !is.na(score))
 
 # looking within a goal:
 scatterPlot(repo="ohi-global", scenario="eez", commit="previous", 
