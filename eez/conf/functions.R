@@ -206,6 +206,7 @@ FIS <- function(layers) {
 
 
 MAR <- function(layers) {
+  
   scen_year <- layers$data$scenario_year
   
   harvest_tonnes <-
@@ -217,42 +218,42 @@ MAR <- function(layers) {
   
   popn_inland25mi <-
     AlignDataYears(layer_nm = "mar_coastalpopn_inland25mi", layers_obj = layers) %>%
-    mutate(popsum = popsum + 1)
-  
+    dplyr::mutate(popsum = popsum + 1)
+
   
   rky <-  harvest_tonnes %>%
-    left_join(sustainability_score,
+    dplyr::left_join(sustainability_score,
               by = c('rgn_id', 'taxa_code', 'scenario_year')) %>%
-    select(rgn_id, scenario_year, taxa_code, tonnes, sust_coeff)
+    dplyr::select(rgn_id, scenario_year, taxa_code, tonnes, sust_coeff)
   
   
   # fill in gaps with no data
-  rky <- spread(rky, scenario_year, tonnes)
-  rky <- gather(rky, "scenario_year", "tonnes",-(1:3)) %>%
-    mutate(scenario_year = as.numeric(scenario_year))
+  rky <- tidyr::spread(rky, scenario_year, tonnes)
+  rky <- tidyr::gather(rky, "scenario_year", "tonnes",-(1:3)) %>%
+    dplyr::mutate(scenario_year = as.numeric(scenario_year))
   
   
   # 4-year rolling mean of data
   m <- rky %>%
-    group_by(rgn_id, taxa_code, sust_coeff) %>%
-    arrange(rgn_id, taxa_code, scenario_year) %>%
-    mutate(sm_tonnes = zoo::rollapply(tonnes, 4, mean, na.rm = TRUE, partial =
+    dplyr::group_by(rgn_id, taxa_code, sust_coeff) %>%
+    dplyr::arrange(rgn_id, taxa_code, scenario_year) %>%
+    dplyr::mutate(sm_tonnes = zoo::rollapply(tonnes, 4, mean, na.rm = TRUE, partial =
                                         TRUE)) %>%
-    ungroup()
+    dplyr::ungroup()
   
   
   # smoothed mariculture harvest * sustainability coefficient
   m <- m %>%
-    mutate(sust_tonnes = sust_coeff * sm_tonnes)
+    dplyr::mutate(sust_tonnes = sust_coeff * sm_tonnes)
   
   
   # aggregate all weighted timeseries per region, and divide by coastal human population
   ry = m %>%
-    group_by(rgn_id, scenario_year) %>%
-    summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
-    left_join(popn_inland25mi, by = c('rgn_id', 'scenario_year')) %>%
-    mutate(mar_pop = sust_tonnes_sum / popsum) %>%
-    ungroup()
+    dplyr::group_by(rgn_id, scenario_year) %>%
+    dplyr::summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
+    dplyr::left_join(popn_inland25mi, by = c('rgn_id', 'scenario_year')) %>%
+    dplyr::mutate(mar_pop = sust_tonnes_sum / popsum) %>%
+    dplyr::ungroup()
   
   # get reference quantile based on argument years
   
@@ -260,8 +261,8 @@ MAR <- function(layers) {
  
   ## Reference Point Accounting
     ry_ref = ry %>%
-    arrange(mar_pop) %>%
-    filter(mar_pop >= ref_95pct)
+    dplyr::arrange(mar_pop) %>%
+    dplyr::filter(mar_pop >= ref_95pct)
   
    WriteRefPoint(
     goal = "MAR",
@@ -270,21 +271,42 @@ MAR <- function(layers) {
   ## Reference Point End
   
   ry = ry %>%
-    mutate(status = ifelse(mar_pop / ref_95pct > 1,
+    dplyr::mutate(status = ifelse(mar_pop / ref_95pct > 1,
                            1,
                            mar_pop / ref_95pct))
-  status <- ry %>%
-    filter(scenario_year == scen_year) %>%
-    mutate(dimension = "status") %>%
-    select(region_id = rgn_id, score = status, dimension) %>%
-    mutate(score = round(score * 100, 2))
+  
+  ## Add all other regions/countries with no mariculture production to the data table
+  ## Uninhabited or low population countries that don't have mariculture, should be given a NA since they are too small to ever be able to produce and sustain a mariculture industry.
+  ## Countries that have significant population size and fishing activity (these two are proxies for having the infrastructure capacity to develop mariculture), but don't produce any mariculture, are given a '0'.
+  all_rgns <- expand.grid(rgn_id = georegions$rgn_id, scenario_year = min(ry$scenario_year):max(ry$scenario_year))
+  
+  all_rgns <- all_rgns[!(all_rgns$rgn_id %in% ry$rgn_id),]
+  
+  uninhabited <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohiprep/master/globalprep/spatial/v2017/output/rgn_uninhabited_islands.csv")
+  
+  uninhabited <- uninhabited %>% 
+    dplyr::filter(rgn_nam != "British Indian Ocean Territory") # remove British Indian Ocean Territory which has fishing activity and a population size of 3000 inhabitants
+  
+  ## Combine all regions with mariculture data table
+  ry_all_rgns <- all_rgns %>% 
+    dplyr::mutate(status = 0) %>% 
+    dplyr::mutate(status = ifelse(rgn_id %in% uninhabited$rgn_id, NA, status)) %>% 
+    dplyr::bind_rows(ry) %>% 
+    dplyr::arrange(rgn_id)
+  
+  
+  status <- ry_all_rgns %>%
+    dplyr::filter(scenario_year == scen_year) %>%
+    dplyr::mutate(dimension = "status") %>%
+    dplyr::select(region_id = rgn_id, score = status, dimension) %>%
+    dplyr::mutate(score = round(score * 100, 2))
   
   
   # calculate trend
   
   trend_years <- (scen_year - 4):(scen_year)
   
-  trend <- CalculateTrend(status_data = ry, trend_years = trend_years)
+  trend <- CalculateTrend(status_data = dplyr::filter(ry_all_rgns, !is.na(status)), trend_years = trend_years)
   
   
   # return scores
