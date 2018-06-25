@@ -335,6 +335,7 @@ FP <- function(layers, scores) {
   
   
   ## Some warning messages due to potential mismatches in data:
+  ## In the future consider filtering by scenario year so it's easy to see what warnings are attributed to which data
   # NA score but there is a weight
   tmp <-
     dplyr::filter(s,
@@ -369,7 +370,7 @@ FP <- function(layers, scores) {
     )
   if (dim(tmp)[1] > 0) {
     warning(paste0(
-      "Check: these regions have a FIS score but no weight: ",
+      "Check: these regions have a FIS score but weight is NA or 0: ",
       paste(as.character(tmp$region_id), collapse = ", ")
     ))
   }
@@ -384,7 +385,7 @@ FP <- function(layers, scores) {
     )
   if (dim(tmp)[1] > 0) {
     warning(paste0(
-      "Check: these regions have a MAR score but 0 weight: ",
+      "Check: these regions have a MAR score but weight is NA or 0: ",
       paste(as.character(tmp$region_id), collapse = ", ")
     ))
   }
