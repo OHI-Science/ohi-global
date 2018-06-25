@@ -206,7 +206,7 @@ FIS <- function(layers) {
 
 
 MAR <- function(layers) {
-  
+
   scen_year <- layers$data$scenario_year
   
   harvest_tonnes <-
@@ -225,7 +225,6 @@ MAR <- function(layers) {
     dplyr::left_join(sustainability_score,
               by = c('rgn_id', 'taxa_code', 'scenario_year')) %>%
     dplyr::select(rgn_id, scenario_year, taxa_code, tonnes, sust_coeff)
-  
   
   # fill in gaps with no data
   rky <- tidyr::spread(rky, scenario_year, tonnes)
@@ -318,26 +317,27 @@ MAR <- function(layers) {
 
 
 FP <- function(layers, scores) {
+ 
   scen_year <- layers$data$scenario_year
   
   w <-
     AlignDataYears(layer_nm = "fp_wildcaught_weight", layers_obj = layers) %>%
-    filter(scenario_year == scen_year) %>%
-    select(region_id = rgn_id, w_fis)
+    dplyr::filter(scenario_year == scen_year) %>%
+    dplyr::select(region_id = rgn_id, w_fis)
   
   # scores
   s <- scores %>%
-    filter(goal %in% c('FIS', 'MAR')) %>%
-    filter(!(dimension %in% c('pressures', 'resilience'))) %>%
-    left_join(w, by = "region_id")  %>%
-    mutate(w_mar = 1 - w_fis) %>%
-    mutate(weight = ifelse(goal == "FIS", w_fis, w_mar))
+    dplyr::filter(goal %in% c('FIS', 'MAR')) %>%
+    dplyr::filter(!(dimension %in% c('pressures', 'resilience'))) %>%
+    dplyr::left_join(w, by = "region_id")  %>%
+    dplyr::mutate(w_mar = 1 - w_fis) %>%
+    dplyr::mutate(weight = ifelse(goal == "FIS", w_fis, w_mar))
   
   
   ## Some warning messages due to potential mismatches in data:
   # NA score but there is a weight
   tmp <-
-    filter(s,
+    dplyr::filter(s,
            goal == 'FIS' &
              is.na(score) & (!is.na(w_fis) & w_fis != 0) & dimension == "score")
   if (dim(tmp)[1] > 0) {
@@ -348,7 +348,7 @@ FP <- function(layers, scores) {
   }
   
   tmp <-
-    filter(s,
+    dplyr::filter(s,
            goal == 'MAR' &
              is.na(score) & (!is.na(w_mar) & w_fis != 0) & dimension == "score")
   if (dim(tmp)[1] > 0) {
@@ -360,7 +360,7 @@ FP <- function(layers, scores) {
   
   # score, but the weight is NA or 0
   tmp <-
-    filter(
+    dplyr::filter(
       s,
       goal == 'FIS' &
         (!is.na(score) &
@@ -375,16 +375,16 @@ FP <- function(layers, scores) {
   }
   
   tmp <-
-    filter(
+    dplyr::filter(
       s,
       goal == 'MAR' &
         (!is.na(score) &
-           score > 0) &
+           score > 0.05) &
         (is.na(w_mar) | w_mar == 0) & dimension == "score" & region_id != 0
     )
   if (dim(tmp)[1] > 0) {
     warning(paste0(
-      "Check: these regions have a MAR score but no weight: ",
+      "Check: these regions have a MAR score but 0 weight: ",
       paste(as.character(tmp$region_id), collapse = ", ")
     ))
   }
