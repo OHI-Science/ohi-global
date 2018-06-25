@@ -146,8 +146,8 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 ### Some methods for visualizing the data
 
-ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="mar", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="89c2796", scenario_year=2018,
+            file_name="fp", save_csv = TRUE, NA_compare = TRUE)
 
 compare <- read.csv("score_check/mar_diff_data_2018-06-22.csv") 
 tmp <- compare %>%
