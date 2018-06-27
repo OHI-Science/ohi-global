@@ -147,9 +147,9 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 ### Some methods for visualizing the data
 
 ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="mar_rolling", save_csv = TRUE, NA_compare = TRUE)
+            file_name="mar_seaweed_final", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("score_check/mar_diff_data_2018-06-22.csv") 
+compare <- read.csv("score_check/mar_seaweed_final_diff_data_2018-06-13.csv") 
 tmp <- compare %>%
   dplyr::filter(change>0)
 table(tmp$goal)
