@@ -237,7 +237,7 @@ MAR <- function(layers) {
     dplyr::group_by(rgn_id, taxa_code, sust_coeff) %>%
     dplyr::arrange(rgn_id, taxa_code, scenario_year) %>%
     dplyr::mutate(sm_tonnes = zoo::rollapply(tonnes, 4, mean, na.rm = TRUE, partial =
-                                        TRUE)) %>%
+                                        TRUE, align = "right")) %>%
     dplyr::ungroup()
   
   
