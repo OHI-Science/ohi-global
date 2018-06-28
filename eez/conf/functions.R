@@ -450,6 +450,7 @@ AO <- function(layers) {
 }
 
 NP <- function(scores, layers) {
+  
   scen_year <- layers$data$scenario_year
   
   
@@ -618,7 +619,7 @@ NP <- function(scores, layers) {
     #########################################.
     
     ### FIS status for fish oil sustainability
-    # FIS_status <- read.csv('scores.csv')%>%  ## this is for troubleshooting
+    # scores <- read.csv('scores.csv')  ## for troubleshooting, run this first
     FIS_status   <-  scores %>%
       filter(goal == 'FIS' & dimension == 'status') %>%
       select(rgn_id = region_id, score)
