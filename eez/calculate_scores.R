@@ -153,10 +153,10 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 ### Some methods for visualizing the data
 
-ohicore::score_check(commit="previous", scenario_year=2017,
-            file_name="hab_seaice", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="98849d0", scenario_year=2016,
+            file_name="ico", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("score_check/np_final_diff_data_2018-07-03.csv") 
+compare <- read.csv("score_check/ico_diff_data_2018-07-06.csv") 
 
 tmp <- compare %>%
   dplyr::filter(is.na(old_score) & !is.na(score) & goal == "NP")
