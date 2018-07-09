@@ -4,6 +4,13 @@
 ### Steps 4-11 are done as each data layer is updated
 ##################################
 
+## get old version of layer data
+old <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/b1edcf8e4c9ef5099883b3cabded6c9d97624c46/eez_layers_meta_data/layers_eez_base.csv")
+write.csv(old, "../eez_layers_meta_data/layers_eez_base.csv", row.names=FALSE)
+
+old <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/b1edcf8e4c9ef5099883b3cabded6c9d97624c46/eez/conf/scenario_data_years.csv")
+write.csv(old, "conf/scenario_data_years.csv", row.names=FALSE)
+
 ## STEP 1: download ohicore package
 ## Install the appropriate ohicore:
 library(devtools)
@@ -146,10 +153,10 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 ### Some methods for visualizing the data
 
-ohicore::score_check(commit="3fb19f6", scenario_year=2016,
-            file_name="np_final", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="98849d0", scenario_year=2016,
+            file_name="ico", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("score_check/np_final_diff_data_2018-07-03.csv") 
+compare <- read.csv("score_check/ico_diff_data_2018-07-06.csv") 
 
 tmp <- compare %>%
   dplyr::filter(is.na(old_score) & !is.na(score) & goal == "NP")
