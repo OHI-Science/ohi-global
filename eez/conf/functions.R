@@ -1617,14 +1617,22 @@ ICO <- function(layers) {
   
   rk <-
     AlignDataYears(layer_nm = "ico_spp_iucn_status", layers_obj = layers) %>%
-    select(
+    dplyr::select(
       region_id = rgn_id,
       sciname,
+      iucn_sid,
       iucn_cat = category,
       scenario_year,
+      eval_yr,
       ico_spp_iucn_status_year
     ) %>%
-    mutate(iucn_cat = as.character(iucn_cat))
+    dplyr::mutate(iucn_cat = as.character(iucn_cat)) %>% 
+    dplyr::group_by(region_id, iucn_sid) %>% 
+    dplyr::mutate(sample_n = length(na.omit(unique(eval_yr[eval_yr > scen_year-19])))) %>% 
+    dplyr::ungroup() %>% 
+    dplyr::group_by(sciname, region_id) %>% 
+    dplyr::mutate(sample_n = min(sample_n)) %>% 
+    dplyr::ungroup()
   
   # lookup for weights status
   #  LC <- "LOWER RISK/LEAST CONCERN (LR/LC)"
@@ -1637,13 +1645,14 @@ ICO <- function(layers) {
   #  DD <- "INSUFFICIENTLY KNOWN (K)"
   #  DD <- "INDETERMINATE (I)"
   #  DD <- "STATUS INADEQUATELY KNOWN-SURVEY REQUIRED OR DATA SOUGHT"
+  
   w.risk_category <-
     data.frame(
       iucn_cat = c('LC', 'NT', 'CD', 'VU', 'EN', 'CR', 'EX', 'DD'),
       risk_score = c(0,  0.2,  0.3,  0.4,  0.6,  0.8,  1, NA)
     ) %>%
-    mutate(status_score = 1 - risk_score) %>%
-    mutate(iucn_cat = as.character(iucn_cat))
+    dplyr::mutate(status_score = 1 - risk_score) %>%
+    dplyr::mutate(iucn_cat = as.character(iucn_cat))
   
   ####### status
   # STEP 1: take mean of subpopulation scores
@@ -1667,10 +1676,21 @@ ICO <- function(layers) {
     select(region_id, score, dimension)
   
   ####### trend
-  trend_years <- (scen_year - 9):(scen_year)
+  trend_years <- (scen_year - 19):(scen_year)
+  
+  # trend calculated with status filtered for species with 2+ iucn evaluations in trend_years
+  r.status_filtered <- rk %>% 
+    dplyr::filter(sample_n >= 2) %>% 
+    dplyr::left_join(w.risk_category, by = 'iucn_cat') %>%
+    dplyr::group_by(region_id, sciname, scenario_year, ico_spp_iucn_status_year) %>%
+    dplyr::summarize(spp_mean = mean(status_score, na.rm = TRUE)) %>%
+    dplyr::ungroup() %>%
+    dplyr::group_by(region_id, scenario_year, ico_spp_iucn_status_year) %>%
+    dplyr::summarize(status = mean(spp_mean, na.rm = TRUE)) %>%
+    dplyr::ungroup()
   
   trend <-
-    CalculateTrend(status_data = r.status, trend_years = trend_years)
+    CalculateTrend(status_data = r.status_filtered, trend_years = trend_years)
   
   
   ## Reference Point Accounting
@@ -1695,10 +1715,12 @@ ICO <- function(layers) {
   ## gapfill missing regions with average scores/trends of regions that share same UN geopolitical region
   un_regions <- georegions %>%
     select(region_id = rgn_id, r2)
+  
   # ID missing regions:
   regions <- SelectLayersData(layers, layers = c('rgn_global')) %>%
     select(region_id = id_num)
   regions_NA <- setdiff(regions$region_id, scores$region_id)
+  
   scores_NA <- data.frame(
     goal = "ICO",
     dimension = rep(c("status", "trend"),
