@@ -147,6 +147,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 ### Some methods for visualizing the data
 
+
 ohicore::score_check(commit="previous", scenario_year=2017,
             file_name="lsp", save_csv = TRUE, NA_compare = TRUE)
 
