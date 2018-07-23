@@ -149,9 +149,9 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 ohicore::score_check(commit="previous", scenario_year=2017,
-            file_name="lsp", save_csv = TRUE, NA_compare = TRUE)
+            file_name="lsp_resilience", save_csv = TRUE, NA_compare = TRUE)
 
-compare <- read.csv("score_check/ico_diff_data_2018-07-06.csv") 
+compare <- read.csv("score_check/lsp_resilience_diff_data_2018-07-23.csv") 
 
 tmp <- compare %>%
   dplyr::filter(is.na(old_score) & !is.na(score) & goal == "NP")
