@@ -149,7 +149,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 score_check2(commit="previous", scenario_year=2017,
-            file_name="ao_need", save_csv = TRUE, NA_compare = TRUE)
+            file_name="tr_jobs", save_csv = TRUE, NA_compare = TRUE)
 
 
 score_check2 <- function (scenario_year, commit = "previous", file_name, save_csv = FALSE, 
