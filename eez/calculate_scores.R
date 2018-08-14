@@ -148,8 +148,11 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 ### Some methods for visualizing the data
 
 
-ohicore::score_check(commit="cbd5d6e", scenario_year=2017,
-            file_name="slr", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="previous", scenario_year=2017,
+            file_name="targetharvest", save_csv = TRUE, NA_compare = TRUE)
+
+score_check2(commit="previous", scenario_year=2017,
+                     file_name="targetharvest", save_csv = TRUE, NA_compare = TRUE)
 
 
 score_check2 <- function (scenario_year, commit = "previous", file_name, save_csv = FALSE, 
