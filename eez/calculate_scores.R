@@ -149,7 +149,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 ohicore::score_check(commit="4f31c358", scenario_year=2017,
-            file_name="fp_com_hb", save_csv = TRUE, NA_compare = TRUE)
+            file_name="fp_art_lb", save_csv = TRUE, NA_compare = TRUE)
 
 
 
