@@ -4,7 +4,7 @@
 
 *Subcategory: fishing pressure*
 
-This layer describes the relative pressure of high bycatch commercial fishing practices for each OHI region. The fishery data (Watson 2017) describe catch (tonnes/km^2^) for each species and gear type at the 0.5 degree raster global scale.  For each raster cell, we summed catch from high bycatch gear types (e.g., pots, traps, trawl, long-line; Halpern et al. 2008) for the following categories: large scale fishing catch rate (LSF_CR), illegal unreported unregulated catch rate (IUU_CR), and discard catch rate (Discards_CR).  
+This layer describes the relative pressure of high bycatch commercial fishing practices for each OHI region. The fishery data (Watson 2018) describe catch (tonnes) for each species and gear type at the 0.5 degree raster global scale for both non-industrial and industrial fishing. For each raster cell, we summed catch discards from the industrial global catch data.  
 
 The catch was then divided by the mean net primary productivity (mg C/m^2^/day) derived from monthly output from the Vertically Generalized Production Model (VGPM,  [http://www.science.oregonstate.edu/ocean.productivity/](http://www.science.oregonstate.edu/ocean.productivity/), 0.5 degree global raster data). Standardizing catch by primary productivity controls for the fact that similar amounts of catch impart different pressures depending on the productivity in the region. 
 
