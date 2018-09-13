@@ -5,3 +5,4 @@
 *Subcategory: pollution*
 
 The percentage of the population with access to improved sanitation facilities (World Health Organization and United Nations Children's Fund, Joint Monitoring Programme, 2017) was used in combination with measurements of coastal population as a proxy for pathogens in coastal waters. Access to improved sanitation facilities is defined as the percentage of the population in a country with at least adequate access to disposal facilities that can effectively prevent human, animal, and insect contact with excreta. These data are a country-wide average (not specific to the coastal region). Percentages (0-100) for each country were rescaled to 0-1 based on a maximum target of 100% of the population with access to improved sanitation, and a minimum value of 0.
+Reference point was defined as the 99th quantile across year/region with no buffer and constrained to the first 10 years of data (vs. all available years of data).
