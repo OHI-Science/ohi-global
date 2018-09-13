@@ -15,7 +15,8 @@ The list of iconic species was drawn from several ([data sources](http://ohi-sci
 
 
 #### Trend
-We calculate trend using data the IUCN provides for current and past assessments of species, which we use to create a time series of risk status for each species.  Because IUCN assessments are generally infrequent for any given species, we derive the trend as the annual change in risk status for each species across the previous ten years, rather than a five-year window typical of other goals.
+We calculate trend using data the IUCN provides for current and past assessments of species, which we use to create a time series of average risk status for species within each region.  Because IUCN assessments are generally infrequent for any given species, we derive the trend as the annual change in risk status for each species across the previous twenty years, rather than a five-year window typical of other goals, and include only taxa with two or more IUCN assessments within the past 20 years.
+
 
 #### Data
 _Status and trend_
