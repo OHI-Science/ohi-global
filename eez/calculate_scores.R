@@ -148,16 +148,29 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 ### Some methods for visualizing the data
 
 
-ohicore::score_check(commit="4f31c358", scenario_year=2017,
-            file_name="fp_art_lb", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="previous", scenario_year=2017,
+            file_name="le_update", save_csv = TRUE, NA_compare = TRUE)
 
 
+compare <- read.csv("score_check/le_update_diff_data_2018-09-18.csv") 
+na.diffs <- compare %>%
+  dplyr::filter(is.na(score) & !is.na(old_score) | 
+           !is.na(score) & is.na(old_score) ) %>%
+  dplyr::filter(dimension=="status")
 
+compare <- compare %>%
+  dplyr::filter(change != 0) %>%
+  dplyr::filter(goal %in% c("LIV", "ECO"))
 
-compare <- read.csv("score_check/lsp_resilience_diff_data_2018-07-23.csv") 
+compare %>%
+  dplyr::filter(dimension == "status")
+
+compare %>%
+  dplyr::filter(dimension == "trend")
 
 tmp <- compare %>%
-  dplyr::filter(is.na(old_score) & !is.na(score) & goal == "NP")
+  dplyr::filter(dimension == "future")
+summary(tmp)
 
 table(tmp$goal)
 
