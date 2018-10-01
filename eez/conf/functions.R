@@ -5,6 +5,7 @@
 
 
 FIS <- function(layers) {
+
   scen_year <- layers$data$scenario_year
   
   #catch data
@@ -145,7 +146,8 @@ FIS <- function(layers) {
            score,
            gapfilled,
            method) %>%
-    filter(year == scen_year)
+    filter(year == scen_year) 
+  
   write.csv(gap_fill_data, 'temp/FIS_summary_gf.csv', row.names = FALSE)
   
   status_data <- data_fis_gf %>%
@@ -164,7 +166,8 @@ FIS <- function(layers) {
     group_by(year, region_id) %>%
     mutate(SumCatch = sum(catch)) %>%
     ungroup() %>%
-    mutate(wprop = catch / SumCatch)
+    mutate(wprop = catch / SumCatch)  
+    #filter(!is.na(score))
   
   status_data <- status_data %>%
     group_by(region_id, year) %>%

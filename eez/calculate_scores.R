@@ -96,6 +96,7 @@ lyrs_reg = lyrs %>%
   dplyr::select(
     targets, ingest, layer, name, description,
     fld_value, units, filename)
+
 write.csv(lyrs_reg, 'layers.csv', row.names=F, na='')
 
 
@@ -149,7 +150,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 ohicore::score_check(commit="previous", scenario_year=2017,
-            file_name="le_update", save_csv = TRUE, NA_compare = TRUE)
+            file_name="fis_layers", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv("score_check/le_update_diff_data_2018-09-18.csv") 
