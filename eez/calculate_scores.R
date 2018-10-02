@@ -150,7 +150,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 ohicore::score_check(commit="previous", scenario_year=2017,
-            file_name="spi", save_csv = TRUE, NA_compare = TRUE)
+            file_name="sst", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv("score_check/le_update_diff_data_2018-09-18.csv") 
