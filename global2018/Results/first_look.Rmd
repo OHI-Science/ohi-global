@@ -1,5 +1,5 @@
 ---
-title: 'OHI 2017: Summary of results (internal file for data checking and making map/flower plots)'
+title: 'OHI 2018s: Summary of results (internal file for data checking and making map/flower plots)'
 author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
 output: 
   html_document:
@@ -40,11 +40,12 @@ library(sp)
 library(rgdal)
 library(DT)
 library(broom)
+library(here)
 
-# Set working directory when not knitting:
-# setwd("global2017/Results")
+setwd(here::here("global2018","Results"))
 
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+
 goal_names <- data.frame(goal=goals, long_goal=c("Index", 
                                                   "Artisanal opportunities",
                                                   "Species condition (subgoal)",
@@ -66,9 +67,9 @@ goal_names <- data.frame(goal=goals, long_goal=c("Index",
                                                   "Tourism & recreation"))
 
 ## General settings to control
-scenario <- "2017" #identify scenario of focus (this can be changed to obtain data for other years)
-benchmark = 2016  # year that is used for old vs. new OHI analyses
-oldCommit = 'ce63333cea0c556498a361744acf27d9d966c87b' # sha commit for 2015 analysis
+scenario <- "2018" #identify scenario of focus (this can be changed to obtain data for other years)
+benchmark = 2017  # year that is used for old vs. new OHI analyses
+oldCommit = 'ce63333cea0c556498a361744acf27d9d966c87b' # sha commit for 2017 analysis
 colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
 saveFile <- 'global2017' #location where files that are created are to be saved
 
@@ -78,11 +79,11 @@ rgn_names <- read.csv(sprintf('../../eez/layers/rgn_global.csv', scenario)) %>%
   dplyr::mutate(country = as.character(country))
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2017-11-22' #date extension on data files used for all tables/figures
+dateFile = '2018-10-02' #date extension on data files used for all tables/figures
 
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
-update_data = FALSE           # Select true if there are updates to the OHI data!!  Also be sure to change dateFile above
+update_data = TRUE           # Select true if there are updates to the OHI data!!  Also be sure to change dateFile above
 map_create = FALSE            # Updates the map figures (takes a while to run)
 goal_hists = TRUE            # Updates the goal histograms
 flower_plots = FALSE         # Updates the flower plot figures
