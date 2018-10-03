@@ -147,7 +147,7 @@ write.csv(index_avg_spread, sprintf("data/avg_goal_scores_%s.csv", Sys.Date()), 
 ```
 
 ### Figures that provide an overview of scores
-This carpet plot figure ([download as high resolution png](https://github.com/OHI-Science/ohi-global/raw/draft/global2017/Results/figures/carpetPlot_2017.png)) provides a full overview of the scores from the 2017 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 6 years of data.  Black regions indicate no data.
+This carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/carpetPlot.png)) provides a full overview of the scores from the 2018 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 6 years of data.  Black regions indicate no data.
 
 *Don't try too hard to interpret the results for specific countries/goals/years!!*
 
@@ -340,7 +340,7 @@ colors <-   c(reds, blues)
 
 ### get OHI data and rename column headings
 
-for(year in 2012:scenario){ #year=2012
+for(year in 2012:scenario){ #year=2018
 
 if(year != scenario){
   if(sum(grepl(sprintf("year_%s", year), list.files("figures/maps_by_goal_mol"))) == 0){
@@ -381,7 +381,7 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 }
 
 
-## save a version of 2017 maps without legend
+## save a version of 2018 maps without legend
 year = scenario
 
 scores_df <- read.csv(sprintf('data/scores_eez%s.csv', year), stringsAsFactors = FALSE) %>%
