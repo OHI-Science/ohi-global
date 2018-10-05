@@ -375,7 +375,8 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
     }
   
    ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
-                                 colors_spec = colors, leg_on = TRUE)
+                                 #colors_spec = colors, 
+                               leg_on = TRUE)
    
    #print(ohiplot)
 }
@@ -528,11 +529,13 @@ hwrite(data_final, sprintf('data/scores_eez%s.html', scenario), br=TRUE, center=
                         SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
 
 ```
+
 <br>
 <br>
 <br>
 
 # Change over time
+
 
 ```{r trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -544,7 +547,7 @@ region_trends <- scores %>%
   group_by(goal, region_id) %>%
   do(mdl = lm(value ~ scenario, data = .))
 
-#data.frame(glance(data_lm, mdl))
+# data.frame(glance(data_lm, mdl))
 region_trends <- tidy(region_trends, mdl) %>%
   ungroup() %>%
   filter(term == "scenario") %>%
@@ -570,9 +573,9 @@ index <- trends_spread %>%
 eez_spread <- trends_spread %>%
   arrange(-Index) %>%
   filter(country != 'eez_weighted_avg')
-# sum(trends_spread$Index>0)
-# sum(trends_spread$Index<0)
-# sum(trends_spread$Index==0)
+# sum(trends_spread$Index>0) # 79
+# sum(trends_spread$Index<0) # 141
+# sum(trends_spread$Index==0) # none
 
 trends_spread <- rbind(index, eez_spread) %>%
     select(country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
@@ -583,6 +586,7 @@ write.csv(trends_spread, sprintf("data/trends_%s.csv", scenario), row.names = FA
 pal = brewer.pal(10, 'RdYlBu')
 
 cols <- data.frame(country=trends_spread$country)
+
 for(goal in goals){ #goal="CW"
   tmp <- trends_spread[, goal]
   tmp <- assign(goal, cut(tmp, breaks=c(-1000, -10, -5, -2, -1, 0, 1, 2, 5, 10, 1000), include.lowest = TRUE, labels=pal))
@@ -601,16 +605,16 @@ hwrite(trends_spread, sprintf('data/trends_%s.html', scenario), br=TRUE, center=
 
 ```
 
-A color-coded table of 6 year trends is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/trends_2017.html) (and a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Results/data/trends_2017.csv)).  
+A color-coded table of 6 year trends is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/global2018/Results/data/trends_2018.html) (and a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Results/data/trends_2018.csv)).  
 
-These values are calculated using a linear model of scores for each region/goal over the past 6 years.  Positive values indicate potentially increasing scores during the past 6 years and negative values indicate potentially decreasing scores.
+These values are calculated using a linear model of scores for each region/goal over the past 7 years. Positive values indicate potentially increasing scores during the past 7 years and negative values indicate potentially decreasing scores.
 
 NOTE: Currently, these data include the livelihoods and economies goal but this trends should probably be calculated without this goal.
 
 
 ```{r trend maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-source('../../global2016/Reporting/map_fxns_trend.R')
+source('../Reporting/map_fxns_trend.R')
 
 ### set scenario and desired map projection
 prj      <- 'mol'    ### note: 'gcs' is way faster.
@@ -619,7 +623,6 @@ values <- colorRampPalette(values, space = 'Lab')(13)[2:13]
 col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
 
 ### get OHI data and rename column headings
-
 scores_df <- read.csv(sprintf('data/trends_%s.csv', scenario), stringsAsFactors = FALSE) %>%
   rename(rgn_name = country, rgn_id = region_id) %>%
   mutate(rgn_id = as.factor(rgn_id))
@@ -627,6 +630,7 @@ scores_df <- read.csv(sprintf('data/trends_%s.csv', scenario), stringsAsFactors 
 ### load region data frame, so doesn't need to reload every time through the loop.  Also
 ### load the land data frame, if plotting in Mollweide projection.
 rgn_df <- get_rgn_df(prj = prj)
+
 if(prj == 'mol' & !exists('land_poly')) {
   land_poly  <- get_land_df()
   ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
