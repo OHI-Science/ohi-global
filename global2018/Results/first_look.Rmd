@@ -41,6 +41,7 @@ library(rgdal)
 library(DT)
 library(broom)
 library(here)
+library(repmis)
 
 setwd(here::here("global2018","Results"))
 
@@ -69,7 +70,7 @@ goal_names <- data.frame(goal=goals, long_goal=c("Index",
 ## General settings to control
 scenario <- "2018" #identify scenario of focus (this can be changed to obtain data for other years)
 benchmark = 2017  # year that is used for old vs. new OHI analyses
-oldCommit = 'ce63333cea0c556498a361744acf27d9d966c87b' # sha commit for 2017 analysis
+oldCommit = 'e0ed46b5988bb108faa7ae8bc839ba9a9f2bcf12' # sha commit for 2017 analysis
 colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
 saveFile <- 'global2017' #location where files that are created are to be saved
 
@@ -694,6 +695,8 @@ ggsave("figures/trend_histogram_color.png", width=5, height=4)
 
 The 10 regions with the largest increases in index scores are:
 
+Georgia, Pitcairn, Mauritania, Solomon Islands, Bangladesh, Samoa, Myanmar, Tongo, Yemen, and the Philippines
+
 ```{r trend best, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 trends_order <- region_trends %>%
@@ -707,6 +710,8 @@ kable(trends_order[1:10, ])
 ```
 
 The 10 regions with the largest decreases in index scores are: 
+
+Lithuania, Sint Maarten, Amsterdam Island and Saint Paul Island, Trinidad and Tobago, Syria, Marshall Islands, Mayotte, Equatorial Guinea, Estonia, Eritrea
 
 ```{r trend worst, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 bottom <- dim(trends_order)[1]
@@ -749,15 +754,28 @@ kable(data_spread)
 The following is a very preliminary analysis of how the global scores changed over time.  Global index scores decreased by an average `r index$Index` points per year (although, not significant with this rough analysis), with `r sum(trends_spread$Index<0)` regions having decreasing trends and `r sum(trends_spread$Index>0)` having increasing trends. 
 
 #### Declining scores
-* Natural products declined by about 1.4 points per year on average (p = 0.010, 84 regions with decreasing trend and 50 with increasing).  However, there is a lot of variation trends for this goal (i.e., large standard deviation), indicating that some regions have had relatively large increases.
-* Tourism and recreation declined by about 1.2 points per year on average (p = 0.008, 133 regions with decreasing trend and 51 with increasing).  However, this goal had a large amount of variation in trend results.
-* Fisheries declined by nearly 0.5 points per year on average, which is in contrast to the increases we observed in previous years (0.03, 117 regions with decreasing trend and 101 with increasing trend)
-* Coastal protection declined by 0.22 points per year on average (p = 0.02, 80 regions with decreasing trend and 32 with increasing).  However, there is a fairly large amount of variation suggesting a few regions may be driving this trend, due to seaice loss.
-* Clean waters declined by 0.11 points per year on average (p = 0.04, 115 regions with decreasing trend and 95 with increasing)
+
+* Fisheries declined by nearly 1.4 points per year on average, which is a greater decline rate than it was last year. Previous years before that had increasing trends (p  = 0.004, 148 regions with decreasing trend and 71 with increasing trend)
+* Natural products declined by about 1.25 points per year on average, which is a greater rate of decline than last year (p = 0.0010, 90 regions with decreasing trend and 48 with increasing).  However, there is a very large variation in trends for this goal (i.e., large standard deviation 7.44), indicating that some regions have had relatively large increases.
+* Tourism and recreation declined by about 0.74 points per year on average, which is a slower rate of decline than it was last year (p = 0.018, 111 regions with decreasing trend and 68 with increasing). However, this goal had a fairly large amount of variation in trend results.
+* Coastal protection declined by 0.35 points per year on average, which is greater than it was last year (p = 0.0008, 83 regions with decreasing trend and 27 with increasing).  However, there is a fairly large amount of variation suggesting a few regions may be driving this trend, due to seaice loss.
+* Iconic species (sub-goal) declined by 0.09 points per year on average (p = 0.46, 136 countries with decreasing trends, 76 increasing). Small variation
 
 #### Improving scores
-* Lasting special places scores increased by an average of 0.15 points per year (p = 0.005, 54 regions with increasing trend and 49 with decreasing)
-* Artisanal opportunities scores increased by just over 0.16 points per year (p = 0.004, 177 regions with increasing trend and 32 with decreasing)
+
+* Carbon storage increased by 0.01 per year on average (p = 0.11, 43 regions with increasing trend and 54 decreasing)
+* Species condition (sub-goal) increased by 0.03 per year on average (p = 0.002, 110 countries with increasing trend and 74 countries decreasing)
+* Biodiversity increased by 0.07 per year on average (p = 0.01, 111 countries with increasing trend and 82 countries decreasing)
+* Livelihoods increased by 0.07 per year on average (p = 0.11, 75 countries with increasing trend and 69 countries decreasing)
+* Clean waters increased by 0.09 per year on average, in contrast to decline by 0.11 points last year (p = 0.03, 101 regions with increasing trend and 107 with decreasing)
+* Habitat (sub-goal) increased by 0.12 per year on average (p = 0.03, 79 regions with increasing trend and 77 with decreasing)
+* Artisanal opportunities scores increased by 0.17 points per year on average, about the same as last year (p = 0.0003, 181 regions with increasing trend and 31 with decreasing)
+* Sense of place increased by 0.25 points per year on average (p = 0.003, 91 regions with increasing trend and 121 with decreasing)
+* Livelihoods and economies increased by 0.38 points per year on average (p = 0.14, 133 regions with increasing trend and 42 with decreasing)
+* Mariculture (sub-goal) increased by 0.58 points per year on average (p = 0.00005, 52 regions with increasing trend and 44 with decreasing)
+* Lasting special places scores increased by an average of 0.59 points per year, at a significantly greater rate of change than last year (p = 0.001, 66 regions with increasing trend and 45 with decreasing)
+* Economies increased by 0.70 points per year on average (p = 0.14, 116 regions with increasing trend and 21 with decreasing)
+
 
 
 ```{r Global goal trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -766,7 +784,7 @@ data_lm <- data_index %>%
   group_by(goal) %>%
   do(mdl = lm(value ~ scenario, data = .))
 
-#data.frame(glance(data_lm, mdl))
+# data.frame(glance(data_lm, mdl))
 results_lm <- tidy(data_lm, mdl) %>%
   ungroup() %>%
   filter(term == "scenario") %>%
@@ -805,7 +823,7 @@ kable(trend_summary)
 
 # Comparing assessment years
 
-The following is a comparison of the global status scores generated for the 2016 scenario by this year's assessment vs. last year's assessment. 
+The following is a comparison of the global status scores generated for the 2017 scenario by this year's assessment vs. last year's assessment. 
 
 If the models and source data remains the same, these scores should be exactly the same.  Differences indicate changes in methods or source data.  
 
@@ -813,40 +831,40 @@ These changes do not reflect changes in actual system health!
 
 
 ### Global averages
-We made very few changes to goals, consequently the changes in scores for the 2016 scenario were not that large from the 2016 to 2017 assessment.   
 
-The largest changes were for NP (-4.18) and MAR (-4.39). The change in mariculture reflects changes to source data, and maybe a change to the reference point.  The change for NP probably mainly reflects a correction to the code so that fish oil is included in the calculations.
+We made a few changes to some goals, such as the addition of edible seaweed species to Mariculture and removal of edible seaweed species from Natural Products. Furthermore we changed the data source used for Fisheries from SAUP to Watson.
 
-Changes in SPP (-2.41), FIS (-2.67), TR (-2.41) were also observed.  For SPP this reflects the newest data (used for all scenario years) and for TR the newest sustainability data is used for all scenario years (unfortunately, previous years of data are not compatible due to changes in their methods).  FIS had many changes (updated saup data, 4 additional years of data, updates to RAM, gapfilling RAM data, better identification of RAM regions).
+Changes in scores for the 2017 scenario were..
+
+The largest changes were for CW (-2.57) and MAR (-6.33). The change in mariculture reflects additions to source data, mentioned above. 
 
 Other regions changed by less than 2 points.
 
 ```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 data <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile), stringsAsFactors = FALSE) %>%
-  rename("assess2017"=value)
+  rename("assess2018"=value)
 
-data_old <- read.csv('../../global2016/radical_2016-11-17.csv', stringsAsFactors = FALSE) %>%
-  rename("assess2016"=value) %>%
-  mutate(dimension = ifelse(dimension == "likely_future_state", "future", dimension)) %>%
-  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
-  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+data_old <- read.csv('../../global2017/OHI_final_formatted_scores_2017-11-22.csv', stringsAsFactors = FALSE) %>%
+  rename("assess2017"=value) %>%
+  #filter(region_id != 0) %>%  # this weighted mean includes high seas and Antarctica
+  #mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
   filter(region_id <= 250) %>%       # get rid of high seas regions
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
-  left_join(data, by = c("scenario", "goal", "dimension", "region_id")) %>%
+  left_join(data, by = c("scenario", "goal", "long_goal", "dimension", "region_id", "region_name")) %>%
   mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name)))
 
 data_old <- data_old %>%
   filter(region_id == 0) %>%
   filter(dimension == "status") %>%
-  filter(scenario==2016)
+  filter(scenario==2017)
 
 data_old$goal <- factor(data_old$goal, levels = goals)
 
 data_old <- data_old %>%
   arrange(goal) %>%
-  select(goal = long_goal, assess2017, assess2016) %>%
-  mutate(change = assess2017 - assess2016)
+  select(goal = long_goal, assess2018, assess2017) %>%
+  mutate(change = assess2018 - assess2017)
 
 kable(data_old)
 
@@ -854,36 +872,35 @@ kable(data_old)
 
 ### Regional data 
 
-This color-coded [table](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/change_in_scores_benchmark2016_eez2017.html) compares how the 2016 scenario index scores for each region/goal changed from the 2016 to 2017 assessment.  
+This color-coded [table](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/change_in_scores_benchmark2016_eez2017.html) compares how the 2017 scenario index scores for each region/goal changed from the 2017 to 2018 assessment.  
 
 Because these are index scores, changes reflect updates to pressure and resilience scores as well as status.  
 
-The following interactive plot provides an overview of how the 2016 scenario scores changed between the 2016 and 2017 assessment for all goals and dimensions.
+The following interactive plot provides an overview of how the 2017 scenario scores changed between the 2017 and 2018 assessment for all goals and dimensions.
 
 ```{r compare plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4.5, fig.height=3.5}
 
 data <- read.csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile), stringsAsFactors = FALSE) %>%
-  rename("assess2017"=value)
+  rename("assess2018" = value)
 
-data_old <- read.csv('../../global2016/radical_2016-11-17.csv', stringsAsFactors = FALSE) %>%  
-  rename("assess2016"=value) %>%
-    mutate(dimension = ifelse(dimension == "likely_future_state", "future", dimension)) %>%
-  filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
-  mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
+data_old <- read.csv('../../global2017/OHI_final_formatted_scores_2017-11-22.csv', stringsAsFactors = FALSE) %>%  
+  rename("assess2017" = value) %>%
+  #filter(region_id != 0) %>%         # this weighted mean includes high seas and Antarctica
+  #mutate(region_id = ifelse(region_id==300, 0, region_id)) %>%   #convert the 300 (i.e., only eez's averaged to zero)
   filter(region_id <= 250) %>%       # get rid of high seas regions
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
-  left_join(data, by = c("scenario", "goal", "dimension", "region_id")) %>%
+  left_join(data, by = c("scenario", "goal", "long_goal", "dimension", "region_id", "region_name")) %>%
   mutate(region_name = ifelse(is.na(region_name), "eez_weighted_avg", as.character(region_name))) 
 
 data_old <- data_old %>%
-  filter(scenario==2016) %>%
-  mutate(change = assess2017 - assess2016)
+  filter(scenario==2017) %>%
+  mutate(change = assess2018 - assess2017)
 
 
   p <- ggplot2::ggplot(data_old, aes(x=goal, y=change, color=dimension)) +
     #geom_point(shape=19, size=1) +
     theme_bw() + 
-    labs(title="Change in 2016 scores ", y="Change in score", x="") +
+    labs(title="Change in 2017 scores ", y="Change in score", x="") +
     scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
                                 "MAR", "ECO", "LE", "LIV", "NP", "LSP", "SP", "ICO", "TR")) +
     scale_colour_brewer(palette="Dark2") +
@@ -910,10 +927,11 @@ data <- data %>%
 # get the older data
 oldDataAddress <- paste0('https://raw.githubusercontent.com/',
                          'OHI-Science/ohi-global/', oldCommit,
-                        sprintf('/eez%s/scores.csv', benchmark))
+                        sprintf('/eez/scores.csv'))
 
 oldData <- repmis::source_data(oldDataAddress) %>%
   filter(dimension == "score") %>%
+  filter(year == 2017) %>% 
   filter(region_id != 213) %>%
   select(goal, dimension, region_id, old_value=score)
 
@@ -936,7 +954,7 @@ compare_table <- compare %>%
 
 compare_wide <- compare %>%
   select(scenario, goal, dimension, country, region_id, change_in_score) %>%
-  spread(goal, change_in_score)
+  tidyr::spread(goal, change_in_score)
 
 index <- compare_wide %>%
   filter(country == 'eez_weighted_avg')
