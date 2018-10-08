@@ -1,5 +1,5 @@
 ---
-title: 'OHI 2018s: Summary of results (internal file for data checking and making map/flower plots)'
+title: 'OHI 2018: Summary of results (internal file for data checking and making map/flower plots)'
 author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
 output: 
   html_document:
@@ -80,7 +80,7 @@ rgn_names <- read.csv(sprintf('../../eez/layers/rgn_global.csv', scenario)) %>%
   dplyr::mutate(country = as.character(country))
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2018-10-02' #date extension on data files used for all tables/figures
+dateFile = '2018-10-03' #date extension on data files used for all tables/figures
 
 
 ### code to run (change these if data is updated, otherwise takes a while to run):
@@ -98,7 +98,7 @@ flower_plots = FALSE         # Updates the flower plot figures
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
-```{r final_data, eval=update_data, include=FALSE}
+```{r final_data, eval=FALSE, include=FALSE}
 
 # Saves the last version of eez/scores.csv with a date appended to filename.
 ohi_final <- read.csv("../../eez/scores.csv")
@@ -661,7 +661,7 @@ The global average decreased by an average of `r index$Index` points per year.  
 
 (Maps of goal scores are described below)
 
-![](figures/map_trends/trends_map_Index_2017_mol.png) 
+![](figures/map_trends/trends_map_Index_2018_mol.png) 
 
 
 The following histogram describes the distribution of trend (e.g., change in score per year) in index scores:
@@ -872,7 +872,7 @@ kable(data_old)
 
 ### Regional data 
 
-This color-coded [table](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/data/change_in_scores_benchmark2016_eez2017.html) compares how the 2017 scenario index scores for each region/goal changed from the 2017 to 2018 assessment.  
+This color-coded [table](https://rawgit.com/OHI-Science/ohi-global/draft/global2018/Results/data/change_in_scores_benchmark2017_eez2018.html) compares how the 2017 scenario index scores for each region/goal changed from the 2017 to 2018 assessment.  
 
 Because these are index scores, changes reflect updates to pressure and resilience scores as well as status.  
 
@@ -998,7 +998,7 @@ This section takes a closer look at each goal/subgoal.
 
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(-region_name, -region_id)
 
@@ -1020,13 +1020,15 @@ ggsave(g, filename=sprintf("figures/goal_histograms/%s_scores.png", goal), heigh
 ## Artisanal opportunities
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_AO_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_AO_2018_mol.png)
+
 ![](figures/goal_histograms/AO_scores.png)
 
 ### Top 10 performers
+
 ```{r top AO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=AO) %>%
   arrange(-score) %>%
@@ -1037,6 +1039,19 @@ kable(top)
 
 ```
 
+|region_name          |  score|
+|:--------------------|------:|
+|Norway               | 100.00|
+|United Arab Emirates | 100.00|
+|Qatar                | 100.00|
+|Kuwait               | 100.00|
+|United States        | 100.00|
+|Ireland              | 100.00|
+|Brunei               | 100.00|
+|Singapore            | 100.00|
+|Cayman Islands       |  99.62|
+|Bermuda              |  99.22|
+
 ### Bottom 10 performers
 ```{r bottom AO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1046,17 +1061,31 @@ kable(bottom)
 
 ```
 
+|    |region_name           | score|
+|:---|:---------------------|-----:|
+|211 |Sao Tome and Principe | 46.44|
+|212 |Solomon Islands       | 45.31|
+|213 |Cameroon              | 45.26|
+|214 |Benin                 | 44.51|
+|215 |Guinea                | 44.48|
+|216 |Madagascar            | 43.89|
+|217 |Comoro Islands        | 43.84|
+|218 |Mozambique            | 43.49|
+|219 |Togo                  | 43.29|
+|220 |Liberia               | 42.89|
 
 ## Species condition
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_SPP_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_SPP_2018_mol.png)
+
 ![](figures/goal_histograms/SPP_scores.png)
+
 
 ### Top 10 performers
 ```{r top SPP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=SPP) %>%
   arrange(-score) %>%
@@ -1067,6 +1096,19 @@ kable(top)
 
 ```
 
+|region_name               | score|
+|:-------------------------|-----:|
+|Saint Helena              | 97.93|
+|Ascension                 | 97.81|
+|Northern Saint-Martin     | 97.70|
+|Saba                      | 97.69|
+|French Guiana             | 97.59|
+|Montserrat                | 97.56|
+|Guadeloupe and Martinique | 97.27|
+|Aruba                     | 97.14|
+|Namibia                   | 97.00|
+|Tristan da Cunha          | 96.93|
+
 ### Bottom 10 performers
 ```{r bottom SPP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1076,16 +1118,31 @@ kable(bottom)
 
 ```
 
+|    |region_name    | score|
+|:---|:--------------|-----:|
+|211 |Myanmar        | 80.40|
+|212 |East Timor     | 80.15|
+|213 |Libya          | 80.11|
+|214 |Saudi Arabia   | 80.10|
+|215 |Oecussi Ambeno | 79.65|
+|216 |Singapore      | 78.73|
+|217 |Eritrea        | 78.06|
+|218 |Iraq           | 77.40|
+|219 |Bahrain        | 76.86|
+|220 |Sudan          | 75.02|
+
 ## Habitat
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_HAB_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_HAB_2018_mol.png)
+
+
 ![](figures/goal_histograms/HAB_scores.png)
 
 ### Top 10 performers
 ```{r top HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=HAB) %>%
   arrange(-score) %>%
@@ -1096,6 +1153,20 @@ kable(top)
 
 ```
 
+
+|region_name                                  | score|
+|:--------------------------------------------|-----:|
+|Howland Island and Baker Island              |   100|
+|Heard and McDonald Islands                   |   100|
+|Kerguelen Islands                            |   100|
+|Pitcairn                                     |   100|
+|Macquarie Island                             |   100|
+|South Georgia and the South Sandwich Islands |   100|
+|Norfolk Island                               |   100|
+|Clipperton Island                            |   100|
+|Amsterdam Island and Saint Paul Island       |   100|
+|Prince Edward Islands                        |   100|
+
 ### Bottom 10 performers
 ```{r bottom HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1105,17 +1176,30 @@ kable(bottom)
 
 ```
 
+|    |region_name            | score|
+|:---|:----------------------|-----:|
+|209 |Ivory Coast            | 62.88|
+|210 |Senegal                | 62.64|
+|211 |Dominica               | 62.21|
+|212 |Belize                 | 61.45|
+|213 |Iceland                | 61.28|
+|214 |Poland                 | 59.66|
+|215 |Sierra Leone           | 56.25|
+|216 |Nigeria                | 55.13|
+|217 |Bosnia and Herzegovina | 49.65|
+|218 |Jan Mayen              | 37.95|
 
 ## Coastal protection
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_CP_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_CP_2018_mol.png)
+
 ![](figures/goal_histograms/CP_scores.png)
 
 ### Top 10 performers
 ```{r top CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=CP) %>%
   arrange(-score) %>%
@@ -1126,6 +1210,20 @@ kable(top)
 
 ```
 
+
+|region_name                     | score|
+|:-------------------------------|-----:|
+|Howland Island and Baker Island |   100|
+|Pitcairn                        |   100|
+|Phoenix Islands (Kiribati)      |   100|
+|Wallis and Futuna               |   100|
+|Netherlands                     |   100|
+|Denmark                         |   100|
+|British Indian Ocean Territory  |   100|
+|Tuvalu                          |   100|
+|Line Islands (Kiribati)         |   100|
+|Saba                            |   100|
+
 ### Bottom 10 performers
 ```{r bottom CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1135,17 +1233,30 @@ kable(bottom)
 
 ```
 
+|    |region_name                      | score|
+|:---|:--------------------------------|-----:|
+|161 |Sierra Leone                     | 31.55|
+|162 |Guinea                           | 31.22|
+|163 |Senegal                          | 30.38|
+|164 |Nicaragua                        | 30.12|
+|165 |Guinea Bissau                    | 30.10|
+|166 |Democratic Republic of the Congo | 29.84|
+|167 |Sweden                           | 29.33|
+|168 |Dominica                         | 26.53|
+|169 |Belize                           | 23.57|
+|170 |Lithuania                        | 18.57|
 
 ## Carbon storage
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_CS_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_CS_2018_mol.png)
+
 ![](figures/goal_histograms/CS_scores.png)
 
 ### Top 10 performers
 ```{r top CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=CS) %>%
   arrange(-score) %>%
@@ -1156,6 +1267,20 @@ kable(top)
 
 ```
 
+
+|region_name                                         | score|
+|:---------------------------------------------------|-----:|
+|Germany                                             |   100|
+|Northern Saint-Martin                               |   100|
+|Seychelles                                          |   100|
+|Netherlands                                         |   100|
+|Denmark                                             |   100|
+|Russia                                              |   100|
+|Morocco                                             |   100|
+|Saba                                                |   100|
+|French Guiana                                       |   100|
+|Puerto Rico and Virgin Islands of the United States |   100|
+
 ### Bottom 10 performers
 ```{r bottom CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1165,16 +1290,33 @@ kable(bottom)
 
 ```
 
+
+
+|    |region_name                      | score|
+|:---|:--------------------------------|-----:|
+|139 |Liberia                          | 34.51|
+|140 |Senegal                          | 33.57|
+|141 |Guinea                           | 32.81|
+|142 |Sierra Leone                     | 32.61|
+|143 |Ivory Coast                      | 32.39|
+|144 |Guinea Bissau                    | 30.37|
+|145 |Democratic Republic of the Congo | 29.79|
+|146 |Barbados                         | 26.96|
+|147 |Dominica                         | 26.70|
+|148 |Nicaragua                        |  9.76|
+
 ## Clean waters
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_CW_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_CW_2018_mol.png)
+
+
 ![](figures/goal_histograms/CW_scores.png)
 
 ### Top 10 performers
 ```{r top CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=CW) %>%
   arrange(-score) %>%
@@ -1183,7 +1325,21 @@ data <- read.csv('data/scores_eez2017.csv') %>%
 top <- data[1:10, ]
 kable(top)
 
+
 ```
+
+|region_name                                  | score|
+|:--------------------------------------------|-----:|
+|Heard and McDonald Islands                   | 99.71|
+|Falkland Islands                             | 98.96|
+|Bouvet Island                                | 98.91|
+|South Georgia and the South Sandwich Islands | 98.89|
+|Kerguelen Islands                            | 98.78|
+|Jarvis Island                                | 98.38|
+|Macquarie Island                             | 98.16|
+|Phoenix Islands (Kiribati)                   | 97.97|
+|Howland Island and Baker Island              | 97.91|
+|Crozet Islands                               | 96.69|
 
 ### Bottom 10 performers
 ```{r bottom CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1194,16 +1350,30 @@ kable(bottom)
 
 ```
 
+|    |region_name                | score|
+|:---|:--------------------------|-----:|
+|211 |China                      | 29.76|
+|212 |Slovenia                   | 28.16|
+|213 |Nigeria                    | 28.10|
+|214 |Monaco                     | 24.45|
+|215 |Bangladesh                 | 23.67|
+|216 |India                      | 22.70|
+|217 |Gibraltar                  | 16.14|
+|218 |Togo                       |  0.00|
+|219 |Gilbert Islands (Kiribati) |  0.00|
+|220 |Benin                      |  0.00|
+
 ## Fisheries
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_FIS_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_FIS_2018_mol.png)
+
 ![](figures/goal_histograms/FIS_scores.png)
 
 ### Top 10 performers
 ```{r top FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=FIS) %>%
   arrange(-score) %>%
@@ -1214,6 +1384,19 @@ kable(top)
 
 ```
 
+|region_name                       | score|
+|:---------------------------------|-----:|
+|Clipperton Island                 | 94.35|
+|Heard and McDonald Islands        | 93.35|
+|Kerguelen Islands                 | 91.45|
+|Pitcairn                          | 89.77|
+|Finland                           | 88.10|
+|Wake Island                       | 87.23|
+|Howland Island and Baker Island   | 87.06|
+|Estonia                           | 83.65|
+|Latvia                            | 80.77|
+|Northern Mariana Islands and Guam | 79.76|
+
 ### Bottom 10 performers
 ```{r bottom FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1223,16 +1406,30 @@ kable(bottom)
 
 ```
 
+|    |region_name               | score|
+|:---|:-------------------------|-----:|
+|211 |North Korea               | 15.66|
+|212 |Somalia                   | 15.21|
+|213 |Suriname                  | 15.17|
+|214 |Guadeloupe and Martinique | 14.16|
+|215 |Vietnam                   | 14.04|
+|216 |Myanmar                   | 13.28|
+|217 |Guyana                    | 12.69|
+|218 |Sint Eustatius            | 12.55|
+|219 |Samoa                     | 12.01|
+|220 |Haiti                     | 10.36|
+
 ## Mariculture
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_MAR_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_MAR_2018_mol.png)
+
 ![](figures/goal_histograms/MAR_scores.png)
 
 ### Top 10 performers
 ```{r top MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=MAR) %>%
   arrange(-score) %>%
@@ -1243,6 +1440,19 @@ kable(top)
 
 ```
 
+|region_name    |  score|
+|:--------------|------:|
+|Norway         | 100.00|
+|South Korea    | 100.00|
+|Chile          | 100.00|
+|Ecuador        | 100.00|
+|Faeroe Islands | 100.00|
+|North Korea    | 100.00|
+|China          | 100.00|
+|New Zealand    |  96.81|
+|Iceland        |  91.38|
+|Russia         |  58.89|
+
 ### Bottom 10 performers
 ```{r bottom MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1252,16 +1462,31 @@ kable(bottom)
 
 ```
 
+|    |region_name                      | score|
+|:---|:--------------------------------|-----:|
+|191 |Guinea                           |     0|
+|192 |Eritrea                          |     0|
+|193 |Guinea Bissau                    |     0|
+|194 |Syria                            |     0|
+|195 |Somalia                          |     0|
+|196 |Sierra Leone                     |     0|
+|197 |Democratic Republic of the Congo |     0|
+|198 |Lebanon                          |     0|
+|199 |Libya                            |     0|
+|200 |Ivory Coast                      |     0|
+
 ## Iconic species
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_ICO_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_ICO_2018_mol.png)
+
 ![](figures/goal_histograms/ICO_scores.png)
+
 
 ### Top 10 performers
 ```{r top ICO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=ICO) %>%
   arrange(-score) %>%
@@ -1272,6 +1497,19 @@ kable(top)
 
 ```
 
+|region_name    | score|
+|:--------------|-----:|
+|Finland        | 95.83|
+|Latvia         | 95.45|
+|Poland         | 95.45|
+|Lithuania      | 95.45|
+|Estonia        | 95.00|
+|Denmark        | 90.71|
+|Germany        | 90.28|
+|Sweden         | 89.78|
+|Norfolk Island | 88.78|
+|Australia      | 85.12|
+
 ### Bottom 10 performers
 ```{r bottom ICO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1281,10 +1519,24 @@ kable(bottom)
 
 ```
 
+|    |region_name                            | score|
+|:---|:--------------------------------------|-----:|
+|211 |Crozet Islands                         | 51.56|
+|212 |Amsterdam Island and Saint Paul Island | 51.46|
+|213 |Prince Edward Islands                  | 50.81|
+|214 |Jordan                                 | 50.34|
+|215 |Cambodia                               | 48.77|
+|216 |Bahrain                                | 48.17|
+|217 |Iraq                                   | 47.03|
+|218 |Bouvet Island                          | 44.84|
+|219 |Heard and McDonald Islands             | 44.82|
+|220 |Monaco                                 | 36.57|
+
 ## Lasting special places
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_LSP_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_LSP_2018_mol.png)
+
 ![](figures/goal_histograms/LSP_scores.png)
 
 
@@ -1292,7 +1544,7 @@ kable(bottom)
 ### Top 10 performers
 ```{r top LSP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=LSP) %>%
   arrange(-score) %>%
@@ -1303,6 +1555,19 @@ kable(top)
 
 ```
 
+|region_name                                  | score|
+|:--------------------------------------------|-----:|
+|Howland Island and Baker Island              |   100|
+|Heard and McDonald Islands                   |   100|
+|Kerguelen Islands                            |   100|
+|Macquarie Island                             |   100|
+|South Georgia and the South Sandwich Islands |   100|
+|Norfolk Island                               |   100|
+|Jarvis Island                                |   100|
+|Madeira                                      |   100|
+|Phoenix Islands (Kiribati)                   |   100|
+|Germany                                      |   100|
+
 ### Bottom 10 performers
 ```{r bottom LSP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1312,16 +1577,30 @@ kable(bottom)
 
 ```
 
+|    |region_name                | score|
+|:---|:--------------------------|-----:|
+|211 |Jordan                     |     0|
+|212 |Bahrain                    |     0|
+|213 |Togo                       |     0|
+|214 |Gilbert Islands (Kiribati) |     0|
+|215 |Sudan                      |     0|
+|216 |Iraq                       |     0|
+|217 |Benin                      |     0|
+|218 |Eritrea                    |     0|
+|219 |Syria                      |     0|
+|220 |Libya                      |     0|
+
 ## Natural products
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_NP_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_NP_2018_mol.png)
+
 ![](figures/goal_histograms/NP_scores.png)
 
 ### Top 10 performers
 ```{r top NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=NP) %>%
   arrange(-score) %>%
@@ -1332,6 +1611,19 @@ kable(top)
 
 ```
 
+|region_name      | score|
+|:----------------|-----:|
+|New Caledonia    | 99.98|
+|French Polynesia | 98.03|
+|Italy            | 95.60|
+|Bangladesh       | 95.01|
+|Indonesia        | 92.67|
+|Philippines      | 92.42|
+|South Korea      | 90.85|
+|Latvia           | 88.96|
+|North Korea      | 83.05|
+|Cuba             | 82.85|
+
 ### Bottom 10 performers
 ```{r bottom NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1341,16 +1633,30 @@ kable(bottom)
 
 ```
 
+|    |region_name           | score|
+|:---|:---------------------|-----:|
+|129 |Mayotte               |     0|
+|130 |Brunei                |     0|
+|131 |Saint Lucia           |     0|
+|132 |Equatorial Guinea     |     0|
+|133 |Sao Tome and Principe |     0|
+|134 |Dominica              |     0|
+|135 |Algeria               |     0|
+|136 |Republique du Congo   |     0|
+|137 |Eritrea               |     0|
+|138 |Libya                 |     0|
+
 ## Tourism and recreation
 
 ### Scores
-![](figures/maps_by_goal_mol/global_map_TR_2017_mol.png)
+![](figures/maps_by_goal_mol/global_map_TR_2018_mol.png)
+
 ![](figures/goal_histograms/TR_scores.png)
 
 ### Top 10 performers
 ```{r top TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
-data <- read.csv('data/scores_eez2017.csv') %>%
+data <- read.csv(sprintf('data/scores_eez%s.csv', scenario)) %>%
   filter(region_id != 0) %>%
   select(region_name, score=TR) %>%
   arrange(-score) %>%
@@ -1361,6 +1667,19 @@ kable(top)
 
 ```
 
+|region_name           | score|
+|:---------------------|-----:|
+|Aruba                 |   100|
+|New Zealand           |   100|
+|Northern Saint-Martin |   100|
+|Antigua and Barbuda   |   100|
+|Bahamas               |   100|
+|Seychelles            |   100|
+|Curacao               |   100|
+|Montserrat            |   100|
+|Saba                  |   100|
+|Bonaire               |   100|
+
 ### Bottom 10 performers
 ```{r bottom TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -1370,7 +1689,23 @@ kable(bottom)
 
 ```
 
+|    |region_name                      | score|
+|:---|:--------------------------------|-----:|
+|191 |Nigeria                          |  2.06|
+|192 |Sudan                            |  1.98|
+|193 |Democratic Republic of the Congo |  0.43|
+|194 |Yemen                            |  0.00|
+|195 |North Korea                      |  0.00|
+|196 |Iran                             |  0.00|
+|197 |Iraq                             |  0.00|
+|198 |Syria                            |  0.00|
+|199 |Somalia                          |  0.00|
+|200 |Libya                            |  0.00|
+
+
+
 # Additional checks
+
 Plot years of data for each data layer....
 
 Table with spark plots for each region showing trends
@@ -1383,9 +1718,9 @@ Add # of iconic species in list for each country
 
 # Comparing trend and average index scores
 
-To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2017) and the trends for each region.
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2018) and the trends for each region.
 
-Of most concern are regions that have poor scores and declining trends.
+Of most concern are regions that have poor scores and declining trends: Eritrea, Somalia, Ivory Coast, Nicaragua, and Lebanon.
 
 The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
 
@@ -1407,7 +1742,7 @@ avg_index <- index %>%
     geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
     geom_vline(xintercept = 67, color="red", size=.5, linetype=3) +
     theme_bw() + 
-    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2017 scores)") 
+    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2018 scores)") 
     
 
   plotly_fig <- plotly::ggplotly(p)
