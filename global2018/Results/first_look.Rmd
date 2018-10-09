@@ -17,7 +17,7 @@ output:
 ---
 
 
-This document describes results from the OHI 2017 global assessment.
+This document describes results from the OHI 2018 global assessment.
 
 
 ```{r data set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
@@ -94,7 +94,7 @@ flower_plots = FALSE         # Updates the flower plot figures
 # Description of reference datasets and figures
 
 ### Primary dataset
-[Data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-22.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2017.
+[Data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/OHI_final_formatted_scores_2018-10-03.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2018.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
