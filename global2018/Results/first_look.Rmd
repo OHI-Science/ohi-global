@@ -111,7 +111,7 @@ ohi_final_formatted <- read.csv("../../eez/scores.csv") %>%
   left_join(goal_names, by="goal") %>%
   select(scenario=year, goal, long_goal, dimension, region_id, region_name=country, value=score)
 
-write.csv(ohi_final_formatted, sprintf("../OHI_final_formatted_scores_%s.csv", Sys.Date()), row.names=FALSE)
+write.csv(ohi_final_formatted, sprintf("../OHI_final_formatted_scores_%s.csv", dateFile), row.names=FALSE)
 
 ## create a version of data with region index scores wide
 ohi_final_wide <- read.csv(sprintf('../OHI_final_formatted_scores_%s.csv', dateFile)) %>%
@@ -143,7 +143,7 @@ index_avg_spread <- spread(index_avg, goal, avg_score) %>%
   arrange(-Index) %>%
   data.frame()
 
-write.csv(index_avg_spread, sprintf("data/avg_goal_scores_%s.csv", Sys.Date()), row.names=FALSE)
+write.csv(index_avg_spread, sprintf("data/avg_goal_scores_%s.csv", dateFile), row.names=FALSE)
 
 ```
 
@@ -237,8 +237,7 @@ data <- spread(data, goal, score)
 #https://cran.r-project.org/web/packages/googleVis/vignettes/googleVis.pdf
 # can't change color of bubbles in motion charts!
 
-myStateSettings <- '
-{"iconKeySettings":[],
+myStateSettings <- '{"iconKeySettings":[],
   "duration":{"timeUnit":"Y","multiplier":1},
   "iconType":"BUBBLE","playDuration":15000,"xLambda":1,
   "yZoomedDataMin":41.49,
@@ -258,8 +257,7 @@ myStateSettings <- '
   "sizeOption":"_UNISIZE",
   "orderedByX":false,
   "uniColorForNonSelected":false,
-  "xAxisOption":"_TIME"}
-'
+  "xAxisOption":"_TIME"}'
 
 # Motion=gvisMotionChart(data, 
 #                        idvar="country", 
@@ -450,12 +448,6 @@ Average global performance of the 10 goals:
 
 The median index score was `r median(data_final$Index)`. The highest score was 91 for  Howland Island and Baker Island, and the lowest score was 41 for Ivory Coast.  
 
-The following quickly extracts the region with the highest and lowest Index score:
-
-```{r}
-data_final[which(data_final$Index == min(data_final$Index)),]
-data_final[which(data_final$Index == max(data_final$Index)),]
-```
 
 The following histogram describes the distribution of overall index scores:
 
@@ -606,7 +598,7 @@ hwrite(trends_spread, sprintf('data/trends_%s.html', scenario), br=TRUE, center=
 
 ```
 
-A color-coded table of 6 year trends is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/global2018/Results/data/trends_2018.html) (and a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Results/data/trends_2018.csv)).  
+A color-coded table of 6 year trends is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/global2018/Results/data/trends_2018.html) (and a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/data/trends_2018.csv)).  
 
 These values are calculated using a linear model of scores for each region/goal over the past 7 years. Positive values indicate potentially increasing scores during the past 7 years and negative values indicate potentially decreasing scores.
 
@@ -747,7 +739,29 @@ data_spread <- spread(data_index, scenario, value) %>%
   filter(!goal %in% c("ECO", "LE", "LIV")) %>%
   select(-goal) %>%
   rename(goal = long_goal)
+```
 
+Plot View
+```{r overview-plot, echo=FALSE}
+
+# library(reshape2)
+# library(plotly)
+#
+# plot_data <- data_index %>%
+#   filter(goal != "Index")
+# 
+# sp <- ggplot(plot_data, aes(x=scenario, y=value)) +
+#   geom_jitter(aes(col=goal)) +
+#   geom_smooth(aes(col=goal), method="lm",se=F) +
+#   facet_wrap(goal ~.) +
+#   theme_bw()
+# 
+# ggplotly()
+
+```
+
+Table View
+```{r overview-table, echo=FALSE}
 kable(data_spread)
 ```
 
@@ -867,6 +881,37 @@ data_old <- data_old %>%
   mutate(change = assess2018 - assess2017)
 
 kable(data_old)
+
+```
+
+Comparison Plot
+```{r compare assessments-plot, echo=FALSE}
+
+library(ggplot2)
+library(ggalt)
+theme_set(theme_classic())
+
+data_old$goal <- factor(data_old$goal, levels=as.character(data_old$goal))  # for right ordering of the dumbells
+
+# health$Area <- factor(health$Area)
+ggplot(data_old, aes(x=assess2017, xend=assess2018, y=goal, group=goal)) + 
+        geom_dumbbell(color="#a3c4dc",
+                      colour_x="#a3c4dc", 
+                      size=0.75, 
+                      colour_xend="#0e668b") + 
+        scale_x_continuous(breaks = c(-8,-4,-2,0,2)) + 
+        labs(x=NULL, 
+             y=NULL, 
+             title="Change in Status from v2017 to v2018") +
+        theme(plot.title = element_text(hjust=0.5, face="bold"),
+              plot.background=element_rect(fill="#f7f7f7"),
+              panel.background=element_rect(fill="#f7f7f7"),
+              panel.grid.minor=element_blank(),
+              panel.grid.major.y=element_blank(),
+              panel.grid.major.x=element_line(),
+              axis.ticks=element_blank(),
+              legend.position="top",
+              panel.border=element_blank())
 
 ```
 
