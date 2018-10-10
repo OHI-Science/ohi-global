@@ -42,6 +42,7 @@ library(DT)
 library(broom)
 library(here)
 library(repmis)
+library(ggalt)
 
 setwd(here::here("global2018","Results"))
 
@@ -884,12 +885,13 @@ kable(data_old)
 
 ```
 
-Comparison Plot
+Light blue is status for the 2017 assessment, and the dark blue is the status for the 2018 assessment.
+
 ```{r compare assessments-plot, echo=FALSE}
 
-library(ggplot2)
-library(ggalt)
 theme_set(theme_classic())
+
+data_old <- data_old %>% arrange(assess2017)
 
 data_old$goal <- factor(data_old$goal, levels=as.character(data_old$goal))  # for right ordering of the dumbells
 
@@ -899,16 +901,16 @@ ggplot(data_old, aes(x=assess2017, xend=assess2018, y=goal, group=goal)) +
                       colour_x="#a3c4dc", 
                       size=0.75, 
                       colour_xend="#0e668b") + 
-        scale_x_continuous(breaks = c(-8,-4,-2,0,2)) + 
+        scale_x_continuous("Status") +  
         labs(x=NULL, 
              y=NULL, 
-             title="Change in Status from v2017 to v2018") +
+             title="Change in Scenario Year 2017 Status") +
         theme(plot.title = element_text(hjust=0.5, face="bold"),
               plot.background=element_rect(fill="#f7f7f7"),
               panel.background=element_rect(fill="#f7f7f7"),
               panel.grid.minor=element_blank(),
               panel.grid.major.y=element_blank(),
-              panel.grid.major.x=element_line(),
+              panel.grid.major.x=element_line(colour="grey"),
               axis.ticks=element_blank(),
               legend.position="top",
               panel.border=element_blank())
