@@ -43,6 +43,9 @@ library(broom)
 library(here)
 library(repmis)
 library(ggalt)
+library(reshape2)
+library(plotly)
+library(stringr)
 
 setwd(here::here("global2018","Results"))
 
@@ -1516,3 +1519,141 @@ avg_index <- index %>%
   plotly_fig
 
 ```
+
+
+
+# Pairwise Comparison of Trend
+
+## Get and tidy data for 2018 Assessment Year
+
+```{r get, message = F}
+
+final_scores <- read_csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile))
+
+## Select trend scores for scenario year 2018
+scores_trend <- final_scores %>% 
+  filter(dimension == "trend") %>% 
+  filter(scenario == 2018) %>% 
+  group_by(goal, region_name) %>% 
+  mutate(avg_trend = mean(value)) %>% 
+  ungroup() %>% 
+  select(goal, dimension, region_id, region_name, score=avg_trend) %>% 
+  distinct()
+
+```
+
+## Create pairPlot function to plot pair-wise graph
+
+To view plots with plotly, run this code chunk line by line after setting variables for g1 and g1. Uncomment line 1590 `ggplotly(myplot)`
+```{r}
+
+# set col for plotting
+pal <- brewer.pal(9, "PuBuGn")[3:9]
+
+pairPlot <- function(g1, g2){ # g1="AO"; g2="BD"
+  
+# isolate goal 1 scores
+goal1 <- scores_trend %>% 
+  filter(dimension == "trend") %>% 
+  filter(goal == g1) %>% 
+  select(-dimension,-goal) %>% 
+  na.omit() %>% 
+  rename(score1=score)
+
+# isolate goal 2 scores
+goal2 <- scores_trend %>% 
+  filter(dimension == "trend") %>% 
+  filter(goal == g2) %>% 
+  select(-dimension,-goal) %>% 
+  na.omit() %>% 
+  rename(score2=score)
+
+## extract georegion r2
+geo <- georegion_labels %>% 
+  select(region_id=rgn_id, r2_label, r1_label)
+
+# join goal 1 and 2, matching based on year and region id
+goalscatter <- full_join(goal1, goal2, by = c("region_id", "region_name")) %>% 
+  na.omit() %>% 
+  left_join(geo, by="region_id") # for color coding in plot
+
+# Plot data
+myplot <- ggplot(goalscatter, aes(x=score1, y=score2)) +
+  geom_point(aes(col=r1_label), alpha = 0.6) +
+  scale_color_manual(values=pal) +
+  theme_classic() +
+  facet_wrap(r1_label~.) +
+  geom_hline(yintercept = 0) +
+  geom_vline(xintercept = 0) +
+  stat_smooth(method=lm, se=FALSE, color="black", size = 0.5) +
+  labs(title = paste("Pairwise Comparison of Trend:", g1, "and", g2, sep =" "), x = sprintf("%s",g1), y = sprintf("%s",g2)) +
+  guides(fill=FALSE, color=FALSE)
+
+# ggplotly(myplot)
+
+ggsave(filename = paste("figures/pairwise_trend/",g1,"_",g2,"_trend.png",sep=""))
+
+}
+
+```
+
+
+## Create a list of goal pairs to feed into a `for()` loop
+
+Plot Goals Pair-wise in a `for` function and save with `ggsave`
+Is there a clear trend or which quadrant do most of the points lie? 
+
+```{r}
+
+# Create a data frame with all the paired-combinations of the 10 goals
+# remove ICO, Index, and subgoals
+# Create vectors for the first and second part of the goal-pair combinations
+goal_list <- scores_trend %>% 
+         filter(goal %in% c("AO","BD","CP","CS","CW","FP","LE","NP","SP","TR"))
+
+goal_list <- unique(goal_list$goal) 
+goal_list <- combn(goal_list, 2, simplify = FALSE)
+goal_df <- data.frame(goal_list)
+
+colnames(goal_df) <- 1:ncol(goal_df)
+goal_df <- data.frame(t(goal_df))
+colnames(goal_df) <- c("g1","g2")
+
+goal_df$g1 <- as.character(goal_df$g1)
+goal_df$g2 <- as.character(goal_df$g2)
+
+g1_list <- goal_df$g1
+g2_list <- goal_df$g2
+
+# create sub-folder `pairwise_trend` if it doesn't exist
+if(dir.exists("figures/pairwise_trend") == "FALSE"){
+  dir.create("figures/pairwise_trend")
+}
+
+
+## save pair plots into "figures/pairwise_trend"
+mapply(pairPlot, g1 = g1_list, g2 = g2_list)
+  
+
+```
+
+## Explore Correlations
+
+The interesting correlations are BD-CS, BD-CP, CS-CP:
+
+For some reason Southern Islands isn't showing on the below images. Open up the png files to see all georegions.
+
+![](figures/pairwise_trend/BD_CS_trend.png)
+
+
+![](figures/pairwise_trend/BD_CP_trend.png)
+
+![](figures/pairwise_trend/CP_CS_trend.png)
+
+View a few others.. most don't have a strong correlation
+
+![](figures/pairwise_trend/FP_TR_trend.png)
+
+
+![](figures/pairwise_trend/SP_TR_trend.png)
+
