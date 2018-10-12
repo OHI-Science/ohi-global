@@ -1527,7 +1527,7 @@ avg_index <- index %>%
 
 ## Get and tidy data for 2018 Assessment Year
 
-```{r get, message = F}
+```{r pairwise trend, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 final_scores <- read_csv(sprintf("../OHI_final_formatted_scores_%s.csv", dateFile))
 
@@ -1546,7 +1546,7 @@ scores_trend <- final_scores %>%
 ## Create pairPlot function to plot pair-wise graph
 
 To view plots with plotly, run this code chunk line by line after setting variables for g1 and g1. Uncomment line 1590 `ggplotly(myplot)`
-```{r}
+```{r pairplot function, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 # set col for plotting
 pal <- brewer.pal(9, "PuBuGn")[3:9]
@@ -1604,7 +1604,7 @@ ggsave(filename = paste("figures/pairwise_trend/",g1,"_",g2,"_trend.png",sep="")
 Plot Goals Pair-wise in a `for` function and save with `ggsave`
 Is there a clear trend or which quadrant do most of the points lie? 
 
-```{r}
+```{r pairwise forloop, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 # Create a data frame with all the paired-combinations of the 10 goals
 # remove ICO, Index, and subgoals
