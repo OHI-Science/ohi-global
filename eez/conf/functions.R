@@ -5,7 +5,7 @@
 
 
 FIS <- function(layers) {
-
+  browser()
     scen_year <- layers$data$scenario_year
   
   #catch data
@@ -32,9 +32,16 @@ FIS <- function(layers) {
    #   data.frame()
 
   high_bmsy <- c(
-    'Katsuwonus_pelamis-71',
-    'Sardinella_aurita-34'
+    "Katsuwonus_pelamis-71",
+    "Clupea_harengus-27",
+    "Trachurus_capensis-47",
+    "Sardinella_aurita-34",
+    "Scomberomorus_cavalla-31"
   )
+  # high_bmsy <- c(
+  #   'Katsuwonus_pelamis-71',
+  #   'Sardinella_aurita-34'
+  # )
   
   b <- b %>%
     dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
@@ -106,6 +113,7 @@ FIS <- function(layers) {
   data_fis_gf <- data_fis %>%
     dplyr::group_by(region_id, year) %>%
     dplyr::mutate(mean_score = mean(score, na.rm = TRUE)) %>%
+                  #mean_score = quantile(score, probs=0.5, na.rm=TRUE)) %>%
     dplyr::ungroup()
   
   ## this takes the mean score across all regions within a year
@@ -113,6 +121,7 @@ FIS <- function(layers) {
   data_fis_gf <- data_fis_gf %>%
     dplyr::group_by(year) %>%
     dplyr::mutate(mean_score_global = mean(score, na.rm = TRUE)) %>%
+                  #mean_score_global = quantile(score, probs=0.5, na.rm=TRUE)) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(mean_score = ifelse(is.na(mean_score), mean_score_global, mean_score)) %>%
     dplyr::select(-mean_score_global)
