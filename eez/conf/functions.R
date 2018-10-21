@@ -5,7 +5,6 @@
 
 
 FIS <- function(layers) {
-  browser()
     scen_year <- layers$data$scenario_year
   
   #catch data
@@ -24,7 +23,7 @@ FIS <- function(layers) {
     AlignDataYears(layer_nm = "fis_b_bmsy", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, stock_id, year = scenario_year, bbmsy)
   
-  # The following stocks are fished in multiple regions and have high b/bmsy values
+  # The following stocks are fished in multiple regions and often have high b/bmsy values
   # Due to the underfishing penalty, this actually penalizes the regions that have the highest
   # proportion of catch of these stocks.  The following corrects this problem:
    # tmp <- dplyr::filter(b, stock_id %in% c('Katsuwonus_pelamis-71', 'Sardinella_aurita-34')) %>%
@@ -38,10 +37,6 @@ FIS <- function(layers) {
     "Sardinella_aurita-34",
     "Scomberomorus_cavalla-31"
   )
-  # high_bmsy <- c(
-  #   'Katsuwonus_pelamis-71',
-  #   'Sardinella_aurita-34'
-  # )
   
   b <- b %>%
     dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
@@ -113,7 +108,6 @@ FIS <- function(layers) {
   data_fis_gf <- data_fis %>%
     dplyr::group_by(region_id, year) %>%
     dplyr::mutate(mean_score = mean(score, na.rm = TRUE)) %>%
-                  #mean_score = quantile(score, probs=0.5, na.rm=TRUE)) %>%
     dplyr::ungroup()
   
   ## this takes the mean score across all regions within a year
@@ -121,7 +115,6 @@ FIS <- function(layers) {
   data_fis_gf <- data_fis_gf %>%
     dplyr::group_by(year) %>%
     dplyr::mutate(mean_score_global = mean(score, na.rm = TRUE)) %>%
-                  #mean_score_global = quantile(score, probs=0.5, na.rm=TRUE)) %>%
     dplyr::ungroup() %>%
     dplyr::mutate(mean_score = ifelse(is.na(mean_score), mean_score_global, mean_score)) %>%
     dplyr::select(-mean_score_global)
