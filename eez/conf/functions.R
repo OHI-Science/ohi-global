@@ -1634,11 +1634,24 @@ HAB <- function(layers) {
 
 
 SPP <- function(layers) {
-  scores <- rbind(layers$data$spp_status, layers$data$spp_trend) %>%
+
+  scen_year <- layers$data$scenario_year
+  
+status <- AlignDataYears(layer_nm = "spp_status", layers_obj = layers) %>%
+   dplyr::filter(scenario_year == scen_year) %>%
+    dplyr::select(region_id = rgn_id,
+                  score) %>%
+  dplyr::mutate(dimension = "status") %>%
+  dplyr::mutate(score = score * 100)
+  
+trend <- layers$data$spp_trend %>%
+  dplyr::select(region_id = rgn_id,
+                score) %>%
+  dplyr::mutate(dimension = "trend")
+
+scores <- rbind(status, trend) %>%
     dplyr::mutate(goal = 'SPP') %>%
-    dplyr::mutate(dimension = ifelse(layer == "spp_status", "status", "trend")) %>%
-    dplyr::mutate(score = ifelse(dimension == 'status', score * 100, score)) %>%
-    dplyr::select(region_id = rgn_id, goal, dimension, score)
+    dplyr::select(region_id, goal, dimension, score)
   
   ## Reference Point Accounting
   WriteRefPoint(goal = "SPP",
