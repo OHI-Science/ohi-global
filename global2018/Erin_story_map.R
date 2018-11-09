@@ -1,0 +1,44 @@
+# preparing some data for Erin: story map
+
+library(dplyr)
+library(tidyr)
+library(sf)
+
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/src/R/spatial_common.R")
+
+
+# join shapefile with scores
+scores <- read.csv(here("global2018/scores_2018-11-07.csv")) %>%
+  filter(region_id != 0) %>%
+  filter(year == 2018) %>%
+  filter(dimension == "score") %>%
+  spread(goal, score) %>%
+  select(-dimension, -year) %>%
+  rename(rgn_id = region_id)
+
+regions_with_data <- regions %>%
+  left_join(scores, by="rgn_id")
+
+# join shapefile with trend estimates
+trend_df <- read.csv(here("global2018/Results/data/trends_2018.csv")) %>%
+  select(rgn_id=region_id, trend_score = Index)
+
+regions_with_data <- regions_with_data %>%
+  left_join(trend_df, by="rgn_id")
+
+## save as shapefile
+st_write(regions_with_data, dsn=file.path("/home/shares/web/data/htdocs/data"),
+         layer = "ohi_2018_data",
+         driver="ESRI Shapefile")
+
+setwd("/home/shares/web/data/htdocs/data") # NOTE: have to set working directory because you can't have paths in zipfile
+zip(zipfile = "ohi_2018_story_map",
+    files = c("ohi_2018_data.dbf",
+              "ohi_2018_data.prj",
+              "ohi_2018_data.shp",
+              "ohi_2018_data.shx"))
+
+file.remove(c("ohi_2018_data.dbf",
+          "ohi_2018_data.prj",
+          "ohi_2018_data.shp",
+          "ohi_2018_data.shx"))

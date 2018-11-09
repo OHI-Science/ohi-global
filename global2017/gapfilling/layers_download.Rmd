@@ -1,0 +1,53 @@
+---
+title: "Downloading gapfilling data layers from OHI 2017 analysis"
+author: "Mel"
+date: "4/27/2018"
+output: html_document
+---
+
+Based on the paths in "eez_layers_meta_data/layers_eez_gapfill.csv", gapfilling datasets are hunted down and placed in the ohi-global/global2017/gapfill/layers folder.  Gapfilling data includes a _gf extension and is typically located in the same location as the actual data.
+
+This code should be run as a first step if there were changes in the gapfilling data.
+
+```{r layer download, warning=FALSE, message=FALSE}
+
+# load libraries
+library(tidyr)
+library(dplyr)
+
+setwd('global2017/gapfilling') # comment this out when knitting!!!
+
+# download gap-filling layers
+source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/src/R/common.R')
+
+#file sources
+ohiprep <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2017/master/"
+ohiglobal <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/"
+
+### directory and file names
+gf_file_loc <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_gapfill.csv") %>%
+  filter(variable == "file_loc_2017") %>%
+  filter(!is.na(variable_data)) %>%
+  mutate(variable_data = gsub("ohiprep:", ohiprep, variable_data)) %>%
+  mutate(variable_data = gsub("ohi-global:", ohiglobal, variable_data))
+
+for(i in 1:length(gf_file_loc$variable_data)){ # i=1
+f_name <- gf_file_loc$layer[i]
+ tmp <- read.csv(gf_file_loc$variable_data[i])
+ 
+ write.csv(tmp, sprintf("layers/%s.csv", f_name))
+  }
+
+# check that all layers are available.
+files_saved <- list.files("layers") 
+files_saved <- gsub(".csv", "", files_saved)
+
+# should be no differences
+setdiff(files_saved, gf_file_loc$layer)
+setdiff(gf_file_loc$layer, files_saved)
+
+# should be the same length
+length(files_saved)==length(gf_file_loc$layer)
+
+```
+

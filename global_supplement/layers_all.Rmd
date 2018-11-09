@@ -4,9 +4,8 @@
  library(tidyr) 
  library(knitr) 
  
-## github urls so we can knit this from the gh-pages branch
-layer_meta <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE) 
-layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers' 
+ layer_meta <- read.csv('../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE) 
+ layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers' 
  
  
 ```

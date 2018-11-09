@@ -11,6 +11,7 @@ base <- read.csv("eez_layers_meta_data/layers_eez_base.csv")
 targets <- read.csv("eez_layers_meta_data/layers_eez_targets.csv")
 
 setdiff(base$layer, targets$layer) # alien species actually doesn't get included as a pressure due to all values < 1
+                                   # soft-bottom extent not used for anything
 setdiff(targets$layer, base$layer)
 
 # methods
@@ -21,11 +22,11 @@ setdiff(methods$layer, base$layer) # NP calculation (exposure) is there, but it 
 ## specific methods
 table(methods$variable) # reference done below
 
-meth_prep <- dplyr::filter(methods, variable == "dataprep_url_2017")
+meth_prep <- dplyr::filter(methods, variable == "dataprep_url")
 setdiff(meth_prep$layer, base$layer)
 setdiff(base$layer, meth_prep$layer)
 
-meth_update <- dplyr::filter(methods, variable == "methods_update_2017")
+meth_update <- dplyr::filter(methods, variable == "methods_update")
 setdiff(meth_update$layer, base$layer)
 setdiff(base$layer, meth_update$layer)
 
@@ -43,25 +44,7 @@ setdiff(layers, base$layer)
 
 
 #gapfilling data
-gap <- read.csv("eez_layers_meta_data/layers_eez_gapfill.csv") %>%
-  filter(variable == "file_loc_2017")
-setdiff(gap$layer, base$layer)
+gap <- read.csv("eez_layers_meta_data/layers_eez_gapfill.csv")
+setdiff(gap$layer, base$layer) # NP_exposure_gf created in functions.R
 setdiff(base$layer, gap$layer)
 
-
-### Modifications for 2017
-### gapfilling no longer needs to have separate directories and file names
-### will update the latest file
-
-gaps <- read.csv("eez_layers_meta_data/layers_eez_gapfill.csv", stringsAsFactors = FALSE)
-
-gaps <- spread(gaps, variable, variable_data) %>%
-  mutate(file_loc_2015 = paste(dir_gap_fill_2015, fn_gap_fill_2015, sep="/")) %>%
-  select(layer, file_loc_2015) %>%
-  gather("variable", "variable_data", -1)
-
-gaps_2017 <- gaps %>%
-  mutate(variable = "file_loc_2017") %>%
-  rbind(gaps)
-
-write.csv(gaps_2017, "eez_layers_meta_data/layers_eez_gapfill.csv", row.names = FALSE)

@@ -1,0 +1,11 @@
+
+```{r, message=FALSE, echo=FALSE, warning=FALSE, error=FALSE} 
+ library(dplyr) 
+ library(tidyr) 
+ library(knitr) 
+ 
+ layer_meta <- read.csv('../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE) 
+ layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers' 
+ 
+ 
+```
