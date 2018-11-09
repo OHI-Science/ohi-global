@@ -108,68 +108,43 @@ ohicore::CheckLayers(layers.csv = sprintf('layers.csv'),
             flds_id    = conf$config$layers_id_fields)
 
 
+
 # calculate scores for each year scenario and save to a single csv file:
 
-# scenario_years <- list.files("habitats/mask_explore", full=TRUE)
-# scorelist = lapply(2012:2018, get_scores)
-# scores_all_years <- bind_rows(scorelist)
-# 
-# get_scores <- function(x){
-#   
-#   print(sprintf("For assessment year %s", x))
-#   
-#   conf   <-  ohicore::Conf('conf')
-#   layers <-  ohicore::Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
-#   layers$data$scenario_year <-  x
-#   
-#   # clear out the file that keeps track of reference points for each scenario year
-#   
-#   if(file.exists(sprintf('temp/reference_pts_%s.csv', x)))
-#   {file.remove(sprintf('temp/reference_pts_%s.csv', x))}
-#   
-#   ref_pts <- data.frame(year   = as.integer(),
-#                         goal   = as.character(),
-#                         method = as.character(),
-#                         reference_point = as.character())
-#   write_csv(ref_pts, sprintf('temp/reference_pts_%s.csv', x))
-#   
-#   
-#   # calculate scores
-#   scores_sy <- ohicore::CalculateAll(conf, layers) %>%
-#     dplyr::mutate(year = x)
-#   
-# }
+## General function to calculate scores
+get_scores <- function(s_year){ # x=2012
 
-
-scores_all_years <- data.frame()
-
-for (s_year in scenario_years){  # s_year=2018
-
+#  s_year <- as.numeric(s_year)
   print(sprintf("For assessment year %s", s_year))
-  
-  conf   <-  ohicore::Conf('conf')
-  layers <-  ohicore::Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
+
+  # set the scenario year
   layers$data$scenario_year <-  s_year
 
   # clear out the file that keeps track of reference points for each scenario year
-  
+
   if(file.exists(sprintf('temp/reference_pts_%s.csv', s_year)))
   {file.remove(sprintf('temp/reference_pts_%s.csv', s_year))}
-  
+
   ref_pts <- data.frame(year   = as.integer(),
                         goal   = as.character(),
                         method = as.character(),
                         reference_point = as.character())
   write_csv(ref_pts, sprintf('temp/reference_pts_%s.csv', s_year))
-  
-  
+
+
   # calculate scores
   scores_sy <- ohicore::CalculateAll(conf, layers) %>%
     dplyr::mutate(year = s_year)
 
-  scores_all_years <- rbind(scores_all_years, scores_sy)
-
 }
+
+## Apply function
+### set up conf and layer objects
+conf   <-  ohicore::Conf('conf')
+layers <-  ohicore::Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
+
+scorelist = lapply(X=2012:2018, FUN=get_scores)
+scores_all_years <- dplyr::bind_rows(scorelist)
 
 # save results
 write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
@@ -180,8 +155,8 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 ### Some methods for visualizing the data
 
 
-ohicore::score_check(commit="previous", scenario_year=2017,
-            file_name="oa", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="previous", scenario_year=2018,
+            file_name="method_change", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv("score_check/fis_mean_gf_diff_data_2018-10-17.csv") 
