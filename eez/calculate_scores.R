@@ -110,6 +110,37 @@ ohicore::CheckLayers(layers.csv = sprintf('layers.csv'),
 
 # calculate scores for each year scenario and save to a single csv file:
 
+# scenario_years <- list.files("habitats/mask_explore", full=TRUE)
+# scorelist = lapply(2012:2018, get_scores)
+# scores_all_years <- bind_rows(scorelist)
+# 
+# get_scores <- function(x){
+#   
+#   print(sprintf("For assessment year %s", x))
+#   
+#   conf   <-  ohicore::Conf('conf')
+#   layers <-  ohicore::Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
+#   layers$data$scenario_year <-  x
+#   
+#   # clear out the file that keeps track of reference points for each scenario year
+#   
+#   if(file.exists(sprintf('temp/reference_pts_%s.csv', x)))
+#   {file.remove(sprintf('temp/reference_pts_%s.csv', x))}
+#   
+#   ref_pts <- data.frame(year   = as.integer(),
+#                         goal   = as.character(),
+#                         method = as.character(),
+#                         reference_point = as.character())
+#   write_csv(ref_pts, sprintf('temp/reference_pts_%s.csv', x))
+#   
+#   
+#   # calculate scores
+#   scores_sy <- ohicore::CalculateAll(conf, layers) %>%
+#     dplyr::mutate(year = x)
+#   
+# }
+
+
 scores_all_years <- data.frame()
 
 for (s_year in scenario_years){  # s_year=2018
@@ -150,7 +181,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 ohicore::score_check(commit="previous", scenario_year=2017,
-            file_name="spp_status_trend", save_csv = TRUE, NA_compare = TRUE)
+            file_name="oa", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv("score_check/fis_mean_gf_diff_data_2018-10-17.csv") 
