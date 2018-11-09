@@ -5,7 +5,6 @@ cc_acid,ohiprep:globalprep/prs_oa/v2017/output,acid.csv,TRUE,pressure_score,Ocea
 cc_slr,ohiprep:globalprep/prs_slr/v2018/output,slr.csv,TRUE,pressure_score,Sea level rise,scaled 0-1,Pressure due to rising mean sea level
 cc_sst,ohiprep:globalprep/prs_sst/v2018/output,sst_updated.csv,TRUE,pressure_score,Sea surface temperature,scaled 0-1,Presure due to increasing extreme sea surface temperature events
 cc_uv,ohiprep:globalprep/prs_uv/v2018/output,uv.csv,TRUE,pressure_score,UV radiation,scaled 0-1,Pressure due to increasing frequency of UV anomolies
-cntry_rgn,ohiprep:globalprep/spatial/v2013,cntry_rgn_2013.csv,FALSE,rgn_id,ISO country codes,region id,Lookup table of country codes (based on ISO 3166 country codes) and Ocean Health Index region identifiers
 cw_chemical_trend,ohiprep:globalprep/prs_chem/v2016/output,cw_chemical_trend_updated.csv,TRUE,trend,Chemical pollution trend,trend,"Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ "
 cw_nutrient_trend,ohiprep:globalprep/prs_land-based_nutrient/v2016/output,cw_fertilizers_trend_updated.csv,TRUE,trend,Nutrient pollution trend,trend,"Trends in nutrient pollution, using fertilizer consumption as a proxy for nutrient pollution"
 cw_pathogen_trend,ohiprep:globalprep/prs_cw_pathogen/v2018/output,po_pathogen_popdensity25mi_trend.csv,TRUE,trend,Pathogen pollution trend,trend,Trends in percent of population without access to improved sanitation facilities as a proxy for pathogen pollution
@@ -78,7 +77,6 @@ res_spi,ohiprep:globalprep/prs_res_spi/v2018/output,spi_res.csv,TRUE,resilience_
 rgn_area,ohiprep:globalprep/spatial/v2017/output,rgn_area.csv,TRUE,area_km2,Region areas based on EEZ boundaries,km2,Area of Ocean Health Index regions modified from exclusive economic zones 
 rgn_area_inland1km,ohiprep:globalprep/lsp/v2018/output,rgn_area_inland1km.csv,TRUE,area,Inland 1km area,km2,Inland area of OHI regions within 1km of shoreline
 rgn_area_offshore3nm,ohiprep:globalprep/lsp/v2018/output,rgn_area_offshore3nm.csv,TRUE,area,Offshore 3nm area,km2,Offshore area of OHI regions within 3nm of shoreline
-rgn_georegions,ohiprep:globalprep/spatial/v2013,rgn_georegions_long_2013b.csv,FALSE,georgn_id,UN geopolitical region classifications,UN regions,"UN geopolitical regions (3 levels), often used to estimate missing data"
 rgn_global,ohiprep:globalprep/spatial/v2017/output,rgn_global.csv,TRUE,label,OHI region id,label,Subset of regions that are not deleted or disputed 
 rgn_labels,ohiprep:globalprep/spatial/v2017/output,rgn_labels.csv,TRUE,label,Regions,label,"Regions by type (eez, subocean, unclaimed)"
 sp_alien,ohiprep:globalprep/prs_alien/v2013/data,p_sp_alien_2013a.csv,TRUE,pressures.score,Nonindigenous species,scaled 0-1,Measure of harmful invasive species
