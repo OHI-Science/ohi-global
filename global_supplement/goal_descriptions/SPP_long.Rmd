@@ -1,10 +1,10 @@
 ### Species condition (subgoal of biodiversity)
 
-This goal aims to assess the average condition of the marine species within each region based on IUCN status [@iucn_iucn_2016].  The target for the species subgoal is to have all species at a risk status of Least Concern. 
+This goal aims to assess the average condition of the marine species within each region based on IUCN status.  The target for the species subgoal is to have all species at a risk status of Least Concern. 
 
 #### Current status
 
-Species status was calculated as the area and status-weighted average of assessed species within each region. Marine species distribution and threat category data mostly came from IUCN Red List of Threatened Species, and we limited data to all species having IUCN habitat system of "marine" [@iucn_iucn_2016]. Seabird distributions data came from Birdlife International [@birdlife_international_and_natureserve_bird_2015]. When neither IUCN nor BirdLife International distributions were available, we supplemented with AquaMaps [@kaschner_aquamaps:_2015] using any non-zero probability of occurrence to indicate species presence to create a binary range map.  Range maps were analyzed at the 0.5 degree scale.
+Species status was calculated as the area and status-weighted average of assessed species within each region. Marine species distribution and threat category data mostly came from IUCN Red List of Threatened Species, and we limited data to all species having IUCN habitat system of "marine" [http://www.iucnredlist.org](http://www.iucnredlist.org). Seabird distributions data came from Birdlife International [http://datazone.birdlife.org](http://datazone.birdlife.org).   
 
 We scaled the lower end of the biodiversity goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions [@barnosky_has_2011] and would constitute a catastrophic loss of biodiversity. 
 
@@ -35,7 +35,7 @@ $$
 | Least Concern   |     LC    |  1.0  |
 
 #### Trend
-We calculated trend as the average of the population trend assessments for all species within a region, with species’ trends assigned a value of 0.5 for increasing, 0 for stable, and -0.5 for decreasing using the population trend data associated with the species assessment conducted by IUCN. 
+We calculate trend using data the IUCN provides for current and past assessments of species, which we use to estimate annual change in IUCN risk status for each species.  We then summarize these species trend values for each region using the same general approach used to calculate status. 
 
 #### Data
 _Status and trend_
