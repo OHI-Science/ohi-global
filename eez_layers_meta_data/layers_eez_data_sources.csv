@@ -1,27 +1,25 @@
 ds_reference,ds_name,ds_description,ds_years,ds_native_resolution,ds_updated_2016,ds_updated_2017,ds_updated_2018
-noauthor_ram_2018,Stock assessments,Stock assesment scores data,1950-2016,Stock,y,y,"y, two more years of data"
-ricard_examining_2012,Knowledge and status of comercially exploited marine species,"Stock assesment RAM data, paper",NA,NA,n,n,n
-aviso_satellite_2018,Sea level rise,Net change in sea level during the time series,1993-2017,0.25 deg,y,y,"y, one aditional year of data"
-omalley_ocean_nodate,NPP website,Net Primary Productivity website,2003-2015,0.083 deg,,,"y, one aditional year of data"
+anderson_stock_2018,Stock assessement methods for data-limited fisheries,Methods: Data-limited stocks assessments,NA,NA,NA,NA,NA
+aviso_satellite_2018,Sea level rise,Net change in sea level during the time series,1993-2017,0.25 deg,y,y,y
 behrenfeld_photosynthetic_1997,NPP,Net Primary Productivity paper,NA,NA,NA,NA,NA
 bridgham_carbon_2006,Salt marsh,Global salt marsh habitat extent and condition,1975-2007,National,n,n,n
 bruno_regional_2007,Coral reefs,Global coral habitat extent and change in condition,"2002,1980-2009,2006",0.5 km; 1 km; Sites (points),n?,n,n
 burke_reefs_2011,Blast and poison fishing practices,Presence of artisanal blast and poison (cyanide) fishing practices,2009,10 km,n,n,n
 burke_reefs_2011,Coral reefs,Global coral habitat extent and change in condition,"2002,1980-2009,2006",0.5 km; 1 km; Sites (points),n?,n,n
-cavalieri_sea_1996,Sea ice,"Sea ice change in extent, both edge and shoreline metrics",1979-2017,25 km,y,y,"y, one aditional year of data"
-center_for_international_earth_science_information_network_ciesin_gridded_2005,Coastal population,Raster data of human population,2005-2020,30 arcsec,y,"y, improved",n
+cavalieri_sea_1996,Sea ice,"Sea ice change in extent, both edge and shoreline metrics",1979-2017,25 km,y,y,y
+center_for_international_earth_science_information_network_ciesin_gridded_2017,Coastal population,Raster data of human population,2005-2020,30 arcsec,y,"y, improved",y
 cites_member_2015,CITES signatories,Countries that signed the Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES),2017,National,n,y,n
 claus_marine_2012,Land and ocean areas,Land and ocean areas for OHI land and eez regions,2013,1 km,n,n,n
 convention_on_biological_diversity_3rd_2005,CBD signatories and survey data,"Convention on Biological Diversity: Data from Third National Report for regulation of alien species, habitat, mariculture, tourism, and water to preserve biodiversity",2005,National,n,n,n
-schwab_global_2017,Global Competitiveness Index (GCI),Composite measure of 12 aspects of economic competitiveness,2007-2017,National,n,y,n
-crotti_travel_2017,Travel and Tourism Competitiveness Index (TTCI),Sustainability of the travel and tourism industry,2017,National,n,"y, not comparable across years","y, one aditional year of data"
+crotti_travel_2017,Travel and Tourism Competitiveness Index (TTCI),Sustainability of the travel and tourism industry,2017,National,n,"y, not comparable across years",y
 dahl_status_2011,Salt marsh,Global salt marsh habitat extent and condition,1975-2007,National,n,n,n
 edf_france_electricite_2011,Marine jobs: tidal energy,La Rance (France) and Annapolis (Canada) tidal plants employment data,2003-2010,Points (sites),n,n,n
 eionet_european_environment_agency_eea_eu_2008,Salt marsh,Global salt marsh habitat extent and condition,1975-2007,National,n,n,n
 eriksen_plastic_2014,Trash pollution,Plastic trash pollution in ocean,2014,0.2 deg,n,n,n
 esri_esri_2010,Land and ocean areas,Land and ocean areas for OHI land and eez regions,2013,1 km,n,n,n
-feely_ocean_2009,Ocean acidification,Change in aragonite saturation state (ASS) levels,2005-2020,1 deg,y,y,n
+feely_ocean_2009,Ocean acidification,Change in aragonite saturation state (ASS) levels,2005-2020,1 deg,y,y,y
 free_mapping_2017,Stock boundaries,Maps of fish stock boundaries for the original RAM Myers stock-recruit database,2017,Stock, ,"y, new datasource",n
+government_of_canada_travel_2018,Secondary source for travel warnings,"Travel warnings issued by Canada's Government, Travel Advise and Advisories",2018,National,,,"y, new datasource"
 halpern_global_2008,Chemical pollution: land-based inorganic,Modeled pollution from urban runoff from impervious surfaces,2000,1 km,n,n,n
 halpern_global_2008,Chemical pollution: land-based organic,Modeled pollution from pesticides,1990-2013,1 km (FAO data is National),y,n,n
 halpern_global_2008,Chemical pollution: ocean-based ,Modeled pollution from shipping and ports,2003/2011,1 km,n,n,n
@@ -35,54 +33,61 @@ halpern_spatial_2015,Chemical pollution: ocean-based ,Modeled pollution from shi
 hamilton_creation_2016,Mangroves,"Global mangrove habitat extent, from remote sensing and assessments",2000-2012,"30m2, summarized to 500m2",n,n,n
 hemminga_seagrass_2000,Seagrass ,Seagrass geographical regions,2010,County,n,n,n
 homer_development_2004,Chemical pollution: land-based inorganic,Modeled pollution from urban runoff from impervious surfaces,2000,1 km,n,n,n
-iucn_iucn_2018,Marine species threatened status,IUCN Red List of threatened species by category; sub-population status for iconic species,1965-2018,National,y,y,"y, only some species have been reevaluated up to 2018"
-##iucn_red_2016,"Marine species ranges, IUCN",IUCN spatial distribution,2016,Polygons rasterized to 0.5 deg,y,y,?
+hovila_omuvbd:_2013,UV radiation,Anomalies in intensity of ultraviolet (UV) radiation ,2005-2017,1 deg,y,y,y
+noauthor_bird_2017,Marine bird species threatened status,Status of marine bird species,2017,National,y,y,y
+iucn_iucn_2018,Marine species threatened status,IUCN Red List of threatened species by category; sub-population status for iconic species,1965-2018,National,y,y,y
+iucn_iucn_2018-1,"Marine species ranges, IUCN",IUCN spatial distribution,2018,Polygons rasterized to 0.5 deg,y,y,y
 jambeck_plastic_2015,Improper plastic disposal,Trends in mismanaged plastic waste for 2010 and projected for 2025 as a proxy for trash trends,2010-2025 (projected),National,y,n,n
 joint_nature_conservation_committee_common_2004,Salt marsh,Global salt marsh habitat extent and condition,1975-2007,National,n,n,n
-##kaschner_aquamaps:_2015,"Marine species ranges, Aquamaps",Aquamaps spatial distribution range maps,2016,0.5 deg,y,y,?
-kaufmann_worldwide_2010,Total population,Census populations for countries,1990-2012,National,n,n,n
-kaufmann_worldwide_2010,Worldwide Governance Indicators (WGI),"Accountability, Political Stability and Absence of Violence, Government Effectiveness, Regulatory Quality, Rule of Law, and Control of Corruption",1996-2016,National,y?,y,n
+kaufmann_worldwide_2010,Methods: Worldwide Governance Indicators (WGI),"Accountability, Political Stability and Absence of Violence, Government Effectiveness, Regulatory Quality, Rule of Law, and Control of Corruption",NA,NA,NA,NA,NA
 laffoley_management_2009,Carbon storage weight,Carbon sequestration by habitat,2009,habitat,n,n,n
+lewis_large-scale_2017,Marine protected areas and terrestrial protected areas,Location and area of marine and terrestrial protected areas manual,NA,NA,NA,NA,NA
 molnar_assessing_2008,Alien species,The number and type of invasive and harmful invasive species in each marine ecoregion,2008,"Ecoregion (sensu Spalding et al., 2007)",n,n,n
 mora_management_2009,Fisheries management effectiveness,Management effectiveness of the world's marine fisheries,2009,National,n,n,n
 mora_management_2009,Fisheries management effectiveness: artisanal,Management effectiveness of artisanal fisheries,2009,National,n,n,n
 new_zealand_ministry_for_the_environment_environment_2007,Salt marsh,Global salt marsh habitat extent and condition,1975-2007,National,n,n,n
-noaa_coral_2018,Sea surface temperature (SST) anomalies,Sea surface temperature anomalies,1982-2017,4 km,n,n,"y, 5 more years of data"
+noaa_coral_2018,Sea surface temperature (SST) anomalies,Sea surface temperature anomalies,1982-2017,4 km,n,n,y
+noauthor_2018_nodate,Social Progress Index,Index measuring quality of life indicators,2014-2017,National,y,y,y
+noauthor_ram_2018,Stock assessments,Stock assesment scores data,1950-2016,Stock,y,y,y
 oconnor_whale_2009,Marine jobs: marine mammal watching,Jobs based on number of whale watchers in a country and a regional average number of whale watchers per employee. Includes all marine mammal watching.,1998-2008,National,n,n,n
 oconnor_whale_2009,Marine revenue: marine mammal watching,Total revenue from marine mammal watching,1998-2008,National,n,n,n
+omalley_ocean_nodate,NPP website,Net Primary Productivity website,2003-2015,0.083 deg,,,y
 oostendorp_occupational_2012,Marine wages,"Occupations within commercial fishing, ports and harbors, ship and boat building, tourism, and transportation and shipping",1989-2008,National,n,n,n
-porter_social_2014,Social Progress Index,Index measuring quality of life indicators,2014-2017,National,y,y,?
+ricard_examining_2012,Knowledge and status of comercially exploited marine species,"Stock assesment RAM data, paper",NA,NA,NA,NA,NA
 schutte_regional_2010,Coral reefs,Global coral habitat extent and change in condition,"2002,1980-2009,2006",0.5 km; 1 km; Sites (points),n?,n,n
+schwab_global_2017,Global Competitiveness Index (GCI),Composite measure of 12 aspects of economic competitiveness,2007-2017,National,n,y,y
 short_extinction_2011,Seagrass,Global seagrass habitat extent and change in condition,1975-2010,"1 km, National",n,n,n
-##stern_social_2016,Social Progress Index,Index measuring quality of life indicators,2014-2017,National,y,y,?
+stern_2018_2018,Social Progress Index,Methods: Index measuring quality of life indicators,NA,NA,NA,NA,NA
 tallis_invest_2011,Coastal protection ranks,Ranks of coastal protection provided by habitats,2011,habitat,n,n,n
-hovila_omuvbd:_2013,UV radiation,Anomalies in intensity of ultraviolet (UV) radiation ,2005-2017,1 deg,y,y,"y, one aditional year of data"
 thorbourne_annopolis_2011,Marine jobs: tidal energy,La Rance (France) and Annapolis (Canada) tidal plants employment data,2003-2010,Points (sites),n,n,n
 trujillo_using_2008,Mariculture Sustainability Index (MSI),"Mariculture Sustainability Index (MSI): traceability and code of practice, fishmeal use, waste treatment, and seed and larvae origin indicators",1994-2003,National,n,n,n
-lewis_large-scale_2017,Marine protected areas and terrestrial protected areas,Location and area of marine and terrestrial protected areas manual,NA,NA,NA,NA,NA
+unep-wcmc_and_iucn_protected_2018,Marine protected areas and terrestrial protected areas,Location and area of marine and terrestrial protected areas data,1819-2018,Shapefile,y,y,y
 unep-wcmc_global_2005,Seagrass,Global seagrass habitat extent and change in condition,1975-2010,"1 km, National",n,n,n
-unep-wcmc_and_iucn_protected_2018,Marine protected areas and terrestrial protected areas,Location and area of marine and terrestrial protected areas data,1819-2018,Shapefile,y,y,"y, aditional years of data"
 united_nations_fao_2013,Marine revenue: commercial fishing,Total revenue from commercial marine fishing,1997-2007,National,n,n,n
-united_nations_fao_2013-1,Marine revenue: aquarium trade fishing,Revenue of Aquarium Trade Fishing derived from commodities database,1984-2009,National,n,n,n
-united_nations_fao_2013-2,Marine revenue: mariculture,Total revenue from mariculture production of marine species,1977-2011,National,n,n,n
-united_nations_fao_2018-1,Mariculture yield,Production of finfish and invertebrates,1950-2016,National,y,y,"y, one aditional year of data"
+united_nations_fao_2013-2,Marine revenue: aquarium trade fishing,Revenue of Aquarium Trade Fishing derived from commodities database,1984-2009,National,n,n,n
+united_nations_fao_2013-1,Marine revenue: mariculture,Total revenue from mariculture production of marine species,1977-2011,National,n,n,n
 united_nations_fao_2016-2,Chemical pollution: land-based organic,Modeled pollution from pesticides,1990-2013,1 km (FAO data is National),y,n,n
-united_nations_fao_2018,Global Capture Production: Targeted harvest,Catch statistics for cetaceans and marine turtles,1950-2016,National,y,y,"y, one aditional year of data"
-united_nations_fao_2017,FAO commodities data,"Export tonnes and value (US dollars) and of coral, ornamental fish, fish oil, sponges, shells, and seaweeds and plants",1976-2015,National,y,n,"y, aditional years of data"
-united_nations_fao_2016-3,Nutrient pollution,Modeled N input from fertilizer use as a proxy for nutrient pollution,1990-2013,1 km (FAO data is National),y,n,n
+united_nations_fao_2016-2,Nutrient pollution,Modeled N input from fertilizer use as a proxy for nutrient pollution,1990-2013,1 km (FAO data is National),y,n,n
+united_nations_fao_2017,FAO commodities data,"Export tonnes and value (US dollars) and of coral, ornamental fish, fish oil, sponges, shells, and seaweeds and plants",1976-2015,National,y,n,y
+united_nations_fao_2018,Global Capture Production: Targeted harvest,Catch statistics for cetaceans and marine turtles,1950-2016,National,y,y,y
+united_nations_fao_2018-1,Mariculture yield,Production of finfish and invertebrates,1950-2016,National,y,y,y
 united_nations_personal_communication_fao_2011,Marine jobs: commercial fishing,"Global Number of Fishers, commercial fishing",1990-2008,National,n,n,n
 united_nations_personal_communication_fao_2011,Marine jobs: mariculture,"Global Number of Fishers, aquaculture",1993-2008,National,n,n,n
 united_nations_statistics_2012,Marine revenue: tidal energy,Total revenue from marine renewable energy,1990/2001-2010/2008,National,n,n,n
 united_nations_worlds_2007,Mangroves,Mangrove condition,1980/1990/2000/2005,Country,n,n,n
-us_department_of_state_travel_2018,Travel warnings,Travel warnings issued by the US State Department,2015-2018,National,y,y,"y, source changed reporting format"
-watson_mapping_2018,Fisheries catch data,Fisheries catch by species and gear type (tonnes/km2),1950-2015,0.5 deg,n,"y, replaced modeled catch of Halpern et al. 2008","y, one aditional year of data"
+us_department_of_state_travel_2018,Travel warnings,Travel warnings issued by the US State Department,2015-2018,National,y,y,"y, source updated how they report data"
+watson_mapping_2018,Fisheries catch data,Fisheries catch by species and gear type (tonnes/km2),1950-2015,0.5 deg,n,"y, replaced modeled catch of Halpern et al. 2008",y
 waycott_accelerating_2009,Seagrass,Global seagrass habitat extent and change in condition,1975-2010,"1 km, National",n,n,n
-who-unicef_joint_2017,Sanitation access,Percent population without access to improved sanitation facilities,2000-2015,National,n,n,"y, source updated how they report data"
-world_bank_gdp_2017,GDPpcPPP,Per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP,1990-2017,National,y,y,"y, one aditional year of data"
-world_bank_gdp_2014,Gross Domestic Product (GDP),"Gross Domestic Product; Adjustment to all revenue data layers to factor out global economic fluctuations, in 2012 $USD ",1960-2012,National,n,n,n
+who-unicef_joint_2017,Sanitation access,Percent population without access to improved sanitation facilities,2000-2015,National,n,n,"n, source updated how they report data"
+world_bank_gdp_2016,Gross Domestic Product (GDP),"Gross Domestic Product; Adjustment to all revenue data layers to factor out global economic fluctuations, in 2012 $USD ",1960-2012,National,n,n,n
+world_bank_gdp_2017,GDPpcPPP,Per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP,1990-2017,National,y,y,y
 world_bank_labor_2014,Labor force,Number of people aged 15 and older who could contribute to the production of goods and services,1990-2011,National,n,n,n
+world_bank_population_2016,Total population,Census populations for countries,1990-2012,National,n,n,n
 world_bank_unemployment_2014,National percent unemployment,Percent of the labor force unemployed but able to and looking for work,1990-2011,National,n,n,n
+world_bank_worldwide_2018,Worldwide Governance Indicators (WGI),"Accountability, Political Stability and Absence of Violence, Government Effectiveness, Regulatory Quality, Rule of Law, and Control of Corruption",1996-2016,National,y?,y,y
 wttc_world_2013,Marine jobs: tourism,Total contribution of tourism to employment,1988-2012,National,n,n,n
 wttc_world_2013,Marine revenue: tourism,"Total tourism revenue by country, adjusted by country's relative proportion of coastal area",1998-2012,National,n,n,n
-wttc_world_2017,Travel and Tourism Direct Contribution to Employment,"Employment directly linked to travel and tourism sectors (hotels, transportation, services)",1988-2016,National,y,y,"y, one aditional year of data"
-government_of_canada_travel_2018,Secondary source for travel warnings,"Travel warnings issued by Canada's Government, Travel Advise and Advisories",2018,National,,,"y, new datasource"
+wttc_world_2017,Travel and Tourism Direct Contribution to Employment,"Employment directly linked to travel and tourism sectors (hotels, transportation, services)",1988-2017,National,y,y,y
+martell_simple_2013,A simple method for estimating MSY from catch and resilience,Methods: Data-limited stocks assessments,NA,NA,NA,NA,NA
+rosenberg_developing_2014,Developing new approaches to global stock status assessment and maximum sustainable production of the seas,Methods: Data-limited stocks assessments,NA,NA,NA,NA,NA
+Wikipedia,Identifying uninhabited regions,Population by region,2018,National,y,y,y
