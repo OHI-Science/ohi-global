@@ -3,12 +3,13 @@
 library(dplyr)
 library(tidyr)
 library(sf)
+library(sp)
 
 source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/src/R/spatial_common.R")
 
 
 # join shapefile with scores
-scores <- read.csv(here("global2018/scores_2018-11-07.csv")) %>%
+scores <- read.csv(here("global2018/scores_2018-11-09.csv")) %>%
   filter(region_id != 0) %>%
   filter(year == 2018) %>%
   filter(dimension == "score") %>%
@@ -26,19 +27,23 @@ trend_df <- read.csv(here("global2018/Results/data/trends_2018.csv")) %>%
 regions_with_data <- regions_with_data %>%
   left_join(trend_df, by="rgn_id")
 
+
+# convert to latlong
+regions_lat_long <- st_transform(regions_with_data, "+init=epsg:4326")
+
 ## save as shapefile
-st_write(regions_with_data, dsn=file.path("/home/shares/web/data/htdocs/data"),
-         layer = "ohi_2018_data",
+st_write(regions_lat_long, dsn=file.path("/home/shares/web/data/htdocs/data"),
+         layer = "ohi_2018_data_lat_long",
          driver="ESRI Shapefile")
 
 setwd("/home/shares/web/data/htdocs/data") # NOTE: have to set working directory because you can't have paths in zipfile
-zip(zipfile = "ohi_2018_story_map",
-    files = c("ohi_2018_data.dbf",
-              "ohi_2018_data.prj",
-              "ohi_2018_data.shp",
-              "ohi_2018_data.shx"))
+zip(zipfile = "ohi_2018_story_map_lat_long",
+    files = c("ohi_2018_data_lat_long.dbf",
+              "ohi_2018_data_lat_long.prj",
+              "ohi_2018_data_lat_long.shp",
+              "ohi_2018_data_lat_long.shx"))
 
-file.remove(c("ohi_2018_data.dbf",
-          "ohi_2018_data.prj",
-          "ohi_2018_data.shp",
-          "ohi_2018_data.shx"))
+file.remove(c("ohi_2018_data_lat_long.dbf",
+          "ohi_2018_data_lat_long.prj",
+          "ohi_2018_data_lat_long.shp",
+          "ohi_2018_data_lat_long.shx"))
