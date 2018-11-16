@@ -28,7 +28,8 @@ Compiled on `r date()`.
  # 1. Run CombineLayers.R to create the relevant Rmd file for data layers (if any changes to these files), creates layers_all.R
  # 2. Save a new OHI.bib file from Zotero if changes to referenes (Export BibLaTeX)
  # 3. Run BIBcorrect.R to fix a few weird things in the OHI.bib file
- # 4. Knit this file. 
+  # 4. Review document to fix year references (i.e., title at top, assessmentYear variable in this code chunk, update figure 3.1)
+ # 5. Knit this file and review html output. 
 
 
 
@@ -126,7 +127,7 @@ This figure describes how the dimensions come together to calculate a goal score
 
 Finally, an overall Index score for each region is calculated by averaging the goal scores (Figure 1.2).
 
-**Figure 1.2. Flowerplot of goal scores for a region**
+**Figure 1.2. Example flowerplot of goal scores for a region**
 Goal and subgoal scores for Canada.  The middle value is the regional Index score, and is calculated by averaging the goal scores.
 ![](figures/flower_Canada.png)
 
@@ -149,9 +150,9 @@ One of the first steps of conducting on OHI assessment is defining regions of in
 There are 220 global coastal countries and territorial regions (Table 3.1).  Regions are based on Exclusive Economic Zone boundaries [EEZ, @claus_marine_2012].  However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.).  We have also modified some boundaries [@halpern_index_2012; @halpern_patterns_2015].  We do not estimate OHI values for disputed or unclaimed areas.
 
 **Figure 3.1. Global regions**
-Map of the OHI regions (with color corresponding to 2017 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
+Map of the OHI regions (with color corresponding to 2018 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
 
-![](figures/global_map_Index_2017_mol.png)
+![](../global2018/Results/figures/maps_by_goal_mol/global_map_Index_2018_mol.png)
 
 **Table 3.1. Global regions**
 
@@ -338,20 +339,20 @@ data <- left_join(target, base, by="layer")
 
 ## Get data prep url (will be a link in description)
 url <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "dataprep_url_2017") %>%
+  filter(variable == "dataprep_url") %>%
   group_by(layer) %>%
   mutate(N = 1) %>%
   mutate(method_count = cumsum(N)) %>%
   mutate(total_methods = sum(N)) %>%
   mutate(count = sum(N)) %>%
-  mutate(url_link = ifelse(count==1,  paste0("[data prep]", "(", variable_data, ")"), 
-                           paste0("[data prep ", method_count, "](", variable_data, ")"))) %>%
+  mutate(url_link = ifelse(count==1,  sprintf("[data prep](http://ohi-science.org/ohiprep_v%s/%s)", assessmentYear, variable_data), 
+                sprintf("[data prep %s](http://ohi-science.org/ohiprep_v%s/%s)", method_count, assessmentYear, variable_data))) %>%
   summarize(url_link = paste(url_link, collapse = ", ")) %>%
   select(layer, url_link) %>%
   ungroup()
 
 data <- left_join(data, url, by="layer") %>%
-  mutate(Description = paste0(Description, " (", url_link, ")")) %>%
+  mutate(Description = sprintf("%s (%s)", Description, url_link)) %>%
   select(layer, Name, Description, Dimension)
 
 ## get references:
