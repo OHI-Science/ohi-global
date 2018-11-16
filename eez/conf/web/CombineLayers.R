@@ -6,8 +6,9 @@
 ## load relevant libraries
 library(dplyr)
 library(tidyr)
+library(here)
 
-file.remove("eez/conf/web/layers_all.Rmd")
+file.remove(here("eez/conf/web/layers_all.Rmd"))
 
 ######################################################
 ### Rmd file header information
@@ -22,7 +23,7 @@ tmp <- capture.output(cat("---",
                           "\n    toc_float: yes",
                           "\n---"))
 
-write(tmp, "eez/conf/web/layers_all.Rmd")
+write(tmp, here("eez/conf/web/layers_all.Rmd"))
 
 
 
@@ -47,7 +48,7 @@ tmp <- capture.output( cat(paste0("\n```{r, message=FALSE, echo=FALSE, warning=F
                            "\n",
                            "\n```"))
                            
-write(tmp, "eez/conf/web/layers_all.Rmd", append=TRUE)
+write(tmp, here("eez/conf/web/layers_all.Rmd"), append=TRUE)
 
 
 ######################################################
@@ -57,10 +58,10 @@ write(tmp, "eez/conf/web/layers_all.Rmd", append=TRUE)
 layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
 
 ## make sure all the Rmd files are in there and no typos!
-layers_Rmd <- list.files("global_supplement/layers_info")
+layers_Rmd <- list.files(here("global_supplement/layers_info"))
 layers_Rmd <- layers_Rmd[grep(".Rmd", layers_Rmd)]
 layers_Rmd <- gsub(".Rmd", "", layers_Rmd)
-layers <- read.csv("eez_layers_meta_data/layers_eez_base.csv", stringsAsFactors = FALSE)
+layers <- read.csv(here("eez_layers_meta_data/layers_eez_base.csv"), stringsAsFactors = FALSE)
 
 ## extra Rmd file (or is mislabeled)
 ## can ignore the "layers_all" file, but there should be no others:
@@ -105,6 +106,6 @@ tmp <- capture.output( cat("\n",
                           # "\n###References {-}"
                           ))
 
-write(tmp, "eez/conf/web/layers_all.Rmd", append=TRUE)
+write(tmp, here("eez/conf/web/layers_all.Rmd"), append=TRUE)
 }      
 

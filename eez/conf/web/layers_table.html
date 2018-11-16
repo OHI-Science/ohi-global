@@ -124,676 +124,947 @@ $(document).ready(function () {
 </div>
 
 
-<div id="food-provision-fisheries" class="section level2">
-<h2>Food Provision: Fisheries</h2>
-<div id="goal-description" class="section level3">
-<h3>Goal Description</h3>
-<p>The Fisheries sub-goal describes the amount of wild-caught seafood harvested and its sustainability for human consumption. The model generally compares landings with Maximum Sustainable Yield. A score of 100 means the country or region is harvesting seafood to the ecosystem’s production potential in an sustainable manner.</p>
-</div>
-<div id="model" class="section level3">
-<h3>Model</h3>
-<p>The model assess the amount of wild-caught seafood that can be sustainably harvested, with sustainability based on multi-species yield, and with penalties assigned for both over- and under-harvesting. Each taxa landed within each FAO major fishing area is assessed separately based on B/BMSY (maximum sustainable yield) and weighted by its relative contribution to overall catch. The goal status score for each reporting region in each year was calculated as the geometric mean of the all stock status scores (Halpern 2015).</p>
-<!-- _NOTE: mention model limitations here since FIS is such a difficult model and has many caveats?_
-The model is based on single-species assessments of stock status and thus cannot predict the effect of multi-species interactions. -->
-</div>
-<div id="reference-points" class="section level3">
-<h3>Reference points</h3>
-<p>The reference point is B/BMSY, at which harvest is both maximal and sustainable. The estimates of B/BMSY were obtained by applying a model developed by Martell &amp; Froese (2012), and hereafter referred to as the “catch-MSY” method. The latter was chosen, among other data-limited methods available, based on simulation-testing showing that it most accurately predicted stock status for simulated stocks having a broad range of life history traits and different known sources of uncertainty. The catch-MSY approach improves upon the method used in the 2012 OHI-Global assessment in that it: 1) leverages a mechanistic understanding of the connection between harvest dynamics and population dynamics and uses this to infer stock depletion levels (see also Thorson et al., 2013), 2) is an indicator of stock abundance (B) rather than catch, making it more directly informative of stock status, and 3) at least in some cases (i.e., those cases where the catch trajectory is not a monotonic increase), can be applied to developing fisheries (whereas the previous approach assumed a perfect score in those cases).</p>
-</div>
-<div id="data-used-in-model" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#bbmsy_estimates">B/Bmsy estimates</a> (fis_b_bmsy): The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield (RAM and catch-MSY data)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#fishery_catch_data">Fishery catch data</a> (fis_meancatch): Mean commercial catch for each OHI region (averaged across years)</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_artisanal_fishing">High bycatch due to artisanal fishing</a> (fp_art_hb): Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_artisanal_fishing">Low bycatch due to artisanal fishing</a> (fp_art_lb): Pressure due to artisanal low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_commercial_fishing">High bycatch due to commercial fishing</a> (fp_com_hb): Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_commercial_fishing">Low bycatch due to commercial fishing</a> (fp_com_lb): Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_soft_bottom_habitat_destruction">Subtidal soft bottom habitat destruction</a> (hd_subtidal_sb): Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#chemical_pollution">Chemical pollution</a> (po_chemicals): Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nutrient_pollution">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#genetic_escapes">Genetic escapes</a> (sp_genetic): Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(habitat_preservation)">EEZ protected marine areas (habitat preservation)</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#measure_of_ecological_integrity">Measure of ecological integrity</a> (species_diversity_eez): Marine species condition (species subgoal status score) as a proxy for ecological integrity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="food-provision-mariculture" class="section level2">
-<h2>Food Provision: Mariculture</h2>
-<div id="goal-description-1" class="section level3">
-<h3>Goal Description</h3>
-<p>Mariculture measures the ability to reach the highest levels of seafood gained from farm-raised facilities without damaging the ocean’s ability to provide fish sustainably now and in the future. Higher scores reflect high food provisioning in a sustainable manner, while not compromising the water quality in the farmed area and not relying on wild populations to feed or replenish the cultivated species. A score of 100 means that a region is sustainably harvesting the greatest amount of farmed seafood possible based on its own potential.</p>
-</div>
-<div id="model-1" class="section level3">
-<h3>Model</h3>
-<p>Model measures the quantity of sustainably harvested mariculture species per coastal inhabitant (i.e., those within 25 miles of the coast), under the assumption that mariculture development scales proportionally with coastal population, which is a proxy for potential logistic limitations to farm development, e.g., presence of infrastructures, coastal access, and locally available workforce. The <em>species assessed</em> are strictly marine species from both the marine and brackish water FAO categories, excluding species not used as a source of food (FAO 2003, Halpern 2012). The <em>sustainability score (SM,k)</em> for each species in each country is based on the Mariculture Sustainability Index (MSI) (Halpern 2015).</p>
-</div>
-<div id="reference-points-1" class="section level3">
-<h3>Reference points</h3>
-<p>The reference point is 95% of the highest harvested tonnes per coastal inhabitant (i.e., those within 25 miles of the coast) among all assessed regions, under the assumption that production depends on the presence of coastal communities that can provide the labor force, infrastructures, and economic demand to support the development and economic viability of mariculture facilities.</p>
-</div>
-<div id="data-used-in-model-1" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#inland_coastal_population">Inland coastal population</a> (mar_coastalpopn_inland25mi): Total coastal population within 25 miles of coast</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#mariculture_harvest">Mariculture harvest</a> (mar_harvest_tonnes): Tonnes of mariculture harvest</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#mariculture_sustainability_score">Mariculture sustainability score</a> (mar_sustainability_score): Mariculture sustainability based on the Mariculture Sustainability Index (MSI)</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#chemical_pollution">Chemical pollution</a> (po_chemicals): Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_mariculture__to_preserve_biodiversity">Management of mariculture to preserve biodiversity</a> (g_mariculture): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: mariculture related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#mariculture_sustainability_index">Mariculture Sustainability Index</a> (g_msi_gov): Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="artisanal-fishing-opportunity" class="section level2">
-<h2>Artisanal Fishing Opportunity</h2>
-<div id="goal-description-2" class="section level3">
-<h3>Goal Description</h3>
-<p>Artisanal fishing, often also called small-scale fishing, provides a critical source of food, nutrition, poverty alleviation and livelihood opportunities for many people around the world, in particular in developing nations. This goal measure whether people who need to fish on a small, local scale have the opportunity to do so. It has three sub-components: stock, access, and need. A score of 100 means the country or region is meeting the needs of artisanal fishermen or communities by implementing institutional supports, providing access to near-shore water, and maintaining the health of targeted species.</p>
-</div>
-<div id="model-2" class="section level3">
-<h3>Model</h3>
-<p>Status model for this goal is a function of need for artisanal fishing opportunities and whether or not the opportunity is permitted and/or encouraged institutionally and done sustainability. This <em>need</em> was measured by an analogous proxy: per capita gross domestic product (pcGDP) adjusted by the purchasing power parity (PPP), which translates the average annual income (pcGDP) into its local value (PPP). These data correlate with UN data on the percent of a population living below international poverty standard, which directly ties to this need for small-scale fishing. <em>The opportunity or ability to meet this need</em>, we used data from (Mora et al.), which scores countries on the institutional measures that support or facilitate artisanal and small-scale fishing.</p>
-<p><em>The sustainability of artisanal fishing practices could be approximated by the percent of fishermen that use sustainable gear such as hook and line versus unsustainable methods such as dynamite, cyanide and, arguably, gill net fishing. Unfortunately data on proportion of gear type used within a country is scarce at best and so we were unable to include this term in the calculation of this goal.</em></p>
-</div>
-<div id="reference-points-2" class="section level3">
-<h3>Reference points</h3>
-<p>The reference point for this goal is when all demand for artisanal fishing is allowed and/or achieved and done in a sustainable manner.</p>
-</div>
-<div id="data-used-in-model-2" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_opportunity">Artisanal fisheries opportunity</a> (ao_access): The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#economic_need_for_artisanal_fishing">Economic need for artisanal fishing</a> (ao_need): Inverse of per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_artisanal_fishing">High bycatch due to artisanal fishing</a> (fp_art_hb): Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_commercial_fishing">High bycatch due to commercial fishing</a> (fp_com_hb): Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_commercial_fishing">Low bycatch due to commercial fishing</a> (fp_com_lb): Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_soft_bottom_habitat_destruction">Subtidal soft bottom habitat destruction</a> (hd_subtidal_sb): Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_chemical_pollution">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(fishing_preservation)">Coastal protected marine areas (fishing preservation)</a> (fp_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(habitat_preservation)">Coastal protected marine areas (habitat preservation)</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#measure_of_coastal_ecological_integrity">Measure of coastal ecological integrity</a> (species_diversity_3nm): Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="natural-products" class="section level2">
-<h2>Natural Products</h2>
-<div id="goal-description-3" class="section level3">
-<h3>Goal Description</h3>
-<p>In many countries the harvest of non-food natural products is important for local economies and can also be traded internationally. The sustainable harvest of these products is therefore an important component of a healthy ocean. This goal assesses the ability of countries to maximize the sustainable harvest of living marine resources, such as corals, shells, seaweeds, and fish for the aquarium trade. It does not include bioprospecting which focuses on potential (and largely unknowable and potentially infinite) value rather than current realized value, or non-living products such as oil and gas or mining products which by definition are not sustainable.</p>
-</div>
-<div id="model-data" class="section level3">
-<h3>Model &amp; Data</h3>
-<p>The goal model measures the harvest level (in metric tons) for a product and the sustainability of that harvest. The <em>sustabinality factor</em> of each product was accounted for by adjusting its harvest level with a sustainability term based on the intensity of harvest per km2 of coral and/or rocky reef relative to the global maximum (its ‘<em>exposure</em>’). For ornamental fish and corals, the sustainability factor also includes the ‘<em>risk</em>’ that is associated with known unsustainable harvest practices (i.e., the intensity of cyanide fishing for ornamental fish, and any harvest of corals since they are CITES protected species).</p>
-<p>Six different natural products were assessed: coral, ornamental fish, fish oil, inedible seaweeds and marine plants, shells, and sponges. Status of sustainable harvest of each product (tonnes) was calculated individually first. The overall goal score weights the status of each product by its proportional value (US dollars) relative to other harvested products.</p>
-</div>
-<div id="reference-points-3" class="section level3">
-<h3>Reference points</h3>
-<p>For each product, the reference point is its maximum value (in 2008 USD) achieved in that country with a 65% buffer, under the assumption that the maximum achieved at any point in time was likely the maximum possible. This creates a reference point internal to each country. The buffer was added to accommodate uncertainty.</p>
-</div>
-<div id="data-used-in-model-3" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_extent_of_rocky_reef">Habitat extent of rocky reef</a> (hab_rockyreef_extent): Area of rocky reef habitat</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#blast_fishing">Blast fishing</a> (np_blast): Artisanal blast fishing</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#poison_fishing">Poison fishing</a> (np_cyanide): Artisanal poison (cyanide) fishing</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#relative_natural_product_harvest_value">Relative natural product harvest value</a> (np_harvest_product_weight): Relative importance of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) within each region determined by dividing the max USD value (determined across most recent 10 years of data) of each product and dividing by the sum of the max USD values of all products</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#natural_product_harvest">Natural product harvest</a> (np_harvest_tonnes): Yield in metric tonnes of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#relative_natural_product_harvest_tonnes">Relative natural product harvest tonnes</a> (np_harvest_tonnes_relative): Tonnes of harvest of each commodity relative to maximum harvest (with 35% buffer) of the commodity within the region observed across years</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#ocean_acidification">Ocean acidification</a> (cc_acid): Pressure due to increasing ocean acidification, scaled using biological thresholds</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_surface_temperature">Sea surface temperature</a> (cc_sst): Presure due to increasing extreme sea surface temperature events</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#uv_radiation">UV radiation</a> (cc_uv): Pressure due to increasing frequency of UV anomolies</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_artisanal_fishing">High bycatch due to artisanal fishing</a> (fp_art_hb): Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_artisanal_fishing">Low bycatch due to artisanal fishing</a> (fp_art_lb): Pressure due to artisanal low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_commercial_fishing">Low bycatch due to commercial fishing</a> (fp_com_lb): Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_soft_bottom_habitat_destruction">Subtidal soft bottom habitat destruction</a> (hd_subtidal_sb): Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#chemical_pollution">Chemical pollution</a> (po_chemicals): Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nutrient_pollution">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(fishing_preservation)">Coastal protected marine areas (fishing preservation)</a> (fp_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#cites_signatories">CITES signatories</a> (g_cites): Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(habitat_preservation)">Coastal protected marine areas (habitat preservation)</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(habitat_preservation)">EEZ protected marine areas (habitat preservation)</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#measure_of_coastal_ecological_integrity">Measure of coastal ecological integrity</a> (species_diversity_3nm): Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#measure_of_ecological_integrity">Measure of ecological integrity</a> (species_diversity_eez): Marine species condition (species subgoal status score) as a proxy for ecological integrity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="carbon-storage" class="section level2">
-<h2>Carbon Storage</h2>
-<div id="goal-description-4" class="section level3">
-<h3>Goal Description</h3>
-<p>The Carbon Storage goal captures the ability of the coastal habitats to remove carbon given their carbon uptake rate and health conditions. A score of 100 means all habitats that contribute to carbon removal are still intact or have been restored and they can function to their full carbon burial potential. Highly productive coastal wetland ecosystems or seagrass store substantially large amount of carbon have the highest sequestration rates of any habitats on earth. They are also threatened by under-regulated coastal development but are amenable to restoration and conservation efforts.</p>
-</div>
-<div id="model-3" class="section level3">
-<h3>Model</h3>
-<p>Goal model measures the current ‘condition’ of habitats relative to reference conditions, weighted by the relative contribution of each habitat type to total carbon sequestration, using data from (Laffoley &amp; Grimsditch 2009) (Halpern 2015 final).</p>
-<p>Three coastal habitats known to provide meaningful amounts of carbon storage were included in this goal: mangroves, seagrasses, and salt marshes (Halpern 2012). Habitat conditions are measured mainly by their coverage area, and their relative carbon sequestration are weighted: Mangrove as 139, Saltmarsh as 210, and Seagrass as 83 (Halpern 2015 final).</p>
-</div>
-<div id="reference-points-4" class="section level3">
-<h3>Reference points</h3>
-<p>A temporal reference point (ie. coverage data of a historical point) was used for each type of habitat. We generally considered the reference years to be between 1980-1995, although these varied by habitat due to data availability.</p>
-</div>
-<div id="data-used-in-model-4" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_extent_of_mangrove">Habitat extent of mangrove</a> (hab_mangrove_extent): Area of mangrove habitat</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_mangrove">Habitat condition of mangrove</a> (hab_mangrove_health): Current condition of mangrove habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_mangrove">Habitat condition trend of mangrove</a> (hab_mangrove_trend): Estimated trend in mangrove condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_extent_of_saltmarsh">Habitat extent of saltmarsh</a> (hab_saltmarsh_extent): Area of saltmarsh habitat</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_saltmarsh">Habitat condition of saltmarsh</a> (hab_saltmarsh_health): Current condition of saltmarsh habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_saltmarsh">Habitat condition trend of saltmarsh</a> (hab_saltmarsh_trend): Estimated trend in saltmarsh condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_extent_of_seagrass">Habitat extent of seagrass</a> (hab_seagrass_extent): Area of seagrass habitat</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_seagrass">Habitat condition of seagrass</a> (hab_seagrass_health): Current condition of seagrass habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_seagrass">Habitat condition trend of seagrass</a> (hab_seagrass_trend): Estimated trend in seagrass condition</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#ocean_acidification">Ocean acidification</a> (cc_acid): Pressure due to increasing ocean acidification, scaled using biological thresholds</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_surface_temperature">Sea surface temperature</a> (cc_sst): Presure due to increasing extreme sea surface temperature events</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_chemical_pollution">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(habitat_preservation)">Coastal protected marine areas (habitat preservation)</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="coastal-protection" class="section level2">
-<h2>Coastal Protection</h2>
-<div id="goal-description-5" class="section level3">
-<h3>Goal Description</h3>
-<p>This goal aims to assess the amount of protection provided by marine and coastal habitats against flooding and erosion to coastal areas that people value, both inhabited (homes and other structures) and uninhabited (parks, special places, etc.). A score of 100 would indicate that these habitats are all still intact or have been restored to their reference conditions.</p>
-</div>
-<div id="model-data-1" class="section level3">
-<h3>Model &amp; Data</h3>
-<p>The CP model is based on the relative health of the habitats that provide shoreline protection, weighted by their area and protectiveness rank (Halpern 2015 final). Condition of each habitat was calculated with various methods depending on data availability, which are mostly based on coverage area. Rank weights for the protective ability of each habitat (Rk) come from previous work48 that ranks mangroves, corals and sea ice as 4, salt marshes as 3, and seagrasses as 1 (higher values are better) (Halpern 2012).</p>
-<p>Below are the data sets for this goal.</p>
-</div>
-<div id="reference-points-5" class="section level3">
-<h3>Reference points</h3>
-<p>A temporal reference point (ie. coverage data of a historical point) was used for each type of habitat. We generally considered the reference years to be between 1980-1995, although these varied by habitat due to data availability.</p>
-</div>
-<div id="data-used-in-model-5" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_extent_of_coral">Habitat extent of coral</a> (hab_coral_extent): Area of coral habitat</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_coral">Habitat condition of coral</a> (hab_coral_health): Current condition of coral habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_coral">Habitat condition trend of coral</a> (hab_coral_trend): Estimated trend in coral condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_extent_of_mangrove">Habitat extent of mangrove</a> (hab_mangrove_extent): Area of mangrove habitat</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_mangrove">Habitat condition of mangrove</a> (hab_mangrove_health): Current condition of mangrove habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_mangrove">Habitat condition trend of mangrove</a> (hab_mangrove_trend): Estimated trend in mangrove condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_extent_of_saltmarsh">Habitat extent of saltmarsh</a> (hab_saltmarsh_extent): Area of saltmarsh habitat</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_saltmarsh">Habitat condition of saltmarsh</a> (hab_saltmarsh_health): Current condition of saltmarsh habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_saltmarsh">Habitat condition trend of saltmarsh</a> (hab_saltmarsh_trend): Estimated trend in saltmarsh condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_extent_of_seagrass">Habitat extent of seagrass</a> (hab_seagrass_extent): Area of seagrass habitat</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_seagrass">Habitat condition of seagrass</a> (hab_seagrass_health): Current condition of seagrass habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_seagrass">Habitat condition trend of seagrass</a> (hab_seagrass_trend): Estimated trend in seagrass condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_extent_of_seaice">Habitat extent of seaice</a> (hab_seaice_extent): Area of seaice (edge and shoreline) habitat</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_seaice">Habitat condition of seaice</a> (hab_seaice_health): Current condition of seaice habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_seaice">Habitat condition trend of seaice</a> (hab_seaice_trend): Estimated trend in seaice condition</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#ocean_acidification">Ocean acidification</a> (cc_acid): Pressure due to increasing ocean acidification, scaled using biological thresholds</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_surface_temperature">Sea surface temperature</a> (cc_sst): Presure due to increasing extreme sea surface temperature events</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#uv_radiation">UV radiation</a> (cc_uv): Pressure due to increasing frequency of UV anomolies</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_chemical_pollution">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(habitat_preservation)">Coastal protected marine areas (habitat preservation)</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="tourism-recreation" class="section level2">
-<h2>Tourism &amp; Recreation</h2>
-<div id="goal-description-6" class="section level3">
-<h3>Goal Description</h3>
-<p>Tourism and recreation in coastal areas is a major component of thriving coastal communities and a measure of how much people value ocean systems, i.e. by traveling to coastal and ocean areas. This goal aims to capture the number of people, and the quality of their experience, visiting coastal and marine areas and attractions. A score of 100 means a region uses its full recreational potential without harming the ecosystem.</p>
-</div>
-<div id="model-data-2" class="section level3">
-<h3>Model &amp; Data</h3>
-<p>Assuming that the total number of people engaged in coastal tourism and recreation activities is directly correlated with employment in the tourism sector (e.g., accommodation services, food and beverage services, retail trade, transportation services, and cultural, sports and recreational services), the TR model measures the proprotion of employment in tourism relative to total labor force in each country. The model also incorporated tourism competitiveness index (TTCI) from the World Economic Forum (WEF 2017) to capture the sustainability of the tourism industry (Halpern 2015). Finally, penalties are assigned based on travel warnings issued by the US State Department or Canada’s Government Travel Advise and Advisory.</p>
-<p>Below are the data sets for this goal.</p>
-</div>
-<div id="reference-points-6" class="section level3">
-<h3>Reference points</h3>
-<p>Reference point is spatial: 90th quantile of coastal employment ratio among all regions.</p>
-</div>
-<div id="data-used-in-model-6" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#percent_direct_employment_in_tourism">Percent direct employment in tourism</a> (tr_jobs_pct_tourism): Percent direct employment in tourism</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#tourism_sustainability_index">Tourism sustainability index</a> (tr_sustainability): Tourism Competitiveness Index (TTCI)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#us_state_department_travel_warnings">US State Department travel warnings</a> (tr_travelwarnings): US State Department travel warnings</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_chemical_pollution">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#pathogen_pollution">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#marine_plastics">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="livelihoods-economies-livelihoods" class="section level2">
-<h2>Livelihoods &amp; Economies: Livelihoods</h2>
-<div id="goal-description-7" class="section level3">
-<h3>Goal Description</h3>
-<p>The jobs and revenue produced from marine-related industries are clearly of huge value to many people, even for those people who do not directly participate in marine-related industries. People value community identity, tax revenue, and indirect economic and social impacts of a stable coastal economy. This sub-goal Livelihood describes job quantity and quality for people living on the coast. Livelihoods includes two equally important sub-components, the number of jobs, which is a proxy for livelihood quantity, and the per capita average annual wages, which is a proxy for job quality.</p>
-</div>
-<div id="model-4" class="section level3">
-<h3>Model</h3>
-<p>The Livelihood model is based on job and wage data:</p>
-<ul>
-<li>jobs: the total number of jobs within marine sectors within a country, adjusted by sector- and development status-specific multipliers derived from the literature. The multipliers account not only for direct employment opportunities and revenue, but also indirect and induced economic effects, since activity in the direct industry stimulates additional jobs and revenue in related industries.</li>
-<li>average wages per job within each sector: adjusted for PPP (ie. purchasing power parity) to control for differences in the purchasing power of a dollar across countries with respect to a range of common goods.</li>
-</ul>
-<p>The marine sectors included in this model are: Tourism, Commercial fishing, Marine mammal watching, Aquarium fishing, Wave &amp; tidal energy, Mariculture, Transportation &amp; shipping, Ports &amp; harbors, Ship &amp; boatbuilding</p>
-</div>
-<div id="reference-points-7" class="section level3">
-<h3>Reference points</h3>
-<p>Because there is no absolute reference point for jobs (i.e., a target number of jobs would be completely arbitrary), its reference point is calculated as a relative value on a moving baseline: the value in the current year (or most recent year) relative to the value in a recent moving reference period, defined as 5 years prior to the current year. This reflects an implicit goal of maintaining coastal livelihoods and economies on short time scales, allowing for decadal or generational shifts in what people want and expect for coastal livelihoods and economy.</p>
-<p>For wages we assumed the reference value for average annual wages is the highest value observed across all reporting units.</p>
-</div>
-<div id="data-used-in-model-7" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sectors_in_each_region">Sectors in each region</a> (le_sector_weight): Proportion of jobs within each marine sector</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#livelihood_status_scores">Livelihood status scores</a> (liv_status): Calculated using adjusted job and wage data in several marine sectors (data not updated since 2013)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#livelihood_trend_scores">Livelihood trend scores</a> (liv_trend): Calculated using change in adjusted job and wage data in several marine sectors (data not updated since 2013)</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_artisanal_fishing">High bycatch due to artisanal fishing</a> (fp_art_hb): Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_artisanal_fishing">Low bycatch due to artisanal fishing</a> (fp_art_lb): Pressure due to artisanal low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_commercial_fishing">High bycatch due to commercial fishing</a> (fp_com_hb): Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_commercial_fishing">Low bycatch due to commercial fishing</a> (fp_com_lb): Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_soft_bottom_habitat_destruction">Subtidal soft bottom habitat destruction</a> (hd_subtidal_sb): Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#chemical_pollution">Chemical pollution</a> (po_chemicals): Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nutrient_pollution">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#pathogen_pollution">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#marine_plastics">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#genetic_escapes">Genetic escapes</a> (sp_genetic): Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#global_competitiveness_index_(gci)">Global Competitiveness Index (GCI)</a> (li_gci): Competitiveness in achieving sustained economic prosperity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#economic_diversity">Economic diversity</a> (li_sector_evenness): Sector evenness based on Shannon’s Diversity Index calculated on the proportion of jobs in each sector as a measure of economic diversity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="livelihoods-economies-economies" class="section level2">
-<h2>Livelihoods &amp; Economies: Economies</h2>
-<div id="goal-description-8" class="section level3">
-<h3>Goal Description</h3>
-<p>Economies captures the economic value associated with marine industries using revenue from marine sectors. It is composed of a single component, revenue.</p>
-</div>
-<div id="model-5" class="section level3">
-<h3>Model</h3>
-<p>The Economies model assesses revenue from these marine sectors: Tourism, Commercial fishing, Marine mammal watching, Aquarium fishing, Wave &amp; tidal energy, Mariculture, Transportation &amp; shipping, Ports &amp; harbors, Ship &amp; boatbuilding.</p>
-<p>Revenue is adjusted by sector- and development status-specific multipliers derived from the literature to account not only for direct revenue, but also indirect and induced economic effects, since activity in the direct industry stimulates additional jobs and revenue in related industries.</p>
-</div>
-<div id="reference-points-8" class="section level3">
-<h3>Reference points</h3>
-<p>Because there is no absolute reference point for revenue (i.e., a target number of revenue would be completely arbitrary), its reference point is calculated as a relative value on a moving baseline: the value in the current year (or most recent year) relative to the value in a recent moving reference period, defined as 5 years prior to the current year. This reflects an implicit goal of maintaining coastal livelihoods and economies on short time scales, allowing for decadal or generational shifts in what people want and expect for coastal livelihoods and economy.</p>
-</div>
-<div id="data-used-in-model-8" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#economic_status_scores">Economic status scores</a> (eco_status): Calculated using corrected revenue data for several marine sectors (data not updated since 2013)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#economic_trend_scores">Economic trend scores</a> (eco_trend): Calculated using change in revenue for several marine sectors (data not updated since 2013)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sectors_in_each_region">Sectors in each region</a> (le_sector_weight): Proportion of jobs within each marine sector</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#ocean_acidification">Ocean acidification</a> (cc_acid): Pressure due to increasing ocean acidification, scaled using biological thresholds</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_surface_temperature">Sea surface temperature</a> (cc_sst): Presure due to increasing extreme sea surface temperature events</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_artisanal_fishing">High bycatch due to artisanal fishing</a> (fp_art_hb): Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_artisanal_fishing">Low bycatch due to artisanal fishing</a> (fp_art_lb): Pressure due to artisanal low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_commercial_fishing">High bycatch due to commercial fishing</a> (fp_com_hb): Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_commercial_fishing">Low bycatch due to commercial fishing</a> (fp_com_lb): Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_soft_bottom_habitat_destruction">Subtidal soft bottom habitat destruction</a> (hd_subtidal_sb): Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#chemical_pollution">Chemical pollution</a> (po_chemicals): Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nutrient_pollution">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#pathogen_pollution">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#marine_plastics">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#genetic_escapes">Genetic escapes</a> (sp_genetic): Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#global_competitiveness_index_(gci)">Global Competitiveness Index (GCI)</a> (li_gci): Competitiveness in achieving sustained economic prosperity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="sense-of-place-iconic-species" class="section level2">
-<h2>Sense of Place: Iconic Species</h2>
-<div id="goal-description-9" class="section level3">
-<h3>Goal Description</h3>
-<p>Iconic species are those that are relevant to local cultural identity through a species’ relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value (e.g., touristic attractions/common subjects for art such as whales). Habitat-forming species are not included in this definition of iconic species, nor are species that are harvested solely for economic or utilitarian purposes (even though they may be iconic to a sector or individual). This sub-goal assesses how well those species are conserved.</p>
-</div>
-<div id="model-6" class="section level3">
-<h3>Model</h3>
-<p>The Iconic Species model measures the percentage of iconic species in each extinction risk category. Species list is drawn from the World Wildlife Fund’s global and regional lists for Priority Species (especially important to people for their health, livelihoods, and/or culture) and Flagship Species (‘charismatic’ and/or well-known). Threat weights were assigned based on the IUCN threat categories status of each species.</p>
-</div>
-<div id="reference-points-9" class="section level3">
-<h3>Reference points</h3>
-<p>The reference point is to have the risk status of all assessed species as Least Concern.</p>
-</div>
-<div id="data-used-in-model-9" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#iucn_extinction_risk">IUCN extinction risk</a> (ico_spp_iucn_status): IUCN extinction risk category for iconic species located within each region</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#ocean_acidification">Ocean acidification</a> (cc_acid): Pressure due to increasing ocean acidification, scaled using biological thresholds</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_surface_temperature">Sea surface temperature</a> (cc_sst): Presure due to increasing extreme sea surface temperature events</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_artisanal_fishing">High bycatch due to artisanal fishing</a> (fp_art_hb): Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_commercial_fishing">High bycatch due to commercial fishing</a> (fp_com_hb): Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#targeted_harvest_of_cetaceans_and_marine_turtles">Targeted harvest of cetaceans and marine turtles</a> (fp_targetharvest): Targeted harvest of cetaceans and marine turtles</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_chemical_pollution">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#marine_plastics">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#cites_signatories">CITES signatories</a> (g_cites): Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(habitat_preservation)">EEZ protected marine areas (habitat preservation)</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#measure_of_ecological_integrity">Measure of ecological integrity</a> (species_diversity_eez): Marine species condition (species subgoal status score) as a proxy for ecological integrity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="sense-of-place-lasting-special-places" class="section level2">
-<h2>Sense of Place: Lasting Special Places</h2>
-<div id="goal-description-10" class="section level3">
-<h3>Goal Description</h3>
-<p>Sense of Place goal tries to capture the aspects of the coastal and marine system that people value as part of their cultural identity. This definition includes people living near the ocean and those who live far from it but still derive a sense of identity or value from knowing particular places or species exist. The sub-goal of Lasting Special Places focuses on those geographic locations that hold particular value for aesthetic, spiritual, cultural, recreational or existence reasons, and assesses how well they are protected. A score of 100 means the species and places important for cultural identity are protected and conserved.</p>
-</div>
-<div id="model-7" class="section level3">
-<h3>Model</h3>
-<p>The model measures the percentage of coastal marine protected area and protected coastline in each country, against a reference percentage. We focus only on coastal waters (within 3nmi of shore) for marine special places because it was assumed that lasting special places are primarily in coastal areas; we wanted our estimates of % area protected to be bounded to this coastal region. For coastlines, we focused only on the first km-wide strip of land as a way to increase the likelihood that the area being protected by terrestrial parks is connected to the marine system in some way.</p>
-</div>
-<div id="reference-points-10" class="section level3">
-<h3>Reference points</h3>
-<p>Assuming that all countries have roughly the same percentage of their coastal waters and coastline that qualify as lasting special places. In other words, they all have the same reference target (as a percentage of the total area). The target reference level is 30% of area protected.</p>
-</div>
-<div id="data-used-in-model-10" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#inland_coastal_protected_areas">Inland coastal protected areas</a> (lsp_prot_area_inland1km): Protected areas located 1 km inland</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#offshore_coastal_protected_areas">Offshore coastal protected areas</a> (lsp_prot_area_offshore3nm): Protected areas located 3nm offshore</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#inland_1km_area">Inland 1km area</a> (rgn_area_inland1km): Inland area of OHI regions within 1km of shoreline</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#offshore_3nm_area">Offshore 3nm area</a> (rgn_area_offshore3nm): Offshore area of OHI regions within 3nm of shoreline</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_chemical_pollution">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#marine_plastics">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="clean-waters" class="section level2">
-<h2>Clean Waters</h2>
-<div id="goal-description-11" class="section level3">
-<h3>Goal Description</h3>
-<p>People value marine waters that are free of pollution and debris for aesthetic and health reasons. Contamination of waters comes from oil spills, chemicals, eutrophication, algal blooms, disease pathogens (e.g., fecal coliform, viruses, and parasites from sewage outflow), floating trash, and mass kills of organisms due to pollution. People are sensitive to these phenomena occurring in areas that they access for recreation or other purposes as well as for simply knowing that clean waters exist. The Clean Water goal captures the degree to which local waters are unpolluted by natural and human-made causes. This goal scores highest when the contamination level is zero.</p>
-</div>
-<div id="model-8" class="section level3">
-<h3>Model</h3>
-<p>CW goal score is calculated as the geometric mean of its four components: eutrophication (nutrients), chemicals, pathogens and marine debris. They are meant to represent a comprohensive list of contamination categories that are commonly considered in assessments of coastal clean waters and for which we could obtain datasets. <em>Chemical pollution</em> was measured as the average of land-based organic and inorganic pollution from agricultural pesticide use and runoff from impervious surfaces, respectively, and ocean-based pollution from commercial shipping and ports. The modeled input of land-based nitrogen input from (Halpern et al. 2008) was used as a proxy for <em>nutrient</em> input. Due to a lack of information on direct measurements of human pathogen in the coastal water, we used a proxy measure for pathogen: the number of people in coastal areas without access to improved sanitation facilities, assuming that locations with fewer people with access to improved facilities would lead to a a higher likelihood of coastal water contamination from human pathogens. The status of <em>trash pollution</em> was estimated using globally-available coastal beach cleanup data from the Ocean Conservancy, which records the weight of trash per year that were collected (Halpern 2012).</p>
-</div>
-<div id="reference-points-11" class="section level3">
-<h3>Reference points</h3>
-<p>The reference point is when the contamination level is zero for all components.</p>
-</div>
-<div id="data-used-in-model-11" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#chemical_pollution_trend">Chemical pollution trend</a> (cw_chemical_trend): Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nutrient_pollution_trend">Nutrient pollution trend</a> (cw_nutrient_trend): Trends in nutrient pollution, using fertilizer consumption as a proxy for nutrient pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#pathogen_pollution_trend">Pathogen pollution trend</a> (cw_pathogen_trend): Trends in percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#plastic_trash_trends">Plastic trash trends</a> (cw_trash_trend): Trends in trash estimated using improperly disposed of plastics</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_chemical_pollution">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#pathogen_pollution">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#marine_plastics">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_chemical_pollution">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#pathogen_pollution">Pathogen pollution</a> (po_pathogens): Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#marine_plastics">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="biodiversity-species" class="section level2">
-<h2>Biodiversity: Species</h2>
-<div id="goal-description-12" class="section level3">
-<h3>Goal Description</h3>
-<p>People value biodiversity in particular for its existence value. The risk of species extinction generates great emotional and moral concern for many people. As such, Biodiversity goal assesses the conservation status of species based on the best available global data. This sub-goal of Species assesses the health of all marine species present in a region, including endangered species and species in relatively good conditions. The presence of higher-risk species leads to a higher score.</p>
-<p><strong>For Global assessments….</strong></p>
-</div>
-<div id="model-data-3" class="section level3">
-<h3>Model &amp; Data</h3>
-<p>The Species model measures the average threat status, defined by the IUCN Red List, of species in each country, weighted by each species’ area of distribution within the country’s EEZ. The spatial resolution is 0.5 degree.</p>
-<p>Species list and information on their extinction risks came from:</p>
-<ul>
-<li>marine species from IUCN Red List of Threatened Species</li>
-<li>seabirds using distributions from Birdlife International (BirdLife International and NatureServe 2012).</li>
-</ul>
-<p>Below are the data sets for this goal.</p>
-</div>
-<div id="reference-points-12" class="section level3">
-<h3>Reference points</h3>
-<p>The upper reference point for the Species sub-goal is to have all species at a risk status of Least Concern. We also scaled the lower end of the goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions and would constitute a catastrophic loss of biodiversity.</p>
-</div>
-<div id="data-used-in-model-12" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#average_species_condition">Average species condition</a> (spp_status): Overall measure of species condition based on IUCN status of species within each region</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#average_species_condition_trend">Average species condition trend</a> (spp_trend): Overall measure of species condition trends based on change in IUCN status of species within each region</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#ocean_acidification">Ocean acidification</a> (cc_acid): Pressure due to increasing ocean acidification, scaled using biological thresholds</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_surface_temperature">Sea surface temperature</a> (cc_sst): Presure due to increasing extreme sea surface temperature events</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#uv_radiation">UV radiation</a> (cc_uv): Pressure due to increasing frequency of UV anomolies</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_artisanal_fishing">High bycatch due to artisanal fishing</a> (fp_art_hb): Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_artisanal_fishing">Low bycatch due to artisanal fishing</a> (fp_art_lb): Pressure due to artisanal low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_commercial_fishing">High bycatch due to commercial fishing</a> (fp_com_hb): Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_commercial_fishing">Low bycatch due to commercial fishing</a> (fp_com_lb): Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#targeted_harvest_of_cetaceans_and_marine_turtles">Targeted harvest of cetaceans and marine turtles</a> (fp_targetharvest): Targeted harvest of cetaceans and marine turtles</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_soft_bottom_habitat_destruction">Subtidal soft bottom habitat destruction</a> (hd_subtidal_sb): Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#chemical_pollution">Chemical pollution</a> (po_chemicals): Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nutrient_pollution">Nutrient pollution</a> (po_nutrients): Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#marine_plastics">Marine plastics</a> (po_trash): Global marine plastic pollution</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#genetic_escapes">Genetic escapes</a> (sp_genetic): Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#cites_signatories">CITES signatories</a> (g_cites): Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_mariculture__to_preserve_biodiversity">Management of mariculture to preserve biodiversity</a> (g_mariculture): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: mariculture related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_tourism_to_preserve_biodiversity">Management of tourism to preserve biodiversity</a> (g_tourism): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(habitat_preservation)">EEZ protected marine areas (habitat preservation)</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
-<hr />
-</div>
-</div>
-<div id="biodiversity-habitats" class="section level2">
-<h2>Biodiversity: Habitats</h2>
-<div id="goal-description-13" class="section level3">
-<h3>Goal Description</h3>
-<p>Habitats conditions are considered as a proxy for condition of the broad suite of species that depend on them. The Habitats sub-goal includes all habitats in the study area, and assess their health condition and coverage area.</p>
-</div>
-<div id="model-data-4" class="section level3">
-<h3>Model &amp; Data</h3>
-<p>The Habitat model assessed all habitats for which at least some global data were available, specifically: mangroves, coral reefs, seagrass beds, salt marshes, sea ice edge, and subtidal soft-bottom habitats. Status was calculated as the average of the condition estimates for each habitat present in a region, measured as the loss of habitat and/or percent degradation of remaining habitat.</p>
-<p>Below are the data sets for this goal.</p>
-</div>
-<div id="reference-points-13" class="section level3">
-<h3>Reference points</h3>
-<p>A temporal reference point (ie. coverage data of a historical point) was used for each type of habitat. We generally considered the reference years to be between 1980-1995, although these varied by habitat due to data availability.</p>
-</div>
-<div id="data-used-in-model-13" class="section level3">
-<h3>Data used in model</h3>
-<p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_coral">Habitat condition of coral</a> (hab_coral_health): Current condition of coral habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_coral">Habitat condition trend of coral</a> (hab_coral_trend): Estimated trend in coral condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_mangrove">Habitat condition of mangrove</a> (hab_mangrove_health): Current condition of mangrove habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_mangrove">Habitat condition trend of mangrove</a> (hab_mangrove_trend): Estimated trend in mangrove condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_saltmarsh">Habitat condition of saltmarsh</a> (hab_saltmarsh_health): Current condition of saltmarsh habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_saltmarsh">Habitat condition trend of saltmarsh</a> (hab_saltmarsh_trend): Estimated trend in saltmarsh condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_seagrass">Habitat condition of seagrass</a> (hab_seagrass_health): Current condition of seagrass habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_seagrass">Habitat condition trend of seagrass</a> (hab_seagrass_trend): Estimated trend in seagrass condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_seaice">Habitat condition of seaice</a> (hab_seaice_health): Current condition of seaice habitat relative to historical condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_seaice">Habitat condition trend of seaice</a> (hab_seaice_trend): Estimated trend in seaice condition</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_of_softbottom">Habitat condition of softbottom</a> (hab_softbottom_health): Current condition of softbottom habitat, based on demersal destructive fishing practices (e.g., trawling)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#habitat_condition_trend_of_softbottom">Habitat condition trend of softbottom</a> (hab_softbottom_trend): Estimated change in softbottom condition, based on trends in demersal destructive fishing practices (e.g., trawling)</p>
-<p><strong>Pressure</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#ocean_acidification">Ocean acidification</a> (cc_acid): Pressure due to increasing ocean acidification, scaled using biological thresholds</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#sea_surface_temperature">Sea surface temperature</a> (cc_sst): Presure due to increasing extreme sea surface temperature events</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#uv_radiation">UV radiation</a> (cc_uv): Pressure due to increasing frequency of UV anomolies</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_artisanal_fishing">High bycatch due to artisanal fishing</a> (fp_art_hb): Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_artisanal_fishing">Low bycatch due to artisanal fishing</a> (fp_art_lb): Pressure due to artisanal low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#high_bycatch_due_to_commercial_fishing">High bycatch due to commercial fishing</a> (fp_com_hb): Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#low_bycatch_due_to_commercial_fishing">Low bycatch due to commercial fishing</a> (fp_com_lb): Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#intertidal_habitat_destruction">Intertidal habitat destruction</a> (hd_intertidal): Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_hardbottom_habitat_destruction">Subtidal hardbottom habitat destruction</a> (hd_subtidal_hb): Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#subtidal_soft_bottom_habitat_destruction">Subtidal soft bottom habitat destruction</a> (hd_subtidal_sb): Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_chemical_pollution">Coastal chemical pollution</a> (po_chemicals_3nm): Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_nutrient_pollution">Coastal nutrient pollution</a> (po_nutrients_3nm): Modeled nutrient pollution within EEZ based on fertilizer consumption</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#nonindigenous_species">Nonindigenous species</a> (sp_alien): Measure of harmful invasive species</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_social_progress">Weakness of social progress</a> (ss_spi): Inverse of Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
-<p><strong>Resilience</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(fishing_preservation)">Coastal protected marine areas (fishing preservation)</a> (fp_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_mariculture__to_preserve_biodiversity">Management of mariculture to preserve biodiversity</a> (g_mariculture): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: mariculture related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_tourism_to_preserve_biodiversity">Management of tourism to preserve biodiversity</a> (g_tourism): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(habitat_preservation)">Coastal protected marine areas (habitat preservation)</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(habitat_preservation)">EEZ protected marine areas (habitat preservation)</a> (hd_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_waters_to_preserve_biodiversity">Management of waters to preserve biodiversity</a> (po_water): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#social_progress_index">Social Progress Index</a> (res_spi): Social Progress Index scores</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#measure_of_coastal_ecological_integrity">Measure of coastal ecological integrity</a> (species_diversity_3nm): Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#measure_of_ecological_integrity">Measure of ecological integrity</a> (species_diversity_eez): Marine species condition (species subgoal status score) as a proxy for ecological integrity</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#strength_of_governance">Strength of governance</a> (wgi_all): World Governance Indicators (WGI) six combined scores</p>
+<p><strong>Data layers used in the OHI 2018 global assessment</strong></p>
+<p>These data layers were used to calculate the OHI 2018 assessment. Clicking on the layer name in the “Data layer” variable will provide a full description of the data layer (as well as a link to the actual data). The “Description” variable provides links to the scripts (on Github) used to create the data layers (when available).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Layer</th>
+<th align="left">Description</th>
+<th align="left">Dimension</th>
+<th align="left">References</th>
+<th align="left">2018 Updates</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#ao_access">Artisanal fisheries opportunity</a></td>
+<td align="left">The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_mora_ao">data prep</a>)</td>
+<td align="left">AO</td>
+<td align="left"><span class="citation">Mora <em>et al.</em> (2009)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#ao_need">Economic need for artisanal fishing</a></td>
+<td align="left">Inverse of per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/ao/v2018/ao_need_data_prep.html">data prep</a>)</td>
+<td align="left">AO</td>
+<td align="left"><span class="citation">World Bank (2017)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_coral_extent">Habitat extent of coral</a></td>
+<td align="left">Area of coral habitat (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_coral">data prep</a>)</td>
+<td align="left">CP</td>
+<td align="left"><span class="citation">Burke <em>et al.</em> (2011)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seaice_extent">Habitat extent of seaice</a></td>
+<td align="left">Area of seaice (edge and shoreline) habitat (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_seaice/v2018/hab_seaice_dataprep.html">data prep</a>)</td>
+<td align="left">CP</td>
+<td align="left"><span class="citation">Cavalieri <em>et al.</em> (1996)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_coral_health">Habitat condition of coral</a></td>
+<td align="left">Current condition of coral habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_coral">data prep</a>)</td>
+<td align="left">CP, HAB</td>
+<td align="left"><span class="citation">Bruno &amp; Selig (2007)</span>; <span class="citation">Schutte <em>et al.</em> (2010)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_coral_trend">Habitat condition trend of coral</a></td>
+<td align="left">Estimated trend in coral condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_coral">data prep</a>)</td>
+<td align="left">CP, HAB</td>
+<td align="left"><span class="citation">Bruno &amp; Selig (2007)</span>; <span class="citation">Schutte <em>et al.</em> (2010)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seaice_health">Habitat condition of seaice</a></td>
+<td align="left">Current condition of seaice habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_seaice/v2018/hab_seaice_dataprep.html">data prep</a>)</td>
+<td align="left">CP, HAB</td>
+<td align="left"><span class="citation">Cavalieri <em>et al.</em> (1996)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seaice_trend">Habitat condition trend of seaice</a></td>
+<td align="left">Estimated trend in seaice condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_seaice/v2018/hab_seaice_dataprep.html">data prep</a>)</td>
+<td align="left">CP, HAB</td>
+<td align="left"><span class="citation">Cavalieri <em>et al.</em> (1996)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_mangrove_extent">Habitat extent of mangrove</a></td>
+<td align="left">Area of mangrove habitat (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_mangrove/v2015">data prep</a>)</td>
+<td align="left">CS, CP</td>
+<td align="left"><span class="citation">Hamilton &amp; Casey (2016)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_saltmarsh_extent">Habitat extent of saltmarsh</a></td>
+<td align="left">Area of saltmarsh habitat (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_saltmarsh">data prep</a>)</td>
+<td align="left">CS, CP</td>
+<td align="left"><span class="citation">Bridgham <em>et al.</em> (2006)</span>; <span class="citation">Dahl (2011)</span>; <span class="citation">Eionet (2008)</span>; <span class="citation">Joint Nature Conservation Committee (2004)</span>; <span class="citation">New Zealand Ministry for the Environment (2007)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seagrass_extent">Habitat extent of seagrass</a></td>
+<td align="left">Area of seagrass habitat (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_seagrass">data prep</a>)</td>
+<td align="left">CS, CP</td>
+<td align="left"><span class="citation">UNEP-WCMC &amp; Short (2005)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_mangrove_health">Habitat condition of mangrove</a></td>
+<td align="left">Current condition of mangrove habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_mangrove">data prep</a>)</td>
+<td align="left">CS, HAB, CP</td>
+<td align="left"><span class="citation">United Nations (2007)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_mangrove_trend">Habitat condition trend of mangrove</a></td>
+<td align="left">Estimated trend in mangrove condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_mangrove/v2015">data prep</a>)</td>
+<td align="left">CS, HAB, CP</td>
+<td align="left"><span class="citation">Hamilton &amp; Casey (2016)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_saltmarsh_health">Habitat condition of saltmarsh</a></td>
+<td align="left">Current condition of saltmarsh habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_saltmarsh">data prep</a>)</td>
+<td align="left">CS, HAB, CP</td>
+<td align="left"><span class="citation">Bridgham <em>et al.</em> (2006)</span>; <span class="citation">Dahl (2011)</span>; <span class="citation">Eionet (2008)</span>; <span class="citation">Joint Nature Conservation Committee (2004)</span>; <span class="citation">New Zealand Ministry for the Environment (2007)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_saltmarsh_trend">Habitat condition trend of saltmarsh</a></td>
+<td align="left">Estimated trend in saltmarsh condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_saltmarsh">data prep</a>)</td>
+<td align="left">CS, HAB, CP</td>
+<td align="left"><span class="citation">Bridgham <em>et al.</em> (2006)</span>; <span class="citation">Dahl (2011)</span>; <span class="citation">Eionet (2008)</span>; <span class="citation">Joint Nature Conservation Committee (2004)</span>; <span class="citation">New Zealand Ministry for the Environment (2007)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seagrass_health">Habitat condition of seagrass</a></td>
+<td align="left">Current condition of seagrass habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_seagrass">data prep</a>)</td>
+<td align="left">CS, HAB, CP</td>
+<td align="left"><span class="citation">Hemminga &amp; Duarte (2000)</span>; <span class="citation">Waycott <em>et al.</em> (2009)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seagrass_trend">Habitat condition trend of seagrass</a></td>
+<td align="left">Estimated trend in seagrass condition (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_seagrass">data prep</a>)</td>
+<td align="left">CS, HAB, CP</td>
+<td align="left"><span class="citation">Short <em>et al.</em> (2011)</span>; <span class="citation">Waycott <em>et al.</em> (2009)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#cw_chemical_trend">Chemical pollution trend</a></td>
+<td align="left">Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_chem/v2016">data prep</a>)</td>
+<td align="left">CW</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#cw_nutrient_trend">Nutrient pollution trend</a></td>
+<td align="left">Trends in nutrient pollution, using fertilizer consumption as a proxy for nutrient pollution (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_land-based_nutrient/v2016">data prep</a>)</td>
+<td align="left">CW</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2017)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#cw_pathogen_trend">Pathogen pollution trend</a></td>
+<td align="left">Trends in percent of population without access to improved sanitation facilities as a proxy for pathogen pollution (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_cw_pathogen/v2018/cw_sanitation_data_prep.html">data prep</a>)</td>
+<td align="left">CW</td>
+<td align="left"><span class="citation">WHO-UNICEF (2017)</span></td>
+<td align="left">Data source changed (but no additional year of data); improved gapfilling and small change to reference point</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#cw_trash_trend">Plastic trash trends</a></td>
+<td align="left">Trends in trash estimated using improperly disposed of plastics (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/cw_trend_trash/v2016/cw_trend_trash_dataprep.html">data prep</a>)</td>
+<td align="left">CW</td>
+<td align="left"><span class="citation">Jambeck <em>et al.</em> (2015)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_chemicals_3nm">Coastal chemical pollution</a></td>
+<td align="left">Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_chem/v2016">data prep</a>)</td>
+<td align="left">CW, pressure</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_nutrients_3nm">Coastal nutrient pollution</a></td>
+<td align="left">Modeled nutrient pollution within EEZ based on fertilizer consumption (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_land-based_nutrient/v2016">data prep</a>)</td>
+<td align="left">CW, pressure</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2017)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_pathogens">Pathogen pollution</a></td>
+<td align="left">Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_cw_pathogen/v2018/cw_sanitation_data_prep.html">data prep</a>)</td>
+<td align="left">CW, pressure</td>
+<td align="left"><span class="citation">WHO-UNICEF (2017)</span></td>
+<td align="left">Data source changed (but no additional year of data); improved gapfilling and small change to reference point</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_trash">Marine plastics</a></td>
+<td align="left">Global marine plastic pollution (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/cw_pressure_trash/v2015">data prep</a>)</td>
+<td align="left">CW, pressure</td>
+<td align="left"><span class="citation">Eriksen <em>et al.</em> (2014)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#eco_status">Economic status scores</a></td>
+<td align="left">Calculated using corrected revenue data for several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/le/v2018">data prep</a>)</td>
+<td align="left">ECO</td>
+<td align="left"><span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">United Nations (2013a)</span>; <span class="citation">United Nations (2013b)</span>; <span class="citation">United Nations (2013c)</span>; <span class="citation">United Nations (2012)</span>; <span class="citation">World Bank (2016)</span></td>
+<td align="left">eliminated calculation, now just provide results as placeholder (not updated since 2013)</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#eco_trend">Economic trend scores</a></td>
+<td align="left">Calculated using change in revenue for several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/le/v2018">data prep</a>)</td>
+<td align="left">ECO</td>
+<td align="left"><span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">United Nations (2013a)</span>; <span class="citation">United Nations (2013b)</span>; <span class="citation">United Nations (2013c)</span>; <span class="citation">United Nations (2012)</span>; <span class="citation">World Bank (2014a)</span>; <span class="citation">World Bank (2016)</span></td>
+<td align="left">eliminated calculation, now just provide results as placeholder (not updated since 2013)</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#le_sector_weight">Sectors in each region</a></td>
+<td align="left">Proportion of jobs within each marine sector (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/le">data prep</a>)</td>
+<td align="left">ECO, LIV</td>
+<td align="left"><span class="citation">France (2011)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation"><span>United Nations</span> personal communication (2011)</span>; <span class="citation">WTTC (2013)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fis_b_bmsy">B/Bmsy estimates</a></td>
+<td align="left">The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield (RAM and catch-MSY data) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/fis/v2018/calculate_bbmsy.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2018/globalprep/fis/v2018/RAM_CMSY_combine.html">data prep 2</a>, <a href="http://ohi-science.org/ohiprep_v2018/globalprep/fis/v2018/RAM_data_prep.html">data prep 3</a>)</td>
+<td align="left">FIS</td>
+<td align="left"><span class="citation">Anderson (2018)</span>; <span class="citation">Free (2017)</span>; <span class="citation">Martell &amp; Froese (2013)</span>; <span class="citation">RAM (2017)</span>; <span class="citation">Ricard <em>et al.</em> (2012)</span>; <span class="citation">Rosenberg <em>et al.</em> (2014)</span>; <span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fis_meancatch">Fishery catch data</a></td>
+<td align="left">Mean commercial catch for each OHI region (averaged across years) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/fis/v2018/catch_data_prep.html">data prep</a>)</td>
+<td align="left">FIS</td>
+<td align="left"><span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">New data source (Watson 2018)</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_wildcaught_weight">Food provision weights</a></td>
+<td align="left">Proportion of wild caught fisheries relative to total food production (e.g., fisheries and mariculture) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/fp/v2018/FP_script.html">data prep</a>)</td>
+<td align="left">FP</td>
+<td align="left"><span class="citation">United Nations (2018a)</span>; <span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_softbottom_health">Habitat condition of softbottom</a></td>
+<td align="left">Current condition of softbottom habitat, based on demersal destructive fishing practices (e.g., trawling) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_prs_hd_subtidal_soft_bottom/v2018/hab_prs_soft_bottom_data_prep.html">data prep</a>)</td>
+<td align="left">HAB</td>
+<td align="left"><span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">additional year of data; adapted methods to new data format</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_softbottom_trend">Habitat condition trend of softbottom</a></td>
+<td align="left">Estimated change in softbottom condition, based on trends in demersal destructive fishing practices (e.g., trawling) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_prs_hd_subtidal_soft_bottom/v2018/hab_prs_soft_bottom_data_prep.html">data prep</a>)</td>
+<td align="left">HAB</td>
+<td align="left"><span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">additional year of data; adapted methods to new data format</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#ico_spp_iucn_status">IUCN extinction risk</a></td>
+<td align="left">IUCN extinction risk category for iconic species located within each region (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/ico/v2018/ico_data_prep.html">data prep</a>)</td>
+<td align="left">ICO</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">IUCN (2018a)</span></td>
+<td align="left">additional year of data; improved trend calculation</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#liv_status">Livelihood status scores</a></td>
+<td align="left">Calculated using adjusted job and wage data in several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/le/v2018">data prep</a>)</td>
+<td align="left">LIV</td>
+<td align="left"><span class="citation">France (2011)</span>; <span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Oostendorp &amp; Freeman (2012)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation"><span>United Nations</span> personal communication (2011)</span>; <span class="citation">World Bank (2017)</span>; <span class="citation">World Bank (2014b)</span>; <span class="citation">WTTC (2013)</span>; <span class="citation">World Bank (2016)</span></td>
+<td align="left">eliminated calculation, now just provide results as placeholder (not updated since 2013)</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#liv_trend">Livelihood trend scores</a></td>
+<td align="left">Calculated using change in adjusted job and wage data in several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/le/v2018">data prep</a>)</td>
+<td align="left">LIV</td>
+<td align="left"><span class="citation">France (2011)</span>; <span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Oostendorp &amp; Freeman (2012)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation"><span>United Nations</span> personal communication (2011)</span>; <span class="citation">World Bank (2014b)</span>; <span class="citation">World Bank (2014c)</span>; <span class="citation">WTTC (2013)</span>; <span class="citation">World Bank (2016)</span></td>
+<td align="left">eliminated calculation, now just provide results as placeholder (not updated since 2013)</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#lsp_prot_area_inland1km">Inland coastal protected areas</a></td>
+<td align="left">Protected areas located 1 km inland (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/lsp/v2018/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">LSP</td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#lsp_prot_area_offshore3nm">Offshore coastal protected areas</a></td>
+<td align="left">Protected areas located 3nm offshore (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/lsp/v2018/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">LSP</td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_area_inland1km">Inland 1km area</a></td>
+<td align="left">Inland area of OHI regions within 1km of shoreline (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spatial">data prep</a>)</td>
+<td align="left">LSP</td>
+<td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_area_offshore3nm">Offshore 3nm area</a></td>
+<td align="left">Offshore area of OHI regions within 3nm of shoreline (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spatial">data prep</a>)</td>
+<td align="left">LSP</td>
+<td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#mar_coastalpopn_inland25mi">Inland coastal population</a></td>
+<td align="left">Total coastal population within 25 miles of coast (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/mar_prs_population/v2018/mar_prs_pop_dataprep.html">data prep</a>)</td>
+<td align="left">MAR</td>
+<td align="left"><span class="citation">Center For International Earth Science Information Network-CIESIN-Columbia University (2017)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#mar_harvest_tonnes">Mariculture harvest</a></td>
+<td align="left">Tonnes of mariculture harvest (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/mar/v2018/mar_dataprep.html">data prep</a>)</td>
+<td align="left">MAR</td>
+<td align="left"><span class="citation">United Nations (2018a)</span></td>
+<td align="left">additional year of data, now includes edible seaweeds</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#mar_sustainability_score">Mariculture sustainability score</a></td>
+<td align="left">Mariculture sustainability based on the Mariculture Sustainability Index (MSI) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/mar/v2018/mar_dataprep.html">data prep</a>)</td>
+<td align="left">MAR</td>
+<td align="left"><span class="citation">Trujillo (2008)</span></td>
+<td align="left">additional year of data, now includes edible seaweeds</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_rockyreef_extent">Habitat extent of rocky reef</a></td>
+<td align="left">Area of rocky reef habitat (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_rockyreef">data prep</a>)</td>
+<td align="left">NP</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_blast">Blast fishing</a></td>
+<td align="left">Artisanal blast fishing (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/np_prs_poison_blast_fishing">data prep</a>)</td>
+<td align="left">NP</td>
+<td align="left"><span class="citation">Burke <em>et al.</em> (2011)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_cyanide">Poison fishing</a></td>
+<td align="left">Artisanal poison (cyanide) fishing (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/np_prs_poison_blast_fishing">data prep</a>)</td>
+<td align="left">NP</td>
+<td align="left"><span class="citation">Burke <em>et al.</em> (2011)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_harvest_product_weight">Relative natural product harvest value</a></td>
+<td align="left">Relative importance of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) within each region determined by dividing the max USD value (determined across most recent 10 years of data) of each product and dividing by the sum of the max USD values of all products (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/np/v2018/np_dataprep.html">data prep</a>)</td>
+<td align="left">NP</td>
+<td align="left"><span class="citation">United Nations (2017)</span></td>
+<td align="left">additional years of data, now excludes edible seaweeds</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_harvest_tonnes">Natural product harvest</a></td>
+<td align="left">Yield in metric tonnes of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/np/v2018/np_dataprep.html">data prep</a>)</td>
+<td align="left">NP</td>
+<td align="left"><span class="citation">United Nations (2017)</span></td>
+<td align="left">additional years of data, now excludes edible seaweeds</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_harvest_tonnes_relative">Relative natural product harvest tonnes</a></td>
+<td align="left">Tonnes of harvest of each commodity relative to maximum harvest (with 35% buffer) of the commodity within the region observed across years (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/np/v2018/np_dataprep.html">data prep</a>)</td>
+<td align="left">NP</td>
+<td align="left"><span class="citation">United Nations (2017)</span></td>
+<td align="left">additional years of data, now excludes edible seaweeds</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#cc_acid">Ocean acidification</a></td>
+<td align="left">Pressure due to increasing ocean acidification, scaled using biological thresholds (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_oa/v2017/create_oa_layer.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Feely <em>et al.</em> (2009)</span></td>
+<td align="left">additional year of data (projected)</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#cc_slr">Sea level rise</a></td>
+<td align="left">Pressure due to rising mean sea level (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_slr/v2018/slr_layer_prep_v2.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">AVISO (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#cc_sst">Sea surface temperature</a></td>
+<td align="left">Presure due to increasing extreme sea surface temperature events (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_sst/v2018/sst_layer_prep.rmd">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">NOAA (2018)</span></td>
+<td align="left">several additional years of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#cc_uv">UV radiation</a></td>
+<td align="left">Pressure due to increasing frequency of UV anomolies (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_uv/v2018/uv_dataprep.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Hovila <em>et al.</em> (2013)</span></td>
+<td align="left">additional year of data; gapfill missing data in time series</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_art_hb">High bycatch due to artisanal fishing</a></td>
+<td align="left">Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_fish/v2018/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_fish/v2018/npp.html">data prep 2</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Behrenfeld &amp; Falkowski (1997)</span>; <span class="citation">O’Malley</span>; <span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">New data source (Watson 2018); adapted methods to new data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_art_lb">Low bycatch due to artisanal fishing</a></td>
+<td align="left">Pressure due to artisanal low bycatch fishing identified by reported and IUU tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_fish/v2018/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_fish/v2018/npp.html">data prep 2</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Behrenfeld &amp; Falkowski (1997)</span>; <span class="citation">O’Malley</span>; <span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">New data source (Watson 2018); adapted methods to new data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_com_hb">High bycatch due to commercial fishing</a></td>
+<td align="left">Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_fish/v2018/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_fish/v2018/npp.html">data prep 2</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Behrenfeld &amp; Falkowski (1997)</span>; <span class="citation">O’Malley</span>; <span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">New data source (Watson 2018); adapted methods to new data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_com_lb">Low bycatch due to commercial fishing</a></td>
+<td align="left">Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_fish/v2018/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_fish/v2018/npp.html">data prep 2</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Behrenfeld &amp; Falkowski (1997)</span>; <span class="citation">O’Malley</span>; <span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">New data source (Watson 2018); adapted methods to new data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_targetharvest">Targeted harvest of cetaceans and marine turtles</a></td>
+<td align="left">Targeted harvest of cetaceans and marine turtles (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_targetedharvest/v2018/targetharvest_dataprep.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">United Nations (2018b)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_intertidal">Intertidal habitat destruction</a></td>
+<td align="left">Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/mar_prs_population/v2018/mar_prs_pop_dataprep.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Center For International Earth Science Information Network-CIESIN-Columbia University (2017)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a></td>
+<td align="left">Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/np_prs_poison_blast_fishing/v2013">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Burke <em>et al.</em> (2011)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_subtidal_sb">Subtidal soft bottom habitat destruction</a></td>
+<td align="left">Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/hab_prs_hd_subtidal_soft_bottom/v2018/hab_prs_soft_bottom_data_prep.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Watson &amp; Tidd (2018)</span></td>
+<td align="left">additional year of data; adapted methods to new data format</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_chemicals">Chemical pollution</a></td>
+<td align="left">Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_chem/v2016">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_nutrients">Nutrient pollution</a></td>
+<td align="left">Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_land-based_nutrient/v2016">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2017)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#sp_alien">Nonindigenous species</a></td>
+<td align="left">Measure of harmful invasive species (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_alien">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Molnar <em>et al.</em> (2008)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#sp_genetic">Genetic escapes</a></td>
+<td align="left">Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/mar/v2018/mar_dataprep.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Trujillo (2008)</span></td>
+<td align="left">additional year of mariculture data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#ss_spi">Weakness of social progress</a></td>
+<td align="left">Inverse of Social Progress Index scores (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_res_spi/v2018/spi_dataprep.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Index</span>; <span class="citation">Stern <em>et al.</em> (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#ss_wgi">Weakness of governance</a></td>
+<td align="left">Inverse of World Governance Indicators (WGI) six combined scores (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_res_wgi/v2018/WGI_dataprep.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">World Bank (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_habitat">Management of habitat to protect fisheries biodiversity</a></td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_mora">Commercial fishing management</a></td>
+<td align="left">Country scale regulations and management of commerical fishing (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_mora_ao">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Mora <em>et al.</em> (2009)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_mora_artisanal">Artisanal fisheries management effectiveness</a></td>
+<td align="left">Quality of management of small-scale fishing for artisanal and recreational purposes (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_mora_ao">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Mora <em>et al.</em> (2009)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_mpa_coast">Coastal protected marine areas (fishing preservation)</a></td>
+<td align="left">Protected marine areas within 3nm of coastline (lasting special places goal status score) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/lsp/v2018/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_mpa_eez">EEZ protected marine areas (fishing preservation)</a></td>
+<td align="left">Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/lsp/v2018/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#g_cites">CITES signatories</a></td>
+<td align="left">Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_cites_signatories/v2017">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">CITES (2015)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#g_mariculture">Management of mariculture to preserve biodiversity</a></td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: mariculture related questions (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#g_msi_gov">Mariculture Sustainability Index</a></td>
+<td align="left">Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_mariculture_sustainability">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Trujillo (2008)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#g_tourism">Management of tourism to preserve biodiversity</a></td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_habitat">Management of habitat to protect habitat biodiversity</a></td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_mpa_coast">Coastal protected marine areas (habitat preservation)</a></td>
+<td align="left">Protected marine areas within 3nm of coastline (lasting special places goal status score) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/lsp/v2018/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_mpa_eez">EEZ protected marine areas (habitat preservation)</a></td>
+<td align="left">Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/lsp/v2018/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#li_gci">Global Competitiveness Index (GCI)</a></td>
+<td align="left">Competitiveness in achieving sustained economic prosperity (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_gci/v2018/res_gci_dataprep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Schwab (2017a)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#li_sector_evenness">Economic diversity</a></td>
+<td align="left">Sector evenness based on Shannon’s Diversity Index calculated on the proportion of jobs in each sector as a measure of economic diversity (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_li_sector_evenness">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">France (2011)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">WTTC (2013)</span>; <span class="citation"><span>United Nations</span> personal communication (2011)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_water">Management of waters to preserve biodiversity</a></td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#res_spi">Social Progress Index</a></td>
+<td align="left">Social Progress Index scores (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_res_spi/v2018/spi_dataprep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Index</span>; <span class="citation">Stern <em>et al.</em> (2018)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#species_diversity_3nm">Measure of coastal ecological integrity</a></td>
+<td align="left">Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spp/v2018/spp_data_prep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. version 7.0.’ 2017)</span></td>
+<td align="left">additional year of data, improved methods</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#species_diversity_eez">Measure of ecological integrity</a></td>
+<td align="left">Marine species condition (species subgoal status score) as a proxy for ecological integrity (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spp/v2018/spp_data_prep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. version 7.0.’ 2017)</span></td>
+<td align="left">additional year of data, improved methods</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#wgi_all">Strength of governance</a></td>
+<td align="left">World Governance Indicators (WGI) six combined scores (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/prs_res_wgi/v2018/WGI_dataprep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Kaufmann <em>et al.</em> (2010)</span></td>
+<td align="left">additional year data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_area">Region areas based on EEZ boundaries</a></td>
+<td align="left">Area of Ocean Health Index regions modified from exclusive economic zones, weights used to calculate global score (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spatial">data prep</a>)</td>
+<td align="left">spatial</td>
+<td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_global">OHI region id</a></td>
+<td align="left">Subset of regions that are not deleted or disputed (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spatial">data prep</a>)</td>
+<td align="left">spatial</td>
+<td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_labels">Regions</a></td>
+<td align="left">Regions by type (eez, subocean, unclaimed) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spatial">data prep</a>)</td>
+<td align="left">spatial</td>
+<td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#uninhabited">Uninhabited regions</a></td>
+<td align="left">Regions with low and no number of inhabitants (also identifies Southern Islands) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/supplementary_information/v2018">data prep</a>)</td>
+<td align="left">spatial</td>
+<td align="left"><span class="citation">Wikipedia</span></td>
+<td align="left">new data layer for uninhabited regions (used in several goals)</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#spp_status">Average species condition</a></td>
+<td align="left">Overall measure of species condition based on IUCN status of species within each region (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spp/v2018/spp_data_prep.html">data prep</a>)</td>
+<td align="left">SPP</td>
+<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. version 7.0.’ 2017)</span></td>
+<td align="left">additional year of data, improved methods</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#spp_trend">Average species condition trend</a></td>
+<td align="left">Overall measure of species condition trends based on change in IUCN status of species within each region (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spp/v2018/spp_data_prep.html">data prep</a>)</td>
+<td align="left">SPP</td>
+<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. version 7.0.’ 2017)</span></td>
+<td align="left">additional year of data, improved methods</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#tr_jobs_pct_tourism">Percent direct employment in tourism</a></td>
+<td align="left">Percent direct employment in tourism (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/tr/v2018/tr_data_prep.html">data prep</a>)</td>
+<td align="left">TR</td>
+<td align="left"><span class="citation">WTTC (2017)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#tr_sustainability">Tourism sustainability index</a></td>
+<td align="left">Tourism Competitiveness Index (TTCI) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/tr/v2018/tr_data_prep.html">data prep</a>)</td>
+<td align="left">TR</td>
+<td align="left"><span class="citation">Schwab (2017b)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#tr_travelwarnings">US State Department travel warnings</a></td>
+<td align="left">US State Department travel warnings (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/tr/v2018/tr_data_prep.html">data prep</a>)</td>
+<td align="left">TR</td>
+<td align="left"><span class="citation">Government of Canada (2018)</span>; <span class="citation">State (2018)</span></td>
+<td align="left">additional year of data, adapted methods to new data reporting; added Canada’s Travel Advise and Advisories data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#element_wts_cp_km2_x_protection">Coastal protection weights</a></td>
+<td align="left">Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass (empty dataframe filled by functions.R in ohi-global) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/weighting_files">data prep</a>)</td>
+<td align="left">weighting</td>
+<td align="left"><span class="citation">Tallis <em>et al.</em> (2011)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#element_wts_cs_km2_x_storage">Carbon storage weights</a></td>
+<td align="left">Habitat extent multiplied by carbon storage capacity for: mangrove, saltmarsh, and seagrass (empty dataframe filled by functions.R in ohi-global) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/weighting_files">data prep</a>)</td>
+<td align="left">weighting</td>
+<td align="left"><span class="citation">Laffoley &amp; Grimsditch (2009)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#element_wts_hab_pres_abs">Habitat presence/absence</a></td>
+<td align="left">List of habitats in each region (empty dataframe filled by functions.R in ohi-global) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/weighting_files">data prep</a>)</td>
+<td align="left">weighting</td>
+<td align="left">NA</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div id="refs" class="references">
+<div id="ref-anderson_stock_2018">
+<p>Anderson, S. (2018). <em>Stock assessment methods for data-limited fisheries: Datalimited/datalimited</em>. datalimited.</p>
+</div>
+<div id="ref-aviso_satellite_2018">
+<p>AVISO. (2018). Satellite alimetry data: Mean sea level rise. Satellite alimetry satelite altimetry data. URL <a href="https://www.aviso.altimetry.fr/en/data/products/ocean-indicators-products/mean-sea-level.html" class="uri">https://www.aviso.altimetry.fr/en/data/products/ocean-indicators-products/mean-sea-level.html</a> [accessed 1 August 2018]</p>
+</div>
+<div id="ref-behrenfeld_photosynthetic_1997">
+<p>Behrenfeld, M.J. &amp; Falkowski, P.G. (1997). Photosynthetic rates derived from satellite-based chlorophyll concentration. <em>Limnology and oceanography</em>, <strong>42</strong>, 1–20.</p>
+</div>
+<div id="ref-birdlife_international_bird_2017">
+<p>Bird species distribution maps of the world. version 7.0. (2017).</p>
+</div>
+<div id="ref-bridgham_carbon_2006">
+<p>Bridgham, S.D., Megonigal, J.P., Keller, J.K., Bliss, N.B. &amp; Trettin, C. (2006). The carbon balance of north american wetlands. <em>Wetlands</em>, <strong>26</strong>, 889–916.</p>
+</div>
+<div id="ref-bruno_regional_2007">
+<p>Bruno, J.F. &amp; Selig, E.R. (2007). Regional decline of coral cover in the indo-pacific: Timing, extent, and subregional comparisons (R. Freckleton, Ed.). <em>PLoS ONE</em>, <strong>2</strong>, e711.</p>
+</div>
+<div id="ref-burke_reefs_2011">
+<p>Burke, L., Reytar, K., Spadling, M., Perry, A., Cooper, E., Kushner, B., Selig, E., Starkhouse, B., Teleki, K., Waite, R., Wilkinson, C. &amp; Young, T. (2011). <em>Reefs at risk - revisited</em>. World Resources Institute, Washington, D.C.</p>
+</div>
+<div id="ref-cavalieri_sea_1996">
+<p>Cavalieri, D.J., Parkinson, C.L., Gloersen, P. &amp; Zwally, H.J. (1996). <em>Sea ice concentrations from nimbus-7 SMMR and DMSP SSM/i-SSMIS passive microwave data, version 1</em>. NASA National Snow; Ice Data Center Distributed Active Archive Center, Boulder, Colorado USA.</p>
+</div>
+<div id="ref-center_for_international_earth_science_information_network-ciesin-columbia_university_gridded_2017">
+<p>Center For International Earth Science Information Network-CIESIN-Columbia University. (2017). Gridded population of the world, version 4 (GPWv4): Population density adjusted to match 2015 revision of UN WPP country totals, revision 10. </p>
+</div>
+<div id="ref-cites_member_2015">
+<p>CITES. (2015). Member countries. URL <a href="https://cites.org/eng/disc/parties/index.php" class="uri">https://cites.org/eng/disc/parties/index.php</a></p>
+</div>
+<div id="ref-claus_marine_2012">
+<p>Claus, S., De Hauwere, N., Vanhoorne, B., Souza Dias, F., Oset Garcia, P., Hernandez, F. &amp; Mees, J. (2012). Marine regions: Exclusive economic zones (v7). URL <a href="http://www.marineregions.org/" class="uri">http://www.marineregions.org/</a></p>
+</div>
+<div id="ref-convention_on_biological_diversity_3rd_2005">
+<p>Convention on Biological Diversity. (2005). 3rd national report, survey results. URL <a href="https://www.cbd.int/convention/" class="uri">https://www.cbd.int/convention/</a> [accessed 13 April 2016]</p>
+</div>
+<div id="ref-dahl_status_2011">
+<p>Dahl, T.E. (2011). <em>Status and trends of wetlands in the conterminous united states 2004 to 2009</em>. US Department of the Interior, US Fish; Wildlife Service, Fisheries; Habitat Conservation.</p>
+</div>
+<div id="ref-eionet_european_environment_agency_eea_eu_2008">
+<p>Eionet, E.E.A.(. (2008). EU habitats directive article 17 reporting, 2001-2006. URL <a href="http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal" class="uri">http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal</a></p>
+</div>
+<div id="ref-eriksen_plastic_2014">
+<p>Eriksen, M., Lebreton, L.C.M., Carson, H.S., Thiel, M., Moore, C.J., Borerro, J.C., Galgani, F., Ryan, P.G. &amp; Reisser, J. (2014). Plastic pollution in the world’s oceans: More than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea. <em>PLoS ONE</em>, <strong>9</strong>, e111913.</p>
+</div>
+<div id="ref-esri_esri_2010">
+<p>ESRI. (2010). Esri data and maps. </p>
+</div>
+<div id="ref-feely_ocean_2009">
+<p>Feely, R., Doney, S. &amp; Cooley, S. (2009). Ocean acidification: Present conditions and future changes in a high-CO2 world. <em>Oceanography</em>, <strong>22</strong>, 36–47.</p>
+</div>
+<div id="ref-edf_france_electricite_2011">
+<p>France, E. (2011). Électricité de france. URL <a href="https://www.edf.fr/" class="uri">https://www.edf.fr/</a></p>
+</div>
+<div id="ref-free_mapping_2017">
+<p>Free, C. (2017). Mapping fish stock boundaries for the original ram myers stock-recruit database. </p>
+</div>
+<div id="ref-government_of_canada_travel_2018">
+<p>Government of Canada. (2018). Travel advice and advisories, Government of Canada. Travel advice and advisories. URL <a href="https://travel.gc.ca/travelling/advisories" class="uri">https://travel.gc.ca/travelling/advisories</a> [accessed 6 July 2018]</p>
+</div>
+<div id="ref-halpern_spatial_2015">
+<p>Halpern, B.S., Frazier, M., Potapenko, J., Casey, K.S., Koenig, K., Longo, C., Lowndes, J.S., Rockwood, R.C., Selig, E.R., Selkoe, K.A. &amp; Walbridge, S. (2015a). Spatial and temporal changes in cumulative human impacts on the world’s ocean. <em>Nature Communications</em>, <strong>6</strong>, 7615.</p>
+</div>
+<div id="ref-halpern_index_2012">
+<p>Halpern, B.S., Longo, C., Hardy, D., McLeod, K.L., Samhouri, J.F., Katona, S.K., Kleisner, K., Lester, S.E., O’Leary, J., Ranelletti, M., Rosenberg, A.A., Scarborough, C., Selig, E.R., Best, B.D., Brumbaugh, D.R., Chapin, F.S., Crowder, L.B., Daly, K.L., Doney, S.C., Elfes, C., Fogarty, M.J., Gaines, S.D., Jacobsen, K.I., Karrer, L.B., Leslie, H.M., Neeley, E., Pauly, D., Polasky, S., Ris, B., Martin, K.S., Stone, G.S., Sumaila, U.R. &amp; Zeller, D. (2012). An index to assess the health and benefits of the global ocean. <em>Nature</em>.</p>
+</div>
+<div id="ref-halpern_patterns_2015">
+<p>Halpern, B.S., Longo, C., Lowndes, J.S.S., Best, B.D., Frazier, M., Katona, S.K., Kleisner, K.M., Rosenberg, A.A., Scarborough, C. &amp; Selig, E.R. (2015b). Patterns and emerging trends in global ocean health. <em>PLoS ONE</em>, <strong>10</strong>, e0117863.</p>
+</div>
+<div id="ref-halpern_global_2008">
+<p>Halpern, B.S., Walbridge, S., Selkoe, K.A., Kappel, C.V., Micheli, F., D’Agrosa, C., Bruno, J.F., Casey, K.S., Ebert, C., Fox, H.E., Fujita, R., Heinemann, D., Lenihan, H.S., Madin, E.M.P., Perry, M.T., Selig, E.R., Spalding, M., Steneck, R. &amp; Watson, R. (2008). A global map of human impact on marine ecosystems. <em>Science</em>, <strong>319</strong>, 948–952.</p>
+</div>
+<div id="ref-hamilton_creation_2016">
+<p>Hamilton, S. &amp; Casey, D. (2016). Creation of a high spatiotemporal resolution global database of continuous mangrove forest cover for the 21st century (CGMFC-21). <em>Global Ecology and Biogeography</em>.</p>
+</div>
+<div id="ref-hemminga_seagrass_2000">
+<p>Hemminga, M.A. &amp; Duarte, C.M. (2000). <em>Seagrass ecology</em>. Cambridge University Press.</p>
+</div>
+<div id="ref-homer_development_2004">
+<p>Homer, C., Huang, C., Yang, L., Wylie, B. &amp; Coan, M. (2004). Development of a 2001 national land-cover database for the united states. <em>Photogrammetric Engineering &amp; Remote Sensing</em>, <strong>70</strong>, 829–840.</p>
+</div>
+<div id="ref-hovila_omuvbd:_2013">
+<p>Hovila, J., Arola, A. &amp; Tamminen, J. (2013). OMUVBd: OMI/aura surface UVB irradiance and erythemal dose daily l3 global gridded 1.0 degree x 1.0 degree v3. NASA goddard space flight center, goddard earth sciences data and information services center (GES DISC). URL <a href="http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omuvbd_v003.shtml" class="uri">http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omuvbd_v003.shtml</a> [accessed 24 July 2018]</p>
+</div>
+<div id="ref-social_progress_index_2018_nodate">
+<p>Index, S.P. 2018 social progress index. 2018 social progress index. URL <a href="https://www.socialprogress.org/" class="uri">https://www.socialprogress.org/</a> [accessed 13 November 2018]</p>
+</div>
+<div id="ref-iucn_iucn_2018">
+<p>IUCN. (2018a). IUCN red list categories and criteria. The IUCN red list of threatened species. version 2018-1. URL <a href="http://www.iucnredlist.org/" class="uri">http://www.iucnredlist.org/</a> [accessed 17 August 2018]</p>
+</div>
+<div id="ref-unep-wcmc_and_iucn_protected_2018">
+<p>IUCN. (2018). Protected planet: The world database on protected areas (WDPA) [on-line]. URL <a href="www.protectedplanet.net" class="uri">www.protectedplanet.net</a> [accessed 2 July 2018]</p>
+</div>
+<div id="ref-iucn_iucn_2018-1">
+<p>IUCN. (2018b). The IUCN red list of threatened species. version 2018-1. URL <a href="http://www.iucnredlist.org/" class="uri">http://www.iucnredlist.org/</a></p>
+</div>
+<div id="ref-jambeck_plastic_2015">
+<p>Jambeck, J.R., Geyer, R., Wilcox, C., Siegler, T.R., Perryman, M., Andrady, A., Narayan, R. &amp; Law, K.L. (2015). Plastic waste inputs from land into the ocean. <em>Science</em>, <strong>347</strong>, 768–771.</p>
+</div>
+<div id="ref-joint_nature_conservation_committee_common_2004">
+<p>Joint Nature Conservation Committee. (2004). Common standards monitoring guidance for saltmarsh habitats. </p>
+</div>
+<div id="ref-kaufmann_worldwide_2010">
+<p>Kaufmann, D., Kraay, A. &amp; Mastruzzi, M. (2010). <em>The worldwide governance indicators: Methodology and analytical issues</em>. Social Science Research Network, Rochester, NY.</p>
+</div>
+<div id="ref-laffoley_management_2009">
+<p>Laffoley, D. &amp; Grimsditch, G. (Eds.). (2009). <em>The management of natural coastal carbon sinks</em>. IUCN, Gland, Switzerland.</p>
+</div>
+<div id="ref-lewis_large-scale_2017">
+<p>Lewis, N., Day, J., Wilhelm, A., Wagner, D., Gaymer, D., Parks, J., Friedlander, A., White, S., Sheppard, C., Spalding, M., San Martin, G., Skeat, A., Taei, S., Teroroko, T. &amp; Evans, J. (2017). Large-scale marine protected areas: Guidelines for design and management. best practice protected area guidelines series. <strong>26</strong>.</p>
+</div>
+<div id="ref-martell_simple_2013">
+<p>Martell, S. &amp; Froese, R. (2013). A simple method for estimating MSY from catch and resilience. <em>Fish and Fisheries</em>, <strong>14</strong>, 504–514.</p>
+</div>
+<div id="ref-molnar_assessing_2008">
+<p>Molnar, J.L., Gamboa, R.L., Revenga, C. &amp; Spalding, M.D. (2008). Assessing the global threat of invasive species to marine biodiversity. <em>Frontiers in Ecology and the Environment</em>, <strong>6</strong>, 485–492.</p>
+</div>
+<div id="ref-mora_management_2009">
+<p>Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., Zeller, D., Watson, R., Gaston, K.J. &amp; Worm, B. (2009). Management effectiveness of the world’s marine fisheries (C. Roberts, Ed.). <em>PLoS Biology</em>, <strong>7</strong>, e1000131.</p>
+</div>
+<div id="ref-new_zealand_ministry_for_the_environment_environment_2007">
+<p>New Zealand Ministry for the Environment. (2007). <em>Environment new zealand 2007.</em> Ministry for the Environment, Wellington, N.Z.</p>
+</div>
+<div id="ref-noaa_coral_2018">
+<p>NOAA. (2018). Coral reef temperature anomaly database (CoRTAD version 6). URL <a href="https://www.nodc.noaa.gov/sog/Cortad/" class="uri">https://www.nodc.noaa.gov/sog/Cortad/</a> [accessed 21 August 2018]</p>
+</div>
+<div id="ref-oostendorp_occupational_2012">
+<p>Oostendorp, R. &amp; Freeman, R. (2012). The occupational wages around the world (OWW) database: Update for 1983-2008. URL <a href="http://www.nber.org/oww/" class="uri">http://www.nber.org/oww/</a> [accessed 4 January 2017]</p>
+</div>
+<div id="ref-oconnor_whale_2009">
+<p>O’Connor, S., Campbell, R., Cortez, H., Knowles, T. &amp; others. (2009). Whale watching worldwide: Tourism numbers, expenditures and expanding economic benefits, a special report from the international fund for animal welfare. <em>Yarmouth MA, USA, prepared by Economists at Large</em>, <strong>228</strong>.</p>
+</div>
+<div id="ref-omalley_ocean_nodate">
+<p>O’Malley, R. Ocean productivity, standard VGPM. Ocean productivity. URL <a href="http://orca.science.oregonstate.edu/2160.by.4320.monthly.xyz.vgpm.m.chl.m.sst.php" class="uri">http://orca.science.oregonstate.edu/2160.by.4320.monthly.xyz.vgpm.m.chl.m.sst.php</a> [accessed 31 July 2018]</p>
+</div>
+<div id="ref-ram_ram_2017">
+<p>RAM. (2017). RAM legacy stock assessment database v3.8. RAM legacy stock assessment database. URL <a href="http://ramlegacy.org/" class="uri">http://ramlegacy.org/</a> [accessed 31 October 2017]</p>
+</div>
+<div id="ref-ricard_examining_2012">
+<p>Ricard, D., Minto, C., Jensen, O.P. &amp; Baum, J.K. (2012). Examining the knowledge base and status of commercially exploited marine species with the RAM legacy stock assessment database. <em>Fish and Fisheries</em>, <strong>13</strong>, 380–398.</p>
+</div>
+<div id="ref-rosenberg_developing_2014">
+<p>Rosenberg, A., Fogarty, M., Cooper, A., Dickey-Collas, M., Fulton, B., Gutiérrez, N., Hyde, K., Kleisner, K., Kristiansen, Longo, C., Minte-Vera, C., Minto, C., Mosqueira, I., Osio, G., Ovando, D., Selig, E. &amp; Thorson, J. (2014). <em>Developing new approaches to 116 global stock status assessment and maximum sustainable production of the seas.</em></p>
+</div>
+<div id="ref-schutte_regional_2010">
+<p>Schutte, V., Selig, E. &amp; Bruno, J. (2010). Regional spatio-temporal trends in caribbean coral reef benthic communities. <em>Marine Ecology Progress Series</em>, <strong>402</strong>, 115–122.</p>
+</div>
+<div id="ref-schwab_global_2017">
+<p>Schwab, K. (2017a). <em>The global competitiveness report 2017–2018</em>. World Economic Forum.</p>
+</div>
+<div id="ref-crotti_travel_2017">
+<p>Schwab, K. (2017b). <em>The travel &amp; tourism competitiveness report 2017</em>. World Economic Forum.</p>
+</div>
+<div id="ref-short_extinction_2011">
+<p>Short, F.T., Polidoro, B., Livingstone, S.R., Carpenter, K.E., Bandeira, S., Bujang, J.S., Calumpong, H.P., Carruthers, T.J., Coles, R.G., Dennison, W.C., Erftemeijer, P.L., Fortes, M.D., Freeman, A.S., Jagtap, T., Kamal, A.H.M., Kendrick, G.A., Judson Kenworthy, W., La Nafie, Y.A., Nasution, I.M., Orth, R.J., Prathep, A., Sanciangco, J.C., Tussenbroek, B. van, Vergara, S.G., Waycott, M. &amp; Zieman, J.C. (2011). Extinction risk assessment of the world’s seagrass species. <em>Biological Conservation</em>, <strong>144</strong>, 1961–1971.</p>
+</div>
+<div id="ref-us_department_of_state_travel_2018">
+<p>State, U.D. of. (2018). Travel alerts and warnings. URL <a href="https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html" class="uri">https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html</a> [accessed 28 June 2010]</p>
+</div>
+<div id="ref-stern_2018_2018">
+<p>Stern, S., Wares, A. &amp; Epner, T. (2018). <em>2018 social progress index: Methodology summary</em>.</p>
+</div>
+<div id="ref-tallis_invest_2011">
+<p>Tallis, H.T., Ricketts, T., Guerry, A., Wood, S., Sharp, R., Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol, K. &amp; others. (2011). <em>InVEST 2.2.1 user’s guide</em>. The Natural Capital Project, Stanford University.</p>
+</div>
+<div id="ref-thorbourne_annopolis_2011">
+<p>Thorbourne, R. (2011). Annopolis royal plant in canada. </p>
+</div>
+<div id="ref-trujillo_using_2008">
+<p>Trujillo, P. (2008). Using a mariculture sustainability index to rank countries’ performance. <em>Fisheries centre research reports</em> (eds J. Alder &amp; D. Pauly). Fisheries Centre Research Reports, University of British Columbia, Vancouver, Canada.</p>
+</div>
+<div id="ref-unep-wcmc_global_2005">
+<p>UNEP-WCMC &amp; Short, F. (2005). <em>Global distribution of seagrasses (version 3). third update to the data layer used in green and short (2003), superseding version 2.</em> UNEP World Conservation Monitoring Centre, Cambridge, UK.</p>
+</div>
+<div id="ref-united_nations_fao_2017">
+<p>United Nations. (2017). FAO - commodity production and trade. FAO - commodities data. URL <a href="http://ref.data.fao.org/dataset?entryId=aea93578-9b01-4448-9305-917348ca00b2&amp;tab=metadata" class="uri">http://ref.data.fao.org/dataset?entryId=aea93578-9b01-4448-9305-917348ca00b2&amp;tab=metadata</a> [accessed 12 May 2018]</p>
+</div>
+<div id="ref-united_nations_fao_2013">
+<p>United Nations. (2013a). FAO fisheries &amp; aquaculture - fishery statistical collections - fishery commodities and trade. URL <a href="http://www.fao.org/fishery/statistics/global-commodities-production/en" class="uri">http://www.fao.org/fishery/statistics/global-commodities-production/en</a></p>
+</div>
+<div id="ref-united_nations_fao_2013-1">
+<p>United Nations. (2013b). FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. URL <a href="http://www.fao.org/fishery/statistics/global-aquaculture-production/en" class="uri">http://www.fao.org/fishery/statistics/global-aquaculture-production/en</a></p>
+</div>
+<div id="ref-united_nations_fao_2018-1">
+<p>United Nations. (2018a). FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. URL <a href="http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata" class="uri">http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata</a> [accessed 11 April 2018]</p>
+</div>
+<div id="ref-united_nations_fao_2013-2">
+<p>United Nations. (2013c). FAO fisheries &amp; aquaculture - fishery statistical collections - global capture production. URL <a href="http://www.fao.org/fishery/statistics/global-capture-production/en" class="uri">http://www.fao.org/fishery/statistics/global-capture-production/en</a></p>
+</div>
+<div id="ref-united_nations_fao_2018">
+<p>United Nations. (2018b). FAO FishStatJ - global capture production. FAO FishStatJ - global capture production. URL <a href="http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp" class="uri">http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp</a> [accessed 1 August 2018]</p>
+</div>
+<div id="ref-united_nations_fao_2016-2">
+<p>United Nations. (2016). FAO statistics division - inputs. URL <a href="http://faostat3.fao.org/browse/R/*/E" class="uri">http://faostat3.fao.org/browse/R/*/E</a></p>
+</div>
+<div id="ref-united_nations_statistics_2012">
+<p>United Nations. (2012). Statistics division - energy statistics. URL <a href="http://unstats.un.org/unsd/energy/edbase.htm" class="uri">http://unstats.un.org/unsd/energy/edbase.htm</a></p>
+</div>
+<div id="ref-united_nations_worlds_2007">
+<p>United Nations. (2007). The world’s mangroves 1980-2005. FAO forestry paper 153. </p>
+</div>
+<div id="ref-united_nations_personal_communication_fao_2011">
+<p><span>United Nations</span> personal communication. (2011). FAO fisheries &amp; aquaculture - fishery statistical collections - global number of fishers. URL <a href="http://www.fao.org/fishery/statistics/global-fishers/en" class="uri">http://www.fao.org/fishery/statistics/global-fishers/en</a></p>
+</div>
+<div id="ref-watson_mapping_2018">
+<p>Watson, R. &amp; Tidd, A. (2018). Mapping nearly a century and a half of global marine fishing: 1869–2015. <strong>93</strong>, 171–177.</p>
+</div>
+<div id="ref-waycott_accelerating_2009">
+<p>Waycott, M., Duarte, C.M., Carruthers, T.J.B., Orth, R.J., Dennison, W.C., Olyarnik, S., Calladine, A., Fourqurean, J.W., Heck, K.L., Hughes, A.R., Kendrick, G.A., Kenworthy, W.J., Short, F.T. &amp; Williams, S.L. (2009). Accelerating loss of seagrasses across the globe threatens coastal ecosystems. <em>Proceedings of the National Academy of Sciences</em>, <strong>106</strong>, 12377–12381.</p>
+</div>
+<div id="ref-who-unicef_joint_2017">
+<p>WHO-UNICEF. (2017). Joint monitoring programme (JMP) for water supply and sanitation. Joint monitoring programme (JMP) for water supply and sanitation. URL <a href="https://washdata.org/data" class="uri">https://washdata.org/data</a> [accessed 1 May 2018]</p>
+</div>
+<div id="ref-wikipedia_notitle_nodate">
+<p>Wikipedia. URL <a href="https://www.wikipedia.org/" class="uri">https://www.wikipedia.org/</a> [accessed 15 November 2018]</p>
+</div>
+<div id="ref-world_bank_gdp_2014">
+<p>World Bank. (2014a). GDP (current US$). URL <a href="http://data.worldbank.org/indicator/%20NY.GDP.MKTP.CD">http://data.worldbank.org/indicator/%20NY.GDP.MKTP.CD</a></p>
+</div>
+<div id="ref-world_bank_gdp_2017">
+<p>World Bank. (2017). GDP per capita, PPP (constant 2011 international $). GDP per capita, PPP (constant 2011 international $). URL <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD" class="uri">https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD</a> [accessed 23 July 2018]</p>
+</div>
+<div id="ref-world_bank_labor_2014">
+<p>World Bank. (2014b). Labor force, total. URL <a href="http://data.worldbank.org/indicator/SL.TLF.TOTL.IN" class="uri">http://data.worldbank.org/indicator/SL.TLF.TOTL.IN</a></p>
+</div>
+<div id="ref-world_bank_population_2016">
+<p>World Bank. (2016). Population, total. URL <a href="http://data.worldbank.org/indicator/SP.POP.TOTL" class="uri">http://data.worldbank.org/indicator/SP.POP.TOTL</a></p>
+</div>
+<div id="ref-world_bank_unemployment_2014">
+<p>World Bank. (2014c). Unemployment, total (% of total labor force) (modeled ILO estimate). URL <a href="http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS" class="uri">http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS</a></p>
+</div>
+<div id="ref-world_bank_worldwide_2018">
+<p>World Bank. (2018). Worldwide governance indicators (WGI) data catalog. URL <a href="https://datacatalog.worldbank.org/dataset/worldwide-governance-indicators" class="uri">https://datacatalog.worldbank.org/dataset/worldwide-governance-indicators</a> [accessed 13 November 2018]</p>
+</div>
+<div id="ref-wttc_world_2013">
+<p>WTTC. (2013). World travel and tourism council. URL <a href="www.wttc.org/research/economicimpact-research/methodology/" class="uri">www.wttc.org/research/economicimpact-research/methodology/</a></p>
+</div>
+<div id="ref-wttc_world_2017">
+<p>WTTC. (2017). World travel and tourism council. World travel and tourism council. URL <a href="https://www.wttc.org/datagateway" class="uri">https://www.wttc.org/datagateway</a> [accessed 12 July 2018]</p>
 </div>
 </div>
 

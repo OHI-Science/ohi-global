@@ -20,177 +20,6 @@ output:
 ```
 
  
-#Adjusted workforce size 
-####[le_workforcesize_adj](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_workforcesize_adj.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_workforcesize_adj.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- number of jobs
-
- 
-#Adjustment factor for jobs (current) 
-####[le_jobs_cur_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_cur_adj_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_jobs_cur_adj_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
-
- 
-#Adjustment factor for jobs (reference) 
-####[le_jobs_ref_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_ref_adj_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_jobs_ref_adj_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
-
- 
-#Adjustment factor for revenue (current) 
-####[le_rev_cur_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_cur_adj_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_rev_cur_adj_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
-
- 
-#Adjustment factor for revenue (reference) 
-####[le_rev_ref_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_ref_adj_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_rev_ref_adj_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
-
- 
-#Adjustment factor for wages (current) 
-####[le_wage_cur_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_cur_adj_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_wage_cur_adj_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
-
- 
-#Adjustment factor for wages (reference) 
-####[le_wage_ref_adj_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_ref_adj_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_wage_ref_adj_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
-
- 
-#Areas of blast fishing 
-####[np_blast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_blast.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/np_blast.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- score
-
- 
-#Areas of poison fishing 
-####[np_cyanide](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_cyanide.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/np_cyanide.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- score
-
- 
 #Artisanal fisheries management effectiveness 
 ####[fp_mora_artisanal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mora_artisanal.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -286,6 +115,25 @@ output:
  B/Bmsy
 
  
+#Blast fishing 
+####[np_blast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_blast.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/np_blast.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
 #Carbon storage weights 
 ####[element_wts_cs_km2_x_storage](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_cs_km2_x_storage.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -302,7 +150,7 @@ output:
 ``` 
  
 ####Units {-} 
- extent*storage
+ extent*carbon_storage
 
  
 #Chemical pollution 
@@ -454,7 +302,7 @@ output:
 ``` 
  
 ####Units {-} 
- extent*rank
+ extent*rank_protection
 
  
 #Commercial fishing management 
@@ -492,7 +340,7 @@ output:
 ``` 
  
 ####Units {-} 
- scaled
+ scaled 0-1
 
  
 #Economic need for artisanal fishing 
@@ -512,6 +360,44 @@ output:
  
 ####Units {-} 
  scaled 0-1
+
+ 
+#Economic status scores 
+####[eco_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/eco_status.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/eco_status.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ status 0-100
+
+ 
+#Economic trend scores 
+####[eco_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/eco_trend.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/eco_trend.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ trend -1 to 1
 
  
 #EEZ protected marine areas (fishing preservation) 
@@ -590,44 +476,6 @@ output:
  proportion
 
  
-#GDP 
-####[le_gdp](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_gdp.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_gdp.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- 2012 USD
-
- 
-#GDP per capita PPP 
-####[le_gdp_pc_ppp](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_gdp_pc_ppp.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_gdp_pc_ppp.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- USD
-
- 
 #Genetic escapes 
 ####[sp_genetic](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_genetic.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -647,7 +495,7 @@ output:
  scaled 0-1
 
  
-#Global Competitiveness Index (GCI) scores 
+#Global Competitiveness Index (GCI) 
 ####[li_gci](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_gci.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -663,7 +511,7 @@ output:
 ``` 
  
 ####Units {-} 
- scaled
+ scaled 0-1
 
  
 #Habitat condition of coral 
@@ -1027,7 +875,7 @@ output:
  km2
 
  
-#Habitat weights 
+#Habitat presence/absence 
 ####[element_wts_hab_pres_abs](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_hab_pres_abs.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -1043,7 +891,7 @@ output:
 ``` 
  
 ####Units {-} 
- boolean
+ 0 or 1
 
  
 #High bycatch due to artisanal fishing 
@@ -1084,7 +932,7 @@ output:
  scaled 0-1
 
  
-#Inland area 
+#Inland 1km area 
 ####[rgn_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_inland1km.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -1119,7 +967,7 @@ output:
 ``` 
  
 ####Units {-} 
- number of people
+ count
 
  
 #Inland coastal protected areas 
@@ -1160,25 +1008,6 @@ output:
  scaled 0-1
 
  
-#ISO country codes 
-####[cntry_rgn](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cntry_rgn.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/cntry_rgn.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- region id
-
- 
 #IUCN extinction risk 
 ####[ico_spp_iucn_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ico_spp_iucn_status.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1198,15 +1027,15 @@ output:
  IUCN risk category
 
  
-#Jobs for each sector and year 
-####[le_jobs_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_sector_year.csv) {-} 
+#Livelihood status scores 
+####[liv_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/liv_status.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
 
                                  on.exit(unlink(x))
 
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_jobs_sector_year.Rmd", x)
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/liv_status.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1214,18 +1043,18 @@ output:
 ``` 
  
 ####Units {-} 
- number of jobs
+ status 0-100
 
  
-#Jobs, most current value 
-####[le_jobs_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_cur_base_value.csv) {-} 
+#Livelihood trend scores 
+####[liv_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/liv_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
 
                                  on.exit(unlink(x))
 
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_jobs_cur_base_value.Rmd", x)
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/liv_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1233,26 +1062,7 @@ output:
 ``` 
  
 ####Units {-} 
- value
-
- 
-#Jobs, reference value 
-####[le_jobs_ref_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_jobs_ref_base_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_jobs_ref_base_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
+ trend -1 to 1
 
  
 #Low bycatch due to artisanal fishing 
@@ -1461,7 +1271,7 @@ output:
 ``` 
  
 ####Units {-} 
- score
+ scaled 0-1
 
  
 #Marine plastics 
@@ -1616,7 +1426,7 @@ output:
  scaled 0-1
 
  
-#Offshore area 
+#Offshore 3nm area 
 ####[rgn_area_offshore3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_offshore3nm.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -1654,7 +1464,7 @@ output:
  km2
 
  
-#OHI regions 
+#OHI region id 
 ####[rgn_global](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_global.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -1749,6 +1559,25 @@ output:
  trend
 
  
+#Poison fishing 
+####[np_cyanide](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_cyanide.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/np_cyanide.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+####Units {-} 
+ scaled 0-1
+
+ 
 #Region areas based on EEZ boundaries 
 ####[rgn_area](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1787,7 +1616,7 @@ output:
  label
 
  
-#Relative harvest tonnes 
+#Relative natural product harvest tonnes 
 ####[np_harvest_tonnes_relative](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes_relative.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -1806,7 +1635,7 @@ output:
  proportion
 
  
-#Relative harvest value 
+#Relative natural product harvest value 
 ####[np_harvest_product_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_product_weight.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -1823,82 +1652,6 @@ output:
  
 ####Units {-} 
  proportion
-
- 
-#Revenue adjustment (GDP) 
-####[le_revenue_adj](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_revenue_adj.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_revenue_adj.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- USD
-
- 
-#Revenue for each sector and year 
-####[le_rev_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_sector_year.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_rev_sector_year.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- 2010 USD
-
- 
-#Revenue, most current value 
-####[le_rev_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_cur_base_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_rev_cur_base_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
-
- 
-#Revenue, reference value 
-####[le_rev_ref_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_rev_ref_base_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_rev_ref_base_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
 
  
 #Sea level rise 
@@ -2053,25 +1806,6 @@ output:
  scaled 0-1
 
  
-#Total human population 
-####[le_popn](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_popn.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_popn.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- number of people
-
- 
 #Tourism sustainability index 
 ####[tr_sustainability](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_sustainability.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -2088,18 +1822,18 @@ output:
 ``` 
  
 ####Units {-} 
- score
+ scaled 0-1
 
  
-#Unemployment 
-####[le_unemployment](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_unemployment.csv) {-} 
+#Uninhabited regions 
+####[uninhabited](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/uninhabited.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
 
                                  on.exit(unlink(x))
 
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_unemployment.Rmd", x)
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/uninhabited.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -2107,26 +1841,7 @@ output:
 ``` 
  
 ####Units {-} 
- proportion
-
- 
-#UN geopolitical region classifications 
-####[rgn_georegions](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_georegions.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/rgn_georegions.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- UN regions
+ population
 
  
 #US State Department travel warnings 
@@ -2145,7 +1860,7 @@ output:
 ``` 
  
 ####Units {-} 
- score
+ scaled 0-1
 
  
 #UV radiation 
@@ -2165,63 +1880,6 @@ output:
  
 ####Units {-} 
  scaled 0-1
-
- 
-#Wages, current value 
-####[le_wage_cur_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_cur_base_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_wage_cur_base_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
-
- 
-#Wages for each sector and year 
-####[le_wage_sector_year](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_sector_year.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_wage_sector_year.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- 2010 USD
-
- 
-#Wages, reference value 
-####[le_wage_ref_base_value](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_wage_ref_base_value.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_wage_ref_base_value.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- value
 
  
 #Weakness of governance 

@@ -8,16 +8,21 @@ bibliography: OHI.bib
 
 These data layers were used to calculate the OHI 2018 assessment.  Clicking on the layer name in the "Data layer" variable will provide a full description of the data layer (as well as a link to the actual data).  The "Description" variable provides links to the scripts (on Github) used to create the data layers (when available).
 
-```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, include=FALSE}
 library(tidyverse)
 library(knitr)
 library(here)
+
+file.remove(here("eez/conf/web/OHI.bib"))
+file.remove(here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
 
 file.copy(here("global_supplement/OHI.bib"), here("eez/conf/web/OHI.bib"))
 file.copy(here("global_supplement/methods-in-ecology-and-evolution.csl"), here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
 
 assessmentYear <- 2018
+```
 
+```{r tables, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 
 ## Get list of layers, name, description:
 base <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv") %>%
