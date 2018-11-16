@@ -1,6 +1,6 @@
 # Instructions for updating layers data
 
-1. Run the ohi_global/eez2016/conf/CombineLayers.R.  This creates an Rmd file called layers_all.Rmd.
+1. Run the ohi_global/eez/conf/CombineLayers.R.  This creates an Rmd file called layers_all.Rmd.
 2. Open the layers_all.Rmd and knit.
 3. Check to see that everything looks ok.
 
