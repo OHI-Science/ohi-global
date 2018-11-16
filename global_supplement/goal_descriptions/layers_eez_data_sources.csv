@@ -34,7 +34,7 @@ hamilton_creation_2016,Mangroves,"Global mangrove habitat extent, from remote se
 hemminga_seagrass_2000,Seagrass ,Seagrass geographical regions,2010,County,n,n,n
 homer_development_2004,Chemical pollution: land-based inorganic,Modeled pollution from urban runoff from impervious surfaces,2000,1 km,n,n,n
 hovila_omuvbd:_2013,UV radiation,Anomalies in intensity of ultraviolet (UV) radiation ,2005-2017,1 deg,y,y,y
-birdlife_international_bird_2017,Marine bird species threatened status,Status of marine bird species,2017,National,y,y,y
+noauthor_bird_2017,Marine bird species threatened status,Status of marine bird species,2017,National,y,y,y
 iucn_iucn_2018,Marine species threatened status,IUCN Red List of threatened species by category; sub-population status for iconic species,1965-2018,National,y,y,y
 iucn_iucn_2018-1,"Marine species ranges, IUCN",IUCN spatial distribution,2018,Polygons rasterized to 0.5 deg,y,y,y
 jambeck_plastic_2015,Improper plastic disposal,Trends in mismanaged plastic waste for 2010 and projected for 2025 as a proxy for trash trends,2010-2025 (projected),National,y,n,n
@@ -47,8 +47,8 @@ mora_management_2009,Fisheries management effectiveness,Management effectiveness
 mora_management_2009,Fisheries management effectiveness: artisanal,Management effectiveness of artisanal fisheries,2009,National,n,n,n
 new_zealand_ministry_for_the_environment_environment_2007,Salt marsh,Global salt marsh habitat extent and condition,1975-2007,National,n,n,n
 noaa_coral_2018,Sea surface temperature (SST) anomalies,Sea surface temperature anomalies,1982-2017,4 km,n,n,y
-social_progress_index_2018_nodate,Social Progress Index,Index measuring quality of life indicators,2014-2017,National,y,y,y
-ram_ram_2017,Stock assessments,Stock assesment scores data,1950-2016,Stock,y,y,y
+noauthor_2018_nodate,Social Progress Index,Index measuring quality of life indicators,2014-2017,National,y,y,y
+noauthor_ram_2018,Stock assessments,Stock assesment scores data,1950-2016,Stock,y,y,y
 oconnor_whale_2009,Marine jobs: marine mammal watching,Jobs based on number of whale watchers in a country and a regional average number of whale watchers per employee. Includes all marine mammal watching.,1998-2008,National,n,n,n
 oconnor_whale_2009,Marine revenue: marine mammal watching,Total revenue from marine mammal watching,1998-2008,National,n,n,n
 omalley_ocean_nodate,NPP website,Net Primary Productivity website,2003-2015,0.083 deg,,,y
@@ -90,4 +90,4 @@ wttc_world_2013,Marine revenue: tourism,"Total tourism revenue by country, adjus
 wttc_world_2017,Travel and Tourism Direct Contribution to Employment,"Employment directly linked to travel and tourism sectors (hotels, transportation, services)",1988-2017,National,y,y,y
 martell_simple_2013,A simple method for estimating MSY from catch and resilience,Methods: Data-limited stocks assessments,NA,NA,NA,NA,NA
 rosenberg_developing_2014,Developing new approaches to global stock status assessment and maximum sustainable production of the seas,Methods: Data-limited stocks assessments,NA,NA,NA,NA,NA
-wikipedia_notitle_nodate,Identifying uninhabited regions,Population by region,2018,National,y,y,y
+Wikipedia,Identifying uninhabited regions,Population by region,2018,National,y,y,y

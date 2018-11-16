@@ -1,5 +1,5 @@
 ---
-title: 'Ocean Health Index 2017: Methods'
+title: 'Ocean Health Index 2018: Methods'
 csl: methods-in-ecology-and-evolution.csl
 output:
   html_document:
@@ -48,7 +48,7 @@ options(knitr.kable.NA = '')
 # exclude when knitting
 # setwd("global_supplement")
 
-assessmentYear <- 2017
+assessmentYear <- 2018
 
 # sections to run:
 ten_goals <- TRUE
@@ -68,7 +68,7 @@ The Ocean Health Index assesses ocean health which we define as how well we are 
 
 The OHI is considered a *composite indicator* because it combines many indicators into a comprehensive framework describing ocean health.  This is in contrast to focusing on individual indicators, such as phosphate levels, sedimentation, biodiversity, etc.  Individual indicators are important, but they provide limited information when it comes to evaluating how well an overall ecosystem is functioning.  Another shortcoming of individual indicators is that they do not directly describe what we actually care about, and consequently, focusing on them can hinder communication.  For example, most people do not directly care about nutrient pollution, however, we do care about its effects on the ocean’s ability to provide recreation and food.  
 
-Without an overall framework to evaluate indicators, certain indicators may be overemphasized relative to their true importance due to researcher bias (most researchers believe their area study is the most important), trends in research (what is currently considered a hot topic and is funded), and availability of data (e.g., some data is easier to collect).  A model that combines multiple indicators will inevitably have flaws, but at least we know which variables are included and how they are weighted.
+Without an overall framework to evaluate indicators, certain indicators may be overemphasized relative to their true importance due to researcher bias (most researchers believe their area of study is the most important), trends in research (what is currently considered a hot topic and is funded), and availability of data (e.g., some data is easier to collect).  A model that combines multiple indicators will inevitably have flaws, but at least we know which variables are included and how they are weighted.
 
 ## The role of humans
 One of the primary contributions of the OHI is that it recognizes people are an important part of the marine system.  Both conservation and extractive use of ocean resources are valued, and consequently, scores are highest when we maximize the benefits we receive while maintaining sustainability so we can continue to receive benefits now and into the future.  One temptation of indicator development is to focus only on the pressures that humans apply to systems.  This makes sense because we want to be sure we are adequately protecting resources.  However, eliminating all pressures on the ocean would require eliminating all contact between humans and the ocean. Beyond being unrealistic, this is undesirable because we would stop receiving all the benefits that we rely on from the ocean. The OHI is unique because it tracks both the pressures we put on oceans as well as the benefits we receive.
@@ -116,7 +116,7 @@ Goal scores are the average of current and likely future status.  Likely future 
 Dimension        | Subdimension   | Description                  | More information     | Calculating
 ---------------- | ----------- | ---------------------------- | -------------------- | ----------------------
 Current status   |  -          | Current state of the goal relative to the desired "reference point".  Values range from 0-100. | *Section 5. Goal models and data* | Calculated using functions in ohi-global repo: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R and the *scenario_data_years.csv* file (in same folder)
-Predicted future status | Resilience | Variables such as good governance and ecological factors that provide resilience to pressures, and thus, are likely to improve future status.  Values range from 0-100  | *Section 4.3 Likely future status dimensions | Calculated using functions in ohicore package.And, files: *resilience_categories.csv* and *resilience_matrix.csv* located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/conf
+Predicted future status | Resilience | Variables such as good governance and ecological factors that provide resilience to pressures, and thus, are likely to improve future status.  Values range from 0-100  | *Section 4.3 Likely future status dimensions* | Calculated using functions in ohicore package.And, files: *resilience_categories.csv* and *resilience_matrix.csv* located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/conf
 Predicted future status | Pressure  | Pressures stress the system and threaten future delivery of benefits, and thus, are likely to reduce future status. Values range from 0-100  | *Section 4.3 Likely future status dimensions* | Calculated using function in ohicore package.  And, files: *pressure_categories.csv* and *pressures_matrix.csv*, located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/con
 Predicted future status | Trend  | Average yearly change in status (typically estimated using most recent 5 years of data) multiplied by 5 to esimate five years into the future.  Units are proportional change (absolute change/year is divided by the value of the earliest year) and range from -1 to 1  | *Section 4.3 Likely future status dimensions* | Calculated using functions from ohi-global repo: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R and the scenario_data_years.csv file (in same folder)
 
@@ -373,7 +373,7 @@ data <- data %>%
 
 ### Get method updates
 updates <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "methods_update_2017") %>%
+  filter(variable == "methods_update") %>%
   select(layer, Updates=variable_data) %>%
   unique()
 
@@ -399,7 +399,7 @@ A brief overview of the data sources used to calculate the global OHI.
 ## get source data
 ds_source <- read.csv("../eez_layers_meta_data/layers_eez_data_sources.csv") %>%
   mutate(ds_reference = paste0("@", ds_reference)) %>%
-  select(Reference = ds_reference, "Description" = ds_description, Years=ds_years, Resolution = ds_native_resolution, Updated = ds_updated_2017)
+  select(Reference = ds_reference, "Description" = ds_description, Years=ds_years, Resolution = ds_native_resolution, Updated = ds_updated_2018)
 kable(ds_source)
 
 ```
