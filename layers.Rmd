@@ -15,5 +15,5 @@ The following data layers are used in Ocean Health Index global calculations for
 
 ----
 
-```{r, child="layers_all.Rmd"}
+```{r, child="local_layers_all.Rmd"}
 ```

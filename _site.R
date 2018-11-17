@@ -16,7 +16,7 @@ suppressPackageStartupMessages({
 ## brewed vars
 study_area      <- "Global"
 key             <- "ohi-global"
-dir_scenario_gh <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/published/eez"
+dir_scenario_gh <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/published"
 
 
 
@@ -24,14 +24,16 @@ dir_scenario_gh <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/pub
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 ## read in variables if they exist (i.e. don't try for prep repos)
-scores_csv <- file.path(dir_scenario_gh, 'scores.csv')
-layers_csv <- file.path(dir_scenario_gh, 'layers.csv')
-conf_csv   <- file.path(dir_scenario_gh, 'conf/goals.csv')
+scores_csv <- file.path(dir_scenario_gh, 'eez/scores.csv')
+layers_csv <- file.path(dir_scenario_gh, 'eez/layers.csv')
+conf_csv   <- file.path(dir_scenario_gh, 'eez/conf/goals.csv')
 
 ## if statements in case this is an OHI+ prep repo without these files
-if (RCurl::url.exists(scores_csv)) scores <- readr::read_csv(scores_csv)
-if (RCurl::url.exists(layers_csv)) layers <- readr::read_csv(layers_csv)
-if (RCurl::url.exists(conf_csv))   goals  <- readr::read_csv(conf_csv)
+if (RCurl::url.exists(scores_csv)) scores <- readr::read_csv(scores_csv) else stop(sprintf("error, %s file missing", scores_csv))
+if (RCurl::url.exists(layers_csv)) layers <- readr::read_csv(layers_csv) else stop(sprintf("error, %s file missing", layers_csv))
+if (RCurl::url.exists(conf_csv))   goals  <- readr::read_csv(conf_csv)   else stop(sprintf("error, %s file missing", conf_csv))
+
+# write a message if any are false!
 weight <- goals %>%
   select(goal, weight)
 
