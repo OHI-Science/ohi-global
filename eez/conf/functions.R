@@ -41,6 +41,10 @@ FIS <- function(layers) {
   b <- b %>%
     dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
                             bbmsy > 1, 1, bbmsy))
+
+  # # no underharvest penalty  
+  # b <- b %>%
+  #   dplyr::mutate(bbmsy = ifelse(bbmsy > 1, 1, bbmsy))
   
   
   # separate out the stock_id and taxonkey:
@@ -173,6 +177,7 @@ FIS <- function(layers) {
     dplyr::summarize(status = prod(score ^ wprop)) %>%
     dplyr::ungroup()
   
+
   ###
   # STEP 5. Get yearly status and trend
   ###
@@ -209,7 +214,8 @@ FIS <- function(layers) {
 
 MAR <- function(layers) {
 
-  scen_year <- layers$data$scenario_year
+  browser()
+    scen_year <- layers$data$scenario_year
   
   harvest_tonnes <-
     AlignDataYears(layer_nm = "mar_harvest_tonnes", layers_obj = layers)

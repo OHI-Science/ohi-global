@@ -143,6 +143,7 @@ get_scores <- function(s_year){ # x=2012
 conf   <-  ohicore::Conf('conf')
 layers <-  ohicore::Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
 
+#scorelist = lapply(X=2018, FUN=get_scores)
 scorelist = lapply(X=2012:2018, FUN=get_scores)
 scores_all_years <- dplyr::bind_rows(scorelist)
 
@@ -156,49 +157,30 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="method_change", save_csv = TRUE, NA_compare = TRUE)
+            file_name="revert_check", save_csv = TRUE, NA_compare = TRUE)
 
 
-compare <- read.csv("score_check/fis_mean_gf_diff_data_2018-10-17.csv") 
-na.diffs <- compare %>%
-  dplyr::filter(is.na(score) & !is.na(old_score) | 
-           !is.na(score) & is.na(old_score) ) %>%
-  dplyr::filter(dimension=="status")
-
-compare <- compare %>%
-  dplyr::filter(change != 0) %>%
-  dplyr::filter(goal %in% c("LIV", "ECO"))
-
-compare %>%
-  dplyr::filter(dimension == "status")
-
-compare %>%
-  dplyr::filter(dimension == "trend")
-
-tmp <- compare %>%
-  dplyr::filter(dimension == "future")
-summary(tmp)
-
-table(tmp$goal)
-
-tmp <- compare %>%
-  dplyr::filter(change>0)
-table(tmp$goal)
-
-dplyr::filter(compare, is.na(old_score), !is.na(score))
+compare <- read.csv("score_check/fis_no_no_catch_wt_diff_data_2018-11-20.csv") 
 
 library(ggplot2)
-ggplot(dplyr::filter(compare, year==2017 & dimension=="score" & goal == "MAR"), aes(old_score, score)) +
-  geom_point() +
+p <- ggplot(dplyr::filter(compare, year==2018 & dimension=="status" & goal == "FIS"), aes(x=old_score, y=score)) +
+  geom_point(aes(text = paste0("rgn = ", rgn_name)), shape=19) +
   geom_abline(slope=1, intercept=0) +
+  labs(x="catch weighting", y="no catch weighting") + 
   theme_bw()
+
+plotly_fig <- plotly::ggplotly(p)
+htmlwidgets::saveWidget(plotly::as_widget(plotly_fig), "tmp_file.html", 
+                        selfcontained = TRUE)
 
 
 dplyr::filter(compare, is.na(old_score) & !is.na(score))
 
+
 # looking within a goal:
-scatterPlot(repo="ohi-global", scenario="eez", commit="previous", 
-            goal="CP", dim="pressures", fileSave="CP_pressure_eez2015")
+source("../../ohiprep_v2018/src/R/VisGlobal.R")
+scatterPlot(repo="ohi-global", scenario="eez", commit="e0ed46b", filter_year=2017,
+            goal="FIS", dim="status", fileSave="FIS_old_new_compare")
 
 goalHistogram(scenario="eez2016", goal="AO", dim="status", fileSave="AO_need_eez2016")
 
