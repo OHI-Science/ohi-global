@@ -41,6 +41,10 @@ FIS <- function(layers) {
   b <- b %>%
     dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
                             bbmsy > 1, 1, bbmsy))
+
+  # # no underharvest penalty  
+  # b <- b %>%
+  #   dplyr::mutate(bbmsy = ifelse(bbmsy > 1, 1, bbmsy))
   
   
   # separate out the stock_id and taxonkey:
@@ -173,6 +177,7 @@ FIS <- function(layers) {
     dplyr::summarize(status = prod(score ^ wprop)) %>%
     dplyr::ungroup()
   
+
   ###
   # STEP 5. Get yearly status and trend
   ###
@@ -226,13 +231,17 @@ MAR <- function(layers) {
   rky <-  harvest_tonnes %>%
     dplyr::left_join(sustainability_score,
               by = c('rgn_id', 'taxa_code', 'scenario_year')) %>%
-    dplyr::select(rgn_id, scenario_year, taxa_code, tonnes, sust_coeff)
+    dplyr::select(rgn_id, scenario_year, taxa_code, taxa_group, tonnes, sust_coeff)
   
   # fill in gaps with no data
   rky <- tidyr::spread(rky, scenario_year, tonnes)
-  rky <- tidyr::gather(rky, "scenario_year", "tonnes",-(1:3)) %>%
+  rky <- tidyr::gather(rky, "scenario_year", "tonnes",-(1:4)) %>%
     dplyr::mutate(scenario_year = as.numeric(scenario_year))
   
+  # adjustment for seaweeds based on protein content
+  rky <- rky %>%
+    dplyr::mutate(tonnes = ifelse(taxa_group == "AL", tonnes*0.2, tonnes)) %>%
+    dplyr::select(-taxa_group)
   
   # 4-year rolling mean of data
   m <- rky %>%
