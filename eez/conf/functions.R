@@ -1011,7 +1011,6 @@ TR <- function(layers) {
   
   
   ## read in layers
-  
   tourism <-
     AlignDataYears(layer_nm = "tr_jobs_pct_tourism", layers_obj = layers) %>%
     dplyr::select(-layer_name)
@@ -1036,14 +1035,14 @@ TR <- function(layers) {
   
   ## incorporate Travel Warnings
   tr_model <- tr_model %>%
-    dplyr::left_join(rgn_travel_warnings, by = c('rgn_id', 'scenario_year')) %>%
-    dplyr::mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
-    dplyr::select(-multiplier)
-  
+     dplyr::left_join(rgn_travel_warnings, by = c('rgn_id', 'scenario_year')) %>%
+     dplyr::mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
+     dplyr::select(-multiplier)
+   
   
   ### Calculate status based on quantile reference (see function call for pct_ref)
   tr_model <- tr_model %>%
-    dplyr::group_by(scenario_year) %>%
+    dplyr::filter(scenario_year <= scen_year & scenario_year >=2008) %>%
     dplyr::mutate(Xtr_q = quantile(Xtr, probs = pct_ref / 100, na.rm = TRUE)) %>%
     dplyr::mutate(status  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q)) %>% # rescale to qth percentile, cap at 1
     dplyr::ungroup()

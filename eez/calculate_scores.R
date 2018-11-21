@@ -28,13 +28,14 @@ library(ohicore)
 library(zoo)
 library(stringr)
 library(readr)
+library(here)
 
 ## source file path info depending on operating system
 source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/gh-pages/src/R/common.R')
 
 
 # STEP 5: Set repository name
-setwd("eez")
+setwd(here("eez"))
 
 
 #############################
@@ -157,7 +158,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="cw_modify", save_csv = TRUE, NA_compare = TRUE)
+            file_name="tr_ref_adjust", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv("score_check/baltic_cp_diff_data_2018-11-20.csv") 
