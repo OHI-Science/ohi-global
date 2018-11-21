@@ -836,6 +836,7 @@ CS <- function(layers) {
 
 
 CP <- function(layers) {
+
   ## read in layers
   scen_year <- layers$data$scenario_year
   
@@ -864,7 +865,8 @@ CP <- function(layers) {
       'hab_coral_trend',
       'hab_seaice_trend'
     )
-  
+
+
   # get data together:
   extent <- AlignManyDataYears(extent_lyrs) %>%
     dplyr::filter(!(habitat %in% "seaice_edge")) %>%
@@ -904,6 +906,14 @@ CP <- function(layers) {
   d <-  extent %>%
     dplyr::full_join(health, by = c("region_id", "habitat")) %>%
     dplyr::full_join(trend, by = c("region_id", "habitat"))
+  
+  # Removing countries within the Baltic because seaice edge is not relevant to coastal protection
+  # for these regions
+  
+  baltic <- c(174, 178, 222, 70, 69, 189)
+  
+   d <- d %>%
+    dplyr::filter(!(region_id %in% baltic & habitat == "seaice_shoreline"))
   
   ## set ranks for each habitat
   habitat.rank <- c(

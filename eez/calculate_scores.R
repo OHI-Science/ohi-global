@@ -14,7 +14,7 @@ devtools::install_github("ohi-science/ohicore@dev") # used when testing new code
 
 ## STEP 2:
 ## identify repo where data will be taken from: 
-repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/"
+repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/gh-pages/"
 
 # STEP 3: Scenario years in this year's assessment
 scenario_years <- c(2012:2018)
@@ -30,7 +30,7 @@ library(stringr)
 library(readr)
 
 ## source file path info depending on operating system
-source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/master/src/R/common.R')
+source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/gh-pages/src/R/common.R')
 
 
 # STEP 5: Set repository name
@@ -157,10 +157,12 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="revert_check", save_csv = TRUE, NA_compare = TRUE)
+            file_name="baltic_cp", save_csv = TRUE, NA_compare = TRUE)
 
 
-compare <- read.csv("score_check/fis_no_no_catch_wt_diff_data_2018-11-20.csv") 
+compare <- read.csv("score_check/baltic_cp_diff_data_2018-11-20.csv") 
+
+dplyr::filter(compare, is.na(score) & !is.na(old_score))
 
 library(ggplot2)
 p <- ggplot(dplyr::filter(compare, year==2018 & dimension=="status" & goal == "FIS"), aes(x=old_score, y=score)) +
