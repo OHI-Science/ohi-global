@@ -1450,6 +1450,7 @@ SP <- function(scores) {
 
 
 CW <- function(layers) {
+  
   scen_year <- layers$data$scenario_year
   
   ### function to calculate geometric mean:
@@ -1481,8 +1482,9 @@ CW <- function(layers) {
     dplyr::select(region_id = rgn_id, value = pressure_score)
   
   d_pressures <- prs_data %>%
-    dplyr::mutate(pressure = 1 - value) %>%  # invert pressures
-    dplyr::group_by(region_id) %>%
+    dplyr::mutate(pressure = 1 - value) %>%  # invert pressure
+    dplyr::mutate(pressure = ifelse(pressure == 0 , pressure + 0.01, pressure)) %>% # add small modifier to zeros to 
+    dplyr::group_by(region_id) %>%                                                  # prevent zeros with geometric mean
     dplyr::summarize(score = geometric.mean2(pressure, na.rm = TRUE)) %>% # take geometric mean
     dplyr::mutate(score = score * 100) %>%
     dplyr::mutate(dimension = "status") %>%
