@@ -907,13 +907,15 @@ CP <- function(layers) {
     dplyr::full_join(health, by = c("region_id", "habitat")) %>%
     dplyr::full_join(trend, by = c("region_id", "habitat"))
   
-  # Removing countries within the Baltic because seaice edge is not relevant to coastal protection
+  # Removing countries within the Baltic, Iceland, and North Sea regions (UK, Germany, Denmark) 
+  # because seaice edge is due to ice floating into the environment and does not provide coastal protection
   # for these regions
   
-  baltic <- c(174, 178, 222, 70, 69, 189)
+  floaters <- c(174, 178, 222, 70, 69, 189, 143, 180, 176, 175)
+  
   
    d <- d %>%
-    dplyr::filter(!(region_id %in% baltic & habitat == "seaice_shoreline"))
+    dplyr::filter(!(region_id %in% floaters & habitat == "seaice_shoreline"))
   
   ## set ranks for each habitat
   habitat.rank <- c(

@@ -158,7 +158,7 @@ write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
 
 
 ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="tr_ref_adjust", save_csv = TRUE, NA_compare = TRUE)
+            file_name="cp_sea_ice", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv("score_check/baltic_cp_diff_data_2018-11-20.csv") 
