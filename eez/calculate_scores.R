@@ -8,8 +8,8 @@
 ## STEP 1: download ohicore package
 ## Install the appropriate ohicore:
 library(devtools)
-#devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
-devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
+#devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 ## STEP 2:
