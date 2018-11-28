@@ -13,11 +13,12 @@ library(tidyverse)
 library(knitr)
 library(here)
 
-file.remove(here("eez/conf/web/OHI.bib"))
-file.remove(here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
+## Julie: I am commenting this out as I troubleshoot for the ohi-global website
+#file.remove(here("eez/conf/web/OHI.bib"))
+#file.remove(here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
 
-file.copy(here("global_supplement/OHI.bib"), here("eez/conf/web/OHI.bib"))
-file.copy(here("global_supplement/methods-in-ecology-and-evolution.csl"), here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
+#file.copy(here("global_supplement/OHI.bib"), here("eez/conf/web/OHI.bib"))
+#file.copy(here("global_supplement/methods-in-ecology-and-evolution.csl"), here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
 
 assessmentYear <- 2018
 ```
