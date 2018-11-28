@@ -1034,7 +1034,7 @@ TR <- function(layers) {
   rgn_travel_warnings <-
     AlignDataYears(layer_nm = "tr_travelwarnings", layers_obj = layers) %>%
     dplyr::select(-layer_name)
-  
+
   ## incorporate Travel Warnings
   tr_model <- tr_model %>%
      dplyr::left_join(rgn_travel_warnings, by = c('rgn_id', 'scenario_year')) %>%

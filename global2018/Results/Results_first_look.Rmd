@@ -24,7 +24,7 @@ This document describes results from the OHI 2018 global assessment.  This is mo
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2018-11-09' #date extension on data files used for all tables/figures
+dateFile = '2018-11-27' #date extension on data files used for all tables/figures
 
 ## General settings to control
 scenario <- 2018 #identify scenario of focus (this can be changed to obtain data for other years)
@@ -253,7 +253,7 @@ prj      <- 'mol'    ### note: 'gcs' is way faster.
 reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
 blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
 colors <-   c(reds, blues)
-
+#write.csv(data.frame(colors), here("global2018/Results/color_palette.csv"), row.names=FALSE)
 
 ### get OHI data and rename column headings
 
