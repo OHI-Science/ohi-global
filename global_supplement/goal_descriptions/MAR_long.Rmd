@@ -4,7 +4,7 @@ The mariculture subgoal attempts to measure each region's food production from m
 
 
 #### Current status
-The status of the mariculture subgoal, $x_{mar}$, was defined as production of strictly marine taxa from both the marine and brackish water FAO categories, excluding species that were not used as a source of food for human consumption. The data reported by FAO does not always clearly describe whether harvest is derived through mariculture or from land-based facilities. Wherever possible, we excluded species that could not have been harvested from coastal waters, such as freshwater cyclids. Mariculture status was therefore assessed as the current sustainably-harvested yield, $Y_{c}$, within each country, such that:
+The status of the mariculture subgoal, $x_{mar}$, was defined as production of strictly marine taxa from both the marine and brackish water FAO categories, excluding species that were not used as a source of food for human consumption. Seaweeds are included, but the tonnes of harvest is multiplied by 0.2 to adjust for protein content relative to fish and shellfish mariculture.  The data reported by FAO does not always clearly describe whether harvest is derived through mariculture or from land-based facilities. Wherever possible, we excluded species that could not have been harvested from coastal waters, such as freshwater cyclids. Mariculture status was therefore assessed as the current sustainably-harvested yield, $Y_{c}$, within each country, such that:
 
 $$
 x_{mar}= \frac {Y_c}{Y_{c, ref}},   (Eq. 5.10)

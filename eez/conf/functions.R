@@ -41,6 +41,10 @@ FIS <- function(layers) {
   b <- b %>%
     dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
                             bbmsy > 1, 1, bbmsy))
+
+  # # no underharvest penalty  
+  # b <- b %>%
+  #   dplyr::mutate(bbmsy = ifelse(bbmsy > 1, 1, bbmsy))
   
   
   # separate out the stock_id and taxonkey:
@@ -173,6 +177,7 @@ FIS <- function(layers) {
     dplyr::summarize(status = prod(score ^ wprop)) %>%
     dplyr::ungroup()
   
+
   ###
   # STEP 5. Get yearly status and trend
   ###
@@ -226,13 +231,17 @@ MAR <- function(layers) {
   rky <-  harvest_tonnes %>%
     dplyr::left_join(sustainability_score,
               by = c('rgn_id', 'taxa_code', 'scenario_year')) %>%
-    dplyr::select(rgn_id, scenario_year, taxa_code, tonnes, sust_coeff)
+    dplyr::select(rgn_id, scenario_year, taxa_code, taxa_group, tonnes, sust_coeff)
   
   # fill in gaps with no data
   rky <- tidyr::spread(rky, scenario_year, tonnes)
-  rky <- tidyr::gather(rky, "scenario_year", "tonnes",-(1:3)) %>%
+  rky <- tidyr::gather(rky, "scenario_year", "tonnes",-(1:4)) %>%
     dplyr::mutate(scenario_year = as.numeric(scenario_year))
   
+  # adjustment for seaweeds based on protein content
+  rky <- rky %>%
+    dplyr::mutate(tonnes = ifelse(taxa_group == "AL", tonnes*0.2, tonnes)) %>%
+    dplyr::select(-taxa_group)
   
   # 4-year rolling mean of data
   m <- rky %>%
@@ -827,6 +836,7 @@ CS <- function(layers) {
 
 
 CP <- function(layers) {
+
   ## read in layers
   scen_year <- layers$data$scenario_year
   
@@ -855,7 +865,8 @@ CP <- function(layers) {
       'hab_coral_trend',
       'hab_seaice_trend'
     )
-  
+
+
   # get data together:
   extent <- AlignManyDataYears(extent_lyrs) %>%
     dplyr::filter(!(habitat %in% "seaice_edge")) %>%
@@ -895,6 +906,16 @@ CP <- function(layers) {
   d <-  extent %>%
     dplyr::full_join(health, by = c("region_id", "habitat")) %>%
     dplyr::full_join(trend, by = c("region_id", "habitat"))
+  
+  # Removing countries within the Baltic, Iceland, and North Sea regions (UK, Germany, Denmark) 
+  # because seaice edge is due to ice floating into the environment and does not provide coastal protection
+  # for these regions
+  
+  floaters <- c(174, 178, 222, 70, 69, 189, 143, 180, 176, 175)
+  
+  
+   d <- d %>%
+    dplyr::filter(!(region_id %in% floaters & habitat == "seaice_shoreline"))
   
   ## set ranks for each habitat
   habitat.rank <- c(
@@ -985,14 +1006,12 @@ TR <- function(layers) {
   ##  E   = Ep                         # Ep: % of direct tourism jobs. tr_jobs_pct_tourism.csv
   ##  S   = (S_score - 1) / (7 - 1)    # S_score: raw TTCI score, not normalized (1-7). tr_sustainability.csv
   ##  Xtr = E * S
-  
   pct_ref <- 90
   
   scen_year <- layers$data$scenario_year
   
   
   ## read in layers
-  
   tourism <-
     AlignDataYears(layer_nm = "tr_jobs_pct_tourism", layers_obj = layers) %>%
     dplyr::select(-layer_name)
@@ -1014,17 +1033,28 @@ TR <- function(layers) {
   rgn_travel_warnings <-
     AlignDataYears(layer_nm = "tr_travelwarnings", layers_obj = layers) %>%
     dplyr::select(-layer_name)
-  
+
   ## incorporate Travel Warnings
   tr_model <- tr_model %>%
-    dplyr::left_join(rgn_travel_warnings, by = c('rgn_id', 'scenario_year')) %>%
-    dplyr::mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
-    dplyr::select(-multiplier)
+     dplyr::left_join(rgn_travel_warnings, by = c('rgn_id', 'scenario_year')) %>%
+     dplyr::mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
+     dplyr::select(-multiplier)
+
+  # assign NA for uninhabitated islands (i.e., islands with <100 people)
+  if (conf$config$layer_region_labels == 'rgn_global') {
+    unpopulated = layers$data$uninhabited %>%
+      dplyr::filter(est_population < 100 | is.na(est_population)) %>%
+      dplyr::select(rgn_id)
+    tr_model$Xtr = ifelse(tr_model$rgn_id %in% unpopulated$rgn_id,
+                            NA,
+                          tr_model$Xtr)
+  }
   
+     
   
   ### Calculate status based on quantile reference (see function call for pct_ref)
   tr_model <- tr_model %>%
-    dplyr::group_by(scenario_year) %>%
+    dplyr::filter(scenario_year >=2008) %>%
     dplyr::mutate(Xtr_q = quantile(Xtr, probs = pct_ref / 100, na.rm = TRUE)) %>%
     dplyr::mutate(status  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q)) %>% # rescale to qth percentile, cap at 1
     dplyr::ungroup()
@@ -1067,17 +1097,7 @@ TR <- function(layers) {
   tr_score <- dplyr::bind_rows(tr_status, tr_trend) %>%
     dplyr::mutate(goal = 'TR')
   
-  
-  # assign NA for uninhabitated islands (i.e., islands with <100 people)
-  if (conf$config$layer_region_labels == 'rgn_global') {
-    unpopulated = layers$data$uninhabited %>%
-      dplyr::filter(est_population < 100 | is.na(est_population)) %>%
-      dplyr::select(region_id = rgn_id)
-    tr_score$score = ifelse(tr_score$region_id %in% unpopulated$region_id,
-                            NA,
-                            tr_score$score)
-  }
-  
+
   # return final scores
   scores <- tr_score %>%
     dplyr::select(region_id, goal, dimension, score)
@@ -1431,6 +1451,7 @@ SP <- function(scores) {
 
 
 CW <- function(layers) {
+  
   scen_year <- layers$data$scenario_year
   
   ### function to calculate geometric mean:
@@ -1462,8 +1483,9 @@ CW <- function(layers) {
     dplyr::select(region_id = rgn_id, value = pressure_score)
   
   d_pressures <- prs_data %>%
-    dplyr::mutate(pressure = 1 - value) %>%  # invert pressures
-    dplyr::group_by(region_id) %>%
+    dplyr::mutate(pressure = 1 - value) %>%  # invert pressure
+    dplyr::mutate(pressure = ifelse(pressure == 0 , pressure + 0.01, pressure)) %>% # add small modifier to zeros to 
+    dplyr::group_by(region_id) %>%                                                  # prevent zeros with geometric mean
     dplyr::summarize(score = geometric.mean2(pressure, na.rm = TRUE)) %>% # take geometric mean
     dplyr::mutate(score = score * 100) %>%
     dplyr::mutate(dimension = "status") %>%

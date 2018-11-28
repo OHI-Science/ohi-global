@@ -1,0 +1,263 @@
+---
+title: "Understanding 2018 Fisheries scores and underlying data"
+author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+output: 
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_depth: 3
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+```
+
+# Look at scores over time
+
+Picking some countries that have significant changes over the past 6 years. Peru
+
+```{r}
+#scores data
+scores <- read_csv("../scores_2018-11-09.csv") %>%
+  filter(goal == "FIS")
+
+#region details to help us filter by country name rather than ID
+rgn_deets <- read_csv("https://raw.github.com/OHI-Science/ohiprep_v2018/gh-pages/globalprep/supplementary_information/v2018/rgn_details.csv")
+
+#pull out some specific countries
+
+ctry_data <- scores %>%
+  left_join(rgn_deets, by = c("region_id" = "rgn_id")) %>%
+  filter(rgn_nam %in% c("Peru", "Ile Europa", "Amsterdam Island and Saint Paul Island", "Ile Tromelin", "Maldives", "Sierra Leone"))
+```
+
+Plot these countries 
+
+```{r}
+score <- ctry_data %>%
+  filter(dimension == "score")
+
+ggplot(score, aes(x = year, y = score, color = rgn_nam)) +
+  geom_line() +
+  theme_bw() +
+  labs(y = "FIS score") +
+  theme(legend.title=element_blank())
+
+```
+
+
+It's interesting that Ile Europa, Ile Tromelin, Amsterdam Island & St. Paul Island maintain the same pattern. Maldives is slightly different but still a steep decline after 2014. Peru and Sierra Leone are strikingly different.
+
+
+```{r}
+
+t <- ctry_data %>%
+  filter(dimension %in% c("pressures", "status", "resilience"))
+
+ggplot(t, aes(x = year, y = score, color = dimension)) +
+  geom_line() +
+  theme_bw() +
+  facet_wrap(~rgn_nam) +
+  theme(legend.title=element_blank())
+
+```
+
+It looks like pressures and resilience are not having a big impact on these status values. Next things to look at is catch over time and stock scores with proportional catch over time.
+
+Looking at b/bmsy and catch data
+
+```{r}
+bbmsy <- read_csv("~/github/ohi-global/eez/layers/fis_b_bmsy.csv") %>%
+  filter(rgn_id %in% unique(ctry_data$region_id)) %>%
+  mutate(group = 
+           case_when(
+             bbmsy < 0.8 ~ "overfished",
+             bbmsy >= 0.8 & bbmsy <= 1.45 ~ "fully exploited",
+             bbmsy > 1.45 ~ "underfished"
+           ))
+
+catch <- read_csv("~/github/ohi-global/eez/layers/fis_meancatch.csv") %>%
+  filter(rgn_id %in% unique(ctry_data$region_id)) %>%
+  separate(stock_id_taxonkey, into = c("stock_id", "taxonkey"), sep = "_(?=[:digit:])")
+
+combine <- bbmsy %>% 
+  full_join(catch) %>%
+  group_by(rgn_id, group, year) %>%
+  summarize(catch = sum(mean_catch, na.rm=T)) %>%
+  left_join(rgn_deets) %>%
+  select(year, rgn_nam, group, catch) %>%
+  distinct() %>%
+  mutate(status = ifelse(is.na(group), "no status", group)) %>%
+  filter(year > 2008)
+
+
+ggplot(combine, aes(year, catch)) + 
+  geom_area(aes(fill = status)) +
+  facet_wrap(~rgn_nam, scales = "free") +
+  scale_fill_manual(breaks = c("fully exploited", "no status", "overfished", "underfished"), 
+                       values=c("darkblue", "orange", "darkred", "darkgreen")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+What stocks are making up Sierra Leone's catch?
+
+```{r}
+sl <- catch %>% 
+  filter(rgn_id == 96,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch))
+
+plotly::ggplotly(ggplot(sl, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+
+```
+
+
+It looks like *Ethmalosa fimbriata - 34* makes up a significant portion of the catch! Almost 60% of catch. This is a **Bonga Shad**
+
+```{r}
+shad_bbmsy <- bbmsy %>%
+  filter(stock_id == "Ethmalosa_fimbriata-34")
+
+ggplot(shad_bbmsy, aes(x = year, y = bbmsy)) +
+  geom_line() +
+  theme_bw() +
+  geom_hline(yintercept = 1.45, color = "darkgreen", lty = "dashed") +
+  ylab("B/Bmsy") +
+  xlab("Year") +
+  ggtitle("Bonga Shad FAO area 34")
+
+```
+
+This seems to be a large fishery for West Africa ([FAO](http://www.fao.org/fishery/species/2095/en)). And the status has been getting closer to 1 so it improves the score. The dashed green line shows where we define underexploted (>1.45) and fully exploited (<1.45) which explains the dramatic shift in the plot.
+
+Let's see what's going on with Peru
+
+```{r}
+peru <- catch %>% 
+  filter(rgn_id == 138,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch))
+
+plotly::ggplotly(ggplot(peru, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+```
+
+Again we have a single fishery making up almost 68% of the total catch. This isn't surprising as Peruvian anchoveta is one of the largest fisheries in the world.
+
+```{r}
+anch_bbmsy <- bbmsy %>%
+  filter(stock_id == "Engraulis_ringens-87") %>%
+  filter(year > 2007)
+
+ggplot(anch_bbmsy, aes(x = year, y = bbmsy)) +
+  geom_line() +
+  theme_bw() +
+  geom_hline(yintercept = 1.45, color = "darkgreen", lty = "dashed") +
+  labs(y = "B/Bmsy",
+       x = "Year",
+       title = "Engraulis ringens FAO area 87")
+```
+
+
+Let's look at the islands. Ile Europa and Ile Tromelin are geographically close, near Madagascar.
+
+```{r}
+Iles <- catch %>% 
+  filter(rgn_id %in% c(35,36),
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year, rgn_id) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
+  left_join(rgn_deets)
+
+plotly::ggplotly(ggplot(Iles, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position="") +
+  facet_wrap(~rgn_nam))
+```
+
+Ok it looks like Tuna is a significant portion of catch for these islands.
+
+```{r}
+
+ile_catch <- Iles %>%
+  filter(catch_prop > 0.1,
+         !is.na(bbmsy))
+
+ggplot(ile_catch, aes(x = year, y = bbmsy, color = stock_id)) +
+  geom_line() +
+  theme_bw() +
+  labs(y = "B/Bmsy",
+       x = "Year",
+       ggtitle = "Tuna status for FAO 51") +
+  theme(legend.title=element_blank())
+
+```
+
+Let's look at the Maldives
+
+```{r}
+maldives <- catch %>% 
+  filter(rgn_id == 39,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
+  left_join(rgn_deets)
+
+plotly::ggplotly(ggplot(maldives, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+```
+
+Again *Katsuwonus pelamis* (Skipjack Tuna) is majority of catch.
+
+Is Amsterdam Island also highly dependant on Skipjack? It's much more subpolar (near Antarctic)
+
+```{r}
+ams <- catch %>% 
+  filter(rgn_id == 92,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
+  left_join(rgn_deets)
+
+plotly::ggplotly(ggplot(ams, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+
+```
+
+This time is *Thunnus albacares* (Yellowfin tuna) which has a similar trajectory to Skipjack.
+
+
+
+
+
+
+
+
+
