@@ -24,7 +24,7 @@ This document describes results from the OHI 2018 global assessment.  This is mo
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2018-11-27' #date extension on data files used for all tables/figures
+dateFile = '2018-11-28' #date extension on data files used for all tables/figures
 
 ## General settings to control
 scenario <- 2018 #identify scenario of focus (this can be changed to obtain data for other years)

@@ -3,7 +3,7 @@
 ###########################################
 library(dplyr)
 saveFile = "global2018"
-dateFile = '2018-11-09'
+dateFile = '2018-11-28'
 
 # list of goals:
 goalList <- c('AO', 'BD', 'CP', 'CS', 'CW', 'ECO', 'FIS', 'FP', 'HAB', 'ICO', 'LE', 'LIV', 'LSP', 'MAR', 'NP', 'SP', 'SPP', 'TR')
@@ -76,7 +76,7 @@ hs_all <- hs_all %>%
 area <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/layers/rgn_area.csv') %>%
   select(region_id=rgn_id, area_km2)
 
-eez <- read.csv(sprintf('https://github.com/OHI-Science/ohi-global/blob/draft/global2018/scores_%s.csv?raw=true', dateFile),
+eez <- read.csv(here(sprintf('%s/scores_%s.csv', saveFile, dateFile)),
                 stringsAsFactors=FALSE)
 
 eez <- eez %>%
