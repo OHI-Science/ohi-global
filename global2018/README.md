@@ -6,7 +6,7 @@ All years (2012 to 2018) have been recalculated using the most up-to-date data a
 
 Scores range from 0-100, with the exception of trend data which ranges from -1 to 1. Blank cells indicate that goal is not applicable to that region.  
 
-csv file contains 7 variables and 146196 rows of data
+csv file contains 7 variables and 170562 rows of data
 
 | header | description | 
 | ------ | ---------------------------------- | 

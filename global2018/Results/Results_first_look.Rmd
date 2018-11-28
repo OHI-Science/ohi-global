@@ -406,7 +406,7 @@ kable(low)
 ```
 
 ## Country scores across scenario year
-This carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/carpetPlot.png)) provides an overview of the scores from the 2018 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 6 years of data.  Black regions indicate no data.
+Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2018 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 7 years of data.  Black regions indicate no data.
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 
@@ -729,7 +729,7 @@ cols <- as.character(unique(trends_hist$colors))
 g <- ggplot(trends_hist, aes(x=trend)) +
 geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
 scale_fill_manual("", breaks=colors, values=cols, guide=FALSE) +
-labs(y="Number of regions", x="Index scores: 5 year trend") + 
+labs(y="Number of regions", x="Annual change in Index scores") + 
 geom_vline(xintercept=0, color="red") +  
 theme_bw()
 
