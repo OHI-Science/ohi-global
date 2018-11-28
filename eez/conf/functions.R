@@ -1006,7 +1006,6 @@ TR <- function(layers) {
   ##  E   = Ep                         # Ep: % of direct tourism jobs. tr_jobs_pct_tourism.csv
   ##  S   = (S_score - 1) / (7 - 1)    # S_score: raw TTCI score, not normalized (1-7). tr_sustainability.csv
   ##  Xtr = E * S
-  
   pct_ref <- 90
   
   scen_year <- layers$data$scenario_year
@@ -1040,11 +1039,22 @@ TR <- function(layers) {
      dplyr::left_join(rgn_travel_warnings, by = c('rgn_id', 'scenario_year')) %>%
      dplyr::mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
      dplyr::select(-multiplier)
-   
+
+  # assign NA for uninhabitated islands (i.e., islands with <100 people)
+  if (conf$config$layer_region_labels == 'rgn_global') {
+    unpopulated = layers$data$uninhabited %>%
+      dplyr::filter(est_population < 100 | is.na(est_population)) %>%
+      dplyr::select(rgn_id)
+    tr_model$Xtr = ifelse(tr_model$rgn_id %in% unpopulated$rgn_id,
+                            NA,
+                          tr_model$Xtr)
+  }
+  
+     
   
   ### Calculate status based on quantile reference (see function call for pct_ref)
   tr_model <- tr_model %>%
-    dplyr::filter(scenario_year <= scen_year & scenario_year >=2008) %>%
+    dplyr::filter(scenario_year >=2008) %>%
     dplyr::mutate(Xtr_q = quantile(Xtr, probs = pct_ref / 100, na.rm = TRUE)) %>%
     dplyr::mutate(status  = ifelse(Xtr / Xtr_q > 1, 1, Xtr / Xtr_q)) %>% # rescale to qth percentile, cap at 1
     dplyr::ungroup()
@@ -1087,17 +1097,7 @@ TR <- function(layers) {
   tr_score <- dplyr::bind_rows(tr_status, tr_trend) %>%
     dplyr::mutate(goal = 'TR')
   
-  
-  # assign NA for uninhabitated islands (i.e., islands with <100 people)
-  if (conf$config$layer_region_labels == 'rgn_global') {
-    unpopulated = layers$data$uninhabited %>%
-      dplyr::filter(est_population < 100 | is.na(est_population)) %>%
-      dplyr::select(region_id = rgn_id)
-    tr_score$score = ifelse(tr_score$region_id %in% unpopulated$region_id,
-                            NA,
-                            tr_score$score)
-  }
-  
+
   # return final scores
   scores <- tr_score %>%
     dplyr::select(region_id, goal, dimension, score)
