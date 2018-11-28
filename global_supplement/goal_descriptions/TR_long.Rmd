@@ -48,15 +48,15 @@ The index is based on 14 pillars that are organized into four subindexes:
     
 The sustainability factor, $S$ is calculated as the average of the 4 subindexes. Missing sustainability data were gapfilled using per capita GDP (World Bank data with gaps filled using CIA data) based on a linear regression model.  For regions without per capita GDP data, remaining missing data were gapfilled using averages of [UN geopolitical regions](https://github.com/OHI-Science/ohiprep/blob/master/src/LookupTables/rgn_georegions_wide_2013b.csv), [@united_nations_statistics_2013] with sustainability data. 
 
-Penalties, $W$ were assigned based on travel warnings issued by the US State Department or Canada's Government Travel Advise and Advisory  (Table 5.11). 
+Penalties, $W$ were assigned based on travel warnings issued by the US State Department (Table 5.11). 
 
 **Table 5.11. Travel warning penalties**
-Penalties, $W$, based on level or US State Department travel warnings or Canada's Government Travel Advise and Advisory.
+Penalties, $W$, based on level or US State Department travel warnings.
 
 Travel warning                            | Penalty, $W$
 ----------------------------------------- | ---------------
-Level 1:Exercise Normal Precautions       |  1
-Level 2: Exercise Increased Caution       |  0.75
+Level 1:Exercise Normal Precautions       |  1 (no penalty)
+Level 2: Exercise Increased Caution       |  1 (no penalty)
 Level 3: Reconsider Travel                | 0.25
 Level 4: Do Not Travel                    | 0
 
