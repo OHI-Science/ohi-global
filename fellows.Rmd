@@ -1,26 +1,51 @@
 ---
 title: "Ocean Health Index Fellows Program"
-subtitle: "Training the next generation of ocean data scientists through global ocean health assessments"
+subtitle: "Training the next generation of ocean data scientists"
 output:
   html_document
 ---
 
-<picture here?>
+----
+
+The OHI Fellows Program is our new approach to calculating global scores annually: the OHI team trains graduate students in cutting-edge open data science tools as they conduct the annual global assessment.
+
+----
 
 
-OHI scores provide an invaluable, comprehensive, and quantitative assessment of progress towards healthy and sustainable oceans. Such assessments are particularly valuable when repeated annually.
-The OHI Global Fellows Program provides a cost-effective means to calculate global scores annually and trains graduate students to apply cutting-edge open data science tools.
-
-The OHI Global Fellows Program is designed to fulfill our growing OHI assessment needs while providing opportunities for graduate students to learn cutting-edge data science skills. We piloted the program in 2018 and found it to be highly successful.
-
-“These skills will be invaluable in my future work as an environmental data scientist.”
-- Ellie Campbell, 2018 OHI Global Fellow
-
-Not only will this program produce annual recalculated global scores, these highly trained graduate students will be adding benefit to the global OHI Community of Practice by helping to support government groups calculating OHI scores for their own nations.
-
-More information: ohi-science.org/news/training-the-next-generation-of-ocean-data-scientists The Global Fellows program, in their own words: ohi-science.org/globalfellows
+<center><img src="fellows_cohort1.png" width="300px"></center>
+<center><font size="1">In 2018 the inaugural cohort of OHI Fellows were trained to lead the annual global assessment.</font></center>
 
 
-Steal text from Mel's, 1-pagers
-link to their website, blogs,
-Application material
+
+<br>
+
+The OHI Fellows Program not only produces annual recalculated global OHI scores, these highly trained graduate students become valuable members to the global OHI community. We piloted the program in 2018 with a fantastic group of students and will begin the second cohort in 2019.
+
+Communication was a big part of the Fellowship experience: 
+
+- The Fellows created the [globalfellows website](http://ohi-science.org/globalfellows) and [blogged](http://ohi-science.org/globalfellows/blog.html) as they learned
+- Ellie made a website for our [`ohicore` R package](http://ohi-science.org/ohicore)
+- Iwen made an [interactive data explorer](https://iwensu.shinyapps.io/global-dashboard/) for the Mariculture goal
+- Camila created country score cards and produced our [training videos](https://www.youtube.com/watch?v=xpe7jmt0-J4&list=PLX7J3qtjcll_4s2oaKHuWdRdBMJz7tBAU)
+
+Additionally, we [blogged](http://ohi-science.org/news) about the experience:
+
+- [Training the next generation of ocean data scientists](http://ohi-science.org/news/training-the-next-generation-of-ocean-data-scientists) by Erin O'Reilly, March 2018
+- [Fellowship Feature: Expanding mariculture](http://ohi-science.org/news/fellowship-expanding-mariculture): by Iwen Su, October 2018
+- [What does scientific reproducibility look like?](http://ohi-science.org/news/scientific-reproducibility-with-fellows) by Erin O'Reilly and Jenny Seifert, October 2018
+- [Building community for OHI and beyond](http://ohi-science.org/news/building-community) by Julie Lowndes, October 2018
+- [Fellowship Feature: Demystifying pressures and ohicore](http://ohi-science.org/news/fellowship-demystifying-pressures-ohicore) by Ellie Campbell, October 2018
+- [Fellowship Feature: Applying data science principles](http://ohi-science.org/news/fellowship-feature-applying-data-science-principles) by Camila Vargas, Nov 2018
+- [Fellowship Feature: Teaching reflections](http://ohi-science.org/news/fellowship-feature-teaching-reflections) by Melanie Frazier and Julie Lowndes
+
+> "These skills will be invaluable in my future work as an environmental data scientist”  
+> - Ellie Campbell, 2018 OHI Global Fellow
+
+<br>
+
+[<img src="https://docs.google.com/drawings/d/1633uvIYgsBhiKBddQAaTlvYDJgOK1uiDB6wkooNyhFc/pub?w=576&h=288" width="100px">](http://ohi-science.org)  
+[ohi-science.org home](http://ohi-science.org)
+
+
+
+

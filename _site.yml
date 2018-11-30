@@ -10,6 +10,8 @@ navbar:
     href: scores.html
   - text: Download
     href: download.html
+  - text: Fellows
+    href: fellows.html
 output_dir: "."
 output:
   html_document:
@@ -18,9 +20,5 @@ output:
     css: _sass/main.css
     lib_dir: site_libs
     self_contained: no
-exclude:
-- local_goals.Rmd
-- local_layers_all.Rmd
-- local_layers_all_no_header.Rmd
-- local_layers_table.Rmd
+exclude: ["local_goals.Rmd", "local_layers_all.Rmd", "local_layers_all_no_header.Rmd", "local_layers_table.Rmd", "scores.Rmd"]
 
