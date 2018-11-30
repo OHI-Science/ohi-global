@@ -1,5 +1,5 @@
 ---
-title: 'Ocean Health Index 2017: Methods'
+title: 'Ocean Health Index 2018: Methods'
 csl: methods-in-ecology-and-evolution.csl
 output:
   html_document:
@@ -28,7 +28,8 @@ Compiled on `r date()`.
  # 1. Run CombineLayers.R to create the relevant Rmd file for data layers (if any changes to these files), creates layers_all.R
  # 2. Save a new OHI.bib file from Zotero if changes to referenes (Export BibLaTeX)
  # 3. Run BIBcorrect.R to fix a few weird things in the OHI.bib file
- # 4. Knit this file. 
+  # 4. Review document to fix year references (i.e., title at top, assessmentYear variable in this code chunk, update figure 3.1)
+ # 5. Knit this file and review html output. 
 
 
 
@@ -48,7 +49,7 @@ options(knitr.kable.NA = '')
 # exclude when knitting
 # setwd("global_supplement")
 
-assessmentYear <- 2017
+assessmentYear <- 2018
 
 # sections to run:
 ten_goals <- TRUE
@@ -68,7 +69,7 @@ The Ocean Health Index assesses ocean health which we define as how well we are 
 
 The OHI is considered a *composite indicator* because it combines many indicators into a comprehensive framework describing ocean health.  This is in contrast to focusing on individual indicators, such as phosphate levels, sedimentation, biodiversity, etc.  Individual indicators are important, but they provide limited information when it comes to evaluating how well an overall ecosystem is functioning.  Another shortcoming of individual indicators is that they do not directly describe what we actually care about, and consequently, focusing on them can hinder communication.  For example, most people do not directly care about nutrient pollution, however, we do care about its effects on the ocean’s ability to provide recreation and food.  
 
-Without an overall framework to evaluate indicators, certain indicators may be overemphasized relative to their true importance due to researcher bias (most researchers believe their area study is the most important), trends in research (what is currently considered a hot topic and is funded), and availability of data (e.g., some data is easier to collect).  A model that combines multiple indicators will inevitably have flaws, but at least we know which variables are included and how they are weighted.
+Without an overall framework to evaluate indicators, certain indicators may be overemphasized relative to their true importance due to researcher bias (most researchers believe their area of study is the most important), trends in research (what is currently considered a hot topic and is funded), and availability of data (e.g., some data is easier to collect).  A model that combines multiple indicators will inevitably have flaws, but at least we know which variables are included and how they are weighted.
 
 ## The role of humans
 One of the primary contributions of the OHI is that it recognizes people are an important part of the marine system.  Both conservation and extractive use of ocean resources are valued, and consequently, scores are highest when we maximize the benefits we receive while maintaining sustainability so we can continue to receive benefits now and into the future.  One temptation of indicator development is to focus only on the pressures that humans apply to systems.  This makes sense because we want to be sure we are adequately protecting resources.  However, eliminating all pressures on the ocean would require eliminating all contact between humans and the ocean. Beyond being unrealistic, this is undesirable because we would stop receiving all the benefits that we rely on from the ocean. The OHI is unique because it tracks both the pressures we put on oceans as well as the benefits we receive.
@@ -116,7 +117,7 @@ Goal scores are the average of current and likely future status.  Likely future 
 Dimension        | Subdimension   | Description                  | More information     | Calculating
 ---------------- | ----------- | ---------------------------- | -------------------- | ----------------------
 Current status   |  -          | Current state of the goal relative to the desired "reference point".  Values range from 0-100. | *Section 5. Goal models and data* | Calculated using functions in ohi-global repo: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R and the *scenario_data_years.csv* file (in same folder)
-Predicted future status | Resilience | Variables such as good governance and ecological factors that provide resilience to pressures, and thus, are likely to improve future status.  Values range from 0-100  | *Section 4.3 Likely future status dimensions | Calculated using functions in ohicore package.And, files: *resilience_categories.csv* and *resilience_matrix.csv* located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/conf
+Predicted future status | Resilience | Variables such as good governance and ecological factors that provide resilience to pressures, and thus, are likely to improve future status.  Values range from 0-100  | *Section 4.3 Likely future status dimensions* | Calculated using functions in ohicore package.And, files: *resilience_categories.csv* and *resilience_matrix.csv* located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/conf
 Predicted future status | Pressure  | Pressures stress the system and threaten future delivery of benefits, and thus, are likely to reduce future status. Values range from 0-100  | *Section 4.3 Likely future status dimensions* | Calculated using function in ohicore package.  And, files: *pressure_categories.csv* and *pressures_matrix.csv*, located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/con
 Predicted future status | Trend  | Average yearly change in status (typically estimated using most recent 5 years of data) multiplied by 5 to esimate five years into the future.  Units are proportional change (absolute change/year is divided by the value of the earliest year) and range from -1 to 1  | *Section 4.3 Likely future status dimensions* | Calculated using functions from ohi-global repo: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R and the scenario_data_years.csv file (in same folder)
 
@@ -126,7 +127,7 @@ This figure describes how the dimensions come together to calculate a goal score
 
 Finally, an overall Index score for each region is calculated by averaging the goal scores (Figure 1.2).
 
-**Figure 1.2. Flowerplot of goal scores for a region**
+**Figure 1.2. Example flowerplot of goal scores for a region**
 Goal and subgoal scores for Canada.  The middle value is the regional Index score, and is calculated by averaging the goal scores.
 ![](figures/flower_Canada.png)
 
@@ -149,9 +150,9 @@ One of the first steps of conducting on OHI assessment is defining regions of in
 There are 220 global coastal countries and territorial regions (Table 3.1).  Regions are based on Exclusive Economic Zone boundaries [EEZ, @claus_marine_2012].  However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.).  We have also modified some boundaries [@halpern_index_2012; @halpern_patterns_2015].  We do not estimate OHI values for disputed or unclaimed areas.
 
 **Figure 3.1. Global regions**
-Map of the OHI regions (with color corresponding to 2017 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
+Map of the OHI regions (with color corresponding to 2018 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
 
-![](figures/global_map_Index_2017_mol.png)
+![](../global2018/Results/figures/maps_by_goal_mol/global_map_Index_2018_mol.png)
 
 **Table 3.1. Global regions**
 
@@ -338,20 +339,20 @@ data <- left_join(target, base, by="layer")
 
 ## Get data prep url (will be a link in description)
 url <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "dataprep_url_2017") %>%
+  filter(variable == "dataprep_url") %>%
   group_by(layer) %>%
   mutate(N = 1) %>%
   mutate(method_count = cumsum(N)) %>%
   mutate(total_methods = sum(N)) %>%
   mutate(count = sum(N)) %>%
-  mutate(url_link = ifelse(count==1,  paste0("[data prep]", "(", variable_data, ")"), 
-                           paste0("[data prep ", method_count, "](", variable_data, ")"))) %>%
+  mutate(url_link = ifelse(count==1,  sprintf("[data prep](http://ohi-science.org/ohiprep_v%s/%s)", assessmentYear, variable_data), 
+                sprintf("[data prep %s](http://ohi-science.org/ohiprep_v%s/%s)", method_count, assessmentYear, variable_data))) %>%
   summarize(url_link = paste(url_link, collapse = ", ")) %>%
   select(layer, url_link) %>%
   ungroup()
 
 data <- left_join(data, url, by="layer") %>%
-  mutate(Description = paste0(Description, " (", url_link, ")")) %>%
+  mutate(Description = sprintf("%s (%s)", Description, url_link)) %>%
   select(layer, Name, Description, Dimension)
 
 ## get references:
@@ -373,7 +374,7 @@ data <- data %>%
 
 ### Get method updates
 updates <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "methods_update_2017") %>%
+  filter(variable == "methods_update") %>%
   select(layer, Updates=variable_data) %>%
   unique()
 
@@ -399,7 +400,7 @@ A brief overview of the data sources used to calculate the global OHI.
 ## get source data
 ds_source <- read.csv("../eez_layers_meta_data/layers_eez_data_sources.csv") %>%
   mutate(ds_reference = paste0("@", ds_reference)) %>%
-  select(Reference = ds_reference, "Description" = ds_description, Years=ds_years, Resolution = ds_native_resolution, Updated = ds_updated_2017)
+  select(Reference = ds_reference, "Description" = ds_description, Years=ds_years, Resolution = ds_native_resolution, Updated = ds_updated_2018)
 kable(ds_source)
 
 ```

@@ -1,2 +1,0 @@
-Population data are from the World Bank ([http://data.worldbank.org/indicator/SP.POP.TOTL](http://data.worldbank.org/indicator/SP.POP.TOTL)). We gapfilled 59 regions with no reported data using Wikipedia. Those estimates were for a single year, so to fill missing years we calculated the average per-year change in population across all regions in the World Bank data, and then applied those percent changes to the single year data.
-
