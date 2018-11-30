@@ -15,11 +15,11 @@ output: html_document
   
   
 <br>
-2017 marks the sixth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. For the fifth assessment in 2016, we also explored trends and trajectories in ocean health:
+Ocean Health Index scores provide invaluable, comprehensive, and quantitative assessments of progress towards healthy and sustainable oceans. Such assessments are particularly valuable when repeated annually. 2018 marks the seventh year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. For the fifth assessment in 2016, we also explored trends and trajectories in ocean health:
 
 <center>
 • [**Halpern *et al*. 2017, *PLoS ONE***](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267) • [**interactive figures and maps**](http://ohi-science.nceas.ucsb.edu/plos_change_in_global_ocean_health/) • [**Open Channels webinar**](https://www.openchannels.org/webinars/2017/drivers-and-implications-change-global-ocean-health-demonstrated-ocean-health-index) •
-[**Supplemental Information**](https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html) •
+[**Supplemental Information**](https://raw.githack.com/OHI-Science/ohi-global/published/global_supplement/Supplement.html) •
 </center>
   
 ----
@@ -28,22 +28,22 @@ output: html_document
 ```{r fig.width=5, fig.height=5,echo=FALSE}
 library(png)
 library(grid)
-img <- png::readPNG('flower_Globalaverage2017.png') 
+img <- png::readPNG('flower_Globalaverage2018.png')
 grid.raster(img)
 ```
 
 <br>
 <br>
 <br>
-**The average 2017 Index score was 70 out of 100**.  
-Average Index scores have not dramatically changed over six years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.   
+**The average 2018 Index score was 70 out of 100**. 
+Average Index scores have not dramatically changed over seven years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.   
 <br> 
   
 - [Learn about the goals](http://ohi-science.org/ohi-global/goals)      
-- [Read the 2017 results summary](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/Supplement_Results.html)
+- [Read the 2018 results summary](https://raw.githack.com/OHI-Science/ohi-global/published/global2018/Results/Supplement_Results.html)
 - [Explore scores by region and goal](http://ohi-science.org/ohi-global/scores)    
 - [Download data](http://ohi-science.org/ohi-global/download) 
-- [Dig deeper with the 2017 methods](https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html)
+- [Dig deeper with the 2018 methods](https://raw.githack.com/OHI-Science/ohi-global/published/global_supplement/Supplement.html)
 - [Learn more at oceanhealthindex.org](http://www.oceanhealthindex.org/)
 </div>
   
@@ -52,5 +52,11 @@ The OHI framework has not changed since its inception in 2012 ([*Halpern et al. 
 For further details, see [*Halpern et al. 2015*](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117863), [*Halpern et al. 2017*](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267),  [*Lowndes et al. 2015*](https://peerj.com/articles/1503), and [*Lowndes et al. 2017*](https://www.nature.com/articles/s41559-017-0160).
 <br>
 <br>
-<!---Erroring 11/27/17, look into it later [<img src="https://docs.google.com/drawings/d/e/2PACX-1vTi4aqn_mn_ddyY9pSmnvebsJTHLWm-917sVfZorvUdF3lmBXWM6gr3vSYYJ1uEg5Bf3BtaO_j7z-gi/pub?w=288&h=120" width="150px">](http://ohi-science.org)  --->
+
+[<img src="https://docs.google.com/drawings/d/1633uvIYgsBhiKBddQAaTlvYDJgOK1uiDB6wkooNyhFc/pub?w=576&h=288" width="100px">](http://ohi-science.org)  
 [ohi-science.org home](http://ohi-science.org)
+
+<!---Erroring 11/27/17, look into it later [<img src="https://docs.google.com/drawings/d/e/2PACX-1vTi4aqn_mn_ddyY9pSmnvebsJTHLWm-917sVfZorvUdF3lmBXWM6gr3vSYYJ1uEg5Bf3BtaO_j7z-gi/pub?w=288&h=120" width="150px">](http://ohi-science.org)  
+[ohi-science.org home](http://ohi-science.org)
+--->
+

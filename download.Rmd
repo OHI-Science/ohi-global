@@ -27,31 +27,31 @@ With each annual global assessment we have incrementally improved data processin
 -----
 
 <div class="col2">
-**Global assessment scores 2012-2017**
+**Global assessment scores 2012-2018**
 
 Quick access to *.csv* files of calculated global scores.
 
-- [Download by clicking here](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-22.csv), then right-click to Save As.  
-- [View the metadata](https://github.com/OHI-Science/ohi-global/tree/draft/global2017#ohi-2017-global-metadata).
+- [Download by clicking here](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/OHI_final_formatted_scores_2018-11-28.csv), then right-click to Save As.
+- [View the metadata](https://github.com/OHI-Science/ohi-global/tree/draft/global2018#ohi-2018-global-metadata).
 
 **Documentation and Instruction**
 
-- [2017 Global OHI Scores Report](https://rawgit.com/OHI-Science/ohi-global/draft/global2017/Results/Supplement_Results.html) 
-- [2017 Methods](https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html)
+- [2018 Global OHI Scores Report](https://raw.githack.com/OHI-Science/ohi-global/published/global2018/Results/Supplement_Results.html) 
+- [2018 Methods](https://raw.githack.com/OHI-Science/ohi-global/published/global_supplement/Supplement.html)
 - [Peer-reviewed publications](http://ohi-science.org/resources/publications/) 
-- [Assessment manual (how to use `ohicore`)](http://ohi-science.org/manual)
+- [Learn how to use `ohicore`](http://ohi-science.org/ohicore)
 
 <br>
 
 **Full methods and data**
 
 Final scores and methods are released annually each fall. Ongoing work is available in our [**OHI-Science**](https://github.com/OHI-Science) GitHub repositories.
-A description of file organization [is available](https://rawgit.com/OHI-Science/ohiprep/master/src/dataOrganization_SOP.html).  
+A description of file organization [is available](https://github.com/OHI-Science/ohiprep_v2018/blob/gh-pages/src/dataOrganization_SOP.md#sop-for-data-management-for-ocean-health-index-assessments).
 
-- [data preparation releases (`ohiprep` repository)](https://github.com/OHI-Science/ohiprep_v2017/releases) 
+- [data preparation releases (`ohiprep` repository)](https://github.com/OHI-Science/ohiprep_v2018/releases) 
 - [score calculation releases (`ohi-global` repository)](https://github.com/OHI-Science/ohi-global/releases)
 - [`R` package to calculate scores (`ohicore` repository)](https://github.com/OHI-Science/ohicore/releases)
-- [Large data files](https://mazu.nceas.ucsb.edu/data/): Download data too large to host on GitHub (region shapefiles, pressure raster data, etc.), 
+- [Large data files](https://mazu.nceas.ucsb.edu/data/): Download data too large to host on GitHub (region shapefiles, pressure raster data, etc.) 
 </div>
 
 <br>
@@ -63,7 +63,7 @@ A description of file organization [is available](https://rawgit.com/OHI-Science
 
 ## Acknowledgements
 
-We thank all the groups that collect and share data openly; please see the [global layers page](https://github.com/OHI-Science/ohi-global/layers.html) for a full list. We also thank developers that make and teach free software tools, in particular [R](https://cran.r-project.org/), [RStudio](https://www.rstudio.com), [git](https://git-scm.com/), and [GitHub](https://github.com/). 
+We thank all the groups that collect and share data openly; please see the [global layers page](https://github.com/OHI-Science/ohi-global/layers.html) for a full list. We also thank developers and communities that make and teach free software tools, in particular [R](https://cran.r-project.org/), [RStudio](https://www.rstudio.com), [git](https://git-scm.com/), [GitHub](https://github.com/), and [rOpenSci](https://ropensci.org/).
 
 [<img src="https://docs.google.com/drawings/d/1633uvIYgsBhiKBddQAaTlvYDJgOK1uiDB6wkooNyhFc/pub?w=576&h=288" width="100px">](http://ohi-science.org)  
 [ohi-science.org home](http://ohi-science.org)
