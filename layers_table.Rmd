@@ -13,5 +13,5 @@ source("./_site.R")
 
 
 ```{r, child="local_layers_table.Rmd"}
-library(tidyverse)
+
 ```

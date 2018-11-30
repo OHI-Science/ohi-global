@@ -6,9 +6,9 @@ output:
     toc_float: true
 ---
 
-Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index score. Methods have incrementally improved each year with new information and knowledge. Thus, for annual scores to be comparable through time, previous scores are recalculated with the most recent methods for each past assessment year. **All scores below use the 2017 methods**.
+Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index score. Methods have incrementally improved each year with new information and knowledge. Thus, for annual scores to be comparable through time, previous scores are recalculated with the most recent methods for each past assessment year. **All scores below use the 2018 methods**.
 
-Below are six years of global assessment scores for 220 regions (coastal nations and territories). <!---could bring back the Regions page to be only linked from here---> Flower plots display the 2017 scores, with each petal representing an individual goal. Petal lengths convey the score of the goal, thus longer petals are closer to achieving their target. Only goals that are relevant to a region are scored, otherwise they are set to NA with grey petals. All scores are on a scale from 0-100, and the center number is the region's Index score.
+Below are seven years of global assessment scores for 220 regions (coastal nations and territories). <!---could bring back the Regions page to be only linked from here---> Flower plots display the 2018 scores, with each petal representing an individual goal. Petal lengths convey the score of the goal, thus longer petals are closer to achieving their target. Only goals that are relevant to a region are scored, otherwise they are set to NA with grey petals. All scores are on a scale from 0-100, and the center number is the region's Index score.
 
 ----
 
@@ -17,7 +17,7 @@ library(tidyverse)
 source('_site.R')
 
 ## read in scores
-data <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/OHI_final_formatted_scores_2017-11-22.csv') 
+data <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/OHI_final_formatted_scores_2018-11-28.csv') 
 
 ## read in paths for figures
 regions_figs <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/conf/web/regions_figs.csv')
@@ -59,7 +59,7 @@ for (r in regions$region_id){ # r = regions$region_id[1]
   
   
   flower_path <- file.path(
-    'https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2017/Results',
+    'https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results',
     regions$flower_png[regions$region_id == r])
   
   ## header, flower
