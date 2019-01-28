@@ -2,28 +2,21 @@ ohi-global
 ==========
   
 ### Ocean Health Index assessment of global EEZ regions 
-
-#### Anatomy of the file structure
+This repository includes files for the global OHI assessment using eez boundaries for 220 country and territorial regions.
 
 General information about file structure is here: http://ohi-science.org/manual/#file-system-organization
 
-This includes files for the OHI global assessment for eez boundaries:
+#### Anatomy of the file structure
 
-* eez (scenarios: 2012 - current): OHI for 220 country/territorial EEZ regions, this is typically considered the "OHI global assessment"
+*eez* 
 
-Additional files/folders include:
+Files associated with calculating the OHI scores for scenarios from 2012 to present.
 
-* eez_layers_meta_data: Database for the data layers (data sources, names, etc.) and functions to create different data formats
-* global_supplement: documents and code to create methods document 
-* global (2015-2017): Post assessment analysis and visualization of data
-* calculate\_scores_??.R: These files provide the code to calculate scores for the corresponding OHI assessment (the calculate_scores.R for the eez regions is located in the eez folder)
-* layers\_??.csv: These files provide the location of the data layers used to calculate the OHI assessments.  This file is created by data and functions in the eez_layers_meta_data folder, and they are used by calculate_scores_??.R.  
-* other files can be ignored
-
-Important files within the "eez", "antarctica", and "high seas" folders include:
+Some of the relevant files in the eez folder include:
 
 * calculate_scores.R: code to calculate scores
 * layers.csv: provides the location of the data layers used to calculate the OHI assessments.  This file is created by data and functions in the eez_layers_meta_data folder
+
 * scores.csv: The OHI scores
 * layers: All the data layers used by the OHI models to calculate scores
 * conf: Files that are used to set up the OHI model parameters
@@ -35,4 +28,19 @@ Important files within the "eez", "antarctica", and "high seas" folders include:
     - resilience_matrix.csv: Indicates which resilience layers affect which goals
     - resilience_categories: Defines the resilience category for each resilience layer
     - scenario_data_years.csv: Links the scenario year to the corresponding year of the data for each data layer
-    
+* calculate\_scores_??.R: These files provide the code to calculate scores for the corresponding OHI assessment (the calculate_scores.R for the eez regions is located in the eez folder)
+* layers\_??.csv: These files provide the location of the data layers used to calculate the OHI assessments.  This file is created by data and functions in the eez_layers_meta_data folder, and they are used by calculate_scores_??.R.  
+* other files can be ignored at this point
+
+
+*eez_layers_meta_data* 
+Database for the data layers (data sources, names, etc.) and functions to create different data formats
+
+*global_supplement* 
+Documents and code to create methods document. layers_eez_base.csv describes filepaths of data layers used to calculate scores. 
+
+*yearly_results* 
+Post assessment analysis and visualization of data
+
+
+
