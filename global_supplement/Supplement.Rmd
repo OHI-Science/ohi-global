@@ -62,7 +62,14 @@ resilience <- TRUE
 
 ```
 
-# The Theory
+# Introduction to the global Ocean Health Index (OHI) assessment
+
+The global Ocean Health Index assesses ocean health for 220 coastal countries and territories and has been conducted every years starting in 2012.  The Index describes how well we are sustainably managing 10 goals for ocean ecosystems which represent the full suite of benefits that people want and need from the ocean.  These goals include: artisanal fishing opportunity, biodiversity, carbon storage, clean waters, coastal livelihoods and economies, coastal protection, food provision, natural products, sense of place, and tourism and recreation.  Each goal is given a score ranging from 0 to 100, and the full suite of goal scores are then averaged to obtain an overall index score for each region.
+
+For more information about the philosophy of the Ocean Health Index and model development see Halpern et al. (2012, 2015) and http://ohi-science.org/ohi-global/, which includes information about downloading global ocean health data.
+
+
+# The Theory of OHI
 
 ## A comprehensive framework to assess ocean health
 The Ocean Health Index assesses ocean health which we define as how well we are sustainably managing the resources that we want and need from the ocean (e.g., tourism and recreation, food provisioning).
@@ -79,10 +86,6 @@ The global Ocean Health Index has been assessed every year since 2012. The prima
 
 Not all data layers are reported through the most current assessment year, and consequently, the OHI scores are calculated using the most recent year of available data. Details on which years are used for each data layer are provided in Table 6.2.
 
-## For more information
-For more information about the philosophy of the Ocean Health Index and model development see Halpern et al. (2012, 2015) and http://ohi-science.org/ohi-global/, which includes information about downloading global ocean health data.
-
-The Index is designed to be flexible so it can accommodate different scales and geographies of interest and different and new types of data (Lowndes et al. 2015, http://ohi-science.org). Currently, many countries are conducting local OHI assessments.
 
 ## Brief anatomy of OHI scores
 We define ocean health as the sustainable delivery of ten widely-held public goals for ocean ecosystems (Table 1.1).  These goals represent the full suite of benefits that people want and need from the ocean, including the traditional ‘goods and services’ people often consider (e.g., fish to eat, coastal protection from nearshore habitats) as well as benefits less commonly accounted for, such as cultural values and biodiversity.  Within each region, scores, ranging from 0 to 100, are calculated for the 10 goals (section 4.2).  Four of the goals are calculated from 2 subgoals.  The subgoals are calculated independently (i.e., they are treated as if they are goals) and then combined into the goal status score (Table 1.2).
