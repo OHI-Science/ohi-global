@@ -6,19 +6,12 @@ bibliography: OHI.bib
 
 **Data layers used in the OHI 2018 global assessment**
 
-These data layers were used to calculate the OHI 2018 assessment.  Clicking on the layer name in the "Data layer" variable will provide a full description of the data layer (as well as a link to the actual data).  The "Description" variable provides links to the scripts (on Github) used to create the data layers (when available).
+These data layers were used to calculate the OHI 2018 assessment.  Clicking on the layer name in the "Layer" variable will provide a full description of the data layer (as well as a link to the actual data).  The "Description" variable provides links to the code used to create the data layers (on Github when available).
 
 ```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, include=FALSE}
 library(tidyverse)
 library(knitr)
 library(here)
-
-## Julie: I am commenting this out as I troubleshoot for the ohi-global website
-#file.remove(here("eez/conf/web/OHI.bib"))
-#file.remove(here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
-
-#file.copy(here("global_supplement/OHI.bib"), here("eez/conf/web/OHI.bib"))
-#file.copy(here("global_supplement/methods-in-ecology-and-evolution.csl"), here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
 
 assessmentYear <- 2018
 ```
