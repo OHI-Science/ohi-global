@@ -29,7 +29,7 @@ regions <- data %>%
   dplyr::left_join(regions_figs, by = ('region_id'))
 
 ## arrange by region_name, with Global at the top
-regions <- bind_rows(
+regions <- dplyr::bind_rows(
   regions %>%
     filter(region_id == 0),
   regions %>%
@@ -42,15 +42,15 @@ for (r in regions$region_id){ # r = regions$region_id[1]
   
   ## filter region_id and transpose
   r_scores <- data %>% 
-    filter(region_id == r,
+    dplyr::filter(region_id == r,
            dimension == 'score') %>%
-    select(-region_id, -dimension) %>%
-    spread(scenario, value)
+    dplyr::select(-region_id, -dimension) %>%
+    tidyr::spread(scenario, value)
   
   r_scores_ordered <- data_frame(goal = c('Index', goals$goal)) %>%
-    left_join(r_scores, by='goal') %>%
-    select(-region_name, -goal) %>%
-    rename(goal = long_goal)
+    dplyr::left_join(r_scores, by='goal') %>%
+    dplyr::select(-region_name, -goal) %>%
+    dplyr::rename(goal = long_goal)
   
   
   ## display ----
@@ -59,8 +59,8 @@ for (r in regions$region_id){ # r = regions$region_id[1]
   
   
   flower_path <- file.path(
-    'https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results',
-    regions$flower_png[regions$region_id == r])
+    'https://raw.githubusercontent.com/OHI-Science/ohi-global/published',
+    gsub("/home/frazier/ohi-global/", "", regions$flower_png[regions$region_id == r]))
   
   ## header, flower
   cat(sprintf('## %s\n\n![](%s)\n\n', 

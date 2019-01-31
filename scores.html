@@ -100,6 +100,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -114,7 +117,6 @@ body {
   padding-top: 50px;
   margin-top: -50px;
 }
-
 .section h2 {
   padding-top: 50px;
   margin-top: -50px;
@@ -134,6 +136,43 @@ body {
 .section h6 {
   padding-top: 50px;
   margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -155,18 +194,77 @@ $(document).ready(function () {
 });
 </script>
 
-
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -317,7 +415,7 @@ div.tocify {
 <div id="global-average" class="section level2">
 <h2>Global average</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Globalaverage.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Globalaverage.png" />
 
 </div>
 <table>
@@ -530,7 +628,7 @@ div.tocify {
 <div id="albania" class="section level2">
 <h2>Albania</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Albania.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Albania.png" />
 
 </div>
 <table>
@@ -743,7 +841,7 @@ div.tocify {
 <div id="algeria" class="section level2">
 <h2>Algeria</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Algeria.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Algeria.png" />
 
 </div>
 <table>
@@ -956,7 +1054,7 @@ div.tocify {
 <div id="american-samoa" class="section level2">
 <h2>American Samoa</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_AmericanSamoa.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_AmericanSamoa.png" />
 
 </div>
 <table>
@@ -1169,7 +1267,7 @@ div.tocify {
 <div id="amsterdam-island-and-saint-paul-island" class="section level2">
 <h2>Amsterdam Island and Saint Paul Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_AmsterdamIslandandSaintPaulIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_AmsterdamIslandandSaintPaulIsland.png" />
 
 </div>
 <table>
@@ -1382,7 +1480,7 @@ div.tocify {
 <div id="andaman-and-nicobar" class="section level2">
 <h2>Andaman and Nicobar</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_AndamanandNicobar.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_AndamanandNicobar.png" />
 
 </div>
 <table>
@@ -1595,7 +1693,7 @@ div.tocify {
 <div id="angola" class="section level2">
 <h2>Angola</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Angola.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Angola.png" />
 
 </div>
 <table>
@@ -1808,7 +1906,7 @@ div.tocify {
 <div id="anguilla" class="section level2">
 <h2>Anguilla</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Anguilla.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Anguilla.png" />
 
 </div>
 <table>
@@ -2021,7 +2119,7 @@ div.tocify {
 <div id="antarctica" class="section level2">
 <h2>Antarctica</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Antarctica.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Antarctica.png" />
 
 </div>
 <table>
@@ -2234,7 +2332,7 @@ div.tocify {
 <div id="antigua-and-barbuda" class="section level2">
 <h2>Antigua and Barbuda</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_AntiguaandBarbuda.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_AntiguaandBarbuda.png" />
 
 </div>
 <table>
@@ -2447,7 +2545,7 @@ div.tocify {
 <div id="argentina" class="section level2">
 <h2>Argentina</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Argentina.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Argentina.png" />
 
 </div>
 <table>
@@ -2660,7 +2758,7 @@ div.tocify {
 <div id="aruba" class="section level2">
 <h2>Aruba</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Aruba.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Aruba.png" />
 
 </div>
 <table>
@@ -2873,7 +2971,7 @@ div.tocify {
 <div id="ascension" class="section level2">
 <h2>Ascension</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Ascension.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Ascension.png" />
 
 </div>
 <table>
@@ -3086,7 +3184,7 @@ div.tocify {
 <div id="australia" class="section level2">
 <h2>Australia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Australia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Australia.png" />
 
 </div>
 <table>
@@ -3299,7 +3397,7 @@ div.tocify {
 <div id="azores" class="section level2">
 <h2>Azores</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Azores.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Azores.png" />
 
 </div>
 <table>
@@ -3512,7 +3610,7 @@ div.tocify {
 <div id="bahamas" class="section level2">
 <h2>Bahamas</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Bahamas.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Bahamas.png" />
 
 </div>
 <table>
@@ -3725,7 +3823,7 @@ div.tocify {
 <div id="bahrain" class="section level2">
 <h2>Bahrain</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Bahrain.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Bahrain.png" />
 
 </div>
 <table>
@@ -3938,7 +4036,7 @@ div.tocify {
 <div id="bangladesh" class="section level2">
 <h2>Bangladesh</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Bangladesh.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Bangladesh.png" />
 
 </div>
 <table>
@@ -4151,7 +4249,7 @@ div.tocify {
 <div id="barbados" class="section level2">
 <h2>Barbados</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Barbados.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Barbados.png" />
 
 </div>
 <table>
@@ -4364,7 +4462,7 @@ div.tocify {
 <div id="bassas-da-india" class="section level2">
 <h2>Bassas da India</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_BassasdaIndia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_BassasdaIndia.png" />
 
 </div>
 <table>
@@ -4577,7 +4675,7 @@ div.tocify {
 <div id="belgium" class="section level2">
 <h2>Belgium</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Belgium.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Belgium.png" />
 
 </div>
 <table>
@@ -4790,7 +4888,7 @@ div.tocify {
 <div id="belize" class="section level2">
 <h2>Belize</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Belize.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Belize.png" />
 
 </div>
 <table>
@@ -5003,7 +5101,7 @@ div.tocify {
 <div id="benin" class="section level2">
 <h2>Benin</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Benin.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Benin.png" />
 
 </div>
 <table>
@@ -5216,7 +5314,7 @@ div.tocify {
 <div id="bermuda" class="section level2">
 <h2>Bermuda</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Bermuda.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Bermuda.png" />
 
 </div>
 <table>
@@ -5429,7 +5527,7 @@ div.tocify {
 <div id="bonaire" class="section level2">
 <h2>Bonaire</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Bonaire.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Bonaire.png" />
 
 </div>
 <table>
@@ -5642,7 +5740,7 @@ div.tocify {
 <div id="bosnia-and-herzegovina" class="section level2">
 <h2>Bosnia and Herzegovina</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_BosniaandHerzegovina.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_BosniaandHerzegovina.png" />
 
 </div>
 <table>
@@ -5855,7 +5953,7 @@ div.tocify {
 <div id="bouvet-island" class="section level2">
 <h2>Bouvet Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_BouvetIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_BouvetIsland.png" />
 
 </div>
 <table>
@@ -6068,7 +6166,7 @@ div.tocify {
 <div id="brazil" class="section level2">
 <h2>Brazil</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Brazil.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Brazil.png" />
 
 </div>
 <table>
@@ -6281,7 +6379,7 @@ div.tocify {
 <div id="british-indian-ocean-territory" class="section level2">
 <h2>British Indian Ocean Territory</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_BritishIndianOceanTerritory.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_BritishIndianOceanTerritory.png" />
 
 </div>
 <table>
@@ -6494,7 +6592,7 @@ div.tocify {
 <div id="british-virgin-islands" class="section level2">
 <h2>British Virgin Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_BritishVirginIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_BritishVirginIslands.png" />
 
 </div>
 <table>
@@ -6707,7 +6805,7 @@ div.tocify {
 <div id="brunei" class="section level2">
 <h2>Brunei</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Brunei.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Brunei.png" />
 
 </div>
 <table>
@@ -6920,7 +7018,7 @@ div.tocify {
 <div id="bulgaria" class="section level2">
 <h2>Bulgaria</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Bulgaria.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Bulgaria.png" />
 
 </div>
 <table>
@@ -7133,7 +7231,7 @@ div.tocify {
 <div id="cambodia" class="section level2">
 <h2>Cambodia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Cambodia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Cambodia.png" />
 
 </div>
 <table>
@@ -7346,7 +7444,7 @@ div.tocify {
 <div id="cameroon" class="section level2">
 <h2>Cameroon</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Cameroon.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Cameroon.png" />
 
 </div>
 <table>
@@ -7559,7 +7657,7 @@ div.tocify {
 <div id="canada" class="section level2">
 <h2>Canada</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Canada.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Canada.png" />
 
 </div>
 <table>
@@ -7772,7 +7870,7 @@ div.tocify {
 <div id="canary-islands" class="section level2">
 <h2>Canary Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_CanaryIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_CanaryIslands.png" />
 
 </div>
 <table>
@@ -7985,7 +8083,7 @@ div.tocify {
 <div id="cape-verde" class="section level2">
 <h2>Cape Verde</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_CapeVerde.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_CapeVerde.png" />
 
 </div>
 <table>
@@ -8198,7 +8296,7 @@ div.tocify {
 <div id="cayman-islands" class="section level2">
 <h2>Cayman Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_CaymanIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_CaymanIslands.png" />
 
 </div>
 <table>
@@ -8411,7 +8509,7 @@ div.tocify {
 <div id="chile" class="section level2">
 <h2>Chile</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Chile.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Chile.png" />
 
 </div>
 <table>
@@ -8624,7 +8722,7 @@ div.tocify {
 <div id="china" class="section level2">
 <h2>China</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_China.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_China.png" />
 
 </div>
 <table>
@@ -8837,7 +8935,7 @@ div.tocify {
 <div id="christmas-island" class="section level2">
 <h2>Christmas Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_ChristmasIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_ChristmasIsland.png" />
 
 </div>
 <table>
@@ -9050,7 +9148,7 @@ div.tocify {
 <div id="clipperton-island" class="section level2">
 <h2>Clipperton Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_ClippertonIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_ClippertonIsland.png" />
 
 </div>
 <table>
@@ -9263,7 +9361,7 @@ div.tocify {
 <div id="cocos-islands" class="section level2">
 <h2>Cocos Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_CocosIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_CocosIslands.png" />
 
 </div>
 <table>
@@ -9476,7 +9574,7 @@ div.tocify {
 <div id="colombia" class="section level2">
 <h2>Colombia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Colombia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Colombia.png" />
 
 </div>
 <table>
@@ -9689,7 +9787,7 @@ div.tocify {
 <div id="comoro-islands" class="section level2">
 <h2>Comoro Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_ComoroIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_ComoroIslands.png" />
 
 </div>
 <table>
@@ -9902,7 +10000,7 @@ div.tocify {
 <div id="cook-islands" class="section level2">
 <h2>Cook Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_CookIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_CookIslands.png" />
 
 </div>
 <table>
@@ -10115,7 +10213,7 @@ div.tocify {
 <div id="costa-rica" class="section level2">
 <h2>Costa Rica</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_CostaRica.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_CostaRica.png" />
 
 </div>
 <table>
@@ -10328,7 +10426,7 @@ div.tocify {
 <div id="croatia" class="section level2">
 <h2>Croatia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Croatia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Croatia.png" />
 
 </div>
 <table>
@@ -10541,7 +10639,7 @@ div.tocify {
 <div id="crozet-islands" class="section level2">
 <h2>Crozet Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_CrozetIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_CrozetIslands.png" />
 
 </div>
 <table>
@@ -10754,7 +10852,7 @@ div.tocify {
 <div id="cuba" class="section level2">
 <h2>Cuba</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Cuba.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Cuba.png" />
 
 </div>
 <table>
@@ -10967,7 +11065,7 @@ div.tocify {
 <div id="curacao" class="section level2">
 <h2>Curacao</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Curacao.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Curacao.png" />
 
 </div>
 <table>
@@ -11180,7 +11278,7 @@ div.tocify {
 <div id="cyprus" class="section level2">
 <h2>Cyprus</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Cyprus.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Cyprus.png" />
 
 </div>
 <table>
@@ -11393,7 +11491,7 @@ div.tocify {
 <div id="democratic-republic-of-the-congo" class="section level2">
 <h2>Democratic Republic of the Congo</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_DemocraticRepublicoftheCongo.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_DemocraticRepublicoftheCongo.png" />
 
 </div>
 <table>
@@ -11606,7 +11704,7 @@ div.tocify {
 <div id="denmark" class="section level2">
 <h2>Denmark</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Denmark.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Denmark.png" />
 
 </div>
 <table>
@@ -11819,7 +11917,7 @@ div.tocify {
 <div id="djibouti" class="section level2">
 <h2>Djibouti</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Djibouti.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Djibouti.png" />
 
 </div>
 <table>
@@ -12032,7 +12130,7 @@ div.tocify {
 <div id="dominica" class="section level2">
 <h2>Dominica</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Dominica.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Dominica.png" />
 
 </div>
 <table>
@@ -12245,7 +12343,7 @@ div.tocify {
 <div id="dominican-republic" class="section level2">
 <h2>Dominican Republic</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_DominicanRepublic.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_DominicanRepublic.png" />
 
 </div>
 <table>
@@ -12458,7 +12556,7 @@ div.tocify {
 <div id="east-timor" class="section level2">
 <h2>East Timor</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_EastTimor.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_EastTimor.png" />
 
 </div>
 <table>
@@ -12671,7 +12769,7 @@ div.tocify {
 <div id="ecuador" class="section level2">
 <h2>Ecuador</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Ecuador.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Ecuador.png" />
 
 </div>
 <table>
@@ -12884,7 +12982,7 @@ div.tocify {
 <div id="egypt" class="section level2">
 <h2>Egypt</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Egypt.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Egypt.png" />
 
 </div>
 <table>
@@ -13097,7 +13195,7 @@ div.tocify {
 <div id="el-salvador" class="section level2">
 <h2>El Salvador</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_ElSalvador.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_ElSalvador.png" />
 
 </div>
 <table>
@@ -13310,7 +13408,7 @@ div.tocify {
 <div id="equatorial-guinea" class="section level2">
 <h2>Equatorial Guinea</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_EquatorialGuinea.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_EquatorialGuinea.png" />
 
 </div>
 <table>
@@ -13523,7 +13621,7 @@ div.tocify {
 <div id="eritrea" class="section level2">
 <h2>Eritrea</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Eritrea.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Eritrea.png" />
 
 </div>
 <table>
@@ -13736,7 +13834,7 @@ div.tocify {
 <div id="estonia" class="section level2">
 <h2>Estonia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Estonia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Estonia.png" />
 
 </div>
 <table>
@@ -13949,7 +14047,7 @@ div.tocify {
 <div id="faeroe-islands" class="section level2">
 <h2>Faeroe Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_FaeroeIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_FaeroeIslands.png" />
 
 </div>
 <table>
@@ -14162,7 +14260,7 @@ div.tocify {
 <div id="falkland-islands" class="section level2">
 <h2>Falkland Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_FalklandIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_FalklandIslands.png" />
 
 </div>
 <table>
@@ -14375,7 +14473,7 @@ div.tocify {
 <div id="fiji" class="section level2">
 <h2>Fiji</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Fiji.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Fiji.png" />
 
 </div>
 <table>
@@ -14588,7 +14686,7 @@ div.tocify {
 <div id="finland" class="section level2">
 <h2>Finland</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Finland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Finland.png" />
 
 </div>
 <table>
@@ -14801,7 +14899,7 @@ div.tocify {
 <div id="france" class="section level2">
 <h2>France</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_France.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_France.png" />
 
 </div>
 <table>
@@ -15014,7 +15112,7 @@ div.tocify {
 <div id="french-guiana" class="section level2">
 <h2>French Guiana</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_FrenchGuiana.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_FrenchGuiana.png" />
 
 </div>
 <table>
@@ -15227,7 +15325,7 @@ div.tocify {
 <div id="french-polynesia" class="section level2">
 <h2>French Polynesia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_FrenchPolynesia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_FrenchPolynesia.png" />
 
 </div>
 <table>
@@ -15440,7 +15538,7 @@ div.tocify {
 <div id="gabon" class="section level2">
 <h2>Gabon</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Gabon.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Gabon.png" />
 
 </div>
 <table>
@@ -15653,7 +15751,7 @@ div.tocify {
 <div id="gambia" class="section level2">
 <h2>Gambia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Gambia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Gambia.png" />
 
 </div>
 <table>
@@ -15866,7 +15964,7 @@ div.tocify {
 <div id="georgia" class="section level2">
 <h2>Georgia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Georgia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Georgia.png" />
 
 </div>
 <table>
@@ -16079,7 +16177,7 @@ div.tocify {
 <div id="germany" class="section level2">
 <h2>Germany</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Germany.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Germany.png" />
 
 </div>
 <table>
@@ -16292,7 +16390,7 @@ div.tocify {
 <div id="ghana" class="section level2">
 <h2>Ghana</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Ghana.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Ghana.png" />
 
 </div>
 <table>
@@ -16505,7 +16603,7 @@ div.tocify {
 <div id="gibraltar" class="section level2">
 <h2>Gibraltar</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Gibraltar.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Gibraltar.png" />
 
 </div>
 <table>
@@ -16718,7 +16816,7 @@ div.tocify {
 <div id="gilbert-islands-kiribati" class="section level2">
 <h2>Gilbert Islands (Kiribati)</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_GilbertIslands(Kiribati).png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_GilbertIslands(Kiribati).png" />
 
 </div>
 <table>
@@ -16931,7 +17029,7 @@ div.tocify {
 <div id="glorioso-islands" class="section level2">
 <h2>Glorioso Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_GloriosoIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_GloriosoIslands.png" />
 
 </div>
 <table>
@@ -17144,7 +17242,7 @@ div.tocify {
 <div id="greece" class="section level2">
 <h2>Greece</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Greece.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Greece.png" />
 
 </div>
 <table>
@@ -17357,7 +17455,7 @@ div.tocify {
 <div id="greenland" class="section level2">
 <h2>Greenland</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Greenland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Greenland.png" />
 
 </div>
 <table>
@@ -17570,7 +17668,7 @@ div.tocify {
 <div id="grenada" class="section level2">
 <h2>Grenada</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Grenada.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Grenada.png" />
 
 </div>
 <table>
@@ -17783,7 +17881,7 @@ div.tocify {
 <div id="guadeloupe-and-martinique" class="section level2">
 <h2>Guadeloupe and Martinique</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_GuadeloupeandMartinique.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_GuadeloupeandMartinique.png" />
 
 </div>
 <table>
@@ -17996,7 +18094,7 @@ div.tocify {
 <div id="guatemala" class="section level2">
 <h2>Guatemala</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Guatemala.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Guatemala.png" />
 
 </div>
 <table>
@@ -18209,7 +18307,7 @@ div.tocify {
 <div id="guernsey" class="section level2">
 <h2>Guernsey</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Guernsey.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Guernsey.png" />
 
 </div>
 <table>
@@ -18422,7 +18520,7 @@ div.tocify {
 <div id="guinea" class="section level2">
 <h2>Guinea</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Guinea.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Guinea.png" />
 
 </div>
 <table>
@@ -18635,7 +18733,7 @@ div.tocify {
 <div id="guinea-bissau" class="section level2">
 <h2>Guinea Bissau</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_GuineaBissau.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_GuineaBissau.png" />
 
 </div>
 <table>
@@ -18848,7 +18946,7 @@ div.tocify {
 <div id="guyana" class="section level2">
 <h2>Guyana</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Guyana.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Guyana.png" />
 
 </div>
 <table>
@@ -19061,7 +19159,7 @@ div.tocify {
 <div id="haiti" class="section level2">
 <h2>Haiti</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Haiti.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Haiti.png" />
 
 </div>
 <table>
@@ -19274,7 +19372,7 @@ div.tocify {
 <div id="heard-and-mcdonald-islands" class="section level2">
 <h2>Heard and McDonald Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_HeardandMcDonaldIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_HeardandMcDonaldIslands.png" />
 
 </div>
 <table>
@@ -19487,7 +19585,7 @@ div.tocify {
 <div id="honduras" class="section level2">
 <h2>Honduras</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Honduras.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Honduras.png" />
 
 </div>
 <table>
@@ -19700,7 +19798,7 @@ div.tocify {
 <div id="howland-island-and-baker-island" class="section level2">
 <h2>Howland Island and Baker Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_HowlandIslandandBakerIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_HowlandIslandandBakerIsland.png" />
 
 </div>
 <table>
@@ -19913,7 +20011,7 @@ div.tocify {
 <div id="iceland" class="section level2">
 <h2>Iceland</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Iceland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Iceland.png" />
 
 </div>
 <table>
@@ -20126,7 +20224,7 @@ div.tocify {
 <div id="ile-europa" class="section level2">
 <h2>Ile Europa</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_IleEuropa.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_IleEuropa.png" />
 
 </div>
 <table>
@@ -20339,7 +20437,7 @@ div.tocify {
 <div id="ile-tromelin" class="section level2">
 <h2>Ile Tromelin</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_IleTromelin.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_IleTromelin.png" />
 
 </div>
 <table>
@@ -20552,7 +20650,7 @@ div.tocify {
 <div id="india" class="section level2">
 <h2>India</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_India.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_India.png" />
 
 </div>
 <table>
@@ -20765,7 +20863,7 @@ div.tocify {
 <div id="indonesia" class="section level2">
 <h2>Indonesia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Indonesia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Indonesia.png" />
 
 </div>
 <table>
@@ -20978,7 +21076,7 @@ div.tocify {
 <div id="iran" class="section level2">
 <h2>Iran</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Iran.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Iran.png" />
 
 </div>
 <table>
@@ -21191,7 +21289,7 @@ div.tocify {
 <div id="iraq" class="section level2">
 <h2>Iraq</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Iraq.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Iraq.png" />
 
 </div>
 <table>
@@ -21404,7 +21502,7 @@ div.tocify {
 <div id="ireland" class="section level2">
 <h2>Ireland</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Ireland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Ireland.png" />
 
 </div>
 <table>
@@ -21617,7 +21715,7 @@ div.tocify {
 <div id="israel" class="section level2">
 <h2>Israel</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Israel.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Israel.png" />
 
 </div>
 <table>
@@ -21830,7 +21928,7 @@ div.tocify {
 <div id="italy" class="section level2">
 <h2>Italy</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Italy.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Italy.png" />
 
 </div>
 <table>
@@ -22043,7 +22141,7 @@ div.tocify {
 <div id="ivory-coast" class="section level2">
 <h2>Ivory Coast</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_IvoryCoast.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_IvoryCoast.png" />
 
 </div>
 <table>
@@ -22256,7 +22354,7 @@ div.tocify {
 <div id="jamaica" class="section level2">
 <h2>Jamaica</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Jamaica.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Jamaica.png" />
 
 </div>
 <table>
@@ -22469,7 +22567,7 @@ div.tocify {
 <div id="jan-mayen" class="section level2">
 <h2>Jan Mayen</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_JanMayen.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_JanMayen.png" />
 
 </div>
 <table>
@@ -22682,7 +22780,7 @@ div.tocify {
 <div id="japan" class="section level2">
 <h2>Japan</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Japan.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Japan.png" />
 
 </div>
 <table>
@@ -22895,7 +22993,7 @@ div.tocify {
 <div id="jarvis-island" class="section level2">
 <h2>Jarvis Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_JarvisIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_JarvisIsland.png" />
 
 </div>
 <table>
@@ -23108,7 +23206,7 @@ div.tocify {
 <div id="jersey" class="section level2">
 <h2>Jersey</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Jersey.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Jersey.png" />
 
 </div>
 <table>
@@ -23321,7 +23419,7 @@ div.tocify {
 <div id="johnston-atoll" class="section level2">
 <h2>Johnston Atoll</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_JohnstonAtoll.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_JohnstonAtoll.png" />
 
 </div>
 <table>
@@ -23534,7 +23632,7 @@ div.tocify {
 <div id="jordan" class="section level2">
 <h2>Jordan</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Jordan.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Jordan.png" />
 
 </div>
 <table>
@@ -23747,7 +23845,7 @@ div.tocify {
 <div id="juan-de-nova-island" class="section level2">
 <h2>Juan de Nova Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_JuandeNovaIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_JuandeNovaIsland.png" />
 
 </div>
 <table>
@@ -23960,7 +24058,7 @@ div.tocify {
 <div id="kenya" class="section level2">
 <h2>Kenya</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Kenya.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Kenya.png" />
 
 </div>
 <table>
@@ -24173,7 +24271,7 @@ div.tocify {
 <div id="kerguelen-islands" class="section level2">
 <h2>Kerguelen Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_KerguelenIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_KerguelenIslands.png" />
 
 </div>
 <table>
@@ -24386,7 +24484,7 @@ div.tocify {
 <div id="kuwait" class="section level2">
 <h2>Kuwait</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Kuwait.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Kuwait.png" />
 
 </div>
 <table>
@@ -24599,7 +24697,7 @@ div.tocify {
 <div id="latvia" class="section level2">
 <h2>Latvia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Latvia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Latvia.png" />
 
 </div>
 <table>
@@ -24812,7 +24910,7 @@ div.tocify {
 <div id="lebanon" class="section level2">
 <h2>Lebanon</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Lebanon.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Lebanon.png" />
 
 </div>
 <table>
@@ -25025,7 +25123,7 @@ div.tocify {
 <div id="liberia" class="section level2">
 <h2>Liberia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Liberia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Liberia.png" />
 
 </div>
 <table>
@@ -25238,7 +25336,7 @@ div.tocify {
 <div id="libya" class="section level2">
 <h2>Libya</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Libya.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Libya.png" />
 
 </div>
 <table>
@@ -25451,7 +25549,7 @@ div.tocify {
 <div id="line-islands-kiribati" class="section level2">
 <h2>Line Islands (Kiribati)</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_LineIslands(Kiribati).png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_LineIslands(Kiribati).png" />
 
 </div>
 <table>
@@ -25664,7 +25762,7 @@ div.tocify {
 <div id="lithuania" class="section level2">
 <h2>Lithuania</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Lithuania.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Lithuania.png" />
 
 </div>
 <table>
@@ -25877,7 +25975,7 @@ div.tocify {
 <div id="macquarie-island" class="section level2">
 <h2>Macquarie Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_MacquarieIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_MacquarieIsland.png" />
 
 </div>
 <table>
@@ -26090,7 +26188,7 @@ div.tocify {
 <div id="madagascar" class="section level2">
 <h2>Madagascar</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Madagascar.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Madagascar.png" />
 
 </div>
 <table>
@@ -26303,7 +26401,7 @@ div.tocify {
 <div id="madeira" class="section level2">
 <h2>Madeira</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Madeira.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Madeira.png" />
 
 </div>
 <table>
@@ -26516,7 +26614,7 @@ div.tocify {
 <div id="malaysia" class="section level2">
 <h2>Malaysia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Malaysia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Malaysia.png" />
 
 </div>
 <table>
@@ -26729,7 +26827,7 @@ div.tocify {
 <div id="maldives" class="section level2">
 <h2>Maldives</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Maldives.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Maldives.png" />
 
 </div>
 <table>
@@ -26942,7 +27040,7 @@ div.tocify {
 <div id="malta" class="section level2">
 <h2>Malta</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Malta.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Malta.png" />
 
 </div>
 <table>
@@ -27155,7 +27253,7 @@ div.tocify {
 <div id="marshall-islands" class="section level2">
 <h2>Marshall Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_MarshallIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_MarshallIslands.png" />
 
 </div>
 <table>
@@ -27368,7 +27466,7 @@ div.tocify {
 <div id="mauritania" class="section level2">
 <h2>Mauritania</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Mauritania.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Mauritania.png" />
 
 </div>
 <table>
@@ -27581,7 +27679,7 @@ div.tocify {
 <div id="mauritius" class="section level2">
 <h2>Mauritius</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Mauritius.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Mauritius.png" />
 
 </div>
 <table>
@@ -27794,7 +27892,7 @@ div.tocify {
 <div id="mayotte" class="section level2">
 <h2>Mayotte</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Mayotte.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Mayotte.png" />
 
 </div>
 <table>
@@ -28007,7 +28105,7 @@ div.tocify {
 <div id="mexico" class="section level2">
 <h2>Mexico</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Mexico.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Mexico.png" />
 
 </div>
 <table>
@@ -28220,7 +28318,7 @@ div.tocify {
 <div id="micronesia" class="section level2">
 <h2>Micronesia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Micronesia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Micronesia.png" />
 
 </div>
 <table>
@@ -28433,7 +28531,7 @@ div.tocify {
 <div id="monaco" class="section level2">
 <h2>Monaco</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Monaco.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Monaco.png" />
 
 </div>
 <table>
@@ -28646,7 +28744,7 @@ div.tocify {
 <div id="montenegro" class="section level2">
 <h2>Montenegro</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Montenegro.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Montenegro.png" />
 
 </div>
 <table>
@@ -28859,7 +28957,7 @@ div.tocify {
 <div id="montserrat" class="section level2">
 <h2>Montserrat</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Montserrat.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Montserrat.png" />
 
 </div>
 <table>
@@ -29072,7 +29170,7 @@ div.tocify {
 <div id="morocco" class="section level2">
 <h2>Morocco</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Morocco.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Morocco.png" />
 
 </div>
 <table>
@@ -29285,7 +29383,7 @@ div.tocify {
 <div id="mozambique" class="section level2">
 <h2>Mozambique</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Mozambique.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Mozambique.png" />
 
 </div>
 <table>
@@ -29498,7 +29596,7 @@ div.tocify {
 <div id="myanmar" class="section level2">
 <h2>Myanmar</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Myanmar.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Myanmar.png" />
 
 </div>
 <table>
@@ -29711,7 +29809,7 @@ div.tocify {
 <div id="namibia" class="section level2">
 <h2>Namibia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Namibia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Namibia.png" />
 
 </div>
 <table>
@@ -29924,7 +30022,7 @@ div.tocify {
 <div id="nauru" class="section level2">
 <h2>Nauru</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Nauru.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Nauru.png" />
 
 </div>
 <table>
@@ -30137,7 +30235,7 @@ div.tocify {
 <div id="netherlands" class="section level2">
 <h2>Netherlands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Netherlands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Netherlands.png" />
 
 </div>
 <table>
@@ -30350,7 +30448,7 @@ div.tocify {
 <div id="new-caledonia" class="section level2">
 <h2>New Caledonia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_NewCaledonia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_NewCaledonia.png" />
 
 </div>
 <table>
@@ -30563,7 +30661,7 @@ div.tocify {
 <div id="new-zealand" class="section level2">
 <h2>New Zealand</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_NewZealand.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_NewZealand.png" />
 
 </div>
 <table>
@@ -30776,7 +30874,7 @@ div.tocify {
 <div id="nicaragua" class="section level2">
 <h2>Nicaragua</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Nicaragua.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Nicaragua.png" />
 
 </div>
 <table>
@@ -30989,7 +31087,7 @@ div.tocify {
 <div id="nigeria" class="section level2">
 <h2>Nigeria</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Nigeria.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Nigeria.png" />
 
 </div>
 <table>
@@ -31202,7 +31300,7 @@ div.tocify {
 <div id="niue" class="section level2">
 <h2>Niue</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Niue.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Niue.png" />
 
 </div>
 <table>
@@ -31415,7 +31513,7 @@ div.tocify {
 <div id="norfolk-island" class="section level2">
 <h2>Norfolk Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_NorfolkIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_NorfolkIsland.png" />
 
 </div>
 <table>
@@ -31628,7 +31726,7 @@ div.tocify {
 <div id="north-korea" class="section level2">
 <h2>North Korea</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_NorthKorea.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_NorthKorea.png" />
 
 </div>
 <table>
@@ -31841,7 +31939,7 @@ div.tocify {
 <div id="northern-mariana-islands-and-guam" class="section level2">
 <h2>Northern Mariana Islands and Guam</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_NorthernMarianaIslandsandGuam.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_NorthernMarianaIslandsandGuam.png" />
 
 </div>
 <table>
@@ -32054,7 +32152,7 @@ div.tocify {
 <div id="northern-saint-martin" class="section level2">
 <h2>Northern Saint-Martin</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_NorthernSaint-Martin.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_NorthernSaint-Martin.png" />
 
 </div>
 <table>
@@ -32267,7 +32365,7 @@ div.tocify {
 <div id="norway" class="section level2">
 <h2>Norway</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Norway.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Norway.png" />
 
 </div>
 <table>
@@ -32480,7 +32578,7 @@ div.tocify {
 <div id="oecussi-ambeno" class="section level2">
 <h2>Oecussi Ambeno</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_OecussiAmbeno.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_OecussiAmbeno.png" />
 
 </div>
 <table>
@@ -32693,7 +32791,7 @@ div.tocify {
 <div id="oman" class="section level2">
 <h2>Oman</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Oman.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Oman.png" />
 
 </div>
 <table>
@@ -32906,7 +33004,7 @@ div.tocify {
 <div id="pakistan" class="section level2">
 <h2>Pakistan</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Pakistan.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Pakistan.png" />
 
 </div>
 <table>
@@ -33119,7 +33217,7 @@ div.tocify {
 <div id="palau" class="section level2">
 <h2>Palau</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Palau.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Palau.png" />
 
 </div>
 <table>
@@ -33332,7 +33430,7 @@ div.tocify {
 <div id="palmyra-atoll" class="section level2">
 <h2>Palmyra Atoll</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_PalmyraAtoll.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_PalmyraAtoll.png" />
 
 </div>
 <table>
@@ -33545,7 +33643,7 @@ div.tocify {
 <div id="panama" class="section level2">
 <h2>Panama</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Panama.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Panama.png" />
 
 </div>
 <table>
@@ -33758,7 +33856,7 @@ div.tocify {
 <div id="papua-new-guinea" class="section level2">
 <h2>Papua New Guinea</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_PapuaNewGuinea.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_PapuaNewGuinea.png" />
 
 </div>
 <table>
@@ -33971,7 +34069,7 @@ div.tocify {
 <div id="peru" class="section level2">
 <h2>Peru</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Peru.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Peru.png" />
 
 </div>
 <table>
@@ -34184,7 +34282,7 @@ div.tocify {
 <div id="philippines" class="section level2">
 <h2>Philippines</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Philippines.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Philippines.png" />
 
 </div>
 <table>
@@ -34397,7 +34495,7 @@ div.tocify {
 <div id="phoenix-islands-kiribati" class="section level2">
 <h2>Phoenix Islands (Kiribati)</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_PhoenixIslands(Kiribati).png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_PhoenixIslands(Kiribati).png" />
 
 </div>
 <table>
@@ -34610,7 +34708,7 @@ div.tocify {
 <div id="pitcairn" class="section level2">
 <h2>Pitcairn</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Pitcairn.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Pitcairn.png" />
 
 </div>
 <table>
@@ -34823,7 +34921,7 @@ div.tocify {
 <div id="poland" class="section level2">
 <h2>Poland</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Poland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Poland.png" />
 
 </div>
 <table>
@@ -35036,7 +35134,7 @@ div.tocify {
 <div id="portugal" class="section level2">
 <h2>Portugal</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Portugal.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Portugal.png" />
 
 </div>
 <table>
@@ -35249,7 +35347,7 @@ div.tocify {
 <div id="prince-edward-islands" class="section level2">
 <h2>Prince Edward Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_PrinceEdwardIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_PrinceEdwardIslands.png" />
 
 </div>
 <table>
@@ -35462,7 +35560,7 @@ div.tocify {
 <div id="puerto-rico-and-virgin-islands-of-the-united-states" class="section level2">
 <h2>Puerto Rico and Virgin Islands of the United States</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_PuertoRicoandVirginIslandsoftheUnitedStates.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_PuertoRicoandVirginIslandsoftheUnitedStates.png" />
 
 </div>
 <table>
@@ -35675,7 +35773,7 @@ div.tocify {
 <div id="qatar" class="section level2">
 <h2>Qatar</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Qatar.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Qatar.png" />
 
 </div>
 <table>
@@ -35888,7 +35986,7 @@ div.tocify {
 <div id="republique-du-congo" class="section level2">
 <h2>Republique du Congo</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_RepubliqueduCongo.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_RepubliqueduCongo.png" />
 
 </div>
 <table>
@@ -36101,7 +36199,7 @@ div.tocify {
 <div id="r_union" class="section level2">
 <h2>R_union</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Reunion.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Reunion.png" />
 
 </div>
 <table>
@@ -36314,7 +36412,7 @@ div.tocify {
 <div id="romania" class="section level2">
 <h2>Romania</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Romania.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Romania.png" />
 
 </div>
 <table>
@@ -36527,7 +36625,7 @@ div.tocify {
 <div id="russia" class="section level2">
 <h2>Russia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Russia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Russia.png" />
 
 </div>
 <table>
@@ -36740,7 +36838,7 @@ div.tocify {
 <div id="saba" class="section level2">
 <h2>Saba</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Saba.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Saba.png" />
 
 </div>
 <table>
@@ -36953,7 +37051,7 @@ div.tocify {
 <div id="saint-helena" class="section level2">
 <h2>Saint Helena</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SaintHelena.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SaintHelena.png" />
 
 </div>
 <table>
@@ -37166,7 +37264,7 @@ div.tocify {
 <div id="saint-kitts-and-nevis" class="section level2">
 <h2>Saint Kitts and Nevis</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SaintKittsandNevis.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SaintKittsandNevis.png" />
 
 </div>
 <table>
@@ -37379,7 +37477,7 @@ div.tocify {
 <div id="saint-lucia" class="section level2">
 <h2>Saint Lucia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SaintLucia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SaintLucia.png" />
 
 </div>
 <table>
@@ -37592,7 +37690,7 @@ div.tocify {
 <div id="saint-pierre-and-miquelon" class="section level2">
 <h2>Saint Pierre and Miquelon</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SaintPierreandMiquelon.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SaintPierreandMiquelon.png" />
 
 </div>
 <table>
@@ -37805,7 +37903,7 @@ div.tocify {
 <div id="saint-vincent-and-the-grenadines" class="section level2">
 <h2>Saint Vincent and the Grenadines</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SaintVincentandtheGrenadines.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SaintVincentandtheGrenadines.png" />
 
 </div>
 <table>
@@ -38018,7 +38116,7 @@ div.tocify {
 <div id="samoa" class="section level2">
 <h2>Samoa</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Samoa.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Samoa.png" />
 
 </div>
 <table>
@@ -38231,7 +38329,7 @@ div.tocify {
 <div id="sao-tome-and-principe" class="section level2">
 <h2>Sao Tome and Principe</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SaoTomeandPrincipe.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SaoTomeandPrincipe.png" />
 
 </div>
 <table>
@@ -38444,7 +38542,7 @@ div.tocify {
 <div id="saudi-arabia" class="section level2">
 <h2>Saudi Arabia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SaudiArabia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SaudiArabia.png" />
 
 </div>
 <table>
@@ -38657,7 +38755,7 @@ div.tocify {
 <div id="senegal" class="section level2">
 <h2>Senegal</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Senegal.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Senegal.png" />
 
 </div>
 <table>
@@ -38870,7 +38968,7 @@ div.tocify {
 <div id="seychelles" class="section level2">
 <h2>Seychelles</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Seychelles.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Seychelles.png" />
 
 </div>
 <table>
@@ -39083,7 +39181,7 @@ div.tocify {
 <div id="sierra-leone" class="section level2">
 <h2>Sierra Leone</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SierraLeone.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SierraLeone.png" />
 
 </div>
 <table>
@@ -39296,7 +39394,7 @@ div.tocify {
 <div id="singapore" class="section level2">
 <h2>Singapore</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Singapore.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Singapore.png" />
 
 </div>
 <table>
@@ -39509,7 +39607,7 @@ div.tocify {
 <div id="sint-eustatius" class="section level2">
 <h2>Sint Eustatius</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SintEustatius.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SintEustatius.png" />
 
 </div>
 <table>
@@ -39722,7 +39820,7 @@ div.tocify {
 <div id="sint-maarten" class="section level2">
 <h2>Sint Maarten</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SintMaarten.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SintMaarten.png" />
 
 </div>
 <table>
@@ -39935,7 +40033,7 @@ div.tocify {
 <div id="slovenia" class="section level2">
 <h2>Slovenia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Slovenia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Slovenia.png" />
 
 </div>
 <table>
@@ -40148,7 +40246,7 @@ div.tocify {
 <div id="solomon-islands" class="section level2">
 <h2>Solomon Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SolomonIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SolomonIslands.png" />
 
 </div>
 <table>
@@ -40361,7 +40459,7 @@ div.tocify {
 <div id="somalia" class="section level2">
 <h2>Somalia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Somalia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Somalia.png" />
 
 </div>
 <table>
@@ -40574,7 +40672,7 @@ div.tocify {
 <div id="south-africa" class="section level2">
 <h2>South Africa</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SouthAfrica.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SouthAfrica.png" />
 
 </div>
 <table>
@@ -40787,7 +40885,7 @@ div.tocify {
 <div id="south-georgia-and-the-south-sandwich-islands" class="section level2">
 <h2>South Georgia and the South Sandwich Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SouthGeorgiaandtheSouthSandwichIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SouthGeorgiaandtheSouthSandwichIslands.png" />
 
 </div>
 <table>
@@ -41000,7 +41098,7 @@ div.tocify {
 <div id="south-korea" class="section level2">
 <h2>South Korea</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SouthKorea.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SouthKorea.png" />
 
 </div>
 <table>
@@ -41213,7 +41311,7 @@ div.tocify {
 <div id="spain" class="section level2">
 <h2>Spain</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Spain.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Spain.png" />
 
 </div>
 <table>
@@ -41426,7 +41524,7 @@ div.tocify {
 <div id="sri-lanka" class="section level2">
 <h2>Sri Lanka</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_SriLanka.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_SriLanka.png" />
 
 </div>
 <table>
@@ -41639,7 +41737,7 @@ div.tocify {
 <div id="sudan" class="section level2">
 <h2>Sudan</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Sudan.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Sudan.png" />
 
 </div>
 <table>
@@ -41852,7 +41950,7 @@ div.tocify {
 <div id="suriname" class="section level2">
 <h2>Suriname</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Suriname.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Suriname.png" />
 
 </div>
 <table>
@@ -42065,7 +42163,7 @@ div.tocify {
 <div id="sweden" class="section level2">
 <h2>Sweden</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Sweden.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Sweden.png" />
 
 </div>
 <table>
@@ -42278,7 +42376,7 @@ div.tocify {
 <div id="syria" class="section level2">
 <h2>Syria</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Syria.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Syria.png" />
 
 </div>
 <table>
@@ -42491,7 +42589,7 @@ div.tocify {
 <div id="taiwan" class="section level2">
 <h2>Taiwan</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Taiwan.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Taiwan.png" />
 
 </div>
 <table>
@@ -42704,7 +42802,7 @@ div.tocify {
 <div id="tanzania" class="section level2">
 <h2>Tanzania</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Tanzania.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Tanzania.png" />
 
 </div>
 <table>
@@ -42917,7 +43015,7 @@ div.tocify {
 <div id="thailand" class="section level2">
 <h2>Thailand</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Thailand.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Thailand.png" />
 
 </div>
 <table>
@@ -43130,7 +43228,7 @@ div.tocify {
 <div id="togo" class="section level2">
 <h2>Togo</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Togo.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Togo.png" />
 
 </div>
 <table>
@@ -43343,7 +43441,7 @@ div.tocify {
 <div id="tokelau" class="section level2">
 <h2>Tokelau</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Tokelau.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Tokelau.png" />
 
 </div>
 <table>
@@ -43556,7 +43654,7 @@ div.tocify {
 <div id="tonga" class="section level2">
 <h2>Tonga</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Tonga.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Tonga.png" />
 
 </div>
 <table>
@@ -43769,7 +43867,7 @@ div.tocify {
 <div id="trinidad-and-tobago" class="section level2">
 <h2>Trinidad and Tobago</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_TrinidadandTobago.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_TrinidadandTobago.png" />
 
 </div>
 <table>
@@ -43982,7 +44080,7 @@ div.tocify {
 <div id="tristan-da-cunha" class="section level2">
 <h2>Tristan da Cunha</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_TristandaCunha.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_TristandaCunha.png" />
 
 </div>
 <table>
@@ -44195,7 +44293,7 @@ div.tocify {
 <div id="tunisia" class="section level2">
 <h2>Tunisia</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Tunisia.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Tunisia.png" />
 
 </div>
 <table>
@@ -44408,7 +44506,7 @@ div.tocify {
 <div id="turkey" class="section level2">
 <h2>Turkey</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Turkey.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Turkey.png" />
 
 </div>
 <table>
@@ -44621,7 +44719,7 @@ div.tocify {
 <div id="turks-and-caicos-islands" class="section level2">
 <h2>Turks and Caicos Islands</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_TurksandCaicosIslands.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_TurksandCaicosIslands.png" />
 
 </div>
 <table>
@@ -44834,7 +44932,7 @@ div.tocify {
 <div id="tuvalu" class="section level2">
 <h2>Tuvalu</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Tuvalu.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Tuvalu.png" />
 
 </div>
 <table>
@@ -45047,7 +45145,7 @@ div.tocify {
 <div id="ukraine" class="section level2">
 <h2>Ukraine</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Ukraine.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Ukraine.png" />
 
 </div>
 <table>
@@ -45260,7 +45358,7 @@ div.tocify {
 <div id="united-arab-emirates" class="section level2">
 <h2>United Arab Emirates</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_UnitedArabEmirates.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_UnitedArabEmirates.png" />
 
 </div>
 <table>
@@ -45473,7 +45571,7 @@ div.tocify {
 <div id="united-kingdom" class="section level2">
 <h2>United Kingdom</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_UnitedKingdom.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_UnitedKingdom.png" />
 
 </div>
 <table>
@@ -45686,7 +45784,7 @@ div.tocify {
 <div id="united-states" class="section level2">
 <h2>United States</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_UnitedStates.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_UnitedStates.png" />
 
 </div>
 <table>
@@ -45899,7 +45997,7 @@ div.tocify {
 <div id="uruguay" class="section level2">
 <h2>Uruguay</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Uruguay.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Uruguay.png" />
 
 </div>
 <table>
@@ -46112,7 +46210,7 @@ div.tocify {
 <div id="vanuatu" class="section level2">
 <h2>Vanuatu</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Vanuatu.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Vanuatu.png" />
 
 </div>
 <table>
@@ -46325,7 +46423,7 @@ div.tocify {
 <div id="venezuela" class="section level2">
 <h2>Venezuela</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Venezuela.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Venezuela.png" />
 
 </div>
 <table>
@@ -46538,7 +46636,7 @@ div.tocify {
 <div id="vietnam" class="section level2">
 <h2>Vietnam</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Vietnam.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Vietnam.png" />
 
 </div>
 <table>
@@ -46751,7 +46849,7 @@ div.tocify {
 <div id="wake-island" class="section level2">
 <h2>Wake Island</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_WakeIsland.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_WakeIsland.png" />
 
 </div>
 <table>
@@ -46964,7 +47062,7 @@ div.tocify {
 <div id="wallis-and-futuna" class="section level2">
 <h2>Wallis and Futuna</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_WallisandFutuna.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_WallisandFutuna.png" />
 
 </div>
 <table>
@@ -47177,7 +47275,7 @@ div.tocify {
 <div id="western-sahara" class="section level2">
 <h2>Western Sahara</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_WesternSahara.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_WesternSahara.png" />
 
 </div>
 <table>
@@ -47390,7 +47488,7 @@ div.tocify {
 <div id="yemen" class="section level2">
 <h2>Yemen</h2>
 <div class="figure">
-<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/FlowerPlots/flower_Yemen.png" />
+<img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results/figures/FlowerPlots/flower_Yemen.png" />
 
 </div>
 <table>
