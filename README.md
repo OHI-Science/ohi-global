@@ -16,7 +16,6 @@ Files associated with calculating the OHI scores for scenarios from 2012 to pres
 Database for the data layers (data sources, names, etc.) and functions to create different data formats
 
 *global_supplement* 
-
 Documents and code to create methods document. layers_eez_base.csv describes filepaths of data layers used to calculate scores. 
 
 *yearly_results* 
