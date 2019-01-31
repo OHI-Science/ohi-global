@@ -17,10 +17,10 @@ library(tidyverse)
 source('_site.R')
 
 ## read in scores
-data <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/OHI_final_formatted_scores_2018-11-28.csv') 
+data <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/OHI_final_formatted_scores_2018-11-28.csv') 
 
 ## read in paths for figures
-regions_figs <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez/conf/web/regions_figs.csv')
+regions_figs <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/published/eez/conf/web/regions_figs.csv')
 
 ## list of regions, with flower pngs
 regions <- data %>%
@@ -59,7 +59,7 @@ for (r in regions$region_id){ # r = regions$region_id[1]
   
   
   flower_path <- file.path(
-    'https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results',
+    'https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/Results',
     regions$flower_png[regions$region_id == r])
   
   ## header, flower
