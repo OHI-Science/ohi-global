@@ -1,35 +1,21 @@
 # Preparing files for a new assessment year!
+# This adds an additional assessment year to the eez/conf/scenario_data_years.csv
+# The data year is the same as the previous assessment year.
+# As each data layer is added, the data year will be manually updated
+# directly within the eez/conf/scenario_data_years.csv
+# NOTE: The years will need to be updated
 
-# layers_eez_base.R : remains the same!
+# NOTE: After this, update the calculate_scores.R file with the latest links, etc.
+# Then run calculate_scores.R to make sure there are no changes
 
-# layers_eez_data_sources.csv remains the same!
-data_s <- read.csv("../eez_layers_meta_data/layers_eez_data_sources.csv")
+library(dplyr)
+library(here)
 
-# gapfill: simplified
-gf <- read.csv("../eez_layers_meta_data/layers_eez_gapfill.csv") %>%
-  filter(variable=="file_loc_2017") %>%
-  select(layer, gf_file = variable_data)
-
-write.csv(gf, "../eez_layers_meta_data/layers_eez_gapfill.csv", row.names=FALSE)
-
-
-# methods: eliminate previous years
-# this table requires this long format because there can be multiple variables for each data layers
-# ie. multiple datasources and dataprep files
-methods <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable %in% c("dataprep_url_2018", "methods_update_2018", "ds_reference")) %>%
-  mutate(variable = gsub("_2018", "", variable))
-
-table(methods$variable)
-write.csv(methods, "../eez_layers_meta_data/layers_eez_methods.csv", row.names=FALSE)
-
-
-### Update the eez/scenario_data_years.csv to include an additional year of data
-yrs <- read.csv("conf/scenario_data_years.csv")
+yrs <- read.csv(here("eez/conf/scenario_data_years.csv"))
 new_yr <- yrs %>%
-  filter(scenario_year == 2017) %>%
-  mutate(scenario_year = 2018)
+  filter(scenario_year == 2018) %>%  # indicate year of previous assessment
+  mutate(scenario_year = 2019)       # indicate this year's assessment
 
 yrs <- rbind(yrs, new_yr)
 
-write.csv(yrs, "conf/scenario_data_years.csv", row.names=FALSE)
+write.csv(yrs, here("eez/conf/scenario_data_years.csv"), row.names=FALSE)

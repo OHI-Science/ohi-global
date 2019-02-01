@@ -8,16 +8,16 @@
 ## STEP 1: download ohicore package
 ## Install the appropriate ohicore:
 library(devtools)
-devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
-#devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+#devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
+devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 ## STEP 2:
 ## identify repo where data will be taken from: 
-repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/gh-pages/"
+repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2019/gh-pages/"
 
 # STEP 3: Scenario years in this year's assessment
-scenario_years <- c(2012:2018)
+scenario_years <- c(2012:2019)
 
 #***
 
@@ -31,25 +31,21 @@ library(readr)
 library(here)
 
 ## source file path info depending on operating system
-source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/gh-pages/src/R/common.R')
-
-
-# STEP 5: Set repository name
-setwd(here("eez"))
+source(file.path(repo_loc, 'src/R/common.R'))
 
 
 #############################
 ## After updating a data layer
 #############################
 
-# STEP 6: Be sure to push all ohiprep changes!!
+# STEP 5: Be sure to push all ohiprep changes!!
 
-# STEP 7: Update the newest layer's file location and file name in eez_layers_meta_data/layers_eez_base.csv
+# STEP 6: Update the newest layer's file location and file name in eez_layers_meta_data/layers_eez_base.csv
 
-# STEP 8: Make sure the appropriate data year is entered in conf/scenario_data_years.csv
+# STEP 7: Make sure the appropriate data year is entered in conf/scenario_data_years.csv
 
-# STEP 9: Run following to update the layers.csv file with the latest information in layers_eez_base.csv and to reset 
-source("../eez_layers_meta_data/layers_eez_script.R")
+# STEP 8: Run following to update the layers.csv file with the latest information in layers_eez_base.csv and to reset 
+source(here("eez_layers_meta_data/layers_eez_script.R"))
 
 # If more complex changes are made to layer: such as changes to layer names, removing/adding layers, etc
 # run the following scripts: 
@@ -60,21 +56,21 @@ source("../eez_layers_meta_data/layers_eez_script.R")
 #    matrices to the 
 
 
-# STEP 10: Run scenarios!
+# STEP 9: Run scenarios!
 
 ## Read in the layers.csv file with paths to the data files
-g <- read.csv("layers.csv", stringsAsFactors = FALSE, na.strings='')
+g <- read.csv(here("eez/layers.csv"), stringsAsFactors = FALSE, na.strings='')
 
 
 ## establish locations of layers and save information
 lyrs = g %>%
-  dplyr::filter(ingest==T) %>%
+  dplyr::filter(ingest==TRUE) %>%
   dplyr::mutate(dir = gsub("ohiprep:", repo_loc, dir)) %>%
   dplyr::mutate(
     path_in        = file.path(dir, fn),
     #path_in_exists = file.exists(path_in),
     filename = sprintf('%s.csv', layer),
-    path_out = sprintf('layers/%s.csv', layer)) %>%
+    path_out = sprintf(here('eez/layers/%s.csv'), layer)) %>%
   dplyr::select(
     targets, layer, name, description,
     fld_value=name_data_fld, units,
@@ -98,14 +94,14 @@ lyrs_reg = lyrs %>%
     targets, ingest, layer, name, description,
     fld_value, units, filename)
 
-write.csv(lyrs_reg, 'layers.csv', row.names=F, na='')
+write.csv(lyrs_reg, here('eez/layers.csv'), row.names=F, na='')
 
 
 # Run check on layers
-conf   = ohicore::Conf(sprintf('conf'))
+conf   = ohicore::Conf(here('eez/conf'))
 
-ohicore::CheckLayers(layers.csv = sprintf('layers.csv'),
-            layers.dir = sprintf('layers'),
+ohicore::CheckLayers(layers.csv = here('eez/layers.csv'),
+            layers.dir = here('eez/layers'),
             flds_id    = conf$config$layers_id_fields)
 
 
@@ -113,7 +109,7 @@ ohicore::CheckLayers(layers.csv = sprintf('layers.csv'),
 # calculate scores for each year scenario and save to a single csv file:
 
 ## General function to calculate scores
-get_scores <- function(s_year){ # x=2012
+get_scores <- function(s_year){ # s_year=2018
 
 #  s_year <- as.numeric(s_year)
   print(sprintf("For assessment year %s", s_year))
@@ -123,14 +119,14 @@ get_scores <- function(s_year){ # x=2012
 
   # clear out the file that keeps track of reference points for each scenario year
 
-  if(file.exists(sprintf('temp/reference_pts_%s.csv', s_year)))
-  {file.remove(sprintf('temp/reference_pts_%s.csv', s_year))}
+  if(file.exists(sprintf(here('eez/temp/reference_pts_%s.csv'), s_year)))
+  {file.remove(sprintf(here('eez/temp/reference_pts_%s.csv'), s_year))}
 
   ref_pts <- data.frame(year   = as.integer(),
                         goal   = as.character(),
                         method = as.character(),
                         reference_point = as.character())
-  write_csv(ref_pts, sprintf('temp/reference_pts_%s.csv', s_year))
+  write_csv(ref_pts, sprintf(here('eez/temp/reference_pts_%s.csv'), s_year))
 
 
   # calculate scores
@@ -141,27 +137,27 @@ get_scores <- function(s_year){ # x=2012
 
 ## Apply function
 ### set up conf and layer objects
-conf   <-  ohicore::Conf('conf')
-layers <-  ohicore::Layers(layers.csv = 'layers.csv', layers.dir = 'layers')
+conf   <-  ohicore::Conf(here('eez/conf'))
+layers <-  ohicore::Layers(layers.csv = here('eez/layers.csv'), layers.dir = here('eez/layers'))
 
 #scorelist = lapply(X=2018, FUN=get_scores)
-scorelist = lapply(X=2012:2018, FUN=get_scores)
+scorelist = lapply(X=scenario_years, FUN=get_scores)
 scores_all_years <- dplyr::bind_rows(scorelist)
 
 # save results
-write.csv(scores_all_years, 'scores.csv', na='', row.names=F)
+write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 
 
-# STEP 11: Review results
+# STEP 10: Review results
 
 ### Some methods for visualizing the data
 
 
 ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="tr_ref_adjust", save_csv = TRUE, NA_compare = TRUE)
+            file_name="check_2019_assess", save_csv = TRUE, NA_compare = TRUE)
 
 
-compare <- read.csv("score_check/baltic_cp_diff_data_2018-11-20.csv") 
+compare <- read.csv(here("eez/score_check/check_2019_assess_diff_data_2019-02-01.csv")) 
 
 dplyr::filter(compare, is.na(score) & !is.na(old_score))
 
@@ -188,5 +184,5 @@ scatterPlot(repo="ohi-global", scenario="eez", commit="e0ed46b", filter_year=201
 goalHistogram(scenario="eez2016", goal="AO", dim="status", fileSave="AO_need_eez2016")
 
 
-# STEP 12: Summarize results in an issue to update team members!
-# STEP 13: Update metadata files
+# STEP 11: Summarize results in an issue to update team members!
+# STEP 12: Update metadata files

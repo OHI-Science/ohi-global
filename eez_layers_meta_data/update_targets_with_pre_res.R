@@ -1,5 +1,5 @@
 ################################################
-## If a data layer is added to the conf pressures/resilience
+## If a data layer is added to the eez/conf/pressures/resilience
 ## matrices, then this script will take that information
 ## to update the layers_eez_targets.csv file
 ####################################################
