@@ -25,11 +25,13 @@ Compiled on `r date()`.
 ```{r, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 
 ## Running:
- # 1. Run CombineLayers.R to create the relevant Rmd file for data layers (if any changes to these files), creates layers_all.R
- # 2. Save a new OHI.bib file from Zotero if changes to referenes (Export BibLaTeX)
- # 3. Run BIBcorrect.R to fix a few weird things in the OHI.bib file
-  # 4. Review document to fix year references (i.e., title at top, assessmentYear variable in this code chunk, update figure 3.1)
- # 5. Knit this file and review html output. 
+ # 1. Make sure that all the necessary files have been updated (OHI.bib, goal_descriptions, layers_info)
+ # 2. Make sure that all the files in eez_layers_meta_data have been updated (e.g., layers_eez_base, layers_eez_targets, layers_eez_methods, layers_eez_datasources)
+ # 3. Run CombineLayers.R to create the relevant Rmd file for data layers (if any changes to these files), creates layers_all.R
+ # 4. Save a new OHI.bib file from Zotero if changes to references (Export BibLaTeX)
+ # 5. Run BIBcorrect.R to fix a few weird things in the OHI.bib file
+  # 6. Review document to fix year references (i.e., title at top, assessmentYear variable in this code chunk, update figure 3.1)
+ # 7. Knit this file and review html output. 
 
 
 
