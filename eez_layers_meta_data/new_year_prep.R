@@ -19,11 +19,13 @@ library(here)
 yrs <- read.csv(here("eez/conf/scenario_data_years.csv"))
 new_yr <- yrs %>%
   filter(scenario_year == 2018) %>%  # indicate year of previous assessment
-  mutate(scenario_year = 2019)       # indicate this year's assessment
+  mutate(scenario_year = 2019) %>%       # indicate this year's assessment
+  arrange(layer_name, scenario_year, data_year)
 
 yrs <- rbind(yrs, new_yr)
 
 write.csv(yrs, here("eez/conf/scenario_data_years.csv"), row.names=FALSE)
+
 
 #### layers spreadsheet
 #   (this is created here, but is typically copied to a GoogleSheet to make easier to work with)
