@@ -42,7 +42,7 @@ source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2018/gh-pages/src
 
 # STEP 6: Update the newest layer's file location and file name in eez_layers_meta_data/layers_eez_base.csv
 
-# STEP 7: Make sure the appropriate data year is entered in conf/scenario_data_years.csv
+# STEP 7: Make sure the appropriate data year is entered in eez/conf/scenario_data_years.csv
 
 # STEP 8: Run following to update the layers.csv file with the latest information in layers_eez_base.csv and to reset 
 source(here("eez_layers_meta_data/layers_eez_script.R"))
@@ -153,11 +153,11 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ### Some methods for visualizing the data
 
 
-ohicore::score_check(commit="previous", scenario_year=2017,
-            file_name="check_ao_need_NAs", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="previous", scenario_year=2018,
+            file_name="wgi_res", save_csv = TRUE, NA_compare = TRUE)
 
 
-compare <- read.csv(here("eez/score_check/check_ao_need_NAs_diff_data_2019-04-01.csv")) 
+compare <- read.csv(here("eez/score_check/wgi_res_diff_data_2019-04-15.csv")) 
 
 dplyr::filter(compare, is.na(score) & !is.na(old_score))
 
