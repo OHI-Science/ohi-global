@@ -1,0 +1,29 @@
+---
+title: "SDG_summary"
+output: html_document
+---
+
+# set up
+```{r}
+library(tidyr)
+library(dplyr)
+library(here)
+
+
+data <- read.csv(here("yearly_results/global2018/OHI_final_formatted_scores_2018-11-28.csv")) 
+
+```
+
+## Clean Water
+
+```{r}
+
+cw <- data %>%
+  filter(goal == "CW" & dimension == "score") %>% 
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  select(scenario, region_name, value) %>%
+  spread(scenario, value)
+write.csv(cw, "yearly_results/global2018/sdg/cw_data.csv", row.names = FALSE)
+
+```
