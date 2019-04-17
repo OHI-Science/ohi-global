@@ -154,7 +154,7 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ### Some methods for visualizing the data
 
 # Link being sourced here is incorrect, need to change it!
-ohicore::score_check(commit="previous", scenario_year=2018,
+ohicore::score_check(commit="4c1e455", scenario_year=2018,
             file_name="wgi_prs", save_csv = TRUE, NA_compare = TRUE)
 
 
