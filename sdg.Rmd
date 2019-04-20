@@ -8,7 +8,8 @@ output: html_document
 library(tidyr)
 library(dplyr)
 library(here)
-
+library(RColorBrewer)
+library(ggplot2)
 
 data <- read.csv(here("yearly_results/global2018/OHI_final_formatted_scores_2018-11-28.csv")) 
 
@@ -24,6 +25,75 @@ cw <- data %>%
   filter(region_id != 213) %>%
   select(scenario, region_name, value) %>%
   spread(scenario, value)
+
 write.csv(cw, "yearly_results/global2018/sdg/cw_data.csv", row.names = FALSE)
+
+# trends
+cw_trend <- read.csv(here("yearly_results/global2018/Results/data/trends_2018.csv")) %>%
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  select(region_name = country, trend=CW) %>%
+  arrange(trend) 
+
+# together
+all_cw <- cw %>%
+  left_join(cw_trend, by = "region_name")
+write.csv(all_cw, "yearly_results/global2018/sdg/cw_scores_trend.csv", row.names = FALSE)
+
+
+sum(cw_trend$trend>0)
+sum(cw_trend$trend<=0)
+
+values <-   brewer.pal(11, "RdYlBu")
+values <- colorRampPalette(values, space = 'Lab')(13)[2:13]
+col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
+
+cw_trend$colors <- cut(cw_trend$trend, breaks=col.brks, include.lowest=TRUE, labels=values)
+cols <- as.character(unique(cw_trend$colors))
+
+
+g <- ggplot(cw_trend, aes(x=trend)) +
+geom_histogram(aes(fill=colors), bins=24, center=1.01, col="gray") +
+scale_fill_manual("", breaks=colors, values=cols, guide=FALSE) +
+labs(y="Number of regions", x="Annual change in clean water score") + 
+geom_vline(xintercept=0, color="red") +  
+theme_bw()
+
+print(g)
+
+ggsave(here("yearly_results/global2018/Results/figures/trend_cw_histogram_color.png"), width=5, height=4)
+
+```
+
+
+## Scores
+```{r}
+
+scores <- data %>%
+  filter(dimension == "score") %>% 
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  filter(scenario == 2018) %>%
+  select(scenario, goal, region_name, value) %>%
+  spread(goal, value)
+
+ohi_trend <- read.csv(here("yearly_results/global2018/Results/data/trends_2018.csv")) %>%
+  filter(region_id != 0) %>%
+  filter(region_id != 213) %>%
+  select(region_name = country, trend=Index) %>%
+  arrange(trend) 
+
+dim(scores)
+dim(ohi_trend)
+
+# together
+all_scores <- scores %>%
+  left_join(ohi_trend, by = "region_name") %>%
+  select("region_name", "Index", "trend", "AO", "BD", "CP", "CS", "CW", "LE", "FP", "SP", "NP", "TR")
+
+
+
+write.csv(all_scores, "yearly_results/global2018/sdg/ohi_scores_trend.csv", row.names = FALSE)
+
 
 ```

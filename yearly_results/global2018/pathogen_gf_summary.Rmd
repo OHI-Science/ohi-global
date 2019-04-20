@@ -1,0 +1,18 @@
+---
+title: "pathogen_gf"
+output: html_document
+---
+
+```{r}
+
+source("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2019/gh-pages/workflow/R/common.R")
+
+tmp <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2019/gh-pages/globalprep/prs_cw_pathogen/v2018/output/po_pathogen_popdensity25mi_gf.csv") %>%
+  filter(year == 2015) %>%
+  left_join(rgns_eez, by = "rgn_id") %>%
+  filter(gapfill == 1) %>%
+  filter(method != "uninhabited, perfect score") %>%
+  select(rgn_name, rgn_id, method, territory, admin_country_name)
+
+
+```
