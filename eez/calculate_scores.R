@@ -155,7 +155,7 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 
 # Link being sourced here is incorrect, need to change it!
 ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="lsp_hd_res", save_csv = TRUE, NA_compare = TRUE)
+            file_name="ico", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/wgi_res_diff_data_2019-04-15.csv")) 
