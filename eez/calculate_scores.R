@@ -154,8 +154,8 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ### Some methods for visualizing the data
 
 # Link being sourced here is incorrect, need to change it!
-ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="spp_status", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="4a1ff8e", scenario_year=2018,
+            file_name="spp_trend_total", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/wgi_res_diff_data_2019-04-15.csv")) 
