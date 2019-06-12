@@ -244,7 +244,7 @@ Flower plots for each region can be downloaded from [here](https://github.com/OH
 ## Making the maps of goal scores that will be reported, these figures are not reported here, but will be called in 
 ## different parts of the text.
 
-source(here('global2016/Reporting/map_fxns.R'))
+source(here("yearly_results/global2016/Reporting/map_fxns.R"))
 
 ### set scenario and desired map projection
 prj      <- 'mol'    ### note: 'gcs' is way faster.
