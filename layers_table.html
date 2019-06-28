@@ -70,9 +70,7 @@ h6 {
 
 <link rel="stylesheet" href="_sass/main.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -97,6 +95,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -111,7 +112,6 @@ body {
   padding-top: 50px;
   margin-top: -50px;
 }
-
 .section h2 {
   padding-top: 50px;
   margin-top: -50px;
@@ -131,6 +131,43 @@ body {
 .section h6 {
   padding-top: 50px;
   margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,19 +189,85 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -420,7 +523,7 @@ $(document).ready(function () {
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#le_sector_weight">Sectors in each region</a></td>
 <td align="left">Proportion of jobs within each marine sector (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/le">data prep</a>)</td>
 <td align="left">ECO, LIV</td>
-<td align="left"><span class="citation">France (2011)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation"><span>United Nations</span> personal communication (2011)</span>; <span class="citation">WTTC (2013)</span></td>
+<td align="left"><span class="citation">France (2011)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">United Nations personal communication (2011)</span>; <span class="citation">WTTC (2013)</span></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
@@ -469,14 +572,14 @@ $(document).ready(function () {
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#liv_status">Livelihood status scores</a></td>
 <td align="left">Calculated using adjusted job and wage data in several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/le/v2018">data prep</a>)</td>
 <td align="left">LIV</td>
-<td align="left"><span class="citation">France (2011)</span>; <span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Oostendorp &amp; Freeman (2012)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation"><span>United Nations</span> personal communication (2011)</span>; <span class="citation">World Bank (2017)</span>; <span class="citation">World Bank (2014b)</span>; <span class="citation">WTTC (2013)</span>; <span class="citation">World Bank (2016)</span></td>
+<td align="left"><span class="citation">France (2011)</span>; <span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Oostendorp &amp; Freeman (2012)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">United Nations personal communication (2011)</span>; <span class="citation">World Bank (2017)</span>; <span class="citation">World Bank (2014b)</span>; <span class="citation">WTTC (2013)</span>; <span class="citation">World Bank (2016)</span></td>
 <td align="left">eliminated calculation, now just provide results as placeholder (not updated since 2013)</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#liv_trend">Livelihood trend scores</a></td>
 <td align="left">Calculated using change in adjusted job and wage data in several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/le/v2018">data prep</a>)</td>
 <td align="left">LIV</td>
-<td align="left"><span class="citation">France (2011)</span>; <span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Oostendorp &amp; Freeman (2012)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation"><span>United Nations</span> personal communication (2011)</span>; <span class="citation">World Bank (2014b)</span>; <span class="citation">World Bank (2014c)</span>; <span class="citation">WTTC (2013)</span>; <span class="citation">World Bank (2016)</span></td>
+<td align="left"><span class="citation">France (2011)</span>; <span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Oostendorp &amp; Freeman (2012)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">United Nations personal communication (2011)</span>; <span class="citation">World Bank (2014b)</span>; <span class="citation">World Bank (2014c)</span>; <span class="citation">WTTC (2013)</span>; <span class="citation">World Bank (2016)</span></td>
 <td align="left">eliminated calculation, now just provide results as placeholder (not updated since 2013)</td>
 </tr>
 <tr class="odd">
@@ -791,7 +894,7 @@ $(document).ready(function () {
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#li_sector_evenness">Economic diversity</a></td>
 <td align="left">Sector evenness based on Shannon’s Diversity Index calculated on the proportion of jobs in each sector as a measure of economic diversity (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/res_li_sector_evenness">data prep</a>)</td>
 <td align="left">resilience</td>
-<td align="left"><span class="citation">France (2011)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">WTTC (2013)</span>; <span class="citation"><span>United Nations</span> personal communication (2011)</span></td>
+<td align="left"><span class="citation">France (2011)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">WTTC (2013)</span>; <span class="citation">United Nations personal communication (2011)</span></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -812,14 +915,14 @@ $(document).ready(function () {
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#species_diversity_3nm">Measure of coastal ecological integrity</a></td>
 <td align="left">Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spp/v2018/spp_data_prep.html">data prep</a>)</td>
 <td align="left">resilience</td>
-<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. version 7.0.’ 2017)</span></td>
+<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. Version 7.0.’ 2017)</span></td>
 <td align="left">additional year of data, improved methods</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#species_diversity_eez">Measure of ecological integrity</a></td>
 <td align="left">Marine species condition (species subgoal status score) as a proxy for ecological integrity (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spp/v2018/spp_data_prep.html">data prep</a>)</td>
 <td align="left">resilience</td>
-<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. version 7.0.’ 2017)</span></td>
+<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. Version 7.0.’ 2017)</span></td>
 <td align="left">additional year of data, improved methods</td>
 </tr>
 <tr class="even">
@@ -861,14 +964,14 @@ $(document).ready(function () {
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#spp_status">Average species condition</a></td>
 <td align="left">Overall measure of species condition based on IUCN status of species within each region (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spp/v2018/spp_data_prep.html">data prep</a>)</td>
 <td align="left">SPP</td>
-<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. version 7.0.’ 2017)</span></td>
+<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. Version 7.0.’ 2017)</span></td>
 <td align="left">additional year of data, improved methods</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#spp_trend">Average species condition trend</a></td>
 <td align="left">Overall measure of species condition trends based on change in IUCN status of species within each region (<a href="http://ohi-science.org/ohiprep_v2018/globalprep/spp/v2018/spp_data_prep.html">data prep</a>)</td>
 <td align="left">SPP</td>
-<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. version 7.0.’ 2017)</span></td>
+<td align="left"><span class="citation">IUCN (2018b)</span>; <span class="citation">IUCN (2018a)</span>; <span class="citation">(‘Bird species distribution maps of the world. Version 7.0.’ 2017)</span></td>
 <td align="left">additional year of data, improved methods</td>
 </tr>
 <tr class="odd">
@@ -920,13 +1023,13 @@ $(document).ready(function () {
 <p>Anderson, S. (2018). <em>Stock assessment methods for data-limited fisheries: Datalimited/datalimited</em>. datalimited.</p>
 </div>
 <div id="ref-aviso_satellite_2018">
-<p>AVISO. (2018). Satellite alimetry data: Mean sea level rise. Satellite alimetry satelite altimetry data. URL <a href="https://www.aviso.altimetry.fr/en/data/products/ocean-indicators-products/mean-sea-level.html" class="uri">https://www.aviso.altimetry.fr/en/data/products/ocean-indicators-products/mean-sea-level.html</a> [accessed 1 August 2018]</p>
+<p>AVISO. (2018). Satellite alimetry data: Mean sea level rise. Satellite alimetry satelite altimetry data. URL <a href="https://www.aviso.altimetry.fr/en/data/products/ocean-indicators-products/mean-sea-level.html">https://www.aviso.altimetry.fr/en/data/products/ocean-indicators-products/mean-sea-level.html</a> [accessed 1 August 2018]</p>
 </div>
 <div id="ref-behrenfeld_photosynthetic_1997">
 <p>Behrenfeld, M.J. &amp; Falkowski, P.G. (1997). Photosynthetic rates derived from satellite-based chlorophyll concentration. <em>Limnology and oceanography</em>, <strong>42</strong>, 1–20.</p>
 </div>
 <div id="ref-birdlife_international_bird_2017">
-<p>Bird species distribution maps of the world. version 7.0. (2017).</p>
+<p>Bird species distribution maps of the world. Version 7.0. (2017).</p>
 </div>
 <div id="ref-bridgham_carbon_2006">
 <p>Bridgham, S.D., Megonigal, J.P., Keller, J.K., Bliss, N.B. &amp; Trettin, C. (2006). The carbon balance of north american wetlands. <em>Wetlands</em>, <strong>26</strong>, 889–916.</p>
@@ -944,19 +1047,19 @@ $(document).ready(function () {
 <p>Center For International Earth Science Information Network-CIESIN-Columbia University. (2017). Gridded population of the world, version 4 (GPWv4): Population density adjusted to match 2015 revision of UN WPP country totals, revision 10. </p>
 </div>
 <div id="ref-cites_member_2015">
-<p>CITES. (2015). Member countries. URL <a href="https://cites.org/eng/disc/parties/index.php" class="uri">https://cites.org/eng/disc/parties/index.php</a></p>
+<p>CITES. (2015). Member countries. URL <a href="https://cites.org/eng/disc/parties/index.php">https://cites.org/eng/disc/parties/index.php</a></p>
 </div>
 <div id="ref-claus_marine_2012">
-<p>Claus, S., De Hauwere, N., Vanhoorne, B., Souza Dias, F., Oset Garcia, P., Hernandez, F. &amp; Mees, J. (2012). Marine regions: Exclusive economic zones (v7). URL <a href="http://www.marineregions.org/" class="uri">http://www.marineregions.org/</a></p>
+<p>Claus, S., De Hauwere, N., Vanhoorne, B., Souza Dias, F., Oset Garcia, P., Hernandez, F. &amp; Mees, J. (2012). Marine regions: Exclusive economic zones (v7). URL <a href="http://www.marineregions.org/">http://www.marineregions.org/</a></p>
 </div>
 <div id="ref-convention_on_biological_diversity_3rd_2005">
-<p>Convention on Biological Diversity. (2005). 3rd national report, survey results. URL <a href="https://www.cbd.int/convention/" class="uri">https://www.cbd.int/convention/</a> [accessed 13 April 2016]</p>
+<p>Convention on Biological Diversity. (2005). 3rd national report, survey results. URL <a href="https://www.cbd.int/convention/">https://www.cbd.int/convention/</a> [accessed 13 April 2016]</p>
 </div>
 <div id="ref-dahl_status_2011">
 <p>Dahl, T.E. (2011). <em>Status and trends of wetlands in the conterminous united states 2004 to 2009</em>. US Department of the Interior, US Fish; Wildlife Service, Fisheries; Habitat Conservation.</p>
 </div>
 <div id="ref-eionet_european_environment_agency_eea_eu_2008">
-<p>Eionet, E.E.A.(. (2008). EU habitats directive article 17 reporting, 2001-2006. URL <a href="http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal" class="uri">http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal</a></p>
+<p>Eionet, E.E.A.(. (2008). EU habitats directive article 17 reporting, 2001-2006. URL <a href="http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal">http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal</a></p>
 </div>
 <div id="ref-eriksen_plastic_2014">
 <p>Eriksen, M., Lebreton, L.C.M., Carson, H.S., Thiel, M., Moore, C.J., Borerro, J.C., Galgani, F., Ryan, P.G. &amp; Reisser, J. (2014). Plastic pollution in the world’s oceans: More than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea. <em>PLoS ONE</em>, <strong>9</strong>, e111913.</p>
@@ -968,7 +1071,7 @@ $(document).ready(function () {
 <p>Feely, R., Doney, S. &amp; Cooley, S. (2009). Ocean acidification: Present conditions and future changes in a high-CO2 world. <em>Oceanography</em>, <strong>22</strong>, 36–47.</p>
 </div>
 <div id="ref-edf_france_electricite_2011">
-<p>France, E. (2011). Électricité de france. URL <a href="https://www.edf.fr/" class="uri">https://www.edf.fr/</a></p>
+<p>France, E. (2011). Électricité de france. URL <a href="https://www.edf.fr/">https://www.edf.fr/</a></p>
 </div>
 <div id="ref-free_mapping_2017">
 <p>Free, C. (2017). Mapping fish stock boundaries for the original ram myers stock-recruit database. </p>
@@ -995,19 +1098,19 @@ $(document).ready(function () {
 <p>Homer, C., Huang, C., Yang, L., Wylie, B. &amp; Coan, M. (2004). Development of a 2001 national land-cover database for the united states. <em>Photogrammetric Engineering &amp; Remote Sensing</em>, <strong>70</strong>, 829–840.</p>
 </div>
 <div id="ref-hovila_omuvbd:_2013">
-<p>Hovila, J., Arola, A. &amp; Tamminen, J. (2013). OMUVBd: OMI/aura surface UVB irradiance and erythemal dose daily l3 global gridded 1.0 degree x 1.0 degree v3. NASA goddard space flight center, goddard earth sciences data and information services center (GES DISC). URL <a href="http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omuvbd_v003.shtml" class="uri">http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omuvbd_v003.shtml</a> [accessed 24 July 2018]</p>
+<p>Hovila, J., Arola, A. &amp; Tamminen, J. (2013). OMUVBd: OMI/aura surface UVB irradiance and erythemal dose daily l3 global gridded 1.0 degree x 1.0 degree v3. NASA goddard space flight center, goddard earth sciences data and information services center (GES DISC). URL <a href="http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omuvbd_v003.shtml">http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omuvbd_v003.shtml</a> [accessed 24 July 2018]</p>
 </div>
 <div id="ref-social_progress_index_2018_nodate">
-<p>Index, S.P. 2018 social progress index. 2018 social progress index. URL <a href="https://www.socialprogress.org/" class="uri">https://www.socialprogress.org/</a> [accessed 13 November 2018]</p>
+<p>Index, S.P. 2018 social progress index. 2018 social progress index. URL <a href="https://www.socialprogress.org/">https://www.socialprogress.org/</a> [accessed 13 November 2018]</p>
 </div>
 <div id="ref-iucn_iucn_2018">
-<p>IUCN. (2018a). IUCN red list categories and criteria. The IUCN red list of threatened species. version 2018-1. URL <a href="http://www.iucnredlist.org/" class="uri">http://www.iucnredlist.org/</a> [accessed 17 August 2018]</p>
+<p>IUCN. (2018a). IUCN red list categories and criteria. The IUCN red list of threatened species. Version 2018-1. URL <a href="http://www.iucnredlist.org/">http://www.iucnredlist.org/</a> [accessed 17 August 2018]</p>
 </div>
 <div id="ref-unep-wcmc_and_iucn_protected_2018">
-<p>IUCN. (2018). Protected planet: The world database on protected areas (WDPA) [on-line]. URL <a href="www.protectedplanet.net" class="uri">www.protectedplanet.net</a> [accessed 2 July 2018]</p>
+<p>IUCN. (2018). Protected planet: The world database on protected areas (WDPA) [on-line]. URL <a href="www.protectedplanet.net">www.protectedplanet.net</a> [accessed 2 July 2018]</p>
 </div>
 <div id="ref-iucn_iucn_2018-1">
-<p>IUCN. (2018b). The IUCN red list of threatened species. version 2018-1. URL <a href="http://www.iucnredlist.org/" class="uri">http://www.iucnredlist.org/</a></p>
+<p>IUCN. (2018b). The IUCN red list of threatened species. Version 2018-1. URL <a href="http://www.iucnredlist.org/">http://www.iucnredlist.org/</a></p>
 </div>
 <div id="ref-jambeck_plastic_2015">
 <p>Jambeck, J.R., Geyer, R., Wilcox, C., Siegler, T.R., Perryman, M., Andrady, A., Narayan, R. &amp; Law, K.L. (2015). Plastic waste inputs from land into the ocean. <em>Science</em>, <strong>347</strong>, 768–771.</p>
@@ -1022,7 +1125,7 @@ $(document).ready(function () {
 <p>Laffoley, D. &amp; Grimsditch, G. (Eds.). (2009). <em>The management of natural coastal carbon sinks</em>. IUCN, Gland, Switzerland.</p>
 </div>
 <div id="ref-lewis_large-scale_2017">
-<p>Lewis, N., Day, J., Wilhelm, A., Wagner, D., Gaymer, D., Parks, J., Friedlander, A., White, S., Sheppard, C., Spalding, M., San Martin, G., Skeat, A., Taei, S., Teroroko, T. &amp; Evans, J. (2017). Large-scale marine protected areas: Guidelines for design and management. best practice protected area guidelines series. <strong>26</strong>.</p>
+<p>Lewis, N., Day, J., Wilhelm, A., Wagner, D., Gaymer, D., Parks, J., Friedlander, A., White, S., Sheppard, C., Spalding, M., San Martin, G., Skeat, A., Taei, S., Teroroko, T. &amp; Evans, J. (2017). Large-scale marine protected areas: Guidelines for design and management. Best practice protected area guidelines series. <strong>26</strong>.</p>
 </div>
 <div id="ref-martell_simple_2013">
 <p>Martell, S. &amp; Froese, R. (2013). A simple method for estimating MSY from catch and resilience. <em>Fish and Fisheries</em>, <strong>14</strong>, 504–514.</p>
@@ -1037,19 +1140,19 @@ $(document).ready(function () {
 <p>New Zealand Ministry for the Environment. (2007). <em>Environment new zealand 2007.</em> Ministry for the Environment, Wellington, N.Z.</p>
 </div>
 <div id="ref-noaa_coral_2018">
-<p>NOAA. (2018). Coral reef temperature anomaly database (CoRTAD version 6). URL <a href="https://www.nodc.noaa.gov/sog/Cortad/" class="uri">https://www.nodc.noaa.gov/sog/Cortad/</a> [accessed 21 August 2018]</p>
-</div>
-<div id="ref-oostendorp_occupational_2012">
-<p>Oostendorp, R. &amp; Freeman, R. (2012). The occupational wages around the world (OWW) database: Update for 1983-2008. URL <a href="http://www.nber.org/oww/" class="uri">http://www.nber.org/oww/</a> [accessed 4 January 2017]</p>
+<p>NOAA. (2018). Coral reef temperature anomaly database (CoRTAD version 6). URL <a href="https://www.nodc.noaa.gov/sog/Cortad/">https://www.nodc.noaa.gov/sog/Cortad/</a> [accessed 21 August 2018]</p>
 </div>
 <div id="ref-oconnor_whale_2009">
 <p>O’Connor, S., Campbell, R., Cortez, H., Knowles, T. &amp; others. (2009). Whale watching worldwide: Tourism numbers, expenditures and expanding economic benefits, a special report from the international fund for animal welfare. <em>Yarmouth MA, USA, prepared by Economists at Large</em>, <strong>228</strong>.</p>
 </div>
 <div id="ref-omalley_ocean_nodate">
-<p>O’Malley, R. Ocean productivity, standard VGPM. Ocean productivity. URL <a href="http://orca.science.oregonstate.edu/2160.by.4320.monthly.xyz.vgpm.m.chl.m.sst.php" class="uri">http://orca.science.oregonstate.edu/2160.by.4320.monthly.xyz.vgpm.m.chl.m.sst.php</a> [accessed 31 July 2018]</p>
+<p>O’Malley, R. Ocean productivity, standard VGPM. Ocean productivity. URL <a href="http://orca.science.oregonstate.edu/2160.by.4320.monthly.xyz.vgpm.m.chl.m.sst.php">http://orca.science.oregonstate.edu/2160.by.4320.monthly.xyz.vgpm.m.chl.m.sst.php</a> [accessed 31 July 2018]</p>
+</div>
+<div id="ref-oostendorp_occupational_2012">
+<p>Oostendorp, R. &amp; Freeman, R. (2012). The occupational wages around the world (OWW) database: Update for 1983-2008. URL <a href="http://www.nber.org/oww/">http://www.nber.org/oww/</a> [accessed 4 January 2017]</p>
 </div>
 <div id="ref-ram_ram_2017">
-<p>RAM. (2017). RAM legacy stock assessment database v3.8. RAM legacy stock assessment database. URL <a href="http://ramlegacy.org/" class="uri">http://ramlegacy.org/</a> [accessed 31 October 2017]</p>
+<p>RAM. (2017). RAM legacy stock assessment database v3.8. RAM legacy stock assessment database. URL <a href="http://ramlegacy.org/">http://ramlegacy.org/</a> [accessed 31 October 2017]</p>
 </div>
 <div id="ref-ricard_examining_2012">
 <p>Ricard, D., Minto, C., Jensen, O.P. &amp; Baum, J.K. (2012). Examining the knowledge base and status of commercially exploited marine species with the RAM legacy stock assessment database. <em>Fish and Fisheries</em>, <strong>13</strong>, 380–398.</p>
@@ -1070,7 +1173,7 @@ $(document).ready(function () {
 <p>Short, F.T., Polidoro, B., Livingstone, S.R., Carpenter, K.E., Bandeira, S., Bujang, J.S., Calumpong, H.P., Carruthers, T.J., Coles, R.G., Dennison, W.C., Erftemeijer, P.L., Fortes, M.D., Freeman, A.S., Jagtap, T., Kamal, A.H.M., Kendrick, G.A., Judson Kenworthy, W., La Nafie, Y.A., Nasution, I.M., Orth, R.J., Prathep, A., Sanciangco, J.C., Tussenbroek, B. van, Vergara, S.G., Waycott, M. &amp; Zieman, J.C. (2011). Extinction risk assessment of the world’s seagrass species. <em>Biological Conservation</em>, <strong>144</strong>, 1961–1971.</p>
 </div>
 <div id="ref-us_department_of_state_travel_2018">
-<p>State, U.D. of. (2018). Travel alerts and warnings. URL <a href="https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html" class="uri">https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html</a> [accessed 28 June 2010]</p>
+<p>State, U.D. of. (2018). Travel alerts and warnings. URL <a href="https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html">https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html</a> [accessed 28 June 2010]</p>
 </div>
 <div id="ref-stern_2018_2018">
 <p>Stern, S., Wares, A. &amp; Epner, T. (2018). <em>2018 social progress index: Methodology summary</em>.</p>
@@ -1085,37 +1188,37 @@ $(document).ready(function () {
 <p>Trujillo, P. (2008). Using a mariculture sustainability index to rank countries’ performance. <em>Fisheries centre research reports</em> (eds J. Alder &amp; D. Pauly). Fisheries Centre Research Reports, University of British Columbia, Vancouver, Canada.</p>
 </div>
 <div id="ref-unep-wcmc_global_2005">
-<p>UNEP-WCMC &amp; Short, F. (2005). <em>Global distribution of seagrasses (version 3). third update to the data layer used in green and short (2003), superseding version 2.</em> UNEP World Conservation Monitoring Centre, Cambridge, UK.</p>
+<p>UNEP-WCMC &amp; Short, F. (2005). <em>Global distribution of seagrasses (version 3). Third update to the data layer used in green and short (2003), superseding version 2.</em> UNEP World Conservation Monitoring Centre, Cambridge, UK.</p>
 </div>
 <div id="ref-united_nations_fao_2017">
-<p>United Nations. (2017). FAO - commodity production and trade. FAO - commodities data. URL <a href="http://ref.data.fao.org/dataset?entryId=aea93578-9b01-4448-9305-917348ca00b2&amp;tab=metadata" class="uri">http://ref.data.fao.org/dataset?entryId=aea93578-9b01-4448-9305-917348ca00b2&amp;tab=metadata</a> [accessed 12 May 2018]</p>
+<p>United Nations. (2017). FAO - commodity production and trade. FAO - commodities data. URL <a href="http://ref.data.fao.org/dataset?entryId=aea93578-9b01-4448-9305-917348ca00b2&amp;tab=metadata">http://ref.data.fao.org/dataset?entryId=aea93578-9b01-4448-9305-917348ca00b2&amp;tab=metadata</a> [accessed 12 May 2018]</p>
 </div>
 <div id="ref-united_nations_fao_2013">
-<p>United Nations. (2013a). FAO fisheries &amp; aquaculture - fishery statistical collections - fishery commodities and trade. URL <a href="http://www.fao.org/fishery/statistics/global-commodities-production/en" class="uri">http://www.fao.org/fishery/statistics/global-commodities-production/en</a></p>
+<p>United Nations. (2013a). FAO fisheries &amp; aquaculture - fishery statistical collections - fishery commodities and trade. URL <a href="http://www.fao.org/fishery/statistics/global-commodities-production/en">http://www.fao.org/fishery/statistics/global-commodities-production/en</a></p>
 </div>
 <div id="ref-united_nations_fao_2013-1">
-<p>United Nations. (2013b). FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. URL <a href="http://www.fao.org/fishery/statistics/global-aquaculture-production/en" class="uri">http://www.fao.org/fishery/statistics/global-aquaculture-production/en</a></p>
+<p>United Nations. (2013b). FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. URL <a href="http://www.fao.org/fishery/statistics/global-aquaculture-production/en">http://www.fao.org/fishery/statistics/global-aquaculture-production/en</a></p>
 </div>
 <div id="ref-united_nations_fao_2018-1">
-<p>United Nations. (2018a). FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. URL <a href="http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata" class="uri">http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata</a> [accessed 11 April 2018]</p>
+<p>United Nations. (2018a). FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. URL <a href="http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata">http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata</a> [accessed 11 April 2018]</p>
 </div>
 <div id="ref-united_nations_fao_2013-2">
-<p>United Nations. (2013c). FAO fisheries &amp; aquaculture - fishery statistical collections - global capture production. URL <a href="http://www.fao.org/fishery/statistics/global-capture-production/en" class="uri">http://www.fao.org/fishery/statistics/global-capture-production/en</a></p>
+<p>United Nations. (2013c). FAO fisheries &amp; aquaculture - fishery statistical collections - global capture production. URL <a href="http://www.fao.org/fishery/statistics/global-capture-production/en">http://www.fao.org/fishery/statistics/global-capture-production/en</a></p>
 </div>
 <div id="ref-united_nations_fao_2018">
-<p>United Nations. (2018b). FAO FishStatJ - global capture production. FAO FishStatJ - global capture production. URL <a href="http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp" class="uri">http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp</a> [accessed 1 August 2018]</p>
+<p>United Nations. (2018b). FAO FishStatJ - global capture production. FAO FishStatJ - global capture production. URL <a href="http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp">http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp</a> [accessed 1 August 2018]</p>
 </div>
 <div id="ref-united_nations_fao_2016-2">
-<p>United Nations. (2016). FAO statistics division - inputs. URL <a href="http://faostat3.fao.org/browse/R/*/E" class="uri">http://faostat3.fao.org/browse/R/*/E</a></p>
+<p>United Nations. (2016). FAO statistics division - inputs. URL <a href="http://faostat3.fao.org/browse/R/*/E">http://faostat3.fao.org/browse/R/*/E</a></p>
 </div>
 <div id="ref-united_nations_statistics_2012">
-<p>United Nations. (2012). Statistics division - energy statistics. URL <a href="http://unstats.un.org/unsd/energy/edbase.htm" class="uri">http://unstats.un.org/unsd/energy/edbase.htm</a></p>
+<p>United Nations. (2012). Statistics division - energy statistics. URL <a href="http://unstats.un.org/unsd/energy/edbase.htm">http://unstats.un.org/unsd/energy/edbase.htm</a></p>
 </div>
 <div id="ref-united_nations_worlds_2007">
 <p>United Nations. (2007). The world’s mangroves 1980-2005. FAO forestry paper 153. </p>
 </div>
 <div id="ref-united_nations_personal_communication_fao_2011">
-<p><span>United Nations</span> personal communication. (2011). FAO fisheries &amp; aquaculture - fishery statistical collections - global number of fishers. URL <a href="http://www.fao.org/fishery/statistics/global-fishers/en" class="uri">http://www.fao.org/fishery/statistics/global-fishers/en</a></p>
+<p>United Nations personal communication. (2011). FAO fisheries &amp; aquaculture - fishery statistical collections - global number of fishers. URL <a href="http://www.fao.org/fishery/statistics/global-fishers/en">http://www.fao.org/fishery/statistics/global-fishers/en</a></p>
 </div>
 <div id="ref-watson_mapping_2018">
 <p>Watson, R. &amp; Tidd, A. (2018). Mapping nearly a century and a half of global marine fishing: 1869–2015. <strong>93</strong>, 171–177.</p>
@@ -1124,34 +1227,34 @@ $(document).ready(function () {
 <p>Waycott, M., Duarte, C.M., Carruthers, T.J.B., Orth, R.J., Dennison, W.C., Olyarnik, S., Calladine, A., Fourqurean, J.W., Heck, K.L., Hughes, A.R., Kendrick, G.A., Kenworthy, W.J., Short, F.T. &amp; Williams, S.L. (2009). Accelerating loss of seagrasses across the globe threatens coastal ecosystems. <em>Proceedings of the National Academy of Sciences</em>, <strong>106</strong>, 12377–12381.</p>
 </div>
 <div id="ref-who-unicef_joint_2017">
-<p>WHO-UNICEF. (2017). Joint monitoring programme (JMP) for water supply and sanitation. Joint monitoring programme (JMP) for water supply and sanitation. URL <a href="https://washdata.org/data" class="uri">https://washdata.org/data</a> [accessed 1 May 2018]</p>
+<p>WHO-UNICEF. (2017). Joint monitoring programme (JMP) for water supply and sanitation. Joint monitoring programme (JMP) for water supply and sanitation. URL <a href="https://washdata.org/data">https://washdata.org/data</a> [accessed 1 May 2018]</p>
 </div>
 <div id="ref-wikipedia_notitle_nodate">
-<p>Wikipedia. URL <a href="https://www.wikipedia.org/" class="uri">https://www.wikipedia.org/</a> [accessed 15 November 2018]</p>
+<p>Wikipedia. URL <a href="https://www.wikipedia.org/">https://www.wikipedia.org/</a> [accessed 15 November 2018]</p>
 </div>
 <div id="ref-world_bank_gdp_2014">
 <p>World Bank. (2014a). GDP (current US$). URL <a href="http://data.worldbank.org/indicator/%20NY.GDP.MKTP.CD">http://data.worldbank.org/indicator/%20NY.GDP.MKTP.CD</a></p>
 </div>
 <div id="ref-world_bank_gdp_2017">
-<p>World Bank. (2017). GDP per capita, PPP (constant 2011 international $). GDP per capita, PPP (constant 2011 international $). URL <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD" class="uri">https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD</a> [accessed 23 July 2018]</p>
+<p>World Bank. (2017). GDP per capita, PPP (constant 2011 international $). GDP per capita, PPP (constant 2011 international $). URL <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD">https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD</a> [accessed 23 July 2018]</p>
 </div>
 <div id="ref-world_bank_labor_2014">
-<p>World Bank. (2014b). Labor force, total. URL <a href="http://data.worldbank.org/indicator/SL.TLF.TOTL.IN" class="uri">http://data.worldbank.org/indicator/SL.TLF.TOTL.IN</a></p>
+<p>World Bank. (2014b). Labor force, total. URL <a href="http://data.worldbank.org/indicator/SL.TLF.TOTL.IN">http://data.worldbank.org/indicator/SL.TLF.TOTL.IN</a></p>
 </div>
 <div id="ref-world_bank_population_2016">
-<p>World Bank. (2016). Population, total. URL <a href="http://data.worldbank.org/indicator/SP.POP.TOTL" class="uri">http://data.worldbank.org/indicator/SP.POP.TOTL</a></p>
+<p>World Bank. (2016). Population, total. URL <a href="http://data.worldbank.org/indicator/SP.POP.TOTL">http://data.worldbank.org/indicator/SP.POP.TOTL</a></p>
 </div>
 <div id="ref-world_bank_unemployment_2014">
-<p>World Bank. (2014c). Unemployment, total (% of total labor force) (modeled ILO estimate). URL <a href="http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS" class="uri">http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS</a></p>
+<p>World Bank. (2014c). Unemployment, total (% of total labor force) (modeled ILO estimate). URL <a href="http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS">http://data.worldbank.org/indicator/SL.UEM.TOTL.ZS</a></p>
 </div>
 <div id="ref-world_bank_worldwide_2018">
-<p>World Bank. (2018). Worldwide governance indicators (WGI) data catalog. URL <a href="https://datacatalog.worldbank.org/dataset/worldwide-governance-indicators" class="uri">https://datacatalog.worldbank.org/dataset/worldwide-governance-indicators</a> [accessed 13 November 2018]</p>
+<p>World Bank. (2018). Worldwide governance indicators (WGI) data catalog. URL <a href="https://datacatalog.worldbank.org/dataset/worldwide-governance-indicators">https://datacatalog.worldbank.org/dataset/worldwide-governance-indicators</a> [accessed 13 November 2018]</p>
 </div>
 <div id="ref-wttc_world_2013">
-<p>WTTC. (2013). World travel and tourism council. URL <a href="www.wttc.org/research/economicimpact-research/methodology/" class="uri">www.wttc.org/research/economicimpact-research/methodology/</a></p>
+<p>WTTC. (2013). World travel and tourism council. URL <a href="www.wttc.org/research/economicimpact-research/methodology/">www.wttc.org/research/economicimpact-research/methodology/</a></p>
 </div>
 <div id="ref-wttc_world_2017">
-<p>WTTC. (2017). World travel and tourism council. World travel and tourism council. URL <a href="https://www.wttc.org/datagateway" class="uri">https://www.wttc.org/datagateway</a> [accessed 12 July 2018]</p>
+<p>WTTC. (2017). World travel and tourism council. World travel and tourism council. URL <a href="https://www.wttc.org/datagateway">https://www.wttc.org/datagateway</a> [accessed 12 July 2018]</p>
 </div>
 </div>
 

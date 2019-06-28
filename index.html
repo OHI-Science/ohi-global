@@ -70,9 +70,7 @@ h6 {
 
 <link rel="stylesheet" href="_sass/main.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -97,6 +95,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -111,7 +112,6 @@ body {
   padding-top: 50px;
   margin-top: -50px;
 }
-
 .section h2 {
   padding-top: 50px;
   margin-top: -50px;
@@ -131,6 +131,43 @@ body {
 .section h6 {
   padding-top: 50px;
   margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -152,19 +189,85 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
 <!-- code folding -->
 
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
 
 
 
@@ -242,14 +345,14 @@ $(document).ready(function () {
 <li><a href="http://www.oceanhealthindex.org/">Learn more at oceanhealthindex.org</a></li>
 </ul>
 </div>
-<p>The OHI framework has not changed since its inception in 2012 (<a href="http://www.nature.com/nature/journal/v488/n7413/full/nature11397.html"><em>Halpern et al. 2012</em></a>). We continue to assess ocean health based on the sustainable delivery of a suite of goals that are important to humans. We score each goal on a scale of 0-100 based on current status, trend, and external pressures and resilience measures. Scores are calculated for each coastal nation before being combined together. However, the OHI benefits from constant evaluation and improvement aimed at incorporating new knowledge, data and understanding, and underlying methods for some goals have been upgraded. When upgrades occur, we back-calculate previous years so that all scores are comparable.</p>
+<p>The OHI framework has not changed since its inception in 2012 (<a href="http://www.nature.com/nature/journal/v488/n7413/full/nature11397.html"><em>Halpern et al. 2012</em></a>). We continue to assess ocean health based on the sustainable delivery of a suite of goals that are important to humans. We score each goal on a scale of 0-100 based on current status, trend, and external pressures and resilience measures. Scores are calculated for each coastal nation before being combined together. However, the OHI benefits from constant evaluation and improvement aimed at incorporating new knowledge, data and understanding, and underlying methods for some goals have been upgraded. When upgrades occur, we back-calculate previous years so that all scores are comparable.</p>
 <p>For the fifth assessment in 2016, we also explored trends and trajectories in ocean health:</p>
 <ul>
 <li><a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267">Halpern <em>et al</em>. 2017, <em>PLoS ONE</em></a></li>
 <li><a href="http://ohi-science.nceas.ucsb.edu/plos_change_in_global_ocean_health/">interactive figures and maps</a></li>
 <li><a href="https://www.openchannels.org/webinars/2017/drivers-and-implications-change-global-ocean-health-demonstrated-ocean-health-index">Open Channels webinar</a></li>
 </ul>
-<p>For further details, see <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117863"><em>Halpern et al. 2015</em></a>, <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267"><em>Halpern et al. 2017</em></a>, <a href="https://peerj.com/articles/1503"><em>Lowndes et al. 2015</em></a>, and <a href="https://www.nature.com/articles/s41559-017-0160"><em>Lowndes et al. 2017</em></a>. <br> <br></p>
+<p>For further details, see <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117863"><em>Halpern et al. 2015</em></a>, <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267"><em>Halpern et al. 2017</em></a>, <a href="https://peerj.com/articles/1503"><em>Lowndes et al. 2015</em></a>, and <a href="https://www.nature.com/articles/s41559-017-0160"><em>Lowndes et al. 2017</em></a>. <br> <br></p>
 <p><a href="http://ohi-science.org"><img src="https://docs.google.com/drawings/d/1633uvIYgsBhiKBddQAaTlvYDJgOK1uiDB6wkooNyhFc/pub?w=576&h=288" width="100px"></a><br />
 <a href="http://ohi-science.org">ohi-science.org home</a></p>
 <!---Erroring 11/27/17, look into it later [<img src="https://docs.google.com/drawings/d/e/2PACX-1vTi4aqn_mn_ddyY9pSmnvebsJTHLWm-917sVfZorvUdF3lmBXWM6gr3vSYYJ1uEg5Bf3BtaO_j7z-gi/pub?w=288&h=120" width="150px">](http://ohi-science.org)  

@@ -73,9 +73,7 @@ h6 {
 
 <link rel="stylesheet" href="_sass/main.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -100,6 +98,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -114,7 +115,6 @@ body {
   padding-top: 50px;
   margin-top: -50px;
 }
-
 .section h2 {
   padding-top: 50px;
   margin-top: -50px;
@@ -134,6 +134,43 @@ body {
 .section h6 {
   padding-top: 50px;
   margin-top: -50px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -155,18 +192,75 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
 });
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
 </script>
 
 <!-- code folding -->
-
 
 
 
@@ -255,6 +349,16 @@ div.tocify {
 
 </style>
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
 <div class="col-xs-12 col-sm-4 col-md-3">
@@ -321,10 +425,7 @@ Put in your css file or directly in rmarkdown--->
   }
 </style>
 <p><br> <strong>Global Ocean Health Index assessments score 10 goals, some of which have sub-goals</strong>. The Ocean Health Index measures the ability of oceans to sustainably provide 10 products or services (called “goals”) that are important to humans. Here you will find a description of the goals used in global assessments. Goal-by-goal, you can explore the data used to model status and trend, as well as the pressures and resilience measures contributing to goal scores.</p>
-<div class="figure">
-<img src="https://docs.google.com/drawings/d/17N97_cydibY4QM79tnVf-hLDii0NNm3VhBJ2hhkKKkM/pub?w=1344&amp;h=192" />
-
-</div>
+<p><img src="https://docs.google.com/drawings/d/17N97_cydibY4QM79tnVf-hLDii0NNm3VhBJ2hhkKKkM/pub?w=1344&amp;h=192" /></p>
 <hr />
 <br> <br> <br>
 <div class="col2">
@@ -849,7 +950,7 @@ The model is based on single-species assessments of stock status and thus cannot
 </div>
 <div id="model-8" class="section level3">
 <h3>Model</h3>
-<p>CW goal score is calculated as the geometric mean of its four components: eutrophication (nutrients), chemicals, pathogens and marine debris. They are meant to represent a comprohensive list of contamination categories that are commonly considered in assessments of coastal clean waters and for which we could obtain datasets. <em>Chemical pollution</em> was measured as the average of land-based organic and inorganic pollution from agricultural pesticide use and runoff from impervious surfaces, respectively, and ocean-based pollution from commercial shipping and ports. The modeled input of land-based nitrogen input from (Halpern et al. 2008) was used as a proxy for <em>nutrient</em> input. Due to a lack of information on direct measurements of human pathogen in the coastal water, we used a proxy measure for pathogen: the number of people in coastal areas without access to improved sanitation facilities, assuming that locations with fewer people with access to improved facilities would lead to a a higher likelihood of coastal water contamination from human pathogens. The status of <em>trash pollution</em> was estimated using globally-available coastal beach cleanup data from the Ocean Conservancy, which records the weight of trash per year that were collected (Halpern 2012).</p>
+<p>CW goal score is calculated as the geometric mean of its four components: eutrophication (nutrients), chemicals, pathogens and marine debris. They are meant to represent a comprohensive list of contamination categories that are commonly considered in assessments of coastal clean waters and for which we could obtain datasets. <em>Chemical pollution</em> was measured as the average of land-based organic and inorganic pollution from agricultural pesticide use and runoff from impervious surfaces, respectively, and ocean-based pollution from commercial shipping and ports. The modeled input of land-based nitrogen input from (Halpern et al. 2008) was used as a proxy for <em>nutrient</em> input. Due to a lack of information on direct measurements of human pathogen in the coastal water, we used a proxy measure for pathogen: the number of people in coastal areas without access to improved sanitation facilities, assuming that locations with fewer people with access to improved facilities would lead to a a higher likelihood of coastal water contamination from human pathogens. The status of <em>trash pollution</em> was estimated using globally-available coastal beach cleanup data from the Ocean Conservancy, which records the weight of trash per year that were collected (Halpern 2012).</p>
 </div>
 <div id="reference-points-11" class="section level3">
 <h3>Reference points</h3>
