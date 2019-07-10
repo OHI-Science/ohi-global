@@ -1,6 +1,6 @@
 layer,dir,fn,ingest,name_data_fld,name,units,description
 ao_access,ohiprep:globalprep/res_mora_ao/v2013/data,r_mora_s4_2013a_updated.csv,TRUE,value,Artisanal fisheries opportunity,scaled 0-1,The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector
-ao_need,ohiprep:globalprep/ao/v2019/output,wb_gdppcppp_rescaled.csv,TRUE,value,Economic need for artisanal fishing,scaled 0-1,Inverse of per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need
+ao_need,ohiprep:globalprep/ao/v2018/output,wb_gdppcppp_rescaled.csv,TRUE,value,Economic need for artisanal fishing,scaled 0-1,Inverse of per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need
 cc_acid,ohiprep:globalprep/prs_oa/v2017/output,acid.csv,TRUE,pressure_score,Ocean acidification,scaled 0-1,"Pressure due to increasing ocean acidification, scaled using biological thresholds"
 cc_slr,ohiprep:globalprep/prs_slr/v2018/output,slr.csv,TRUE,pressure_score,Sea level rise,scaled 0-1,Pressure due to rising mean sea level
 cc_sst,ohiprep:globalprep/prs_sst/v2018/output,sst_updated.csv,TRUE,pressure_score,Sea surface temperature,scaled 0-1,Presure due to increasing extreme sea surface temperature events
@@ -64,7 +64,7 @@ liv_status,ohiprep:globalprep/le/v2018/output,liv_status.csv,TRUE,status,Livelih
 liv_trend,ohiprep:globalprep/le/v2018/output,liv_trend.csv,TRUE,trend,Livelihood trend scores,trend -1 to 1,Calculated using change in adjusted job and wage data in several marine sectors  (data not updated since 2013)
 lsp_prot_area_inland1km,ohiprep:globalprep/lsp/v2019/output,lsp_prot_area_inland1km.csv,TRUE,a_prot_1km,Inland coastal protected areas,km2,Protected areas located 1 km inland
 lsp_prot_area_offshore3nm,ohiprep:globalprep/lsp/v2019/output,lsp_prot_area_offshore3nm.csv,TRUE,a_prot_3nm,Offshore coastal protected areas,km2,Protected areas located 3nm offshore
-mar_coastalpopn_inland25mi,ohiprep:globalprep/mar_prs_population/v2018/output,mar_pop_25mi.csv,TRUE,popsum,Inland coastal population,count,Total coastal population within 25 miles of coast
+mar_coastalpopn_inland25mi,ohiprep:globalprep/mar_prs_population/v2019/output,mar_pop_25mi.csv,TRUE,popsum,Inland coastal population,count,Total coastal population within 25 miles of coast
 mar_harvest_tonnes,ohiprep:globalprep/mar/v2018/output,mar_harvest_tonnes.csv,TRUE,tonnes,Mariculture harvest,tonnes,Tonnes of mariculture harvest
 mar_sustainability_score,ohiprep:globalprep/mar/v2018/output,mar_sustainability.csv,TRUE,sust_coeff,Mariculture sustainability score,scaled 0-1,Mariculture sustainability based on the Mariculture Sustainability Index (MSI)
 np_blast,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data,gl_thr_blast_3nm_rgn2013.csv,TRUE,score,Blast fishing,scaled 0-1,Artisanal blast fishing
