@@ -1,6 +1,6 @@
 layer,dir,fn,ingest,name_data_fld,name,units,description
 ao_access,ohiprep:globalprep/res_mora_ao/v2013/data,r_mora_s4_2013a_updated.csv,TRUE,value,Artisanal fisheries opportunity,scaled 0-1,The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector
-ao_need,ohiprep:globalprep/ao/v2018/output,wb_gdppcppp_rescaled.csv,TRUE,value,Economic need for artisanal fishing,scaled 0-1,Inverse of per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need
+ao_need,ohiprep:globalprep/ao/v2019/output,wb_gdppcppp_rescaled.csv,TRUE,value,Economic need for artisanal fishing,scaled 0-1,Inverse of per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need
 cc_acid,ohiprep:globalprep/prs_oa/v2017/output,acid.csv,TRUE,pressure_score,Ocean acidification,scaled 0-1,"Pressure due to increasing ocean acidification, scaled using biological thresholds"
 cc_slr,ohiprep:globalprep/prs_slr/v2018/output,slr.csv,TRUE,pressure_score,Sea level rise,scaled 0-1,Pressure due to rising mean sea level
 cc_sst,ohiprep:globalprep/prs_sst/v2018/output,sst_updated.csv,TRUE,pressure_score,Sea surface temperature,scaled 0-1,Presure due to increasing extreme sea surface temperature events
