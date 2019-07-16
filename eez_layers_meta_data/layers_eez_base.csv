@@ -94,7 +94,7 @@ spp_status,ohiprep:globalprep/spp/v2019/output,sp_status_global.csv,TRUE,score,A
 spp_trend,ohiprep:globalprep/spp/v2019/output,sp_trend_global.csv,TRUE,score,Average species condition trend,trend score,Overall measure of species condition trends based on change in IUCN status of species within each region 
 ss_spi,ohiprep:globalprep/prs_res_spi/v2018/output,spi_prs.csv,TRUE,pressure_score,Weakness of social progress,scaled 0-1,Inverse of Social Progress Index scores
 ss_wgi,ohiprep:globalprep/prs_res_wgi/v2019/output,wgi_prs.csv,TRUE,pressure_score,Weakness of governance,scaled 0-1,Inverse of World Governance Indicators (WGI) six combined scores
-tr_jobs_pct_tourism,ohiprep:globalprep/tr/v2018/output,tr_jobs_pct_tourism.csv,TRUE,Ep,Percent direct employment in tourism,proportion,Percent direct employment in tourism
+tr_jobs_pct_tourism,ohiprep:globalprep/tr/v2019/output,tr_jobs_pct_tourism.csv,TRUE,Ep,Percent direct employment in tourism,proportion,Percent direct employment in tourism
 tr_sustainability,ohiprep:globalprep/tr/v2017/output,tr_sustainability.csv,TRUE,S_score,Tourism sustainability index,scaled 0-1,Tourism Competitiveness Index (TTCI)
 tr_travelwarnings,ohiprep:globalprep/tr/v2018/output,tr_travelwarnings.csv,TRUE,multiplier,US State Department travel warnings,scaled 0-1,US State Department travel warnings
 uninhabited,ohiprep:globalprep/supplementary_information/v2018,rgn_uninhabited_islands.csv,TRUE,Inhabited,Uninhabited regions,population,Regions with low and no number of inhabitants (also identifies Southern Islands)
