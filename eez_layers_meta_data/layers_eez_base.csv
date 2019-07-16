@@ -96,6 +96,6 @@ ss_spi,ohiprep:globalprep/prs_res_spi/v2018/output,spi_prs.csv,TRUE,pressure_sco
 ss_wgi,ohiprep:globalprep/prs_res_wgi/v2019/output,wgi_prs.csv,TRUE,pressure_score,Weakness of governance,scaled 0-1,Inverse of World Governance Indicators (WGI) six combined scores
 tr_jobs_pct_tourism,ohiprep:globalprep/tr/v2019/output,tr_jobs_pct_tourism.csv,TRUE,Ep,Percent direct employment in tourism,proportion,Percent direct employment in tourism
 tr_sustainability,ohiprep:globalprep/tr/v2017/output,tr_sustainability.csv,TRUE,S_score,Tourism sustainability index,scaled 0-1,Tourism Competitiveness Index (TTCI)
-tr_travelwarnings,ohiprep:globalprep/tr/v2018/output,tr_travelwarnings.csv,TRUE,multiplier,US State Department travel warnings,scaled 0-1,US State Department travel warnings
+tr_travelwarnings,ohiprep:globalprep/tr/v2019/output,tr_travelwarnings.csv,TRUE,multiplier,US State Department travel warnings,scaled 0-1,US State Department travel warnings
 uninhabited,ohiprep:globalprep/supplementary_information/v2018,rgn_uninhabited_islands.csv,TRUE,Inhabited,Uninhabited regions,population,Regions with low and no number of inhabitants (also identifies Southern Islands)
 wgi_all,ohiprep:globalprep/prs_res_wgi/v2019/output,wgi_res.csv,TRUE,resilience_score,Strength of governance,scaled 0-1,World Governance Indicators (WGI) six combined scores
