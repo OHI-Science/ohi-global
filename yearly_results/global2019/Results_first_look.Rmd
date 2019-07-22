@@ -1,0 +1,1387 @@
+---
+title: 'OHI 2019: Summary of results'
+author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+output: 
+  html_document:
+    code_folding: show
+    toc: true
+    toc_depth: 3
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+      in_header: '../../../ohiprep/src/templates/ohi_hdr.html'
+  pdf_document:
+    toc: true
+---
+
+
+This document describes results from the OHI 2018 global assessment.  This is mostly an internal document to explore and check results.  It also creates the figures used on the website and in other documents.
+```{r control, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+
+# 1. check the code chunk below and change variables if needed
+# 2. go through document and update text where needed.
+
+# the date in the below variable must be updated (for the results to reflect the new data)
+dateFile = '2019-07-22' #date extension on data files used for all tables/figures
+
+## General settings to control
+scenario <- 2019 #identify scenario of focus (this can be changed to obtain data for other years)
+benchmark = 2018  # previous year that is used for old vs. new OHI analyses
+oldCommit = 'a5d197c1ae8b520fb8172c1da589ce4deb0f3e3a' # sha final commit for 2017 assessment
+saveFile <- 'global2019' #location where files that are created are to be saved
+
+
+### code to run code chunks
+### (change these if data is updated, otherwise takes a while to run):
+update_data = TRUE           # Select true if there are updates to the OHI data!!  Also be sure to change dateFile above
+map_create = TRUE            # Updates the map figures (takes a while to run)
+goal_hists = TRUE            # Updates the goal histograms
+flower_plots = TRUE         # Updates the flower plot figures
+
+```
+
+
+
+```{r set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+
+#load libraries
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(hwriter)
+library(RColorBrewer)
+library(knitr)
+library(googleVis)
+library(ohicore)
+library(readr)
+library(sp)
+library(rgdal)
+library(DT)
+library(broom)
+library(here)
+library(repmis)
+library(ggalt)
+library(reshape2)
+library(plotly)
+library(stringr)
+
+# nice labels for things
+goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+
+goal_names <- data.frame(goal=goals, long_goal=c("Index", 
+                                                  "Artisanal opportunities",
+                                                  "Species condition (subgoal)",
+                                                  "Biodiversity",
+                                                  "Habitat (subgoal)",
+                                                  "Coastal protection",
+                                                  "Carbon storage",
+                                                  "Clean water",
+                                                  "Economies",
+                                                  "Livelihoods & economies",
+                                                  "Livelihoods",
+                                                  "Fisheries (subgoal)",
+                                                  "Food provision",
+                                                  "Mariculture (subgoal)",
+                                                  "Iconic species (subgoal)",
+                                                  "Sense of place",
+                                                  "Lasting special places (subgoal)",
+                                                  "Natural products",
+                                                  "Tourism & recreation"))
+
+## color scheme to use
+colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
+
+## General files to load
+rgn_names <- read.csv(here(sprintf('eez/layers/rgn_global.csv', scenario))) %>%
+  dplyr::select(region_id = rgn_id, country = label) %>%
+  dplyr::mutate(country = as.character(country))
+
+```
+
+
+# Primary dataset
+
+
+```{r final_data, eval=update_data, include=FALSE}
+
+# Saves the last version of eez/scores.csv with a date appended to filename.
+ohi_final <- read.csv(here("eez/scores.csv"))
+write.csv(ohi_final, here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, Sys.Date())), row.names=FALSE)
+```
+
+```{r final_data_modified, eval=update_data, include=FALSE}
+
+# if data are updated, this saves a modified version that is easier to read
+ohi_final <- read.csv(here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)))
+
+# User friendly version of data: region names are also added to data and full goal names.
+ohi_final_formatted <- read.csv(here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile))) %>%
+  left_join(rgn_names, by= "region_id") %>%
+  mutate(country = ifelse(region_id == 0, "Global average", country)) %>%
+  left_join(goal_names, by="goal") %>%
+  select(scenario=year, goal, long_goal, dimension, region_id, region_name=country, value=score)
+
+write.csv(ohi_final_formatted, here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)), row.names=FALSE)
+
+## create a version of data with region index scores wide
+ohi_final_wide <- read.csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile))) %>%
+  filter(dimension == "score") %>%
+  filter(goal == "Index") 
+
+ohi_final_avg <- ohi_final_wide %>%
+  group_by(region_id) %>%
+  summarize(average = mean(value, na.rm=TRUE))
+
+ohi_final_wide <- ohi_final_wide %>%
+  select(scenario, region_id, region_name, value) %>%
+  spread(scenario, value) %>%
+  left_join(ohi_final_avg, by = "region_id")
+
+write.csv(ohi_final_wide, here(sprintf("yearly_results/%s/Results/data/index_scores_wide_all_years.csv", saveFile)), row.names=FALSE)
+
+```
+
+
+```{r more data versions, eval=update_data, include=FALSE}
+
+### create a version of the data that averages all years of scores
+### so the best/worst overall can be identified
+index_avg <- read.csv(here(sprintf('yearly_results/%s/OHI_final_formatted_scores_%s.csv', saveFile, dateFile)), stringsAsFactors = FALSE) %>%
+  filter(dimension == "score") %>%
+  group_by(goal, region_id, region_name) %>%
+  summarize(avg_score = mean(value, na.rm=TRUE)) %>%
+  ungroup()
+
+index_avg$goal <- factor(index_avg$goal, levels = goals)
+
+index_avg_spread <- spread(index_avg, goal, avg_score) %>%
+  arrange(-Index) %>%
+  data.frame()
+
+write.csv(index_avg_spread, here(sprintf("yearly_results/%s/Results/data/avg_goal_scores.csv", saveFile)), row.names=FALSE)
+
+```
+
+
+```{r data prep score table, echo=FALSE}
+
+## create a score dataframe 
+
+data_all <- read.csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)))
+
+for(year in 2012:scenario){ # year = 2016
+
+data <- data_all[data_all$scenario == year, ]
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  mutate(region_name = as.character(region_name)) %>%
+  mutate(value = round(value, 2)) %>%
+  select(-long_goal)
+
+data <- spread(data, goal, value)
+
+index <- data %>%
+  filter(region_name == 'Global average')
+
+data <- data %>%
+  arrange(-Index) %>%
+  filter(region_name != 'Global average')
+
+data_final <- rbind(index, data) %>%
+    select(region_name, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+
+write.csv(data_final, here(sprintf("yearly_results/%s/Results/data/scores_eez%s.csv", saveFile, year)), row.names = FALSE, na='')
+
+}
+
+
+```
+
+
+
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/OHI_final_formatted_scores_2018-10-22.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2018.
+**will need to update this for 2019**
+
+Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
+
+
+
+# OHI scores 
+
+## Global summary
+This section describes global patterns in index and goal scores.  The overall global score was `r data_final %>% filter(region_name == "Global average") %>% select(Index) %>% .[['Index']]`.
+
+```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval = flower_plots}
+
+source(here(sprintf('yearly_results/%s/Results/functions/flowerPlot.R', saveFile)))
+
+PlotFlower(
+  region_plot     = NA,
+  dir_fig_save = here(sprintf("yearly_results/%s/Results/figures/FlowerPlots", saveFile)),
+  assessment_name = "Global average",
+  year_plot = 2019,
+  scores_file = here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)),
+  scenario_folder = "eez"
+)
+
+# ^ not working as of 7/22/19 - can't open the png file?
+```
+
+
+Average global performance of the 10 goals.
+
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2018/Results/figures/FlowerPlots)
+
+
+![](figures/FlowerPlots/flower_Globalaverage.png) 
+
+
+## Country summary
+``` {r Maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=map_create}
+
+## Making the maps of goal scores that will be reported, these figures are not reported here, but will be called in 
+## different parts of the text.
+
+source(here("yearly_results/global2016/Reporting/map_fxns.R")) # why are we sourcing 2016 files? 
+
+### set scenario and desired map projection
+prj      <- 'mol'    ### note: 'gcs' is way faster.
+
+# brewer.pal(10, "RdYlBu")
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+colors <-   c(reds, blues)
+#write.csv(data.frame(colors), here("global2018/Results/color_palette.csv"), row.names=FALSE)
+
+### get OHI data and rename column headings
+
+for(year in 2012:scenario){ #year=2012
+
+if(year != scenario){
+  if(sum(grepl(sprintf("year_%s", year), 
+               list.files(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol", saveFile))))) == 0){
+  dir.create(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/year_%s", saveFile, year)))
+  }
+  }
+    
+scores_df <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv', saveFile, year)), stringsAsFactors = FALSE) %>%
+  rename(rgn_name = region_name, rgn_id = region_id) %>%
+  mutate(rgn_id = as.character(rgn_id))
+
+### load region data frame, so doesn't need to reload every time through the loop.  Also
+### load the land data frame, if plotting in Mollweide projection.
+rgn_df <- get_rgn_df(prj = prj) # v2019: getting error here ! "cannot open data source", but map_fxns.R seems to be working fine?
+if(prj == 'mol' & !exists('land_poly')) {
+  land_poly  <- get_land_df()
+  ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
+}
+
+
+### establish list of fields for mapping
+mapFlds   <- names(scores_df %>% select(-rgn_name, -rgn_id))
+
+### Loop over each field, plotting each map in turn and saving to file.
+for (fld in mapFlds) { # fld <- mapFlds[1]
+
+  if(year==scenario){
+   fig_save = here(sprintf('%s/Results/figures/maps_by_goal_%s/global_map_%s_%s_%s.png', saveFile, prj, fld, year, prj))
+} else{ 
+    fig_save = here(sprintf('%s/Results/figures/maps_by_goal_%s/year_%s/global_map_%s_%s_%s.png', saveFile, prj, year, fld, year, prj))
+    }
+  
+   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
+                                 #colors_spec = colors, 
+                               leg_on = TRUE)
+   
+   #print(ohiplot)
+}
+}
+
+
+## save a version of 2018 maps without legend
+year = scenario
+
+scores_df <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, year)), stringsAsFactors = FALSE) %>%
+  rename(rgn_name = region_name, rgn_id = region_id) %>%
+  mutate(rgn_id = as.character(rgn_id))
+
+dir.create(here(sprintf('%s/Results/figures/maps_by_goal_%s/year_%s_nolegend', saveFile, prj, year)))
+
+### load region data frame, so doesn't need to reload every time through the loop.  Also
+### load the land data frame, if plotting in Mollweide projection.
+rgn_df <- get_rgn_df(prj = prj)
+if(prj == 'mol' & !exists('land_poly')) {
+  land_poly  <- get_land_df()
+  ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
+}
+
+
+### establish list of fields for mapping
+mapFlds   <- names(scores_df %>% select(-rgn_name, -rgn_id))
+
+### Loop over each field, plotting each map in turn and saving to file.
+for (fld in mapFlds) { # fld <- mapFlds[1]
+
+   fig_save = here(sprintf('%s/Results/figures/maps_by_goal_%s/year_%s_nolegend/global_map_%s_%s_%s.png', saveFile, prj, year, fld, year, prj))
+
+   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
+                                 colors_spec = colors, leg_on = FALSE)
+   
+   #print(ohiplot)
+}
+
+```
+
+Country index scores for 2018.  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2018/Results/figures/maps_by_goal_mol).
+
+![](figures/maps_by_goal_mol/global_map_Index_2018_mol.png) 
+
+Distribution of country index scores. The median index score among countries was `r median(data_final$Index)`. 
+
+
+```{r histogram, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+
+year=scenario
+
+hist_data <- read.csv(here(sprintf("%s/Results/data/scores_eez%s.csv", saveFile, year))) %>%
+select(region_name, Index)
+
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(66)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"), space="Lab")(35)
+colors <-   c(reds, blues)
+
+col.brks <- seq(0,100, by=1)
+col.assign <- cut(col.brks, breaks=col.brks, include.lowest = TRUE)
+colors_df <- data.frame(colors_plot=colors, col.assign)
+colors_df$col.assign <- as.character(colors_df$col.assign) 
+
+hist_data$col.assign <- cut(hist_data$Index, breaks=col.brks, include.lowest=TRUE) 
+hist_data$col.assign <- as.character(hist_data$col.assign)
+
+hist_data <- left_join(hist_data, colors_df, by="col.assign") %>%
+  mutate(colors_plot = as.character(colors_plot)) %>%
+  arrange(Index)
+
+cols <- as.character(unique(hist_data$colors_plot))
+
+g <- ggplot(hist_data, aes(x=Index)) +
+#geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
+geom_histogram(aes(fill=col.assign), bins=31) +  
+scale_fill_manual("", values=cols, guide=FALSE) +
+xlim(c(0, 100)) +
+labs(y="Number of regions", x="Index score") +
+theme_bw()
+
+print(g)
+
+#ggsave("figures/score_histogram_color.tiff", width=4, height=3, units=c("in"), dpi=300)
+ggsave(here(sprintf("%s/Results/figures/score_histogram_color.png", saveFile)), width=4, height=3, units=c("in"), dpi=300)
+
+
+```
+
+The regions with index scores of 80 or greater are:
+
+```{r top performers, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+
+rank_data <- read.csv(here(sprintf("%s/Results/data/scores_eez%s.csv", saveFile, year))) %>%
+select(region_name, Index)
+
+top <- rank_data %>%
+  filter(Index >= 80)
+
+kable(top)
+```
+
+The regions with index scores of 50 or less are:
+
+```{r low performers, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+
+low <- rank_data %>%
+  filter(Index <= 50)
+
+kable(low)
+```
+
+## Country scores across scenario year
+Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2018 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 7 years of data.  Black regions indicate no data.
+
+```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
+
+data <- read.csv(here(sprintf('%s/OHI_final_formatted_scores_%s.csv', saveFile, dateFile))) 
+
+data <- data %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(value, 0)) %>%
+  mutate(region_name = as.character(region_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame()
+  
+
+global <- data %>%
+  select(region_name, meanIndex) %>%
+  filter(region_name == "Global average") %>%
+  unique()
+
+order_rgn <- data %>%
+  filter(region_name != "Global average") %>%
+  select(region_name, meanIndex) %>%
+  unique() %>%
+  arrange(meanIndex)
+  
+order_rgn <- rbind(order_rgn, global)
+
+data$goal <- factor(data$goal, levels = goals)
+data$region_name <- factor(data$region_name, levels=order_rgn$region_name)
+
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+myPalette <-   c(reds, blues)
+
+ggplot(data, aes(y=region_name, x=scenario, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+ggsave(here(sprintf("%s/Results/figures/carpetPlot.png", saveFile)), width=20, height=35)
+
+```
+
+*Don't try too hard to interpret the results for specific countries/goals/years!!*
+
+This plot is good for providing a quick overview of:
+
+* What is the range of scores?
+* Which goals tend to have high scores across most regions (species, habitat)
+* Which goals have a lot of variation across regions (tourism & recreation, lasting special places)
+* Which goals are volatile across years (natural products, tourism & recreation)
+
+
+## Data
+This interactive table describes the index and goal scores for the regions in 2018 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/data/scores_eez2018.csv)): 
+
+```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data_final_inlay <- read.csv(here(sprintf("%s/Results/data/scores_eez%s.csv", saveFile, year))) %>%
+  select(-region_id) %>%
+  data.frame()
+
+
+# myTable <- data_final_inlay %>%
+# DT::datatable(caption = '2018 OHI scores')
+
+shiny::div(DT::datatable(data_final_inlay), style = "font-size: 60%; width: 60%")
+
+
+## make an html file that is color coded:
+pal = brewer.pal(10, 'RdYlBu')
+
+cols <- data.frame(country=data_final$region_name)
+for(goal in goals){ #goal="Index"
+  tmp <- data_final[, goal]
+  tmp <- assign(goal, cut(tmp, breaks=c(0,10,20,30,40,50,60,70,80,90,100), include.lowest = TRUE, labels=pal))
+  tmp <- data.frame(goal=tmp)
+  names(tmp) <- goal
+  cols <- cbind(cols, tmp)
+}
+
+
+hwrite(data_final, here(sprintf('%s/Results/data/scores_eez%s.html', saveFile, scenario)), br=TRUE, center=TRUE, border=0, 
+       row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
+       col.bgcolor=list(scenario='#fff',dimension='#fff',country='#fff', region_id='#fff', Index = cols$Index, 
+                        AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
+                        ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
+                        SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
+
+```
+
+
+
+
+<br>
+<br>
+<br>
+
+# OHI Trends
+
+
+```{r trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+scores <- read.csv(here(sprintf("%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)))
+  
+region_trends <- scores %>%
+  filter(dimension == "score") %>%
+  filter(!is.na(value)) %>%
+  group_by(goal, region_id) %>%
+  do(mdl = lm(value ~ scenario, data = .))
+
+# data.frame(glance(data_lm, mdl))
+region_trends <- tidy(region_trends, mdl) %>%
+  ungroup() %>%
+  filter(term == "scenario") %>%
+#  left_join(goal_names) %>%
+  select(region_id, goal, trend = estimate, p.value) %>%
+  data.frame()
+
+
+region_trends <- region_trends %>%  
+  left_join(rgn_names, by=c('region_id')) %>%
+  mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
+  mutate(trend = round(trend, 2)) %>%
+  select(goal, country, region_id, trend, p.value) %>%
+  data.frame()
+
+#filter(region_trends, goal == "Index" & region_id == 0)
+
+trends_spread <- spread(select(region_trends, -p.value), goal, trend)
+
+index <- trends_spread %>%
+  filter(country == 'eez_weighted_avg')
+
+eez_spread <- trends_spread %>%
+  arrange(-Index) %>%
+  filter(country != 'eez_weighted_avg')
+# sum(trends_spread$Index>0) # 79
+# sum(trends_spread$Index<0) # 141
+# sum(trends_spread$Index==0) # none
+
+trends_spread <- rbind(index, eez_spread) %>%
+    select(country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+
+write.csv(trends_spread, here(sprintf("%s/Results/data/trends_%s.csv", saveFile, scenario)), row.names = FALSE, na='')
+
+## make an html file that is color coded:
+pal = brewer.pal(10, 'RdYlBu')
+
+cols <- data.frame(country=trends_spread$country)
+
+for(goal in goals){ #goal="CW"
+  tmp <- trends_spread[, goal]
+  tmp <- assign(goal, cut(tmp, breaks=c(-1000, -10, -5, -2, -1, 0, 1, 2, 5, 10, 1000), include.lowest = TRUE, labels=pal))
+  tmp <- data.frame(goal=tmp)
+  names(tmp) <- goal
+  cols <- cbind(cols, tmp)
+}
+
+
+hwrite(trends_spread, here(sprintf('%s/Results/data/trends_%s.html', saveFile, scenario)), br=TRUE, center=TRUE, border=0, 
+       row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
+       col.bgcolor=list(country='#fff', region_id='#fff', Index = cols$Index, 
+                        AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
+                        ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
+                        SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
+
+```
+
+Trend values are slope estimates from a linear model of scores for each region/goal over the past 7 years. Positive values indicate increasing scores during the past 7 years and negative values indicate decreasing scores.
+
+A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/global2018/Results/data/trends_2018.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/data/trends_2018.csv)).  
+
+
+NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed sceptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
+
+## Global summary
+The following table provides the global scores (eez area weighted average of region scores) for the Index and goals/subgoals for all years.
+
+
+```{r overview, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/OHI_final_formatted_scores_%s.csv', saveFile, dateFile))) 
+
+data_filter <- data %>%
+  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  mutate(region_name = as.character(region_name)) %>%
+  mutate(value = round(value, 2))
+
+data_index <- data_filter %>%
+  filter(region_id == 0) %>%
+  filter(dimension == "score") %>%
+  select(scenario, goal, long_goal, value)
+
+data_index$goal <- factor(data_index$goal, levels = goals)
+
+data_spread <- spread(data_index, scenario, value) %>%
+  arrange(goal) %>%
+  filter(!goal %in% c("ECO", "LE", "LIV")) %>%
+  select(-goal) %>%
+  rename(goal = long_goal)
+```
+
+
+Table View
+```{r overview-table, echo=FALSE}
+kable(data_spread)
+```
+
+The following is a very preliminary analysis of how the global scores changed over time.  Global index scores decreased by an average `r index$Index` points per year, with `r sum(trends_spread$Index<0)` regions having decreasing trends and `r sum(trends_spread$Index>0)` having increasing trends. 
+
+
+```{r Global goal trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+### analysis:
+data_lm <- data_index %>%
+  group_by(goal) %>%
+  do(mdl = lm(value ~ scenario, data = .))
+
+# data.frame(glance(data_lm, mdl))
+results_lm <- tidy(data_lm, mdl) %>%
+  ungroup() %>%
+  filter(term == "scenario") %>%
+  arrange(estimate) %>%
+  select(goal, average_change_per_year = estimate, p_value = p.value) %>%
+  mutate(average_change_per_year = round(average_change_per_year, 2)) %>%
+  mutate(p_value = round(p_value, 4)) %>%
+  data.frame()
+
+
+# calculate how many regions with increases vs. decreasing scores
+
+region_summary <- filter(region_trends, region_id != 0) %>%
+  group_by(goal) %>%
+  summarize(num_rgns_pos_trend = sum(trend > 0),
+            num_rgns_neg_trend = sum(trend < 0),
+            mean_trend = round(mean(trend, na.rm=TRUE), 2),
+            sd_trend = round(sd(trend, na.rm=TRUE), 2))
+
+trend_summary <- region_summary %>%
+  left_join(results_lm, by = "goal") %>%
+  left_join(goal_names) %>%
+  select(long_goal, average_change_per_year,	p_value,
+         num_rgns_pos_trend, num_rgns_neg_trend, mean_trend, sd_trend) %>%
+  arrange(average_change_per_year)
+
+kable(trend_summary)
+
+```
+
+
+
+## Country summary
+```{r trend maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+source(here(sprintf('%s/Results/functions/map_fxns_trend.R', saveFile)))
+
+### set scenario and desired map projection
+prj      <- 'mol'    ### note: 'gcs' is way faster.
+values <-   brewer.pal(11, "RdYlBu")
+values <- colorRampPalette(values, space = 'Lab')(13)[2:13]
+col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
+
+### get OHI data and rename column headings
+scores_df <- read.csv(here(sprintf('%s/Results/data/trends_%s.csv', saveFile, scenario)), stringsAsFactors = FALSE) %>%
+  rename(rgn_name = country, rgn_id = region_id) %>%
+  mutate(rgn_id = as.factor(rgn_id))
+
+### load region data frame, so doesn't need to reload every time through the loop.  Also
+### load the land data frame, if plotting in Mollweide projection.
+rgn_df <- get_rgn_df(prj = prj)
+
+if(prj == 'mol' & !exists('land_poly')) {
+  land_poly  <- get_land_df()
+  ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
+}
+
+
+### establish list of fields for mapping
+
+mapFlds   <- names(scores_df %>% select(-rgn_name, -rgn_id))
+
+### Loop over each field, plotting each map in turn and saving to file.
+for (fld in mapFlds) { # fld <- mapFlds[1]
+
+    fig_save = here(sprintf('%s/Results/figures/map_trends/trends_map_%s_%s.png', saveFile, fld, prj))
+
+plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
+                               leg_on = ifelse(fld=="Index", TRUE, FALSE))
+  }
+
+
+```
+
+The global average decreased by an average of `r index$Index` points per year, but there was a good deal of variation in trend among regions and goals.  
+
+![](figures/map_trends/trends_map_Index_mol.png) 
+
+
+The following histogram describes the distribution of trend (e.g., change in score per year) in index scores:
+
+```{r trend histogram, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+trends_hist <- region_trends %>%
+  filter(goal=="Index") %>%
+  filter(region_id != 0) %>%
+  arrange(trend)
+
+values <-   brewer.pal(11, "RdYlBu")
+values <- colorRampPalette(values, space = 'Lab')(13)[2:13]
+col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
+
+trends_hist$colors <- cut(trends_hist$trend, breaks=col.brks, include.lowest=TRUE, labels=values)
+cols <- as.character(unique(trends_hist$colors))
+
+
+g <- ggplot(trends_hist, aes(x=trend)) +
+geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
+scale_fill_manual("", breaks=colors, values=cols, guide=FALSE) +
+labs(y="Number of regions", x="Annual change in Index scores") + 
+geom_vline(xintercept=0, color="red") +  
+theme_bw()
+
+print(g)
+
+ggsave(here(sprintf("%s/Results/figures/trend_histogram_color.png", saveFile)), width=5, height=4)
+```
+
+The 10 regions with the largest increases in index scores are:
+
+
+```{r trend best, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+trends_order <- region_trends %>%
+  filter(goal=="Index") %>%
+  filter(region_id != 0) %>%
+  select(country, trend) %>%
+  arrange(-trend)
+
+kable(trends_order[1:10, ])
+
+```
+
+The 10 regions with the largest decreases in index scores are: 
+
+
+```{r trend worst, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+bottom <- dim(trends_order)[1]
+
+kable(trends_order[(bottom-9):bottom, ])
+
+```
+
+## Country change in goal
+```{r country goal trend, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+source(here(sprintf("%s/Results/functions/trend_barplot.R", saveFile)))
+
+```
+
+A heat map describing change in trend for country and goals (download png [here](figures/Trend_barplot.png)).
+
+```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
+
+## Figure created in trend_barplot.R
+
+knitr::include_graphics(here(sprintf("%s/Results/figures/Trend_barplot.png", saveFile)))
+```
+ 
+
+
+# A closer look at goals
+This section takes a closer look at the goal/subgoal scores.
+
+## Scores
+Goal/subgoal scores for the 2018 scenario.
+```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(-region_name, -region_id)
+
+for(goal in names(data)){ # goal = "LSP"
+  
+  data_goal <- data[, goal]
+  
+g <- ggplot(data, aes(x=data_goal)) +
+geom_histogram(color = "gray", fill="gray") +
+labs(y="Number of regions", x= "OHI score") +
+xlim(-5,105) +
+theme_bw()
+
+ggsave(g, filename=here(sprintf("%s/Results/figures/goal_histograms/%s_scores.png", saveFile, goal)), height=3, width=4)
+}
+
+```
+
+## Artisanal opportunities
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_AO_2018_mol.png)
+
+![](figures/goal_histograms/AO_scores.png)
+
+### Top 10 performers
+
+```{r top AO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=AO) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+
+### Bottom 10 performers
+```{r bottom AO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+## Species condition
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_SPP_2018_mol.png)
+
+![](figures/goal_histograms/SPP_scores.png)
+
+
+### Top 10 performers
+```{r top SPP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=SPP) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+
+### Bottom 10 performers
+```{r bottom SPP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+
+## Habitat
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_HAB_2018_mol.png)
+
+
+![](figures/goal_histograms/HAB_scores.png)
+
+### Top 10 performers
+```{r top HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%  filter(region_id != 0) %>%
+  select(region_name, score=HAB) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+
+### Bottom 10 performers
+```{r bottom HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+
+## Coastal protection
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_CP_2018_mol.png)
+
+![](figures/goal_histograms/CP_scores.png)
+
+### Top 10 performers
+```{r top CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=CP) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+
+### Bottom 10 performers
+```{r bottom CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+
+## Carbon storage
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_CS_2018_mol.png)
+
+![](figures/goal_histograms/CS_scores.png)
+
+### Top 10 performers
+```{r top CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=CS) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+
+### Bottom 10 performers
+```{r bottom CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+
+
+## Clean waters
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_CW_2018_mol.png)
+
+
+![](figures/goal_histograms/CW_scores.png)
+
+### Top 10 performers
+```{r top CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=CW) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+
+```
+
+
+### Bottom 10 performers
+```{r bottom CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+
+## Fisheries
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_FIS_2018_mol.png)
+
+![](figures/goal_histograms/FIS_scores.png)
+
+### Top 10 performers
+```{r top FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=FIS) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+
+### Bottom 10 performers
+```{r bottom FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+
+## Mariculture
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_MAR_2018_mol.png)
+
+![](figures/goal_histograms/MAR_scores.png)
+
+### Top 10 performers
+```{r top MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=MAR) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+### Bottom 10 performers
+```{r bottom MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+
+## Iconic species
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_ICO_2018_mol.png)
+
+![](figures/goal_histograms/ICO_scores.png)
+
+
+### Top 10 performers
+```{r top ICO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=ICO) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+
+### Bottom 10 performers
+```{r bottom ICO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+## Lasting special places
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_LSP_2018_mol.png)
+
+![](figures/goal_histograms/LSP_scores.png)
+
+
+
+### Top 10 performers
+```{r top LSP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=LSP) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+### Bottom 10 performers
+```{r bottom LSP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+## Natural products
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_NP_2018_mol.png)
+
+![](figures/goal_histograms/NP_scores.png)
+
+### Top 10 performers
+```{r top NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=NP) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+
+### Bottom 10 performers
+```{r bottom NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+
+
+## Tourism and recreation
+
+### Scores
+![](figures/maps_by_goal_mol/global_map_TR_2018_mol.png)
+
+![](figures/goal_histograms/TR_scores.png)
+
+### Top 10 performers
+```{r top TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
+  filter(region_id != 0) %>%
+  select(region_name, score=TR) %>%
+  arrange(-score) %>%
+  filter(!is.na(score))
+
+top <- data[1:10, ]
+kable(top)
+
+```
+
+### Bottom 10 performers
+```{r bottom TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+max <- dim(data)[1]
+bottom <- data[(max-9):max, ]
+kable(bottom)
+
+```
+
+## Trends
+Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2018. 
+
+![](figures/map_trends/trends_map_AO_mol.png)
+
+![](figures/map_trends/trends_map_SPP_mol.png)
+
+
+![](figures/map_trends/trends_map_HAB_mol.png)
+
+![](figures/map_trends/trends_map_CP_mol.png)
+
+![](figures/map_trends/trends_map_CS_mol.png)
+
+![](figures/map_trends/trends_map_CW_mol.png)
+
+![](figures/map_trends/trends_map_FIS_mol.png)
+
+![](figures/map_trends/trends_map_MAR_mol.png)
+
+![](figures/map_trends/trends_map_ICO_mol.png)
+
+![](figures/map_trends/trends_map_LSP_mol.png)
+
+![](figures/map_trends/trends_map_NP_mol.png)
+
+![](figures/map_trends/trends_map_TR_mol.png)
+
+![](figures/map_trends/trends_map_TR_mol.png)
+
+## Other analyses
+
+### Comparing trend and average index scores
+
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2018) and the trends for each region.
+
+Of most concern are regions that have poor scores and declining trends: Eritrea, Somalia, Ivory Coast, Nicaragua, and Lebanon.
+
+The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
+
+```{r trend vs avg index, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=TRUE, fig.width=6, fig.height=4}
+
+index <- read.csv(here(sprintf("%s/Results/data/avg_goal_scores.csv", saveFile)), stringsAsFactors = FALSE) %>%
+  select(region_id, country=region_name, index_avg = Index)
+
+trend <- read.csv(here(sprintf("%s/Results/data/trends_%s.csv", saveFile, scenario))) %>%
+  select(region_id, index_trend = Index) %>%
+  left_join(index, by= "region_id")
+
+avg_index <- index %>%
+  filter(region_id != 0) %>%
+  summarize(mean(index_avg, na.rm=TRUE))
+
+  p <- ggplot2::ggplot(trend, aes(x=index_avg, y=index_trend)) +
+    geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
+    geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
+    geom_vline(xintercept = 67, color="red", size=.5, linetype=3) +
+    theme_bw() + 
+    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2018 scores)") 
+    
+
+  plotly_fig <- plotly::ggplotly(p)
+  plotly_fig
+  
+  
+#   ## ignore this for now, but info on labelling points:
+#   
+#   ### adding labels: outliers, no change, etc
+#   
+# labels1 <- c("Eritrea", "Syria", "Equatorial Guinea", "Somalia", "Nicaragua", "Myanmar", "British Virgin Islands", "Georgia", "Pitcairn", "Liberia", "Sierra Leone")
+# 
+# labels2 <- c("Amsterdam Island and Saint Paul Island", "Kerguelen Islands")
+# 
+# ## make sure region labels are spelled correctly  
+# setdiff(labels1, trend$region_name)
+# setdiff(labels2, trend$region_name)
+# 
+# ## add labels column, give NA to those without labels
+# trend <- trend %>%
+#   mutate(label1 = ifelse(region_name %in% labels1, as.character(region_name), NA)) %>%
+#   mutate(label2 = ifelse(region_name %in% labels2, as.character(region_name), NA)) 
+#   
+# 
+# p <- ggplot2::ggplot(trend, aes(x=Index, y=index_trend)) +
+#     geom_point(shape=19, size=1.75, color="black", alpha = 0.5) +
+#     geom_text(aes(label=label1), hjust=0, nudge_x=0.4, size=2.2) + 
+#     geom_text(aes(label=label2), vjust=0, nudge_y=0.1, nudge_x=-5, size=2.2) +
+#    geom_point(data=filter(trend, region_name %in% label1), aes(x=Index, y=index_trend), shape=19, size=1.75, color="darkorange") +
+#    geom_point(data=filter(trend, region_name %in% label2), aes(x=Index, y=index_trend), shape=19, size=1.75, color="darkorange") +
+#     geom_hline(yintercept = 0, color="red", size=.2, linetype=3) +
+#     geom_vline(xintercept = vaxis, color="red", size=.2, linetype=3) +
+#       stat_smooth(method=lm, se=FALSE, color="black", size=0.3) +
+#     theme_bw() + 
+#     labs(y="Average change in Index score per year", x="OHI score, 2018") 
+# 
+# plot(p)  
+# 
+# ggsave("figures/trend vs score.png", width=7.5, height=5, units=c("in"), dpi=600)
+# ggsave("figures/trend vs score.tiff", width=6, height=4, units=c("in"), dpi=375)
+
+  
+
+```
+
+# Comparing assessment years
+
+
+The following is a comparison of the global status scores generated for the 2017 scenario by this year's assessment vs. last year's assessment. 
+
+If the models and source data remain the same, these scores should be exactly the same.  Differences indicate changes in methods or source data.  
+
+These changes do not reflect changes in actual system health!   
+
+We made a few changes to some goals, such as the addition of edible seaweed species to Mariculture and removal of edible seaweed species from Natural Products. Furthermore we changed the data source used for Fisheries from SAUP to Watson.  We also had fairly large changes to how we process species data.  
+
+```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+data <- read.csv(here(sprintf("%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)), stringsAsFactors = FALSE) %>%
+  rename("assess2018"=value) 
+
+data_old <- read.csv(here(sprintf('global%s/OHI_final_formatted_scores_2017-11-22.csv', benchmark)), stringsAsFactors = FALSE) %>%
+  dplyr::rename("assess2017"=value)
+  
+  
+data_compare <- data_old %>%
+  left_join(data, by = c("scenario", "goal", "long_goal", "dimension", "region_id", "region_name")) %>%
+    filter(scenario==benchmark) %>%
+  filter(region_id != 0)
+
+data_compare$goal <- factor(data_compare$goal, levels = goals)
+
+data_compare <- data_compare %>%
+  arrange(goal) %>%
+  mutate(change = assess2018 - assess2017)
+
+data_compare_summary <- data_compare %>%
+  group_by(long_goal, dimension) %>%
+  summarize(mean_change = mean(change, na.rm=TRUE)) %>%
+  spread(dimension, mean_change)
+
+kable(data_compare_summary)
+
+```
+
+
+
+### Country data 
+
+
+The following interactive plot provides an overview of how the 2017 scenario scores changed between the 2017 and 2018 assessment for all goals and dimensions.
+
+```{r compare assessments-plot, echo=FALSE, warning=FALSE}
+
+  p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
+    #geom_point(shape=19, size=1) +
+    theme_bw() + 
+    labs(title="Change in 2017 scores ", y="Change in score", x="") +
+    scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
+                                "MAR", "ECO", "LE", "LIV", "NP", "LSP", "SP", "ICO", "TR")) +
+    scale_colour_brewer(palette="Dark2") +
+    geom_jitter(aes(text=paste0("rgn = ", region_name)), position = position_jitter(width=0.2, height=0), shape=19, size=1)
+  
+  plotly_fig <- plotly::ggplotly(p)
+  plotly_fig
+  
+```
+
+
+# Additional exploration
+
+Suggestions?
