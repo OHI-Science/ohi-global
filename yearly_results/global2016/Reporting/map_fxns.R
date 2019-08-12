@@ -9,7 +9,7 @@ require('stringr')
 if(!exists('dir_global')) 
   dir_global <- ifelse(dir.exists('~/github'), '~/github/ohi-global', '~/ohi-global')
 
-get_rgn_df <- function(dsn = str_replace(dir_global, 'ohi-global', 'ohiprep/globalprep/spatial/downres'),
+get_rgn_df <- function(dsn = str_replace(dir_global, 'ohi-global', 'ohiprep_v2019/globalprep/spatial/downres'),
                        layer = NULL, prj = 'gcs') {
   if(is.null(layer)) layer <- sprintf('rgn_eez_%s_low_res', prj)
   rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE) #, p4s = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs')

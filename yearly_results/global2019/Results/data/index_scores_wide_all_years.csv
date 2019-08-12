@@ -1,1777 +1,223 @@
-"scenario","goal","long_goal","dimension","region_id","region_name","value"
-2012,"Index","Index","score",0,"Global average",70.02
-2012,"Index","Index","score",1,"Cocos Islands",80.42
-2012,"Index","Index","score",2,"Christmas Island",83.51
-2012,"Index","Index","score",3,"Norfolk Island",82.01
-2012,"Index","Index","score",4,"Macquarie Island",76.79
-2012,"Index","Index","score",5,"New Caledonia",81.76
-2012,"Index","Index","score",6,"Vanuatu",65.6
-2012,"Index","Index","score",7,"Solomon Islands",57.98
-2012,"Index","Index","score",8,"Palau",69.41
-2012,"Index","Index","score",9,"Micronesia",64.6
-2012,"Index","Index","score",10,"Nauru",68.49
-2012,"Index","Index","score",11,"Marshall Islands",74.99
-2012,"Index","Index","score",12,"Wake Island",78.16
-2012,"Index","Index","score",13,"Northern Mariana Islands and Guam",79.45
-2012,"Index","Index","score",14,"Taiwan",68.17
-2012,"Index","Index","score",15,"Philippines",66.05
-2012,"Index","Index","score",16,"Australia",79.45
-2012,"Index","Index","score",17,"Papua New Guinea",61.88
-2012,"Index","Index","score",18,"Fiji",68.62
-2012,"Index","Index","score",19,"Tuvalu",64.96
-2012,"Index","Index","score",20,"South Korea",74.09
-2012,"Index","Index","score",21,"North Korea",56.71
-2012,"Index","Index","score",24,"Cambodia",59.65
-2012,"Index","Index","score",25,"Thailand",67.3
-2012,"Index","Index","score",26,"Andaman and Nicobar",66.86
-2012,"Index","Index","score",28,"Comoro Islands",59.6
-2012,"Index","Index","score",29,"Mayotte",76.13
-2012,"Index","Index","score",30,"Glorioso Islands",81.28
-2012,"Index","Index","score",31,"Seychelles",81.77
-2012,"Index","Index","score",32,"R_union",62.23
-2012,"Index","Index","score",33,"Juan de Nova Island",73.83
-2012,"Index","Index","score",34,"Bassas da India",70.67
-2012,"Index","Index","score",35,"Ile Europa",82.37
-2012,"Index","Index","score",36,"Ile Tromelin",73.35
-2012,"Index","Index","score",37,"Mauritius",63.71
-2012,"Index","Index","score",38,"British Indian Ocean Territory",76.34
-2012,"Index","Index","score",39,"Maldives",71.83
-2012,"Index","Index","score",40,"Sri Lanka",60.24
-2012,"Index","Index","score",41,"Mozambique",59.14
-2012,"Index","Index","score",42,"Madagascar",59.53
-2012,"Index","Index","score",43,"Kenya",65.49
-2012,"Index","Index","score",44,"Somalia",54.12
-2012,"Index","Index","score",45,"Eritrea",68.83
-2012,"Index","Index","score",46,"Djibouti",68.59
-2012,"Index","Index","score",47,"Yemen",56.77
-2012,"Index","Index","score",48,"Oman",67.54
-2012,"Index","Index","score",49,"Sudan",55.23
-2012,"Index","Index","score",50,"Saudi Arabia",75.19
-2012,"Index","Index","score",51,"Kuwait",72.52
-2012,"Index","Index","score",52,"Bahrain",59.67
-2012,"Index","Index","score",53,"Pakistan",50.92
-2012,"Index","Index","score",54,"United Arab Emirates",76.91
-2012,"Index","Index","score",55,"Azores",72.32
-2012,"Index","Index","score",56,"Cape Verde",68.04
-2012,"Index","Index","score",57,"Madeira",76.52
-2012,"Index","Index","score",58,"Canary Islands",67.43
-2012,"Index","Index","score",59,"Belgium",72.12
-2012,"Index","Index","score",60,"Gibraltar",67.47
-2012,"Index","Index","score",61,"Tunisia",60.25
-2012,"Index","Index","score",62,"Morocco",73.25
-2012,"Index","Index","score",63,"Western Sahara",66.68
-2012,"Index","Index","score",64,"Mauritania",56.94
-2012,"Index","Index","score",65,"Gambia",68.25
-2012,"Index","Index","score",66,"Senegal",52.68
-2012,"Index","Index","score",67,"Libya",40.52
-2012,"Index","Index","score",68,"Malta",70.37
-2012,"Index","Index","score",69,"Latvia",63.23
-2012,"Index","Index","score",70,"Estonia",82.38
-2012,"Index","Index","score",71,"Bulgaria",59.67
-2012,"Index","Index","score",72,"Romania",62.32
-2012,"Index","Index","score",73,"Russia",68.5
-2012,"Index","Index","score",74,"Georgia",58.53
-2012,"Index","Index","score",75,"Ukraine",67.8
-2012,"Index","Index","score",76,"Turkey",57.76
-2012,"Index","Index","score",77,"Syria",57.62
-2012,"Index","Index","score",78,"Lebanon",46.6
-2012,"Index","Index","score",79,"Israel",64.38
-2012,"Index","Index","score",80,"Greece",72.58
-2012,"Index","Index","score",81,"Cyprus",56.83
-2012,"Index","Index","score",82,"Albania",59.88
-2012,"Index","Index","score",84,"Algeria",52.27
-2012,"Index","Index","score",85,"Ascension",66.82
-2012,"Index","Index","score",86,"Saint Helena",63.02
-2012,"Index","Index","score",88,"Tristan da Cunha",64.7
-2012,"Index","Index","score",89,"South Georgia and the South Sandwich Islands",80
-2012,"Index","Index","score",90,"Prince Edward Islands",69.75
-2012,"Index","Index","score",91,"Crozet Islands",73.47
-2012,"Index","Index","score",92,"Amsterdam Island and Saint Paul Island",80.81
-2012,"Index","Index","score",93,"Kerguelen Islands",87.34
-2012,"Index","Index","score",94,"Heard and McDonald Islands",93.47
-2012,"Index","Index","score",95,"Falkland Islands",71.11
-2012,"Index","Index","score",96,"Sierra Leone",45.62
-2012,"Index","Index","score",97,"Liberia",49.59
-2012,"Index","Index","score",98,"Togo",60.53
-2012,"Index","Index","score",99,"Benin",54.45
-2012,"Index","Index","score",100,"Republique du Congo",50.31
-2012,"Index","Index","score",101,"Namibia",64.92
-2012,"Index","Index","score",102,"South Africa",68.5
-2012,"Index","Index","score",103,"Sao Tome and Principe",59.58
-2012,"Index","Index","score",104,"Equatorial Guinea",66.61
-2012,"Index","Index","score",105,"Bouvet Island",74.77
-2012,"Index","Index","score",106,"Ghana",59.92
-2012,"Index","Index","score",107,"Clipperton Island",75.47
-2012,"Index","Index","score",108,"Bermuda",75.92
-2012,"Index","Index","score",110,"Bahamas",78.88
-2012,"Index","Index","score",111,"Turks and Caicos Islands",70.3
-2012,"Index","Index","score",112,"Cuba",68.45
-2012,"Index","Index","score",113,"Cayman Islands",74.77
-2012,"Index","Index","score",114,"Haiti",54.04
-2012,"Index","Index","score",115,"Dominican Republic",71.78
-2012,"Index","Index","score",116,"Puerto Rico and Virgin Islands of the United States",79.09
-2012,"Index","Index","score",117,"British Virgin Islands",67.99
-2012,"Index","Index","score",118,"Anguilla",68.26
-2012,"Index","Index","score",119,"Saint Kitts and Nevis",70.64
-2012,"Index","Index","score",120,"Antigua and Barbuda",78.38
-2012,"Index","Index","score",121,"Montserrat",71.63
-2012,"Index","Index","score",122,"Saint Lucia",59.11
-2012,"Index","Index","score",123,"Dominica",49.38
-2012,"Index","Index","score",124,"Barbados",56.54
-2012,"Index","Index","score",125,"Grenada",61.29
-2012,"Index","Index","score",126,"Trinidad and Tobago",72.96
-2012,"Index","Index","score",127,"Saint Vincent and the Grenadines",56.77
-2012,"Index","Index","score",129,"Panama",63.23
-2012,"Index","Index","score",130,"Costa Rica",61.49
-2012,"Index","Index","score",131,"Nicaragua",50.8
-2012,"Index","Index","score",132,"Colombia",61.21
-2012,"Index","Index","score",133,"Honduras",66.9
-2012,"Index","Index","score",134,"El Salvador",56.56
-2012,"Index","Index","score",135,"Mexico",71.69
-2012,"Index","Index","score",136,"Guatemala",66.5
-2012,"Index","Index","score",137,"Ecuador",67.89
-2012,"Index","Index","score",138,"Peru",59.93
-2012,"Index","Index","score",139,"Venezuela",58.17
-2012,"Index","Index","score",140,"Guadeloupe and Martinique",71.57
-2012,"Index","Index","score",141,"Faeroe Islands",62.39
-2012,"Index","Index","score",143,"Iceland",67.13
-2012,"Index","Index","score",144,"Jan Mayen",82.12
-2012,"Index","Index","score",145,"Greenland",74.31
-2012,"Index","Index","score",146,"Pitcairn",76.11
-2012,"Index","Index","score",147,"French Polynesia",74.62
-2012,"Index","Index","score",148,"Line Islands (Kiribati)",75.49
-2012,"Index","Index","score",149,"Jarvis Island",80.86
-2012,"Index","Index","score",150,"Palmyra Atoll",80.29
-2012,"Index","Index","score",151,"American Samoa",73.63
-2012,"Index","Index","score",152,"Samoa",57.83
-2012,"Index","Index","score",153,"Cook Islands",66.75
-2012,"Index","Index","score",154,"Niue",65.98
-2012,"Index","Index","score",155,"Tonga",62.49
-2012,"Index","Index","score",156,"Tokelau",64.16
-2012,"Index","Index","score",157,"Phoenix Islands (Kiribati)",85.55
-2012,"Index","Index","score",158,"Howland Island and Baker Island",93.17
-2012,"Index","Index","score",159,"Johnston Atoll",77.28
-2012,"Index","Index","score",161,"Wallis and Futuna",72.1
-2012,"Index","Index","score",162,"New Zealand",80.52
-2012,"Index","Index","score",163,"United States",72.33
-2012,"Index","Index","score",164,"Belize",64.67
-2012,"Index","Index","score",166,"Jamaica",58.62
-2012,"Index","Index","score",167,"Guyana",60.77
-2012,"Index","Index","score",168,"Suriname",71.94
-2012,"Index","Index","score",169,"French Guiana",70.7
-2012,"Index","Index","score",171,"Brazil",65.99
-2012,"Index","Index","score",172,"Argentina",70.95
-2012,"Index","Index","score",173,"Uruguay",67.63
-2012,"Index","Index","score",174,"Finland",73.43
-2012,"Index","Index","score",175,"Denmark",74.17
-2012,"Index","Index","score",176,"Germany",83.77
-2012,"Index","Index","score",177,"Netherlands",76.13
-2012,"Index","Index","score",178,"Poland",60.58
-2012,"Index","Index","score",179,"France",70.97
-2012,"Index","Index","score",180,"United Kingdom",70.4
-2012,"Index","Index","score",181,"Ireland",63.71
-2012,"Index","Index","score",182,"Spain",65.86
-2012,"Index","Index","score",183,"Portugal",70.13
-2012,"Index","Index","score",184,"Italy",76.22
-2012,"Index","Index","score",185,"Monaco",63.25
-2012,"Index","Index","score",186,"Montenegro",52.39
-2012,"Index","Index","score",187,"Croatia",67.68
-2012,"Index","Index","score",188,"Slovenia",64.13
-2012,"Index","Index","score",189,"Lithuania",63.7
-2012,"Index","Index","score",190,"Qatar",73.52
-2012,"Index","Index","score",191,"Iran",66.72
-2012,"Index","Index","score",192,"Iraq",54.22
-2012,"Index","Index","score",193,"Guinea Bissau",49.87
-2012,"Index","Index","score",194,"Guinea",49.75
-2012,"Index","Index","score",195,"Ivory Coast",43.89
-2012,"Index","Index","score",196,"Nigeria",52.97
-2012,"Index","Index","score",197,"Cameroon",64.7
-2012,"Index","Index","score",198,"Gabon",58.66
-2012,"Index","Index","score",199,"Democratic Republic of the Congo",48.15
-2012,"Index","Index","score",200,"Angola",53.33
-2012,"Index","Index","score",202,"Tanzania",66.06
-2012,"Index","Index","score",203,"India",57.33
-2012,"Index","Index","score",204,"Bangladesh",59.39
-2012,"Index","Index","score",205,"Myanmar",55.46
-2012,"Index","Index","score",206,"Malaysia",66.2
-2012,"Index","Index","score",207,"Vietnam",53.19
-2012,"Index","Index","score",208,"Singapore",62.98
-2012,"Index","Index","score",209,"China",60.28
-2012,"Index","Index","score",210,"Japan",70.05
-2012,"Index","Index","score",212,"Gilbert Islands (Kiribati)",65.75
-2012,"Index","Index","score",213,"Antarctica",NA
-2012,"Index","Index","score",214,"Egypt",65.82
-2012,"Index","Index","score",215,"Jordan",69.26
-2012,"Index","Index","score",216,"Indonesia",63.07
-2012,"Index","Index","score",218,"Canada",73.53
-2012,"Index","Index","score",219,"Saint Pierre and Miquelon",72.58
-2012,"Index","Index","score",220,"Sint Maarten",80.06
-2012,"Index","Index","score",221,"Northern Saint-Martin",79.63
-2012,"Index","Index","score",222,"Sweden",68.3
-2012,"Index","Index","score",223,"Norway",77.91
-2012,"Index","Index","score",224,"Chile",72.73
-2012,"Index","Index","score",227,"Jersey",67.03
-2012,"Index","Index","score",228,"Guernsey",61.08
-2012,"Index","Index","score",231,"East Timor",60.76
-2012,"Index","Index","score",232,"Bosnia and Herzegovina",49.06
-2012,"Index","Index","score",237,"Oecussi Ambeno",60.78
-2012,"Index","Index","score",244,"Curacao",77
-2012,"Index","Index","score",245,"Bonaire",80.47
-2012,"Index","Index","score",247,"Brunei",64.36
-2012,"Index","Index","score",248,"Saba",80.39
-2012,"Index","Index","score",249,"Sint Eustatius",76.45
-2012,"Index","Index","score",250,"Aruba",82.63
-2013,"Index","Index","score",0,"Global average",70.64
-2013,"Index","Index","score",1,"Cocos Islands",81.73
-2013,"Index","Index","score",2,"Christmas Island",84.53
-2013,"Index","Index","score",3,"Norfolk Island",82.33
-2013,"Index","Index","score",4,"Macquarie Island",77.51
-2013,"Index","Index","score",5,"New Caledonia",81.61
-2013,"Index","Index","score",6,"Vanuatu",65.45
-2013,"Index","Index","score",7,"Solomon Islands",58.45
-2013,"Index","Index","score",8,"Palau",68.79
-2013,"Index","Index","score",9,"Micronesia",64.01
-2013,"Index","Index","score",10,"Nauru",68.32
-2013,"Index","Index","score",11,"Marshall Islands",74.44
-2013,"Index","Index","score",12,"Wake Island",78.86
-2013,"Index","Index","score",13,"Northern Mariana Islands and Guam",79.04
-2013,"Index","Index","score",14,"Taiwan",67.4
-2013,"Index","Index","score",15,"Philippines",65.56
-2013,"Index","Index","score",16,"Australia",79.12
-2013,"Index","Index","score",17,"Papua New Guinea",61.31
-2013,"Index","Index","score",18,"Fiji",69.63
-2013,"Index","Index","score",19,"Tuvalu",71.19
-2013,"Index","Index","score",20,"South Korea",73.98
-2013,"Index","Index","score",21,"North Korea",52.67
-2013,"Index","Index","score",24,"Cambodia",59.92
-2013,"Index","Index","score",25,"Thailand",70.48
-2013,"Index","Index","score",26,"Andaman and Nicobar",67.92
-2013,"Index","Index","score",28,"Comoro Islands",59.07
-2013,"Index","Index","score",29,"Mayotte",73.33
-2013,"Index","Index","score",30,"Glorioso Islands",82.74
-2013,"Index","Index","score",31,"Seychelles",85.07
-2013,"Index","Index","score",32,"R_union",64.1
-2013,"Index","Index","score",33,"Juan de Nova Island",75.35
-2013,"Index","Index","score",34,"Bassas da India",73.25
-2013,"Index","Index","score",35,"Ile Europa",85.6
-2013,"Index","Index","score",36,"Ile Tromelin",77.96
-2013,"Index","Index","score",37,"Mauritius",66.88
-2013,"Index","Index","score",38,"British Indian Ocean Territory",79.48
-2013,"Index","Index","score",39,"Maldives",73.92
-2013,"Index","Index","score",40,"Sri Lanka",61.11
-2013,"Index","Index","score",41,"Mozambique",59.17
-2013,"Index","Index","score",42,"Madagascar",58.61
-2013,"Index","Index","score",43,"Kenya",65.37
-2013,"Index","Index","score",44,"Somalia",54.53
-2013,"Index","Index","score",45,"Eritrea",60.54
-2013,"Index","Index","score",46,"Djibouti",68.51
-2013,"Index","Index","score",47,"Yemen",58.55
-2013,"Index","Index","score",48,"Oman",69.15
-2013,"Index","Index","score",49,"Sudan",53.85
-2013,"Index","Index","score",50,"Saudi Arabia",69.77
-2013,"Index","Index","score",51,"Kuwait",71.63
-2013,"Index","Index","score",52,"Bahrain",60.87
-2013,"Index","Index","score",53,"Pakistan",50.75
-2013,"Index","Index","score",54,"United Arab Emirates",77.51
-2013,"Index","Index","score",55,"Azores",72.86
-2013,"Index","Index","score",56,"Cape Verde",68.59
-2013,"Index","Index","score",57,"Madeira",76.21
-2013,"Index","Index","score",58,"Canary Islands",67.43
-2013,"Index","Index","score",59,"Belgium",73.31
-2013,"Index","Index","score",60,"Gibraltar",67.45
-2013,"Index","Index","score",61,"Tunisia",60.9
-2013,"Index","Index","score",62,"Morocco",72.91
-2013,"Index","Index","score",63,"Western Sahara",64.47
-2013,"Index","Index","score",64,"Mauritania",57.73
-2013,"Index","Index","score",65,"Gambia",66.76
-2013,"Index","Index","score",66,"Senegal",53.7
-2013,"Index","Index","score",67,"Libya",43.67
-2013,"Index","Index","score",68,"Malta",70.3
-2013,"Index","Index","score",69,"Latvia",65.11
-2013,"Index","Index","score",70,"Estonia",84.11
-2013,"Index","Index","score",71,"Bulgaria",62.32
-2013,"Index","Index","score",72,"Romania",58.57
-2013,"Index","Index","score",73,"Russia",69.57
-2013,"Index","Index","score",74,"Georgia",63.41
-2013,"Index","Index","score",75,"Ukraine",67.57
-2013,"Index","Index","score",76,"Turkey",61.56
-2013,"Index","Index","score",77,"Syria",58.46
-2013,"Index","Index","score",78,"Lebanon",49.73
-2013,"Index","Index","score",79,"Israel",64.16
-2013,"Index","Index","score",80,"Greece",72.53
-2013,"Index","Index","score",81,"Cyprus",57.57
-2013,"Index","Index","score",82,"Albania",60.01
-2013,"Index","Index","score",84,"Algeria",52.01
-2013,"Index","Index","score",85,"Ascension",68.14
-2013,"Index","Index","score",86,"Saint Helena",60.47
-2013,"Index","Index","score",88,"Tristan da Cunha",65.04
-2013,"Index","Index","score",89,"South Georgia and the South Sandwich Islands",81.67
-2013,"Index","Index","score",90,"Prince Edward Islands",74.88
-2013,"Index","Index","score",91,"Crozet Islands",73.36
-2013,"Index","Index","score",92,"Amsterdam Island and Saint Paul Island",86.65
-2013,"Index","Index","score",93,"Kerguelen Islands",85.38
-2013,"Index","Index","score",94,"Heard and McDonald Islands",92.35
-2013,"Index","Index","score",95,"Falkland Islands",71.23
-2013,"Index","Index","score",96,"Sierra Leone",45.89
-2013,"Index","Index","score",97,"Liberia",50
-2013,"Index","Index","score",98,"Togo",60.24
-2013,"Index","Index","score",99,"Benin",55.95
-2013,"Index","Index","score",100,"Republique du Congo",50.05
-2013,"Index","Index","score",101,"Namibia",65.41
-2013,"Index","Index","score",102,"South Africa",70.15
-2013,"Index","Index","score",103,"Sao Tome and Principe",56.39
-2013,"Index","Index","score",104,"Equatorial Guinea",65.97
-2013,"Index","Index","score",105,"Bouvet Island",74.21
-2013,"Index","Index","score",106,"Ghana",62.15
-2013,"Index","Index","score",107,"Clipperton Island",75.46
-2013,"Index","Index","score",108,"Bermuda",72.62
-2013,"Index","Index","score",110,"Bahamas",77.99
-2013,"Index","Index","score",111,"Turks and Caicos Islands",70.69
-2013,"Index","Index","score",112,"Cuba",65.9
-2013,"Index","Index","score",113,"Cayman Islands",77.27
-2013,"Index","Index","score",114,"Haiti",55.08
-2013,"Index","Index","score",115,"Dominican Republic",71.28
-2013,"Index","Index","score",116,"Puerto Rico and Virgin Islands of the United States",79.53
-2013,"Index","Index","score",117,"British Virgin Islands",68.45
-2013,"Index","Index","score",118,"Anguilla",66.57
-2013,"Index","Index","score",119,"Saint Kitts and Nevis",70.21
-2013,"Index","Index","score",120,"Antigua and Barbuda",77.95
-2013,"Index","Index","score",121,"Montserrat",72.12
-2013,"Index","Index","score",122,"Saint Lucia",59.33
-2013,"Index","Index","score",123,"Dominica",49.75
-2013,"Index","Index","score",124,"Barbados",56.75
-2013,"Index","Index","score",125,"Grenada",60.55
-2013,"Index","Index","score",126,"Trinidad and Tobago",72
-2013,"Index","Index","score",127,"Saint Vincent and the Grenadines",57.62
-2013,"Index","Index","score",129,"Panama",63.57
-2013,"Index","Index","score",130,"Costa Rica",61.98
-2013,"Index","Index","score",131,"Nicaragua",48.3
-2013,"Index","Index","score",132,"Colombia",60.62
-2013,"Index","Index","score",133,"Honduras",65.2
-2013,"Index","Index","score",134,"El Salvador",57.57
-2013,"Index","Index","score",135,"Mexico",71.85
-2013,"Index","Index","score",136,"Guatemala",65.49
-2013,"Index","Index","score",137,"Ecuador",70.74
-2013,"Index","Index","score",138,"Peru",59.77
-2013,"Index","Index","score",139,"Venezuela",60.14
-2013,"Index","Index","score",140,"Guadeloupe and Martinique",72.16
-2013,"Index","Index","score",141,"Faeroe Islands",63.19
-2013,"Index","Index","score",143,"Iceland",68.91
-2013,"Index","Index","score",144,"Jan Mayen",82.02
-2013,"Index","Index","score",145,"Greenland",72.05
-2013,"Index","Index","score",146,"Pitcairn",79.12
-2013,"Index","Index","score",147,"French Polynesia",78
-2013,"Index","Index","score",148,"Line Islands (Kiribati)",75.56
-2013,"Index","Index","score",149,"Jarvis Island",81.94
-2013,"Index","Index","score",150,"Palmyra Atoll",80.4
-2013,"Index","Index","score",151,"American Samoa",76.52
-2013,"Index","Index","score",152,"Samoa",61.61
-2013,"Index","Index","score",153,"Cook Islands",68.87
-2013,"Index","Index","score",154,"Niue",67.45
-2013,"Index","Index","score",155,"Tonga",63.57
-2013,"Index","Index","score",156,"Tokelau",65.33
-2013,"Index","Index","score",157,"Phoenix Islands (Kiribati)",85.05
-2013,"Index","Index","score",158,"Howland Island and Baker Island",93.21
-2013,"Index","Index","score",159,"Johnston Atoll",77.8
-2013,"Index","Index","score",161,"Wallis and Futuna",75.42
-2013,"Index","Index","score",162,"New Zealand",80.78
-2013,"Index","Index","score",163,"United States",73.12
-2013,"Index","Index","score",164,"Belize",64.2
-2013,"Index","Index","score",166,"Jamaica",59.93
-2013,"Index","Index","score",167,"Guyana",61.98
-2013,"Index","Index","score",168,"Suriname",73.14
-2013,"Index","Index","score",169,"French Guiana",71.43
-2013,"Index","Index","score",171,"Brazil",66.55
-2013,"Index","Index","score",172,"Argentina",69.75
-2013,"Index","Index","score",173,"Uruguay",64.94
-2013,"Index","Index","score",174,"Finland",76.2
-2013,"Index","Index","score",175,"Denmark",74.95
-2013,"Index","Index","score",176,"Germany",83.65
-2013,"Index","Index","score",177,"Netherlands",76.58
-2013,"Index","Index","score",178,"Poland",61.06
-2013,"Index","Index","score",179,"France",71.21
-2013,"Index","Index","score",180,"United Kingdom",71.6
-2013,"Index","Index","score",181,"Ireland",64.98
-2013,"Index","Index","score",182,"Spain",65.64
-2013,"Index","Index","score",183,"Portugal",70.04
-2013,"Index","Index","score",184,"Italy",78.09
-2013,"Index","Index","score",185,"Monaco",63.14
-2013,"Index","Index","score",186,"Montenegro",54.49
-2013,"Index","Index","score",187,"Croatia",72.87
-2013,"Index","Index","score",188,"Slovenia",66.75
-2013,"Index","Index","score",189,"Lithuania",65.29
-2013,"Index","Index","score",190,"Qatar",75.77
-2013,"Index","Index","score",191,"Iran",68.98
-2013,"Index","Index","score",192,"Iraq",56.07
-2013,"Index","Index","score",193,"Guinea Bissau",51.06
-2013,"Index","Index","score",194,"Guinea",49.88
-2013,"Index","Index","score",195,"Ivory Coast",43.17
-2013,"Index","Index","score",196,"Nigeria",55.3
-2013,"Index","Index","score",197,"Cameroon",65
-2013,"Index","Index","score",198,"Gabon",61.23
-2013,"Index","Index","score",199,"Democratic Republic of the Congo",48.59
-2013,"Index","Index","score",200,"Angola",53.53
-2013,"Index","Index","score",202,"Tanzania",66.83
-2013,"Index","Index","score",203,"India",58.94
-2013,"Index","Index","score",204,"Bangladesh",60.09
-2013,"Index","Index","score",205,"Myanmar",60.2
-2013,"Index","Index","score",206,"Malaysia",65.53
-2013,"Index","Index","score",207,"Vietnam",54.37
-2013,"Index","Index","score",208,"Singapore",63.24
-2013,"Index","Index","score",209,"China",60.72
-2013,"Index","Index","score",210,"Japan",71.31
-2013,"Index","Index","score",212,"Gilbert Islands (Kiribati)",63.97
-2013,"Index","Index","score",213,"Antarctica",NA
-2013,"Index","Index","score",214,"Egypt",65.69
-2013,"Index","Index","score",215,"Jordan",68.33
-2013,"Index","Index","score",216,"Indonesia",64.02
-2013,"Index","Index","score",218,"Canada",72.97
-2013,"Index","Index","score",219,"Saint Pierre and Miquelon",70.45
-2013,"Index","Index","score",220,"Sint Maarten",78.72
-2013,"Index","Index","score",221,"Northern Saint-Martin",79.96
-2013,"Index","Index","score",222,"Sweden",68.47
-2013,"Index","Index","score",223,"Norway",78.83
-2013,"Index","Index","score",224,"Chile",73.24
-2013,"Index","Index","score",227,"Jersey",67.14
-2013,"Index","Index","score",228,"Guernsey",61.81
-2013,"Index","Index","score",231,"East Timor",60.47
-2013,"Index","Index","score",232,"Bosnia and Herzegovina",49.18
-2013,"Index","Index","score",237,"Oecussi Ambeno",61.37
-2013,"Index","Index","score",244,"Curacao",79.39
-2013,"Index","Index","score",245,"Bonaire",78.9
-2013,"Index","Index","score",247,"Brunei",60.78
-2013,"Index","Index","score",248,"Saba",78.82
-2013,"Index","Index","score",249,"Sint Eustatius",75.21
-2013,"Index","Index","score",250,"Aruba",82.76
-2014,"Index","Index","score",0,"Global average",70.8
-2014,"Index","Index","score",1,"Cocos Islands",82.53
-2014,"Index","Index","score",2,"Christmas Island",85.36
-2014,"Index","Index","score",3,"Norfolk Island",82.52
-2014,"Index","Index","score",4,"Macquarie Island",78.43
-2014,"Index","Index","score",5,"New Caledonia",82.42
-2014,"Index","Index","score",6,"Vanuatu",65.39
-2014,"Index","Index","score",7,"Solomon Islands",60.8
-2014,"Index","Index","score",8,"Palau",68.7
-2014,"Index","Index","score",9,"Micronesia",64.56
-2014,"Index","Index","score",10,"Nauru",69.37
-2014,"Index","Index","score",11,"Marshall Islands",74.67
-2014,"Index","Index","score",12,"Wake Island",78.89
-2014,"Index","Index","score",13,"Northern Mariana Islands and Guam",79.49
-2014,"Index","Index","score",14,"Taiwan",67.12
-2014,"Index","Index","score",15,"Philippines",67.48
-2014,"Index","Index","score",16,"Australia",79.41
-2014,"Index","Index","score",17,"Papua New Guinea",60.42
-2014,"Index","Index","score",18,"Fiji",68.7
-2014,"Index","Index","score",19,"Tuvalu",70.66
-2014,"Index","Index","score",20,"South Korea",74.67
-2014,"Index","Index","score",21,"North Korea",51.74
-2014,"Index","Index","score",24,"Cambodia",60.16
-2014,"Index","Index","score",25,"Thailand",69.66
-2014,"Index","Index","score",26,"Andaman and Nicobar",68.03
-2014,"Index","Index","score",28,"Comoro Islands",59.45
-2014,"Index","Index","score",29,"Mayotte",69.36
-2014,"Index","Index","score",30,"Glorioso Islands",83.07
-2014,"Index","Index","score",31,"Seychelles",85.76
-2014,"Index","Index","score",32,"R_union",65.5
-2014,"Index","Index","score",33,"Juan de Nova Island",75.87
-2014,"Index","Index","score",34,"Bassas da India",74.28
-2014,"Index","Index","score",35,"Ile Europa",87.06
-2014,"Index","Index","score",36,"Ile Tromelin",77.92
-2014,"Index","Index","score",37,"Mauritius",69.71
-2014,"Index","Index","score",38,"British Indian Ocean Territory",79.96
-2014,"Index","Index","score",39,"Maldives",75.46
-2014,"Index","Index","score",40,"Sri Lanka",62.46
-2014,"Index","Index","score",41,"Mozambique",60.03
-2014,"Index","Index","score",42,"Madagascar",59.19
-2014,"Index","Index","score",43,"Kenya",64.74
-2014,"Index","Index","score",44,"Somalia",52.99
-2014,"Index","Index","score",45,"Eritrea",60.33
-2014,"Index","Index","score",46,"Djibouti",68.47
-2014,"Index","Index","score",47,"Yemen",59.39
-2014,"Index","Index","score",48,"Oman",69.45
-2014,"Index","Index","score",49,"Sudan",52.08
-2014,"Index","Index","score",50,"Saudi Arabia",68.76
-2014,"Index","Index","score",51,"Kuwait",70.93
-2014,"Index","Index","score",52,"Bahrain",61.54
-2014,"Index","Index","score",53,"Pakistan",47.79
-2014,"Index","Index","score",54,"United Arab Emirates",78.69
-2014,"Index","Index","score",55,"Azores",72.39
-2014,"Index","Index","score",56,"Cape Verde",68.56
-2014,"Index","Index","score",57,"Madeira",77.2
-2014,"Index","Index","score",58,"Canary Islands",68.28
-2014,"Index","Index","score",59,"Belgium",73.81
-2014,"Index","Index","score",60,"Gibraltar",68.28
-2014,"Index","Index","score",61,"Tunisia",60.89
-2014,"Index","Index","score",62,"Morocco",72.66
-2014,"Index","Index","score",63,"Western Sahara",64.68
-2014,"Index","Index","score",64,"Mauritania",58.37
-2014,"Index","Index","score",65,"Gambia",68.9
-2014,"Index","Index","score",66,"Senegal",53.75
-2014,"Index","Index","score",67,"Libya",43.32
-2014,"Index","Index","score",68,"Malta",69.96
-2014,"Index","Index","score",69,"Latvia",67.69
-2014,"Index","Index","score",70,"Estonia",80.19
-2014,"Index","Index","score",71,"Bulgaria",65.84
-2014,"Index","Index","score",72,"Romania",59.82
-2014,"Index","Index","score",73,"Russia",70.58
-2014,"Index","Index","score",74,"Georgia",64.32
-2014,"Index","Index","score",75,"Ukraine",64.37
-2014,"Index","Index","score",76,"Turkey",60.97
-2014,"Index","Index","score",77,"Syria",57.93
-2014,"Index","Index","score",78,"Lebanon",52.83
-2014,"Index","Index","score",79,"Israel",63.97
-2014,"Index","Index","score",80,"Greece",71.82
-2014,"Index","Index","score",81,"Cyprus",58.3
-2014,"Index","Index","score",82,"Albania",60.95
-2014,"Index","Index","score",84,"Algeria",51.28
-2014,"Index","Index","score",85,"Ascension",71.44
-2014,"Index","Index","score",86,"Saint Helena",61.28
-2014,"Index","Index","score",88,"Tristan da Cunha",66.38
-2014,"Index","Index","score",89,"South Georgia and the South Sandwich Islands",82.58
-2014,"Index","Index","score",90,"Prince Edward Islands",73.54
-2014,"Index","Index","score",91,"Crozet Islands",73.41
-2014,"Index","Index","score",92,"Amsterdam Island and Saint Paul Island",86.41
-2014,"Index","Index","score",93,"Kerguelen Islands",85.7
-2014,"Index","Index","score",94,"Heard and McDonald Islands",92.68
-2014,"Index","Index","score",95,"Falkland Islands",71.31
-2014,"Index","Index","score",96,"Sierra Leone",45.83
-2014,"Index","Index","score",97,"Liberia",49.94
-2014,"Index","Index","score",98,"Togo",60.13
-2014,"Index","Index","score",99,"Benin",55.61
-2014,"Index","Index","score",100,"Republique du Congo",49.89
-2014,"Index","Index","score",101,"Namibia",66.26
-2014,"Index","Index","score",102,"South Africa",70.16
-2014,"Index","Index","score",103,"Sao Tome and Principe",54.44
-2014,"Index","Index","score",104,"Equatorial Guinea",65.38
-2014,"Index","Index","score",105,"Bouvet Island",75.41
-2014,"Index","Index","score",106,"Ghana",63.77
-2014,"Index","Index","score",107,"Clipperton Island",75.46
-2014,"Index","Index","score",108,"Bermuda",71.24
-2014,"Index","Index","score",110,"Bahamas",79.01
-2014,"Index","Index","score",111,"Turks and Caicos Islands",71.12
-2014,"Index","Index","score",112,"Cuba",64.97
-2014,"Index","Index","score",113,"Cayman Islands",77.27
-2014,"Index","Index","score",114,"Haiti",55.68
-2014,"Index","Index","score",115,"Dominican Republic",72.01
-2014,"Index","Index","score",116,"Puerto Rico and Virgin Islands of the United States",79.1
-2014,"Index","Index","score",117,"British Virgin Islands",68.68
-2014,"Index","Index","score",118,"Anguilla",66.88
-2014,"Index","Index","score",119,"Saint Kitts and Nevis",70.53
-2014,"Index","Index","score",120,"Antigua and Barbuda",78.18
-2014,"Index","Index","score",121,"Montserrat",73.14
-2014,"Index","Index","score",122,"Saint Lucia",59.36
-2014,"Index","Index","score",123,"Dominica",51.46
-2014,"Index","Index","score",124,"Barbados",58.02
-2014,"Index","Index","score",125,"Grenada",63.15
-2014,"Index","Index","score",126,"Trinidad and Tobago",72.09
-2014,"Index","Index","score",127,"Saint Vincent and the Grenadines",57.85
-2014,"Index","Index","score",129,"Panama",61.91
-2014,"Index","Index","score",130,"Costa Rica",61.49
-2014,"Index","Index","score",131,"Nicaragua",47.13
-2014,"Index","Index","score",132,"Colombia",60.55
-2014,"Index","Index","score",133,"Honduras",66.02
-2014,"Index","Index","score",134,"El Salvador",56.38
-2014,"Index","Index","score",135,"Mexico",71.41
-2014,"Index","Index","score",136,"Guatemala",63.14
-2014,"Index","Index","score",137,"Ecuador",71.23
-2014,"Index","Index","score",138,"Peru",55.7
-2014,"Index","Index","score",139,"Venezuela",60.12
-2014,"Index","Index","score",140,"Guadeloupe and Martinique",72.07
-2014,"Index","Index","score",141,"Faeroe Islands",63.3
-2014,"Index","Index","score",143,"Iceland",70.56
-2014,"Index","Index","score",144,"Jan Mayen",81.19
-2014,"Index","Index","score",145,"Greenland",73.44
-2014,"Index","Index","score",146,"Pitcairn",78.1
-2014,"Index","Index","score",147,"French Polynesia",77.18
-2014,"Index","Index","score",148,"Line Islands (Kiribati)",77.62
-2014,"Index","Index","score",149,"Jarvis Island",82.82
-2014,"Index","Index","score",150,"Palmyra Atoll",80.38
-2014,"Index","Index","score",151,"American Samoa",75.99
-2014,"Index","Index","score",152,"Samoa",60.66
-2014,"Index","Index","score",153,"Cook Islands",65.06
-2014,"Index","Index","score",154,"Niue",67.02
-2014,"Index","Index","score",155,"Tonga",63.08
-2014,"Index","Index","score",156,"Tokelau",64.43
-2014,"Index","Index","score",157,"Phoenix Islands (Kiribati)",84.83
-2014,"Index","Index","score",158,"Howland Island and Baker Island",93.22
-2014,"Index","Index","score",159,"Johnston Atoll",78.05
-2014,"Index","Index","score",161,"Wallis and Futuna",74.73
-2014,"Index","Index","score",162,"New Zealand",79.91
-2014,"Index","Index","score",163,"United States",73.33
-2014,"Index","Index","score",164,"Belize",64.15
-2014,"Index","Index","score",166,"Jamaica",59.51
-2014,"Index","Index","score",167,"Guyana",62.05
-2014,"Index","Index","score",168,"Suriname",73.49
-2014,"Index","Index","score",169,"French Guiana",71.59
-2014,"Index","Index","score",171,"Brazil",66.67
-2014,"Index","Index","score",172,"Argentina",69.71
-2014,"Index","Index","score",173,"Uruguay",65.19
-2014,"Index","Index","score",174,"Finland",76.96
-2014,"Index","Index","score",175,"Denmark",75.27
-2014,"Index","Index","score",176,"Germany",84.28
-2014,"Index","Index","score",177,"Netherlands",75.84
-2014,"Index","Index","score",178,"Poland",61.09
-2014,"Index","Index","score",179,"France",70.29
-2014,"Index","Index","score",180,"United Kingdom",71.33
-2014,"Index","Index","score",181,"Ireland",66.34
-2014,"Index","Index","score",182,"Spain",66.54
-2014,"Index","Index","score",183,"Portugal",69.55
-2014,"Index","Index","score",184,"Italy",78.95
-2014,"Index","Index","score",185,"Monaco",63.01
-2014,"Index","Index","score",186,"Montenegro",54.78
-2014,"Index","Index","score",187,"Croatia",73.29
-2014,"Index","Index","score",188,"Slovenia",66.82
-2014,"Index","Index","score",189,"Lithuania",65.54
-2014,"Index","Index","score",190,"Qatar",75.96
-2014,"Index","Index","score",191,"Iran",69.17
-2014,"Index","Index","score",192,"Iraq",56.46
-2014,"Index","Index","score",193,"Guinea Bissau",50.78
-2014,"Index","Index","score",194,"Guinea",49.2
-2014,"Index","Index","score",195,"Ivory Coast",42.79
-2014,"Index","Index","score",196,"Nigeria",53.48
-2014,"Index","Index","score",197,"Cameroon",63.99
-2014,"Index","Index","score",198,"Gabon",60.85
-2014,"Index","Index","score",199,"Democratic Republic of the Congo",48.37
-2014,"Index","Index","score",200,"Angola",53.56
-2014,"Index","Index","score",202,"Tanzania",67.12
-2014,"Index","Index","score",203,"India",59.95
-2014,"Index","Index","score",204,"Bangladesh",61.68
-2014,"Index","Index","score",205,"Myanmar",61.11
-2014,"Index","Index","score",206,"Malaysia",66.65
-2014,"Index","Index","score",207,"Vietnam",54.86
-2014,"Index","Index","score",208,"Singapore",62.7
-2014,"Index","Index","score",209,"China",61.23
-2014,"Index","Index","score",210,"Japan",71.21
-2014,"Index","Index","score",212,"Gilbert Islands (Kiribati)",64.3
-2014,"Index","Index","score",213,"Antarctica",NA
-2014,"Index","Index","score",214,"Egypt",66.29
-2014,"Index","Index","score",215,"Jordan",67.81
-2014,"Index","Index","score",216,"Indonesia",65.2
-2014,"Index","Index","score",218,"Canada",72.46
-2014,"Index","Index","score",219,"Saint Pierre and Miquelon",70.65
-2014,"Index","Index","score",220,"Sint Maarten",72
-2014,"Index","Index","score",221,"Northern Saint-Martin",80.02
-2014,"Index","Index","score",222,"Sweden",69.46
-2014,"Index","Index","score",223,"Norway",78.15
-2014,"Index","Index","score",224,"Chile",72.64
-2014,"Index","Index","score",227,"Jersey",67.46
-2014,"Index","Index","score",228,"Guernsey",62.6
-2014,"Index","Index","score",231,"East Timor",60.29
-2014,"Index","Index","score",232,"Bosnia and Herzegovina",49.65
-2014,"Index","Index","score",237,"Oecussi Ambeno",61.44
-2014,"Index","Index","score",244,"Curacao",76.38
-2014,"Index","Index","score",245,"Bonaire",73.03
-2014,"Index","Index","score",247,"Brunei",60.81
-2014,"Index","Index","score",248,"Saba",72.94
-2014,"Index","Index","score",249,"Sint Eustatius",69.32
-2014,"Index","Index","score",250,"Aruba",83.12
-2015,"Index","Index","score",0,"Global average",70.57
-2015,"Index","Index","score",1,"Cocos Islands",81.51
-2015,"Index","Index","score",2,"Christmas Island",84.68
-2015,"Index","Index","score",3,"Norfolk Island",83.41
-2015,"Index","Index","score",4,"Macquarie Island",79.68
-2015,"Index","Index","score",5,"New Caledonia",81.73
-2015,"Index","Index","score",6,"Vanuatu",65.96
-2015,"Index","Index","score",7,"Solomon Islands",64.17
-2015,"Index","Index","score",8,"Palau",65.17
-2015,"Index","Index","score",9,"Micronesia",63
-2015,"Index","Index","score",10,"Nauru",66.6
-2015,"Index","Index","score",11,"Marshall Islands",72.26
-2015,"Index","Index","score",12,"Wake Island",78.41
-2015,"Index","Index","score",13,"Northern Mariana Islands and Guam",76.86
-2015,"Index","Index","score",14,"Taiwan",66.95
-2015,"Index","Index","score",15,"Philippines",69.75
-2015,"Index","Index","score",16,"Australia",79.97
-2015,"Index","Index","score",17,"Papua New Guinea",59.53
-2015,"Index","Index","score",18,"Fiji",69.08
-2015,"Index","Index","score",19,"Tuvalu",72.39
-2015,"Index","Index","score",20,"South Korea",74.88
-2015,"Index","Index","score",21,"North Korea",51.01
-2015,"Index","Index","score",24,"Cambodia",60.26
-2015,"Index","Index","score",25,"Thailand",69.58
-2015,"Index","Index","score",26,"Andaman and Nicobar",68.26
-2015,"Index","Index","score",28,"Comoro Islands",58.53
-2015,"Index","Index","score",29,"Mayotte",65.55
-2015,"Index","Index","score",30,"Glorioso Islands",81.57
-2015,"Index","Index","score",31,"Seychelles",81.5
-2015,"Index","Index","score",32,"R_union",63.22
-2015,"Index","Index","score",33,"Juan de Nova Island",73.8
-2015,"Index","Index","score",34,"Bassas da India",70.72
-2015,"Index","Index","score",35,"Ile Europa",82.43
-2015,"Index","Index","score",36,"Ile Tromelin",72.52
-2015,"Index","Index","score",37,"Mauritius",68.72
-2015,"Index","Index","score",38,"British Indian Ocean Territory",76.86
-2015,"Index","Index","score",39,"Maldives",69.71
-2015,"Index","Index","score",40,"Sri Lanka",63.32
-2015,"Index","Index","score",41,"Mozambique",61.31
-2015,"Index","Index","score",42,"Madagascar",59.02
-2015,"Index","Index","score",43,"Kenya",64
-2015,"Index","Index","score",44,"Somalia",47.27
-2015,"Index","Index","score",45,"Eritrea",53.86
-2015,"Index","Index","score",46,"Djibouti",67.1
-2015,"Index","Index","score",47,"Yemen",60.35
-2015,"Index","Index","score",48,"Oman",69.6
-2015,"Index","Index","score",49,"Sudan",50.95
-2015,"Index","Index","score",50,"Saudi Arabia",67.12
-2015,"Index","Index","score",51,"Kuwait",72.81
-2015,"Index","Index","score",52,"Bahrain",63.47
-2015,"Index","Index","score",53,"Pakistan",47.77
-2015,"Index","Index","score",54,"United Arab Emirates",78.59
-2015,"Index","Index","score",55,"Azores",73.99
-2015,"Index","Index","score",56,"Cape Verde",68.38
-2015,"Index","Index","score",57,"Madeira",77.55
-2015,"Index","Index","score",58,"Canary Islands",67.51
-2015,"Index","Index","score",59,"Belgium",73.83
-2015,"Index","Index","score",60,"Gibraltar",67.91
-2015,"Index","Index","score",61,"Tunisia",59.27
-2015,"Index","Index","score",62,"Morocco",72.31
-2015,"Index","Index","score",63,"Western Sahara",63.62
-2015,"Index","Index","score",64,"Mauritania",59.4
-2015,"Index","Index","score",65,"Gambia",69.02
-2015,"Index","Index","score",66,"Senegal",50.4
-2015,"Index","Index","score",67,"Libya",42.54
-2015,"Index","Index","score",68,"Malta",69.53
-2015,"Index","Index","score",69,"Latvia",69.27
-2015,"Index","Index","score",70,"Estonia",77.36
-2015,"Index","Index","score",71,"Bulgaria",65.43
-2015,"Index","Index","score",72,"Romania",60.8
-2015,"Index","Index","score",73,"Russia",71.22
-2015,"Index","Index","score",74,"Georgia",64.45
-2015,"Index","Index","score",75,"Ukraine",60.78
-2015,"Index","Index","score",76,"Turkey",59.06
-2015,"Index","Index","score",77,"Syria",56.86
-2015,"Index","Index","score",78,"Lebanon",51.53
-2015,"Index","Index","score",79,"Israel",64.47
-2015,"Index","Index","score",80,"Greece",70.26
-2015,"Index","Index","score",81,"Cyprus",57.51
-2015,"Index","Index","score",82,"Albania",60.81
-2015,"Index","Index","score",84,"Algeria",50.95
-2015,"Index","Index","score",85,"Ascension",70.93
-2015,"Index","Index","score",86,"Saint Helena",61.42
-2015,"Index","Index","score",88,"Tristan da Cunha",66.63
-2015,"Index","Index","score",89,"South Georgia and the South Sandwich Islands",83.08
-2015,"Index","Index","score",90,"Prince Edward Islands",72.7
-2015,"Index","Index","score",91,"Crozet Islands",73.7
-2015,"Index","Index","score",92,"Amsterdam Island and Saint Paul Island",79.89
-2015,"Index","Index","score",93,"Kerguelen Islands",86.35
-2015,"Index","Index","score",94,"Heard and McDonald Islands",93.25
-2015,"Index","Index","score",95,"Falkland Islands",71.36
-2015,"Index","Index","score",96,"Sierra Leone",46
-2015,"Index","Index","score",97,"Liberia",49.82
-2015,"Index","Index","score",98,"Togo",59.8
-2015,"Index","Index","score",99,"Benin",55.59
-2015,"Index","Index","score",100,"Republique du Congo",51.09
-2015,"Index","Index","score",101,"Namibia",66.41
-2015,"Index","Index","score",102,"South Africa",70.11
-2015,"Index","Index","score",103,"Sao Tome and Principe",56.8
-2015,"Index","Index","score",104,"Equatorial Guinea",60.17
-2015,"Index","Index","score",105,"Bouvet Island",78.3
-2015,"Index","Index","score",106,"Ghana",63.29
-2015,"Index","Index","score",107,"Clipperton Island",75.52
-2015,"Index","Index","score",108,"Bermuda",69.92
-2015,"Index","Index","score",110,"Bahamas",78.46
-2015,"Index","Index","score",111,"Turks and Caicos Islands",71.79
-2015,"Index","Index","score",112,"Cuba",66.28
-2015,"Index","Index","score",113,"Cayman Islands",77.46
-2015,"Index","Index","score",114,"Haiti",55.57
-2015,"Index","Index","score",115,"Dominican Republic",72.66
-2015,"Index","Index","score",116,"Puerto Rico and Virgin Islands of the United States",79.63
-2015,"Index","Index","score",117,"British Virgin Islands",68.8
-2015,"Index","Index","score",118,"Anguilla",66.99
-2015,"Index","Index","score",119,"Saint Kitts and Nevis",70.4
-2015,"Index","Index","score",120,"Antigua and Barbuda",79.41
-2015,"Index","Index","score",121,"Montserrat",72.89
-2015,"Index","Index","score",122,"Saint Lucia",58.96
-2015,"Index","Index","score",123,"Dominica",50.81
-2015,"Index","Index","score",124,"Barbados",58.74
-2015,"Index","Index","score",125,"Grenada",63.38
-2015,"Index","Index","score",126,"Trinidad and Tobago",69.79
-2015,"Index","Index","score",127,"Saint Vincent and the Grenadines",58.89
-2015,"Index","Index","score",129,"Panama",61.54
-2015,"Index","Index","score",130,"Costa Rica",61.06
-2015,"Index","Index","score",131,"Nicaragua",47.54
-2015,"Index","Index","score",132,"Colombia",60.97
-2015,"Index","Index","score",133,"Honduras",67.85
-2015,"Index","Index","score",134,"El Salvador",54.68
-2015,"Index","Index","score",135,"Mexico",70.29
-2015,"Index","Index","score",136,"Guatemala",62.82
-2015,"Index","Index","score",137,"Ecuador",72.39
-2015,"Index","Index","score",138,"Peru",57.68
-2015,"Index","Index","score",139,"Venezuela",60.33
-2015,"Index","Index","score",140,"Guadeloupe and Martinique",71.61
-2015,"Index","Index","score",141,"Faeroe Islands",63.25
-2015,"Index","Index","score",143,"Iceland",71.41
-2015,"Index","Index","score",144,"Jan Mayen",80.69
-2015,"Index","Index","score",145,"Greenland",73.56
-2015,"Index","Index","score",146,"Pitcairn",80.17
-2015,"Index","Index","score",147,"French Polynesia",78.46
-2015,"Index","Index","score",148,"Line Islands (Kiribati)",73.83
-2015,"Index","Index","score",149,"Jarvis Island",81.08
-2015,"Index","Index","score",150,"Palmyra Atoll",79.12
-2015,"Index","Index","score",151,"American Samoa",77.54
-2015,"Index","Index","score",152,"Samoa",62.48
-2015,"Index","Index","score",153,"Cook Islands",66.17
-2015,"Index","Index","score",154,"Niue",68.31
-2015,"Index","Index","score",155,"Tonga",66.5
-2015,"Index","Index","score",156,"Tokelau",66.17
-2015,"Index","Index","score",157,"Phoenix Islands (Kiribati)",81.53
-2015,"Index","Index","score",158,"Howland Island and Baker Island",92.88
-2015,"Index","Index","score",159,"Johnston Atoll",76.62
-2015,"Index","Index","score",161,"Wallis and Futuna",76.74
-2015,"Index","Index","score",162,"New Zealand",79.7
-2015,"Index","Index","score",163,"United States",72.36
-2015,"Index","Index","score",164,"Belize",65.48
-2015,"Index","Index","score",166,"Jamaica",59.71
-2015,"Index","Index","score",167,"Guyana",61.75
-2015,"Index","Index","score",168,"Suriname",74.56
-2015,"Index","Index","score",169,"French Guiana",71.8
-2015,"Index","Index","score",171,"Brazil",66.63
-2015,"Index","Index","score",172,"Argentina",68.79
-2015,"Index","Index","score",173,"Uruguay",64.45
-2015,"Index","Index","score",174,"Finland",76.78
-2015,"Index","Index","score",175,"Denmark",75.7
-2015,"Index","Index","score",176,"Germany",84.67
-2015,"Index","Index","score",177,"Netherlands",76.12
-2015,"Index","Index","score",178,"Poland",61.82
-2015,"Index","Index","score",179,"France",70.28
-2015,"Index","Index","score",180,"United Kingdom",72.64
-2015,"Index","Index","score",181,"Ireland",67.25
-2015,"Index","Index","score",182,"Spain",66.77
-2015,"Index","Index","score",183,"Portugal",69.99
-2015,"Index","Index","score",184,"Italy",79.08
-2015,"Index","Index","score",185,"Monaco",62.92
-2015,"Index","Index","score",186,"Montenegro",55.97
-2015,"Index","Index","score",187,"Croatia",73.59
-2015,"Index","Index","score",188,"Slovenia",66.88
-2015,"Index","Index","score",189,"Lithuania",63.8
-2015,"Index","Index","score",190,"Qatar",75.97
-2015,"Index","Index","score",191,"Iran",68.85
-2015,"Index","Index","score",192,"Iraq",56.73
-2015,"Index","Index","score",193,"Guinea Bissau",50.67
-2015,"Index","Index","score",194,"Guinea",48.68
-2015,"Index","Index","score",195,"Ivory Coast",43.07
-2015,"Index","Index","score",196,"Nigeria",53.42
-2015,"Index","Index","score",197,"Cameroon",63.59
-2015,"Index","Index","score",198,"Gabon",60.57
-2015,"Index","Index","score",199,"Democratic Republic of the Congo",48.5
-2015,"Index","Index","score",200,"Angola",53.76
-2015,"Index","Index","score",202,"Tanzania",67.08
-2015,"Index","Index","score",203,"India",60.81
-2015,"Index","Index","score",204,"Bangladesh",63.61
-2015,"Index","Index","score",205,"Myanmar",63.2
-2015,"Index","Index","score",206,"Malaysia",65.97
-2015,"Index","Index","score",207,"Vietnam",55.58
-2015,"Index","Index","score",208,"Singapore",62.81
-2015,"Index","Index","score",209,"China",60.84
-2015,"Index","Index","score",210,"Japan",71.38
-2015,"Index","Index","score",212,"Gilbert Islands (Kiribati)",61.85
-2015,"Index","Index","score",213,"Antarctica",NA
-2015,"Index","Index","score",214,"Egypt",67.13
-2015,"Index","Index","score",215,"Jordan",64.36
-2015,"Index","Index","score",216,"Indonesia",65.99
-2015,"Index","Index","score",218,"Canada",71.63
-2015,"Index","Index","score",219,"Saint Pierre and Miquelon",69.73
-2015,"Index","Index","score",220,"Sint Maarten",70.93
-2015,"Index","Index","score",221,"Northern Saint-Martin",80.13
-2015,"Index","Index","score",222,"Sweden",70.02
-2015,"Index","Index","score",223,"Norway",77.5
-2015,"Index","Index","score",224,"Chile",71.55
-2015,"Index","Index","score",227,"Jersey",67.59
-2015,"Index","Index","score",228,"Guernsey",64.23
-2015,"Index","Index","score",231,"East Timor",60.11
-2015,"Index","Index","score",232,"Bosnia and Herzegovina",49.79
-2015,"Index","Index","score",237,"Oecussi Ambeno",61.79
-2015,"Index","Index","score",244,"Curacao",76.34
-2015,"Index","Index","score",245,"Bonaire",72.17
-2015,"Index","Index","score",247,"Brunei",61.65
-2015,"Index","Index","score",248,"Saba",72.05
-2015,"Index","Index","score",249,"Sint Eustatius",68.43
-2015,"Index","Index","score",250,"Aruba",82.78
-2016,"Index","Index","score",0,"Global average",70.37
-2016,"Index","Index","score",1,"Cocos Islands",81.01
-2016,"Index","Index","score",2,"Christmas Island",84.67
-2016,"Index","Index","score",3,"Norfolk Island",84.1
-2016,"Index","Index","score",4,"Macquarie Island",80.94
-2016,"Index","Index","score",5,"New Caledonia",80.62
-2016,"Index","Index","score",6,"Vanuatu",67.88
-2016,"Index","Index","score",7,"Solomon Islands",65.56
-2016,"Index","Index","score",8,"Palau",64.86
-2016,"Index","Index","score",9,"Micronesia",62.84
-2016,"Index","Index","score",10,"Nauru",65.38
-2016,"Index","Index","score",11,"Marshall Islands",69.53
-2016,"Index","Index","score",12,"Wake Island",78.16
-2016,"Index","Index","score",13,"Northern Mariana Islands and Guam",76.2
-2016,"Index","Index","score",14,"Taiwan",66.37
-2016,"Index","Index","score",15,"Philippines",70.77
-2016,"Index","Index","score",16,"Australia",80.51
-2016,"Index","Index","score",17,"Papua New Guinea",59.85
-2016,"Index","Index","score",18,"Fiji",69.44
-2016,"Index","Index","score",19,"Tuvalu",73.92
-2016,"Index","Index","score",20,"South Korea",75.17
-2016,"Index","Index","score",21,"North Korea",52.8
-2016,"Index","Index","score",24,"Cambodia",60.7
-2016,"Index","Index","score",25,"Thailand",68.17
-2016,"Index","Index","score",26,"Andaman and Nicobar",68.3
-2016,"Index","Index","score",28,"Comoro Islands",58
-2016,"Index","Index","score",29,"Mayotte",64.53
-2016,"Index","Index","score",30,"Glorioso Islands",80.81
-2016,"Index","Index","score",31,"Seychelles",79.57
-2016,"Index","Index","score",32,"R_union",61.77
-2016,"Index","Index","score",33,"Juan de Nova Island",72.92
-2016,"Index","Index","score",34,"Bassas da India",69.14
-2016,"Index","Index","score",35,"Ile Europa",80.1
-2016,"Index","Index","score",36,"Ile Tromelin",68.63
-2016,"Index","Index","score",37,"Mauritius",68.45
-2016,"Index","Index","score",38,"British Indian Ocean Territory",74.36
-2016,"Index","Index","score",39,"Maldives",66.56
-2016,"Index","Index","score",40,"Sri Lanka",62.59
-2016,"Index","Index","score",41,"Mozambique",61.49
-2016,"Index","Index","score",42,"Madagascar",56.43
-2016,"Index","Index","score",43,"Kenya",62.19
-2016,"Index","Index","score",44,"Somalia",46.81
-2016,"Index","Index","score",45,"Eritrea",50.4
-2016,"Index","Index","score",46,"Djibouti",66.71
-2016,"Index","Index","score",47,"Yemen",61.93
-2016,"Index","Index","score",48,"Oman",68.91
-2016,"Index","Index","score",49,"Sudan",51.13
-2016,"Index","Index","score",50,"Saudi Arabia",66.75
-2016,"Index","Index","score",51,"Kuwait",71.75
-2016,"Index","Index","score",52,"Bahrain",62.51
-2016,"Index","Index","score",53,"Pakistan",47.82
-2016,"Index","Index","score",54,"United Arab Emirates",77.54
-2016,"Index","Index","score",55,"Azores",74.03
-2016,"Index","Index","score",56,"Cape Verde",68.79
-2016,"Index","Index","score",57,"Madeira",77.52
-2016,"Index","Index","score",58,"Canary Islands",66.88
-2016,"Index","Index","score",59,"Belgium",72.88
-2016,"Index","Index","score",60,"Gibraltar",67.98
-2016,"Index","Index","score",61,"Tunisia",59.7
-2016,"Index","Index","score",62,"Morocco",71.75
-2016,"Index","Index","score",63,"Western Sahara",64.52
-2016,"Index","Index","score",64,"Mauritania",62.3
-2016,"Index","Index","score",65,"Gambia",68.64
-2016,"Index","Index","score",66,"Senegal",51.03
-2016,"Index","Index","score",67,"Libya",42.86
-2016,"Index","Index","score",68,"Malta",70.31
-2016,"Index","Index","score",69,"Latvia",71.43
-2016,"Index","Index","score",70,"Estonia",76.95
-2016,"Index","Index","score",71,"Bulgaria",64.53
-2016,"Index","Index","score",72,"Romania",61.84
-2016,"Index","Index","score",73,"Russia",71
-2016,"Index","Index","score",74,"Georgia",69.06
-2016,"Index","Index","score",75,"Ukraine",59.75
-2016,"Index","Index","score",76,"Turkey",56.05
-2016,"Index","Index","score",77,"Syria",53.37
-2016,"Index","Index","score",78,"Lebanon",47.32
-2016,"Index","Index","score",79,"Israel",64.18
-2016,"Index","Index","score",80,"Greece",68.94
-2016,"Index","Index","score",81,"Cyprus",57.85
-2016,"Index","Index","score",82,"Albania",61.12
-2016,"Index","Index","score",84,"Algeria",50.8
-2016,"Index","Index","score",85,"Ascension",71.72
-2016,"Index","Index","score",86,"Saint Helena",62.92
-2016,"Index","Index","score",88,"Tristan da Cunha",66.74
-2016,"Index","Index","score",89,"South Georgia and the South Sandwich Islands",83.03
-2016,"Index","Index","score",90,"Prince Edward Islands",73.07
-2016,"Index","Index","score",91,"Crozet Islands",74.38
-2016,"Index","Index","score",92,"Amsterdam Island and Saint Paul Island",75.9
-2016,"Index","Index","score",93,"Kerguelen Islands",87.72
-2016,"Index","Index","score",94,"Heard and McDonald Islands",94
-2016,"Index","Index","score",95,"Falkland Islands",71.32
-2016,"Index","Index","score",96,"Sierra Leone",47.23
-2016,"Index","Index","score",97,"Liberia",52.78
-2016,"Index","Index","score",98,"Togo",59.77
-2016,"Index","Index","score",99,"Benin",55.38
-2016,"Index","Index","score",100,"Republique du Congo",51.12
-2016,"Index","Index","score",101,"Namibia",65.17
-2016,"Index","Index","score",102,"South Africa",69.34
-2016,"Index","Index","score",103,"Sao Tome and Principe",56.81
-2016,"Index","Index","score",104,"Equatorial Guinea",56.38
-2016,"Index","Index","score",105,"Bouvet Island",78.02
-2016,"Index","Index","score",106,"Ghana",63.74
-2016,"Index","Index","score",107,"Clipperton Island",83.83
-2016,"Index","Index","score",108,"Bermuda",70.22
-2016,"Index","Index","score",110,"Bahamas",78.69
-2016,"Index","Index","score",111,"Turks and Caicos Islands",74.49
-2016,"Index","Index","score",112,"Cuba",67.82
-2016,"Index","Index","score",113,"Cayman Islands",75.2
-2016,"Index","Index","score",114,"Haiti",54.41
-2016,"Index","Index","score",115,"Dominican Republic",70.36
-2016,"Index","Index","score",116,"Puerto Rico and Virgin Islands of the United States",79.76
-2016,"Index","Index","score",117,"British Virgin Islands",68.57
-2016,"Index","Index","score",118,"Anguilla",66.57
-2016,"Index","Index","score",119,"Saint Kitts and Nevis",69.74
-2016,"Index","Index","score",120,"Antigua and Barbuda",78.9
-2016,"Index","Index","score",121,"Montserrat",72.66
-2016,"Index","Index","score",122,"Saint Lucia",58.81
-2016,"Index","Index","score",123,"Dominica",50.86
-2016,"Index","Index","score",124,"Barbados",58.93
-2016,"Index","Index","score",125,"Grenada",63.66
-2016,"Index","Index","score",126,"Trinidad and Tobago",67.42
-2016,"Index","Index","score",127,"Saint Vincent and the Grenadines",60.18
-2016,"Index","Index","score",129,"Panama",62.3
-2016,"Index","Index","score",130,"Costa Rica",61.45
-2016,"Index","Index","score",131,"Nicaragua",48.3
-2016,"Index","Index","score",132,"Colombia",59.99
-2016,"Index","Index","score",133,"Honduras",68.7
-2016,"Index","Index","score",134,"El Salvador",54.15
-2016,"Index","Index","score",135,"Mexico",69.28
-2016,"Index","Index","score",136,"Guatemala",62.06
-2016,"Index","Index","score",137,"Ecuador",72.25
-2016,"Index","Index","score",138,"Peru",52.95
-2016,"Index","Index","score",139,"Venezuela",61.12
-2016,"Index","Index","score",140,"Guadeloupe and Martinique",71.56
-2016,"Index","Index","score",141,"Faeroe Islands",65.91
-2016,"Index","Index","score",143,"Iceland",70.82
-2016,"Index","Index","score",144,"Jan Mayen",80.56
-2016,"Index","Index","score",145,"Greenland",73.4
-2016,"Index","Index","score",146,"Pitcairn",85.33
-2016,"Index","Index","score",147,"French Polynesia",78.29
-2016,"Index","Index","score",148,"Line Islands (Kiribati)",71.41
-2016,"Index","Index","score",149,"Jarvis Island",77.08
-2016,"Index","Index","score",150,"Palmyra Atoll",78.09
-2016,"Index","Index","score",151,"American Samoa",78.53
-2016,"Index","Index","score",152,"Samoa",68.31
-2016,"Index","Index","score",153,"Cook Islands",67.64
-2016,"Index","Index","score",154,"Niue",68.56
-2016,"Index","Index","score",155,"Tonga",70.4
-2016,"Index","Index","score",156,"Tokelau",67.01
-2016,"Index","Index","score",157,"Phoenix Islands (Kiribati)",80.1
-2016,"Index","Index","score",158,"Howland Island and Baker Island",92.26
-2016,"Index","Index","score",159,"Johnston Atoll",74.97
-2016,"Index","Index","score",161,"Wallis and Futuna",77.29
-2016,"Index","Index","score",162,"New Zealand",79.52
-2016,"Index","Index","score",163,"United States",70.93
-2016,"Index","Index","score",164,"Belize",65.98
-2016,"Index","Index","score",166,"Jamaica",59.46
-2016,"Index","Index","score",167,"Guyana",62
-2016,"Index","Index","score",168,"Suriname",74.76
-2016,"Index","Index","score",169,"French Guiana",72.14
-2016,"Index","Index","score",171,"Brazil",66.25
-2016,"Index","Index","score",172,"Argentina",69.44
-2016,"Index","Index","score",173,"Uruguay",66.1
-2016,"Index","Index","score",174,"Finland",76.36
-2016,"Index","Index","score",175,"Denmark",76.05
-2016,"Index","Index","score",176,"Germany",84.99
-2016,"Index","Index","score",177,"Netherlands",75.98
-2016,"Index","Index","score",178,"Poland",63.89
-2016,"Index","Index","score",179,"France",69.54
-2016,"Index","Index","score",180,"United Kingdom",72.55
-2016,"Index","Index","score",181,"Ireland",67.59
-2016,"Index","Index","score",182,"Spain",66.92
-2016,"Index","Index","score",183,"Portugal",72.06
-2016,"Index","Index","score",184,"Italy",78.77
-2016,"Index","Index","score",185,"Monaco",61.57
-2016,"Index","Index","score",186,"Montenegro",55.5
-2016,"Index","Index","score",187,"Croatia",73.08
-2016,"Index","Index","score",188,"Slovenia",65.83
-2016,"Index","Index","score",189,"Lithuania",63.93
-2016,"Index","Index","score",190,"Qatar",76.14
-2016,"Index","Index","score",191,"Iran",68.23
-2016,"Index","Index","score",192,"Iraq",55.8
-2016,"Index","Index","score",193,"Guinea Bissau",50.82
-2016,"Index","Index","score",194,"Guinea",48.78
-2016,"Index","Index","score",195,"Ivory Coast",41.97
-2016,"Index","Index","score",196,"Nigeria",54.01
-2016,"Index","Index","score",197,"Cameroon",63.65
-2016,"Index","Index","score",198,"Gabon",61.02
-2016,"Index","Index","score",199,"Democratic Republic of the Congo",48.14
-2016,"Index","Index","score",200,"Angola",53.61
-2016,"Index","Index","score",202,"Tanzania",66.6
-2016,"Index","Index","score",203,"India",60.76
-2016,"Index","Index","score",204,"Bangladesh",66.08
-2016,"Index","Index","score",205,"Myanmar",63.03
-2016,"Index","Index","score",206,"Malaysia",64.96
-2016,"Index","Index","score",207,"Vietnam",56.29
-2016,"Index","Index","score",208,"Singapore",62.94
-2016,"Index","Index","score",209,"China",60.83
-2016,"Index","Index","score",210,"Japan",70.34
-2016,"Index","Index","score",212,"Gilbert Islands (Kiribati)",58.33
-2016,"Index","Index","score",213,"Antarctica",NA
-2016,"Index","Index","score",214,"Egypt",65.65
-2016,"Index","Index","score",215,"Jordan",63.75
-2016,"Index","Index","score",216,"Indonesia",66.4
-2016,"Index","Index","score",218,"Canada",72.05
-2016,"Index","Index","score",219,"Saint Pierre and Miquelon",71.2
-2016,"Index","Index","score",220,"Sint Maarten",69.82
-2016,"Index","Index","score",221,"Northern Saint-Martin",80.08
-2016,"Index","Index","score",222,"Sweden",69.93
-2016,"Index","Index","score",223,"Norway",77.96
-2016,"Index","Index","score",224,"Chile",72.12
-2016,"Index","Index","score",227,"Jersey",67.87
-2016,"Index","Index","score",228,"Guernsey",64.35
-2016,"Index","Index","score",231,"East Timor",60.49
-2016,"Index","Index","score",232,"Bosnia and Herzegovina",50.12
-2016,"Index","Index","score",237,"Oecussi Ambeno",62.72
-2016,"Index","Index","score",244,"Curacao",76.38
-2016,"Index","Index","score",245,"Bonaire",71.39
-2016,"Index","Index","score",247,"Brunei",61.91
-2016,"Index","Index","score",248,"Saba",71.26
-2016,"Index","Index","score",249,"Sint Eustatius",67.4
-2016,"Index","Index","score",250,"Aruba",82.56
-2017,"Index","Index","score",0,"Global average",70
-2017,"Index","Index","score",1,"Cocos Islands",80.32
-2017,"Index","Index","score",2,"Christmas Island",83.89
-2017,"Index","Index","score",3,"Norfolk Island",83.86
-2017,"Index","Index","score",4,"Macquarie Island",81.81
-2017,"Index","Index","score",5,"New Caledonia",81.23
-2017,"Index","Index","score",6,"Vanuatu",69.08
-2017,"Index","Index","score",7,"Solomon Islands",65.83
-2017,"Index","Index","score",8,"Palau",63.56
-2017,"Index","Index","score",9,"Micronesia",62.1
-2017,"Index","Index","score",10,"Nauru",65.05
-2017,"Index","Index","score",11,"Marshall Islands",64.3
-2017,"Index","Index","score",12,"Wake Island",77.6
-2017,"Index","Index","score",13,"Northern Mariana Islands and Guam",75.51
-2017,"Index","Index","score",14,"Taiwan",65.81
-2017,"Index","Index","score",15,"Philippines",70.89
-2017,"Index","Index","score",16,"Australia",80.09
-2017,"Index","Index","score",17,"Papua New Guinea",59.44
-2017,"Index","Index","score",18,"Fiji",69.54
-2017,"Index","Index","score",19,"Tuvalu",72.74
-2017,"Index","Index","score",20,"South Korea",75.32
-2017,"Index","Index","score",21,"North Korea",57.03
-2017,"Index","Index","score",24,"Cambodia",60.55
-2017,"Index","Index","score",25,"Thailand",67.72
-2017,"Index","Index","score",26,"Andaman and Nicobar",68.26
-2017,"Index","Index","score",28,"Comoro Islands",58.19
-2017,"Index","Index","score",29,"Mayotte",64.19
-2017,"Index","Index","score",30,"Glorioso Islands",78.8
-2017,"Index","Index","score",31,"Seychelles",78.33
-2017,"Index","Index","score",32,"R_union",61.08
-2017,"Index","Index","score",33,"Juan de Nova Island",72.25
-2017,"Index","Index","score",34,"Bassas da India",68.06
-2017,"Index","Index","score",35,"Ile Europa",78.65
-2017,"Index","Index","score",36,"Ile Tromelin",66.58
-2017,"Index","Index","score",37,"Mauritius",67.95
-2017,"Index","Index","score",38,"British Indian Ocean Territory",73.21
-2017,"Index","Index","score",39,"Maldives",65.6
-2017,"Index","Index","score",40,"Sri Lanka",60.86
-2017,"Index","Index","score",41,"Mozambique",61.34
-2017,"Index","Index","score",42,"Madagascar",53.23
-2017,"Index","Index","score",43,"Kenya",60.93
-2017,"Index","Index","score",44,"Somalia",47.08
-2017,"Index","Index","score",45,"Eritrea",50.32
-2017,"Index","Index","score",46,"Djibouti",66.82
-2017,"Index","Index","score",47,"Yemen",61.1
-2017,"Index","Index","score",48,"Oman",68.89
-2017,"Index","Index","score",49,"Sudan",51.71
-2017,"Index","Index","score",50,"Saudi Arabia",66.55
-2017,"Index","Index","score",51,"Kuwait",71.4
-2017,"Index","Index","score",52,"Bahrain",60.95
-2017,"Index","Index","score",53,"Pakistan",49.98
-2017,"Index","Index","score",54,"United Arab Emirates",76.23
-2017,"Index","Index","score",55,"Azores",74.33
-2017,"Index","Index","score",56,"Cape Verde",68.96
-2017,"Index","Index","score",57,"Madeira",78.55
-2017,"Index","Index","score",58,"Canary Islands",66.55
-2017,"Index","Index","score",59,"Belgium",71.88
-2017,"Index","Index","score",60,"Gibraltar",69.67
-2017,"Index","Index","score",61,"Tunisia",60.16
-2017,"Index","Index","score",62,"Morocco",72.21
-2017,"Index","Index","score",63,"Western Sahara",64.06
-2017,"Index","Index","score",64,"Mauritania",64.05
-2017,"Index","Index","score",65,"Gambia",68.44
-2017,"Index","Index","score",66,"Senegal",53.02
-2017,"Index","Index","score",67,"Libya",41.69
-2017,"Index","Index","score",68,"Malta",70.51
-2017,"Index","Index","score",69,"Latvia",72.04
-2017,"Index","Index","score",70,"Estonia",75.76
-2017,"Index","Index","score",71,"Bulgaria",63.1
-2017,"Index","Index","score",72,"Romania",63.21
-2017,"Index","Index","score",73,"Russia",70.31
-2017,"Index","Index","score",74,"Georgia",72.35
-2017,"Index","Index","score",75,"Ukraine",60.21
-2017,"Index","Index","score",76,"Turkey",57.07
-2017,"Index","Index","score",77,"Syria",48.89
-2017,"Index","Index","score",78,"Lebanon",43.67
-2017,"Index","Index","score",79,"Israel",61.88
-2017,"Index","Index","score",80,"Greece",66.47
-2017,"Index","Index","score",81,"Cyprus",57.54
-2017,"Index","Index","score",82,"Albania",61.93
-2017,"Index","Index","score",84,"Algeria",50.91
-2017,"Index","Index","score",85,"Ascension",70.57
-2017,"Index","Index","score",86,"Saint Helena",61.64
-2017,"Index","Index","score",88,"Tristan da Cunha",66.95
-2017,"Index","Index","score",89,"South Georgia and the South Sandwich Islands",82.75
-2017,"Index","Index","score",90,"Prince Edward Islands",73.79
-2017,"Index","Index","score",91,"Crozet Islands",74.79
-2017,"Index","Index","score",92,"Amsterdam Island and Saint Paul Island",73.97
-2017,"Index","Index","score",93,"Kerguelen Islands",88.99
-2017,"Index","Index","score",94,"Heard and McDonald Islands",94.23
-2017,"Index","Index","score",95,"Falkland Islands",71.06
-2017,"Index","Index","score",96,"Sierra Leone",47.53
-2017,"Index","Index","score",97,"Liberia",52.91
-2017,"Index","Index","score",98,"Togo",59.89
-2017,"Index","Index","score",99,"Benin",55.32
-2017,"Index","Index","score",100,"Republique du Congo",52.14
-2017,"Index","Index","score",101,"Namibia",65.04
-2017,"Index","Index","score",102,"South Africa",68.59
-2017,"Index","Index","score",103,"Sao Tome and Principe",55.82
-2017,"Index","Index","score",104,"Equatorial Guinea",56.17
-2017,"Index","Index","score",105,"Bouvet Island",78.36
-2017,"Index","Index","score",106,"Ghana",62.93
-2017,"Index","Index","score",107,"Clipperton Island",83.39
-2017,"Index","Index","score",108,"Bermuda",72.45
-2017,"Index","Index","score",110,"Bahamas",78.84
-2017,"Index","Index","score",111,"Turks and Caicos Islands",76.61
-2017,"Index","Index","score",112,"Cuba",70.99
-2017,"Index","Index","score",113,"Cayman Islands",70.44
-2017,"Index","Index","score",114,"Haiti",53.14
-2017,"Index","Index","score",115,"Dominican Republic",67.4
-2017,"Index","Index","score",116,"Puerto Rico and Virgin Islands of the United States",77.94
-2017,"Index","Index","score",117,"British Virgin Islands",68.63
-2017,"Index","Index","score",118,"Anguilla",66.58
-2017,"Index","Index","score",119,"Saint Kitts and Nevis",70.21
-2017,"Index","Index","score",120,"Antigua and Barbuda",79.07
-2017,"Index","Index","score",121,"Montserrat",72.94
-2017,"Index","Index","score",122,"Saint Lucia",58.58
-2017,"Index","Index","score",123,"Dominica",51
-2017,"Index","Index","score",124,"Barbados",58.82
-2017,"Index","Index","score",125,"Grenada",63.84
-2017,"Index","Index","score",126,"Trinidad and Tobago",63.13
-2017,"Index","Index","score",127,"Saint Vincent and the Grenadines",60.99
-2017,"Index","Index","score",129,"Panama",65.38
-2017,"Index","Index","score",130,"Costa Rica",61.55
-2017,"Index","Index","score",131,"Nicaragua",48.29
-2017,"Index","Index","score",132,"Colombia",59.28
-2017,"Index","Index","score",133,"Honduras",69.25
-2017,"Index","Index","score",134,"El Salvador",54.09
-2017,"Index","Index","score",135,"Mexico",69.01
-2017,"Index","Index","score",136,"Guatemala",62.05
-2017,"Index","Index","score",137,"Ecuador",71.61
-2017,"Index","Index","score",138,"Peru",62.24
-2017,"Index","Index","score",139,"Venezuela",59.84
-2017,"Index","Index","score",140,"Guadeloupe and Martinique",71.84
-2017,"Index","Index","score",141,"Faeroe Islands",66
-2017,"Index","Index","score",143,"Iceland",70.43
-2017,"Index","Index","score",144,"Jan Mayen",78.52
-2017,"Index","Index","score",145,"Greenland",73.69
-2017,"Index","Index","score",146,"Pitcairn",84.6
-2017,"Index","Index","score",147,"French Polynesia",77.3
-2017,"Index","Index","score",148,"Line Islands (Kiribati)",69.75
-2017,"Index","Index","score",149,"Jarvis Island",75.75
-2017,"Index","Index","score",150,"Palmyra Atoll",76.79
-2017,"Index","Index","score",151,"American Samoa",77.53
-2017,"Index","Index","score",152,"Samoa",65.96
-2017,"Index","Index","score",153,"Cook Islands",71.17
-2017,"Index","Index","score",154,"Niue",67.74
-2017,"Index","Index","score",155,"Tonga",70.3
-2017,"Index","Index","score",156,"Tokelau",66.76
-2017,"Index","Index","score",157,"Phoenix Islands (Kiribati)",78.78
-2017,"Index","Index","score",158,"Howland Island and Baker Island",89.88
-2017,"Index","Index","score",159,"Johnston Atoll",73.55
-2017,"Index","Index","score",161,"Wallis and Futuna",77.01
-2017,"Index","Index","score",162,"New Zealand",79.08
-2017,"Index","Index","score",163,"United States",69.56
-2017,"Index","Index","score",164,"Belize",64.88
-2017,"Index","Index","score",166,"Jamaica",59.72
-2017,"Index","Index","score",167,"Guyana",62.17
-2017,"Index","Index","score",168,"Suriname",71.77
-2017,"Index","Index","score",169,"French Guiana",72.37
-2017,"Index","Index","score",171,"Brazil",65.56
-2017,"Index","Index","score",172,"Argentina",69.95
-2017,"Index","Index","score",173,"Uruguay",69.57
-2017,"Index","Index","score",174,"Finland",76.12
-2017,"Index","Index","score",175,"Denmark",75.98
-2017,"Index","Index","score",176,"Germany",84.84
-2017,"Index","Index","score",177,"Netherlands",76.06
-2017,"Index","Index","score",178,"Poland",66.02
-2017,"Index","Index","score",179,"France",70.51
-2017,"Index","Index","score",180,"United Kingdom",72.32
-2017,"Index","Index","score",181,"Ireland",67.58
-2017,"Index","Index","score",182,"Spain",67.25
-2017,"Index","Index","score",183,"Portugal",74.17
-2017,"Index","Index","score",184,"Italy",78.79
-2017,"Index","Index","score",185,"Monaco",61.59
-2017,"Index","Index","score",186,"Montenegro",54.3
-2017,"Index","Index","score",187,"Croatia",71.07
-2017,"Index","Index","score",188,"Slovenia",63.82
-2017,"Index","Index","score",189,"Lithuania",63.88
-2017,"Index","Index","score",190,"Qatar",77.16
-2017,"Index","Index","score",191,"Iran",61.55
-2017,"Index","Index","score",192,"Iraq",56.06
-2017,"Index","Index","score",193,"Guinea Bissau",51.03
-2017,"Index","Index","score",194,"Guinea",49.22
-2017,"Index","Index","score",195,"Ivory Coast",41.92
-2017,"Index","Index","score",196,"Nigeria",52.02
-2017,"Index","Index","score",197,"Cameroon",63.8
-2017,"Index","Index","score",198,"Gabon",62.99
-2017,"Index","Index","score",199,"Democratic Republic of the Congo",47.77
-2017,"Index","Index","score",200,"Angola",59.32
-2017,"Index","Index","score",202,"Tanzania",66.75
-2017,"Index","Index","score",203,"India",59.73
-2017,"Index","Index","score",204,"Bangladesh",65.98
-2017,"Index","Index","score",205,"Myanmar",63.07
-2017,"Index","Index","score",206,"Malaysia",64.58
-2017,"Index","Index","score",207,"Vietnam",56.82
-2017,"Index","Index","score",208,"Singapore",62.9
-2017,"Index","Index","score",209,"China",60.58
-2017,"Index","Index","score",210,"Japan",68.72
-2017,"Index","Index","score",212,"Gilbert Islands (Kiribati)",57.71
-2017,"Index","Index","score",213,"Antarctica",NA
-2017,"Index","Index","score",214,"Egypt",68.97
-2017,"Index","Index","score",215,"Jordan",64.01
-2017,"Index","Index","score",216,"Indonesia",66.27
-2017,"Index","Index","score",218,"Canada",72.75
-2017,"Index","Index","score",219,"Saint Pierre and Miquelon",71.03
-2017,"Index","Index","score",220,"Sint Maarten",69.69
-2017,"Index","Index","score",221,"Northern Saint-Martin",80.12
-2017,"Index","Index","score",222,"Sweden",69.78
-2017,"Index","Index","score",223,"Norway",76.65
-2017,"Index","Index","score",224,"Chile",72.95
-2017,"Index","Index","score",227,"Jersey",67.99
-2017,"Index","Index","score",228,"Guernsey",64.6
-2017,"Index","Index","score",231,"East Timor",60.52
-2017,"Index","Index","score",232,"Bosnia and Herzegovina",50.04
-2017,"Index","Index","score",237,"Oecussi Ambeno",62.87
-2017,"Index","Index","score",244,"Curacao",75.83
-2017,"Index","Index","score",245,"Bonaire",71.37
-2017,"Index","Index","score",247,"Brunei",61.91
-2017,"Index","Index","score",248,"Saba",71.27
-2017,"Index","Index","score",249,"Sint Eustatius",67.44
-2017,"Index","Index","score",250,"Aruba",82.67
-2018,"Index","Index","score",0,"Global average",70.05
-2018,"Index","Index","score",1,"Cocos Islands",79.75
-2018,"Index","Index","score",2,"Christmas Island",83.16
-2018,"Index","Index","score",3,"Norfolk Island",83.42
-2018,"Index","Index","score",4,"Macquarie Island",81.47
-2018,"Index","Index","score",5,"New Caledonia",81.6
-2018,"Index","Index","score",6,"Vanuatu",69.99
-2018,"Index","Index","score",7,"Solomon Islands",64.94
-2018,"Index","Index","score",8,"Palau",63.01
-2018,"Index","Index","score",9,"Micronesia",61.65
-2018,"Index","Index","score",10,"Nauru",65.03
-2018,"Index","Index","score",11,"Marshall Islands",62.15
-2018,"Index","Index","score",12,"Wake Island",77.81
-2018,"Index","Index","score",13,"Northern Mariana Islands and Guam",75.46
-2018,"Index","Index","score",14,"Taiwan",65.68
-2018,"Index","Index","score",15,"Philippines",70.98
-2018,"Index","Index","score",16,"Australia",79.63
-2018,"Index","Index","score",17,"Papua New Guinea",59.22
-2018,"Index","Index","score",18,"Fiji",69.7
-2018,"Index","Index","score",19,"Tuvalu",73.26
-2018,"Index","Index","score",20,"South Korea",75.97
-2018,"Index","Index","score",21,"North Korea",58.93
-2018,"Index","Index","score",24,"Cambodia",60.51
-2018,"Index","Index","score",25,"Thailand",67.73
-2018,"Index","Index","score",26,"Andaman and Nicobar",68.51
-2018,"Index","Index","score",28,"Comoro Islands",57.82
-2018,"Index","Index","score",29,"Mayotte",63.99
-2018,"Index","Index","score",30,"Glorioso Islands",80.26
-2018,"Index","Index","score",31,"Seychelles",77.21
-2018,"Index","Index","score",32,"R_union",60.62
-2018,"Index","Index","score",33,"Juan de Nova Island",72.14
-2018,"Index","Index","score",34,"Bassas da India",67.65
-2018,"Index","Index","score",35,"Ile Europa",77.97
-2018,"Index","Index","score",36,"Ile Tromelin",65.52
-2018,"Index","Index","score",37,"Mauritius",66.23
-2018,"Index","Index","score",38,"British Indian Ocean Territory",72.61
-2018,"Index","Index","score",39,"Maldives",66.52
-2018,"Index","Index","score",40,"Sri Lanka",59.71
-2018,"Index","Index","score",41,"Mozambique",60.53
-2018,"Index","Index","score",42,"Madagascar",52.38
-2018,"Index","Index","score",43,"Kenya",60.12
-2018,"Index","Index","score",44,"Somalia",48.25
-2018,"Index","Index","score",45,"Eritrea",50.3
-2018,"Index","Index","score",46,"Djibouti",67.01
-2018,"Index","Index","score",47,"Yemen",62.2
-2018,"Index","Index","score",48,"Oman",74.81
-2018,"Index","Index","score",49,"Sudan",55.6
-2018,"Index","Index","score",50,"Saudi Arabia",66.49
-2018,"Index","Index","score",51,"Kuwait",71.07
-2018,"Index","Index","score",52,"Bahrain",59.69
-2018,"Index","Index","score",53,"Pakistan",51.47
-2018,"Index","Index","score",54,"United Arab Emirates",75.58
-2018,"Index","Index","score",55,"Azores",75.16
-2018,"Index","Index","score",56,"Cape Verde",69.03
-2018,"Index","Index","score",57,"Madeira",79
-2018,"Index","Index","score",58,"Canary Islands",66.41
-2018,"Index","Index","score",59,"Belgium",71.45
-2018,"Index","Index","score",60,"Gibraltar",68.73
-2018,"Index","Index","score",61,"Tunisia",59.99
-2018,"Index","Index","score",62,"Morocco",72
-2018,"Index","Index","score",63,"Western Sahara",63.8
-2018,"Index","Index","score",64,"Mauritania",61.99
-2018,"Index","Index","score",65,"Gambia",68.02
-2018,"Index","Index","score",66,"Senegal",58.63
-2018,"Index","Index","score",67,"Libya",42.46
-2018,"Index","Index","score",68,"Malta",70.68
-2018,"Index","Index","score",69,"Latvia",71.76
-2018,"Index","Index","score",70,"Estonia",75.65
-2018,"Index","Index","score",71,"Bulgaria",60.98
-2018,"Index","Index","score",72,"Romania",61.94
-2018,"Index","Index","score",73,"Russia",74.4
-2018,"Index","Index","score",74,"Georgia",72.57
-2018,"Index","Index","score",75,"Ukraine",60.78
-2018,"Index","Index","score",76,"Turkey",56.27
-2018,"Index","Index","score",77,"Syria",48.44
-2018,"Index","Index","score",78,"Lebanon",46.05
-2018,"Index","Index","score",79,"Israel",59.45
-2018,"Index","Index","score",80,"Greece",66.86
-2018,"Index","Index","score",81,"Cyprus",55.99
-2018,"Index","Index","score",82,"Albania",61.81
-2018,"Index","Index","score",84,"Algeria",51.09
-2018,"Index","Index","score",85,"Ascension",70.61
-2018,"Index","Index","score",86,"Saint Helena",62.45
-2018,"Index","Index","score",88,"Tristan da Cunha",66.9
-2018,"Index","Index","score",89,"South Georgia and the South Sandwich Islands",82.5
-2018,"Index","Index","score",90,"Prince Edward Islands",77.01
-2018,"Index","Index","score",91,"Crozet Islands",75.42
-2018,"Index","Index","score",92,"Amsterdam Island and Saint Paul Island",72.87
-2018,"Index","Index","score",93,"Kerguelen Islands",90.63
-2018,"Index","Index","score",94,"Heard and McDonald Islands",95.91
-2018,"Index","Index","score",95,"Falkland Islands",71.06
-2018,"Index","Index","score",96,"Sierra Leone",47.91
-2018,"Index","Index","score",97,"Liberia",53.04
-2018,"Index","Index","score",98,"Togo",59.87
-2018,"Index","Index","score",99,"Benin",55.38
-2018,"Index","Index","score",100,"Republique du Congo",51.98
-2018,"Index","Index","score",101,"Namibia",64
-2018,"Index","Index","score",102,"South Africa",68.07
-2018,"Index","Index","score",103,"Sao Tome and Principe",55.38
-2018,"Index","Index","score",104,"Equatorial Guinea",56.05
-2018,"Index","Index","score",105,"Bouvet Island",79.73
-2018,"Index","Index","score",106,"Ghana",62.1
-2018,"Index","Index","score",107,"Clipperton Island",84.7
-2018,"Index","Index","score",108,"Bermuda",72.79
-2018,"Index","Index","score",110,"Bahamas",78.48
-2018,"Index","Index","score",111,"Turks and Caicos Islands",76.78
-2018,"Index","Index","score",112,"Cuba",69.22
-2018,"Index","Index","score",113,"Cayman Islands",67.48
-2018,"Index","Index","score",114,"Haiti",51.23
-2018,"Index","Index","score",115,"Dominican Republic",64.97
-2018,"Index","Index","score",116,"Puerto Rico and Virgin Islands of the United States",76.13
-2018,"Index","Index","score",117,"British Virgin Islands",68.71
-2018,"Index","Index","score",118,"Anguilla",66.9
-2018,"Index","Index","score",119,"Saint Kitts and Nevis",70.31
-2018,"Index","Index","score",120,"Antigua and Barbuda",79.22
-2018,"Index","Index","score",121,"Montserrat",73.15
-2018,"Index","Index","score",122,"Saint Lucia",58.71
-2018,"Index","Index","score",123,"Dominica",48.23
-2018,"Index","Index","score",124,"Barbados",58.24
-2018,"Index","Index","score",125,"Grenada",64.52
-2018,"Index","Index","score",126,"Trinidad and Tobago",62.16
-2018,"Index","Index","score",127,"Saint Vincent and the Grenadines",62.16
-2018,"Index","Index","score",129,"Panama",64.66
-2018,"Index","Index","score",130,"Costa Rica",61.73
-2018,"Index","Index","score",131,"Nicaragua",44.82
-2018,"Index","Index","score",132,"Colombia",57.4
-2018,"Index","Index","score",133,"Honduras",65.49
-2018,"Index","Index","score",134,"El Salvador",52.26
-2018,"Index","Index","score",135,"Mexico",68.64
-2018,"Index","Index","score",136,"Guatemala",59.15
-2018,"Index","Index","score",137,"Ecuador",72.39
-2018,"Index","Index","score",138,"Peru",57.9
-2018,"Index","Index","score",139,"Venezuela",60.47
-2018,"Index","Index","score",140,"Guadeloupe and Martinique",72
-2018,"Index","Index","score",141,"Faeroe Islands",67.14
-2018,"Index","Index","score",143,"Iceland",70.12
-2018,"Index","Index","score",144,"Jan Mayen",78.98
-2018,"Index","Index","score",145,"Greenland",73.79
-2018,"Index","Index","score",146,"Pitcairn",85.38
-2018,"Index","Index","score",147,"French Polynesia",78.08
-2018,"Index","Index","score",148,"Line Islands (Kiribati)",70.75
-2018,"Index","Index","score",149,"Jarvis Island",79.09
-2018,"Index","Index","score",150,"Palmyra Atoll",77.48
-2018,"Index","Index","score",151,"American Samoa",78.03
-2018,"Index","Index","score",152,"Samoa",66.35
-2018,"Index","Index","score",153,"Cook Islands",69.62
-2018,"Index","Index","score",154,"Niue",68.39
-2018,"Index","Index","score",155,"Tonga",69.76
-2018,"Index","Index","score",156,"Tokelau",67.22
-2018,"Index","Index","score",157,"Phoenix Islands (Kiribati)",79.43
-2018,"Index","Index","score",158,"Howland Island and Baker Island",91.5
-2018,"Index","Index","score",159,"Johnston Atoll",74.08
-2018,"Index","Index","score",161,"Wallis and Futuna",77.52
-2018,"Index","Index","score",162,"New Zealand",79
-2018,"Index","Index","score",163,"United States",68.97
-2018,"Index","Index","score",164,"Belize",63.3
-2018,"Index","Index","score",166,"Jamaica",59.97
-2018,"Index","Index","score",167,"Guyana",62.49
-2018,"Index","Index","score",168,"Suriname",68.49
-2018,"Index","Index","score",169,"French Guiana",72.35
-2018,"Index","Index","score",171,"Brazil",65.59
-2018,"Index","Index","score",172,"Argentina",68.39
-2018,"Index","Index","score",173,"Uruguay",68.54
-2018,"Index","Index","score",174,"Finland",74.35
-2018,"Index","Index","score",175,"Denmark",75.71
-2018,"Index","Index","score",176,"Germany",84.39
-2018,"Index","Index","score",177,"Netherlands",75.84
-2018,"Index","Index","score",178,"Poland",65.38
-2018,"Index","Index","score",179,"France",70.81
-2018,"Index","Index","score",180,"United Kingdom",71.78
-2018,"Index","Index","score",181,"Ireland",66.5
-2018,"Index","Index","score",182,"Spain",66.97
-2018,"Index","Index","score",183,"Portugal",77.63
-2018,"Index","Index","score",184,"Italy",79.23
-2018,"Index","Index","score",185,"Monaco",61.98
-2018,"Index","Index","score",186,"Montenegro",54.16
-2018,"Index","Index","score",187,"Croatia",71.39
-2018,"Index","Index","score",188,"Slovenia",61.58
-2018,"Index","Index","score",189,"Lithuania",64.28
-2018,"Index","Index","score",190,"Qatar",76.48
-2018,"Index","Index","score",191,"Iran",60.99
-2018,"Index","Index","score",192,"Iraq",55.49
-2018,"Index","Index","score",193,"Guinea Bissau",48.89
-2018,"Index","Index","score",194,"Guinea",49.68
-2018,"Index","Index","score",195,"Ivory Coast",41.96
-2018,"Index","Index","score",196,"Nigeria",51.01
-2018,"Index","Index","score",197,"Cameroon",66.02
-2018,"Index","Index","score",198,"Gabon",63.05
-2018,"Index","Index","score",199,"Democratic Republic of the Congo",47.73
-2018,"Index","Index","score",200,"Angola",59.59
-2018,"Index","Index","score",202,"Tanzania",67.11
-2018,"Index","Index","score",203,"India",58.48
-2018,"Index","Index","score",204,"Bangladesh",66.03
-2018,"Index","Index","score",205,"Myanmar",62.63
-2018,"Index","Index","score",206,"Malaysia",64.14
-2018,"Index","Index","score",207,"Vietnam",57.14
-2018,"Index","Index","score",208,"Singapore",63.19
-2018,"Index","Index","score",209,"China",60.59
-2018,"Index","Index","score",210,"Japan",67.78
-2018,"Index","Index","score",212,"Gilbert Islands (Kiribati)",57.91
-2018,"Index","Index","score",213,"Antarctica",NA
-2018,"Index","Index","score",214,"Egypt",70.28
-2018,"Index","Index","score",215,"Jordan",64.35
-2018,"Index","Index","score",216,"Indonesia",66.41
-2018,"Index","Index","score",218,"Canada",72.3
-2018,"Index","Index","score",219,"Saint Pierre and Miquelon",71.19
-2018,"Index","Index","score",220,"Sint Maarten",69.68
-2018,"Index","Index","score",221,"Northern Saint-Martin",80.15
-2018,"Index","Index","score",222,"Sweden",68.86
-2018,"Index","Index","score",223,"Norway",75.63
-2018,"Index","Index","score",224,"Chile",73.51
-2018,"Index","Index","score",227,"Jersey",67.91
-2018,"Index","Index","score",228,"Guernsey",64.92
-2018,"Index","Index","score",231,"East Timor",60.79
-2018,"Index","Index","score",232,"Bosnia and Herzegovina",50.7
-2018,"Index","Index","score",237,"Oecussi Ambeno",63.25
-2018,"Index","Index","score",244,"Curacao",74.46
-2018,"Index","Index","score",245,"Bonaire",71.29
-2018,"Index","Index","score",247,"Brunei",62.05
-2018,"Index","Index","score",248,"Saba",71.31
-2018,"Index","Index","score",249,"Sint Eustatius",67.39
-2018,"Index","Index","score",250,"Aruba",82.77
-2019,"Index","Index","score",0,"Global average",70.07
-2019,"Index","Index","score",1,"Cocos Islands",79.51
-2019,"Index","Index","score",2,"Christmas Island",82.82
-2019,"Index","Index","score",3,"Norfolk Island",83.03
-2019,"Index","Index","score",4,"Macquarie Island",80.36
-2019,"Index","Index","score",5,"New Caledonia",81.86
-2019,"Index","Index","score",6,"Vanuatu",69.83
-2019,"Index","Index","score",7,"Solomon Islands",63.84
-2019,"Index","Index","score",8,"Palau",63.37
-2019,"Index","Index","score",9,"Micronesia",62.05
-2019,"Index","Index","score",10,"Nauru",65.21
-2019,"Index","Index","score",11,"Marshall Islands",62.56
-2019,"Index","Index","score",12,"Wake Island",77.56
-2019,"Index","Index","score",13,"Northern Mariana Islands and Guam",75.99
-2019,"Index","Index","score",14,"Taiwan",65.72
-2019,"Index","Index","score",15,"Philippines",70.87
-2019,"Index","Index","score",16,"Australia",79.42
-2019,"Index","Index","score",17,"Papua New Guinea",59.08
-2019,"Index","Index","score",18,"Fiji",69.76
-2019,"Index","Index","score",19,"Tuvalu",72.17
-2019,"Index","Index","score",20,"South Korea",76.1
-2019,"Index","Index","score",21,"North Korea",59.01
-2019,"Index","Index","score",24,"Cambodia",60.35
-2019,"Index","Index","score",25,"Thailand",67.26
-2019,"Index","Index","score",26,"Andaman and Nicobar",68.43
-2019,"Index","Index","score",28,"Comoro Islands",57.75
-2019,"Index","Index","score",29,"Mayotte",64
-2019,"Index","Index","score",30,"Glorioso Islands",80.47
-2019,"Index","Index","score",31,"Seychelles",77.32
-2019,"Index","Index","score",32,"R_union",60.53
-2019,"Index","Index","score",33,"Juan de Nova Island",72.39
-2019,"Index","Index","score",34,"Bassas da India",67.99
-2019,"Index","Index","score",35,"Ile Europa",78.34
-2019,"Index","Index","score",36,"Ile Tromelin",65.86
-2019,"Index","Index","score",37,"Mauritius",65.51
-2019,"Index","Index","score",38,"British Indian Ocean Territory",72.93
-2019,"Index","Index","score",39,"Maldives",67.42
-2019,"Index","Index","score",40,"Sri Lanka",59.54
-2019,"Index","Index","score",41,"Mozambique",60.18
-2019,"Index","Index","score",42,"Madagascar",52.34
-2019,"Index","Index","score",43,"Kenya",60.27
-2019,"Index","Index","score",44,"Somalia",49.57
-2019,"Index","Index","score",45,"Eritrea",50.07
-2019,"Index","Index","score",46,"Djibouti",66.98
-2019,"Index","Index","score",47,"Yemen",61.76
-2019,"Index","Index","score",48,"Oman",74.33
-2019,"Index","Index","score",49,"Sudan",55.37
-2019,"Index","Index","score",50,"Saudi Arabia",66.22
-2019,"Index","Index","score",51,"Kuwait",70.96
-2019,"Index","Index","score",52,"Bahrain",59.18
-2019,"Index","Index","score",53,"Pakistan",51.45
-2019,"Index","Index","score",54,"United Arab Emirates",75.72
-2019,"Index","Index","score",55,"Azores",75.31
-2019,"Index","Index","score",56,"Cape Verde",68.85
-2019,"Index","Index","score",57,"Madeira",79.08
-2019,"Index","Index","score",58,"Canary Islands",66.44
-2019,"Index","Index","score",59,"Belgium",71.59
-2019,"Index","Index","score",60,"Gibraltar",68.87
-2019,"Index","Index","score",61,"Tunisia",60.58
-2019,"Index","Index","score",62,"Morocco",72.04
-2019,"Index","Index","score",63,"Western Sahara",64.11
-2019,"Index","Index","score",64,"Mauritania",61.85
-2019,"Index","Index","score",65,"Gambia",68.12
-2019,"Index","Index","score",66,"Senegal",58.46
-2019,"Index","Index","score",67,"Libya",42.86
-2019,"Index","Index","score",68,"Malta",70.55
-2019,"Index","Index","score",69,"Latvia",71.93
-2019,"Index","Index","score",70,"Estonia",75.93
-2019,"Index","Index","score",71,"Bulgaria",61.15
-2019,"Index","Index","score",72,"Romania",61.9
-2019,"Index","Index","score",73,"Russia",75.42
-2019,"Index","Index","score",74,"Georgia",72.31
-2019,"Index","Index","score",75,"Ukraine",61.16
-2019,"Index","Index","score",76,"Turkey",56.28
-2019,"Index","Index","score",77,"Syria",48.43
-2019,"Index","Index","score",78,"Lebanon",46.22
-2019,"Index","Index","score",79,"Israel",59.38
-2019,"Index","Index","score",80,"Greece",66.94
-2019,"Index","Index","score",81,"Cyprus",55.61
-2019,"Index","Index","score",82,"Albania",61.43
-2019,"Index","Index","score",84,"Algeria",50.89
-2019,"Index","Index","score",85,"Ascension",70.32
-2019,"Index","Index","score",86,"Saint Helena",62.17
-2019,"Index","Index","score",88,"Tristan da Cunha",66.57
-2019,"Index","Index","score",89,"South Georgia and the South Sandwich Islands",82.43
-2019,"Index","Index","score",90,"Prince Edward Islands",77.23
-2019,"Index","Index","score",91,"Crozet Islands",75.47
-2019,"Index","Index","score",92,"Amsterdam Island and Saint Paul Island",73.38
-2019,"Index","Index","score",93,"Kerguelen Islands",90.67
-2019,"Index","Index","score",94,"Heard and McDonald Islands",95.92
-2019,"Index","Index","score",95,"Falkland Islands",71.31
-2019,"Index","Index","score",96,"Sierra Leone",47.76
-2019,"Index","Index","score",97,"Liberia",52.84
-2019,"Index","Index","score",98,"Togo",59.69
-2019,"Index","Index","score",99,"Benin",55.13
-2019,"Index","Index","score",100,"Republique du Congo",51.41
-2019,"Index","Index","score",101,"Namibia",63.86
-2019,"Index","Index","score",102,"South Africa",68.11
-2019,"Index","Index","score",103,"Sao Tome and Principe",54.42
-2019,"Index","Index","score",104,"Equatorial Guinea",55.52
-2019,"Index","Index","score",105,"Bouvet Island",79.75
-2019,"Index","Index","score",106,"Ghana",61.91
-2019,"Index","Index","score",107,"Clipperton Island",84.42
-2019,"Index","Index","score",108,"Bermuda",72.56
-2019,"Index","Index","score",110,"Bahamas",78.2
-2019,"Index","Index","score",111,"Turks and Caicos Islands",76.65
-2019,"Index","Index","score",112,"Cuba",70.51
-2019,"Index","Index","score",113,"Cayman Islands",67.35
-2019,"Index","Index","score",114,"Haiti",51.11
-2019,"Index","Index","score",115,"Dominican Republic",64.75
-2019,"Index","Index","score",116,"Puerto Rico and Virgin Islands of the United States",75.46
-2019,"Index","Index","score",117,"British Virgin Islands",68.52
-2019,"Index","Index","score",118,"Anguilla",66.68
-2019,"Index","Index","score",119,"Saint Kitts and Nevis",70.29
-2019,"Index","Index","score",120,"Antigua and Barbuda",79.05
-2019,"Index","Index","score",121,"Montserrat",72.94
-2019,"Index","Index","score",122,"Saint Lucia",58.61
-2019,"Index","Index","score",123,"Dominica",49.03
-2019,"Index","Index","score",124,"Barbados",58.12
-2019,"Index","Index","score",125,"Grenada",64.37
-2019,"Index","Index","score",126,"Trinidad and Tobago",62.32
-2019,"Index","Index","score",127,"Saint Vincent and the Grenadines",62.08
-2019,"Index","Index","score",129,"Panama",64.5
-2019,"Index","Index","score",130,"Costa Rica",62.06
-2019,"Index","Index","score",131,"Nicaragua",44.52
-2019,"Index","Index","score",132,"Colombia",57.21
-2019,"Index","Index","score",133,"Honduras",64.84
-2019,"Index","Index","score",134,"El Salvador",52.07
-2019,"Index","Index","score",135,"Mexico",68.73
-2019,"Index","Index","score",136,"Guatemala",60.32
-2019,"Index","Index","score",137,"Ecuador",72.3
-2019,"Index","Index","score",138,"Peru",57.17
-2019,"Index","Index","score",139,"Venezuela",59.99
-2019,"Index","Index","score",140,"Guadeloupe and Martinique",71.98
-2019,"Index","Index","score",141,"Faeroe Islands",67.25
-2019,"Index","Index","score",143,"Iceland",70.44
-2019,"Index","Index","score",144,"Jan Mayen",79.05
-2019,"Index","Index","score",145,"Greenland",73.93
-2019,"Index","Index","score",146,"Pitcairn",85.11
-2019,"Index","Index","score",147,"French Polynesia",78.07
-2019,"Index","Index","score",148,"Line Islands (Kiribati)",71.66
-2019,"Index","Index","score",149,"Jarvis Island",78.96
-2019,"Index","Index","score",150,"Palmyra Atoll",77.38
-2019,"Index","Index","score",151,"American Samoa",77.19
-2019,"Index","Index","score",152,"Samoa",65.61
-2019,"Index","Index","score",153,"Cook Islands",69.23
-2019,"Index","Index","score",154,"Niue",67.96
-2019,"Index","Index","score",155,"Tonga",67.75
-2019,"Index","Index","score",156,"Tokelau",66.66
-2019,"Index","Index","score",157,"Phoenix Islands (Kiribati)",80.24
-2019,"Index","Index","score",158,"Howland Island and Baker Island",91.26
-2019,"Index","Index","score",159,"Johnston Atoll",74.04
-2019,"Index","Index","score",161,"Wallis and Futuna",77.14
-2019,"Index","Index","score",162,"New Zealand",79.05
-2019,"Index","Index","score",163,"United States",68.99
-2019,"Index","Index","score",164,"Belize",62.8
-2019,"Index","Index","score",166,"Jamaica",60.1
-2019,"Index","Index","score",167,"Guyana",62.37
-2019,"Index","Index","score",168,"Suriname",68.13
-2019,"Index","Index","score",169,"French Guiana",72.2
-2019,"Index","Index","score",171,"Brazil",65.5
-2019,"Index","Index","score",172,"Argentina",68.17
-2019,"Index","Index","score",173,"Uruguay",68.66
-2019,"Index","Index","score",174,"Finland",74.21
-2019,"Index","Index","score",175,"Denmark",75.58
-2019,"Index","Index","score",176,"Germany",84.44
-2019,"Index","Index","score",177,"Netherlands",75.9
-2019,"Index","Index","score",178,"Poland",65.41
-2019,"Index","Index","score",179,"France",70.91
-2019,"Index","Index","score",180,"United Kingdom",71.5
-2019,"Index","Index","score",181,"Ireland",66.22
-2019,"Index","Index","score",182,"Spain",66.99
-2019,"Index","Index","score",183,"Portugal",77.87
-2019,"Index","Index","score",184,"Italy",79.06
-2019,"Index","Index","score",185,"Monaco",62.23
-2019,"Index","Index","score",186,"Montenegro",53.48
-2019,"Index","Index","score",187,"Croatia",71.43
-2019,"Index","Index","score",188,"Slovenia",61.87
-2019,"Index","Index","score",189,"Lithuania",64.54
-2019,"Index","Index","score",190,"Qatar",76.07
-2019,"Index","Index","score",191,"Iran",60.92
-2019,"Index","Index","score",192,"Iraq",55.38
-2019,"Index","Index","score",193,"Guinea Bissau",48.64
-2019,"Index","Index","score",194,"Guinea",49.62
-2019,"Index","Index","score",195,"Ivory Coast",41.74
-2019,"Index","Index","score",196,"Nigeria",50.84
-2019,"Index","Index","score",197,"Cameroon",65.77
-2019,"Index","Index","score",198,"Gabon",62.68
-2019,"Index","Index","score",199,"Democratic Republic of the Congo",47.66
-2019,"Index","Index","score",200,"Angola",59.4
-2019,"Index","Index","score",202,"Tanzania",67.04
-2019,"Index","Index","score",203,"India",58.26
-2019,"Index","Index","score",204,"Bangladesh",65.88
-2019,"Index","Index","score",205,"Myanmar",61.27
-2019,"Index","Index","score",206,"Malaysia",64.23
-2019,"Index","Index","score",207,"Vietnam",56.89
-2019,"Index","Index","score",208,"Singapore",62.73
-2019,"Index","Index","score",209,"China",60.69
-2019,"Index","Index","score",210,"Japan",67.66
-2019,"Index","Index","score",212,"Gilbert Islands (Kiribati)",58.41
-2019,"Index","Index","score",213,"Antarctica",NA
-2019,"Index","Index","score",214,"Egypt",71.07
-2019,"Index","Index","score",215,"Jordan",64.74
-2019,"Index","Index","score",216,"Indonesia",66.32
-2019,"Index","Index","score",218,"Canada",72.31
-2019,"Index","Index","score",219,"Saint Pierre and Miquelon",71.3
-2019,"Index","Index","score",220,"Sint Maarten",69.52
-2019,"Index","Index","score",221,"Northern Saint-Martin",79.98
-2019,"Index","Index","score",222,"Sweden",68.86
-2019,"Index","Index","score",223,"Norway",75.52
-2019,"Index","Index","score",224,"Chile",73.85
-2019,"Index","Index","score",227,"Jersey",67.9
-2019,"Index","Index","score",228,"Guernsey",64.66
-2019,"Index","Index","score",231,"East Timor",60.64
-2019,"Index","Index","score",232,"Bosnia and Herzegovina",50.87
-2019,"Index","Index","score",237,"Oecussi Ambeno",63.11
-2019,"Index","Index","score",244,"Curacao",74.2
-2019,"Index","Index","score",245,"Bonaire",71.07
-2019,"Index","Index","score",247,"Brunei",61.53
-2019,"Index","Index","score",248,"Saba",71.13
-2019,"Index","Index","score",249,"Sint Eustatius",67.22
-2019,"Index","Index","score",250,"Aruba",82.32
+region_id,region_name,2012,2013,2014,2015,2016,2017,2018,2019,average
+0,Global average,69.93,70.54,70.68,70.5,70.33,70,70.09,70.05,70.265
+1,Cocos Islands,80.42,81.73,82.53,81.51,81.01,80.32,79.75,79.51,80.8475
+2,Christmas Island,83.51,84.53,85.36,84.68,84.67,83.89,83.16,82.82,84.0775
+3,Norfolk Island,82.01,82.33,82.52,83.41,84.1,83.86,83.42,83.03,83.085
+4,Macquarie Island,76.79,77.51,78.43,79.68,80.94,81.81,81.47,80.36,79.62375
+5,New Caledonia,81.76,81.61,82.42,81.73,80.62,81.23,81.6,81.43,81.55
+6,Vanuatu,65.84,65.68,65.63,66.22,67.97,68.98,69.69,69.19,67.4
+7,Solomon Islands,57.98,58.45,60.8,64.17,65.56,65.83,64.94,63.53,62.6575
+8,Palau,69.4,68.79,68.68,65.15,64.85,63.54,63.01,63.37,65.84875
+9,Micronesia,64.66,63.61,63.93,62.48,62.39,61.74,61.09,61.4,62.6625
+10,Nauru,68.49,68.32,69.37,66.6,65.38,65.05,65.03,65.21,66.68124999999999
+11,Marshall Islands,74.99,74.44,74.67,72.27,69.46,64.16,62.01,62.39,69.29875
+12,Wake Island,78.16,78.86,78.89,78.41,78.16,77.6,77.81,77.56,78.18125
+13,Northern Mariana Islands and Guam,79.45,79.04,79.49,76.86,76.2,75.51,75.46,75.99,77.25
+14,Taiwan,67.99,67.19,66.89,66.7,66.16,65.73,65.82,66.95,66.67875
+15,Philippines,66.02,65.54,67.45,69.72,70.78,70.9,70.98,70.11,68.9375
+16,Australia,79.42,79.03,79.3,79.89,80.47,80.09,79.67,79.3,79.64625
+17,Papua New Guinea,61.85,61.29,60.4,59.52,59.84,59.44,59.21,59.21,60.095
+18,Fiji,68.6,69.62,68.7,69.08,69.43,69.52,69.68,68.92,69.19375
+19,Tuvalu,64.96,71.19,70.66,72.39,73.92,72.74,73.26,72.17,71.41125
+20,South Korea,74.09,73.98,74.66,74.88,75.17,75.32,75.96,75.13,74.89874999999999
+21,North Korea,56.58,52.73,51.83,51.11,52.8,56.68,58.81,60.02,55.07
+24,Cambodia,59.59,59.78,59.96,60.01,60.45,60.48,60.52,60.31,60.1375
+25,Thailand,67.3,70.49,69.67,69.59,68.18,67.73,67.74,67.06,68.47
+26,Andaman and Nicobar,66.86,67.92,68.03,68.26,68.3,68.26,68.51,68.43,68.07125
+28,Comoro Islands,59.6,59.07,59.45,58.53,58,58.19,57.82,57.75,58.55125
+29,Mayotte,76.13,73.33,69.36,65.55,64.53,64.19,63.99,64,67.635
+30,Glorioso Islands,81.28,82.74,83.07,81.57,80.81,78.8,80.26,80.47,81.125
+31,Seychelles,81.47,85.07,85.76,81.96,79.76,78.33,77.21,77.32,80.86
+32,R_union,62.23,64.1,65.5,63.22,61.77,61.08,60.62,60.53,62.38125
+33,Juan de Nova Island,73.83,75.35,75.87,73.8,72.92,72.25,72.14,72.39,73.56875
+34,Bassas da India,70.67,73.25,74.28,70.72,69.14,68.06,67.65,67.99,70.22
+35,Ile Europa,82.37,85.6,87.06,82.43,80.1,78.65,77.97,78.34,81.565
+36,Ile Tromelin,73.35,77.96,77.92,72.52,68.63,66.58,65.52,65.86,71.04249999999999
+37,Mauritius,63.48,66.28,68.67,67.67,68.21,67.99,66.76,65.8,66.8575
+38,British Indian Ocean Territory,76.34,79.48,79.96,76.86,74.36,73.21,72.61,72.93,75.71875
+39,Maldives,71.92,74.01,75.54,69.36,66.12,65.17,66.06,69.14,69.665
+40,Sri Lanka,60.24,61.11,62.46,63.32,62.59,60.86,59.71,59.21,61.1875
+41,Mozambique,59.16,59.2,60.09,61.39,61.63,61.47,60.63,60.27,60.480000000000004
+42,Madagascar,59.52,58.61,59.19,59.02,56.41,53.21,52.38,53.78,56.515
+43,Kenya,65.79,65.65,64.99,64.26,63.17,62.69,62.24,62.59,63.9225
+44,Somalia,54.12,54.53,52.99,47.27,46.81,47.08,48.25,49.89,50.1175
+45,Eritrea,68.83,60.54,60.33,53.86,50.4,50.32,50.3,50.07,55.58125
+46,Djibouti,68.59,68.51,68.47,67.1,66.71,66.82,67.01,66.98,67.52375
+47,Yemen,56.5,57.84,58.48,59.05,59.95,59.33,62.36,62.25,59.47
+48,Oman,66.57,68.12,68.07,68.53,68.36,68.43,72.41,74.35,69.355
+49,Sudan,55.27,53.85,52.02,50.92,51.11,51.72,55.75,55.74,53.2975
+50,Saudi Arabia,74.89,69.71,68.73,67.11,66.75,66.55,66.49,66.23,68.3075
+51,Kuwait,72.52,71.63,70.93,72.81,71.75,71.4,71.07,70.96,71.63374999999999
+52,Bahrain,59.67,60.87,61.54,63.47,62.51,60.95,59.69,59.18,60.985
+53,Pakistan,50.89,50.74,47.78,47.77,47.82,49.97,51.46,51.68,49.76375
+54,United Arab Emirates,75.16,75.66,77.19,77.44,76.42,75.47,76,77.53,76.35875
+55,Azores,72.32,72.86,72.39,73.99,74.03,74.33,75.16,75.31,73.79875
+56,Cape Verde,68.04,68.59,68.56,68.38,68.79,68.96,69.03,68.85,68.65
+57,Madeira,76.52,76.21,77.2,77.55,77.52,78.55,79,79.08,77.70375
+58,Canary Islands,67.43,67.43,68.28,67.51,66.88,66.55,66.41,66.44,67.11625000000001
+59,Belgium,72.14,73.32,73.83,73.84,72.91,71.92,71.5,71.7,72.645
+60,Gibraltar,67.47,67.45,68.28,67.91,67.98,69.67,68.73,68.87,68.295
+61,Tunisia,60.39,60.99,61.06,59.34,59.6,60.06,59.83,58.88,60.018750000000004
+62,Morocco,73.4,72.99,72.75,72.42,71.85,72.33,72.12,71.81,72.45875
+63,Western Sahara,66.68,64.47,64.68,63.62,64.52,64.06,63.8,64.11,64.4925
+64,Mauritania,56.89,57.49,57.96,58.69,60.96,64.05,61.99,61.85,59.985
+65,Gambia,68.25,66.76,68.9,69.02,68.64,68.44,68.02,68.12,68.26875
+66,Senegal,51.22,52.21,52.27,50.31,50.78,52.12,58.02,58.56,53.18625
+67,Libya,40.52,43.67,43.32,42.54,54.01,53.22,53.99,53.58,48.10625
+68,Malta,70.37,70.3,69.96,69.53,70.31,70.51,70.68,70.35,70.25125
+69,Latvia,63.03,64.68,66.83,68.29,70.27,71.59,71.74,71.91,68.5425
+70,Estonia,82.38,84.11,80.19,77.36,76.95,75.76,75.65,75.91,78.53875
+71,Bulgaria,59.67,62.33,65.86,65.43,64.54,63.1,60.98,61.47,62.9225
+72,Romania,62.32,58.57,59.82,60.8,61.84,63.21,61.94,61.97,61.30875
+73,Russia,67.79,68.73,69.48,71.06,71.06,70.36,74.16,75.51,71.01875
+74,Georgia,58.13,62.4,63.07,63.4,66.89,71.5,72.57,72.31,66.28375
+75,Ukraine,67.8,67.56,64.37,60.78,59.75,60.21,60.78,62.93,63.0225
+76,Turkey,57.4,61.64,61.12,58.95,56.37,57.28,56.53,56.51,58.225
+77,Syria,58.16,58.99,58.73,57.95,53.51,48.67,48.63,48.36,54.125
+78,Lebanon,45.47,47.91,51.39,52.37,51.63,48.04,49.36,48.33,49.3125
+79,Israel,64.33,64.11,63.92,64.37,63.88,62.26,60.02,59.88,62.84625
+80,Greece,72.56,72.51,71.8,70.19,68.84,66.45,66.85,66.98,69.52250000000001
+81,Cyprus,56.83,57.57,58.3,57.51,57.85,57.54,55.99,55.61,57.15
+82,Albania,59.64,59.77,60.72,60.84,61.27,62.18,62.33,62.93,61.21
+84,Algeria,52.27,52.01,51.28,50.95,50.8,50.91,51.09,50.89,51.275
+85,Ascension,66.82,68.14,71.44,70.93,71.72,70.57,70.61,70.32,70.06875
+86,Saint Helena,63.02,60.47,61.28,61.42,62.92,61.64,62.45,62.17,61.92125
+88,Tristan da Cunha,64.7,65.04,66.38,66.63,66.74,66.95,66.9,66.57,66.23875
+89,South Georgia and the South Sandwich Islands,80,81.67,82.58,83.08,83.03,82.75,82.5,82.43,82.255
+90,Prince Edward Islands,69.75,74.88,73.54,72.7,73.07,73.79,77.01,77.23,73.99625
+91,Crozet Islands,73.47,73.36,73.41,73.7,74.38,74.79,75.42,75.47,74.25
+92,Amsterdam Island and Saint Paul Island,80.81,86.65,86.41,79.89,75.9,73.97,72.87,73.38,78.735
+93,Kerguelen Islands,87.34,85.38,85.7,86.35,87.72,88.99,90.63,90.67,87.8475
+94,Heard and McDonald Islands,93.47,92.35,92.68,93.25,94,94.23,95.91,95.92,93.97625
+95,Falkland Islands,71.11,71.23,71.31,71.36,71.32,71.06,71.06,71.31,71.22
+96,Sierra Leone,45.62,45.89,45.83,46,47.23,47.53,47.91,47.76,46.72125
+97,Liberia,49.59,50,49.94,49.82,52.78,52.91,53.04,52.84,51.365
+98,Togo,60.53,60.24,60.13,59.8,59.77,59.89,59.87,59.69,59.99
+99,Benin,54.45,55.95,55.61,55.59,55.38,55.32,55.38,55.13,55.35125
+100,Republique du Congo,50.32,50.05,49.89,51.09,51.12,52.14,51.98,51.41,51
+101,Namibia,64.92,65.4,66.26,66.41,65.17,65.04,64,63.57,65.09625
+102,South Africa,68.55,70.26,70.25,70.17,69.35,68.61,68.1,68.24,69.19125
+103,Sao Tome and Principe,59.58,56.39,54.44,56.8,56.81,55.82,55.38,54.42,56.205
+104,Equatorial Guinea,66.61,65.97,65.38,60.17,56.38,56.17,56.05,55.52,60.28125
+105,Bouvet Island,74.77,74.21,75.41,78.3,78.02,78.36,79.73,79.75,77.31875
+106,Ghana,59.92,62.15,63.77,63.29,63.74,62.93,62.1,58.27,62.02125
+107,Clipperton Island,75.47,75.46,75.46,75.52,83.83,83.39,84.7,84.42,79.78125
+108,Bermuda,75.92,72.62,71.24,69.92,70.22,72.45,72.79,72.56,72.215
+110,Bahamas,78.88,77.99,79.01,78.46,78.69,78.84,78.48,78.21,78.57
+111,Turks and Caicos Islands,70.3,70.69,71.12,71.79,74.49,76.61,76.78,78.32,73.7625
+112,Cuba,68.55,65.92,64.98,66.31,67.94,71.07,69.29,70.82,68.11
+113,Cayman Islands,74.77,77.27,77.27,77.46,75.2,70.44,67.48,67.35,73.405
+114,Haiti,54.38,55.65,56.33,56.18,54.84,53.47,51.49,51.37,54.21375
+115,Dominican Republic,71.78,71.28,72.01,72.66,70.99,67.95,65.35,71.98,70.5
+116,Puerto Rico and Virgin Islands of the United States,79.09,79.53,79.1,79.63,79.76,77.94,76.13,75.46,78.33
+117,British Virgin Islands,67.99,68.45,68.68,68.8,68.57,68.63,68.71,68.52,68.54375
+118,Anguilla,68.26,66.57,66.88,66.99,66.57,66.58,66.9,66.68,66.92875
+119,Saint Kitts and Nevis,70.64,70.21,70.53,70.4,69.74,70.21,70.31,70.29,70.29125
+120,Antigua and Barbuda,78.38,77.95,78.18,79.41,78.9,79.07,79.22,79.05,78.77
+121,Montserrat,71.63,72.12,73.14,72.89,72.66,72.94,73.15,72.94,72.68375
+122,Saint Lucia,59.11,59.33,59.36,58.96,58.81,58.58,58.71,58.61,58.93375
+123,Dominica,49.4,49.75,51.46,50.81,50.86,51,48.23,49.03,50.0675
+124,Barbados,56.63,56.84,58.13,58.84,59.01,58.89,58.23,59.3,58.23375
+125,Grenada,61.29,60.55,63.15,63.38,63.66,63.84,64.52,64.37,63.095
+126,Trinidad and Tobago,72.96,72.01,72.05,69.44,67.01,62.95,62.04,62.18,67.58
+127,Saint Vincent and the Grenadines,56.77,57.62,57.86,58.89,60.14,60.9,62.01,61.93,59.515
+129,Panama,63.23,63.57,61.91,61.55,62.3,65.38,64.66,64.5,63.387499999999996
+130,Costa Rica,60.67,61.41,61.1,60.83,61.21,61.65,62.15,62.79,61.47625
+131,Nicaragua,50.8,48.3,47.13,47.54,48.3,48.29,44.82,45.15,47.54125
+132,Colombia,61.21,60.62,60.55,60.97,59.99,59.28,57.4,57.08,59.6375
+133,Honduras,66.9,65.2,66.02,67.85,68.7,69.25,65.49,61.97,66.4225
+134,El Salvador,56.35,57.33,56.38,54.72,54.2,54.18,52.37,52.35,54.735
+135,Mexico,71.62,71.79,71.35,70.24,69.24,68.97,68.61,67.07,69.86125
+136,Guatemala,66.71,65.68,63.19,62.85,62.09,62.08,59.16,60.84,62.825
+137,Ecuador,67.89,70.74,71.23,72.38,72.24,71.61,72.4,72.24,71.34125
+138,Peru,59.93,59.77,55.7,57.68,52.95,62.24,57.9,55.54,57.713750000000005
+139,Venezuela,58.11,60.1,60.12,60.33,61.37,60.29,61.77,61.12,60.40125
+140,Guadeloupe and Martinique,71.57,72.16,72.07,71.61,71.56,71.84,72,71.98,71.84875
+141,Faeroe Islands,62.39,63.19,63.3,63.25,65.91,66,65.86,65.96,64.4825
+143,Iceland,67.14,68.92,70.56,71.4,70.81,70.43,70.13,70.02,69.92625
+144,Jan Mayen,82.12,82.02,81.19,80.69,80.56,78.52,78.98,79.05,80.39125
+145,Greenland,74.31,72.05,73.44,73.56,73.4,73.69,73.79,73.93,73.52125000000001
+146,Pitcairn,76.11,79.12,78.1,80.17,85.33,84.6,85.38,85.11,81.74
+147,French Polynesia,74.52,77.91,77.09,78.37,78.2,77.21,77.99,78.01,77.4125
+148,Line Islands (Kiribati),75.49,75.56,77.62,73.83,71.41,69.75,70.75,71.66,73.25874999999999
+149,Jarvis Island,80.86,81.94,82.82,81.08,77.08,75.75,79.09,78.96,79.69749999999999
+150,Palmyra Atoll,80.29,80.4,80.38,79.12,78.09,76.79,77.48,77.38,78.74125000000001
+151,American Samoa,73.63,76.52,75.99,77.54,78.53,77.53,78.03,77.19,76.87
+152,Samoa,57.93,62.54,61.73,63.73,68.96,64.84,64.98,64.07,63.5975
+153,Cook Islands,66.75,68.87,65.06,66.17,67.63,72.83,73.19,70.29,68.84875
+154,Niue,65.98,67.45,67.02,68.31,68.56,67.74,68.39,67.96,67.67625
+155,Tonga,62.25,63.46,62.98,66.24,69.96,70.11,70.41,66.34,66.46875
+156,Tokelau,64.16,65.33,64.43,66.17,67.01,66.76,67.22,66.66,65.9675
+157,Phoenix Islands (Kiribati),85.55,85.05,84.83,81.53,80.1,78.78,79.43,80.24,81.93875
+158,Howland Island and Baker Island,93.17,93.21,93.22,92.88,92.26,89.88,91.5,91.26,92.1725
+159,Johnston Atoll,77.28,77.8,78.05,76.62,74.97,73.55,74.08,74.04,75.79875
+161,Wallis and Futuna,72.1,75.42,74.73,76.74,77.29,77.01,77.52,77.14,75.99375
+162,New Zealand,80.47,80.72,79.86,79.65,79.48,79.05,78.98,79.07,79.66
+163,United States,72.21,73.01,73.24,72.16,70.66,69.23,68.61,69.11,71.02875
+164,Belize,65.68,64.92,64.76,66.12,66.57,65.37,63.5,61.49,64.80125
+166,Jamaica,59.07,60.54,59.82,59.96,59.54,59.72,59.97,60.09,59.83875
+167,Guyana,60.77,61.98,62.05,61.75,62,62.17,62.49,62.37,61.9475
+168,Suriname,71.95,73.14,73.49,74.56,74.65,71.31,68.2,65.92,71.6525
+169,French Guiana,70.7,71.43,71.59,71.8,72.14,72.37,72.35,72.2,71.8225
+171,Brazil,65.99,66.56,66.7,66.67,66.3,65.62,65.65,65.62,66.13875
+172,Argentina,70.97,69.69,69.66,68.72,69.33,69.85,68.38,68.75,69.41875
+173,Uruguay,67.63,64.94,65.19,64.45,66.1,69.57,68.54,68.31,66.84125
+174,Finland,73.43,76.2,76.96,76.78,76.36,76.12,74.35,67,74.65
+175,Denmark,74.18,74.96,75.27,75.7,76.06,75.99,75.72,75.59,75.43375
+176,Germany,83.88,83.79,84.38,84.73,84.98,84.83,84.38,84.43,84.425
+177,Netherlands,76.13,76.58,75.84,76.12,75.98,76.06,75.84,75.43,75.9975
+178,Poland,60.4,60.81,60.82,61.48,63.36,65.83,65.36,65.39,62.93125
+179,France,70.97,71.2,70.27,70.25,69.51,70.5,70.84,71.51,70.63125
+180,United Kingdom,70.19,71.44,71.2,72.57,72.49,72.21,71.76,71.4,71.6575
+181,Ireland,63.49,64.71,66.03,67.19,67.61,67.6,66.73,66.21,66.19624999999999
+182,Spain,65.59,65.38,66.29,66.56,66.96,67.32,67.02,66.9,66.5025
+183,Portugal,70.13,70.04,69.55,69.99,72.06,74.17,77.63,78.69,72.7825
+184,Italy,76.71,78.24,78.64,78.79,78.79,78.81,79.24,79.09,78.53875
+185,Monaco,63.25,63.14,63.01,62.92,61.57,61.59,61.98,62.23,62.46125
+186,Montenegro,52.39,54.49,54.78,55.97,55.5,54.3,54.17,53.4,54.375
+187,Croatia,67.68,72.87,73.29,73.59,73.08,71.07,71.39,70.68,71.70625
+188,Slovenia,64.13,66.75,66.82,66.88,65.82,63.82,61.58,59.84,64.455
+189,Lithuania,63.45,64.91,65.04,63.31,63.53,63.56,64.16,66.59,64.31875
+190,Qatar,73.52,75.77,75.96,75.97,76.14,77.16,76.48,76.07,75.88374999999999
+191,Iran,60.99,64.36,65.53,64.16,61.75,59.55,58.67,67.31,62.79
+192,Iraq,54.22,56.07,56.46,56.73,55.8,56.06,55.49,55.38,55.77625
+193,Guinea Bissau,49.87,51.06,50.78,50.67,50.82,51.03,48.89,48.64,50.22
+194,Guinea,49.75,49.88,49.2,48.68,48.78,49.22,49.68,49.62,49.35125
+195,Ivory Coast,43.67,43.09,42.76,43.05,41.97,41.92,42.06,42.25,42.59625
+196,Nigeria,52.94,55.25,53.47,53.43,54.26,52.18,51.17,50.96,52.957499999999996
+197,Cameroon,64.7,65,63.99,63.59,63.65,63.8,66.02,65.77,64.565
+198,Gabon,58.66,61.23,60.85,60.57,61.02,62.99,63.05,62.68,61.38125
+199,Democratic Republic of the Congo,48.15,48.59,48.37,48.5,48.14,47.77,47.73,47.66,48.113749999999996
+200,Angola,53.05,53.5,53.43,53.58,53.36,56.55,58.79,59.4,55.207499999999996
+202,Tanzania,66.24,66.99,67.27,67.25,66.81,66.99,67.51,67.57,67.07875
+203,India,57.62,59.27,60.24,61.07,60.88,60.1,59.53,58.38,59.636250000000004
+204,Bangladesh,59.38,60.07,61.65,63.56,66.08,65.98,66.03,65.9,63.581250000000004
+205,Myanmar,55.43,60.16,61.11,63.2,63,63.03,62.45,57.56,60.7425
+206,Malaysia,66.17,65.53,66.69,65.89,64.93,64.64,64.28,64.37,65.3125
+207,Vietnam,53.18,54.35,54.86,55.54,56.25,56.81,57.15,56.89,55.62875
+208,Singapore,62.98,63.24,62.69,62.8,62.95,62.91,63.22,62.75,62.942499999999995
+209,China,60.1,60.5,60.88,60.44,60.35,60.43,60.7,60.96,60.545
+210,Japan,69.85,71.12,71.02,71.15,70.1,68.68,67.79,67.64,69.66875
+212,Gilbert Islands (Kiribati),65.81,63.97,64.28,61.83,58.32,57.71,57.9,58.41,61.02875
+213,Antarctica,NA,NA,NA,NA,NA,NA,NA,NA,NaN
+214,Egypt,65.78,65.64,66.22,67.03,65.56,68.82,70.31,70.05,67.42625
+215,Jordan,69.26,68.33,67.81,64.36,63.75,64.01,64.35,64.74,65.82625
+216,Indonesia,63.06,64.01,65.2,66.01,66.37,66.24,66.39,66.26,65.4425
+218,Canada,73.39,72.98,72.49,71.67,72.09,72.75,72.3,71.86,72.44125
+219,Saint Pierre and Miquelon,72.58,70.45,70.65,69.73,71.2,71.03,71.19,71.3,71.01625
+220,Sint Maarten,80.19,78.94,72.05,70.96,69.82,69.69,69.68,69.52,72.60625
+221,Northern Saint-Martin,79.63,79.96,80.02,80.13,80.08,80.12,80.15,79.98,80.00874999999999
+222,Sweden,68.29,68.46,69.45,70.01,69.92,69.78,68.88,68.67,69.1825
+223,Norway,77.91,78.83,78.15,77.5,77.96,76.65,75.63,76.02,77.33125
+224,Chile,72.68,73.2,72.61,71.52,72.09,72.92,73.47,73.78,72.78375
+227,Jersey,67.03,67.14,67.46,67.59,67.87,67.99,67.91,67.9,67.61125
+228,Guernsey,61.08,61.81,62.6,64.23,64.35,64.6,64.92,64.66,63.53125
+231,East Timor,60.76,60.47,60.29,60.11,60.49,60.52,60.79,60.64,60.50875
+232,Bosnia and Herzegovina,49.06,49.18,49.65,49.79,50.12,50.04,50.7,50.87,49.926249999999996
+237,Oecussi Ambeno,60.78,61.37,61.44,61.79,62.72,62.87,63.25,63.11,62.16625
+244,Curacao,77,79.39,76.38,76.34,76.38,75.83,74.46,73.95,76.21625
+245,Bonaire,80.6,79.12,73.08,72.2,71.39,71.37,71.29,71.07,73.765
+247,Brunei,64.34,60.78,60.81,61.65,61.91,61.91,62.05,61.53,61.8725
+248,Saba,80.51,79.04,72.99,72.08,71.26,71.27,71.31,71.13,73.69875
+249,Sint Eustatius,76.58,75.43,69.37,68.45,67.4,67.44,67.39,67.22,69.91
+250,Aruba,82.63,82.76,83.12,82.78,82.56,82.67,82.77,82.32,82.70125

@@ -17,19 +17,19 @@ output:
 ---
 
 
-This document describes results from the OHI 2018 global assessment.  This is mostly an internal document to explore and check results.  It also creates the figures used on the website and in other documents.
+This document describes results from the OHI 2019 global assessment.  This is mostly an internal document to explore and check results.  It also creates the figures used on the website and in other documents.
 ```{r control, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
 
 # 1. check the code chunk below and change variables if needed
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2019-07-22' #date extension on data files used for all tables/figures
+dateFile = '2019-08-12' #date extension on data files used for all tables/figures
 
 ## General settings to control
 scenario <- 2019 #identify scenario of focus (this can be changed to obtain data for other years)
 benchmark = 2018  # previous year that is used for old vs. new OHI analyses
-oldCommit = 'a5d197c1ae8b520fb8172c1da589ce4deb0f3e3a' # sha final commit for 2017 assessment
+oldCommit = 'a5d197c1ae8b520fb8172c1da589ce4deb0f3e3a' # sha final commit for 2018 assessment
 saveFile <- 'global2019' #location where files that are created are to be saved
 
 
@@ -107,26 +107,26 @@ rgn_names <- read.csv(here(sprintf('eez/layers/rgn_global.csv', scenario))) %>%
 ```{r final_data, eval=update_data, include=FALSE}
 
 # Saves the last version of eez/scores.csv with a date appended to filename.
-ohi_final <- read.csv(here("eez/scores.csv"))
-write.csv(ohi_final, here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, Sys.Date())), row.names=FALSE)
+ohi_final <- read_csv(here("eez/scores.csv"))
+write_csv(ohi_final, here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, Sys.Date())))
 ```
 
 ```{r final_data_modified, eval=update_data, include=FALSE}
 
 # if data are updated, this saves a modified version that is easier to read
-ohi_final <- read.csv(here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)))
+ohi_final <- read_csv(here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)))
 
 # User friendly version of data: region names are also added to data and full goal names.
-ohi_final_formatted <- read.csv(here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile))) %>%
+ohi_final_formatted <- read_csv(here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile))) %>%
   left_join(rgn_names, by= "region_id") %>%
   mutate(country = ifelse(region_id == 0, "Global average", country)) %>%
   left_join(goal_names, by="goal") %>%
   select(scenario=year, goal, long_goal, dimension, region_id, region_name=country, value=score)
 
-write.csv(ohi_final_formatted, here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)), row.names=FALSE)
+write_csv(ohi_final_formatted, here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)))
 
 ## create a version of data with region index scores wide
-ohi_final_wide <- read.csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile))) %>%
+ohi_final_wide <- read_csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile))) %>%
   filter(dimension == "score") %>%
   filter(goal == "Index") 
 
@@ -139,7 +139,7 @@ ohi_final_wide <- ohi_final_wide %>%
   spread(scenario, value) %>%
   left_join(ohi_final_avg, by = "region_id")
 
-write.csv(ohi_final_wide, here(sprintf("yearly_results/%s/Results/data/index_scores_wide_all_years.csv", saveFile)), row.names=FALSE)
+write_csv(ohi_final_wide, here(sprintf("yearly_results/%s/Results/data/index_scores_wide_all_years.csv", saveFile)))
 
 ```
 
@@ -160,7 +160,7 @@ index_avg_spread <- spread(index_avg, goal, avg_score) %>%
   arrange(-Index) %>%
   data.frame()
 
-write.csv(index_avg_spread, here(sprintf("yearly_results/%s/Results/data/avg_goal_scores.csv", saveFile)), row.names=FALSE)
+write_csv(index_avg_spread, here(sprintf("yearly_results/%s/Results/data/avg_goal_scores.csv", saveFile)))
 
 ```
 
@@ -169,7 +169,7 @@ write.csv(index_avg_spread, here(sprintf("yearly_results/%s/Results/data/avg_goa
 
 ## create a score dataframe 
 
-data_all <- read.csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)))
+data_all <- read_csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)))
 
 for(year in 2012:scenario){ # year = 2016
 
@@ -219,16 +219,17 @@ This section describes global patterns in index and goal scores.  The overall gl
 
 source(here(sprintf('yearly_results/%s/Results/functions/flowerPlot.R', saveFile)))
 
+# Make sure you create the Results/figures/FlowerPlots folder before running this function
 PlotFlower(
-  region_plot     = NA,
+  region_plot = NA,
   dir_fig_save = here(sprintf("yearly_results/%s/Results/figures/FlowerPlots", saveFile)),
-  assessment_name = "Global average",
+  assessment_name = "Global Average",
   year_plot = 2019,
   scores_file = here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)),
   scenario_folder = "eez"
 )
 
-# ^ not working as of 7/22/19 - can't open the png file?
+
 ```
 
 
@@ -237,7 +238,7 @@ Average global performance of the 10 goals.
 Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2018/Results/figures/FlowerPlots)
 
 
-![](figures/FlowerPlots/flower_Globalaverage.png) 
+![](here(yearly_results/global2019/Results/figures/FlowerPlots/flower_GlobalAverage.png)) 
 
 
 ## Country summary
@@ -246,7 +247,7 @@ Flower plots for each region can be downloaded from [here](https://github.com/OH
 ## Making the maps of goal scores that will be reported, these figures are not reported here, but will be called in 
 ## different parts of the text.
 
-source(here("yearly_results/global2016/Reporting/map_fxns.R")) # why are we sourcing 2016 files? 
+source(here("yearly_results/global2016/Reporting/map_fxns.R")) # OK to keep sourcing 2016 files?
 
 ### set scenario and desired map projection
 prj      <- 'mol'    ### note: 'gcs' is way faster.
@@ -255,11 +256,11 @@ prj      <- 'mol'    ### note: 'gcs' is way faster.
 reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
 blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
 colors <-   c(reds, blues)
-#write.csv(data.frame(colors), here("global2018/Results/color_palette.csv"), row.names=FALSE)
+#write_csv(data.frame(colors), here("yearly_results/global2019/Results/color_palette.csv")) # do we comment this out for knitting? 
 
 ### get OHI data and rename column headings
 
-for(year in 2012:scenario){ #year=2012
+for(year in 2012:scenario){ #year=2016
 
 if(year != scenario){
   if(sum(grepl(sprintf("year_%s", year), 
