@@ -29,7 +29,7 @@
 #                                                  "Tourism & recreation"))
 
 
-data <- read.csv(here(sprintf("%s/Results/data/trends_2018.csv", saveFile))) %>%
+data <- read.csv(here(sprintf("yearly_results/%s/Results/data/trends_2019.csv", saveFile))) %>%
   filter(region_id != 0) %>%
   select(-region_id, -SPP, -HAB, -ECO, -LIV, -FIS, -MAR, -ICO, -LSP) %>%
   gather("goal", "trend", -country) %>%
@@ -61,5 +61,5 @@ p <- ggplot(data=filter(data, goal != "Index"), aes(x=country, y=trend, fill=goa
 #p
 
 #ggsave('Trend_barplot.pdf', height=25, width=10)
-ggsave(here(sprintf('%s/Results/figures/Trend_barplot.png', saveFile)), height=25, width=10)
+ggsave(here(sprintf('yearly_results/%s/Results/figures/Trend_barplot.png', saveFile)), height=25, width=10)
 
