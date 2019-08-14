@@ -1,0 +1,42 @@
+### Economies (subgoal of livelihoods and economies)
+
+This subgoal measures the revenue produced from marine-related industries. 
+
+#### Current status
+
+The model to estimate the status of the economies sub-goal, $x_{eco}$, is:
+
+$$
+x_{eco} = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { e }_{ c,k } }  }{ \displaystyle\sum _{ k=1 }^{ N }{ { e }_{ r,k } }  }, (Eq. 5.12)
+$$
+
+where, $e$ is the total adjusted revenue generated directly and indirectly from sector $k$, at current, $c$, and reference, $r$, time points.
+
+Because there is no absolute global reference point for revenue (i.e., a target number would be completely arbitrary), the economies subgoal uses a moving baseline as the reference point. Reference revenue is calculated as the value in the current year (or most recent year), relative to the value in a recent moving reference period, defined as 5 years prior to the current year. This reflects an implicit goal of maintaining coastal revenue on short time scales, allowing for decadal or generational shifts in what people want and expect. We allowed for a longer or shorter gap between the current and recent years if a 5 year span was not available from the data, but the gap could not be greater than 10 years. Our preferred gap between years was as follows (in order of preference): 5, 6, 4, 7, 3, 8, 2, 9, 1, and 10 years.
+
+Absolute values for $e$ in the current and reference periods were lumped across all sectors before calculating reference values (even though the current and reference years will not be exactly the same for all sectors), allowing a decrease in one sector to be balanced by an increase in another sector. As such, we do not track the status of individual sectors and instead always focus on the status of all sectors together. 
+
+To control for inflation/deflation, we used a standard dollar year.  To account for broader economic forces that may affect revenue independent of changes in ocean health (e.g., a global recession), we adjusted revenue based on a country's GDP (i.e., must keep pace with growth in GDP). The current and reference years used for GDP data were based on the average current year and average reference year across the sector data sources used for revenue.
+
+#### Trend
+Trend was calculated as the slope in the individual sector values (not summed sectors) for revenue over the most recent five years (as opposed to the status, which examines changes between two points in time, current versus five years prior to current), corrected by GDP. We calculated the average for revenue by averaging slopes across sectors weighted by the revenue in each sector.
+
+#### Data
+_Status and trend_
+
+```{r ECO data st, results="asis", echo=FALSE}
+data_layers(goal="ECO", dimension=c("status", "trend"))
+```
+
+_Pressure_
+
+```{r ECO data p, results="asis", echo=FALSE}
+data_layers(goal="ECO", dimension=c("pressure"))
+```
+
+_Resilience_
+
+```{r ECO r, results="asis", echo=FALSE}
+data_layers(goal="ECO", dimension=c("resilience"))
+
+```

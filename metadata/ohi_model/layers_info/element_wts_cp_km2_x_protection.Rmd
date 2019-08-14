@@ -1,0 +1,16 @@
+This layer describes the relative value of the habitats in each region to coastal protection, and is calculated by  multiplying the habitat extent (km^2^) in each region by the habitat protection rank.  
+
+Data is generated in ohi-global/eez/conf/functions.R. 
+
+These data are called internally by ohicore functions (see: conf/config.R to see how these data are specified) to weight the data used to calculate pressure and resilience values. 
+
+**Table 6.4. Coastal protection ranks**
+
+Habitat | Protection rank
+------------- | -------------
+Coral | 4
+Mangrove | 4 
+Seaice (shoreline) | 4 
+Saltmarsh | 3
+Seagrass | 1 
+

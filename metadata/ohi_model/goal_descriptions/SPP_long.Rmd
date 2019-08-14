@@ -1,0 +1,59 @@
+### Species condition (subgoal of biodiversity)
+
+This goal aims to assess the average condition of the marine species within each region based on IUCN status.  The target for the species subgoal is to have all species at a risk status of Least Concern. 
+
+#### Current status
+
+Species status was calculated as the area and status-weighted average of assessed species within each region. Marine species distribution and threat category data mostly came from IUCN Red List of Threatened Species, and we limited data to all species having IUCN habitat system of "marine" [http://www.iucnredlist.org](http://www.iucnredlist.org). Seabird distributions data came from Birdlife International [http://datazone.birdlife.org](http://datazone.birdlife.org).   
+
+We scaled the lower end of the biodiversity goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions [@barnosky_has_2011] and would constitute a catastrophic loss of biodiversity. 
+
+Threat weights, $w_{i}$, were assigned based on the IUCN threat categories status of each $i$ species, following the weighting schemes developed by Butchart et al. [-@butchart_improvements_2007] (Table 5.3). For the purposes of this analysis, we included only data for extant species for which sufficient data were available to conduct an assessment. We did not include the Data Deficient classification as assessed species following previously published guidelines for a mid-point approach [@schipper_status_2008; @hoffmann_impact_2010].
+
+We first calculated each the region’s area-weighted average species risk status, $\bar R_{spp}$. For each 0.5 degree grid cell within a region, $c$, the risk status, $w$, for each species, $i$, present is summed and multiplied by cell area $A_c$, to get an area- and count-weighted species risk for each cell.  This value is then divided by the sum of count-weighted area $A_c \times N_c$ across all cells within the region.  The result is the area-weighted mean species risk across the entire region.
+
+$$
+\bar R_{spp} = \frac { \displaystyle\sum_{ c=1 }^{ M } \left( \displaystyle\sum _{ i=1 }^{N_c} w_i \right) \times A_c } 
+                { \displaystyle\sum_{ c=1 }^{ M } A_c \times N_c },  (Eq. 5.4)
+$$
+To convert $\bar R_{spp}$ into a score, we set a floor at 25% (representing a catastrophic loss of biodiversity, as noted above) and then rescaled to produce a $x_{spp}$ value between zero and one.
+
+$$
+x_{spp} = max \left( \frac { \bar R_{SPP} - .25 }{ .75 }, 0 \right), (Eq. 5.5)
+$$
+
+
+**Table 5.3. Weights for assessment of species status based on IUCN risk categories**
+
+| Risk Category   | IUCN code | Weight|
+|-----------------|-----------|-------|
+| Extinct         |     EX    |  0.0  |
+| Critically Endangered | CR  |  0.2  |
+| Endangered      |     EN    |  0.4  |
+| Vulnerable      |     VU    |  0.6  |
+| Near Threatened |     NT    |  0.8  |
+| Least Concern   |     LC    |  1.0  |
+
+#### Trend
+We calculate trend using data the IUCN provides for current and past assessments of species, which we use to estimate annual change in IUCN risk status for each species.  We then summarize these species trend values for each region using the same general approach used to calculate status. 
+
+#### Data
+_Status and trend_
+
+```{r SPP data st, results="asis", echo=FALSE}
+data_layers(goal="SPP", dimension=c("status", "trend"))
+```
+
+_Pressure_
+
+```{r SPP data p, results="asis", echo=FALSE}
+data_layers(goal="SPP", dimension=c("pressure"))
+```
+
+_Resilience_
+
+```{r SPP r, results="asis", echo=FALSE}
+data_layers(goal="SPP", dimension=c("resilience"))
+
+```
+

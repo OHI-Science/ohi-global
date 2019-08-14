@@ -1,0 +1,3 @@
+See **`r layer_meta$name[layer_meta$layer == 'hab_mangrove_extent']`** layer for more information.
+
+We used Hamilton and Casey's (2016) mangrove cover data to estimate the proportional yearly change in mangrove area using a linear regression model of the most recent five years of data (i.e., slope divided by data from the earliest year included in the regression model).  The slope was then multiplied by five to get the predicted change in 5 years.  The original mangrove data are provided yearly (2000-2012) at 30m raster cell resolution (with the estimated area of mangrove cover in each cell). 

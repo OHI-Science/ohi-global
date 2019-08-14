@@ -1,0 +1,7 @@
+*Pressure*
+
+*Category: social*
+
+See **`r layer_meta$name[layer_meta$layer == 'wgi_all']`** for description of this layer.
+
+When used as a social pressure, 1 minus the WGI (Worldwide Governance Indicator) is used.

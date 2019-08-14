@@ -1,0 +1,5 @@
+See **`r layer_meta$name[layer_meta$layer == 'eco_status']`** layer for more information about data and methods.  
+
+This layer provides calculated trend values for the economies subgoal.  Economies is calculated using revenue data from marine sectors. 
+
+Note: These data are no longer supported.  Consequently, this layer was last updated in 2013, and this goal will no longer be updated with these data.

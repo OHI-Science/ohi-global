@@ -1,0 +1,58 @@
+## Carbon storage
+
+The present-day pelagic ocean sink for anthropogenic carbon dioxide, estimated at approximately 2000 TgC yr<sup>-1</sup>, accounts for about a quarter of total anthropogenic CO<sub>2</sub> emissions to the atmosphere and helps mitigate a key driver of global climate change [@le_quere_trends_2009; @sabine_estimation_2010]. The physical-chemical mechanisms driving the ocean sink are well understood but are not directly amenable to human management. Highly productive coastal wetland ecosystems (e.g., mangroves, salt marshes, seagrass beds) have substantially larger areal carbon burial rates than terrestrial forests, and "Blue Carbon" has been suggested as an alternate, more manageable carbon sequestration approach. The rapid destruction of these coastal habitats may release large amounts of buried carbon back into the ocean-atmosphere system. Donato and colleagues [-@donato_mangroves_2011], for example, estimate that mangrove deforestation generates emissions of 20-120 TgC yr<sup>-1</sup>. Our focus here, therefore, is on coastal habitats because they are threatened, have large amounts of stored carbon that would rapidly be released with further habitat destruction, have the highest per-area sequestration rates of any habitat on the planet, and are amenable to management, conservation, and restoration efforts. We refer to this goal as carbon storage but intend its meaning to include sequestration.
+
+We focused on three coastal habitats known to provide meaningful amounts of carbon storage (Table 5.2): mangroves, seagrasses, and salt marshes [@duarte_marine_2000]. For mangroves, we used coastal mangroves that are on land or in river deltas. 
+
+#### Current status
+We measured the status of carbon storage, $x_{cs}$, as a function of the carbon storing habitats' current condition, $C_{c}$, relative to their reference condition, $C_{r}$.  The habitat condition values were  averaged, weighted by the area of each habitat, $A_{k}$, and a coefficient, $w_k$, to account for the relative contribution of each habitat type, $k$, to total carbon storage [@laffoley_management_2009] (Table 5.5):
+
+
+$$
+x_{cs} = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { (h }_{ k } } \times { w }_{ k }\times { A }_{ k }) }{ \displaystyle\sum _{ k=1 }^{ N }{ { (w }_{ k }\times { A }_{ k }) }  }, (Eq. 5.7)
+$$
+
+where:
+
+$$
+h = \frac { C_{ c } }{ { C }_{ r } }
+$$
+
+We employed several different methods for calculating habitat condition scores depending on the habitat of interest and available data (Table 5.2).
+
+**Table 5.5. Carbon sequestration data**
+Weighting factors based on carbon sequestration rates for habitats used in the carbon storage goal [@laffoley_management_2009].
+
+|Habitat carbon storage| Sequestration (weight)|
+|----------------------|-------|
+| Mangrove             |   139 |
+| Saltmarsh            |   210 |
+| Seagrass             |    83 |
+
+
+We scaled each region's score to habitat area for two reasons. First, it avoids penalizing a country that naturally lacks one of the habitats (e.g., Canada is too cold to have mangroves). Second, it ensures that habitats influence the goal score proportionately to their area of extent.  This rewards the protection of large extents of habitat but does not assign a higher weight to higher habitat diversity. As such, our measure underestimates the actual amount of carbon storage being done by these coastal habitats (because we cannot account for habitats we do not know exist).
+
+Reference area for each habitat is treated as a fixed value; in cases where current area might exceed this reference value (e.g., through restoration), we cap the score at the maximum value (1.0). Although this does not give credit for restoration efforts improving things, data tend to be of poor quality making it difficult to determine true increases, and in general habitat restoration beyond reference values is extremely unlikely.
+
+### Trend
+The trend for this goal is calculated using different methods for each habitat due to data availability (Table 5.2). 
+
+#### Data
+_Status and trend_
+
+```{r CS data st, results="asis", echo=FALSE}
+data_layers(goal="CS", dimension=c("status", "trend"))
+```
+
+_Pressure_
+
+```{r CS data p, results="asis", echo=FALSE}
+data_layers(goal="CS", dimension=c("pressure"))
+```
+
+_Resilience_
+
+```{r CS r, results="asis", echo=FALSE}
+data_layers(goal="CS", dimension=c("resilience"))
+
+```

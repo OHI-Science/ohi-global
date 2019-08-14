@@ -1,0 +1,21 @@
+### Goal Description
+
+The jobs and revenue produced from marine-related industries are clearly of huge value to many people, even for those people who do not directly participate in marine-related industries. People value community identity, tax revenue, and indirect economic and social impacts of a stable coastal economy. This sub-goal Livelihood describes job quantity and quality for people living on the coast. Livelihoods includes two equally important sub-components, the number of jobs, which is a proxy for livelihood quantity, and the per capita average annual wages, which is a proxy for job quality.
+
+### Model 
+
+The Livelihood model is based on job and wage data: 
+
+- jobs: the total number of jobs within marine sectors within a country, adjusted by sector- and development status-specific multipliers derived from the literature. The multipliers account not only for direct employment opportunities and revenue, but also indirect and induced economic effects, since activity in the direct industry stimulates additional jobs and revenue in related industries.
+- average wages per job within each sector: adjusted for PPP (ie. purchasing power parity) to control for differences in the
+purchasing power of a dollar across countries with respect to a range of common goods.  
+
+The marine sectors included in this model are: Tourism, Commercial fishing, Marine mammal watching, Aquarium fishing, Wave & tidal energy, Mariculture, Transportation & shipping, Ports & harbors, Ship & boatbuilding
+
+### Reference points 
+
+Because there is no absolute reference point for jobs (i.e., a target number of jobs would be completely arbitrary), its reference point is calculated as a relative value on a moving baseline: the value in the current year (or most recent year) relative to the value in a recent moving reference period, defined as 5 years prior to the current year. This reflects an implicit goal of maintaining coastal livelihoods and economies on short time scales, allowing for decadal or generational shifts in what people want and expect for coastal livelihoods and economy.
+
+For wages we assumed the reference value for average annual wages is the highest value observed across all reporting units.
+
+
