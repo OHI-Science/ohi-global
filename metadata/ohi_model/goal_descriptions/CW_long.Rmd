@@ -1,0 +1,64 @@
+## Clean waters
+
+People value marine waters that are free of pollution and debris for aesthetic and health reasons. Contamination of waters comes from oil spills, chemicals, eutrophication, algal blooms, disease pathogens (e.g., fecal coliform, viruses, and parasites from sewage outflow), floating trash, and mass kills of organisms due to pollution. People are sensitive to these phenomena occurring in areas they access for recreation or other purposes as well as for simply knowing that clean waters exist. This goal scores highest when the contamination level is zero.
+
+We include four measures of pollution in the clean waters goal: eutrophication (nutrients), chemicals, pathogens and marine debris. This decision was meant to represent a comprehensive list of the contamination categories that are commonly considered in assessments of coastal clean waters [@borja_overview_2008] and for which we could obtain datasets (Table 5.6). The status of these components is the inverse of their intensity (i.e., high input results in low status score).
+
+**Table 5.6. Clean waters goal components**
+
+
+Component | Data |Trend
+----------------- | ---------------------------------- |-------------------------
+Eutrophication (nutrient) | FAO fertilizer data [@united_nations_fao_2016-3; @halpern_global_2008]| Standard method (section 4.3.1)
+Chemical | Land-based organic pollution (FAO pesticide data), Land-based inorganic pollution (based on run-off from impermeable surfaces), ocean-based pollution based on commercial shipping and port traffic [@united_nations_fao_2016-3; @halpern_global_2008] | Trend based only on changes in organic pollution, other variables remained the same
+Pathogens | Proportion of population without access to improved sanitation facilities [@who-unicef_joint_2017] | Standard method
+Marine debris | Plastic pollution [@eriksen_plastic_2014] | Data on improperly disposed of plastics [@jambeck_plastic_2015]
+
+We used the modeled input of land-based nitrogen input from Halpern et al. [-@halpern_global_2008] as a proxy for nutrient input. The modeled proxy approach does not allow the distinction between toxic and non-toxic bloom events that can arise from excess nutrient input (often both referred to in the literature as harmful algal blooms, or HABs) or at what nutrient concentration an ecosystem is pushed into a HAB condition (i.e., the threshold value). Local studies may be able to obtain information on such non-linear responses and include it as part of this status measure.  
+
+For the chemical pollution component [@halpern_global_2008], we used a combination of modeled input of fertilizer input as a proxy for land-based organic pollution, and impermeable surfaces as a proxy for land-based organic pollution, and shipping and port traffic for ocean based pollution.  We were not able to assess specific toxic chemicals at the global scale; however regional case studies often will have data available for the quantities and toxicity of a range of chemicals put into watersheds and coastal waters. We also did not have global data for oil spills and so could not include oil pollution, but in future assessments where such data exist it would be included in chemical pollution as well. 
+
+Human-derived pathogens are found in coastal waters primarily from sewage discharge or direct human defecation. Since we did not have access to a global database of in situ measurements of pathogen levels, we used a proxy measure for the status of pathogen pollution, namely the number of people in coastal areas without access to improved sanitation facilities [@who-unicef_joint_2017]. The underlying assumption is that locations with a low number of people with access to improved facilities will likely have higher levels of coastal water contamination from human pathogens. To estimate this pathogen intensity, we multiplied the human population within 25 miles of the coast by the percentage of population without access to improved sanitation. This allows countries with low coastal population densities and low access to improved sanitation to score better than high population countries with better access if the absolute number of people without access is lower in the small country.
+
+The status of trash pollution was estimated using globally-available plastic pollution data  [@eriksen_plastic_2014]. 
+
+#### Current status
+The status of this goal, $x_{cw}$, was calculated as the geometric mean of the four components, such that:
+
+$$
+x_{cw} = \sqrt [ 4 ]{ a\ast u\ast l\ast d },  (Eq. 5.8)
+$$
+
+where $a$ = 1 - the number of people without access to sanitation, rescaled to the global maximum; $u$ = 1 – (nutrient input), rescaled at the raster level by the 99.99th quantile value; $l$ = 1 – (chemical input), rescaled at the raster level by the 99.99th quantile value; and $d$ = 1 – (marine debris), rescaled at the raster level by the 99.99th quantile value. 
+
+We used a geometric mean, as is commonly done for water quality indices [@liou_generalized_2004], because a very bad score for any one subcomponent would pollute the waters sufficiently to make people feel the waters were ‘too dirty’ to enjoy for recreational or aesthetic purposes (e.g., a large oil spill trumps any other measure of pollution).  However, in cases where a subcomponent was zero, we added a value of 0.01 (on a scale of 0 to 1) to prevent the overall score from going to zero.  Given that there is uncertainty around our pollution estimates, a zero score resulting from one subcomponent seemed too extreme.
+
+Although clean waters are relevant and important anywhere in the ocean, coastal waters drive this goal both because the problems of pollution are concentrated there and because people predominantly access and care about clean waters in coastal areas. The nearshore area is what people can see and where beach-going, shoreline fishing, and other activities occur. Furthermore, the data for high seas areas is limited and there is little meaningful regulation or governance over the input of pollution into these areas. We therefore calculate this goal only for the first 3 nm of ocean for each country’s EEZ. We chose 3 nm for several reasons, but found the status results to be relatively insensitive to different distances. 
+
+A number of potential components of clean water were not included due to lack of global datasets, including toxic algal blooms, oil spills, turbidity (sediment input), and floating trash. In future applications of the Index where such data are available, they would be included in their appropriate component of clean waters (nutrients, chemicals, and trash, respectively).
+
+#### Trend
+Trends in eutrophication, pathogens, and chemical pollution are estimated as described in section 4.3.1. Because only one of the inputs (organic pollution) of the chemical pollution layer includes data over time, the trend only reflects this input.  Marine debris trends are estimated using a secondary dataset describing the amount of improperly disposed of plastics within each country [@jambeck_plastic_2015].
+
+#### Data
+_Status and trend_
+
+```{r CW data st, results="asis", echo=FALSE}
+data_layers(goal="CW", dimension=c("status", "trend"))
+```
+
+_Pressure_
+
+```{r CW data p, results="asis", echo=FALSE}
+data_layers(goal="CW", dimension=c("pressure"))
+```
+
+_Resilience_
+
+```{r CW r, results="asis", echo=FALSE}
+data_layers(goal="CW", dimension=c("resilience"))
+
+```
+
+
+ 

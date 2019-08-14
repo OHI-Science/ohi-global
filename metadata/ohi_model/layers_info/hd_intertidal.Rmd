@@ -1,0 +1,9 @@
+*Pressure*
+
+*Category: ecological*
+
+*Subcategory: habitat destruction*
+
+See **`r layer_meta$name[layer_meta$layer == 'mar_coastalpopn_inland25mi']`** for more information about the population data.
+
+Coastal population data was converted to average coastal density by dividing by the total 25 mile inland area.  We then rescaled the data to have values between 0-1, by logging the density data and then dividing by the ln (maximum density) across all regions and years. 

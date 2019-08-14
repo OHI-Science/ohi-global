@@ -1,0 +1,3 @@
+This layer describes the habitats present in each region (based on the habitat extent data) and is called internally by ohicore functions to calculate pressure and resilience values based on the habitats present in each region.
+
+Data is generated in ohi-global/eez/conf/functions.R. 

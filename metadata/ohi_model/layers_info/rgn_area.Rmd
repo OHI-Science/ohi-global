@@ -1,0 +1,3 @@
+Area (km^2^) for each region's EEZ-based boundary. 
+
+OHI offshore regions are based on exclusive economic zones (EEZ, VLIZ 2012). Unique country EEZs were typically used to define a region, except territorial regions were split from the administrative country.  Many borders have been redrawn, such as the removal of UK claims around Cyprus. Gaps and extensions between this EEZ file and our land-sea mask were resolved through GIS operations (buffer, erase, and polygon neighbor analysis). Ocean area per region was calculated using geodesic area calculations on the region polygons in geographic coordinates. We exclude from regions the inland EEZs of the Caspian Sea and any disputed areas.

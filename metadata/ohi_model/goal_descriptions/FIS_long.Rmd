@@ -1,0 +1,125 @@
+### Fisheries (subgoal of food provision)
+
+This model aims to assess the amount of wild-caught seafood that can be sustainably harvested with penalties assigned for both over- and under-harvesting. As such, one must establish a reference point at which harvest is both maximal and sustainable. We assess food provision from wild caught fisheries by estimating population biomass relative to the biomass that can deliver maximum sustainable yield ($B/B_{MSY}$) for each stock. When available, we obtained $B/B_{MSY}$ values from the RAM Legacy Stock Assessment Database [@ricard_examining_2012], which contains stock assessment information for a portion of global fish stocks. When RAM data were not available, we used data-limited approaches that have been developed to estimate $B/B_{MSY}$ values using globally available catch data [@costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016]. To calculate the status for each region and year, $B/B_{MSY}$ values were converted to a stock status score between 0-1 that penalizes both over- and under-harvesting. To obtain the overall status for each region, the stock status scores for all the stocks within a region were averaged using a geometric mean weighted by the average catch (tonnes) of each stock. 
+
+**Figure 5.1: Overview of fisheries status calculations.**
+
+![](figures/fis_methods.png)
+
+#### Current status
+
+_Spatial allocation of catch to regions_
+
+The data we use to calculate $B/B_{MSY}$ and the weights used in the geometric mean are from Watson (2018) global marine fisheries catch data [@watson_mapping_2018]. Watson (2018) uses a spatial allocation method to distribute FAO catch data (reported at the country scale) to a global grid of one half-degree cell resolution based on the spatial distribution of fished taxa and the allocation of catch to fleets based on fishing access agreements [@zeller_still_2016]. 
+
+We aggregate the Watson (2018) catch data in two ways. To get the data needed to weight the stock status scores, we sum the total catch for each taxa within each region's EEZ to get the total catch in tonnes for each year. To get the data needed to calculate $B/B_{MSY}$ values, we sum the total catch for each taxa within each major fishing region [@fao_fisheries_and_aquaculture_department_cwp_2015] for each year.
+
+To combine the $B/B_{MSY}$ values from the RAM database with the Watson (2018) global fish catch data, we used the spatial boundaries that Christopher Free created for the RAM stocks up to 2017 and assigned FAO and OHI regions to each stock [@free_mapping_2017]. Newly added stocks to the RAM database in 2018 had no spatially explicit information, so were manually assigned regions based on best available information on stock distribution.
+
+_Estimating $B/B_{MSY}$_
+
+When we were unable to obtain $B/B_{MSY}$ values from the RAM database for a stock, we calculated them using a data-poor, or catch only model, developed by Martell & Froese [-@martell_simple_2013], and hereafter referred to as the “catch-MSY” method.  The latter was chosen, among other data-limited methods because it was as good, or better, at predicting RAM $B/B_{MSY}$ values than other methods based on our initial testing.  We compared $B/B_{MSY}$ scores from three catch models (catch-MSY, SSCOM, and COMSIR) as well as a variety of ensemble methods [@anderson_improving_2017]. The catch_MSY model performed as well or better than the other models at predicting RAM $B/B_{MSY}$ values. Furthermore, this method performed well (although not as well as the Random Forest ensemble approach, based on a rank correlation analysis) in analyses using simulated stocks with a broad range of life history traits and different known sources of uncertainty [@anderson_improving_2017]. 
+
+We defined a stock as species occurring within a major fishing area, and consequently, we ran the catch-MSY model using yearly catch data aggregated to FAO region from 1950 to the most current year.  We chose this definition because many fish populations straddle the boundaries of EEZs. Any aggregation method will be biased in some way, but populations with the largest catches are most often straddling stocks, so a bias in assessments due to erroneous aggregation of catch could occur more often with cosmopolitan species that include small, sedentary (i.e., patchily distributed) populations that are less likely to play a dominant role in a country’s fisheries. The catch-MSY model was applied only to stocks identified to the species level.
+
+The catch-MSY method is based on the same assumptions used in many stock assessment models [@schaefer_aspects_1954], namely that the change in a population’s biomass depends on its biomass in the previous year and two population-specific parameters: the carrying capacity (${K}$) and rate of population increase (${r}$). The method estimates the status of a given population using landings time-series as proxies for biomass removals from the population, and using empirically derived relationships of relative peak to current catch values to estimate depletion at the end of the time series [@martell_simple_2013]. Then, a sampling procedure is used to estimate the distribution of values of ${r}$ and ${K}$ that are compatible with the estimated current depletion levels, and are constrained within the range that maintains viable population abundance and at the same time does not exceed the population’s carrying capacity. In the original formulation of Martell & Froese [-@martell_simple_2013] the geometric mean ${r}$ and ${K}$ were used to derive an estimate of MSY. Rosenberg et al. [-@rosenberg_developing_2014] modified this method by producing a biomass time series for each of the viable ${r-K}$ pairs using the surplus production model. The arithmetic mean biomass time series was selected and the current year stock abundance (${B}$) relative to the abundance that achieves ${MSY}$ ($B_{MSY}$) produced a measure, $B/B_{MSY}$.
+
+A potential issue of the catch-MSY method (when using the default "constrained" prior) is that declining catch is assumed to indicate declining population biomass (resulting in lower $B/B_{MSY}$ values) rather than reduced effort or improved management. When declining catch is known to be due to reduced effort and/or improved management this results in artificially low $B/B_{MSY}$ values; however, the catch-MSY model can be modified by using a "uniform" prior distribution for the final biomass. However, this adjustment should be considered carefully because the model will assume that all stocks with declining catch are rebuilding (resulting in higher $B/B_{MSY}$ values), which is unrealistic. Previously, for the 2015 assessment, we attempted to use the constrained vs. uniform prior for each stock based on the catch weighted fishery management scores of the regions catching the stock.  However, recent analyses suggest this method did not improve the ability of the catch-MSY derived  $B/B_{MSY}$ values to predict RAM values, suggesting we were adding additional complication that did not improve our model.  Consequently, all analyses are done using the "constrained" prior. 
+
+_Weights for stock status scores_
+
+To get the data needed to weight the stock status scores, we sum the total catch for each taxa within each region's EEZ to get the total catch in tonnes for each year.  We then average each taxa's catch within each region across all years from 1980 to the most current year's data.  Consequently, for a taxa within a region, the average catch value is the same across all years (only the $B/B_{MSY}$ value will vary across years.). This provides an estimate of the mean potential contribution of each species to total food provision, independent of yearly stochastic fluctuations of the population and possible recent declines.      
+
+_Goal model calculations_
+
+The status of wild caught fisheries, $x_{fis}$, for each reporting region in each year was calculated as the geometric mean of the stock status scores, $SS$ (derived from $B/B_{MSY}$ score for each stock, described below) and weighted by the stock's relative contribution to overall catch, $C$, such that:
+
+$$
+x_{fis} = \prod _{ i=1 }^{ n }{ { SS }_{ i }^{ (\frac { { C }_{ i } }{ \sum { { C }_{ i } }  } ) } },  (Eq. 5.9)
+$$
+
+where ${i}$ is an individual taxon and $n$ is the total number of taxa in the reported catch for each region throughout the time-series, and ${C}$ is the average catch, since the first non null record, for each taxon within each region. 
+
+We used a geometric weighted mean to account for the portfolio effect of exploiting a diverse suite of resources, such that small stocks that are doing poorly will have a stronger influence on the overall score than they would using an arithmetic weighted mean, even though their ${C}$ contributes relatively little to the overall tonnage of harvested seafood within a given region. The behavior of the geometric mean is such that improving a well-performing stock is not rewarded as much as improving one that is doing poorly. We believe this behavior is desirable because the recovery of stocks in poor condition requires more effort and can have more important effects on the system than making a species that is already abundant even more abundant. In this way, the score is not solely driven by absolute tonnes of fish produced and accounts for preserving the health of a diversity of species.
+
+$B/B_{MSY}$ values were used to derive stock status scores, ${SS}$, such that the best score is achieved for stocks at $B/B_{MSY} = 1\%$, with a 5% error buffer, and it decreases as the distance of $B$ from $B_{MSY}$ increases, due to under- or over-exploitation (Figure 5.2). For each species reported, within each major fishing area, the stock status score was calculated as:
+
+![](figures/StockStatus.png)
+
+where, for $B/B_{MSY} < 1$ (with a 5% buffer), status declines with direct proportionality to the decline of $\beta$ with respect to $B_{MSY}$, while for $B/B_{MSY} > 1$ (with a 5% buffer), status declines at rate $\alpha$, where $\alpha = 0.5$, so that as the distance of $\beta$ from $B_{MSY}$ increases, status is penalized by half of that distance. For $B/B_{MSY} > 1.05$, $\beta$ is the minimum score a stock can get, and was set at $\beta = 0.25$. The $\alpha$ value ensures that the penalty for under-harvested stocks is half of that for over-harvested stocks ($\alpha = 1.0$ would assign equal penalty). The $\beta$ value ensures stocks with $B/B_{MSY} > 1.4$ due to, for example, an exceptionally productive year, are not unduly penalized, and also recognizes that it is much easier to improve the goal score when stocks are under-harvested (i.e., increase fishing pressure) than it is when populations are over-harvested and need to be rebuilt. Both parameters $\alpha$ and $\beta$ were chosen arbitrarily because there is no established convention for this particular approach. Thus, consistent with previous work [@halpern_index_2012], countries are rewarded for having wild stocks at the biomass that can sustainably deliver the maximum sustainable yield, +/-5% to allow for measurement error, and are penalized for both over- or under-harvesting.
+
+For the 2016 assessment, we did not apply underharvest penalties to the following stocks: Katsuwonus pelamis (FAO region 71), Clupea harengus (FAO region 27), Trachurus capensis (FAO region 47), Sardinella aurita (FAO region 34), Scomberomorus cavalla (FAO region 31). These stocks are fished in multiple regions and the current model formulation ends up penalizing the regions that have the highest proportion of catch of these stocks, which is opposite of what we would like to do.  This suggests that our approach to penalizing underharvested stocks could be improved at the model level.  
+
+**Figure 5.2: Conversion of $B/B_{MSY}$ to stock status, $SS$ score.**
+
+![](figures/FIS_Bmsy2score.png)
+
+```{r bbmsy to ss, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+
+  alpha <- 0.5
+  beta <- 0.25
+  lowerBuffer <- 0.95
+  upperBuffer <- 1.05
+  
+  b <- data.frame(bmsy = seq(0,3, by=0.01))
+  
+  b$score = ifelse(b$bmsy < lowerBuffer, b$bmsy,
+                   ifelse (b$bmsy >= lowerBuffer & b$bmsy <= upperBuffer, 1, NA))
+  b$score = ifelse(!is.na(b$score), b$score,  
+                   ifelse(1 - alpha*(b$bmsy - upperBuffer) > beta,
+                          1 - alpha*(b$bmsy - upperBuffer), 
+                          beta))
+
+plot <- ggplot(b, aes(x=bmsy, y=score)) +
+  geom_line() +
+  labs(x='B/Bmsy', y='Stock status score') +
+  theme_bw()
+
+```
+
+We needed to gapfill missing status, $SS$, scores for a large proportion of the catch.  Gapfilling was necessary because we could only estimate $B/B_{MSY}$ values for taxa identified to the species level.  Furthermore, we were unable to estimate $B/B_{MSY}$ values for some species due to model non-convergence or too few years of catch data.  Missing status scores were gapfilled using the mean status scores of the stocks sharing a region and year, the mean value was then adjusted using a taxonomic reporting penalty (Table 5.7).  For catch not reported to the species level, a penalty was applied for increasingly coarser taxonomic reporting, as this is considered a sign of minimal monitoring and management.   We based the penalty on the ISSCAAP convention for taxon codes (http://www.fao.org/fishery/collection/asfis/en), which defines 6 levels of taxonomic aggregation, from 6 (species) to 1 (order or higher).  When ${g}<6$, a penalized gapfilled value for status was estimated for the taxa in each region:
+
+**Table 5.7: Penalty applied to gapfilled stock status scores**
+The penalty is multiplied by the gapfilled stock status score to obtain the final stock status score. 
+
+ISSCAAP taxon code  |  Description                                    |  Penalty (gapfilled score multiplied by value)
+------------------- | ----------------------------------------------- | ---------------------------------
+1                   | e.g., Marine fishes not identified, Miscellaneous marine molluscs              | 0.1
+2                   | Class, Subclass, Subphylum (e.g.,	Cephalopoda, Holocephali, Crustacea)              | 0.25
+3                   | Order (e.g., Chimaeriformes,	Octopoda)              | 0.5
+4                   | Family (e.g., Lamnidae, Squillidae)              | 0.8
+5                   | Genus (e.g.,	Strongylocentrotus, Scyllarides)             | 0.9
+6                   | Species              | 1 (no penalty)
+
+
+_Model limitations_
+
+This model is based on single-species assessments of stock status and thus cannot predict the effect of multi-species interactions. This model adopts $B=B_{MSY}$ as a single-species reference point, which by various assessment frameworks is considered very conservative (e.g., @froese_generic_2011), and the fact that the single-species values are aggregated using a geometric mean ensures that some multi-species effects may influence the scores. Nonetheless, a better understanding of the emerging effects of fishing various species at their reference levels would be desirable and will hopefully be possible in the future.
+
+Despite the fact that invertebrates represent a large proportion of global caught biomass, and represent the dominant stocks in many regions, stock assessment approaches for these taxa are poorly developed. The catch-MSY approach was applied to invertebrates even though the model developers only tested it on fish [@martell_simple_2013]. Part of the challenge in broadly testing this approach on organisms other than fish is the lack of a large enough collection of invertebrate assessments to use for validation testing.
+
+This approach captures whether stocks have been historically well managed, but it is worth noting that it does not directly measure current food production.
+
+#### Trend
+Trend was calculated as described in section  4.3.1.
+
+#### Data
+_Status and trend_
+
+```{r FIS data st, results="asis", echo=FALSE}
+data_layers(goal="FIS", dimension=c("status", "trend"))
+```
+
+_Pressure_
+
+```{r FIS data p, results="asis", echo=FALSE}
+data_layers(goal="FIS", dimension=c("pressure"))
+```
+
+_Resilience_
+
+```{r FIS r, results="asis", echo=FALSE}
+data_layers(goal="FIS", dimension=c("resilience"))
+
+```
+

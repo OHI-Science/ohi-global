@@ -1,0 +1,5 @@
+*Resilience*
+
+*Category: social*
+
+The Social Progress Index ([http://www.socialprogressimperative.org/global-index/](http://www.socialprogressimperative.org/global-index/)) includes several quality of life measures.  The SPI score is the average of 3 dimensions, and each dimension is the average of 4 components.  Each component includes several indicators that are scaled from 0 to 100.  When a region was missing 1 or more component, but not all of them, we used the aregImpute function from the Hmisc package to estimate the dimension value based on the available component values.  Regions with no dimension/component data were estimated using a linear regression model with UN geopolitical region and WGI data as predictor variables.  Uninhabited regions received no score.  

@@ -1,0 +1,3 @@
+See **`r layer_meta$name[layer_meta$layer == 'hab_mangrove_extent']`** layer for more information.
+
+Mangrove condition was defined as the current cover divided by reference cover.  FAO mangrove area data was provided on a country basis for 1980, 1990, 2000, and 2005.  Current condition is based on 2005 cover, and reference condition is based on the 1980 cover.  
