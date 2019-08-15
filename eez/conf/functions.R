@@ -213,7 +213,6 @@ FIS <- function(layers) {
 
 
 MAR <- function(layers) {
-browser()
   scen_year <- layers$data$scenario_year
   
   harvest_tonnes <-
@@ -254,16 +253,15 @@ browser()
     dplyr::mutate(sust_tonnes = sust_coeff * sm_tonnes)
   
   
-  ### This will all change!
-  # aggregate all weighted timeseries per region, and divide by coastal human population
+  # aggregate all weighted timeseries per region, and divide by potential mariculture
+
   ry = m %>%
     dplyr::group_by(rgn_id, scenario_year) %>%
     dplyr::summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
     dplyr::left_join(reference_point, by = c('rgn_id', 'scenario_year')) %>%
     dplyr::mutate(mar_score = sust_tonnes_sum / potential_mar_tonnes) %>%
-    dplyr::ungroup() %>%
-    dplyr::select(rgn_id, scenario_year, mar_score)
-  
+    dplyr::ungroup() 
+  summary(ry)
   
   ## add in methods to deal with weirdness
   
@@ -276,7 +274,14 @@ browser()
   ry = ry %>%
     dplyr::mutate(status = ifelse(mar_score > 1,
                            1,
-                           mar_score))
+                           mar_score)) %>%
+    dplyr::mutate(status = ifelse(is.na(status),
+                                  0,
+                                  status)) %>%
+    dplyr::mutate(status = ifelse(sust_tonnes_sum < 100 & potential_mar_tonnes < 100,
+                  NA,
+                  status))
+  sum(is.na(ry$status)) #123
   
   ## Add all other regions/countries with no mariculture production to the data table
   ## Uninhabited or low population countries that don't have mariculture, should be given a NA since they are too small to ever be able to produce and sustain a mariculture industry.
