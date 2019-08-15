@@ -213,20 +213,17 @@ FIS <- function(layers) {
 
 
 MAR <- function(layers) {
-
+browser()
   scen_year <- layers$data$scenario_year
   
   harvest_tonnes <-
     AlignDataYears(layer_nm = "mar_harvest_tonnes", layers_obj = layers)
   
-  
   sustainability_score <-
     AlignDataYears(layer_nm = "mar_sustainability_score", layers_obj = layers)
   
-  popn_inland25mi <-
-    AlignDataYears(layer_nm = "mar_coastalpopn_inland25mi", layers_obj = layers) %>%
-    dplyr::mutate(popsum = popsum + 1)
-
+  reference_point <- 
+    AlignDataYears(layer_nm = "mar_capacity", layers_obj = layers)
   
   rky <-  harvest_tonnes %>%
     dplyr::left_join(sustainability_score,
@@ -257,33 +254,29 @@ MAR <- function(layers) {
     dplyr::mutate(sust_tonnes = sust_coeff * sm_tonnes)
   
   
+  ### This will all change!
   # aggregate all weighted timeseries per region, and divide by coastal human population
   ry = m %>%
     dplyr::group_by(rgn_id, scenario_year) %>%
     dplyr::summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
-    dplyr::left_join(popn_inland25mi, by = c('rgn_id', 'scenario_year')) %>%
-    dplyr::mutate(mar_pop = sust_tonnes_sum / popsum) %>%
-    dplyr::ungroup()
+    dplyr::left_join(reference_point, by = c('rgn_id', 'scenario_year')) %>%
+    dplyr::mutate(mar_score = sust_tonnes_sum / potential_mar_tonnes) %>%
+    dplyr::ungroup() %>%
+    dplyr::select(rgn_id, scenario_year, mar_score)
   
-  # get reference quantile based on argument years
   
-  ref_95pct <- quantile(ry$mar_pop, 0.95, na.rm = TRUE)
- 
-  ## Reference Point Accounting
-    ry_ref = ry %>%
-    dplyr::arrange(mar_pop) %>%
-    dplyr::filter(mar_pop >= ref_95pct)
+  ## add in methods to deal with weirdness
   
    WriteRefPoint(
     goal = "MAR",
-    method = "spatial 95th quantile",
-    ref_pt = paste0("region id: ", ry_ref$rgn_id[1], ' value: ', ref_95pct))
+    method = "Biological capacity of region to produce mariculture",
+    ref_pt = "Varies by region, see Gentry et al. 2017")
   ## Reference Point End
   
   ry = ry %>%
-    dplyr::mutate(status = ifelse(mar_pop / ref_95pct > 1,
+    dplyr::mutate(status = ifelse(mar_score > 1,
                            1,
-                           mar_pop / ref_95pct))
+                           mar_score))
   
   ## Add all other regions/countries with no mariculture production to the data table
   ## Uninhabited or low population countries that don't have mariculture, should be given a NA since they are too small to ever be able to produce and sustain a mariculture industry.
