@@ -24,7 +24,7 @@ This document describes results from the OHI 2019 global assessment.  This is mo
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2019-08-14' #date extension on data files used for all tables/figures
+dateFile = '2019-08-19' #date extension on data files used for all tables/figures
 
 ## General settings to control
 scenario <- 2019 #identify scenario of focus (this can be changed to obtain data for other years)
@@ -203,8 +203,8 @@ write.csv(data_final, here(sprintf("yearly_results/%s/Results/data/scores_eez%s.
 
 
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/OHI_final_formatted_scores_2018-10-22.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2018.
-**will need to update this for 2019**
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/yearly_results/global2019/OHI_final_formatted_scores_2019-08-19.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2018.
+**keep changing the date in this link as scores are updated**
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
@@ -237,12 +237,11 @@ Average global performance of the 10 goals.
 
 Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/yearly_results/global2019/Results/figures/FlowerPlots)
 
-
-![](here(yearly_results/global2019/Results/figures/FlowerPlots/flower_GlobalAverage.png)) 
+![](here("yearly_results/global2019/Results/figures/FlowerPlots/flower_GlobalAverage.png"))
 
 
 ## Country summary
-``` {r Maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=map_create}
+```{r Maps, eval=map_create, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
 
 ## Making the maps of goal scores that will be reported, these figures are not reported here, but will be called in 
 ## different parts of the text.
@@ -260,8 +259,9 @@ colors <-   c(reds, blues)
 
 ### get OHI data and rename column headings
 
-for(year in 2012:scenario){ #year=2012
+for(year in 2012:scenario){ #year=2019
 
+  # create a directory in maps_by_goal_mol for each year except current scenario year
 if(year != scenario){
   if(sum(grepl(sprintf("year_%s", year), 
                list.files(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol", saveFile))))) == 0){
@@ -282,20 +282,22 @@ if(prj == 'mol' & !exists('land_poly')) {
 }
 
 
-### establish list of fields for mapping
+### establish list of fields (goal and subgoal names) for mapping
 mapFlds   <- names(scores_df %>% select(-rgn_name, -rgn_id))
 
 ### Loop over each field, plotting each map in turn and saving to file.
 for (fld in mapFlds) { # fld <- mapFlds[1]
 
   if(year==scenario){
-   fig_save = here(sprintf('%s/Results/figures/maps_by_goal_%s/global_map_%s_%s_%s.png', saveFile, prj, fld, year, prj))
+   fig_save = here(sprintf('yearly_results/%s/Results/figures/maps_by_goal_%s/global_map_%s_%s_%s.png', saveFile, prj, fld, year, prj))
 } else{ 
     fig_save = here(sprintf('yearly_results/%s/Results/figures/maps_by_goal_%s/year_%s/global_map_%s_%s_%s.png', saveFile, prj, year, fld, year, prj))
     }
   
-   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
-                                 #colors_spec = colors, 
+   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, 
+                               prj = prj, 
+                               fig_save = fig_save, 
+                               colors_spec = colors, 
                                leg_on = TRUE)
    
    #print(ohiplot)
@@ -306,11 +308,11 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 ## save a version of 2019 maps without legend
 year = scenario
 
-scores_df <- read.csv(here(sprintf('%s/Results/data/scores_eez%s.csv', saveFile, year)), stringsAsFactors = FALSE) %>%
+scores_df <- read_csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv', saveFile, year))) %>%
   rename(rgn_name = region_name, rgn_id = region_id) %>%
   mutate(rgn_id = as.character(rgn_id))
 
-dir.create(here(sprintf('%s/Results/figures/maps_by_goal_%s/year_%s_nolegend', saveFile, prj, year)))
+dir.create(here(sprintf('yearly_results/%s/Results/figures/maps_by_goal_%s/year_%s_nolegend', saveFile, prj, year)))
 
 ### load region data frame, so doesn't need to reload every time through the loop.  Also
 ### load the land data frame, if plotting in Mollweide projection.
@@ -327,7 +329,7 @@ mapFlds   <- names(scores_df %>% select(-rgn_name, -rgn_id))
 ### Loop over each field, plotting each map in turn and saving to file.
 for (fld in mapFlds) { # fld <- mapFlds[1]
 
-   fig_save = here(sprintf('%s/Results/figures/maps_by_goal_%s/year_%s_nolegend/global_map_%s_%s_%s.png', saveFile, prj, year, fld, year, prj))
+   fig_save = here(sprintf('yearly_results/%s/Results/figures/maps_by_goal_%s/year_%s_nolegend/global_map_%s_%s_%s.png', saveFile, prj, year, fld, year, prj))
 
    ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
                                  colors_spec = colors, leg_on = FALSE)
@@ -337,9 +339,9 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 ```
 
-Country index scores for 2018.  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2018/Results/figures/maps_by_goal_mol).
+Country index scores for 2019.  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/yearly_results/global2019/Results/figures/maps_by_goal_mol).
 
-![](figures/maps_by_goal_mol/global_map_Index_2018_mol.png) 
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_Index_2019_mol.png"))
 
 Distribution of country index scores. The median index score among countries was `r median(data_final$Index)`. 
 
@@ -411,7 +413,7 @@ kable(low)
 ```
 
 ## Country scores across scenario year
-Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2018 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 7 years of data.  Black regions indicate no data.
+Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/yearly_results/global2019/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2019 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 7 years of data.  Black regions indicate no data.
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 
@@ -470,7 +472,7 @@ This plot is good for providing a quick overview of:
 
 
 ## Data
-This interactive table describes the index and goal scores for the regions in 2018 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/Results/data/scores_eez2018.csv)): 
+This interactive table describes the index and goal scores for the regions in 2019 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/yearly_results/global2019/Results/data/scores_eez2019.csv)): 
 
 ```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -488,9 +490,11 @@ shiny::div(DT::datatable(data_final_inlay), style = "font-size: 60%; width: 60%"
 ## make an html file that is color coded:
 pal = brewer.pal(10, 'RdYlBu')
 
+# create a color palette for 10 intervals of scores for each goal
 cols <- data.frame(country=data_final$region_name)
 for(goal in goals){ #goal="Index"
   tmp <- data_final[, goal]
+  tmp <- dplyr::pull(tmp[,1])
   tmp <- assign(goal, cut(tmp, breaks=c(0,10,20,30,40,50,60,70,80,90,100), include.lowest = TRUE, labels=pal))
   tmp <- data.frame(goal=tmp)
   names(tmp) <- goal
@@ -712,7 +716,8 @@ plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fi
 
 The global average decreased by an average of `r index$Index` points per year, but there was a good deal of variation in trend among regions and goals.  
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_Index_mol.png) 
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_Index_mol.png"))
+
 
 
 The following histogram describes the distribution of trend (e.g., change in score per year) in index scores:
@@ -779,7 +784,7 @@ source(here(sprintf('yearly_results/%s/Results/functions/trend_barplot.R', saveF
 
 A heat map describing change in trend for country and goals:
 
-![]here(yearly_results/global2019/Results/figures/Trend_barplot.png) 
+![](here("yearly_results/global2019/Results/figures/Trend_barplot.png"))
 
 
 ```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
@@ -795,7 +800,7 @@ knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/Trend_ba
 This section takes a closer look at the goal/subgoal scores.
 
 ## Scores
-Goal/subgoal scores for the 2018 scenario.
+Goal/subgoal scores for the 2019 scenario.
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
 
 data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
@@ -821,9 +826,9 @@ ggsave(g, filename=here(sprintf("yearly_results/%s/Results/figures/goal_histogra
 ## Artisanal opportunities
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_AO_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_AO_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/AO_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/AO_scores.png"))
 
 ### Top 10 performers
 
@@ -855,9 +860,9 @@ kable(bottom)
 ## Species condition
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_SPP_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_SPP_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/SPP_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/SPP_scores.png"))
 
 
 ### Top 10 performers
@@ -890,10 +895,10 @@ kable(bottom)
 ## Habitat
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_HAB_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_HAB_2019_mol.png"))
 
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/HAB_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/HAB_scores.png"))
 
 ### Top 10 performers
 ```{r top HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -924,9 +929,9 @@ kable(bottom)
 ## Coastal protection
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_CP_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_CP_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/CP_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/CP_scores.png"))
 
 ### Top 10 performers
 ```{r top CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -958,9 +963,9 @@ kable(bottom)
 ## Carbon storage
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_CS_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_CS_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/CS_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/CS_scores.png"))
 
 ### Top 10 performers
 ```{r top CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -993,10 +998,10 @@ kable(bottom)
 ## Clean waters
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_CW_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_CW_2019_mol.png"))
 
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/CW_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/CW_scores.png"))
 
 ### Top 10 performers
 ```{r top CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1028,9 +1033,9 @@ kable(bottom)
 ## Fisheries
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_FIS_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_FIS_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/FIS_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/FIS_scores.png"))
 
 ### Top 10 performers
 ```{r top FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1062,9 +1067,9 @@ kable(bottom)
 ## Mariculture
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_MAR_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_MAR_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/MAR_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/MAR_scores.png"))
 
 ### Top 10 performers
 ```{r top MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1095,9 +1100,9 @@ kable(bottom)
 ## Iconic species
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_ICO_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_ICO_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/ICO_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/ICO_scores.png"))
 
 
 ### Top 10 performers
@@ -1129,9 +1134,9 @@ kable(bottom)
 ## Lasting special places
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_LSP_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_LSP_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/LSP_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/LSP_scores.png"))
 
 
 
@@ -1163,9 +1168,9 @@ kable(bottom)
 ## Natural products
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_NP_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_NP_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/NP_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/NP_scores.png"))
 
 ### Top 10 performers
 ```{r top NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1196,9 +1201,9 @@ kable(bottom)
 ## Tourism and recreation
 
 ### Scores
-![]here(yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_TR_2018_mol.png)
+![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_TR_2019_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/goal_histograms/TR_scores.png)
+![](here("yearly_results/global2019/Results/figures/goal_histograms/TR_scores.png"))
 
 ### Top 10 performers
 ```{r top TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1226,32 +1231,31 @@ kable(bottom)
 ## Trends
 Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2018. 
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_AO_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_AO_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_SPP_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_SPP_mol.png"))
 
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_HAB_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_HAB_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_CP_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_CP_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_CS_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_CS_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_CW_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_CW_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_FIS_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_FIS_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_MAR_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_MAR_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_ICO_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_ICO_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_LSP_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_LSP_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_NP_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_NP_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_TR_mol.png"))
 
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_TR_mol.png)
-
-![]here(yearly_results/global2019/Results/figures/map_trends/trends_map_TR_mol.png)
+![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_TR_mol.png"))
 
 ## Other analyses
 
