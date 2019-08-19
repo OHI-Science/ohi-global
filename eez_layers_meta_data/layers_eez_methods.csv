@@ -69,9 +69,9 @@ liv_status,dataprep_url,globalprep/le/v2018
 liv_trend,dataprep_url,globalprep/le/v2018
 lsp_prot_area_inland1km,dataprep_url,globalprep/lsp/v2018/lsp_data_prep.html
 lsp_prot_area_offshore3nm,dataprep_url,globalprep/lsp/v2018/lsp_data_prep.html
-mar_coastalpopn_inland25mi,dataprep_url,globalprep/mar_prs_population/v2018/mar_prs_pop_dataprep.html
-mar_harvest_tonnes,dataprep_url,globalprep/mar/v2018/mar_dataprep.html
-mar_sustainability_score,dataprep_url,globalprep/mar/v2018/mar_dataprep.html
+mar_capacity,dataprep_url,globalprep/mar_prs_population/v2019/mar_dataprep.html
+mar_harvest_tonnes,dataprep_url,globalprep/mar/v2019/mar_dataprep.html
+mar_sustainability_score,dataprep_url,globalprep/mar/v2019/mar_dataprep.html
 np_blast,dataprep_url,globalprep/np_prs_poison_blast_fishing
 np_cyanide,dataprep_url,globalprep/np_prs_poison_blast_fishing
 np_harvest_product_weight,dataprep_url,globalprep/np/v2018/np_dataprep.html
@@ -252,9 +252,9 @@ lsp_prot_area_inland1km,ds_reference,lewis_large-scale_2017
 lsp_prot_area_inland1km,ds_reference,unep-wcmc_and_iucn_protected_2018
 lsp_prot_area_offshore3nm,ds_reference,lewis_large-scale_2017
 lsp_prot_area_offshore3nm,ds_reference,unep-wcmc_and_iucn_protected_2018
-mar_coastalpopn_inland25mi,ds_reference,center_for_international_earth_science_information_network-ciesin-columbia_university_gridded_2017
 mar_harvest_tonnes,ds_reference,united_nations_fao_2018-1
 mar_sustainability_score,ds_reference,trujillo_using_2008
+mar_capacity,ds_reference,gentry_exploring_2019
 NP calculation (exposure),ds_reference,halpern_global_2008
 np_blast,ds_reference,burke_reefs_2011
 np_cyanide,ds_reference,burke_reefs_2011
@@ -390,7 +390,7 @@ liv_status,methods_update,"eliminated calculation, now just provide results as p
 liv_trend,methods_update,"eliminated calculation, now just provide results as placeholder (not updated since 2013)"
 lsp_prot_area_inland1km,methods_update,additional year of data
 lsp_prot_area_offshore3nm,methods_update,additional year of data
-mar_coastalpopn_inland25mi,methods_update,additional year of data
+mar_capacity,methods_update,new data layer for mariculture potential in all regions
 mar_harvest_tonnes,methods_update,"additional year of data, now includes edible seaweeds"
 mar_sustainability_score,methods_update,"additional year of data, now includes edible seaweeds"
 np_blast,methods_update,

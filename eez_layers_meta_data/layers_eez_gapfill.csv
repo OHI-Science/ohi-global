@@ -43,11 +43,11 @@ fp_mpa_coast,ohiprep:globalprep/lsp/v2018/output/mpa_3nm_resilience_gf.csv
 hd_mpa_coast,ohiprep:globalprep/lsp/v2018/output/mpa_3nm_resilience_gf.csv
 fp_mpa_eez,ohiprep:globalprep/lsp/v2018/output/mpa_eez_resilience_gf.csv
 hd_mpa_eez,ohiprep:globalprep/lsp/v2018/output/mpa_eez_resilience_gf.csv
-mar_coastalpopn_inland25mi,ohiprep:globalprep/mar_prs_population/v2018/output/mar_pop_25mi_gf.csv
+mar_capacity,ohiprep:globalprep/mar_prs_population/v2019/output/aq_potential_gf.csv
 hd_intertidal,ohiprep:globalprep/mar_prs_population/v2018/output/prs_pop_density_gf.csv
 sp_genetic,ohiprep:globalprep/mar/v2018/output/GenEsc_gf.csv
-mar_harvest_tonnes,ohiprep:globalprep/mar/v2018/output/mar_harvest_tonnes_gf.csv
-mar_sustainability_score,ohiprep:globalprep/mar/v2018/output/mar_sustainability_gf.csv
+mar_harvest_tonnes,ohiprep:globalprep/mar/v2019/output/mar_harvest_tonnes_gf.csv
+mar_sustainability_score,ohiprep:globalprep/mar/v2019/output/mar_sustainability_gf.csv
 fp_art_hb,ohiprep:globalprep/prs_fish/v2018/output/art_hb_gf.csv
 hd_subtidal_hb,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data/gl_thr_blast_3nm_rgn2013_gf.csv
 np_blast,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data/gl_thr_blast_3nm_rgn2013_gf.csv
