@@ -237,7 +237,10 @@ Average global performance of the 10 goals.
 
 Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/yearly_results/global2019/Results/figures/FlowerPlots)
 
-![](here("yearly_results/global2019/Results/figures/FlowerPlots/flower_GlobalAverage.png"))
+```{r flower_global, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/FlowerPlots/flower_GlobalAverage.png", saveFile)))
+```
+
 
 
 ## Country summary
@@ -341,7 +344,13 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 Country index scores for 2019.  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/yearly_results/global2019/Results/figures/maps_by_goal_mol).
 
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_Index_2019_mol.png"))
+
+```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_Index_2019_mol.png", saveFile)))
+
+```
+
+
 
 Distribution of country index scores. The median index score among countries was `r median(data_final$Index)`. 
 
@@ -716,8 +725,10 @@ plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fi
 
 The global average decreased by an average of `r index$Index` points per year, but there was a good deal of variation in trend among regions and goals.  
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_Index_mol.png"))
 
+```{r index_trend, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_Index_mol.png", saveFile)))
+```
 
 
 The following histogram describes the distribution of trend (e.g., change in score per year) in index scores:
@@ -784,9 +795,6 @@ source(here(sprintf('yearly_results/%s/Results/functions/trend_barplot.R', saveF
 
 A heat map describing change in trend for country and goals:
 
-![](here("yearly_results/global2019/Results/figures/Trend_barplot.png"))
-
-
 ```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
 
 ## Figure created in trend_barplot.R
@@ -826,9 +834,12 @@ ggsave(g, filename=here(sprintf("yearly_results/%s/Results/figures/goal_histogra
 ## Artisanal opportunities
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_AO_2019_mol.png"))
+```{r AO plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_AO_2019_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/AO_scores.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/AO_scores.png", saveFile)))
+
+```
 
 ### Top 10 performers
 
@@ -860,9 +871,14 @@ kable(bottom)
 ## Species condition
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_SPP_2019_mol.png"))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/SPP_scores.png"))
+```{r SPP plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_SPP_2019_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/SPP_scores.png", saveFile)))
+
+```
+
 
 
 ### Top 10 performers
@@ -895,10 +911,16 @@ kable(bottom)
 ## Habitat
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_HAB_2019_mol.png"))
 
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/HAB_scores.png"))
+```{r HAB plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_HAB_2019_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/HAB_scores.png", saveFile)))
+
+```
+
+
 
 ### Top 10 performers
 ```{r top HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -929,9 +951,14 @@ kable(bottom)
 ## Coastal protection
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_CP_2019_mol.png"))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/CP_scores.png"))
+```{r CP plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_CP_2019_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/CP_scores.png", saveFile)))
+
+```
+
 
 ### Top 10 performers
 ```{r top CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -963,9 +990,14 @@ kable(bottom)
 ## Carbon storage
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_CS_2019_mol.png"))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/CS_scores.png"))
+```{r CS plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_CS_2019_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/CS_scores.png", saveFile)))
+
+```
+
 
 ### Top 10 performers
 ```{r top CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -998,10 +1030,15 @@ kable(bottom)
 ## Clean waters
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_CW_2019_mol.png"))
 
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/CW_scores.png"))
+```{r CW plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_CW_2019_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/CW_scores.png", saveFile)))
+
+```
+
 
 ### Top 10 performers
 ```{r top CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1033,9 +1070,14 @@ kable(bottom)
 ## Fisheries
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_FIS_2019_mol.png"))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/FIS_scores.png"))
+```{r FIS plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_FIS_2019_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/FIS_scores.png", saveFile)))
+
+```
+
 
 ### Top 10 performers
 ```{r top FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1067,9 +1109,13 @@ kable(bottom)
 ## Mariculture
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_MAR_2019_mol.png"))
+```{r MAR plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_MAR_2019_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/MAR_scores.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/MAR_scores.png", saveFile)))
+
+```
+
 
 ### Top 10 performers
 ```{r top MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1100,9 +1146,13 @@ kable(bottom)
 ## Iconic species
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_ICO_2019_mol.png"))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/ICO_scores.png"))
+```{r ICO plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_ICO_2019_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/ICO_scores.png", saveFile)))
+
+```
 
 
 ### Top 10 performers
@@ -1134,10 +1184,13 @@ kable(bottom)
 ## Lasting special places
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_LSP_2019_mol.png"))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/LSP_scores.png"))
+```{r LSP plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_LSP_2019_mol.png", saveFile)))
 
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/LSP_scores.png", saveFile)))
+
+```
 
 
 ### Top 10 performers
@@ -1168,9 +1221,14 @@ kable(bottom)
 ## Natural products
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_NP_2019_mol.png"))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/NP_scores.png"))
+```{r NP plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_NP_2019_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/NP_scores.png", saveFile)))
+
+```
+
 
 ### Top 10 performers
 ```{r top NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1201,9 +1259,14 @@ kable(bottom)
 ## Tourism and recreation
 
 ### Scores
-![](here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_TR_2019_mol.png"))
 
-![](here("yearly_results/global2019/Results/figures/goal_histograms/TR_scores.png"))
+```{r TR plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_TR_2019_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/TR_scores.png", saveFile)))
+
+```
+
 
 ### Top 10 performers
 ```{r top TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
@@ -1229,33 +1292,48 @@ kable(bottom)
 ```
 
 ## Trends
-Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2018. 
+Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2019. 
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_AO_mol.png"))
+```{r trend plots, echo=FALSE, fig.height=30, fig.width=10}
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_AO_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_SPP_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_BD_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_HAB_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_CP_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_CP_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_CS_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_CS_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_CW_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_CW_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_ECO_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_FIS_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_FIS_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_MAR_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_FP_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_ICO_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_HAB_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_LSP_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_ICO_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_NP_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_LE_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_TR_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_LIV_mol.png", saveFile)))
 
-![](here("yearly_results/global2019/Results/figures/map_trends/trends_map_TR_mol.png"))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_LSP_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_MAR_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_NP_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_SP_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_SPP_mol.png", saveFile)))
+
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_TR_mol.png", saveFile)))
+
+
+```
+
 
 ## Other analyses
 
