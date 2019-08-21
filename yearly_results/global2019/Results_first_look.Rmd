@@ -18,7 +18,7 @@ output:
 
 
 This document describes results from the OHI 2019 global assessment.  This is mostly an internal document to explore and check results.  It also creates the figures used on the website and in other documents.
-```{r control, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
 
 # 1. check the code chunk below and change variables if needed
 # 2. go through document and update text where needed.
@@ -111,7 +111,7 @@ ohi_final <- read_csv(here("eez/scores.csv"))
 write_csv(ohi_final, here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, Sys.Date())))
 ```
 
-```{r final_data_modified, echo=FALSE, eval=update_data, include=FALSE}
+```{r final_data_modified, message=FALSE, echo=FALSE, eval=update_data, include=FALSE}
 
 # if data are updated, this saves a modified version that is easier to read
 ohi_final <- read_csv(here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)))
@@ -165,7 +165,7 @@ write_csv(index_avg_spread, here(sprintf("yearly_results/%s/Results/data/avg_goa
 ```
 
 
-```{r data prep score table, echo=FALSE}
+```{r data prep score table, message=FALSE, include=FALSE, echo=FALSE}
 
 ## create a score dataframe 
 
