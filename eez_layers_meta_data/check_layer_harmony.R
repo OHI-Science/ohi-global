@@ -35,8 +35,8 @@ setdiff(base$layer, source_update$layer)
 # sources
 source <- read.csv("eez_layers_meta_data/layers_eez_data_sources.csv")
 meth_refs <- dplyr::filter(methods, variable == "ds_reference")
-setdiff(source$ds_reference, meth_refs$variable_data)
-setdiff(meth_refs$variable_data, source$ds_reference)
+setdiff(source$ds_reference, meth_refs$variable_data_2018)
+setdiff(meth_refs$variable_data_2018, source$ds_reference)
 
 # layer files
 layers <- list.files("global_supplement/layers_info", pattern="Rmd")
