@@ -24,7 +24,7 @@ This document describes results from the OHI 2019 global assessment.  This is mo
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2019-08-19' #date extension on data files used for all tables/figures
+dateFile = '2019-08-21' #date extension on data files used for all tables/figures
 
 ## General settings to control
 scenario <- 2019 #identify scenario of focus (this can be changed to obtain data for other years)
@@ -104,14 +104,14 @@ rgn_names <- read.csv(here(sprintf('eez/layers/rgn_global.csv', scenario))) %>%
 # Primary dataset
 
 
-```{r final_data, eval=update_data, include=FALSE}
+```{r final_data, echo=FALSE, message=FALSE, eval=update_data, include=FALSE}
 
 # Saves the last version of eez/scores.csv with a date appended to filename.
 ohi_final <- read_csv(here("eez/scores.csv"))
 write_csv(ohi_final, here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, Sys.Date())))
 ```
 
-```{r final_data_modified, eval=update_data, include=FALSE}
+```{r final_data_modified, echo=FALSE, eval=update_data, include=FALSE}
 
 # if data are updated, this saves a modified version that is easier to read
 ohi_final <- read_csv(here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)))
@@ -203,7 +203,7 @@ write.csv(data_final, here(sprintf("yearly_results/%s/Results/data/scores_eez%s.
 
 
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/yearly_results/global2019/OHI_final_formatted_scores_2019-08-19.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2018.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/yearly_results/global2019/OHI_final_formatted_scores_2019-08-21.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2018.
 **keep changing the date in this link as scores are updated**
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
@@ -609,7 +609,7 @@ NOTE: Currently, these data include the livelihoods and economies goal but these
 The following table provides the global scores (eez area weighted average of region scores) for the Index and goals/subgoals for all years.
 
 
-```{r overview, echo=FALSE}
+```{r overview, echo=FALSE, message=FALSE}
 
 data <- read_csv(here(sprintf('yearly_results/%s/OHI_final_formatted_scores_%s.csv', saveFile, dateFile))) 
 
