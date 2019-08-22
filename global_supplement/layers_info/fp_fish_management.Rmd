@@ -8,6 +8,9 @@ These data describe the current effectiveness of fisheries management regimes al
 
 Data are not accessible in csv format from website, so points were manually entered into excel and saved as a csv (found in v2019/raw). Because FMI scores only exist for 40 out of the 220 OHI regions, we trained linear models using scores from the AO need layer (rescaled GDP per capita per person purchasing power), GDP per capita, World Governance Index (WGI), Social Progress Indicator (SPI), and UN georegion labels to determine which would be most effective for gapfilling the missing data. After comparing the models, we determined SPI and UN georegions to be the best predictors of FMI, and used these models to gapfill FMI scores for the remaining 80 regions. 20 of these regions remain NA as they are uninhabited.
 
+# Data source
+
+*Reference* melnychuk_fisheries_2017
 
 # Data used to gapfill missing FMI data points
 
