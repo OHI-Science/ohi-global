@@ -141,7 +141,7 @@ conf   <-  ohicore::Conf(here('eez/conf'))
 layers <-  ohicore::Layers(layers.csv = here('eez/layers.csv'), layers.dir = here('eez/layers'))
 
 #scorelist = lapply(X=2018, FUN=get_scores)
-scorelist = lapply(X=scenario_years, FUN=get_scores) # 38 warnings were generated (nothing of concern)
+scorelist = lapply(X=scenario_years, FUN=get_scores) # 37 warnings were generated (nothing of concern)
 scores_all_years <- dplyr::bind_rows(scorelist)
 
 
@@ -155,8 +155,8 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 
 ## final commit from last year: 1fdf7f2
 # Link being sourced here is incorrect, need to change it!
-ohicore::score_check(commit="previous", scenario_year=2018,
-            file_name="fmi", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(commit="previous", scenario_year=2019,
+            file_name="fis", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/np_4pts_10yrs_previous_diff_data_2019-08-16.csv")) 
