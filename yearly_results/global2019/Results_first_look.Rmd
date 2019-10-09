@@ -24,7 +24,7 @@ This document describes results from the OHI 2019 global assessment.  This is mo
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2019-08-21' #date extension on data files used for all tables/figures
+dateFile = '2019-10-07' #date extension on data files used for all tables/figures
 
 ## General settings to control
 scenario <- 2019 #identify scenario of focus (this can be changed to obtain data for other years)
@@ -171,7 +171,8 @@ write_csv(index_avg_spread, here(sprintf("yearly_results/%s/Results/data/avg_goa
 
 data_all <- read_csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)))
 
-for(year in 2012:scenario){ # year = 2016
+for(year in 2012:scenario){ 
+   # year = 2016
 
 data <- data_all[data_all$scenario == year, ]
 
@@ -262,7 +263,8 @@ colors <-   c(reds, blues)
 
 ### get OHI data and rename column headings
 
-for(year in 2012:scenario){ #year=2019
+for(year in 2012:scenario){ 
+ # year=2019
 
   # create a directory in maps_by_goal_mol for each year except current scenario year
 if(year != scenario){
@@ -538,7 +540,7 @@ region_trends <- scores %>%
   filter(dimension == "score") %>%
   filter(!is.na(value)) %>%
   group_by(goal, region_id) %>%
-  do(mdl = lm(value ~ scenario, data = .))
+  do(mdl = lm(value ~ scenario, data = .)) #fitting a model per each goal and rgn_id
 
 # data.frame(glance(data_lm, mdl))
 region_trends <- tidy(region_trends, mdl) %>%
@@ -566,8 +568,8 @@ index <- trends_spread %>%
 eez_spread <- trends_spread %>%
   arrange(-Index) %>%
   filter(country != 'eez_weighted_avg')
-# sum(trends_spread$Index>0) # 110
-# sum(trends_spread$Index<0) # 110 # weird that these are exactly equal? weren't that way in v2018
+# sum(trends_spread$Index>0) # 129
+# sum(trends_spread$Index<0) # 92 
 # sum(trends_spread$Index==0) # none
 
 trends_spread <- rbind(index, eez_spread) %>%
@@ -647,7 +649,7 @@ data_lm <- data_index %>%
   group_by(goal) %>%
   do(mdl = lm(value ~ scenario, data = .))
 
-# data.frame(glance(data_lm, mdl))
+ #data.frame(glance(data_lm, mdl))
 results_lm <- tidy(data_lm, mdl) %>%
   ungroup() %>%
   filter(term == "scenario") %>%
@@ -828,7 +830,6 @@ theme_bw()
 ggsave(g, filename=here(sprintf("yearly_results/%s/Results/figures/goal_histograms/%s_scores.png", saveFile, goal)), height=3, width=4)
 }
 
-# v2019: getting some error messages here about missing values and non-finite values being removed
 ```
 
 ## Artisanal opportunities
@@ -1371,36 +1372,36 @@ avg_index <- index %>%
   
   
 #   ## ignore this for now, but info on labelling points:
-#   
+# 
 #   ### adding labels: outliers, no change, etc
-#   
+# 
 # labels1 <- c("Eritrea", "Syria", "Equatorial Guinea", "Somalia", "Nicaragua", "Myanmar", "British Virgin Islands", "Georgia", "Pitcairn", "Liberia", "Sierra Leone")
 # 
 # labels2 <- c("Amsterdam Island and Saint Paul Island", "Kerguelen Islands")
 # 
-# ## make sure region labels are spelled correctly  
+# ## make sure region labels are spelled correctly
 # setdiff(labels1, trend$region_name)
 # setdiff(labels2, trend$region_name)
 # 
 # ## add labels column, give NA to those without labels
 # trend <- trend %>%
 #   mutate(label1 = ifelse(region_name %in% labels1, as.character(region_name), NA)) %>%
-#   mutate(label2 = ifelse(region_name %in% labels2, as.character(region_name), NA)) 
-#   
+#   mutate(label2 = ifelse(region_name %in% labels2, as.character(region_name), NA))
+# 
 # 
 # p <- ggplot2::ggplot(trend, aes(x=Index, y=index_trend)) +
 #     geom_point(shape=19, size=1.75, color="black", alpha = 0.5) +
-#     geom_text(aes(label=label1), hjust=0, nudge_x=0.4, size=2.2) + 
+#     geom_text(aes(label=label1), hjust=0, nudge_x=0.4, size=2.2) +
 #     geom_text(aes(label=label2), vjust=0, nudge_y=0.1, nudge_x=-5, size=2.2) +
 #    geom_point(data=filter(trend, region_name %in% label1), aes(x=Index, y=index_trend), shape=19, size=1.75, color="darkorange") +
 #    geom_point(data=filter(trend, region_name %in% label2), aes(x=Index, y=index_trend), shape=19, size=1.75, color="darkorange") +
 #     geom_hline(yintercept = 0, color="red", size=.2, linetype=3) +
 #     geom_vline(xintercept = vaxis, color="red", size=.2, linetype=3) +
 #       stat_smooth(method=lm, se=FALSE, color="black", size=0.3) +
-#     theme_bw() + 
-#     labs(y="Average change in Index score per year", x="OHI score, 2018") 
+#     theme_bw() +
+#     labs(y="Average change in Index score per year", x="OHI score, 2018")
 # 
-# plot(p)  
+# plot(p)
 # 
 # ggsave("figures/trend vs score.png", width=7.5, height=5, units=c("in"), dpi=600)
 # ggsave("figures/trend vs score.tiff", width=6, height=4, units=c("in"), dpi=375)
@@ -1412,7 +1413,7 @@ avg_index <- index %>%
 # Comparing assessment years
 
 
-The following is a comparison of the global status scores generated for the 2017 scenario by this year's assessment vs. last year's assessment. 
+The following is a comparison of the global status scores generated for the 2018 scenario by this year's assessment vs. last year's assessment. 
 
 If the models and source data remain the same, these scores should be exactly the same.  Differences indicate changes in methods or source data.  
 
