@@ -205,7 +205,6 @@ write.csv(data_final, here(sprintf("yearly_results/%s/Results/data/scores_eez%s.
 
 
 [These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-10-07.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2019.
-**keep changing the date in this link as scores are updated**
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
