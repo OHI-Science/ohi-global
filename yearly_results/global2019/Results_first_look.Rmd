@@ -204,7 +204,7 @@ write.csv(data_final, here(sprintf("yearly_results/%s/Results/data/scores_eez%s.
 
 
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/yearly_results/global2019/OHI_final_formatted_scores_2019-10-07.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2019.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-10-07.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2019.
 **keep changing the date in this link as scores are updated**
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
@@ -236,7 +236,7 @@ PlotFlower(
 
 Average global performance of the 10 goals.
 
-Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/yearly_results/global2019/Results/figures/FlowerPlots)
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019/Results/figures/FlowerPlots)
 
 ```{r flower_global, echo=FALSE, fig.height=30, fig.width=10}
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/FlowerPlots/flower_GlobalAverage.png", saveFile)))
@@ -344,7 +344,7 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 ```
 
-Country index scores for 2019.  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/yearly_results/global2019/Results/figures/maps_by_goal_mol).
+Country index scores for 2019.  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019/Results/figures/maps_by_goal_mol).
 
 
 ```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
@@ -424,7 +424,7 @@ kable(low)
 ```
 
 ## Country scores across scenario year
-Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/yearly_results/global2019/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2019 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 7 years of data.  Black regions indicate no data.
+Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2019 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 7 years of data.  Black regions indicate no data.
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 
@@ -483,7 +483,7 @@ This plot is good for providing a quick overview of:
 
 
 ## Data
-This interactive table describes the index and goal scores for the regions in 2019 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/yearly_results/global2019/Results/data/scores_eez2019.csv)): 
+This interactive table describes the index and goal scores for the regions in 2019 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/Results/data/scores_eez2019.csv)): 
 
 ```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -602,7 +602,7 @@ hwrite(trends_spread, here(sprintf('yearly_results/%s/Results/data/trends_%s.htm
 
 Trend values are slope estimates from a linear model of scores for each region/goal over the past 7 years. Positive values indicate increasing scores during the past 7 years and negative values indicate decreasing scores.
 
-A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/yearly_results/global2019/Results/data/trends_2019.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/yearly_results/global2019/Results/data/trends_2019.csv)).  
+A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2019/Results/data/trends_2019.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/Results/data/trends_2019.csv)).  
 
 
 NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed sceptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
