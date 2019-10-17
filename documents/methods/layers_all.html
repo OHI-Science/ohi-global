@@ -780,34 +780,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h2>Fisheries management index</h2>
 <div id="fp_fish_management" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_fish_management.csv">fp_fish_management</a></h4>
-<p><em>Resilience</em></p>
-<p><em>Category: ecological/regulatory</em></p>
-<p><em>Subcategory: fishing</em></p>
-<p>These data describe the current effectiveness of fisheries management regimes along 6 axes (Mora et al. 2009): scientific robustness, policy transparency, implementation capacity, subsidies, fishing effort, and foreign fishing. All countries with coastal areas were assessed through a combination of surveys, empirical data and enquiries to fisheries experts. For each OHI reporting region, scores for each category were rescaled between 0 and 1 using the maximum possible value for each category and then the average score of all 6 categories was used as the overall fisheries management effectiveness score.</p>
-<p>Data are not accessible in csv format from website, so points were manually entered into excel and saved as a csv (found in v2019/raw). Because FMI scores only exist for 40 out of the 220 OHI regions, we trained linear models using scores from the AO need layer (rescaled GDP per capita per person purchasing power), GDP per capita, World Governance Index (WGI), Social Progress Indicator (SPI), and UN georegion labels to determine which would be most effective for gapfilling the missing data. After comparing the models, we determined SPI and UN georegions to be the best predictors of FMI, and used these models to gapfill FMI scores for the remaining 80 regions. 20 of these regions remain NA as they are uninhabited.</p>
+<p>These data describe the current effectiveness of fisheries management regimes along 6 axes (Melnychuk et al. 2017): scientific robustness, policy transparency, implementation capacity, subsidies, fishing effort, and foreign fishing. All countries with coastal areas were assessed through a combination of surveys, empirical data and enquiries to fisheries experts. For each OHI reporting region, scores for each category were rescaled between 0 and 1 using the maximum possible value for each category and then the average score of all 6 categories was used as the overall fisheries management effectiveness score.</p>
+<p>Data are not accessible in csv format from website, so points were manually entered into excel and saved as a csv. Because FMI scores only exist for 40 out of the 220 OHI regions, we predicted missing values using a linear models with Social Progress Index and UN georegion data as predictors. Uninhabited regions (N=20) were given an NA value.</p>
 </div>
-</div>
-<div id="data-source" class="section level1">
-<h1>Data source</h1>
-<p><em>Reference</em> melnychuk_fisheries_2017</p>
-</div>
-<div id="data-used-to-gapfill-missing-fmi-data-points" class="section level1">
-<h1>Data used to gapfill missing FMI data points</h1>
-<div id="spi" class="section level2">
-<h2>SPI</h2>
-<p><em>Note: These data were not updated for v2019 at the time of completing the FMI resilience layer.</em></p>
-<p><strong>Citation</strong>: <a href="http://www.socialprogress.org/" class="uri">http://www.socialprogress.org/</a></p>
-<p>Stern, S., A. Wares and T. Epner. 2018. Social Progress Index: 2018 Methodology Report.</p>
-<p><strong>Source information</strong>: <a href="http://www.socialprogress.org/" class="uri">http://www.socialprogress.org/</a> –&gt; Download Data</p>
-<p><strong>Date Downloaded</strong>: 9/21/2018</p>
-<p><strong>Time range</strong>: 2014-2018</p>
-<p><strong>Native data resolution</strong>: country scores</p>
-<p><strong>Format</strong>: Excel file</p>
-<p><strong>Description</strong>: Social Progress Index scores and components for countries.</p>
-</div>
-<div id="un-georegions" class="section level2">
-<h2>UN georegions</h2>
-<p>UNgeorgn() loads a dataframe from common.R with UN geopolitical designations, and is commonly used in OHI to gapfill missing data. The distinct regions are derived from the <a href="https://unstats.un.org/unsd/methodology/m49/">United Nations Statistics Division</a>Each region is assigned four labels with increasing granularity/specificity: r0_label = World (1 level), r1_label = continental regions (7 levels: Oceania, Asia, Africa, Europe, Southern Islands, Latin America and the Caribbean, and Americas), r2_label = georegions (22 levels for subregions and intermediary regions).</p>
 <div id="units-21" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
@@ -817,7 +792,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h2>Fishery catch data</h2>
 <div id="fis_meancatch" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_meancatch.csv">fis_meancatch</a></h4>
-<p>Fisheries catch data were averaged across years (e.g., catch values are the same across years within a taxa/region) for each OHI region and taxon. These values were used to weight the stock status scores (derived from B/Bmsy values) in the fisheries model. Yearly catch data (tonnes) from the <a href="http://metadata.imas.utas.edu.au/geonetwork/srv/eng/metadata.show?uuid=ff1274e1-c0ab-411b-a8a2-5a12eb27f2c0">Global Fisheries Landings V3.0</a> (Global Fisheries Landings V3.0, Watson 2018) is reported at 0.5 degree resolution for taxonomic levels range from species to class to “Miscellaneous not identified”. Tonnes of catch for each taxon and year were summed within each OHI region, and then the average catch across years (1980 to present) was determined for each taxon and region.</p>
+<p>Fisheries catch data describe the average catch across years (from 1980 to present) for each fish stock and region. These values were used to weight stock status scores (derived from B/Bmsy values) in the fisheries model. The Global Fisheries Landings data (Watson 2019) is reported at 0.5 degree resolution for taxonomic levels range from species to class to “Miscellaneous not identified” for each year. Tonnes of catch for each taxon and year were summed within each OHI region, and then the average catch across years (1980 to present) was determined for each taxon and region.</p>
 </div>
 <div id="units-22" class="section level4 unnumbered">
 <h4>Units</h4>
@@ -2134,7 +2109,6 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <div id="units-99" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
-</div>
 </div>
 </div>
 
