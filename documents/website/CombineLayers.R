@@ -8,7 +8,7 @@ library(dplyr)
 library(tidyr)
 library(here)
 
-file.remove(here("eez/conf/web/layers_all.Rmd"))
+file.remove(here("documents/website/layers_all.Rmd"))
 
 ######################################################
 ### Rmd file header information
@@ -23,7 +23,7 @@ tmp <- capture.output(cat("---",
                           "\n    toc_float: yes",
                           "\n---"))
 
-write(tmp, here("eez/conf/web/layers_all.Rmd"))
+write(tmp, here("documents/website/layers_all.Rmd"))
 
 
 
@@ -41,14 +41,14 @@ tmp <- capture.output( cat(paste0("\n```{r, message=FALSE, echo=FALSE, warning=F
                            "library(knitr)",
                            "\n",
                            "\n",
-                           "layer_meta <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE)",
+                           "layer_meta <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/layers_eez_base.csv', stringsAsFactors = FALSE)",
                            "\n",
                            "layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'",
                            "\n",
                            "\n",
                            "\n```"))
                            
-write(tmp, here("eez/conf/web/layers_all.Rmd"), append=TRUE)
+write(tmp, here("documents/website/layers_all.Rmd"), append=TRUE)
 
 
 ######################################################
@@ -58,10 +58,10 @@ write(tmp, here("eez/conf/web/layers_all.Rmd"), append=TRUE)
 layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
 
 ## make sure all the Rmd files are in there and no typos!
-layers_Rmd <- list.files(here("global_supplement/layers_info"))
+layers_Rmd <- list.files(here("metadata_documentation/ohi_model/layers_info"))
 layers_Rmd <- layers_Rmd[grep(".Rmd", layers_Rmd)]
 layers_Rmd <- gsub(".Rmd", "", layers_Rmd)
-layers <- read.csv(here("eez_layers_meta_data/layers_eez_base.csv"), stringsAsFactors = FALSE)
+layers <- read.csv(here("metadata_documentation/layers_eez_base.csv"), stringsAsFactors = FALSE)
 
 ## extra Rmd file (or is mislabeled)
 ## can ignore the "layers_all" file, but there should be no others:
@@ -84,28 +84,28 @@ units <- data$units[data$layer == layer_short]
 layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers'
 
 tmp <- capture.output( cat("\n",  
-                          paste0("\n#", layer_long),
+                          paste0("\n# ", layer_long),
                           
-                          paste0("\n####[", layer_short, "]", "(", file.path(layer_path, layer_short), ".csv) {-}"),
+                          paste0("\n#### [", layer_short, "]", "(", file.path(layer_path, layer_short), ".csv) {-}"),
                           
                           paste0("\n```{r, echo=FALSE, results='hide'}\n
                                   x <- tempfile(fileext = 'Rmd')\n
                                  on.exit(unlink(x))\n
                                  download.file(", "\"",
-                                 sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/%s.Rmd', 
+                                 sprintf('https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/%s.Rmd', 
                                          layer_short), "\", x)\n```\n"),
                           
                           paste0("\n```{r, child = x, echo=FALSE, results='asis'}"),
                           "\n",
                           "\n```",
                           "\n",
-                          "\n####Units {-}",
+                          "\n#### Units {-}",
                           "\n",
                           units
                           # ,
-                          # "\n###References {-}"
+                          # "\n### References {-}"
                           ))
 
-write(tmp, here("eez/conf/web/layers_all.Rmd"), append=TRUE)
+write(tmp, here("documents/website/layers_all.Rmd"), append=TRUE)
 }      
 

@@ -1591,7 +1591,7 @@ div.tocify {
 </div>
 
 
-<p>Compiled on Thu Oct 17 11:50:56 2019.</p>
+<p>Compiled on Thu Oct 17 12:02:51 2019.</p>
 <div id="introduction-to-the-global-ocean-health-index-ohi-assessment" class="section level1">
 <h1><span class="header-section-number">1</span> Introduction to the global Ocean Health Index (OHI) assessment</h1>
 <p>The global Ocean Health Index assesses ocean health for 220 coastal countries and territories and has been conducted every year starting in 2012. The Index describes how well we are sustainably managing 10 goals for ocean ecosystems which represent the full suite of benefits that people want and need from the ocean. These goals include: artisanal fishing opportunity, biodiversity, carbon storage, clean waters, coastal livelihoods and economies, coastal protection, food provision, natural products, sense of place, and tourism and recreation. Each goal is given a score ranging from 0 to 100, and the full suite of goal scores are then averaged to obtain an overall index score for each region.</p>
@@ -8780,45 +8780,19 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h2><span class="header-section-number">7.22</span> Fisheries management index</h2>
 <div id="fp_fish_management" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_fish_management.csv">fp_fish_management</a></h4>
-<p><em>Resilience</em></p>
-<p><em>Category: ecological/regulatory</em></p>
-<p><em>Subcategory: fishing</em></p>
-<p>These data describe the current effectiveness of fisheries management regimes along 6 axes (Mora et al. 2009): scientific robustness, policy transparency, implementation capacity, subsidies, fishing effort, and foreign fishing. All countries with coastal areas were assessed through a combination of surveys, empirical data and enquiries to fisheries experts. For each OHI reporting region, scores for each category were rescaled between 0 and 1 using the maximum possible value for each category and then the average score of all 6 categories was used as the overall fisheries management effectiveness score.</p>
-<p>Data are not accessible in csv format from website, so points were manually entered into excel and saved as a csv (found in v2019/raw). Because FMI scores only exist for 40 out of the 220 OHI regions, we trained linear models using scores from the AO need layer (rescaled GDP per capita per person purchasing power), GDP per capita, World Governance Index (WGI), Social Progress Indicator (SPI), and UN georegion labels to determine which would be most effective for gapfilling the missing data. After comparing the models, we determined SPI and UN georegions to be the best predictors of FMI, and used these models to gapfill FMI scores for the remaining 80 regions. 20 of these regions remain NA as they are uninhabited.</p>
+<p>These data describe the current effectiveness of fisheries management regimes along 6 axes (Melnychuk et al. 2017): scientific robustness, policy transparency, implementation capacity, subsidies, fishing effort, and foreign fishing. All countries with coastal areas were assessed through a combination of surveys, empirical data and enquiries to fisheries experts. For each OHI reporting region, scores for each category were rescaled between 0 and 1 using the maximum possible value for each category and then the average score of all 6 categories was used as the overall fisheries management effectiveness score.</p>
+<p>Data are not accessible in csv format from website, so points were manually entered into excel and saved as a csv. Because FMI scores only exist for 40 out of the 220 OHI regions, we predicted missing values using a linear models with Social Progress Index and UN georegion data as predictors. Uninhabited regions (N=20) were given an NA value.</p>
 </div>
-</div>
-</div>
-<div id="data-source" class="section level1">
-<h1><span class="header-section-number">8</span> Data source</h1>
-<p><em>Reference</em> melnychuk_fisheries_2017</p>
-</div>
-<div id="data-used-to-gapfill-missing-fmi-data-points" class="section level1">
-<h1><span class="header-section-number">9</span> Data used to gapfill missing FMI data points</h1>
-<div id="spi" class="section level2">
-<h2><span class="header-section-number">9.1</span> SPI</h2>
-<p><em>Note: These data were not updated for v2019 at the time of completing the FMI resilience layer.</em></p>
-<p><strong>Citation</strong>: <a href="http://www.socialprogress.org/" class="uri">http://www.socialprogress.org/</a></p>
-<p>Stern, S., A. Wares and T. Epner. 2018. Social Progress Index: 2018 Methodology Report.</p>
-<p><strong>Source information</strong>: <a href="http://www.socialprogress.org/" class="uri">http://www.socialprogress.org/</a> –&gt; Download Data</p>
-<p><strong>Date Downloaded</strong>: 9/21/2018</p>
-<p><strong>Time range</strong>: 2014-2018</p>
-<p><strong>Native data resolution</strong>: country scores</p>
-<p><strong>Format</strong>: Excel file</p>
-<p><strong>Description</strong>: Social Progress Index scores and components for countries.</p>
-</div>
-<div id="un-georegions" class="section level2">
-<h2><span class="header-section-number">9.2</span> UN georegions</h2>
-<p>UNgeorgn() loads a dataframe from common.R with UN geopolitical designations, and is commonly used in OHI to gapfill missing data. The distinct regions are derived from the <a href="https://unstats.un.org/unsd/methodology/m49/">United Nations Statistics Division</a>Each region is assigned four labels with increasing granularity/specificity: r0_label = World (1 level), r1_label = continental regions (7 levels: Oceania, Asia, Africa, Europe, Southern Islands, Latin America and the Caribbean, and Americas), r2_label = georegions (22 levels for subregions and intermediary regions).</p>
 <div id="units-21" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
 </div>
 <div id="fishery-catch-data" class="section level2">
-<h2><span class="header-section-number">9.3</span> Fishery catch data</h2>
+<h2><span class="header-section-number">7.23</span> Fishery catch data</h2>
 <div id="fis_meancatch" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_meancatch.csv">fis_meancatch</a></h4>
-<p>Fisheries catch data were averaged across years (e.g., catch values are the same across years within a taxa/region) for each OHI region and taxon. These values were used to weight the stock status scores (derived from B/Bmsy values) in the fisheries model. Yearly catch data (tonnes) from the <a href="http://metadata.imas.utas.edu.au/geonetwork/srv/eng/metadata.show?uuid=ff1274e1-c0ab-411b-a8a2-5a12eb27f2c0">Global Fisheries Landings V3.0</a> (Global Fisheries Landings V3.0, Watson 2018) is reported at 0.5 degree resolution for taxonomic levels range from species to class to “Miscellaneous not identified”. Tonnes of catch for each taxon and year were summed within each OHI region, and then the average catch across years (1980 to present) was determined for each taxon and region.</p>
+<p>Fisheries catch data describe the average catch across years (from 1980 to present) for each fish stock and region. These values were used to weight stock status scores (derived from B/Bmsy values) in the fisheries model. The Global Fisheries Landings data (Watson 2019) is reported at 0.5 degree resolution for taxonomic levels range from species to class to “Miscellaneous not identified” for each year. Tonnes of catch for each taxon and year were summed within each OHI region, and then the average catch across years (1980 to present) was determined for each taxon and region.</p>
 </div>
 <div id="units-22" class="section level4 unnumbered">
 <h4>Units</h4>
@@ -8826,7 +8800,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="food-provision-weights" class="section level2">
-<h2><span class="header-section-number">9.4</span> Food provision weights</h2>
+<h2><span class="header-section-number">7.24</span> Food provision weights</h2>
 <div id="fp_wildcaught_weight" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_wildcaught_weight.csv">fp_wildcaught_weight</a></h4>
 <p>To weight the relative contributions of fisheries and mariculture to the food provision goal, we calculate the tonnes of fisheries production relative to the total tonnes of food production from fisheries and mariculture.</p>
@@ -8837,7 +8811,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="genetic-escapes" class="section level2">
-<h2><span class="header-section-number">9.5</span> Genetic escapes</h2>
+<h2><span class="header-section-number">7.25</span> Genetic escapes</h2>
 <div id="sp_genetic" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_genetic.csv">sp_genetic</a></h4>
 <p><em>Pressure</em></p>
@@ -8851,7 +8825,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="global-competitiveness-index-gci" class="section level2">
-<h2><span class="header-section-number">9.6</span> Global Competitiveness Index (GCI)</h2>
+<h2><span class="header-section-number">7.26</span> Global Competitiveness Index (GCI)</h2>
 <div id="li_gci" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_gci.csv">li_gci</a></h4>
 <p><em>Resilience</em></p>
@@ -8864,7 +8838,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-of-coral" class="section level2">
-<h2><span class="header-section-number">9.7</span> Habitat condition of coral</h2>
+<h2><span class="header-section-number">7.27</span> Habitat condition of coral</h2>
 <div id="hab_coral_health" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_health.csv">hab_coral_health</a></h4>
 <p>See <strong>Habitat extent of coral</strong> layer for more information.</p>
@@ -8877,7 +8851,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-of-mangrove" class="section level2">
-<h2><span class="header-section-number">9.8</span> Habitat condition of mangrove</h2>
+<h2><span class="header-section-number">7.28</span> Habitat condition of mangrove</h2>
 <div id="hab_mangrove_health" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_health.csv">hab_mangrove_health</a></h4>
 <p>See <strong>Habitat extent of mangrove</strong> layer for more information.</p>
@@ -8889,7 +8863,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-of-saltmarsh" class="section level2">
-<h2><span class="header-section-number">9.9</span> Habitat condition of saltmarsh</h2>
+<h2><span class="header-section-number">7.29</span> Habitat condition of saltmarsh</h2>
 <div id="hab_saltmarsh_health" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_health.csv">hab_saltmarsh_health</a></h4>
 <p>See <strong>Habitat extent of saltmarsh</strong> layer for more information.</p>
@@ -8901,7 +8875,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-of-seagrass" class="section level2">
-<h2><span class="header-section-number">9.10</span> Habitat condition of seagrass</h2>
+<h2><span class="header-section-number">7.30</span> Habitat condition of seagrass</h2>
 <div id="hab_seagrass_health" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_health.csv">hab_seagrass_health</a></h4>
 <p>See <strong>Habitat extent of seagrass</strong> layer for more information.</p>
@@ -8913,7 +8887,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-of-seaice" class="section level2">
-<h2><span class="header-section-number">9.11</span> Habitat condition of seaice</h2>
+<h2><span class="header-section-number">7.31</span> Habitat condition of seaice</h2>
 <div id="hab_seaice_health" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_health.csv">hab_seaice_health</a></h4>
 <p>See <strong>Habitat extent of seaice</strong> layer for more information.</p>
@@ -8925,7 +8899,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-of-softbottom" class="section level2">
-<h2><span class="header-section-number">9.12</span> Habitat condition of softbottom</h2>
+<h2><span class="header-section-number">7.32</span> Habitat condition of softbottom</h2>
 <div id="hab_softbottom_health" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_health.csv">hab_softbottom_health</a></h4>
 <p>See <strong>Habitat extent of softbottom</strong> layer for more information.</p>
@@ -8938,7 +8912,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-trend-of-coral" class="section level2">
-<h2><span class="header-section-number">9.13</span> Habitat condition trend of coral</h2>
+<h2><span class="header-section-number">7.33</span> Habitat condition trend of coral</h2>
 <div id="hab_coral_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_trend.csv">hab_coral_trend</a></h4>
 <p>See <strong>Habitat extent of coral</strong> layer for more information.</p>
@@ -8950,7 +8924,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-trend-of-mangrove" class="section level2">
-<h2><span class="header-section-number">9.14</span> Habitat condition trend of mangrove</h2>
+<h2><span class="header-section-number">7.34</span> Habitat condition trend of mangrove</h2>
 <div id="hab_mangrove_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_trend.csv">hab_mangrove_trend</a></h4>
 <p>See <strong>Habitat extent of mangrove</strong> layer for more information.</p>
@@ -8962,7 +8936,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-trend-of-saltmarsh" class="section level2">
-<h2><span class="header-section-number">9.15</span> Habitat condition trend of saltmarsh</h2>
+<h2><span class="header-section-number">7.35</span> Habitat condition trend of saltmarsh</h2>
 <div id="hab_saltmarsh_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_trend.csv">hab_saltmarsh_trend</a></h4>
 <p>See <strong>Habitat extent of saltmarsh</strong> layer for more information.</p>
@@ -8974,7 +8948,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-trend-of-seagrass" class="section level2">
-<h2><span class="header-section-number">9.16</span> Habitat condition trend of seagrass</h2>
+<h2><span class="header-section-number">7.36</span> Habitat condition trend of seagrass</h2>
 <div id="hab_seagrass_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_trend.csv">hab_seagrass_trend</a></h4>
 <p>See <strong>Habitat extent of seagrass</strong> layer for more information.</p>
@@ -8986,7 +8960,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-trend-of-seaice" class="section level2">
-<h2><span class="header-section-number">9.17</span> Habitat condition trend of seaice</h2>
+<h2><span class="header-section-number">7.37</span> Habitat condition trend of seaice</h2>
 <div id="hab_seaice_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_trend.csv">hab_seaice_trend</a></h4>
 <p>See <strong>Habitat extent of seaice</strong> layer for more information.</p>
@@ -8998,7 +8972,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-condition-trend-of-softbottom" class="section level2">
-<h2><span class="header-section-number">9.18</span> Habitat condition trend of softbottom</h2>
+<h2><span class="header-section-number">7.38</span> Habitat condition trend of softbottom</h2>
 <div id="hab_softbottom_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_trend.csv">hab_softbottom_trend</a></h4>
 <p>See <strong>Habitat extent of softbottom</strong> layer for more information.</p>
@@ -9010,7 +8984,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-extent-of-coral" class="section level2">
-<h2><span class="header-section-number">9.19</span> Habitat extent of coral</h2>
+<h2><span class="header-section-number">7.39</span> Habitat extent of coral</h2>
 <div id="hab_coral_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_extent.csv">hab_coral_extent</a></h4>
 <p>Coral data are used to calculate coastal protection goal, habitat subgoal, and exposure variable of the natural products goal.</p>
@@ -9022,7 +8996,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-extent-of-mangrove" class="section level2">
-<h2><span class="header-section-number">9.20</span> Habitat extent of mangrove</h2>
+<h2><span class="header-section-number">7.40</span> Habitat extent of mangrove</h2>
 <div id="hab_mangrove_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_extent.csv">hab_mangrove_extent</a></h4>
 <p>Mangrove data are used to calculate the coastal protection and carbon storage goals, and the habitat subgoal.</p>
@@ -9034,7 +9008,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-extent-of-rocky-reef" class="section level2">
-<h2><span class="header-section-number">9.21</span> Habitat extent of rocky reef</h2>
+<h2><span class="header-section-number">7.41</span> Habitat extent of rocky reef</h2>
 <div id="hab_rockyreef_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_rockyreef_extent.csv">hab_rockyreef_extent</a></h4>
 <p>Rocky reef data is used to calculate the exposure variable in the natural product goal.</p>
@@ -9046,7 +9020,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-extent-of-saltmarsh" class="section level2">
-<h2><span class="header-section-number">9.22</span> Habitat extent of saltmarsh</h2>
+<h2><span class="header-section-number">7.42</span> Habitat extent of saltmarsh</h2>
 <div id="hab_saltmarsh_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_extent.csv">hab_saltmarsh_extent</a></h4>
 <p>Saltmarsh data are used to calculate the coastal proection and carbon storage goals, and the habitat subgoal.</p>
@@ -9059,7 +9033,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-extent-of-seagrass" class="section level2">
-<h2><span class="header-section-number">9.23</span> Habitat extent of seagrass</h2>
+<h2><span class="header-section-number">7.43</span> Habitat extent of seagrass</h2>
 <div id="hab_seagrass_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_extent.csv">hab_seagrass_extent</a></h4>
 <p>Seagrass data are used to calculate the coastal proection and carbon storage goals, and the habitat subgoal.</p>
@@ -9071,7 +9045,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-extent-of-seaice" class="section level2">
-<h2><span class="header-section-number">9.24</span> Habitat extent of seaice</h2>
+<h2><span class="header-section-number">7.44</span> Habitat extent of seaice</h2>
 <div id="hab_seaice_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_extent.csv">hab_seaice_extent</a></h4>
 <p>Sea-ice shoreline data are used to calculate the coastal proection goal and sea-ice edge data are used to calculate the habitat subgoal.</p>
@@ -9083,7 +9057,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-extent-of-softbottom" class="section level2">
-<h2><span class="header-section-number">9.25</span> Habitat extent of softbottom</h2>
+<h2><span class="header-section-number">7.45</span> Habitat extent of softbottom</h2>
 <div id="hab_softbottom_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_extent.csv">hab_softbottom_extent</a></h4>
 <p>Softbottom data is one of the variables in the habitat goal and the inverse is a habitat destruction pressure.</p>
@@ -9095,7 +9069,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="habitat-presenceabsence" class="section level2">
-<h2><span class="header-section-number">9.26</span> Habitat presence/absence</h2>
+<h2><span class="header-section-number">7.46</span> Habitat presence/absence</h2>
 <div id="element_wts_hab_pres_abs" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_hab_pres_abs.csv">element_wts_hab_pres_abs</a></h4>
 <p>This layer describes the habitats present in each region (based on the habitat extent data) and is called internally by ohicore functions to calculate pressure and resilience values based on the habitats present in each region.</p>
@@ -9107,7 +9081,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="high-bycatch-due-to-artisanal-fishing" class="section level2">
-<h2><span class="header-section-number">9.27</span> High bycatch due to artisanal fishing</h2>
+<h2><span class="header-section-number">7.47</span> High bycatch due to artisanal fishing</h2>
 <div id="fp_art_hb" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_art_hb.csv">fp_art_hb</a></h4>
 <p><em>Pressure</em></p>
@@ -9124,7 +9098,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="high-bycatch-due-to-commercial-fishing" class="section level2">
-<h2><span class="header-section-number">9.28</span> High bycatch due to commercial fishing</h2>
+<h2><span class="header-section-number">7.48</span> High bycatch due to commercial fishing</h2>
 <div id="fp_com_hb" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_com_hb.csv">fp_com_hb</a></h4>
 <p><em>Pressure</em></p>
@@ -9141,7 +9115,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="inland-1km-area" class="section level2">
-<h2><span class="header-section-number">9.29</span> Inland 1km area</h2>
+<h2><span class="header-section-number">7.49</span> Inland 1km area</h2>
 <div id="rgn_area_inland1km" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_inland1km.csv">rgn_area_inland1km</a></h4>
 <p>See <strong>Region areas based on EEZ boundaries</strong> layer for more information.</p>
@@ -9154,7 +9128,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="inland-coastal-protected-areas" class="section level2">
-<h2><span class="header-section-number">9.30</span> Inland coastal protected areas</h2>
+<h2><span class="header-section-number">7.50</span> Inland coastal protected areas</h2>
 <div id="lsp_prot_area_inland1km" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/lsp_prot_area_inland1km.csv">lsp_prot_area_inland1km</a></h4>
 <p>This includes protected areas 1km inland, but otherwise follows the methods described in <strong>Offshore coastal protected areas</strong>.</p>
@@ -9165,7 +9139,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="intertidal-habitat-destruction" class="section level2">
-<h2><span class="header-section-number">9.31</span> Intertidal habitat destruction</h2>
+<h2><span class="header-section-number">7.51</span> Intertidal habitat destruction</h2>
 <div id="hd_intertidal" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_intertidal.csv">hd_intertidal</a></h4>
 <p><em>Pressure</em></p>
@@ -9180,7 +9154,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="iucn-extinction-risk" class="section level2">
-<h2><span class="header-section-number">9.32</span> IUCN extinction risk</h2>
+<h2><span class="header-section-number">7.52</span> IUCN extinction risk</h2>
 <div id="ico_spp_iucn_status" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ico_spp_iucn_status.csv">ico_spp_iucn_status</a></h4>
 <p>This data layer provides the risk category and the year the species was assessed from the IUCN Red List of Threatened Species (<a href="http://www.iucnredlist.org/">http://www.iucnredlist.org/</a>) for the iconic species in each region. Regionally specific IUCN risk category data for <em>subpopulations</em> are included where available. Trend calculations are based on the change in each species’ IUCN risk category over time, based upon past and current IUCN assessments.</p>
@@ -9245,7 +9219,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="livelihood-status-scores" class="section level2">
-<h2><span class="header-section-number">9.33</span> Livelihood status scores</h2>
+<h2><span class="header-section-number">7.53</span> Livelihood status scores</h2>
 <div id="liv_status" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/liv_status.csv">liv_status</a></h4>
 <p>This layer provides calculated status values for the livelihoods subgoal. Livelihoods is calculated using job and wage data from marine sectors.</p>
@@ -9254,33 +9228,33 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Where, cur_base_value is the most recent value (i.e., jobs or wages) for each sector/region, and ref_base_value is the value for the earliest year of data for each sector/region. These values are adjusted to control for larger trends within the region. For example, jobs data for the livelihoods subgoal was adjusted by dividing by the percent employment of the corresponding year. For wage data, the adjustment was done a bit differently by multiplying wages by GDPpcPPP for each year/region to make wages comparable.</p>
 </div>
 <div id="jobs" class="section level3">
-<h3><span class="header-section-number">9.33.1</span> Jobs</h3>
+<h3><span class="header-section-number">7.53.1</span> Jobs</h3>
 <p>Jobs includes yearly data for commercial fishing, mariculture, marine mammal watching, marine renewable energy, and, tourism. The data sources and methods for each sector are described below.</p>
 <p>Percent employment during the current status year for each sector/region is calculated as (1 - percent unemployment)*total labor force (World Bank). Jobs data for the livelihoods subgoal were adjusted by dividing by the percent employment in the corresponding year.</p>
 <div id="commercial-fishing-1" class="section level4">
-<h4><span class="header-section-number">9.33.1.1</span> Commercial fishing</h4>
+<h4><span class="header-section-number">7.53.1.1</span> Commercial fishing</h4>
 <p>Data are from the United Nations Food and Agriculture Organization (FAO) Fisheries and Aquaculture Department which provides a Global Number of Fishers dataset ( <a href="http://www.fao.org/fishery/statistics/global-fishers/en.">http://www.fao.org/fishery/statistics/global-fishers/en</a>). The data include yearly total numbers of employees in commercial fishing, subsistence fishing, and aquaculture (land- and ocean-based combined) in more than 160 countries. The dataset includes the following occupational categories: aquatic-life cultivation, inland waters fishing, marine coastal waters fishing, marine deepsea waters fishing, subsistence and unspecified. We omitted jobs with an unspecified category to avoid overestimating employment for marine fishing or aquaculture. We omitted jobs in the subsistence category since subsistence opportunities are captured by the artisanal fishing opportunity goal and in the aquatic-life cultivation category since that represents a distinct sector (see mariculture below). For commercial fishing, we eliminated inland waters fishing and summed marine coastal waters and marine deep-sea waters fishing for each country in each year. Data are reported separately for men and women, but we summed these numbers. Employment is disaggregated into full-time, parttime, occasional, and unspecified statuses. These categories are defined as full time workers having &gt; 90% of their time or livelihood from fishing/aquaculture, part time workers are between 30-90% time (or 30-90% of their livelihood) and occasional workers are &lt; 30% time. Unspecified status workers could fall anywhere from 0-100% time. Taking the midpoints of those ranges, we assume that 1 part time worker = 0.6 full time workers, 1 occasional worker = 0.15 full time workers, and 1 unspecified worker = 0.5 full time workers, which we used as a weighting scheme for determining total numbers of jobs. The dataset has significant gaps, but it provides the most comprehensive source of global data on commercial fishing and aquaculture employment.</p>
 </div>
 <div id="mariculture-1" class="section level4">
-<h4><span class="header-section-number">9.33.1.2</span> Mariculture</h4>
+<h4><span class="header-section-number">7.53.1.2</span> Mariculture</h4>
 <p>We used the FAO Global Number of Fishers dataset (see commercial fishing above for full description) to estimate jobs for mariculture. For this sector, we used data in the aquatic-life cultivation category. Again, employment is disaggregated into full-time, part-time, occasional, and unspecified statuses and we implement a weighting scheme where full time = 1 job, part-time = 0.6, occasional = 0.15, and unspecified = 0.5. Aquatic-life cultivation includes marine, brackish and freshwater aquaculture. In order to estimate the proportion of total aquaculture jobs that can be attributed to marine and brackish aquaculture, we used country-specific proportions of marine and brackish aquaculture revenues (compared to total revenues) calculated from FAO aquaculture production data, assuming that numbers of jobs approximately scale with production in terms of revenue. For country-years with no data for the proportion of marine/brackish production because of gaps in the FAO production data, we used the proportion from the most recent year for which data were available. For countries without proportion estimates from any years, we used the average proportion from the country’s geographic region (e.g., Caribbean, Polynesia, Eastern Asia), with the exception of American Samoa, for which we used the proportion value from Guam.</p>
 </div>
 <div id="marine-mammal-watching-1" class="section level4">
-<h4><span class="header-section-number">9.33.1.3</span> Marine mammal watching</h4>
+<h4><span class="header-section-number">7.53.1.3</span> Marine mammal watching</h4>
 <p>The International Fund for Animal Welfare’s (IFAW) Whale Division provides time series data on whale watching in more than 115 coastal countries (O’Connor et al 2009). This dataset may be an imperfect representation of all marine mammal watching due to its focus on whales, although it does include data for other types of marine mammal watching (e.g., dolphins). However, to our knowledge, it is the most complete dataset pertaining to the global marine mammal watching industry. We obtained regional averages of the number of whale watchers per employee, as well as the number of whale watchers in each country. Using this information, we estimated the number of whale watching jobs in each country by dividing the country’s total number of whale watchers by the average number of whale watchers per employee for that country’s region (e.g., Africa &amp; Middle East, Europe, North America). It is important to note that data are not annual, but there are at least four years of data for each country. When IFAW reported “minimal” numbers of whale watchers, we converted this description to a 0 for lack of additional information. Because some of the whale watching in O’Connor et al. focused on freshwater cetacean viewing, we categorized the target species listed for each country as freshwater or marine. For countries with both marine and freshwater species, we categorized the whale watching in those countries as either 50% or 90% marine, based on the number of marine versus freshwater target species and information provided in the report narrative. For Colombia and Indonesia, more detailed information in the report narrative allowed for a more precise determination of the percentage of marine-based whale watching. We applied these marine proportions to data on the number of whale watchers before converting these estimates into employment estimates.</p>
 </div>
 <div id="marine-renewable-energy-1" class="section level4">
-<h4><span class="header-section-number">9.33.1.4</span> Marine renewable energy</h4>
+<h4><span class="header-section-number">7.53.1.4</span> Marine renewable energy</h4>
 <p>The number of marine renewable energy jobs was determined for the two countries, France and Canada, which produce significant enough amounts of tidal energy to register with the UN Energy Statistics Database <a href="http://data.un.org/Data.aspx?d=EDATA&amp;f=cmID%3aEO">http://data.un.org/Data.aspx?d=EDATA&amp;f=cmID%3aEO</a>. For the La Rance plant in France, employment information was obtained from a recent press statement (EDF 2011); we assumed employment stayed constant over the time period for which we had production data for this plant, given relatively consistent or even growing production. For the Annopolis Royal plant in Canada, we received yearly employment information from the plant (Ruth Thorbourne, personal communication, Aug 9 2011).</p>
 <p>Marine renewable energy includes five major technologies: tidal barrages, marine currents, waves, ocean thermal converters and salinity gradients. However, we only include data for the largest tidal barrage plants, as these data are available.</p>
 </div>
 <div id="tourism-1" class="section level4">
-<h4><span class="header-section-number">9.33.1.5</span> Tourism</h4>
+<h4><span class="header-section-number">7.53.1.5</span> Tourism</h4>
 <p>The World Travel &amp; Tourism Council (WTTC) provides data on travel and tourism’s total contribution to employment for 180 countries (<a href="http://www.wttc.org/eng/Tourism_Research/Economic_Data_Search_Tool/">http://www.wttc.org/eng/Tourism_Research/Economic_Data_Search_Tool/</a>). Although other global data sources on tourism are available (i.e., United Nations World Tourism Organization, UNTWO), the WTTC database was chosen because it offers yearly time series data that span through the current year, it includes nearly complete coverage of all nations, and it disaggregates direct and total (direct plus indirect) employment impacts of tourism. WTTC provides projected data, however, we do not use these values. We used total employment data to avoid the use of literature derived multiplier effects. The WTTC shares a significant drawback with UNTWO data, in that data on coastal/marine and inland tourism are lumped. Therefore, a country-specific coefficient must be applied to estimate the jobs provided by coastal/marine tourism alone. We adjusted national tourism data by the proportion of a country’s population that lives within a 25 mile inland coastal zone.</p>
 </div>
 </div>
 <div id="wages" class="section level3">
-<h3><span class="header-section-number">9.33.2</span> Wages</h3>
+<h3><span class="header-section-number">7.53.2</span> Wages</h3>
 <p>Wages were multiplied by GDPpcPPP for each country/year to make values comparable.</p>
 <p>We used the Occupational Wages around the World (OWW) database produced by Remco H. Oostendorp and Richard B. Freeman in 2005 (<a href="http://www.nber.org/oww/">http://www.nber.org/oww/</a>). These data were drawn from the International Labour Organization and subjected to a standardization process (for more information, see <a href="http://www.nber.org/oww/Technical%20_document_1983-2003_standardizationv3.pdf">http://www.nber.org/oww/Technical _document_1983-2003_standardizationv3.pdf</a>). The database provides several different calibrations, and we use the “x3wl calibration”, described as a “country-specific and uniform calibration with lexicographic weighting,” and recommended as being the preferred calibration in most cases. Although significant gaps exist in this database, it contains country-specific information on average wages in many industries for more than 150 countries from 1983-2003. Data represent average monthly wages of a male worker. Wage data were divided by the inflation conversion factor for 2010 so that wage data across years would be comparable (<a href="http://oregonstate.edu/cla/polisci/sahr/sahr">http://oregonstate.edu/cla/polisci/sahr/sahr</a>), and then multiplied by the purchasing power parity-adjusted per capita gdp (ppppcgdp, WorldBank). The adjusted wage data were then multiplied by 12 to get annual wages. We used the industry and occupation classifications reported in the OWW to estimate wages for marine-related sectors.</p>
 <p><strong>Table 6.10. Occupation classification for wage data sectors</strong></p>
@@ -9325,7 +9299,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="livelihood-trend-scores" class="section level2">
-<h2><span class="header-section-number">9.34</span> Livelihood trend scores</h2>
+<h2><span class="header-section-number">7.54</span> Livelihood trend scores</h2>
 <div id="liv_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/liv_trend.csv">liv_trend</a></h4>
 <p>See <strong>Livelihood status scores</strong> layer for more information about data and methods.</p>
@@ -9338,7 +9312,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="low-bycatch-due-to-artisanal-fishing" class="section level2">
-<h2><span class="header-section-number">9.35</span> Low bycatch due to artisanal fishing</h2>
+<h2><span class="header-section-number">7.55</span> Low bycatch due to artisanal fishing</h2>
 <div id="fp_art_lb" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_art_lb.csv">fp_art_lb</a></h4>
 <p><em>Pressure</em></p>
@@ -9355,7 +9329,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="low-bycatch-due-to-commercial-fishing" class="section level2">
-<h2><span class="header-section-number">9.36</span> Low bycatch due to commercial fishing</h2>
+<h2><span class="header-section-number">7.56</span> Low bycatch due to commercial fishing</h2>
 <div id="fp_com_lb" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_com_lb.csv">fp_com_lb</a></h4>
 <p><em>Pressure</em></p>
@@ -9372,7 +9346,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="management-of-habitat-to-protect-fisheries-biodiversity" class="section level2">
-<h2><span class="header-section-number">9.37</span> Management of habitat to protect fisheries biodiversity</h2>
+<h2><span class="header-section-number">7.57</span> Management of habitat to protect fisheries biodiversity</h2>
 <div id="fp_habitat" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_habitat.csv">fp_habitat</a></h4>
 <p><em>Resilience</em></p>
@@ -9410,7 +9384,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="management-of-habitat-to-protect-habitat-biodiversity" class="section level2">
-<h2><span class="header-section-number">9.38</span> Management of habitat to protect habitat biodiversity</h2>
+<h2><span class="header-section-number">7.58</span> Management of habitat to protect habitat biodiversity</h2>
 <div id="hd_habitat" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_habitat.csv">hd_habitat</a></h4>
 <p><em>Resilience</em></p>
@@ -9424,7 +9398,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="management-of-mariculture-to-preserve-biodiversity" class="section level2">
-<h2><span class="header-section-number">9.39</span> Management of mariculture to preserve biodiversity</h2>
+<h2><span class="header-section-number">7.59</span> Management of mariculture to preserve biodiversity</h2>
 <div id="g_mariculture" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_mariculture.csv">g_mariculture</a></h4>
 <p><em>Resilience</em></p>
@@ -9464,7 +9438,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="management-of-nonindigenous-species" class="section level2">
-<h2><span class="header-section-number">9.40</span> Management of nonindigenous species</h2>
+<h2><span class="header-section-number">7.60</span> Management of nonindigenous species</h2>
 <div id="sp_alien_species" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_alien_species.csv">sp_alien_species</a></h4>
 <p><em>Resilience</em></p>
@@ -9491,7 +9465,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="management-of-tourism-to-preserve-biodiversity" class="section level2">
-<h2><span class="header-section-number">9.41</span> Management of tourism to preserve biodiversity</h2>
+<h2><span class="header-section-number">7.61</span> Management of tourism to preserve biodiversity</h2>
 <div id="g_tourism" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_tourism.csv">g_tourism</a></h4>
 <p><em>Resilience</em></p>
@@ -9534,7 +9508,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="management-of-waters-to-preserve-biodiversity" class="section level2">
-<h2><span class="header-section-number">9.42</span> Management of waters to preserve biodiversity</h2>
+<h2><span class="header-section-number">7.62</span> Management of waters to preserve biodiversity</h2>
 <div id="po_water" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_water.csv">po_water</a></h4>
 <p><em>Resilience</em></p>
@@ -9558,7 +9532,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="mariculture-harvest" class="section level2">
-<h2><span class="header-section-number">9.43</span> Mariculture harvest</h2>
+<h2><span class="header-section-number">7.63</span> Mariculture harvest</h2>
 <div id="mar_harvest_tonnes" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_harvest_tonnes.csv">mar_harvest_tonnes</a></h4>
 <p>Mariculture production from the FAO Global Aquaculture Production Quantity dataset. Only production classified in the “Marine” and “Brackishwater” environments was included in the analysis (all “Freshwater” production was excluded). Non-edible seaweeds were excluded because they are included in the natural products goal. All species produced within a country were summed to give a single production value for each country in each year that production took place. For the three EEZs that fall within the China region (China, Macau, and Hong Kong), we combined the values by summing across these EEZs.</p>
@@ -9569,7 +9543,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="mariculture-sustainability-index" class="section level2">
-<h2><span class="header-section-number">9.44</span> Mariculture Sustainability Index</h2>
+<h2><span class="header-section-number">7.64</span> Mariculture Sustainability Index</h2>
 <div id="g_msi_gov" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_msi_gov.csv">g_msi_gov</a></h4>
 <p><em>Resilience</em></p>
@@ -9609,7 +9583,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="mariculture-sustainability-score" class="section level2">
-<h2><span class="header-section-number">9.45</span> Mariculture sustainability score</h2>
+<h2><span class="header-section-number">7.65</span> Mariculture sustainability score</h2>
 <div id="mar_sustainability_score" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_sustainability_score.csv">mar_sustainability_score</a></h4>
 <p>Three mariculture practice criteria from the Marine Sustainability Index (Trujillo 2008) contributed to the sustainability of mariculture (fishmeal use, waste treatment, and seed and larvae origin criteria). These criteria represent the internal mariculture practices with the potential to affect the long term sustainability of the mariculture system. The MSI reports data for 359 country-species combinations (with 60 countries and 86 species represented) for each assessment criterion. Scores for each assessment criterion were aggregated and averaged based on the proportion of the landings that each assessed species contributed to the overall catch in each country in the current year. All country average scores were then rescaled from 0 to 1 using the maximum possible raw MSI score of 10 and minimum of 1, and then weighted equally to calculate a composite resilience. Because the Index comprises species-specific sustainability values that are combined as a catch-weighted average, when the list of species harvested changes, the sustainability index used in the mariculture sub-goal model also changes due to shifts in the relative composition of harvested species.</p>
@@ -9648,7 +9622,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="marine-plastics" class="section level2">
-<h2><span class="header-section-number">9.46</span> Marine plastics</h2>
+<h2><span class="header-section-number">7.66</span> Marine plastics</h2>
 <div id="po_trash" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_trash.csv">po_trash</a></h4>
 <p><em>Pressure</em></p>
@@ -9662,7 +9636,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="measure-of-coastal-ecological-integrity" class="section level2">
-<h2><span class="header-section-number">9.47</span> Measure of coastal ecological integrity</h2>
+<h2><span class="header-section-number">7.67</span> Measure of coastal ecological integrity</h2>
 <div id="species_diversity_3nm" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/species_diversity_3nm.csv">species_diversity_3nm</a></h4>
 <p><em>Resilience</em></p>
@@ -9676,7 +9650,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="measure-of-ecological-integrity" class="section level2">
-<h2><span class="header-section-number">9.48</span> Measure of ecological integrity</h2>
+<h2><span class="header-section-number">7.68</span> Measure of ecological integrity</h2>
 <div id="species_diversity_eez" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/species_diversity_eez.csv">species_diversity_eez</a></h4>
 <p><em>Resilience</em></p>
@@ -9690,7 +9664,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="natural-product-harvest" class="section level2">
-<h2><span class="header-section-number">9.49</span> Natural product harvest</h2>
+<h2><span class="header-section-number">7.69</span> Natural product harvest</h2>
 <div id="np_harvest_tonnes" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes.csv">np_harvest_tonnes</a></h4>
 <p>The total tonnes of six natural product commodities (corals, ornamental fish, shells, fish oil, inedible seaweeds and plants, and sponges) were determined for each region using export data from the FAO Global Commodities database. For each group the sum of the subcategories was calculated. For ornamental fish we excluded the subcategory ‘Fish for culture including ova, fingerlings, etc.’ because it is not specific to ornamental fish, and the subcategory ‘Ornamental freshwater fish’ because it is not from marine systems. Corals and shells are reported together in nine subcategories; we used the subcategories most closely tied to each, leading to the sum of two subcategories for corals and seven subcategories for shells (one subcategory was used for both). We did not use one subcategory – ‘Powder and waste of shells’ – as it likely a byproduct of the other subcategories rather than a primary target (and it comprises a very small amount of the total anyway).</p>
@@ -9737,7 +9711,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="nonindigenous-species" class="section level2">
-<h2><span class="header-section-number">9.50</span> Nonindigenous species</h2>
+<h2><span class="header-section-number">7.70</span> Nonindigenous species</h2>
 <div id="sp_alien" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_alien.csv">sp_alien</a></h4>
 <p><em>Pressure</em></p>
@@ -9751,7 +9725,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="nutrient-pollution" class="section level2">
-<h2><span class="header-section-number">9.51</span> Nutrient pollution</h2>
+<h2><span class="header-section-number">7.71</span> Nutrient pollution</h2>
 <div id="po_nutrients" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_nutrients.csv">po_nutrients</a></h4>
 <p><em>Pressure</em></p>
@@ -9768,7 +9742,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="nutrient-pollution-trend" class="section level2">
-<h2><span class="header-section-number">9.52</span> Nutrient pollution trend</h2>
+<h2><span class="header-section-number">7.72</span> Nutrient pollution trend</h2>
 <div id="cw_nutrient_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_nutrient_trend.csv">cw_nutrient_trend</a></h4>
 <p>See description for nutrient pollution layer <strong>Nutrient pollution</strong>.</p>
@@ -9780,7 +9754,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="ocean-acidification" class="section level2">
-<h2><span class="header-section-number">9.53</span> Ocean acidification</h2>
+<h2><span class="header-section-number">7.73</span> Ocean acidification</h2>
 <div id="cc_acid" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_acid.csv">cc_acid</a></h4>
 <p><em>Pressure</em></p>
@@ -9794,7 +9768,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="offshore-3nm-area" class="section level2">
-<h2><span class="header-section-number">9.54</span> Offshore 3nm area</h2>
+<h2><span class="header-section-number">7.74</span> Offshore 3nm area</h2>
 <div id="rgn_area_offshore3nm" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_offshore3nm.csv">rgn_area_offshore3nm</a></h4>
 <p>See <strong>Region areas based on EEZ boundaries</strong> layer for more information.</p>
@@ -9806,7 +9780,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="offshore-coastal-protected-areas" class="section level2">
-<h2><span class="header-section-number">9.55</span> Offshore coastal protected areas</h2>
+<h2><span class="header-section-number">7.75</span> Offshore coastal protected areas</h2>
 <div id="lsp_prot_area_offshore3nm" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/lsp_prot_area_offshore3nm.csv">lsp_prot_area_offshore3nm</a></h4>
 <p>This includes marine protected areas within 3nm offshore of the coastline.</p>
@@ -9818,7 +9792,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="ohi-region-id" class="section level2">
-<h2><span class="header-section-number">9.56</span> OHI region id</h2>
+<h2><span class="header-section-number">7.76</span> OHI region id</h2>
 <div id="rgn_global" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_global.csv">rgn_global</a></h4>
 <p>OHI global region ID and name.</p>
@@ -9829,7 +9803,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="pathogen-pollution" class="section level2">
-<h2><span class="header-section-number">9.57</span> Pathogen pollution</h2>
+<h2><span class="header-section-number">7.77</span> Pathogen pollution</h2>
 <div id="po_pathogens" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_pathogens.csv">po_pathogens</a></h4>
 <p><em>Pressure</em></p>
@@ -9843,7 +9817,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="pathogen-pollution-trend" class="section level2">
-<h2><span class="header-section-number">9.58</span> Pathogen pollution trend</h2>
+<h2><span class="header-section-number">7.78</span> Pathogen pollution trend</h2>
 <div id="cw_pathogen_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_pathogen_trend.csv">cw_pathogen_trend</a></h4>
 <p>See description of data and methods in <strong>Pathogen pollution</strong> layer.</p>
@@ -9855,7 +9829,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="percent-direct-employment-in-tourism" class="section level2">
-<h2><span class="header-section-number">9.59</span> Percent direct employment in tourism</h2>
+<h2><span class="header-section-number">7.79</span> Percent direct employment in tourism</h2>
 <div id="tr_jobs_pct_tourism" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_jobs_pct_tourism.csv">tr_jobs_pct_tourism</a></h4>
 <p>World Travel &amp; Tourism Council (<a href="https://www.wttc.org/datagateway">https://www.wttc.org/datagateway</a>) provides country data describing the percent employment in the travel and tourism sectors (such as hotels, airlines, airports, travel agents and leisure &amp; recreation services that deal directly with tourists). We used the percent employment in “direct” tourism jobs as an indicator of the number of tourists visiting the coast.</p>
@@ -9867,7 +9841,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="plastic-trash-trends" class="section level2">
-<h2><span class="header-section-number">9.60</span> Plastic trash trends</h2>
+<h2><span class="header-section-number">7.80</span> Plastic trash trends</h2>
 <div id="cw_trash_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_trash_trend.csv">cw_trash_trend</a></h4>
 <p>Trend in trash was estimated using data on improperly disposed of plastics (Jambeck et al. 2016). Data are from the supplement, and describe mismanaged plastic waste in 2010 and projected mismanaged plastic waste in 2025. Using these data, we estimates proportional trash trends during a 5 year period as follows:</p>
@@ -9882,7 +9856,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="poison-fishing" class="section level2">
-<h2><span class="header-section-number">9.61</span> Poison fishing</h2>
+<h2><span class="header-section-number">7.81</span> Poison fishing</h2>
 <div id="np_cyanide" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_cyanide.csv">np_cyanide</a></h4>
 <p>Reefs at Risk Revisited (Burke et al. 2007) recorded the global presence of destructive artisanal poison (cyanide) fishing based on survey observations and expert opinion. We reclassified the log-scale scoring system for the poison rasters so 0 = 0, 100 = 1, 1000 = 2. The mean raster score was then determined for each OHI region. The poison values for each region were then summed to get the total.</p>
@@ -9893,7 +9867,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="potential-tonnes-of-mariculture-harvest" class="section level2">
-<h2><span class="header-section-number">9.62</span> Potential tonnes of mariculture harvest</h2>
+<h2><span class="header-section-number">7.82</span> Potential tonnes of mariculture harvest</h2>
 <div id="mar_capacity" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_capacity.csv">mar_capacity</a></h4>
 <p>Mariculture capacity/potential was determined for each region using Mapping the global potential for marine aquaculture (<a href="https://www.nature.com/articles/s41559-017-0257-9">Gentry et al. 2017</a>). Global data were provided at 0.0083 degree resolution. The total mariculture capacity count data was calculated for each region by extracting the relevant cell data using the OHI regions shapefile.</p>
@@ -9904,7 +9878,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="region-areas-based-on-eez-boundaries" class="section level2">
-<h2><span class="header-section-number">9.63</span> Region areas based on EEZ boundaries</h2>
+<h2><span class="header-section-number">7.83</span> Region areas based on EEZ boundaries</h2>
 <div id="rgn_area" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area.csv">rgn_area</a></h4>
 <p>Area (km<sup>2</sup>) for each region’s EEZ-based boundary.</p>
@@ -9916,7 +9890,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="regions-1" class="section level2">
-<h2><span class="header-section-number">9.64</span> Regions</h2>
+<h2><span class="header-section-number">7.84</span> Regions</h2>
 <div id="rgn_labels" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_labels.csv">rgn_labels</a></h4>
 <p>OHI region ids for eez (1-250) and fao high seas regions (260-278).</p>
@@ -9927,7 +9901,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="relative-natural-product-harvest-tonnes" class="section level2">
-<h2><span class="header-section-number">9.65</span> Relative natural product harvest tonnes</h2>
+<h2><span class="header-section-number">7.85</span> Relative natural product harvest tonnes</h2>
 <div id="np_harvest_tonnes_relative" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes_relative.csv">np_harvest_tonnes_relative</a></h4>
 <p>See <strong>Natural product harvest</strong> layer for more information about these data.</p>
@@ -9939,7 +9913,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="relative-natural-product-harvest-value" class="section level2">
-<h2><span class="header-section-number">9.66</span> Relative natural product harvest value</h2>
+<h2><span class="header-section-number">7.86</span> Relative natural product harvest value</h2>
 <div id="np_harvest_product_weight" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_product_weight.csv">np_harvest_product_weight</a></h4>
 <p>See <strong>Natural product harvest</strong> layer for more information about these data.</p>
@@ -9951,7 +9925,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="sea-level-rise" class="section level2">
-<h2><span class="header-section-number">9.67</span> Sea level rise</h2>
+<h2><span class="header-section-number">7.87</span> Sea level rise</h2>
 <div id="cc_slr" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_slr.csv">cc_slr</a></h4>
 <p><em>Pressure</em></p>
@@ -9965,7 +9939,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="sea-surface-temperature" class="section level2">
-<h2><span class="header-section-number">9.68</span> Sea surface temperature</h2>
+<h2><span class="header-section-number">7.88</span> Sea surface temperature</h2>
 <div id="cc_sst" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_sst.csv">cc_sst</a></h4>
 <p><em>Pressure</em></p>
@@ -9980,7 +9954,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="sectors-in-each-region" class="section level2">
-<h2><span class="header-section-number">9.69</span> Sectors in each region</h2>
+<h2><span class="header-section-number">7.89</span> Sectors in each region</h2>
 <div id="le_sector_weight" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_sector_weight.csv">le_sector_weight</a></h4>
 <p>Describes which livelihood and economy sectors are present in each region.</p>
@@ -9991,7 +9965,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="social-progress-index" class="section level2">
-<h2><span class="header-section-number">9.70</span> Social Progress Index</h2>
+<h2><span class="header-section-number">7.90</span> Social Progress Index</h2>
 <div id="res_spi" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/res_spi.csv">res_spi</a></h4>
 <p><em>Resilience</em></p>
@@ -10004,7 +9978,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="strength-of-governance" class="section level2">
-<h2><span class="header-section-number">9.71</span> Strength of governance</h2>
+<h2><span class="header-section-number">7.91</span> Strength of governance</h2>
 <div id="wgi_all" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/wgi_all.csv">wgi_all</a></h4>
 <p><em>Resilience</em></p>
@@ -10018,7 +9992,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="subtidal-hardbottom-habitat-destruction" class="section level2">
-<h2><span class="header-section-number">9.72</span> Subtidal hardbottom habitat destruction</h2>
+<h2><span class="header-section-number">7.92</span> Subtidal hardbottom habitat destruction</h2>
 <div id="hd_subtidal_hb" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_subtidal_hb.csv">hd_subtidal_hb</a></h4>
 <p><em>Pressure</em></p>
@@ -10032,7 +10006,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="subtidal-soft-bottom-habitat-destruction" class="section level2">
-<h2><span class="header-section-number">9.73</span> Subtidal soft bottom habitat destruction</h2>
+<h2><span class="header-section-number">7.93</span> Subtidal soft bottom habitat destruction</h2>
 <div id="hd_subtidal_sb" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_subtidal_sb.csv">hd_subtidal_sb</a></h4>
 <p><em>Pressure</em></p>
@@ -10047,7 +10021,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="targeted-harvest-of-cetaceans-and-marine-turtles" class="section level2">
-<h2><span class="header-section-number">9.74</span> Targeted harvest of cetaceans and marine turtles</h2>
+<h2><span class="header-section-number">7.94</span> Targeted harvest of cetaceans and marine turtles</h2>
 <div id="fp_targetharvest" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_targetharvest.csv">fp_targetharvest</a></h4>
 <p><em>Pressure</em></p>
@@ -10061,7 +10035,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="tourism-sustainability-index" class="section level2">
-<h2><span class="header-section-number">9.75</span> Tourism sustainability index</h2>
+<h2><span class="header-section-number">7.95</span> Tourism sustainability index</h2>
 <div id="tr_sustainability" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_sustainability.csv">tr_sustainability</a></h4>
 <p>The Travel and Tourism Competitiveness Index is produced by the World Economic Forum and measures the factors and policies that make a country an attractive place to invest in the travel and tourism sector (<a href="http://reports.weforum.org/travel-and-tourism-competitiveness-report-2017/?doing_wp_cron=1536798155.3167469501495361328125">WEF 2017</a>). The index analyzes 140 countries and scores each based on three sub-indices: human, cultural, and natural resources; business environment and infrastructure; and regulatory framework. These three sub-indices are in turn composed of 14 “pillars” of Travel &amp; Tourism Competitiveness that are informed by a multitude of individual indicators based on the World Economic Forum’s annual Executive Opinion Survey and data from publically available sources: human, cultural, and natural resources (human resources, affinity for travel and tourism, natural resources, and cultural resources); business environment and infrastructure (air transport infrastructure, ground transport infrastructure, tourism infrastructure, ICT infrastructure, and price competitiveness in the industry); and regulatory framework (policy rules and regulations, environmental sustainability, safety and security, health and hygiene, and prioritization of travel and tourism). Because these indicators are meant to represent the overall quality and future potential of the tourism sector within a country, we assume they are representative of the long term sustainability of the tourism sector within each country. Values range from 1-6.</p>
@@ -10073,7 +10047,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="uninhabited-regions" class="section level2">
-<h2><span class="header-section-number">9.76</span> Uninhabited regions</h2>
+<h2><span class="header-section-number">7.96</span> Uninhabited regions</h2>
 <div id="uninhabited" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/uninhabited.csv">uninhabited</a></h4>
 <p>This layer is a list of low and zero population regions based on Wikipedia.</p>
@@ -10084,7 +10058,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="us-state-department-travel-warnings" class="section level2">
-<h2><span class="header-section-number">9.77</span> US State Department travel warnings</h2>
+<h2><span class="header-section-number">7.97</span> US State Department travel warnings</h2>
 <div id="tr_travelwarnings" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_travelwarnings.csv">tr_travelwarnings</a></h4>
 <p>Travel advisories are from the U.S. State Department (<a href="https://travel.state.gov/content/passports/en/alertswarnings.html">https://travel.state.gov/content/passports/en/alertswarnings.html</a>). Penalty scores were based on the urgency of warning (‘Exercise Normal Precautions’= 1 (no penalty), ‘Exercise Increase Caution’= 1 (no penalty), ‘Reconsider Travel’=0.25, and ‘Do Not Travel’ = 0).</p>
@@ -10095,7 +10069,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="uv-radiation" class="section level2">
-<h2><span class="header-section-number">9.78</span> UV radiation</h2>
+<h2><span class="header-section-number">7.98</span> UV radiation</h2>
 <div id="cc_uv" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_uv.csv">cc_uv</a></h4>
 <p><em>Pressure</em></p>
@@ -10110,7 +10084,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="weakness-of-governance" class="section level2">
-<h2><span class="header-section-number">9.79</span> Weakness of governance</h2>
+<h2><span class="header-section-number">7.99</span> Weakness of governance</h2>
 <div id="ss_wgi" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ss_wgi.csv">ss_wgi</a></h4>
 <p><em>Pressure</em></p>
@@ -10124,7 +10098,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 </div>
 <div id="weakness-of-social-progress" class="section level2">
-<h2><span class="header-section-number">9.80</span> Weakness of social progress</h2>
+<h2><span class="header-section-number">7.100</span> Weakness of social progress</h2>
 <div id="ss_spi" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ss_spi.csv">ss_spi</a></h4>
 <p><em>Pressure</em></p>
