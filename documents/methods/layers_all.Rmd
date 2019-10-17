@@ -19,7 +19,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_mora_artisanal.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_mora_artisanal.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -38,7 +38,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/ao_access.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/ao_access.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -57,7 +57,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/spp_status.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/spp_status.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -76,7 +76,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/spp_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/spp_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -95,7 +95,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fis_b_bmsy.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fis_b_bmsy.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -114,7 +114,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/np_blast.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_blast.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -133,7 +133,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/element_wts_cs_km2_x_storage.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/element_wts_cs_km2_x_storage.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -152,7 +152,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/po_chemicals.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/po_chemicals.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -171,7 +171,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/cw_chemical_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/cw_chemical_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -190,7 +190,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/g_cites.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/g_cites.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -209,7 +209,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/po_chemicals_3nm.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/po_chemicals_3nm.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -228,7 +228,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/po_nutrients_3nm.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/po_nutrients_3nm.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -247,7 +247,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_mpa_coast.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_mpa_coast.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -266,7 +266,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hd_mpa_coast.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_mpa_coast.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -285,7 +285,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/element_wts_cp_km2_x_protection.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/element_wts_cp_km2_x_protection.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -304,7 +304,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/li_sector_evenness.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/li_sector_evenness.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -323,7 +323,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/ao_need.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/ao_need.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -342,7 +342,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/eco_status.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/eco_status.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -361,7 +361,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/eco_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/eco_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -380,7 +380,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_mpa_eez.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_mpa_eez.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -399,7 +399,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hd_mpa_eez.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_mpa_eez.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -418,7 +418,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_fish_management.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_fish_management.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -437,7 +437,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fis_meancatch.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fis_meancatch.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -456,7 +456,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_wildcaught_weight.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_wildcaught_weight.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -475,7 +475,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/sp_genetic.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/sp_genetic.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -494,7 +494,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/li_gci.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/li_gci.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -513,7 +513,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_coral_health.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_coral_health.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -532,7 +532,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_mangrove_health.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_mangrove_health.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -551,7 +551,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_saltmarsh_health.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_saltmarsh_health.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -570,7 +570,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_seagrass_health.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_seagrass_health.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -589,7 +589,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_seaice_health.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_seaice_health.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -608,7 +608,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_softbottom_health.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_softbottom_health.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -627,7 +627,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_coral_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_coral_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -646,7 +646,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_mangrove_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_mangrove_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -665,7 +665,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_saltmarsh_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_saltmarsh_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -684,7 +684,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_seagrass_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_seagrass_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -703,7 +703,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_seaice_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_seaice_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -722,7 +722,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_softbottom_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_softbottom_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -741,7 +741,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_coral_extent.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_coral_extent.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -760,7 +760,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_mangrove_extent.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_mangrove_extent.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -779,7 +779,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_rockyreef_extent.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_rockyreef_extent.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -798,7 +798,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_saltmarsh_extent.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_saltmarsh_extent.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -817,7 +817,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_seagrass_extent.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_seagrass_extent.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -836,7 +836,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_seaice_extent.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_seaice_extent.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -855,7 +855,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hab_softbottom_extent.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_softbottom_extent.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -874,7 +874,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/element_wts_hab_pres_abs.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/element_wts_hab_pres_abs.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -893,7 +893,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_art_hb.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_art_hb.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -912,7 +912,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_com_hb.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_com_hb.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -931,7 +931,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/rgn_area_inland1km.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/rgn_area_inland1km.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -950,7 +950,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/lsp_prot_area_inland1km.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/lsp_prot_area_inland1km.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -969,7 +969,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hd_intertidal.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_intertidal.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -988,7 +988,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/ico_spp_iucn_status.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/ico_spp_iucn_status.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1007,7 +1007,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/liv_status.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/liv_status.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1026,7 +1026,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/liv_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/liv_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1045,7 +1045,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_art_lb.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_art_lb.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1064,7 +1064,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_com_lb.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_com_lb.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1083,7 +1083,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_habitat.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_habitat.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1102,7 +1102,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hd_habitat.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_habitat.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1121,7 +1121,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/g_mariculture.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/g_mariculture.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1140,7 +1140,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/sp_alien_species.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/sp_alien_species.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1159,7 +1159,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/g_tourism.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/g_tourism.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1178,7 +1178,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/po_water.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/po_water.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1197,7 +1197,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/mar_harvest_tonnes.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/mar_harvest_tonnes.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1216,7 +1216,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/g_msi_gov.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/g_msi_gov.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1235,7 +1235,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/mar_sustainability_score.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/mar_sustainability_score.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1254,7 +1254,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/po_trash.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/po_trash.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1273,7 +1273,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/species_diversity_3nm.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/species_diversity_3nm.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1292,7 +1292,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/species_diversity_eez.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/species_diversity_eez.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1311,7 +1311,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/np_harvest_tonnes.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_harvest_tonnes.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1330,7 +1330,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/sp_alien.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/sp_alien.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1349,7 +1349,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/po_nutrients.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/po_nutrients.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1368,7 +1368,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/cw_nutrient_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/cw_nutrient_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1387,7 +1387,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/cc_acid.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/cc_acid.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1406,7 +1406,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/rgn_area_offshore3nm.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/rgn_area_offshore3nm.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1425,7 +1425,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/lsp_prot_area_offshore3nm.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/lsp_prot_area_offshore3nm.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1444,7 +1444,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/rgn_global.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/rgn_global.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1463,7 +1463,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/po_pathogens.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/po_pathogens.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1482,7 +1482,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/cw_pathogen_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/cw_pathogen_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1501,7 +1501,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/tr_jobs_pct_tourism.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/tr_jobs_pct_tourism.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1520,7 +1520,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/cw_trash_trend.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/cw_trash_trend.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1539,7 +1539,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/np_cyanide.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_cyanide.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1558,7 +1558,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/mar_capacity.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/mar_capacity.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1577,7 +1577,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/rgn_area.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/rgn_area.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1596,7 +1596,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/rgn_labels.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/rgn_labels.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1615,7 +1615,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/np_harvest_tonnes_relative.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_harvest_tonnes_relative.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1634,7 +1634,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/np_harvest_product_weight.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_harvest_product_weight.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1653,7 +1653,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/cc_slr.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/cc_slr.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1672,7 +1672,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/cc_sst.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/cc_sst.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1691,7 +1691,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/le_sector_weight.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/le_sector_weight.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1710,7 +1710,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/res_spi.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/res_spi.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1729,7 +1729,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/wgi_all.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/wgi_all.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1748,7 +1748,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hd_subtidal_hb.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_subtidal_hb.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1767,7 +1767,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/hd_subtidal_sb.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_subtidal_sb.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1786,7 +1786,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_targetharvest.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_targetharvest.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1805,7 +1805,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/tr_sustainability.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/tr_sustainability.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1824,7 +1824,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/uninhabited.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/uninhabited.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1843,7 +1843,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/tr_travelwarnings.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/tr_travelwarnings.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1862,7 +1862,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/cc_uv.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/cc_uv.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1881,7 +1881,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/ss_wgi.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/ss_wgi.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1900,7 +1900,7 @@
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/ss_spi.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/ss_spi.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
