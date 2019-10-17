@@ -1,12 +1,12 @@
 ---
-title: 'Ocean Health Index 2018: Methods'
+title: 'Ocean Health Index 2019: Methods'
 csl: methods-in-ecology-and-evolution.csl
 output:
   html_document:
     code_folding: show
     highlight: haddock
     includes:
-      in_header: ../../ohiprep_v2018/src/templates/ohi_hdr.html
+      in_header: ../ohi_hdr.html
     theme: cerulean
     toc: yes
     toc_depth: 3
@@ -26,7 +26,7 @@ Compiled on `r date()`.
 
 ## Running:
  # 1. Make sure that all the necessary files have been updated (OHI.bib, goal_descriptions, layers_info)
- # 2. Make sure that all the files in eez_layers_meta_data have been updated (e.g., layers_eez_base, layers_eez_targets, layers_eez_methods, layers_eez_datasources)
+ # 2. Make sure that all the files in metadata_documentation have been updated (e.g., layers_eez_base, layers_eez_targets, layers_eez_methods, layers_eez_datasources)
  # 3. Run CombineLayers.R to create the relevant Rmd file for data layers (if any changes to these files), creates layers_all.R
  # 4. Save a new OHI.bib file from Zotero if changes to references (Export BibLaTeX)
  # 5. Run BIBcorrect.R to fix a few weird things in the OHI.bib file
@@ -43,15 +43,16 @@ library(pander)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(here)
 
 options(knitr.kable.NA = '')
 
 # If there are changes to the references, run BIBcorrect.R!!!
 
 # exclude when knitting
-# setwd("global_supplement")
+# setwd("documents/methods")
 
-assessmentYear <- 2018
+assessmentYear <- 2019
 
 # sections to run:
 ten_goals <- TRUE
@@ -66,7 +67,7 @@ resilience <- TRUE
 
 # Introduction to the global Ocean Health Index (OHI) assessment
 
-The global Ocean Health Index assesses ocean health for 220 coastal countries and territories and has been conducted every years starting in 2012.  The Index describes how well we are sustainably managing 10 goals for ocean ecosystems which represent the full suite of benefits that people want and need from the ocean.  These goals include: artisanal fishing opportunity, biodiversity, carbon storage, clean waters, coastal livelihoods and economies, coastal protection, food provision, natural products, sense of place, and tourism and recreation.  Each goal is given a score ranging from 0 to 100, and the full suite of goal scores are then averaged to obtain an overall index score for each region.
+The global Ocean Health Index assesses ocean health for 220 coastal countries and territories and has been conducted every year starting in 2012.  The Index describes how well we are sustainably managing 10 goals for ocean ecosystems which represent the full suite of benefits that people want and need from the ocean.  These goals include: artisanal fishing opportunity, biodiversity, carbon storage, clean waters, coastal livelihoods and economies, coastal protection, food provision, natural products, sense of place, and tourism and recreation.  Each goal is given a score ranging from 0 to 100, and the full suite of goal scores are then averaged to obtain an overall index score for each region.
 
 For more information about the philosophy of the Ocean Health Index and model development see Halpern et al. (2012, 2015) and http://ohi-science.org/ohi-global/, which includes information about downloading global ocean health data.
 
@@ -96,7 +97,7 @@ We define ocean health as the sustainable delivery of ten widely-held public goa
 **Table 1.1. The 10 goals of the Ocean Health Index**
 ```{r ten_goals, eval = ten_goals, echo=FALSE}
 
-goals <- read.csv("tables/ten_goals.csv") %>%
+goals <- read.csv(here("metadata_documentation/ohi_model/tables/ten_goals.csv")) %>%
   select(Goal, Abbreviation, Description) %>%
   arrange(Goal)
 
@@ -107,7 +108,7 @@ kable(goals)
 **Table 1.2. Subgoals used to calculate 4 of the Ocean Health Index goals**
 ```{r subgoals, eval = ten_goals, echo=FALSE}
 
-subgoals <- read.csv("tables/Subgoal_Descriptions.csv") %>%
+subgoals <- read.csv(here("metadata_documentation/ohi_model/tables/Subgoal_Descriptions.csv")) %>%
   select(Subgoal, Goal, Abbreviation, Description) %>%
   arrange(Goal)
 
@@ -123,23 +124,23 @@ Dimension        | Subdimension   | Description                  | More informat
 ---------------- | ----------- | ---------------------------- | -------------------- | ----------------------
 Current status   |  -          | Current state of the goal relative to the desired "reference point".  Values range from 0-100. | *Section 5. Goal models and data* | Calculated using functions in ohi-global repo: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R and the *scenario_data_years.csv* file (in same folder)
 Predicted future status | Resilience | Variables such as good governance and ecological factors that provide resilience to pressures, and thus, are likely to improve future status.  Values range from 0-100  | *Section 4.3 Likely future status dimensions* | Calculated using functions in ohicore package.And, files: *resilience_categories.csv* and *resilience_matrix.csv* located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/conf
-Predicted future status | Pressure  | Pressures stress the system and threaten future delivery of benefits, and thus, are likely to reduce future status. Values range from 0-100  | *Section 4.3 Likely future status dimensions* | Calculated using function in ohicore package.  And, files: *pressure_categories.csv* and *pressures_matrix.csv*, located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/con
+Predicted future status | Pressure  | Pressures stress the system and threaten future delivery of benefits, and thus, are likely to reduce future status. Values range from 0-100  | *Section 4.3 Likely future status dimensions* | Calculated using function in ohicore package.  And, files: *pressure_categories.csv* and *pressures_matrix.csv*, located here: https://github.com/OHI-Science/ohi-global/tree/draft/eez/conf
 Predicted future status | Trend  | Average yearly change in status (typically estimated using most recent 5 years of data) multiplied by 5 to esimate five years into the future.  Units are proportional change (absolute change/year is divided by the value of the earliest year) and range from -1 to 1  | *Section 4.3 Likely future status dimensions* | Calculated using functions from ohi-global repo: https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R and the scenario_data_years.csv file (in same folder)
 
 **Figure 1.1. Relationship between OHI dimensions and scores**
 This figure describes how the dimensions come together to calculate a goal score.  This figure represents equations 4.3 and 4.5. 
-![](figures/OHI dimensions.png)
+![](../../metadata_documentation/ohi_model/figures/OHI dimensions.png)
 
 Finally, an overall Index score for each region is calculated by averaging the goal scores (Figure 1.2).
 
 **Figure 1.2. Example flowerplot of goal scores for a region**
 Goal and subgoal scores for Canada.  The middle value is the regional Index score, and is calculated by averaging the goal scores.
-![](figures/flower_Canada.png)
+![](../../metadata_documentation/ohi_model/figures/flower_Canada.png)
 
 
 # Data inclusion and data gaps
 
-Ideally, regional and local assessments should use the best available data, but this decision limits the ability to compare across scales. For direct comparisons among locations to be valid, they must use consistent data.  For this reason, we focused on using global datasets so differences in Index scores across regions would be driven by differences in ocean health rather than variation in the data. Although, in reality, many global datasets are compilations of local or regional datasets and their quality varies spatially. In some cases data for a particular component or dimension of a goal were available for most but not all countries. Gaps in these data were known to not be true zero values. Rather than exclude these data layers, we employed several different methods to fill these data gaps [@frazier_mapping_2016].  
+Ideally, regional and local assessments should use the best available data, but this decision limits the ability to compare across scales. For direct comparisons among locations to be valid, they must use consistent data.  For this reason, we focused on using global datasets so differences in Index scores across regions are driven by differences in ocean health rather than variation in the data. Although, in reality, many global datasets are compilations of local or regional datasets and their quality varies spatially. In some cases, data for a particular component or dimension of a goal were available for most, but not all, countries. Gaps in these data were known to not be true zero values. Rather than exclude these data layers, we employed several different methods to fill these data gaps [@frazier_mapping_2016].  
 
 These guidelines both motivated and constrained our methods. The development of the model frameworks for each goal (including reference points) was heavily dictated by the availability of global datasets. And, ultimately, several key elements related to ocean health could not be included due to lack of existing or appropriate global datasets. As new and better data become available in the future, details of how goals or dimensions are modeled will likely change, although the framework we have developed can accommodate these changes. 
 
@@ -157,7 +158,7 @@ There are 220 global coastal countries and territorial regions (Table 3.1).  Reg
 **Figure 3.1. Global regions**
 Map of the OHI regions (with color corresponding to 2018 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
 
-![](../global2018/Results/figures/maps_by_goal_mol/global_map_Index_2018_mol.png)
+![](../../yearly_results/global2018/Results/figures/maps_by_goal_mol/global_map_Index_2018_mol.png)
 
 **Table 3.1. Global regions**
 
@@ -181,27 +182,27 @@ kable(regions)
 # Models
 
 ## Regional and global Index scores
-```{r child = 'index_scores.Rmd', eval=index_scores}
+```{r child = '../../metadata_documentation/ohi_model/index_scores.Rmd', eval=index_scores}
 
 ```
 
 ## Goal scores
-```{r child = 'goal_model.Rmd', eval=goal_model}
+```{r child = '../../metadata_documentation/ohi_model/goal_model.Rmd', eval=goal_model}
 
 ```
 
 ## Likely future status dimensions
 Three dimensions are used to calculate likely future status: trends, pressure, and resilience.  This section describes the calculations underlying these three dimensions.
 
-```{r child = 'trend.Rmd', eval=trend}
+```{r child = '../../metadata_documentation/ohi_model/trend.Rmd', eval=trend}
 
 ```
 
-```{r child = 'pressure.Rmd', eval=pressure}
+```{r child = '../../metadata_documentation/ohi_model/pressure.Rmd', eval=pressure}
 
 ```
 
-```{r child = 'resilience.Rmd', eval=resilience}
+```{r child = '../../metadata_documentation/ohi_model/resilience.Rmd', eval=resilience}
 
 ```
 
@@ -217,8 +218,8 @@ The R code used to calculate the goal model is located [here](https://github.com
 ## data and functions used to list data layers in each goal
 
 # data with information
-layers <- read.csv("../eez_layers_meta_data/layers_eez_base.csv")
-targets <- read.csv("../eez_layers_meta_data/layers_eez_targets.csv")
+layers <- read.csv(here("metadata_documentation/layers_eez_base.csv"))
+targets <- read.csv(here("metadata_documentation/layers_eez_targets.csv"))
 layers_web <- "http://ohi-science.org/ohi-global/layers.html"
 
 # function
@@ -243,81 +244,81 @@ cat(paste(st_layers$info, collapse="\n\n"))
 ```
 
 
-```{r child = 'goal_descriptions/AO_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/AO_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/BD_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/BD_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/HAB_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/HAB_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/SPP_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/SPP_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/CP_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/CP_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/CS_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/CS_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/CW_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/CW_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/FP_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/FP_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/FIS_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/FIS_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/MAR_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/MAR_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/LE_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/LE_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/ECO_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/ECO_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/LIV_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/LIV_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/NP_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/NP_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/SP_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/SP_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/ICO_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/ICO_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/LSP_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/LSP_long.Rmd'}
 
 ```
 
-```{r child = 'goal_descriptions/TR_long.Rmd'}
+```{r child = '../../metadata_documentation/ohi_model/goal_descriptions/TR_long.Rmd'}
 
 ```
 
 # Description of data layers
 
-###Tables describing data layers (Table 6.1) and sources (Table 6.2)
+### Tables describing data layers (Table 6.1) and sources (Table 6.2)
 
 **Table 6.1. Data layers of `r assessmentYear` global OHI assessment**
 A brief overview of all the data layers used to calculate the global OHI.  The "Data layer" variable provides links to a full description of the data layer.  The "Description" variable provides link/s to the data preparation scripts (when available).   See Table 6.2 for a description of the data sources used to create these data layers.
@@ -325,12 +326,12 @@ A brief overview of all the data layers used to calculate the global OHI.  The "
 ```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, messages=FALSE}
 
 ## Get list of layers, name, description:
-base <- read.csv("../eez_layers_meta_data/layers_eez_base.csv") %>%
+base <- read.csv(here("metadata_documentation/layers_eez_base.csv")) %>%
   mutate(Name = paste0("[", name, "](", "http://ohi-science.org/ohi-global/layers#", layer, ")")) %>%
   select(layer, Name, Description = description)
 
 ## Get dimension/targets
-target <- read.csv("../eez_layers_meta_data/layers_eez_targets.csv", stringsAsFactors = FALSE) %>%
+target <- read.csv(here("metadata_documentation/layers_eez_targets.csv"), stringsAsFactors = FALSE) %>%
   mutate(goal = ifelse(dimension %in% c("pressure", "resilience", "spatial", "weighting"), dimension, goal)) %>%
   select(layer, goal) %>%
     unique() %>%
@@ -343,15 +344,14 @@ target <- read.csv("../eez_layers_meta_data/layers_eez_targets.csv", stringsAsFa
 data <- left_join(target, base, by="layer")
 
 ## Get data prep url (will be a link in description)
-url <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "dataprep_url") %>%
+url <- read.csv(here("metadata_documentation/layers_eez_dataprep.csv")) %>%
   group_by(layer) %>%
   mutate(N = 1) %>%
   mutate(method_count = cumsum(N)) %>%
   mutate(total_methods = sum(N)) %>%
   mutate(count = sum(N)) %>%
-  mutate(url_link = ifelse(count==1,  sprintf("[data prep](http://ohi-science.org/ohiprep_v%s/%s)", assessmentYear, variable_data), 
-                sprintf("[data prep %s](http://ohi-science.org/ohiprep_v%s/%s)", method_count, assessmentYear, variable_data))) %>%
+  mutate(url_link = ifelse(count==1,  sprintf("[data prep](http://ohi-science.org/ohiprep_v%s/%s)", assessmentYear, dataprep_url), 
+                sprintf("[data prep %s](http://ohi-science.org/ohiprep_v%s/%s)", method_count, assessmentYear, dataprep_url))) %>%
   summarize(url_link = paste(url_link, collapse = ", ")) %>%
   select(layer, url_link) %>%
   ungroup()
@@ -361,11 +361,10 @@ data <- left_join(data, url, by="layer") %>%
   select(layer, Name, Description, Dimension)
 
 ## get references:
-refs <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "ds_reference") %>%
-  select(layer, variable_data) %>%
+refs <- read.csv(here("metadata_documentation/layers_eez_reference.csv")) %>%
+  select(layer, reference) %>%
   unique() %>%
-  mutate(ref = paste0("@", variable_data)) %>%
+  mutate(ref = paste0("@", reference)) %>%
   group_by(layer) %>%
   summarize(reference = paste(ref, collapse = "; ")) %>%
   ungroup() %>%
@@ -378,9 +377,8 @@ data <- data %>%
   left_join(refs, by="layer")
 
 ### Get method updates
-updates <- read.csv("../eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "methods_update") %>%
-  select(layer, Updates=variable_data) %>%
+updates <- read.csv(here("metadata_documentation/layers_eez_updates.csv")) %>%
+  select(layer, Updates=updates) %>%
   unique()
 
 data <- data %>%
@@ -403,9 +401,9 @@ A brief overview of the data sources used to calculate the global OHI.
 
 
 ## get source data
-ds_source <- read.csv("../eez_layers_meta_data/layers_eez_data_sources.csv") %>%
+ds_source <- read.csv(here("metadata_documentation/layers_eez_data_sources.csv")) %>%
   mutate(ds_reference = paste0("@", ds_reference)) %>%
-  select(Reference = ds_reference, "Description" = ds_description, Years=ds_years, Resolution = ds_native_resolution, Updated = ds_updated_2018)
+  select(Reference = ds_reference, "Description" = ds_description, Years=ds_years, Resolution = ds_native_resolution, Updated = sprintf("ds_updated_%s", assessmentYear))
 kable(ds_source)
 
 ```

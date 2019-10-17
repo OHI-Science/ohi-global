@@ -1,3 +1,0 @@
-See description for nutrient pollution layer **`r layer_meta$name[layer_meta$layer == 'po_nutrients']`**.
-
-The inverse of the pressure data (1 - **`r layer_meta$name[layer_meta$layer == 'po_nutrients_3nm']`**) was used to estimate nutrient trends for the clean water goal. The proportional yearly change was estimated using a linear regression model of the most recent five years of data (i.e., slope divided by data from the earliest year included in the regression model).  The slope was then multiplied by five to get the predicted change in 5 years.  

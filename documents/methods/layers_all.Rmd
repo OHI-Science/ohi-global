@@ -3,16 +3,16 @@
  library(dplyr) 
  library(tidyr) 
  library(knitr) 
- 
- layer_meta <- read.csv('../eez_layers_meta_data/layers_eez_base.csv', stringsAsFactors = FALSE) 
+ library(here) 
+ layer_meta <- read.csv(here('metadata_documentation/layers_eez_base.csv'), stringsAsFactors = FALSE) 
  layer_path <- 'https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers' 
  
  
 ```
 
  
-##Artisanal fisheries management effectiveness 
-####[fp_mora_artisanal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mora_artisanal.csv) {-} 
+## Artisanal fisheries management effectiveness 
+#### [fp_mora_artisanal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mora_artisanal.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -26,12 +26,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Artisanal fisheries opportunity 
-####[ao_access](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_access.csv) {-} 
+## Artisanal fisheries opportunity 
+#### [ao_access](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_access.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -45,12 +45,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Average species condition 
-####[spp_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/spp_status.csv) {-} 
+## Average species condition 
+#### [spp_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/spp_status.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -64,12 +64,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  status score
 
  
-##Average species condition trend 
-####[spp_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/spp_trend.csv) {-} 
+## Average species condition trend 
+#### [spp_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/spp_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -83,12 +83,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend score
 
  
-##B/Bmsy estimates 
-####[fis_b_bmsy](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_b_bmsy.csv) {-} 
+## B/Bmsy estimates 
+#### [fis_b_bmsy](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_b_bmsy.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -102,12 +102,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  B/Bmsy
 
  
-##Blast fishing 
-####[np_blast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_blast.csv) {-} 
+## Blast fishing 
+#### [np_blast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_blast.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -121,12 +121,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Carbon storage weights 
-####[element_wts_cs_km2_x_storage](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_cs_km2_x_storage.csv) {-} 
+## Carbon storage weights 
+#### [element_wts_cs_km2_x_storage](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_cs_km2_x_storage.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -140,12 +140,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  extent*carbon_storage
 
  
-##Chemical pollution 
-####[po_chemicals](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_chemicals.csv) {-} 
+## Chemical pollution 
+#### [po_chemicals](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_chemicals.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -159,12 +159,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Chemical pollution trend 
-####[cw_chemical_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_chemical_trend.csv) {-} 
+## Chemical pollution trend 
+#### [cw_chemical_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_chemical_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -178,12 +178,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##CITES signatories 
-####[g_cites](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_cites.csv) {-} 
+## CITES signatories 
+#### [g_cites](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_cites.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -197,12 +197,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  0 or 1
 
  
-##Coastal chemical pollution 
-####[po_chemicals_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_chemicals_3nm.csv) {-} 
+## Coastal chemical pollution 
+#### [po_chemicals_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_chemicals_3nm.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -216,12 +216,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Coastal nutrient pollution 
-####[po_nutrients_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_nutrients_3nm.csv) {-} 
+## Coastal nutrient pollution 
+#### [po_nutrients_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_nutrients_3nm.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -235,12 +235,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Coastal protected marine areas (fishing preservation) 
-####[fp_mpa_coast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mpa_coast.csv) {-} 
+## Coastal protected marine areas (fishing preservation) 
+#### [fp_mpa_coast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mpa_coast.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -254,12 +254,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Coastal protected marine areas (habitat preservation) 
-####[hd_mpa_coast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_mpa_coast.csv) {-} 
+## Coastal protected marine areas (habitat preservation) 
+#### [hd_mpa_coast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_mpa_coast.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -273,12 +273,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Coastal protection weights 
-####[element_wts_cp_km2_x_protection](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_cp_km2_x_protection.csv) {-} 
+## Coastal protection weights 
+#### [element_wts_cp_km2_x_protection](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_cp_km2_x_protection.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -292,31 +292,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  extent*rank_protection
 
  
-##Commercial fishing management 
-####[fp_mora](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mora.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_mora.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- scaled 0-1
-
- 
-##Economic diversity 
-####[li_sector_evenness](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_sector_evenness.csv) {-} 
+## Economic diversity 
+#### [li_sector_evenness](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_sector_evenness.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -330,12 +311,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Economic need for artisanal fishing 
-####[ao_need](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_need.csv) {-} 
+## Economic need for artisanal fishing 
+#### [ao_need](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_need.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -349,12 +330,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Economic status scores 
-####[eco_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/eco_status.csv) {-} 
+## Economic status scores 
+#### [eco_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/eco_status.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -368,12 +349,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  status 0-100
 
  
-##Economic trend scores 
-####[eco_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/eco_trend.csv) {-} 
+## Economic trend scores 
+#### [eco_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/eco_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -387,12 +368,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend -1 to 1
 
  
-##EEZ protected marine areas (fishing preservation) 
-####[fp_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mpa_eez.csv) {-} 
+## EEZ protected marine areas (fishing preservation) 
+#### [fp_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mpa_eez.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -406,12 +387,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##EEZ protected marine areas (habitat preservation) 
-####[hd_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_mpa_eez.csv) {-} 
+## EEZ protected marine areas (habitat preservation) 
+#### [hd_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_mpa_eez.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -425,12 +406,31 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Fishery catch data 
-####[fis_meancatch](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_meancatch.csv) {-} 
+## Fisheries management index 
+#### [fp_fish_management](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_fish_management.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/fp_fish_management.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
+
+ 
+## Fishery catch data 
+#### [fis_meancatch](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_meancatch.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -444,12 +444,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  tonnes
 
  
-##Food provision weights 
-####[fp_wildcaught_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_wildcaught_weight.csv) {-} 
+## Food provision weights 
+#### [fp_wildcaught_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_wildcaught_weight.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -463,12 +463,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Genetic escapes 
-####[sp_genetic](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_genetic.csv) {-} 
+## Genetic escapes 
+#### [sp_genetic](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_genetic.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -482,12 +482,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Global Competitiveness Index (GCI) 
-####[li_gci](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_gci.csv) {-} 
+## Global Competitiveness Index (GCI) 
+#### [li_gci](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_gci.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -501,12 +501,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Habitat condition of coral 
-####[hab_coral_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_health.csv) {-} 
+## Habitat condition of coral 
+#### [hab_coral_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_health.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -520,12 +520,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Habitat condition of mangrove 
-####[hab_mangrove_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_health.csv) {-} 
+## Habitat condition of mangrove 
+#### [hab_mangrove_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_health.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -539,12 +539,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Habitat condition of saltmarsh 
-####[hab_saltmarsh_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_health.csv) {-} 
+## Habitat condition of saltmarsh 
+#### [hab_saltmarsh_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_health.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -558,12 +558,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Habitat condition of seagrass 
-####[hab_seagrass_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_health.csv) {-} 
+## Habitat condition of seagrass 
+#### [hab_seagrass_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_health.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -577,12 +577,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Habitat condition of seaice 
-####[hab_seaice_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_health.csv) {-} 
+## Habitat condition of seaice 
+#### [hab_seaice_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_health.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -596,12 +596,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Habitat condition of softbottom 
-####[hab_softbottom_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_health.csv) {-} 
+## Habitat condition of softbottom 
+#### [hab_softbottom_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_health.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -615,12 +615,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Habitat condition trend of coral 
-####[hab_coral_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_trend.csv) {-} 
+## Habitat condition trend of coral 
+#### [hab_coral_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -634,12 +634,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##Habitat condition trend of mangrove 
-####[hab_mangrove_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_trend.csv) {-} 
+## Habitat condition trend of mangrove 
+#### [hab_mangrove_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -653,12 +653,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##Habitat condition trend of saltmarsh 
-####[hab_saltmarsh_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_trend.csv) {-} 
+## Habitat condition trend of saltmarsh 
+#### [hab_saltmarsh_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -672,12 +672,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##Habitat condition trend of seagrass 
-####[hab_seagrass_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_trend.csv) {-} 
+## Habitat condition trend of seagrass 
+#### [hab_seagrass_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -691,12 +691,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##Habitat condition trend of seaice 
-####[hab_seaice_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_trend.csv) {-} 
+## Habitat condition trend of seaice 
+#### [hab_seaice_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -710,12 +710,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##Habitat condition trend of softbottom 
-####[hab_softbottom_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_trend.csv) {-} 
+## Habitat condition trend of softbottom 
+#### [hab_softbottom_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -729,12 +729,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##Habitat extent of coral 
-####[hab_coral_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_extent.csv) {-} 
+## Habitat extent of coral 
+#### [hab_coral_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_extent.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -748,12 +748,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Habitat extent of mangrove 
-####[hab_mangrove_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_extent.csv) {-} 
+## Habitat extent of mangrove 
+#### [hab_mangrove_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_extent.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -767,12 +767,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Habitat extent of rocky reef 
-####[hab_rockyreef_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_rockyreef_extent.csv) {-} 
+## Habitat extent of rocky reef 
+#### [hab_rockyreef_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_rockyreef_extent.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -786,12 +786,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Habitat extent of saltmarsh 
-####[hab_saltmarsh_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_extent.csv) {-} 
+## Habitat extent of saltmarsh 
+#### [hab_saltmarsh_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_saltmarsh_extent.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -805,12 +805,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Habitat extent of seagrass 
-####[hab_seagrass_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_extent.csv) {-} 
+## Habitat extent of seagrass 
+#### [hab_seagrass_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_extent.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -824,12 +824,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Habitat extent of seaice 
-####[hab_seaice_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_extent.csv) {-} 
+## Habitat extent of seaice 
+#### [hab_seaice_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seaice_extent.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -843,12 +843,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Habitat extent of softbottom 
-####[hab_softbottom_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_extent.csv) {-} 
+## Habitat extent of softbottom 
+#### [hab_softbottom_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_extent.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -862,12 +862,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Habitat presence/absence 
-####[element_wts_hab_pres_abs](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_hab_pres_abs.csv) {-} 
+## Habitat presence/absence 
+#### [element_wts_hab_pres_abs](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_hab_pres_abs.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -881,12 +881,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  0 or 1
 
  
-##High bycatch due to artisanal fishing 
-####[fp_art_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_art_hb.csv) {-} 
+## High bycatch due to artisanal fishing 
+#### [fp_art_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_art_hb.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -900,12 +900,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##High bycatch due to commercial fishing 
-####[fp_com_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_com_hb.csv) {-} 
+## High bycatch due to commercial fishing 
+#### [fp_com_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_com_hb.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -919,12 +919,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Inland 1km area 
-####[rgn_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_inland1km.csv) {-} 
+## Inland 1km area 
+#### [rgn_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_inland1km.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -938,31 +938,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Inland coastal population 
-####[mar_coastalpopn_inland25mi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_coastalpopn_inland25mi.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/mar_coastalpopn_inland25mi.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-####Units {-} 
- count
-
- 
-##Inland coastal protected areas 
-####[lsp_prot_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/lsp_prot_area_inland1km.csv) {-} 
+## Inland coastal protected areas 
+#### [lsp_prot_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/lsp_prot_area_inland1km.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -976,12 +957,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Intertidal habitat destruction 
-####[hd_intertidal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_intertidal.csv) {-} 
+## Intertidal habitat destruction 
+#### [hd_intertidal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_intertidal.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -995,12 +976,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##IUCN extinction risk 
-####[ico_spp_iucn_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ico_spp_iucn_status.csv) {-} 
+## IUCN extinction risk 
+#### [ico_spp_iucn_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ico_spp_iucn_status.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1014,12 +995,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  IUCN risk category
 
  
-##Livelihood status scores 
-####[liv_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/liv_status.csv) {-} 
+## Livelihood status scores 
+#### [liv_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/liv_status.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1033,12 +1014,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  status 0-100
 
  
-##Livelihood trend scores 
-####[liv_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/liv_trend.csv) {-} 
+## Livelihood trend scores 
+#### [liv_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/liv_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1052,12 +1033,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend -1 to 1
 
  
-##Low bycatch due to artisanal fishing 
-####[fp_art_lb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_art_lb.csv) {-} 
+## Low bycatch due to artisanal fishing 
+#### [fp_art_lb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_art_lb.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1071,12 +1052,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Low bycatch due to commercial fishing 
-####[fp_com_lb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_com_lb.csv) {-} 
+## Low bycatch due to commercial fishing 
+#### [fp_com_lb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_com_lb.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1090,12 +1071,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Management of habitat to protect fisheries biodiversity  
-####[fp_habitat](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_habitat.csv) {-} 
+## Management of habitat to protect fisheries biodiversity  
+#### [fp_habitat](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_habitat.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1109,12 +1090,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Management of habitat to protect habitat biodiversity 
-####[hd_habitat](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_habitat.csv) {-} 
+## Management of habitat to protect habitat biodiversity 
+#### [hd_habitat](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_habitat.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1128,12 +1109,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Management of mariculture  to preserve biodiversity 
-####[g_mariculture](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_mariculture.csv) {-} 
+## Management of mariculture  to preserve biodiversity 
+#### [g_mariculture](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_mariculture.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1147,12 +1128,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Management of nonindigenous species 
-####[sp_alien_species](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_alien_species.csv) {-} 
+## Management of nonindigenous species 
+#### [sp_alien_species](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_alien_species.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1166,12 +1147,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Management of tourism to preserve biodiversity 
-####[g_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_tourism.csv) {-} 
+## Management of tourism to preserve biodiversity 
+#### [g_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_tourism.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1185,12 +1166,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Management of waters to preserve biodiversity 
-####[po_water](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_water.csv) {-} 
+## Management of waters to preserve biodiversity 
+#### [po_water](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_water.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1204,12 +1185,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Mariculture harvest 
-####[mar_harvest_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_harvest_tonnes.csv) {-} 
+## Mariculture harvest 
+#### [mar_harvest_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_harvest_tonnes.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1223,12 +1204,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  tonnes
 
  
-##Mariculture Sustainability Index 
-####[g_msi_gov](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_msi_gov.csv) {-} 
+## Mariculture Sustainability Index 
+#### [g_msi_gov](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_msi_gov.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1242,12 +1223,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Mariculture sustainability score 
-####[mar_sustainability_score](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_sustainability_score.csv) {-} 
+## Mariculture sustainability score 
+#### [mar_sustainability_score](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_sustainability_score.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1261,12 +1242,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Marine plastics 
-####[po_trash](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_trash.csv) {-} 
+## Marine plastics 
+#### [po_trash](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_trash.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1280,12 +1261,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Measure of coastal ecological integrity 
-####[species_diversity_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/species_diversity_3nm.csv) {-} 
+## Measure of coastal ecological integrity 
+#### [species_diversity_3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/species_diversity_3nm.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1299,12 +1280,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Measure of ecological integrity 
-####[species_diversity_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/species_diversity_eez.csv) {-} 
+## Measure of ecological integrity 
+#### [species_diversity_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/species_diversity_eez.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1318,12 +1299,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Natural product harvest 
-####[np_harvest_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes.csv) {-} 
+## Natural product harvest 
+#### [np_harvest_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1337,12 +1318,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  tonnes
 
  
-##Nonindigenous species 
-####[sp_alien](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_alien.csv) {-} 
+## Nonindigenous species 
+#### [sp_alien](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_alien.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1356,12 +1337,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Nutrient pollution 
-####[po_nutrients](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_nutrients.csv) {-} 
+## Nutrient pollution 
+#### [po_nutrients](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_nutrients.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1375,12 +1356,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Nutrient pollution trend 
-####[cw_nutrient_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_nutrient_trend.csv) {-} 
+## Nutrient pollution trend 
+#### [cw_nutrient_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_nutrient_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1394,12 +1375,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##Ocean acidification 
-####[cc_acid](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_acid.csv) {-} 
+## Ocean acidification 
+#### [cc_acid](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_acid.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1413,12 +1394,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Offshore 3nm area 
-####[rgn_area_offshore3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_offshore3nm.csv) {-} 
+## Offshore 3nm area 
+#### [rgn_area_offshore3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_offshore3nm.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1432,12 +1413,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Offshore coastal protected areas 
-####[lsp_prot_area_offshore3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/lsp_prot_area_offshore3nm.csv) {-} 
+## Offshore coastal protected areas 
+#### [lsp_prot_area_offshore3nm](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/lsp_prot_area_offshore3nm.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1451,12 +1432,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##OHI region id 
-####[rgn_global](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_global.csv) {-} 
+## OHI region id 
+#### [rgn_global](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_global.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1470,12 +1451,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  label
 
  
-##Pathogen pollution 
-####[po_pathogens](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_pathogens.csv) {-} 
+## Pathogen pollution 
+#### [po_pathogens](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_pathogens.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1489,12 +1470,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Pathogen pollution trend 
-####[cw_pathogen_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_pathogen_trend.csv) {-} 
+## Pathogen pollution trend 
+#### [cw_pathogen_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_pathogen_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1508,12 +1489,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##Percent direct employment in tourism 
-####[tr_jobs_pct_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_jobs_pct_tourism.csv) {-} 
+## Percent direct employment in tourism 
+#### [tr_jobs_pct_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_jobs_pct_tourism.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1527,12 +1508,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Plastic trash trends 
-####[cw_trash_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_trash_trend.csv) {-} 
+## Plastic trash trends 
+#### [cw_trash_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_trash_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1546,12 +1527,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  trend
 
  
-##Poison fishing 
-####[np_cyanide](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_cyanide.csv) {-} 
+## Poison fishing 
+#### [np_cyanide](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_cyanide.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1565,12 +1546,31 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Region areas based on EEZ boundaries 
-####[rgn_area](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area.csv) {-} 
+## Potential tonnes of mariculture harvest 
+#### [mar_capacity](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_capacity.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/layers_info/mar_capacity.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ tonnes
+
+ 
+## Region areas based on EEZ boundaries 
+#### [rgn_area](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1584,12 +1584,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  km2
 
  
-##Regions 
-####[rgn_labels](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_labels.csv) {-} 
+## Regions 
+#### [rgn_labels](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_labels.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1603,12 +1603,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  label
 
  
-##Relative natural product harvest tonnes 
-####[np_harvest_tonnes_relative](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes_relative.csv) {-} 
+## Relative natural product harvest tonnes 
+#### [np_harvest_tonnes_relative](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes_relative.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1622,12 +1622,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Relative natural product harvest value 
-####[np_harvest_product_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_product_weight.csv) {-} 
+## Relative natural product harvest value 
+#### [np_harvest_product_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_product_weight.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1641,12 +1641,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  proportion
 
  
-##Sea level rise 
-####[cc_slr](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_slr.csv) {-} 
+## Sea level rise 
+#### [cc_slr](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_slr.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1660,12 +1660,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Sea surface temperature 
-####[cc_sst](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_sst.csv) {-} 
+## Sea surface temperature 
+#### [cc_sst](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_sst.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1679,12 +1679,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Sectors in each region 
-####[le_sector_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_sector_weight.csv) {-} 
+## Sectors in each region 
+#### [le_sector_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_sector_weight.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1698,12 +1698,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  value
 
  
-##Social Progress Index 
-####[res_spi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/res_spi.csv) {-} 
+## Social Progress Index 
+#### [res_spi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/res_spi.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1717,12 +1717,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Strength of governance 
-####[wgi_all](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/wgi_all.csv) {-} 
+## Strength of governance 
+#### [wgi_all](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/wgi_all.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1736,12 +1736,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Subtidal hardbottom habitat destruction 
-####[hd_subtidal_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_subtidal_hb.csv) {-} 
+## Subtidal hardbottom habitat destruction 
+#### [hd_subtidal_hb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_subtidal_hb.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1755,12 +1755,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Subtidal soft bottom habitat destruction 
-####[hd_subtidal_sb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_subtidal_sb.csv) {-} 
+## Subtidal soft bottom habitat destruction 
+#### [hd_subtidal_sb](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_subtidal_sb.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1774,12 +1774,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Targeted harvest of cetaceans and marine turtles 
-####[fp_targetharvest](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_targetharvest.csv) {-} 
+## Targeted harvest of cetaceans and marine turtles 
+#### [fp_targetharvest](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_targetharvest.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1793,12 +1793,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Tourism sustainability index 
-####[tr_sustainability](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_sustainability.csv) {-} 
+## Tourism sustainability index 
+#### [tr_sustainability](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_sustainability.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1812,12 +1812,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Uninhabited regions 
-####[uninhabited](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/uninhabited.csv) {-} 
+## Uninhabited regions 
+#### [uninhabited](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/uninhabited.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1831,12 +1831,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  population
 
  
-##US State Department travel warnings 
-####[tr_travelwarnings](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_travelwarnings.csv) {-} 
+## US State Department travel warnings 
+#### [tr_travelwarnings](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_travelwarnings.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1850,12 +1850,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##UV radiation 
-####[cc_uv](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_uv.csv) {-} 
+## UV radiation 
+#### [cc_uv](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_uv.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1869,12 +1869,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Weakness of governance 
-####[ss_wgi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ss_wgi.csv) {-} 
+## Weakness of governance 
+#### [ss_wgi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ss_wgi.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1888,12 +1888,12 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1
 
  
-##Weakness of social progress 
-####[ss_spi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ss_spi.csv) {-} 
+## Weakness of social progress 
+#### [ss_spi](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ss_spi.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -1907,5 +1907,5 @@
  
 ``` 
  
-####Units {-} 
+#### Units {-} 
  scaled 0-1

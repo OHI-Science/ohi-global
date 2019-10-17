@@ -45,7 +45,7 @@ source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2019/gh-pages/wor
 # STEP 7: Make sure the appropriate data year is entered in eez/conf/scenario_data_years.csv
 
 # STEP 8: Run following to update the layers.csv file with the latest information in layers_eez_base.csv and to reset 
-source(here("eez_layers_meta_data/layers_eez_script.R"))
+source(here("metadata_documentation/layers_eez_script.R"))
 
 # If more complex changes are made to layer: such as changes to layer names, removing/adding layers, etc
 # run the following scripts: 

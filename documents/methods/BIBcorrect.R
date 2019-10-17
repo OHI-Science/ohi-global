@@ -1,4 +1,4 @@
-setwd("global_supplement")
+setwd(here("documents/methods/global_supplement"))
 
 ## NOTE: Have to hand correct the US Deaprtment of State for some reason
 
@@ -6,7 +6,7 @@ bib <- readLines("OHI.bib")
 bib <- gsub(pattern = "Birdlife International", "{{Birdlife International}}", bib)
 bib <- gsub(pattern = "United Nations personal communication", "{{United Nations personal communication}}", bib)
 bib <- gsub(pattern = "US Department of State", "{{US Department of State}}", bib)
-bib <- gsub(pattern = "World Bank", "{{World Bank}}", bib)
+bib <- gsub(pattern = "{World Bank}", "{{World Bank}}", bib, fixed=TRUE)
 bib <- gsub(pattern = "World Economic Forum", "{{World Economic Forum}}", bib)
 bib <- gsub(pattern = "Center for International Earth Science Information Network (CIESIN)", 
              "{{Center for International Earth Science Information Network}}", bib)
@@ -35,8 +35,8 @@ bib <- gsub(pattern = "NOAA National Centers for Environmental Information",
             "{{NOAA National Centers for Environmental Information}}", bib)
 bib <- gsub(pattern = "EDF France", "{{EDF France}}", bib)
 bib <- gsub(pattern = "Joint Nature Conservation Committee (JNCC)", "{{Joint Nature Conservation Committee}}", bib)
-bib <- gsub(pattern = "{US} Department of State", "{{US Department of State}}", bib)
+bib <- gsub(pattern = "\\{US\\} Department of State", "{{US Department of State}}", bib)
 bib <- gsub(pattern = "Government of Canada", "{{Government of Canada}}", bib)
-
+bib <- gsub(pattern = "author = \\{Social Progress Index\\}", "author = {{Social Progress Index}}", bib)
 
 writeLines(bib, "OHI.bib")

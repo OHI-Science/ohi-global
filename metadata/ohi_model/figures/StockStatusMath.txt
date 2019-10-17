@@ -1,4 +1,0 @@
-SS=\left\{ { B/B }_{ MSY }\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad if\quad { B/B }_{ MSY }\quad <\quad 0.95\\ 1\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad if\quad 0.95\quad \le \quad { B/B }_{ MSY }\quad \le \quad 1.05\\ max\left\{ 1-\alpha \left( { B/B }_{ MSY }-1.05 \right) ,\quad \beta  \right\} \quad if\quad { B/B }_{ MSY }\quad >\quad 1.05 \right 
-
-
-{ SS }_{ r,y }\quad =\quad \left\{ 0.01\quad \times \quad median\left( { SS }_{ r,y } \right) \quad if\quad g=1\\ 0.25\quad \times \quad median\left( { SS }_{ r,y } \right) \quad if\quad g=2\\ 0.50\quad \times \quad median\left( { SS }_{ r,y } \right) \quad if\quad g=3\\ 0.80\quad \times \quad median\left( { SS }_{ r,y } \right) \quad if\quad g=4\\ 0.90\quad \times \quad median\left( { SS }_{ r,y } \right) \quad if\quad g=5 \right \\ 

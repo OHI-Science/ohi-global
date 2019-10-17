@@ -1,5 +1,0 @@
-See description for **`r layer_meta$name[layer_meta$layer == 'po_chemicals']`** layer.
-
-The inverse of the pressure data (1 - `r layer_meta$name[layer_meta$layer == 'po_chemicals_3nm']`) was used to estimate chemical trends for the clean water goal. The proportional yearly change in chemical pressure values were estimated using a linear regression model of the most recent five years of data (i.e., slope divided by value from the earliest year included in the regression model).  The slope was then multiplied by five to get the predicted change in 5 years.  
-
-The only layer with yearly data was land-based organic pollution (pesticide data). The land-based inorganic pollution (using impermeable surfaces as a proxy) and ocean pollution (shipping and ports) remained the same across years.
