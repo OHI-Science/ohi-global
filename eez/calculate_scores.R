@@ -156,16 +156,8 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ## final commit from last year: 1fdf7f2
 # Link being sourced here is incorrect, need to change it!
 ohicore::score_check(commit="previous", scenario_year=2019,
-            file_name="fis_correct", save_csv = TRUE, NA_compare = TRUE)
+            file_name="fis_new_underharvest_penalty", save_csv = TRUE, NA_compare = TRUE)
 
-
-b <- read_csv(here("eez/layers/fis_b_bmsy.csv"))
-data.frame(dplyr::filter(b, rgn_id==168 & year == 2015))
-data.frame(dplyr::filter(b, rgn_id==167 & year == 2015))
-
-c <- read_csv(here("eez/layers/fis_meancatch.csv"))
-tmp <- dplyr::filter(c, rgn_id == 167 & year==2015)
-dplyr::arrange(tmp, -mean_catch)
 
 
 compare <- read.csv(here("eez/score_check/np_4pts_10yrs_previous_diff_data_2019-08-16.csv")) 

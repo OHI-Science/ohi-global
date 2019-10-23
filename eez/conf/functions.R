@@ -5,7 +5,8 @@
 
 
 FIS <- function(layers) {
-    scen_year <- layers$data$scenario_year
+
+  scen_year <- layers$data$scenario_year
   
   #catch data
   c <-
@@ -25,26 +26,23 @@ FIS <- function(layers) {
   
   # The following stocks are fished in multiple regions and often have high b/bmsy values
   # Due to the underfishing penalty, this actually penalizes the regions that have the highest
-  # proportion of catch of these stocks.  The following corrects this problem:
-   # tmp <- dplyr::filter(b, stock_id %in% c('Katsuwonus_pelamis-71', 'Sardinella_aurita-34')) %>%
-   #   dplyr::arrange(stock_id, year) %>%
-   #   data.frame()
-
-   high_bmsy <- c(
-     "Katsuwonus_pelamis-71",
-     "Clupea_harengus-27",
-     "Trachurus_capensis-47",
-     "Sardinella_aurita-34",
-     "Scomberomorus_cavalla-31"
-   )
+  # proportion of catch of these stocks.  
+  
+  high_bmsy_filter <- dplyr::filter(b, bbmsy>1.5 & year == 2015) %>%
+    dplyr::group_by(stock_id) %>%
+    dplyr::summarise(n = dplyr::n()) %>%
+    data.frame() %>%
+    dplyr::filter(n>3)
+  
+   high_bmsy <- high_bmsy_filter$stock_id
 
    b <- b %>%
      dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
                              bbmsy > 1, 1, bbmsy))
 
-  # # no underharvest penalty  
-  # b <- b %>%
-  #   dplyr::mutate(bbmsy = ifelse(bbmsy > 1, 1, bbmsy))
+   # # no underharvest penalty  
+   # b <- b %>%
+   #   dplyr::mutate(bbmsy = ifelse(bbmsy > 1, 1, bbmsy))
   
   
   # separate out the stock_id and taxonkey:
