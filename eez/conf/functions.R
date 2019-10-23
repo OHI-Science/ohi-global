@@ -30,17 +30,17 @@ FIS <- function(layers) {
    #   dplyr::arrange(stock_id, year) %>%
    #   data.frame()
 
-  high_bmsy <- c(
-    "Katsuwonus_pelamis-71",
-    "Clupea_harengus-27",
-    "Trachurus_capensis-47",
-    "Sardinella_aurita-34",
-    "Scomberomorus_cavalla-31"
-  )
-  
-  b <- b %>%
-    dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
-                            bbmsy > 1, 1, bbmsy))
+   high_bmsy <- c(
+     "Katsuwonus_pelamis-71",
+     "Clupea_harengus-27",
+     "Trachurus_capensis-47",
+     "Sardinella_aurita-34",
+     "Scomberomorus_cavalla-31"
+   )
+
+   b <- b %>%
+     dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
+                             bbmsy > 1, 1, bbmsy))
 
   # # no underharvest penalty  
   # b <- b %>%
