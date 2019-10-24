@@ -2,7 +2,7 @@
 
 Here is the rendered [Results_first_look.html](https://raw.githack.com/OHI-Science/ohi-global/draft/yearly_results/global2019/Results_first_look.html).
 
-All years (2012 to 2018) have been recalculated using the most up-to-date data and methods. 
+All years (2012 to 2019) have been recalculated using the most up-to-date data and methods. 
 
 Scores range from 0-100, with the exception of trend data which ranges from -1 to 1. Blank cells indicate that goal is not applicable to that region.  
 
