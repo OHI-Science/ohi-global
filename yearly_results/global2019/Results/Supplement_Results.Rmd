@@ -10,7 +10,7 @@ output:
     theme: cerulean
     highlight: haddock
     includes: 
-      in_header: '../../../ohiprep/src/templates/ohi_hdr.html'
+      in_header: '../../../../ohiprep/src/templates/ohi_hdr.html'
   pdf_document:
     toc: true
 ---
@@ -76,7 +76,7 @@ goal_names2 <- data.frame(goal=goals, long_goal=c("Index",
                                                   "Tourism & recreation"))
 
 ## General settings to control
-scenario <- "2018" #identify scenario of focus (this can be changed to obtain data for other years)
+scenario <- "2019" #identify scenario of focus (this can be changed to obtain data for other years)
 
 ## General files to load
 rgn_names <- read.csv(here('eez/layers/rgn_global.csv')) %>%
@@ -84,7 +84,7 @@ rgn_names <- read.csv(here('eez/layers/rgn_global.csv')) %>%
   dplyr::mutate(country = as.character(country))
 
 
-radicalFile = '2018-11-28' #date extension on the radical data files that are used for all tables/figures
+radicalFile = '2019-10-30' #date extension on the radical data files that are used for all tables/figures
 
 ```
 
@@ -95,7 +95,7 @@ In several tables and figures we refer to the goals and subgoals by their abbrev
 
 ```{r goal description, echo=FALSE}
 
-data <- read.csv(here("global_supplement/tables/ten_goals.csv"))
+data <- read.csv(here("metadata_documentation/ohi_model/tables/ten_goals.csv"))
 kable(data)
 
 ```
@@ -104,7 +104,7 @@ kable(data)
 The following goals are comprised of 2 subgoals:biodiversity, food provision, sense of place, livelihoods and economies goals.
 
 ```{r subgoal description, echo=FALSE}
-data <- read.csv(here("global_supplement/tables/Subgoal_Descriptions.csv"))
+data <- read.csv(here("metadata_documentation/ohi_model/tables/Subgoal_Descriptions.csv"))
 kable(data)
 
 ```
@@ -112,11 +112,11 @@ kable(data)
 
 ### Datasets and additional information
 
-See the [Methods](https://rawgit.com/OHI-Science/ohi-global/draft/global_supplement/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
+See the [Methods](https://raw.githack.com/OHI-Science/ohi-global/draft/documents/methods/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
 
-A CSV formatted dataset from the 2018 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global2018/OHI_final_formatted_scores_2018-10-30.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 8 assessment years (2012-2019). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/global2019) for description of data.
+A CSV formatted dataset from the 2019 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-10-30.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 8 assessment years (2012-2019). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019) for description of data.
 
-The data layers (described in section 6 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2018.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
+The data layers (described in section 6 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2019.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
 
 The files used to prepare data layers for the ohi-global assessment can be downloaded from Github: [ohiprep v2019.1: Preparation of data for 2019 Ocean Health Index global assessment](https://github.com/OHI-Science/ohiprep_v2019/releases).
 
@@ -147,9 +147,9 @@ Map (top) and histogram (bottom) of 2019 index scores for each OHI region.
 ## https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html
 ## https://github.com/baptiste/gridextra/wiki/arranging-ggplot
 
-Index_map <- rasterGrob(readPNG(here("global2018/Results/figures/maps_by_goal_mol/global_map_Index_2018_mol.png")), interpolate=TRUE)
+Index_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_Index_2019_mol.png")), interpolate=TRUE)
 map_label <- textGrob("", just=19, gp=gpar(fontsize=18))
-Index_hist <- rasterGrob(readPNG(here("global2018/Results/figures/score_histogram_color.png")), interpolate=TRUE)
+Index_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/score_histogram_color.png")), interpolate=TRUE)
 hist_label <- textGrob("", just=19, gp=gpar(fontsize=18))
 
 grid.arrange(map_label, Index_map, hist_label, Index_hist,
@@ -158,66 +158,66 @@ grid.arrange(map_label, Index_map, hist_label, Index_hist,
 ```
 
 ##### Figure B. Flowerplot of 2019 goal/subgoal scores
-Flowerplot describing the 2018 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
+Flowerplot describing the 2019 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
 
-Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/global2019/Results/figures/FlowerPlots)
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019/Results/figures/FlowerPlots)
 
 
 ```{r flowerplot, echo=FALSE, height=5, width=10}
 ## Figure created in Reporting.Rmd
 
-knitr::include_graphics(here("global2018/Results/figures/FlowerPlots/flower_Globalaverage.png"))
+knitr::include_graphics(here("yearly_results/global2019/Results/figures/FlowerPlots/flower_GlobalAverage.png"))
 ```
 
 
 ##### Figure C. Maps and histograms of 2019 OHI goal scores.
-The 2018 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
+The 2019 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
 
 ```{r testing images, echo=FALSE, fig.height=30, fig.width=10}
 
 ## change each year to reflect appropriate file paths
-scenario = "2018"
+scenario = "2019"
 
 ## Figures created in Reporting.Rmd
 
-AO_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_AO_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-AO_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/AO_scores.png")), interpolate=TRUE)
+AO_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_AO_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+AO_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/AO_scores.png")), interpolate=TRUE)
 AO_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-BD_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_BD_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-BD_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/BD_scores.png")), interpolate=TRUE)
+BD_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_BD_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+BD_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/BD_scores.png")), interpolate=TRUE)
 BD_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-CP_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_CP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-CP_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/CP_scores.png")), interpolate=TRUE)
+CP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_CP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+CP_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/CP_scores.png")), interpolate=TRUE)
 CP_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-CS_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_CS_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-CS_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/CS_scores.png")), interpolate=TRUE)
+CS_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_CS_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+CS_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/CS_scores.png")), interpolate=TRUE)
 CS_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-CW_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_CW_%s_mol.png",scenario, scenario))), interpolate=TRUE)
-CW_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/CW_scores.png")), interpolate=TRUE)
+CW_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_CW_%s_mol.png",scenario, scenario))), interpolate=TRUE)
+CW_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/CW_scores.png")), interpolate=TRUE)
 CW_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-FP_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_FP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-FP_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/FP_scores.png")), interpolate=TRUE)
+FP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_FP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+FP_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/FP_scores.png")), interpolate=TRUE)
 FP_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-LE_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_LE_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-LE_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/LE_scores.png")), interpolate=TRUE)
+LE_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_LE_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+LE_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/LE_scores.png")), interpolate=TRUE)
 LE_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-NP_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_NP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-NP_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/NP_scores.png")), interpolate=TRUE)
+NP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_NP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+NP_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/NP_scores.png")), interpolate=TRUE)
 NP_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-SP_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_SP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-SP_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/SP_scores.png")), interpolate=TRUE)
+SP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_SP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+SP_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/SP_scores.png")), interpolate=TRUE)
 SP_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-TR_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_TR_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-TR_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/TR_scores.png")), interpolate=TRUE)
+TR_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_TR_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+TR_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/TR_scores.png")), interpolate=TRUE)
 TR_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
 grid.arrange(AO_text, AO_map, AO_hist,
@@ -239,41 +239,41 @@ The subgoal 2019 scores for the following goals: biodiversity, foob provision, s
 
 ```{r subgoal scores, echo=FALSE, fig.width=10, fig.height=25}
 
-scenario <- "2018"
+scenario <- "2019"
 
 # BD
 BD <- textGrob("Biodiversity", gp=gpar(fontsize=12), just="left", x=0)
 bd <- textGrob("")
-HAB_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_HAB_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-HAB_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/HAB_scores.png")), interpolate=TRUE)
-SPP_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_SPP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-SPP_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/SPP_scores.png")), interpolate=TRUE)
+HAB_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_HAB_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+HAB_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/HAB_scores.png")), interpolate=TRUE)
+SPP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_SPP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+SPP_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/SPP_scores.png")), interpolate=TRUE)
 
 ## FP
 FP <- textGrob("Food provision", gp=gpar(fontsize=12), just="left", x=0)
 fp <- textGrob("")
-FIS_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_FIS_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-FIS_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/FIS_scores.png")), interpolate=TRUE)
+FIS_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_FIS_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+FIS_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/FIS_scores.png")), interpolate=TRUE)
 
-MAR_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_MAR_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-MAR_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/MAR_scores.png")), interpolate=TRUE)
+MAR_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_MAR_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+MAR_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/MAR_scores.png")), interpolate=TRUE)
 
 SP <- textGrob("Sense of place", gp=gpar(fontsize=12), just="left", x=0)
 sp <- textGrob("")
-LSP_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_LSP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-LSP_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/LSP_scores.png")), interpolate=TRUE)
+LSP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_LSP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+LSP_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/LSP_scores.png")), interpolate=TRUE)
 
-ICO_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_ICO_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-ICO_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/ICO_scores.png")), interpolate=TRUE)
+ICO_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_ICO_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+ICO_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/ICO_scores.png")), interpolate=TRUE)
 
 # LE
 LE <- textGrob("Livelihoods & economies", gp=gpar(fontsize=12), just="left", x=0)
 le <- textGrob("")
-LIV_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_LIV_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-LIV_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/LIV_scores.png")), interpolate=TRUE)
+LIV_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_LIV_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+LIV_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/LIV_scores.png")), interpolate=TRUE)
 
-ECO_map <- rasterGrob(readPNG(here("global2018/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_ECO_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-ECO_hist <- rasterGrob(readPNG(here("global2018/Results/figures/goal_histograms/ECO_scores.png")), interpolate=TRUE)
+ECO_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results", sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_ECO_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+ECO_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/goal_histograms/ECO_scores.png")), interpolate=TRUE)
 
 grid.arrange(BD, bd,
              HAB_map, HAB_hist,
@@ -293,7 +293,7 @@ grid.arrange(BD, bd,
 
 
 ##### Figure E. Country scores across scenario year
-Overview of the scores from the 2019 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 8 years of data.  Black regions indicate no data.  Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/global2019/Reporting/figures/carpetPlot.png) to zoom in to see specific regions.
+Overview of the scores from the 2019 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 8 years of data.  Black regions indicate no data.  Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2019/Results/figures/carpetPlot.png) to zoom in to see specific regions.
 
 This plot is good for providing a quick overview of:
 
@@ -306,7 +306,7 @@ This plot is good for providing a quick overview of:
 ```{r carpet plot, echo=FALSE, height=40, width=10}
 ## Figure created in Reporting.Rmd
 
-knitr::include_graphics(here("global2018/Results/figures/carpetPlot.png"))
+knitr::include_graphics(here("yearly_results/global2019/Results/figures/carpetPlot.png"))
 ```
 
 ### Summary of average annual change in scores
@@ -316,7 +316,7 @@ Global scores (eez area weighted average of all regions) for index and goal/subg
 
 ```{r overview, echo=FALSE}
 
-data <- read.csv(here(sprintf('global2018/OHI_final_formatted_scores_%s.csv', radicalFile))) 
+data <- read.csv(here(sprintf('yearly_results/global2019/OHI_final_formatted_scores_%s.csv', radicalFile))) 
 
 data_filter <- data %>%
   filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
@@ -354,9 +354,9 @@ Map (top) and histogram (bottom) of the slope estimates from a linear regression
 ## https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html
 ## https://github.com/baptiste/gridextra/wiki/arranging-ggplot
 
-Index_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_Index_mol.png")), interpolate=TRUE)
+Index_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_Index_mol.png")), interpolate=TRUE)
 map_label <- textGrob("", just=19, gp=gpar(fontsize=18))
-Index_hist <- rasterGrob(readPNG(here("global2018/Results/figures/trend_histogram_color.png")), interpolate=TRUE)
+Index_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/trend_histogram_color.png")), interpolate=TRUE)
 hist_label <- textGrob("", just=19, gp=gpar(fontsize=18))
 
 grid.arrange(map_label, Index_map, hist_label, Index_hist,
@@ -373,25 +373,25 @@ Map of the slope estimates from a linear regression model of the 10 goal scores 
 
 ## Figures created in Reporting.Rmd
 
-AO_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_AO_mol.png")), interpolate=TRUE)
+AO_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_AO_mol.png")), interpolate=TRUE)
 
-BD_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_BD_mol.png")), interpolate=TRUE)
+BD_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_BD_mol.png")), interpolate=TRUE)
 
-CP_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_CP_mol.png")), interpolate=TRUE)
+CP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_CP_mol.png")), interpolate=TRUE)
 
-CS_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_CS_mol.png")), interpolate=TRUE)
+CS_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_CS_mol.png")), interpolate=TRUE)
 
-CW_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_CW_mol.png")), interpolate=TRUE)
+CW_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_CW_mol.png")), interpolate=TRUE)
 
-FP_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_FP_mol.png")), interpolate=TRUE)
+FP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_FP_mol.png")), interpolate=TRUE)
 
-LE_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_LE_mol.png")), interpolate=TRUE)
+LE_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_LE_mol.png")), interpolate=TRUE)
 
-NP_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_NP_mol.png")), interpolate=TRUE)
+NP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_NP_mol.png")), interpolate=TRUE)
 
-SP_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_SP_mol.png")), interpolate=TRUE)
+SP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_SP_mol.png")), interpolate=TRUE)
 
-TR_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_TR_mol.png")), interpolate=TRUE)
+TR_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_TR_mol.png")), interpolate=TRUE)
 
 grid.arrange(AO_map,
              BD_map,
@@ -416,23 +416,23 @@ Map of the slope estimates from a linear regression model of the 8 subgoal score
 
 BD <- textGrob("Biodiversity", gp=gpar(fontsize=12), just="left", x=0)
 bd <- textGrob("")
-HAB_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_HAB_mol.png")), interpolate=TRUE)
-SPP_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_SPP_mol.png")), interpolate=TRUE)
+HAB_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_HAB_mol.png")), interpolate=TRUE)
+SPP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_SPP_mol.png")), interpolate=TRUE)
 
 FP <- textGrob("Food provision", gp=gpar(fontsize=12), just="left", x=0)
 fp <- textGrob("")
-FIS_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_FIS_mol.png")), interpolate=TRUE)
-MAR_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_MAR_mol.png")), interpolate=TRUE)
+FIS_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_FIS_mol.png")), interpolate=TRUE)
+MAR_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_MAR_mol.png")), interpolate=TRUE)
 
 SP <- textGrob("Sense of place", gp=gpar(fontsize=12), just="left", x=0)
 sp <- textGrob("")
-ICO_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_ICO_mol.png")), interpolate=TRUE)
-LSP_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_LSP_mol.png")), interpolate=TRUE)
+ICO_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_ICO_mol.png")), interpolate=TRUE)
+LSP_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_LSP_mol.png")), interpolate=TRUE)
 
 LE <- textGrob("Livelihoods and economies", gp=gpar(fontsize=12), just="left", x=0)
 le <- textGrob("")
-LIV_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_LIV_mol.png")), interpolate=TRUE)
-ECO_map <- rasterGrob(readPNG(here("global2018/Results/figures/map_trends/trends_map_ECO_mol.png")), interpolate=TRUE)
+LIV_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_LIV_mol.png")), interpolate=TRUE)
+ECO_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/map_trends/trends_map_ECO_mol.png")), interpolate=TRUE)
 
 grid.arrange(BD, bd,
              HAB_map, SPP_map, 
@@ -453,23 +453,23 @@ The values are the slope estimate from a linear regression model of the scores f
 
 ## Figure created in trend_barplot.R
 
-knitr::include_graphics(here("global2018/Results/figures/Trend_barplot.png"))
+knitr::include_graphics(here("yearly_results/global2019/Results/figures/Trend_barplot.png"))
 ```
 
 ##### Figure J. Comparing trend and average index scores
 
 To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2019) and the trends for each region.
 
-Of most concern are regions that have poor scores and declining trends: Eritrea, Somalia, Ivory Coast, Nicaragua, and Lebanon.
+Of most concern are regions that have poor scores and declining trends: Eritrea, Syria, Somalia, Bosnia and Herzegovina, Nicaragua, and Lebanon.
 
 The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
 
 ```{r trend vs avg index, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=TRUE, fig.width=6, fig.height=4}
 
-index <- read.csv(here("global2018/Results/data/avg_goal_scores.csv"), stringsAsFactors = FALSE) %>%
+index <- read.csv(here("yearly_results/global2019/Results/data/avg_goal_scores.csv"), stringsAsFactors = FALSE) %>%
   select(region_id, country=region_name, index_avg = Index)
 
-trend <- read.csv(here(sprintf("global2018/Results/data/trends_%s.csv", scenario))) %>%
+trend <- read.csv(here(sprintf("yearly_results/global2019/Results/data/trends_%s.csv", scenario))) %>%
   select(region_id, index_trend = Index) %>%
   left_join(index, by= "region_id")
 
@@ -482,7 +482,7 @@ avg_index <- index %>%
     geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
     geom_vline(xintercept = 67, color="red", size=.5, linetype=3) +
     theme_bw() + 
-    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2018 scores)") 
+    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2019 scores)") 
     
 
   plotly_fig <- plotly::ggplotly(p)

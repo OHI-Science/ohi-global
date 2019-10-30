@@ -19,7 +19,6 @@ output:
 
 This document describes results from the OHI 2019 global assessment.  This is mostly an internal document to explore and check results.  It also creates the figures used on the website and in other documents.
 ```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
-
 # 1. check the code chunk below and change variables if needed
 # 2. go through document and update text where needed.
 
