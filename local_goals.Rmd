@@ -10,10 +10,10 @@ library(tidyr)
 # setwd('eez/conf/web')
 
 # data with information
-layers <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv")
-targets <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_targets.csv")
+layers <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/layers_eez_base.csv")
+targets <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/layers_eez_targets.csv")
 layers_web <- "http://ohi-science.org/ohi-global/layers.html"
-short_goal_web <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/global_supplement/goal_descriptions_short"
+short_goal_web <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/goal_descriptions_short"
 
 # function to grab the info needed for the data layers
 data_grab <- function(goal_code = "FIS", dims = c("status", "trend")){

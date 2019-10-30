@@ -16,7 +16,7 @@ suppressPackageStartupMessages({
 ## brewed vars
 study_area      <- "Global"
 key             <- "ohi-global"
-dir_scenario_gh <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/published"
+dir_scenario_gh <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/draft" # ultimately, published branch!
 
 
 
@@ -41,11 +41,11 @@ weight <- goals %>%
 ## save local copies of Rmds to knit-child ----
 
 
-to_copy <- c('eez/conf/web/goals.Rmd',
-             'eez/conf/web/layers_all.Rmd',
-             'eez/conf/web/layers_table.Rmd',
-             'global_supplement/OHI.bib',
-             'global_supplement/methods-in-ecology-and-evolution.csl')
+to_copy <- c('documents/website/goals.Rmd',
+             'documents/website/layers_all.Rmd',
+             'documents/website/layers_table.Rmd',
+             'documents/website/OHI.bib',
+             'documents/website/methods-in-ecology-and-evolution.csl')
 
 
 for (f in to_copy) { # f <-  'global_supplement/OHI.bib'

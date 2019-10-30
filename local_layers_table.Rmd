@@ -4,34 +4,27 @@ csl: methods-in-ecology-and-evolution.csl
 bibliography: OHI.bib
 ---
 
-**Data layers used in the OHI 2018 global assessment**
+**Data layers used in the OHI 2019 global assessment**
 
-These data layers were used to calculate the OHI 2018 assessment.  Clicking on the layer name in the "Data layer" variable will provide a full description of the data layer (as well as a link to the actual data).  The "Description" variable provides links to the scripts (on Github) used to create the data layers (when available).
+These data layers were used to calculate the OHI 2019 assessment.  Clicking on the layer name in the "Layer" variable will provide a full description of the data layer (as well as a link to the actual data).  The "Description" variable provides links to the code used to create the data layers (on Github when available).
 
 ```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, include=FALSE}
 library(tidyverse)
 library(knitr)
 library(here)
 
-## Julie: I am commenting this out as I troubleshoot for the ohi-global website
-#file.remove(here("eez/conf/web/OHI.bib"))
-#file.remove(here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
-
-#file.copy(here("global_supplement/OHI.bib"), here("eez/conf/web/OHI.bib"))
-#file.copy(here("global_supplement/methods-in-ecology-and-evolution.csl"), here("eez/conf/web/methods-in-ecology-and-evolution.csl"))
-
-assessmentYear <- 2018
+assessmentYear <- 2019
 ```
 
 ```{r tables, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
 
 ## Get list of layers, name, description:
-base <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_base.csv") %>%
+base <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/layers_eez_base.csv") %>%
   mutate(Name = paste0("[", name, "](", "http://ohi-science.org/ohi-global/layers#", layer, ")")) %>%
   select(layer, Name, Description = description)
 
 ## Get dimension/targets
-target <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_targets.csv", stringsAsFactors = FALSE) %>%
+target <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/layers_eez_targets.csv", stringsAsFactors = FALSE) %>%
   mutate(goal = ifelse(dimension %in% c("pressure", "resilience", "spatial", "weighting"), dimension, goal)) %>%
   select(layer, goal) %>%
   unique() %>%
@@ -44,15 +37,14 @@ target <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/dra
 data <- left_join(target, base, by="layer")
 
 ## Get data prep url (will be a link in description)
-url <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "dataprep_url") %>%
+url <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/layers_eez_dataprep.csv") %>%
   group_by(layer) %>%
   mutate(N = 1) %>%
   mutate(method_count = cumsum(N)) %>%
   mutate(total_methods = sum(N)) %>%
   mutate(count = sum(N)) %>%
-  mutate(url_link = ifelse(count==1,  sprintf("[data prep](http://ohi-science.org/ohiprep_v%s/%s)", assessmentYear, variable_data), 
-                sprintf("[data prep %s](http://ohi-science.org/ohiprep_v%s/%s)", method_count, assessmentYear, variable_data))) %>%  
+  mutate(url_link = ifelse(count==1,  sprintf("[data prep](http://ohi-science.org/ohiprep_v%s/%s)", assessmentYear, dataprep_url), 
+                sprintf("[data prep %s](http://ohi-science.org/ohiprep_v%s/%s)", method_count, assessmentYear, dataprep_url))) %>%  
   summarize(url_link = paste(url_link, collapse = ", ")) %>%
   select(layer, url_link) %>%
   ungroup()
@@ -62,13 +54,12 @@ data <- left_join(data, url, by="layer") %>%
   select(layer, Name, Description, Dimension)
 
 ## get references:
-refs <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "ds_reference") %>%
-  select(layer, variable_data) %>%
+refs <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/layers_eez_reference.csv") %>%
+  select(layer, reference) %>%
   unique() %>%
-  mutate(ref = paste0("@", variable_data)) %>%
+  mutate(reference = paste0("@", reference)) %>%
   group_by(layer) %>%
-  summarize(reference = paste(ref, collapse = "; ")) %>%
+  summarize(reference = paste(reference, collapse = "; ")) %>%
   ungroup() %>%
   #mutate(reference = paste0("[", reference, "]")) %>%
   select(layer, References=reference)
@@ -79,15 +70,14 @@ data <- data %>%
   left_join(refs, by="layer")
 
 ### Get method updates
-updates <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/eez_layers_meta_data/layers_eez_methods.csv") %>%
-  filter(variable == "methods_update") %>%
-  select(layer, Updates=variable_data) %>%
+updates <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/layers_eez_updates.csv") %>%
+  select(layer, Updates=updates) %>%
   unique()
 
 data <- data %>%
   left_join(updates, by="layer") %>%
   select(-layer) %>%
-  select(Layer=Name, Description, Dimension, References, "2018 Updates" = Updates) %>%
+  select(Layer=Name, Description, Dimension, References, "2019 Updates" = Updates) %>%
   arrange(Dimension)
 
 kable(data)
