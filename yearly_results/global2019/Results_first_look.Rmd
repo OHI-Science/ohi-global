@@ -24,7 +24,7 @@ This document describes results from the OHI 2019 global assessment.  This is mo
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2019-10-24' #date extension on data files used for all tables/figures
+dateFile = '2019-10-30' #date extension on data files used for all tables/figures
 
 ## General settings to control
 scenario <- 2019 #identify scenario of focus (this can be changed to obtain data for other years)
@@ -204,7 +204,7 @@ write.csv(data_final, here(sprintf("yearly_results/%s/Results/data/scores_eez%s.
 
 
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-24-07.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2019.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-10-30.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2019.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
