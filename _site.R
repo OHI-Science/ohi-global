@@ -1,3 +1,10 @@
+# _site.R will copy metadata information from the ohi-global assessment branch
+# (published branch for release; draft branch for development).
+# It copies these files from the raw.githubusercontent url and saves them with a `local_`
+# prefix. When the website is built with `rmarkdown::render_site()`, they will
+# be knit-childed into the correct page; for example `local_goals.Rmd` will be
+# knit-childed into `goals.Rmd` and become ohi-science.org/ohi-global/goals.html.
+
 suppressPackageStartupMessages({
   library(readr)
   library(dplyr)

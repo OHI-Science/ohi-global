@@ -27,17 +27,17 @@ With each annual global assessment we have incrementally improved data processin
 -----
 
 <div class="col2">
-**Global assessment scores 2012-2018**
+**Global assessment scores 2012-2019**
 
 Quick access to *.csv* files of calculated global scores.
 
-- [Download by clicking here](https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/OHI_final_formatted_scores_2018-11-28.csv), then right-click to Save As.
-- [View the metadata](https://github.com/OHI-Science/ohi-global/tree/published/global2018#ohi-2018-global-metadata).
+- [Download by clicking here](https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/OHI_final_formatted_scores_2018-11-28.csv), then right-click to Save As. <!---TODO--->
+- [View the metadata](https://github.com/OHI-Science/ohi-global/tree/published/global2018#ohi-2018-global-metadata). <!---TODO--->
 
 **Documentation and Instruction**
 
-- [2018 Global OHI Scores Report](https://raw.githack.com/OHI-Science/ohi-global/published/global2018/Results/Supplement_Results.html) 
-- [2018 Methods](https://raw.githack.com/OHI-Science/ohi-global/published/global_supplement/Supplement.html)
+- [2019 Global OHI Scores Report](https://raw.githack.com/OHI-Science/ohi-global/published/global2018/Results/Supplement_Results.html) <!---TODO--->
+- [2019 Methods](https://raw.githack.com/OHI-Science/ohi-global/published/global_supplement/Supplement.html)
 - [Peer-reviewed publications](http://ohi-science.org/resources/publications/) 
 - [Learn how to use `ohicore`](http://ohi-science.org/ohicore)
 
@@ -48,7 +48,7 @@ Quick access to *.csv* files of calculated global scores.
 Final scores and methods are released annually each fall. Ongoing work is available in our [**OHI-Science**](https://github.com/OHI-Science) GitHub repositories.
 A description of file organization [is available](https://github.com/OHI-Science/ohiprep_v2018/blob/gh-pages/src/dataOrganization_SOP.md#sop-for-data-management-for-ocean-health-index-assessments).
 
-- [data preparation releases (`ohiprep` repository)](https://github.com/OHI-Science/ohiprep_v2018/releases) 
+- [data preparation releases (`ohiprep` repository)](https://github.com/OHI-Science/ohiprep_v2018/releases) <!---TODO--->
 - [score calculation releases (`ohi-global` repository)](https://github.com/OHI-Science/ohi-global/releases)
 - [`R` package to calculate scores (`ohicore` repository)](https://github.com/OHI-Science/ohicore/releases)
 - [Large data files](https://mazu.nceas.ucsb.edu/data/): Download data too large to host on GitHub (region shapefiles, pressure raster data, etc.) 
