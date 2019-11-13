@@ -17,14 +17,14 @@ output:
 # Summary of questions concerning fisheries
  - Why is Peru so high?
  - Why are these islands off of Eastern Africa doing comparatively well for FIS?
- - Falkland Islands off of Argentina have had a drop in fis scores. Why?
- - Dive into countries that are increasing/decreasing over time and explore. 
+ - Falkland Islands off of Argentina have had a drop in fis scores. Why?qq
 
 
 ```{r setup, include=FALSE, message = F, warning = F}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
 
 library(tidyverse)
+library(here)
 source('http://ohi-science.org/ohiprep_v2019/workflow/R/common.R')
 ```
 
@@ -244,80 +244,86 @@ Here we can see that the fishery that accounts for 27% of the catch has a bbmsy 
 
 Let's look at the African islands.
 
+Comoro Islands and Mayotte
 ```{r}
-Iles <- catch %>% 
-  filter(rgn_id %in% c(35,36),
+com_may <- catch %>% 
+  filter(rgn_id %in% c(28,29),
          year > 2008) %>%
   left_join(bbmsy) %>%
   group_by(year, rgn_id) %>%
   mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
-  left_join(rgn_deets)
+  left_join(rgns_eez)
 
-plotly::ggplotly(ggplot(Iles, aes(year, catch_prop)) + 
+plotly::ggplotly(ggplot(com_may, aes(year, catch_prop)) + 
   geom_area(aes(fill = stock_id)) +
   theme_bw() +
   theme(legend.position="") +
-  facet_wrap(~rgn_nam))
+  facet_wrap(~rgn_name))
 ```
 
 Ok it looks like Tuna is a significant portion of catch for these islands.
+Thunnus_albacares-51 (yellow fin Tuna) takes up ~33% of Mayotte catch. Katsuwonus_pelamis-51 (skip jack Tuna) takes up ~29% of Mayotte catch. 
+Marine_fishes_not_identified-51 takes up ~29% of Mayotte catch and ~24% of Comoro Islands catch. 
+Carangidae-51 (jack) takes up about ~33% of Comoro Islands catch. 
+
 
 ```{r}
 
-ile_catch <- Iles %>%
+com_may_catch <- com_may %>%
   filter(catch_prop > 0.1,
          !is.na(bbmsy))
 
-ggplot(ile_catch, aes(x = year, y = bbmsy, color = stock_id)) +
+ggplot(com_may_catch, aes(x = year, y = bbmsy, color = stock_id)) +
   geom_line() +
   theme_bw() +
   labs(y = "B/Bmsy",
        x = "Year",
-       ggtitle = "Tuna status for FAO 51") +
+       title = "Tuna status for FAO 51") +
   theme(legend.title=element_blank())
 
 ```
+ - The B/Bmsy is nearing one, which is why the scores are doing ok in these regions, as they are dominated by these catch. There is no B/Bmsy data for Carangidae-51, which is why it is not represented here.
 
-Let's look at the Maldives
+
+Let's look at the highest of the African Island scores, the Seychelles. 
 
 ```{r}
-maldives <- catch %>% 
-  filter(rgn_id == 39,
+sey <- catch %>% 
+  filter(rgn_id == 31,
          year > 2008) %>%
   left_join(bbmsy) %>%
   group_by(year) %>%
   mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
-  left_join(rgn_deets)
+  left_join(rgns_eez)
 
-plotly::ggplotly(ggplot(maldives, aes(year, catch_prop)) + 
-  geom_area(aes(fill = stock_id)) +
-  theme_bw() +
-  theme(legend.position=""))
-```
-
-Again *Katsuwonus pelamis* (Skipjack Tuna) is majority of catch.
-
-Is Amsterdam Island also highly dependant on Skipjack? It's much more subpolar (near Antarctic)
-
-```{r}
-ams <- catch %>% 
-  filter(rgn_id == 92,
-         year > 2008) %>%
-  left_join(bbmsy) %>%
-  group_by(year) %>%
-  mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
-  left_join(rgn_deets)
-
-plotly::ggplotly(ggplot(ams, aes(year, catch_prop)) + 
+plotly::ggplotly(ggplot(sey, aes(year, catch_prop)) + 
   geom_area(aes(fill = stock_id)) +
   theme_bw() +
   theme(legend.position=""))
 
 ```
 
-This time is *Thunnus albacares* (Yellowfin tuna) which has a similar trajectory to Skipjack.
+Again *Katsuwonus pelamis* (Skipjack Tuna) is majority of catch, ~37% of catch. *Thunnus_albacares-51* (Yellowfin Tuna) is ~23% of catch. 
 
+Is Mauritius also dependent upon Skipjack Tuna? 
 
+```{r}
+maur <- catch %>% 
+  filter(rgn_id == 37,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
+  left_join(rgns_eez)
+
+plotly::ggplotly(ggplot(maur, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+
+```
+
+This time *Thunnus albacares* (Yellowfin tuna) takes up ~20% and *Katsuwonus pelamis* (Skipjack Tuna) takes up ~25% of catch, same as the other islands. 
 
 
 
