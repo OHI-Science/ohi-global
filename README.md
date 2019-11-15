@@ -11,15 +11,13 @@ General information about file structure is here: http://ohi-science.org/manual/
 
 Files associated with calculating the OHI scores for scenarios from 2012 to present.
 
-*eez_layers_meta_data* 
+*metadata_documentation* 
 
-Database for the data layers (data sources, names, etc.) and functions to create different data formats
+Database for the data layers (data sources, names, etc.) and functions to create different data formats. layers_eez_base.csv describes filepaths of data layers used to calculate scores. 
 
-*global_supplement* 
-Documents and code to create methods document. layers_eez_base.csv describes filepaths of data layers used to calculate scores. 
+*documents* 
+Source documents and code to create method documents. 
 
 *yearly_results* 
 Post assessment analysis and visualization of data
-
-
 
