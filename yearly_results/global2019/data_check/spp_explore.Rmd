@@ -1,0 +1,121 @@
+---
+title: "Untitled"
+author: "Gage Clawson"
+date: "11/13/2019"
+output: html_document
+---
+
+## Summary of questions regarding data check of SPP 
+ - Explore putting together a dataset with country, species and IUCN risk assessment score. Maybe include km2 for each OHI rgn_id
+ - coral triangle; Indonesia (216), Malaysia (206), Papau New Guinea (17), Philippines (15), Solomon Islands (7), Timor-Leste (231) 
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+source('http://ohi-science.org/ohiprep_v2019/workflow/R/common.R')
+```
+
+```{r}
+scores <- read_csv("../scores_2019-10-30.csv") %>%
+  filter(goal == "SPP")
+
+region_data()
+
+ctry_data <- scores %>%
+  left_join(rgns_eez, by = c("region_id" = "rgn_id")) %>%
+  filter(region_id %in% c(216, 206, 17, 15, 7, 231))
+```
+
+```{r}
+score <- ctry_data %>%
+  filter(dimension == "score")
+
+# look at the east african countries
+score %>% 
+  ggplot(aes(x = year, y = score, color = rgn_name)) +
+  geom_line() +
+  theme_bw() +
+  labs(y = "FIS score") +
+  theme(legend.title=element_blank())
+
+t <- ctry_data %>%
+  filter(dimension %in% c("pressures", "status", "resilience"))
+
+ggplot(t, aes(x = year, y = score, color = dimension)) +
+  geom_line() +
+  theme_bw() +
+  facet_wrap(~rgn_name) +
+  theme(legend.title=element_blank())
+```
+
+```{r}
+diversity_3nm <- read_csv("~/github/ohi-global/eez/layers/species_diversity_3nm.csv") 
+
+diversity_eez <- read_csv("~/github/ohi-global/eez/layers/species_diversity_eez.csv") 
+
+sp_genetic <- read_csv("~/github/ohi-global/eez/layers/sp_genetic.csv")
+
+sp_alien_species <- read_csv("~/github/ohi-global/eez/layers/sp_alien_species.csv")
+here()
+```
+
+```{r}
+mean_risk_comp <- raster::raster(file.path(here(), "../ohiprep_v2019/globalprep/spp/v2019/_output/mean_risk_raster_comp.tif"))
+
+n_comp <- raster::raster(here("../ohiprep_v2019/globalprep/spp/v2019/_output/n_spp_risk_raster_comp.tif"))
+
+regions_ohi <- raster::raster(here("../ohiprep_v2019/globalprep/spp/v2019/_spatial/eez_rast.tif"))
+
+risk_stack_comp <- stack(regions_ohi, mean_risk_comp, n_comp)
+risk_vals_comp <- values(risk_stack_comp) %>%
+  data.frame()
+risk_vals_comp <- filter(risk_vals_comp, !is.na(eez_rast))
+risk_vals_comp <- filter(risk_vals_comp, !is.na(mean_risk_raster_comp))
+
+rgn_risk_comp <- risk_vals_comp %>%
+  rowwise() %>%
+  dplyr::mutate(risk_weight = mean_risk_raster_comp * n_spp_risk_raster_comp) %>%
+  group_by(eez_rast) %>%
+  summarize(rgn_risk_weight = sum(risk_weight),
+            rgn_n_species = sum(n_spp_risk_raster_comp))
+
+rgn_risk_comp <- rgn_risk_comp %>%
+  dplyr::rowwise() %>%
+  dplyr::mutate(mean_risk = rgn_risk_weight/rgn_n_species) %>%
+  dplyr::select(rgn_id = eez_rast, mean_risk)
+```
+
+```{r}
+
+
+global_marine_spp_risk <- read_csv(here("../ohiprep_v2019/globalprep/spp/v2019/_data/iucn_risk_current_2019-1.csv"))
+
+rgn_marine_spp <- read_csv(here("../ohiprep_v2019/globalprep/spp/v2019/_data/iucn_risk_rgn_current_2019-1.csv"))
+
+rgn_spp_list <- global_marine_spp_risk %>%
+  dplyr::select(iucn_sid, sciname, main_common_name, global_cat = cat, global_cat_score = cat_score) %>%
+  inner_join(rgn_marine_spp %>%
+               dplyr::select(iucn_sid, 
+                       #rgn_sciname = sciname, #rgn_pop = population,
+                      rgn_cat = cat_current, rgn_cat_score = cat_score, iucn_rgn),
+             by = 'iucn_sid')
+  filter(global_cat_score != rgn_cat_score) ## now we have a global marine species list with iucn risk scores and associated iucn species id... 
+  
+iucn_rgn_to_meow <- read_csv(here("../ohiprep_v2019/globalprep/spp/v2019/_spatial/iucn_rgn_to_meow.csv"))
+
+iucn_rgn_to_lme <- read_csv(here("../ohiprep_v2019/globalprep/spp/v2019/_spatial/iucn_rgn_to_lme.csv")) 
+# now match iucn_rgn to meow_rgn 
+meow_spp_list <- rgn_spp_list %>%
+  left_join(iucn_rgn_to_meow, by = "iucn_rgn") %>%
+  left_join(iucn_rgn_to_lme, by = "iucn_rgn")
+  
+  
+
+```
+
+
+
+
+ 
