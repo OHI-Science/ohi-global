@@ -84,7 +84,7 @@ rgn_names <- read.csv(here('eez/layers/rgn_global.csv')) %>%
   dplyr::mutate(country = as.character(country))
 
 
-radicalFile = '2019-10-30' #date extension on the radical data files that are used for all tables/figures
+radicalFile = '2019-11-15' #date extension on the radical data files that are used for all tables/figures
 
 ```
 
@@ -114,7 +114,7 @@ kable(data)
 
 See the [Methods](https://raw.githack.com/OHI-Science/ohi-global/draft/documents/methods/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
 
-A CSV formatted dataset from the 2019 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-10-30.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 8 assessment years (2012-2019). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019) for description of data.
+A CSV formatted dataset from the 2019 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-11-15.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 8 assessment years (2012-2019). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019) for description of data.
 
 The data layers (described in section 6 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2019.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
 
@@ -460,7 +460,7 @@ knitr::include_graphics(here("yearly_results/global2019/Results/figures/Trend_ba
 
 To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2019) and the trends for each region.
 
-Of most concern are regions that have poor scores and declining trends: Eritrea, Syria, Somalia, Bosnia and Herzegovina, Nicaragua, and Lebanon.
+Of most concern are regions that have poor scores and declining trends.
 
 The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
 

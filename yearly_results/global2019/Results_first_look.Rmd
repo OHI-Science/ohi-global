@@ -17,13 +17,13 @@ output:
 ---
 
 
-This document describes results from the OHI 2019 global assessment.  This is mostly an internal document to explore and check results.  It also creates the figures used on the website and in other documents.
+This document describes results from the 2019 global OHI assessment.  This is mostly an internal document to explore and check results.  It also creates the figures used on the website and in other documents.
 ```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
 # 1. check the code chunk below and change variables if needed
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2019-10-30' #date extension on data files used for all tables/figures
+dateFile = '2019-11-15' #date extension on data files used for all tables/figures
 
 ## General settings to control
 scenario <- 2019 #identify scenario of focus (this can be changed to obtain data for other years)
@@ -203,7 +203,7 @@ write.csv(data_final, here(sprintf("yearly_results/%s/Results/data/scores_eez%s.
 
 
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-10-30.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2019.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-11-15.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2019.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
@@ -248,7 +248,7 @@ knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/FlowerPl
 ## Making the maps of goal scores that will be reported, these figures are not reported here, but will be called in 
 ## different parts of the text.
 
-source(here("yearly_results/global2016/Reporting/map_fxns.R")) # OK to keep sourcing 2016 files?
+source(here("yearly_results/global2016/Reporting/map_fxns.R"))
 
 ### set scenario and desired map projection
 prj      <- 'mol'    ### note: 'gcs' is way faster.
@@ -1338,9 +1338,9 @@ knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_tren
 
 ### Comparing trend and average index scores
 
-To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2018) and the trends for each region.
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2019) and the trends for each region.
 
-Of most concern are regions that have poor scores and declining trends: Eritrea, Somalia, Ivory Coast, Nicaragua, and Lebanon.
+Of most concern are regions that have poor scores and declining trends.
 
 The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
 
@@ -1362,7 +1362,7 @@ avg_index <- index %>%
     geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
     geom_vline(xintercept = 67, color="red", size=.5, linetype=3) +
     theme_bw() + 
-    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2018 scores)") 
+    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2019 scores)") 
     
 
   plotly_fig <- plotly::ggplotly(p)
@@ -1417,8 +1417,6 @@ If the models and source data remain the same, these scores should be exactly th
 
 These changes do not reflect changes in actual system health!   
 
-We made a few changes to some goals, such as the addition of edible seaweed species to Mariculture and removal of edible seaweed species from Natural Products. Furthermore we changed the data source used for Fisheries from SAUP to Watson.  We also had fairly large changes to how we process species data.  
-
 ```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 data <- read.csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)), stringsAsFactors = FALSE) %>%
@@ -1472,6 +1470,3 @@ The following interactive plot provides an overview of how the 2018 scenario sco
 ```
 
 
-# Additional exploration
-
-Suggestions?

@@ -3,12 +3,12 @@
 ###########################################
 library(dplyr)
 saveFile = "global2019"
-dateFile = '2019-10-24'
+dateFile = '2019-11-15'
 
 # list of goals:
 goalList <- c('AO', 'BD', 'CP', 'CS', 'CW', 'ECO', 'FIS', 'FP', 'HAB', 'ICO', 'LE', 'LIV', 'LSP', 'MAR', 'NP', 'SP', 'SPP', 'TR')
 
-setwd(here::here("global2019"))
+setwd(here::here("yearly_results/global2019"))
 
 ## currently pair 2015 Antarctica and 2014 HS data with 2014-2017 EEZ analysis
 
@@ -109,6 +109,16 @@ radical <- all %>%
   arrange(scenario, goal, dimension, region_id)
 
 write.csv(radical, sprintf(here('yearly_results/%s/croscon_ohi_scores_%s.csv'), saveFile, dateFile), row.names=FALSE, na="")
+
+## truncate to 5 years of data for website
+current_year <- max(radical$scenario)
+recent5years <- (current_year-4):current_year
+
+radical_truncated <- radical %>%
+  filter(scenario %in% recent5years)
+
+summary(radical_truncated)
+write.csv(radical_truncated, sprintf(here('yearly_results/%s/croscon_ohi_scores_%s_truncated.csv'), saveFile, dateFile), row.names=FALSE, na="")
 
 ## check against last year's dimensions
 old <- read.csv(here("yearly_results/global2018/croscon_ohi_scores_2018-11-28.csv"))
