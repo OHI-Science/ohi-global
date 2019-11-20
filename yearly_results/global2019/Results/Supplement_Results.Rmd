@@ -147,7 +147,7 @@ Map (top) and histogram (bottom) of 2019 index scores for each OHI region.
 ## https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html
 ## https://github.com/baptiste/gridextra/wiki/arranging-ggplot
 
-Index_map <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/maps_by_goal_mol/global_map_Index_2019_mol.png")), interpolate=TRUE)
+Index_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/maps_by_goal_mol/global_map_Index_2019_mol.png", scenario)), interpolate=TRUE))
 map_label <- textGrob("", just=19, gp=gpar(fontsize=18))
 Index_hist <- rasterGrob(readPNG(here("yearly_results/global2019/Results/figures/score_histogram_color.png")), interpolate=TRUE)
 hist_label <- textGrob("", just=19, gp=gpar(fontsize=18))
