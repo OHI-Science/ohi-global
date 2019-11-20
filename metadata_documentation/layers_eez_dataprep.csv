@@ -3,7 +3,7 @@ ao_access,globalprep/res_mora_ao
 ao_need,globalprep/ao/v2019/ao_need_data_prep.html
 cc_acid,globalprep/prs_oa/v2017/create_oa_layer.html
 cc_slr,globalprep/prs_slr/v2019/slr_layer_prep_v2.html
-cc_sst,globalprep/prs_sst/v2018/sst_layer_prep.rmd
+cc_sst,globalprep/prs_sst/v2018/sst_layer_prep.html
 cc_uv,globalprep/prs_uv/v2019/uv_dataprep.html
 cw_chemical_trend,globalprep/prs_chem/v2016
 cw_nutrient_trend,globalprep/prs_land-based_nutrient/v2016
@@ -32,7 +32,7 @@ fp_mora_artisanal,globalprep/res_mora_ao
 fp_mpa_coast,globalprep/lsp/v2019/lsp_data_prep.html
 fp_mpa_eez,globalprep/lsp/v2019/lsp_data_prep.html
 fp_targetharvest,globalprep/prs_targetedharvest/v2019/targetharvest_dataprep.html
-fp_wildcaught_weight,globalprep/fp/v2018/FP_script.html
+fp_wildcaught_weight,globalprep/fp/v2019/FP_script.html
 g_cites,globalprep/res_cites_signatories/v2017
 g_mariculture,globalprep/res_cbd_habitat
 g_msi_gov,globalprep/res_mariculture_sustainability
@@ -102,5 +102,5 @@ ss_wgi,globalprep/prs_res_wgi/v2019/WGI_dataprep.html
 tr_jobs_pct_tourism,globalprep/tr/v2019/tr_data_prep.html
 tr_sustainability,globalprep/tr/v2018/tr_data_prep.html
 tr_travelwarnings,globalprep/tr/v2019/tr_data_prep.html
-uninhabited,globalprep/supplementary_information/v2019
+uninhabited,globalprep/supplementary_information/v2018
 wgi_all,globalprep/prs_res_wgi/v2019/WGI_dataprep.html
