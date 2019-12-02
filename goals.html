@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -87,7 +87,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -236,6 +235,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -248,48 +248,9 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -303,6 +264,12 @@ $(document).ready(function ()  {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -338,8 +305,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -472,7 +437,7 @@ The model is based on single-species assessments of stock status and thus cannot
 <p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
 <p><strong>Resilience</strong></p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
+<p><a href="http://ohi-science.org/ohi-global/layers.html#fisheries_management_index">Fisheries management index</a> (fp_fish_management): Country scale regulations and management of fishing</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
@@ -491,18 +456,18 @@ The model is based on single-species assessments of stock status and thus cannot
 </div>
 <div id="model-1" class="section level3">
 <h3>Model</h3>
-<p>Model measures the quantity of sustainably harvested mariculture species per coastal inhabitant (i.e., those within 25 miles of the coast), under the assumption that mariculture development scales proportionally with coastal population, which is a proxy for potential logistic limitations to farm development, e.g., presence of infrastructures, coastal access, and locally available workforce. The <em>species assessed</em> are strictly marine species from both the marine and brackish water FAO categories, excluding species not used as a source of food (FAO 2003, Halpern 2012). The <em>sustainability score (SM,k)</em> for each species in each country is based on the Mariculture Sustainability Index (MSI) (Halpern 2015).</p>
+<p>Model measures the quantity of sustainably harvested mariculture species per 1% of a regions aquaculture potential. The <em>species assessed</em> are strictly marine species from both the marine and brackish water FAO categories, excluding species not used as a source of food (FAO 2003, Halpern 2012). The <em>sustainability score (SM,k)</em> for each species in each country is based on the Mariculture Sustainability Index (MSI) (Halpern 2015).</p>
 </div>
 <div id="reference-points-1" class="section level3">
 <h3>Reference points</h3>
-<p>The reference point is 95% of the highest harvested tonnes per coastal inhabitant (i.e., those within 25 miles of the coast) among all assessed regions, under the assumption that production depends on the presence of coastal communities that can provide the labor force, infrastructures, and economic demand to support the development and economic viability of mariculture facilities.</p>
+<p>The reference point is 1% of aquaculture potential among all assessed regions.</p>
 </div>
 <div id="data-used-in-model-1" class="section level3">
 <h3>Data used in model</h3>
 <p><strong>Status &amp; trend</strong></p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#inland_coastal_population">Inland coastal population</a> (mar_coastalpopn_inland25mi): Total coastal population within 25 miles of coast</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#mariculture_harvest">Mariculture harvest</a> (mar_harvest_tonnes): Tonnes of mariculture harvest</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#mariculture_sustainability_score">Mariculture sustainability score</a> (mar_sustainability_score): Mariculture sustainability based on the Mariculture Sustainability Index (MSI)</p>
+<p><a href="http://ohi-science.org/ohi-global/layers.html#potential_tonnes_of_mariculture_harvest">Potential tonnes of mariculture harvest</a> (mar_capacity): Tonnes of mariculture harvest potential for each region based on biological variables and growth performance indices. Taken from Gentry et al. 2017 and adopted for the OHI.</p>
 <p><strong>Pressure</strong></p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#sea_level_rise">Sea level rise</a> (cc_slr): Pressure due to rising mean sea level</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#chemical_pollution">Chemical pollution</a> (po_chemicals): Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)</p>
@@ -552,7 +517,7 @@ The model is based on single-species assessments of stock status and thus cannot
 <p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
 <p><strong>Resilience</strong></p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
+<p><a href="http://ohi-science.org/ohi-global/layers.html#fisheries_management_index">Fisheries management index</a> (fp_fish_management): Country scale regulations and management of fishing</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(fishing_preservation)">Coastal protected marine areas (fishing preservation)</a> (fp_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_habitat_biodiversity">Management of habitat to protect habitat biodiversity</a> (hd_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(habitat_preservation)">Coastal protected marine areas (habitat preservation)</a> (hd_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
@@ -604,7 +569,7 @@ The model is based on single-species assessments of stock status and thus cannot
 <p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
 <p><strong>Resilience</strong></p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
+<p><a href="http://ohi-science.org/ohi-global/layers.html#fisheries_management_index">Fisheries management index</a> (fp_fish_management): Country scale regulations and management of fishing</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(fishing_preservation)">Coastal protected marine areas (fishing preservation)</a> (fp_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
@@ -890,7 +855,7 @@ The model is based on single-species assessments of stock status and thus cannot
 <p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
 <p><strong>Resilience</strong></p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
+<p><a href="http://ohi-science.org/ohi-global/layers.html#fisheries_management_index">Fisheries management index</a> (fp_fish_management): Country scale regulations and management of fishing</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#cites_signatories">CITES signatories</a> (g_cites): Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories</p>
@@ -1028,7 +993,7 @@ The model is based on single-species assessments of stock status and thus cannot
 <p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
 <p><strong>Resilience</strong></p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
+<p><a href="http://ohi-science.org/ohi-global/layers.html#fisheries_management_index">Fisheries management index</a> (fp_fish_management): Country scale regulations and management of fishing</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#cites_signatories">CITES signatories</a> (g_cites): Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories</p>
@@ -1091,7 +1056,7 @@ The model is based on single-species assessments of stock status and thus cannot
 <p><a href="http://ohi-science.org/ohi-global/layers.html#weakness_of_governance">Weakness of governance</a> (ss_wgi): Inverse of World Governance Indicators (WGI) six combined scores</p>
 <p><strong>Resilience</strong></p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#management_of_habitat_to_protect_fisheries_biodiversity_">Management of habitat to protect fisheries biodiversity</a> (fp_habitat): Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions</p>
-<p><a href="http://ohi-science.org/ohi-global/layers.html#commercial_fishing_management">Commercial fishing management</a> (fp_mora): Country scale regulations and management of commerical fishing</p>
+<p><a href="http://ohi-science.org/ohi-global/layers.html#fisheries_management_index">Fisheries management index</a> (fp_fish_management): Country scale regulations and management of fishing</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#artisanal_fisheries_management_effectiveness">Artisanal fisheries management effectiveness</a> (fp_mora_artisanal): Quality of management of small-scale fishing for artisanal and recreational purposes</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#coastal_protected_marine_areas_(fishing_preservation)">Coastal protected marine areas (fishing preservation)</a> (fp_mpa_coast): Protected marine areas within 3nm of coastline (lasting special places goal status score)</p>
 <p><a href="http://ohi-science.org/ohi-global/layers.html#eez_protected_marine_areas_(fishing_preservation)">EEZ protected marine areas (fishing preservation)</a> (fp_mpa_eez): Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ)</p>
@@ -1128,6 +1093,49 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

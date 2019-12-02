@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -84,7 +84,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -233,6 +232,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -244,18 +244,6 @@ $(document).ready(function () {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -325,23 +313,23 @@ $(document).ready(function () {
       -moz-columns: 2 200px;    /* firefox */
   }
 </style>
-<p><br> Ocean Health Index scores provide invaluable, comprehensive, and quantitative assessments of progress towards healthy and sustainable oceans. Such assessments are particularly valuable when repeated annually. 2018 marks the seventh year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. For detailed description of our up-to-date data and methods, see the <a href="https://raw.githack.com/OHI-Science/ohi-global/published/global_supplement/Supplement.html">Supplemental Information</a>. And visit our <a href="https://ucsb.maps.arcgis.com/apps/Cascade/index.html?appid=d8f55991dca34d74820c0ea13d8b02e0">Story Map</a>!</p>
+<p><br> Ocean Health Index scores provide invaluable, comprehensive, and quantitative assessments of progress towards healthy and sustainable oceans. Such assessments are particularly valuable when repeated annually. 2019 marks the eighth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. For detailed description of our up-to-date data and methods, see the <a href="http://htmlpreview.github.io/?https://github.com/OHI-Science/ohi-global/published/documents/methods/Supplement.html">Supplemental Methods</a>. And visit our <a href="https://ucsb.maps.arcgis.com/apps/Cascade/index.html?appid=d8f55991dca34d74820c0ea13d8b02e0">Story Map</a>!</p>
 <!---
 <iframe width="100%" height="800px" src="https://ucsb.maps.arcgis.com/apps/Cascade/index.html?appid=d8f55991dca34d74820c0ea13d8b02e0" frameborder="0" scrolling="yes"></iframe>
   --->
 <hr />
 <div class="col2">
 <p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="480" /></p>
-<p><br> <br> <br> <strong>The average 2018 Index score was 70 out of 100</strong>. Average Index scores have not dramatically changed over seven years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.<br />
+<p><br> <br> <br> <strong>The average 2019 Index score was 71 out of 100</strong>. Average Index scores have not dramatically changed over eight years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.<br />
 <br></p>
 <ul>
 <li><a href="http://ohi-science.org/ohi-global/goals">Learn about the goals</a><br />
 </li>
-<li><a href="https://raw.githack.com/OHI-Science/ohi-global/published/global2018/Results/Supplement_Results.html">Read the 2018 results summary</a></li>
+<li><a href="http://htmlpreview.github.io/?https://github.com/OHI-Science/ohi-global/blob/published/yearly_results/global2019/Results/Supplement_Results.html">Read the 2019 results summary</a></li>
 <li><a href="http://ohi-science.org/ohi-global/scores">Explore scores by region and goal</a><br />
 </li>
 <li><a href="http://ohi-science.org/ohi-global/download">Download data</a></li>
-<li><a href="https://raw.githack.com/OHI-Science/ohi-global/published/global_supplement/Supplement.html">Dig deeper with the 2018 methods</a></li>
+<li><a href="http://htmlpreview.github.io/?https://github.com/OHI-Science/ohi-global/published/documents/methods/Supplement.html">Dig deeper with the Supplemental Methods</a></li>
 <li><a href="http://www.oceanhealthindex.org/">Learn more at oceanhealthindex.org</a></li>
 </ul>
 </div>
@@ -349,7 +337,7 @@ $(document).ready(function () {
 <p>For the fifth assessment in 2016, we also explored trends and trajectories in ocean health:</p>
 <ul>
 <li><a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267">Halpern <em>et al</em>. 2017, <em>PLoS ONE</em></a></li>
-<li><a href="http://ohi-science.nceas.ucsb.edu/plos_change_in_global_ocean_health/">interactive figures and maps</a></li>
+<li><a href="http://ohi-science.nceas.ucsb.edu/plos_change_in_global_ocean_health/">interactive figures and maps with Shiny</a></li>
 <li><a href="https://www.openchannels.org/webinars/2017/drivers-and-implications-change-global-ocean-health-demonstrated-ocean-health-index">Open Channels webinar</a></li>
 </ul>
 <p>For further details, see <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0117863"><em>Halpern et al. 2015</em></a>, <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0178267"><em>Halpern et al. 2017</em></a>, <a href="https://peerj.com/articles/1503"><em>Lowndes et al. 2015</em></a>, and <a href="https://www.nature.com/articles/s41559-017-0160"><em>Lowndes et al. 2017</em></a>. <br> <br></p>
@@ -376,6 +364,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

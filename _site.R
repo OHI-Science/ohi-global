@@ -23,7 +23,7 @@ suppressPackageStartupMessages({
 ## brewed vars
 study_area      <- "Global"
 key             <- "ohi-global"
-dir_scenario_gh <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/draft" # ultimately, published branch!
+dir_scenario_gh <- "https://raw.githubusercontent.com/OHI-Science/ohi-global/published" # ultimately, published branch!
 
 
 

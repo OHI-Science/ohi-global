@@ -17,7 +17,7 @@ library(tidyverse)
 source('_site.R')
 
 ## read in scores
-data <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/published/global2018/OHI_final_formatted_scores_2018-11-28.csv') 
+data <- readr::read_csv('https://github.com/OHI-Science/ohi-global/raw/published/yearly_results/global2019/OHI_final_formatted_scores_2019-11-15.csv') 
 
 ## read in paths for figures
 regions_figs <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/published/eez/conf/web/regions_figs.csv')

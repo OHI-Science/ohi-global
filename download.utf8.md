@@ -6,9 +6,7 @@ output:
       in_header: 'ohi_hdr.html'
 ---
 
-```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
-source("./_site.R")
-```
+
 <!---From http://stackoverflow.com/questions/31753897/2-column-section-in-r-markdown:
 Put in your css file or directly in rmarkdown--->
 <style>
