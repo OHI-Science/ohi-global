@@ -48,8 +48,8 @@ Quick access to *.csv* files of calculated global scores.
 Final scores and methods are released annually each fall. Ongoing work is available in our [**OHI-Science**](https://github.com/OHI-Science) GitHub repositories.
 A description of file organization [is available](https://github.com/OHI-Science/ohiprep_v2018/blob/gh-pages/src/dataOrganization_SOP.md#sop-for-data-management-for-ocean-health-index-assessments).
 
-- [data preparation releases (`ohiprep` repository)](https://github.com/OHI-Science/ohiprep_v2019) 
-- [score calculation releases (`ohi-global` repository)](https://github.com/OHI-Science/ohi-global/releases)
+- [data preparation (`ohiprep` repository)](https://github.com/OHI-Science/ohiprep_v2019) 
+- [score calculation (`ohi-global` repository)](https://github.com/OHI-Science/ohi-global/releases)
 - [`R` package to calculate scores (`ohicore` repository)](https://github.com/OHI-Science/ohicore/releases)
 - [Large data files](https://mazu.nceas.ucsb.edu/data/): Download data too large to host on GitHub (region shapefiles, pressure raster data, etc.) 
 </div>
