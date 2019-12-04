@@ -156,7 +156,7 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ## final commit from last year: 1fdf7f2
 # Link being sourced here is incorrect, need to change it!
 ohicore::score_check(commit="previous", scenario_year=2019,
-            file_name="final_scores", save_csv = TRUE, NA_compare = TRUE)
+            file_name="check_2020_assess", save_csv = TRUE, NA_compare = TRUE)
 
 
 
