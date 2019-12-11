@@ -231,6 +231,24 @@ PlotFlower(
 
 ```
 
+Alternative color scale
+```{r Flower plots v2, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval = flower_plots}
+
+source(here(sprintf('yearly_results/%s/Results/functions/flowerPlot_v2.R', saveFile)))
+
+# Make sure you create the Results/figures/FlowerPlots folder before running this function
+PlotFlower(
+  region_plot = NA,
+  dir_fig_save = here(sprintf("yearly_results/%s/Results/figures/FlowerPlots_v2", saveFile)),
+  assessment_name = "Global Average",
+  year_plot = 2019,
+  scores_file = here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)),
+  scenario_folder = "eez"
+)
+
+
+```
+
 
 Average global performance of the 10 goals.
 
