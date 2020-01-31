@@ -9,7 +9,7 @@
 ## Install the appropriate ohicore:
 library(devtools)
 devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
-# devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+#devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 ## STEP 2:
@@ -152,15 +152,14 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 # STEP 10: Review results
 
 ### Some methods for visualizing the data
-
-## final commit from last year: 1fdf7f2
+## final commit from last year: a832c5a
 # Link being sourced here is incorrect, need to change it!
-ohicore::score_check(commit="previous", scenario_year=2019,
-            file_name="check_2020_assess", save_csv = TRUE, NA_compare = TRUE)
-
+ ohicore::score_check(commit="previous", scenario_year=2019,
+             file_name="check_2020_assess_test", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/fp_weights_diff_data_2019-10-23.csv")) 
+
 
 tmp <- dplyr::filter(compare, !is.na(score) & is.na(old_score)) %>%
   dplyr::filter(dimension=="status")
