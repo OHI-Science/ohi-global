@@ -31,7 +31,7 @@ library(readr)
 library(here)
 
 ## source file path info depending on operating system
-source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/workflow/R/common.R')
+source('http://ohi-science.org/ohiprep_v2020/workflow/R/common.R')
 
 
 #############################
@@ -141,7 +141,7 @@ conf   <-  ohicore::Conf(here('eez/conf'))
 layers <-  ohicore::Layers(layers.csv = here('eez/layers.csv'), layers.dir = here('eez/layers'))
 
 #scorelist = lapply(X=2018, FUN=get_scores)
-scorelist = lapply(X=scenario_years, FUN=get_scores) # 37 warnings were generated (nothing of concern)
+scorelist = lapply(X=scenario_years, FUN=get_scores) # 31 warnings were generated (nothing of concern)
 scores_all_years <- dplyr::bind_rows(scorelist)
 
 
@@ -154,8 +154,8 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ### Some methods for visualizing the data
 ## final commit from last year: a832c5a
 # Link being sourced here is incorrect, need to change it!
- ohicore::score_check(commit="previous", scenario_year=2019,
-             file_name="check_2020_assess_test", save_csv = TRUE, NA_compare = TRUE)
+ ohicore::score_check(commit = "previous", scenario_year = 2020,
+             file_name = "tr_jobs_pct_tourism_scorecheck", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/fp_weights_diff_data_2019-10-23.csv")) 
