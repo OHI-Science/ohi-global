@@ -1023,16 +1023,16 @@ TR <- function(layers) {
            Xtr = E * S)
   
   
-  # regions with Travel Warnings
-  rgn_travel_warnings <-
-    AlignDataYears(layer_nm = "tr_travelwarnings", layers_obj = layers) %>%
-    dplyr::select(-layer_name)
-
-  ## incorporate Travel Warnings
-  tr_model <- tr_model %>%
-     dplyr::left_join(rgn_travel_warnings, by = c('rgn_id', 'scenario_year')) %>%
-     dplyr::mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
-     dplyr::select(-multiplier)
+  # # regions with Travel Warnings
+  # rgn_travel_warnings <-
+  #   AlignDataYears(layer_nm = "tr_travelwarnings", layers_obj = layers) %>%
+  #   dplyr::select(-layer_name)
+  # 
+  # ## incorporate Travel Warnings
+  # tr_model <- tr_model %>%
+  #    dplyr::left_join(rgn_travel_warnings, by = c('rgn_id', 'scenario_year')) %>%
+  #    dplyr::mutate(Xtr = ifelse(!is.na(multiplier), multiplier * Xtr, Xtr)) %>%
+  #    dplyr::select(-multiplier)
 
   # assign NA for uninhabitated islands (i.e., islands with <100 people)
   if (conf$config$layer_region_labels == 'rgn_global') {
