@@ -109,9 +109,9 @@ ohicore::CheckLayers(layers.csv = here('eez/layers.csv'),
 # calculate scores for each year scenario and save to a single csv file:
 
 ## General function to calculate scores
-get_scores <- function(s_year){ # s_year=2020
+get_scores <- function(s_year){  #s_year=2020
 
-#  s_year <- as.numeric(s_year)
+  #s_year <- as.numeric(s_year)
   print(sprintf("For assessment year %s", s_year))
 
   # set the scenario year
