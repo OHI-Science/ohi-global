@@ -16,10 +16,10 @@ element_wts_cs_km2_x_storage,none
 element_wts_hab_pres_abs,none
 fis_b_bmsy,"additional RAM species, now include additional metrics of stock performance"
 fis_meancatch,data updated (same range of years)
-fp_art_hb,data updated (same range of years)
-fp_art_lb,data updated (same range of years)
-fp_com_hb,data updated (same range of years)
-fp_com_lb,data updated (same range of years)
+fp_art_hb, two additional years of data (2016 & 2017)
+fp_art_lb, two additional years of data (2016 & 2017)
+fp_com_hb, two additional years of data (2016 & 2017)
+fp_com_lb, two additional years of data (2016 & 2017)
 fp_habitat,none
 fp_fish_management,New data source: Melnychuk et al. (2017) fisheries management index data
 fp_mora_artisanal,none
@@ -93,8 +93,8 @@ spp_status,additional year of data
 spp_trend,additional year of data
 ss_spi,additional year of data
 ss_wgi,additional year of data (2017)
-tr_jobs_pct_tourism,two additional years of data
-tr_sustainability,none
-tr_travelwarnings,updated data
+tr_jobs_pct_tourism, two additional years of data
+tr_sustainability, additional year of data (2019)
+tr_travelwarnings, deleted from index
 uninhabited,none
 wgi_all,additional year of data (2017)
