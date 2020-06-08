@@ -1,18 +1,18 @@
 "rgn_id","year","taxa_code","sust_coeff"
 5,2012,"Blue shrimp_1",0.372222222
 5,2012,"Pacific cupped oyster_2",0.757142857
-6,2012,"Blue shrimp_3",0.372222222
-6,2012,"Whiteleg shrimp_4",0.374509804
-7,2012,"Giant tiger prawn_5",0.366666667
-8,2012,"Bear paw clam_6",0.811764706
-8,2012,"Crocus giant clam_7",0.811764706
-8,2012,"Elongate giant clam_8",0.811764706
-8,2012,"Fluted giant clam_9",0.811764706
-8,2012,"Giant clam_10",0.811764706
-8,2012,"Milkfish_11",0.414285714
-8,2012,"Smooth giant clam_12",0.811764706
-9,2012,"Clams, etc. nei_13",0.766666667
-9,2012,"Milkfish_14",0.414285714
+5,2012,"Snappers nei_3",0.433333333
+6,2012,"Blue shrimp_4",0.372222222
+6,2012,"Whiteleg shrimp_5",0.374509804
+7,2012,"Giant tiger prawn_6",0.366666667
+8,2012,"Bear paw clam_7",0.811764706
+8,2012,"Crocus giant clam_8",0.811764706
+8,2012,"Elongate giant clam_9",0.811764706
+8,2012,"Fluted giant clam_10",0.811764706
+8,2012,"Giant clam_11",0.811764706
+8,2012,"Milkfish_12",0.414285714
+8,2012,"Penaeus shrimps nei_13",0.266666667
+8,2012,"Smooth giant clam_14",0.811764706
 10,2012,"Milkfish_15",0.414285714
 11,2012,"Sixfinger threadfin_16",0.444010417
 13,2012,"Banana prawn_17",0.275
@@ -35,1097 +35,1061 @@
 14,2012,"Cobia_34",0.444010417
 14,2012,"Croakers, drums nei_35",0.444010417
 14,2012,"Flathead grey mullet_36",0.37
-14,2012,"Flathead grey mullet_37",0.37
-14,2012,"Fourfinger threadfin_38",0.444010417
-14,2012,"Giant tiger prawn_39",0.1
-14,2012,"Greasyback shrimp_40",0.372222222
-14,2012,"Greater amberjack_41",0.444010417
+14,2012,"Fourfinger threadfin_37",0.444010417
+14,2012,"Giant tiger prawn_38",0.1
+14,2012,"Greasyback shrimp_39",0.372222222
+14,2012,"Greater amberjack_40",0.444010417
+14,2012,"Groupers nei_41",0.33
 14,2012,"Groupers nei_42",0.33
-14,2012,"Groupers nei_43",0.33
-14,2012,"Indo-Pacific swamp crab_44",0.416666667
+14,2012,"Indo-Pacific swamp crab_43",0.416666667
+14,2012,"Japanese carpet shell_44",0.841666667
 14,2012,"Japanese carpet shell_45",0.841666667
-14,2012,"Japanese carpet shell_46",0.841666667
-14,2012,"Japanese eel_47",0.444010417
+14,2012,"Japanese eel_46",0.444010417
+14,2012,"Japanese hard clam_47",0.811764706
 14,2012,"Japanese hard clam_48",0.811764706
-14,2012,"Japanese hard clam_49",0.811764706
-14,2012,"Japanese spiny lobster_50",0.416666667
-14,2012,"Japanese spiny lobster_51",0.416666667
-14,2012,"Kuruma prawn_52",0.37
-14,2012,"Kuruma prawn_53",0.37
-14,2012,"Laver (Nori)_54",0.67
-14,2012,"Marine crabs nei_55",0.416666667
-14,2012,"Marine crabs nei_56",0.416666667
-14,2012,"Marine fishes nei_57",0.477777778
-14,2012,"Marine fishes nei_58",0.477777778
-14,2012,"Marine molluscs nei_59",0.533333333
-14,2012,"Marine molluscs nei_60",0.533333333
-14,2012,"Mi-iuy (brown) croaker_61",0.444010417
-14,2012,"Milkfish_62",0.5
-14,2012,"Natantian decapods nei_63",0.533333333
-14,2012,"Pacific cupped oyster_64",0.53
-14,2012,"Porgies, seabreams nei_65",0.444010417
-14,2012,"Porgies, seabreams nei_66",0.444010417
-14,2012,"Redtail prawn_67",0.366666667
-14,2012,"Seabasses nei_68",0.5
-14,2012,"Seaweeds nei_69",0.83
-14,2012,"Snappers, jobfishes nei_70",0.444010417
-14,2012,"Snappers, jobfishes nei_71",0.444010417
-14,2012,"Trumpet emperor_72",0.444010417
-14,2012,"Whiteleg shrimp_73",0.37
-15,2012,"Banana prawn_74",0.27
-15,2012,"Barramundi(=Giant seaperch)_75",0.23
-15,2012,"Caulerpa seaweeds_76",0.83
-15,2012,"Cupped oysters nei_77",0.888095238
-15,2012,"Flathead lobster_78",0.416666667
-15,2012,"Giant tiger prawn_79",0.1
-15,2012,"Giant tiger prawn_80",0.1
-15,2012,"Green mussel_81",0.8
-15,2012,"Groupers, seabasses nei_82",0.33
-15,2012,"Groupers, seabasses nei_83",0.33
-15,2012,"Indo-Pacific swamp crab_84",0.416666667
-15,2012,"Indo-Pacific swamp crab_85",0.416666667
-15,2012,"Jacks, crevalles nei_86",0.444010417
-15,2012,"Marine fishes nei_87",0.477777778
-15,2012,"Marine fishes nei_88",0.477777778
-15,2012,"Metapenaeus shrimps nei_89",0.372222222
-15,2012,"Metapenaeus shrimps nei_90",0.372222222
-15,2012,"Milkfish_91",0.37
-15,2012,"Milkfish_92",0.37
-15,2012,"Scats_93",0.444010417
-15,2012,"Snappers nei_94",0.433333333
-15,2012,"Snubnose pompano_95",0.444010417
-15,2012,"Tropical spiny lobsters nei_96",0.416666667
-15,2012,"Whiteleg shrimp_97",0.374509804
-16,2012,"Abalones nei_98",0.55
-16,2012,"Atlantic salmon_99",0.23
-16,2012,"Australian mussel_100",0.811764706
-16,2012,"Australian mussel_101",0.811764706
-16,2012,"Barramundi(=Giant seaperch)_102",0.3
-16,2012,"Barramundi(=Giant seaperch)_103",0.3
-16,2012,"Barramundi(=Giant seaperch)_104",0.3
-16,2012,"Brine shrimp_105",0.366666667
-16,2012,"Brown tiger prawn_106",0.366666667
-16,2012,"Brown tiger prawn_107",0.366666667
-16,2012,"Chinook(=Spring=King) salmon_108",0.370833333
-16,2012,"Cupped oysters nei_109",0.9
-16,2012,"Cupped oysters nei_110",0.9
-16,2012,"Eastern king prawn_111",0.366666667
-16,2012,"Eastern king prawn_112",0.366666667
-16,2012,"Eastern school shrimp_113",0.366666667
-16,2012,"Finfishes nei_114",0.444010417
-16,2012,"Finfishes nei_115",0.444010417
-16,2012,"Finfishes nei_116",0.444010417
-16,2012,"Flat and cupped oysters nei_117",0.833333333
-16,2012,"Flat and cupped oysters nei_118",0.833333333
-16,2012,"Giant tiger prawn_119",0.23
-16,2012,"Giant tiger prawn_120",0.23
-16,2012,"Indo-Pacific swamp crab_121",0.416666667
-16,2012,"Kuruma prawn_122",0.33
-16,2012,"Marine fishes nei_123",0.477777778
-16,2012,"Pacific cupped oyster_124",1
-16,2012,"Pacific cupped oyster_125",1
-16,2012,"Penaeus shrimps nei_126",0.266666667
-16,2012,"Penaeus shrimps nei_127",0.266666667
-16,2012,"Rainbow trout_128",0.566666667
-16,2012,"Sea mussels nei_129",0.791666667
-16,2012,"Southern Australia scallop_130",0.811764706
-16,2012,"Southern bluefin tuna_131",0.1
-17,2012,"Cupped oysters nei_132",0.888095238
-17,2012,"Giant tiger prawn_133",0.366666667
-17,2012,"Indo-Pacific swamp crab_134",0.416666667
-17,2012,"Milkfish_135",0.414285714
-17,2012,"Pearl oyster shells nei_136",0.811764706
-18,2012,"Clams, etc. nei_137",0.766666667
-18,2012,"Flathead grey mullet_138",0.412820513
-18,2012,"Giant tiger prawn_139",0.366666667
-18,2012,"Green mussel_140",0.8
-18,2012,"Indo-Pacific swamp crab_141",0.416666667
-18,2012,"Metapenaeus shrimps nei_142",0.372222222
-18,2012,"Pearl oyster shells nei_143",0.811764706
-19,2012,"Milkfish_144",0.414285714
-20,2012,"Abalones nei_145",0.57
-20,2012,"Aquatic invertebrates nei_146",0.542156863
-20,2012,"Bastard halibut_147",0.444010417
-20,2012,"Blackhead seabream_148",0.444010417
-20,2012,"Blood cockle_149",0.67
-20,2012,"Dotted gizzard shad_150",0.444010417
-20,2012,"Filefishes, leatherjackets nei_151",0.444010417
-20,2012,"Fleshy prawn_152",0.366666667
-20,2012,"Fusiform sargassum_153",0.83
-20,2012,"Globose clam_154",0.811764706
-20,2012,"Green laver_155",0.83
-20,2012,"groupers nei_156",0.444010417
-20,2012,"Horned turban_157",0.811764706
-20,2012,"Inflated ark_158",0.811764706
-20,2012,"Jack and horse mackerels nei_159",0.444010417
-20,2012,"Japanese carpet shell_160",0.841666667
-20,2012,"Japanese hard clam_161",0.811764706
-20,2012,"Japanese kelp_162",0.83
-20,2012,"Japanese seabream_163",0.444010417
-20,2012,"Korean mussel_164",0.8
-20,2012,"Korean rockfish_165",0.444010417
-20,2012,"Kuruma prawn_166",0.5
-20,2012,"Laver (Nori)_167",0.73
-20,2012,"Marine crustaceans nei_168",0.3
-20,2012,"Marine fishes nei_169",0.477777778
-20,2012,"Marine molluscs nei_170",0.533333333
-20,2012,"Mi-iuy (brown) croaker_171",0.444010417
-20,2012,"Mullets nei_172",0.561111111
-20,2012,"Okhotsk atka mackerel_173",0.444010417
-20,2012,"Pacific chub mackerel_174",0.444010417
-20,2012,"Pacific cupped oyster_175",0.83
-20,2012,"Porgies, seabreams nei_176",0.444010417
-20,2012,"Scorpionfishes, redfishes nei_177",0.444010417
-20,2012,"Sea squirts nei_178",0.6
-20,2012,"Seabasses nei_179",0.5
-20,2012,"Wakame_180",0.83
-20,2012,"Whiteleg shrimp_181",0.374509804
-20,2012,"Yesso scallop_182",0.833333333
-21,2012,"Atlantic salmon_183",0.378947368
-21,2012,"Clams, etc. nei_184",0.766666667
-21,2012,"Japanese kelp_185",0.83
-21,2012,"Japanese sea cucumber_186",0.571405229
-21,2012,"Laver (Nori)_187",0.67
-21,2012,"Marine fishes nei_188",0.477777778
-21,2012,"Tiger pufferfish_189",0.444010417
-21,2012,"Wakame_190",0.83
-21,2012,"Yesso scallop_191",0.833333333
-24,2012,"Barramundi(=Giant seaperch)_192",0.190909091
-24,2012,"Blood cockle_193",0.666666667
-24,2012,"Green mussel_194",0.8
-24,2012,"Groupers nei_195",0.333333333
-24,2012,"Indo-Pacific swamp crab_196",0.416666667
-24,2012,"Marine fishes nei_197",0.477777778
-24,2012,"Marine molluscs nei_198",0.533333333
-24,2012,"Penaeus shrimps nei_199",0.23
-24,2012,"Snappers nei_200",0.433333333
-25,2012,"Abalones nei_201",0.55
-25,2012,"Banana prawn_202",0.2
-25,2012,"Barramundi(=Giant seaperch)_203",0.17
-25,2012,"Barramundi(=Giant seaperch)_204",0.17
-25,2012,"Blood cockle_205",0.67
-25,2012,"Blood cockle_206",0.67
-25,2012,"Cupped oysters nei_207",0.83
-25,2012,"Cupped oysters nei_208",0.83
-25,2012,"Fourfinger threadfin_209",0.444010417
-25,2012,"Giant tiger prawn_210",0.1
-25,2012,"Giant tiger prawn_211",0.1
-25,2012,"Green mussel_212",0.8
-25,2012,"Green mussel_213",0.8
-25,2012,"Groupers nei_214",0.33
-25,2012,"Groupers nei_215",0.33
-25,2012,"Indo-Pacific swamp crab_216",0.416666667
-25,2012,"Marine fishes nei_217",0.477777778
-25,2012,"Metapenaeus shrimps nei_218",0.372222222
-25,2012,"Penaeus shrimps nei_219",0.27
-25,2012,"Sea mussels nei_220",0.791666667
-25,2012,"Squaretail mullet_221",0.444010417
-25,2012,"Whiteleg shrimp_222",0.23
-25,2012,"Whiteleg shrimp_223",0.23
-29,2012,"Cobia_224",0.444010417
-29,2012,"Red drum_225",0.366666667
-31,2012,"Giant tiger prawn_226",0.366666667
-32,2012,"Cobia_227",0.444010417
-32,2012,"Drums nei_228",0.444010417
-32,2012,"Marine fishes nei_229",0.477777778
-32,2012,"Pargo breams nei_230",0.444010417
-37,2012,"European seabass_231",0.452222222
-37,2012,"Giant tiger prawn_232",0.366666667
-37,2012,"Goldlined seabream_233",0.444010417
-37,2012,"Hooded oyster_234",0.811764706
-37,2012,"Indo-Pacific swamp crab_235",0.416666667
-37,2012,"Marine fishes nei_236",0.477777778
-37,2012,"Metapenaeus shrimps nei_237",0.372222222
-37,2012,"Red drum_238",0.366666667
-40,2012,"Barramundi(=Giant seaperch)_239",0.190909091
-40,2012,"Giant tiger prawn_240",0.1
-40,2012,"Indian backwater oyster_241",0.811764706
-40,2012,"Indo-Pacific swamp crab_242",0.416666667
-40,2012,"Milkfish_243",0.414285714
-41,2012,"Giant tiger prawn_244",0.366666667
-41,2012,"Indian white prawn_245",0.4
-41,2012,"Japanese meagre_246",0.444010417
-42,2012,"Giant tiger prawn_247",0.23
-42,2012,"Indo-Pacific swamp crab_248",0.416666667
-42,2012,"Sea cucumbers nei_249",0.571405229
-43,2012,"Milkfish_250",0.414285714
-43,2012,"Penaeus shrimps nei_251",0.266666667
-45,2012,"Penaeus shrimps nei_252",0.266666667
-47,2012,"Indian white prawn_253",0.4
-48,2012,"Gilthead seabream_254",0.286111111
-48,2012,"Indian white prawn_255",0.4
-48,2012,"Yellowfin tuna_256",0.1
-50,2012,"Barramundi(=Giant seaperch)_257",0.17
-50,2012,"Flathead grey mullet_258",0.43
-50,2012,"Giant tiger prawn_259",0.17
-50,2012,"Gilthead seabream_260",0.286111111
-50,2012,"Goldlined seabream_261",0.444010417
-50,2012,"Groupers nei_262",0.33
-50,2012,"Indian white prawn_263",0.4
-50,2012,"Metapenaeus shrimps nei_264",0.372222222
-50,2012,"Sandfish_265",0.571405229
-50,2012,"Sobaity seabream_266",0.444010417
-50,2012,"Whiteleg shrimp_267",0.374509804
-51,2012,"Gilthead seabream_268",0.286111111
-51,2012,"Goldsilk seabream_269",0.444010417
-51,2012,"Groupers nei_270",0.333333333
-51,2012,"Marine fishes nei_271",0.477777778
-51,2012,"Sobaity seabream_272",0.444010417
-52,2012,"Gilthead seabream_273",0.286111111
-52,2012,"Groupers nei_274",0.333333333
-52,2012,"Sobaity seabream_275",0.444010417
-52,2012,"White-spotted spinefoot_276",0.444010417
-53,2012,"Penaeus shrimps nei_277",0.266666667
-54,2012,"European seabass_278",0.452222222
-54,2012,"Gilthead seabream_279",0.286111111
-54,2012,"Goldlined seabream_280",0.444010417
-54,2012,"Green tiger prawn_281",0.366666667
-54,2012,"Groupers nei_282",0.333333333
-54,2012,"Indian white prawn_283",0.4
-54,2012,"Mullets nei_284",0.561111111
-54,2012,"Sobaity seabream_285",0.444010417
-54,2012,"White-spotted spinefoot_286",0.444010417
-61,2012,"Atlantic bluefin tuna_287",0.316666667
-61,2012,"Carpet shells nei_288",0.8
-61,2012,"Common cuttlefish_289",0.6
-61,2012,"Common sole_290",0.533333333
-61,2012,"European eel_291",0.444444444
-61,2012,"European flat oyster_292",0.823076923
-61,2012,"European seabass_293",0.452222222
-61,2012,"Flathead grey mullet_294",0.412820513
-61,2012,"Gilthead seabream_295",0.286111111
-61,2012,"Groupers nei_296",0.333333333
-61,2012,"Marine crustaceans nei_297",0.3
-61,2012,"Mediterranean mussel_298",0.82
-61,2012,"Octopuses nei_299",0.533333333
-61,2012,"Pacific cupped oyster_300",0.757142857
-61,2012,"Thinlip grey mullet_301",0.444010417
-62,2012,"Clams, etc. nei_302",0.77
-62,2012,"European eel_303",0.43
-62,2012,"European flat oyster_304",0.77
-62,2012,"European seabass_305",0.43
-62,2012,"Gilthead seabream_306",0.43
-62,2012,"Marine fishes nei_307",0.47
-62,2012,"Mediterranean mussel_308",0.83
-62,2012,"Pacific cupped oyster_309",0.83
-62,2012,"Penaeus shrimps nei_310",0.43
-62,2012,"Yesso scallop_311",0.87
-65,2012,"Gasar cupped oyster_312",0.733333333
-66,2012,"Blue mussel_313",0.902380952
-66,2012,"Cupped oysters nei_314",0.73
-66,2012,"Gasar cupped oyster_315",0.73
-66,2012,"Pacific cupped oyster_316",0.73
-67,2012,"European seabass_317",0.452222222
-67,2012,"Gilthead seabream_318",0.286111111
-68,2012,"Atlantic bluefin tuna_319",0.316666667
-68,2012,"European seabass_320",0.452222222
-68,2012,"Gilthead seabream_321",0.286111111
-68,2012,"Marine fishes nei_322",0.477777778
-70,2012,"Rainbow trout_323",0.566666667
-71,2012,"Mediterranean mussel_324",0.82
-72,2012,"Mediterranean mussel_325",0.82
-73,2012,"Aquatic invertebrates nei_326",0.542156863
-73,2012,"Atlantic salmon_327",0.43
-73,2012,"Brown seaweeds_328",0.93
-73,2012,"Cupped oysters nei_329",0.888095238
-73,2012,"Cupped oysters nei_330",0.888095238
-73,2012,"Flatfishes nei_331",0.43
-73,2012,"Flatfishes nei_332",0.43
-73,2012,"Japanese sea cucumber_333",0.571405229
-73,2012,"Mediterranean mussel_334",0.8
-73,2012,"Mullets nei_335",0.5
-73,2012,"Salmonoids nei_336",0.444010417
-73,2012,"Sea mussels nei_337",0.77
-73,2012,"Sea mussels nei_338",0.77
-73,2012,"Sea mussels nei_339",0.77
-73,2012,"Sea trout_340",0.47
-73,2012,"Sea urchins nei_341",0.5
-73,2012,"Yesso scallop_342",0.8
-74,2012,"Marine fishes nei_343",0.477777778
-75,2012,"Baltic prawn_344",0.47
-75,2012,"European flounder_345",0.444010417
-75,2012,"Gobies nei_346",0.53
-75,2012,"Mediterranean mussel_347",0.82
-75,2012,"Mullets nei_348",0.67
-75,2012,"Mullets nei_349",0.67
-75,2012,"So-iuy mullet_350",0.63
-76,2012,"Atlantic bluefin tuna_351",0.316666667
-76,2012,"Atlantic salmon_352",0.53
-76,2012,"Common dentex_353",0.444010417
-76,2012,"Common two-banded seabream_354",0.53
-76,2012,"European seabass_355",0.452222222
-76,2012,"Gilthead seabream_356",0.53
-76,2012,"Marine fishes nei_357",0.477777778
-76,2012,"Meagre_358",0.444010417
-76,2012,"Mediterranean mussel_359",0.8
-76,2012,"Natantian decapods nei_360",0.53
-76,2012,"Pink dentex_361",0.444010417
-76,2012,"Rainbow trout_362",0.566666667
-76,2012,"Red porgy_363",0.444010417
-76,2012,"Shi drum_364",0.444010417
-76,2012,"Trouts nei_365",0.433333333
-78,2012,"Whiteleg shrimp_366",0.374509804
-79,2012,"Barramundi(=Giant seaperch)_367",0.190909091
-79,2012,"European seabass_368",0.452222222
-79,2012,"European seabass_369",0.452222222
-79,2012,"Gilthead seabream_370",0.286111111
-79,2012,"Gilthead seabream_371",0.286111111
-79,2012,"Marine fishes nei_372",0.477777778
-79,2012,"Marine fishes nei_373",0.477777778
-79,2012,"Red drum_374",0.366666667
-79,2012,"Red drum_375",0.366666667
-79,2012,"Seabasses nei_376",0.5
-80,2012,"Atlantic bluefin tuna_377",0.316666667
-80,2012,"Clams, etc. nei_378",0.766666667
-80,2012,"Common pandora_379",0.444010417
-80,2012,"Common sole_380",0.533333333
-80,2012,"European eel_381",0.43
-80,2012,"European eel_382",0.43
-80,2012,"European flat oyster_383",0.83
-80,2012,"European seabass_384",0.3
-80,2012,"European seabass_385",0.3
-80,2012,"Flathead grey mullet_386",0.37
-80,2012,"Flathead grey mullet_387",0.37
-80,2012,"Gilthead seabream_388",0.17
-80,2012,"Gilthead seabream_389",0.17
-80,2012,"Kuruma prawn_390",0.43
-80,2012,"Marine fishes nei_391",0.477777778
-80,2012,"Marine fishes nei_392",0.477777778
-80,2012,"Meagre_393",0.444010417
-80,2012,"Mediterranean mussel_394",0.82
-80,2012,"Mediterranean shore crab_395",0.416666667
-80,2012,"Red porgy_396",0.444010417
-80,2012,"Sciaenas nei_397",0.444010417
-80,2012,"Sharpsnout seabream_398",0.444010417
-80,2012,"Shi drum_399",0.444010417
-80,2012,"White seabream_400",0.444010417
-80,2012,"White seabream_401",0.444010417
-81,2012,"Atlantic bluefin tuna_402",0.316666667
-81,2012,"European seabass_403",0.452222222
-81,2012,"Gilthead seabream_404",0.286111111
-81,2012,"Indian white prawn_405",0.4
-81,2012,"Marbled spinefoot_406",0.444010417
-81,2012,"Meagre_407",0.444010417
-81,2012,"Red porgy_408",0.444010417
-81,2012,"Sharpsnout seabream_409",0.444010417
-82,2012,"European seabass_410",0.452222222
-82,2012,"Gilthead seabream_411",0.286111111
-82,2012,"Kuruma prawn_412",0.444444444
-82,2012,"Mediterranean mussel_413",0.82
-84,2012,"Caramote prawn_414",0.366666667
-84,2012,"Common sole_415",0.533333333
-84,2012,"European eel_416",0.444444444
-84,2012,"European seabass_417",0.452222222
-84,2012,"Gilthead seabream_418",0.286111111
-84,2012,"Grooved carpet shell_419",0.866666667
-84,2012,"Meagre_420",0.444010417
-84,2012,"Mediterranean mussel_421",0.82
-84,2012,"Mullets nei_422",0.561111111
-84,2012,"Pacific cupped oyster_423",0.757142857
-95,2012,"Blue mussel_424",0.902380952
-95,2012,"Pacific cupped oyster_425",0.757142857
-101,2012,"Blue mussel_426",0.77
-101,2012,"European flat oyster_427",0.823076923
-101,2012,"Mediterranean mussel_428",0.82
-101,2012,"Pacific cupped oyster_429",0.77
-101,2012,"Perlemoen abalone_430",0.633333333
-102,2012,"Carpet shells nei_431",0.8
-102,2012,"European flat oyster_432",0.83
-102,2012,"Giant tiger prawn_433",0.5
-102,2012,"Indian white prawn_434",0.5
-102,2012,"Japanese meagre_435",0.444010417
-102,2012,"Kuruma prawn_436",0.5
-102,2012,"Mediterranean mussel_437",0.87
-102,2012,"Mullets nei_438",0.57
-102,2012,"Pacific cupped oyster_439",0.87
-102,2012,"Perlemoen abalone_440",0.63
-102,2012,"Red bait_441",0.6
-102,2012,"Sea mussels nei_442",0.83
-102,2012,"Seaweeds nei_443",0.83
-102,2012,"Smooth mactra_444",0.77
-102,2012,"Turbot_445",0.5
-106,2012,"Giant tiger prawn_446",0.366666667
-110,2012,"Brine shrimp_447",0.366666667
-110,2012,"Caribbean spiny lobster_448",0.416666667
-110,2012,"Cobia_449",0.444010417
-110,2012,"Red drum_450",0.366666667
-110,2012,"Whiteleg shrimp_451",0.374509804
-111,2012,"Marine crabs nei_452",0.416666667
-111,2012,"Queen conch_453",0.811764706
-112,2012,"Cupped oysters nei_454",0.888095238
-112,2012,"Seabasses nei_455",0.5
-112,2012,"Southern white shrimp_456",0.366666667
-112,2012,"Tropical spiny lobsters nei_457",0.416666667
-112,2012,"Whiteleg shrimp_458",0.374509804
-115,2012,"Cupped oysters nei_459",0.888095238
-115,2012,"European seabass_460",0.452222222
-115,2012,"Florida pompano_461",0.444010417
-115,2012,"Gilthead seabream_462",0.286111111
-115,2012,"Gudgeons, sleepers nei_463",0.444010417
-115,2012,"Mullets nei_464",0.561111111
-115,2012,"Penaeus shrimps nei_465",0.266666667
-115,2012,"Whiteleg shrimp_466",0.374509804
-116,2012,"Cobia_467",0.444010417
-116,2012,"Penaeus shrimps nei_468",0.266666667
-129,2012,"Blue shrimp_469",0.372222222
-129,2012,"Cobia_470",0.444010417
-129,2012,"Florida pompano_471",0.444010417
-129,2012,"Whiteleg shrimp_472",0.43
-130,2012,"Natantian decapods nei_473",0.533333333
-130,2012,"Pacific cupped oyster_474",0.757142857
-130,2012,"Snappers nei_475",0.433333333
-130,2012,"Whiteleg shrimp_476",0.43
-131,2012,"Blue shrimp_477",0.372222222
-131,2012,"Whiteleg shrimp_478",0.37
-132,2012,"Cobia_479",0.444010417
-132,2012,"Whiteleg shrimp_480",0.37
-132,2012,"Whiteleg shrimp_481",0.37
-133,2012,"Whiteleg shrimp_482",0.374509804
-134,2012,"blood cockle_483",0.811764706
-134,2012,"Blue shrimp_484",0.372222222
-134,2012,"Clams, etc. nei_485",0.766666667
-134,2012,"Cupped oysters nei_486",0.888095238
-134,2012,"Marine fishes nei_487",0.477777778
-134,2012,"Whiteleg shrimp_488",0.374509804
-135,2012,"Abalones nei_489",0.67
-135,2012,"Bastard halibuts nei_490",0.444010417
-135,2012,"Clams, etc. nei_491",0.766666667
-135,2012,"Cortez oyster_492",0.811764706
-135,2012,"Cortez oyster_493",0.811764706
-135,2012,"Crevalle jack_494",0.444010417
-135,2012,"Cupped oysters nei_495",0.888095238
-135,2012,"Flathead grey mullet_496",0.43
-135,2012,"Jacks, crevalles nei_497",0.444010417
-135,2012,"Marine fishes nei_498",0.477777778
-135,2012,"Marine fishes nei_499",0.477777778
-135,2012,"Pacific bluefin tuna_500",0.444010417
-135,2012,"Pacific calico scallop_501",0.811764706
-135,2012,"Pacific cupped oyster_502",0.77
-135,2012,"Red abalone_503",0.811764706
-135,2012,"Red drum_504",0.366666667
-135,2012,"Sea mussels nei_505",0.791666667
-135,2012,"Seabasses nei_506",0.5
-135,2012,"Snappers nei_507",0.433333333
-135,2012,"Whiteleg shrimp_508",0.43
-135,2012,"Whiteleg shrimp_509",0.43
-135,2012,"Whiteleg shrimp_510",0.43
-135,2012,"Whiteleg shrimp_511",0.43
-135,2012,"Whiteleg shrimp_512",0.43
-135,2012,"Yellowfin tuna_513",0.1
-136,2012,"Penaeus shrimps nei_514",0.17
-136,2012,"Sea mussels nei_515",0.791666667
-136,2012,"Whiteleg shrimp_516",0.374509804
-137,2012,"Blue shrimp_517",0.372222222
-137,2012,"Pacific cupped oyster_518",0.757142857
-137,2012,"Red drum_519",0.37
-137,2012,"Scallops nei_520",0.833333333
-137,2012,"Whiteleg shrimp_521",0.37
-138,2012,"False abalone_522",0.73
-138,2012,"Flatfishes nei_523",0.466666667
-138,2012,"Pacific cupped oyster_524",0.83
-138,2012,"Scallops nei_525",0.833333333
-138,2012,"Whiteleg shrimp_526",0.37
-139,2012,"South American rock mussel_527",0.811764706
-139,2012,"Whiteleg shrimp_528",0.5
-140,2012,"Cobia_529",0.444010417
-140,2012,"Marine fishes nei_530",0.477777778
-140,2012,"Red drum_531",0.366666667
-141,2012,"Atlantic salmon_532",0.43
-141,2012,"Rainbow trout_533",0.566666667
-143,2012,"Abalones nei_534",0.63
-143,2012,"Arctic char_535",0.53
-143,2012,"Atlantic cod_536",0.57
-143,2012,"Atlantic halibut_537",0.53
-143,2012,"Atlantic salmon_538",0.6
-143,2012,"Atlantic salmon_539",0.6
-143,2012,"Blue mussel_540",0.93
-143,2012,"European seabass_541",0.65
-143,2012,"Haddock_542",0.53
-143,2012,"Rainbow trout_543",0.6
-143,2012,"Turbot_544",0.53
-147,2012,"Barramundi(=Giant seaperch)_545",0.190909091
-147,2012,"Barramundi(=Giant seaperch)_546",0.190909091
-147,2012,"Blacklip pearl oyster_547",0.811764706
-147,2012,"Blue shrimp_548",0.372222222
-147,2012,"Marine fishes nei_549",0.477777778
-147,2012,"Pearl oyster shells nei_550",0.811764706
-147,2012,"Sea mussels nei_551",0.791666667
-147,2012,"Sixfinger threadfin_552",0.444010417
-152,2012,"Bear paw clam_553",0.811764706
-152,2012,"Elongate giant clam_554",0.811764706
-152,2012,"Fluted giant clam_555",0.811764706
-152,2012,"Giant clam_556",0.811764706
-152,2012,"Smooth giant clam_557",0.811764706
-153,2012,"Clams, etc. nei_558",0.766666667
-153,2012,"Giant tiger prawn_559",0.366666667
-153,2012,"Milkfish_560",0.414285714
-155,2012,"Elongate giant clam_561",0.811764706
-155,2012,"Fluted giant clam_562",0.811764706
-155,2012,"Giant clam_563",0.811764706
-155,2012,"Milkfish_564",0.37
-155,2012,"Mozuku_565",0.83
-155,2012,"Smooth giant clam_566",0.811764706
-162,2012,"Chinook(=Spring=King) salmon_567",0.370833333
-162,2012,"New Zealand mussel_568",0.8
-162,2012,"Pacific cupped oyster_569",0.77
-162,2012,"Rainbow abalone_570",0.811764706
-163,2012,"Abalones nei_571",0.5
-163,2012,"Atlantic salmon_572",0.37
-163,2012,"Blue crab_573",0.416666667
-163,2012,"Blue mussel_574",0.93
-163,2012,"Butter clam_575",0.811764706
-163,2012,"Chinook(=Spring=King) salmon_576",0.370833333
-163,2012,"Clams, etc. nei_577",0.766666667
-163,2012,"Cockles nei_578",0.811764706
-163,2012,"Coho(=Silver) salmon_579",0.37
-163,2012,"Cupped oysters nei_580",1
-163,2012,"Cupped oysters nei_581",1
-163,2012,"European flat oyster_582",0.83
-163,2012,"Flat oysters nei_583",0.87
-163,2012,"Japanese carpet shell_584",0.841666667
-163,2012,"Longfin yellowtail_585",0.444010417
-163,2012,"Marine fishes nei_586",0.477777778
-163,2012,"Northern quahog(=Hard clam)_587",0.811764706
-163,2012,"Northern white shrimp_588",0.366666667
-163,2012,"Olympia oyster_589",0.811764706
-163,2012,"Pacific cupped oyster_590",0.9
-163,2012,"Pacific geoduck_591",0.811764706
-163,2012,"Pacific horse clam_592",0.811764706
-163,2012,"Pacific littleneck clam_593",0.811764706
-163,2012,"Rainbow trout_594",0.566666667
-163,2012,"Red drum_595",0.366666667
-163,2012,"Sand gaper_596",0.811764706
-163,2012,"Whiteleg shrimp_597",0.43
-164,2012,"Cobia_598",0.444010417
-164,2012,"Whiteleg shrimp_599",0.37
-166,2012,"Cupped oysters nei_600",0.888095238
-166,2012,"Whiteleg shrimp_601",0.374509804
-167,2012,"Flathead grey mullet_602",0.412820513
-167,2012,"Lebranche mullet_603",0.444010417
-167,2012,"Penaeus shrimps nei_604",0.266666667
-167,2012,"Whitemouth croaker_605",0.444010417
-168,2012,"Whiteleg shrimp_606",0.374509804
-171,2012,"Cupped oysters nei_607",0.9
-171,2012,"Groupers nei_608",0.33
-171,2012,"Marine fishes nei_609",0.477777778
-171,2012,"Marine molluscs nei_610",0.533333333
-171,2012,"Mullets nei_611",0.561111111
-171,2012,"Pacific lion's paw_612",0.811764706
-171,2012,"Scallops nei_613",0.833333333
-171,2012,"Snooks(=Robalos) nei_614",0.444010417
-171,2012,"South American rock mussel_615",0.811764706
-171,2012,"Whiteleg shrimp_616",0.3
-172,2012,"Blue mussel_617",0.83
-172,2012,"Pacific cupped oyster_618",0.9
-173,2012,"Penaeus shrimps nei_619",0.266666667
-174,2012,"Atlantic salmon_620",0.5
-174,2012,"European whitefish_621",0.444010417
-174,2012,"Rainbow trout_622",0.566666667
-174,2012,"Sea trout_623",0.466666667
-175,2012,"Atlantic salmon_624",0.5
-175,2012,"Blue mussel_625",0.93
-175,2012,"Brown seaweeds_626",0.93
-175,2012,"Clams, etc. nei_627",0.766666667
-175,2012,"European eel_628",0.43
-175,2012,"European flounder_629",0.444010417
-175,2012,"Rainbow trout_630",0.566666667
-175,2012,"Rainbow trout_631",0.566666667
-175,2012,"Sea trout_632",0.466666667
-175,2012,"Turbot_633",0.5
-176,2012,"Blue mussel_634",0.93
-176,2012,"European seabass_635",0.57
-176,2012,"Pacific cupped oyster_636",0.53
-176,2012,"Rainbow trout_637",0.566666667
-176,2012,"Turbot_638",0.5
-177,2012,"Aquatic invertebrates nei_639",0.542156863
-177,2012,"Blue mussel_640",0.93
-177,2012,"Cupped oysters nei_641",0.9
-177,2012,"European flat oyster_642",0.83
-177,2012,"Soles nei_643",0.444010417
-177,2012,"Turbot_644",0.5
-179,2012,"Atlantic salmon_645",0.37
-179,2012,"Blue mussel_646",0.93
-179,2012,"Blue mussel_647",0.93
-179,2012,"Clams, etc. nei_648",0.766666667
-179,2012,"Clams, etc. nei_649",0.766666667
-179,2012,"Coho(=Silver) salmon_650",0.37
-179,2012,"Common edible cockle_651",0.733333333
-179,2012,"Common edible cockle_652",0.733333333
-179,2012,"European eel_653",0.43
-179,2012,"European flat oyster_654",0.83
-179,2012,"European flat oyster_655",0.83
-179,2012,"European seabass_656",0.5
-179,2012,"European seabass_657",0.5
-179,2012,"European seabass_658",0.5
-179,2012,"Finfishes nei_659",0.444010417
-179,2012,"Gilthead seabream_660",0.23
-179,2012,"Gilthead seabream_661",0.23
-179,2012,"Great Atlantic scallop_662",0.811764706
-179,2012,"Grooved carpet shell_663",0.866666667
-179,2012,"Japanese carpet shell_664",0.841666667
-179,2012,"Japanese carpet shell_665",0.841666667
-179,2012,"Kuruma prawn_666",0.43
-179,2012,"Marine fishes nei_667",0.477777778
-179,2012,"Marine molluscs nei_668",0.533333333
-179,2012,"Meagre_669",0.444010417
-179,2012,"Mediterranean mussel_670",0.82
-179,2012,"Mediterranean mussel_671",0.82
-179,2012,"Pacific cupped oyster_672",0.53
-179,2012,"Pacific cupped oyster_673",0.53
-179,2012,"Periwinkles nei_674",0.811764706
-179,2012,"Rainbow trout_675",0.566666667
-179,2012,"Sea trout_676",0.466666667
-179,2012,"Seaweeds nei_677",0.83
-179,2012,"Senegalese sole_678",0.444010417
-179,2012,"Tuberculate abalone_679",0.811764706
-179,2012,"Turbot_680",0.5
-179,2012,"Wakame nei_681",0.83
-179,2012,"White seabream_682",0.444010417
-180,2012,"Atlantic cod_683",0.17
-180,2012,"Atlantic halibut_684",0.533333333
-180,2012,"Atlantic salmon_685",0.3
-180,2012,"Blue mussel_686",0.93
-180,2012,"Common edible cockle_687",0.733333333
-180,2012,"Cupped oysters nei_688",0.87
-180,2012,"European flat oyster_689",0.83
-180,2012,"European seabass_690",0.5
-180,2012,"Great Atlantic scallop_691",0.811764706
-180,2012,"Grooved carpet shell_692",0.866666667
-180,2012,"Japanese carpet shell_693",0.841666667
-180,2012,"Northern quahog(=Hard clam)_694",0.811764706
-180,2012,"Pacific cupped oyster_695",0.83
-180,2012,"Queen scallop_696",0.811764706
-180,2012,"Rainbow trout_697",0.566666667
-180,2012,"Rainbow trout_698",0.566666667
-180,2012,"Sea trout_699",0.466666667
-180,2012,"Turbot_700",0.5
-181,2012,"Abalones nei_701",0.55
-181,2012,"Aquatic invertebrates nei_702",0.542156863
-181,2012,"Atlantic salmon_703",0.43
-181,2012,"Babberlocks_704",0.83
-181,2012,"Blue mussel_705",0.93
-181,2012,"European flat oyster_706",0.83
-181,2012,"Great Atlantic scallop_707",0.811764706
-181,2012,"Japanese carpet shell_708",0.841666667
-181,2012,"Pacific cupped oyster_709",0.83
-181,2012,"Rainbow trout_710",0.566666667
-181,2012,"Sea urchins nei_711",0.5
-181,2012,"Turbot_712",0.5
-182,2012,"Aquatic invertebrates nei_713",0.542156863
-182,2012,"Atlantic bluefin tuna_714",0.316666667
-182,2012,"Atlantic ditch shrimp_715",0.366666667
-182,2012,"Atlantic salmon_716",0.17
-182,2012,"Banded carpet shell_717",0.811764706
-182,2012,"Blackspot(=red) seabream_718",0.444010417
-182,2012,"Caramote prawn_719",0.366666667
-182,2012,"Clams, etc. nei_720",0.766666667
-182,2012,"Common dentex_721",0.444010417
-182,2012,"Common edible cockle_722",0.733333333
-182,2012,"Common edible cockle_723",0.733333333
-182,2012,"Common edible cockle_724",0.733333333
-182,2012,"Common prawn_725",0.366666667
-182,2012,"Common sole_726",0.533333333
-182,2012,"Common sole_727",0.533333333
-182,2012,"Cupped oysters nei_728",0.9
-182,2012,"Cupped oysters nei_729",0.9
-182,2012,"European eel_730",0.43
-182,2012,"European eel_731",0.43
-182,2012,"European flat oyster_732",0.83
-182,2012,"European flat oyster_733",0.83
-182,2012,"European flat oyster_734",0.83
-182,2012,"European seabass_735",0.43
-182,2012,"European seabass_736",0.43
-182,2012,"European seabass_737",0.43
-182,2012,"European seabass_738",0.43
-182,2012,"Gastropods nei_739",0.811764706
-182,2012,"Gilthead seabream_740",0.17
-182,2012,"Gilthead seabream_741",0.17
-182,2012,"Gilthead seabream_742",0.17
-182,2012,"Gilthead seabream_743",0.17
-182,2012,"Great Atlantic scallop_744",0.811764706
-182,2012,"Greater amberjack_745",0.444010417
-182,2012,"Green crab_746",0.416666667
-182,2012,"Grooved carpet shell_747",0.866666667
-182,2012,"Grooved carpet shell_748",0.866666667
-182,2012,"Grooved carpet shell_749",0.866666667
-182,2012,"Groundfishes nei_750",0.444010417
-182,2012,"Japanese carpet shell_751",0.841666667
-182,2012,"Japanese carpet shell_752",0.841666667
-182,2012,"Japanese carpet shell_753",0.841666667
-182,2012,"Kuruma prawn_754",0.5
-182,2012,"Kuruma prawn_755",0.5
-182,2012,"Marine fishes nei_756",0.477777778
-182,2012,"Marine molluscs nei_757",0.533333333
-182,2012,"Marine molluscs nei_758",0.533333333
-182,2012,"Meagre_759",0.444010417
-182,2012,"Meagre_760",0.444010417
-182,2012,"Meagre_761",0.444010417
-182,2012,"Meagre_762",0.444010417
-182,2012,"Mullets nei_763",0.561111111
-182,2012,"Mullets nei_764",0.561111111
-182,2012,"Octopuses nei_765",0.533333333
-182,2012,"Pacific cupped oyster_766",0.83
-182,2012,"Pacific cupped oyster_767",0.83
-182,2012,"Pacific cupped oyster_768",0.83
-182,2012,"Palaemonid shrimps nei_769",0.366666667
-182,2012,"Palaemonid shrimps nei_770",0.366666667
-182,2012,"Pod razor shell_771",0.811764706
-182,2012,"Pollack_772",0.444010417
-182,2012,"Pullet carpet shell_773",0.833333333
-182,2012,"Pullet carpet shell_774",0.833333333
-182,2012,"Queen scallop_775",0.811764706
-182,2012,"Sea mussels nei_776",0.791666667
-182,2012,"Sea mussels nei_777",0.791666667
-182,2012,"Seabasses nei_778",0.5
-182,2012,"Seabasses nei_779",0.5
-182,2012,"Seabasses nei_780",0.5
-182,2012,"Seaweeds nei_781",0.83
-182,2012,"Senegalese sole_782",0.444010417
-182,2012,"Senegalese sole_783",0.444010417
-182,2012,"Senegalese sole_784",0.444010417
-182,2012,"Silversides(=Sand smelts) nei_785",0.566666667
-182,2012,"Soles nei_786",0.444010417
-182,2012,"Soles nei_787",0.444010417
-182,2012,"Turbot_788",0.5
-182,2012,"Variegated scallop_789",0.811764706
-182,2012,"Variegated scallop_790",0.811764706
-182,2012,"Warty venus_791",0.811764706
-182,2012,"White seabream_792",0.444010417
-183,2012,"[Solea spp]_793",0.444010417
-183,2012,"Atlantic bluefin tuna_794",0.316666667
-183,2012,"Atlantic ditch shrimp_795",0.366666667
-183,2012,"Atlantic salmon_796",0.4
-183,2012,"Clams, etc. nei_797",0.766666667
-183,2012,"Common cuttlefish_798",0.6
-183,2012,"Common edible cockle_799",0.73
-183,2012,"Common sole_800",0.53
-183,2012,"European eel_801",0.53
-183,2012,"European flat oyster_802",0.73
-183,2012,"European seabass_803",0.43
-183,2012,"European seabass_804",0.43
-183,2012,"Flat and cupped oysters nei_805",0.83
-183,2012,"Gilthead seabream_806",0.4
-183,2012,"Gilthead seabream_807",0.4
-183,2012,"Golden carpet shell_808",0.811764706
-183,2012,"Grooved carpet shell_809",0.87
-183,2012,"Kuruma prawn_810",0.4
-183,2012,"Marine fishes nei_811",0.53
-183,2012,"Marine molluscs nei_812",0.53
-183,2012,"Meagre_813",0.444010417
-183,2012,"Mullets nei_814",0.53
-183,2012,"Pacific cupped oyster_815",0.83
-183,2012,"Peppery furrow_816",0.811764706
-183,2012,"Pullet carpet shell_817",0.83
-183,2012,"Sargo breams nei_818",0.4
-183,2012,"Sea mussels nei_819",0.8
-183,2012,"Seabasses nei_820",0.5
-183,2012,"Turbot_821",0.47
-183,2012,"White seabream_822",0.444010417
-184,2012,"Atlantic bluefin tuna_823",0.316666667
-184,2012,"Common prawn_824",0.366666667
-184,2012,"Common sole_825",0.533333333
-184,2012,"Cupped oysters nei_826",1
-184,2012,"Cupped oysters nei_827",1
-184,2012,"European eel_828",0.43
-184,2012,"European eel_829",0.43
-184,2012,"European flat oyster_830",0.83
-184,2012,"European seabass_831",0.43
-184,2012,"European seabass_832",0.43
-184,2012,"Flathead grey mullet_833",0.43
-184,2012,"Flathead grey mullet_834",0.43
-184,2012,"Giant tiger prawn_835",0.3
-184,2012,"Gilthead seabream_836",0.23
-184,2012,"Gilthead seabream_837",0.23
-184,2012,"Grooved carpet shell_838",0.866666667
-184,2012,"Japanese carpet shell_839",0.841666667
-184,2012,"Japanese carpet shell_840",0.841666667
-184,2012,"Kuruma prawn_841",0.5
-184,2012,"Kuruma prawn_842",0.5
-184,2012,"Marine fishes nei_843",0.477777778
-184,2012,"Meagre_844",0.444010417
-184,2012,"Meagre_845",0.444010417
-184,2012,"Mediterranean mussel_846",0.82
-184,2012,"Mediterranean mussel_847",0.82
-184,2012,"Mullets nei_848",0.561111111
-184,2012,"Pacific cupped oyster_849",0.757142857
-184,2012,"Porgies, seabreams nei_850",0.444010417
-184,2012,"Porgies, seabreams nei_851",0.444010417
-184,2012,"Sharpsnout seabream_852",0.444010417
-184,2012,"Shi drum_853",0.444010417
-184,2012,"White seabream_854",0.444010417
-186,2012,"European eel_855",0.444444444
-186,2012,"European flat oyster_856",0.823076923
-186,2012,"European seabass_857",0.452222222
-186,2012,"Gilthead seabream_858",0.286111111
-186,2012,"Mediterranean mussel_859",0.82
-187,2012,"Atlantic bluefin tuna_860",0.316666667
-187,2012,"Common dentex_861",0.444010417
-187,2012,"European flat oyster_862",0.823076923
-187,2012,"European seabass_863",0.452222222
-187,2012,"Gilthead seabream_864",0.286111111
-187,2012,"Great Mediterranean scallop_865",0.811764706
-187,2012,"Marine fishes nei_866",0.477777778
-187,2012,"Meagre_867",0.444010417
-187,2012,"Mediterranean mussel_868",0.82
-188,2012,"Clams, etc. nei_869",0.766666667
-188,2012,"European seabass_870",0.452222222
-188,2012,"Gilthead seabream_871",0.286111111
-188,2012,"Mediterranean mussel_872",0.82
-190,2012,"White-spotted spinefoot_873",0.444010417
-190,2012,"Yellowfin seabream_874",0.444010417
-191,2012,"Indian white prawn_875",0.3
-191,2012,"Marine fishes nei_876",0.477777778
-191,2012,"Whiteleg shrimp_877",0.374509804
-196,2012,"Mullets nei_878",0.43
-196,2012,"Snappers nei_879",0.43
-202,2012,"Giant tiger prawn_880",0.366666667
-202,2012,"Indo-Pacific swamp crab_881",0.416666667
-202,2012,"Milkfish_882",0.414285714
-203,2012,"Giant tiger prawn_883",0.17
-203,2012,"Green mussel_884",0.8
-203,2012,"Indian backwater oyster_885",0.811764706
-203,2012,"Indian white prawn_886",0.4
-203,2012,"Marine fishes nei_887",0.477777778
-203,2012,"Whiteleg shrimp_888",0.374509804
-204,2012,"Giant tiger prawn_889",0.366666667
-204,2012,"Indian white prawn_890",0.4
-204,2012,"Marine fishes nei_891",0.477777778
-204,2012,"Penaeus shrimps nei_892",0.23
-204,2012,"Speckled shrimp_893",0.366666667
-205,2012,"Aquatic invertebrates nei_894",0.542156863
-205,2012,"Barramundi(=Giant seaperch)_895",0.190909091
-205,2012,"Giant tiger prawn_896",0.17
-205,2012,"Groupers nei_897",0.333333333
-205,2012,"Indo-Pacific swamp crab_898",0.416666667
-205,2012,"Orange mud crab_899",0.416666667
-206,2012,"Banana prawn_900",0.3
-206,2012,"Banana prawn_901",0.3
-206,2012,"Barramundi(=Giant seaperch)_902",0.17
-206,2012,"Barramundi(=Giant seaperch)_903",0.17
-206,2012,"Blood cockle_904",0.67
-206,2012,"Blood cockle_905",0.67
-206,2012,"Cupped oysters nei_906",0.83
-206,2012,"Cupped oysters nei_907",0.83
-206,2012,"Giant tiger prawn_908",0.17
-206,2012,"Giant tiger prawn_909",0.17
-206,2012,"Green mussel_910",0.8
-206,2012,"Green mussel_911",0.8
-206,2012,"Groupers nei_912",0.333333333
-206,2012,"Groupers nei_913",0.333333333
-206,2012,"Indo-Pacific swamp crab_914",0.416666667
-206,2012,"Indo-Pacific swamp crab_915",0.416666667
-206,2012,"John's snapper_916",0.433333333
-206,2012,"John's snapper_917",0.433333333
-206,2012,"Marine fishes nei_918",0.477777778
-206,2012,"Marine fishes nei_919",0.477777778
-206,2012,"Milkfish_920",0.414285714
-206,2012,"Sandfish_921",0.571405229
-206,2012,"Snappers nei_922",0.433333333
-206,2012,"Snappers nei_923",0.433333333
-206,2012,"Whiteleg shrimp_924",0.374509804
-206,2012,"Whiteleg shrimp_925",0.374509804
-207,2012,"Banana prawn_926",0.33
-207,2012,"Cobia_927",0.444010417
-207,2012,"Giant tiger prawn_928",0.1
-207,2012,"Indian white prawn_929",0.4
-207,2012,"Indo-Pacific swamp crab_930",0.416666667
-207,2012,"Marine fishes nei_931",0.477777778
-207,2012,"Marine fishes nei_932",0.477777778
-207,2012,"Marine molluscs nei_933",0.533333333
-207,2012,"Metapenaeus shrimps nei_934",0.372222222
-207,2012,"Sandfish_935",0.571405229
-207,2012,"Tropical spiny lobsters nei_936",0.416666667
-207,2012,"Whiteleg shrimp_937",0.23
-208,2012,"Banana prawn_938",0.275
-208,2012,"Banana prawn_939",0.275
-208,2012,"Barramundi(=Giant seaperch)_940",0.190909091
-208,2012,"Barramundi(=Giant seaperch)_941",0.190909091
-208,2012,"Blue swimming crab_942",0.416666667
-208,2012,"Cobia_943",0.444010417
-208,2012,"Flathead grey mullet_944",0.412820513
-208,2012,"Fourfinger threadfin_945",0.444010417
-208,2012,"Giant tiger prawn_946",0.366666667
-208,2012,"Giant tiger prawn_947",0.366666667
-208,2012,"Golden trevally_948",0.444010417
-208,2012,"Green humphead parrotfish_949",0.444010417
-208,2012,"Green mussel_950",0.8
-208,2012,"Groupers nei_951",0.333333333
-208,2012,"Indo-Pacific swamp crab_952",0.416666667
-208,2012,"John's snapper_953",0.433333333
-208,2012,"Kuruma prawn_954",0.444444444
-208,2012,"Marine fishes nei_955",0.477777778
-208,2012,"Metapenaeus shrimps nei_956",0.372222222
-208,2012,"Milkfish_957",0.414285714
-208,2012,"Mud spiny lobster_958",0.416666667
-208,2012,"Pacific cupped oyster_959",0.757142857
-208,2012,"Penaeus shrimps nei_960",0.266666667
-208,2012,"Penaeus shrimps nei_961",0.266666667
-208,2012,"Snappers nei_962",0.433333333
-208,2012,"Snubnose pompano_963",0.444010417
-208,2012,"Streaked spinefoot_964",0.444010417
-208,2012,"White-spotted spinefoot_965",0.444010417
-208,2012,"Whiteleg shrimp_966",0.374509804
-209,2012,"Abalones nei_967",0.55
-209,2012,"Amberjacks nei_968",0.444010417
-209,2012,"Aquatic invertebrates nei_969",0.542156863
-209,2012,"Barramundi(=Giant seaperch)_970",0.190909091
-209,2012,"Blood cockle_971",0.67
-209,2012,"Bright green nori_972",0.83
-209,2012,"Cobia_973",0.444010417
-209,2012,"Cupped oysters nei_974",0.888095238
-209,2012,"Fleshy prawn_975",0.366666667
-209,2012,"Fusiform sargassum_976",0.83
-209,2012,"Giant tiger prawn_977",0.366666667
-209,2012,"Goldlined seabream_978",0.444010417
-209,2012,"Green mud crab_979",0.416666667
-209,2012,"Groupers nei_980",0.33
-209,2012,"Japanese carpet shell_981",0.841666667
-209,2012,"Japanese kelp_982",0.83
-209,2012,"Japanese sea cucumber_983",0.571405229
-209,2012,"Jellyfishes nei_984",0.571405229
-209,2012,"Kuruma prawn_985",0.444444444
-209,2012,"Large yellow croaker_986",0.444010417
-209,2012,"Lefteye flounders nei_987",0.444010417
-209,2012,"Marine crabs nei_988",0.416666667
-209,2012,"Marine fishes nei_989",0.477777778
-209,2012,"Marine fishes nei_990",0.477777778
-209,2012,"Marine molluscs nei_991",0.533333333
-209,2012,"Nori nei_992",0.693333333
-209,2012,"Pearl oyster shells nei_993",0.811764706
-209,2012,"Pen shells nei_994",0.811764706
-209,2012,"Penaeus shrimps nei_995",0.266666667
-209,2012,"Porgies, seabreams nei_996",0.444010417
-209,2012,"Portunus swimcrabs nei_997",0.416666667
-209,2012,"Red drum_998",0.37
-209,2012,"Righteye flounders nei_999",0.444010417
-209,2012,"Scallops nei_1000",0.833333333
-209,2012,"Sea mussels nei_1001",0.791666667
-209,2012,"Sea snails_1002",0.811764706
-209,2012,"Sea urchins nei_1003",0.5
-209,2012,"Seabasses nei_1004",0.5
-209,2012,"Seaweeds nei_1005",0.83
-209,2012,"Snappers nei_1006",0.433333333
-209,2012,"Snubnose pompano_1007",0.444010417
-209,2012,"Tiger pufferfish_1008",0.444010417
-209,2012,"Turbot_1009",0.5
-209,2012,"Wakame_1010",0.83
-209,2012,"Whiteleg shrimp_1011",0.37
-210,2012,"Aquatic invertebrates nei_1012",0.542156863
-210,2012,"Bastard halibut_1013",0.444010417
-210,2012,"Blackhead seabream_1014",0.444010417
-210,2012,"Clams, etc. nei_1015",0.766666667
-210,2012,"Coho(=Silver) salmon_1016",0.37
-210,2012,"Crimson seabream_1017",0.444010417
-210,2012,"Filefishes nei_1018",0.444010417
-210,2012,"Flathead grey mullet_1019",0.43
-210,2012,"Gazami crab_1020",0.416666667
-210,2012,"Japanese amberjack_1021",0.444010417
-210,2012,"Japanese jack mackerel_1022",0.444010417
-210,2012,"Japanese kelp_1023",0.83
-210,2012,"Kuruma prawn_1024",0.5
-210,2012,"Laver (Nori)_1025",0.73
-210,2012,"Marine crustaceans nei_1026",0.3
-210,2012,"Marine fishes nei_1027",0.477777778
-210,2012,"Octopuses, etc. nei_1028",0.566666667
-210,2012,"Pacific bluefin tuna_1029",0.444010417
-210,2012,"Pacific cupped oyster_1030",0.77
-210,2012,"Pearl oyster shells nei_1031",0.811764706
-210,2012,"Sea squirts nei_1032",0.6
-210,2012,"Seaweeds nei_1033",0.83
-210,2012,"Spiny lobsters nei_1034",0.416666667
-210,2012,"Tiger pufferfish_1035",0.444010417
-210,2012,"Wakame_1036",0.83
-210,2012,"White trevally_1037",0.444010417
-210,2012,"Yesso scallop_1038",0.833333333
-212,2012,"Milkfish_1039",0.37
-214,2012,"European seabass_1040",0.43
-214,2012,"Gilthead seabream_1041",0.23
-214,2012,"Marine fishes nei_1042",0.477777778
-214,2012,"Meagre_1043",0.444010417
-214,2012,"Mullets nei_1044",0.561111111
-214,2012,"Penaeus shrimps nei_1045",0.3
-216,2012,"Akiami paste shrimp_1046",0.366666667
-216,2012,"Banana prawn_1047",0.27
-216,2012,"Barramundi(=Giant seaperch)_1048",0.17
-216,2012,"Barramundi(=Giant seaperch)_1049",0.17
-216,2012,"Giant tiger prawn_1050",0.17
-216,2012,"Groupers nei_1051",0.33
-216,2012,"Groupers nei_1052",0.33
-216,2012,"Indo-Pacific swamp crab_1053",0.416666667
-216,2012,"Marine fishes nei_1054",0.477777778
-216,2012,"Metapenaeus shrimps nei_1055",0.372222222
-216,2012,"Milkfish_1056",0.43
-216,2012,"Milkfish_1057",0.43
-216,2012,"Mullets nei_1058",0.561111111
-216,2012,"Penguin wing oyster_1059",0.811764706
-216,2012,"Portunus swimcrabs nei_1060",0.416666667
-216,2012,"Sea cucumbers nei_1061",0.571405229
-216,2012,"Tropical spiny lobsters nei_1062",0.416666667
-216,2012,"Whiteleg shrimp_1063",0.374509804
-218,2012,"Atlantic bluefin tuna_1064",0.4
-218,2012,"Atlantic cod_1065",0.23
-218,2012,"Atlantic salmon_1066",0.17
-218,2012,"Atlantic salmon_1067",0.27
-218,2012,"Blue mussel_1068",0.93
-218,2012,"Blue mussel_1069",0.93
-218,2012,"Butter clam_1070",0.811764706
-218,2012,"Chinook(=Spring=King) salmon_1071",0.370833333
-218,2012,"Coho(=Silver) salmon_1072",0.33
-218,2012,"Cupped oysters nei_1073",0.888095238
-218,2012,"Japanese carpet shell_1074",0.841666667
-218,2012,"Marine molluscs nei_1075",0.533333333
-218,2012,"Marine molluscs nei_1076",0.533333333
-218,2012,"Pacific cupped oyster_1077",0.83
-218,2012,"Rainbow trout_1078",0.566666667
-218,2012,"Salmonids nei_1079",0.444010417
-218,2012,"Scallops nei_1080",0.833333333
-218,2012,"Scallops nei_1081",0.833333333
-219,2012,"Sea mussels nei_1082",0.791666667
-222,2012,"Atlantic salmon_1083",0.53
-222,2012,"Blue mussel_1084",0.77
-222,2012,"European flat oyster_1085",0.87
-222,2012,"Rainbow trout_1086",0.53
-223,2012,"Arctic char_1087",0.533333333
-223,2012,"Atlantic cod_1088",0.17
-223,2012,"Atlantic halibut_1089",0.533333333
-223,2012,"Atlantic salmon_1090",0.23
-223,2012,"Blue mussel_1091",0.93
-223,2012,"Chars nei_1092",0.444010417
-223,2012,"European flat oyster_1093",0.83
-223,2012,"Finfishes nei_1094",0.444010417
-223,2012,"Great Atlantic scallop_1095",0.811764706
-223,2012,"Marine crustaceans nei_1096",0.3
-223,2012,"Pacific cupped oyster_1097",0.73
-223,2012,"Rainbow trout_1098",0.566666667
-223,2012,"Scallops nei_1099",0.833333333
-224,2012,"Atlantic salmon_1100",0.13
-224,2012,"Chilean mussel_1101",0.811764706
-224,2012,"Chinook(=Spring=King) salmon_1102",0.370833333
-224,2012,"Cholga mussel_1103",0.811764706
-224,2012,"Choro mussel_1104",0.811764706
-224,2012,"Coho(=Silver) salmon_1105",0.27
-224,2012,"Flat oysters nei_1106",0.866666667
-224,2012,"Japanese abalone_1107",0.811764706
-224,2012,"Pacific cupped oyster_1108",0.53
-224,2012,"Rainbow trout_1109",0.566666667
-224,2012,"Red abalone_1110",0.811764706
-224,2012,"Scallops nei_1111",0.833333333
-224,2012,"Turbot_1112",0.5
-231,2012,"Milkfish_1113",0.414285714
-231,2012,"Penaeus shrimps nei_1114",0.266666667
-232,2012,"Common dentex_1115",0.444010417
-232,2012,"European flat oyster_1116",0.823076923
-232,2012,"European seabass_1117",0.452222222
-232,2012,"Gilthead seabream_1118",0.286111111
-232,2012,"Mediterranean mussel_1119",0.82
-244,2012,"Stromboid conchs nei_1120",0.811764706
-245,2012,"Stromboid conchs nei_1121",0.811764706
-247,2012,"Barramundi(=Giant seaperch)_1122",0.190909091
-247,2012,"Blue shrimp_1123",0.372222222
-247,2012,"Giant tiger prawn_1124",0.366666667
-247,2012,"Groupers nei_1125",0.333333333
-247,2012,"Indo-Pacific swamp crab_1126",0.416666667
-247,2012,"Jacks, crevalles nei_1127",0.444010417
-247,2012,"Marine fishes nei_1128",0.477777778
-247,2012,"Snappers nei_1129",0.433333333
-250,2012,"Stromboid conchs nei_1130",0.811764706
+14,2012,"Japanese spiny lobster_49",0.416666667
+14,2012,"Kuruma prawn_50",0.37
+14,2012,"Kuruma prawn_51",0.37
+14,2012,"Laver (Nori)_52",0.67
+14,2012,"Marine crabs nei_53",0.416666667
+14,2012,"Marine fishes nei_54",0.477777778
+14,2012,"Marine fishes nei_55",0.477777778
+14,2012,"Marine molluscs nei_56",0.533333333
+14,2012,"Marine molluscs nei_57",0.533333333
+14,2012,"Mi-iuy (brown) croaker_58",0.444010417
+14,2012,"Milkfish_59",0.5
+14,2012,"Natantian decapods nei_60",0.533333333
+14,2012,"Pacific cupped oyster_61",0.53
+14,2012,"Porgies, seabreams nei_62",0.444010417
+14,2012,"Porgies, seabreams nei_63",0.444010417
+14,2012,"Redtail prawn_64",0.366666667
+14,2012,"Seabasses nei_65",0.5
+14,2012,"Seaweeds nei_66",0.83
+14,2012,"Snappers, jobfishes nei_67",0.444010417
+14,2012,"Snappers, jobfishes nei_68",0.444010417
+14,2012,"Trumpet emperor_69",0.444010417
+14,2012,"Whiteleg shrimp_70",0.37
+15,2012,"Banana prawn_71",0.27
+15,2012,"Barramundi(=Giant seaperch)_72",0.23
+15,2012,"Caulerpa seaweeds_73",0.83
+15,2012,"Cupped oysters nei_74",0.888095238
+15,2012,"Flathead lobster_75",0.416666667
+15,2012,"Giant tiger prawn_76",0.1
+15,2012,"Giant tiger prawn_77",0.1
+15,2012,"Green mussel_78",0.8
+15,2012,"Groupers, seabasses nei_79",0.33
+15,2012,"Groupers, seabasses nei_80",0.33
+15,2012,"Indo-Pacific swamp crab_81",0.416666667
+15,2012,"Indo-Pacific swamp crab_82",0.416666667
+15,2012,"Jacks, crevalles nei_83",0.444010417
+15,2012,"Marine fishes nei_84",0.477777778
+15,2012,"Marine fishes nei_85",0.477777778
+15,2012,"Metapenaeus shrimps nei_86",0.372222222
+15,2012,"Metapenaeus shrimps nei_87",0.372222222
+15,2012,"Milkfish_88",0.37
+15,2012,"Milkfish_89",0.37
+15,2012,"Scats_90",0.444010417
+15,2012,"Snappers nei_91",0.433333333
+15,2012,"Snubnose pompano_92",0.444010417
+15,2012,"Tropical spiny lobsters nei_93",0.416666667
+15,2012,"Whiteleg shrimp_94",0.374509804
+16,2012,"Abalones nei_95",0.55
+16,2012,"Atlantic salmon_96",0.23
+16,2012,"Australian mussel_97",0.811764706
+16,2012,"Australian mussel_98",0.811764706
+16,2012,"Barramundi(=Giant seaperch)_99",0.3
+16,2012,"Barramundi(=Giant seaperch)_100",0.3
+16,2012,"Barramundi(=Giant seaperch)_101",0.3
+16,2012,"Brine shrimp_102",0.366666667
+16,2012,"Cupped oysters nei_103",0.9
+16,2012,"Cupped oysters nei_104",0.9
+16,2012,"Eastern school shrimp_105",0.366666667
+16,2012,"Finfishes nei_106",0.444010417
+16,2012,"Flat and cupped oysters nei_107",0.833333333
+16,2012,"Flat and cupped oysters nei_108",0.833333333
+16,2012,"Giant tiger prawn_109",0.23
+16,2012,"Giant tiger prawn_110",0.23
+16,2012,"Kuruma prawn_111",0.33
+16,2012,"Marine fishes nei_112",0.477777778
+16,2012,"Pacific cupped oyster_113",1
+16,2012,"Penaeus shrimps nei_114",0.266666667
+16,2012,"Penaeus shrimps nei_115",0.266666667
+16,2012,"Rainbow trout_116",0.566666667
+16,2012,"Southern bluefin tuna_117",0.1
+17,2012,"Giant tiger prawn_118",0.366666667
+17,2012,"Indo-Pacific swamp crab_119",0.416666667
+17,2012,"Milkfish_120",0.414285714
+17,2012,"Pearl oyster shells nei_121",0.811764706
+18,2012,"Giant tiger prawn_122",0.366666667
+18,2012,"Indo-Pacific swamp crab_123",0.416666667
+18,2012,"Pearl oyster shells nei_124",0.811764706
+19,2012,"Milkfish_125",0.414285714
+20,2012,"Abalones nei_126",0.57
+20,2012,"Aquatic invertebrates nei_127",0.542156863
+20,2012,"Bastard halibut_128",0.444010417
+20,2012,"Blackhead seabream_129",0.444010417
+20,2012,"Blood cockle_130",0.67
+20,2012,"Dotted gizzard shad_131",0.444010417
+20,2012,"Filefishes, leatherjackets nei_132",0.444010417
+20,2012,"Fleshy prawn_133",0.366666667
+20,2012,"Fusiform sargassum_134",0.83
+20,2012,"Globose clam_135",0.811764706
+20,2012,"Green laver_136",0.83
+20,2012,"groupers nei_137",0.444010417
+20,2012,"Horned turban_138",0.811764706
+20,2012,"Inflated ark_139",0.811764706
+20,2012,"Jack and horse mackerels nei_140",0.444010417
+20,2012,"Japanese carpet shell_141",0.841666667
+20,2012,"Japanese hard clam_142",0.811764706
+20,2012,"Japanese kelp_143",0.83
+20,2012,"Japanese seabream_144",0.444010417
+20,2012,"Korean mussel_145",0.8
+20,2012,"Korean rockfish_146",0.444010417
+20,2012,"Kuruma prawn_147",0.5
+20,2012,"Laver (Nori)_148",0.73
+20,2012,"Marine crustaceans nei_149",0.3
+20,2012,"Marine fishes nei_150",0.477777778
+20,2012,"Marine molluscs nei_151",0.533333333
+20,2012,"Mi-iuy (brown) croaker_152",0.444010417
+20,2012,"Mullets nei_153",0.561111111
+20,2012,"Okhotsk atka mackerel_154",0.444010417
+20,2012,"Pacific chub mackerel_155",0.444010417
+20,2012,"Pacific cupped oyster_156",0.83
+20,2012,"Porgies, seabreams nei_157",0.444010417
+20,2012,"Pufferfishes nei_158",0.444010417
+20,2012,"Righteye flounders nei_159",0.444010417
+20,2012,"Scorpionfishes, redfishes nei_160",0.444010417
+20,2012,"Sea squirts nei_161",0.6
+20,2012,"Seabasses nei_162",0.5
+20,2012,"Wakame_163",0.83
+20,2012,"Whiteleg shrimp_164",0.374509804
+20,2012,"Yesso scallop_165",0.833333333
+21,2012,"Atlantic salmon_166",0.378947368
+21,2012,"Clams, etc. nei_167",0.766666667
+21,2012,"Japanese kelp_168",0.83
+21,2012,"Japanese sea cucumber_169",0.571405229
+21,2012,"Laver (Nori)_170",0.67
+21,2012,"Marine fishes nei_171",0.477777778
+21,2012,"Tiger pufferfish_172",0.444010417
+21,2012,"Wakame_173",0.83
+21,2012,"Yesso scallop_174",0.833333333
+24,2012,"Barramundi(=Giant seaperch)_175",0.190909091
+24,2012,"Blood cockle_176",0.666666667
+24,2012,"Green mussel_177",0.8
+24,2012,"Groupers nei_178",0.333333333
+24,2012,"Indo-Pacific swamp crab_179",0.416666667
+24,2012,"Marine fishes nei_180",0.477777778
+24,2012,"Marine molluscs nei_181",0.533333333
+24,2012,"Penaeus shrimps nei_182",0.23
+24,2012,"Snappers nei_183",0.433333333
+25,2012,"Abalones nei_184",0.55
+25,2012,"Banana prawn_185",0.2
+25,2012,"Barramundi(=Giant seaperch)_186",0.17
+25,2012,"Barramundi(=Giant seaperch)_187",0.17
+25,2012,"Blood cockle_188",0.67
+25,2012,"Blood cockle_189",0.67
+25,2012,"Cupped oysters nei_190",0.83
+25,2012,"Cupped oysters nei_191",0.83
+25,2012,"Fourfinger threadfin_192",0.444010417
+25,2012,"Giant tiger prawn_193",0.1
+25,2012,"Giant tiger prawn_194",0.1
+25,2012,"Green mussel_195",0.8
+25,2012,"Green mussel_196",0.8
+25,2012,"Groupers nei_197",0.33
+25,2012,"Groupers nei_198",0.33
+25,2012,"Indo-Pacific swamp crab_199",0.416666667
+25,2012,"Marine fishes nei_200",0.477777778
+25,2012,"Metapenaeus shrimps nei_201",0.372222222
+25,2012,"Penaeus shrimps nei_202",0.27
+25,2012,"Sea mussels nei_203",0.791666667
+25,2012,"Squaretail mullet_204",0.444010417
+25,2012,"Whiteleg shrimp_205",0.23
+25,2012,"Whiteleg shrimp_206",0.23
+29,2012,"Cobia_207",0.444010417
+29,2012,"Red drum_208",0.366666667
+31,2012,"Giant tiger prawn_209",0.366666667
+32,2012,"Drums nei_210",0.444010417
+32,2012,"Marine fishes nei_211",0.477777778
+32,2012,"Pargo breams nei_212",0.444010417
+37,2012,"European seabass_213",0.452222222
+37,2012,"Giant tiger prawn_214",0.366666667
+37,2012,"Goldlined seabream_215",0.444010417
+37,2012,"Hooded oyster_216",0.811764706
+37,2012,"Indo-Pacific swamp crab_217",0.416666667
+37,2012,"Marine fishes nei_218",0.477777778
+37,2012,"Metapenaeus shrimps nei_219",0.372222222
+37,2012,"Red drum_220",0.366666667
+40,2012,"Barramundi(=Giant seaperch)_221",0.190909091
+40,2012,"Giant tiger prawn_222",0.1
+40,2012,"Indian backwater oyster_223",0.811764706
+40,2012,"Indo-Pacific swamp crab_224",0.416666667
+40,2012,"Milkfish_225",0.414285714
+40,2012,"Sandfish_226",0.571405229
+41,2012,"Giant tiger prawn_227",0.366666667
+41,2012,"Indian white prawn_228",0.4
+41,2012,"Japanese meagre_229",0.444010417
+42,2012,"Giant tiger prawn_230",0.23
+42,2012,"Indo-Pacific swamp crab_231",0.416666667
+42,2012,"Sandfish_232",0.571405229
+42,2012,"Sea cucumbers nei_233",0.571405229
+43,2012,"Milkfish_234",0.414285714
+43,2012,"Penaeus shrimps nei_235",0.266666667
+45,2012,"Penaeus shrimps nei_236",0.266666667
+47,2012,"Indian white prawn_237",0.4
+48,2012,"Gilthead seabream_238",0.286111111
+48,2012,"Indian white prawn_239",0.4
+48,2012,"Yellowfin tuna_240",0.1
+50,2012,"Barramundi(=Giant seaperch)_241",0.17
+50,2012,"Flathead grey mullet_242",0.43
+50,2012,"Giant tiger prawn_243",0.17
+50,2012,"Gilthead seabream_244",0.286111111
+50,2012,"Groupers nei_245",0.33
+50,2012,"Indian white prawn_246",0.4
+50,2012,"Metapenaeus shrimps nei_247",0.372222222
+50,2012,"Sandfish_248",0.571405229
+50,2012,"Sobaity seabream_249",0.444010417
+50,2012,"Whiteleg shrimp_250",0.374509804
+51,2012,"Gilthead seabream_251",0.286111111
+51,2012,"Goldsilk seabream_252",0.444010417
+51,2012,"Groupers nei_253",0.333333333
+51,2012,"Marine fishes nei_254",0.477777778
+51,2012,"Sobaity seabream_255",0.444010417
+52,2012,"Gilthead seabream_256",0.286111111
+52,2012,"Groupers nei_257",0.333333333
+52,2012,"Sobaity seabream_258",0.444010417
+52,2012,"White-spotted spinefoot_259",0.444010417
+53,2012,"Penaeus shrimps nei_260",0.266666667
+54,2012,"European seabass_261",0.452222222
+54,2012,"Gilthead seabream_262",0.286111111
+54,2012,"Indian white prawn_263",0.4
+54,2012,"Sobaity seabream_264",0.444010417
+54,2012,"White-spotted spinefoot_265",0.444010417
+61,2012,"Atlantic bluefin tuna_266",0.316666667
+61,2012,"Carpet shells nei_267",0.8
+61,2012,"European eel_268",0.444444444
+61,2012,"European seabass_269",0.452222222
+61,2012,"Flathead grey mullet_270",0.412820513
+61,2012,"Gilthead seabream_271",0.286111111
+61,2012,"Mediterranean mussel_272",0.82
+61,2012,"Pacific cupped oyster_273",0.757142857
+61,2012,"Thinlip grey mullet_274",0.444010417
+62,2012,"Clams, etc. nei_275",0.77
+62,2012,"European eel_276",0.43
+62,2012,"European flat oyster_277",0.77
+62,2012,"European seabass_278",0.43
+62,2012,"Gilthead seabream_279",0.43
+62,2012,"Marine fishes nei_280",0.47
+62,2012,"Mediterranean mussel_281",0.83
+62,2012,"Pacific cupped oyster_282",0.83
+62,2012,"Penaeus shrimps nei_283",0.43
+62,2012,"Yesso scallop_284",0.87
+65,2012,"Gasar cupped oyster_285",0.733333333
+66,2012,"Blue mussel_286",0.902380952
+66,2012,"Cupped oysters nei_287",0.73
+66,2012,"Gasar cupped oyster_288",0.73
+66,2012,"Pacific cupped oyster_289",0.73
+67,2012,"European seabass_290",0.452222222
+67,2012,"Gilthead seabream_291",0.286111111
+68,2012,"Atlantic bluefin tuna_292",0.316666667
+68,2012,"European seabass_293",0.452222222
+68,2012,"Gilthead seabream_294",0.286111111
+68,2012,"Marine fishes nei_295",0.477777778
+70,2012,"Rainbow trout_296",0.566666667
+71,2012,"Mediterranean mussel_297",0.82
+72,2012,"Mediterranean mussel_298",0.82
+73,2012,"Aquatic invertebrates nei_299",0.542156863
+73,2012,"Atlantic salmon_300",0.43
+73,2012,"Brown seaweeds_301",0.93
+73,2012,"Brown seaweeds_302",0.93
+73,2012,"Cupped oysters nei_303",0.888095238
+73,2012,"Cupped oysters nei_304",0.888095238
+73,2012,"Flatfishes nei_305",0.43
+73,2012,"Japanese sea cucumber_306",0.571405229
+73,2012,"Mediterranean mussel_307",0.8
+73,2012,"Mullets nei_308",0.5
+73,2012,"Salmonoids nei_309",0.444010417
+73,2012,"Sea mussels nei_310",0.77
+73,2012,"Sea mussels nei_311",0.77
+73,2012,"Sea mussels nei_312",0.77
+73,2012,"Sea trout_313",0.47
+73,2012,"Sea urchins nei_314",0.5
+73,2012,"Yesso scallop_315",0.8
+75,2012,"Baltic prawn_316",0.47
+75,2012,"European flounder_317",0.444010417
+75,2012,"Gobies nei_318",0.53
+75,2012,"Mediterranean mussel_319",0.82
+75,2012,"Mullets nei_320",0.67
+75,2012,"Mullets nei_321",0.67
+75,2012,"So-iuy mullet_322",0.63
+76,2012,"Atlantic bluefin tuna_323",0.316666667
+76,2012,"Atlantic salmon_324",0.53
+76,2012,"Common dentex_325",0.444010417
+76,2012,"Common two-banded seabream_326",0.53
+76,2012,"European seabass_327",0.452222222
+76,2012,"Gilthead seabream_328",0.53
+76,2012,"Marine fishes nei_329",0.477777778
+76,2012,"Meagre_330",0.444010417
+76,2012,"Mediterranean mussel_331",0.8
+76,2012,"Natantian decapods nei_332",0.53
+76,2012,"Pink dentex_333",0.444010417
+76,2012,"Rainbow trout_334",0.566666667
+76,2012,"Red porgy_335",0.444010417
+76,2012,"Shi drum_336",0.444010417
+76,2012,"Trouts nei_337",0.433333333
+78,2012,"Whiteleg shrimp_338",0.374509804
+79,2012,"Barramundi(=Giant seaperch)_339",0.190909091
+79,2012,"European seabass_340",0.452222222
+79,2012,"European seabass_341",0.452222222
+79,2012,"Gilthead seabream_342",0.286111111
+79,2012,"Gilthead seabream_343",0.286111111
+79,2012,"Marine fishes nei_344",0.477777778
+79,2012,"Marine fishes nei_345",0.477777778
+79,2012,"Red drum_346",0.366666667
+79,2012,"Red drum_347",0.366666667
+79,2012,"Seabasses nei_348",0.5
+80,2012,"Atlantic bluefin tuna_349",0.316666667
+80,2012,"Clams, etc. nei_350",0.766666667
+80,2012,"Common pandora_351",0.444010417
+80,2012,"Common sole_352",0.533333333
+80,2012,"European eel_353",0.43
+80,2012,"European eel_354",0.43
+80,2012,"European flat oyster_355",0.83
+80,2012,"European seabass_356",0.3
+80,2012,"European seabass_357",0.3
+80,2012,"Flathead grey mullet_358",0.37
+80,2012,"Flathead grey mullet_359",0.37
+80,2012,"Gilthead seabream_360",0.17
+80,2012,"Gilthead seabream_361",0.17
+80,2012,"Kuruma prawn_362",0.43
+80,2012,"Marine fishes nei_363",0.477777778
+80,2012,"Marine fishes nei_364",0.477777778
+80,2012,"Marine molluscs nei_365",0.533333333
+80,2012,"Meagre_366",0.444010417
+80,2012,"Mediterranean mussel_367",0.82
+80,2012,"Mediterranean shore crab_368",0.416666667
+80,2012,"Red porgy_369",0.444010417
+80,2012,"Sciaenas nei_370",0.444010417
+80,2012,"Sharpsnout seabream_371",0.444010417
+80,2012,"Shi drum_372",0.444010417
+80,2012,"White seabream_373",0.444010417
+80,2012,"White seabream_374",0.444010417
+81,2012,"Atlantic bluefin tuna_375",0.316666667
+81,2012,"European seabass_376",0.452222222
+81,2012,"Gilthead seabream_377",0.286111111
+81,2012,"Indian white prawn_378",0.4
+81,2012,"Marbled spinefoot_379",0.444010417
+81,2012,"Meagre_380",0.444010417
+81,2012,"Red porgy_381",0.444010417
+81,2012,"Sharpsnout seabream_382",0.444010417
+82,2012,"European seabass_383",0.452222222
+82,2012,"Gilthead seabream_384",0.286111111
+82,2012,"Kuruma prawn_385",0.444444444
+82,2012,"Mediterranean mussel_386",0.82
+84,2012,"Caramote prawn_387",0.366666667
+84,2012,"Common sole_388",0.533333333
+84,2012,"European eel_389",0.444444444
+84,2012,"European seabass_390",0.452222222
+84,2012,"Gilthead seabream_391",0.286111111
+84,2012,"Grooved carpet shell_392",0.866666667
+84,2012,"Meagre_393",0.444010417
+84,2012,"Mediterranean mussel_394",0.82
+84,2012,"Mullets nei_395",0.561111111
+84,2012,"Pacific cupped oyster_396",0.757142857
+84,2012,"Penaeus shrimps nei_397",0.266666667
+95,2012,"Blue mussel_398",0.902380952
+95,2012,"Pacific cupped oyster_399",0.757142857
+101,2012,"Blue mussel_400",0.77
+101,2012,"European flat oyster_401",0.823076923
+101,2012,"Mediterranean mussel_402",0.82
+101,2012,"Pacific cupped oyster_403",0.77
+101,2012,"Perlemoen abalone_404",0.633333333
+102,2012,"Giant tiger prawn_405",0.5
+102,2012,"Indian white prawn_406",0.5
+102,2012,"Japanese meagre_407",0.444010417
+102,2012,"Kuruma prawn_408",0.5
+102,2012,"Mediterranean mussel_409",0.87
+102,2012,"Mullets nei_410",0.57
+102,2012,"Pacific cupped oyster_411",0.87
+102,2012,"Perlemoen abalone_412",0.63
+102,2012,"Red bait_413",0.6
+102,2012,"Sea lettuces nei_414",0.83
+102,2012,"Sea mussels nei_415",0.83
+102,2012,"Smooth mactra_416",0.77
+102,2012,"Turbot_417",0.5
+106,2012,"Giant tiger prawn_418",0.366666667
+110,2012,"Caribbean spiny lobster_419",0.416666667
+110,2012,"Cobia_420",0.444010417
+110,2012,"Whiteleg shrimp_421",0.374509804
+111,2012,"Queen conch_422",0.811764706
+112,2012,"Cupped oysters nei_423",0.888095238
+112,2012,"Seabasses nei_424",0.5
+112,2012,"Southern white shrimp_425",0.366666667
+112,2012,"Tropical spiny lobsters nei_426",0.416666667
+112,2012,"Whiteleg shrimp_427",0.374509804
+115,2012,"Cobia_428",0.444010417
+115,2012,"European seabass_429",0.452222222
+115,2012,"Florida pompano_430",0.444010417
+115,2012,"Gilthead seabream_431",0.286111111
+115,2012,"Mullets nei_432",0.561111111
+115,2012,"Penaeus shrimps nei_433",0.266666667
+115,2012,"Whiteleg shrimp_434",0.374509804
+116,2012,"Cobia_435",0.444010417
+116,2012,"Penaeus shrimps nei_436",0.266666667
+117,2012,"Caribbean spiny lobster_437",0.416666667
+129,2012,"Blue shrimp_438",0.372222222
+129,2012,"Cobia_439",0.444010417
+129,2012,"Florida pompano_440",0.444010417
+129,2012,"Whiteleg shrimp_441",0.43
+130,2012,"Pacific cupped oyster_442",0.757142857
+130,2012,"Snappers nei_443",0.433333333
+130,2012,"Whiteleg shrimp_444",0.43
+131,2012,"Blue shrimp_445",0.372222222
+131,2012,"Whiteleg shrimp_446",0.37
+132,2012,"Cobia_447",0.444010417
+132,2012,"Whiteleg shrimp_448",0.37
+132,2012,"Whiteleg shrimp_449",0.37
+133,2012,"Whiteleg shrimp_450",0.374509804
+134,2012,"blood cockle_451",0.811764706
+134,2012,"Blue shrimp_452",0.372222222
+134,2012,"Clams, etc. nei_453",0.766666667
+134,2012,"Cupped oysters nei_454",0.888095238
+134,2012,"Marine fishes nei_455",0.477777778
+134,2012,"Whiteleg shrimp_456",0.374509804
+135,2012,"Abalones nei_457",0.67
+135,2012,"Bastard halibuts nei_458",0.444010417
+135,2012,"Clams, etc. nei_459",0.766666667
+135,2012,"Cortez oyster_460",0.811764706
+135,2012,"Cortez oyster_461",0.811764706
+135,2012,"Crevalle jack_462",0.444010417
+135,2012,"Cupped oysters nei_463",0.888095238
+135,2012,"Jacks, crevalles nei_464",0.444010417
+135,2012,"Marine fishes nei_465",0.477777778
+135,2012,"Pacific bluefin tuna_466",0.444010417
+135,2012,"Pacific calico scallop_467",0.811764706
+135,2012,"Pacific cupped oyster_468",0.77
+135,2012,"Red abalone_469",0.811764706
+135,2012,"Red drum_470",0.366666667
+135,2012,"Sea mussels nei_471",0.791666667
+135,2012,"Seabasses nei_472",0.5
+135,2012,"Snappers nei_473",0.433333333
+135,2012,"Whiteleg shrimp_474",0.43
+135,2012,"Whiteleg shrimp_475",0.43
+135,2012,"Whiteleg shrimp_476",0.43
+135,2012,"Whiteleg shrimp_477",0.43
+135,2012,"Whiteleg shrimp_478",0.43
+135,2012,"Yellowfin tuna_479",0.1
+136,2012,"Penaeus shrimps nei_480",0.17
+136,2012,"Sea mussels nei_481",0.791666667
+136,2012,"Whiteleg shrimp_482",0.374509804
+137,2012,"Blue shrimp_483",0.372222222
+137,2012,"Pacific cupped oyster_484",0.757142857
+137,2012,"Red drum_485",0.37
+137,2012,"Whiteleg shrimp_486",0.37
+138,2012,"False abalone_487",0.73
+138,2012,"Flatfishes nei_488",0.466666667
+138,2012,"Pacific cupped oyster_489",0.83
+138,2012,"Scallops nei_490",0.833333333
+138,2012,"Whiteleg shrimp_491",0.37
+139,2012,"South American rock mussel_492",0.811764706
+139,2012,"Whiteleg shrimp_493",0.5
+140,2012,"Cobia_494",0.444010417
+140,2012,"Red drum_495",0.366666667
+141,2012,"Atlantic salmon_496",0.43
+141,2012,"Rainbow trout_497",0.566666667
+143,2012,"Abalones nei_498",0.63
+143,2012,"Arctic char_499",0.53
+143,2012,"Atlantic cod_500",0.57
+143,2012,"Atlantic halibut_501",0.53
+143,2012,"Atlantic salmon_502",0.6
+143,2012,"Atlantic salmon_503",0.6
+143,2012,"Blue mussel_504",0.93
+143,2012,"European seabass_505",0.65
+143,2012,"Haddock_506",0.53
+143,2012,"Rainbow trout_507",0.6
+143,2012,"Senegalese sole_508",0.444010417
+143,2012,"Turbot_509",0.53
+147,2012,"Barramundi(=Giant seaperch)_510",0.190909091
+147,2012,"Barramundi(=Giant seaperch)_511",0.190909091
+147,2012,"Blacklip pearl oyster_512",0.811764706
+147,2012,"Blue shrimp_513",0.372222222
+147,2012,"Marine fishes nei_514",0.477777778
+147,2012,"Pearl oyster shells nei_515",0.811764706
+147,2012,"Sea mussels nei_516",0.791666667
+147,2012,"Sixfinger threadfin_517",0.444010417
+153,2012,"Clams, etc. nei_518",0.766666667
+153,2012,"Pacific asaphis_519",0.811764706
+153,2012,"Rough turban_520",0.811764706
+155,2012,"Elongate giant clam_521",0.811764706
+155,2012,"Fluted giant clam_522",0.811764706
+155,2012,"Giant clam_523",0.811764706
+155,2012,"Milkfish_524",0.37
+155,2012,"Mozuku_525",0.83
+155,2012,"Smooth giant clam_526",0.811764706
+162,2012,"Chinook(=Spring=King) salmon_527",0.370833333
+162,2012,"New Zealand mussel_528",0.8
+162,2012,"Pacific cupped oyster_529",0.77
+162,2012,"Rainbow abalone_530",0.811764706
+163,2012,"Abalones nei_531",0.5
+163,2012,"Atlantic salmon_532",0.37
+163,2012,"Blue crab_533",0.416666667
+163,2012,"Blue mussel_534",0.93
+163,2012,"Butter clam_535",0.811764706
+163,2012,"Chinook(=Spring=King) salmon_536",0.370833333
+163,2012,"Clams, etc. nei_537",0.766666667
+163,2012,"Cockles nei_538",0.811764706
+163,2012,"Coho(=Silver) salmon_539",0.37
+163,2012,"Cupped oysters nei_540",1
+163,2012,"Cupped oysters nei_541",1
+163,2012,"European flat oyster_542",0.83
+163,2012,"Flat oysters nei_543",0.87
+163,2012,"Japanese carpet shell_544",0.841666667
+163,2012,"Longfin yellowtail_545",0.444010417
+163,2012,"Marine fishes nei_546",0.477777778
+163,2012,"Northern quahog(=Hard clam)_547",0.811764706
+163,2012,"Olympia oyster_548",0.811764706
+163,2012,"Pacific cupped oyster_549",0.9
+163,2012,"Pacific geoduck_550",0.811764706
+163,2012,"Pacific horse clam_551",0.811764706
+163,2012,"Pacific littleneck clam_552",0.811764706
+163,2012,"Rainbow trout_553",0.566666667
+163,2012,"Red drum_554",0.366666667
+163,2012,"Sand gaper_555",0.811764706
+163,2012,"Whiteleg shrimp_556",0.43
+164,2012,"Cobia_557",0.444010417
+164,2012,"Whiteleg shrimp_558",0.37
+166,2012,"Cupped oysters nei_559",0.888095238
+166,2012,"Whiteleg shrimp_560",0.374509804
+167,2012,"Flathead grey mullet_561",0.412820513
+167,2012,"Lebranche mullet_562",0.444010417
+167,2012,"Penaeus shrimps nei_563",0.266666667
+167,2012,"Whitemouth croaker_564",0.444010417
+168,2012,"Whiteleg shrimp_565",0.374509804
+171,2012,"Cupped oysters nei_566",0.9
+171,2012,"Groupers nei_567",0.33
+171,2012,"Marine fishes nei_568",0.477777778
+171,2012,"Marine molluscs nei_569",0.533333333
+171,2012,"Mullets nei_570",0.561111111
+171,2012,"Pacific lion's paw_571",0.811764706
+171,2012,"Scallops nei_572",0.833333333
+171,2012,"Snooks(=Robalos) nei_573",0.444010417
+171,2012,"South American rock mussel_574",0.811764706
+171,2012,"Whiteleg shrimp_575",0.3
+172,2012,"Blue mussel_576",0.83
+172,2012,"Pacific cupped oyster_577",0.9
+172,2012,"Rainbow trout_578",0.566666667
+173,2012,"Penaeus shrimps nei_579",0.266666667
+174,2012,"Atlantic salmon_580",0.5
+174,2012,"European whitefish_581",0.444010417
+174,2012,"Rainbow trout_582",0.566666667
+174,2012,"Sea trout_583",0.466666667
+175,2012,"Blue mussel_584",0.93
+175,2012,"Brown seaweeds_585",0.93
+175,2012,"Clams, etc. nei_586",0.766666667
+175,2012,"European eel_587",0.43
+175,2012,"Rainbow trout_588",0.566666667
+175,2012,"Rainbow trout_589",0.566666667
+175,2012,"Sea trout_590",0.466666667
+175,2012,"Turbot_591",0.5
+176,2012,"Blue mussel_592",0.93
+176,2012,"European seabass_593",0.57
+176,2012,"Pacific cupped oyster_594",0.53
+176,2012,"Rainbow trout_595",0.566666667
+176,2012,"Turbot_596",0.5
+177,2012,"Aquatic invertebrates nei_597",0.542156863
+177,2012,"Blue mussel_598",0.93
+177,2012,"Cupped oysters nei_599",0.9
+177,2012,"European flat oyster_600",0.83
+177,2012,"Soles nei_601",0.444010417
+177,2012,"Turbot_602",0.5
+177,2012,"Yellowtail amberjack_603",0.444010417
+179,2012,"Atlantic salmon_604",0.37
+179,2012,"Blue mussel_605",0.93
+179,2012,"Blue mussel_606",0.93
+179,2012,"Brown seaweeds_607",0.93
+179,2012,"Clams, etc. nei_608",0.766666667
+179,2012,"Clams, etc. nei_609",0.766666667
+179,2012,"Coho(=Silver) salmon_610",0.37
+179,2012,"Common edible cockle_611",0.733333333
+179,2012,"Common edible cockle_612",0.733333333
+179,2012,"European eel_613",0.43
+179,2012,"European flat oyster_614",0.83
+179,2012,"European flat oyster_615",0.83
+179,2012,"European seabass_616",0.5
+179,2012,"European seabass_617",0.5
+179,2012,"European seabass_618",0.5
+179,2012,"Finfishes nei_619",0.444010417
+179,2012,"Gilthead seabream_620",0.23
+179,2012,"Gilthead seabream_621",0.23
+179,2012,"Great Atlantic scallop_622",0.811764706
+179,2012,"Grooved carpet shell_623",0.866666667
+179,2012,"Japanese carpet shell_624",0.841666667
+179,2012,"Japanese carpet shell_625",0.841666667
+179,2012,"Kuruma prawn_626",0.43
+179,2012,"Marine fishes nei_627",0.477777778
+179,2012,"Marine molluscs nei_628",0.533333333
+179,2012,"Meagre_629",0.444010417
+179,2012,"Mediterranean mussel_630",0.82
+179,2012,"Mediterranean mussel_631",0.82
+179,2012,"Pacific cupped oyster_632",0.53
+179,2012,"Pacific cupped oyster_633",0.53
+179,2012,"Periwinkles nei_634",0.811764706
+179,2012,"Rainbow trout_635",0.566666667
+179,2012,"Sea trout_636",0.466666667
+179,2012,"Seaweeds nei_637",0.83
+179,2012,"Senegalese sole_638",0.444010417
+179,2012,"Tuberculate abalone_639",0.811764706
+179,2012,"Turbot_640",0.5
+179,2012,"Wakame nei_641",0.83
+179,2012,"White seabream_642",0.444010417
+180,2012,"Atlantic cod_643",0.17
+180,2012,"Atlantic halibut_644",0.533333333
+180,2012,"Atlantic salmon_645",0.3
+180,2012,"Blue mussel_646",0.93
+180,2012,"Common edible cockle_647",0.733333333
+180,2012,"Cupped oysters nei_648",0.87
+180,2012,"European flat oyster_649",0.83
+180,2012,"European seabass_650",0.5
+180,2012,"Great Atlantic scallop_651",0.811764706
+180,2012,"Grooved carpet shell_652",0.866666667
+180,2012,"Japanese carpet shell_653",0.841666667
+180,2012,"Northern quahog(=Hard clam)_654",0.811764706
+180,2012,"Pacific cupped oyster_655",0.83
+180,2012,"Queen scallop_656",0.811764706
+180,2012,"Rainbow trout_657",0.566666667
+180,2012,"Rainbow trout_658",0.566666667
+180,2012,"Sea mussels nei_659",0.791666667
+180,2012,"Sea trout_660",0.466666667
+180,2012,"Turbot_661",0.5
+181,2012,"Abalones nei_662",0.55
+181,2012,"Aquatic invertebrates nei_663",0.542156863
+181,2012,"Atlantic salmon_664",0.43
+181,2012,"Babberlocks_665",0.83
+181,2012,"Blue mussel_666",0.93
+181,2012,"European flat oyster_667",0.83
+181,2012,"Great Atlantic scallop_668",0.811764706
+181,2012,"Japanese carpet shell_669",0.841666667
+181,2012,"Pacific cupped oyster_670",0.83
+181,2012,"Rainbow trout_671",0.566666667
+181,2012,"Sea urchins nei_672",0.5
+181,2012,"Turbot_673",0.5
+182,2012,"Aquatic invertebrates nei_674",0.542156863
+182,2012,"Atlantic bluefin tuna_675",0.316666667
+182,2012,"Atlantic ditch shrimp_676",0.366666667
+182,2012,"Atlantic salmon_677",0.17
+182,2012,"Banded carpet shell_678",0.811764706
+182,2012,"Blackspot(=red) seabream_679",0.444010417
+182,2012,"Caramote prawn_680",0.366666667
+182,2012,"Clams, etc. nei_681",0.766666667
+182,2012,"Common edible cockle_682",0.733333333
+182,2012,"Common edible cockle_683",0.733333333
+182,2012,"Common edible cockle_684",0.733333333
+182,2012,"Common prawn_685",0.366666667
+182,2012,"Common sole_686",0.533333333
+182,2012,"Common sole_687",0.533333333
+182,2012,"Cupped oysters nei_688",0.9
+182,2012,"Cupped oysters nei_689",0.9
+182,2012,"European eel_690",0.43
+182,2012,"European eel_691",0.43
+182,2012,"European flat oyster_692",0.83
+182,2012,"European flat oyster_693",0.83
+182,2012,"European flat oyster_694",0.83
+182,2012,"European seabass_695",0.43
+182,2012,"European seabass_696",0.43
+182,2012,"European seabass_697",0.43
+182,2012,"European seabass_698",0.43
+182,2012,"Gastropods nei_699",0.811764706
+182,2012,"Gilthead seabream_700",0.17
+182,2012,"Gilthead seabream_701",0.17
+182,2012,"Gilthead seabream_702",0.17
+182,2012,"Gilthead seabream_703",0.17
+182,2012,"Great Atlantic scallop_704",0.811764706
+182,2012,"Greater amberjack_705",0.444010417
+182,2012,"Green crab_706",0.416666667
+182,2012,"Grooved carpet shell_707",0.866666667
+182,2012,"Grooved carpet shell_708",0.866666667
+182,2012,"Grooved carpet shell_709",0.866666667
+182,2012,"Groundfishes nei_710",0.444010417
+182,2012,"Japanese carpet shell_711",0.841666667
+182,2012,"Japanese carpet shell_712",0.841666667
+182,2012,"Japanese carpet shell_713",0.841666667
+182,2012,"Kuruma prawn_714",0.5
+182,2012,"Kuruma prawn_715",0.5
+182,2012,"Marine fishes nei_716",0.477777778
+182,2012,"Marine molluscs nei_717",0.533333333
+182,2012,"Marine molluscs nei_718",0.533333333
+182,2012,"Meagre_719",0.444010417
+182,2012,"Meagre_720",0.444010417
+182,2012,"Meagre_721",0.444010417
+182,2012,"Meagre_722",0.444010417
+182,2012,"Mullets nei_723",0.561111111
+182,2012,"Mullets nei_724",0.561111111
+182,2012,"Octopuses nei_725",0.533333333
+182,2012,"Pacific cupped oyster_726",0.83
+182,2012,"Pacific cupped oyster_727",0.83
+182,2012,"Pacific cupped oyster_728",0.83
+182,2012,"Palaemonid shrimps nei_729",0.366666667
+182,2012,"Palaemonid shrimps nei_730",0.366666667
+182,2012,"Pod razor shell_731",0.811764706
+182,2012,"Pollack_732",0.444010417
+182,2012,"Pullet carpet shell_733",0.833333333
+182,2012,"Pullet carpet shell_734",0.833333333
+182,2012,"Queen scallop_735",0.811764706
+182,2012,"Sea mussels nei_736",0.791666667
+182,2012,"Sea mussels nei_737",0.791666667
+182,2012,"Seabasses nei_738",0.5
+182,2012,"Seabasses nei_739",0.5
+182,2012,"Seabasses nei_740",0.5
+182,2012,"Seaweeds nei_741",0.83
+182,2012,"Senegalese sole_742",0.444010417
+182,2012,"Senegalese sole_743",0.444010417
+182,2012,"Senegalese sole_744",0.444010417
+182,2012,"Silversides(=Sand smelts) nei_745",0.566666667
+182,2012,"Soles nei_746",0.444010417
+182,2012,"Soles nei_747",0.444010417
+182,2012,"Turbot_748",0.5
+182,2012,"Variegated scallop_749",0.811764706
+182,2012,"Variegated scallop_750",0.811764706
+182,2012,"Warty venus_751",0.811764706
+182,2012,"White seabream_752",0.444010417
+182,2012,"Whiteleg shrimp_753",0.374509804
+183,2012,"[Solea spp]_754",0.444010417
+183,2012,"Atlantic bluefin tuna_755",0.316666667
+183,2012,"Atlantic ditch shrimp_756",0.366666667
+183,2012,"Atlantic salmon_757",0.4
+183,2012,"Clams, etc. nei_758",0.766666667
+183,2012,"Common cuttlefish_759",0.6
+183,2012,"Common edible cockle_760",0.73
+183,2012,"Common sole_761",0.53
+183,2012,"European eel_762",0.53
+183,2012,"European flat oyster_763",0.73
+183,2012,"European seabass_764",0.43
+183,2012,"European seabass_765",0.43
+183,2012,"Flat and cupped oysters nei_766",0.83
+183,2012,"Gilthead seabream_767",0.4
+183,2012,"Gilthead seabream_768",0.4
+183,2012,"Golden carpet shell_769",0.811764706
+183,2012,"Grooved carpet shell_770",0.87
+183,2012,"Marine fishes nei_771",0.53
+183,2012,"Marine molluscs nei_772",0.53
+183,2012,"Meagre_773",0.444010417
+183,2012,"Mullets nei_774",0.53
+183,2012,"Pacific cupped oyster_775",0.83
+183,2012,"Peppery furrow_776",0.811764706
+183,2012,"Pullet carpet shell_777",0.83
+183,2012,"Sargo breams nei_778",0.4
+183,2012,"Sea mussels nei_779",0.8
+183,2012,"Seabasses nei_780",0.5
+183,2012,"Turbot_781",0.47
+183,2012,"White seabream_782",0.444010417
+184,2012,"Atlantic bluefin tuna_783",0.316666667
+184,2012,"Common prawn_784",0.366666667
+184,2012,"Common sole_785",0.533333333
+184,2012,"Cupped oysters nei_786",1
+184,2012,"Cupped oysters nei_787",1
+184,2012,"European eel_788",0.43
+184,2012,"European eel_789",0.43
+184,2012,"European flat oyster_790",0.83
+184,2012,"European seabass_791",0.43
+184,2012,"European seabass_792",0.43
+184,2012,"Flathead grey mullet_793",0.43
+184,2012,"Flathead grey mullet_794",0.43
+184,2012,"Giant tiger prawn_795",0.3
+184,2012,"Gilthead seabream_796",0.23
+184,2012,"Gilthead seabream_797",0.23
+184,2012,"Grooved carpet shell_798",0.866666667
+184,2012,"Japanese carpet shell_799",0.841666667
+184,2012,"Japanese carpet shell_800",0.841666667
+184,2012,"Kuruma prawn_801",0.5
+184,2012,"Kuruma prawn_802",0.5
+184,2012,"Marine fishes nei_803",0.477777778
+184,2012,"Meagre_804",0.444010417
+184,2012,"Meagre_805",0.444010417
+184,2012,"Mediterranean mussel_806",0.82
+184,2012,"Mediterranean mussel_807",0.82
+184,2012,"Mullets nei_808",0.561111111
+184,2012,"Pacific cupped oyster_809",0.757142857
+184,2012,"Porgies, seabreams nei_810",0.444010417
+184,2012,"Porgies, seabreams nei_811",0.444010417
+184,2012,"Sharpsnout seabream_812",0.444010417
+184,2012,"Shi drum_813",0.444010417
+184,2012,"White seabream_814",0.444010417
+186,2012,"European eel_815",0.444444444
+186,2012,"European flat oyster_816",0.823076923
+186,2012,"European seabass_817",0.452222222
+186,2012,"Gilthead seabream_818",0.286111111
+186,2012,"Mediterranean mussel_819",0.82
+187,2012,"Atlantic bluefin tuna_820",0.316666667
+187,2012,"Common dentex_821",0.444010417
+187,2012,"European flat oyster_822",0.823076923
+187,2012,"European seabass_823",0.452222222
+187,2012,"Gilthead seabream_824",0.286111111
+187,2012,"Great Mediterranean scallop_825",0.811764706
+187,2012,"Marine fishes nei_826",0.477777778
+187,2012,"Meagre_827",0.444010417
+187,2012,"Mediterranean mussel_828",0.82
+188,2012,"Clams, etc. nei_829",0.766666667
+188,2012,"European seabass_830",0.452222222
+188,2012,"Gilthead seabream_831",0.286111111
+188,2012,"Mediterranean mussel_832",0.82
+191,2012,"Indian white prawn_833",0.3
+191,2012,"Marine fishes nei_834",0.477777778
+191,2012,"Whiteleg shrimp_835",0.374509804
+196,2012,"Mullets nei_836",0.43
+196,2012,"Snappers nei_837",0.43
+202,2012,"Giant tiger prawn_838",0.366666667
+202,2012,"Indo-Pacific swamp crab_839",0.416666667
+202,2012,"Milkfish_840",0.414285714
+203,2012,"Giant tiger prawn_841",0.17
+203,2012,"Green mussel_842",0.8
+203,2012,"Indian backwater oyster_843",0.811764706
+203,2012,"Indian white prawn_844",0.4
+203,2012,"Marine fishes nei_845",0.477777778
+203,2012,"Whiteleg shrimp_846",0.374509804
+204,2012,"Giant tiger prawn_847",0.366666667
+204,2012,"Indian white prawn_848",0.4
+204,2012,"Marine fishes nei_849",0.477777778
+204,2012,"Penaeus shrimps nei_850",0.23
+204,2012,"Speckled shrimp_851",0.366666667
+205,2012,"Aquatic invertebrates nei_852",0.542156863
+205,2012,"Barramundi(=Giant seaperch)_853",0.190909091
+205,2012,"Giant tiger prawn_854",0.17
+205,2012,"Groupers nei_855",0.333333333
+205,2012,"Indo-Pacific swamp crab_856",0.416666667
+205,2012,"Orange mud crab_857",0.416666667
+206,2012,"Banana prawn_858",0.3
+206,2012,"Banana prawn_859",0.3
+206,2012,"Barramundi(=Giant seaperch)_860",0.17
+206,2012,"Barramundi(=Giant seaperch)_861",0.17
+206,2012,"Blood cockle_862",0.67
+206,2012,"Blood cockle_863",0.67
+206,2012,"Broad geloina_864",0.811764706
+206,2012,"Cupped oysters nei_865",0.83
+206,2012,"Cupped oysters nei_866",0.83
+206,2012,"Fourfinger threadfin_867",0.444010417
+206,2012,"Giant tiger prawn_868",0.17
+206,2012,"Giant tiger prawn_869",0.17
+206,2012,"Green mussel_870",0.8
+206,2012,"Green mussel_871",0.8
+206,2012,"Groupers nei_872",0.333333333
+206,2012,"Groupers nei_873",0.333333333
+206,2012,"Groupers nei_874",0.333333333
+206,2012,"Groupers nei_875",0.333333333
+206,2012,"Indo-Pacific swamp crab_876",0.416666667
+206,2012,"Indo-Pacific swamp crab_877",0.416666667
+206,2012,"John's snapper_878",0.433333333
+206,2012,"John's snapper_879",0.433333333
+206,2012,"Marine fishes nei_880",0.477777778
+206,2012,"Marine fishes nei_881",0.477777778
+206,2012,"Milkfish_882",0.414285714
+206,2012,"Sandfish_883",0.571405229
+206,2012,"Snappers nei_884",0.433333333
+206,2012,"Snappers nei_885",0.433333333
+206,2012,"Snappers nei_886",0.433333333
+206,2012,"Snubnose pompano_887",0.444010417
+206,2012,"Tropical spiny lobsters nei_888",0.416666667
+206,2012,"Whiteleg shrimp_889",0.374509804
+206,2012,"Whiteleg shrimp_890",0.374509804
+207,2012,"Banana prawn_891",0.33
+207,2012,"Cobia_892",0.444010417
+207,2012,"Giant tiger prawn_893",0.1
+207,2012,"Indian white prawn_894",0.4
+207,2012,"Indo-Pacific swamp crab_895",0.416666667
+207,2012,"Marine fishes nei_896",0.477777778
+207,2012,"Marine fishes nei_897",0.477777778
+207,2012,"Marine molluscs nei_898",0.533333333
+207,2012,"Metapenaeus shrimps nei_899",0.372222222
+207,2012,"Sandfish_900",0.571405229
+207,2012,"Tropical spiny lobsters nei_901",0.416666667
+207,2012,"Whiteleg shrimp_902",0.23
+208,2012,"Banana prawn_903",0.275
+208,2012,"Banana prawn_904",0.275
+208,2012,"Barramundi(=Giant seaperch)_905",0.190909091
+208,2012,"Barramundi(=Giant seaperch)_906",0.190909091
+208,2012,"Blue swimming crab_907",0.416666667
+208,2012,"Blue swimming crab_908",0.416666667
+208,2012,"Cobia_909",0.444010417
+208,2012,"Flathead grey mullet_910",0.412820513
+208,2012,"Fourfinger threadfin_911",0.444010417
+208,2012,"Giant tiger prawn_912",0.366666667
+208,2012,"Giant tiger prawn_913",0.366666667
+208,2012,"Golden trevally_914",0.444010417
+208,2012,"Green humphead parrotfish_915",0.444010417
+208,2012,"Green mussel_916",0.8
+208,2012,"Groupers nei_917",0.333333333
+208,2012,"Indo-Pacific swamp crab_918",0.416666667
+208,2012,"Indo-Pacific swamp crab_919",0.416666667
+208,2012,"John's snapper_920",0.433333333
+208,2012,"Marine fishes nei_921",0.477777778
+208,2012,"Milkfish_922",0.414285714
+208,2012,"Mud spiny lobster_923",0.416666667
+208,2012,"Mud spiny lobster_924",0.416666667
+208,2012,"Pacific cupped oyster_925",0.757142857
+208,2012,"Penaeus shrimps nei_926",0.266666667
+208,2012,"Penaeus shrimps nei_927",0.266666667
+208,2012,"Snappers nei_928",0.433333333
+208,2012,"Snubnose pompano_929",0.444010417
+208,2012,"White-spotted spinefoot_930",0.444010417
+208,2012,"Whiteleg shrimp_931",0.374509804
+209,2012,"Abalones nei_932",0.55
+209,2012,"Amberjacks nei_933",0.444010417
+209,2012,"Aquatic invertebrates nei_934",0.542156863
+209,2012,"Barramundi(=Giant seaperch)_935",0.190909091
+209,2012,"Blood cockle_936",0.67
+209,2012,"Brown seaweeds_937",0.93
+209,2012,"Cobia_938",0.444010417
+209,2012,"Cupped oysters nei_939",0.888095238
+209,2012,"Dark green nori_940",0.83
+209,2012,"Fleshy prawn_941",0.366666667
+209,2012,"Fusiform sargassum_942",0.83
+209,2012,"Giant tiger prawn_943",0.366666667
+209,2012,"Goldlined seabream_944",0.444010417
+209,2012,"Green mud crab_945",0.416666667
+209,2012,"Groupers nei_946",0.33
+209,2012,"Japanese carpet shell_947",0.841666667
+209,2012,"Japanese kelp_948",0.83
+209,2012,"Japanese sea cucumber_949",0.571405229
+209,2012,"Jellyfishes nei_950",0.571405229
+209,2012,"Kuruma prawn_951",0.444444444
+209,2012,"Large yellow croaker_952",0.444010417
+209,2012,"Lefteye flounders nei_953",0.444010417
+209,2012,"Marine crabs nei_954",0.416666667
+209,2012,"Marine fishes nei_955",0.477777778
+209,2012,"Marine fishes nei_956",0.477777778
+209,2012,"Marine molluscs nei_957",0.533333333
+209,2012,"Nori nei_958",0.693333333
+209,2012,"Pearl oyster shells nei_959",0.811764706
+209,2012,"Pen shells nei_960",0.811764706
+209,2012,"Penaeus shrimps nei_961",0.266666667
+209,2012,"Pompano_962",0.444010417
+209,2012,"Porgies, seabreams nei_963",0.444010417
+209,2012,"Portunus swimcrabs nei_964",0.416666667
+209,2012,"Red drum_965",0.37
+209,2012,"Righteye flounders nei_966",0.444010417
+209,2012,"Scallops nei_967",0.833333333
+209,2012,"Sea mussels nei_968",0.791666667
+209,2012,"Sea snails_969",0.811764706
+209,2012,"Sea urchins nei_970",0.5
+209,2012,"Seabasses nei_971",0.5
+209,2012,"Snappers nei_972",0.433333333
+209,2012,"Snubnose pompano_973",0.444010417
+209,2012,"Tiger pufferfish_974",0.444010417
+209,2012,"Turbot_975",0.5
+209,2012,"Wakame_976",0.83
+209,2012,"Whiteleg shrimp_977",0.37
+210,2012,"Aquatic invertebrates nei_978",0.542156863
+210,2012,"Bastard halibut_979",0.444010417
+210,2012,"Blackhead seabream_980",0.444010417
+210,2012,"Clams, etc. nei_981",0.766666667
+210,2012,"Coho(=Silver) salmon_982",0.37
+210,2012,"Crimson seabream_983",0.444010417
+210,2012,"Filefishes nei_984",0.444010417
+210,2012,"Flathead grey mullet_985",0.43
+210,2012,"Gazami crab_986",0.416666667
+210,2012,"Japanese amberjack_987",0.444010417
+210,2012,"Japanese jack mackerel_988",0.444010417
+210,2012,"Japanese kelp_989",0.83
+210,2012,"Kuruma prawn_990",0.5
+210,2012,"Laver (Nori)_991",0.73
+210,2012,"Marine crustaceans nei_992",0.3
+210,2012,"Marine fishes nei_993",0.477777778
+210,2012,"Octopuses, etc. nei_994",0.566666667
+210,2012,"Pacific bluefin tuna_995",0.444010417
+210,2012,"Pacific cupped oyster_996",0.77
+210,2012,"Pearl oyster shells nei_997",0.811764706
+210,2012,"Red oyas_998",0.6
+210,2012,"Seaweeds nei_999",0.83
+210,2012,"Spiny lobsters nei_1000",0.416666667
+210,2012,"Tiger pufferfish_1001",0.444010417
+210,2012,"Wakame_1002",0.83
+210,2012,"White trevally_1003",0.444010417
+210,2012,"Yesso scallop_1004",0.833333333
+212,2012,"Milkfish_1005",0.37
+214,2012,"European seabass_1006",0.43
+214,2012,"Gilthead seabream_1007",0.23
+214,2012,"Marine fishes nei_1008",0.477777778
+214,2012,"Meagre_1009",0.444010417
+214,2012,"Mullets nei_1010",0.561111111
+214,2012,"Penaeus shrimps nei_1011",0.3
+216,2012,"Akiami paste shrimp_1012",0.366666667
+216,2012,"Banana prawn_1013",0.27
+216,2012,"Barramundi(=Giant seaperch)_1014",0.17
+216,2012,"Barramundi(=Giant seaperch)_1015",0.17
+216,2012,"Giant tiger prawn_1016",0.17
+216,2012,"Groupers nei_1017",0.33
+216,2012,"Groupers nei_1018",0.33
+216,2012,"Indo-Pacific swamp crab_1019",0.416666667
+216,2012,"Marine fishes nei_1020",0.477777778
+216,2012,"Metapenaeus shrimps nei_1021",0.372222222
+216,2012,"Milkfish_1022",0.43
+216,2012,"Milkfish_1023",0.43
+216,2012,"Mullets nei_1024",0.561111111
+216,2012,"Penguin wing oyster_1025",0.811764706
+216,2012,"Portunus swimcrabs nei_1026",0.416666667
+216,2012,"Sea cucumbers nei_1027",0.571405229
+216,2012,"Tropical spiny lobsters nei_1028",0.416666667
+216,2012,"Whiteleg shrimp_1029",0.374509804
+218,2012,"Atlantic cod_1030",0.23
+218,2012,"Atlantic salmon_1031",0.17
+218,2012,"Atlantic salmon_1032",0.27
+218,2012,"Blue mussel_1033",0.93
+218,2012,"Blue mussel_1034",0.93
+218,2012,"Butter clam_1035",0.811764706
+218,2012,"Chinook(=Spring=King) salmon_1036",0.370833333
+218,2012,"Coho(=Silver) salmon_1037",0.33
+218,2012,"Cupped oysters nei_1038",0.888095238
+218,2012,"Japanese carpet shell_1039",0.841666667
+218,2012,"Marine molluscs nei_1040",0.533333333
+218,2012,"Marine molluscs nei_1041",0.533333333
+218,2012,"Pacific cupped oyster_1042",0.83
+218,2012,"Rainbow trout_1043",0.566666667
+218,2012,"Salmonids nei_1044",0.444010417
+218,2012,"Scallops nei_1045",0.833333333
+218,2012,"Scallops nei_1046",0.833333333
+219,2012,"Sea mussels nei_1047",0.791666667
+222,2012,"Atlantic salmon_1048",0.53
+222,2012,"Blue mussel_1049",0.77
+222,2012,"Rainbow trout_1050",0.53
+223,2012,"Arctic char_1051",0.533333333
+223,2012,"Atlantic cod_1052",0.17
+223,2012,"Atlantic halibut_1053",0.533333333
+223,2012,"Atlantic salmon_1054",0.23
+223,2012,"Babberlocks_1055",0.83
+223,2012,"Blue mussel_1056",0.93
+223,2012,"Chars nei_1057",0.444010417
+223,2012,"European flat oyster_1058",0.83
+223,2012,"Finfishes nei_1059",0.444010417
+223,2012,"Great Atlantic scallop_1060",0.811764706
+223,2012,"Marine crustaceans nei_1061",0.3
+223,2012,"Rainbow trout_1062",0.566666667
+223,2012,"Scallops nei_1063",0.833333333
+224,2012,"Atlantic salmon_1064",0.13
+224,2012,"Chilean mussel_1065",0.811764706
+224,2012,"Chinook(=Spring=King) salmon_1066",0.370833333
+224,2012,"Cholga mussel_1067",0.811764706
+224,2012,"Choro mussel_1068",0.811764706
+224,2012,"Coho(=Silver) salmon_1069",0.27
+224,2012,"Flat oysters nei_1070",0.866666667
+224,2012,"Japanese abalone_1071",0.811764706
+224,2012,"Pacific cupped oyster_1072",0.53
+224,2012,"Rainbow trout_1073",0.566666667
+224,2012,"Red abalone_1074",0.811764706
+224,2012,"Scallops nei_1075",0.833333333
+224,2012,"Turbot_1076",0.5
+231,2012,"Milkfish_1077",0.414285714
+231,2012,"Penaeus shrimps nei_1078",0.266666667
+232,2012,"Common dentex_1079",0.444010417
+232,2012,"European flat oyster_1080",0.823076923
+232,2012,"European seabass_1081",0.452222222
+232,2012,"Gilthead seabream_1082",0.286111111
+232,2012,"Mediterranean mussel_1083",0.82
+244,2012,"Stromboid conchs nei_1084",0.811764706
+245,2012,"Stromboid conchs nei_1085",0.811764706
+247,2012,"Barramundi(=Giant seaperch)_1086",0.190909091
+247,2012,"Blue shrimp_1087",0.372222222
+247,2012,"Giant tiger prawn_1088",0.366666667
+247,2012,"Groupers nei_1089",0.333333333
+247,2012,"Indo-Pacific swamp crab_1090",0.416666667
+247,2012,"Jacks, crevalles nei_1091",0.444010417
+247,2012,"Marine fishes nei_1092",0.477777778
+247,2012,"Snappers nei_1093",0.433333333
+250,2012,"Stromboid conchs nei_1094",0.811764706
