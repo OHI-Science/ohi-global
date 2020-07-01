@@ -8,7 +8,7 @@
 ## STEP 1: download ohicore package
 ## Install the appropriate ohicore:
 library(devtools)
-#devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
+#devtools::install_github("ohi-science/ohicore@master") # typically this version will be used
 devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore.. use this for 2020 assessment year
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
@@ -155,16 +155,16 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ## final commit from last year: a832c5a
 # Link being sourced here is incorrect, need to change it!
  ohicore::score_check(commit = "previous", scenario_year = 2020,
-             file_name = "", save_csv = TRUE, NA_compare = TRUE)
+             file_name = "hab_prs_hd_subtidal_soft_bottom", save_csv = TRUE, NA_compare = TRUE)
 
 
-compare <- read.csv(here("eez/score_check/fp_weights_diff_data_2019-10-23.csv")) 
+compare <- read.csv(here("eez/score_check/hab_prs_hd_subtidal_soft_bottom_diff_data_2020-06-30.csv"))
 
 
 tmp <- dplyr::filter(compare, !is.na(score) & is.na(old_score)) %>%
   dplyr::filter(dimension=="status")
 
-tmp <- dplyr::filter(compare, goal=="FIS" & region_id==105) %>%
+tmp <- dplyr::filter(compare, goal=="BD" & region_id==64) %>%
   dplyr::filter(dimension=="status")
 
 
