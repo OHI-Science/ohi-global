@@ -155,7 +155,7 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ## final commit from last year: a832c5a
 # Link being sourced here is incorrect, need to change it!
  ohicore::score_check(commit = "previous", scenario_year = 2020,
-             file_name = "ao_need", save_csv = TRUE, NA_compare = TRUE)
+             file_name = "tr_sust_update", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/hab_prs_hd_subtidal_soft_bottom_diff_data_2020-06-30.csv"))
