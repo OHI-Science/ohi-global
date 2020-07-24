@@ -155,7 +155,7 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ## final commit from last year: a832c5a
 # Link being sourced here is incorrect, need to change it!
  ohicore::score_check(commit = "previous", scenario_year = 2020,
-             file_name = "np_new_methods", save_csv = TRUE, NA_compare = TRUE)
+             file_name = "np_new_methods_2", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/np_new_methods_diff_data_2020-07-24.csv"))
@@ -164,9 +164,26 @@ compare <- read.csv(here("eez/score_check/np_new_methods_diff_data_2020-07-24.cs
 tmp <- dplyr::filter(compare, !is.na(score) & is.na(old_score)) %>%
   dplyr::filter(dimension=="status")
 
-tmp <- dplyr::filter(compare, goal=="BD" & region_id==64) %>%
-  dplyr::filter(dimension=="status")
+## New np exploration 2020
 
+tmp <- dplyr::filter(compare, goal=="NP") %>%
+  dplyr::filter(dimension=="status", region_id != 0) %>%
+  dplyr::group_by(region_id) %>%
+  dplyr::summarise(sd_old = sd(old_score),
+         sd_new = sd(score)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(lower_sd_new = ifelse(sd_new < sd_old, 1, 0),
+                difference = sd_old - sd_new) %>%
+  dplyr::filter(!is.na(lower_sd_new))
+
+length(tmp$lower_sd_new[tmp$lower_sd_new == 1]) ## 97 new sds are lower than old sds (133 total, because I excluded those that did not have scores before this update (n = 88))
+                                                ## 36 old sds are lower than new sds 
+
+mean(tmp$sd_new) # 6.347546
+mean(tmp$sd_old) # 13.02625
+
+plot(tmp$sd_old, tmp$sd_new)
+abline(0,1, col = 'red')
 
 library(ggplot2)
 p <- ggplot(dplyr::filter(compare, year==2018 & dimension=="status" & goal == "FIS"), aes(x=old_score, y=score)) +
