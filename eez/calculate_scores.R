@@ -161,30 +161,6 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 compare <- read.csv(here("eez/score_check/np_new_methods_diff_data_2020-07-24.csv"))
 
 
-tmp <- dplyr::filter(compare, !is.na(score) & is.na(old_score)) %>%
-  dplyr::filter(dimension=="status")
-
-## New np exploration 2020
-
-tmp <- dplyr::filter(compare, goal=="NP") %>%
-  dplyr::filter(dimension=="status", region_id != 0) %>%
-  dplyr::group_by(region_id) %>%
-  dplyr::summarise(sd_old = sd(old_score),
-         sd_new = sd(score)) %>%
-  dplyr::ungroup() %>%
-  dplyr::mutate(lower_sd_new = ifelse(sd_new < sd_old, 1, 0),
-                difference = sd_old - sd_new) %>%
-  dplyr::filter(!is.na(lower_sd_new))
-
-length(tmp$lower_sd_new[tmp$lower_sd_new == 1]) ## 97 new sds are lower than old sds (133 total, because I excluded those that did not have scores before this update (n = 88))
-                                                ## 36 old sds are lower than new sds 
-
-mean(tmp$sd_new) # 6.347546
-mean(tmp$sd_old) # 13.02625
-
-plot(tmp$sd_old, tmp$sd_new)
-abline(0,1, col = 'red')
-
 library(ggplot2)
 p <- ggplot(dplyr::filter(compare, year==2018 & dimension=="status" & goal == "FIS"), aes(x=old_score, y=score)) +
   geom_point(aes(text = paste0("rgn = ", rgn_name)), shape=19) +
