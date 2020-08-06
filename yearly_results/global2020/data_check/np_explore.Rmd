@@ -227,9 +227,18 @@ test <- graph_data_2 %>%
   ungroup() %>%
   left_join(graph_data_2, by = c("rgn_id")) %>%
   filter(max == sum_tonnes) %>%
-  group_by(product) %>%
-  summarise(max_count_tonnes = n())
-  
+  arrange(product) %>%
+  dplyr::select(rgn_id, product, sum_tonnes)
+
+
+write.csv(test, "np_int/old_np_product_maximums.csv", row.names = FALSE)
+
+
+np_old_counts <- test %>%
+        count(product)
+
+write.csv(np_old_counts, "np_int/old_np_count_maxs.csv", row.names = FALSE)
+
 
   ggplot(test, aes(x = product, y = max_count_usd, label = max_count_usd)) +
   geom_col() + 
