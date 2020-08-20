@@ -1,21 +1,21 @@
 layer,updates
 ao_access,none
-ao_need,additional year of GDP data (2018)
-cc_acid,additional year of data (projected)
-cc_slr,additional year of data (2018)
+ao_need,additional year of GDP data (2019)
+cc_acid,none
+cc_slr,none
 cc_sst,none
-cc_uv,additional year of data
+cc_uv,additional year of data (2019)
 cw_chemical_trend,none
 cw_nutrient_trend,none
-cw_pathogen_trend,two additional years of data (2016 & 2017)
+cw_pathogen_trend,none
 cw_trash_trend,none
 eco_status,"eliminated calculation, now just provide results as placeholder (not updated since 2013)"
 eco_trend,"eliminated calculation, now just provide results as placeholder (not updated since 2013)"
 element_wts_cp_km2_x_protection,none
 element_wts_cs_km2_x_storage,none
 element_wts_hab_pres_abs,none
-fis_b_bmsy,"additional RAM species, now include additional metrics of stock performance"
-fis_meancatch,data updated (same range of years)
+fis_b_bmsy,"additional RAM species, 2 additional years of data (2016 & 2017)"
+fis_meancatch,data updated, 2 additional years of data (2016 & 2017)
 fp_art_hb, two additional years of data (2016 & 2017)
 fp_art_lb, two additional years of data (2016 & 2017)
 fp_com_hb, two additional years of data (2016 & 2017)
@@ -23,39 +23,39 @@ fp_com_lb, two additional years of data (2016 & 2017)
 fp_habitat,none
 fp_fish_management,New data source: Melnychuk et al. (2017) fisheries management index data
 fp_mora_artisanal,none
-fp_mpa_coast,additional year of data (2019)
-fp_mpa_eez,additional year of data (2019)
-fp_targetharvest,additional year of data (2017)
+fp_mpa_coast,additional year of data (2020)
+fp_mpa_eez,additional year of data (2020)
+fp_targetharvest,additional year of data (2018)
 fp_wildcaught_weight,additional year of data
 g_cites,none
 g_mariculture,none
 g_msi_gov,none
 g_tourism,none
-hab_coral_extent,UNEP data updated to version 4
+hab_coral_extent,none
 hab_coral_health,none
 hab_coral_trend,none
 hab_mangrove_extent,none
 hab_mangrove_health,none
 hab_mangrove_trend,none
 hab_rockyreef_extent,none
-hab_saltmarsh_extent,UNEP data updated to version 6
+hab_saltmarsh_extent,none
 hab_saltmarsh_health,none
 hab_saltmarsh_trend,none
-hab_seagrass_extent,UNEP data updated to version 6
+hab_seagrass_extent,none
 hab_seagrass_health,none
 hab_seagrass_trend,none
 hab_seaice_extent,additional year of data (2019)
 hab_seaice_health,none
 hab_seaice_trend,additional year of data (2019)
-hab_softbottom_health,none
-hab_softbottom_trend,none
+hab_softbottom_health,additional year of data (2017)
+hab_softbottom_trend,additional year of data (2017)
 hd_habitat,none
 hd_intertidal,"same UN pop data, but fixed errors in inland raster"
 hd_mpa_coast,additional year of data
 hd_mpa_eez,additional year of data
 hd_subtidal_hb,none
 hd_subtidal_sb,none
-ico_spp_iucn_status,additional year of data (2019)
+ico_spp_iucn_status,updated iucn redlist classifications 
 le_sector_weight,none
 li_gci,none
 li_sector_evenness,none
@@ -63,14 +63,16 @@ liv_status,none
 liv_trend,none
 lsp_prot_area_inland1km,additional year of data
 lsp_prot_area_offshore3nm,additional year of data
-mar_capacity,new data source that describes mariculture potential
-mar_harvest_tonnes,additional year of data (2017)
+mar_capacity,none
+mar_harvest_tonnes,additional year of data (2018)
 mar_sustainability_score,none
-np_blast,none
-np_cyanide,none
-np_harvest_product_weight,new year of FAO data (2016); adjusted model to improve stability
-np_harvest_tonnes,new year of FAO data (2016); adjusted model to improve stability
-np_harvest_tonnes_relative,new year of FAO data (2016); adjusted model to improve stability
+np_risk_orn,new name for the np blast data layer 
+np_exposure_orn,new name for the np cyanida data layer
+np_harvest_product_weight,updated with additional year of data and stabilized weights based on 5 year average
+np_seaweed_tonnes,new data layer which uses mariculture seaweed data
+np_orn_tonnes_relative,new data layer which uses global commodities data
+np_fofm_scores,new data layer for forage fish using watson and RAM dta
+np_seaweed_sust,new data layer which uses trujillo sustainability score
 po_chemicals,none
 po_chemicals_3nm,none
 po_nutrients,none
@@ -95,6 +97,5 @@ ss_spi,additional year of data
 ss_wgi,additional year of data (2017)
 tr_jobs_pct_tourism, two additional years of data
 tr_sustainability, additional year of data (2019)
-tr_travelwarnings, deleted from index
 uninhabited,none
 wgi_all,additional year of data (2017)
