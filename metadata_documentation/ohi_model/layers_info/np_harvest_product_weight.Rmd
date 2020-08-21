@@ -1,3 +1,16 @@
-See **`r layer_meta$name[layer_meta$layer == 'np_harvest_tonnes']`** layer for more information about these data.
+Within each region and year, the 5 year average value (USD) of harvest of each commodity (ornamental fish, seaweeds, and fish oil/fish meal) relative to 5 year average total harvest value of three marine commodities. This layer is used to weight contribution of each product to final natural product status score. The FAO Global Commodities database was used for this layer.
 
-Within each region and year, the value (USD) of harvest of each commodity relative to total harvest value of six marine commodities (coral, fish oil, inedible seaweed and plants, shells, sponges, ornamental fish). Used to weight contribution of each product to final natural product status score.
+If a country was missing tonnes or dollar values (but had one of the values), the missing data were estimated. FAO provides yearly data for the tonnes and dollar value generated for each natural product, however, countries often provide only one of these variables (and the data provided varies across years). To estimate these missing data, we used country-specific linear models to predict tonnes based on the dollar value of a product (or, vice versa). For the countries that did not have enough data to develop an adequate model, our models included the data for all the countries within a UN geopolitical region. When there wasn’t enough data at the geopolitical region scale, we used all the global data to predict missing values.
+
+**Table 6.9. FAO categories included in each natural product commodity**
+
+```{r}
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep/master/globalprep/np/v2016/raw/commodities2products.csv') %>%
+  group_by(product) %>%
+  summarize(subcategory = paste(commodity, collapse = ", ")) %>%
+  select(commodity = product, subcategory) %>%
+  mutate(commodity = gsub("_", " ", commodity))
+
+kable(data)
+
+```
