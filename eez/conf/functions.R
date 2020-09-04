@@ -509,12 +509,12 @@ NP <- function(scores, layers) {
     ### Calculate NP scores for seaweeds based on two layers: 
     ### harvested tons of seaweed and sustainability of seaweed
     #########################################
-    
+  
     ### Read in seaweed tonnes data
     np_seaweed_tonnes <- 
       AlignDataYears(layer_nm = "np_seaweed_tonnes", layers_obj = layers) %>%
       dplyr::select(year = scenario_year, region_id = rgn_id, taxa_code, tonnes) %>%
-      mutate(product = "seaweed")
+      mutate(product = "seaweeds")
    
     ### Read in seaweed sustainability data 
     np_seaweed_sust <- 
