@@ -237,7 +237,7 @@ Alternative color scale
 source(here(sprintf('yearly_results/%s/Results/functions/flowerPlot_v2.R', saveFile)))
 
 # Make sure you create the Results/figures/FlowerPlots folder before running this function
-PlotFlower(
+PlotFlower_v2(
   region_plot = NA,
   dir_fig_save = here(sprintf("yearly_results/%s/Results/figures/FlowerPlots_v2", saveFile)),
   assessment_name = "Global Average",
@@ -247,6 +247,24 @@ PlotFlower(
 )
 
 
+# create a fake plot for presentation purposes
+source(here(sprintf('yearly_results/%s/Results/functions/flowerPlot_v3.R', saveFile)))
+
+data_loc <- here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile))
+data <- read.csv(data_loc) %>%
+  filter(region_id == 0) %>%
+  filter(year == 2019) %>%
+  mutate(score = ifelse(goal %in% c("HAB", "FIS", "Index"), score, 0))
+write.csv(data, here(sprintf("yearly_results/%s/scores_%s_fake.csv", saveFile, dateFile)), row.names=FALSE)
+
+PlotFlower_v3(
+  region_plot = NA,
+  dir_fig_save = here(sprintf("yearly_results/%s/Results/figures/FlowerPlots_v2_fake", saveFile)),
+  assessment_name = "Global Average",
+  year_plot = 2019,
+  scores_file = here(sprintf("yearly_results/%s/scores_%s_fake.csv", saveFile, dateFile)),
+  scenario_folder = "eez"
+)
 ```
 
 

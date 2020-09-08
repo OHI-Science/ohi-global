@@ -21,7 +21,7 @@ library(stringr)
 library(RColorBrewer)
 library(ggthemes)
 #'
-PlotFlower_v2 <- function(region_plot     = NA,
+PlotFlower_v3 <- function(region_plot     = NA,
                        year_plot       = NA,
                        assessment_name = "OHI Assessment",
                        dir_fig_save    = "reports/figures",
@@ -220,9 +220,7 @@ myPalette <- paste0(colorRampPalette(tableau_color_pal("Classic Cyclic")(13))(14
     distinct()                              ## in case region_id 0 was included in regions_list.csv
   
   
-  ## loop through to save flower plot for each region ----
-  for (region in region_plots) { # region = 0
-    
+
     ## filter region info, setup to plot ----
     plot_df <- score_df %>%
       filter(region_id == region)
@@ -250,6 +248,9 @@ myPalette <- paste0(colorRampPalette(tableau_color_pal("Classic Cyclic")(13))(14
         arrange(pos)
     }
     
+    
+    plot_df <- plot_df %>%
+      mutate(name_flower = ifelse(name_flower %in% c("Habitats", "Fisheries"), name_flower, NA))
     
     ## set up basic plot parameters ----
     plot_obj <- ggplot(data = plot_df,
@@ -338,7 +339,7 @@ myPalette <- paste0(colorRampPalette(tableau_color_pal("Classic Cyclic")(13))(14
     #print(plot_obj)
     
     ## save plot
-    ggsave(filename = fig_save,
+    ggsave(filename = "fig_save_v2.png",
            plot = plot_obj,
            device = "png",
            height = 6, width = 8, units = 'in', dpi = 300)
@@ -346,7 +347,6 @@ myPalette <- paste0(colorRampPalette(tableau_color_pal("Classic Cyclic")(13))(14
     
     ### ...then return the plot object for further use
     # return(invisible(plot_obj)) ## can't return with this for loop
-  }
 }
 
 ## ggtheme_plot ----
