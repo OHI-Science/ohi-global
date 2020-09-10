@@ -31,7 +31,7 @@ g_cites,ohiprep:globalprep/res_cites_signatories/v2017/output,cites.csv,TRUE,res
 g_mariculture,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_mariculture_2013a.csv,TRUE,resilience score,Management of mariculture  to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: mariculture related questions
 g_msi_gov,ohiprep:/globalprep/res_mariculture_sustainability/v2013,r_msi_gov_2013a.csv,TRUE,resilience score,Mariculture Sustainability Index,scaled 0-1,Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI)
 g_tourism,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_tourism_2013a.csv,TRUE,resilience score,Management of tourism to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions
-hab_coral_extent,ohiprep:globalprep/hab_coral/v2012/data,habitat_extent_coral_updated.csv,TRUE,km2,Habitat extent of coral,km2,Area of coral habitat
+hab_coral_extent,ohiprep:globalprep/hab_coral/v2020/data,habitat_extent_coral_updated.csv,TRUE,km2,Habitat extent of coral,km2,Area of coral habitat
 hab_coral_health,ohiprep:globalprep/hab_coral/v2012/data,habitat_health_coral_updated.csv,TRUE,health,Habitat condition of coral,proportion,Current condition of coral habitat relative to historical condition
 hab_coral_trend,ohiprep:globalprep/hab_coral/v2012/data,habitat_trend_coral_updated.csv,TRUE,trend,Habitat condition trend of coral,trend,Estimated trend in coral condition
 hab_mangrove_extent,ohiprep:globalprep/hab_mangrove/v2015/data,habitat_extent_mangrove_updated.csv,TRUE,km2,Habitat extent of mangrove,km2,Area of mangrove habitat

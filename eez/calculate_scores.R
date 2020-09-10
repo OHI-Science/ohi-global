@@ -154,8 +154,8 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ### Some methods for visualizing the data
 ## final commit from last year: a832c5a
 # Link being sourced here is incorrect, need to change it!
- ohicore::score_check(commit = "6d96cf4", scenario_year = 2020,
-             file_name = "np_seaweeds_seafoodwatch_previous", save_csv = TRUE, NA_compare = TRUE)
+ ohicore::score_check(commit = "previous", scenario_year = 2020,
+             file_name = "hab_coral_extent", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/np_new_methods_diff_data_2020-07-24.csv"))
