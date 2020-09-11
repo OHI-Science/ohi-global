@@ -155,7 +155,7 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ## final commit from last year: a832c5a
 # Link being sourced here is incorrect, need to change it!
  ohicore::score_check(commit = "previous", scenario_year = 2020,
-             file_name = "coral_harvest_prs", save_csv = TRUE, NA_compare = TRUE)
+             file_name = "prs_res_spi", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/np_new_methods_diff_data_2020-07-24.csv"))
