@@ -1,5 +1,5 @@
 ---
-title: 'OHI 2019: Summary of results'
+title: 'OHI 2020: Summary of results'
 author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
 output: 
   html_document:
@@ -17,19 +17,19 @@ output:
 ---
 
 
-This document describes results from the 2019 global OHI assessment.  This is mostly an internal document to explore and check results.  It also creates the figures used on the website and in other documents.
+This document describes results from the 2020 global OHI assessment.  This is mostly an internal document to explore and check results.  It also creates the figures used on the website and in other documents.
 ```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
 # 1. check the code chunk below and change variables if needed
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2019-11-15' #date extension on data files used for all tables/figures
+dateFile = '2020-09-11' #date extension on data files used for all tables/figures
 
 ## General settings to control
-scenario <- 2019 #identify scenario of focus (this can be changed to obtain data for other years)
-benchmark = 2018  # previous year that is used for old vs. new OHI analyses
-oldCommit = 'a5d197c1ae8b520fb8172c1da589ce4deb0f3e3a' # sha final commit for 2018 assessment
-saveFile <- 'global2019' #location where files that are created are to be saved
+scenario <- 2020 #identify scenario of focus (this can be changed to obtain data for other years)
+benchmark = 2019  # previous year that is used for old vs. new OHI analyses
+oldCommit = 'aa8ff510b6817934016115f59eac76f5360e1e60' # sha final commit for 2018 assessment
+saveFile <- 'global2020' #location where files that are created are to be saved
 
 
 ### code to run code chunks
@@ -65,6 +65,7 @@ library(ggalt)
 library(reshape2)
 library(plotly)
 library(stringr)
+library(ggthemes)
 
 # nice labels for things
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
@@ -203,7 +204,7 @@ write.csv(data_final, here(sprintf("yearly_results/%s/Results/data/scores_eez%s.
 
 
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-11-15.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2019.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2020/OHI_final_formatted_scores_2020-09-11.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2020.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
@@ -223,7 +224,7 @@ PlotFlower(
   region_plot = NA,
   dir_fig_save = here(sprintf("yearly_results/%s/Results/figures/FlowerPlots", saveFile)),
   assessment_name = "Global Average",
-  year_plot = 2019,
+  year_plot = 2020,
   scores_file = here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)),
   scenario_folder = "eez"
 )
@@ -241,7 +242,7 @@ PlotFlower(
   region_plot = NA,
   dir_fig_save = here(sprintf("yearly_results/%s/Results/figures/FlowerPlots_v2", saveFile)),
   assessment_name = "Global Average",
-  year_plot = 2019,
+  year_plot = 2020,
   scores_file = here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, dateFile)),
   scenario_folder = "eez"
 )
@@ -252,7 +253,7 @@ PlotFlower(
 
 Average global performance of the 10 goals.
 
-Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019/Results/figures/FlowerPlots)
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2020/Results/figures/FlowerPlots)
 
 ```{r flower_global, echo=FALSE, fig.height=30, fig.width=10}
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/FlowerPlots/flower_GlobalAverage.png", saveFile)))
@@ -275,7 +276,7 @@ prj      <- 'mol'    ### note: 'gcs' is way faster.
 reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
 blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
 colors <-   c(reds, blues)
-#write_csv(data.frame(colors), here("yearly_results/global2019/Results/color_palette.csv")) # do we comment this out for knitting? 
+#write_csv(data.frame(colors), here("yearly_results/global2020/Results/color_palette.csv")) # do we comment this out for knitting? 
 
 ### get OHI data and rename column headings
 
@@ -326,7 +327,7 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 }
 
 
-## save a version of 2019 maps without legend
+## save a version of 2020 maps without legend
 year = scenario
 
 scores_df <- read_csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv', saveFile, year))) %>%
@@ -360,11 +361,11 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 
 ```
 
-Country index scores for 2019.  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019/Results/figures/maps_by_goal_mol).
+Country index scores for 2020.  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2020/Results/figures/maps_by_goal_mol).
 
 
 ```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_Index_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_Index_2020_mol.png", saveFile)))
 
 ```
 
@@ -380,7 +381,7 @@ year=scenario
 hist_data <- read_csv(here(sprintf("yearly_results/%s/Results/data/scores_eez%s.csv", saveFile, year))) %>%
 select(region_name, Index)
 
-hist_data_old <- read_csv(here("yearly_results/global2018/Results/data/scores_eez2018.csv")) %>%
+hist_data_old <- read_csv(here("yearly_results/global2019/Results/data/scores_eez2019.csv")) %>%
 select(region_name, Index)
 
 reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(66)
@@ -440,7 +441,7 @@ kable(low)
 ```
 
 ## Country scores across scenario year
-Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2019 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 7 years of data.  Black regions indicate no data.
+Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2020/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2020 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 7 years of data.  Black regions indicate no data.
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 
@@ -499,7 +500,7 @@ This plot is good for providing a quick overview of:
 
 
 ## Data
-This interactive table describes the index and goal scores for the regions in 2019 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/Results/data/scores_eez2019.csv)): 
+This interactive table describes the index and goal scores for the regions in 2020 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2020/Results/data/scores_eez2020.csv)): 
 
 ```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
@@ -584,9 +585,9 @@ index <- trends_spread %>%
 eez_spread <- trends_spread %>%
   arrange(-Index) %>%
   filter(country != 'eez_weighted_avg')
-# sum(trends_spread$Index>0) # 129
-# sum(trends_spread$Index<0) # 92 
-# sum(trends_spread$Index==0) # none
+# sum(trends_spread$Index>0) # 119
+# sum(trends_spread$Index<0) # 99
+# sum(trends_spread$Index==0) # 3
 
 trends_spread <- rbind(index, eez_spread) %>%
     select(country, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
@@ -616,9 +617,9 @@ hwrite(trends_spread, here(sprintf('yearly_results/%s/Results/data/trends_%s.htm
 
 ```
 
-Trend values are slope estimates from a linear model of scores for each region/goal over the past 7 years. Positive values indicate increasing scores during the past 7 years and negative values indicate decreasing scores.
+Trend values are slope estimates from a linear model of scores for each region/goal over the past 9 years. Positive values indicate increasing scores during the past 9 years and negative values indicate decreasing scores.
 
-A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2019/Results/data/trends_2019.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/Results/data/trends_2019.csv)).  
+A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2020/Results/data/trends_2020.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2020/Results/data/trends_2020.csv)).  
 
 
 NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed sceptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
@@ -808,7 +809,7 @@ kable(trends_order[(bottom-9):bottom, ])
 
 source(here(sprintf('yearly_results/%s/Results/functions/trend_barplot.R', saveFile)))
 
-# Creates trend_barplot.png in yearly_results/global2019/Results/figures
+# Creates trend_barplot.png in yearly_results/global2020/Results/figures
 ```
 
 A heat map describing change in trend for country and goals:
@@ -826,7 +827,7 @@ knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/Trend_ba
 This section takes a closer look at the goal/subgoal scores.
 
 ## Scores
-Goal/subgoal scores for the 2019 scenario.
+Goal/subgoal scores for the 2020 scenario.
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
 
 data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv', saveFile, scenario))) %>%
@@ -852,7 +853,7 @@ ggsave(g, filename=here(sprintf("yearly_results/%s/Results/figures/goal_histogra
 
 ### Scores
 ```{r AO plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_AO_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_AO_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/AO_scores.png", saveFile)))
 
@@ -890,7 +891,7 @@ kable(bottom)
 ### Scores
 
 ```{r SPP plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_SPP_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_SPP_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/SPP_scores.png", saveFile)))
 
@@ -931,7 +932,7 @@ kable(bottom)
 
 
 ```{r HAB plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_HAB_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_HAB_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/HAB_scores.png", saveFile)))
 
@@ -970,7 +971,7 @@ kable(bottom)
 ### Scores
 
 ```{r CP plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_CP_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_CP_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/CP_scores.png", saveFile)))
 
@@ -1009,7 +1010,7 @@ kable(bottom)
 ### Scores
 
 ```{r CS plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_CS_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_CS_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/CS_scores.png", saveFile)))
 
@@ -1050,7 +1051,7 @@ kable(bottom)
 
 
 ```{r CW plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_CW_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_CW_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/CW_scores.png", saveFile)))
 
@@ -1089,7 +1090,7 @@ kable(bottom)
 ### Scores
 
 ```{r FIS plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_FIS_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_FIS_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/FIS_scores.png", saveFile)))
 
@@ -1127,7 +1128,7 @@ kable(bottom)
 
 ### Scores
 ```{r MAR plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_MAR_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_MAR_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/MAR_scores.png", saveFile)))
 
@@ -1165,7 +1166,7 @@ kable(bottom)
 ### Scores
 
 ```{r ICO plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_ICO_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_ICO_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/ICO_scores.png", saveFile)))
 
@@ -1203,7 +1204,7 @@ kable(bottom)
 ### Scores
 
 ```{r LSP plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_LSP_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_LSP_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/LSP_scores.png", saveFile)))
 
@@ -1240,7 +1241,7 @@ kable(bottom)
 ### Scores
 
 ```{r NP plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_NP_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_NP_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/NP_scores.png", saveFile)))
 
@@ -1278,7 +1279,7 @@ kable(bottom)
 ### Scores
 
 ```{r TR plots, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_TR_2019_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_TR_2020_mol.png", saveFile)))
 
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/goal_histograms/TR_scores.png", saveFile)))
 
@@ -1309,7 +1310,7 @@ kable(bottom)
 ```
 
 ## Trends
-Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2019. 
+Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2020. 
 
 ```{r trend plots, echo=FALSE, fig.height=30, fig.width=10}
 knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_AO_mol.png", saveFile)))
@@ -1356,7 +1357,7 @@ knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/map_tren
 
 ### Comparing trend and average index scores
 
-To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2019) and the trends for each region.
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2020) and the trends for each region.
 
 Of most concern are regions that have poor scores and declining trends.
 
@@ -1438,10 +1439,10 @@ These changes do not reflect changes in actual system health!
 ```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 
 data <- read.csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)), stringsAsFactors = FALSE) %>%
-  rename("assess2019"=value) 
+  rename("assess2020"=value) 
 
-data_old <- read.csv(here(sprintf('yearly_results/global%s/OHI_final_formatted_scores_2018-11-28.csv', benchmark)), stringsAsFactors = FALSE) %>%
-  dplyr::rename("assess2018"=value)
+data_old <- read.csv(here(sprintf('yearly_results/global2019/OHI_final_formatted_scores_2019-11-15.csv', benchmark)), stringsAsFactors = FALSE) %>%
+  dplyr::rename("assess2019"=value)
   
   
 data_compare <- data_old %>%
@@ -1453,7 +1454,7 @@ data_compare$goal <- factor(data_compare$goal, levels = goals)
 
 data_compare <- data_compare %>%
   arrange(goal) %>%
-  mutate(change = assess2019 - assess2018)
+  mutate(change = assess2020 - assess2019)
 
 data_compare_summary <- data_compare %>%
   group_by(long_goal, dimension) %>%
@@ -1469,14 +1470,14 @@ kable(data_compare_summary)
 ### Country data 
 
 
-The following interactive plot provides an overview of how the 2018 scenario scores changed between the 2018 and 2019 assessments for all goals and dimensions.
+The following interactive plot provides an overview of how the 2019 scenario scores changed between the 2018 and 2020 assessments for all goals and dimensions.
 
 ```{r compare assessments-plot, echo=FALSE, warning=FALSE}
 
   p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
     #geom_point(shape=19, size=1) +
     theme_bw() + 
-    labs(title="Change in 2018 scores ", y="Change in score", x="") +
+    labs(title="Change in 2020 scores ", y="Change in score", x="") +
     scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
                                 "MAR", "ECO", "LE", "LIV", "NP", "LSP", "SP", "ICO", "TR")) +
     scale_colour_brewer(palette="Dark2") +

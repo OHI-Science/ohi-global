@@ -188,12 +188,12 @@ PlotFlower <- function(region_plot     = NA,
   #   c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
   # myPalette <-   c(reds, blues)
   # 
-#   library(scales)
-#   library(ggthemes)
-#   library(colorspace)
-#   hcl_palettes(type = "qualitative")
-#   install.packages("rcartocolor")
-#   library(rcartocolor)
+  # library(scales)
+  # library(ggthemes)
+  # library(colorspace)
+  # hcl_palettes(type = "qualitative")
+  # install.packages("rcartocolor")
+  # library(rcartocolor)
 # 
 # cartocolors[cartocolors$Name=="Prism", ]  
   
