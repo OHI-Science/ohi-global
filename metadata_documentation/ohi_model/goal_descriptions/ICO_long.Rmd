@@ -3,7 +3,7 @@
 Iconic species are those that are relevant to local cultural identity through their relationship to one or more of the following: 1) traditional activities such as fishing, hunting or commerce; 2) local ethnic or religious practices; 3) existence value; and 4) locally-recognized aesthetic value (e.g., touristic attractions/common subjects for art such as whales).  Ultimately, almost any species can be iconic to someone, and so the intent with this goal was to focus on those species widely seen as iconic from a cultural or existence value (rather than a livelihoods or extractive reason). Habitat-forming species were not included, nor were species harvested solely for economic or utilitarian purposes (even though they may be iconic to a sector or individual). 
 
 #### Current status
-The status of this sub-goal, $x_{ico}$, is the average of status scores of the iconic species in each region based on their IUCN Red List threat categories [@iucn_iucn_2016]:
+The status of this sub-goal, $x_{ico}$, is the average of status scores of the iconic species in each region based on their IUCN Red List threat categories [@iucn_iucn_2020]:
 
 $$
 x_{ico} = \frac { \displaystyle\sum_{ i=EX }^{ LC }{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{ i=EX }^{ LC }{ S_{i} }  }, (Eq. 5.17)

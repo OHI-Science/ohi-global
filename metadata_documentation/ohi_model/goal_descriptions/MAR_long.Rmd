@@ -20,13 +20,14 @@ where, $Y_{k}$ is the 4-year moving window average of tonnes of production [@uni
 
 All regions scoring above 1.0 are given a score of 1.0. However, when a region has a current sustainably-harvested yield, $Y_{c}$, that is less than 100 tonnes, and when 1% of potential aquaculture harvest is less and 100 tonnes, a score of NA is assigned. This assumption is made so that regions are not rewarded with a perfect score for having nearly no sustainabily-harvested yield, and potential aquaculture harvest. 
 
-The sustainability score, $S_{k,r}$, for each species in each region is based on the [Monterey Bay Aquarium Seafood Watch](https://www.seafoodwatch.org) [aquaculture recommendations](https://www.seafoodwatch.org/seafood-recommendations/standards-revision) (SFW, -@noauthor_monterey_2020). These scores are country and species-specific, however, many country/species combinations are not assessed by SeaFood Watch.  Given that each mariculture record must have a corresponding sustainability score we used a series of steps to estimate sustainability scores for every country and species.  If a country/species match was available we used that, otherwise, we gapfilled using the following sequence:
-1. Used the global species value provided by SeaFood Watch
-2. Within a country, used average of species within the same family
-3. Within a UN geo-political region, used average of species within the same family
-4. Global, use average of species within the same family
-5. Global, use average of species within a broad taxonomic grouping (e.g., crustaceans, algae, bivalves, etc.)
-6. Finally, if these scores were not available for the categories above, we used the global average of all species. 
+The sustainability score, $S_{k,r}$, for each species in each region is based on the [Monterey Bay Aquarium Seafood Watch](https://www.seafoodwatch.org) [aquaculture recommendations](https://www.seafoodwatch.org/seafood-recommendations/standards-revision) (-@noauthor_monterey_2020). These scores are country and species-specific, however, many country/species combinations are not assessed by SeaFood Watch.  Given that each mariculture record must have a corresponding sustainability score we used a series of steps to estimate sustainability scores for every country and species.  If a country/species match was available we used that, otherwise, we gapfilled using the following sequence:
+
+1. Used the global species value provided by Seafood Watch. 
+2. Within a country, used average of species within the same family. 
+3. Within a UN geo-political region, used average of species within the same family. 
+4. Global, use average of species within the same family. 
+5. Global, use average of species within a broad taxonomic grouping (e.g., crustaceans, algae, bivalves, etc.). 
+6. Finally, if these scores were not available for the categories above, we used the global average of all species.  
 
 Seaweed or algae species were given the global seaweed sustainability score provided by the Seafood Watch recommendations. We are aware that there is some bias associated with using scores derived as averages across countries because they were originally assigned to specific species-country pairs, nevertheless this is preferable to applying a sustainability score solely based on a subset of the species harvested.
 
