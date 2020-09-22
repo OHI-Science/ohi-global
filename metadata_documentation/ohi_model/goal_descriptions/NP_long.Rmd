@@ -6,7 +6,7 @@ In many countries the harvest of non-food natural products is important for loca
 
 To determine the total production in tonnes for seaweed we summed seaweed production provided in the FAO global aquaculture production data [@united_nations_fao_2018]. To determine total production in tonnes of ornamental fish we summed the exported products provided in the FAO commodities data [@united_nations_fao_2017]. Finally, to determine the total production in tonnes for fish oil and fish meal, we used Watson (2019) global marine fisheries catch data [@watson_global_2019] and B/Bmsy data [@ricard_examining_2012; @costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016] calculated from our fisheries sub-goal (methods can be found in section 6.6.1), and subsetted the stocks for stocks used for fish oil production (Table 5.10) [@froehlich_avoiding_2018]. The tonnes of harvest of fish oil and fish meal species were multiplied by 0.7 to reflect the amount of the fish actually going to production of feed or oil. 
 
-**Table 5.10. Natural product categories**. 
+**Table 5.11. Natural product categories**. 
 List of species and FAO products included in each of the three natural product categories.
 
 ```{r np commodity, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
@@ -14,9 +14,11 @@ data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh
   group_by(product) %>%
   summarize(subcategory = paste(commodity, collapse = ", ")) %>%
   select(commodity = product, subcategory) %>%
-  mutate(commodity = gsub("_", " ", commodity))
+  mutate(commodity = gsub("_", " ", commodity)) %>%
+  select(Commodity = commodity, Subcategory = subcategory)
 
-kable(data)
+kable(data) %>%
+  kable_styling(full_width = F)
 
 ```
 
@@ -60,7 +62,7 @@ If a product had a peak value, but was missing a harvest value for that product 
 
 Because dollar values were not present in the data that was used for seaweeds and fish oil, we relied on the FAO global commodities dataset to obtain these, which we used to calculate $w_c$ for each category (Table 5.11).
 
-**Table 5.11. Natural product categories**. 
+**Table 5.12. Natural product categories**. 
 List of FAO products included in each of the three natural product categories used for determining natural product weights.
 
 ```{r np commodity weights, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
@@ -68,9 +70,11 @@ data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh
   group_by(product) %>%
   summarize(subcategory = paste(commodity, collapse = ", ")) %>%
   select(commodity = product, subcategory) %>%
-  mutate(commodity = gsub("_", " ", commodity))
+  mutate(commodity = gsub("_", " ", commodity))%>%
+dplyr::select(Commodity = commodity, Subcategory = subcategory)
 
-kable(data)
+kable(data) %>%
+kable_styling(full_width = F)
 
 ```
  

@@ -1,10 +1,27 @@
 ### Mariculture (subgoal of food provision)
 
-The mariculture subgoal attempts to measure each region's food production from mariculture relative to its capacity. Until the 2019 assessment, a basic problem facing assessments of mariculture was the lack of an ecologically- and socially-based reference point for the potential yield of every suitable mariculture species for every type of geographic habitat and location. Determining such reference points for every country at the global scale is a daunting challenge, not only because so much information was lacking, but also because species, genotypes and habitats are likely to change. However, recent research (Gentry et al. 2017) estimates the global potential for marine aquaculture at a high resolution spatial scale that we aggregated for each country. Because the estimate provided by Gentry et al. 2017 is very opportunistic, 1% of this tonnage estimate is used for the reference point calculations. 
+The mariculture subgoal attempts to measure each region's food production from mariculture relative to its capacity. A basic problem facing previous assessments of mariculture was the lack of an ecologically- and socially-based reference point for the potential yield of every suitable mariculture species for every type of geographic habitat and location. Determining such reference points for every country at the global scale is difficult, not only because of key missing data and information, but also because species, genotypes and habitats suitable for production in any given location are likely to change from year to year. However, recent research (Gentry et al. 2017) estimated the global potential for marine aquaculture at a high resolution spatial scale, addressing one of these key gaps: ecological reference points. To account for the social and economic realities and constraints to these ecological potentials, we constrained the per-country potential to 1% of this tonnage estimate and used these country values as reference points. Furthermore, the paper does not exclude high biodiversity or environmentally sensitive areas, meaning 100% of potential aquaculture tonnage estimate is a large overestimation of what is actually possible. 
 
 
 #### Current status
-The status of the mariculture subgoal, $x_{mar}$, was defined as production of strictly marine taxa from both the marine and brackish water FAO categories, excluding species that were not used as a source of food for human consumption. Seaweeds are included, but the tonnes of harvest is multiplied by 0.2 to adjust for protein content relative to fish and shellfish mariculture.  The data reported by FAO does not always clearly describe whether harvest is derived through mariculture or from land-based facilities. Wherever possible, we excluded species that could not have been harvested from coastal waters, such as freshwater cyclids. Mariculture status was therefore assessed as the current sustainably-harvested yield, $Y_{c}$, within each country, such that:
+The status of the mariculture subgoal, $x_{mar}$, was defined as production of strictly marine taxa from FAO categories for both marine and brackish waters, excluding species that were not used as a source of food for human consumption. In particular this was only an issue for seaweeds, as many seaweed species are not used for human consumption (or only partially used for human consumption). Table 5.8 shows the proportions, with a justification column, explaining the proportions of each seaweed species used for human consumption. Seaweeds are included as they are a source of food in many places, but for the amount that is consumed by people (85% on average globally from FAO, 81% from our estimates), the tonnes of harvest is multiplied by 0.2 to adjust for protein content relative to fish and shellfish mariculture.  
+
+
+**Table 5.8 Mariculture seaweed exclusion**. 
+List of seaweed mariculture species, what proportion of their harvest is not used for human consumption, and a justification for the exclusion. 
+
+```{r mar seaweeds, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/mar/v2020/raw/species_list.csv') %>%
+	dplyr::filter(Taxon_code == "AL") %>%
+dplyr::select(`FAO species name` = FAO_name, `Proportion non food use` = exclude, `Justification` = notes_2)
+
+kable(data) %>%
+  kable_styling(full_width = F)
+```
+
+
+
+Harvest data reported by FAO does not always clearly describe whether it is derived from mariculture or from land-based facilities. Mariculture status was therefore assessed as the current sustainably-harvested yield, $Y_{c}$, within each country, such that:
 
 $$
 x_{mar}= \frac {Y_c}{Y_{c, ref}},   (Eq. 5.10)
@@ -18,18 +35,19 @@ $$
 
 where, $Y_{k}$ is the 4-year moving window average of tonnes of production [@united_nations_fao_2016] for each ${k}$ mariculture species that is currently or at one time cultured within a country, and $S_{k,r}$ is the sustainability score for each $k$ mariculture species and region.
 
-All regions scoring above 1.0 are given a score of 1.0. However, when a region has a current sustainably-harvested yield, $Y_{c}$, that is less than 100 tonnes, and when 1% of potential aquaculture harvest is less and 100 tonnes, a score of NA is assigned. This assumption is made so that regions are not rewarded with a perfect score for having nearly no sustainabily-harvested yield, and potential aquaculture harvest. 
+All regions scoring above 1.0 are given a score of 1.0. A score greater than one could occur when the current sustainable aquaculture harvest is greater than 1% of the biological production potential (taken from Gentry et al. 2017). However, when a region has a current sustainably-harvested yield, $Y_{c}$, that is less than 100 tonnes, and when 1% of potential aquaculture harvest is less than 100 tonnes, a score of NA is assigned. This assumption is made to avoid giving a perfect score to regions that have essentially zero sustainably-harvested yield, and essentially zero biological production potential.
 
-The sustainability score, $S_{k,r}$, for each species in each region is based on the [Monterey Bay Aquarium Seafood Watch](https://www.seafoodwatch.org) [aquaculture recommendations](https://www.seafoodwatch.org/seafood-recommendations/standards-revision) (-@noauthor_monterey_2020). These scores are country and species-specific, however, many country/species combinations are not assessed by SeaFood Watch.  Given that each mariculture record must have a corresponding sustainability score we used a series of steps to estimate sustainability scores for every country and species.  If a country/species match was available we used that, otherwise, we gapfilled using the following sequence:
+The sustainability score, $S_{k,r}$, for each species in each region is based on the [Monterey Bay Aquarium Seafood Watch](https://www.seafoodwatch.org) [aquaculture recommendations](https://www.seafoodwatch.org/seafood-recommendations/standards-revision) (-@noauthor_monterey_2020). These scores are country and species-specific, however, many country/species combinations are not assessed by SeaFood Watch.  Given that each mariculture record must have a corresponding sustainability score, we used a series of steps to estimate sustainability scores for every country and species.  If a country/species match was available we used that, otherwise, we gapfilled using the following sequence:
 
 1. Used the global species value provided by Seafood Watch. 
-2. Within a country, used average of species within the same family. 
-3. Within a UN geo-political region, used average of species within the same family. 
-4. Global, use average of species within the same family. 
-5. Global, use average of species within a broad taxonomic grouping (e.g., crustaceans, algae, bivalves, etc.). 
+2. Within a country, used the average of species within the same family. 
+3. Within a UN geo-political region, used the average of species within the same family. 
+4. Global, used average of species within the same family. 
+5. Global, used average of species within a broad taxonomic grouping (e.g., crustaceans, algae, bivalves, etc.). 
 6. Finally, if these scores were not available for the categories above, we used the global average of all species.  
 
 Seaweed or algae species were given the global seaweed sustainability score provided by the Seafood Watch recommendations. We are aware that there is some bias associated with using scores derived as averages across countries because they were originally assigned to specific species-country pairs, nevertheless this is preferable to applying a sustainability score solely based on a subset of the species harvested.
+
 
 
 #### Trend

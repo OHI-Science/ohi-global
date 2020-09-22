@@ -44,6 +44,7 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(here)
+library(kableExtra)
 
 options(knitr.kable.NA = '')
 
