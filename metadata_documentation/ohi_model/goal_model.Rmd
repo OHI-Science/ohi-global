@@ -1,19 +1,19 @@
-Each goal score is the average of its current status and likely future status (Figure 4.1, see section *5: Goal models and data* for methods used to calculate status of each goal).  The Index assesses the current status of each goal relative to a reference point.  Likely future status is estimated using: recent trends in current status; pressures that can stress the system and threaten future delivery of benefits; and resilience to such pressures, due to governance, institutional and ecological factors. 
+Each goal score is the average of its current status and likely future status (Figure 5.1, see section *5: Goal models and data* for methods used to calculate status of each goal).  The Index assesses the current status of each goal relative to a reference point.  Likely future status is estimated using: recent trends in current status; pressures that can stress the system and threaten future delivery of benefits; and resilience to such pressures, due to governance, institutional and ecological factors. 
 
-**Figure 4.1. Pie chart describing the contribution of each dimension to the goal score**
+**Figure 5.1. Pie chart describing the contribution of each dimension to the goal score**
 ![](../../metadata_documentation/ohi_model/figures/ScoreDimensionsPieChart.png)
 
 
 Each goal score, $G$, is the average of its present status, $x$, and its likely near-term future status, $\hat x_{F}$:
 
 $$
-G \quad =\quad \frac {x \quad +\quad \hat x_{F} }{ 2 }, (Eq. 4.3)
+G \quad =\quad \frac {x \quad +\quad \hat x_{F} }{ 2 }, (Eq. 5.3)
 $$
 
 The present status of goal, $x$, is its present state, $X$, relative to a reference point, $X_{R}$, uniquely chosen for each goal:
 
 $$
-{ x }_{ i }\quad =\quad \frac { X }{  X_{R} }, (Eq. 4.4) 
+{ x }_{ i }\quad =\quad \frac { X }{  X_{R} }, (Eq. 5.4) 
 $$
 
 The reference point, $X_{R}$, can be determined mechanistically using a production function (e.g., maximum sustainable yield, MSY, for fisheries), spatially by means of comparison with another region (e.g., country X represents the best possible known case), temporally using a past benchmark (e.g., historical habitat extent), or in some cases via known (e.g., zero pollution) or established (e.g., 30% of waters set aside in MPAs) targets. Past benchmarks can either be a fixed point in time or a moving target (e.g., five years prior to most current data). The type of reference point can have important implications for interpretations of how a goal is doing in any given country.
@@ -21,7 +21,7 @@ The reference point, $X_{R}$, can be determined mechanistically using a producti
 For each region, the estimate of a goal’s likely near-term future status is a function of its present status, $x$ modified by: recent trends, $T$, in status; current cumulative pressures, $p$, acting on the goal; and social and ecological resilience, $r$, to pressures given the governance and social institutions in place to protect or regulate the system and the ecological condition of the system:
 
 $$
-\hat {x} _{F} \quad = \quad \left[ 1 \quad + \quad \beta T \quad + \quad \left( 1\quad -\quad \beta  \right) \left( r \quad - \quad  p \right)  \right] x, (Eq. 4.5)
+\hat {x} _{F} \quad = \quad \left[ 1 \quad + \quad \beta T \quad + \quad \left( 1\quad -\quad \beta  \right) \left( r \quad - \quad  p \right)  \right] x, (Eq. 5.5)
 $$
 
 

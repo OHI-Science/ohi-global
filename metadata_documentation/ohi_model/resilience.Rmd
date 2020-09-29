@@ -1,14 +1,14 @@
 ### Resilience
 
-To calculate resilience for each goal and region, $r$, we assess three resilience categories (Table 5.3, Figure 4.3): ecological integrity, $Y_{E}$, regulatory efforts that address ecological pressures, $Y_R$, and social integrity, $Y_{S}$.  The first two measures address ecological resilience while the third addresses social resilience. When all three aspects are relevant to a goal, resilience is calculated as:
+To calculate resilience for each goal and region, $r$, we assess three resilience categories (Table 5.3, Figure 5.3): ecological integrity, $Y_{E}$, regulatory efforts that address ecological pressures, $Y_R$, and social integrity, $Y_{S}$.  The first two measures address ecological resilience while the third addresses social resilience. When all three aspects are relevant to a goal, resilience is calculated as:
 
 $$
-r\quad =\quad \gamma *(\frac { { Y }_{ E }+ {Y}_{R} }{ 2 } )+(1-\gamma )*{ Y }_{ S }, (Eq. 4.10)
+r\quad =\quad \gamma *(\frac { { Y }_{ E }+ {Y}_{R} }{ 2 } )+(1-\gamma )*{ Y }_{ S }, (Eq. 5.10)
 $$
 
 We chose $\gamma = 0.5$ so the weight of resilience components that address ecological systems (ecosystem and regulatory) vs. social systems would be equivalent to the proportions used in the model to calculate pressure. 
 
-**Figure 4.3. Resilience components**
+**Figure 5.3. Resilience components**
 Resilience includes both ecological and social resilience categories.  Ecological resilience includes an ecosystem and regulatory category.  The regulatory category includes 5 subcategories that mirror the pressure categories (fishing pressure, habitat destruction, climate change, water pollution, and species/genetic introductions) as well as a goal-specific category.
 
 ![](../../metadata_documentation/ohi_model/figures/ResiliencePieChart.png)
@@ -51,7 +51,7 @@ Ecosystem integrity, e.g., food web integrity, is measured as relative condition
 For the global assessments, we only have one data layer describing ecosystem integrity, however, if there were multiple layers the overall score for ecosystem integrity would be a weighted mean of all the data layers, $i$, that describe ecosystem integrity ($y_{E,i}$) and influence the goal:
 
 $$
-{ Y }_{ E }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }{ y_E}_{i} }  }{ \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }}}, (Eq. 4.11) 
+{ Y }_{ E }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }{ y_E}_{i} }  }{ \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }}}, (Eq. 5.11) 
 $$
 
 
@@ -63,7 +63,7 @@ Weights were based effectiveness of governance. Governance is a function of 1) i
 For each region and goal, we calculated a score for each regulatory category, $y_{R, i}$, as a weighted mean of the resilience data layers, $r_{i}$, that influence the goal (Table 5.4):
 
 $$
-y_{R, i}\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }{ r }_{ i } }  }{ \displaystyle\sum _{ i=1 }^{ N }{w_i} }, (Eq. 4.12) 
+y_{R, i}\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }{ r }_{ i } }  }{ \displaystyle\sum _{ i=1 }^{ N }{w_i} }, (Eq. 5.12) 
 $$
 
 where, $w_i$ is the weight in Table 5.3.
@@ -75,7 +75,7 @@ To calculate the overall regulatory resilience, $Y_{R}$, we averaged the scores 
 Social integrity is intended to describe those processes internal to a community that affect its resilience. It is a function of a wide range of aspects of social structure. Social Integrity per goal for each region, $Y_{S}$, is therefore:
 
  $$
- Y_{ S}\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { y }_{ S,i } }  }{ N }, (Eq. 4.13)
+ Y_{ S}\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { y }_{ S,i } }  }{ N }, (Eq. 5.13)
  $$
  
 where $y_{S,i}$ are the social integrity measures specific to the goal.

@@ -24,12 +24,12 @@ kable(data) %>%
 Harvest data reported by FAO does not always clearly describe whether it is derived from mariculture or from land-based facilities. Mariculture status was therefore assessed as the current sustainably-harvested yield, $Y_{c}$, within each country, such that:
 
 $$
-x_{mar}= \frac {Y_c}{Y_{c, ref}},   (Eq. 5.10)
+x_{mar}= \frac {Y_c}{Y_{c, ref}},   (Eq. 6.10)
 $$
 where, $Y_{c,ref}$ is the value that corresponds to 1% of the potential aquaculture harvest in each region, and $Y_c$ is: 
 
 $$
-Y_{c}  =  { \displaystyle\sum _{ k=1 }^{ N }{ { Y }_{ k }{ S }_{ k,r } }  } , (Eq. 5.11)
+Y_{c}  =  { \displaystyle\sum _{ k=1 }^{ N }{ { Y }_{ k }{ S }_{ k,r } }  } , (Eq. 6.11)
 $$
 
 

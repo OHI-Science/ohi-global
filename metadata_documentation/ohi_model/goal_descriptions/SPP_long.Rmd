@@ -14,12 +14,12 @@ We first calculated each the region’s area-weighted average species risk statu
 
 $$
 \bar R_{spp} = \frac { \displaystyle\sum_{ c=1 }^{ M } \left( \displaystyle\sum _{ i=1 }^{N_c} w_i \right) \times A_c } 
-                { \displaystyle\sum_{ c=1 }^{ M } A_c \times N_c },  (Eq. 5.4)
+                { \displaystyle\sum_{ c=1 }^{ M } A_c \times N_c },  (Eq. 6.4)
 $$
 To convert $\bar R_{spp}$ into a score, we set a floor at 25% (representing a catastrophic loss of biodiversity, as noted above) and then rescaled to produce a $x_{spp}$ value between zero and one.
 
 $$
-x_{spp} = max \left( \frac { \bar R_{SPP} - .25 }{ .75 }, 0 \right), (Eq. 5.5)
+x_{spp} = max \left( \frac { \bar R_{SPP} - .25 }{ .75 }, 0 \right), (Eq. 6.5)
 $$
 
 

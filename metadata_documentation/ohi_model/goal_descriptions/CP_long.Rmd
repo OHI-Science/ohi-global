@@ -7,7 +7,7 @@ This goal aims to assess the amount of protection provided by marine and coastal
 The status of this goal, $x_{cp}$, was calculated to be a function of the relative health of the habitats, $k$, within a region that provide shoreline protection, weighted by their area and protectiveness rank (Table 6.4), such that:
 
 $$
-x_{cp} = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { (h }_{ k } } \times { w }_{ k }\times { A }_{ k }) }{ \displaystyle\sum _{ k=1 }^{ N }{ { (w }_{ k }\times { A }_{ k }) }  }, (Eq. 5.6)
+x_{cp} = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { (h }_{ k } } \times { w }_{ k }\times { A }_{ k }) }{ \displaystyle\sum _{ k=1 }^{ N }{ { (w }_{ k }\times { A }_{ k }) }  }, (Eq. 6.6)
 $$
 
 where, $w$ is the rank weight of the habitat’s protective ability, $A$ is the area within a region for each $k$ habitat type, and $h$ is a measure of each habitat's condition:

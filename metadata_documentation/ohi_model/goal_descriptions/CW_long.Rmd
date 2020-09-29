@@ -26,7 +26,7 @@ The status of trash pollution was estimated using globally-available plastic pol
 The status of this goal, $x_{cw}$, was calculated as the geometric mean of the four components, such that:
 
 $$
-x_{cw} = \sqrt [ 4 ]{ a\ast u\ast l\ast d },  (Eq. 5.8)
+x_{cw} = \sqrt [ 4 ]{ a\ast u\ast l\ast d },  (Eq. 6.8)
 $$
 
 where $a$ = 1 - the number of people without access to sanitation, rescaled to the global maximum; $u$ = 1 – (nutrient input), rescaled at the raster level by the 99.99th quantile value; $l$ = 1 – (chemical input), rescaled at the raster level by the 99.99th quantile value; and $d$ = 1 – (marine debris), rescaled at the raster level by the 99.99th quantile value. 

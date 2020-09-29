@@ -10,13 +10,13 @@ The livelihood and household economy provided by fishing are considered part of 
 Status for this goal ($x_{ao}$) is therefore measured by unmet demand ($D_u$), which includes measures of opportunity for artisanal fishing ($O_{ao}$, defined below) and the sustainability of the methods used ($S_{ao}$):
 
 $$
-x_{ao} = (1 – D_u) * S_{ao}, (Eq. 5.1)
+x_{ao} = (1 – D_u) * S_{ao}, (Eq. 6.1)
 $$
 
 where $S_{ao}$ indicates whether artisanal fishing is done in a sustainable manner, and is set to 1 because no data or information exist globally on the proportion of fishermen using sustainable versus unsustainable gear, $S_{ao}$.  And, $D_u$ is calculated as:
 
 $$
-D_{u} = (1 – PPPpcGDP) * (1 – O_{ao}), (Eq. 5.2)
+D_{u} = (1 – PPPpcGDP) * (1 – O_{ao}), (Eq. 6.2)
 $$
 
 where, $PPPpcGDP$ is the ln-transformed, rescaled purchasing power parity adjusted per capita GDP, and $O_{ao}$ is the access to artisanal-scale fishing determined by Mora et al. [-@mora_management_2009]. 

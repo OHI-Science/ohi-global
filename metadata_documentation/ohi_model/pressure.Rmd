@@ -1,14 +1,14 @@
 ### Pressure
 
-The pressure score, $p$, describes the cumulative pressures acting on a goal which suppress the goal score.  Pressure scores range from 0 to 1, and they are calculated for each goal and region and include both ecological ($p_{E}$) and social pressures ($p_{S}$) (Table 5.1, Figure 4.2), such that:
+The pressure score, $p$, describes the cumulative pressures acting on a goal which suppress the goal score.  Pressure scores range from 0 to 1, and they are calculated for each goal and region and include both ecological ($p_{E}$) and social pressures ($p_{S}$) (Table 5.1, Figure 5.2), such that:
 
 $$
-{ p }\quad =\quad \gamma *{ p }_{ E }\quad +\quad (1-\gamma )*{ p }_{ S }, (Eq. 4.6)
+{ p }\quad =\quad \gamma *{ p }_{ E }\quad +\quad (1-\gamma )*{ p }_{ S }, (Eq. 5.6)
 $$
 
 where $\gamma$ is the relative weight for ecological vs. social pressures and equals 0.5 for the global assessment. At global scales, little evidence exists to support unequal weighting of ecological and social pressures for most goals; furthermore, unequal weighting would require unique values for each goal and there is currently no empirical work to guide such decisions. At local or regional scales there may be clear evidence for unequal weights per goal and $\gamma$ should be adjusted accordingly.
 
-**Figure 4.2. Pressure components**
+**Figure 5.2. Pressure components**
 Pressure is calculated using both social and ecological pressures.  Ecological pressures include 5 subcategories (fishing pressure, habitat destruction, climate change, water pollution, and species/genetic introductions).  
 
 ![](../../metadata_documentation/ohi_model/figures/PressureComponentsPieChart.png)
@@ -56,7 +56,7 @@ kable(pressure_matrix, align = "l")
 To estimate the cumulative effect of the ecological pressures, $P_E$, we first determined the cumulative pressure, $p$, within each ecological category, $i$ (e.g., pollution, fishing, etc.):
 
 $$
-{ p }_{ i }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }{ s }_{ i } }  }{ 3 }, (Eq. 4.7)
+{ p }_{ i }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { w }_{ i }{ s }_{ i } }  }{ 3 }, (Eq. 5.7)
 $$
 
 Where $w_i$ is the sensitivity ranks (Table 5.2) describing the relative sensitivity of each goal to each stressor, and $s_i$ is intensity of the stressor in each region on a scale of 0-1. We divided by the maximum weighted intensity that could be achieved by the worst stressor (max = 3.0).
@@ -68,7 +68,7 @@ For the goals for which sensitivity ranks were assigned for specific habitats or
 The overall ecological pressure, $p_E$, acting on each goal and region was calculated as the weighted-average of the pressure scores, $p$, for each category, $i$, with weights set as the maximum rank in each pressure category ($w_{i\_max}$) for each goal, such that:
 
 $$
-{ p }_{ E }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { (w }_{ i\_ max }*{ p }_{ i }) }  }{ \displaystyle\sum_{ i=1 }^{ N } { { w }_{ i\_ max } }  },  (Eq. 4.8)
+{ p }_{ E }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ { (w }_{ i\_ max }*{ p }_{ i }) }  }{ \displaystyle\sum_{ i=1 }^{ N } { { w }_{ i\_ max } }  },  (Eq. 5.8)
 $$
 
 Stressors that have no impact drop out rather than being assigned a rank of zero, which would affect the average score.
@@ -79,7 +79,7 @@ Stressors that have no impact drop out rather than being assigned a rank of zero
 Social pressures describe the lack of effectiveness of government and social institutions.  Social stressors are described for each region on a scale of 0 to 1 (with one indicating the highest pressure). Social pressure is then calculated as the average of the social stressors:
 
 $$
-{ p }_{ S }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ z_{ i } }  }{ N }, (Eq. 4.9)
+{ p }_{ S }\quad =\quad \frac { \displaystyle\sum _{ i=1 }^{ N }{ z_{ i } }  }{ N }, (Eq. 5.9)
 $$
 
 where $z_{i}$ are the social pressure measures specific to the goal. Unequal weighting may be appropriate in some cases but is difficult to assess currently, particularly at the global scale. 

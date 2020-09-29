@@ -43,7 +43,7 @@ kable_styling(full_width = F)
 The status of the seaweeds and ornamentals categories, $P_c$, were calculated as: 
 
 $$
- P_c = { H }_{ c }\ast { S }_{ c } , (Eq. 5.14)
+ P_c = { H }_{ c }\ast { S }_{ c } , (Eq. 6.14)
 $$
 where, $H_{c}$ is the harvest level for a category relative to its own peak reference point and $S_{c}$ is the sustainability of that commodity.
 
@@ -54,7 +54,7 @@ For fish oil and fish meal, we used the same methods to calculate the status as 
 Although we do not know actual sustainable levels of harvest for ornamentals, $S_{p}$, in each region, we estimated it based on exposure and risk components:
 
 $$
-S_{c} = 1- average({ E_c+R_c }),  (Eq. 5.15)
+S_{c} = 1- average({ E_c+R_c }),  (Eq. 6.15)
 $$
 
 where ${E_c}$ is the exposure term and ${R_c}$ is the risk term for ornamentals.
@@ -70,7 +70,7 @@ The fish oil commodity sustainability was estimated using the B/Bmsy values whic
 To estimate the status score, $x_{np}$, for each region and year we took the weighted average of the individual product scores, $P_c$, such that:
 
 $$
-x_{np} = \frac { \displaystyle\sum _{ c=1 }^{ N }{ { P }_{ c }\ast { w }_{ c } }  }{ { { N } }  }, (Eq. 5.16)
+x_{np} = \frac { \displaystyle\sum _{ c=1 }^{ N }{ { P }_{ c }\ast { w }_{ c } }  }{ { { N } }  }, (Eq. 6.16)
 $$
 
 where ${N}$ is the number of product categories, $c$, that were harvested, and $w_{c}$ is the relative contribution of each product to the overall status of the goal. $w_c$ was calculated as the ratio of the 5-year average maximum US dollar value for a product (from the smoothed, gap-filled FAO commodities data) across all years of data for the product, relative to the 5-year average sum of maximum values for all products harvested in the country.
