@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>layers_table.utf8.md</title>
+<title>layers_table.utf8</title>
 
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
@@ -268,7 +268,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -330,6 +329,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -341,18 +341,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -392,686 +380,700 @@ $(document).ready(function () {
 <tbody>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#ao_access">Artisanal fisheries opportunity</a></td>
-<td align="left">The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_mora_ao">data prep</a>)</td>
+<td align="left">The opportunity for artisanal and recreational fishing based on the quality of management of the small-scale fishing sector (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_mora_ao">data prep</a>)</td>
 <td align="left">AO</td>
 <td align="left"><span class="citation">Mora <em>et al.</em> (2009)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#ao_need">Economic need for artisanal fishing</a></td>
-<td align="left">Inverse of per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/ao/v2019/ao_need_data_prep.html">data prep</a>)</td>
+<td align="left">Inverse of per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/ao/v2020/ao_need_data_prep.html">data prep</a>)</td>
 <td align="left">AO</td>
-<td align="left"><span class="citation">World Bank (2018)</span></td>
-<td align="left">additional year of GDP data (2018)</td>
+<td align="left"><span class="citation">World Bank (2020)</span></td>
+<td align="left">additional year of GDP data (2019)</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_coral_extent">Habitat extent of coral</a></td>
-<td align="left">Area of coral habitat (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_coral/v2019/coral_extent_2019.html">data prep</a>)</td>
+<td align="left">Area of coral habitat (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_coral/v2020/coral_extent.html">data prep</a>)</td>
 <td align="left">CP</td>
-<td align="left"><span class="citation">UNEP-WCMC (2018)</span></td>
-<td align="left">UNEP data updated to version 4</td>
+<td align="left"><span class="citation">UNEP-WCMC <em>et al.</em> (2018)</span></td>
+<td align="left">new data source: global distribution of coral reefs <a href="https://data.unep-wcmc.org/datasets/1" class="uri">https://data.unep-wcmc.org/datasets/1</a></td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seaice_extent">Habitat extent of seaice</a></td>
-<td align="left">Area of seaice (edge and shoreline) habitat (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_seaice/v2019/hab_seaice_dataprep.html">data prep</a>)</td>
+<td align="left">Area of seaice (edge and shoreline) habitat (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_seaice/v2020/hab_seaice_dataprep.html">data prep</a>)</td>
 <td align="left">CP</td>
 <td align="left"><span class="citation">Cavalieri <em>et al.</em> (1996)</span></td>
 <td align="left">additional year of data (2019)</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_coral_health">Habitat condition of coral</a></td>
-<td align="left">Current condition of coral habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_coral/v2019/coral_extent_2019.html">data prep</a>)</td>
+<td align="left">Current condition of coral habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_coral/v2012">data prep</a>)</td>
 <td align="left">CP, HAB</td>
 <td align="left"><span class="citation">Bruno &amp; Selig (2007)</span>; <span class="citation">Schutte <em>et al.</em> (2010)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_coral_trend">Habitat condition trend of coral</a></td>
-<td align="left">Estimated trend in coral condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_coral/v2019/coral_extent_2019.html">data prep</a>)</td>
+<td align="left">Estimated trend in coral condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_coral/v2012">data prep</a>)</td>
 <td align="left">CP, HAB</td>
 <td align="left"><span class="citation">Bruno &amp; Selig (2007)</span>; <span class="citation">Schutte <em>et al.</em> (2010)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seaice_health">Habitat condition of seaice</a></td>
-<td align="left">Current condition of seaice habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_seaice/v2019/hab_seaice_dataprep.html">data prep</a>)</td>
+<td align="left">Current condition of seaice habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_seaice/v2020/hab_seaice_dataprep.html">data prep</a>)</td>
 <td align="left">CP, HAB</td>
 <td align="left"><span class="citation">Cavalieri <em>et al.</em> (1996)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seaice_trend">Habitat condition trend of seaice</a></td>
-<td align="left">Estimated trend in seaice condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_seaice/v2019/hab_seaice_dataprep.html">data prep</a>)</td>
+<td align="left">Estimated trend in seaice condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_seaice/v2020/hab_seaice_dataprep.html">data prep</a>)</td>
 <td align="left">CP, HAB</td>
 <td align="left"><span class="citation">Cavalieri <em>et al.</em> (1996)</span></td>
 <td align="left">additional year of data (2019)</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_mangrove_extent">Habitat extent of mangrove</a></td>
-<td align="left">Area of mangrove habitat (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_mangrove/v2015">data prep</a>)</td>
+<td align="left">Area of mangrove habitat (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_mangrove/v2015">data prep</a>)</td>
 <td align="left">CS, CP</td>
 <td align="left"><span class="citation">Hamilton &amp; Casey (2016)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_saltmarsh_extent">Habitat extent of saltmarsh</a></td>
-<td align="left">Area of saltmarsh habitat (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_saltmarsh/v2019/salt_marsh_extent_2019.html">data prep</a>)</td>
+<td align="left">Area of saltmarsh habitat (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_saltmarsh/v2012">data prep</a>)</td>
 <td align="left">CS, CP</td>
-<td align="left"><span class="citation">Dahl (2011)</span>; <span class="citation">Eionet (2008)</span>; <span class="citation">Joint Nature Conservation Committee (2004)</span>; <span class="citation">New Zealand Ministry for the Environment (2007)</span>; <span class="citation">UNEP-WCMC (2017)</span></td>
-<td align="left">UNEP data updated to version 6</td>
+<td align="left"><span class="citation">Dahl (2011)</span>; <span class="citation">Eionet (2008a)</span>; <span class="citation">Joint Nature Conservation Committee (2004)</span>; <span class="citation">New Zealand Ministry for the Environment (2007)</span>; <span class="citation">Bridgham <em>et al.</em> (2006)</span>; <span class="citation">Eionet (2008b)</span>; <span class="citation">Committee (2004)</span></td>
+<td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seagrass_extent">Habitat extent of seagrass</a></td>
-<td align="left">Area of seagrass habitat (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_seagrass/v2019/sg_extent_2019.html">data prep</a>)</td>
+<td align="left">Area of seagrass habitat (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_seagrass/v2012">data prep</a>)</td>
 <td align="left">CS, CP</td>
-<td align="left"><span class="citation">Short &amp; UNEP-WCMC (2018)</span></td>
-<td align="left">UNEP data updated to version 6</td>
+<td align="left"><span class="citation">Short <em>et al.</em> (2011a)</span></td>
+<td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_mangrove_health">Habitat condition of mangrove</a></td>
-<td align="left">Current condition of mangrove habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_mangrove">data prep</a>)</td>
+<td align="left">Current condition of mangrove habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_mangrove">data prep</a>)</td>
 <td align="left">CS, HAB, CP</td>
 <td align="left"><span class="citation">United Nations (2007)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_mangrove_trend">Habitat condition trend of mangrove</a></td>
-<td align="left">Estimated trend in mangrove condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_mangrove/v2015">data prep</a>)</td>
+<td align="left">Estimated trend in mangrove condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_mangrove/v2015">data prep</a>)</td>
 <td align="left">CS, HAB, CP</td>
 <td align="left"><span class="citation">Hamilton &amp; Casey (2016)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_saltmarsh_health">Habitat condition of saltmarsh</a></td>
-<td align="left">Current condition of saltmarsh habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_saltmarsh/v2019/salt_marsh_extent_2019.html">data prep</a>)</td>
+<td align="left">Current condition of saltmarsh habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_saltmarsh/v2012">data prep</a>)</td>
 <td align="left">CS, HAB, CP</td>
-<td align="left"><span class="citation">Bridgham <em>et al.</em> (2006)</span>; <span class="citation">Dahl (2011)</span>; <span class="citation">Eionet (2008)</span>; <span class="citation">Joint Nature Conservation Committee (2004)</span>; <span class="citation">New Zealand Ministry for the Environment (2007)</span></td>
+<td align="left"><span class="citation">Bridgham <em>et al.</em> (2006)</span>; <span class="citation">Dahl (2011)</span>; <span class="citation">Eionet (2008a)</span>; <span class="citation">Joint Nature Conservation Committee (2004)</span>; <span class="citation">New Zealand Ministry for the Environment (2007)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_saltmarsh_trend">Habitat condition trend of saltmarsh</a></td>
-<td align="left">Estimated trend in saltmarsh condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_saltmarsh/v2019/salt_marsh_extent_2019.html">data prep</a>)</td>
+<td align="left">Estimated trend in saltmarsh condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_saltmarsh/v2012">data prep</a>)</td>
 <td align="left">CS, HAB, CP</td>
-<td align="left"><span class="citation">Bridgham <em>et al.</em> (2006)</span>; <span class="citation">Dahl (2011)</span>; <span class="citation">Eionet (2008)</span>; <span class="citation">Joint Nature Conservation Committee (2004)</span>; <span class="citation">New Zealand Ministry for the Environment (2007)</span></td>
+<td align="left"><span class="citation">Bridgham <em>et al.</em> (2006)</span>; <span class="citation">Dahl (2011)</span>; <span class="citation">Eionet (2008a)</span>; <span class="citation">Joint Nature Conservation Committee (2004)</span>; <span class="citation">New Zealand Ministry for the Environment (2007)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seagrass_health">Habitat condition of seagrass</a></td>
-<td align="left">Current condition of seagrass habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_seagrass/v2019/sg_extent_2019.html">data prep</a>)</td>
+<td align="left">Current condition of seagrass habitat relative to historical condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_seagrass/v2012">data prep</a>)</td>
 <td align="left">CS, HAB, CP</td>
 <td align="left"><span class="citation">Hemminga &amp; Duarte (2000)</span>; <span class="citation">Waycott <em>et al.</em> (2009)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_seagrass_trend">Habitat condition trend of seagrass</a></td>
-<td align="left">Estimated trend in seagrass condition (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_seagrass/v2019/sg_trend_explore.html">data prep</a>)</td>
+<td align="left">Estimated trend in seagrass condition (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_seagrass/v2012">data prep</a>)</td>
 <td align="left">CS, HAB, CP</td>
-<td align="left"><span class="citation">Short <em>et al.</em> (2011)</span>; <span class="citation">Waycott <em>et al.</em> (2009)</span></td>
+<td align="left"><span class="citation">Short <em>et al.</em> (2011b)</span>; <span class="citation">Waycott <em>et al.</em> (2009)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#cw_chemical_trend">Chemical pollution trend</a></td>
-<td align="left">Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_chem/v2016">data prep</a>)</td>
+<td align="left">Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_chem/v2016">data prep</a>)</td>
 <td align="left">CW</td>
 <td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#cw_nutrient_trend">Nutrient pollution trend</a></td>
-<td align="left">Trends in nutrient pollution, using fertilizer consumption as a proxy for nutrient pollution (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_land-based_nutrient/v2016">data prep</a>)</td>
+<td align="left">Trends in nutrient pollution, using fertilizer consumption as a proxy for nutrient pollution (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_land-based_nutrient/v2016">data prep</a>)</td>
 <td align="left">CW</td>
 <td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#cw_pathogen_trend">Pathogen pollution trend</a></td>
-<td align="left">Trends in percent of population without access to improved sanitation facilities as a proxy for pathogen pollution (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_cw_pathogen/v2019/cw_sanitation_data_prep.html">data prep</a>)</td>
+<td align="left">Trends in percent of population without access to improved sanitation facilities as a proxy for pathogen pollution (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_cw_pathogen/v2019/cw_sanitation_data_prep.html">data prep</a>)</td>
 <td align="left">CW</td>
 <td align="left"><span class="citation">WHO-UNICEF (2019)</span></td>
-<td align="left">two additional years of data (2016 &amp; 2017)</td>
+<td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#cw_trash_trend">Plastic trash trends</a></td>
-<td align="left">Trends in trash estimated using improperly disposed of plastics (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/cw_trend_trash/v2016/cw_trend_trash_dataprep.html">data prep</a>)</td>
+<td align="left">Trends in trash estimated using improperly disposed of plastics (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/cw_trend_trash/v2016/cw_trend_trash_dataprep.html">data prep</a>)</td>
 <td align="left">CW</td>
 <td align="left"><span class="citation">Jambeck <em>et al.</em> (2015)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_chemicals_3nm">Coastal chemical pollution</a></td>
-<td align="left">Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_chem/v2016">data prep</a>)</td>
+<td align="left">Modeled chemical pollution within 3nm of coastline from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_chem/v2016">data prep</a>)</td>
 <td align="left">CW, pressure</td>
 <td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_nutrients_3nm">Coastal nutrient pollution</a></td>
-<td align="left">Modeled nutrient pollution within EEZ based on fertilizer consumption (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_land-based_nutrient/v2016">data prep</a>)</td>
+<td align="left">Modeled nutrient pollution within EEZ based on fertilizer consumption (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_land-based_nutrient/v2016">data prep</a>)</td>
 <td align="left">CW, pressure</td>
 <td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_pathogens">Pathogen pollution</a></td>
-<td align="left">Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_cw_pathogen/v2019/cw_sanitation_data_prep.html">data prep</a>)</td>
+<td align="left">Percent of population without access to improved sanitation facilities as a proxy for pathogen pollution (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_cw_pathogen/v2019/cw_sanitation_data_prep.html">data prep</a>)</td>
 <td align="left">CW, pressure</td>
 <td align="left"><span class="citation">WHO-UNICEF (2019)</span></td>
 <td align="left">two additional years of data (2016 &amp; 2017)</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_trash">Marine plastics</a></td>
-<td align="left">Global marine plastic pollution (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/cw_pressure_trash/v2015">data prep</a>)</td>
+<td align="left">Global marine plastic pollution (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/cw_pressure_trash/v2015">data prep</a>)</td>
 <td align="left">CW, pressure</td>
 <td align="left"><span class="citation">Eriksen <em>et al.</em> (2014)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#eco_status">Economic status scores</a></td>
-<td align="left">Calculated using corrected revenue data for several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/le/v2018">data prep</a>)</td>
+<td align="left">Calculated using corrected revenue data for several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/le/v2018">data prep</a>)</td>
 <td align="left">ECO</td>
 <td align="left"><span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">United Nations (2013c)</span>; <span class="citation">United Nations (2013b)</span>; <span class="citation">United Nations (2013a)</span>; <span class="citation">United Nations (2012)</span>; <span class="citation">World Bank (2016)</span></td>
 <td align="left">eliminated calculation, now just provide results as placeholder (not updated since 2013)</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#eco_trend">Economic trend scores</a></td>
-<td align="left">Calculated using change in revenue for several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/le/v2018">data prep</a>)</td>
+<td align="left">Calculated using change in revenue for several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/le/v2018">data prep</a>)</td>
 <td align="left">ECO</td>
 <td align="left"><span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">United Nations (2013c)</span>; <span class="citation">United Nations (2013b)</span>; <span class="citation">United Nations (2013a)</span>; <span class="citation">United Nations (2012)</span>; <span class="citation">World Bank (2014a)</span>; <span class="citation">World Bank (2016)</span></td>
 <td align="left">eliminated calculation, now just provide results as placeholder (not updated since 2013)</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#le_sector_weight">Sectors in each region</a></td>
-<td align="left">Proportion of jobs within each marine sector (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/le">data prep</a>)</td>
+<td align="left">Proportion of jobs within each marine sector (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/le">data prep</a>)</td>
 <td align="left">ECO, LIV</td>
 <td align="left"><span class="citation">France (2011)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">United Nations personal communication (2011)</span>; <span class="citation">WTTC (2013)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fis_b_bmsy">B/Bmsy estimates</a></td>
-<td align="left">The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield (RAM and catch-MSY data) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/fis/v2019/calculate_bbmsy.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2019/globalprep/fis/v2019/RAM_CMSY_combine.html">data prep 2</a>, <a href="http://ohi-science.org/ohiprep_v2019/globalprep/fis/v2019/RAM_data_prep.html">data prep 3</a>)</td>
+<td align="left">The ratio of fish population abundance compared to the abundance required to deliver maximum sustainable yield (RAM and catch-MSY data) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/fis/v2020/calculate_bbmsy.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2020/globalprep/fis/v2020/RAM_CMSY_combine.html">data prep 2</a>, <a href="http://ohi-science.org/ohiprep_v2020/globalprep/fis/v2020/RAM_data_prep.html">data prep 3</a>)</td>
 <td align="left">FIS</td>
 <td align="left"><span class="citation">Anderson (2018)</span>; <span class="citation">Free (2017)</span>; <span class="citation">Martell &amp; Froese (2013)</span>; <span class="citation">Database (2018)</span>; <span class="citation">Ricard <em>et al.</em> (2012)</span>; <span class="citation">Rosenberg <em>et al.</em> (2014)</span>; <span class="citation">Watson (2019)</span></td>
-<td align="left">additional RAM species, now include additional metrics of stock performance</td>
+<td align="left">additional RAM species, 2 additional years of data (2016 &amp; 2017)</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fis_meancatch">Fishery catch data</a></td>
-<td align="left">Mean commercial catch for each OHI region (averaged across years) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/fis/v2019/catch_data_prep.html">data prep</a>)</td>
+<td align="left">Mean commercial catch for each OHI region (averaged across years) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/fis/v2020/catch_data_prep.html">data prep</a>)</td>
 <td align="left">FIS</td>
 <td align="left"><span class="citation">Watson (2019)</span></td>
-<td align="left">data updated (same range of years)</td>
+<td align="left">data updated</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_wildcaught_weight">Food provision weights</a></td>
-<td align="left">Proportion of wild caught fisheries relative to total food production (e.g., fisheries and mariculture) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/fp/v2018/FP_script.html">data prep</a>)</td>
+<td align="left">Proportion of wild caught fisheries relative to total food production (e.g., fisheries and mariculture) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/fp/v2020/FP_script.html">data prep</a>)</td>
 <td align="left">FP</td>
-<td align="left"><span class="citation">United Nations (2018b)</span>; <span class="citation">United Nations (2018a)</span></td>
+<td align="left"><span class="citation">United Nations (2018c)</span>; <span class="citation">United Nations (2018a)</span></td>
 <td align="left">additional year of data</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_softbottom_health">Habitat condition of softbottom</a></td>
-<td align="left">Current condition of softbottom habitat, based on demersal destructive fishing practices (e.g., trawling) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_prs_hd_subtidal_soft_bottom/v2018/hab_prs_soft_bottom_data_prep.html">data prep</a>)</td>
+<td align="left">Current condition of softbottom habitat, based on demersal destructive fishing practices (e.g., trawling) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_prs_hd_subtidal_soft_bottom/v2020/hab_prs_soft_bottom_data_prep.html">data prep</a>)</td>
 <td align="left">HAB</td>
 <td align="left"><span class="citation">Watson &amp; Tidd (2018)</span></td>
-<td align="left">none</td>
+<td align="left">additional year of data (2017)</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_softbottom_trend">Habitat condition trend of softbottom</a></td>
-<td align="left">Estimated change in softbottom condition, based on trends in demersal destructive fishing practices (e.g., trawling) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_prs_hd_subtidal_soft_bottom/v2018/hab_prs_soft_bottom_data_prep.html">data prep</a>)</td>
+<td align="left">Estimated change in softbottom condition, based on trends in demersal destructive fishing practices (e.g., trawling) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_prs_hd_subtidal_soft_bottom/v2020/hab_prs_soft_bottom_data_prep.html">data prep</a>)</td>
 <td align="left">HAB</td>
 <td align="left"><span class="citation">Watson &amp; Tidd (2018)</span></td>
-<td align="left">none</td>
+<td align="left">additional year of data (2017)</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#ico_spp_iucn_status">IUCN extinction risk</a></td>
-<td align="left">IUCN extinction risk category for iconic species located within each region (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/ico/v2019/ico_data_prep.html">data prep</a>)</td>
+<td align="left">IUCN extinction risk category for iconic species located within each region (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/ico/v2020/ico_data_prep.html">data prep</a>)</td>
 <td align="left">ICO</td>
-<td align="left"><span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">IUCN (2019b)</span></td>
-<td align="left">additional year of data (2019)</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">IUCN (2020a)</span></td>
+<td align="left">updated iucn redlist classifications</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#liv_status">Livelihood status scores</a></td>
-<td align="left">Calculated using adjusted job and wage data in several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/le/v2018">data prep</a>)</td>
+<td align="left">Calculated using adjusted job and wage data in several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/le/v2018">data prep</a>)</td>
 <td align="left">LIV</td>
 <td align="left"><span class="citation">France (2011)</span>; <span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Oostendorp &amp; Freeman (2012)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">United Nations personal communication (2011)</span>; <span class="citation">World Bank (2014a)</span>; <span class="citation">World Bank (2014b)</span>; <span class="citation">World Bank (2016)</span>; <span class="citation">WTTC (2013)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#liv_trend">Livelihood trend scores</a></td>
-<td align="left">Calculated using change in adjusted job and wage data in several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/le/v2018">data prep</a>)</td>
+<td align="left">Calculated using change in adjusted job and wage data in several marine sectors (data not updated since 2013) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/le/v2018">data prep</a>)</td>
 <td align="left">LIV</td>
 <td align="left"><span class="citation">France (2011)</span>; <span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Oostendorp &amp; Freeman (2012)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">United Nations personal communication (2011)</span>; <span class="citation">World Bank (2014b)</span>; <span class="citation">World Bank (2016)</span>; <span class="citation">World Bank (2014c)</span>; <span class="citation">WTTC (2013)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#lsp_prot_area_inland1km">Inland coastal protected areas</a></td>
-<td align="left">Protected areas located 1 km inland (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/lsp/v2019/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">Protected areas located 1 km inland (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/lsp/v2020/lsp_data_prep.html">data prep</a>)</td>
 <td align="left">LSP</td>
-<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2019)</span></td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2020)</span></td>
 <td align="left">additional year of data</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#lsp_prot_area_offshore3nm">Offshore coastal protected areas</a></td>
-<td align="left">Protected areas located 3nm offshore (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/lsp/v2019/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">Protected areas located 3nm offshore (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/lsp/v2020/lsp_data_prep.html">data prep</a>)</td>
 <td align="left">LSP</td>
-<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2019)</span></td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2020)</span></td>
 <td align="left">additional year of data</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_area_inland1km">Inland 1km area</a></td>
-<td align="left">Inland area of OHI regions within 1km of shoreline (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/spatial">data prep</a>)</td>
+<td align="left">Inland area of OHI regions within 1km of shoreline (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/spatial">data prep</a>)</td>
 <td align="left">LSP</td>
 <td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_area_offshore3nm">Offshore 3nm area</a></td>
-<td align="left">Offshore area of OHI regions within 3nm of shoreline (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/spatial">data prep</a>)</td>
+<td align="left">Offshore area of OHI regions within 3nm of shoreline (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/spatial">data prep</a>)</td>
 <td align="left">LSP</td>
 <td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#mar_capacity">Potential tonnes of mariculture harvest</a></td>
-<td align="left">Tonnes of mariculture harvest potential for each region based on biological variables and growth performance indices. Taken from Gentry et al. 2017 and adopted for the OHI. (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/mar/v2019/archive_reference_point/CountryProductionEstimate.html">data prep</a>)</td>
+<td align="left">Tonnes of mariculture harvest potential for each region based on biological variables and growth performance indices. Taken from Gentry et al. 2017 and adopted for the OHI. (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/mar/v2019/archive_reference_point/CountryProductionEstimate.html">data prep</a>)</td>
 <td align="left">MAR</td>
 <td align="left"><span class="citation">Gentry <em>et al.</em> (2019)</span></td>
-<td align="left">new data source that describes mariculture potential</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#mar_harvest_tonnes">Mariculture harvest</a></td>
-<td align="left">Tonnes of mariculture harvest (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/mar/v2019/mar_dataprep.html">data prep</a>)</td>
-<td align="left">MAR</td>
-<td align="left"><span class="citation">United Nations (2018a)</span></td>
-<td align="left">additional year of data (2017)</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#mar_sustainability_score">Mariculture sustainability score</a></td>
-<td align="left">Mariculture sustainability based on the Mariculture Sustainability Index (MSI) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/mar/v2019/mar_dataprep.html">data prep</a>)</td>
-<td align="left">MAR</td>
-<td align="left"><span class="citation">Trujillo (2008)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#mar_harvest_tonnes">Mariculture harvest</a></td>
+<td align="left">Tonnes of mariculture harvest (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/mar/v2020/mar_dataprep.html">data prep</a>)</td>
+<td align="left">MAR</td>
+<td align="left"><span class="citation">United Nations (2018b)</span></td>
+<td align="left">additional year of data (2018)</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#mar_sustainability_score">Mariculture sustainability score</a></td>
+<td align="left">Mariculture sustainability based on the Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations. (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/mar/v2020/mar_dataprep.html">data prep</a>)</td>
+<td align="left">MAR</td>
+<td align="left"><span class="citation">(<em>Monterey bay aquarium seafood watch</em> 2020)</span></td>
+<td align="left">New data source: Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations</td>
+</tr>
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hab_rockyreef_extent">Habitat extent of rocky reef</a></td>
-<td align="left">Area of rocky reef habitat (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_rockyreef">data prep</a>)</td>
+<td align="left">Area of rocky reef habitat (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_rockyreef">data prep</a>)</td>
 <td align="left">NP</td>
 <td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_blast">Blast fishing</a></td>
-<td align="left">Artisanal blast fishing (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/np_prs_poison_blast_fishing">data prep</a>)</td>
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_exposure_orn">Exposure of ornamental fishing to coral and rocky reef habitats</a></td>
+<td align="left">The ln-transformed intensity of harvest calculated as tonnes of harvest per km2?of coral and/or rocky reef for ornamentals, relative to the global maxiumum. (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/np/v2020/np_ornamentals_prep.html">data prep</a>)</td>
 <td align="left">NP</td>
 <td align="left"><span class="citation">Burke <em>et al.</em> (2011)</span></td>
-<td align="left">none</td>
+<td align="left">new name for the np cyanida data layer</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_cyanide">Poison fishing</a></td>
-<td align="left">Artisanal poison (cyanide) fishing (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/np_prs_poison_blast_fishing">data prep</a>)</td>
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_fofm_scores">Fish oil and fish meal score</a></td>
+<td align="left">Score based on the amount of sustainably and unsustainably caught forage fish used for fish oil and fish meal. Penalties are assigned for both under harvest and over harvested based on B/Bmsy estimates. (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/np/v2020/np_fishfeed_prep.html">data prep</a>)</td>
 <td align="left">NP</td>
-<td align="left"><span class="citation">Burke <em>et al.</em> (2011)</span></td>
-<td align="left">none</td>
+<td align="left"><span class="citation">Watson (2019)</span>; <span class="citation">Database (2018)</span></td>
+<td align="left">new data layer for forage fish using watson and RAM dta</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_harvest_product_weight">Relative natural product harvest value</a></td>
-<td align="left">Relative importance of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) within each region determined by dividing the max USD value (determined across most recent 10 years of data) of each product and dividing by the sum of the max USD values of all products (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/np/v2019/np_dataprep.html">data prep</a>)</td>
+<td align="left">Relative importance of three marine commodities (fish oil, seaweeds ornamental fish) within each region determined by finding the relative contribution per a 5 year average of harvest (in USD) divided by the total 5 year average harvest value (in USD) per each commodity within each region. (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/np/v2020/np_weighting_prep.html">data prep</a>)</td>
 <td align="left">NP</td>
 <td align="left"><span class="citation">UN-FAO (2019)</span></td>
-<td align="left">new year of FAO data (2016); adjusted model to improve stability</td>
+<td align="left">updated with additional year of data and stabilized weights based on 5 year average</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_harvest_tonnes">Natural product harvest</a></td>
-<td align="left">Yield in metric tonnes of six marine commodities (coral, fish oil, seaweed and plants, shells, sponges, ornamental fish) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/np/v2019/np_dataprep.html">data prep</a>)</td>
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_orn_tonnes_relative">Relative ornamental natural product harvest tonnes</a></td>
+<td align="left">Tonnes of harvest of ornamentals relative to maximum harvest of the ornamentals within the region observed across years (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/np/v2020/np_ornamentals_prep.html">data prep</a>)</td>
 <td align="left">NP</td>
 <td align="left"><span class="citation">UN-FAO (2019)</span></td>
-<td align="left">new year of FAO data (2016); adjusted model to improve stability</td>
+<td align="left">new data layer which uses global commodities data</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_harvest_tonnes_relative">Relative natural product harvest tonnes</a></td>
-<td align="left">Tonnes of harvest of each commodity relative to maximum harvest (with 35% buffer) of the commodity within the region observed across years (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/np/v2019/np_dataprep.html">data prep</a>)</td>
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_risk_orn">Risk of harvest practices for ornamental fish</a></td>
+<td align="left">Based on whether ornamental fishing has unsustainable harvest practices (i.e., the intensity of cyanide fishing for ornamental fish, and any harvest of corals since they are CITES protected species). Risk for ornamental fish was set based on assessments of cyanide or dynamite fishing by Reefs at Risk Revisited (www.wri.org/publication/reefs-at-risk-revisited) under the assumption that most ornamental fishes are harvested from coral reefs. (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/np/v2020/np_ornamentals_prep.html">data prep</a>)</td>
 <td align="left">NP</td>
-<td align="left"><span class="citation">UN-FAO (2019)</span></td>
-<td align="left">new year of FAO data (2016); adjusted model to improve stability</td>
+<td align="left"><span class="citation">Burke <em>et al.</em> (2011)</span></td>
+<td align="left">new name for the np blast data layer</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_seaweed_sust">Seaweed mariculture sustainability score</a></td>
+<td align="left">Seaweed mariculture sustainability based on the Mariculture Sustainability Index (MSI) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/np/v2020/np_seaweeds_prep.html">data prep</a>)</td>
+<td align="left">NP</td>
+<td align="left"><span class="citation">(<em>Monterey bay aquarium seafood watch</em> 2020)</span></td>
+<td align="left">new data layer which uses Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#np_seaweed_tonnes">Seaweed natural product harvest</a></td>
+<td align="left">Yield in metric tonnes of seaweed (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/np/v2020/np_seaweeds_prep.html">data prep</a>)</td>
+<td align="left">NP</td>
+<td align="left"><span class="citation">United Nations (2018b)</span></td>
+<td align="left">new data layer which uses mariculture seaweed data</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#cc_acid">Ocean acidification</a></td>
-<td align="left">Pressure due to increasing ocean acidification, scaled using biological thresholds (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_oa/v2017/create_oa_layer.html">data prep</a>)</td>
+<td align="left">Pressure due to increasing ocean acidification, scaled using biological thresholds (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_oa/v2017/create_oa_layer.html">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Feely <em>et al.</em> (2009)</span></td>
-<td align="left">additional year of data (projected)</td>
+<td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#cc_slr">Sea level rise</a></td>
-<td align="left">Pressure due to rising mean sea level (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_slr/v2019/slr_layer_prep_v2.html">data prep</a>)</td>
+<td align="left">Pressure due to rising mean sea level (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_slr/v2019/slr_layer_prep_v2.html">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">AVISO (2018)</span></td>
-<td align="left">additional year of data (2018)</td>
+<td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#cc_sst">Sea surface temperature</a></td>
-<td align="left">Presure due to increasing extreme sea surface temperature events (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_sst/v2018/sst_layer_prep.rmd">data prep</a>)</td>
+<td align="left">Presure due to increasing extreme sea surface temperature events (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_sst/v2018/sst_layer_prep.html">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">NOAA (2018)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#cc_uv">UV radiation</a></td>
-<td align="left">Pressure due to increasing frequency of UV anomolies (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_uv/v2019/uv_dataprep.html">data prep</a>)</td>
+<td align="left">Pressure due to increasing frequency of UV anomolies (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_uv/v2020/uv_dataprep.html">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Jari Hovila (2013)</span></td>
-<td align="left">additional year of data</td>
+<td align="left">additional year of data (2019)</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_art_hb">High bycatch due to artisanal fishing</a></td>
-<td align="left">Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_fish/v2019/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_fish/v2019/npp.html">data prep 2</a>)</td>
+<td align="left">Pressure due to artisanal high bycatch fishing identified by discard tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_fish/v2020/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_fish/v2020/npp.html">data prep 2</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Behrenfeld &amp; Falkowski (1997)</span>; <span class="citation">O’Malley</span>; <span class="citation">Watson (2019)</span></td>
-<td align="left">data updated (same range of years)</td>
+<td align="left">two additional years of data (2016 &amp; 2017)</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_art_lb">Low bycatch due to artisanal fishing</a></td>
-<td align="left">Pressure due to artisanal low bycatch fishing identified by reported and IUU tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_fish/v2019/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_fish/v2019/npp.html">data prep 2</a>)</td>
+<td align="left">Pressure due to artisanal low bycatch fishing identified by reported and IUU tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_fish/v2020/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_fish/v2020/npp.html">data prep 2</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Behrenfeld &amp; Falkowski (1997)</span>; <span class="citation">O’Malley</span>; <span class="citation">Watson (2019)</span></td>
-<td align="left">data updated (same range of years)</td>
+<td align="left">two additional years of data (2016 &amp; 2017)</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_com_hb">High bycatch due to commercial fishing</a></td>
-<td align="left">Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_fish/v2019/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_fish/v2019/npp.html">data prep 2</a>)</td>
+<td align="left">Pressure due to industrial high bycatch fishing identified by discard tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_fish/v2020/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_fish/v2020/npp.html">data prep 2</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Behrenfeld &amp; Falkowski (1997)</span>; <span class="citation">O’Malley</span>; <span class="citation">Watson (2019)</span></td>
-<td align="left">data updated (same range of years)</td>
+<td align="left">two additional years of data (2016 &amp; 2017)</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_com_lb">Low bycatch due to commercial fishing</a></td>
-<td align="left">Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_fish/v2019/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_fish/v2019/npp.html">data prep 2</a>)</td>
+<td align="left">Pressure due to industrial low bycatch fishing identified by reported and IUU tonnes and standardized by NPP (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_fish/v2020/fishing_pressure_layers.html">data prep 1</a>, <a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_fish/v2020/npp.html">data prep 2</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Behrenfeld &amp; Falkowski (1997)</span>; <span class="citation">O’Malley</span>; <span class="citation">Watson (2019)</span></td>
-<td align="left">data updated (same range of years)</td>
+<td align="left">two additional years of data (2016 &amp; 2017)</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_targetharvest">Targeted harvest of cetaceans and marine turtles</a></td>
-<td align="left">Targeted harvest of cetaceans and marine turtles (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_targetedharvest/v2019/targetharvest_dataprep.html">data prep</a>)</td>
+<td align="left">Targeted harvest of cetaceans and marine turtles (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_targetedharvest/v2020/targetharvest_dataprep.html">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">United Nations (2019)</span></td>
-<td align="left">additional year of data (2017)</td>
+<td align="left">additional year of data (2018)</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_intertidal">Intertidal habitat destruction</a></td>
-<td align="left">Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/mar_prs_population/v2019/mar_prs_pop_dataprep.html">data prep</a>)</td>
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_coral">Coral harvest pressure</a></td>
+<td align="left">Pressure on coral due to harvesting as a natural product (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_coral_harvest/v2020/output/coral_extent.html">data prep</a>)</td>
 <td align="left">pressure</td>
-<td align="left"><span class="citation">Center For International Earth Science Information Network-CIESIN-Columbia University (2017)</span></td>
-<td align="left">same UN pop data, but fixed errors in inland raster</td>
+<td align="left"><span class="citation">UNEP-WCMC <em>et al.</em> (2018)</span></td>
+<td align="left">new data layer for coral harvest pressure. Derived from FAO commodities data and coral extent data.</td>
 </tr>
 <tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_intertidal">Intertidal habitat destruction</a></td>
+<td align="left">Coastal population density (25 mi from shore) as a proxy for intertidal habitat destruction (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/mar_prs_population/v2020/mar_prs_pop_dataprep.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Center For International Earth Science Information Network-CIESIN-Columbia University (2017)</span></td>
+<td align="left">none</td>
+</tr>
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_subtidal_hb">Subtidal hardbottom habitat destruction</a></td>
-<td align="left">Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/np_prs_poison_blast_fishing/v2018">data prep</a>)</td>
+<td align="left">Presence of blast fishing as an estimate of subtidal hard bottom habitat destruction (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/np_prs_poison_blast_fishing/v2018">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Burke <em>et al.</em> (2011)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_subtidal_sb">Subtidal soft bottom habitat destruction</a></td>
-<td align="left">Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/hab_prs_hd_subtidal_soft_bottom/v2018/hab_prs_soft_bottom_data_prep.html">data prep</a>)</td>
+<td align="left">Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/hab_prs_hd_subtidal_soft_bottom/v2020/hab_prs_soft_bottom_data_prep.html">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Watson &amp; Tidd (2018)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_chemicals">Chemical pollution</a></td>
-<td align="left">Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_chem/v2016">data prep</a>)</td>
+<td align="left">Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_chem/v2016">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
+<td align="left">none</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_nutrients">Nutrient pollution</a></td>
+<td align="left">Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_land-based_nutrient/v2016">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_nutrients">Nutrient pollution</a></td>
-<td align="left">Modeled nutrient pollution within 3nm of coastline based on fertilizer consumption (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_land-based_nutrient/v2016">data prep</a>)</td>
-<td align="left">pressure</td>
-<td align="left"><span class="citation">Halpern <em>et al.</em> (2008)</span>; <span class="citation">Halpern <em>et al.</em> (2015a)</span>; <span class="citation">Homer <em>et al.</em> (2004)</span>; <span class="citation">United Nations (2016)</span></td>
-<td align="left">none</td>
-</tr>
-<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#sp_alien">Nonindigenous species</a></td>
-<td align="left">Measure of harmful invasive species (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_alien">data prep</a>)</td>
+<td align="left">Measure of harmful invasive species (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_alien">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Molnar <em>et al.</em> (2008)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#sp_genetic">Genetic escapes</a></td>
-<td align="left">Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/mar/v2019/mar_dataprep.html">data prep</a>)</td>
-<td align="left">pressure</td>
-<td align="left"><span class="citation">Trujillo (2008)</span></td>
-<td align="left">additional year of FAO mariculture yield data (2017); and updated reference point calculation methods</td>
-</tr>
 <tr class="even">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#ss_spi">Weakness of social progress</a></td>
-<td align="left">Inverse of Social Progress Index scores (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_res_spi/v2019/spi_dataprep.html">data prep</a>)</td>
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#sp_genetic">Genetic escapes</a></td>
+<td align="left">Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/mar/v2019/mar_dataprep.html">data prep</a>)</td>
 <td align="left">pressure</td>
-<td align="left"><span class="citation">Social Progress Index (2019)</span>; <span class="citation">Stern <em>et al.</em> (2018)</span></td>
+<td align="left"><span class="citation">(<em>Monterey bay aquarium seafood watch</em> 2020)</span></td>
+<td align="left">additional year of FAO mariculture yield data (2018); and updated escapes data from Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#ss_spi">Weakness of social progress</a></td>
+<td align="left">Inverse of Social Progress Index scores (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_res_spi/v2020/spi_dataprep.html">data prep</a>)</td>
+<td align="left">pressure</td>
+<td align="left"><span class="citation">Social Progress Index (2020)</span>; <span class="citation">Stern <em>et al.</em> (2018)</span></td>
 <td align="left">additional year of data</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#ss_wgi">Weakness of governance</a></td>
-<td align="left">Inverse of World Governance Indicators (WGI) six combined scores (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_res_wgi/v2019/WGI_dataprep.html">data prep</a>)</td>
+<td align="left">Inverse of World Governance Indicators (WGI) six combined scores (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_res_wgi/v2020/WGI_dataprep.html">data prep</a>)</td>
 <td align="left">pressure</td>
 <td align="left"><span class="citation">Kaufmann <em>et al.</em> (2010)</span>; <span class="citation">WorldBank (2018)</span></td>
 <td align="left">additional year of data (2017)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_fish_management">Fisheries management index</a></td>
-<td align="left">Country scale regulations and management of fishing (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_fmi/v2019/fmi_data_prep.html">data prep</a>)</td>
+<td align="left">Country scale regulations and management of fishing (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_fmi/v2019/fmi_data_prep.html">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Melnychuk <em>et al.</em> (2017)</span></td>
-<td align="left">New data source: Melnychuk et al. (2017) fisheries management index data</td>
+<td align="left">none</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_habitat">Management of habitat to protect fisheries biodiversity</a></td>
-<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_cbd_habitat">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_mora_artisanal">Artisanal fisheries management effectiveness</a></td>
-<td align="left">Quality of management of small-scale fishing for artisanal and recreational purposes (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_mora_ao">data prep</a>)</td>
+<td align="left">Quality of management of small-scale fishing for artisanal and recreational purposes (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_mora_ao">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Mora <em>et al.</em> (2009)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_mpa_coast">Coastal protected marine areas (fishing preservation)</a></td>
-<td align="left">Protected marine areas within 3nm of coastline (lasting special places goal status score) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/lsp/v2019/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">Protected marine areas within 3nm of coastline (lasting special places goal status score) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/lsp/v2020/lsp_data_prep.html">data prep</a>)</td>
 <td align="left">resilience</td>
-<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2019)</span></td>
-<td align="left">additional year of data (2019)</td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2020)</span></td>
+<td align="left">additional year of data (2020)</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_mpa_eez">EEZ protected marine areas (fishing preservation)</a></td>
+<td align="left">Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/lsp/v2020/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2020)</span></td>
+<td align="left">additional year of data (2020)</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#fp_mpa_eez">EEZ protected marine areas (fishing preservation)</a></td>
-<td align="left">Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/lsp/v2019/lsp_data_prep.html">data prep</a>)</td>
-<td align="left">resilience</td>
-<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2019)</span></td>
-<td align="left">additional year of data (2019)</td>
-</tr>
-<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#g_cites">CITES signatories</a></td>
-<td align="left">Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_cites_signatories/v2017">data prep</a>)</td>
+<td align="left">Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_cites_signatories/v2017">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">CITES (2015)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#g_mariculture">Management of mariculture to preserve biodiversity</a></td>
-<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: mariculture related questions (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: mariculture related questions (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_cbd_habitat">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#g_msi_gov">Mariculture Sustainability Index</a></td>
-<td align="left">Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_mariculture_sustainability">data prep</a>)</td>
+<td align="left">Mariculture practice assessment criteria from the Mariculture Sustainability Index (MSI) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_mariculture_sustainability">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Trujillo (2008)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#g_tourism">Management of tourism to preserve biodiversity</a></td>
-<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_cbd_habitat">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_habitat">Management of habitat to protect habitat biodiversity</a></td>
-<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: habitat related questions (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_cbd_habitat">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_mpa_coast">Coastal protected marine areas (habitat preservation)</a></td>
-<td align="left">Protected marine areas within 3nm of coastline (lasting special places goal status score) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/lsp/v2019/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">Protected marine areas within 3nm of coastline (lasting special places goal status score) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/lsp/v2020/lsp_data_prep.html">data prep</a>)</td>
 <td align="left">resilience</td>
-<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2019)</span></td>
+<td align="left"><span class="citation">Lewis <em>et al.</em> (2017)</span>; <span class="citation">IUCN (2020)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_mpa_eez">EEZ protected marine areas (habitat preservation)</a></td>
+<td align="left">Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/lsp/v2020/lsp_data_prep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">IUCN (2020)</span></td>
 <td align="left">additional year of data</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#hd_mpa_eez">EEZ protected marine areas (habitat preservation)</a></td>
-<td align="left">Protected marine areas within EEZ (lasting special places calculation applied to the entire EEZ) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/lsp/v2019/lsp_data_prep.html">data prep</a>)</td>
-<td align="left">resilience</td>
-<td align="left"><span class="citation">IUCN (2019)</span></td>
-<td align="left">additional year of data</td>
-</tr>
-<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#li_gci">Global Competitiveness Index (GCI)</a></td>
-<td align="left">Competitiveness in achieving sustained economic prosperity (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_gci/v2018/res_gci_dataprep.html">data prep</a>)</td>
+<td align="left">Competitiveness in achieving sustained economic prosperity (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_gci/v2018/res_gci_dataprep.html">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Schwab (2017a)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#li_sector_evenness">Economic diversity</a></td>
-<td align="left">Sector evenness based on Shannon’s Diversity Index calculated on the proportion of jobs in each sector as a measure of economic diversity (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_li_sector_evenness">data prep</a>)</td>
+<td align="left">Sector evenness based on Shannon’s Diversity Index calculated on the proportion of jobs in each sector as a measure of economic diversity (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_li_sector_evenness">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">France (2011)</span>; <span class="citation">O’Connor <em>et al.</em> (2009)</span>; <span class="citation">Thorbourne (2011)</span>; <span class="citation">United Nations personal communication (2011)</span>; <span class="citation">WTTC (2013)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#po_water">Management of waters to preserve biodiversity</a></td>
-<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/res_cbd_habitat">data prep</a>)</td>
+<td align="left">Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: clean water management related questions (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/res_cbd_habitat">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Convention on Biological Diversity (2005)</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#res_spi">Social Progress Index</a></td>
-<td align="left">Social Progress Index scores (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_res_spi/v2019/spi_dataprep.html">data prep</a>)</td>
+<td align="left">Social Progress Index scores (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_res_spi/v2020/spi_dataprep.html">data prep</a>)</td>
 <td align="left">resilience</td>
-<td align="left"><span class="citation">Social Progress Index (2019)</span>; <span class="citation">Stern <em>et al.</em> (2018)</span></td>
-<td align="left">additional year of data</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#species_diversity_3nm">Measure of coastal ecological integrity</a></td>
-<td align="left">Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/spp/v2019/spp_data_prep.html">data prep</a>)</td>
-<td align="left">resilience</td>
-<td align="left"><span class="citation">Birdlife International (2018)</span>; <span class="citation">IUCN (2019b)</span>; <span class="citation">IUCN (2019a)</span></td>
+<td align="left"><span class="citation">Social Progress Index (2020)</span>; <span class="citation">Stern <em>et al.</em> (2018)</span></td>
 <td align="left">additional year of data</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#species_diversity_eez">Measure of ecological integrity</a></td>
-<td align="left">Marine species condition (species subgoal status score) as a proxy for ecological integrity (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/spp/v2019/spp_data_prep.html">data prep</a>)</td>
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#species_diversity_3nm">Measure of coastal ecological integrity</a></td>
+<td align="left">Marine species condition (same calculation and data as the species subgoal status score) calculated within 3 nm of shoreline as a proxy for ecological integrity (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/spp/v2020/spp_data_prep.html">data prep</a>)</td>
 <td align="left">resilience</td>
-<td align="left"><span class="citation">Birdlife International (2018)</span>; <span class="citation">IUCN (2019b)</span>; <span class="citation">IUCN (2019a)</span></td>
+<td align="left"><span class="citation">Birdlife International (2018)</span>; <span class="citation">IUCN (2020a)</span>; <span class="citation">IUCN (2020b)</span></td>
 <td align="left">additional year of data</td>
 </tr>
 <tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#species_diversity_eez">Measure of ecological integrity</a></td>
+<td align="left">Marine species condition (species subgoal status score) as a proxy for ecological integrity (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/spp/v2020/spp_data_prep.html">data prep</a>)</td>
+<td align="left">resilience</td>
+<td align="left"><span class="citation">Birdlife International (2018)</span>; <span class="citation">IUCN (2020a)</span>; <span class="citation">IUCN (2020b)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#wgi_all">Strength of governance</a></td>
-<td align="left">World Governance Indicators (WGI) six combined scores (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/prs_res_wgi/v2019/WGI_dataprep.html">data prep</a>)</td>
+<td align="left">World Governance Indicators (WGI) six combined scores (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/prs_res_wgi/v2020/WGI_dataprep.html">data prep</a>)</td>
 <td align="left">resilience</td>
 <td align="left"><span class="citation">Kaufmann <em>et al.</em> (2010)</span></td>
 <td align="left">additional year of data (2017)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_area">Region areas based on EEZ boundaries</a></td>
-<td align="left">Area of Ocean Health Index regions modified from exclusive economic zones, weights used to calculate global score (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/spatial">data prep</a>)</td>
-<td align="left">spatial</td>
-<td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
-<td align="left">none</td>
-</tr>
-<tr class="even">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_global">OHI region id</a></td>
-<td align="left">Subset of regions that are not deleted or disputed (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/spatial">data prep</a>)</td>
+<td align="left">Area of Ocean Health Index regions modified from exclusive economic zones, weights used to calculate global score (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/spatial">data prep</a>)</td>
 <td align="left">spatial</td>
 <td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_labels">Regions</a></td>
-<td align="left">Regions by type (eez, subocean, unclaimed) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/spatial">data prep</a>)</td>
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_global">OHI region id</a></td>
+<td align="left">Subset of regions that are not deleted or disputed (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/spatial">data prep</a>)</td>
 <td align="left">spatial</td>
 <td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#rgn_labels">Regions</a></td>
+<td align="left">Regions by type (eez, subocean, unclaimed) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/spatial">data prep</a>)</td>
+<td align="left">spatial</td>
+<td align="left"><span class="citation">Claus <em>et al.</em> (2012)</span>; <span class="citation">ESRI (2010)</span>; <span class="citation">Halpern <em>et al.</em> (2012)</span>; <span class="citation">Halpern <em>et al.</em> (2015b)</span></td>
+<td align="left">none</td>
+</tr>
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#uninhabited">Uninhabited regions</a></td>
-<td align="left">Regions with low and no number of inhabitants (also identifies Southern Islands) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/supplementary_information/v2019">data prep</a>)</td>
+<td align="left">Regions with low and no number of inhabitants (also identifies Southern Islands) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/supplementary_information/v2018">data prep</a>)</td>
 <td align="left">spatial</td>
 <td align="left"><span class="citation">Wikipedia</span></td>
 <td align="left">none</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#spp_status">Average species condition</a></td>
-<td align="left">Overall measure of species condition based on IUCN status of species within each region (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/spp/v2019/spp_data_prep.html">data prep</a>)</td>
+<td align="left">Overall measure of species condition based on IUCN status of species within each region (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/spp/v2020/spp_data_prep.html">data prep</a>)</td>
 <td align="left">SPP</td>
-<td align="left"><span class="citation">Birdlife International (2018)</span>; <span class="citation">IUCN (2019b)</span>; <span class="citation">IUCN (2019a)</span></td>
+<td align="left"><span class="citation">Birdlife International (2018)</span>; <span class="citation">IUCN (2020a)</span>; <span class="citation">IUCN (2020b)</span></td>
+<td align="left">additional year of data</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="http://ohi-science.org/ohi-global/layers#spp_trend">Average species condition trend</a></td>
+<td align="left">Overall measure of species condition trends based on change in IUCN status of species within each region (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/spp/v2020/spp_data_prep.html">data prep</a>)</td>
+<td align="left">SPP</td>
+<td align="left"><span class="citation">Birdlife International (2018)</span>; <span class="citation">IUCN (2020a)</span>; <span class="citation">IUCN (2020b)</span></td>
 <td align="left">additional year of data</td>
 </tr>
 <tr class="even">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#spp_trend">Average species condition trend</a></td>
-<td align="left">Overall measure of species condition trends based on change in IUCN status of species within each region (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/spp/v2019/spp_data_prep.html">data prep</a>)</td>
-<td align="left">SPP</td>
-<td align="left"><span class="citation">Birdlife International (2018)</span>; <span class="citation">IUCN (2019b)</span>; <span class="citation">IUCN (2019a)</span></td>
-<td align="left">additional year of data</td>
-</tr>
-<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#tr_jobs_pct_tourism">Percent direct employment in tourism</a></td>
-<td align="left">Percent direct employment in tourism (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/tr/v2019/tr_data_prep.html">data prep</a>)</td>
+<td align="left">Percent direct employment in tourism (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/tr/v2020/tr_data_prep.html">data prep</a>)</td>
 <td align="left">TR</td>
 <td align="left"><span class="citation">WTTC (2019)</span></td>
 <td align="left">two additional years of data</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#tr_sustainability">Tourism sustainability index</a></td>
-<td align="left">Tourism Competitiveness Index (TTCI) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/tr/v2018/tr_data_prep.html">data prep</a>)</td>
+<td align="left">Tourism Competitiveness Index (TTCI) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/tr/v2020/tr_data_prep.html">data prep</a>)</td>
 <td align="left">TR</td>
 <td align="left"><span class="citation">Schwab (2017b)</span></td>
-<td align="left">none</td>
-</tr>
-<tr class="odd">
-<td align="left"><a href="http://ohi-science.org/ohi-global/layers#tr_travelwarnings">US State Department travel warnings</a></td>
-<td align="left">US State Department travel warnings (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/tr/v2019/tr_data_prep.html">data prep</a>)</td>
-<td align="left">TR</td>
-<td align="left"><span class="citation">Government of Canada (2019)</span>; <span class="citation">US Department of State (2018)</span></td>
-<td align="left">updated data</td>
+<td align="left">additional year of data (2019)</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#element_wts_cp_km2_x_protection">Coastal protection weights</a></td>
-<td align="left">Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass (empty dataframe filled by functions.R in ohi-global) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/weighting_files">data prep</a>)</td>
+<td align="left">Habitat extent multiplied by habitat protection rank for: coral, mangrove (offshore and inland 1km), saltmarsh, sea ice (shoreline), and seagrass (empty dataframe filled by functions.R in ohi-global) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/weighting_files">data prep</a>)</td>
 <td align="left">weighting</td>
 <td align="left"><span class="citation">Tallis <em>et al.</em> (2011)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="odd">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#element_wts_cs_km2_x_storage">Carbon storage weights</a></td>
-<td align="left">Habitat extent multiplied by carbon storage capacity for: mangrove, saltmarsh, and seagrass (empty dataframe filled by functions.R in ohi-global) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/weighting_files">data prep</a>)</td>
+<td align="left">Habitat extent multiplied by carbon storage capacity for: mangrove, saltmarsh, and seagrass (empty dataframe filled by functions.R in ohi-global) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/weighting_files">data prep</a>)</td>
 <td align="left">weighting</td>
 <td align="left"><span class="citation">Laffoley &amp; Grimsditch (2009)</span></td>
 <td align="left">none</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="http://ohi-science.org/ohi-global/layers#element_wts_hab_pres_abs">Habitat presence/absence</a></td>
-<td align="left">List of habitats in each region (empty dataframe filled by functions.R in ohi-global) (<a href="http://ohi-science.org/ohiprep_v2019/globalprep/weighting_files">data prep</a>)</td>
+<td align="left">List of habitats in each region (empty dataframe filled by functions.R in ohi-global) (<a href="http://ohi-science.org/ohiprep_v2020/globalprep/weighting_files">data prep</a>)</td>
 <td align="left">weighting</td>
 <td align="left">NA</td>
 <td align="left">none</td>
@@ -1112,17 +1114,23 @@ $(document).ready(function () {
 <div id="ref-claus_marine_2012">
 <p>Claus, S., De Hauwere, N., Vanhoorne, B., Souza Dias, F., Oset Garcia, P., Hernandez, F. &amp; Mees, J. (2012). Marine regions: Exclusive economic zones (v7). URL <a href="http://www.marineregions.org/">http://www.marineregions.org/</a></p>
 </div>
+<div id="ref-committee_common_2004">
+<p>Committee, J.N.C. (2004). <em>Common standards monitoring guidance for saltmarsh habitats</em>.</p>
+</div>
 <div id="ref-convention_on_biological_diversity_3rd_2005">
 <p>Convention on Biological Diversity. (2005). 3rd national report, survey results. URL <a href="https://www.cbd.int/convention/">https://www.cbd.int/convention/</a> [accessed 13 April 2016]</p>
 </div>
 <div id="ref-dahl_status_2011">
 <p>Dahl, T.E. (2011). <em>Status and trends of wetlands in the conterminous united states 2004 to 2009</em>. US Department of the Interior, US Fish; Wildlife Service, Fisheries; Habitat Conservation.</p>
 </div>
-<div id="ref-ram_legacy_stock_assessment_database_ram_2018">
-<p>Database, R.L.S.A. (2018). RAM legacy stock assessment database v4.44. URL <a href="ramlegacy.org">ramlegacy.org</a> [accessed 28 February 2019]</p>
+<div id="ref-ram_legacy_stock_assessment_database_ram_2018-1">
+<p>Database, R.L.S.A. (2018). RAM legacy stock assessment database v4.491. URL <a href="ramlegacy.org">ramlegacy.org</a> [accessed 28 February 2019]</p>
 </div>
 <div id="ref-eionet_european_environment_agency_eea_eu_2008">
-<p>Eionet, E.E.A.(. (2008). EU habitats directive article 17 reporting, 2001-2006. URL <a href="http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal">http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal</a></p>
+<p>Eionet, E.E.A.(. (2008a). EU habitats directive article 17 reporting, 2001-2006. URL <a href="http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal">http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal</a></p>
+</div>
+<div id="ref-eionet_eu_2008">
+<p>Eionet, E.E.A.(. (2008b). EU habitats directive article 17 reporting, 2001-2006. URL <a href="http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal">http://bd.eionet.europa.eu/activities/Reporting/Article_17/reference_portal</a></p>
 </div>
 <div id="ref-eriksen_plastic_2014">
 <p>Eriksen, M., Lebreton, L.C.M., Carson, H.S., Thiel, M., Moore, C.J., Borerro, J.C., Galgani, F., Ryan, P.G. &amp; Reisser, J. (2014). Plastic pollution in the world’s oceans: More than 5 trillion plastic pieces weighing over 250,000 tons afloat at sea. <em>PLoS ONE</em>, <strong>9</strong>, e111913.</p>
@@ -1141,9 +1149,6 @@ $(document).ready(function () {
 </div>
 <div id="ref-gentry_exploring_2019">
 <p>Gentry, R.R., Alleway, H.K., Bishop, M.J., Gillies, C.L., Waters, T. &amp; Jones, R. (2019). Exploring the potential for marine aquaculture to contribute to ecosystem services. <em>Reviews in Aquaculture</em>, <strong>0</strong>.</p>
-</div>
-<div id="ref-government_of_canada_travel_2019">
-<p>Government of Canada, G.A.C. (2019). Travel advice and advisories. Travel.gc.ca. URL <a href="https://travel.gc.ca/travelling/advisories">https://travel.gc.ca/travelling/advisories</a> [accessed 15 July 2019]</p>
 </div>
 <div id="ref-halpern_spatial_2015">
 <p>Halpern, B.S., Frazier, M., Potapenko, J., Casey, K.S., Koenig, K., Longo, C., Lowndes, J.S., Rockwood, R.C., Selig, E.R., Selkoe, K.A. &amp; Walbridge, S. (2015a). Spatial and temporal changes in cumulative human impacts on the world’s ocean. <em>Nature Communications</em>, <strong>6</strong>, 7615.</p>
@@ -1166,14 +1171,14 @@ $(document).ready(function () {
 <div id="ref-homer_development_2004">
 <p>Homer, C., Huang, C., Yang, L., Wylie, B. &amp; Coan, M. (2004). Development of a 2001 national land-cover database for the united states. <em>Photogrammetric Engineering &amp; Remote Sensing</em>, <strong>70</strong>, 829–840.</p>
 </div>
-<div id="ref-unep-wcmc_and_iucn_protected_2019">
-<p>IUCN. (2019). Protected planet: The world database on protected areas (WDPA). Protected planet. URL <a href="https://www.protectedplanet.net/">https://www.protectedplanet.net/</a> [accessed 1 April 2019]</p>
+<div id="ref-iucn_iucn_2020">
+<p>IUCN. (2020a). <em>IUCN red list categories and criteria (version 2020-1)</em>. IUCN, Gland, Switzerland.</p>
 </div>
-<div id="ref-iucn_spatial_2019">
-<p>IUCN. (2019a). Spatial data - IUCN red list of threatened species. IUCN red list of threatened species. URL <a href="https://www.iucnredlist.org/en">https://www.iucnredlist.org/en</a> [accessed 22 April 2019]</p>
+<div id="ref-unep-wcmc_and_iucn_protected_2020">
+<p>IUCN. (2020). Protected planet: The world database on protected areas (WDPA). Protected planet. URL <a href="https://www.protectedplanet.net/">https://www.protectedplanet.net/</a> [accessed 1 April 2020]</p>
 </div>
-<div id="ref-iucn_iucn_2019">
-<p>IUCN. (2019b). The IUCN red list of threatened species. Version 2019-2. URL <a href="http://www.iucnredlist.org/">http://www.iucnredlist.org/</a> [accessed 15 May 2019]</p>
+<div id="ref-iucn_spatial_2020">
+<p>IUCN. (2020b). Spatial data - IUCN red list of threatened species. IUCN red list of threatened species. URL <a href="https://www.iucnredlist.org/en">https://www.iucnredlist.org/en</a> [accessed 1 April 2020]</p>
 </div>
 <div id="ref-jambeck_plastic_2015">
 <p>Jambeck, J.R., Geyer, R., Wilcox, C., Siegler, T.R., Perryman, M., Andrady, A., Narayan, R. &amp; Law, K.L. (2015). Plastic waste inputs from land into the ocean. <em>Science</em>, <strong>347</strong>, 768–771.</p>
@@ -1188,10 +1193,10 @@ $(document).ready(function () {
 <p>Kaufmann, D., Kraay, A. &amp; Mastruzzi, M. (2010). <em>The worldwide governance indicators: Methodology and analytical issues</em>. Social Science Research Network, Rochester, NY.</p>
 </div>
 <div id="ref-laffoley_management_2009">
-<p>Laffoley, D. &amp; Grimsditch, G. (Eds.). (2009). <em>The management of natural coastal carbon sinks</em>. IUCN, Gland, Switzerland.</p>
+<p>Laffoley, D. &amp; Grimsditch, G.D. (Eds.). (2009). <em>The management of natural coastal carbon sinks</em>. IUCN, Gland, Switzerland.</p>
 </div>
 <div id="ref-lewis_large-scale_2017">
-<p>Lewis, N., Day, J., Wilhelm, A., Wagner, D., Gaymer, D., Parks, J., Friedlander, A., White, S., Sheppard, C., Spalding, M., San Martin, G., Skeat, A., Taei, S., Teroroko, T. &amp; Evans, J. (2017). Large-scale marine protected areas: Guidelines for design and management. Best practice protected area guidelines series. <strong>26</strong>.</p>
+<p>Lewis, N., Day, J.C., Wilhelm, A., Wagner, D., Gaymer, D., Parks, J., Friedlander, A., White, S., Sheppard, C., Spalding, M., San Martin, G., Skeat, A., Taei, S., Teroroko, T. &amp; Evans, J. (2017). Large-scale marine protected areas: Guidelines for design and management. Best practice protected area guidelines series. <strong>26</strong>.</p>
 </div>
 <div id="ref-martell_simple_2013">
 <p>Martell, S. &amp; Froese, R. (2013). A simple method for estimating MSY from catch and resilience. <em>Fish and Fisheries</em>, <strong>14</strong>, 504–514.</p>
@@ -1201,6 +1206,9 @@ $(document).ready(function () {
 </div>
 <div id="ref-molnar_assessing_2008">
 <p>Molnar, J.L., Gamboa, R.L., Revenga, C. &amp; Spalding, M.D. (2008). Assessing the global threat of invasive species to marine biodiversity. <em>Frontiers in Ecology and the Environment</em>, <strong>6</strong>, 485–492.</p>
+</div>
+<div id="ref-noauthor_monterey_2020">
+<p><em>Monterey bay aquarium seafood watch</em>. (2020). Monterey Bay Aquarium.</p>
 </div>
 <div id="ref-mora_management_2009">
 <p>Mora, C., Myers, R.A., Coll, M., Libralato, S., Pitcher, T.J., Sumaila, R.U., Zeller, D., Watson, R., Gaston, K.J. &amp; Worm, B. (2009). Management effectiveness of the world’s marine fisheries (C. Roberts, Ed.). <em>PLoS Biology</em>, <strong>7</strong>, e1000131.</p>
@@ -1218,13 +1226,13 @@ $(document).ready(function () {
 <p>O’Malley, R. Ocean productivity, standard VGPM. Ocean productivity. URL <a href="http://orca.science.oregonstate.edu/2160.by.4320.monthly.xyz.vgpm.m.chl.m.sst.php">http://orca.science.oregonstate.edu/2160.by.4320.monthly.xyz.vgpm.m.chl.m.sst.php</a> [accessed 31 July 2018]</p>
 </div>
 <div id="ref-oostendorp_occupational_2012">
-<p>Oostendorp, R. &amp; Freeman, R. (2012). The occupational wages around the world (OWW) database: Update for 1983-2008. URL <a href="http://www.nber.org/oww/">http://www.nber.org/oww/</a> [accessed 4 January 2017]</p>
+<p>Oostendorp, R.H. &amp; Freeman, R.B. (2012). The occupational wages around the world (OWW) database: Update for 1983-2008. URL <a href="http://www.nber.org/oww/">http://www.nber.org/oww/</a> [accessed 4 January 2017]</p>
 </div>
 <div id="ref-ricard_examining_2012">
 <p>Ricard, D., Minto, C., Jensen, O.P. &amp; Baum, J.K. (2012). Examining the knowledge base and status of commercially exploited marine species with the RAM legacy stock assessment database. <em>Fish and Fisheries</em>, <strong>13</strong>, 380–398.</p>
 </div>
 <div id="ref-rosenberg_developing_2014">
-<p>Rosenberg, A., Fogarty, M., Cooper, A., Dickey-Collas, M., Fulton, B., Gutiérrez, N., Hyde, K., Kleisner, K., Kristiansen, Longo, C., Minte-Vera, C., Minto, C., Mosqueira, I., Osio, G., Ovando, D., Selig, E. &amp; Thorson, J. (2014). <em>Developing new approaches to 116 global stock status assessment and maximum sustainable production of the seas.</em></p>
+<p>Rosenberg, A.R., Fogarty, M.J., Cooper, A.B., Dickey-Collas, M., Fulton, B., Gutiérrez, N.L., Hyde, K.J.W., Kleisner, K., Kristiansen, Longo, C., Minte-Vera, C., Minto, C., Mosqueira, I., Osio, G.C., Ovando, D., Selig, E. &amp; Thorson, J.T. (2014). <em>Developing new approaches to 116 global stock status assessment and maximum sustainable production of the seas.</em></p>
 </div>
 <div id="ref-schutte_regional_2010">
 <p>Schutte, V., Selig, E. &amp; Bruno, J. (2010). Regional spatio-temporal trends in caribbean coral reef benthic communities. <em>Marine Ecology Progress Series</em>, <strong>402</strong>, 115–122.</p>
@@ -1235,20 +1243,20 @@ $(document).ready(function () {
 <div id="ref-crotti_travel_2017">
 <p>Schwab, K. (2017b). <em>The travel &amp; tourism competitiveness report 2017</em>. World Economic Forum.</p>
 </div>
+<div id="ref-short_seagrassnet_2011">
+<p>Short, F., Coles, R., Fortes, M. &amp; Koch, E. (2011a). SeagrassNet. URL <a href="http://www.seagrassnet.org/">http://www.seagrassnet.org/</a> [accessed 9 May 2016]</p>
+</div>
 <div id="ref-short_extinction_2011">
-<p>Short, F.T., Polidoro, B., Livingstone, S.R., Carpenter, K.E., Bandeira, S., Bujang, J.S., Calumpong, H.P., Carruthers, T.J., Coles, R.G., Dennison, W.C., Erftemeijer, P.L., Fortes, M.D., Freeman, A.S., Jagtap, T., Kamal, A.H.M., Kendrick, G.A., Judson Kenworthy, W., La Nafie, Y.A., Nasution, I.M., Orth, R.J., Prathep, A., Sanciangco, J.C., Tussenbroek, B. van, Vergara, S.G., Waycott, M. &amp; Zieman, J.C. (2011). Extinction risk assessment of the world’s seagrass species. <em>Biological Conservation</em>, <strong>144</strong>, 1961–1971.</p>
+<p>Short, F.T., Polidoro, B., Livingstone, S.R., Carpenter, K.E., Bandeira, S., Bujang, J.S., Calumpong, H.P., Carruthers, T.J.B., Coles, R.G., Dennison, W.C., Erftemeijer, P.L.A., Fortes, M.D., Freeman, A.S., Jagtap, T.G., Kamal, A.H.M., Kendrick, G.A., Judson Kenworthy, W., La Nafie, Y.A., Nasution, I.M., Orth, R.J., Prathep, A., Sanciangco, J.C., Tussenbroek, B. van, Vergara, S.G., Waycott, M. &amp; Zieman, J.C. (2011b). Extinction risk assessment of the world’s seagrass species. <em>Biological Conservation</em>, <strong>144</strong>, 1961–1971.</p>
 </div>
-<div id="ref-short_global_2018">
-<p>Short, F. &amp; UNEP-WCMC. (2018). Global distribution of seagrasses (version 6.0). Global distribution of seagrasses. </p>
-</div>
-<div id="ref-social_progress_index_2019_2019">
-<p>Social Progress Index. (2019). 2019 social progress index. 2019 social progress index. URL <a href="https://www.socialprogress.org/">https://www.socialprogress.org/</a> [accessed 16 October 2019]</p>
+<div id="ref-social_progress_index_2020_2020">
+<p>Social Progress Index. (2020). 2020 social progress index. 2020 social progress index. URL <a href="https://www.socialprogress.org/">https://www.socialprogress.org/</a> [accessed 10 September 2020]</p>
 </div>
 <div id="ref-stern_2018_2018">
 <p>Stern, S., Wares, A. &amp; Epner, T. (2018). <em>2018 social progress index: Methodology summary</em>.</p>
 </div>
 <div id="ref-tallis_invest_2011">
-<p>Tallis, H.T., Ricketts, T., Guerry, A., Wood, S., Sharp, R., Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol, K. &amp; others. (2011). <em>InVEST 2.2.1 user’s guide</em>. The Natural Capital Project, Stanford University.</p>
+<p>Tallis, H.T., Ricketts, T., Guerry, A.D., Wood, S.A., Sharp, R., Nelson, E., Ennaanay, D., Wolny, S., Olwero, N., Vigerstol, K. &amp; others. (2011). <em>InVEST 2.2.1 user’s guide</em>. The Natural Capital Project, Stanford University.</p>
 </div>
 <div id="ref-thorbourne_annopolis_2011">
 <p>Thorbourne, R. (2011). Annopolis royal plant in canada. </p>
@@ -1256,11 +1264,8 @@ $(document).ready(function () {
 <div id="ref-trujillo_using_2008">
 <p>Trujillo, P. (2008). Using a mariculture sustainability index to rank countries’ performance. <em>Fisheries centre research reports</em> (eds J. Alder &amp; D. Pauly). Fisheries Centre Research Reports, University of British Columbia, Vancouver, Canada.</p>
 </div>
-<div id="ref-unep-wcmc_global_2017">
-<p>UNEP-WCMC. (2017). A global map of saltmarshes. URL <a href="https://data.unep-wcmc.org/datasets/43">https://data.unep-wcmc.org/datasets/43</a> [accessed 25 July 2019]</p>
-</div>
 <div id="ref-unep-wcmc_global_2018">
-<p>UNEP-WCMC. (2018). Global distribution of warm-water coral reefs, compiled from multiple sources including the millennium coral reef mapping project. Version 4.0. URL <a href="https://data.unep-wcmc.org/datasets/1">https://data.unep-wcmc.org/datasets/1</a> [accessed 25 July 2019]</p>
+<p>UNEP-WCMC, Centre, W., WRI &amp; TNC. (2018). <em>Global distribution of coral reefs version 4.0</em>.</p>
 </div>
 <div id="ref-un-fao_fao_2019">
 <p>UN-FAO. (2019). FAO fisheries &amp; aquaculture - fishery statistical collections - fishery commodities and trade. FAO commodities data. URL <a href="http://www.fao.org/fishery/statistics/global-commodities-production/en">http://www.fao.org/fishery/statistics/global-commodities-production/en</a> [accessed 22 July 2019]</p>
@@ -1274,6 +1279,9 @@ $(document).ready(function () {
 <div id="ref-united_nations_fao_2018-1">
 <p>United Nations. (2018a). FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. URL <a href="http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata">http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata</a> [accessed 11 April 2018]</p>
 </div>
+<div id="ref-united_nations_fao_2018-2">
+<p>United Nations. (2018b). FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. URL <a href="http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata">http://ref.data.fao.org/dataset?entryId=033ae7cf-b322-4dc5-8dfe-140140c56008&amp;tab=metadata</a> [accessed 11 May 2020]</p>
+</div>
 <div id="ref-united_nations_fao_2013">
 <p>United Nations. (2013c). FAO fisheries &amp; aquaculture - fishery statistical collections - global capture production. URL <a href="http://www.fao.org/fishery/statistics/global-capture-production/en">http://www.fao.org/fishery/statistics/global-capture-production/en</a></p>
 </div>
@@ -1281,7 +1289,7 @@ $(document).ready(function () {
 <p>United Nations. (2019). FAO fisheries &amp; aquaculture - fishery statistical collections - global capture production. FAO fisheries &amp; aquaculture - fishery statistical collections - global aquaculture production. URL <a href="http://www.fao.org/fishery/statistics/global-capture-production/en">http://www.fao.org/fishery/statistics/global-capture-production/en</a> [accessed 23 May 2019]</p>
 </div>
 <div id="ref-united_nations_fao_2018">
-<p>United Nations. (2018b). FAO FishStatJ - global capture production. FAO FishStatJ - global capture production. URL <a href="http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp">http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp</a> [accessed 1 August 2018]</p>
+<p>United Nations. (2018c). FAO FishStatJ - global capture production. FAO FishStatJ - global capture production. URL <a href="http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp">http://www.fao.org/fishery/statistics/software/fishstatj/en#downlApp</a> [accessed 1 August 2018]</p>
 </div>
 <div id="ref-united_nations_fao_2016">
 <p>United Nations. (2016). FAO statistics division - inputs. URL <a href="http://faostat3.fao.org/browse/R/*/E">http://faostat3.fao.org/browse/R/*/E</a></p>
@@ -1295,11 +1303,8 @@ $(document).ready(function () {
 <div id="ref-united_nations_personal_communication_fao_2011">
 <p>United Nations personal communication. (2011). FAO fisheries &amp; aquaculture - fishery statistical collections - global number of fishers. URL <a href="http://www.fao.org/fishery/statistics/global-fishers/en">http://www.fao.org/fishery/statistics/global-fishers/en</a></p>
 </div>
-<div id="ref-us_department_of_state_travel_2018">
-<p>US Department of State. (2018). Travel alerts and warnings. URL <a href="https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html">https://travel.state.gov/content/travel/en/traveladvisories/traveladvisories.html</a> [accessed 28 June 2010]</p>
-</div>
-<div id="ref-watson_global_2019">
-<p>Watson, R. (2019). Global fisheries landings v4.0. URL <a href="https://metadata.imas.utas.edu.au/geonetwork/srv/eng/metadata.show?uuid=5c4590d3-a45a-4d37-bf8b-ecd145cb356d">https://metadata.imas.utas.edu.au/geonetwork/srv/eng/metadata.show?uuid=5c4590d3-a45a-4d37-bf8b-ecd145cb356d</a> [accessed 3 July 2019]</p>
+<div id="ref-watson_global_2019-1">
+<p>Watson, R. (2019). Global fisheries landings v5.0. URL <a href="https://metadata.imas.utas.edu.au/geonetwork/srv/eng/metadata.show?uuid=5c4590d3-a45a-4d37-bf8b-ecd145cb356d">https://metadata.imas.utas.edu.au/geonetwork/srv/eng/metadata.show?uuid=5c4590d3-a45a-4d37-bf8b-ecd145cb356d</a> [accessed 16 December 2019]</p>
 </div>
 <div id="ref-watson_mapping_2018">
 <p>Watson, R. &amp; Tidd, A. (2018). Mapping nearly a century and a half of global marine fishing: 1869–2015. <strong>93</strong>, 171–177.</p>
@@ -1316,8 +1321,8 @@ $(document).ready(function () {
 <div id="ref-world_bank_gdp_2014">
 <p>World Bank. (2014a). GDP (current US$). URL <a href="http://data.worldbank.org/indicator/%20NY.GDP.MKTP.CD">http://data.worldbank.org/indicator/%20NY.GDP.MKTP.CD</a></p>
 </div>
-<div id="ref-world_bank_gdp_2018">
-<p>World Bank. (2018). GDP per capita, PPP (constant 2011 international $) data. GDP per capita, PPP (constant 2011 international $). URL <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD">https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD</a> [accessed 10 July 2019]</p>
+<div id="ref-world_bank_gdp_2020">
+<p>World Bank. (2020). GDP per capita, PPP (constant 2011 international $). GDP per capita, PPP (constant 2011 international $). URL <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD">https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD</a> [accessed 2 July 2020]</p>
 </div>
 <div id="ref-world_bank_labor_2014">
 <p>World Bank. (2014b). Labor force, total. URL <a href="http://data.worldbank.org/indicator/SL.TLF.TOTL.IN">http://data.worldbank.org/indicator/SL.TLF.TOTL.IN</a></p>
@@ -1334,8 +1339,8 @@ $(document).ready(function () {
 <div id="ref-wttc_world_2013">
 <p>WTTC. (2013). World travel and tourism council. URL <a href="www.wttc.org/research/economicimpact-research/methodology/">www.wttc.org/research/economicimpact-research/methodology/</a></p>
 </div>
-<div id="ref-wttc_world_2019">
-<p>WTTC. (2019). World travel and tourism council. World travel and tourism council. URL <a href="https://www.wttc.org/datagateway">https://www.wttc.org/datagateway</a> [accessed 15 July 2019]</p>
+<div id="ref-wttc_world_2019-1">
+<p>WTTC. (2019). World travel and tourism council. World travel and tourism council. URL <a href="https://www.wttc.org/datagateway">https://www.wttc.org/datagateway</a> [accessed 25 March 2020]</p>
 </div>
 </div>
 
@@ -1356,6 +1361,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
