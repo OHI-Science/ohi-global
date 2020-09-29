@@ -20,7 +20,7 @@ Description of condition, extent, and trend calculations for habitat data (Note:
 Habitat | Condition | Extent | Trend
 -------- | --------------------- | ----------------- | ------------------
 Seagrass | Current % cover or hectares of habitat divided by reference % cover or hectares | Seagrass extent per oceanic region (vector based) | Calculated across data from 1975-2010
-Coral reefs | Current % cover divided by reference % cover | Coral reef extent per oceanic region (500 m resolution) | Calculated across data from 1975-2006
+Coral reefs | Current % cover divided by reference % cover | Coral reef extent per oceanic region (Vector based) | Calculated across data from 1975-2006
 Mangroves | Current hectares divided by reference hectares, for coastal mangroves only | Mangrove extent per oceanic region (raster based) | Calculated using 5 most recent years of data
 Salt marsh | Increasing or stable trend assigned condition = 1.0; decreasing trend assigned condition = 0.5 | Salt marsh extent per oceanic region | Categorical trend assessments (increasing = 0.5, stable = 0, or decreasing = -0.5) 
 Sea ice edge | Current (3-year rolling-average using the current year and previous 2 years) % cover of sea ice having 10-50% cover, divided by reference % cover average from 1979-2000 | Same as condition | Calculated from the fitted slope of %-deviation-from-reference per year, of the most recent 5 years of data (each year of data is based on 3-year average)

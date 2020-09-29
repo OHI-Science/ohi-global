@@ -32,7 +32,7 @@ seagrasses | 1
 The reference area for each habitat is treated as a fixed value; in cases where current area might exceed this reference value (e.g., through restoration), we cap the score at the maximum value (1.0). Although this does not give credit for restoration, data tend to be of poor quality making it difficult to determine true increases, and in general habitat restoration beyond reference values is extremely unlikely. Rank weights for the protective ability of each habitat ($w_{k}$) come from previous work [@tallis_invest_2011].
 
 #### Trend
-The trend for this goal is calculated using different methods for each habitat due to data availability (Table S8, with sea ice shoreline following the same general methods as sea ice edge). 
+The trend for this goal is calculated using different methods for each habitat due to data availability (Table 5.2, with sea ice shoreline following the same general methods as sea ice edge). 
 
 #### Data
 _Status and trend_

@@ -92,31 +92,37 @@ Not all data layers are reported through the most current assessment year, and c
 
 
 ## Brief anatomy of OHI scores
-We define ocean health as the sustainable delivery of ten widely-held public goals for ocean ecosystems (Table 1.1).  These goals represent the full suite of benefits that people want and need from the ocean, including the traditional ‘goods and services’ people often consider (e.g., fish to eat, coastal protection from nearshore habitats) as well as benefits less commonly accounted for, such as cultural values and biodiversity.  Within each region, scores, ranging from 0 to 100, are calculated for the 10 goals (section 4.2).  Four of the goals are calculated from 2 subgoals.  The subgoals are calculated independently (i.e., they are treated as if they are goals) and then combined into the goal status score (Table 1.2).
+We define ocean health as the sustainable delivery of ten widely-held public goals for ocean ecosystems (Table 1.1).  These goals represent the full suite of benefits that people want and need from the ocean, including the traditional ‘goods and services’ people often consider (e.g., fish to eat, coastal protection from nearshore habitats) as well as benefits less commonly accounted for, such as cultural values and biodiversity.  Within each region, scores, ranging from 0 to 100, are calculated for the 10 goals (section 4.2).  Four of the goals are calculated from 2 subgoals.  The subgoals are calculated independently (i.e., they are treated as if they are goals) and then combined into the goal status score (Table 1.2). 
 
+<br/>
 
-**Table 1.1. The 10 goals of the Ocean Health Index**
+**Table 1.1. The 10 goals of the Ocean Health Index** 
 ```{r ten_goals, eval = ten_goals, echo=FALSE}
 
 goals <- read.csv(here("metadata_documentation/ohi_model/tables/ten_goals.csv")) %>%
   select(Goal, Abbreviation, Description) %>%
   arrange(Goal)
 
-kable(goals)
+kable(goals) %>%
+  kableExtra::kable_styling(full_width = T)
 ```
+ 
+<br/>
 
-
-**Table 1.2. Subgoals used to calculate 4 of the Ocean Health Index goals**
+**Table 1.2. Subgoals used to calculate 4 of the Ocean Health Index goals** 
 ```{r subgoals, eval = ten_goals, echo=FALSE}
 
 subgoals <- read.csv(here("metadata_documentation/ohi_model/tables/Subgoal_Descriptions.csv")) %>%
   select(Subgoal, Goal, Abbreviation, Description) %>%
   arrange(Goal)
 
-kable(subgoals)
+kable(subgoals) %>%
+  kableExtra::kable_styling(full_width = F)
 ```
 
-Goal (and subgoal scores) are calculated using several variables (referred to as “dimensions”, Table 1.3).  Goal scores (Section 4.2) are calculated as the average of current status (Section 5) and likely future status.  Likely future status (Section 4.3) is the current status modified by variables (resilience, pressures, and trend) expected to influence future status.
+Goal (and subgoal scores) are calculated using several variables (referred to as “dimensions”, Table 1.3).  Goal scores (Section 4.2) are calculated as the average of current status (Section 5) and likely future status.  Likely future status (Section 4.3) is the current status modified by variables (resilience, pressures, and trend) expected to influence future status. 
+
+<br/>
 
 **Table 1.3. Dimension used to calculate an OHI goal score**
 Goal scores are the average of current and likely future status.  Likely future status adjusts current status scores based on pressures and resilience variables acting on the goal as well as recent trends in status.
@@ -325,7 +331,7 @@ cat(paste(st_layers$info, collapse="\n\n"))
 A brief overview of all the data layers used to calculate the global OHI.  The "Data layer" variable provides links to a full description of the data layer.  The "Description" variable provides link/s to the data preparation scripts (when available).   See Table 6.2 for a description of the data sources used to create these data layers.
 
 ```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, messages=FALSE}
-
+options(dplyr.summarise.inform=F)
 ## Get list of layers, name, description:
 base <- read.csv(here("metadata_documentation/layers_eez_base.csv")) %>%
   mutate(Name = paste0("[", name, "](", "http://ohi-science.org/ohi-global/layers#", layer, ")")) %>%
@@ -388,10 +394,12 @@ data <- data %>%
   select(Layer=Name, Description, Dimension, References, Updates) %>%
   arrange(Dimension)
 
-kable(data)
+kable(data) %>%
+  kableExtra::kable_styling(full_width = F)
 
 ```
 
+<br/> 
 
 **Table 6.2. Data sources used to create data layers for `r assessmentYear` global OHI assessment**
 A brief overview of the data sources used to calculate the global OHI.
@@ -405,7 +413,8 @@ A brief overview of the data sources used to calculate the global OHI.
 ds_source <- read.csv(here("metadata_documentation/layers_eez_data_sources.csv")) %>%
   mutate(ds_reference = paste0("@", ds_reference)) %>%
   select(Reference = ds_reference, "Description" = ds_description, Years=ds_years, Resolution = ds_native_resolution, Updated = sprintf("ds_updated_%s", assessmentYear))
-kable(ds_source)
+kable(ds_source) %>%
+  kableExtra::kable_styling(full_width = F)
 
 ```
 

@@ -1,0 +1,90 @@
+---
+title: "Untitled"
+author: "Gage Clawson"
+date: "9/28/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+source('http://ohi-science.org/ohiprep_v2019/workflow/R/common.R')
+library(sf)
+library(tidyverse)
+library(mapview)
+
+```
+
+
+```{r}
+ohi_scores_sf <- st_read("Global_OHI_Scores_2012_to_2019.shp")
+
+mapview(ohi_scores_sf)
+colnames(ohi_scores_sf)
+
+
+## lets compare to our scores from last year 
+test_scores <- ohi_scores_sf %>%
+  dplyr::filter(Year == 2012) %>%
+  dplyr::filter(rgn_id == 175)
+
+scores_df_v2019 <- read_csv("../../global2019/scores_2019-11-15.csv") 
+
+test_v2019 <- scores_df_v2019 %>%
+  dplyr::filter(year == 2012) %>%
+  dplyr::filter(dimension %in% c("score", "trend", "index")) %>%
+  pivot_wider(names_from = c(goal, dimension), values_from = score) %>%
+  dplyr::filter(region_id == 175)
+
+## rgn_id
+## rgn_nam
+## rgn_key
+## scr_ == ?? MAR_score ??
+## scr1 == AO_score
+## sc_1 == BD_score
+## sc_2 == CP_score
+## sc_3 == CS_score 
+## sc_4 == CW_score
+## sc_5 == ECO_score
+## sc_6 == FIS_score
+## sc_7 == FP_score
+## sc_8 == HAB_score
+## sc_9 == ICO_score
+## sc_10 == index_score
+## sc_11 == LE_score
+## sc_12 == LIV_score
+## sc_13 == LSP_score
+## sc_14 == NP_score
+## sc_15 == SP_score
+## sc_16 == SPP_score
+## sc_17 == TR_score
+## trd_ == ?? NP_trend ??
+## trd1 == AO_trend
+## tr_1 == BD_trend
+## tr_2 == CP_trend
+## tr_3 == CS_trend 
+## tr_4 == CW_trend
+## tr_5 == ECO_trend
+## tr_6 == FIS_trend
+## tr_7 == FP_trend
+## tr_8 == HAB_trend
+## tr_9 == ICO_trend
+## tr_10 == index_trend
+## tr_11 == LE_trend
+## tr_12 == LIV_trend
+## tr_13 == LSP_trend
+## tr_14 == MAR_trend
+## tr_15 == SP_trend
+## tr_16 == SPP_trend
+## tr_17 == TR_trend
+## Std_Date is december 1st of each assessment year 
+## Year is the year
+## geometry
+
+
+colnames(test_scores)
+
+region_data()
+```
+
+
