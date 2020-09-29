@@ -13,7 +13,7 @@ library(tidyverse)
 library(knitr)
 library(here)
 
-assessmentYear <- 2019
+assessmentYear <- 2020
 ```
 
 ```{r tables, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
