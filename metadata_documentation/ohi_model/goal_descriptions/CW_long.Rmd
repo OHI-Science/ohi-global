@@ -2,9 +2,9 @@
 
 People value marine waters that are free of pollution and debris for aesthetic and health reasons. Contamination of waters comes from oil spills, chemicals, eutrophication, algal blooms, disease pathogens (e.g., fecal coliform, viruses, and parasites from sewage outflow), floating trash, and mass kills of organisms due to pollution. People are sensitive to these phenomena occurring in areas they access for recreation or other purposes as well as for simply knowing that clean waters exist. This goal scores highest when the contamination level is zero.
 
-We include four measures of pollution in the clean waters goal: eutrophication (nutrients), chemicals, pathogens and marine debris. This decision was meant to represent a comprehensive list of the contamination categories that are commonly considered in assessments of coastal clean waters [@borja_overview_2008] and for which we could obtain datasets (Table 5.6). The status of these components is the inverse of their intensity (i.e., high input results in low status score).
+We include four measures of pollution in the clean waters goal: eutrophication (nutrients), chemicals, pathogens and marine debris. This decision was meant to represent a comprehensive list of the contamination categories that are commonly considered in assessments of coastal clean waters [@borja_overview_2008] and for which we could obtain datasets (Table 6.6). The status of these components is the inverse of their intensity (i.e., high input results in low status score).
 
-**Table 5.6. Clean waters goal components**
+**Table 6.6. Clean waters goal components**
 
 
 Component | Data |Trend
@@ -38,7 +38,7 @@ Although clean waters are relevant and important anywhere in the ocean, coastal 
 A number of potential components of clean water were not included due to lack of global datasets, including toxic algal blooms, oil spills, turbidity (sediment input), and floating trash. In future applications of the Index where such data are available, they would be included in their appropriate component of clean waters (nutrients, chemicals, and trash, respectively).
 
 #### Trend
-Trends in eutrophication, pathogens, and chemical pollution are estimated as described in section 4.3.1. Because only one of the inputs (organic pollution) of the chemical pollution layer includes data over time, the trend only reflects this input.  Marine debris trends are estimated using a secondary dataset describing the amount of improperly disposed of plastics within each country [@jambeck_plastic_2015].
+Trends in eutrophication, pathogens, and chemical pollution are estimated as described in section 5.3.1. Because only one of the inputs (organic pollution) of the chemical pollution layer includes data over time, the trend only reflects this input.  Marine debris trends are estimated using a secondary dataset describing the amount of improperly disposed of plastics within each country [@jambeck_plastic_2015].
 
 #### Data
 _Status and trend_

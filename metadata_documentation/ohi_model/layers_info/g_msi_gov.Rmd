@@ -12,7 +12,7 @@ The MSI reports data for 359 country-species combinations (with 60 countries and
 
 Unlike the mariculture sustainability data (**`r layer_meta$name[layer_meta$layer == 'mar_sustainability_score']`**), gapfilling was not performed when country specific data were not available for the two resilience measures because these measures are social in nature and reliant on the specific decisions made by each country rather than on the species cultured. As such, it was decided that crosscountry species averages were not appropriate to use in the gapfilling process for resilience.
 
-**Table 6.7. Mariculture Sustainability Index criteria**
+**Table 7.7. Mariculture Sustainability Index criteria**
 
 Criteria         | Description of practice and score scheme
 ----------------- | ----------------------------------------

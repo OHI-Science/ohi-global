@@ -77,9 +77,9 @@ plot <- ggplot(b, aes(x=bmsy, y=score)) +
 
 ```
 
-We needed to gapfill missing status, $SS$, scores for a large proportion of the catch.  Gapfilling was necessary because we could only estimate $B/B_{MSY}$ values for taxa identified to the species level.  Furthermore, we were unable to estimate $B/B_{MSY}$ values for some species due to model non-convergence or too few years of catch data.  Missing status scores were gapfilled using the mean status scores of the stocks sharing a region and year, the mean value was then adjusted using a taxonomic reporting penalty (Table 5.7).  For catch not reported to the species level, a penalty was applied for increasingly coarser taxonomic reporting, as this is considered a sign of minimal monitoring and management.   We based the penalty on the ISSCAAP convention for taxon codes (http://www.fao.org/fishery/collection/asfis/en), which defines 6 levels of taxonomic aggregation, from 6 (species) to 1 (order or higher).  When ${g}<6$, a penalized gapfilled value for status was estimated for the taxa in each region:
+We needed to gapfill missing status, $SS$, scores for a large proportion of the catch.  Gapfilling was necessary because we could only estimate $B/B_{MSY}$ values for taxa identified to the species level.  Furthermore, we were unable to estimate $B/B_{MSY}$ values for some species due to model non-convergence or too few years of catch data.  Missing status scores were gapfilled using the mean status scores of the stocks sharing a region and year, the mean value was then adjusted using a taxonomic reporting penalty (Table 6.7).  For catch not reported to the species level, a penalty was applied for increasingly coarser taxonomic reporting, as this is considered a sign of minimal monitoring and management.   We based the penalty on the ISSCAAP convention for taxon codes (http://www.fao.org/fishery/collection/asfis/en), which defines 6 levels of taxonomic aggregation, from 6 (species) to 1 (order or higher).  When ${g}<6$, a penalized gapfilled value for status was estimated for the taxa in each region:
 
-**Table 5.7: Penalty applied to gapfilled stock status scores**
+**Table 6.7: Penalty applied to gapfilled stock status scores**
 The penalty is multiplied by the gapfilled stock status score to obtain the final stock status score. 
 
 ISSCAAP taxon code  |  Description                                    |  Penalty (gapfilled score multiplied by value)
@@ -101,7 +101,7 @@ Despite the fact that invertebrates represent a large proportion of global caugh
 This approach captures whether stocks have been historically well managed, but it is worth noting that it does not directly measure current food production.
 
 #### Trend
-Trend was calculated as described in section  4.3.1.
+Trend was calculated as described in section  5.3.1.
 
 #### Data
 _Status and trend_

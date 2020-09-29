@@ -1,8 +1,8 @@
 ## Natural products
 
-In many countries the harvest of non-food natural products is important for local economies and can also be traded internationally. The sustainable harvest of these products is therefore an important component of a healthy ocean. This goal assesses the ability of countries to maximize the sustainable harvest of living marine resources, and includes three natural product categories: ornamental fish, fish oil and fish meal, and inedible seaweeds and marine plants (Table 5.12). It does not include bioprospecting, which focuses on potential (and largely unknowable and potentially infinite) value rather than current realized value, or non-living products such as oil and gas or mining products which by definition are not sustainable. It also excludes wood from mangroves as few data exist for if/where this harvest is happening and whether it is sustainable, as well as oils from mammals as this harvest is widely seen as unsustainable. In past assessments we included coral harvest, shells, and sponges, but we now exclude these resources.  In the case of coral, harvest is not sustainable given current and future global threats.  For sponges and shells, harvest yields were often highly variable and had relatively small values (Table 5.11), resulting in scores fluctuating dramatically across years for some countries even though the total USD values contributed very little to national economies (e.g. going from 100USD to 200USD would double the score). 
+In many countries the harvest of non-food natural products is important for local economies and can also be traded internationally. The sustainable harvest of these products is therefore an important component of a healthy ocean. This goal assesses the ability of countries to maximize the sustainable harvest of living marine resources, and includes three natural product categories: ornamental fish, fish oil and fish meal, and inedible seaweeds and marine plants (Table 6.12). It does not include bioprospecting, which focuses on potential (and largely unknowable and potentially infinite) value rather than current realized value, or non-living products such as oil and gas or mining products which by definition are not sustainable. It also excludes wood from mangroves as few data exist for if/where this harvest is happening and whether it is sustainable, as well as oils from mammals as this harvest is widely seen as unsustainable. In past assessments we included coral harvest, shells, and sponges, but we now exclude these resources.  In the case of coral, harvest is not sustainable given current and future global threats.  For sponges and shells, harvest yields were often highly variable and had relatively small values (Table 6.11), resulting in scores fluctuating dramatically across years for some countries even though the total USD values contributed very little to national economies (e.g. going from 100USD to 200USD would double the score). 
 
-**Table 5.11. Commodity values**
+**Table 6.11. Commodity values**
 Total value (in USD) of 5 different natural product categories for the entire span of FAO commodities dataset (1976-2017). 
 
 ```{r commodities values, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
@@ -17,13 +17,13 @@ kable_styling(full_width = T)
 ```
 
 
-As such, we focus on three natural product categories: ornamental fish, fish oil and fish meal, and inedible seaweeds and marine plants (Table 5.12). However, sponges and shells do appear to be important for these countries: . 
+As such, we focus on three natural product categories: ornamental fish, fish oil and fish meal, and inedible seaweeds and marine plants (Table 6.12). However, sponges and shells do appear to be important for these countries: . 
 
 #### Current status
 
-To determine the total production in tonnes for seaweed we summed seaweed production provided in the FAO global aquaculture production data [@united_nations_fao_2018]. To determine total production in tonnes of ornamental fish we summed the products provided in the FAO commodities data [@united_nations_fao_2017]. Finally, to determine the total production in tonnes for fish oil and fish meal, we used Watson (2019) global marine fisheries catch data [@watson_global_2019] and B/Bmsy data [@ricard_examining_2012; @costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016] calculated from our fisheries sub-goal (methods can be found in section 6.6.1), and subsetted the stocks for stocks used for fish oil production (Table 5.12) [@froehlich_avoiding_2018]. The tonnes of harvest of fish oil and fish meal species were multiplied by 0.7 to reflect the amount of the fish actually going to production of feed or oil, while the other 30% of fish is used in other ways, such as direct human consumption (https://www.fisheries.noaa.gov/insight/feeds-aquaculture).
+To determine the total production in tonnes for seaweed we summed seaweed production provided in the FAO global aquaculture production data [@united_nations_fao_2018]. To determine total production in tonnes of ornamental fish we summed the products provided in the FAO commodities data [@united_nations_fao_2017]. Finally, to determine the total production in tonnes for fish oil and fish meal, we used Watson (2019) global marine fisheries catch data [@watson_global_2019] and B/Bmsy data [@ricard_examining_2012; @costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016] calculated from our fisheries sub-goal (methods can be found in section 6.6.1), and subsetted the stocks for stocks used for fish oil production (Table 6.12) [@froehlich_avoiding_2018]. The tonnes of harvest of fish oil and fish meal species were multiplied by 0.7 to reflect the amount of the fish actually going to production of feed or oil, while the other 30% of fish is used in other ways, such as direct human consumption (https://www.fisheries.noaa.gov/insight/feeds-aquaculture).
 
-**Table 5.12. Natural product categories**. 
+**Table 6.12. Natural product categories**. 
 List of species and FAO products included in each of the three natural product categories.
 
 ```{r np commodity, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
@@ -49,7 +49,7 @@ where, $H_{c}$ is the harvest level for a category relative to its own peak refe
 
 For seaweeds and ornamental fish we calculated $H_{c}$ as the most recent harvest (in metric tons) per region relative to the maximum harvest ever achieved in that region, under the assumption that the maximum achieved at any point in time was likely the maximum possible. This creates a reference point internal to each country. We rescaled these values from 0-1, with the peak harvest set to 1.0.
 
-For fish oil and fish meal, we used the same methods to calculate the status as our fisheries sub-goal, only we subsetted the species (Table 5.12) to those species that contribute to fish oil and fish meal (methods for our fisheries sub-goal can be found in section 6.6.1). The tonnes of harvest of fish oil and fish meal species were multiplied by 0.7 to reflect the proportion of catch among these taxa going to production of feed or oil. 
+For fish oil and fish meal, we used the same methods to calculate the status as our fisheries sub-goal, only we subsetted the species (Table 6.12) to those species that contribute to fish oil and fish meal (methods for our fisheries sub-goal can be found in section 6.6.1). The tonnes of harvest of fish oil and fish meal species were multiplied by 0.7 to reflect the proportion of catch among these taxa going to production of feed or oil. 
 
 Although we do not know actual sustainable levels of harvest for ornamentals, $S_{p}$, in each region, we estimated it based on exposure and risk components:
 
@@ -77,9 +77,9 @@ where ${N}$ is the number of product categories, $c$, that were harvested, and $
 
 If a product had a peak value, but was missing a harvest value for that product in a given year, we used $w_{c} = 0$ during the aggregation for that year.
 
-Because dollar values were not present in the data that was used for seaweeds and fish oil, we relied on the FAO global commodities dataset to obtain these, which we used to calculate $w_c$ for each category (Table 5.13).
+Because dollar values were not present in the data that was used for seaweeds and fish oil, we relied on the FAO global commodities dataset to obtain these, which we used to calculate $w_c$ for each category (Table 6.13).
 
-**Table 5.13. Natural product categories**. 
+**Table 6.13. Natural product categories**. 
 List of FAO products included in each of the three natural product categories used for determining natural product weights.
 
 ```{r np commodity weights, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
@@ -101,7 +101,7 @@ There are several important caveats about the natural product status model. Firs
 This model requires both harvest tonnes and value data. However, because of inconsistencies with how data are reported to FAO, there are many cases where harvest data but no value data are reported, and vice versa. We gapfilled these data because otherwise these mismatches in reporting would result in losing real data, especially for producing the weight contributions of each natural product commodity. We used a linear regression model to estimate missing tonnes or US dollar values [@frazier_mapping_2016].  For countries that never harvested a product, we assumed they cannot produce it and treat that as a ‘no data’ rather than a zero value. For countries that harvested a product at any point in time, empty values are treated as zeros since the country has the capacity to harvest that product. 
 
 #### Trend
-Trend was calculated as described in section 4.3.1.
+Trend was calculated as described in section 5.3.1.
 
 
 #### Data
