@@ -4,7 +4,7 @@ The mariculture subgoal attempts to measure each region's food production from m
 
 
 #### Current status
-The status of the mariculture subgoal, $x_{mar}$, was defined as production of strictly marine taxa from FAO categories for both marine and brackish waters, excluding species that were not used as a source of food for human consumption. In particular this was only an issue for seaweeds, as many seaweed species are not used for human consumption (or only partially used for human consumption). Table 6.8 shows the proportions, with a justification column, explaining the proportions of each seaweed species used for human consumption. Seaweeds are included as they are a source of food in many places, but for the amount that is consumed by people (85% on average globally from FAO, 81% from our estimates), the tonnes of harvest is multiplied by 0.2 to adjust for protein content relative to fish and shellfish mariculture.  
+The status of the mariculture subgoal, $x_{mar}$, was defined as production of strictly marine taxa from FAO categories for both marine and brackish waters, excluding species that were not used as a source of food for human consumption. In particular this was only an issue for seaweeds, as many seaweed species are not used for human consumption (or only partially used for human consumption). Table 6.8 shows the proportions, with a justification column, explaining the proportions of each seaweed species used for human consumption.
 
 
 **Table 6.8 Mariculture seaweed exclusion**. 
