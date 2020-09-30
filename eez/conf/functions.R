@@ -234,7 +234,7 @@ MAR <- function(layers) {
   
   # adjustment for seaweeds based on protein content
   rky <- rky %>%
-    dplyr::mutate(tonnes = ifelse(taxa_group == "AL", tonnes*0.2, tonnes)) %>%
+    #dplyr::mutate(tonnes = ifelse(taxa_group == "AL", tonnes*0.2, tonnes)) %>%
     dplyr::select(-taxa_group)
   
   # 4-year rolling mean of data
