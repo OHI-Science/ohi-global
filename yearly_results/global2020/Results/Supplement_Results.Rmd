@@ -1,5 +1,5 @@
 ---
-title: 'OHI 2019 Results'
+title: 'OHI 2020 Results'
 output: 
   html_document:
     code_folding: show
@@ -33,7 +33,7 @@ library(cowplot)
 library(here)
 library(plotly)
 
-## See ohi-global/global2019/Reporting/Results.Rmd and ohi-global/global2019/first_look.Rmd for code used to create some of the figures included here.  If data are updated, that file must be updated prior to this one.
+## See ohi-global/yearly_results/global2020/Results_first_look.Rmd for code used to create some of the figures included here.  If data are updated, that file must be updated prior to this one.
 
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
 goal_names <- data.frame(goal=goals, long_goal=c("Index", 
@@ -76,7 +76,7 @@ goal_names2 <- data.frame(goal=goals, long_goal=c("Index",
                                                   "Tourism & recreation"))
 
 ## General settings to control
-scenario <- "2019" #identify scenario of focus (this can be changed to obtain data for other years)
+scenario <- "2020" #identify scenario of focus (this can be changed to obtain data for other years)
 
 ## General files to load
 rgn_names <- read.csv(here('eez/layers/rgn_global.csv')) %>%
@@ -84,7 +84,7 @@ rgn_names <- read.csv(here('eez/layers/rgn_global.csv')) %>%
   dplyr::mutate(country = as.character(country))
 
 
-radicalFile = '2019-11-15' #date extension on the radical data files that are used for all tables/figures
+radicalFile = '2020-10-01' #date extension on the radical data files that are used for all tables/figures
 
 ```
 
@@ -114,11 +114,11 @@ kable(data)
 
 See the [Methods](https://raw.githack.com/OHI-Science/ohi-global/draft/documents/methods/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
 
-A CSV formatted dataset from the 2019 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2019/OHI_final_formatted_scores_2019-11-15.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 8 assessment years (2012-2019). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019) for description of data.
+A CSV formatted dataset from the 2020 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2020/OHI_final_formatted_scores_2020-10-01.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 9 assessment years (2012-2020). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2020) for description of data.
 
-The data layers (described in section 6 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2019.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
+The data layers (described in section 7 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2020.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
 
-The files used to prepare data layers for the ohi-global assessment can be downloaded from Github: [ohiprep v2019.1: Preparation of data for 2019 Ocean Health Index global assessment](https://github.com/OHI-Science/ohiprep_v2019/releases).
+The files used to prepare data layers for the ohi-global assessment can be downloaded from Github: [ohiprep v2020.1: Preparation of data for 2020 Ocean Health Index global assessment](https://github.com/OHI-Science/ohiprep_v2020/releases).
 
 The core functions used to calculate OHI scores can be downloaded as a package from Github, using the following code in [R](https://cran.r-project.org/): 
 
@@ -137,8 +137,8 @@ library(ohicore)
 ### Summary of score results
 
 
-##### Figure A. Regional 2019 OHI index scores.
-Map (top) and histogram (bottom) of 2019 index scores for each OHI region. 
+##### Figure A. Regional 2020 OHI index scores.
+Map (top) and histogram (bottom) of 2020 index scores for each OHI region. 
 
 ```{r score figures, echo=FALSE, fig.height=10, fig.width=10}
 ## Figure created in Reporting.Rmd
@@ -157,10 +157,10 @@ grid.arrange(map_label, Index_map, hist_label, Index_hist,
 
 ```
 
-##### Figure B. Flowerplot of 2019 goal/subgoal scores
-Flowerplot describing the 2019 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
+##### Figure B. Flowerplot of 2020 goal/subgoal scores
+Flowerplot describing the 2020 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
 
-Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2019/Results/figures/FlowerPlots)
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2020/Results/figures/FlowerPlots)
 
 
 ```{r flowerplot, echo=FALSE, height=5, width=10}
@@ -170,21 +170,21 @@ knitr::include_graphics(here(sprintf("yearly_results/global%s/Results/figures/Fl
 ```
 
 
-##### Figure C. Maps and histograms of 2019 OHI goal scores.
-The 2019 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
+##### Figure C. Maps and histograms of 2020 OHI goal scores.
+The 2020 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
 
 ```{r testing images, echo=FALSE, fig.height=30, fig.width=10}
 
 ## change each year to reflect appropriate file paths
-scenario = "2019"
+scenario = "2020"
 
 ## Figures created in Reporting.Rmd
 
-AO_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global2019/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_AO_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+AO_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global2020/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_AO_%s_mol.png", scenario, scenario))), interpolate=TRUE)
 AO_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/AO_scores.png", scenario))), interpolate=TRUE)
 AO_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
-BD_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global2019/Results",scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_BD_%s_mol.png", scenario, scenario))), interpolate=TRUE)
+BD_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global2020/Results",scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_BD_%s_mol.png", scenario, scenario))), interpolate=TRUE)
 BD_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/BD_scores.png", scenario))), interpolate=TRUE)
 BD_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
 
@@ -234,12 +234,12 @@ grid.arrange(AO_text, AO_map, AO_hist,
 
 ```
 
-##### Figure D. Maps and histograms of 2019 OHI subgoal scores.
-The subgoal 2019 scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
+##### Figure D. Maps and histograms of 2020 OHI subgoal scores.
+The subgoal 2020 scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
 ```{r subgoal scores, echo=FALSE, fig.width=10, fig.height=25}
 
-scenario <- "2019"
+scenario <- "2020"
 
 # BD
 BD <- textGrob("Biodiversity", gp=gpar(fontsize=12), just="left", x=0)
@@ -293,7 +293,7 @@ grid.arrange(BD, bd,
 
 
 ##### Figure E. Country scores across scenario year
-Overview of the scores from the 2019 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 8 years of data.  Black regions indicate no data.  Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2019/Results/figures/carpetPlot.png) to zoom in to see specific regions.
+Overview of the scores from the 2020 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 9 years of data.  Black regions indicate no data.  Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2020/Results/figures/carpetPlot.png) to zoom in to see specific regions.
 
 This plot is good for providing a quick overview of:
 
@@ -344,7 +344,7 @@ kable(data_spread)
 
 
 ##### Figure F. Average annual change in OHI Index scores.
-Map (top) and histogram (bottom) of the slope estimates from a linear regression model of the Index scores from 2012 to 2019 for each region.
+Map (top) and histogram (bottom) of the slope estimates from a linear regression model of the Index scores from 2012 to 2020 for each region.
 
 
 ```{r trend figures, echo=FALSE, fig.height=10, fig.width=10}
@@ -367,7 +367,7 @@ grid.arrange(map_label, Index_map, hist_label, Index_hist,
 
 
 ##### Figure G. Average annual change in OHI goal scores.
-Map of the slope estimates from a linear regression model of the 10 goal scores from 2012 to 2019 for each region.
+Map of the slope estimates from a linear regression model of the 10 goal scores from 2012 to 2020 for each region.
 
 ```{r trends goals, echo=FALSE, fig.height=15, fig.width=10}
 
@@ -409,7 +409,7 @@ grid.arrange(AO_map,
 ```
 
 ##### Figure H. Average annual change in OHI subgoal scores.
-Map of the slope estimates from a linear regression model of the 8 subgoal scores from 2012 to 2019 for each region. The subgoal scores for the following goals: biodiversity, food provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
+Map of the slope estimates from a linear regression model of the 8 subgoal scores from 2012 to 2020 for each region. The subgoal scores for the following goals: biodiversity, food provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
 <br>
 ```{r subgoal trends, echo=FALSE, fig.width=10, fig.height=15}
@@ -447,7 +447,7 @@ grid.arrange(BD, bd,
 
 
 ##### Figure I. Barplot of average annual change in goal trends for each region.
-The values are the slope estimate from a linear regression model of the scores from 2012 to 2019 for each region and goal.
+The values are the slope estimate from a linear regression model of the scores from 2012 to 2020 for each region and goal.
 
 ```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
 
@@ -458,7 +458,7 @@ knitr::include_graphics(here(sprintf("yearly_results/global%s/Results/figures/Tr
 
 ##### Figure J. Comparing trend and average index scores
 
-To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2019) and the trends for each region.
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2020) and the trends for each region.
 
 Of most concern are regions that have poor scores and declining trends.
 
@@ -482,7 +482,7 @@ avg_index <- index %>%
     geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
     geom_vline(xintercept = 67, color="red", size=.5, linetype=3) +
     theme_bw() + 
-    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2019 scores)") 
+    labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2020 scores)") 
     
 
   plotly_fig <- plotly::ggplotly(p)
