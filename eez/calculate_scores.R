@@ -168,12 +168,6 @@ sb_test <- compare %>%
   
 
 
-source('eez/score_check_test.R')
-
-score_check_test(commit = "e890b22", scenario_year = 2020,
-                 file_name = "sb_99_last_year_test", save_csv = TRUE, NA_compare = TRUE)
-
-
 
 library(ggplot2)
 p <- ggplot(dplyr::filter(compare, year==2018 & dimension=="status" & goal == "FIS"), aes(x=old_score, y=score)) +
