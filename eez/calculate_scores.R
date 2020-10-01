@@ -148,24 +148,15 @@ scores_all_years <- dplyr::bind_rows(scorelist)
 # save results
 write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 
-scores_all_years <- read_csv(here("eez/scores.csv")) %>%
-  dplyr::filter(goal == "HAB")
+
 # STEP 10: Review results
 
-
-##### TESTING SCORE CHECK. LOOK HERE MEL #####
-source('eez/score_check_test.R')
-
-score_check_test(commit = "e890b22", scenario_year = 2020,
-                     file_name = "sb_99_last_year", save_csv = TRUE, NA_compare = TRUE)
-
-#########################
 
 ### Some methods for visualizing the data
 ## final commit from last year: a832c5a
 # Link being sourced here is incorrect, need to change it!
- ohicore::score_check(commit = "e890b22", scenario_year = 2020,
-             file_name = "sb_99_last_year", save_csv = TRUE, NA_compare = TRUE)
+ ohicore::score_check(commit = "previous", scenario_year = 2020,
+             file_name = "fp_weights", save_csv = TRUE, NA_compare = TRUE)
 
 
 compare <- read.csv(here("eez/score_check/sb_99_test_diff_data_2020-09-30.csv"))
@@ -175,6 +166,13 @@ sb_test <- compare %>%
          year == 2020, 
          dimension == "score")
   
+
+
+source('eez/score_check_test.R')
+
+score_check_test(commit = "e890b22", scenario_year = 2020,
+                 file_name = "sb_99_last_year_test", save_csv = TRUE, NA_compare = TRUE)
+
 
 
 library(ggplot2)
