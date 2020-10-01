@@ -4,9 +4,9 @@ csl: methods-in-ecology-and-evolution.csl
 bibliography: OHI.bib
 ---
 
-**Data layers used in the OHI 2019 global assessment**
+**Data layers used in the OHI 2020 global assessment**
 
-These data layers were used to calculate the OHI 2019 assessment.  Clicking on the layer name in the "Layer" variable will provide a full description of the data layer (as well as a link to the actual data).  The "Description" variable provides links to the code used to create the data layers (on Github when available).
+These data layers were used to calculate the OHI 2020 assessment.  Clicking on the layer name in the "Layer" variable will provide a full description of the data layer (as well as a link to the actual data).  The "Description" variable provides links to the code used to create the data layers (on Github when available).
 
 ```{r DataLayer Table, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, include=FALSE}
 library(tidyverse)
@@ -77,7 +77,7 @@ updates <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohi-global/dr
 data <- data %>%
   left_join(updates, by="layer") %>%
   select(-layer) %>%
-  select(Layer=Name, Description, Dimension, References, "2019 Updates" = Updates) %>%
+  select(Layer=Name, Description, Dimension, References, "2020 Updates" = Updates) %>%
   arrange(Dimension)
 
 kable(data)
