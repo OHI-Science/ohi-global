@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Create shapefiles to give to ARCGIS"
 author: "Gage Clawson"
 date: "9/28/2020"
 output: html_document
@@ -15,7 +15,7 @@ library(mapview)
 
 ```
 
-
+Match our scores data with the shapefiles that Victor provided, grab the geometries, and rewrite so that we can upload to ARCGIS online.
 ```{r}
 ohi_scores_sf <- st_read("Global_OHI_Scores_2012_to_2019.shp")
 
@@ -24,67 +24,74 @@ colnames(ohi_scores_sf)
 
 
 ## lets compare to our scores from last year 
-test_scores <- ohi_scores_sf %>%
-  dplyr::filter(Year == 2012) %>%
-  dplyr::filter(rgn_id == 175)
+ohi_scores_renamed <- ohi_scores_sf %>%
+  # dplyr::filter(Year == 2012) %>%
+  # dplyr::filter(rgn_id == 174) %>%
+  dplyr::rename("MAR_score" = "scr_", "MAR_trend" = "trd_") %>%
+  dplyr::rename("AO_score" = "scr1", "AO_trend" = "trd1") %>%
+  dplyr::rename("BD_score" = "sc_1", "BD_trend" = "tr_1") %>%
+  dplyr::rename("CP_score" = "sc_2", "CP_trend" = "tr_2") %>%
+  dplyr::rename("CS_score" = "sc_3", "CS_trend" = "tr_3") %>%
+  dplyr::rename("CW_score" = "sc_4", "CW_trend" = "tr_4") %>%
+  dplyr::rename("ECO_score" = "sc_5", "ECO_trend" = "tr_5") %>%
+  dplyr::rename("FIS_score" = "sc_6", "FIS_trend" = "tr_6") %>%
+  dplyr::rename("FP_score" = "sc_7", "FP_trend" = "tr_7") %>%
+  dplyr::rename("HAB_score" = "sc_8", "HAB_trend" = "tr_8") %>%
+  dplyr::rename("ICO_score" = "sc_9", "ICO_trend" = "tr_9") %>%
+  dplyr::rename("Index_score" = "s_10") %>%
+  dplyr::rename("LSP_score" = "s_13", "LSP_trend" = "t_12") %>%
+  dplyr::rename("LIV_score" = "s_12", "LIV_trend" = "t_11") %>%
+  dplyr::rename("LE_score" = "s_11", "LE_trend" = "t_10") %>%
+  dplyr::rename("NP_score" = "s_14", "NP_trend" = "t_13") %>%
+  dplyr::rename("SP_score" = "s_15", "SP_trend" = "F_t_14") %>%
+  dplyr::rename("SPP_score" = "s_16", "SPP_trend" = "t_15") %>%
+  dplyr::rename("TR_score" = "s_17", "TR_trend" = "t_16") 
 
-scores_df_v2019 <- read_csv("../../global2019/scores_2019-11-15.csv") 
+ohi_scores_renamed_2 <- ohi_scores_renamed %>%
+  dplyr::select(rgn_id , geometry) %>%
+  dplyr::rename("region_id"="rgn_id") %>%
+  distinct(region_id, geometry)
 
-test_v2019 <- scores_df_v2019 %>%
-  dplyr::filter(year == 2012) %>%
+```
+
+```{r}
+scores_2020 <- read_csv(file.path("../scores_2020-10-01.csv")) %>%
   dplyr::filter(dimension %in% c("score", "trend", "index")) %>%
-  pivot_wider(names_from = c(goal, dimension), values_from = score) %>%
-  dplyr::filter(region_id == 175)
+  pivot_wider(names_from = c(goal, dimension), values_from = score)
 
-## rgn_id
-## rgn_nam
-## rgn_key
-## scr_ == ?? MAR_score ??
-## scr1 == AO_score
-## sc_1 == BD_score
-## sc_2 == CP_score
-## sc_3 == CS_score 
-## sc_4 == CW_score
-## sc_5 == ECO_score
-## sc_6 == FIS_score
-## sc_7 == FP_score
-## sc_8 == HAB_score
-## sc_9 == ICO_score
-## sc_10 == index_score
-## sc_11 == LE_score
-## sc_12 == LIV_score
-## sc_13 == LSP_score
-## sc_14 == NP_score
-## sc_15 == SP_score
-## sc_16 == SPP_score
-## sc_17 == TR_score
-## trd_ == ?? NP_trend ??
-## trd1 == AO_trend
-## tr_1 == BD_trend
-## tr_2 == CP_trend
-## tr_3 == CS_trend 
-## tr_4 == CW_trend
-## tr_5 == ECO_trend
-## tr_6 == FIS_trend
-## tr_7 == FP_trend
-## tr_8 == HAB_trend
-## tr_9 == ICO_trend
-## tr_10 == index_trend
-## tr_11 == LE_trend
-## tr_12 == LIV_trend
-## tr_13 == LSP_trend
-## tr_14 == MAR_trend
-## tr_15 == SP_trend
-## tr_16 == SPP_trend
-## tr_17 == TR_trend
-## Std_Date is december 1st of each assessment year 
-## Year is the year
-## geometry
+scores_2020_sf_names <- scores_2020 %>%
+  merge(ohi_scores_renamed_2) %>%
+  st_sf() 
 
+st_write(scores_2020_sf_names, "scores_2020/scores_2020_names.shp", driver="ESRI Shapefile")
 
-colnames(test_scores)
+# scores_2020_shp_names <- as_Spatial(scores_2020_sf_names)
+mapview(scores_2020_sf_names)
 
-region_data()
+scores_2020_sf_no_names <- scores_2020_sf_names %>%
+  dplyr::rename("scr_" = "MAR_score",  "trd_" = "MAR_trend") %>%
+  dplyr::rename( "scr1" = "AO_score",   "trd1" = "AO_trend") %>%
+  dplyr::rename("sc_1" = "BD_score", "tr_1" = "BD_trend") %>%
+  dplyr::rename( "sc_2" = "CP_score",  "tr_2" = "CP_trend") %>%
+  dplyr::rename( "sc_3" = "CS_score" , "tr_3" = "CS_trend") %>%
+  dplyr::rename( "sc_4" = "CW_score",  "tr_4" = "CW_trend") %>%
+  dplyr::rename( "sc_5" = "ECO_score", "tr_5" = "ECO_trend") %>%
+  dplyr::rename( "sc_6" = "FIS_score", "tr_6" = "FIS_trend") %>%
+  dplyr::rename( "sc_7" = "FP_score", "tr_7" = "FP_trend") %>%
+  dplyr::rename("sc_8" = "HAB_score" , "tr_8" = "HAB_trend" ) %>%
+  dplyr::rename("sc_9" = "ICO_score",  "tr_9" = "ICO_trend") %>%
+  dplyr::rename( "s_10" = "Index_score") %>%
+  dplyr::rename( "s_13" = "LSP_score", "t_12" = "LSP_trend") %>%
+  dplyr::rename( "s_12" = "LIV_score", "t_11" = "LIV_trend") %>%
+  dplyr::rename( "s_11" = "LE_score", "t_10" = "LE_trend") %>%
+  dplyr::rename("s_14" = "NP_score", "t_13" = "NP_trend") %>%
+  dplyr::rename( "s_15" = "SP_score", "F_t_14" = "SP_trend") %>%
+  dplyr::rename( "s_16" = "SPP_score", "t_15" = "SPP_trend") %>%
+  dplyr::rename("s_17" = "TR_score", "t_16" = "TR_trend")
+
+st_write(scores_2020_sf_no_names, "scores_2020/scores_2020_no_names.shp", driver="ESRI Shapefile")
+
+mapview(scores_2020_sf_no_names)
 ```
 
 
