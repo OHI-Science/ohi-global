@@ -52,6 +52,7 @@ ohi_scores_renamed_2 <- ohi_scores_renamed %>%
   dplyr::rename("region_id"="rgn_id") %>%
   distinct(region_id, geometry)
 
+# rgn_nam, rgn_key, are_km2
 ```
 
 ```{r}
@@ -59,9 +60,22 @@ scores_2020 <- read_csv(file.path("../scores_2020-10-01.csv")) %>%
   dplyr::filter(dimension %in% c("score", "trend", "index")) %>%
   pivot_wider(names_from = c(goal, dimension), values_from = score)
 
+region_data()
+regions_shape()
+
+regions_df <- regions %>%
+  as.data.frame() %>%
+  dplyr::select(-geometry) %>%
+  dplyr::filter(rgn_type == "eez") %>%
+  dplyr::rename("rgn_nam" = "rgn_name" , "are_km2" = "area_km2")
+
 scores_2020_sf_names <- scores_2020 %>%
   merge(ohi_scores_renamed_2) %>%
-  st_sf() 
+  dplyr::rename("rgn_id" = "region_id") %>%
+  st_sf() %>%
+  merge(regions_df) %>%
+  dplyr::select(-rgn_ant_id, -rgn_type, -type_w_ant)
+
 
 st_write(scores_2020_sf_names, "scores_2020/scores_2020_names.shp", driver="ESRI Shapefile")
 
@@ -87,9 +101,21 @@ scores_2020_sf_no_names <- scores_2020_sf_names %>%
   dplyr::rename("s_14" = "NP_score", "t_13" = "NP_trend") %>%
   dplyr::rename( "s_15" = "SP_score", "F_t_14" = "SP_trend") %>%
   dplyr::rename( "s_16" = "SPP_score", "t_15" = "SPP_trend") %>%
-  dplyr::rename("s_17" = "TR_score", "t_16" = "TR_trend")
+  dplyr::rename("s_17" = "TR_score", "t_16" = "TR_trend") %>%
+  dplyr::rename("Year" = "year") %>%
+  mutate(Std_Date = case_when(
+    Year == 2012 ~ "2012-12-01",
+    Year == 2013 ~ "2013-12-01",
+    Year == 2014 ~ "2014-12-01",
+    Year == 2015 ~ "2015-12-01",
+    Year == 2016 ~ "2016-12-01",
+    Year == 2017 ~ "2017-12-01",
+    Year == 2018 ~ "2018-12-01",
+    Year == 2019 ~ "2019-12-01",
+    Year == 2020 ~ "2020-12-01",
+  ))
 
-st_write(scores_2020_sf_no_names, "scores_2020/scores_2020_no_names.shp", driver="ESRI Shapefile")
+st_write(scores_2020_sf_no_names, "scores_2020/ohi_scores_2020_final.shp", driver="ESRI Shapefile")
 
 mapview(scores_2020_sf_no_names)
 ```
