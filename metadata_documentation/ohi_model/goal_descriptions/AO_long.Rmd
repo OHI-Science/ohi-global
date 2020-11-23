@@ -10,20 +10,20 @@ The livelihood and household economy provided by fishing are considered part of 
 Status for this goal ($x_{ao}$) is therefore measured by unmet demand ($D_u$), which includes measures of opportunity for artisanal fishing ($O_{ao}$, defined below) and the sustainability of the methods used ($S_{ao}$):
 
 $$
-x_{ao} = (1 – D_u) * S_{ao}, (Eq. 5.1)
+x_{ao} = (1 – D_u) * S_{ao}, (Eq. 6.1)
 $$
 
 where $S_{ao}$ indicates whether artisanal fishing is done in a sustainable manner, and is set to 1 because no data or information exist globally on the proportion of fishermen using sustainable versus unsustainable gear, $S_{ao}$.  And, $D_u$ is calculated as:
 
 $$
-D_{u} = (1 – PPPpcGDP) * (1 – O_{ao}), (Eq. 5.2)
+D_{u} = (1 – PPPpcGDP) * (1 – O_{ao}), (Eq. 6.2)
 $$
 
 where, $PPPpcGDP$ is the ln-transformed, rescaled purchasing power parity adjusted per capita GDP, and $O_{ao}$ is the access to artisanal-scale fishing determined by Mora et al. [-@mora_management_2009]. 
 
 We rescaled the ln-transformed $PPPpcGDP$ values from 0-1 by dividing by the value corresponding to the 99th quantile across all regions and years from 2005 to 2015 (values > 1 were capped at 1). Developed countries with lower demand for artisanal scale fishing (i.e., low poverty indicated by high PPPpcGDP) score high, regardless of the opportunity made available (since it would not matter to many), and developing countries with high demand and opportunity would also score high. 
 
-To assess the opportunity or ability to meet this demand, $O_{ao}$, we used data from Mora et al. [-@mora_management_2009], which scores countries on the institutional measures that support or facilitate artisanal and small-scale fishing. The data come from Figure S4 in Mora et al. [-@mora_management_2009], which is based on two survey questions focused on recreational and artisanal fishing (Table 5.1) and are on a scale from 0 to 100 (which we then rescale 0-1), where higher scores indicate better management. We extracted the data from the color codes on the map in Figure S4 in Mora et al.  [-@mora_management_2009]. There may be some small errors far a few countries due to difficulty of distinguishing between the two red colors at the lowest end of the scale.
+To assess the opportunity or ability to meet this demand, $O_{ao}$, we used data from Mora et al. [-@mora_management_2009], which scores countries on the institutional measures that support or facilitate artisanal and small-scale fishing. The data come from Figure S4 in Mora et al. [-@mora_management_2009], which is based on two survey questions focused on recreational and artisanal fishing (Table 6.1) and are on a scale from 0 to 100 (which we then rescale 0-1), where higher scores indicate better management. We extracted the data from the color codes on the map in Figure S4 in Mora et al.  [-@mora_management_2009]. There may be some small errors far a few countries due to difficulty of distinguishing between the two red colors at the lowest end of the scale.
 
 The sustainability of artisanal fishing practices could be approximated by the percent of fishermen that use sustainable gear such as hook and line versus unsustainable methods such as dynamite, cyanide and, arguably, gill net fishing. Unfortunately data on proportion of gear type used within a country is scarce at best and so we were unable to include this term in the calculation of this goal; we present it here for conceptual completeness. We considered using the information and data contained in Pitcher et al. [-@pitcher_evaluations_2006] which looks at compliance of 53 countries with the UN’s Code of Conduct for responsible fisheries. These results are strongly correlated with the data from Mora et al. [-@mora_management_2009] (p < 0.001; R^2^ = 0.22), and thus we used the Mora et al.
 
@@ -32,7 +32,7 @@ Several issues and datasets relevant to artisanal fishing opportunities were not
 Another potential driver of demand for artisanal fishing opportunities is local preference for seafood and/or access to other sources of protein. Previous analyses have shown that seafood consumption (a proxy for preference for seafood) does not correlate well with national-level artisanal catch statistics [@halpern_global_2008] and access to other sources of protein is difficult to measure, and so we did not use either of these measures here.
 
 
-**Table 5.1. Artisanal access**. 
+**Table 6.1. Artisanal access**. 
 Questions from Mora et al. [-@mora_management_2009] that were used to evaluate access to artisanal scale fishing.
 
 * If recreational fishing exists to any extent, which of the following apply?
@@ -48,7 +48,7 @@ Questions from Mora et al. [-@mora_management_2009] that were used to evaluate a
      + Are there statistics being collected for this sort of fishing?      
 
 #### Trend
-Trend was calculated as described in section  4.3.1. Because we only have one value for $O_{ao}$, the trend becomes the change over time in the PPPpcGDP, i.e., how ‘unmet demand’ is changing over time.
+Trend was calculated as described in section  5.3.1. Because we only have one value for $O_{ao}$, the trend becomes the change over time in the PPPpcGDP, i.e., how ‘unmet demand’ is changing over time.
 
 #### Data
 _Status and trend_

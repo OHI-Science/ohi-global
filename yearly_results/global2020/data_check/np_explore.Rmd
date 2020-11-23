@@ -1,0 +1,253 @@
+---
+title: "NP explore"
+author: "Gage Clawson"
+date: "7/28/2020"
+output: html_document
+---
+
+## Explore the NP data after new data updates
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+source('http://ohi-science.org/ohiprep_v2020/workflow/R/common.R')
+```
+
+```{r}
+np_scores <- read_csv("../../../eez/score_check/np_new_methods_diff_data_2020-07-24.csv") 
+
+
+np_status <- np_scores %>%
+  filter(goal == "NP", dimension == "status", region_id != 0)
+
+## get top ten and bottom ten scores for 2020
+
+DT::datatable(np_status %>%
+  filter(year == 2020) %>%
+  arrange(score) %>%
+    dplyr::select(goal, dimension, rgn_name, year, score, old_score, change))
+
+## make a carpet plot to view the changes across years 
+
+data <- np_scores %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(score, 0),
+         value_old = round(old_score, 0)) %>%
+  mutate(rgn_name = as.character(rgn_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame()
+  
+
+global <- data %>%
+  select(rgn_name, meanIndex) %>%
+  filter(rgn_name == "Region") %>%
+  unique()
+
+order_rgn <- data %>%
+  filter(rgn_name != "Region") %>%
+  select(rgn_name, meanIndex) %>%
+  unique() %>%
+  arrange(meanIndex)
+  
+order_rgn <- rbind(order_rgn, global)
+
+goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+
+data$goal <- factor(data$goal, levels = goals)
+data$rgn_name <- factor(data$rgn_name, levels=order_rgn$rgn_name)
+
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+myPalette <-   c(reds, blues)
+
+scenario <- 2020
+
+data_np <- data %>%
+  filter(goal == "NP")
+  
+
+ggplot(data_np, aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+ggsave(here("yearly_results/global2020/data_check/np_carpet.png"), width=20, height=35)
+
+
+
+ggplot(data_np, aes(y=rgn_name, x=year, fill=value_old)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+ggsave(here("yearly_results/global2020/data_check/np_carpet_old.png"), width=20, height=35)
+
+```
+
+Standard deviations/Differences between scores 
+```{r}
+## New np exploration 2020
+
+tmp <- dplyr::filter(np_status) %>%
+  dplyr::group_by(region_id) %>%
+  dplyr::summarise(sd_old = sd(old_score),
+         sd_new = sd(score)) %>%
+  dplyr::ungroup() %>%
+  dplyr::mutate(lower_sd_new = ifelse(sd_new < sd_old, 1, 0),
+                difference = sd_old - sd_new) %>%
+  dplyr::filter(!is.na(lower_sd_new))
+
+length(tmp$lower_sd_new[tmp$lower_sd_new == 1]) ## 97 new sds are lower than old sds (133 total, because I excluded those that did not have scores before this update (n = 88))
+                                                ## 36 old sds are lower than new sds 
+
+mean(tmp$sd_new) # 6.347546
+mean(tmp$sd_old) # 13.02625
+
+plot(tmp$sd_old, tmp$sd_new)
+abline(0,1, col = 'red')
+
+
+tmp2 <- np_scores %>%
+  filter(dimension == "score", region_id != 0, goal == "NP")
+
+ggplot(tmp2, aes(x = old_score, y = score)) +
+  geom_point() +
+  facet_wrap(~year) +
+  labs(x = "Scores Old Methods", y = "Scores New Methods") +
+  theme_bw() +
+  geom_abline(col = "red")
+
+
+## Look at weights between two methods and tonnes 
+
+weights_2020 <- read.csv("~/github/ohiprep_v2020/globalprep/np/v2020/output/np_product_weights.csv")
+weights_2020_old <- read.csv("~/github/ohiprep_v2020/globalprep/np/v2020_old/output/np_harvest_weights_from_usd.csv") %>% rename("old_weight" = "weight") %>%
+  mutate(year = 2020)
+
+weights_all <- full_join(weights_2020, weights_2020_old) %>%
+  dplyr::select(-year)
+
+tmp3 <- tmp2 %>%
+  filter(year == 2020)
+
+tonnes_2020_old <- read.csv("~/github/ohiprep_v2020/globalprep/np/v2020_old/output/np_harvest_tonnes.csv") %>%
+  filter(year == 2017) %>%
+  dplyr::select(-year) %>%
+  rename("tonnes_old" = "tonnes")
+
+seaweed_tonnes_new <- read.csv("~/github/ohiprep_v2020/globalprep/np/v2020/output/np_seaweed_harvest_tonnes.csv") %>%
+  group_by(rgn_id, year) %>%
+  summarise(tonnes = sum(tonnes)) %>%
+  filter(year == 2018) %>% 
+  dplyr::select(-year) %>%
+  mutate(product = "seaweeds") %>%
+  ungroup()
+
+orn_tonnes_new <- tonnes_2020_old %>%
+  filter(product == "ornamentals") %>%
+  rename("tonnes" = "tonnes_old")
+
+fofm_tonnes_new <- read.csv("~/github/ohiprep_v2020/globalprep/np/v2020/int/mean_catch_FOFM.csv") %>%
+  group_by(rgn_id, year) %>%
+  summarise(tonnes = sum(catch)) %>%
+  filter(year == 2017) %>%
+  dplyr::select(-year) %>%
+  mutate(product = "fish_oil") %>%
+  ungroup()
+
+tonnes_2020_new <-  rbind(seaweed_tonnes_new, orn_tonnes_new, fofm_tonnes_new)
+
+tonnes_old_new <- full_join(tonnes_2020_new, tonnes_2020_old) %>%
+  dplyr::select(rgn_id, product, tonnes_new = tonnes, tonnes_old)
+
+# largest positive change: Cambodia, region_id = 24
+filter(weights_all, rgn_id == 24) 
+
+filter(tonnes_old_new, rgn_id == 24)
+
+# Here we can see that the weights shifted pretty dramatically to primarily seaweed, and away from ornamentals. Now let's take a look at the actual tonnes values to see some more evidence.
+# It looks like due to the new data sources for seaweeds and FOFM, there are actual tonnes values associated with Cambodia, which would explain why their score increased so much (especially since it is primarily seaweeds, which are very sustainably harvested).
+
+# largest negative change: Equatorial Guinea, region_id = 104
+filter(weights_all, rgn_id == 104) 
+
+filter(tonnes_old_new, rgn_id == 104)
+
+# The weights shifted from ornamentals to FOFM here.
+
+# largest changes to weights: Montenegro (score change from 0 to 87.86), region_id = 186
+filter(weights_all, rgn_id == 186) 
+
+filter(tonnes_old_new, rgn_id == 186)
+
+# For Montenegro we can see that the weights change pretty dramatically, but the reason the score really changed is because there is actually data for FOFM now!
+
+# I could go through and do this for more regions, but I think this has convinced me that the changes are primarily due to the new data sources for FOFM and seaweeds, and not so much due to the exclusion of shells, corals, and sponges.
+
+
+```
+
+```{r}
+## Read in quant dataset from intermediate folder
+h_tonnes <- read.csv('~/github/ohiprep_v2020/globalprep/np/v2020_old/int/tonnes.csv')
+
+## Read in value dataset from intermediate folder
+h_usd <- read.csv('~/github/ohiprep_v2020/globalprep/np/v2020_old/int/usd.csv')
+
+## concatenates h_tonnes and h_usd data
+## h includes rgn_name, rgn_id, commodity, product, year, tonnes, usd.
+h <- h_usd %>%
+    full_join(h_tonnes, by=c('rgn_name', 'rgn_id', 'commodity', 'product', 'year')) %>%
+    mutate(commodity = as.character(commodity)) %>%
+    arrange(rgn_id, product, commodity, year)
+
+source('~/github/ohiprep_v2020/globalprep/np/v2020_old/R/np_fxn.R')
+
+## clips out years prior to first reporting year, for each commodity per region
+h <- h %>% np_harvest_preclip()
+
+
+graph_data_2 <- h %>%
+  group_by(rgn_id, product) %>%
+  summarise(sum_usd = sum(usd, na.rm = TRUE), sum_tonnes = sum(tonnes, na.rm = TRUE)) %>%
+  arrange(-sum_usd)
+
+test <- graph_data_2 %>%
+  group_by(rgn_id) %>%
+  summarise(max = max(sum_tonnes)) %>%
+  ungroup() %>%
+  left_join(graph_data_2, by = c("rgn_id")) %>%
+  filter(max == sum_tonnes) %>%
+  arrange(product) %>%
+  dplyr::select(rgn_id, product, sum_tonnes)
+
+
+write.csv(test, "np_int/old_np_product_maximums.csv", row.names = FALSE)
+
+
+np_old_counts <- test %>%
+        count(product)
+
+write.csv(np_old_counts, "np_int/old_np_count_maxs.csv", row.names = FALSE)
+
+
+  ggplot(test, aes(x = product, y = max_count_usd, label = max_count_usd)) +
+  geom_col() + 
+  theme_bw() +
+  geom_label() + 
+  labs(title = "Count of regions with maximum usd per product ")
+```
+
+
+
+
+ 

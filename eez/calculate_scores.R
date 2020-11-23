@@ -8,16 +8,16 @@
 ## STEP 1: download ohicore package
 ## Install the appropriate ohicore:
 library(devtools)
-#devtools::install_github("ohi-science/ohicore@master") # typicaly this version will be used
-devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore
+#devtools::install_github("ohi-science/ohicore@master") # typically this version will be used
+devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore.. use this for 2020 assessment year
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 ## STEP 2:
 ## identify repo where data will be taken from: 
-repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2019/gh-pages/"
+repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/"
 
 # STEP 3: Scenario years in this year's assessment
-scenario_years <- c(2012:2019)
+scenario_years <- c(2012:2020)
 
 #***
 
@@ -31,7 +31,7 @@ library(readr)
 library(here)
 
 ## source file path info depending on operating system
-source('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2019/gh-pages/workflow/R/common.R')
+source('http://ohi-science.org/ohiprep_v2020/workflow/R/common.R')
 
 
 #############################
@@ -109,9 +109,9 @@ ohicore::CheckLayers(layers.csv = here('eez/layers.csv'),
 # calculate scores for each year scenario and save to a single csv file:
 
 ## General function to calculate scores
-get_scores <- function(s_year){ # s_year=2019
+get_scores <- function(s_year){  #s_year=2020
 
-#  s_year <- as.numeric(s_year)
+  #s_year <- as.numeric(s_year)
   print(sprintf("For assessment year %s", s_year))
 
   # set the scenario year
@@ -141,7 +141,7 @@ conf   <-  ohicore::Conf(here('eez/conf'))
 layers <-  ohicore::Layers(layers.csv = here('eez/layers.csv'), layers.dir = here('eez/layers'))
 
 #scorelist = lapply(X=2018, FUN=get_scores)
-scorelist = lapply(X=scenario_years, FUN=get_scores) # 37 warnings were generated (nothing of concern)
+scorelist = lapply(X=scenario_years, FUN=get_scores) # 31 warnings were generated (nothing of concern)
 scores_all_years <- dplyr::bind_rows(scorelist)
 
 
@@ -151,22 +151,22 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 
 # STEP 10: Review results
 
+
 ### Some methods for visualizing the data
-
-## final commit from last year: 1fdf7f2
+## final commit from last year: a832c5a
 # Link being sourced here is incorrect, need to change it!
-ohicore::score_check(commit="previous", scenario_year=2019,
-            file_name="final_scores", save_csv = TRUE, NA_compare = TRUE)
+ ohicore::score_check(commit = "previous", scenario_year = 2020,
+             file_name = "fp_weights", save_csv = TRUE, NA_compare = TRUE)
 
 
+compare <- read.csv(here("eez/score_check/sb_99_test_diff_data_2020-09-30.csv"))
 
-compare <- read.csv(here("eez/score_check/fp_weights_diff_data_2019-10-23.csv")) 
+sb_test <- compare %>%
+  dplyr::filter(goal == "HAB",
+         year == 2020, 
+         dimension == "score")
+  
 
-tmp <- dplyr::filter(compare, !is.na(score) & is.na(old_score)) %>%
-  dplyr::filter(dimension=="status")
-
-tmp <- dplyr::filter(compare, goal=="FIS" & region_id==105) %>%
-  dplyr::filter(dimension=="status")
 
 
 library(ggplot2)

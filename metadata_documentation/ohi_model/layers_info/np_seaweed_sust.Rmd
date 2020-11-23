@@ -1,0 +1,2 @@
+The seaweed sustainability layer is derived from the  **`r layer_meta$name[layer_meta$layer == 'mar_sustainability_score']`**. Here, we take the mariculture sustainability scores, and subset them for our the seaweed species included in **`r layer_meta$name[layer_meta$layer == 'np_seaweed_tonnes']`**.
+

@@ -7,7 +7,7 @@ This subgoal measures the revenue produced from marine-related industries.
 The model to estimate the status of the economies sub-goal, $x_{eco}$, is:
 
 $$
-x_{eco} = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { e }_{ c,k } }  }{ \displaystyle\sum _{ k=1 }^{ N }{ { e }_{ r,k } }  }, (Eq. 5.12)
+x_{eco} = \frac { \displaystyle\sum _{ k=1 }^{ N }{ { e }_{ c,k } }  }{ \displaystyle\sum _{ k=1 }^{ N }{ { e }_{ r,k } }  }, (Eq. 6.12)
 $$
 
 where, $e$ is the total adjusted revenue generated directly and indirectly from sector $k$, at current, $c$, and reference, $r$, time points.

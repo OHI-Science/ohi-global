@@ -1,3 +1,0 @@
-See **`r layer_meta$name[layer_meta$layer == 'np_harvest_tonnes']`** layer for more information about these data.
-
-Within each region, the harvest of each commodity was scaled relative to its maximum value across all years. The tonnes of each commodity is divided by the maximum value observed for the commodity in each region, with a 35% buffer applied to avoid penalizing yearly variation and to prevent overharvesting (i.e., max value times 0.65).

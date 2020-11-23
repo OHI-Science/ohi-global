@@ -18,11 +18,12 @@ library(here)
 
 yrs <- read.csv(here("eez/conf/scenario_data_years.csv"))
 new_yr <- yrs %>%
-  filter(scenario_year == 2018) %>%  # indicate year of previous assessment
-  mutate(scenario_year = 2019) %>%       # indicate this year's assessment
+  filter(scenario_year == 2019) %>%  # indicate year of previous assessment
+  mutate(scenario_year = 2020) %>%       # indicate this year's assessment
   arrange(layer_name, scenario_year, data_year)
 
-yrs <- rbind(yrs, new_yr)
+yrs <- rbind(yrs, new_yr) %>%
+  arrange(layer_name, scenario_year, data_year)
 
 write.csv(yrs, here("eez/conf/scenario_data_years.csv"), row.names=FALSE)
 
@@ -52,4 +53,4 @@ layers <- meta %>%
                 "prep status" = NA) %>%
   dplyr::select("layer name" = name, layer, directory = dir, "file name" = fn, targets, notes, "prep status")
 
-write.csv(layers, here("metadata_documetation/layers_forGoogleSheet.csv"), row.names=FALSE)
+write.csv(layers, "metadata_documentation/layers_forGoogleSheet.csv", row.names=FALSE)

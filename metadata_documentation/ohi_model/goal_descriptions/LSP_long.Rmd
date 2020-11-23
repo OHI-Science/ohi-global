@@ -8,7 +8,7 @@ The identification of protected areas does not indicate the proportion of specia
 We calculate the status of this goal as:
 
 $$
-x_{lsp} = \frac { \left( \frac{\%_{CMPA}}{\%_{Ref_{CMPA}}} + \frac {\%_{CP}}{\%_{Ref_{CP}}} \right) }{ 2 }, (Eq. 5.18)
+x_{lsp} = \frac { \left( \frac{\%_{CMPA}}{\%_{Ref_{CMPA}}} + \frac {\%_{CP}}{\%_{Ref_{CP}}} \right) }{ 2 }, (Eq. 6.18)
 $$
 
 where, $\%_{CMPA}$ is the proportion of coastal marine protected area, $\%_{CP}$ is the proportion of coastline protected, and $\%_{Ref} = 30%$ for both measures. 
@@ -18,7 +18,7 @@ We focus only on coastal waters (within 3 nautical miles of shore) for marine sp
 We use the United Nation’s World Database on Protected Areas (WDPA) to identify protected areas [@unep-wcmc_world_2015]. The WDPA aggregates several key databases: IUCN’s World Commission on Protected Areas, Global Marine Protected Areas, UNESCO World Heritage Marine sites, National Parks and Nature Reserves, and the United Nations List of Protected Places.  In most cases the year of designation is listed for each protected area. 
 
 #### Trend
-Trend was calculated as described in section  4.3.1.
+Trend was calculated as described in section  5.3.1.
 
 #### Data
 _Status and trend_

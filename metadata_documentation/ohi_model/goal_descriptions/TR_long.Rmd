@@ -7,23 +7,23 @@ The tourism and recreation goal aims to capture the number of people, and the qu
 The model for the status of the tourism & recreation goal, $x_{tr}$, is:
 
 $$
-x_{tr} = \frac{ T_r }{ T_{90th}}, (Eq. 5.19)
+x_{tr} = \frac{ T_r }{ T_{90th}}, (Eq. 6.19)
 $$
 
 where, $T_{90th}$ is the $T_r$ value of the region value that corresponds to the 90th quantile, and:  
 
 $$
-T_{r} = { E }\times { S }\times{W}, (Eq. 5.20)
+T_{r} = { E }\times { S }, (Eq. 6.20)
 $$
 
-where, $E$ is the proportion of employees directly involved in the travel and tourism industry, $S$ is sustainability, and $W$ is a penalty based on travel warnings issued by the US State Department. 
+where, $E$ is the proportion of employees directly involved in the travel and tourism industry, and $S$ is sustainability. 
 
 Ideally there would be data available specifically for employment, $E$, in coastal tourism industries, however the best data available at a global scale reports the proportion of the workforce directly employed in tourism, not just coastal jobs [World Travel and Tourism Council, @wttc_world_2017]. Because we do not know how employment patterns vary geographically within sectors for each region, we assume that the proportion employed in the tourism industry is the same in coastal areas as it is away from the coast, and thus $E$ is the same whether applied solely to coastal areas or to the entire region. 
 
 The WTTC data include jobs for both leisure and business that are directly connected to the tourism industry, including accommodation services, food and beverage services, retail trade, transportation services, and cultural, sports and recreational services, but exclude investment industries and suppliers. Unfortunately it was not possible to determine the proportion of jobs affiliated with strictly leisure tourism. However, some (unknown) proportion of business travelers also enjoy the coast for leisure during their visit to coastal areas, such that we assumed all travel and tourism employment was related to tourism and recreation values. Regional applications of the Index can make use of better-resolved data and more direct measures of tourism, as has been done within the US West Coast [@halpern_assessing_2014], where data for participation in coastal recreational activities across 19 different sectors were available.
 
 
-Measures of sustainability are data from the World Economic Forum's [@crotti_travel_2017] Travel Tourism Competitiveness Index (TTCI).  This index measures "the set of factors and policies that enable the sustainable development of the Travel & Tourism sector, which in turn, contributes to the development and competitiveness of a country".  
+Measures of sustainability are data from the World Economic Forum's [@crotti_world_2019] Travel Tourism Competitiveness Index (TTCI).  This index measures "the set of factors and policies that enable the sustainable development of the Travel & Tourism sector, which in turn, contributes to the development and competitiveness of a country".  
 
 The index is based on 14 pillars that are organized into four subindexes:
 
@@ -48,22 +48,9 @@ The index is based on 14 pillars that are organized into four subindexes:
     
 The sustainability factor, $S$ is calculated as the average of the 4 subindexes. Missing sustainability data were gapfilled using per capita GDP (World Bank data with gaps filled using CIA data) based on a linear regression model.  For regions without per capita GDP data, remaining missing data were gapfilled using averages of [UN geopolitical regions](https://github.com/OHI-Science/ohiprep/blob/master/src/LookupTables/rgn_georegions_wide_2013b.csv), [@united_nations_statistics_2013] with sustainability data. 
 
-Penalties, $W$ were assigned based on travel warnings issued by the US State Department (Table 5.11). 
-
-**Table 5.11. Travel warning penalties**
-Penalties, $W$, based on level or US State Department travel warnings.
-
-Travel warning                            | Penalty, $W$
------------------------------------------ | ---------------
-Level 1:Exercise Normal Precautions       |  1 (no penalty)
-Level 2: Exercise Increased Caution       |  1 (no penalty)
-Level 3: Reconsider Travel                | 0.25
-Level 4: Do Not Travel                    | 0
-
-
 
 #### Trend
-Trend was calculated as described in section  4.3.1.
+Trend was calculated as described in section  5.3.1.
 
 #### Data
 _Status and trend_

@@ -36,7 +36,7 @@ Wages were multiplied by GDPpcPPP for each country/year to make values comparabl
 
 We used the Occupational Wages around the World (OWW) database produced by Remco H. Oostendorp and Richard B. Freeman in 2005 ([http://www.nber.org/oww/](http://www.nber.org/oww/)). These data were drawn from the International Labour Organization and subjected to a standardization process (for more information, see [http://www.nber.org/oww/Technical _document_1983-2003_standardizationv3.pdf](http://www.nber.org/oww/Technical _document_1983-2003_standardizationv3.pdf)). The database provides several different calibrations, and we use the “x3wl calibration”, described as a “country-specific and uniform calibration with lexicographic weighting,” and recommended as being the preferred calibration in most cases. Although significant gaps exist in this database, it contains country-specific information on average wages in many industries for more than 150 countries from 1983-2003. Data represent average monthly wages of a male worker. Wage data were divided by the inflation conversion factor for 2010 so that wage data across years would be comparable ([http://oregonstate.edu/cla/polisci/sahr/sahr](http://oregonstate.edu/cla/polisci/sahr/sahr)), and then multiplied by the purchasing power parity-adjusted per capita gdp (ppppcgdp, WorldBank).  The adjusted wage data were then multiplied by 12 to get annual wages. We used the industry and occupation classifications reported in the OWW to estimate wages for marine-related sectors.
 
-**Table 6.10. Occupation classification for wage data sectors**
+**Table 7.6. Occupation classification for wage data sectors**
 
 Sector | Occupation classifications
 ------- | -----------------------------------------------

@@ -2,7 +2,7 @@
 
 This model aims to assess the amount of wild-caught seafood that can be sustainably harvested with penalties assigned for both over- and under-harvesting. As such, one must establish a reference point at which harvest is both maximal and sustainable. We assess food provision from wild caught fisheries by estimating population biomass relative to the biomass that can deliver maximum sustainable yield ($B/B_{MSY}$) for each stock. When available, we obtained $B/B_{MSY}$ values from the RAM Legacy Stock Assessment Database [@ricard_examining_2012], which contains stock assessment information for a portion of global fish stocks. When RAM data were not available, we used data-limited approaches that have been developed to estimate $B/B_{MSY}$ values using globally available catch data [@costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016]. To calculate the status for each region and year, $B/B_{MSY}$ values were converted to a stock status score between 0-1 that penalizes both over- and under-harvesting. To obtain the overall status for each region, the stock status scores for all the stocks within a region were averaged using a geometric mean weighted by the average catch (tonnes) of each stock. 
 
-**Figure 5.1: Overview of fisheries status calculations.**
+**Figure 6.1: Overview of fisheries status calculations.**
 
 ![](../../metadata_documentation/ohi_model/figures/fis_methods.png)
 
@@ -12,7 +12,7 @@ _Spatial allocation of catch to regions_
 
 The data we use to calculate $B/B_{MSY}$ and the weights used in the geometric mean are from Watson (2018) global marine fisheries catch data [@watson_mapping_2018]. Watson (2018) uses a spatial allocation method to distribute FAO catch data (reported at the country scale) to a global grid of one half-degree cell resolution based on the spatial distribution of fished taxa and the allocation of catch to fleets based on fishing access agreements [@zeller_still_2016]. 
 
-We aggregate the Watson (2018) catch data in two ways. To get the data needed to weight the stock status scores, we sum the total catch for each taxa within each region's EEZ to get the total catch in tonnes for each year. To get the data needed to calculate $B/B_{MSY}$ values, we sum the total catch for each taxa within each major fishing region [@fao_fisheries_and_aquaculture_department_cwp_2015] for each year.
+We aggregate the Watson (2018) catch data in two ways. To get the data needed to weight the stock status scores, we sum the total catch for each taxa within each region's EEZ to get the total catch in tonnes for each year. To get the data needed to calculate $B/B_{MSY}$ values, we sum the total catch for each taxa within each major fishing region [@fao_fisheries_and_aquaculture_department_cwp_2015] for each year. We have traditionally included all fisheries catch in the Fisheries subgoal. However, a substantial portion of the catch is not used for human consumption, but rather for fish oil and fish meal used primarily for animal feed. Currently, it is estimated about 10% of forage fish enter the human diet directly [@froehlich_avoiding_2018]. To account for this, we excluded the proportion of catch that produce fish oil and fish meal for animal feed from the total catch. 
 
 To combine the $B/B_{MSY}$ values from the RAM database with the Watson (2018) global fish catch data, we used the spatial boundaries that Christopher Free created for the RAM stocks up to 2017 and assigned FAO and OHI regions to each stock [@free_mapping_2017]. Newly added stocks to the RAM database in 2018 had no spatially explicit information, so were manually assigned regions based on best available information on stock distribution.
 
@@ -35,14 +35,14 @@ _Goal model calculations_
 The status of wild caught fisheries, $x_{fis}$, for each reporting region in each year was calculated as the geometric mean of the stock status scores, $SS$ (derived from $B/B_{MSY}$ score for each stock, described below) and weighted by the stock's relative contribution to overall catch, $C$, such that:
 
 $$
-x_{fis} = \prod _{ i=1 }^{ n }{ { SS }_{ i }^{ (\frac { { C }_{ i } }{ \sum { { C }_{ i } }  } ) } },  (Eq. 5.9)
+x_{fis} = \prod _{ i=1 }^{ n }{ { SS }_{ i }^{ (\frac { { C }_{ i } }{ \sum { { C }_{ i } }  } ) } },  (Eq. 6.9)
 $$
 
 where ${i}$ is an individual taxon and $n$ is the total number of taxa in the reported catch for each region throughout the time-series, and ${C}$ is the average catch, since the first non null record, for each taxon within each region. 
 
 We used a geometric weighted mean to account for the portfolio effect of exploiting a diverse suite of resources, such that small stocks that are doing poorly will have a stronger influence on the overall score than they would using an arithmetic weighted mean, even though their ${C}$ contributes relatively little to the overall tonnage of harvested seafood within a given region. The behavior of the geometric mean is such that improving a well-performing stock is not rewarded as much as improving one that is doing poorly. We believe this behavior is desirable because the recovery of stocks in poor condition requires more effort and can have more important effects on the system than making a species that is already abundant even more abundant. In this way, the score is not solely driven by absolute tonnes of fish produced and accounts for preserving the health of a diversity of species.
 
-$B/B_{MSY}$ values were used to derive stock status scores, ${SS}$, such that the best score is achieved for stocks at $B/B_{MSY} = 1\%$, with a 5% error buffer, and it decreases as the distance of $B$ from $B_{MSY}$ increases, due to under- or over-exploitation (Figure 5.2). For each species reported, within each major fishing area, the stock status score was calculated as:
+$B/B_{MSY}$ values were used to derive stock status scores, ${SS}$, such that the best score is achieved for stocks at $B/B_{MSY} = 1\%$, with a 5% error buffer, and it decreases as the distance of $B$ from $B_{MSY}$ increases, due to under- or over-exploitation (Figure 6.2). For each species reported, within each major fishing area, the stock status score was calculated as:
 
 ![](../../metadata_documentation/ohi_model/figures/StockStatus.png)
 
@@ -50,7 +50,7 @@ where, for $B/B_{MSY} < 1$ (with a 5% buffer), status declines with direct propo
 
 For the 2016 assessment, we did not apply underharvest penalties to the following stocks: Katsuwonus pelamis (FAO region 71), Clupea harengus (FAO region 27), Trachurus capensis (FAO region 47), Sardinella aurita (FAO region 34), Scomberomorus cavalla (FAO region 31). These stocks are fished in multiple regions and the current model formulation ends up penalizing the regions that have the highest proportion of catch of these stocks, which is opposite of what we would like to do.  This suggests that our approach to penalizing underharvested stocks could be improved at the model level.  
 
-**Figure 5.2: Conversion of $B/B_{MSY}$ to stock status, $SS$ score.**
+**Figure 6.2: Conversion of $B/B_{MSY}$ to stock status, $SS$ score.**
 
 ![](../../metadata_documentation/ohi_model/figures/FIS_Bmsy2score.png)
 
@@ -77,9 +77,9 @@ plot <- ggplot(b, aes(x=bmsy, y=score)) +
 
 ```
 
-We needed to gapfill missing status, $SS$, scores for a large proportion of the catch.  Gapfilling was necessary because we could only estimate $B/B_{MSY}$ values for taxa identified to the species level.  Furthermore, we were unable to estimate $B/B_{MSY}$ values for some species due to model non-convergence or too few years of catch data.  Missing status scores were gapfilled using the mean status scores of the stocks sharing a region and year, the mean value was then adjusted using a taxonomic reporting penalty (Table 5.7).  For catch not reported to the species level, a penalty was applied for increasingly coarser taxonomic reporting, as this is considered a sign of minimal monitoring and management.   We based the penalty on the ISSCAAP convention for taxon codes (http://www.fao.org/fishery/collection/asfis/en), which defines 6 levels of taxonomic aggregation, from 6 (species) to 1 (order or higher).  When ${g}<6$, a penalized gapfilled value for status was estimated for the taxa in each region:
+We needed to gapfill missing status, $SS$, scores for a large proportion of the catch.  Gapfilling was necessary because we could only estimate $B/B_{MSY}$ values for taxa identified to the species level.  Furthermore, we were unable to estimate $B/B_{MSY}$ values for some species due to model non-convergence or too few years of catch data.  Missing status scores were gapfilled using the mean status scores of the stocks sharing a region and year, the mean value was then adjusted using a taxonomic reporting penalty (Table 6.7).  For catch not reported to the species level, a penalty was applied for increasingly coarser taxonomic reporting, as this is considered a sign of minimal monitoring and management.   We based the penalty on the ISSCAAP convention for taxon codes (http://www.fao.org/fishery/collection/asfis/en), which defines 6 levels of taxonomic aggregation, from 6 (species) to 1 (order or higher).  When ${g}<6$, a penalized gapfilled value for status was estimated for the taxa in each region:
 
-**Table 5.7: Penalty applied to gapfilled stock status scores**
+**Table 6.7: Penalty applied to gapfilled stock status scores**
 The penalty is multiplied by the gapfilled stock status score to obtain the final stock status score. 
 
 ISSCAAP taxon code  |  Description                                    |  Penalty (gapfilled score multiplied by value)
@@ -101,7 +101,7 @@ Despite the fact that invertebrates represent a large proportion of global caugh
 This approach captures whether stocks have been historically well managed, but it is worth noting that it does not directly measure current food production.
 
 #### Trend
-Trend was calculated as described in section  4.3.1.
+Trend was calculated as described in section  5.3.1.
 
 #### Data
 _Status and trend_

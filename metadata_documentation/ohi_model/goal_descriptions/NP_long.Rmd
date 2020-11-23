@@ -1,66 +1,108 @@
 ## Natural products
 
-In many countries the harvest of non-food natural products is important for local economies and can also be traded internationally. The sustainable harvest of these products is therefore an important component of a healthy ocean. This goal assesses the ability of countries to maximize the sustainable harvest of living marine resources, such as corals, shells, seaweeds, and fish for the aquarium trade. It does not include bioprospecting which focuses on potential (and largely unknowable and potentially infinite) value rather than current realized value, or non-living products such as oil and gas or mining products which by definition are not sustainable.  We include six natural product categories: coral, ornamental fish, fish oil, inedible seaweeds and marine plants, shells, and sponges (Table 5.10). We did not have data for other key natural products such as wood from mangroves, and we excluded oils from mammals as they are widely seen as (currently) unsustainably harvested due to low mammal populations.
+In many countries the harvest of non-food natural products is important for local economies and can also be traded internationally. The sustainable harvest of these products is therefore an important component of a healthy ocean. This goal assesses the ability of countries to maximize the sustainable harvest of living marine resources, and includes three natural product categories: ornamental fish, fish oil and fish meal, and inedible seaweeds and marine plants (Table 6.12). It does not include bioprospecting, which focuses on potential (and largely unknowable and potentially infinite) value rather than current realized value, or non-living products such as oil and gas or mining products which by definition are not sustainable. It also excludes wood from mangroves as few data exist for if/where this harvest is happening and whether it is sustainable, as well as oils from mammals as this harvest is widely seen as unsustainable. In past assessments we included coral harvest, shells, and sponges, but we now exclude these resources.  In the case of coral, harvest is not sustainable given current and future global threats.  For sponges and shells, harvest yields were often highly variable and had relatively small values (Table 6.11), resulting in scores fluctuating dramatically across years for some countries even though the total USD values contributed very little to national economies (e.g. going from 100USD to 200USD would double the score). 
 
+**Table 6.11. Commodity values**
+Total value (in USD) of 5 different natural product categories for the entire span of FAO commodities dataset (1976-2017). 
+
+```{r commodities values, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2020/int/h_methods_sum.csv') %>%
+  group_by(product) %>%
+  summarise(sum_tonnes = sum(tonnes, na.rm = TRUE)) %>%
+dplyr::select(Commodity = product, `Total value (USD)` = sum_tonnes) %>%
+  arrange(-`Total value (USD)`)
+
+kable(data) %>%
+kable_styling(full_width = T)
+```
+
+
+As such, we focus on three natural product categories: ornamental fish, fish oil and fish meal, and inedible seaweeds and marine plants (Table 6.12). However, sponges and shells do appear to be important for these countries: . 
 
 #### Current status
 
-To determine the total production in tonnes for each product category we summed the products provided in the FAO commodities data [@united_nations_fao_2016-1] for each category (Table 5.10). 
+To determine the total production in tonnes for seaweed we summed seaweed production provided in the FAO global aquaculture production data [@united_nations_fao_2018]. To determine total production in tonnes of ornamental fish we summed the products provided in the FAO commodities data [@united_nations_fao_2017]. Finally, to determine the total production in tonnes for fish oil and fish meal, we used Watson (2019) global marine fisheries catch data [@watson_global_2019] and B/Bmsy data [@ricard_examining_2012; @costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016] calculated from our fisheries sub-goal (methods can be found in section 6.6.1), and subsetted the stocks for stocks used for fish oil production (Table 6.12) [@froehlich_avoiding_2018]. The tonnes of harvest of fish oil and fish meal species were multiplied by 0.9 to reflect the amount of the fish actually going to production of feed or oil, while the other 10% of fish is used in other ways, such as direct human consumption [@froehlich_avoiding_2018].
 
-**Table 5.10. Natural product categories**. 
-List of FAO products included in each of the six natural product categories.
+**Table 6.12. Natural product categories**. 
+List of species and FAO products included in each of the three natural product categories.
 
 ```{r np commodity, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep/master/globalprep/np/v2016/raw/commodities2products.csv') %>%
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2020/raw/commodities2products_new.csv') %>%
   group_by(product) %>%
   summarize(subcategory = paste(commodity, collapse = ", ")) %>%
   select(commodity = product, subcategory) %>%
-  mutate(commodity = gsub("_", " ", commodity))
+  mutate(commodity = gsub("_", " ", commodity)) %>%
+dplyr::select(Commodity = commodity, Subcategory = subcategory)
 
-kable(data)
+kable(data) %>%
+kable_styling(full_width = F)
 
 ```
 
 
-The status of each natural product category, $P_c$, was calculated as: 
+The status of the seaweeds and ornamentals categories, $P_c$, were calculated as: 
 
 $$
- P_c = { H }_{ c }\ast { S }_{ c } , (Eq. 5.14)
+ P_c = { H }_{ c }\ast { S }_{ c } , (Eq. 6.14)
 $$
-where, $H_{c}$ is the harvest level for a category relative to its own (buffered) peak reference point and $S_{c}$ is the sustainability of that commodity.
+where, $H_{c}$ is the harvest level for a category relative to its own peak reference point and $S_{c}$ is the sustainability of that commodity.
 
-For each commodity, we calculated $H_{c}$ as the most recent harvest (in metric tons) per region relative to the maximum harvest ever achieved in that region, under the assumption that the maximum achieved at any point in time was likely the maximum possible. This creates a reference point internal to each country. We then established a buffer around this peak catch because we do not know whether it is sustainable. We rescaled these values from 0-1, with any value within 35% of the peak harvest set to 1.0.
+For seaweeds and ornamental fish we calculated $H_{c}$ as the most recent harvest (in metric tons) per region relative to the maximum harvest ever achieved in that region, under the assumption that the maximum achieved at any point in time was likely the maximum possible. This creates a reference point internal to each country. We rescaled these values from 0-1, with the peak harvest set to 1.0.
 
-Although we do not know actual sustainable levels of harvest, $S_{p}$, in each region, we estimated it based on exposure and risk components for each of the natural products commodities:
+For fish oil and fish meal, we used the same methods to calculate the status as our fisheries sub-goal, only we subsetted the species (Table 6.12) to those species that contribute to fish oil and fish meal (methods for our fisheries sub-goal can be found in section 6.6.1). The tonnes of harvest of fish oil and fish meal species were multiplied by 0.9 to reflect the proportion of catch among these taxa going to production of feed or oil. 
+
+Although we do not know actual sustainable levels of harvest for ornamentals, $S_{p}$, in each region, we estimated it based on exposure and risk components:
 
 $$
-S_{c} = 1- average({ E_c+R_c }),  (Eq. 5.15)
+S_{c} = 1- average({ E_c+R_c }),  (Eq. 6.15)
 $$
 
-where ${E_c}$ is the exposure term and ${R_c}$ is the risk term for each commodity.
+where ${E_c}$ is the exposure term and ${R_c}$ is the risk term for ornamentals.
 
-The exposure term, $E_c$, is the ln-transformed intensity of harvest calculated as tonnes of harvest per km^2^ of coral and/or rocky reef, depending on the product, relative to the global maximum.  We ln transformed the harvest intensity scores because the distribution of values was highly skewed; because we do not know the true threshold of sustainable harvest, nearly all values would be considered highly sustainable without the log transformation. 
+The exposure term, $E_c$, is the ln-transformed intensity of harvest for ornamental fish calculated as tonnes of harvest per km^2^ of coral and rocky reef, relative to the global maximum. We ln transformed the harvest intensity scores because the distribution of values was highly skewed; because we do not know the true threshold of sustainable harvest, nearly all values would be considered highly sustainable without the log transformation. To estimate rocky reef extent area (km^2^) we used data from Halpern et al. (2008), which assumes rocky reef habitat exists in all cells within 1 km of shore. Coral extent area (km^2^) are from UNEP-WCMC et al. (2018).
 
-The risk term, $R_c$, is based on whether a commodity has unsustainable harvest practices (i.e., the intensity of cyanide fishing for ornamental fish, and any harvest of corals since they are CITES protected species). Risk for all corals was set as 1 since species in both subclasses and multiple orders of extant corals in class Anthozoa are listed in CITES Appendices II and III (www.cites.org/eng/app/appendices.php). No sponges, algae or marine plants were listed in CITES and thus their risks were set at 0. Shells were also set as 0 since species were not listed individually in the FAO database and only one marine genus (_Tridacnidae_ spp.) and one marine species (_Lithophaga lithophaga_) were identified in CITES Appendix II. Risk for ornamental fish was set based on assessments of cyanide or dynamite fishing by Reefs at Risk Revisited (www.wri.org/publication/reefs-at-risk-revisited) under the assumption that most ornamental fishes are harvested from coral reefs. 
+The risk term, $R_c$, is based on whether ornamental fishing has unsustainable harvest practices. In specific, we used the intensity of cyanide and dynamite fishing as a proxy. Risk for ornamental fish was set based on assessments of cyanide or dynamite fishing by Reefs at Risk Revisited (www.wri.org/publication/reefs-at-risk-revisited) under the assumption that most ornamental fishes are harvested from coral reefs.
 
-For the fish oil commodity sustainability was estimated using the fisheries score for the country. It is not possible to identify which of the species fished in the area are used to extract the fish oil. Therefore the estimate is based on all the stocks harvested.
+For seaweed commodity sustainability, we used the mariculture sustainability scores represented in the Monterey Bay Aquarium Seafood Watch aquaculture recommendations [@noauthor_monterey_2020]. Ten mariculture practice criteria from the Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations contributed to the sustainability of mariculture (data quality, effluent, habitat risk, chemical use, feed, escapes, disease, source of stock, predator and wildlife mortalities, and escape of secondary species). These criteria represent the internal mariculture practices with the potential to affect the long term sustainability of the mariculture system. Scores for each assessment criterion were aggregated and averaged. All country average scores were then rescaled from 0 to 1 using the maximum possible raw SFW score of 10 and minimum of 1. The sustainability score for seaweeds in the Seafood Watch recommendations was a global score, 0.79, which was applied to the seaweed harvest. Seaweed is widely regarded as a very sustainable aquaculture harvest, however, it does poorly on 3 of the 10 criteria that Seafood Watch uses, bringing its average down to 0.79. In specific, it scores poorly on the data quality (having robust and up-to-date information on production practices and their impacts available for analysis), escapes (preventing population-level impacts to wild species or other ecosystem-level impacts from farm escapes), and habitat (maintaining the functionality of ecological valuable habitat) criteria.
+
+The fish oil commodity sustainability was estimated using the B/Bmsy values which were calculated in our fisheries sub-goal.
 
 To estimate the status score, $x_{np}$, for each region and year we took the weighted average of the individual product scores, $P_c$, such that:
 
 $$
-x_{np} = \frac { \displaystyle\sum _{ c=1 }^{ N }{ { P }_{ c }\ast { w }_{ c } }  }{ { { N } }  }, (Eq. 5.16)
+x_{np} = \frac { \displaystyle\sum _{ c=1 }^{ N }{ { P }_{ c }\ast { w }_{ c } }  }{ { { N } }  }, (Eq. 6.16)
 $$
 
-where ${N}$ is the number of product categories, $c$, that were harvested, and $w_{c}$ is the relative contribution of each product to the overall status of the goal. $w_c$ was calculated as the ratio of the maximum US dollar value for a product (from the smoothed, gap-filled data) across all years of data for the product, relative to the sum of maximum values for all products harvested in the country.
+where ${N}$ is the number of product categories, $c$, that were harvested, and $w_{c}$ is the relative contribution of each product to the overall status of the goal. $w_c$ was calculated as the ratio of the 5-year average maximum US dollar value for a product (from the smoothed, gap-filled FAO commodities data) across all years of data for the product, relative to the 5-year average sum of maximum values for all products harvested in the country.
 
 If a product had a peak value, but was missing a harvest value for that product in a given year, we used $w_{c} = 0$ during the aggregation for that year.
 
-There are several important caveats about the natural product status model. First, our approach is supply (export) based. If declining demand for a natural product causes a decline in production, the producing country’s score declines even if it could (sustainably) produce more. Similarly, if a country chose to reduce or halt production of a natural product in order to improve conservation or sustainability, its score will decline. Second, we do not have Maximum Sustainable Yield (MSY) estimates for any of the six natural products evaluated. When such estimates become available in the future they can easily be incorporated. These scenarios may lead to decreases in the score for a region despite maintenance or even improvement of the sustainable harvest of natural products; we instituted the 35% buffer around peak harvest (described above) as a way to help mitigate these potential issues. Finally, our estimate of the sustainability of many of the harvest practices is likely overly optimistic. For example, fishing for ornamental trade often employs unsustainable techniques such as cyanide fishing, but we have few data to inform such an estimate of sustainability in the status calculation for ornamental fish.
+Because dollar values were not present in the data that was used for seaweeds and fish oil, we relied on the FAO global commodities dataset to obtain these, which we used to calculate $w_c$ for each category (Table 6.13).
 
-This model requires both harvest tonnes and value data. However, because of inconsistencies with how data are reported to FAO, there are many cases where harvest data but no value data are reported, and vice versa. We gapfilled these data because otherwise these mismatches in reporting would result in losing real data. We used a linear regression model to estimate missing tonnes or US dollar values [@frazier_mapping_2016].  For countries that never harvested a product, we assumed they cannot produce it and treat that as a ‘no data’ rather than a zero value. For countries that harvested a product at any point in time, empty values are treated as zeros since the country has the capacity to harvest that product. 
+**Table 6.13. Natural product categories**. 
+List of FAO products included in each of the three natural product categories used for determining natural product weights.
+
+```{r np commodity weights, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2020/raw/commodities2products_weighting.csv') %>%
+  group_by(product) %>%
+  summarize(subcategory = paste(commodity, collapse = ", ")) %>%
+  select(commodity = product, subcategory) %>%
+  mutate(commodity = gsub("_", " ", commodity))%>%
+dplyr::select(Commodity = commodity, Subcategory = subcategory)
+
+kable(data) %>%
+kable_styling(full_width = F)
+
+```
+ 
+
+There are several important caveats about the natural product status model. First, our approach for ornamentals is supply (export) based. If declining demand for ornamentals causes a decline in production, the producing country’s score declines even if it could (sustainably) produce more. Similarly, if a country chose to reduce or halt production of ornamentals in order to improve conservation or sustainability, its score would decline. Second, we do not have Maximum Sustainable Yield (MSY) estimates for seaweeds or ornamental fish production. When such estimates become available in the future they can easily be incorporated. These scenarios may lead to decreases in the score for a region despite maintenance or even improvement of the sustainable harvest of natural products. Finally, our estimate of the sustainability of the harvest practices of ornamental fish are likely overly optimistic. For example, fishing for ornamental trade often employs unsustainable techniques such as cyanide fishing, but we have few data to inform such an estimate of sustainability in the status calculation for ornamental fish. 
+
+This model requires both harvest tonnes and value data. However, because of inconsistencies with how data are reported to FAO, there are many cases where harvest data but no value data are reported, and vice versa. We gapfilled these data because otherwise these mismatches in reporting would result in losing real data, especially for producing the weight contributions of each natural product commodity. We used a linear regression model to estimate missing tonnes or US dollar values [@frazier_mapping_2016].  For countries that never harvested a product, we assumed they cannot produce it and treat that as a ‘no data’ rather than a zero value. For countries that harvested a product at any point in time, empty values are treated as zeros since the country has the capacity to harvest that product. 
 
 #### Trend
-Trend was calculated as described in section 4.3.1.
+Trend was calculated as described in section 5.3.1.
+
 
 #### Data
 _Status and trend_
