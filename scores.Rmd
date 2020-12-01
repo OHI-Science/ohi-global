@@ -6,7 +6,7 @@ output:
     toc_float: true
 ---
 
-Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index score. Methods have incrementally improved each year with new information and knowledge. Thus, for annual scores to be comparable through time, previous scores are recalculated with the most recent methods for each past assessment year. **All scores below use the 2019 methods**.
+Ocean Health Index scores are calculated for each region for each goal before being combined into an overall Index score. Methods have incrementally improved each year with new information and knowledge. Thus, for annual scores to be comparable through time, previous scores are recalculated with the most recent methods for each past assessment year. **All scores below use the 2020 methods**.
 
 Below are eight years of global assessment scores for 220 regions (coastal nations and territories). <!---could bring back the Regions page to be only linked from here---> Flower plots illustrate the scores, with each petal representing an individual goal. Petal lengths convey the score of the goal, thus longer petals are closer to achieving their target. Only goals that are relevant to a region are scored, otherwise they are set to NA with grey petals. All scores are on a scale from 0-100, and the center number is the region's Index score.
 
@@ -17,7 +17,7 @@ library(tidyverse)
 source('_site.R')
 
 ## read in scores
-data <- readr::read_csv('https://github.com/OHI-Science/ohi-global/raw/published/yearly_results/global2019/OHI_final_formatted_scores_2019-11-15.csv') 
+data <- readr::read_csv('https://github.com/OHI-Science/ohi-global/raw/published/yearly_results/global2020/OHI_final_formatted_scores_2020-10-01.csv') 
 
 ## read in paths for figures
 regions_figs <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/ohi-global/published/eez/conf/web/regions_figs.csv')
@@ -60,7 +60,7 @@ for (r in regions$region_id){ # r = regions$region_id[1]
   
   flower_path <- file.path(
     'https://raw.githubusercontent.com/OHI-Science/ohi-global/published',
-    gsub("/home/frazier/ohi-global/", "", regions$flower_png[regions$region_id == r]))
+    gsub("/home/sgclawson/github/ohi-global/", "", regions$flower_png[regions$region_id == r]))
   
   ## header, flower
   cat(sprintf('## %s\n\n![](%s)\n\n', 

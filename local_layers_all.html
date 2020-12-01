@@ -25,6 +25,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -398,7 +400,7 @@ div.tocify {
 <h1>Artisanal fisheries opportunity</h1>
 <div id="ao_access" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_access.csv">ao_access</a></h4>
-<p>This layer represents the opportunity for artisanal and recreational fishing in each country based on the quality of management of the small-scale fishing sector. Global data were extracted from Mora et al. (2009), Figure S4. Figure S4 is based on two expert opinion survey questions related to artisanal and recreational fishing (classified as small-scale fishing; presented in Table S5). Overall scores for small-scale fisheries management for each country are based on a scale of 0 to 100, with higher scores representing better management. These values were then rescaled (using a maximum value of 100 and minimum value of 0) to range between 0 and 1 for each OHI region.</p>
+<p>This layer represents the opportunity for artisanal and recreational fishing in each country based on the quality of management of the small-scale fishing sector. Global data were extracted from Mora et al. (2009), Figure S4. Figure S4 is based on two expert opinion survey questions related to artisanal and recreational fishing (classified as small-scale fishing; presented in Table S5). Overall scores for small-scale fisheries management for each country are based on a scale of 0 to 100, with higher scores representing better management. These values were then rescaled (using a maximum value of 100 and minimum value of 0) to range between 0 and 1 for each OHI region.</p>
 <p>Questions from Mora et al. that were used to evaluate access to artisanal scale fishing:</p>
 <p>If recreational fishing exists to any extent, which of the following apply?</p>
 <ul>
@@ -460,17 +462,6 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>B/Bmsy</p>
 </div>
 </div>
-<div id="blast-fishing" class="section level1">
-<h1>Blast fishing</h1>
-<div id="np_blast" class="section level4 unnumbered">
-<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_blast.csv">np_blast</a></h4>
-<p>Reefs at Risk Revisited (Burke et al. 2007) recorded the global presence of destructive artisanal blast fishing based on survey observations and expert opinion. We reclassified the log-scale scoring system for the blast rasters so 0 = 0, 100 = 1, 1000 = 2. The mean raster score was then determined for each OHI region. The blast values for each region were then summed to get the total.</p>
-</div>
-<div id="units-5" class="section level4 unnumbered">
-<h4>Units</h4>
-<p>scaled 0-1</p>
-</div>
-</div>
 <div id="carbon-storage-weights" class="section level1">
 <h1>Carbon storage weights</h1>
 <div id="element_wts_cs_km2_x_storage" class="section level4 unnumbered">
@@ -478,7 +469,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>This layer describes the relative value of the habitats in each region to carbon storage, and is calculated by multiplying the habitat extent (km<sup>2</sup>) in each region by the amount of carbon the habitat sequesters (Laffoley &amp; Grimsditch 2009).</p>
 <p>Data is generated in ohi-global/eez/conf/functions.R.</p>
 <p>These data are called internally by ohicore functions (see: conf/config.R to see how these data are specified) to weight the data used to calculate pressure and resilience values.</p>
-<p><strong>Table 6.3. Carbon storage weights</strong></p>
+<p><strong>Table 7.3. Carbon storage weights</strong></p>
 <table>
 <thead>
 <tr class="header">
@@ -502,7 +493,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </tbody>
 </table>
 </div>
-<div id="units-6" class="section level4 unnumbered">
+<div id="units-5" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>extent*carbon_storage</p>
 </div>
@@ -525,15 +516,15 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </div>
 <div id="land-based-inorganic-pollution" class="section level4">
 <h4>Land-based inorganic pollution</h4>
-<p>These data are from Halpern et al. (2008, 2015), and available from Knowledge Network for Biocomplexity (KNB, <a href="https://knb.ecoinformatics.org/#view/doi:10.5063/F19021PC,%20rescaled_2013_inorganic_mol">https://knb.ecoinformatics.org/#view/doi:10.5063/F19021PC, rescaled_2013_inorganic_mol</a>). Non-point source inorganic pollution was modeled with global 1 km<sup>2</sup> impervious surface area data <a href="http://www.ngdc.noaa.gov/dmsp/">http://www.ngdc.noaa.gov/dmsp/</a> under the assumption that most of this pollution comes from urban runoff. These data will not capture point-sources of pollution or nonpoint sources where paved roads do not exist (e.g., select places in developing countries). Values were aggregated to the watershed and distributed to the pour point (i.e., stream and river mouths) for the watershed with raster statistics (i.e., aggregation by watershed).</p>
+<p>These data are from Halpern et al. (2008, 2015), and available from Knowledge Network for Biocomplexity (KNB, <a href="https://knb.ecoinformatics.org/#view/doi:10.5063/F19021PC,%20rescaled_2013_inorganic_mol">https://knb.ecoinformatics.org/#view/doi:10.5063/F19021PC, rescaled_2013_inorganic_mol</a>). Non-point source inorganic pollution was modeled with global 1 km<sup>2</sup> impervious surface area data <a href="http://www.ngdc.noaa.gov/dmsp/">http://www.ngdc.noaa.gov/dmsp/</a> under the assumption that most of this pollution comes from urban runoff. These data will not capture point-sources of pollution or nonpoint sources where paved roads do not exist (e.g., select places in developing countries). Values were aggregated to the watershed and distributed to the pour point (i.e., stream and river mouths) for the watershed with raster statistics (i.e., aggregation by watershed).</p>
 </div>
 <div id="ocean-pollution-shipping-lanes-ports" class="section level4">
 <h4>Ocean pollution (shipping lanes, ports)</h4>
-<p>These data are from Halpern et al. (2015), and available from the Knowledge Network for Biocomplexity (KNB, <a href="https://knb.ecoinformatics.org/#view/doi:10.5063/F1DR2SDD">https://knb.ecoinformatics.org/#view/doi:10.5063/F1DR2SDD</a>, rescaled_2013_one_ocean_pollution_mol). Ocean-based pollution combines commercial shipping traffic data and port data.</p>
+<p>These data are from Halpern et al. (2015), and available from the Knowledge Network for Biocomplexity (KNB, <a href="https://knb.ecoinformatics.org/#view/doi:10.5063/F1DR2SDD">https://knb.ecoinformatics.org/#view/doi:10.5063/F1DR2SDD</a>, rescaled_2013_one_ocean_pollution_mol). Ocean-based pollution combines commercial shipping traffic data and port data.</p>
 <p>Shipping data was obtained from two sources: (1) Over the past 20 years, 10-20% of the vessel fleet has voluntarily participated in collecting meteorological data for the open ocean, which includes location at the time of measurement, as part of the Volunteer Observing System (VOS). (2) In order to improve maritime safety, in 2002 the International Maritime Organization SOLAS agreement required all vessels over 300 gross tonnage (GT) and vessels carrying passengers to equip Automatic Identification System (AIS) transceivers, which use the Global Positioning System (GPS) to precisely locate vessels.</p>
 <p>Port data was based on the volume (measured in tonnes) of goods transported through commercial ports as a proxy measure of port traffic. Total cargo volume data by port was collected from regional and national statistical organizations, and from published port rankings.</p>
 </div>
-<div id="units-7" class="section level4 unnumbered">
+<div id="units-6" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -546,7 +537,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>The inverse of the pressure data (1 - Coastal chemical pollution) was used to estimate chemical trends for the clean water goal. The proportional yearly change in chemical pressure values were estimated using a linear regression model of the most recent five years of data (i.e., slope divided by value from the earliest year included in the regression model). The slope was then multiplied by five to get the predicted change in 5 years.</p>
 <p>The only layer with yearly data was land-based organic pollution (pesticide data). The land-based inorganic pollution (using impermeable surfaces as a proxy) and ocean pollution (shipping and ports) remained the same across years.</p>
 </div>
-<div id="units-8" class="section level4 unnumbered">
+<div id="units-7" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend</p>
 </div>
@@ -560,7 +551,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: goal</em></p>
 <p>Contracting parties to the Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES, <a href="http://www.cites.org/eng/%20disc/parties/alphabet.php">http://www.cites.org/eng/ disc/parties/alphabet.php</a>). The Convention is an international agreement between governments that aims to ensure that any international trade in plants and animals “does not threaten their survival.” All countries party to the Convention are given full credit for membership (territories are given the same score as their administrative countries); those countries that are not contracting parties are given no credit (score = 0).</p>
 </div>
-<div id="units-9" class="section level4 unnumbered">
+<div id="units-8" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>0 or 1</p>
 </div>
@@ -576,7 +567,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Methods follow those described for the <strong>Chemical pollution</strong> layer. However, the rescaled data were clipped to include only pixels within 3nm offshore, and the zonal mean for each region was calculated using this subset of data.</p>
 <p>For the clean waters goal calculations, the inverse of the pressure values is used (1 minus chemical pressure).</p>
 </div>
-<div id="units-10" class="section level4 unnumbered">
+<div id="units-9" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -592,7 +583,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Methods follow those described for the <strong>Nutrient pollution</strong> layer. However, the rescaled data were clipped to include only pixels within 3nm offshore, and the zonal mean for each region was calculated using this subset of data.</p>
 <p>For the clean waters goal calculations, the inverse of the pressure values is used (1 minus nutrient pressure).</p>
 </div>
-<div id="units-11" class="section level4 unnumbered">
+<div id="units-10" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -606,7 +597,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: fishing</em></p>
 <p>These data are calculated using the lasting special places status subgoal model using total marine protected area (km<sup>2</sup>) within 3 nm offshore (see <strong>Offshore coastal protected areas</strong> layer for information about the data). Following the lasting special places model, a reference point of 30% is used, such that any region with 30%, or more, protected area receives a score of 1.</p>
 </div>
-<div id="units-12" class="section level4 unnumbered">
+<div id="units-11" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -620,7 +611,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: habitat</em></p>
 <p>See <strong>Coastal protected marine areas (fishing preservation)</strong> for information about this layer.</p>
 </div>
-<div id="units-13" class="section level4 unnumbered">
+<div id="units-12" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -632,7 +623,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>This layer describes the relative value of the habitats in each region to coastal protection, and is calculated by multiplying the habitat extent (km<sup>2</sup>) in each region by the habitat protection rank.</p>
 <p>Data is generated in ohi-global/eez/conf/functions.R.</p>
 <p>These data are called internally by ohicore functions (see: conf/config.R to see how these data are specified) to weight the data used to calculate pressure and resilience values.</p>
-<p><strong>Table 6.4. Coastal protection ranks</strong></p>
+<p><strong>Table 7.4. Coastal protection ranks</strong></p>
 <table>
 <thead>
 <tr class="header">
@@ -664,9 +655,23 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </tbody>
 </table>
 </div>
-<div id="units-14" class="section level4 unnumbered">
+<div id="units-13" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>extent*rank_protection</p>
+</div>
+</div>
+<div id="coral-harvest-pressure" class="section level1">
+<h1>Coral harvest pressure</h1>
+<div id="hd_coral" class="section level4 unnumbered">
+<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_coral.csv">hd_coral</a></h4>
+<p><em>Pressure</em></p>
+<p><em>Category: ecological</em></p>
+<p><em>Subcategory: habitat destruction</em></p>
+<p>The total tonnes of coral harvest were determined for each region using export data from the FAO Global Commodities database. The tonnes of ornamental fishing was divided by the area of coral, taken from the hab_coral layer, to get the intensity of coral harvest per region. Following this, we set the reference value as the 95th quantile of coral harvest intensity. We then divided the intensity by the reference intensity. Anything that scored above 1 received a intensity pressure score of 1. To incorporate the health of the coral, we then multiplied the intensity pressure score by the health of the coral, to get the final pressure score.</p>
+</div>
+<div id="units-14" class="section level4 unnumbered">
+<h4>Units</h4>
+<p>scaled 0-1</p>
 </div>
 </div>
 <div id="economic-diversity" class="section level1">
@@ -677,7 +682,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Category: social</em></p>
 <p>Sector evenness was measured using Shannon’s Diversity Index, a common measure of ecological and economic diversity that has been applied previously to economic sectors <span class="citation">[@attaran_industrial_1986]</span>. The Diversity Index is computed as <span class="math inline">\({ H }^{ &#39; }/{ H }_{ max }\)</span> where:</p>
 <p><span class="math display">\[
-{ H }^{ &#39; } = \sum _{ i }^{ z }{ { f }_{ i }\ast  } \ln { { (f }_{ i }) }, (Eq. 6.1)
+{ H }^{ &#39; } = \sum _{ i }^{ z }{ { f }_{ i }\ast  } \ln { { (f }_{ i }) }, (Eq. 7.1)
 \]</span></p>
 <p>and Z is the total number of sectors, <span class="math inline">\(fi\)</span> is the frequency of the ith sector (the probability that any given job belongs to the sector), and <span class="math inline">\(H_{max} = \ln { Z }\)</span>.</p>
 </div>
@@ -779,6 +784,28 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>scaled 0-1</p>
 </div>
 </div>
+<div id="exposure-of-ornamental-fishing-to-coral-and-rocky-reef-habitats" class="section level1">
+<h1>Exposure of ornamental fishing to coral and rocky reef habitats</h1>
+<div id="np_exposure_orn" class="section level4 unnumbered">
+<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_exposure_orn.csv">np_exposure_orn</a></h4>
+<p>Exposure is the ln-transformed intensity of harvest calculated as tonnes of harvest per km<sup>2</sup> of coral and rocky reef of ornamental fishing, relative to the global maximum. We ln transformed the harvest intensity scores because the distribution of values was highly skewed; because we do not know the true threshold of sustainable harvest, nearly all values would be considered highly sustainable without the log transformation. To estimate rocky reef extent area (km<sup>2</sup>) we used data from Halpern et al. (2008), which assumes rocky reef habitat exists in all cells within 1 km of shore. Coral extent area (km<sup>2</sup>) are from UNEP-WCMC et al. (2018).</p>
+</div>
+<div id="units-21" class="section level4 unnumbered">
+<h4>Units</h4>
+<p>scaled 0-1</p>
+</div>
+</div>
+<div id="fish-oil-and-fish-meal-score" class="section level1">
+<h1>Fish oil and fish meal score</h1>
+<div id="np_fofm_scores" class="section level4 unnumbered">
+<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_fofm_scores.csv">np_fofm_scores</a></h4>
+<p>Fish oil and fish meal scores from Global Fisheries Landing Data (Watson 2019) and the RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. For this layer, nearly identical methods were used as in the fisheries sub-goal calculations. Instead of producing scores for all global fish stocks, we only produced scores for those that contribute to fish oil and fish meal (Froehlich 2018). The tonnes of harvest of these species were multiplied by 0.7 to reflect the proportion of this catch used for oil or feed.</p>
+</div>
+<div id="units-22" class="section level4 unnumbered">
+<h4>Units</h4>
+<p>scaled 0-1</p>
+</div>
+</div>
 <div id="fisheries-management-index" class="section level1">
 <h1>Fisheries management index</h1>
 <div id="fp_fish_management" class="section level4 unnumbered">
@@ -786,7 +813,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>These data describe the current effectiveness of fisheries management regimes along 6 axes (Melnychuk et al. 2017): scientific robustness, policy transparency, implementation capacity, subsidies, fishing effort, and foreign fishing. All countries with coastal areas were assessed through a combination of surveys, empirical data and enquiries to fisheries experts. For each OHI reporting region, scores for each category were rescaled between 0 and 1 using the maximum possible value for each category and then the average score of all 6 categories was used as the overall fisheries management effectiveness score.</p>
 <p>Data are not accessible in csv format from website, so points were manually entered into excel and saved as a csv. Because FMI scores only exist for 40 out of the 220 OHI regions, we predicted missing values using a linear models with Social Progress Index and UN georegion data as predictors. Uninhabited regions (N=20) were given an NA value.</p>
 </div>
-<div id="units-21" class="section level4 unnumbered">
+<div id="units-23" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -795,9 +822,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h1>Fishery catch data</h1>
 <div id="fis_meancatch" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_meancatch.csv">fis_meancatch</a></h4>
-<p>Fisheries catch data describe the average catch across years (from 1980 to present) for each fish stock and region. These values were used to weight stock status scores (derived from B/Bmsy values) in the fisheries model. The Global Fisheries Landings data (Watson 2019) is reported at 0.5 degree resolution for taxonomic levels range from species to class to “Miscellaneous not identified” for each year. Tonnes of catch for each taxon and year were summed within each OHI region, and then the average catch across years (1980 to present) was determined for each taxon and region.</p>
+<p>Fisheries catch data describe the average catch across years (from 1980 to present) for each fish stock and region. We have traditionally included all fisheries catch in the Food Provision goal. However, a substantial portion of the catch is not used for human consumption, but rather for fish oil and fish meal used primarily for animal feed. To account for this, we excluded the proportion of catch that produce fish oil and fish meal for animal feed (0.9) from the total catch. These values were used to weight stock status scores (derived from B/Bmsy values) in the fisheries model. The Global Fisheries Landings data (Watson 2019) is reported at 0.5 degree resolution for taxonomic levels range from species to class to “Miscellaneous not identified” for each year. Tonnes of catch for each taxon and year were summed within each OHI region, and then the average catch across years (1980 to present) was determined for each taxon and region.</p>
 </div>
-<div id="units-22" class="section level4 unnumbered">
+<div id="units-24" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>tonnes</p>
 </div>
@@ -808,7 +835,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_wildcaught_weight.csv">fp_wildcaught_weight</a></h4>
 <p>To weight the relative contributions of fisheries and mariculture to the food provision goal, we calculate the tonnes of fisheries production relative to the total tonnes of food production from fisheries and mariculture.</p>
 </div>
-<div id="units-23" class="section level4 unnumbered">
+<div id="units-25" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
 </div>
@@ -820,9 +847,19 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Pressure</em></p>
 <p><em>Category: ecological</em></p>
 <p><em>Subcategory: nonindigenous species</em></p>
-<p>This layer represents the potential for harmful genetic escapement based on whether the species being cultured is native or introduced. Data come from the Mariculture Sustainability Index (MSI, Trujillo 2008). In the MSI analysis native species receive the highest score (10), while foreign and introduced species receive the lowest (1) on the premise of potential impacts to local biodiversity if these species were to escape. Use of native but non-local species were scored intermediately based on the assumption that potentially negative alterations to genetic biodiversity occur from non-local sources as well, but to a lower degree. Genetic ‘pollution’ can arise when larvae, spats or seeds escape from poorly managed hatcheries, making native species vulnerable to outbreeding depressions and/or genetic bottlenecks. The MSI reports data for 359 country-species combinations (with 53 countries represented). Where multiple scores exist for a country the weighted average of all scores (0-10) is used. All country scores were then rescaled from 0 to 1, using the maximum raw score of 10 and minimum of 1. Countries that were not analyzed by Trujillo did not receive a score and this pressure layer falls out of their analyses.</p>
+<p>This layer represents the potential for harmful genetic escapement based on whether the species being cultured is native or introduced. Data come from the Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations (SFW, 2020). Ten mariculture practice criteria from the Monterey Bay Aquarium Seafood Watch (SFW) Aquaculture Recommendations contributed to the sustainability of mariculture (data quality, effluent, habitat risk, chemical use, feed, escapes, disease, source of stock, predator and wildlife mortalities, and escape of secondary species). The escapes criteria was used for this layer, where a score of 1 is the lowest, and a score of 10 is the highest. The scores reflect the potential impact of genetic escapes on local biodiversity, if these species were to escape. Genetic ‘pollution’ can arise when larvae, spats or seeds escape from poorly managed hatcheries, making native species vulnerable to outbreeding depressions and/or genetic bottlenecks. All country average scores were then rescaled from 0 to 1 using the maximum possible raw SFW score of 10 and minimum of 1.</p>
+<p>These scores are country and species-specific, however, many country/species combinations are not assessed by SeaFood Watch. Given that each mariculture record must have a corresponding escapes score we used a series of steps to estimate escapes scores for every country and species. If a country/species match was available we used that, otherwise, we gapfilled using the following sequence:</p>
+<ol style="list-style-type: decimal">
+<li>Used the global species value provided by SeaFood Watch</li>
+<li>Within a country, used average of species within the same family</li>
+<li>Within a UN geo-political region, used average of species within the same family</li>
+<li>Global, use average of species within the same family</li>
+<li>Global, use average of species within a broad taxonomic grouping (e.g., crustaceans, algae, bivalves, etc.)</li>
+<li>Finally, if these scores were not available for the categories above, we used the global average of all species.</li>
+</ol>
+<p>Seaweed or algae species were given the global seaweed escapes score provided by the Seafood Watch recommendations. We are aware that there is some bias associated with using scores derived as averages across countries because they were originally assigned to specific species-country pairs, nevertheless this is preferable to applying an escapes score solely based on a subset of the species harvested.</p>
 </div>
-<div id="units-24" class="section level4 unnumbered">
+<div id="units-26" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -835,7 +872,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Category: social</em></p>
 <p>The World Economic Forum’s Global Competitiveness Index (GCI) provides a country level assessment of competitiveness in achieving sustained economic prosperity (Schwab 2011, <a href="http://gcr.weforum.org">http://gcr.weforum.org</a>). The GCI is a weighted index based on 12 pillars of economic competitiveness: institutions, infrastructure, macroeconomic environment, health and primary education, higher education and training, goods market efficiency, labor market efficiency, financial market development, technological readiness, market size, business sophistication, and innovation. The GCI can in theory span from 1 to 7, based on this range, we rescaled the scores to range between 0 and 1. Uninhabited OHI regions are given an NA score.</p>
 </div>
-<div id="units-25" class="section level4 unnumbered">
+<div id="units-27" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -845,10 +882,10 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <div id="hab_coral_health" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_health.csv">hab_coral_health</a></h4>
 <p>See <strong>Habitat extent of coral</strong> layer for more information.</p>
-<p>Coral condition was calculated using current condition data divided by reference condition. We used condition data from percent live coral cover from 12,634 surveys from 1975-2006 (Bruno and Selig 2007, Schutte et al. 2010). When multiple data points were available for the same site and year, we averaged these data, and also averaged the site data to calculate a per country per year average. However, data were missing for several countries and some countries did not have data for the reference or current year time periods or had only 1-2 surveys. Because coral cover can be highly temporally and spatially dynamic, having only a few surveys that may have been motivated by different reasons (i.e., documenting a pristine or an impacted habitat) can bias results. To calculate condition we used fitted values from a linear trend of all data per country, which was more robust to data poor situations and allowed us to take advantage of periods of intense sampling that did not always include both current and reference years. Then, we created a fitted linear model of all these data points from 1975-2010, provided that 2 or more points are in 1980-1995 and 2 or more points are in 2000-2010. We defined the ‘current’ condition (health) as the mean of the predicted values for 2008-2010, and the reference condition as the mean of the predicted values for 1985-1987. Where country data were not available, we used an average from adjacent EEZs weighted by habitat area, or a georegional average weighted by habitat area, based on countries within the same ocean basin (Figure 6.1).</p>
-<p><strong>Figure 6.1. Georegions to gapfill coral reef data</strong> <img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/figures/CoralEcoregions.png" /></p>
+<p>Coral condition was calculated using current condition data divided by reference condition. We used condition data from percent live coral cover from 12,634 surveys from 1975-2006 (Bruno and Selig 2007, Schutte et al. 2010). When multiple data points were available for the same site and year, we averaged these data, and also averaged the site data to calculate a per country per year average. However, data were missing for several countries and some countries did not have data for the reference or current year time periods or had only 1-2 surveys. Because coral cover can be highly temporally and spatially dynamic, having only a few surveys that may have been motivated by different reasons (i.e., documenting a pristine or an impacted habitat) can bias results. To calculate condition we used fitted values from a linear trend of all data per country, which was more robust to data poor situations and allowed us to take advantage of periods of intense sampling that did not always include both current and reference years. Then, we created a fitted linear model of all these data points from 1975-2010, provided that 2 or more points are in 1980-1995 and 2 or more points are in 2000-2010. We defined the ‘current’ condition (health) as the mean of the predicted values for 2008-2010, and the reference condition as the mean of the predicted values for 1985-1987. Where country data were not available, we used an average from adjacent EEZs weighted by habitat area, or a georegional average weighted by habitat area, based on countries within the same ocean basin (Figure 7.1).</p>
+<p><strong>Figure 7.1. Georegions to gapfill coral reef data</strong> <img src="https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/figures/CoralEcoregions.png" /></p>
 </div>
-<div id="units-26" class="section level4 unnumbered">
+<div id="units-28" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
 </div>
@@ -860,7 +897,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Habitat extent of mangrove</strong> layer for more information.</p>
 <p>Mangrove condition was defined as the current cover divided by reference cover. FAO mangrove area data was provided on a country basis for 1980, 1990, 2000, and 2005. Current condition is based on 2005 cover, and reference condition is based on the 1980 cover.</p>
 </div>
-<div id="units-27" class="section level4 unnumbered">
+<div id="units-29" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
 </div>
@@ -872,7 +909,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Habitat extent of saltmarsh</strong> layer for more information.</p>
 <p>Salt marsh condition was based on trends in salt marsh area for regions where both a current and reference data year were available. An increasing or stable trend was assigned condition = 1.0, and a decreasing trend was assigned condition = 0.5. Data was from multiple sources (Bridgham et al. 2006, Dahl 2011, Ministry for the Environment 2007, JNCC 2004, EEA 2008).</p>
 </div>
-<div id="units-28" class="section level4 unnumbered">
+<div id="units-30" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
 </div>
@@ -882,9 +919,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <div id="hab_seagrass_health" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_health.csv">hab_seagrass_health</a></h4>
 <p>See <strong>Habitat extent of seagrass</strong> layer for more information.</p>
-<p>Seagrass condition was calculated on a per-site basis from Waycott et al. (2009), which provides seagrass habitat extent data for several sites around the world over several years. Reference condition was calculated as the mean of the three oldest years between 1975-1985, or the two earliest years if needed. If data meeting these conditions was not available, we fitted a linear model to all data points, and then used the mean of the predicted values for 1979-1981 as the reference condition. For the current condition we used the mean of the three most recent years after 2000 or the two most recent years. If condition data satisfying these constraints were still not available, we fitted a linear model to all data points, provided that there were at least three data points and then used the mean of the predicted values for 2008-2010 as the current condition and the mean of the predicted values for 1979-1981 as the reference condition. Otherwise, we used neighboring (adjacent) regional averages, weighted by habitat area, or averages weighted by habitat area using seagrass geographical regions as defined by Hemminga and Duarte (2000). We did not project beyond a 15-year timeframe.</p>
+<p>Seagrass condition was calculated on a per-site basis from Waycott et al. (2009), which provides seagrass habitat extent data for several sites around the world over several years. Reference condition was calculated as the mean of the three oldest years between 1975-1985, or the two earliest years if needed. If data meeting these conditions was not available, we fitted a linear model to all data points, and then used the mean of the predicted values for 1979-1981 as the reference condition. For the current condition we used the mean of the three most recent years after 2000 or the two most recent years. If condition data satisfying these constraints were still not available, we fitted a linear model to all data points, provided that there were at least three data points and then used the mean of the predicted values for 2008-2010 as the current condition and the mean of the predicted values for 1979-1981 as the reference condition. Otherwise, we used neighboring (adjacent) regional averages, weighted by habitat area, or averages weighted by habitat area using seagrass geographical regions as defined by Hemminga and Duarte (2000). We did not project beyond a 15-year timeframe.</p>
 </div>
-<div id="units-29" class="section level4 unnumbered">
+<div id="units-31" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
 </div>
@@ -896,7 +933,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Habitat extent of seaice</strong> layer for more information.</p>
 <p>Sea-ice condition was calculated using sea-ice concentrations from the USA National Snow and Ice Data Center (Cavalieri et al. 2014; <a href="https://nsidc.org/cryosphere/quickfacts/seaice.html">https://nsidc.org/cryosphere/quickfacts/seaice.html</a>) as the current percent cover of sea-ice (average of 3 years of data) divided by the average historical percent cover, defined as the start of the data (1979) until the year 2000 as recommended by the National Snow &amp; Ice Data Center for both sea-ice edge and sea-ice shoreline habitats.</p>
 </div>
-<div id="units-30" class="section level4 unnumbered">
+<div id="units-32" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
 </div>
@@ -906,10 +943,10 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <div id="hab_softbottom_health" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_health.csv">hab_softbottom_health</a></h4>
 <p>See <strong>Habitat extent of softbottom</strong> layer for more information.</p>
-<p>Soft bottom subtidal habitat condition was estimated using relative intensity of fishing with demersal destructive gear types. We used global catch data (Watson 2018) that describes the tonnes of harvest for each species and gear type at 0.5 degree raster scale. To estimate the amount of destructive catch, we multiplied each catch record by a value, ranging from 0-1 (1 being the most destructive), based on how destructive the gear type is to soft bottom habitat (trawl and dredge = 1, gillnet and trap = 0.5, “other” = 0.25, and midwater trawl, pole and line, longline, purse seine and seine = 0).</p>
-<p>We summed commercial and non-commercial destructive catch for each OHI region and year, and we divided by the area of soft-bottom habitat in the region. The extent of soft-bottom area within a region was defined as shallow subtidal (0-60m) and outer shelf (60-200m) soft bottom habitat. Because these values were extremely skewed, we <span class="math inline">\(ln(X+1)\)</span> transformed them and then rescaled by dividing by the max value across all years/regions.Condition was then calculated as one minus the rescaled catch density in the most recent year and further rescaled to the median condition value across all years. Any value greater than the median was set = 1.0.</p>
+<p>Soft bottom subtidal habitat condition was estimated using relative intensity of fishing with demersal destructive gear types. We used global catch data (Watson 2019) that describes the tonnes of harvest for each species and gear type at 0.5 degree raster scale. To estimate the amount of destructive catch, we multiplied each catch record by a value, ranging from 0-1 (1 being the most destructive), based on how destructive the gear type is to soft bottom habitat (trawl and dredge = 1, gillnet and trap = 0.5, “other” = 0.25, and midwater trawl, pole and line, longline, purse seine and seine = 0).</p>
+<p>We summed commercial and non-commercial destructive catch for each OHI region and year, and we divided by the area of soft-bottom habitat in the region. The extent of soft-bottom area within a region was defined as shallow subtidal (0-60m) and outer shelf (60-200m) soft bottom habitat. Because these values were extremely skewed, we <span class="math inline">\(ln(X+1)\)</span> transformed them and then rescaled by dividing by the 99th quantile of density across all years/regions. Condition was then calculated as one minus the rescaled catch density in the most recent year and further rescaled to the median condition value across all years. Any value greater than the median was set = 1.0.</p>
 </div>
-<div id="units-31" class="section level4 unnumbered">
+<div id="units-33" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
 </div>
@@ -921,7 +958,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Habitat extent of coral</strong> layer for more information.</p>
 <p>Coral trend was calculated using condition data from 1975-2006 (Bruno and Selig 2007, Schutte et al. 2010).</p>
 </div>
-<div id="units-32" class="section level4 unnumbered">
+<div id="units-34" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend</p>
 </div>
@@ -933,7 +970,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Habitat extent of mangrove</strong> layer for more information.</p>
 <p>We used Hamilton and Casey’s (2016) mangrove cover data to estimate the proportional yearly change in mangrove area using a linear regression model of the most recent five years of data (i.e., slope divided by data from the earliest year included in the regression model). The slope was then multiplied by five to get the predicted change in 5 years. The original mangrove data are provided yearly (2000-2012) at 30m raster cell resolution (with the estimated area of mangrove cover in each cell).</p>
 </div>
-<div id="units-33" class="section level4 unnumbered">
+<div id="units-35" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend</p>
 </div>
@@ -945,7 +982,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Habitat extent of saltmarsh</strong> layer for more information.</p>
 <p>General trends in salt marsh area were determined from 1994-2007 using data from multiple sources (Bridgham et al. 2006, Dahl 2011, Ministry for the Environment 2007, JNCC 2004, EEA 2008). For trend estimates, we extracted categorical condition data (‘increasing”, “stable”, “declining” score as 0.5, 0.0, and -0.5, respectively) from these sources on a per country basis when both a current and reference data year were available.</p>
 </div>
-<div id="units-34" class="section level4 unnumbered">
+<div id="units-36" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend</p>
 </div>
@@ -955,9 +992,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <div id="hab_seagrass_trend" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_seagrass_trend.csv">hab_seagrass_trend</a></h4>
 <p>See <strong>Habitat extent of seagrass</strong> layer for more information.</p>
-<p>Trend in seagrass condition was determined using two data sources (Waycott et al. 2009, Short et al. 2010). Short et al. (2010) measured percent cover on a per sample, per site, per year basis, whereas Waycott et al. (2009) measured habitat area on a per site, per year basis. We used data from Short if there were at least 3 data points between 2001-2010. If this condition was not met, we calculated trends from Waycott for the most recent 10 years after 1990 or else we used the mean of the trend in the adjacent regions or the regions within the corresponding seagrass geographical regions using the same methods described above for the in status.</p>
+<p>Trend in seagrass condition was determined using two data sources (Waycott et al. 2009, Short et al. 2010). Short et al. (2010) measured percent cover on a per sample, per site, per year basis, whereas Waycott et al. (2009) measured habitat area on a per site, per year basis. We used data from Short if there were at least 3 data points between 2001-2010. If this condition was not met, we calculated trends from Waycott for the most recent 10 years after 1990 or else we used the mean of the trend in the adjacent regions or the regions within the corresponding seagrass geographical regions using the same methods described above for the in status.</p>
 </div>
-<div id="units-35" class="section level4 unnumbered">
+<div id="units-37" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend</p>
 </div>
@@ -969,7 +1006,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Habitat extent of seaice</strong> layer for more information.</p>
 <p>Trends for sea-ice edge and sea-ice shoreline habitats were calculated using sea-ice concentrations from the USA National Snow and Ice Data Center (Cavalieri et al. 2014; <a href="https://nsidc.org/cryosphere/quickfacts/seaice.html">https://nsidc.org/cryosphere/quickfacts/seaice.html</a>). The average yearly proportional change in extent was estimated using a linear regression model that included the most recent five years of data (e.g., slope estimate was divided by the extent for earliest year included in the regression model), and this value was multiplied by five to get the predicted change in 5 years. Each year of data represents a 3-year average, to smooth yearly variation.</p>
 </div>
-<div id="units-36" class="section level4 unnumbered">
+<div id="units-38" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend</p>
 </div>
@@ -981,7 +1018,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Habitat extent of softbottom</strong> layer for more information.</p>
 <p>Trend in soft bottom subtidal condition was estimated using a linear regression model that included the most recent five years of condition data. The proportional change in condition was determined (e.g., slope estimate was divided by the condition value for earliest year included in the regression) and then multiplied by five to get the change predicted in 5 years.</p>
 </div>
-<div id="units-37" class="section level4 unnumbered">
+<div id="units-39" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend</p>
 </div>
@@ -991,9 +1028,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <div id="hab_coral_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_extent.csv">hab_coral_extent</a></h4>
 <p>Coral data are used to calculate coastal protection goal, habitat subgoal, and exposure variable of the natural products goal.</p>
-<p>Coral extent area (km<sup>2</sup>) are derived from the 500m resolution dataset developed for Reefs at Risk Revisited (Burke et al. 2011).</p>
+<p>Coral extent area (km<sup>2</sup>) are derived from the dataset <a href="https://data.unep-wcmc.org/datasets/1">Global Distribution of Coral Reefs</a> .</p>
 </div>
-<div id="units-38" class="section level4 unnumbered">
+<div id="units-40" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1005,7 +1042,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Mangrove data are used to calculate the coastal protection and carbon storage goals, and the habitat subgoal.</p>
 <p>Hamilton and Casey’s (2016) yearly (2000-2012) mangrove cover data were used to calculate mangrove extent (km<sup>2</sup>). Data were provided at 30m raster cell resolution (with the estimated area of mangrove cover in each cell) which we converted to 500m resolution to facilitate global calculations.</p>
 </div>
-<div id="units-39" class="section level4 unnumbered">
+<div id="units-41" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1015,9 +1052,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <div id="hab_rockyreef_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_rockyreef_extent.csv">hab_rockyreef_extent</a></h4>
 <p>Rocky reef data is used to calculate the exposure variable in the natural product goal.</p>
-<p>To estimate rocky reef extent area (km<sup>2</sup>) we used data from Halpern et al. (2008), which assumes rocky reef habitat exists in all cells within 1 km of shore.</p>
+<p>To estimate rocky reef extent area (km<sup>2</sup>) we used data from Halpern et al. (2008), which assumes rocky reef habitat exists in all cells within 1 km of shore.</p>
 </div>
-<div id="units-40" class="section level4 unnumbered">
+<div id="units-42" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1030,7 +1067,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Salt marsh extent area (km<sup>2</sup>) comes from multiple sources (Bridgham et al. 2006, Dahl 2000, Ministry for the Environment 2007, JNCC 2004, EEA 2008). In the case of Europe, most data were obtained via the European Environment Agency databases housing information pertaining to the European Union’s Habitat Directive.</p>
 <p>Severe data gaps exist for several key regions of the world, including the Middle East, South America, and Africa. Extensive salt marshes are believed to exist in the Middle East, bordering the unique salt flat ecosystems known as sabkha, however no numbers concerning extent could be found. Similarly, data on salt marshes in South America were extremely limited, with no estimates on current rates of loss or historical extent from or before the 1970s. The majority of the data included in the model come from North America (United States and Canada), Australia, New Zealand, China, Europe, and the United Kingdom.</p>
 </div>
-<div id="units-41" class="section level4 unnumbered">
+<div id="units-43" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1042,7 +1079,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Seagrass data are used to calculate the coastal proection and carbon storage goals, and the habitat subgoal.</p>
 <p>Seagrass extent area (km<sup>2</sup>) was calculated from vector-based data from the Global Distribution of Seagrasses (UNEP-WCMC 2005).</p>
 </div>
-<div id="units-42" class="section level4 unnumbered">
+<div id="units-44" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1054,7 +1091,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Sea-ice shoreline data are used to calculate the coastal proection goal and sea-ice edge data are used to calculate the habitat subgoal.</p>
 <p>Sea-ice extent area (km<sup>2</sup>) was calculated using sea-ice concentrations from the USA National Snow and Ice Data Center (Cavalieri et al. 2014; <a href="https://nsidc.org/cryosphere/quickfacts/seaice.html">https://nsidc.org/cryosphere/quickfacts/seaice.html</a>), which are updated yearly. These raster data are 25km in resolution (625km<sup>2</sup> per pixel) in a Stereographic polar projection. Two sea-ice metrics are calculated using these data: sea-ice edge (pixels with 10-50% ice cover) and sea-ice shoreline (shoreline pixels with &gt;15% ice cover). Calculations of area are based on 3-year averages (to smooth yearly variation, e.g., 2009 data is the average of 2007-2009) of the pixels meeting the habitat criteria.</p>
 </div>
-<div id="units-43" class="section level4 unnumbered">
+<div id="units-45" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1064,9 +1101,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <div id="hab_softbottom_extent" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_softbottom_extent.csv">hab_softbottom_extent</a></h4>
 <p>Softbottom data is one of the variables in the habitat goal and the inverse is a habitat destruction pressure.</p>
-<p>Softbottom extent area (km<sup>2</sup>) data is from Halpern et al. (2008).</p>
+<p>Softbottom extent area (km<sup>2</sup>) data is from Halpern et al. (2008).</p>
 </div>
-<div id="units-44" class="section level4 unnumbered">
+<div id="units-46" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1078,7 +1115,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>This layer describes the habitats present in each region (based on the habitat extent data) and is called internally by ohicore functions to calculate pressure and resilience values based on the habitats present in each region.</p>
 <p>Data is generated in ohi-global/eez/conf/functions.R.</p>
 </div>
-<div id="units-45" class="section level4 unnumbered">
+<div id="units-47" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>0 or 1</p>
 </div>
@@ -1095,7 +1132,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>The layer was rescaled from 0 to 1 using the 99.99th quantile of the entire data layer across all years of data.</p>
 <p>To summarize at the OHI region scale, the mean value of the raster cells within each OHI region was calculated.</p>
 </div>
-<div id="units-46" class="section level4 unnumbered">
+<div id="units-48" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1112,7 +1149,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>The layer was rescaled from 0 to 1 using the 99.99th quantile of the entire data layer across all years of data.</p>
 <p>To summarize at the OHI region scale, the mean value of the raster cells within each OHI region was calculated.</p>
 </div>
-<div id="units-47" class="section level4 unnumbered">
+<div id="units-49" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1125,7 +1162,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Area (km<sup>2</sup>) located from each region’s land-sea interface to 1 km inland.</p>
 <p>For coastal land areas, we extracted hi-resolution country boundary data from ESRI (2010), and rasterized it with a resolution to match our land-sea interface model. We grew this raster by 50 pixels to bridge gaps between the ESRI data and our land-sea model. Area values do not include inland lakes or EEZs.</p>
 </div>
-<div id="units-48" class="section level4 unnumbered">
+<div id="units-50" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1136,7 +1173,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/lsp_prot_area_inland1km.csv">lsp_prot_area_inland1km</a></h4>
 <p>This includes protected areas 1km inland, but otherwise follows the methods described in <strong>Offshore coastal protected areas</strong>.</p>
 </div>
-<div id="units-49" class="section level4 unnumbered">
+<div id="units-51" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1151,7 +1188,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See **** for more information about the population data.</p>
 <p>Coastal population data was converted to average coastal density by dividing by the total 25 mile inland area. We then rescaled the data to have values between 0-1, by logging the density data and then dividing by the ln (maximum density) across all regions and years.</p>
 </div>
-<div id="units-50" class="section level4 unnumbered">
+<div id="units-52" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1164,7 +1201,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>OHI defines iconic species as those relevant to local cultural identity through the species’ relationship to traditional activities such as fishing, hunting, commerce or involvement in local ethnic or religious practices; and species with locally-recognized aesthetic value (e.g., touristic attractions/common artistic subjects such as whales). Habitat forming species are excluded in this definition of iconic species. The OHI global iconic species list combines three species lists from WWF Global: global priorities, regional and local priorities, and flagship species. The criteria for including species on the WWF lists are consistent with the OHI’s definition of iconic species.</p>
 <p>Once the species lists were obtained, each species was assigned to a region based on native range countries from the IUCN Red List.</p>
 <p>Most of the iconic species are not region specific, and the global list is applied across all regions. However, some countries have developed national priority and flagship species lists in conjunction with WWF. These region-specific iconic species lists supplement the global list for those specific countries only. In addition, as countries and regions conduct OHI regional assessments (<a href="http://ohi-science.org/projects/">http://ohi-science.org/projects/</a>), we will use the iconic species list developed by those countries/regions to supplement our global model. For example, iconic species identified for the Baltic Health Index regional assessment have been included for all countries bordering the Baltic Sea.</p>
-<p><strong>Table 6.6. Iconic species resources</strong></p>
+<p><strong>Table 7.5. Iconic species resources</strong></p>
 <table>
 <colgroup>
 <col width="48%" />
@@ -1216,7 +1253,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </tbody>
 </table>
 </div>
-<div id="units-51" class="section level4 unnumbered">
+<div id="units-53" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>IUCN risk category</p>
 </div>
@@ -1260,7 +1297,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h3>Wages</h3>
 <p>Wages were multiplied by GDPpcPPP for each country/year to make values comparable.</p>
 <p>We used the Occupational Wages around the World (OWW) database produced by Remco H. Oostendorp and Richard B. Freeman in 2005 (<a href="http://www.nber.org/oww/">http://www.nber.org/oww/</a>). These data were drawn from the International Labour Organization and subjected to a standardization process (for more information, see <a href="http://www.nber.org/oww/Technical%20_document_1983-2003_standardizationv3.pdf">http://www.nber.org/oww/Technical _document_1983-2003_standardizationv3.pdf</a>). The database provides several different calibrations, and we use the “x3wl calibration”, described as a “country-specific and uniform calibration with lexicographic weighting,” and recommended as being the preferred calibration in most cases. Although significant gaps exist in this database, it contains country-specific information on average wages in many industries for more than 150 countries from 1983-2003. Data represent average monthly wages of a male worker. Wage data were divided by the inflation conversion factor for 2010 so that wage data across years would be comparable (<a href="http://oregonstate.edu/cla/polisci/sahr/sahr">http://oregonstate.edu/cla/polisci/sahr/sahr</a>), and then multiplied by the purchasing power parity-adjusted per capita gdp (ppppcgdp, WorldBank). The adjusted wage data were then multiplied by 12 to get annual wages. We used the industry and occupation classifications reported in the OWW to estimate wages for marine-related sectors.</p>
-<p><strong>Table 6.10. Occupation classification for wage data sectors</strong></p>
+<p><strong>Table 7.6. Occupation classification for wage data sectors</strong></p>
 <table>
 <colgroup>
 <col width="12%" />
@@ -1295,7 +1332,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </tr>
 </tbody>
 </table>
-<div id="units-52" class="section level4 unnumbered">
+<div id="units-54" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>status 0-100</p>
 </div>
@@ -1309,7 +1346,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>This layer provides calculated trend values for the livelihoods subgoal. Livelihoods is calculated using job and wage data from marine sectors.</p>
 <p>Note: These data are no longer supported. Consequently, this layer was last updated in 2013, and this goal will no longer be updated with these data.</p>
 </div>
-<div id="units-53" class="section level4 unnumbered">
+<div id="units-55" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend -1 to 1</p>
 </div>
@@ -1326,7 +1363,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>The layer was rescaled from 0 to 1 using the 99.99th quantile of the entire data layer across all years of data.</p>
 <p>To summarize at the OHI region scale, the mean value of the raster cells within each OHI region was calculated.</p>
 </div>
-<div id="units-54" class="section level4 unnumbered">
+<div id="units-56" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1343,7 +1380,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>The layer was rescaled from 0 to 1 using the 99.99th quantile of the entire data layer across all years of data.</p>
 <p>To summarize at the OHI region scale, the mean value of the raster cells within each OHI region was calculated.</p>
 </div>
-<div id="units-55" class="section level4 unnumbered">
+<div id="units-57" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1381,7 +1418,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <li>The national system of marine and coastal protected areas is surrounded by sustainable management practices over the wider marine and coastal environment.</li>
 </ol>
 </div>
-<div id="units-56" class="section level4 unnumbered">
+<div id="units-58" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1395,7 +1432,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: habitat</em></p>
 <p>See <strong>Management of habitat to protect fisheries biodiversity </strong> layer for data and methods.</p>
 </div>
-<div id="units-57" class="section level4 unnumbered">
+<div id="units-59" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1435,7 +1472,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <li>Considering traditional knowledge, where applicable, as a source to develop sustainable mariculture techniques</li>
 </ol>
 </div>
-<div id="units-58" class="section level4 unnumbered">
+<div id="units-60" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1462,7 +1499,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <li>Mechanisms to control potential invasions from accidental releases, such as aquarium releases, have been put in place (please provide details below)</li>
 </ol>
 </div>
-<div id="units-59" class="section level4 unnumbered">
+<div id="units-61" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1505,7 +1542,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <li>Yes, comprehensive programmes are in place</li>
 </ol>
 </div>
-<div id="units-60" class="section level4 unnumbered">
+<div id="units-62" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1529,7 +1566,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <li>Improving sewage and other waste treatment</li>
 </ol>
 </div>
-<div id="units-61" class="section level4 unnumbered">
+<div id="units-63" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1540,7 +1577,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_harvest_tonnes.csv">mar_harvest_tonnes</a></h4>
 <p>Mariculture production from the FAO Global Aquaculture Production Quantity dataset. Only production classified in the “Marine” and “Brackishwater” environments was included in the analysis (all “Freshwater” production was excluded). Non-edible seaweeds were excluded because they are included in the natural products goal. All species produced within a country were summed to give a single production value for each country in each year that production took place. For the three EEZs that fall within the China region (China, Macau, and Hong Kong), we combined the values by summing across these EEZs.</p>
 </div>
-<div id="units-62" class="section level4 unnumbered">
+<div id="units-64" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>tonnes</p>
 </div>
@@ -1556,7 +1593,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Two mariculture practice criteria from the Marine Sustainability Index (Trujillo 2008) contributed to the resilience of mariculture (traceability and code of practice). These are the only 2 social criteria assessed in the MSI that have the potential to positively affect the long term resilience of a mariculture system.</p>
 <p>The MSI reports data for 359 country-species combinations (with 60 countries and 86 species represented) for each assessment criterion. Scores for each assessment criterion were aggregated and averaged. All country average scores were then rescaled from 0 to 1 using the maximum possible raw MSI score of 10 and minimum of 1, and then weighted equally to come up with a composite resilience.</p>
 <p>Unlike the mariculture sustainability data (<strong>Mariculture sustainability score</strong>), gapfilling was not performed when country specific data were not available for the two resilience measures because these measures are social in nature and reliant on the specific decisions made by each country rather than on the species cultured. As such, it was decided that crosscountry species averages were not appropriate to use in the gapfilling process for resilience.</p>
-<p><strong>Table 6.7. Mariculture Sustainability Index criteria</strong></p>
+<p><strong>Table 7.7. Mariculture Sustainability Index criteria</strong></p>
 <table>
 <colgroup>
 <col width="29%" />
@@ -1580,7 +1617,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </tbody>
 </table>
 </div>
-<div id="units-63" class="section level4 unnumbered">
+<div id="units-65" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1589,9 +1626,10 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h1>Mariculture sustainability score</h1>
 <div id="mar_sustainability_score" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_sustainability_score.csv">mar_sustainability_score</a></h4>
-<p>Three mariculture practice criteria from the Marine Sustainability Index (Trujillo 2008) contributed to the sustainability of mariculture (fishmeal use, waste treatment, and seed and larvae origin criteria). These criteria represent the internal mariculture practices with the potential to affect the long term sustainability of the mariculture system. The MSI reports data for 359 country-species combinations (with 60 countries and 86 species represented) for each assessment criterion. Scores for each assessment criterion were aggregated and averaged based on the proportion of the landings that each assessed species contributed to the overall catch in each country in the current year. All country average scores were then rescaled from 0 to 1 using the maximum possible raw MSI score of 10 and minimum of 1, and then weighted equally to calculate a composite resilience. Because the Index comprises species-specific sustainability values that are combined as a catch-weighted average, when the list of species harvested changes, the sustainability index used in the mariculture sub-goal model also changes due to shifts in the relative composition of harvested species.</p>
-<p>Species/country combinations that were not assessed by the MSI were gapfilled using average data from similar taxonomic groupings from other countries (ideally we used the same species, but used more general taxonomic groupings when necessary).</p>
-<p><strong>Table 6.8. Mariculture sustainability criteria</strong></p>
+<p>Ten mariculture practice criteria from the Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations contributed to the sustainability of mariculture (data quality, effluent, habitat risk, chemical use, feed, escapes, disease, source of stock, predator and wildlife mortalities, and escape of secondary species). These criteria represent the internal mariculture practices with the potential to affect the long term sustainability of the mariculture system. Scores for each assessment criterion were aggregated and averaged. All country average scores were then rescaled from 0 to 1 using the maximum possible raw SFW score of 10 and minimum of 1.</p>
+<p>These scores are country and species-specific, however, many country/species combinations are not assessed by Seafood Watch. Given that each mariculture record must have a corresponding sustainability score we used a series of steps to estimate sustainability scores for every country and species. If a country/species match was available we used that, otherwise, we gapfilled using the following sequence: 1. Used the global species value provided by SeaFood Watch 2. Within a country, used average of species within the same family 3. Within a UN geo-political region, used average of species within the same family 4. Global, use average of species within the same family 5. Global, use average of species within a broad taxonomic grouping (e.g., crustaceans, algae, bivalves, etc.) 6. Finally, if these scores were not available for the categories above, we used the global average of all species.</p>
+<p>Seaweed or algae species were given the global seaweed sustainability score provided by the Seafood Watch recommendations. We are aware that there is some bias associated with using scores derived as averages across countries because they were originally assigned to specific species-country pairs, nevertheless this is preferable to applying a sustainability score solely based on a subset of the species harvested.</p>
+<p><strong>Table 7.8. Mariculture sustainability criteria</strong></p>
 <table>
 <colgroup>
 <col width="29%" />
@@ -1605,21 +1643,49 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 </thead>
 <tbody>
 <tr class="odd">
-<td>Fishmeal use</td>
-<td>Fish protein and oil inclusion in the diet at any stage of development must be considered; herbivore species will score 10, and carnivorous (piscivorous) organisms will score closer to 1, depending on the level of feed supplied.</td>
+<td>Data</td>
+<td>Poor data quality and availability limits the ability to assess and understand the impacts of aquaculture production. It also does not enable informed choices for seafood purchasers or enable businesses to be held accountable for their impacts. A score between 1 and 10 was given based on data availability, quality, and confidence.</td>
 </tr>
 <tr class="even">
-<td>Waste treatment</td>
-<td>Water exchange, output destinations, recycling and filtering of open water discharge or closed system reuse systems. Systems that are closed score high (10), while open systems without waste treatments score low (1)</td>
+<td>Effluent</td>
+<td>Aquaculture species, production systems and management methods vary in the amount of waste produced per unit of production. The combined discharge of farms, groups of farms or industries contribute to local and regional nutrient loads. A score of 1 to 10 is given based on the concern of the effluent produced from the practices.</td>
 </tr>
 <tr class="odd">
-<td>Seed and larvae origin</td>
-<td>Hatcheries are major providers of larvae, fry and seeds. Broodstock origin and strain will also affect the score. Wild seed collection and its importance contribute to a low score due to bycatch and other effects on non-target species.</td>
+<td>Habitats</td>
+<td>Aquaculture farms can be located in a wide variety of aquatic and terrestrial habitat types and have greatly varying levels of impact to both pristine and previously modified habitats as well as to the critical “ecosystem services” they provide. Scores are based on whether they are located at sites, scales and intensities that maintain the functionality of ecologically valuable habitats.</td>
+</tr>
+<tr class="even">
+<td>Chemical use</td>
+<td>Improper use of chemical treatments impacts non-target organisms and leads to production losses and human health concerns due to the development of chemical-resistant organisms. Scores are based on if facilities limit the type, frequency of use, total use, or discharge of chemicals to levels representing a low risk of impact to non-target organisms.</td>
+</tr>
+<tr class="odd">
+<td>Feed</td>
+<td>Feed consumption, feed type, ingredients used and the net nutritional gains or losses vary dramatically between farmed species and production systems. Producing feeds and their ingredients has complex global ecological impacts, and the efficiency of conversion can result in net food gains or dramatic net losses of nutrients. Feed use is considered to be one of the defining factors of aquaculture sustainability. Scores are based on whether facilities source sustainable feed ingredients and convert them efficiently with net edible nutrition gains.</td>
+</tr>
+<tr class="even">
+<td>Escapes</td>
+<td>Competition, altered genetic composition, predation, habitat damage, spawning disruption, and other impacts on wild fish and ecosystems resulting from the escape of native, non-native and/or genetically distinct fish or other unintended species from aquaculture operations. Scores are based on whether facilities prevent population-level impacts to wild species or other ecosystem-level impacts from farm escapes.</td>
+</tr>
+<tr class="odd">
+<td>Disease, pathogen and parasite interaction</td>
+<td>Amplification of local pathogens and parasites on fish farms and their transmission or retransmission to local wild species that share the same water body. Scores are based on whether facilities prevent population-level impacts to wild species through the amplification and retransmission, or increased virulence of pathogens or parasites.</td>
+</tr>
+<tr class="even">
+<td>Source of stock</td>
+<td>The removal of fish from wild populations for growing to harvest size in farms. Scores are based on whether facilities use eggs, larvae, or juvenile fish produced from farm-raised broodstocks thereby avoiding the need for wild capture.</td>
+</tr>
+<tr class="odd">
+<td>Predator and wildlife mortalities</td>
+<td>Mortality of predators or other wildlife caused or contributed to by farming operations. Scores are based on whether facilities prevent population-level impacts to predators or other species of wildlife attracted to farm sites.</td>
+</tr>
+<tr class="even">
+<td>Escape of secondary species</td>
+<td>Movement of live animals resulting in introduction of unintended species. Scores are based on whether facilities avoid the potential for the accidental introduction of secondary species or pathogens resulting from the shipment of animals.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="units-64" class="section level4 unnumbered">
+<div id="units-66" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1633,7 +1699,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: pollution</em></p>
 <p>Marine plastic pollution is modeled using data on the global distribution of floating marine plastics at 0.2 degree resolution (Erikson et al. 2014). Specifically, weight of floating plastics (g/km<sup>2</sup>) across four different size classes were aggregated to represent total weight of plastic debris per km<sup>2</sup>. These data were log transformed and rescaled from 0 to 1 using the 99.99th quantile as the reference point.</p>
 </div>
-<div id="units-65" class="section level4 unnumbered">
+<div id="units-67" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1647,7 +1713,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See Species goal for calculations.</p>
 <p>This value reflects the average condition of species (based on risk status from the IUCN Red List of Threatened Species, <a href="http://www.iucnredlist.org/">http://www.iucnredlist.org/</a>) located within 3 nm offshore of each region based on species range maps from IUCN (shapefiles, used preferentially) and Aquamaps (<a href="http://www.aquamaps.org/">http://www.aquamaps.org/</a>, half degree resolution rasters).</p>
 </div>
-<div id="units-66" class="section level4 unnumbered">
+<div id="units-68" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1661,56 +1727,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See Species goal for calculations.</p>
 <p>This value reflects the average condition of species (based on risk status from the IUCN Red List of Threatened Species, <a href="http://www.iucnredlist.org/">http://www.iucnredlist.org/</a>) located within the eez of each region based on species range maps from IUCN (shapefiles, used preferentially) and Aquamaps (<a href="http://www.aquamaps.org/">http://www.aquamaps.org/</a>, half degree resolution rasters).</p>
 </div>
-<div id="units-67" class="section level4 unnumbered">
+<div id="units-69" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
-</div>
-</div>
-<div id="natural-product-harvest" class="section level1">
-<h1>Natural product harvest</h1>
-<div id="np_harvest_tonnes" class="section level4 unnumbered">
-<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes.csv">np_harvest_tonnes</a></h4>
-<p>The total tonnes of six natural product commodities (corals, ornamental fish, shells, fish oil, inedible seaweeds and plants, and sponges) were determined for each region using export data from the FAO Global Commodities database. For each group the sum of the subcategories was calculated. For ornamental fish we excluded the subcategory ‘Fish for culture including ova, fingerlings, etc.’ because it is not specific to ornamental fish, and the subcategory ‘Ornamental freshwater fish’ because it is not from marine systems. Corals and shells are reported together in nine subcategories; we used the subcategories most closely tied to each, leading to the sum of two subcategories for corals and seven subcategories for shells (one subcategory was used for both). We did not use one subcategory – ‘Powder and waste of shells’ – as it likely a byproduct of the other subcategories rather than a primary target (and it comprises a very small amount of the total anyway).</p>
-<p>If a country was missing tonnes or dollar values (but had one of the values), the missing data were estimated. FAO provides yearly data for the tonnes and dollar value generated for each natural product, however, countries often provide only one of these variables (and the data provided varies across years). To estimate these missing data, we used country-specific linear models to predict tonnes based on the dollar value of a product (or, vice versa). For the countries that did not have enough data to develop an adequate model, our models included the data for all the countries within a UN geopolitical region. When there wasn’t enough data at the geopolitical region scale, we used all the global data to predict missing values.</p>
-<p><strong>Table 6.9. FAO categories included in each natural product commodity</strong></p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">commodity</th>
-<th align="left">subcategory</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">corals</td>
-<td align="left">Coral and the like</td>
-</tr>
-<tr class="even">
-<td align="left">fish oil</td>
-<td align="left">Alaska pollack oil, nei, Anchoveta oil, Capelin oil, Clupeoid oils, nei, Cod liver oil, Fish body oils, nei, Fish liver oils, nei, Gadoid liver oils, nei, Hake liver oil, Halibuts, liver oils, Herring oil, Jack mackerel oil, Menhaden oil, Pilchard oil, Redfish oil, Sardine oil, Shark liver oil, Shark oil, Squid oil, Pelagic fish oils, nei, Gadiformes, oil, nei, Demersal fish oils, nei, Alaska pollock, oil, nei</td>
-</tr>
-<tr class="odd">
-<td align="left">ornamentals</td>
-<td align="left">Ornamental saltwater fish, Ornamental fish nei</td>
-</tr>
-<tr class="even">
-<td align="left">seaweeds</td>
-<td align="left">Agar agar in powder, Agar agar in strips, Agar agar nei, Carrageen (Chondrus crispus), Green laver, Hizikia fusiforme (brown algae), Kelp, Kelp meal, Laver, dry, Laver, nei, Other brown algae (laminaria, eisenia/ecklonia), Other edible seaweeds, Other inedible seaweeds, Seaweeds and other algae, unfit for human consumption, nei, Seaweeds and other algae, fit for human consumption, nei, Other red algae, Other seaweeds and aquatic plants and products thereof, Undaria pinnafitida (brown algae)</td>
-</tr>
-<tr class="odd">
-<td align="left">shells</td>
-<td align="left">Abalone shells, Miscellaneous corals and shells, Mother of pearl shells, Oyster shells, Sea snail shells, Shells nei, Trochus shells</td>
-</tr>
-<tr class="even">
-<td align="left">sponges</td>
-<td align="left">Natural sponges nei, Natural sponges other than raw, Natural sponges raw</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="units-68" class="section level4 unnumbered">
-<h4>Units</h4>
-<p>tonnes</p>
 </div>
 </div>
 <div id="nonindigenous-species" class="section level1">
@@ -1722,7 +1741,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: nonindigenous species</em></p>
 <p>These data (Molnar et al. 2008) report the number and type of alien species in each marine ecoregion (Spalding et al. 2007), with species types categorized as invasive and harmful invasive species. For our purposes, total count of all invasive species was used. We intersected the ecoregion data with our reporting units to determine the proportion of each ecoregion that falls within each reporting unit and then assigned this percentage of invasive species from the ecoregion to the reporting unit. The sum of all invasive species within each reporting unit was then rescaled to the maximum global value. Predicting the full potential impact of alien species depends in large part on having high-resolution spatial information on where they exist, how far they have spread and exactly which components of the food web they affect. The data from Molnar et al. approximate these impacts but at ecoregional scales. In addition, the impacts of alien species will vary depending on the goal under consideration. This implies that harmful effects would need to be assessed separately for each goal. Such an endeavor may be possible when applying this framework to a smaller case-study where this type of information can be acquired.</p>
 </div>
-<div id="units-69" class="section level4 unnumbered">
+<div id="units-70" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1739,7 +1758,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>These country-level pollution values were then dasymetrically distributed over a country’s landscape using global landcover data from 2009, derived from the MODIS satellite at ~500m resolution. These values were then aggregated by ~140,000 global basins, and diffusive plumes were modeled from each basin’s pourpoint. The final non-zero plumes (about ~76,000) were aggregated into ~1km Mollweide (wgs84) projection rasters to produce a single plume-aggregated pollution raster.</p>
 <p>These raw values were then <span class="math inline">\(ln(X+1)\)</span> transformed and normalized to 0-1 by dividing by the 99.99th quantile of raster values across all years. The zonal mean was then calculated for each region.</p>
 </div>
-<div id="units-70" class="section level4 unnumbered">
+<div id="units-71" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1751,7 +1770,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See description for nutrient pollution layer <strong>Nutrient pollution</strong>.</p>
 <p>The inverse of the pressure data (1 - <strong>Coastal nutrient pollution</strong>) was used to estimate nutrient trends for the clean water goal. The proportional yearly change was estimated using a linear regression model of the most recent five years of data (i.e., slope divided by data from the earliest year included in the regression model). The slope was then multiplied by five to get the predicted change in 5 years.</p>
 </div>
-<div id="units-71" class="section level4 unnumbered">
+<div id="units-72" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend</p>
 </div>
@@ -1765,7 +1784,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: climate change</em></p>
 <p>This pressure layer models the difference in global distribution of the aragonite saturation state (<span class="math inline">\(\Omega_{arag}\)</span>) of the ocean in the pre-industrial era and modern times. Global estimates through time (Feely et al. 2009) are modeled at 1-degree resolution. Changes in the saturation state can be attributed to changes in the concentration of CO<sub>2</sub> and thus we use the difference between the pre-industrial and modern times as a proxy for ocean acidification due to human influences. Values are rescaled from 0 to 1 using the threshold at which seawater becomes undersaturated, where <span class="math inline">\(\Omega_{arag} = 1\)</span>.</p>
 </div>
-<div id="units-72" class="section level4 unnumbered">
+<div id="units-73" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1775,9 +1794,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <div id="rgn_area_offshore3nm" class="section level4 unnumbered">
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_offshore3nm.csv">rgn_area_offshore3nm</a></h4>
 <p>See <strong>Region areas based on EEZ boundaries</strong> layer for more information.</p>
-<p>Area (km2) located from each region’s land-sea interface to 3nm offshore.</p>
+<p>Area (km<sup>2</sup>) located from each region’s land-sea interface to 3nm offshore.</p>
 </div>
-<div id="units-73" class="section level4 unnumbered">
+<div id="units-74" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1789,7 +1808,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>This includes marine protected areas within 3nm offshore of the coastline.</p>
 <p>Data is from the United Nations Environment Programme - World Conservation Monitoring Centre’s World Database on Protected Areas (WDPA, <a href="http://www.protectedplanet.net">http://www.protectedplanet.net</a>). Data includes all nationally designated (e.g., National Parks, Nature Reserves) and internationally recognized protected areas (e.g., UNESCO World Heritage Sites, Ramsar Wetlands of International Importance) as an ESRI shapefile. We used only WDPA polygons (not points) with a status of “designated” (not “proposed”). These polygons were converted to a 500 m Mollweide raster by the value of the year in which the park was decreed “designated”. For cases in which polygons overlapped, priority was given first to the parks with the earliest year. The total amount of protected area (km<sup>2</sup>) was calculated for each year for: the entire eez, 3 nm offshore, and 1km inland (depending on the dimension being calculated).</p>
 </div>
-<div id="units-74" class="section level4 unnumbered">
+<div id="units-75" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>km2</p>
 </div>
@@ -1800,7 +1819,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_global.csv">rgn_global</a></h4>
 <p>OHI global region ID and name.</p>
 </div>
-<div id="units-75" class="section level4 unnumbered">
+<div id="units-76" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>label</p>
 </div>
@@ -1814,7 +1833,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: pollution</em></p>
 <p>The percentage of the population with access to improved sanitation facilities (World Health Organization and United Nations Children’s Fund, Joint Monitoring Programme, 2017) was used in combination with measurements of coastal population as a proxy for pathogens in coastal waters. Access to improved sanitation facilities is defined as the percentage of the population in a country with at least adequate access to disposal facilities that can effectively prevent human, animal, and insect contact with excreta. These data are a country-wide average (not specific to the coastal region). Percentages (0-100) for each country were rescaled to 0-1 based on a maximum target of 100% of the population with access to improved sanitation, and a minimum value of 0. Reference point was defined as the 99th quantile across year/region with no buffer and constrained to the first 10 years of data (vs. all available years of data).</p>
 </div>
-<div id="units-76" class="section level4 unnumbered">
+<div id="units-77" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1826,7 +1845,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See description of data and methods in <strong>Pathogen pollution</strong> layer.</p>
 <p>The proportional yearly change in pathogen pressure values were estimated using a linear regression model of the most recent five years of data (i.e., slope divided by data from the earliest year included in the regression model). The slope was then multiplied by five to get the predicted change in 5 years.</p>
 </div>
-<div id="units-77" class="section level4 unnumbered">
+<div id="units-78" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>trend</p>
 </div>
@@ -1838,7 +1857,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>World Travel &amp; Tourism Council (<a href="https://www.wttc.org/datagateway">https://www.wttc.org/datagateway</a>) provides country data describing the percent employment in the travel and tourism sectors (such as hotels, airlines, airports, travel agents and leisure &amp; recreation services that deal directly with tourists). We used the percent employment in “direct” tourism jobs as an indicator of the number of tourists visiting the coast.</p>
 <p>Regions without data were gapfilled using the average values of UN geopolitical regions.</p>
 </div>
-<div id="units-78" class="section level4 unnumbered">
+<div id="units-79" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
 </div>
@@ -1853,20 +1872,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>The trend_1year value was then multiplied by 5 to get the estimated proportional change in 5 years.</p>
 <p>Missing data was gapfilled using a linear regression model with population as a predictor.</p>
 </div>
-<div id="units-79" class="section level4 unnumbered">
-<h4>Units</h4>
-<p>trend</p>
-</div>
-</div>
-<div id="poison-fishing" class="section level1">
-<h1>Poison fishing</h1>
-<div id="np_cyanide" class="section level4 unnumbered">
-<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_cyanide.csv">np_cyanide</a></h4>
-<p>Reefs at Risk Revisited (Burke et al. 2007) recorded the global presence of destructive artisanal poison (cyanide) fishing based on survey observations and expert opinion. We reclassified the log-scale scoring system for the poison rasters so 0 = 0, 100 = 1, 1000 = 2. The mean raster score was then determined for each OHI region. The poison values for each region were then summed to get the total.</p>
-</div>
 <div id="units-80" class="section level4 unnumbered">
 <h4>Units</h4>
-<p>scaled 0-1</p>
+<p>trend</p>
 </div>
 </div>
 <div id="potential-tonnes-of-mariculture-harvest" class="section level1">
@@ -1903,28 +1911,103 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>label</p>
 </div>
 </div>
-<div id="relative-natural-product-harvest-tonnes" class="section level1">
-<h1>Relative natural product harvest tonnes</h1>
-<div id="np_harvest_tonnes_relative" class="section level4 unnumbered">
-<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes_relative.csv">np_harvest_tonnes_relative</a></h4>
-<p>See <strong>Natural product harvest</strong> layer for more information about these data.</p>
-<p>Within each region, the harvest of each commodity was scaled relative to its maximum value across all years. The tonnes of each commodity is divided by the maximum value observed for the commodity in each region, with a 35% buffer applied to avoid penalizing yearly variation and to prevent overharvesting (i.e., max value times 0.65).</p>
+<div id="relative-natural-product-harvest-value" class="section level1">
+<h1>Relative natural product harvest value</h1>
+<div id="np_harvest_product_weight" class="section level4 unnumbered">
+<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_product_weight.csv">np_harvest_product_weight</a></h4>
+<p>Within each region and year, the 5 year average value (USD) of harvest of each commodity (ornamental fish, seaweeds, and fish oil/fish meal) relative to 5 year average total harvest value of three marine commodities. This layer is used to weight contribution of each product to final natural product status score. The FAO Global Commodities database was used for this layer.</p>
+<p>If a country was missing tonnes or dollar values (but had one of the values), the missing data were estimated. FAO provides yearly data for the tonnes and dollar value generated for each natural product, however, countries often provide only one of these variables (and the data provided varies across years). To estimate these missing data, we used country-specific linear models to predict tonnes based on the dollar value of a product (or, vice versa). For the countries that did not have enough data to develop an adequate model, our models included the data for all the countries within a UN geopolitical region. When there was not enough data at the geopolitical region scale, we used all the global data to predict missing values.</p>
+<p><strong>Table 7.9. FAO categories included in each natural product commodity</strong></p>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+commodity
+</th>
+<th style="text-align:left;">
+subcategory
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+corals
+</td>
+<td style="text-align:left;">
+Coral and the like
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+fish oil
+</td>
+<td style="text-align:left;">
+Alaska pollack oil, nei, Anchoveta oil, Capelin oil, Clupeoid oils, nei, Cod liver oil, Fish body oils, nei, Fish liver oils, nei, Gadoid liver oils, nei, Hake liver oil, Halibuts, liver oils, Herring oil, Jack mackerel oil, Menhaden oil, Pilchard oil, Redfish oil, Sardine oil, Shark liver oil, Shark oil, Squid oil, Pelagic fish oils, nei, Gadiformes, oil, nei, Demersal fish oils, nei, Alaska pollock, oil, nei
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+ornamentals
+</td>
+<td style="text-align:left;">
+Ornamental saltwater fish, Ornamental fish nei
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+seaweeds
+</td>
+<td style="text-align:left;">
+Agar agar in powder, Agar agar in strips, Agar agar nei, Carrageen (Chondrus crispus), Green laver, Hizikia fusiforme (brown algae), Kelp, Kelp meal, Laver, dry, Laver, nei, Other brown algae (laminaria, eisenia/ecklonia), Other edible seaweeds, Other inedible seaweeds, Seaweeds and other algae, unfit for human consumption, nei, Seaweeds and other algae, fit for human consumption, nei, Other red algae, Other seaweeds and aquatic plants and products thereof, Undaria pinnafitida (brown algae)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+shells
+</td>
+<td style="text-align:left;">
+Abalone shells, Miscellaneous corals and shells, Mother of pearl shells, Oyster shells, Sea snail shells, Shells nei, Trochus shells
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sponges
+</td>
+<td style="text-align:left;">
+Natural sponges nei, Natural sponges other than raw, Natural sponges raw
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="units-84" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
 </div>
 </div>
-<div id="relative-natural-product-harvest-value" class="section level1">
-<h1>Relative natural product harvest value</h1>
-<div id="np_harvest_product_weight" class="section level4 unnumbered">
-<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_product_weight.csv">np_harvest_product_weight</a></h4>
-<p>See <strong>Natural product harvest</strong> layer for more information about these data.</p>
-<p>Within each region and year, the value (USD) of harvest of each commodity relative to total harvest value of six marine commodities (coral, fish oil, inedible seaweed and plants, shells, sponges, ornamental fish). Used to weight contribution of each product to final natural product status score.</p>
+<div id="relative-ornamental-natural-product-harvest-tonnes" class="section level1">
+<h1>Relative ornamental natural product harvest tonnes</h1>
+<div id="np_orn_tonnes_relative" class="section level4 unnumbered">
+<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_orn_tonnes_relative.csv">np_orn_tonnes_relative</a></h4>
+<p>The total tonnes of ornamental fish were determined for each region using export data from the FAO Global Commodities database. For each group the sum of the subcategories was calculated. For ornamental fish we excluded the subcategory ‘Fish for culture including ova, fingerlings, etc.’ because it is not specific to ornamental fish, and the subcategory ‘Ornamental freshwater fish’ because it is not from marine systems. Following this, within each region, the harvest of ornamental fishing was scaled relative to its maximum value across all years. The tonnes of ornamental fishing is divided by the maximum value observed for the commodity in each region.</p>
+<p>If a country was missing tonnes or dollar values (but had one of the values), the missing data were estimated. FAO provides yearly data for the tonnes and dollar value generated for each natural product, however, countries often provide only one of these variables (and the data provided varies across years). To estimate these missing data, we used country-specific linear models to predict tonnes based on the dollar value of ornamental fish (or, vice versa). For the countries that did not have enough data to develop an adequate model, our models included the data for all the countries within a UN geopolitical region. When there wasn’t enough data at the geopolitical region scale, we used all the global data to predict missing values.</p>
 </div>
 <div id="units-85" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>proportion</p>
+</div>
+</div>
+<div id="risk-of-harvest-practices-for-ornamental-fish" class="section level1">
+<h1>Risk of harvest practices for ornamental fish</h1>
+<div id="np_risk_orn" class="section level4 unnumbered">
+<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_risk_orn.csv">np_risk_orn</a></h4>
+<p>The risk layer is based on whether ornamental fishing has unsustainable harvest practices. In specific, the intensity of cynanide fishing was used as a proxy. Risk for ornamental fish was set based on assessments of cyanide or dynamite fishing by Reefs at Risk Revisited (www.wri.org/publication/reefs-at-risk-revisited) under the assumption that most ornamental fishes are harvested from coral reefs.</p>
+</div>
+<div id="units-86" class="section level4 unnumbered">
+<h4>Units</h4>
+<p>scaled 0-1</p>
 </div>
 </div>
 <div id="sea-level-rise" class="section level1">
@@ -1936,7 +2019,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: climate change</em></p>
 <p>The sea level rise pressure layer is derived from satellite altimetry data (<a href="http://www.aviso.altimetry.fr/en/data/products/sea-surface-height-products/global/msla-mean-climatology.html">http://www.aviso.altimetry.fr/en/data/products/sea-surface-height-products/global/msla-mean-climatology.html</a>). Monthly mean sea level anomalies since 1993 track changes in sea level (mm) compared to a reference period from 1993-2012. Raw monthly data are provided on a 0.25x0.25 degree grid. These data were clipped to within 3 nautical miles of the coast, and monthly data layers were aggregated and averaged across pixels to compute mean sea level anomalies. The 99.99th quantile of raster values from all years was used as the reference point to rescale the layer from 0 to 1. All negative values were set to zero (i.e., no negative pressure), such that only positive sea level rise values mattered. The mean value of the raster cells within each OHI region was calculated.</p>
 </div>
-<div id="units-86" class="section level4 unnumbered">
+<div id="units-87" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1951,9 +2034,31 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>Sea surface temperature (SST) data were obtained from the Coral Reef Temperature Anomaly Database (CoRTAD) (Casey et al. 2015), which is produced by the NOAA National Center for Environmental Information (NCEI) using 4.6 km (nominally 21 km<sup>2</sup> at the equator) Advanced Very High Resolution Radiometer (AVHRR) Pathfinder Version 6 (<a href="https://data.nodc.noaa.gov/cortad/Version6/">v6 data</a>) SST data (<a href="http://www.nodc.noaa.gov/sog/cortad/">http://www.nodc.noaa.gov/sog/cortad/</a>). Weekly SST data are used to compute the standard deviation (SD) of SST’s per pixel across all years. We define an anomaly as exceeding the standard deviation of SSTs from the climatology for that location (i.e., grid cell) and week of the year. The frequency of weekly anomalies was calculated for each year in the dataset. We then quantified the difference between the number of anomalies in the 5 most recent years and the 5 oldest years in the dataset. The 99.99th quantile of raster values from all years was used as the reference point to rescale the layer from 0 to 1, and the mean value of the raster cells within each OHI region was calculated.</p>
 <p>Because SST measurements are less reliable where there is persistent ice, we created an ice mask to identify places near the poles that were almost always covered by significant sea ice. The ice mask was generated primarily from the OSI/SAF Global Daily Sea Ice Concentration Reprocessing Data Set (accession.nodc.noaa.gov/0068294), which was regridded and made available in the Pathfinder V5.2 dataset. In Pathfinder, when the OSI/SAF data are unavailable, the sea ice concentrations from the NCDC Daily OI SST data (Reynolds et al. 2007) are included. For each day of the climatological year (1 through 366), we read in the daily sea ice fraction for that day from all of the years and averaged them to create a daily, sea-ice fraction climatology. We then identified grid cells that always contained a sea ice fraction of greater than 0.15 and masked them out of the analysis.</p>
 </div>
-<div id="units-87" class="section level4 unnumbered">
+<div id="units-88" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
+</div>
+</div>
+<div id="seaweed-mariculture-sustainability-score" class="section level1">
+<h1>Seaweed mariculture sustainability score</h1>
+<div id="np_seaweed_sust" class="section level4 unnumbered">
+<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_seaweed_sust.csv">np_seaweed_sust</a></h4>
+<p>The seaweed sustainability layer is derived from the <strong>Mariculture sustainability score</strong>. Here, we take the mariculture sustainability scores, and subset them for our the seaweed species included in <strong>Seaweed natural product harvest</strong>.</p>
+</div>
+<div id="units-89" class="section level4 unnumbered">
+<h4>Units</h4>
+<p>scaled 0-1</p>
+</div>
+</div>
+<div id="seaweed-natural-product-harvest" class="section level1">
+<h1>Seaweed natural product harvest</h1>
+<div id="np_seaweed_tonnes" class="section level4 unnumbered">
+<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_seaweed_tonnes.csv">np_seaweed_tonnes</a></h4>
+<p>Seaweed mariculture production from the FAO Global Aquaculture Production Quantity dataset. Only production classified in the “Marine” and “Brackishwater” environments was included in the analysis (all “Freshwater” production was excluded). All non edible seaweed species produced within a country were summed to give a single production value for each country in each year that production took place. For the three EEZs that fall within the China region (China, Macau, and Hong Kong), we combined the values by summing across these EEZs.</p>
+</div>
+<div id="units-90" class="section level4 unnumbered">
+<h4>Units</h4>
+<p>tonnes</p>
 </div>
 </div>
 <div id="sectors-in-each-region" class="section level1">
@@ -1962,7 +2067,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/le_sector_weight.csv">le_sector_weight</a></h4>
 <p>Describes which livelihood and economy sectors are present in each region.</p>
 </div>
-<div id="units-88" class="section level4 unnumbered">
+<div id="units-91" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>value</p>
 </div>
@@ -1975,7 +2080,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Category: social</em></p>
 <p>The Social Progress Index (<a href="http://www.socialprogressimperative.org/global-index/">http://www.socialprogressimperative.org/global-index/</a>) includes several quality of life measures. The SPI score is the average of 3 dimensions, and each dimension is the average of 4 components. Each component includes several indicators that are scaled from 0 to 100. When a region was missing 1 or more component, but not all of them, we used the aregImpute function from the Hmisc package to estimate the dimension value based on the available component values. Regions with no dimension/component data were estimated using a linear regression model with UN geopolitical region and WGI data as predictor variables. Uninhabited regions received no score.</p>
 </div>
-<div id="units-89" class="section level4 unnumbered">
+<div id="units-92" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -1989,7 +2094,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>The Worldwide Governance Indicator (WGI) is composed of six dimensions of governance: voice and accountability, political stability and absence of violence, government effectiveness, regulatory quality, rule of law, control of corruption. These 6 aggregate indicators combine data from a variety of survey institutes, think tanks, NGOs, and international organizations to report on the relative governance of 213 economies worldwide. The WGI combines individual indicators through an Unobserved Components Model to produce the 6 dimensions of governance that range in value from approximately -2.5 to 2.5, have a normal distribution, a mean of zero, and a standard deviation of 1. We take an average of the six dimension scores to produce a single governance score for each country. Social pressure is then calculated as one minus this average WGI score.</p>
 <p>WGI scores are provided for China/Hong Kong/Macao and Puerto Rico/Virgin Island, which are combine OHI regions. These scores were averaged, weighted by population.</p>
 </div>
-<div id="units-90" class="section level4 unnumbered">
+<div id="units-93" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -2003,7 +2108,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: habitat destruction</em></p>
 <p>Reefs at Risk Revisited (Burke et al. 2007) recorded the global presence of destructive artisanal blast fishing based on survey observations and expert opinion. We reclassified the log-scale scoring system for the blast rasters, so 0 = 0, 100 = 1, 1000 = 2. The mean raster score was then determined for each OHI region. The blast values for each region were then summed to get the total.</p>
 </div>
-<div id="units-91" class="section level4 unnumbered">
+<div id="units-94" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -2018,7 +2123,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Habitat condition of softbottom</strong> layer to get more information about this layer.</p>
 <p>The Pressure score was calculated as one minus soft-bottom habitat condition.</p>
 </div>
-<div id="units-92" class="section level4 unnumbered">
+<div id="units-95" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -2032,7 +2137,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p><em>Subcategory: fishing pressure</em></p>
 <p>This data layer describes the pressure on cetaceans and marine turtles for each country calculated using the FAO Global Capture Production Quantity dataset. We extracted all catch records from the FAO data for cetaceans or marine turtles and aggregated to create a total reported catch count for each region. The summed catch was rescaled from 0-1, using the 95th quantile across all years (including and prior to the assessment year) and regions (values &gt; 1 were capped at 1).</p>
 </div>
-<div id="units-93" class="section level4 unnumbered">
+<div id="units-96" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -2044,7 +2149,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>The Travel and Tourism Competitiveness Index is produced by the World Economic Forum and measures the factors and policies that make a country an attractive place to invest in the travel and tourism sector (<a href="http://reports.weforum.org/travel-and-tourism-competitiveness-report-2017/?doing_wp_cron=1536798155.3167469501495361328125">WEF 2017</a>). The index analyzes 140 countries and scores each based on three sub-indices: human, cultural, and natural resources; business environment and infrastructure; and regulatory framework. These three sub-indices are in turn composed of 14 “pillars” of Travel &amp; Tourism Competitiveness that are informed by a multitude of individual indicators based on the World Economic Forum’s annual Executive Opinion Survey and data from publically available sources: human, cultural, and natural resources (human resources, affinity for travel and tourism, natural resources, and cultural resources); business environment and infrastructure (air transport infrastructure, ground transport infrastructure, tourism infrastructure, ICT infrastructure, and price competitiveness in the industry); and regulatory framework (policy rules and regulations, environmental sustainability, safety and security, health and hygiene, and prioritization of travel and tourism). Because these indicators are meant to represent the overall quality and future potential of the tourism sector within a country, we assume they are representative of the long term sustainability of the tourism sector within each country. Values range from 1-6.</p>
 <p>For countries not assessed, values were estimated using a linear regression model specific to each UN geopolitical region using per-capita GDP as a predictor variable.</p>
 </div>
-<div id="units-94" class="section level4 unnumbered">
+<div id="units-97" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -2055,20 +2160,9 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/uninhabited.csv">uninhabited</a></h4>
 <p>This layer is a list of low and zero population regions based on Wikipedia.</p>
 </div>
-<div id="units-95" class="section level4 unnumbered">
+<div id="units-98" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>population</p>
-</div>
-</div>
-<div id="us-state-department-travel-warnings" class="section level1">
-<h1>US State Department travel warnings</h1>
-<div id="tr_travelwarnings" class="section level4 unnumbered">
-<h4><a href="https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_travelwarnings.csv">tr_travelwarnings</a></h4>
-<p>Travel advisories are from the U.S. State Department (<a href="https://travel.state.gov/content/passports/en/alertswarnings.html">https://travel.state.gov/content/passports/en/alertswarnings.html</a>). Penalty scores were based on the urgency of warning (‘Exercise Normal Precautions’= 1 (no penalty), ‘Exercise Increase Caution’= 1 (no penalty), ‘Reconsider Travel’=0.25, and ‘Do Not Travel’ = 0).</p>
-</div>
-<div id="units-96" class="section level4 unnumbered">
-<h4>Units</h4>
-<p>scaled 0-1</p>
 </div>
 </div>
 <div id="uv-radiation" class="section level1">
@@ -2081,7 +2175,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>The ultraviolet radiation (UV) pressure layer is derived from daily Local Noon Erythemal UV Irradiance (mW/m<sup>2</sup>) data. The Aura/OMI satellite provides data at 1x1 degree resolution from September 2004 through present, spanning 180 degrees latitude and 360 degrees longitude. Raster data are provided in HDF5 format by the NASA Goddard Earth Sciences Data and Information Services Center (GESDISC, (<a href="http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omuvbd_v003.shtml">http://disc.sci.gsfc.nasa.gov/Aura/data-holdings/OMI/omuvbd_v003.shtml</a>). Raw data was downloaded, translated to GeoTIFFs using R and aggregated to weekly means.</p>
 <p>This pressure measures the number of times the weekly average of each 1 degree cell exceeds the climatological mean + 1 standard deviation, defined as an anomalous value. The frequency of weekly anomalies was calculated for each year in the dataset. We then quantified the difference between the number of anomalies in the 5 most recent years and the 5 oldest years in the dataset. The 99.99th quantile of raster values from all years was used as the reference point to rescale the layer from 0 to 1, and the mean value of the raster cells within each OHI region was calculated.</p>
 </div>
-<div id="units-97" class="section level4 unnumbered">
+<div id="units-99" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -2095,7 +2189,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Strength of governance</strong> for description of this layer.</p>
 <p>When used as a social pressure, 1 minus the WGI (Worldwide Governance Indicator) is used.</p>
 </div>
-<div id="units-98" class="section level4 unnumbered">
+<div id="units-100" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>
@@ -2109,7 +2203,7 @@ RAM Legacy Database <a href="http://ramlegacy.org/">http://ramlegacy.org/</a>. W
 <p>See <strong>Social Progress Index</strong> for description of this layer.</p>
 <p>When used as a social pressure, 1 minus the SPI (Social Progress Index) is used.</p>
 </div>
-<div id="units-99" class="section level4 unnumbered">
+<div id="units-101" class="section level4 unnumbered">
 <h4>Units</h4>
 <p>scaled 0-1</p>
 </div>

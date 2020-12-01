@@ -115,25 +115,6 @@ output:
  B/Bmsy
 
  
-# Blast fishing 
-#### [np_blast](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_blast.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_blast.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- scaled 0-1
-
- 
 # Carbon storage weights 
 #### [element_wts_cs_km2_x_storage](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_cs_km2_x_storage.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -305,6 +286,25 @@ output:
  extent*rank_protection
 
  
+# Coral harvest pressure 
+#### [hd_coral](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_coral.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_coral.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
+
+ 
 # Economic diversity 
 #### [li_sector_evenness](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_sector_evenness.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -409,6 +409,44 @@ output:
                                  on.exit(unlink(x))
 
                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_mpa_eez.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
+
+ 
+# Exposure of ornamental fishing to coral and rocky reef habitats 
+#### [np_exposure_orn](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_exposure_orn.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_exposure_orn.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
+
+ 
+# Fish oil and fish meal score 
+#### [np_fofm_scores](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_fofm_scores.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_fofm_scores.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -1312,25 +1350,6 @@ output:
  scaled 0-1
 
  
-# Natural product harvest 
-#### [np_harvest_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_harvest_tonnes.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- tonnes
-
- 
 # Nonindigenous species 
 #### [sp_alien](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/sp_alien.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1540,25 +1559,6 @@ output:
  trend
 
  
-# Poison fishing 
-#### [np_cyanide](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_cyanide.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_cyanide.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- scaled 0-1
-
- 
 # Potential tonnes of mariculture harvest 
 #### [mar_capacity](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/mar_capacity.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1616,25 +1616,6 @@ output:
  label
 
  
-# Relative natural product harvest tonnes 
-#### [np_harvest_tonnes_relative](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_tonnes_relative.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_harvest_tonnes_relative.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- proportion
-
- 
 # Relative natural product harvest value 
 #### [np_harvest_product_weight](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_harvest_product_weight.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1652,6 +1633,44 @@ output:
  
 #### Units {-} 
  proportion
+
+ 
+# Relative ornamental natural product harvest tonnes 
+#### [np_orn_tonnes_relative](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_orn_tonnes_relative.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_orn_tonnes_relative.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ proportion
+
+ 
+# Risk of harvest practices for ornamental fish 
+#### [np_risk_orn](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_risk_orn.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_risk_orn.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
 
  
 # Sea level rise 
@@ -1690,6 +1709,44 @@ output:
  
 #### Units {-} 
  scaled 0-1
+
+ 
+# Seaweed mariculture sustainability score 
+#### [np_seaweed_sust](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_seaweed_sust.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_seaweed_sust.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
+
+ 
+# Seaweed natural product harvest 
+#### [np_seaweed_tonnes](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/np_seaweed_tonnes.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                 on.exit(unlink(x))
+
+                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/np_seaweed_tonnes.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ tonnes
 
  
 # Sectors in each region 
@@ -1842,25 +1899,6 @@ output:
  
 #### Units {-} 
  population
-
- 
-# US State Department travel warnings 
-#### [tr_travelwarnings](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_travelwarnings.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                 on.exit(unlink(x))
-
-                                 download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/tr_travelwarnings.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- scaled 0-1
 
  
 # UV radiation 

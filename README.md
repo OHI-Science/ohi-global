@@ -30,7 +30,7 @@ That is the biggest lift for the website.
 
 ### Home, Download & Fellows Pages
 
-Next, you'll have to make slight modifications to the home (index.Rmd), download, and fellows pages. This involves changing 2018 to 2019 and updating URLs; they need to be done by hand but serve as a little checklist. Re-read each and update as you go, as you can. Pro-tip: there will be some things you can't update immediately, like the final scores flower plot on the home page. I go through and write `TODO` in these places, and as a final check, search each file for `TODO` and make sure there are none left (I delete as I do them).
+Next, you'll have to make slight modifications to the home (index.Rmd), download, and fellows pages. This involves changing 2019 to 2020 and updating URLs; they need to be done by hand but serve as a little checklist. Re-read each and update as you go, as you can. Pro-tip: there will be some things you can't update immediately, like the final scores flower plot on the home page. I go through and write `TODO` in these places, and as a final check, search each file for `TODO` and make sure there are none left (I delete as I do them).
 
 Pro-tip: I write this as a comment in R: `#TODO` or html: `<!---TODO--->`
 

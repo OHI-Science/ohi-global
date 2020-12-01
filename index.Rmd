@@ -15,7 +15,7 @@ output: html_document
   
   
 <br>
-Ocean Health Index scores provide invaluable, comprehensive, and quantitative assessments of progress towards healthy and sustainable oceans. Such assessments are particularly valuable when repeated annually. 2019 marks the eighth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. For detailed description of our up-to-date data and methods, see the [Supplemental Methods](http://htmlpreview.github.io/?https://github.com/OHI-Science/ohi-global/published/documents/methods/Supplement.html). And visit our [Story Map](https://ucsb.maps.arcgis.com/apps/Cascade/index.html?appid=d8f55991dca34d74820c0ea13d8b02e0)!
+Ocean Health Index scores provide invaluable, comprehensive, and quantitative assessments of progress towards healthy and sustainable oceans. [Learn more at ohi-science.org](http://ohi-science.org/). Such assessments are particularly valuable when repeated annually. 2020 marks the eighth year of annual global Ocean Health Index (OHI) assessments, with scores representing ocean health for 220 coastal nations and territories. For detailed description of our up-to-date data and methods, see the [Supplemental Methods](http://htmlpreview.github.io/?https://github.com/OHI-Science/ohi-global/published/documents/methods/Supplement.html). And visit our [Story Map](https://ucsb.maps.arcgis.com/apps/Cascade/index.html?appid=d8f55991dca34d74820c0ea13d8b02e0)!
 
 <!---
 <iframe width="100%" height="800px" src="https://ucsb.maps.arcgis.com/apps/Cascade/index.html?appid=d8f55991dca34d74820c0ea13d8b02e0" frameborder="0" scrolling="yes"></iframe>
@@ -27,25 +27,25 @@ Ocean Health Index scores provide invaluable, comprehensive, and quantitative as
 ```{r fig.width=5, fig.height=5,echo=FALSE}
 library(png)
 library(grid)
-img <- png::readPNG('flower_GlobalAverage2019.png')
+img <- png::readPNG('flower_GlobalAverage2020.png')
 grid.raster(img)
 ```
 
 <br>
 <br>
 <br>
-**The average 2019 Index score was 71 out of 100**.
-Average Index scores have not dramatically changed over eight years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.   
+**The average 2020 Index score was 72 out of 100**.
+Average Index scores have not dramatically changed over eight years, which could be expected at a global scale. However, some individual goals and regions have had significant changes.  
 <br> 
   
-- [Learn about the goals](http://ohi-science.org/ohi-global/goals)      
-- [Read the 2019 results summary](http://htmlpreview.github.io/?https://github.com/OHI-Science/ohi-global/blob/published/yearly_results/global2019/Results/Supplement_Results.html) 
+- [Read the 2020 results summary](http://htmlpreview.github.io/?https://github.com/OHI-Science/ohi-global/blob/published/yearly_results/global2020/Results/Supplement_Results.html) 
 - [Explore scores by region and goal](http://ohi-science.org/ohi-global/scores)    
+- [View interactive map on the ARCGIS Living Atlas of the World](https://ucsb.maps.arcgis.com/home/item.html?id=1f305abdc47a45bf867783c7419db6d0)
 - [Download data](http://ohi-science.org/ohi-global/download) 
 - [Dig deeper with the Supplemental Methods](http://htmlpreview.github.io/?https://github.com/OHI-Science/ohi-global/published/documents/methods/Supplement.html)
-- [Learn more at ohi-science.org](http://ohi-science.org/)
+- [Learn about the goals](http://ohi-science.org/ohi-global/goals)   
 </div>
-  
+
 The OHI framework has not changed since its inception in 2012 ([*Halpern et al. 2012*](http://www.nature.com/nature/journal/v488/n7413/full/nature11397.html)). We continue to assess ocean health based on the sustainable delivery of a suite of goals that are important to humans. We score each goal on a scale of 0-100 based on current status, trend, and external pressures and resilience measures. Scores are calculated for each coastal nation before being combined together. However, the OHI benefits from constant evaluation and improvement aimed at incorporating new knowledge, data and understanding, and underlying methods for some goals have been upgraded. When upgrades occur, we back-calculate previous years so that all scores are comparable. 
 
 For the fifth assessment in 2016, we also explored trends and trajectories in ocean health:
