@@ -8,16 +8,16 @@
 ## STEP 1: download ohicore package
 ## Install the appropriate ohicore:
 library(devtools)
-#devtools::install_github("ohi-science/ohicore@master") # typically this version will be used
-devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore.. use this for 2020 assessment year
+devtools::install_github("ohi-science/ohicore@master") # typically this version will be used
+# devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore.. use this for 2020 assessment year
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 ## STEP 2:
 ## identify repo where data will be taken from: 
-repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/"
+repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/"
 
 # STEP 3: Scenario years in this year's assessment
-scenario_years <- c(2012:2020)
+scenario_years <- c(2012:2021)
 
 #***
 
@@ -31,7 +31,7 @@ library(readr)
 library(here)
 
 ## source file path info depending on operating system
-source('http://ohi-science.org/ohiprep_v2020/workflow/R/common.R')
+source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
 
 
 #############################
@@ -153,12 +153,14 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 
 
 ### Some methods for visualizing the data
-## final commit from last year: a832c5a
+## final commit from last year: cfa760f
 # Link being sourced here is incorrect, need to change it!
  ohicore::score_check(commit = "previous", scenario_year = 2020,
-             file_name = "fp_weights", save_csv = TRUE, NA_compare = TRUE)
+             file_name = "check_2021_assess", save_csv = TRUE, NA_compare = TRUE)
 
 
+ 
+#### Below here is case-to-case basis:
 compare <- read.csv(here("eez/score_check/sb_99_test_diff_data_2020-09-30.csv"))
 
 sb_test <- compare %>%
