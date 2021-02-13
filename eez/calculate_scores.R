@@ -8,8 +8,8 @@
 ## STEP 1: download ohicore package
 ## Install the appropriate ohicore:
 library(devtools)
-devtools::install_github("ohi-science/ohicore@master") # typically this version will be used
-# devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore.. use this for 2020 assessment year
+#devtools::install_github("ohi-science/ohicore@master") # typically this version will be used
+devtools::install_github("ohi-science/ohicore@dev") # used when testing new code in ohicore.. use this for 2020 assessment year
 #devtools::install_github("ohi-science/ohicore@master_a2015") # used if assessment was done prior to 2016 and not updated
 
 ## STEP 2:
@@ -155,8 +155,8 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ### Some methods for visualizing the data
 ## final commit from last year: cfa760f
 # Link being sourced here is incorrect, need to change it!
- ohicore::score_check(commit = "previous", scenario_year = 2020,
-             file_name = "check_2021_assess", save_csv = TRUE, NA_compare = TRUE)
+ ohicore::score_check(commit = "previous", scenario_year = 2021,
+             file_name = "lsp_prot_3nm_1km", save_csv = TRUE, NA_compare = TRUE)
 
 
  
