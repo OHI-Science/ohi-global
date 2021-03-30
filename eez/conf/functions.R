@@ -547,7 +547,7 @@ NP <- function(scores, layers) {
     roll_tonnes_sust <- seaweed_sust_sum %>%
       arrange(region_id, year, product) %>%
       group_by(region_id,) %>%
-      mutate(tonnes_rollmean = rollapply(tonnes_sust, width=4, FUN=mean, align='right', partial=TRUE, na.rm=FALSE)) %>%
+      mutate(tonnes_rollmean = zoo::rollapply(tonnes_sust, width=4, FUN=mean, align='right', partial=TRUE, na.rm=FALSE)) %>%
       rename(tonnes_orig = tonnes_sust) %>% # prevent overwriting of reported and gapfilled values
       mutate(tonnes = ifelse(!is.na(tonnes_rollmean), tonnes_rollmean, tonnes_orig)) %>%
       select(region_id, year, product, tonnes, tonnes_orig)
@@ -645,6 +645,7 @@ NP <- function(scores, layers) {
 
 
 CS <- function(layers) {
+
   scen_year <- layers$data$scenario_year
   
   # layers for carbon storage
@@ -663,25 +664,28 @@ CS <- function(layers) {
   
   # get data together:
   extent <- AlignManyDataYears(extent_lyrs) %>%
-    dplyr::filter(!(habitat %in% c(
-      "mangrove_inland1km", "mangrove_offshore"
-    ))) %>%
+    # mangrove inland 1km and offshore removed for v2021
+    # dplyr::filter(!(habitat %in% c(
+    #   "mangrove_inland1km", "mangrove_offshore" 
+    # ))) %>%
     dplyr::filter(scenario_year == scen_year) %>%
     dplyr::select(region_id = rgn_id, habitat, extent = km2) %>%
     dplyr::mutate(habitat = as.character(habitat))
   
   health <- AlignManyDataYears(health_lyrs) %>%
-    dplyr::filter(!(habitat %in% c(
-      "mangrove_inland1km", "mangrove_offshore"
-    ))) %>%
+    # mangrove inland 1km and offshore removed for v2021
+    # dplyr::filter(!(habitat %in% c(
+    #   "mangrove_inland1km", "mangrove_offshore"
+    # ))) %>%
     dplyr::filter(scenario_year == scen_year) %>%
     dplyr::select(region_id = rgn_id, habitat, health) %>%
     dplyr::mutate(habitat = as.character(habitat))
   
   trend <- AlignManyDataYears(trend_lyrs) %>%
-    dplyr::filter(!(habitat %in% c(
-      "mangrove_inland1km", "mangrove_offshore"
-    ))) %>%
+    # mangrove inland 1km and offshore removed for v2021
+    # dplyr::filter(!(habitat %in% c(
+    #   "mangrove_inland1km", "mangrove_offshore"
+    # ))) %>%
     dplyr::filter(scenario_year == scen_year) %>%
     dplyr::select(region_id = rgn_id, habitat, trend) %>%
     dplyr::mutate(habitat = as.character(habitat))
@@ -806,21 +810,21 @@ CP <- function(layers) {
     dplyr::select(region_id = rgn_id, habitat, trend) %>%
     dplyr::mutate(habitat = as.character(habitat))
   
-  ## sum mangrove_offshore + mangrove_inland1km = mangrove to match with extent and trend
-  mangrove_extent <- extent %>%
-    dplyr::filter(habitat %in% c('mangrove_inland1km', 'mangrove_offshore'))
+  ## sum mangrove_offshore + mangrove_inland1km = mangrove to match with extent and trend - removed v2021.. unnecessary code anyways
+  # mangrove_extent <- extent %>%
+  #   dplyr::filter(habitat %in% c('mangrove_inland1km', 'mangrove_offshore'))
   
-  if (nrow(mangrove_extent) > 0) {
-    mangrove_extent <- mangrove_extent %>%
-      dplyr::group_by(region_id) %>%
-      dplyr::summarize(extent = sum(extent, na.rm = TRUE)) %>%
-      dplyr::mutate(habitat = 'mangrove') %>%
-      dplyr::ungroup()
-  }
-  
-  extent <- extent %>%
-    dplyr::filter(!habitat %in% c('mangrove', 'mangrove_inland1km', 'mangrove_offshore')) %>%  #do not use all mangrove
-    rbind(mangrove_extent)  #just the inland 1km and offshore
+  # if (nrow(mangrove_extent) > 0) {
+  #   mangrove_extent <- mangrove_extent %>%
+  #     dplyr::group_by(region_id) %>%
+  #     dplyr::summarize(extent = sum(extent, na.rm = TRUE)) %>%
+  #     dplyr::mutate(habitat = 'mangrove') %>%
+  #     dplyr::ungroup()
+  # }
+  # 
+  # extent <- extent %>%
+  #   dplyr::filter(!habitat %in% c('mangrove', 'mangrove_inland1km', 'mangrove_offshore')) %>%  #do not use all mangrove
+  #   rbind(mangrove_extent)  #just the inland 1km and offshore
   
   ## join layer data
   d <-  extent %>%
