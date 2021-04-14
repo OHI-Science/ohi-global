@@ -41,9 +41,9 @@ hab_rockyreef_extent,ohiprep:globalprep/hab_rockyreef/v2012/data,habitat_extent_
 hab_saltmarsh_extent,ohiprep:globalprep/hab_saltmarsh/v2012/data,habitat_extent_saltmarsh_updated.csv,TRUE,km2,Habitat extent of saltmarsh,km2,Area of saltmarsh habitat
 hab_saltmarsh_health,ohiprep:globalprep/hab_saltmarsh/v2012/data,habitat_health_saltmarsh_updated.csv,TRUE,health,Habitat condition of saltmarsh,proportion,Current condition of saltmarsh habitat relative to historical condition
 hab_saltmarsh_trend,ohiprep:globalprep/hab_saltmarsh/v2012/data,habitat_trend_saltmarsh_updated.csv,TRUE,trend,Habitat condition trend of saltmarsh,trend,Estimated trend in saltmarsh condition
-hab_seagrass_extent,ohiprep:globalprep/hab_seagrass/v2012/data,habitat_extent_seagrass_updated.csv,TRUE,km2,Habitat extent of seagrass,km2,Area of seagrass habitat
-hab_seagrass_health,ohiprep:globalprep/hab_seagrass/v2012/data,habitat_health_seagrass_updated.csv,TRUE,health,Habitat condition of seagrass,proportion,Current condition of seagrass habitat relative to historical condition
-hab_seagrass_trend,ohiprep:globalprep/hab_seagrass/v2012/data,habitat_trend_seagrass_updated.csv,TRUE,trend,Habitat condition trend of seagrass,trend,Estimated trend in seagrass condition
+hab_seagrass_extent,ohiprep:globalprep/hab_seagrass/v2021/data,habitat_extent_seagrass_updated.csv,TRUE,km2,Habitat extent of seagrass,km2,Area of seagrass habitat
+hab_seagrass_health,ohiprep:globalprep/hab_seagrass/v2021/data,habitat_health_seagrass_updated.csv,TRUE,health,Habitat condition of seagrass,proportion,Current condition of seagrass habitat relative to historical condition
+hab_seagrass_trend,ohiprep:globalprep/hab_seagrass/v2021/data,habitat_trend_seagrass_updated.csv,TRUE,trend,Habitat condition trend of seagrass,trend,Estimated trend in seagrass condition
 hab_seaice_extent,ohiprep:globalprep/hab_seaice/v2020/output,hab_ice_extent_eez.csv,TRUE,km2,Habitat extent of seaice,km2,Area of seaice (edge and shoreline) habitat
 hab_seaice_health,ohiprep:globalprep/hab_seaice/v2020/output,hab_ice_health_eez.csv,TRUE,health,Habitat condition of seaice,proportion,Current condition of seaice habitat relative to historical condition
 hab_seaice_trend,ohiprep:globalprep/hab_seaice/v2020/output,hab_ice_trend_eez.csv,TRUE,trend,Habitat condition trend of seaice,trend,Estimated trend in seaice condition
