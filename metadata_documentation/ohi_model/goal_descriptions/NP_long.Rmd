@@ -6,7 +6,7 @@ In many countries the harvest of non-food natural products is important for loca
 Total value (in USD) of 5 different natural product categories for the entire span of FAO commodities dataset (1976-2018). 
 
 ```{r commodities values, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2021/int/h_methods_sum.csv') %>%
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/int/h_methods_sum.csv') %>%
   group_by(product) %>%
   summarise(sum_usd = sum(usd, na.rm = TRUE)) %>%
 dplyr::select(Commodity = product, `Total value (USD)` = sum_usd) %>%
@@ -27,7 +27,7 @@ To determine the total production in tonnes for seaweed we summed seaweed produc
 List of species and FAO products included in each of the three natural product categories.
 
 ```{r np commodity, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2021/raw/commodities2products_new.csv') %>%
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/raw/commodities2products_new.csv') %>%
   group_by(product) %>%
   summarize(subcategory = paste(commodity, collapse = ", ")) %>%
   select(commodity = product, subcategory) %>%
@@ -83,7 +83,7 @@ Because dollar values were not present in the data that was used for seaweeds an
 List of FAO products included in each of the three natural product categories used for determining natural product weights.
 
 ```{r np commodity weights, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2021/raw/commodities2products_weighting.csv') %>%
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/raw/commodities2products_weighting.csv') %>%
 dplyr::filter(product %in% c("ornamentals", "seaweeds", "fish_oil")) %>%
   group_by(product) %>%
   summarize(subcategory = paste(commodity, collapse = ", ")) %>%
