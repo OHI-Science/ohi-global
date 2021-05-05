@@ -3,13 +3,13 @@
 In many countries the harvest of non-food natural products is important for local economies and can also be traded internationally. The sustainable harvest of these products is therefore an important component of a healthy ocean. This goal assesses the ability of countries to maximize the sustainable harvest of living marine resources, and includes three natural product categories: ornamental fish, fish oil and fish meal, and inedible seaweeds and marine plants (Table 6.12). It does not include bioprospecting, which focuses on potential (and largely unknowable and potentially infinite) value rather than current realized value, or non-living products such as oil and gas or mining products which by definition are not sustainable. It also excludes wood from mangroves as few data exist for if/where this harvest is happening and whether it is sustainable, as well as oils from mammals as this harvest is widely seen as unsustainable. In past assessments we included coral harvest, shells, and sponges, but we now exclude these resources.  In the case of coral, harvest is not sustainable given current and future global threats.  For sponges and shells, harvest yields were often highly variable and had relatively small values (Table 6.11), resulting in scores fluctuating dramatically across years for some countries even though the total USD values contributed very little to national economies (e.g. going from 100USD to 200USD would double the score). 
 
 **Table 6.11. Commodity values**
-Total value (in USD) of 5 different natural product categories for the entire span of FAO commodities dataset (1976-2017). 
+Total value (in USD) of 5 different natural product categories for the entire span of FAO commodities dataset (1976-2018). 
 
 ```{r commodities values, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2020/int/h_methods_sum.csv') %>%
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2021/int/h_methods_sum.csv') %>%
   group_by(product) %>%
-  summarise(sum_tonnes = sum(tonnes, na.rm = TRUE)) %>%
-dplyr::select(Commodity = product, `Total value (USD)` = sum_tonnes) %>%
+  summarise(sum_usd = sum(usd, na.rm = TRUE)) %>%
+dplyr::select(Commodity = product, `Total value (USD)` = sum_usd) %>%
   arrange(-`Total value (USD)`)
 
 kable(data) %>%
@@ -27,7 +27,7 @@ To determine the total production in tonnes for seaweed we summed seaweed produc
 List of species and FAO products included in each of the three natural product categories.
 
 ```{r np commodity, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2020/raw/commodities2products_new.csv') %>%
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2021/raw/commodities2products_new.csv') %>%
   group_by(product) %>%
   summarize(subcategory = paste(commodity, collapse = ", ")) %>%
   select(commodity = product, subcategory) %>%
@@ -83,7 +83,8 @@ Because dollar values were not present in the data that was used for seaweeds an
 List of FAO products included in each of the three natural product categories used for determining natural product weights.
 
 ```{r np commodity weights, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2020/raw/commodities2products_weighting.csv') %>%
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2020/gh-pages/globalprep/np/v2021/raw/commodities2products_weighting.csv') %>%
+dplyr::filter(product %in% c("ornamentals", "seaweeds", "fish_oil")) %>%
   group_by(product) %>%
   summarize(subcategory = paste(commodity, collapse = ", ")) %>%
   select(commodity = product, subcategory) %>%
