@@ -559,12 +559,18 @@ region_trends <- scores %>%
   group_by(goal, region_id) %>%
   do(mdl = lm(value ~ scenario, data = .)) #fitting a model per each goal and rgn_id
 
+
 # data.frame(glance(data_lm, mdl))
-region_trends <- tidy(region_trends, mdl) %>%
+region_trends <- region_trends %>%
+  summarise(region_id = region_id,
+            goal = goal, 
+            trend = coef(mdl)['scenario']) %>%
+  # broom::tidy(region_trends, mdl) %>%
   ungroup() %>%
-  filter(term == "scenario") %>%
+ # filter(term == "scenario") %>%
 #  left_join(goal_names) %>%
-  select(region_id, goal, trend = estimate, p.value) %>%
+    select(region_id, goal, trend) %>%
+#  select(region_id, goal, trend = estimate, p.value) %>%
   data.frame()
 
 
@@ -572,12 +578,14 @@ region_trends <- region_trends %>%
   left_join(rgn_names, by=c('region_id')) %>%
   mutate(country = ifelse(is.na(country), "eez_weighted_avg", as.character(country))) %>%
   mutate(trend = round(trend, 2)) %>%
-  select(goal, country, region_id, trend, p.value) %>%
+  select(goal, country, region_id, trend) %>%
   data.frame()
+
+write.csv(region_trends, here(sprintf("yearly_results/%s/Results/data/rgn_trends_%s.csv", saveFile, scenario)), row.names = FALSE, na='')
 
 #filter(region_trends, goal == "Index" & region_id == 0)
 
-trends_spread <- spread(select(region_trends, -p.value), goal, trend)
+trends_spread <- spread(region_trends, goal, trend)
 
 index <- trends_spread %>%
   filter(country == 'eez_weighted_avg')
