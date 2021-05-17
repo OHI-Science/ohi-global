@@ -456,7 +456,7 @@ AO <- function(layers) {
 
 NP <- function(scores, layers) {
 
-    scen_year <- layers$data$scenario_year
+      scen_year <- layers$data$scenario_year
   
   
     ### Reassembles NP harvest information from separate data layers for ornamentals, seaweeds, and FOFM:
@@ -514,44 +514,41 @@ NP <- function(scores, layers) {
     np_seaweed_tonnes <- 
       AlignDataYears(layer_nm = "np_seaweed_tonnes", layers_obj = layers) %>%
       dplyr::select(year = scenario_year, region_id = rgn_id, taxa_code, tonnes) %>%
-      mutate(product = "seaweeds")
+      mutate(product = "seaweeds") 
    
     ### Read in seaweed sustainability data 
     np_seaweed_sust <- 
       AlignDataYears(layer_nm = "np_seaweed_sust", layers_obj = layers) %>%
       dplyr::select(year = scenario_year, region_id = rgn_id, taxa_code, sust_coeff) %>%
-      mutate(product = "seaweeds")    
+      mutate(product = "seaweeds") %>%
+      group_by(year, region_id, product) %>%
+      summarise(sust_coeff = mean(sust_coeff, na.rm = TRUE)) %>%
+      ungroup()
     
     ### Summarize the sustainably harvested tonnes of 
     ### seaweed per region per year, and calculate a 
     ### score for this product. 
 
-    ## Join the tonnes and sustainability tables and multiply tonnes by sustainability coefficient to get sustainably harvested tonnes and save
-    seaweed_harvest_tonnes_sust <- np_seaweed_sust %>%
-      left_join(np_seaweed_tonnes, by = c("year", "region_id", "taxa_code", "product")) %>%
-      mutate(tonnes_sust = tonnes*sust_coeff) %>%
-      dplyr::select(region_id, taxa_code, year, product, tonnes_sust)
     
-    ## sum per region id, year, and product to get sustainable tons 
-    seaweed_sust_sum <- seaweed_harvest_tonnes_sust %>%
+    ## sum per region id, year, and product to get tons 
+    seaweed_sum <- np_seaweed_tonnes %>%
       group_by(region_id, year, product) %>%
-      summarise(tonnes_sust = sum(tonnes_sust, na.rm = TRUE))
-    # no change from seaweed_harvest_tonnes_sust
+      summarise(tonnes = sum(tonnes, na.rm = TRUE))
 
     # Calculate Rolling Averages
-    # Determine rolling averages for sustainable harvested tonnes in order to determine peak values.
+    # Determine rolling averages for harvested tonnes in order to determine peak values.
 
     # Find max year in the summarized data table
-    year_max <- max(seaweed_sust_sum$year)
+    year_max <- max(seaweed_sum$year)
 
-    roll_tonnes_sust <- seaweed_sust_sum %>%
+    roll_tonnes <- seaweed_sum %>%
       arrange(region_id, year, product) %>%
-      group_by(region_id,) %>%
-      mutate(tonnes_rollmean = zoo::rollapply(tonnes_sust, width=4, FUN=mean, align='right', partial=TRUE, na.rm=FALSE)) %>%
-      rename(tonnes_orig = tonnes_sust) %>% # prevent overwriting of reported and gapfilled values
+      group_by(region_id) %>%
+      mutate(tonnes_rollmean = zoo::rollapply(tonnes, width=4, FUN=mean, align='right', partial=TRUE, na.rm=FALSE)) %>%
+      rename(tonnes_orig = tonnes) %>% # prevent overwriting of reported and gapfilled values
       mutate(tonnes = ifelse(!is.na(tonnes_rollmean), tonnes_rollmean, tonnes_orig)) %>%
       select(region_id, year, product, tonnes, tonnes_orig)
-
+    
 
     # Score Harvest Relative to Peaks
 
@@ -561,17 +558,20 @@ NP <- function(scores, layers) {
     #buffer  <-  0.35 # 35% buffer (from OHI Methods) ## commented out because we excluded this for v2020...
 
     ## Find peak harvest per region-product and apply conservative buffer (scale down)
-    peak_tonnes_sust <- roll_tonnes_sust %>%
-        group_by(region_id) %>%
+    peak_tonnes <- roll_tonnes %>%
+      group_by(region_id) %>%
         #mutate(tonnes_peak = max(tonnes, na.rm=T)  * (1 - buffer)) %>%
         mutate(tonnes_peak = max(tonnes, na.rm = T)) %>%
         ungroup()
 
     ## Determine relative seaweed product status:
-    np_seaweed_scores <- peak_tonnes_sust %>%
-        mutate(product_status = ifelse(tonnes >= tonnes_peak, 1, tonnes / tonnes_peak)) %>%
+    np_seaweed_scores <- peak_tonnes %>%
+        mutate(tonnes_rel = ifelse(tonnes >= tonnes_peak, 1, tonnes / tonnes_peak)) %>%
+      # dplyr::select(year, region_id, product, taxa_code, tonnes_rel) %>%
+      dplyr::select(year, region_id, product, tonnes_rel) %>%
+      left_join(np_seaweed_sust) %>%
+      mutate(product_status = tonnes_rel*sust_coeff) %>%
       dplyr::select(year, region_id, product, product_status)
-    
     
     #########################################
     ### Read in calculated FOFM scores 
