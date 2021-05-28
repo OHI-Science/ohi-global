@@ -771,7 +771,8 @@ CP <- function(layers) {
       'hab_seagrass_extent',
       'hab_saltmarsh_extent',
       'hab_coral_extent',
-      'hab_seaice_extent'
+      'hab_seaice_extent',
+      'hab_kelp_extent'
     )
   health_lyrs <-
     c(
@@ -779,7 +780,9 @@ CP <- function(layers) {
       'hab_seagrass_health',
       'hab_saltmarsh_health',
       'hab_coral_health',
-      'hab_seaice_health'
+      'hab_seaice_health',
+      'hab_kelp_health'
+      
     )
   trend_lyrs <-
     c(
@@ -787,7 +790,8 @@ CP <- function(layers) {
       'hab_seagrass_trend',
       'hab_saltmarsh_trend',
       'hab_coral_trend',
-      'hab_seaice_trend'
+      'hab_seaice_trend',
+      'hab_kelp_trend'
     )
 
 
@@ -847,7 +851,8 @@ CP <- function(layers) {
     'mangrove'         = 4,
     'saltmarsh'        = 3,
     'seagrass'         = 1,
-    'seaice_shoreline' = 4
+    'seaice_shoreline' = 4,
+    'kelp' = 1
   )
   
   ## limit to CP habitats and add rank
@@ -1445,7 +1450,8 @@ HAB <- function(layers) {
       'hab_saltmarsh_extent',
       'hab_coral_extent',
       'hab_seaice_extent',
-      'hab_softbottom_extent'
+      'hab_softbottom_extent',
+      'hab_kelp_extent'
     )
   health_lyrs <-
     c(
@@ -1454,7 +1460,8 @@ HAB <- function(layers) {
       'hab_saltmarsh_health',
       'hab_coral_health',
       'hab_seaice_health',
-      'hab_softbottom_health'
+      'hab_softbottom_health',
+      'hab_kelp_health'
     )
   trend_lyrs <-
     c(
@@ -1463,7 +1470,8 @@ HAB <- function(layers) {
       'hab_saltmarsh_trend',
       'hab_coral_trend',
       'hab_seaice_trend',
-      'hab_softbottom_trend'
+      'hab_softbottom_trend',
+      'hab_kelp_trend'
     )
   
   # get data together:
@@ -1494,7 +1502,8 @@ HAB <- function(layers) {
         'saltmarsh',
         'seaice_edge',
         'seagrass',
-        'soft_bottom'
+        'soft_bottom',
+        'kelp'
       )
     ) %>%
     dplyr::mutate(w  = ifelse(!is.na(extent) & extent > 0, 1, NA)) %>%
@@ -1548,7 +1557,8 @@ HAB <- function(layers) {
         'mangrove',
         'coral',
         'seaice_edge',
-        'soft_bottom'
+        'soft_bottom',
+        'kelp'
       )
     ) %>%
     dplyr::filter(extent > 0) %>%

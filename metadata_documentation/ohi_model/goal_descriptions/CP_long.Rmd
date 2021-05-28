@@ -1,6 +1,6 @@
 ## Coastal protection
 
-This goal aims to assess the amount of protection provided by marine and coastal habitats to coastal areas that people value, both inhabited (homes and other structures) and uninhabited (parks, special places, etc.). At local and regional scales data may exist on all these variables at a high enough resolution to map and calculate exactly which habitats are providing how much protection to which coastal areas. At global scales, such data do not exist and so we focused on EEZ-scale assessments, even though this scale does not allow one to account for the spatial configuration of habitats relative to coastal areas and human populations. Consequently, we assumed that all coastal areas have value (and equal value) and assessed the total area and condition of key habitats within each EEZ (without regard to their precise location relative to coastal areas). The habitats that provide protection to coastal areas for which we have global data include mangroves, coral reefs, seagrasses, salt marshes (Table 6.2), and coastal sea ice (shoreline pixels with >15% ice cover).
+This goal aims to assess the amount of protection provided by marine and coastal habitats to coastal areas that people value, both inhabited (homes and other structures) and uninhabited (parks, special places, etc.). At local and regional scales data may exist on all these variables at a high enough resolution to map and calculate exactly which habitats are providing how much protection to which coastal areas. At global scales, such data do not exist and so we focused on EEZ-scale assessments, even though this scale does not allow one to account for the spatial configuration of habitats relative to coastal areas and human populations. Consequently, we assumed that all coastal areas have value (and equal value) and assessed the total area and condition of key habitats within each EEZ (without regard to their precise location relative to coastal areas). The habitats that provide protection to coastal areas for which we have global data include mangroves, coral reefs, seagrasses, kelp forests, salt marshes (Table 6.2), and coastal sea ice (shoreline pixels with >15% ice cover).
 
 
 #### Current status
@@ -28,6 +28,7 @@ salt marshes |4
 coastal sea ice | 4
 coral reefs | 3 
 seagrasses | 1
+kelp | 1
 
 The reference area for each habitat is treated as a fixed value; in cases where current area might exceed this reference value (e.g., through restoration), we cap the score at the maximum value (1.0). Although this does not give credit for restoration, data tend to be of poor quality making it difficult to determine true increases, and in general habitat restoration beyond reference values is extremely unlikely. Rank weights for the protective ability of each habitat ($w_{k}$) come from previous work [@tallis_invest_2011].
 
