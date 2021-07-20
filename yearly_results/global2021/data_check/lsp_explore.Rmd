@@ -1,0 +1,163 @@
+---
+title: "LSP explore"
+author: "Gage Clawson"
+date: "7/19/2021"
+output: html_document
+---
+
+## Explore the LSP data after new data updates
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
+```
+
+```{r}
+lsp_scores <- read_csv("../../../eez/score_check/lsp_reupdated_after_demo_diff_data_2021-06-22.csv") 
+
+
+lsp_status <- lsp_scores %>%
+  filter(goal == "LSP", dimension == "status", region_id != 0)
+
+## get top ten and bottom ten scores for 2021
+
+DT::datatable(lsp_status %>%
+  filter(year == 2021) %>%
+  arrange(-score) %>%
+    dplyr::select(goal, dimension, rgn_name, year, score, old_score, change))
+
+## make a carpet plot to view the changes across years 
+
+data <- lsp_status %>%
+  filter(dimension == "status") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(score, 0),
+         value_old = round(old_score, 0)) %>%
+  mutate(rgn_name = as.character(rgn_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame()
+  
+
+global <- data %>%
+  select(rgn_name, meanIndex) %>%
+  filter(rgn_name == "Region") %>%
+  unique()
+
+order_rgn <- data %>%
+  filter(rgn_name != "Region") %>%
+  select(rgn_name, meanIndex) %>%
+  unique() %>%
+  arrange(meanIndex)
+  
+order_rgn <- rbind(order_rgn, global)
+
+goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+
+data$goal <- factor(data$goal, levels = goals)
+data$rgn_name <- factor(data$rgn_name, levels=order_rgn$rgn_name)
+
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+myPalette <-   c(reds, blues)
+
+scenario <- 2021
+
+data_lsp <- data %>%
+  filter(goal == "LSP")
+  
+
+ggplot(data_lsp, aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+ggsave(here("yearly_results/global2021/data_check/lsp_status_carpet.png"), width=20, height=35)
+
+```
+
+
+**Some interesting possible comparisons**
+
+Within country, over time:
+ - Pitcairn; 
+    - implemented one of the biggest protected areas in world.
+    - https://www.theguardian.com/environment/2015/mar/18/pitcairn-islands-marine-reserve-budget-2015
+    
+    
+Pitcairn's score has increased dramatically over the past 10 years. Until 2015, Pitcairn did not have any protected areas in it's surrounding areas, and recieved a score 0. However, in 2015, the United Kingdom government implemeted the largest single marine reserve in the world (at the time), and it's score jumped to 71/100 in 2016, when the change was realized in the global OHI scores. In recent years, the protected area has become smaller, and it's current score is 54 for 2021. 
+    
+
+```{r}
+data <- lsp_scores %>%
+  filter(dimension == "status") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(score, 0),
+         value_old = round(old_score, 0)) %>%
+  mutate(rgn_name = as.character(rgn_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame() %>%
+  filter(goal == "LSP")
+  
+
+
+data_pit <- data %>%
+  filter(rgn_name == "Pitcairn")
+
+data_pit
+
+
+ggplot(data_pit, aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+```
+    
+    
+
+ - New Zealand; 
+    - implementing a huge protected area? 
+    - https://www.pewtrusts.org/en/research-and-analysis/articles/2020/11/02/new-zealand-could-soon-protect-one-of-worlds-most-biodiverse-marine-areas
+ - Canada;
+    - has the worlds largest coastline, but still isn't reaching the 30% target... They have agreed to protect at least 10% of their coastline by 2020.. did they do it? In 2019 they announced they protected 13.8% of its oceans.
+    - https://storymaps.arcgis.com/stories/0ab9b72c6351401480e20c8e921c270e
+ 
+Across countries for 2021: 
+ - Australia (great score) vs. India/China/Canada (not great scores)
+     - 
+ - USA vs. Canada; why is Canada so much worse? 
+ - IRL vs. NZL; similar pretty progressive island nations. 
+ - South Africa, Mozambique, Namibia all have GREAT scores. Counter to the general public perception. Could be cool to explore why. 
+
+Future trends: 
+  - Expect Christmas Islands and Cocos (Keeling) to increase in the 2022 assessment
+  - https://news.mongabay.com/2021/05/two-new-australian-marine-parks-protect-area-twice-the-size-the-great-barrier-reef/
+
+
+```{r}
+ggplot(data %>% filter(rgn_name %in% c("Canada", "Pitcairn", "New Zealand", "Australia", "South Africa", "Mozambique", "Tanzania", "Namibia", "Ireland", "Thailand", "Seychelles", "India", "China")), aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("") 
+
+
+data %>% filter(rgn_name %in% c("Canada", "Pitcairn", "New Zealand", "Australia", "South Africa", "Mozambique", "Tanzania", "Namibia", "Ireland", "Thailand", "Seychelles", "India", "China")) %>%
+                  dplyr::select(rgn_name, year, value)
+```
+
+
+ 
