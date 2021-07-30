@@ -632,6 +632,36 @@ A color-coded table of trend values for each country is available [here](https:/
 
 NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed sceptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
 
+
+```{r}
+## Trends data for website
+scores <- read_csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)))
+  
+region_trends <- scores %>%
+  filter(dimension == "score") %>%
+  filter(!is.na(value)) %>%
+  group_by(goal, long_goal, region_id, region_name) %>%
+  do(mdl = tidy(lm(value ~ scenario, data = .))) %>%
+  unnest(mdl)  #fitting a model per each goal and rgn_id
+  
+
+# data.frame(glance(data_lm, mdl))
+region_trends2 <- region_trends %>%
+  filter(term == "scenario") %>%
+  select(region_name, goal, long_goal,trend = estimate, p.value) %>%
+  data.frame() 
+
+write_csv(region_trends2, here("yearly_results/global2020/Results/data/trends_website.csv"))
+
+plotdata <- region_trends2 %>%
+  mutate(trend = ifelse(trend>1, 1, trend),
+         trend = ifelse(trend< (-1), (-1), trend))
+ggplot(filter(plotdata, goal=="AO"), aes(x=trend)) +
+  geom_dotplot(method="histodot", binwidth=0.05)
+
+```
+
+
 ## Global summary
 The following table provides the global scores (eez area weighted average of region scores) for the Index and goals/subgoals for all years.
 
