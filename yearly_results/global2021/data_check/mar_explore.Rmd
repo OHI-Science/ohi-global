@@ -1,0 +1,157 @@
+---
+title: "MAR explore"
+author: "Gage Clawson"
+date: "7/20/2021"
+output: html_document
+---
+
+## Explore the MAR data after new data updates
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
+```
+
+```{r}
+mar_scores <- read_csv("../../../eez/score_check/mar_seaweed_fix_diff_data_2021-05-11.csv") 
+
+
+mar_status <- mar_scores %>%
+  filter(goal == "MAR", dimension == "status", region_id != 0)
+
+## get top ten and bottom ten scores for 2021
+
+DT::datatable(mar_status %>%
+  filter(year == 2021) %>%
+  arrange(-score) %>%
+    dplyr::select(goal, dimension, rgn_name, year, score, old_score, change))
+
+## make a carpet plot to view the changes across years 
+
+data <- mar_status %>%
+  filter(dimension == "status") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(score, 0),
+         value_old = round(old_score, 0)) %>%
+  mutate(rgn_name = as.character(rgn_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame()
+  
+
+global <- data %>%
+  select(rgn_name, meanIndex) %>%
+  filter(rgn_name == "Region") %>%
+  unique()
+
+order_rgn <- data %>%
+  filter(rgn_name != "Region") %>%
+  select(rgn_name, meanIndex) %>%
+  unique() %>%
+  arrange(meanIndex)
+  
+order_rgn <- rbind(order_rgn, global)
+
+goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+
+data$goal <- factor(data$goal, levels = goals)
+data$rgn_name <- factor(data$rgn_name, levels=order_rgn$rgn_name)
+
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+myPalette <-   c(reds, blues)
+
+scenario <- 2021
+
+data_mar <- data %>%
+  filter(goal == "MAR")
+  
+
+ggplot(data_mar, aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+ggsave(here("yearly_results/global2021/data_check/mar_status_carpet.png"), width=20, height=35)
+
+```
+
+
+**Some interesting possible comparisons**
+
+Within country, over time:
+ - Germany; 
+    - huge increase over whole time period
+    
+    
+Germany's mariculture status score has increased dramatically over the past 10 years. 
+    
+
+```{r}
+data <- mar_scores %>%
+  filter(dimension == "status") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(score, 0),
+         value_old = round(old_score, 0)) %>%
+  mutate(rgn_name = as.character(rgn_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame() %>%
+  filter(goal == "MAR")
+  
+
+
+data_deu <- data %>%
+  filter(rgn_name == "Germany")
+
+data_deu
+
+
+ggplot(data_deu, aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+```
+
+```{r}
+ggplot(data %>% filter(rgn_name %in% c("Germany", "Denmark", "China", "Greece", "Egypt", "Italy", "Malta", "North Korea", "Norway", "Chile")), aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("") 
+
+
+data %>% filter(rgn_name %in% c("Germany", "Denmark", "China")) %>%
+                  dplyr::select(rgn_name, year, value)
+```
+
+
+Chile and Norway production/status comparison: 
+
+```{r}
+
+tonnes_prod <- read_csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/mar/v2021/output/mar_harvest_tonnes.csv")
+
+chile_tonnes <- tonnes_prod %>%
+  filter(rgn_id %in% c(223,224)) %>%
+  filter(year == 2019) %>%
+  group_by(rgn_id) %>%
+  summarise(tonnes = sum(tonnes))
+
+```
+
+
+
+ 

@@ -1,0 +1,112 @@
+---
+title: "FIS explore"
+author: "Gage Clawson"
+date: "7/20/2021"
+output: html_document
+---
+
+## Explore the FIS data after new data updates
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
+```
+
+```{r}
+fis_scores <- read_csv("../../../eez/score_check/RAM_fis_update_diff_data_2021-06-04.csv") 
+
+
+fis_status <- fis_scores %>%
+  filter(goal == "FIS", dimension == "status", region_id != 0)
+
+## get top ten and bottom ten scores for 2021
+
+DT::datatable(fis_status %>%
+  filter(year == 2021) %>%
+  arrange(-score) %>%
+    dplyr::select(goal, dimension, rgn_name, year, score, old_score, change))
+
+## make a carpet plot to view the changes across years 
+
+data <- fis_status %>%
+  filter(dimension == "status") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(score, 0),
+         value_old = round(old_score, 0)) %>%
+  mutate(rgn_name = as.character(rgn_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame()
+  
+
+global <- data %>%
+  select(rgn_name, meanIndex) %>%
+  filter(rgn_name == "Region") %>%
+  unique()
+
+order_rgn <- data %>%
+  filter(rgn_name != "Region") %>%
+  select(rgn_name, meanIndex) %>%
+  unique() %>%
+  arrange(meanIndex)
+  
+order_rgn <- rbind(order_rgn, global)
+
+goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'FIS', 'ICO', 'SP', 'LSP', 'NP', 'TR')
+
+data$goal <- factor(data$goal, levels = goals)
+data$rgn_name <- factor(data$rgn_name, levels=order_rgn$rgn_name)
+
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+myPalette <-   c(reds, blues)
+
+scenario <- 2021
+
+data_fis <- data %>%
+  filter(goal == "FIS")
+  
+
+ggplot(data_fis, aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+ggsave(here("yearly_results/global2021/data_check/fis_status_carpet.png"), width=20, height=35)
+
+```
+
+
+**Some interesting possible comparisons**
+
+Within country, over time:
+
+ - 
+    
+    
+
+```{r}
+ggplot(data %>% filter(rgn_name %in% c("United States", "Falkland Islands", "China", "Lithuania", "North Korea", "Norway", "Denmark", "Germany", "New Zealand")), aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("") 
+
+
+data %>% filter(rgn_name %in% c("Germany", "Denmark", "China")) %>%
+                  dplyr::select(rgn_name, year, value)
+
+  
+  
+```
+
+
+ 
