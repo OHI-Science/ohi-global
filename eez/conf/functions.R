@@ -409,23 +409,27 @@ FP <- function(layers, scores) {
 
 
 AO <- function(layers) {
-  Sustainability <- 1.0
-  
+  # Sustainability <- 1.0
   scen_year <- layers$data$scenario_year
-  
+
   r <- AlignDataYears(layer_nm = "ao_access", layers_obj = layers) %>%
     dplyr::rename(region_id = rgn_id, access = value) %>%
     na.omit()
   
+  sust <- AlignDataYears(layer_nm = "ao_sust", layers_obj = layers) %>%
+    dplyr::rename(region_id = rgn_id, sust = score)
+  
   ry <-
     AlignDataYears(layer_nm = "ao_need", layers_obj = layers) %>%
     dplyr::rename(region_id = rgn_id, need = value) %>%
-    dplyr::left_join(r, by = c("region_id", "scenario_year"))
+    dplyr::left_join(r, by = c("region_id", "scenario_year")) %>%
+    dplyr::left_join(sust, by = c("region_id", "scenario_year"))
   
   # model
   ry <- ry %>%
+    dplyr::mutate(sust = ifelse(is.na(sust), access, sust)) %>%
     dplyr::mutate(Du = (1 - need) * (1 - access)) %>%
-    dplyr::mutate(status = (1 - Du) * Sustainability)
+    dplyr::mutate(status = (1 - Du) * sust)
   
   # status
   r.status <- ry %>%
