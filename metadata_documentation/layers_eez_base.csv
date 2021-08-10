@@ -5,7 +5,7 @@ ao_need,ohiprep:globalprep/ao/v2021/output,wb_gdppcppp_rescaled.csv,TRUE,value,E
 cc_acid,ohiprep:globalprep/prs_oa/v2017/output,acid.csv,TRUE,pressure_score,Ocean acidification,scaled 0-1,"Pressure due to increasing ocean acidification, scaled using biological thresholds"
 cc_slr,ohiprep:globalprep/prs_slr/v2019/output,slr.csv,TRUE,pressure_score,Sea level rise,scaled 0-1,Pressure due to rising mean sea level
 cc_sst,ohiprep:globalprep/prs_sst/v2018/output,sst_updated.csv,TRUE,pressure_score,Sea surface temperature,scaled 0-1,Presure due to increasing extreme sea surface temperature events
-cc_uv,ohiprep:globalprep/prs_uv/v2020/output,uv.csv,TRUE,pressure_score,UV radiation,scaled 0-1,Pressure due to increasing frequency of UV anomolies
+cc_uv,ohiprep:globalprep/prs_uv/v2021/output,uv.csv,TRUE,pressure_score,UV radiation,scaled 0-1,Pressure due to increasing frequency of UV anomolies
 cw_chemical_trend,ohiprep:globalprep/prs_chem/v2016/output,cw_chemical_trend_updated.csv,TRUE,trend,Chemical pollution trend,trend,"Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ "
 cw_nutrient_trend,ohiprep:globalprep/prs_land-based_nutrient/v2016/output,cw_fertilizers_trend_updated.csv,TRUE,trend,Nutrient pollution trend,trend,"Trends in nutrient pollution, using fertilizer consumption as a proxy for nutrient pollution"
 cw_pathogen_trend,ohiprep:globalprep/prs_cw_pathogen/v2019/output,po_pathogen_popdensity25mi_trend.csv,TRUE,trend,Pathogen pollution trend,trend,Trends in percent of population without access to improved sanitation facilities as a proxy for pathogen pollution
