@@ -3,6 +3,8 @@ ao_access,AO,status
 ao_access,AO,trend
 ao_need,AO,status
 ao_need,AO,trend
+ao_sust, AO, status
+ao_sust, AO, trend
 cc_acid,CP,pressure
 cc_acid,CS,pressure
 cc_acid,ECO,pressure
@@ -81,11 +83,11 @@ fp_fish_management,HAB,resilience
 fp_fish_management,ICO,resilience
 fp_fish_management,NP,resilience
 fp_fish_management,SPP,resilience
-fp_mora_artisanal,FIS,resilience
-fp_mora_artisanal,HAB,resilience
-fp_mora_artisanal,ICO,resilience
-fp_mora_artisanal,NP,resilience
-fp_mora_artisanal,SPP,resilience
+fp_artisanal,FIS,resilience
+fp_artisanal,HAB,resilience
+fp_artisanal,ICO,resilience
+fp_artisanal,NP,resilience
+fp_artisanal,SPP,resilience
 fp_mpa_coast,AO,resilience
 fp_mpa_coast,HAB,resilience
 fp_mpa_coast,NP,resilience
