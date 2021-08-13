@@ -648,7 +648,9 @@ region_trends <- scores %>%
 # data.frame(glance(data_lm, mdl))
 region_trends2 <- region_trends %>%
   filter(term == "scenario") %>%
-  select(region_name, goal, long_goal,trend = estimate, p.value) %>%
+  mutate(scenario = "2012-2020",
+         dimension = "average_yearly_change_in_scores") %>%
+  select(scenario, goal, long_goal, dimension, region_id, region_name, value = estimate, p.value) %>%
   data.frame() 
 
 write_csv(region_trends2, here("yearly_results/global2020/Results/data/trends_website.csv"))
