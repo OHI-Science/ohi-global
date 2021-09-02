@@ -48,9 +48,8 @@ FIS <- function(layers) {
   # separate out the stock_id and taxonkey:
   c <- c %>%
     dplyr::mutate(stock_id_taxonkey = as.character(stock_id_taxonkey)) %>%
-    dplyr::mutate(taxon_key = stringr::str_sub(stock_id_taxonkey,-6,-1)) %>%
-    dplyr::mutate(stock_id = substr(stock_id_taxonkey, 1, nchar(stock_id_taxonkey) -
-                               7)) %>%
+    dplyr::mutate(taxon_key = sub('.*_', '', stock_id_taxonkey)) %>%
+    dplyr::mutate(stock_id = sub('_[^_]*$', '', stock_id_taxonkey)) %>%
     dplyr::mutate(catch = as.numeric(catch)) %>%
     dplyr::mutate(year = as.numeric(as.character(year))) %>%
     dplyr::mutate(region_id = as.numeric(as.character(region_id))) %>%
@@ -101,7 +100,7 @@ FIS <- function(layers) {
   
   ###
   # STEP 2. Estimate scores for taxa without b/bmsy values
-  # Median score of other fish in the region is the starting point
+  # Mean score of other fish in the region is the starting point
   # Then a penalty is applied based on the level the taxa are reported at
   ###
   

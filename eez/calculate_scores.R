@@ -40,7 +40,7 @@ source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
 
 # STEP 5: Be sure to push all ohiprep changes!!
 
-# STEP 6: Update the newest layer's file location and file name in eez_layers_meta_data/layers_eez_base.csv
+# STEP 6: Update the newest layer's file location and file name in metadata_documentation/layers_eez_base.csv
 
 # STEP 7: Make sure the appropriate data year is entered in eez/conf/scenario_data_years.csv
 
@@ -156,19 +156,34 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ## final commit from last year: cfa760f
 # Link being sourced here is incorrect, need to change it!
  ohicore::score_check(commit = "previous", scenario_year = 2021,
-             file_name = "sst_update", save_csv = TRUE, NA_compare = TRUE)
+             file_name = "fis_saup_update", save_csv = TRUE, NA_compare = TRUE)
 
 
  
 #### Below here is case-to-case basis:
-compare <- read.csv(here("eez/score_check/sb_99_test_diff_data_2020-09-30.csv"))
+compare <- read.csv(here("eez/score_check/fis_saup_update_diff_data_2021-09-02.csv"))
 
-sb_test <- compare %>%
-  dplyr::filter(goal == "HAB",
-         year == 2020, 
+fis_test <- compare %>%
+  dplyr::filter(goal == "FIS",
+         year == 2021, 
          dimension == "score")
-  
 
+test <- scores_all_years %>%
+  dplyr::filter(dimension == "status") %>%
+  dplyr::filter(goal == "FIS") %>%
+  dplyr::filter(region_id == 146)
+  
+test_pit <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/fis/v2021/output/mean_catch_minus_feed.csv") %>%
+  dplyr::filter(rgn_id == 146) %>%
+  dplyr::group_by(year) %>%
+  dplyr::summarise(tons = sum(mean_catch))
+
+test_pit_old <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/fis/v2021_old/output/mean_catch_minus_feed.csv") %>%
+  dplyr::filter(rgn_id == 146) %>%
+  dplyr::group_by(year) %>%
+  dplyr::summarise(tons = sum(mean_catch))
+
+## significantly more catch is reported for Pitcairn in the SAUP data than in the Watson data
 
 
 library(ggplot2)
