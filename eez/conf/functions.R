@@ -36,13 +36,13 @@ FIS <- function(layers) {
   
    high_bmsy <- high_bmsy_filter$stock_id
 
-   b <- b %>%
-     dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
-                             bbmsy > 1, 1, bbmsy))
+   # b <- b %>%
+   #   dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
+   #                           bbmsy > 1, 1, bbmsy))
 
    # # no underharvest penalty  
-   # b <- b %>%
-   #   dplyr::mutate(bbmsy = ifelse(bbmsy > 1, 1, bbmsy))
+   b <- b %>%
+     dplyr::mutate(bbmsy = ifelse(bbmsy > 1, 1, bbmsy))
   
   
   # separate out the stock_id and taxonkey:
