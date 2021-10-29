@@ -14,87 +14,39 @@ library(tidyverse)
 ```
 
 
-## trends in TR
-
-```{r tr declines}
-
-trends <- read.csv(here("yearly_results/global2019/Results/data/trends_2019.csv"))
-regions <- read.csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2019/gh-pages/globalprep/spatial/v2017/output/georegion_labels.csv") %>%
-  rename(region_id = rgn_id) %>%
-  select(-r0_label)
-
-filter(regions, r2_label == "Northern America")
-
-trends <- left_join(trends, regions, by='region_id')
-
-tr <- trends %>%
-  select(country, region_id, TR, r1_label, r2_label) %>%
-  group_by(r2_label) %>%
-  summarize(TR = mean(TR, na.rm=TRUE)) %>%
-  arrange(TR)
-data.frame(tr)
-
-```
-
-
-## trends in FIS
-
+## Trends across assessment years 
+ - Here we would like to look at the differences in scores across ASSESSMENT years. Although it isn't really scientifically sound to compare across assessments with different methods, it is still an interesting talking point to see just how much the scores have changed. 
+ 
 ```{r}
+scores_2015 <- read.csv(file.path(here(), "yearly_results/global2015/Reporting/data/scores_eez2015.csv")) %>%
+  dplyr::select(-dimension) %>%
+  mutate(country = ifelse(country == "eez_weighted_avg", "Global average", country)) %>%
+  rename("region_name" = "country") 
 
-left_join(trends, regions, by='region_id') %>%
-  arrange(FIS)
-
-filter(trends, r2_label == "Northern America")
-
-fis <- trends %>%
-  select(country, region_id, FIS, r1_label, r2_label) %>%
-  group_by(r2_label) %>%
-  summarize(FIS = mean(FIS, na.rm=TRUE)) %>%
-  arrange(FIS)
-data.frame(fis)
-
-```
+scores_2016 <- read.csv(file.path(here(), "yearly_results/global2016/Reporting/data/scores_eez2016.csv")) %>%
+  mutate(scenario = 2016,
+         country = ifelse(country == "eez_weighted_avg", "Global average", country)) %>%
+  rename("region_name" = "country")
 
 
-## mariculture
+scores_2017 <- read.csv(file.path(here(), "yearly_results/global2017/Results/data/scores_eez2017.csv")) %>%
+  mutate(scenario = 2017)
 
-```{r}
+scores_2018 <- read.csv(file.path(here(), "yearly_results/global2018/Results/data/scores_eez2018.csv")) %>%
+  mutate(scenario = 2018)
 
-scores <- read.csv(here("yearly_results/global2019/Results/data/scores_eez2019.csv"))
+scores_2019 <- read.csv(file.path(here(), "yearly_results/global2019/Results/data/scores_eez2019.csv")) %>%
+  mutate(scenario = 2019)
 
-scores <- left_join(scores, regions, by='region_id')
+scores_2020 <- read.csv(file.path(here(), "yearly_results/global2020/Results/data/scores_eez2020.csv")) %>%
+  mutate(scenario = 2020)
 
-arrange(scores, Index)
+scores_2021 <- read.csv(file.path(here(), "yearly_results/global2021/Results/data/scores_eez2021.csv")) %>%
+  mutate(scenario = 2021)
 
 
-filter(trends, r2_label == "Northern America")
-
-fis <- trends %>%
-  select(country, region_id, FIS, r1_label, r2_label) %>%
-  group_by(r2_label) %>%
-  summarize(FIS = mean(FIS, na.rm=TRUE)) %>%
-  arrange(FIS)
-data.frame(fis)
+all_years <- rbind(scores_2015, scores_2016, scores_2017, scores_2018, scores_2019, scores_2020, scores_2021) %>%
+  pivot_longer(cols = 4:22, names_to = "goal", values_to = "score")
 
 ```
 
-
-## scores
-
-```{r}
-
-scores <- read.csv(here("yearly_results/global2019/Results/data/scores_eez2019.csv"))
-
-arrange(scores, -MAR)
-
-
-filter(trends, r2_label == "Northern America")
-
-fis <- trends %>%
-  select(country, region_id, FIS, r1_label, r2_label) %>%
-  group_by(r2_label) %>%
-  summarize(FIS = mean(FIS, na.rm=TRUE)) %>%
-  arrange(FIS)
-data.frame(fis)
-
-```
