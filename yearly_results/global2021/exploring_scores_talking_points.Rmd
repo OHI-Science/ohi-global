@@ -46,7 +46,9 @@ scores_2021 <- read.csv(file.path(here(), "yearly_results/global2021/Results/dat
 
 
 all_years <- rbind(scores_2015, scores_2016, scores_2017, scores_2018, scores_2019, scores_2020, scores_2021) %>%
-  pivot_longer(cols = 4:22, names_to = "goal", values_to = "score")
+  pivot_longer(cols = 4:22, names_to = "goal", values_to = "score") %>%
+  filter(region_name == "Global average", 
+         goal == "Index")
 
 ```
 

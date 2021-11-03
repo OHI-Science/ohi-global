@@ -153,5 +153,42 @@ chile_tonnes <- tonnes_prod %>%
 ```
 
 
+## Some global stats:
+
+
+Total tonnes produced
+```{r}
+tonnes_prod <- read_csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/mar/v2021/output/mar_harvest_tonnes.csv")
+
+tonnes_prod_2019 <- tonnes_prod %>%
+  filter(year == 2019)
+sum(tonnes_prod_2019$tonnes) # 49330043
+
+
+
+
+tonnes_prod_spp <- tonnes_prod_2019 %>%
+  mutate(spp = gsub("_.*", "", taxa_code))
+
+
+most_common <- tonnes_prod_spp %>%
+  filter(tonnes > 0 ) %>%
+  group_by(spp) %>%
+  summarise(count_most_common = n()) %>%
+  arrange(-count_most_common)
+
+kable(head(most_common,15))
+
+most_common_prod <- tonnes_prod_spp %>%
+  filter(tonnes > 0) %>%
+  group_by(spp) %>%
+  summarise(total_prod = sum(tonnes)) %>%
+  arrange(-total_prod)
+
+kable(head(most_common_prod,15))
+```
+
+
+
 
  

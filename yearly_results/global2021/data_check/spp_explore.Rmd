@@ -1,0 +1,97 @@
+---
+title: "SPP explore"
+author: "Gage Clawson"
+date: "10/29/2021"
+output: html_document
+---
+
+## Explore the SPP data after new data updates
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
+```
+
+## Summarize IUCN status data
+
+Calculate what percentage of animals fall under each risk category (LC, DD, NT, V, E, CE)
+
+```{r}
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/spp/v2021/_data/iucn_risk_current_2020-3.csv')
+
+data_grouped_2020_3 <- data %>%
+  group_by(cat) %>% 
+  summarise(count_spp = n()) %>%
+  ungroup() %>%
+  filter(cat != "DD") %>%
+   mutate(total_spp = sum(count_spp)) %>%
+  mutate(percent = (count_spp/total_spp)*100)
+
+kable(data_grouped_2020_3)
+sum(data_grouped_2020_3$count_spp) # 12792
+
+
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/spp/v2021/_data/iucn_risk_current_2020-1.csv')
+
+data_grouped_2020_1 <- data %>%
+  group_by(cat) %>% 
+  summarise(count_spp = n()) %>%
+  ungroup() %>%
+  filter(cat != "DD") %>%
+  mutate(total_spp = sum(count_spp)) %>%
+  mutate(percent = (count_spp/total_spp)*100)
+
+kable(data_grouped_2020_1)
+
+# 12283
+
+
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/spp/v2020/_data/iucn_risk_current_2019-1.csv')
+
+data_grouped_2019_1 <- data %>%
+  group_by(cat) %>% 
+  summarise(count_spp = n()) %>%
+  ungroup() %>%
+  filter(cat != "DD") %>%
+  mutate(total_spp = sum(count_spp)) %>%
+  mutate(percent = (count_spp/total_spp)*100)
+
+kable(data_grouped_2019_1)
+
+# |cat | count_spp| total_spp|    percent|
+# |:---|---------:|---------:|----------:|
+# |CR  |       153|     10495|  1.4578371|
+# |EN  |       292|     10495|  2.7822773|
+# |EX  |        24|     10495|  0.2286803|
+# |LC  |      8719|     10495| 83.0776560|
+# |NT  |       546|     10495|  5.2024774|
+# |VU  |       761|     10495|  7.2510719|
+
+
+data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/spp/v2018/_data/iucn_risk_current_2018-1.csv')
+
+data_grouped_2018_1 <- data %>%
+  group_by(cat) %>% 
+  summarise(count_spp = n()) %>%
+  ungroup() %>%
+  filter(cat != "DD") %>%
+  mutate(total_spp = sum(count_spp)) %>%
+  mutate(percent = (count_spp/total_spp)*100)
+
+kable(data_grouped_2018_1)
+
+# |cat | count_spp| total_spp|    percent|
+# |:---|---------:|---------:|----------:|
+# |CR  |       151|     10141|  1.4890050|
+# |EN  |       288|     10141|  2.8399566|
+# |EX  |        24|     10141|  0.2366631|
+# |LC  |      8369|     10141| 82.5263781|
+# |NT  |       556|     10141|  5.4826940|
+# |VU  |       753|     10141|  7.4253032|
+
+
+```
+

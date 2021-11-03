@@ -159,5 +159,63 @@ data %>% filter(rgn_name %in% c("Canada", "Pitcairn", "New Zealand", "Australia"
                   dplyr::select(rgn_name, year, value)
 ```
 
+Take the below stats from this folder: https://github.com/OHI-Science/ohiprep_v2021/tree/gh-pages/globalprep/lsp/v2021/int
+
+Determine proportion of ocean/land areas that are protected
+
+```{r}
+prot_3nm <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/lsp/v2021/int/area_protected_3nm.csv')
+
+prot_3nm_2020 <- prot_3nm %>%
+  filter(year == 2020) %>%
+  mutate(type = "3nm")
+
+sum(prot_3nm_2020$a_prot_km2) # 1091838
+sum(prot_3nm_2020$a_tot_km2) # 4995189
+
+1091838/4995189 # 0.2185779 ; ~22% of 3nm areas are protected 
+
+
+prot_1km <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/lsp/v2021/int/area_protected_1km.csv')
+
+prot_1km_2020 <- prot_1km %>%
+  filter(year == 2020) %>%
+  mutate(type = "1km")
+
+sum(prot_1km_2020$a_prot_km2) # 293256.5
+sum(prot_1km_2020$a_tot_km2) # 1133638
+
+293256.5/1133638 # 0.2586862 ; ~26% of 1km areas are protected 
+
+
+prot_eez <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/lsp/v2021/int/area_protected_eez.csv')
+
+prot_eez_2020 <- prot_eez %>%
+  filter(year == 2020) %>%
+  mutate(type = "eez")
+
+sum(prot_eez_2020$a_prot_km2) # 26241770
+sum(prot_eez_2020$a_tot_km2) # 359482664
+
+26241770/359482664 # 0.07299871 ; ~7% of eez areas are protected 
+
+
+all_prot <- rbind(prot_eez_2020, prot_1km_2020, prot_3nm_2020) %>%
+  group_by(type) %>%
+  summarise(total_area = sum(a_tot_km2),
+            total_prot_area = sum(a_prot_km2)) %>%
+  mutate(percent_prot = (total_prot_area/total_area)*100)
+
+kable(all_prot)
+
+# |type | total_area| total_prot_area| percent_prot|
+# |:----|----------:|---------------:|------------:|
+# |1km  |    1133638|        293256.5|    25.868631|
+# |3nm  |    4995189|       1091838.0|    21.857792|
+# |eez  |  359482664|      26241770.2|     7.299871|
+```
+
+
+
 
  
