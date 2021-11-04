@@ -156,7 +156,7 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ## final commit from last year: cfa760f
 # Link being sourced here is incorrect, need to change it!
  ohicore::score_check(commit = "previous", scenario_year = 2021,
-             file_name = "3nm nutrient update", save_csv = TRUE, NA_compare = TRUE)
+             file_name = "eez_nutrient_update", save_csv = TRUE, NA_compare = TRUE)
 
 
  
