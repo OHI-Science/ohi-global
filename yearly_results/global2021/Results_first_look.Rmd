@@ -23,7 +23,7 @@ This document describes results from the 2021 global OHI assessment.  This is mo
 # 2. go through document and update text where needed.
 
 # the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = '2021-10-28' #date extension on data files used for all tables/figures
+dateFile = '2021-11-04' #date extension on data files used for all tables/figures
 
 ## General settings to control
 scenario <- 2021 #identify scenario of focus (this can be changed to obtain data for other years)
@@ -34,10 +34,10 @@ saveFile <- 'global2021' #location where files that are created are to be saved
 
 ### code to run code chunks
 ### (change these if data is updated, otherwise takes a while to run):
-update_data = FALSE           # Select true if there are updates to the OHI data!!  Also be sure to change dateFile above
-map_create = FALSE           # Updates the map figures (takes a while to run)
-goal_hists = FALSE            # Updates the goal histograms
-flower_plots = FALSE         # Updates the flower plot figures
+update_data = TRUE           # Select true if there are updates to the OHI data!!  Also be sure to change dateFile above
+map_create = TRUE           # Updates the map figures (takes a while to run)
+goal_hists = TRUE            # Updates the goal histograms
+flower_plots = TRUE         # Updates the flower plot figures
 
 ```
 
