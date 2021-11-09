@@ -1,0 +1,152 @@
+---
+title: "SPP explore"
+author: "Gage Clawson"
+date: "10/29/2021"
+output: html_document
+---
+
+## Explore the SPP data after new data updates
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
+```
+
+```{r}
+scores <- read_csv(file.path(here(), "yearly_results/global2021/OHI_final_formatted_scores_2021-11-04.csv"))
+
+
+np_scores <- scores %>%
+  filter(goal == "NP", dimension == "score", region_id != 0) 
+  
+
+## get top ten and bottom ten scores for 2021
+
+DT::datatable(np_scores %>%
+  filter(scenario == 2021) %>%
+  arrange(-value) %>%
+    dplyr::select(goal, dimension, region_name, scenario, value))
+
+
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+myPalette <-   c(reds, blues)
+```
+
+
+Take a look at Israel, since it shows a stark decline in scores. 
+
+```{r}
+isr_np <- np_scores %>%
+  filter(region_name == "Israel")
+
+
+fofm_scores <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/output/np_fofm_scores.csv')
+
+isr_fofm <- fofm_scores %>%
+  filter(rgn_id == 79) ## ok so its not fofm... scores here are pretty good.
+
+# what about seaweeds? Has there been a decrease in that? 
+
+sw_sust <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/output/np_seaweed_sust.csv')
+
+isr_sw_sust <- sw_sust %>%
+  filter(rgn_id == 79) ## doesnt seem like there is a sw score here 
+
+sw_prod <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/output/np_seaweed_harvest_tonnes.csv')
+
+isr_sw_prod <- sw_prod %>%
+  filter(rgn_id == 79) ## ok no sw production in israel
+
+
+# so it must be ornamentals...
+orn_rel <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/output/np_ornamentals_harvest_tonnes_rel.csv')
+
+isr_orn_rel <- orn_rel %>%
+  filter(rgn_id == 79) ## yep.. this is what is driving the downward trend.. lets look at weights and raw production values
+
+
+prod_weights <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/output/np_product_weights.csv')
+
+isr_prod_weights <- prod_weights %>%
+  filter(rgn_id == 79)
+
+
+fofm_catch <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/int/saup_catch_forage_fish.csv')
+
+isr_fofm_catch <- fofm_catch %>%
+  filter(rgn_id == 79) %>%
+  group_by(year) %>%
+  summarise(sum_tonnes = sum(tons))
+
+
+orn_tonnes <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/int/tonnes.csv')
+
+orn_tonnes_isr <- orn_tonnes %>%
+  filter(rgn_id == 79, product == "ornamentals")
+
+orn_usd <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/int/usd.csv')
+
+orn_usd_isr <- orn_usd %>%
+  filter(rgn_id == 79, product == "ornamentals")
+
+np_smoothed_data_all <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/int/np_harvest_smoothed_data.csv')
+
+np_smoothed_data_isr <- np_smoothed_data_all %>%
+  filter(rgn_id == 79)
+
+## ok so nothing went wrong with the data prep... it is just that for some reason, value of ornamental fish in Israel almost completely disapearred from 2016 to 2018 (v2018-v2020).. should we report this? Maybe don't highlight? 
+  
+```
+
+
+Let's highlight China and Indonesia, since we know their score is probably driven by seaweeds
+
+
+```{r}
+chn_np <- np_scores %>%
+  filter(region_name %in% c("China", "Indonesia"))
+
+# both scores have increased pretty dramatically over the past 10 years
+
+fofm_scores <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/output/np_fofm_scores.csv')
+
+overall_fofm <- fofm_scores %>%
+  group_by(year) %>%
+  summarise(avg_score = mean(score, na.rm = TRUE))
+
+chn_fofm <- fofm_scores %>%
+  filter(rgn_id == 209) ## ok so its not fofm... scores here are pretty good.
+
+# what about seaweeds? Has there been a decrease in that? 
+
+sw_sust <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/output/np_seaweed_sust.csv')
+
+chn_sw_sust <- sw_sust %>%
+  filter(rgn_id == 209) ## doesnt seem like there is a sw score here 
+
+sw_prod <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/output/np_seaweed_harvest_tonnes.csv')
+
+chn_sw_prod <- sw_prod %>%
+  filter(rgn_id %in% c(209, 216)) %>% ## ok no sw production in China
+  group_by(year) %>%
+  summarise(total = sum(tonnes, na.rm = TRUE))
+
+all_sw_prod <- sw_prod %>%
+    group_by(year) %>%
+  summarise(total = sum(tonnes, na.rm = TRUE))
+
+
+
+
+
+prod_weights <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/np/v2021/output/np_product_weights.csv')
+
+chn_idn_prod_weights <- prod_weights %>%
+  filter(rgn_id %in% c(209, 216))
+
+```
+

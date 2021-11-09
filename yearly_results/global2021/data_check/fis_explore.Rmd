@@ -1,112 +1,247 @@
 ---
-title: "FIS explore"
-author: "Gage Clawson"
-date: "7/20/2021"
-output: html_document
+title: "Understanding 2021 Fisheries scores and underlying data"
+author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+output: 
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_depth: 3
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+  pdf_document:
+    toc: true
 ---
-
-## Explore the FIS data after new data updates
 
 ```{r setup, include=FALSE, message = F, warning = F}
 knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
 
+setwd(here("yearly_results/global2021/data_check"))
 library(tidyverse)
-library(here)
-source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
 ```
 
+# Look at scores over time
+
+Maldives
+South Africa
+Ile Europa
+Israel
+Papua New Guinea 
+US
+Falkland 
+Norway
+
+
+Picking some countries that have significant changes over the past 6 years. 
+
 ```{r}
-fis_scores <- read_csv("../../../eez/score_check/RAM_fis_update_diff_data_2021-06-04.csv") 
-
-
-fis_status <- fis_scores %>%
-  filter(goal == "FIS", dimension == "status", region_id != 0)
-
-## get top ten and bottom ten scores for 2021
-
-DT::datatable(fis_status %>%
-  filter(year == 2021) %>%
-  arrange(-score) %>%
-    dplyr::select(goal, dimension, rgn_name, year, score, old_score, change))
-
-## make a carpet plot to view the changes across years 
-
-data <- fis_status %>%
-  filter(dimension == "status") %>%   # focus only on score data
-  filter(region_id != 213)  %>% # eliminate Antarctica
-  mutate(value = round(score, 0),
-         value_old = round(old_score, 0)) %>%
-  mutate(rgn_name = as.character(rgn_name)) %>%
-  group_by(region_id) %>% 
-  mutate(meanIndex=mean(value[goal=="Index"])) %>%
-  ungroup() %>%
-  data.frame()
-  
-
-global <- data %>%
-  select(rgn_name, meanIndex) %>%
-  filter(rgn_name == "Region") %>%
-  unique()
-
-order_rgn <- data %>%
-  filter(rgn_name != "Region") %>%
-  select(rgn_name, meanIndex) %>%
-  unique() %>%
-  arrange(meanIndex)
-  
-order_rgn <- rbind(order_rgn, global)
-
-goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'FIS', 'ICO', 'SP', 'LSP', 'NP', 'TR')
-
-data$goal <- factor(data$goal, levels = goals)
-data$rgn_name <- factor(data$rgn_name, levels=order_rgn$rgn_name)
-
-reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
-blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
-myPalette <-   c(reds, blues)
-
-scenario <- 2021
-
-data_fis <- data %>%
+#scores data
+scores <- read_csv("../scores_2021-11-04.csv") %>%
   filter(goal == "FIS")
-  
 
-ggplot(data_fis, aes(y=rgn_name, x=year, fill=value)) + 
-  geom_tile() +
-  facet_grid(~goal) + 
-  scale_fill_gradientn(colours=myPalette, na.value="black") +
-  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
-  ylab("") + 
-  xlab("")
-ggsave(here("yearly_results/global2021/data_check/fis_status_carpet.png"), width=20, height=35)
+#region details to help us filter by country name rather than ID
+rgn_deets <- read_csv("https://raw.github.com/OHI-Science/ohiprep_v2018/gh-pages/globalprep/supplementary_information/v2018/rgn_details.csv")
 
+#pull out some specific countries
+
+ctry_data <- scores %>%
+  left_join(rgn_deets, by = c("region_id" = "rgn_id")) %>%
+  filter(rgn_nam %in% c("Ile Europa", "Maldives", "Israel", "Papua New Guinea", "Norway", "Falkland Islands", "United States", "South Africa"))
 ```
 
-
-**Some interesting possible comparisons**
-
-Within country, over time:
-
- - 
-    
-    
+Plot these countries 
 
 ```{r}
-ggplot(data %>% filter(rgn_name %in% c("United States", "Falkland Islands", "China", "Lithuania", "North Korea", "Norway", "Denmark", "Germany", "New Zealand")), aes(y=rgn_name, x=year, fill=value)) + 
-  geom_tile() +
-  facet_grid(~goal) + 
-  scale_fill_gradientn(colours=myPalette, na.value="black") +
-  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
-  ylab("") + 
-  xlab("") 
+score <- ctry_data %>%
+  filter(dimension == "score")
 
+ggplot(score, aes(x = year, y = score, color = rgn_nam)) +
+  geom_line() +
+  theme_bw() +
+  labs(y = "FIS score") +
+  theme(legend.title=element_blank())
 
-data %>% filter(rgn_name %in% c("Germany", "Denmark", "China")) %>%
-                  dplyr::select(rgn_name, year, value)
-
-  
-  
 ```
 
 
- 
+It's interesting that Ile Europa, Maldives, other small islands maintain the same pattern. Maldives is slightly different but still a steep decline after 2014. 
+
+
+```{r}
+
+t <- ctry_data %>%
+  filter(dimension %in% c("pressures", "status", "resilience"))
+
+ggplot(t, aes(x = year, y = score, color = dimension)) +
+  geom_line() +
+  theme_bw() +
+  facet_wrap(~rgn_nam) +
+  theme(legend.title=element_blank())
+
+```
+
+It looks like pressures and resilience are not having a big impact on these status values. Next things to look at is catch over time and stock scores with proportional catch over time.
+
+Looking at b/bmsy and catch data
+
+```{r}
+bbmsy <- read_csv("~/github/ohi-global/eez/layers/fis_b_bmsy.csv") %>%
+  filter(rgn_id %in% unique(ctry_data$region_id)) %>%
+  mutate(group = 
+           case_when(
+             bbmsy < 0.8 ~ "overfished",
+             bbmsy >= 0.8 & bbmsy <= 1.45 ~ "fully exploited",
+             bbmsy > 1.45 ~ "underfished"
+           ))
+
+catch <- read_csv("~/github/ohi-global/eez/layers/fis_meancatch.csv") %>%
+  filter(rgn_id %in% unique(ctry_data$region_id)) %>%
+  separate(stock_id_taxonkey, into = c("stock_id", "taxonkey"), sep = "_(?!.*_)")
+
+combine <- bbmsy %>% 
+  full_join(catch) %>%
+  group_by(rgn_id, group, year) %>%
+  summarize(catch = sum(mean_catch, na.rm=T)) %>%
+  left_join(rgn_deets) %>%
+  select(year, rgn_nam, group, catch) %>%
+  distinct() %>%
+  mutate(status = ifelse(is.na(group), "no status", group)) %>%
+  filter(year > 2008)
+
+
+ggplot(combine, aes(year, catch)) + 
+  geom_area(aes(fill = status)) +
+  facet_wrap(~rgn_nam, scales = "free") +
+  scale_fill_manual(breaks = c("fully exploited", "no status", "overfished", "underfished"), 
+                       values=c("darkblue", "orange", "darkred", "darkgreen")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+## so we can see here that Falkland Islands and Israel are largely based on gapfilled data...
+
+# Maldives and Ile Europa see a large increase in over fishing around 2015, which contributes to the decline. Papua New Guinea started doing well because they have many underfished stocks, which are not penalized under our current model.
+```
+
+
+What stocks are making up Papua New Guineas catch?
+
+```{r}
+pap <- catch %>% 
+  filter(rgn_id == 17,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch))
+
+plotly::ggplotly(ggplot(pap, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+
+```
+
+
+It looks like *Katsuwonus_pelamis-71* makes up a significant portion of the catch! Almost 50% of catch. This is a **skipjack tuna**
+
+```{r}
+shad_bbmsy <- bbmsy %>%
+  filter(stock_id == "Ethmalosa_fimbriata-34")
+
+ggplot(shad_bbmsy, aes(x = year, y = bbmsy)) +
+  geom_line() +
+  theme_bw() +
+  geom_hline(yintercept = 1.45, color = "darkgreen", lty = "dashed") +
+  ylab("B/Bmsy") +
+  xlab("Year") +
+  ggtitle("Bonga Shad FAO area 34")
+
+```
+
+This seems to be a large fishery for across the world ([FAO](https://www.fao.org/fishery/species/2494/en)). And the status has been stretching farther away from 1, becoming largely underfished in Papua New Guinea. Since we no longer penalize for underfished stocks, the score is doing better.
+
+Let's see what's going on with South Africa
+
+```{r}
+sa <- catch %>% 
+  filter(rgn_id == 102,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch))
+
+plotly::ggplotly(ggplot(sa, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+```
+
+Again we have a single fishery making up almost 50% of the total catch. However, this fishery doesn't have a bbmsy value associated with it in the RAM data! Meaning that we use a gapfilled value for this stock. Paired with the fact that some of South Africas catch is over fished, we see a decline and low scores for a region which has many marine protected areas. 
+
+
+
+Let's look at the islands. Ile Europa and Ile Tromelin are geographically close, near Madagascar.
+
+```{r}
+Iles <- catch %>% 
+  filter(rgn_id %in% c(35,36),
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year, rgn_id) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
+  left_join(rgn_deets)
+
+plotly::ggplotly(ggplot(Iles, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position="") +
+  facet_wrap(~rgn_nam))
+```
+
+Ok it looks like Tuna is a significant portion of catch for these islands. These BBMSY scores have decreased pretty significantly since 2015 and are now considered overfished. 
+
+```{r}
+
+ile_catch <- Iles %>%
+  filter(catch_prop > 0.1,
+         !is.na(bbmsy))
+
+ggplot(ile_catch, aes(x = year, y = bbmsy, color = stock_id)) +
+  geom_line() +
+  theme_bw() +
+  labs(y = "B/Bmsy",
+       x = "Year",
+       ggtitle = "Tuna status for FAO 51") +
+  theme(legend.title=element_blank())
+
+```
+
+Let's look at the Maldives
+
+```{r}
+maldives <- catch %>% 
+  filter(rgn_id == 39,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
+  left_join(rgn_deets)
+
+plotly::ggplotly(ggplot(maldives, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+```
+
+Again *Katsuwonus pelamis* (Skipjack Tuna) is majority of catch.
+
+
+
+
+
+
+
+
+
+
+

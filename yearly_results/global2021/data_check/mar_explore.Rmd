@@ -165,7 +165,11 @@ tonnes_prod_2019 <- tonnes_prod %>%
 sum(tonnes_prod_2019$tonnes) # 49330043
 
 
+tonnes_chn <- tonnes_prod_2019 %>%
+  filter(rgn_id == 209)
+sum(tonnes_chn$tonnes) # 32994779
 
+32994779/49330043
 
 tonnes_prod_spp <- tonnes_prod_2019 %>%
   mutate(spp = gsub("_.*", "", taxa_code))
