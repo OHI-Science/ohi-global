@@ -37,8 +37,16 @@ Picking some countries that have significant changes over the past 6 years.
 
 ```{r}
 #scores data
-scores <- read_csv("../scores_2021-11-04.csv") %>%
-  filter(goal == "FIS")
+scores <- read_csv("../scores_2021-11-04.csv") 
+# %>%
+#   filter(goal == "FIS") %>%
+#   filter(region_id == 8, dimension == "score")
+
+# scores <- read_csv("../scores_2021-11-04.csv") %>%
+#   filter(dimension == "score", year == 2021, region_id == 0) 
+# 
+# scores <- read_csv("../scores_2021-11-04.csv") %>%
+#   filter(dimension == "score", year == 2021, region_id == 171, goal == "ICO") 
 
 #region details to help us filter by country name rather than ID
 rgn_deets <- read_csv("https://raw.github.com/OHI-Science/ohiprep_v2018/gh-pages/globalprep/supplementary_information/v2018/rgn_details.csv")
@@ -86,6 +94,9 @@ It looks like pressures and resilience are not having a big impact on these stat
 Looking at b/bmsy and catch data
 
 ```{r}
+bbmsy_gf <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/fis/v2021/output/fis_bbmsy_gf.csv') %>%
+  filter(rgn_id %in% unique(ctry_data$region_id)) 
+
 bbmsy <- read_csv("~/github/ohi-global/eez/layers/fis_b_bmsy.csv") %>%
   filter(rgn_id %in% unique(ctry_data$region_id)) %>%
   mutate(group = 
@@ -93,7 +104,8 @@ bbmsy <- read_csv("~/github/ohi-global/eez/layers/fis_b_bmsy.csv") %>%
              bbmsy < 0.8 ~ "overfished",
              bbmsy >= 0.8 & bbmsy <= 1.45 ~ "fully exploited",
              bbmsy > 1.45 ~ "underfished"
-           ))
+           )) %>%
+  left_join(bbmsy_gf, by = c("rgn_id", "stock_id", "year", "bbmsy"))
 
 catch <- read_csv("~/github/ohi-global/eez/layers/fis_meancatch.csv") %>%
   filter(rgn_id %in% unique(ctry_data$region_id)) %>%
@@ -101,13 +113,24 @@ catch <- read_csv("~/github/ohi-global/eez/layers/fis_meancatch.csv") %>%
 
 combine <- bbmsy %>% 
   full_join(catch) %>%
-  group_by(rgn_id, group, year) %>%
+  group_by(rgn_id, group, year, bmsy_data_source) %>%
   summarize(catch = sum(mean_catch, na.rm=T)) %>%
+  group_by(rgn_id, group, year) %>%
+  mutate(total_catch = sum(catch)) %>%
+  ungroup() %>%
+  mutate(percent_cmsy = catch/total_catch) %>%
+  mutate(percent_cmsy = ifelse(bmsy_data_source == "RAM", NA, percent_cmsy)) %>%
+  group_by(rgn_id, group, year) %>%
+  summarize(catch = sum(catch), 
+            perc_cmsy = sum(percent_cmsy, na.rm = TRUE)*100) %>%
   left_join(rgn_deets) %>%
-  select(year, rgn_nam, group, catch) %>%
+  select(year, rgn_nam, group, catch, perc_cmsy) %>%
   distinct() %>%
   mutate(status = ifelse(is.na(group), "no status", group)) %>%
-  filter(year > 2008)
+  filter(year > 2008) 
+# %>%
+#   group_by(rgn_id) %>%
+#   mutate(perc_cmsy = mean(perc_cmsy))
 
 
 ggplot(combine, aes(year, catch)) + 
@@ -116,7 +139,9 @@ ggplot(combine, aes(year, catch)) +
   scale_fill_manual(breaks = c("fully exploited", "no status", "overfished", "underfished"), 
                        values=c("darkblue", "orange", "darkred", "darkgreen")) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+# +
+ # geom_label(aes(label = perc_cmsy))
 
 ## so we can see here that Falkland Islands and Israel are largely based on gapfilled data...
 
@@ -145,20 +170,21 @@ plotly::ggplotly(ggplot(pap, aes(year, catch_prop)) +
 It looks like *Katsuwonus_pelamis-71* makes up a significant portion of the catch! Almost 50% of catch. This is a **skipjack tuna**
 
 ```{r}
-shad_bbmsy <- bbmsy %>%
-  filter(stock_id == "Ethmalosa_fimbriata-34")
+skipjack_bbmsy <- bbmsy %>%
+  filter(stock_id %in% c("Katsuwonus_pelamis-71", "Thunnus_albacares-71"))
 
-ggplot(shad_bbmsy, aes(x = year, y = bbmsy)) +
+ggplot(skipjack_bbmsy, aes(x = year, y = bbmsy)) +
   geom_line() +
   theme_bw() +
   geom_hline(yintercept = 1.45, color = "darkgreen", lty = "dashed") +
   ylab("B/Bmsy") +
   xlab("Year") +
-  ggtitle("Bonga Shad FAO area 34")
+  ggtitle("skipjack FAO area 71") +
+  facet_wrap(~stock_id)
 
 ```
 
-This seems to be a large fishery for across the world ([FAO](https://www.fao.org/fishery/species/2494/en)). And the status has been stretching farther away from 1, becoming largely underfished in Papua New Guinea. Since we no longer penalize for underfished stocks, the score is doing better.
+This seems to be a large fishery for across the world ([FAO](https://www.fao.org/fishery/species/2494/en)). And the status has been stretching farther away from 1, becoming largely underfished in Papua New Guinea. Since we no longer penalize for underfished stocks, the score is doing better. Additionally, this data is NOT CMSY gapfilled, and only 3 years of the data are gapfilled, which follow the general trends of the previous 17 years.
 
 Let's see what's going on with South Africa
 
@@ -176,7 +202,7 @@ plotly::ggplotly(ggplot(sa, aes(year, catch_prop)) +
   theme(legend.position=""))
 ```
 
-Again we have a single fishery making up almost 50% of the total catch. However, this fishery doesn't have a bbmsy value associated with it in the RAM data! Meaning that we use a gapfilled value for this stock. Paired with the fact that some of South Africas catch is over fished, we see a decline and low scores for a region which has many marine protected areas. 
+Again we have a single fishery making up almost 50% of the total catch. However, this fishery doesn't have a bbmsy value associated with it in the RAM data! Meaning that we use a gapfilled value for this stock. Paired with the fact that some of South Africa's catch is over fished, we see a decline and low scores for a region which has many marine protected areas. Additionally, much of South Africa's BBMSY values are estimated by CMSY, which we don't have much faith in. 
 
 
 
@@ -196,9 +222,14 @@ plotly::ggplotly(ggplot(Iles, aes(year, catch_prop)) +
   theme_bw() +
   theme(legend.position="") +
   facet_wrap(~rgn_nam))
+
+
+## Take a look at the bbmsy data for Ile Europa: 
+ile_bbmsy <- bbmsy %>%
+  filter(rgn_id == 39, stock_id %in% c("Thunnus_albacares-51", "Katsuwonus_pelamis-51"))
 ```
 
-Ok it looks like Tuna is a significant portion of catch for these islands. These BBMSY scores have decreased pretty significantly since 2015 and are now considered overfished. 
+Ok it looks like Tuna is a significant portion of catch for these islands. These BBMSY scores have decreased pretty significantly since 2015 and are now considered overfished. BUT the bbmsy values since 2016 for these species are gapfilled, which is why we see that decrease. 
 
 ```{r}
 
@@ -235,6 +266,137 @@ plotly::ggplotly(ggplot(maldives, aes(year, catch_prop)) +
 
 Again *Katsuwonus pelamis* (Skipjack Tuna) is majority of catch.
 
+
+
+What stocks are making up USA catch?
+
+```{r}
+ggplot(combine %>% filter(rgn_id == 163), aes(year, catch)) + 
+  geom_area(aes(fill = status)) +
+  facet_wrap(~rgn_nam, scales = "free") +
+  scale_fill_manual(breaks = c("fully exploited", "no status", "overfished", "underfished"), 
+                       values=c("darkblue", "orange", "darkred", "darkgreen")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+
+pap <- catch %>% 
+  filter(rgn_id == 163,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch))
+
+plotly::ggplotly(ggplot(pap, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+
+```
+
+
+It looks like *Theragra_chalcogramma-67* makes up a significant portion of the catch! Almost 22% of catch. This is a **Alaska Pollock**
+
+```{r}
+pollock_bbmsy <- bbmsy %>%
+  filter(stock_id %in% c("Theragra_chalcogramma-61"))
+
+ggplot(pollock_bbmsy, aes(x = year, y = bbmsy)) +
+  geom_line() +
+  theme_bw() +
+  geom_hline(yintercept = 1.45, color = "darkgreen", lty = "dashed") +
+  ylab("B/Bmsy") +
+  xlab("Year") +
+  ggtitle("skipjack FAO area 71") +
+  facet_wrap(~stock_id)
+
+```
+
+
+What stocks are making up Norway catch?
+
+```{r}
+ggplot(combine %>% filter(rgn_id == 163), aes(year, catch)) + 
+  geom_area(aes(fill = status)) +
+  facet_wrap(~rgn_nam, scales = "free") +
+  scale_fill_manual(breaks = c("fully exploited", "no status", "overfished", "underfished"), 
+                       values=c("darkblue", "orange", "darkred", "darkgreen")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+
+pap <- catch %>% 
+  filter(rgn_id == 163,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch))
+
+plotly::ggplotly(ggplot(pap, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+
+```
+
+
+It looks like *Theragra_chalcogramma-67* makes up a significant portion of the catch! Almost 22% of catch. This is a **Alaska Pollock**
+
+```{r}
+pollock_bbmsy <- bbmsy %>%
+  filter(stock_id %in% c("Theragra_chalcogramma-61"))
+
+ggplot(pollock_bbmsy, aes(x = year, y = bbmsy)) +
+  geom_line() +
+  theme_bw() +
+  geom_hline(yintercept = 1.45, color = "darkgreen", lty = "dashed") +
+  ylab("B/Bmsy") +
+  xlab("Year") +
+  ggtitle("skipjack FAO area 71") +
+  facet_wrap(~stock_id)
+
+```
+
+
+
+Check to see the general trends for BBMSY
+
+```{r}
+
+ram_only <- bbmsy %>%
+  filter(bmsy_data_source == "RAM",
+         is.na(RAM_gapfilled)) %>%
+  group_by()
+
+test <- lm(bbmsy~year+stock_id, data = ram_only)
+
+test
+
+test <- lm(bbmsy~year, data = ram_only)
+
+
+
+
+test <- ram_only %>% do(model = lm(bbmsy ~ year + stock_id, data = .))
+
+
+bbmsy_gf <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/fis/v2021/output/fis_bbmsy_gf.csv') 
+
+bbmsy <- read_csv("~/github/ohi-global/eez/layers/fis_b_bmsy.csv") %>%
+  left_join(bbmsy_gf, by = c("rgn_id", "stock_id", "year", "bbmsy")) %>%
+  filter(bmsy_data_source == "RAM", is.na(RAM_gapfilled))
+
+ram_bmsy_gf <- bbmsy %>%
+  group_by(stock_id) %>%
+  do({
+    mod <- lm(bbmsy ~ year, data=.)  
+    ram_bmsy_predict <- predict(mod, newdata=.[c('year')])
+    slope <- mod[["coefficients"]][["year"]]
+    data.frame(., ram_bmsy_predict, slope)
+  }) %>%
+  ungroup()
+
+```
 
 
 

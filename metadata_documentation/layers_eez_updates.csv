@@ -1,102 +1,106 @@
-layer,updates,
-ao_access,none,
-ao_need,additional year of GDP data (2019),
-cc_acid,none,
-cc_slr,none,
-cc_sst,none,
-cc_uv,additional year of data (2019),
-cw_chemical_trend,none,
-cw_nutrient_trend,none,
-cw_pathogen_trend,none,
-cw_trash_trend,none,
-eco_status,"eliminated calculation, now just provide results as placeholder (not updated since 2013)",
-eco_trend,"eliminated calculation, now just provide results as placeholder (not updated since 2013)",
-element_wts_cp_km2_x_protection,none,
-element_wts_cs_km2_x_storage,none,
-element_wts_hab_pres_abs,none,
-fis_b_bmsy,"additional RAM species, 2 additional years of data (2016 & 2017)",
-fis_meancatch,data updated, 2 additional years of data (2016 & 2017)
-fp_art_hb, two additional years of data (2016 & 2017),
-fp_art_lb, two additional years of data (2016 & 2017),
-fp_com_hb, two additional years of data (2016 & 2017),
-fp_com_lb, two additional years of data (2016 & 2017),
-fp_habitat,none,
-fp_fish_management,none,
-fp_mora_artisanal,none,
-fp_mpa_coast,additional year of data (2020),
-fp_mpa_eez,additional year of data (2020),
-fp_targetharvest,additional year of data (2018),
-fp_wildcaught_weight,additional year of data,
-g_cites,none,
-g_mariculture,none,
-g_msi_gov,none,
-g_tourism,none,
-hab_coral_extent,new data source: global distribution of coral reefs https://data.unep-wcmc.org/datasets/1,
-hab_coral_health,none,
-hab_coral_trend,none,
-hab_mangrove_extent,none,
-hab_mangrove_health,none,
-hab_mangrove_trend,none,
-hab_rockyreef_extent,none,
-hab_saltmarsh_extent,none,
-hab_saltmarsh_health,none,
-hab_saltmarsh_trend,none,
-hab_seagrass_extent,none,
-hab_seagrass_health,none,
-hab_seagrass_trend,none,
-hab_seaice_extent,additional year of data (2019),
-hab_seaice_health,none,
-hab_seaice_trend,additional year of data (2019),
-hab_softbottom_health,additional year of data (2017),
-hab_softbottom_trend,additional year of data (2017),
-hd_habitat,none,
-hd_intertidal,none,
-hd_mpa_coast,additional year of data,
-hd_mpa_eez,additional year of data,
-hd_subtidal_hb,none,
-hd_subtidal_sb,additional year of data (2017),
-hd_coral,new data layer for coral harvest pressure. Derived from FAO commodities data and coral extent data. ,
-ico_spp_iucn_status,updated iucn redlist classifications ,
-le_sector_weight,none,
-li_gci,none,
-li_sector_evenness,none,
-liv_status,none,
-liv_trend,none,
-lsp_prot_area_inland1km,additional year of data,
-lsp_prot_area_offshore3nm,additional year of data,
-mar_capacity,none,
-mar_harvest_tonnes,additional year of data (2018),
-mar_sustainability_score,New data source: Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations,
-np_risk_orn,new name for the np blast data layer ,
-np_exposure_orn,new name for the np cyanida data layer,
-np_harvest_product_weight,updated with additional year of data and stabilized weights based on 5 year average,
-np_seaweed_tonnes,new data layer which uses mariculture seaweed data,
-np_orn_tonnes_relative,new data layer which uses global commodities data,
-np_fofm_scores,new data layer for forage fish using watson and RAM dta,
-np_seaweed_sust,new data layer which uses  Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations,
-po_chemicals,none,
-po_chemicals_3nm,none,
-po_nutrients,none,
-po_nutrients_3nm,none,
-po_pathogens,two additional years of data (2016 & 2017),
-po_trash,none,
-po_water,none,
-res_spi,additional year of data,
-rgn_area,none,
-rgn_area_inland1km,none,
-rgn_area_offshore3nm,none,
-rgn_global,none,
-rgn_labels,none,
-sp_alien,none,
-sp_alien_species,none,
-sp_genetic,additional year of FAO mariculture yield data (2018); and updated escapes data from  Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations,
-species_diversity_3nm,additional year of data,
-species_diversity_eez,additional year of data,
-spp_status,additional year of data,
-spp_trend,additional year of data,
-ss_spi,additional year of data,
-ss_wgi,additional year of data (2017),
-tr_jobs_pct_tourism, two additional years of data,
-tr_sustainability, additional year of data (2019),
-uninhabited,none,
-wgi_all,additional year of data (2017),
+layer,updates
+ao_access,new data source: UN SDG 14.b.1
+ao_sust,new data layer for artisanal fishing sustainability; based off of RAM stock statuses and SAUP fisheries classifications
+ao_need,additional year of GDP data (2020)
+cc_acid,none
+cc_slr,additional year of data (2019)
+cc_sst,additional years of data (2018-2020)
+cc_uv,additional year of data (2020)
+cw_chemical_trend,none
+cw_nutrient_trend,"new methods, additional years of data (2017-2019), and new data source: FAO nutrient applications, Halpern et al. 2021 (in review) , Tulhoske et al. 2021"
+cw_pathogen_trend,additional year of data (2018-2020)
+cw_trash_trend,none
+eco_status,none
+eco_trend,none
+element_wts_cp_km2_x_protection,added kelp weight
+element_wts_cs_km2_x_storage,none
+element_wts_hab_pres_abs,none
+fis_b_bmsy,"additional RAM species, 1 additional year of data (2018); excluded underharvest penalty"
+fis_meancatch,new data source: SAUP fisheries catch data
+fp_art_hb,none
+fp_art_lb,none
+fp_com_hb,none
+fp_com_lb,none
+fp_habitat,none
+fp_fish_management,none
+fp_artisanal,new data source: UN SDG 14.b.1
+fp_mpa_coast,updated data
+fp_mpa_eez,updated data
+fp_targetharvest,additional year of data (2019)
+fp_wildcaught_weight,additional year of data
+g_cites,none
+g_mariculture,deleted layer
+g_msi_gov,deleted layer
+g_tourism,none
+hab_coral_extent,new data source: global distribution of coral reefs https://data.unep-wcmc.org/datasets/1
+hab_coral_health,new data source
+hab_coral_trend,new data source
+hab_mangrove_extent,new data source: https://www.globalmangrovewatch.org/ 
+hab_mangrove_health,new data source
+hab_mangrove_trend,new data source: https://www.globalmangrovewatch.org/
+hab_rockyreef_extent,none
+hab_saltmarsh_extent,none
+hab_saltmarsh_health,none
+hab_saltmarsh_trend,none
+hab_seagrass_extent,new data source: https://data.unep-wcmc.org/datasets/7
+hab_seagrass_health,new data source
+hab_seagrass_trend,new data source
+hab_seaice_extent,additional year of data (2020)
+hab_seaice_health,none
+hab_seaice_trend,additional year of data (2020)
+hab_softbottom_health,none
+hab_softbottom_trend,none
+hd_habitat,none
+hd_intertidal,none
+hd_mpa_coast,updated data
+hd_mpa_eez,updated data
+hd_subtidal_hb,none
+hd_subtidal_sb,none
+hd_coral,additional year of data (2018)
+ico_spp_iucn_status,updated iucn redlist classifications with 2020-3 assessment
+le_sector_weight,none
+li_gci,none
+li_sector_evenness,none
+liv_status,none
+liv_trend,none
+lsp_prot_area_inland1km,updated data
+lsp_prot_area_offshore3nm,updated data
+mar_capacity,none
+mar_harvest_tonnes,additional year of data (2019)
+mar_sustainability_score,additional year of data (2021)
+np_risk_orn,additional year of data (2018)
+np_exposure_orn,additional year of data (2018)
+np_harvest_product_weight,updated with additional year of data (2018)
+np_seaweed_tonnes,additional year of data (2019)
+np_orn_tonnes_relative,additional year of data (2018)
+np_fofm_scores,new data source: SAUP fisheries catch data; excluded underharvest penalty
+np_seaweed_sust,additional year of data (2021)
+po_chemicals,none
+po_chemicals_3nm,none
+po_nutrients,"new methods, additional years of data (2017-2019), and new data source: FAO nutrient applications, Halpern et al. 2021 (in review) , Tulhoske et al. 2021"
+po_nutrients_3nm,"new methods, additional years of data (2017-2019), and new data source: FAO nutrient applications, Halpern et al. 2021 (in review) , Tulhoske et al. 2021"
+po_pathogens,additional years of data (2018-2020)
+po_trash,none
+po_water,none
+res_spi,additional year of data (2021)
+rgn_area,none
+rgn_area_inland1km,none
+rgn_area_offshore3nm,none
+rgn_global,none
+rgn_labels,none
+sp_alien,none
+sp_alien_species,none
+sp_genetic,additional year of FAO mariculture yield data (2019); and updated escapes data from  Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations (2021)
+species_diversity_3nm,updated iucn redlist classifications with 2020-3 assessment
+species_diversity_eez,updated iucn redlist classifications with 2020-3 assessment
+spp_status,updated iucn redlist classifications with 2020-3 assessment
+spp_trend,updated iucn redlist classifications with 2020-3 assessment
+ss_spi,additional year of data (2021)
+ss_wgi,additional years of data (2018-2019)
+tr_jobs_pct_tourism,none
+tr_sustainability,none
+uninhabited,none
+wgi_all,additional years of data (2018-2019)
+hab_kelp_extent,new data layer for kelp forest extent: https://data.unep-wcmc.org/datasets/49
+hab_kelp_health,new data layer for kelp forest condition
+hab_kelp_trend,new data layer for kelp forest trend
