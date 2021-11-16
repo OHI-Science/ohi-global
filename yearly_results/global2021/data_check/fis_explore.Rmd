@@ -210,7 +210,7 @@ Let's look at the islands. Ile Europa and Ile Tromelin are geographically close,
 
 ```{r}
 Iles <- catch %>% 
-  filter(rgn_id %in% c(35,36),
+  filter(rgn_id %in% c(35),
          year > 2008) %>%
   left_join(bbmsy) %>%
   group_by(year, rgn_id) %>%
@@ -226,7 +226,7 @@ plotly::ggplotly(ggplot(Iles, aes(year, catch_prop)) +
 
 ## Take a look at the bbmsy data for Ile Europa: 
 ile_bbmsy <- bbmsy %>%
-  filter(rgn_id == 39, stock_id %in% c("Thunnus_albacares-51", "Katsuwonus_pelamis-51"))
+  filter(rgn_id == 35, stock_id %in% c("Thunnus_albacares-51", "Katsuwonus_pelamis-51"))
 ```
 
 Ok it looks like Tuna is a significant portion of catch for these islands. These BBMSY scores have decreased pretty significantly since 2015 and are now considered overfished. BUT the bbmsy values since 2016 for these species are gapfilled, which is why we see that decrease. 

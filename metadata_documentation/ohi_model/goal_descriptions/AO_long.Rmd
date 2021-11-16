@@ -13,42 +13,42 @@ $$
 x_{ao} = (1 – D_u) * S_{ao}, (Eq. 6.1)
 $$
 
-where $S_{ao}$ indicates whether artisanal fishing is done in a sustainable manner, and is set to 1 because no data or information exist globally on the proportion of fishermen using sustainable versus unsustainable gear, $S_{ao}$.  And, $D_u$ is calculated as:
+where $S_{ao}$ indicates whether artisanal fishing is done in a sustainable manner. This was approximated using Sea Around Us Project (SAUP) (2020) global marine fisheries catch data [@pauly_sea_2020] and B/Bmsy data [@ricard_examining_2012; @costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016; @ram_legacy_stock_assessment_database_ram_2021] calculated from our fisheries sub-goal (methods can be found in section 6.6.1), and subsetted for artisanal and subsistence stocks notated in the SAUP data. And, $D_u$ is calculated as:
 
 $$
 D_{u} = (1 – PPPpcGDP) * (1 – O_{ao}), (Eq. 6.2)
 $$
 
-where, $PPPpcGDP$ is the ln-transformed, rescaled purchasing power parity adjusted per capita GDP, and $O_{ao}$ is the access to artisanal-scale fishing determined by Mora et al. [-@mora_management_2009]. 
+where, $PPPpcGDP$ is the ln-transformed, rescaled purchasing power parity adjusted per capita GDP, and $O_{ao}$ is the access to artisanal-scale fishing determined by the United Nations Sustainable Development Goal (UN SDG) 14.b.1 [@food_and_agriculture_organization_of_the_united_nations_progress_2020]. 
 
 We rescaled the ln-transformed $PPPpcGDP$ values from 0-1 by dividing by the value corresponding to the 99th quantile across all regions and years from 2005 to 2015 (values > 1 were capped at 1). Developed countries with lower demand for artisanal scale fishing (i.e., low poverty indicated by high PPPpcGDP) score high, regardless of the opportunity made available (since it would not matter to many), and developing countries with high demand and opportunity would also score high. 
 
-To assess the opportunity or ability to meet this demand, $O_{ao}$, we used data from Mora et al. [-@mora_management_2009], which scores countries on the institutional measures that support or facilitate artisanal and small-scale fishing. The data come from Figure S4 in Mora et al. [-@mora_management_2009], which is based on two survey questions focused on recreational and artisanal fishing (Table 6.1) and are on a scale from 0 to 100 (which we then rescale 0-1), where higher scores indicate better management. We extracted the data from the color codes on the map in Figure S4 in Mora et al.  [-@mora_management_2009]. There may be some small errors far a few countries due to difficulty of distinguishing between the two red colors at the lowest end of the scale.
+To assess the opportunity or ability to meet this demand, $O_{ao}$, we used data from UN SDG 14.b.1 [@food_and_agriculture_organization_of_the_united_nations_progress_2020], which scores countries on the institutional measures that support or protect access to artisanal and small-scale fishing. The data come are FAO member country responses to the Code of Conduct for Responsible Fisheries (CCRF) (Table 6.1) survey questionnaire which is circulated by FAO every two years to members and IGOs and INGOs and are on a scale from 0 to 1. 
 
-The sustainability of artisanal fishing practices could be approximated by the percent of fishermen that use sustainable gear such as hook and line versus unsustainable methods such as dynamite, cyanide and, arguably, gill net fishing. Unfortunately data on proportion of gear type used within a country is scarce at best and so we were unable to include this term in the calculation of this goal; we present it here for conceptual completeness. We considered using the information and data contained in Pitcher et al. [-@pitcher_evaluations_2006] which looks at compliance of 53 countries with the UN’s Code of Conduct for responsible fisheries. These results are strongly correlated with the data from Mora et al. [-@mora_management_2009] (p < 0.001; R^2^ = 0.22), and thus we used the Mora et al.
+The sustainability of artisanal fishing practices was estimated by subsetting for artisanal and subsistence stock B/Bmsy values which were calculated in our fisheries sub-goal (section 6.6.1).
 
 Several issues and datasets relevant to artisanal fishing opportunities were not included in our calculations for a number of reasons. High unemployment can lead to a greater demand for artisanal fishing opportunities [@cinner_socioeconomic_2009], but unemployment is not a good measure of potential 'demand' for most developing countries since many people not working do not get recorded in unemployment statistics, even though it may be relevant for developed countries. Regardless, it is very difficult to set an arbitrary cut-off for developing versus developed countries, and so there is no clear way to use unemployment data for this goal.
 
-Another potential driver of demand for artisanal fishing opportunities is local preference for seafood and/or access to other sources of protein. Previous analyses have shown that seafood consumption (a proxy for preference for seafood) does not correlate well with national-level artisanal catch statistics [@halpern_global_2008] and access to other sources of protein is difficult to measure, and so we did not use either of these measures here.
-
 
 **Table 6.1. Artisanal access**. 
-Questions from Mora et al. [-@mora_management_2009] that were used to evaluate access to artisanal scale fishing.
+Questions from UN SDG 14.b.1 [@food_and_agriculture_organization_of_the_united_nations_progress_2020] that were used to evaluate access to artisanal scale fishing.
 
-* If recreational fishing exists to any extent, which of the following apply?
-     + Are recreational fishermen required to have a  fishing license?  
-     + Are there regulations to the size of fish caught?
-     + Are there regulations to the number of fish caught? 
-     + Are there regulations to the number of fishermen allowed to fish? 
-     + Are there statistics being collected for this sort of fishing? 
-*If artisanal fishing exists to any extent, which of the following apply?
-     + Are there regulations to the size of fish caught?
-     + Are there regulations to the number of fish caught? 
-     + Are there regulations to the number of fishermen allowed to fish? 
-     + Are there statistics being collected for this sort of fishing?      
+* Are there any laws, regulations, policies, plans or strategies that specifically target or address the
+small-scale fisheries sector? 
+
+|   |  Yes | No  |
+|---|---|---|
+| Law  |   |   |
+| Regulation  |   |   |
+| Policy  |   |   |
+| Plan/strategy  |   |   |
+| Other (please specify)  |   |   |
+    
+    
+* The Voluntary Guidelines for Securing Sustainable Small-scale Fisheries in the Context of Food Security and Poverty Eradication (SSF Guidelines) were endorsed by [COFI in June 2014](www.fao.org/3/a-i4356e.pdf). Does your country have a specific initiative to implement the SSF Guidelines?     
 
 #### Trend
-Trend was calculated as described in section  5.3.1. Because we only have one value for $O_{ao}$, the trend becomes the change over time in the PPPpcGDP, i.e., how ‘unmet demand’ is changing over time.
+Trend was calculated as described in section  5.3.1. 
 
 #### Data
 _Status and trend_

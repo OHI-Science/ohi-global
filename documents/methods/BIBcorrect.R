@@ -1,3 +1,4 @@
+library(here)
 setwd(here("documents/methods/"))
 
 ## NOTE: Have to hand correct the US Department of State for some reason
@@ -39,3 +40,4 @@ bib <- gsub(pattern = "\\{US\\} Department of State", "{{US Department of State}
 bib <- gsub(pattern = "author = \\{Social Progress Index\\}", "author = {{Social Progress Index}}", bib)
 
 writeLines(bib, "OHI.bib")
+

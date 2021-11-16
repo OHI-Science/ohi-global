@@ -210,7 +210,7 @@ PlotFlower <- function(region_plot     = NA,
   
   
   ## loop through to save flower plot for each region ----
-  for (region in region_plots) { # region = 0
+  for (region in region_plots) { # region = 60
     
     ## filter region info, setup to plot ----
     plot_df <- score_df %>%
@@ -230,8 +230,10 @@ PlotFlower <- function(region_plot     = NA,
     ## inject weights for FIS vs. MAR ----
     if ( length(w_fn) > 0 ) {
       ## inject FIS/MAR weights
+
       plot_df$weight[plot_df$goal == "FIS"] <- w$w_fis[w$rgn_id == region]
       plot_df$weight[plot_df$goal == "MAR"] <- 1 - w$w_fis[w$rgn_id == region]
+
       
       ## recalculate pos with injected weights arrange by pos for proper ordering
       plot_df <- plot_df %>%
@@ -354,3 +356,4 @@ ggtheme_plot <- function(base_size = 9) {
         legend.key       = element_rect(colour = NA, fill = NA),
         axis.line        = element_blank()) # element_line(colour = "grey30", size = .5))
 }
+
