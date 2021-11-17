@@ -16,7 +16,8 @@ source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
 ```
 
 ```{r}
-mar_scores <- read_csv("../../../eez/score_check/mar_seaweed_fix_diff_data_2021-05-11.csv") 
+
+mar_scores <- read.csv(file.path(here(), "yearly_results/global2021/scores_2021-11-16.csv"))
 
 
 mar_status <- mar_scores %>%
@@ -192,6 +193,58 @@ most_common_prod <- tonnes_prod_spp %>%
 kable(head(most_common_prod,15))
 ```
 
+Look at Norway and China sustainability scores
+
+```{r}
+mar_sust <- read.csv(file.path(here(), "eez/layers/mar_sustainability_score.csv"))
+
+mar_tonnes <- read.csv(file.path(here(), "eez/layers/mar_harvest_tonnes.csv"))
+
+pot_tonnes <- read.csv(file.path(here(), "eez/layers/mar_capacity.csv"))
+
+mar_tonnes_chn_nor <- mar_tonnes %>% 
+  filter(rgn_id %in% c(209, 223))
+
+mar_sust_chn_nor <- mar_sust %>%
+  dplyr::select(-year) %>%
+  filter(rgn_id %in% c(209, 223)) %>%
+  left_join(mar_tonnes, by = c("rgn_id", "taxa_code")) %>%
+  arrange(rgn_id, taxa_code, year) %>%
+  filter(year > 2005)
+
+tmp <- mar_sust_chn_nor %>%
+  group_by(rgn_id, year) %>%
+  summarise(avg_sust = mean(sust_coeff))
+
+
+tmp <- mar_sust_chn_nor %>%
+  filter(year == 2019) %>%
+  arrange(rgn_id, -tonnes)
+
+## potential tonnes of mar for Norway
+204374.5
+
+## produced tonnes of mar for Norway 
+tmp <- mar_sust_chn_nor %>%
+  filter(rgn_id == 223) %>%
+  filter(year == 2019)
+sum(tmp$tonnes) # 1452774
+
+
+1452774/204374.5
+# norway produces 7x more mariculture than their potential 
+
+tmp <- mar_sust_chn_nor %>%
+  filter(rgn_id == 223, year == 2019) %>%
+  mutate(total_tonnes = sum(tonnes)) %>%
+  mutate(percent = tonnes/total_tonnes)
+
+
+test <- read.csv(file.path(here(), "eez/score_check/mar_new_methods_diff_data_2021-11-16.csv")) %>%
+  filter(goal == "MAR", year == 2021, dimension == "score")
+
+
+```
 
 
 
