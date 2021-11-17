@@ -1471,16 +1471,16 @@
 "FP","Marshall Islands",11,0
 "FP","Wake Island",12,0
 "FP","Northern Mariana Islands and Guam",13,0.01
-"FP","Taiwan",14,0.05
+"FP","Taiwan",14,-0.11
 "FP","Philippines",15,0.03
 "FP","Australia",16,-0.56
 "FP","Papua New Guinea",17,-0.01
 "FP","Fiji",18,-0.27
 "FP","Tuvalu",19,0.02
-"FP","South Korea",20,0.78
-"FP","North Korea",21,1.14
+"FP","South Korea",20,0.6
+"FP","North Korea",21,1.51
 "FP","Cambodia",24,-0.39
-"FP","Thailand",25,0.8
+"FP","Thailand",25,0.78
 "FP","Andaman and Nicobar",26,-0.32
 "FP","Comoro Islands",28,0.17
 "FP","Mayotte",29,0.09
@@ -1494,7 +1494,7 @@
 "FP","Mauritius",37,-0.73
 "FP","British Indian Ocean Territory",38,-0.14
 "FP","Maldives",39,0.04
-"FP","Sri Lanka",40,-0.24
+"FP","Sri Lanka",40,-0.23
 "FP","Mozambique",41,-0.08
 "FP","Madagascar",42,-0.19
 "FP","Kenya",43,0.27
@@ -1504,7 +1504,7 @@
 "FP","Yemen",47,0.01
 "FP","Oman",48,0.52
 "FP","Sudan",49,0.04
-"FP","Saudi Arabia",50,-1.77
+"FP","Saudi Arabia",50,-1.72
 "FP","Kuwait",51,-0.23
 "FP","Bahrain",52,-0.06
 "FP","Pakistan",53,0.06
@@ -1515,28 +1515,28 @@
 "FP","Canary Islands",58,-1.49
 "FP","Belgium",59,0.65
 "FP","Gibraltar",60,-0.39
-"FP","Tunisia",61,-0.74
+"FP","Tunisia",61,-0.73
 "FP","Morocco",62,-0.33
 "FP","Western Sahara",63,-0.29
 "FP","Mauritania",64,-0.26
 "FP","Gambia",65,-0.54
 "FP","Senegal",66,-1.02
 "FP","Libya",67,-0.14
-"FP","Malta",68,2.52
+"FP","Malta",68,1.28
 "FP","Latvia",69,-0.68
 "FP","Estonia",70,-0.58
-"FP","Bulgaria",71,1.89
+"FP","Bulgaria",71,1.6
 "FP","Romania",72,0.08
 "FP","Russia",73,-0.2
 "FP","Georgia",74,0
 "FP","Ukraine",75,-0.1
-"FP","Turkey",76,1.92
+"FP","Turkey",76,-0.17
 "FP","Syria",77,-0.46
 "FP","Lebanon",78,-0.89
-"FP","Israel",79,-0.66
-"FP","Greece",80,0.97
-"FP","Cyprus",81,1.9
-"FP","Albania",82,0.26
+"FP","Israel",79,-0.45
+"FP","Greece",80,0.24
+"FP","Cyprus",81,1.83
+"FP","Albania",82,0.42
 "FP","Algeria",84,-0.53
 "FP","Ascension",85,-0.61
 "FP","Saint Helena",86,-0.34
@@ -1579,19 +1579,19 @@
 "FP","Grenada",125,0.12
 "FP","Trinidad and Tobago",126,0.02
 "FP","Saint Vincent and the Grenadines",127,-0.04
-"FP","Panama",129,-1.91
+"FP","Panama",129,-1.9
 "FP","Costa Rica",130,-0.73
 "FP","Nicaragua",131,0.14
 "FP","Colombia",132,0.57
-"FP","Honduras",133,-0.69
+"FP","Honduras",133,-0.68
 "FP","El Salvador",134,-0.23
 "FP","Mexico",135,0.06
-"FP","Guatemala",136,-0.37
-"FP","Ecuador",137,0.85
+"FP","Guatemala",136,-0.38
+"FP","Ecuador",137,1.44
 "FP","Peru",138,-0.62
 "FP","Venezuela",139,1.28
 "FP","Guadeloupe and Martinique",140,-0.05
-"FP","Faeroe Islands",141,-0.12
+"FP","Faeroe Islands",141,-0.07
 "FP","Iceland",143,-0.25
 "FP","Jan Mayen",144,0.07
 "FP","Greenland",145,-0.31
@@ -1612,7 +1612,7 @@
 "FP","Wallis and Futuna",161,0.03
 "FP","New Zealand",162,-0.8
 "FP","United States",163,-0.18
-"FP","Belize",164,2.51
+"FP","Belize",164,2.49
 "FP","Jamaica",166,-0.11
 "FP","Guyana",167,-0.03
 "FP","Suriname",168,0.26
@@ -1620,24 +1620,24 @@
 "FP","Brazil",171,0.05
 "FP","Argentina",172,1.67
 "FP","Uruguay",173,1.65
-"FP","Finland",174,-0.35
-"FP","Denmark",175,0.44
-"FP","Germany",176,1.44
-"FP","Netherlands",177,0.53
+"FP","Finland",174,-0.36
+"FP","Denmark",175,0.29
+"FP","Germany",176,1.45
+"FP","Netherlands",177,0.46
 "FP","Poland",178,-1.56
-"FP","France",179,-0.48
+"FP","France",179,-0.77
 "FP","United Kingdom",180,-0.14
 "FP","Ireland",181,-0.86
-"FP","Spain",182,0.3
-"FP","Portugal",183,-0.42
-"FP","Italy",184,0.28
+"FP","Spain",182,0.19
+"FP","Portugal",183,-0.36
+"FP","Italy",184,0.36
 "FP","Monaco",185,-0.14
 "FP","Montenegro",186,-0.02
-"FP","Croatia",187,0.66
-"FP","Slovenia",188,1.7
+"FP","Croatia",187,1.02
+"FP","Slovenia",188,1.1
 "FP","Lithuania",189,-0.93
 "FP","Qatar",190,-0.22
-"FP","Iran",191,-0.19
+"FP","Iran",191,-0.14
 "FP","Iraq",192,0.31
 "FP","Guinea Bissau",193,-0.48
 "FP","Guinea",194,-0.19
@@ -1648,29 +1648,29 @@
 "FP","Democratic Republic of the Congo",199,-0.34
 "FP","Angola",200,-0.17
 "FP","Tanzania",202,0.17
-"FP","India",203,-1.01
-"FP","Bangladesh",204,-0.3
+"FP","India",203,-0.97
+"FP","Bangladesh",204,-0.27
 "FP","Myanmar",205,-0.05
-"FP","Malaysia",206,0.17
-"FP","Vietnam",207,-0.25
-"FP","Singapore",208,1.23
-"FP","China",209,0.46
-"FP","Japan",210,0.6
+"FP","Malaysia",206,0.16
+"FP","Vietnam",207,-0.19
+"FP","Singapore",208,0.95
+"FP","China",209,0.31
+"FP","Japan",210,0.57
 "FP","Gilbert Islands (Kiribati)",212,0.02
-"FP","Egypt",214,1.4
+"FP","Egypt",214,2.07
 "FP","Jordan",215,0
-"FP","Indonesia",216,-0.65
-"FP","Canada",218,-0.01
+"FP","Indonesia",216,-0.6
+"FP","Canada",218,0
 "FP","Saint Pierre and Miquelon",219,0.79
 "FP","Sint Maarten",220,-0.14
 "FP","Northern Saint-Martin",221,0.1
-"FP","Sweden",222,-0.46
-"FP","Norway",223,-0.33
-"FP","Chile",224,-1.51
+"FP","Sweden",222,-0.49
+"FP","Norway",223,-0.5
+"FP","Chile",224,-1.35
 "FP","Jersey",227,-0.55
 "FP","Guernsey",228,-0.55
 "FP","East Timor",231,-0.06
-"FP","Bosnia and Herzegovina",232,0.18
+"FP","Bosnia and Herzegovina",232,0.22
 "FP","Oecussi Ambeno",237,-0.11
 "FP","Curacao",244,0.48
 "FP","Bonaire",245,0.6
@@ -2134,14 +2134,14 @@
 "Index","Marshall Islands",11,-1.55
 "Index","Wake Island",12,-0.08
 "Index","Northern Mariana Islands and Guam",13,-0.25
-"Index","Taiwan",14,0.06
+"Index","Taiwan",14,0.04
 "Index","Philippines",15,-0.24
 "Index","Australia",16,-0.1
 "Index","Papua New Guinea",17,0.65
 "Index","Fiji",18,-0.45
 "Index","Tuvalu",19,0.3
-"Index","South Korea",20,0.54
-"Index","North Korea",21,0.35
+"Index","South Korea",20,0.52
+"Index","North Korea",21,0.39
 "Index","Cambodia",24,0.09
 "Index","Thailand",25,0.44
 "Index","Andaman and Nicobar",26,-0.08
@@ -2185,21 +2185,21 @@
 "Index","Gambia",65,-0.29
 "Index","Senegal",66,-0.47
 "Index","Libya",67,-0.04
-"Index","Malta",68,0.31
+"Index","Malta",68,0.19
 "Index","Latvia",69,-0.01
 "Index","Estonia",70,0.06
-"Index","Bulgaria",71,0.28
+"Index","Bulgaria",71,0.26
 "Index","Romania",72,0.28
 "Index","Russia",73,0.07
 "Index","Georgia",74,0.5
 "Index","Ukraine",75,-0.17
-"Index","Turkey",76,0.24
+"Index","Turkey",76,0.03
 "Index","Syria",77,-0.63
 "Index","Lebanon",78,0.1
-"Index","Israel",79,-0.89
-"Index","Greece",80,-0.07
-"Index","Cyprus",81,0.1
-"Index","Albania",82,0.52
+"Index","Israel",79,-0.87
+"Index","Greece",80,-0.15
+"Index","Cyprus",81,0.09
+"Index","Albania",82,0.53
 "Index","Algeria",84,-0.1
 "Index","Ascension",85,-0.03
 "Index","Saint Helena",86,-0.14
@@ -2250,11 +2250,11 @@
 "Index","El Salvador",134,-0.03
 "Index","Mexico",135,-0.15
 "Index","Guatemala",136,0.02
-"Index","Ecuador",137,-0.36
+"Index","Ecuador",137,-0.3
 "Index","Peru",138,-0.22
 "Index","Venezuela",139,0.41
 "Index","Guadeloupe and Martinique",140,-0.43
-"Index","Faeroe Islands",141,0.06
+"Index","Faeroe Islands",141,0.07
 "Index","Iceland",143,0.6
 "Index","Jan Mayen",144,0.07
 "Index","Greenland",145,0.12
@@ -2284,23 +2284,23 @@
 "Index","Argentina",172,0.16
 "Index","Uruguay",173,0.37
 "Index","Finland",174,0.03
-"Index","Denmark",175,0.2
+"Index","Denmark",175,0.18
 "Index","Germany",176,0.34
 "Index","Netherlands",177,0.42
 "Index","Poland",178,-0.35
-"Index","France",179,0.14
+"Index","France",179,0.11
 "Index","United Kingdom",180,0
 "Index","Ireland",181,0.11
-"Index","Spain",182,0.25
-"Index","Portugal",183,0.35
-"Index","Italy",184,0.18
+"Index","Spain",182,0.24
+"Index","Portugal",183,0.36
+"Index","Italy",184,0.19
 "Index","Monaco",185,-0.02
 "Index","Montenegro",186,0.05
-"Index","Croatia",187,0.37
-"Index","Slovenia",188,0.23
+"Index","Croatia",187,0.4
+"Index","Slovenia",188,0.17
 "Index","Lithuania",189,0.01
 "Index","Qatar",190,0.24
-"Index","Iran",191,0.06
+"Index","Iran",191,0.07
 "Index","Iraq",192,0.42
 "Index","Guinea Bissau",193,-0.04
 "Index","Guinea",194,-0.14
@@ -2311,29 +2311,29 @@
 "Index","Democratic Republic of the Congo",199,-0.1
 "Index","Angola",200,-0.24
 "Index","Tanzania",202,-0.15
-"Index","India",203,-0.28
-"Index","Bangladesh",204,-0.1
+"Index","India",203,-0.27
+"Index","Bangladesh",204,-0.09
 "Index","Myanmar",205,0.24
 "Index","Malaysia",206,0.13
-"Index","Vietnam",207,0.1
-"Index","Singapore",208,-0.11
-"Index","China",209,0.32
-"Index","Japan",210,0.52
+"Index","Vietnam",207,0.11
+"Index","Singapore",208,-0.14
+"Index","China",209,0.3
+"Index","Japan",210,0.51
 "Index","Gilbert Islands (Kiribati)",212,-0.4
-"Index","Egypt",214,0.3
+"Index","Egypt",214,0.36
 "Index","Jordan",215,0.05
-"Index","Indonesia",216,0.59
+"Index","Indonesia",216,0.6
 "Index","Canada",218,0.09
 "Index","Saint Pierre and Miquelon",219,0.32
 "Index","Sint Maarten",220,-0.09
 "Index","Northern Saint-Martin",221,-0.52
 "Index","Sweden",222,0.06
-"Index","Norway",223,-0.05
-"Index","Chile",224,-0.12
+"Index","Norway",223,-0.07
+"Index","Chile",224,-0.11
 "Index","Jersey",227,0.24
 "Index","Guernsey",228,0.28
 "Index","East Timor",231,-0.12
-"Index","Bosnia and Herzegovina",232,0.34
+"Index","Bosnia and Herzegovina",232,0.35
 "Index","Oecussi Ambeno",237,0.36
 "Index","Curacao",244,0.03
 "Index","Bonaire",245,0.29
@@ -2982,28 +2982,28 @@
 "MAR","Palau",8,0
 "MAR","Micronesia",9,0
 "MAR","Marshall Islands",11,0
-"MAR","Northern Mariana Islands and Guam",13,0
-"MAR","Taiwan",14,0
-"MAR","Philippines",15,0.03
+"MAR","Northern Mariana Islands and Guam",13,-0.01
+"MAR","Taiwan",14,-0.33
+"MAR","Philippines",15,0.04
 "MAR","Australia",16,0
 "MAR","Papua New Guinea",17,0
 "MAR","Fiji",18,0
 "MAR","Tuvalu",19,0
-"MAR","South Korea",20,0
-"MAR","North Korea",21,1.61
-"MAR","Cambodia",24,0.15
-"MAR","Thailand",25,-0.13
+"MAR","South Korea",20,0.03
+"MAR","North Korea",21,2.09
+"MAR","Cambodia",24,0.19
+"MAR","Thailand",25,-0.17
 "MAR","Andaman and Nicobar",26,0
 "MAR","Comoro Islands",28,0
 "MAR","Mayotte",29,-0.01
 "MAR","Seychelles",31,0
-"MAR","R_union",32,-0.16
+"MAR","R_union",32,-0.2
 "MAR","Mauritius",37,0.02
 "MAR","British Indian Ocean Territory",38,0
 "MAR","Maldives",39,0
-"MAR","Sri Lanka",40,0.05
+"MAR","Sri Lanka",40,0.06
 "MAR","Mozambique",41,0
-"MAR","Madagascar",42,0
+"MAR","Madagascar",42,0.01
 "MAR","Kenya",43,0
 "MAR","Somalia",44,0
 "MAR","Eritrea",45,0
@@ -3011,40 +3011,40 @@
 "MAR","Yemen",47,0
 "MAR","Oman",48,0
 "MAR","Sudan",49,0
-"MAR","Saudi Arabia",50,0.3
+"MAR","Saudi Arabia",50,0.39
 "MAR","Kuwait",51,0
 "MAR","Bahrain",52,0
 "MAR","Pakistan",53,0
-"MAR","United Arab Emirates",54,0.09
+"MAR","United Arab Emirates",54,0.12
 "MAR","Azores",55,0
 "MAR","Cape Verde",56,0
 "MAR","Madeira",57,0
 "MAR","Canary Islands",58,0
 "MAR","Belgium",59,0
 "MAR","Gibraltar",60,0
-"MAR","Tunisia",61,0.26
+"MAR","Tunisia",61,0.33
 "MAR","Morocco",62,0
 "MAR","Western Sahara",63,0
 "MAR","Mauritania",64,0
 "MAR","Gambia",65,0
-"MAR","Senegal",66,0.01
+"MAR","Senegal",66,0.02
 "MAR","Libya",67,0
-"MAR","Malta",68,6.21
+"MAR","Malta",68,3.34
 "MAR","Latvia",69,0
-"MAR","Estonia",70,0.03
+"MAR","Estonia",70,0.04
 "MAR","Bulgaria",71,0
-"MAR","Romania",72,0.01
-"MAR","Russia",73,0.13
-"MAR","Georgia",74,0.04
+"MAR","Romania",72,0.02
+"MAR","Russia",73,0.17
+"MAR","Georgia",74,0.05
 "MAR","Ukraine",75,0
-"MAR","Turkey",76,5.83
+"MAR","Turkey",76,-0.16
 "MAR","Syria",77,0
-"MAR","Lebanon",78,-0.05
-"MAR","Israel",79,0.68
-"MAR","Greece",80,0.6
-"MAR","Cyprus",81,2.22
-"MAR","Albania",82,1.07
-"MAR","Algeria",84,0.38
+"MAR","Lebanon",78,-0.07
+"MAR","Israel",79,0.88
+"MAR","Greece",80,0.14
+"MAR","Cyprus",81,2.89
+"MAR","Albania",82,1.39
+"MAR","Algeria",84,0.49
 "MAR","Ascension",85,0
 "MAR","Saint Helena",86,0
 "MAR","Tristan da Cunha",88,0
@@ -3062,11 +3062,11 @@
 "MAR","Bermuda",108,0
 "MAR","Bahamas",110,0
 "MAR","Turks and Caicos Islands",111,0
-"MAR","Cuba",112,0.01
+"MAR","Cuba",112,0.02
 "MAR","Cayman Islands",113,0
 "MAR","Haiti",114,0
-"MAR","Dominican Republic",115,-0.04
-"MAR","Puerto Rico and Virgin Islands of the United States",116,0
+"MAR","Dominican Republic",115,-0.06
+"MAR","Puerto Rico and Virgin Islands of the United States",116,-0.01
 "MAR","Anguilla",118,0
 "MAR","Saint Kitts and Nevis",119,0
 "MAR","Antigua and Barbuda",120,0
@@ -3077,35 +3077,35 @@
 "MAR","Grenada",125,0
 "MAR","Trinidad and Tobago",126,0
 "MAR","Saint Vincent and the Grenadines",127,0
-"MAR","Panama",129,0.03
+"MAR","Panama",129,0.04
 "MAR","Costa Rica",130,0
-"MAR","Nicaragua",131,0.01
-"MAR","Colombia",132,-0.06
-"MAR","Honduras",133,0.06
-"MAR","El Salvador",134,0.02
+"MAR","Nicaragua",131,0.02
+"MAR","Colombia",132,-0.08
+"MAR","Honduras",133,0.08
+"MAR","El Salvador",134,0.03
 "MAR","Mexico",135,0.01
-"MAR","Guatemala",136,-0.21
-"MAR","Ecuador",137,2.64
-"MAR","Peru",138,-0.05
-"MAR","Venezuela",139,0.02
+"MAR","Guatemala",136,-0.27
+"MAR","Ecuador",137,3.42
+"MAR","Peru",138,-0.06
+"MAR","Venezuela",139,0.03
 "MAR","Guadeloupe and Martinique",140,0
-"MAR","Faeroe Islands",141,0.41
-"MAR","Iceland",143,0.2
+"MAR","Faeroe Islands",141,0.54
+"MAR","Iceland",143,0.25
 "MAR","Greenland",145,0
 "MAR","Pitcairn",146,0
-"MAR","French Polynesia",147,-0.02
+"MAR","French Polynesia",147,-0.03
 "MAR","Line Islands (Kiribati)",148,0
 "MAR","American Samoa",151,0
 "MAR","Samoa",152,0
-"MAR","Cook Islands",153,0
+"MAR","Cook Islands",153,0.01
 "MAR","Niue",154,0
-"MAR","Tonga",155,-0.02
+"MAR","Tonga",155,-0.03
 "MAR","Tokelau",156,0
 "MAR","Phoenix Islands (Kiribati)",157,0
 "MAR","Wallis and Futuna",161,0
-"MAR","New Zealand",162,-0.01
+"MAR","New Zealand",162,-0.02
 "MAR","United States",163,0.02
-"MAR","Belize",164,-0.11
+"MAR","Belize",164,-0.14
 "MAR","Jamaica",166,0
 "MAR","Guyana",167,0
 "MAR","Suriname",168,0
@@ -3113,24 +3113,24 @@
 "MAR","Brazil",171,-0.01
 "MAR","Argentina",172,0
 "MAR","Uruguay",173,0
-"MAR","Finland",174,0
-"MAR","Denmark",175,1.25
-"MAR","Germany",176,6.59
+"MAR","Finland",174,-0.02
+"MAR","Denmark",175,-0.59
+"MAR","Germany",176,5.56
 "MAR","Netherlands",177,0
 "MAR","Poland",178,0
-"MAR","France",179,-1.09
-"MAR","United Kingdom",180,-0.03
+"MAR","France",179,-1.42
+"MAR","United Kingdom",180,-0.04
 "MAR","Ireland",181,-0.02
-"MAR","Spain",182,0
-"MAR","Portugal",183,0.82
-"MAR","Italy",184,0.2
+"MAR","Spain",182,0.1
+"MAR","Portugal",183,1.07
+"MAR","Italy",184,0.04
 "MAR","Monaco",185,0
 "MAR","Montenegro",186,-0.01
-"MAR","Croatia",187,2.19
-"MAR","Slovenia",188,0
+"MAR","Croatia",187,2.85
+"MAR","Slovenia",188,0.31
 "MAR","Lithuania",189,0
 "MAR","Qatar",190,0
-"MAR","Iran",191,1.57
+"MAR","Iran",191,2.04
 "MAR","Iraq",192,0
 "MAR","Guinea Bissau",193,0
 "MAR","Guinea",194,0
@@ -3140,31 +3140,31 @@
 "MAR","Gabon",198,0
 "MAR","Democratic Republic of the Congo",199,0
 "MAR","Angola",200,0
-"MAR","Tanzania",202,-0.06
-"MAR","India",203,0.4
-"MAR","Bangladesh",204,0.3
-"MAR","Myanmar",205,-0.05
-"MAR","Malaysia",206,-0.12
-"MAR","Vietnam",207,0.53
-"MAR","Singapore",208,0
-"MAR","China",209,0
-"MAR","Japan",210,-0.23
+"MAR","Tanzania",202,-0.08
+"MAR","India",203,0.52
+"MAR","Bangladesh",204,0.39
+"MAR","Myanmar",205,-0.06
+"MAR","Malaysia",206,-0.16
+"MAR","Vietnam",207,0.68
+"MAR","Singapore",208,0.16
+"MAR","China",209,-0.06
+"MAR","Japan",210,-0.29
 "MAR","Gilbert Islands (Kiribati)",212,0
-"MAR","Egypt",214,2.25
+"MAR","Egypt",214,2.92
 "MAR","Jordan",215,0
-"MAR","Indonesia",216,0.32
-"MAR","Canada",218,0.02
+"MAR","Indonesia",216,0.42
+"MAR","Canada",218,0.03
 "MAR","Sint Maarten",220,0
 "MAR","Northern Saint-Martin",221,0
-"MAR","Sweden",222,-0.48
-"MAR","Norway",223,0
-"MAR","Chile",224,0.44
+"MAR","Sweden",222,-0.42
+"MAR","Norway",223,-0.19
+"MAR","Chile",224,0.57
 "MAR","Jersey",227,0
 "MAR","Guernsey",228,0
 "MAR","East Timor",231,-0.01
-"MAR","Bosnia and Herzegovina",232,0
+"MAR","Bosnia and Herzegovina",232,0.07
 "MAR","Oecussi Ambeno",237,0
-"MAR","Brunei",247,0.05
+"MAR","Brunei",247,0.06
 "MAR","Saba",248,0
 "MAR","Sint Eustatius",249,0
 "NP","eez_weighted_avg",0,-0.2
