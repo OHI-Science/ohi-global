@@ -211,7 +211,6 @@ FIS <- function(layers) {
 
 MAR <- function(layers) {
   scen_year <- layers$data$scenario_year
-  
   harvest_tonnes <-
     AlignDataYears(layer_nm = "mar_harvest_tonnes", layers_obj = layers)
   
@@ -242,22 +241,49 @@ MAR <- function(layers) {
     dplyr::arrange(rgn_id, taxa_code, scenario_year) %>%
     dplyr::mutate(sm_tonnes = zoo::rollapply(tonnes, 4, mean, na.rm = TRUE, partial =
                                         TRUE, align = "right")) %>%
-    dplyr::ungroup()
+    dplyr::ungroup() %>%
+    mutate(sm_tonnes = ifelse(sm_tonnes == "NaN", 0, sm_tonnes))
   
   
   # smoothed mariculture harvest * sustainability coefficient
-  m <- m %>%
-    dplyr::mutate(sust_tonnes = sust_coeff * sm_tonnes)
-  
+  # m <- m %>%
+  #   dplyr::mutate(sust_tonnes = sust_coeff * sm_tonnes)
+
   
   # aggregate all weighted timeseries per region, and divide by potential mariculture
 
-  ry = m %>%
+  # ry = m %>%
+  #   dplyr::group_by(rgn_id, scenario_year) %>%
+  #   dplyr::summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
+  #   dplyr::left_join(reference_point, by = c('rgn_id', 'scenario_year')) %>%
+  #   dplyr::mutate(mar_score = sust_tonnes_sum / potential_mar_tonnes) %>%
+  #   dplyr::ungroup()
+  # 
+  
+  tonnes_pot_div <- m %>%
     dplyr::group_by(rgn_id, scenario_year) %>%
-    dplyr::summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
+    dplyr::summarize(tonnes_sum = sum(sm_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
     dplyr::left_join(reference_point, by = c('rgn_id', 'scenario_year')) %>%
-    dplyr::mutate(mar_score = sust_tonnes_sum / potential_mar_tonnes) %>%
+    dplyr::mutate(tonnes_score = tonnes_sum / potential_mar_tonnes) %>%
     dplyr::ungroup() 
+    
+    sustainability <- m %>%
+    # dplyr::group_by(scenario_year, rgn_id) %>%
+    # dplyr::mutate(SumProd = sum(sm_tonnes, na.rm=TRUE)) %>%
+    #dplyr::ungroup() %>%
+    #dplyr::mutate(wprop = sm_tonnes / SumProd) %>%
+    dplyr::group_by(rgn_id, scenario_year) %>%
+    dplyr::summarise(sust_rgn = weighted.mean(x = sust_coeff, w = sm_tonnes, na.rm = TRUE)) %>%
+    dplyr::ungroup()
+  
+    ry <- sustainability %>%
+      dplyr::left_join(tonnes_pot_div) %>%
+      # dplyr::mutate(mar_score = sust_rgn*tonnes_score) %>%
+      dplyr::mutate(status = ifelse(tonnes_score > 1,
+                                    1,
+                                    tonnes_score)) %>%
+      dplyr::mutate(status = sust_rgn*status)
+    
   
   ## add in methods to deal with weirdness
   
@@ -268,13 +294,10 @@ MAR <- function(layers) {
   ## Reference Point End
   
   ry = ry %>%
-    dplyr::mutate(status = ifelse(mar_score > 1,
-                           1,
-                           mar_score)) %>%
     dplyr::mutate(status = ifelse(is.na(status),
                                   0,
                                   status)) %>%
-    dplyr::mutate(status = ifelse(sust_tonnes_sum < 100 & potential_mar_tonnes < 100,
+    dplyr::mutate(status = ifelse(tonnes_sum < 100 & potential_mar_tonnes < 100,
                   NA,
                   status))
   
