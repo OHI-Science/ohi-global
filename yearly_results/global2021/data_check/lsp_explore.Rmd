@@ -18,9 +18,9 @@ region_data()
 
 ```{r}
 
-lsp_scores <- read_csv(file.path(here(), "yearly_results/global2021/scores_2021-11-04.csv"))
+lsp_scores <- read_csv(file.path(here(), "yearly_results/global2021/scores_2021-11-17.csv"))
 
-lsp_scores <- read_csv(file.path(here(), "yearly_results/global2021/OHI_final_formatted_scores_2021-11-04.csv"))
+lsp_scores <- read_csv(file.path(here(), "yearly_results/global2021/OHI_final_formatted_scores_2021-11-17.csv"))
 
 
 lsp_status <- lsp_scores %>%
@@ -31,9 +31,9 @@ lsp_status <- lsp_scores %>%
 ## get top ten and bottom ten scores for 2021
 
 DT::datatable(lsp_status %>%
-  filter(year == 2021) %>%
+  filter(scenario == 2021) %>%
   arrange(-score) %>%
-    dplyr::select(goal, dimension, rgn_name, year, score))
+    dplyr::select(goal, dimension, rgn_name, scenario, score))
 
 
 reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
@@ -57,7 +57,7 @@ Pitcairn's score has increased dramatically over the past 10 years. Until 2015, 
 data <- lsp_status %>%
   filter(dimension == "status") %>%   # focus only on score data
   filter(region_id != 213)  %>% # eliminate Antarctica
-  mutate(value = round(score, 0)) %>%
+  mutate(value = round(value, 0)) %>%
   mutate(rgn_name = as.character(rgn_name)) %>%
   group_by(region_id) %>% 
   mutate(meanIndex=mean(value[goal=="Index"])) %>%
@@ -104,7 +104,7 @@ Future trends:
 
 
 ```{r}
-ggplot(data %>% filter(rgn_name %in% c("Canada", "Pitcairn", "New Zealand", "Australia", "South Africa", "Mozambique", "Tanzania", "Namibia", "Ireland", "Thailand", "Seychelles", "India", "China")), aes(y=rgn_name, x=year, fill=value)) + 
+ggplot(data %>% filter(rgn_name %in% c("Canada", "Pitcairn", "New Zealand", "Australia", "South Africa", "Mozambique", "Tanzania", "Namibia", "Ireland", "Thailand", "Seychelles", "India", "China")), aes(y=rgn_name, x=scenario, fill=value)) + 
   geom_tile() +
   facet_grid(~goal) + 
   scale_fill_gradientn(colours=myPalette, na.value="black") +
@@ -114,7 +114,7 @@ ggplot(data %>% filter(rgn_name %in% c("Canada", "Pitcairn", "New Zealand", "Aus
 
 
 data %>% filter(rgn_name %in% c("Canada", "Pitcairn", "New Zealand", "Australia", "South Africa", "Mozambique", "Tanzania", "Namibia", "Ireland", "Thailand", "Seychelles", "India", "China")) %>%
-                  dplyr::select(rgn_name, year, value)
+                  dplyr::select(rgn_name, scenario, value)
 ```
 
 

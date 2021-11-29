@@ -13,32 +13,33 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
 library(tidyverse)
 library(here)
 source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
+region_data()
 ```
 
 ```{r}
 
-mar_scores <- read.csv(file.path(here(), "yearly_results/global2021/scores_2021-11-16.csv"))
+mar_scores <- read.csv(file.path(here(), "yearly_results/global2021/scores_2021-11-17.csv"))
 
 
 mar_status <- mar_scores %>%
-  filter(goal == "MAR", dimension == "status", region_id != 0)
+  filter(goal == "MAR", dimension == "score", region_id != 0)
+
+tmp <- mar_status %>%
+  filter(region_id %in% c(224,223))
 
 ## get top ten and bottom ten scores for 2021
 
 DT::datatable(mar_status %>%
   filter(year == 2021) %>%
   arrange(-score) %>%
-    dplyr::select(goal, dimension, rgn_name, year, score, old_score, change))
+    dplyr::select(goal, dimension, year, score, score))
 
 ## make a carpet plot to view the changes across years 
 
 data <- mar_status %>%
   filter(dimension == "status") %>%   # focus only on score data
-  filter(region_id != 213)  %>% # eliminate Antarctica
-  mutate(value = round(score, 0),
-         value_old = round(old_score, 0)) %>%
-  mutate(rgn_name = as.character(rgn_name)) %>%
-  group_by(region_id) %>% 
+  filter(rgn_id != 213)  %>% # eliminate Antarctica
+  group_by(rgn_id) %>% 
   mutate(meanIndex=mean(value[goal=="Index"])) %>%
   ungroup() %>%
   data.frame()
@@ -196,18 +197,80 @@ kable(head(most_common_prod,15))
 Look at Norway and China sustainability scores
 
 ```{r}
-mar_sust <- read.csv(file.path(here(), "eez/layers/mar_sustainability_score.csv"))
+mar_sust <- read.csv(file.path(here(), "eez/layers/mar_sustainability_score.csv")) %>%
+  left_join(rgns_eez) %>%
+  dplyr::select(1:5)
 
-mar_tonnes <- read.csv(file.path(here(), "eez/layers/mar_harvest_tonnes.csv"))
 
-pot_tonnes <- read.csv(file.path(here(), "eez/layers/mar_capacity.csv"))
+write.csv(mar_sust, file.path(here(), "yearly_results/global2021/data_check/mariculture_sustainability.csv"))
+
+mar_tonnes <- read.csv(file.path(here(), "eez/layers/mar_harvest_tonnes.csv")) %>%
+  left_join(rgns_eez) %>%
+  dplyr::select(1:7)
+
+write.csv(mar_tonnes, file.path(here(), "yearly_results/global2021/data_check/mariculture_production.csv"))
+
+
+pot_tonnes <- read.csv(file.path(here(), "eez/layers/mar_capacity.csv"))   %>%
+  left_join(rgns_eez) %>%
+  dplyr::select(1:4)
+
+write.csv(pot_tonnes, file.path(here(), "yearly_results/global2021/data_check/mariculture_potential.csv"))
+
+
+mar_all <- mar_tonnes %>%
+  left_join(mar_sust, by = c("rgn_id", "taxa_code", "rgn_name")) %>%
+  left_join(pot_tonnes, by = c("rgn_id", "rgn_name")) %>%
+  dplyr::rename("production_year" = "year.x", "sustainability_year" = "year.y", "gentry_year" = "year")
+
+write.csv(mar_all, file.path(here(), "yearly_results/global2021/data_check/combined_mariculture_layers.csv"))
+
+
+summarized_mar <- mar_all %>%
+  tidyr::spread(production_year, tonnes) %>%
+  tidyr::gather("production_year", "tonnes",-(1:9)) %>%
+    dplyr::mutate(scenario_year = as.numeric(production_year)) %>%
+  filter(scenario_year >= 2001) %>%
+  dplyr::select(-taxa_group)
+
+  m <- summarized_mar %>%
+    dplyr::group_by(rgn_id, taxa_code, sust_coeff) %>%
+    dplyr::arrange(rgn_id, taxa_code, scenario_year) %>%
+    dplyr::mutate(rolling_mean_4_year_tonnes = zoo::rollapply(tonnes, 4, mean, na.rm = TRUE, partial =
+                                        TRUE, align = "right")) %>%
+    dplyr::ungroup() %>%
+    mutate(rolling_mean_4_year_tonnes = ifelse(rolling_mean_4_year_tonnes == "NaN", 0, rolling_mean_4_year_tonnes))
+ 
+   tonnes_pot_div <- m %>%
+    dplyr::group_by(rgn_id, rgn_name, scenario_year) %>%
+    dplyr::summarize(tonnes_sum = sum(rolling_mean_4_year_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
+    dplyr::left_join(pot_tonnes, by = c('rgn_id', 'rgn_name')) %>%
+    dplyr::mutate(tonnes_score = tonnes_sum / potential_mar_tonnes) %>%
+    dplyr::ungroup() 
+    
+    sustainability <- m %>%
+    dplyr::group_by(rgn_id, rgn_name, scenario_year) %>%
+    dplyr::summarise(sust_rgn = weighted.mean(x = sust_coeff, w = rolling_mean_4_year_tonnes, na.rm = TRUE)) %>%
+    dplyr::ungroup()
+  
+    ry <- sustainability %>%
+      dplyr::left_join(tonnes_pot_div) %>%
+      # dplyr::mutate(mar_score = sust_rgn*tonnes_score) %>%
+      dplyr::mutate(tonnes_score_rescale = ifelse(tonnes_score > 1,
+                                    1,
+                                    tonnes_score)) %>%
+      dplyr::mutate(sust_times_tonnes_score = sust_rgn*tonnes_score_rescale) %>%
+      dplyr::select(-year)
+    
+    write.csv(ry, file.path(here(), "yearly_results/global2021/data_check/summarized_mariculture_layers.csv"))
+  
 
 mar_tonnes_chn_nor <- mar_tonnes %>% 
-  filter(rgn_id %in% c(209, 223))
+  filter(rgn_id %in% c(209, 223, 137, 216))
 
 mar_sust_chn_nor <- mar_sust %>%
   dplyr::select(-year) %>%
-  filter(rgn_id %in% c(209, 223)) %>%
+  filter(rgn_id %in% c(209, 223, 137, 216, 224)) %>%
   left_join(mar_tonnes, by = c("rgn_id", "taxa_code")) %>%
   arrange(rgn_id, taxa_code, year) %>%
   filter(year > 2005)
@@ -226,7 +289,7 @@ tmp <- mar_sust_chn_nor %>%
 
 ## produced tonnes of mar for Norway 
 tmp <- mar_sust_chn_nor %>%
-  filter(rgn_id == 223) %>%
+  filter(rgn_id %in% c(223, 137)) %>%
   filter(year == 2019)
 sum(tmp$tonnes) # 1452774
 
@@ -244,6 +307,16 @@ test <- read.csv(file.path(here(), "eez/score_check/mar_new_methods_diff_data_20
   filter(goal == "MAR", year == 2021, dimension == "score")
 
 
+```
+
+
+```{r}
+mar_sust_chn_nor <- mar_sust %>%
+  dplyr::select(-year) %>%
+  filter(rgn_id %in% c(224)) %>%
+  left_join(mar_tonnes, by = c("rgn_id", "taxa_code")) %>%
+  arrange(rgn_id, taxa_code, year) %>%
+  filter(year == 2019)
 ```
 
 

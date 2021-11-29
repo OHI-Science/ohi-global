@@ -13,110 +13,31 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
 library(tidyverse)
 library(here)
 library(knitr)
+library(tidyr)
+library(broom)
 source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
-```
-
-## Summarize IUCN status data
-
-Calculate what percentage of animals fall under each risk category (LC, DD, NT, V, E, CE)
-
-```{r}
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/spp/v2021/_data/iucn_risk_current_2020-3.csv')
-
-data_grouped_2020_3 <- data %>%
-  group_by(cat) %>% 
-  summarise(count_spp = n()) %>%
-  ungroup() %>%
-  filter(cat != "DD") %>%
-   mutate(total_spp = sum(count_spp)) %>%
-  mutate(percent = (count_spp/total_spp)*100)
-
-kable(data_grouped_2020_3)
-sum(data_grouped_2020_3$count_spp) # 12792
-
-# |cat | count_spp| total_spp|    percent|
-# |:---|---------:|---------:|----------:|
-# |CR  |       218|     12792|  1.7041901|
-# |EN  |       376|     12792|  2.9393371|
-# |EX  |        25|     12792|  0.1954346|
-# |LC  |     10788|     12792| 84.3339587|
-# |NT  |       566|     12792|  4.4246404|
-# |VU  |       819|     12792|  6.4024390|
-
-
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/spp/v2021/_data/iucn_risk_current_2020-1.csv')
-
-data_grouped_2020_1 <- data %>%
-  group_by(cat) %>% 
-  summarise(count_spp = n()) %>%
-  ungroup() %>%
-  filter(cat != "DD") %>%
-  mutate(total_spp = sum(count_spp)) %>%
-  mutate(percent = (count_spp/total_spp)*100)
-
-kable(data_grouped_2020_1)
-
-# 12283
-
-
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/spp/v2020/_data/iucn_risk_current_2019-1.csv')
-
-data_grouped_2019_1 <- data %>%
-  group_by(cat) %>% 
-  summarise(count_spp = n()) %>%
-  ungroup() %>%
-  filter(cat != "DD") %>%
-  mutate(total_spp = sum(count_spp)) %>%
-  mutate(percent = (count_spp/total_spp)*100)
-
-kable(data_grouped_2019_1)
-
-# |cat | count_spp| total_spp|    percent|
-# |:---|---------:|---------:|----------:|
-# |CR  |       153|     10495|  1.4578371|
-# |EN  |       292|     10495|  2.7822773|
-# |EX  |        24|     10495|  0.2286803|
-# |LC  |      8719|     10495| 83.0776560|
-# |NT  |       546|     10495|  5.2024774|
-# |VU  |       761|     10495|  7.2510719|
-
-
-data <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/spp/v2018/_data/iucn_risk_current_2018-1.csv')
-
-data_grouped_2018_1 <- data %>%
-  group_by(cat) %>% 
-  summarise(count_spp = n()) %>%
-  ungroup() %>%
-  filter(cat != "DD") %>%
-  mutate(total_spp = sum(count_spp)) %>%
-  mutate(percent = (count_spp/total_spp)*100)
-
-kable(data_grouped_2018_1)
-
-# |cat | count_spp| total_spp|    percent|
-# |:---|---------:|---------:|----------:|
-# |CR  |       151|     10141|  1.4890050|
-# |EN  |       288|     10141|  2.8399566|
-# |EX  |        24|     10141|  0.2366631|
-# |LC  |      8369|     10141| 82.5263781|
-# |NT  |       556|     10141|  5.4826940|
-# |VU  |       753|     10141|  7.4253032|
-
-
+region_data()
 ```
 
 
-Take a look at Israel: 
+By going here: https://www.iucnredlist.org/search : I was able to tell that there have been >100,000 species added since 2012. I checked by looking at the "Publication year" tab, which lists the number of species assessed in each publication year. You can also look at a pie chart of the different percentages for each threat status. 
+ 
+
+
+Take a look at trends
 
 
 ```{r}
 
 
-scores <- read_csv(file.path(here(), "yearly_results/global2021/OHI_final_formatted_scores_2021-11-04.csv"))
+scores <- read_csv(file.path(here(), "yearly_results/global2021/OHI_final_formatted_scores_2021-11-17.csv"))
 
 
 spp_status <- scores %>%
-  filter(goal == "SPP", dimension == "status", region_id != 0) 
+  filter(goal == "SPP", dimension == "score", region_id != 0) 
+
+spp_trend <- scores %>%
+  filter(goal == "SPP", dimension == "trend", region_id != 0, scenario == 2021)
   
 
 ## get top ten and bottom ten scores for 2021
@@ -143,14 +64,18 @@ data <- scores %>%
   filter(goal == "SPP")
   
 
+data_spread <- data %>%
+  pivot_wider(names_from = c(scenario), values_from = c(value)) %>% 
+  mutate(difference = `2021`-`2012`)
 
-data_isr <- data %>%
-  filter(region_name == "Israel")
+# ok so Libya and Cyprus have the biggest decrease in score (-6) from 2012 to 2021.. lets look into this
 
-data_isr
+data_lib_cyp <- data %>%
+  filter(region_name %in% c("Libya", "Cyprus", "Madagascar", "Ecuador"))
 
 
-ggplot(data_isr, aes(y=region_name, x=scenario, fill=value)) + 
+
+ggplot(data_lib_cyp, aes(y=region_name, x=scenario, fill=value)) + 
   geom_tile() +
   facet_grid(~goal) + 
   scale_fill_gradientn(colours=myPalette, na.value="black") +
@@ -160,8 +85,166 @@ ggplot(data_isr, aes(y=region_name, x=scenario, fill=value)) +
 
 
 
-data_2019 <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/spp/v2020/_data/iucn_risk_current_2019-1.csv')
 
+```
+
+
+Lets take a look at Libya specifically, since it is doing poorly (and getting worse). I downloaded the spp_data/assessments_libya.csv file from: https://www.iucnredlist.org/search
+
+```{r}
+## read in data
+
+libya_assessments <- read.csv("spp_data/assessments_libya.csv")
+
+summary_libya <- libya_assessments %>%
+  filter(str_detect(systems, "Marine")) %>%
+  group_by(yearPublished, redlistCategory) %>%
+  summarise(number = n())
+
+summary_libya <- libya_assessments %>%
+  filter(str_detect(systems, "Marine"),
+         yearPublished >=2011) %>%
+  group_by(populationTrend) %>%
+  summarise(number = n()) %>%
+  ungroup() %>%
+  mutate(percent = number/sum(number))
+
+
+summary_libya <- libya_assessments %>%
+  filter(str_detect(systems, "Marine"),
+         yearPublished >=2011) %>%
+  group_by(redlistCategory) %>%
+  summarise(number = n()) %>%
+  ungroup() %>%
+  mutate(percent = number/sum(number))
+
+## Libya has seen the largest decline in species score, dropping by 6 points. This is a concerning trend, especially considering that Libya has the third worst species subgoal score for 2021. Over the past 10 years, only 4% of the species assessed in Libya have increasing population trends, while 25% are decreasing, according to the IUCN Red List. However, there still remain many data gaps with 7% of the assessed species being data deficient, and nearly 50% with unknown population trends. 
+```
+
+
+Now lets take a look at Chile, since it is doing well (and getting better.. slightly). I downloaded the spp_data/assessments_chl.csv file from: https://www.iucnredlist.org/search
+
+```{r}
+## read in data
+
+chl_assessments <- read.csv("spp_data/assessments_chl.csv")
+
+summary_chl <- chl_assessments %>%
+  filter(str_detect(systems, "Marine")) %>%
+  group_by(yearPublished, redlistCategory) %>%
+  summarise(number = n())
+
+summary_chl <- chl_assessments %>%
+  filter(str_detect(systems, "Marine"),
+         yearPublished >=2011) %>%
+  group_by(populationTrend) %>%
+  summarise(number = n()) %>%
+  ungroup() %>%
+  mutate(percent = number/sum(number))
+
+
+summary_chl <- chl_assessments %>%
+  filter(str_detect(systems, "Marine"),
+         yearPublished >=2011) %>%
+  group_by(redlistCategory) %>%
+  summarise(number = n()) %>%
+  ungroup() %>%
+  mutate(percent = number/sum(number)) 
+
+## So what we see with Chile is 76% of all species have been classified as least concern, and nearly equal amounts of species have increasing/decreasing population trends. This seems to match up pretty well with its slight positive trend (+1 point over 10 years of data). 
+```
+
+
+Lets compare LSP and SPP scores, and see if there is a meaningful correlation
+
+```{r}
+library(corrplot)
+library(RColorBrewer)
+
+spp_lsp <- scores %>%
+  filter(dimension == "score", goal %in% c("LSP", "SPP")) 
+
+
+
+spp_lsp_spread <- spp_lsp %>%
+  dplyr::select(-long_goal) %>%
+  pivot_wider(names_from = goal, values_from = value) %>% 
+  dplyr::select("year" = "scenario", LSP, SPP, region_name)
+
+
+m <- cor(spp_lsp$LSP, spp_lsp$SPP, use = "na.or.complete")
+
+
+m
+
+
+corrplot(m, type="upper", order="hclust",
+         col=brewer.pal(n=8, name="RdYlBu"))
+
+mtcars
+
+
+spp <- spp_lsp %>%
+  dplyr::filter(goal == "SPP") %>% 
+  dplyr::select("year" = "scenario", value)
+
+lsp <- spp_lsp %>%
+  dplyr::filter(goal == "LSP") %>% 
+  dplyr::select("year" = "scenario", value)
+
+
+spp_spread <- spp_lsp_spread %>%
+  dplyr::select(year, region_name, SPP) %>%
+  dplyr::filter(region_name == "Global average") %>%
+  dplyr::select(-region_name)
+
+spp_ts <- ts(spp_spread)
+
+# spp_spread$year <- lubridate::ymd(spp_spread$year, truncated = 2L)
+
+
+lsp_spread <- spp_lsp_spread %>%
+  dplyr::select(year, region_name, LSP) %>%
+    dplyr::filter(region_name == "Global average") %>%
+  dplyr::select(-region_name)
+
+lsp_ts <- ts(lsp_spread)
+
+# lsp_spread$year <- lubridate::ymd(lsp_spread$year, truncated = 2L)
+
+acf(ts.intersect(lsp_ts, spp_ts))
+```
+
+```{r}
+max_year = 2021
+
+## Create a trends dataset and save to content/data folder
+region_trends <- scores %>%
+  filter(dimension == "score") %>%
+  filter(!is.na(value)) %>%
+  group_by(goal, long_goal, region_id, region_name) %>%
+  do(mdl = tidy(lm(value ~ scenario, data = .))) %>%
+  unnest(mdl)  #fitting a model per each goal and rgn_id
+  
+# data.frame(glance(data_lm, mdl))
+region_trends2 <- region_trends %>%
+  filter(term == "scenario") %>%
+  mutate(scenario = sprintf("2012 - %s", max_year),
+         dimension = "average_yearly_change_in_scores") %>%
+  select(scenario, goal, long_goal, dimension, region_id, region_name, value = estimate, p.value) %>%
+  data.frame() 
+
+
+rgn_trends <- region_trends2 %>%
+   # filter(goal %in% c("LSP", "SPP")) %>%
+  dplyr::select(-long_goal, -p.value) %>%
+  pivot_wider(names_from = goal, values_from = value) %>%
+  dplyr::select(-scenario, -dimension, -region_id, -region_name)
+
+test <- cor(rgn_trends, use = "na.or.complete")
+corrplot(test)
 
 
 ```
+
+
