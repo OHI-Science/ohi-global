@@ -1,19 +1,18 @@
-This layer represents the opportunity for artisanal and recreational fishing in each country based on the quality of management of the small-scale fishing sector. Global data were extracted from Mora et al. (2009), Figure S4. Figure S4 is based on two expert opinion survey questions related to artisanal and recreational fishing (classified as small-scale fishing; presented in Table S5). Overall scores for small-scale fisheries management for each country are based on a scale of 0 to 100, with higher scores representing better management. These values were then rescaled (using a maximum value of 100 and minimum value of 0) to range between 0 and 1 for each OHI region.
+This layer represents the opportunity for artisanal and recreational fishing in each country based on the quality of management of the small-scale fishing sector. Global data were extracted from [United Nations Sustainable Development Goal (UN SDG) 14.b.1.](https://sdg.data.gov/14-b-1/) UN SDG 14.b.1. FAO member country responses to the Code of Conduct for Responsible Fisheries (CCRF) (Table 6.1) survey questionnaire which is circulated by FAO every two years to members and IGOs and INGOs and are on a scale from 0 to 1. 
 
-Questions from Mora et al. that were used to evaluate access to artisanal scale fishing:
+Questions from UN SDG 14.b.1 that were used to evaluate access to artisanal scale fishing:
 
-If recreational fishing exists to any extent, which of the following apply?
+* Are there any laws, regulations, policies, plans or strategies that specifically target or address the
+small-scale fisheries sector? 
 
-* Are recreational fishermen required to have a fishing license? Y/N
-* Are there regulations to the size of fish caught? Y/N
-* Are there regulations to the number of fish caught? Y/N
-* Are there regulations to the number of fishermen allowed to fish? Y/N
-* Are there statistics being collected for this sort of fishing? Y/N
-
-If artisanal fishing exists to any extent, which of the following apply?
-
-* Are there regulations to the size of fish caught? Y/N
-* Are there regulations to the number of fish caught? Y/N
-* Are there regulations to the number of fishermen allowed to fish? Y/N
-* Are there statistics being collected for this sort of fishing? Y/N
+|   |  Yes | No  |
+|---|---|---|
+| Law  |   |   |
+| Regulation  |   |   |
+| Policy  |   |   |
+| Plan/strategy  |   |   |
+| Other (please specify)  |   |   |
+    
+    
+* The Voluntary Guidelines for Securing Sustainable Small-scale Fisheries in the Context of Food Security and Poverty Eradication (SSF Guidelines) were endorsed by [COFI in June 2014](www.fao.org/3/a-i4356e.pdf). Does your country have a specific initiative to implement the SSF Guidelines?     
 

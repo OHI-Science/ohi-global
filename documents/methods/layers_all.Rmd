@@ -12,14 +12,14 @@
 
  
 ## Artisanal fisheries management effectiveness 
-#### [fp_mora_artisanal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mora_artisanal.csv) {-} 
+#### [fp_artisanal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_access.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
 
                                   on.exit(unlink(x))
 
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_mora_artisanal.Rmd", x)
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_artisanal.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 
@@ -48,6 +48,24 @@
 #### Units {-} 
  scaled 0-1
 
+
+## Artisanal fisheries sustainability
+#### [ao_sust](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_sust.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/ao_sust.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
  
 ## Average species condition 
 #### [spp_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/spp_status.csv) {-} 
@@ -560,6 +578,25 @@
  
 #### Units {-} 
  proportion
+ 
+ 
+## Habitat condition of kelp
+#### [hab_kelp_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_kelp_health.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_kelp_health.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ proportion
 
  
 ## Habitat condition of mangrove 
@@ -675,6 +712,23 @@
 #### Units {-} 
  trend
 
+## Habitat condition trend of kelp 
+#### [hab_kelp_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_kelp_trend.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_kelp_trend.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ trend
  
 ## Habitat condition trend of mangrove 
 #### [hab_mangrove_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_trend.csv) {-} 
@@ -789,6 +843,24 @@
 #### Units {-} 
  km2
 
+
+## Habitat extent of kelp 
+#### [hab_kelp_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_kelp_extent.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_kelp_extent.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ km2
  
 ## Habitat extent of mangrove 
 #### [hab_mangrove_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_extent.csv) {-} 
