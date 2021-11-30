@@ -13,17 +13,17 @@ $$
 x_{ao} = (1 – D_u) * S_{ao}, (Eq. 6.1)
 $$
 
-where $S_{ao}$ indicates whether artisanal fishing is done in a sustainable manner. This was approximated using Sea Around Us Project (SAUP) (2020) global marine fisheries catch data [@pauly2020] and B/Bmsy data [@ricard_examining_2012; @costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016; @ram_legacy_stock_assessment_database_ram_2021] calculated from our fisheries sub-goal (methods can be found in section 6.6.1), and subsetted for artisanal and subsistence stocks notated in the SAUP data. And, $D_u$ is calculated as:
+where $S_{ao}$ indicates whether artisanal fishing is done in a sustainable manner. This was approximated using Sea Around Us Project (SAUP) (2020) global marine fisheries catch data [@pauly2020] and B/Bmsy data [@ricard_examining_2012; @costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016; @ramlegacystockassessmentdatabase2021] calculated from our fisheries sub-goal (methods can be found in section 6.6.1), and subsetted for artisanal and subsistence stocks notated in the SAUP data. And, $D_u$ is calculated as:
 
 $$
 D_{u} = (1 – PPPpcGDP) * (1 – O_{ao}), (Eq. 6.2)
 $$
 
-where, $PPPpcGDP$ is the ln-transformed, rescaled purchasing power parity adjusted per capita GDP, and $O_{ao}$ is the access to artisanal-scale fishing determined by the United Nations Sustainable Development Goal (UN SDG) 14.b.1 [@food_and_agriculture_organization_of_the_united_nations_progress_2020]. 
+where, $PPPpcGDP$ is the ln-transformed, rescaled purchasing power parity adjusted per capita GDP, and $O_{ao}$ is the access to artisanal-scale fishing determined by the United Nations Sustainable Development Goal (UN SDG) 14.b.1 [@foodandagricultureorganizationoftheunitednations2020]. 
 
 We rescaled the ln-transformed $PPPpcGDP$ values from 0-1 by dividing by the value corresponding to the 99th quantile across all regions and years from 2005 to 2015 (values > 1 were capped at 1). Developed countries with lower demand for artisanal scale fishing (i.e., low poverty indicated by high PPPpcGDP) score high, regardless of the opportunity made available (since it would not matter to many), and developing countries with high demand and opportunity would also score high. 
 
-To assess the opportunity or ability to meet this demand, $O_{ao}$, we used data from UN SDG 14.b.1 [@food_and_agriculture_organization_of_the_united_nations_progress_2020], which scores countries on the institutional measures that support or protect access to artisanal and small-scale fishing. The data come are FAO member country responses to the Code of Conduct for Responsible Fisheries (CCRF) (Table 6.1) survey questionnaire which is circulated by FAO every two years to members and IGOs and INGOs and are on a scale from 0 to 1. 
+To assess the opportunity or ability to meet this demand, $O_{ao}$, we used data from UN SDG 14.b.1 [@foodandagricultureorganizationoftheunitednations2020], which scores countries on the institutional measures that support or protect access to artisanal and small-scale fishing. The data come are FAO member country responses to the Code of Conduct for Responsible Fisheries (CCRF) (Table 6.1) survey questionnaire which is circulated by FAO every two years to members and IGOs and INGOs and are on a scale from 0 to 1. 
 
 The sustainability of artisanal fishing practices was estimated by subsetting for artisanal and subsistence stock B/Bmsy values which were calculated in our fisheries sub-goal (section 6.6.1).
 
@@ -31,7 +31,7 @@ Several issues and datasets relevant to artisanal fishing opportunities were not
 
 
 **Table 6.1. Artisanal access**. 
-Questions from UN SDG 14.b.1 [@food_and_agriculture_organization_of_the_united_nations_progress_2020] that were used to evaluate access to artisanal scale fishing.
+Questions from UN SDG 14.b.1 [@foodandagricultureorganizationoftheunitednations2020] that were used to evaluate access to artisanal scale fishing.
 
 * Are there any laws, regulations, policies, plans or strategies that specifically target or address the
 small-scale fisheries sector? 
