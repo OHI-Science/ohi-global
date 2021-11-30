@@ -4,7 +4,7 @@ This model aims to assess the amount of wild-caught seafood that can be sustaina
 
 **Figure 6.1: Overview of fisheries status calculations.**
 
-![](../../../metadata_documentation/ohi_model/figures/fis_methods.png)
+![](../../metadata_documentation/ohi_model/figures/fis_methods.png)
 
 #### Current status
 
@@ -44,7 +44,7 @@ We used a geometric weighted mean to account for the portfolio effect of exploit
 
 $B/B_{MSY}$ values were used to derive stock status scores, ${SS}$, such that the best score is achieved for stocks at $B/B_{MSY} = 1\%$, with a 5% error buffer, and it decreases as the distance of $B$ from $B_{MSY}$ increases, due to over-exploitation (Figure 6.2). For each species reported, within each major fishing area, the stock status score was calculated as:
 
-![](../../../metadata_documentation/ohi_model/figures/StockStatus.png)
+![](../../metadata_documentation/ohi_model/figures/StockStatus.png)
 
 where, for $B/B_{MSY} < 1$ (with a 5% buffer), status declines with direct proportionality to the decline of $\beta$ with respect to $B_{MSY}$, while for $B/B_{MSY} > 1$, status is given a perfect  score. Thus, consistent with previous work [@halpern_index_2012], countries are rewarded for having wild stocks at the biomass that can sustainably deliver the maximum sustainable yield, -5% to allow for measurement error, and are penalized for over-harvesting.
 
@@ -52,7 +52,7 @@ For the 2021 assessment, we decided to exclude all underharvest penalties becaus
 
 **Figure 6.2: Conversion of $B/B_{MSY}$ to stock status, $SS$ score.**
 
-![](../../../metadata_documentation/ohi_model/figures/FIS_Bmsy2score.png)
+![](../../metadata_documentation/ohi_model/figures/FIS_Bmsy2score.png)
 
 ```{r bbmsy to ss, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, eval = FALSE}
 

@@ -112,6 +112,4 @@ These yearly pollution rasters were then aggregated by ~140,000 global basins, a
 These raw values were then normalized to 0-1 by dividing by the 99th quantile of raster values across all years.  The zonal mean was then calculated for each region.
 
 
-## References 
-
-@
+@abreu_traditional_2009
