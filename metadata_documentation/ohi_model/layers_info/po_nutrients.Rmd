@@ -4,10 +4,113 @@
 
 *Subcategory: pollution*
 
-Data were calculated using modeled plumes of land-based nitrogen pollution that provide intensity of pollution at ~1km resolution (Halpern et al. 2008). 
 
-Nitrogen pollution was estimated from FAO data on annual country-level fertilizer use ([http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E](http://faostat3.fao.org/faostat-gateway/go/to/browse/R/*/E)), with missing values estimated by regression between fertilizer and pesticides when possible, and when not possible with agricultural GDP as a proxy.  Data were summed across all fertilizer compounds and reported in metric tons. Upon inspection the data included multiple 0 values that are most likely data gaps in the time-series, so they were treated as such and replaced with NA. In addition, regions with only 1 data point and regions where the most recent data point was prior to 2005 were excluded. Uninhabited countries were assumed to have no fertilizer use and thus excluded. 
+Data were calculated using modeled plumed of land-based nitrogen pollution that provide intensity of pollution at ~1km resolution. 
 
-These country-level pollution values were then dasymetrically distributed over a country’s landscape using global landcover data from 2009, derived from the MODIS satellite at ~500m resolution. These values were then aggregated by ~140,000 global basins, and diffusive plumes were modeled from each basin’s pourpoint. The final non-zero plumes (about ~76,000) were aggregated into ~1km Mollweide (wgs84) projection rasters to produce a single plume-aggregated pollution raster. 
+Nitrogen pollution was estimated from FAO data on annual country level fertilizer application for agricultural use ([https://www.fao.org/faostat/en/#data/RFN](https://www.fao.org/faostat/en/#data/RFN)) and country level estimates of nitrogen (N) inputs to agricultural soils from livestock manure ([https://www.fao.org/faostat/en/#data/EMN](https://www.fao.org/faostat/en/#data/EMN)).  
 
-These raw values were then $ln(X+1)$ transformed and normalized to 0-1 by dividing by the 99.99th quantile of raster values across all years.  The zonal mean was then calculated for each region.  
+**Disaggregating fertilizer application at the crop-level**
+
+First, we extracted national fertilizer application for agricultural use from FAOSTAT (2020g) for each plant nutrient (N, P2O5, and K2O). To disaggregate national fertilizer application at the crop-level, we compiled fertilizer use by crop (FUBC) rates from the International Fertilizer Association’s (IFA) FUBC series (FAO 2002; Heffer et al. 2017, FUBC rates provided by request). The FUBC series provides national application rates, measured in kilograms per hectare, of N, P2O5, and K2O for all crop categories. FUBC rates for 2014/15 were extracted from Heffer et al. (2017, FUBC rates provided by request) and harmonised with our study’s crop categories (Supplementary Methods Table S16), with the exception of fodder, which is not included, and the residual category, which combines crop categories from our study that are unlikely to have similar fertilizer application rates. hence, we extracted FUBC rates for these remaining crop categories and fodder by extracting crop-specific FUBC rates from FAO (2002; Table S16). While these rates are more specific at the national and crop level, they were reported between 1996-2001, which is relatively old compared to FUBC rates for 2014/15. To gapfill missing national rates for FUBC 2002, we used the mean fertilizer rate using the smallest regional mean or adopting the next largest regional mean if the smaller region had no data (UNSD, 2020). We also allocated national fertilizer use to grasslands using 2014/15 FUBC percentages.
+
+To determine the proportion of fertilizer allocated by country, crop, production system, and fertilizer, we multiplied crop-specific rates by the total national harvested area of each crop and production system calculated from SPAM harvested area maps (production maps taken from Halpern et al. 2021 (in review)). Because the SPAM harvested area maps are only from data year 2017, the location of fertilizer use does not change across years, only relative intensity does. Fertilizer inputs to irrigated high input production systems were weighted two times higher than high-input rain-fed production systems for the same production (FAO 2005), while the two other production systems (low input and subsistence) were assigned a weight of zero as they do not require fertilizer use. The proportion of nutrient applied was calculated for each country, crop, production system, and fertilizer. We disaggregated national fertilizer application by multiplying national fertilizer with the proportions. We disaggregated national fertilizer input at the raster level by multiplying the cell-level proportion of harvested area in the country for each crop and production system with the national fertilizer use.
+
+
+**Calculating excess nitrogen from synthetic fertilizer applied to crops**
+
+Excess nutrients were estimated using the proportion of N that is leached, and the proportion of N that is volatilised as NH3. We define excess nitrogen, $N_{excess}$, as the tonnes of applied nitrogen that likely runsoffs/leaches, Nleach, or volatilizes as NH3, $N_{{vol}_{NH3}}$, which is subsequently deposited on land and water:  
+
+$N_{excess} = N_{{vol}_{NH3}} + N_{leach}$
+
+where, 
+
+$N_{leach} = N_{applied} – N_{withdrawal} –  N_{nitrification/denitrification} – N_{{vol}_{NH3}}$
+
+$N_{withdrawal}$ = estimates of withdrawal of N by plants on both crops and grazed areas at supernational scale (NUE values from Bouwman et al. 2005).
+
+$N_{nitrification/denitrification}$ = estimate of N emissions through nitrification/denitrification processes (e.g., N20, NO, N2), with a global estimate of 10.2% used (Bouwman et al. 2002b, Scheer et al. 2020).  
+
+$N_{{vol}_{NH3}}$ = estimates of N volatilization as NH3 at supernational scale (Bouwman et al. 2002a, Table 5 summed grasslands, crops, wetland rice).
+
+
+**Calculating excess nitrogen from livestock manure pathways**
+
+We estimated for four general manure pathways (managed then spread, spread on soil, spread on pasture, left on pasture) the proportion of excreted N that is removed by plants, volatilizes as NH3, is converted to NOx products during nitrification/denitrification, or, is lost through leaching or runoff (Fig. XX).
+
+**Figure X.X. Nitrogen leaching and volatilization from manure pathways.**
+![](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/figures/manure_pathways.png)
+For manure applied to crop soils or pastures or left on pastures, we generally estimated the proportion of N that runsoff or leaches, $PN_{leach}$, as:
+
+$PN_{leach} = 1 – PN_{withdrawal} – PN_{nitrification/denitrification} – PN_{vol_{NH3}}$
+
+where the values vary according to the manure pathway (Table X.X).
+
+**Table X.X. Values used to estimate proportion of N loss due to withdrawal, nitrification/denitrification, and NH3 volatilization for different manure systems** 
+
+|   | **Definition**  | **Applied to crops**  | **Applied or left on pastures**  |
+|---|---|---|---|
+| $PN_{withdrawal}$  |  Proportion of withdrawal of N by crops or grasses | Proportion of N recovery (Table 5 in Bouwman et al. 2005)  |  60% of inputs post NH3 volatilization (Bouwman et al. 2005) |
+| $PN_{nitrification/denitrification}$  | Proportion of N emissions through nitrification/denitrification processes (e.g., N20, NO, N2)  | Global value of 0.102; calculated as N2O emission factor of 0.01 of total N excretion (Bouwman et al. 2002b) multiplied by 10.2 based on the ratio of (N2O + N2)/N2O for “agricultural soils” (Sheer et al. 2020).   | Global value of 0.09125 used; calculated as N2O emission factor of 0.01 of total N excretion (Bouwman et al. 2002b) multiplied by 9.125 based on the ratio of (N2O + N2)/ N2O for “soils under natural vegetation” (Sheer et al. 2020)  |
+| $PN_{vol_{NH3}}$  | Proportion of volatilization as NH3  | Proportion of volatilization (Table 5 in Bouwman et al. 2002a, avg. of crops and rice values)  |  Proportion of grassland volatilization (Table 5 in Bouwman et al. 2002a) |
+ 
+ 
+In some cases, prior to being spread on soils, manure is collected and stored using a variety of management systems, s.  The proportion of N leaching from manure management systems, $PMMS_{leach}$, was calculated using a modified version of GLEAM equation 4.4.4 (FAO 2018a):
+
+$PMMS_{leach} = ∑_s (MS_s  × F_{leach,s}  × (1 - ex_{vol}))$
+
+$MMS_{leach}$  = proportion N leached for managed manure for animal system
+
+$MS_s$ = Fraction of manure treated in each system, s (FAO 2018a)
+
+$F_{leach,s}$ = Fraction N leached in each manure management system (FAO 2018a)
+
+$ex_{vol}$  = Fraction N volatilized after excretion, used global value of 0.0075 (FAO 2018a)
+
+To determine the proportion of N volatilizing as NH3 for manure treated in a manure management system, we determined the total proportion of all N lost during management (Table 10.23 in Gavrilova et al. 2019). Nitrogen loss includes runoff/leaching, volatilization of NH3, and NOx from denitrification/nitrification. We subtracted the proportion expected to leach in each manure management system (FAO 2018a).  The remaining loss included both NH3 volatilization and NOx from nitrification/denitrification, so we used an adjustment factor of 0.74 to account for only NH3 volatilization of N, based on the proportion of NH3/(NH3 + NOx) observed in directly applied manure.
+
+Eventually, the managed manure is typically applied to either crop soils or pasture soils. Using the same assumption as Bouwman et al 2009, in industrialized countries we applied 50% of manure to pastures and 50% to crops, and in developing countries we applied 95% to crop land and 5% to pastures. 
+
+Next, for each livestock system and country, we estimated the total proportion of N that runsoffs/leaches, $PN_{leach}$, or volatilizes as NH3, $PN_{NH3}$ based on the proportion of manure, $P_{manure}$, that enters each manure pathway for a given livestock system and country (FAO 2018a, Figure X.X): 
+
+$$PN_{leach} = P_{manure}  \times PMMS_{leach} + \\
+               P_{manure}  \times PAppliedCrops_{leach} + \\
+               P_{manure}  \times PAppliedPastures_{leach} + \\
+               P_{manure}  \times PLeftPastures_{leach}$$
+
+We estimated $PN_{NH3}$ similarly.
+
+For each livestock system, we then mapped the yearly tonnes of N that leaches or runsoff from manure, $rastTN_{leach}$:
+
+$rastTN_{leach} = rastPN_{leach} \times rastN_{ex} \times rastN_{animals}$
+
+where,
+
+$rastPN_{leach}$ = rasterized data describing total proportion of N runoff/leaching for a specific animal system and country 
+
+$rastN_{ex}$  = raster describing annual N excretion, tonnes N animal-1 year-1 (country and animal specific values from FAO 2018b)
+
+$rastN_{animals}$ = raster data describing number of animals for an animal system (FAO 2018a)
+
+	
+We similarly mapped the total tonnes of N that volatilizes as NH3. 
+
+To calculate the total P in manure excreted from livestock, we used the total N excreted rasters we created and applied an animal system specific N:P conversion calculated from Sheldrick et al. 2001. To account for phosphorus leaching we assumed that 0.065 of deposited P runoff/leached (Bouwman et al. 2009).  
+
+
+**N and P leaching and N volatilization from synthetic fertilizers applied to grassland**
+
+We calculated national agricultural grassland fertilizer input by multiplying the national agricultural fertilizer input with the percentage of fertilizer allocated to grasslands nationally in 2014/15 (Heffer et al. 2017). We assumed all agricultural grassland fertilizer input was used on grass fed to livestock. To spatially disaggregate national fertilizer input, we multiplied national fertilizer input by the proportion of livestock units (LSU) for each country, animal and product (milk, meat, etc.) at the cell-level. 
+
+To calculate excess nutrients from synthetic fertilizers applied to grasslands, we estimated the proportion of N and P that is leached, and the proportion of N that is volatilized as NH3 (Figure X.X). Methods are the same as manure pathways, with the exception of using grassland-specific proportions to calculate $N_{vol}_{NH3}$ (Bouwman et al. 2002a).
+
+
+**Pluming excess nitrogen to coastal areas**
+Final excess nitrogen layers from crop fertilizer and livestock manure were then combined together to create rasters describing excess nitrogen leaching at ~1km resolution and excess nitrogen volatilization at ~1km resolution. To estimate the amount of leached nitrogen which reaches coastal systems we assumed that any nitrogen which was more than 1km away from surface waters and coastlines would not contribute to effluent totals. To estimate the amount of volatilized nitrogen which reaches coastal systems, we multiplied our total volatilized raster by a raster describing proportion of area within cells that are surface waters and cells that are 1km away from the coast. Surface water rasters were provided upon request from Tuholske et al. 2021. Following this, we combined the coastal leaching and coastal volatilization rasters into single, yearly pollution rasters. 
+
+
+These yearly pollution rasters were then aggregated by ~140,000 global basins, and diffusive plumes were modeled from each basin’s pourpoint. The final non-zero plumes (about ~95,000 were aggregated into ~1km Mollweide (wgs84) projection rasters to produce a single plume-aggregated pollution raster. 
+
+These raw values were then normalized to 0-1 by dividing by the 99th quantile of raster values across all years.  The zonal mean was then calculated for each region.
+
+
+## References 

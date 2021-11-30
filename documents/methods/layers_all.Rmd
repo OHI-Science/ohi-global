@@ -1222,24 +1222,6 @@
 #### Units {-} 
  scaled 0-1
 
- 
-## Management of mariculture  to preserve biodiversity 
-#### [g_mariculture](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_mariculture.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/g_mariculture.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- scaled 0-1
 
  
 ## Management of nonindigenous species 
@@ -1316,25 +1298,6 @@
  
 #### Units {-} 
  tonnes
-
- 
-## Mariculture Sustainability Index 
-#### [g_msi_gov](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_msi_gov.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/g_msi_gov.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- scaled 0-1
 
  
 ## Mariculture sustainability score 
