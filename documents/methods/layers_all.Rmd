@@ -12,7 +12,7 @@
 
  
 ## Artisanal fisheries management effectiveness 
-#### [fp_artisanal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_access.csv) {-} 
+#### [fp_artisanal](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_artisanal.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
                                   x <- tempfile(fileext = 'Rmd')
@@ -48,8 +48,8 @@
 #### Units {-} 
  scaled 0-1
 
-
-## Artisanal fisheries sustainability
+ 
+## Artisanal fisheries sustainability 
 #### [ao_sust](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ao_sust.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -66,6 +66,7 @@
  
 #### Units {-} 
  scaled 0-1
+
  
 ## Average species condition 
 #### [spp_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/spp_status.csv) {-} 
@@ -578,9 +579,9 @@
  
 #### Units {-} 
  proportion
+
  
- 
-## Habitat condition of kelp
+## Habitat condition of kelp 
 #### [hab_kelp_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_kelp_health.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -712,6 +713,7 @@
 #### Units {-} 
  trend
 
+ 
 ## Habitat condition trend of kelp 
 #### [hab_kelp_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_kelp_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -729,6 +731,7 @@
  
 #### Units {-} 
  trend
+
  
 ## Habitat condition trend of mangrove 
 #### [hab_mangrove_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_trend.csv) {-} 
@@ -843,7 +846,7 @@
 #### Units {-} 
  km2
 
-
+ 
 ## Habitat extent of kelp 
 #### [hab_kelp_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_kelp_extent.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -861,6 +864,7 @@
  
 #### Units {-} 
  km2
+
  
 ## Habitat extent of mangrove 
 #### [hab_mangrove_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_mangrove_extent.csv) {-} 
@@ -1221,7 +1225,6 @@
  
 #### Units {-} 
  scaled 0-1
-
 
  
 ## Management of nonindigenous species 
