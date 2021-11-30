@@ -1,5 +1,5 @@
 ---
-title: 'Ocean Health Index 2020: Methods'
+title: 'Ocean Health Index 2021: Methods'
 csl: methods-in-ecology-and-evolution.csl
 output:
   html_document:
@@ -53,7 +53,7 @@ options(knitr.kable.NA = '')
 # exclude when knitting
 # setwd("documents/methods")
 
-assessmentYear <- 2020
+assessmentYear <- 2021
 
 # sections to run:
 ten_goals <- TRUE
@@ -163,9 +163,9 @@ One of the first steps of conducting an OHI assessment is defining regions of in
 There are 220 global coastal countries and territorial regions (Table 4.1).  Regions are based on Exclusive Economic Zone boundaries [EEZ, @claus_marine_2012].  However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.).  We have also modified some boundaries [@halpern_index_2012; @halpern_patterns_2015].  We do not estimate OHI values for disputed or unclaimed areas.
 
 **Figure 4.1. Global regions**
-Map of the OHI regions (with color corresponding to 2020 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
+Map of the OHI regions (with color corresponding to 2021 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
 
-![](../../yearly_results/global2020/Results/figures/maps_by_goal_mol/global_map_Index_2020_mol.png)
+![](../../yearly_results/global2021/Results/figures/maps_by_goal_mol/global_map_Index_2021_mol.png)
 
 **Table 4.1. Global regions**
 

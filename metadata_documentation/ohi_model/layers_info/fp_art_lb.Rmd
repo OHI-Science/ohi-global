@@ -4,7 +4,7 @@
 
 *Subcategory: fishing pressure*
 
-This layer describes the relative pressure of low bycatch artisanal fishing practices for each OHI region. The fishery data (Watson 2018) describe catch (tonnes) for each species at the 0.5 degree raster global scale for both non-industrial and industrial fishing. For each raster cell, we summed catch (which consisted of reported landings as well as illegal, unreported and regulated catch) from the non-industrial global catch data.  
+This layer describes the relative pressure of low bycatch artisanal fishing practices for each OHI region. The fishery data (Watson 2019) describe catch (tonnes) for each species at the 0.5 degree raster global scale for both non-industrial and industrial fishing. For each raster cell, we summed catch (which consisted of reported landings as well as illegal, unreported and regulated catch) from the non-industrial global catch data.  
 
 The catch was then divided by the mean net primary productivity (mg C/m^2^/day) derived from monthly output from the Vertically Generalized Production Model (VGPM,  [http://www.science.oregonstate.edu/ocean.productivity/](http://www.science.oregonstate.edu/ocean.productivity/), 0.5 degree global raster data). Standardizing catch by primary productivity controls for the fact that similar amounts of catch impart different pressures depending on the productivity in the region. 
 

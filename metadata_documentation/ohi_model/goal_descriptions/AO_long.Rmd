@@ -13,7 +13,7 @@ $$
 x_{ao} = (1 – D_u) * S_{ao}, (Eq. 6.1)
 $$
 
-where $S_{ao}$ indicates whether artisanal fishing is done in a sustainable manner. This was approximated using Sea Around Us Project (SAUP) (2020) global marine fisheries catch data [@pauly_sea_2020] and B/Bmsy data [@ricard_examining_2012; @costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016; @ram_legacy_stock_assessment_database_ram_2021] calculated from our fisheries sub-goal (methods can be found in section 6.6.1), and subsetted for artisanal and subsistence stocks notated in the SAUP data. And, $D_u$ is calculated as:
+where $S_{ao}$ indicates whether artisanal fishing is done in a sustainable manner. This was approximated using Sea Around Us Project (SAUP) (2020) global marine fisheries catch data [@pauly2020] and B/Bmsy data [@ricard_examining_2012; @costello_status_2012; @martell_simple_2013; @thorson_new_2013; @rosenberg_developing_2014; @costello_global_2016; @ram_legacy_stock_assessment_database_ram_2021] calculated from our fisheries sub-goal (methods can be found in section 6.6.1), and subsetted for artisanal and subsistence stocks notated in the SAUP data. And, $D_u$ is calculated as:
 
 $$
 D_{u} = (1 – PPPpcGDP) * (1 – O_{ao}), (Eq. 6.2)
