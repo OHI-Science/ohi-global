@@ -6,7 +6,7 @@ Iconic species are those that are relevant to local cultural identity through th
 The status of this sub-goal, $x_{ico}$, is the average of status scores of the iconic species in each region based on their IUCN Red List threat categories [@iucn2020]:
 
 $$
-x_{ico} = \frac { \displaystyle\sum_{ i=EX }^{ LC }{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{ i=EX }^{ LC }{ S_{i} }  }, (Eq. 6.17)
+x_{ico} = \frac { \displaystyle\sum_{ i=EX }^{ LC }{ S_{i}\times w_{i} }  }{ \displaystyle\sum_{ i=EX }^{ LC }{ S_{i} }  }, (Eq. 6.18)
 $$
 
 where for each IUCN threat category $i$, $S_{i}$ is the number of assessed species and $w_{i}$ is the status (Table 6.3) following the methods described by Butchart et al. [-@butchart_improvements_2007]. This formulation gives partial credit to species that still exist but are in one of the other threat categories. The reference point is to have the risk status of all assessed species as Least Concern (i.e., a goal score = 1.0). Species that have not been assessed or labeled as data deficient are not included in the calculation.

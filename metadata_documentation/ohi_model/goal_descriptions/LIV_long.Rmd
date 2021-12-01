@@ -8,7 +8,7 @@ This subgoal measures the jobs produced from marine-related industries.  Livelih
 The status of the livelihoods sub-goal, $x_{liv}$, is calculated as:
 
 $$
-x_{liv} = \frac { \frac { \sum _{ 1 }^{ k }{ { j }_{ c,k } }  }{ \sum _{ 1 }^{ k }{ { j }_{ r,k } }  } \quad +\quad \frac { \sum _{ 1 }^{ k }{ { w }_{ m,k } }  }{ \sum _{ 1 }^{ k }{ { w }_{ r,k } }  }  }{ 2 }, (Eq. 6.13)
+x_{liv} = \frac { \frac { \sum _{ 1 }^{ k }{ { j }_{ c,k } }  }{ \sum _{ 1 }^{ k }{ { j }_{ r,k } }  } \quad +\quad \frac { \sum _{ 1 }^{ k }{ { w }_{ m,k } }  }{ \sum _{ 1 }^{ k }{ { w }_{ r,k } }  }  }{ 2 }, (Eq. 6.14)
 $$
 
 where $j$ is the adjusted number of direct and indirect jobs within sector $k$ within a region and $w$ is the average PPP-adjusted wages per job within the sector. Jobs are summed across sectors and measured at current, $c$, and reference, $r$, time points. Adjusted wage data are averaged across sectors within each region, $m$, and the reference country, $r$, with the highest average wages across all sectors.

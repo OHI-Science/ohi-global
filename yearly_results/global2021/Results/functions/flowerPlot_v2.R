@@ -299,7 +299,7 @@ myPalette <- paste0(colorRampPalette(tableau_color_pal("Classic Cyclic")(13))(14
                 hjust = .5, vjust = .5,
                 size = 12,
                 color = dark_line) #+
-#      labs(title = str_replace_all(region_name, '-', ' - '))
+     labs(title = str_replace_all(region_name, '-', ' - '))
  # deleting title   
     
     ### clean up the theme
