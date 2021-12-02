@@ -5,21 +5,40 @@ date: "9/28/2020"
 output: html_document
 ---
 
+This Rmd preps our scores data to plug into the ARCGIS Living Atlas of the World for the Ocean Health Index: https://ucsb.maps.arcgis.com/home/item.html?id=1f305abdc47a45bf867783c7419db6d0
+
+Through UCSB, you should have an ARCGIS online account. You will need to be added to the group "Global Ocean Health Index" by either Gage Clawson or Melanie Frazier. https://ucsb.maps.arcgis.com/home/group.html?id=e2857950e3314d77a1fd14959f3cce8e#overview
+
+First, you will run this script with the updated scores for your assessment year. 
+
+Next you will need to upload this data into the ARCGIS OHI global map.
+
+To obtain the zip file which you will update, export the .dbf, .shp, .shx, and .prj files from the scores_xxxx folder on Mazu, and rename to "ohi_scores_2020_final.zip".
+
+**NOTE: It is important that this file is named "ohi_scores_2020_final.zip", even if the assessment year is not 2020. This is because we originally uploaded the data and created an ARCGIS map from it when it was named "ohi_scores_2020_final.zip". I'm sure we could figure out how to change the name of the file if we wanted to, or recreate the map, but at this time its not worth the effort... just roll with 2020 in the name.**
+
+Now log into https://ucsb.maps.arcgis.com/. Click on Groups ---> Global Ocean Health Index ---> and update the files accordingly as instructed below. 
+
+Upload the ohi_scores_2020_final.zip file to "OHI Scores Source" by clicking "Update Data" ---> "Overwrite Entire Layer". Now the data is updated on ARCGIS Online! All you have left to do is edit the text on "OHI Scores Source" and "Historical Global Ocean Health Index Scores (2012-2021)" to match the current assessment year. 
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-source('http://ohi-science.org/ohiprep_v2019/workflow/R/common.R')
+source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
 library(sf)
 library(tidyverse)
+library(here)
 library(mapview)
 
+setwd(here("yearly_results/global2021/ESRI_data"))
 ```
 
 Match our scores data with the shapefiles that Victor provided, grab the geometries, and rewrite so that we can upload to ARCGIS online.
 ```{r}
 ohi_scores_sf <- st_read("Global_OHI_Scores_2012_to_2019.shp")
 
-mapview(ohi_scores_sf)
+# mapview(ohi_scores_sf)
 colnames(ohi_scores_sf)
 
 
@@ -56,8 +75,8 @@ ohi_scores_renamed_2 <- ohi_scores_renamed %>%
 ```
 
 ```{r}
-scores_2020 <- read_csv(file.path("../scores_2020-10-01.csv")) %>%
-  dplyr::filter(dimension %in% c("score", "trend", "index")) %>%
+scores_2021 <- read_csv(file.path("../scores_2021-11-17.csv")) %>% ## change this to your new assessment years score csv
+  dplyr::filter(dimension %in% c("score", "trend", "index")) %>% 
   pivot_wider(names_from = c(goal, dimension), values_from = score)
 
 region_data()
@@ -69,7 +88,7 @@ regions_df <- regions %>%
   dplyr::filter(rgn_type == "eez") %>%
   dplyr::rename("rgn_nam" = "rgn_name" , "are_km2" = "area_km2")
 
-scores_2020_sf_names <- scores_2020 %>%
+scores_2021_sf_names <- scores_2021 %>%
   merge(ohi_scores_renamed_2) %>%
   dplyr::rename("rgn_id" = "region_id") %>%
   st_sf() %>%
@@ -77,12 +96,12 @@ scores_2020_sf_names <- scores_2020 %>%
   dplyr::select(-rgn_ant_id, -rgn_type, -type_w_ant)
 
 
-st_write(scores_2020_sf_names, "scores_2020/scores_2020_names.shp", driver="ESRI Shapefile")
+st_write(scores_2021_sf_names, "scores_2021/scores_2021_names.shp", driver="ESRI Shapefile")
 
 # scores_2020_shp_names <- as_Spatial(scores_2020_sf_names)
-mapview(scores_2020_sf_names)
+mapview(scores_2021_sf_names)
 
-scores_2020_sf_no_names <- scores_2020_sf_names %>%
+scores_2021_sf_no_names <- scores_2021_sf_names %>%
   dplyr::rename("scr_" = "MAR_score",  "trd_" = "MAR_trend") %>%
   dplyr::rename( "scr1" = "AO_score",   "trd1" = "AO_trend") %>%
   dplyr::rename("sc_1" = "BD_score", "tr_1" = "BD_trend") %>%
@@ -113,11 +132,12 @@ scores_2020_sf_no_names <- scores_2020_sf_names %>%
     Year == 2018 ~ "2018-12-01",
     Year == 2019 ~ "2019-12-01",
     Year == 2020 ~ "2020-12-01",
+    Year == 2021 ~ "2021-12-01"
   ))
 
-st_write(scores_2020_sf_no_names, "scores_2020/ohi_scores_2020_final.shp", driver="ESRI Shapefile")
+st_write(scores_2021_sf_no_names, "scores_2021/ohi_scores_2020_final.shp", driver="ESRI Shapefile") ## always keep 2020 in the name... see instructions above.
 
-mapview(scores_2020_sf_no_names)
+mapview(scores_2021_sf_no_names)
 ```
 
 
