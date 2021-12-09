@@ -24,23 +24,24 @@ FIS <- function(layers) {
     AlignDataYears(layer_nm = "fis_b_bmsy", layers_obj = layers) %>%
     dplyr::select(region_id = rgn_id, stock_id, year = scenario_year, bbmsy)
   
+  ## The following code is commented out because we removed the underharvest penalty for v2021. I am leaving the commented out code in the script for future reference, if we want to implement something similar. 
   # The following stocks are fished in multiple regions and often have high b/bmsy values
   # Due to the underfishing penalty, this actually penalizes the regions that have the highest
   # proportion of catch of these stocks.  
   
-  high_bmsy_filter <- dplyr::filter(b, bbmsy>1.5 & year == 2015) %>%
-    dplyr::group_by(stock_id) %>%
-    dplyr::summarise(n = dplyr::n()) %>%
-    data.frame() %>%
-    dplyr::filter(n>3)
-  
-   high_bmsy <- high_bmsy_filter$stock_id
+  # high_bmsy_filter <- dplyr::filter(b, bbmsy>1.5 & year == 2015) %>%
+  #   dplyr::group_by(stock_id) %>%
+  #   dplyr::summarise(n = dplyr::n()) %>%
+  #   data.frame() %>%
+  #   dplyr::filter(n>3)
+  # 
+  #  high_bmsy <- high_bmsy_filter$stock_id
 
    # b <- b %>%
    #   dplyr::mutate(bbmsy = ifelse(stock_id %in% high_bmsy &
    #                           bbmsy > 1, 1, bbmsy))
 
-   # # no underharvest penalty  
+   # # Do not apply an underharvest penalty! Cap bbmsy at 1. 
    b <- b %>%
      dplyr::mutate(bbmsy = ifelse(bbmsy > 1, 1, bbmsy))
   
@@ -64,6 +65,7 @@ FIS <- function(layers) {
     dplyr::mutate(stock_id = as.character(stock_id))
   
   
+  ## Note: We can probably ignore the upper buffer now.. since we cap all scores at 1 anyways above. 
   ####
   # STEP 1. Calculate scores for Bbmsy values
   ####
@@ -245,20 +247,7 @@ MAR <- function(layers) {
     mutate(sm_tonnes = ifelse(sm_tonnes == "NaN", 0, sm_tonnes))
   
   
-  # smoothed mariculture harvest * sustainability coefficient
-  # m <- m %>%
-  #   dplyr::mutate(sust_tonnes = sust_coeff * sm_tonnes)
-
-  
   # aggregate all weighted timeseries per region, and divide by potential mariculture
-
-  # ry = m %>%
-  #   dplyr::group_by(rgn_id, scenario_year) %>%
-  #   dplyr::summarize(sust_tonnes_sum = sum(sust_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
-  #   dplyr::left_join(reference_point, by = c('rgn_id', 'scenario_year')) %>%
-  #   dplyr::mutate(mar_score = sust_tonnes_sum / potential_mar_tonnes) %>%
-  #   dplyr::ungroup()
-  # 
   
   tonnes_pot_div <- m %>%
     dplyr::group_by(rgn_id, scenario_year) %>%
@@ -268,17 +257,12 @@ MAR <- function(layers) {
     dplyr::ungroup() 
     
     sustainability <- m %>%
-    # dplyr::group_by(scenario_year, rgn_id) %>%
-    # dplyr::mutate(SumProd = sum(sm_tonnes, na.rm=TRUE)) %>%
-    #dplyr::ungroup() %>%
-    #dplyr::mutate(wprop = sm_tonnes / SumProd) %>%
     dplyr::group_by(rgn_id, scenario_year) %>%
     dplyr::summarise(sust_rgn = weighted.mean(x = sust_coeff, w = sm_tonnes, na.rm = TRUE)) %>%
     dplyr::ungroup()
   
     ry <- sustainability %>%
       dplyr::left_join(tonnes_pot_div) %>%
-      # dplyr::mutate(mar_score = sust_rgn*tonnes_score) %>%
       dplyr::mutate(status = ifelse(tonnes_score > 1,
                                     1,
                                     tonnes_score)) %>%
@@ -1311,12 +1295,6 @@ LSP <- function(layers) {
            year = scenario_year,
            cp = a_prot_1km)
   
-  
-  # ry_offshore <-  layers$data$lsp_prot_area_offshore3nm %>%
-  #   select(region_id = rgn_id, year, cmpa = a_prot_3nm)
-  # ry_inland <- layers$data$lsp_prot_area_inland1km %>%
-  #   select(region_id = rgn_id, year, cp = a_prot_1km)
-  #
   lsp_data <- full_join(offshore, inland, by = c("region_id", "year"))
   
   # fill in time series for all regions
