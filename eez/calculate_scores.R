@@ -14,10 +14,10 @@ devtools::install_github("ohi-science/ohicore@dev") # used when testing new code
 
 ## STEP 2:
 ## identify repo where data will be taken from: 
-repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/"
+repo_loc <- "https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/"
 
 # STEP 3: Scenario years in this year's assessment
-scenario_years <- c(2012:2021)
+scenario_years <- c(2012:2022)
 
 #***
 
@@ -31,7 +31,7 @@ library(readr)
 library(here)
 
 ## source file path info depending on operating system
-source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
+source('http://ohi-science.org/ohiprep_v2022/workflow/R/common.R')
 
 
 #############################
@@ -141,7 +141,7 @@ conf   <-  ohicore::Conf(here('eez/conf'))
 layers <-  ohicore::Layers(layers.csv = here('eez/layers.csv'), layers.dir = here('eez/layers'))
 
 #scorelist = lapply(X=2018, FUN=get_scores)
-scorelist = lapply(X=scenario_years, FUN=get_scores) # 31 warnings were generated (nothing of concern)
+scorelist = lapply(X=scenario_years, FUN=get_scores) # 27 warnings were generated (nothing of concern)
 scores_all_years <- dplyr::bind_rows(scorelist)
 
 
@@ -153,10 +153,10 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 
 
 ### Some methods for visualizing the data
-## final commit from last year: cfa760f
+## final commit from last year: af4b1f3
 # Link being sourced here is incorrect, need to change it!
- ohicore::score_check(commit = "fa5dacd", scenario_year = 2021,
-             file_name = "mar_rescaled_sust_old_methods", save_csv = TRUE, NA_compare = TRUE)
+ ohicore::score_check(commit = "af4b1f3", scenario_year = 2022,
+             file_name = "new_year!", save_csv = TRUE, NA_compare = TRUE)
 
 
  
