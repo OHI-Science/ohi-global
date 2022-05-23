@@ -105,6 +105,24 @@ ohicore::CheckLayers(layers.csv = here('eez/layers.csv'),
             flds_id    = conf$config$layers_id_fields)
 
 
+## some warnings like this are ok here (check on duplicated rows): 
+
+# Unused fields...
+# uninhabited: southern_island,est_population
+# ico_spp_iucn_status: iucn_sid,eval_yr
+# mar_harvest_tonnes: taxa_group,family
+
+# Layers missing data, ie all NA ...
+# element_wts_cp_km2_x_protection: element_wts_cp_km2_x_protection.csv
+# element_wts_cs_km2_x_storage: element_wts_cs_km2_x_storage.csv
+# element_wts_hab_pres_abs: element_wts_hab_pres_abs.csv
+
+
+# Rows duplicated...
+# ss_spi: 660
+# res_spi: 660
+# ico_spp_iucn_status: 15776
+# mar_sustainability_score: 1
 
 # calculate scores for each year scenario and save to a single csv file:
 
@@ -155,8 +173,8 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ### Some methods for visualizing the data
 ## final commit from last year: af4b1f3
 # Link being sourced here is incorrect, need to change it!
- ohicore::score_check(commit = "af4b1f3", scenario_year = 2022,
-             file_name = "new_year!", save_csv = TRUE, NA_compare = TRUE)
+ ohicore::score_check(commit = "previous", scenario_year = 2022,
+             file_name = "prs_targetharvest", save_csv = TRUE, NA_compare = TRUE)
 
 
  
