@@ -173,8 +173,9 @@ write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ### Some methods for visualizing the data
 ## final commit from last year: af4b1f3
 # Link being sourced here is incorrect, need to change it!
- ohicore::score_check(commit = "previous", scenario_year = 2022,
-             file_name = "prs_targetharvest", save_csv = TRUE, NA_compare = TRUE)
+ohicore::score_check(
+  commit = "previous", scenario_year = 2022,
+  file_name = "hab_seaice", save_csv = TRUE, NA_compare = TRUE)
 
 
  
