@@ -102,4 +102,4 @@ ss_wgi,ohiprep:globalprep/prs_res_wgi/v2022/output,wgi_prs.csv,TRUE,pressure_sco
 tr_jobs_pct_tourism,ohiprep:globalprep/tr/v2020/output,tr_jobs_pct_tourism.csv,TRUE,Ep,Percent direct employment in tourism,proportion,Percent direct employment in tourism
 tr_sustainability,ohiprep:globalprep/tr/v2020/output,tr_sustainability.csv,TRUE,S_score,Tourism sustainability index,scaled 0-1,Tourism Competitiveness Index (TTCI)
 uninhabited,ohiprep:globalprep/supplementary_information/v2018,rgn_uninhabited_islands.csv,TRUE,Inhabited,Uninhabited regions,population,Regions with low and no number of inhabitants (also identifies Southern Islands)
-wgi_all,ohiprep:globalprep/prs_res_wgi/v2021/output,wgi_res.csv,TRUE,resilience_score,Strength of governance,scaled 0-1,World Governance Indicators (WGI) six combined scores
+wgi_all,ohiprep:globalprep/prs_res_wgi/v2022/output,wgi_res.csv,TRUE,resilience_score,Strength of governance,scaled 0-1,World Governance Indicators (WGI) six combined scores
