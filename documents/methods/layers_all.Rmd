@@ -467,25 +467,6 @@
  scaled 0-1
 
  
-## Fisheries management index 
-#### [fp_fish_management](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_fish_management.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_fish_management.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- scaled 0-1
-
- 
 ## Fishery catch data 
 #### [fis_meancatch](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fis_meancatch.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1369,6 +1350,25 @@
                                   on.exit(unlink(x))
 
                                   download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/species_diversity_eez.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
+
+ 
+## Minderoo Global Fishing Index 
+#### [fp_fish_management](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_fish_management.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_fish_management.Rmd", x)
 ```
  
 ```{r, child = x, echo=FALSE, results='asis'} 

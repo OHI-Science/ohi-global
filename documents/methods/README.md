@@ -3,7 +3,7 @@
 ## Running:
 
 1. Run the ohi_global/global_supplement/CombineLayers.R.  This creates an Rmd file called layers_all.Rmd.
-2. Save a new OHI.bib file from Zotero if there are changes to referenes
+2. Save a new OHI.bib file from Zotero if there are changes to references
 3. Run BIBcorrect.R to fix a few weird things in the OHI.bib file
 4. Knit the ohi-global/global_supplement/Supplement.Rmd file
 
