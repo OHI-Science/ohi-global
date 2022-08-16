@@ -709,10 +709,10 @@ CS <- function(layers) {
     dplyr::full_join(trend, by = c("region_id", "habitat"))
   
   ## set ranks for each habitat
-  habitat.rank <- c('mangrove'         = 139,
-                    'saltmarsh'        = 210,
-                    'seagrass'         = 83,
-                    'tidal flat'       = 129.8)
+  habitat.rank <- c('mangrove'   = 230.9,
+                    'saltmarsh'  = 244.7,
+                    'seagrass'   = 138,
+                    'tidal flat' = 129.8)
   
   ## limit to CS habitats and add rank
   d <- d %>%
