@@ -48,6 +48,9 @@ hab_seaice_health,ohiprep:globalprep/hab_seaice/v2021/output/hab_ice_health_eez_
 hab_seaice_trend,ohiprep:globalprep/hab_seaice/v2021/output/hab_ice_trend_eez_gf.csv
 hab_softbottom_health,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2020/output/habitat_health_softbottom_gf.csv
 hab_softbottom_trend,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2020/output/habitat_trend_softbottom_gf.csv
+hab_tidal_flat_extent,NA
+hab_tidal_flat_health,NA
+hab_tidal_flat_trend,NA
 hd_habitat,ohiprep:globalprep/res_cbd_habitat/v2014/data/r_habitat_2013a_gf.csv
 hd_intertidal,ohiprep:globalprep/mar_prs_population/v2021/output/prs_pop_density_gf.csv
 hd_mpa_coast,ohiprep:globalprep/lsp/v2021/output/mpa_3nm_resilience_gf.csv

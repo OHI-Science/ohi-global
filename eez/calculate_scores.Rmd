@@ -266,7 +266,7 @@ Review results
 ### Link being sourced here is incorrect, need to change it! ????? <- v2022
 ohicore::score_check(
   
-  file_name = "ico_spp_iucn_status", 
+  file_name = "hab_tidal_flat", 
   
   commit = "previous", scenario_year = current_year,
   save_csv = TRUE, NA_compare = TRUE

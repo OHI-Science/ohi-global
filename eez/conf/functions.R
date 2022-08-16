@@ -662,15 +662,18 @@ CS <- function(layers) {
   extent_lyrs <-
     c('hab_mangrove_extent',
       'hab_seagrass_extent',
-      'hab_saltmarsh_extent')
+      'hab_saltmarsh_extent',
+      'hab_tidal_flat_extent')
   health_lyrs <-
     c('hab_mangrove_health',
       'hab_seagrass_health',
-      'hab_saltmarsh_health')
+      'hab_saltmarsh_health',
+      'hab_tidal_flat_health')
   trend_lyrs <-
     c('hab_mangrove_trend',
       'hab_seagrass_trend',
-      'hab_saltmarsh_trend')
+      'hab_saltmarsh_trend',
+      'hab_tidal_flat_trend')
   
   # get data together:
   extent <- AlignManyDataYears(extent_lyrs) %>%
@@ -708,7 +711,8 @@ CS <- function(layers) {
   ## set ranks for each habitat
   habitat.rank <- c('mangrove'         = 139,
                     'saltmarsh'        = 210,
-                    'seagrass'         = 83)
+                    'seagrass'         = 83,
+                    'tidal flat'       = 129.8)
   
   ## limit to CS habitats and add rank
   d <- d %>%
@@ -1455,7 +1459,8 @@ HAB <- function(layers) {
       'hab_coral_extent',
       'hab_seaice_extent',
       'hab_softbottom_extent',
-      'hab_kelp_extent'
+      'hab_kelp_extent',
+      'hab_tidal_flat_extent'
     )
   health_lyrs <-
     c(
@@ -1465,7 +1470,8 @@ HAB <- function(layers) {
       'hab_coral_health',
       'hab_seaice_health',
       'hab_softbottom_health',
-      'hab_kelp_health'
+      'hab_kelp_health',
+      'hab_tidal_flat_health'
     )
   trend_lyrs <-
     c(
@@ -1475,7 +1481,8 @@ HAB <- function(layers) {
       'hab_coral_trend',
       'hab_seaice_trend',
       'hab_softbottom_trend',
-      'hab_kelp_trend'
+      'hab_kelp_trend',
+      'hab_tidal_flat_trend'
     )
   
   # get data together:
@@ -1507,7 +1514,8 @@ HAB <- function(layers) {
         'seaice_edge',
         'seagrass',
         'soft_bottom',
-        'kelp'
+        'kelp',
+        'tidal flat'
       )
     ) %>%
     dplyr::mutate(w  = ifelse(!is.na(extent) & extent > 0, 1, NA)) %>%
@@ -1562,7 +1570,8 @@ HAB <- function(layers) {
         'coral',
         'seaice_edge',
         'soft_bottom',
-        'kelp'
+        'kelp',
+        'tidal flat'
       )
     ) %>%
     dplyr::filter(extent > 0) %>%

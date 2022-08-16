@@ -49,6 +49,9 @@ hab_seagrass_trend,ohiprep:globalprep/hab_seagrass/v2021/data,habitat_trend_seag
 hab_seaice_extent,ohiprep:globalprep/hab_seaice/v2022/output,hab_ice_extent_eez.csv,TRUE,km2,Habitat extent of seaice,km2,Area of seaice (edge and shoreline) habitat
 hab_seaice_health,ohiprep:globalprep/hab_seaice/v2022/output,hab_ice_health_eez.csv,TRUE,health,Habitat condition of seaice,proportion,Current condition of seaice habitat relative to historical condition
 hab_seaice_trend,ohiprep:globalprep/hab_seaice/v2022/output,hab_ice_trend_eez.csv,TRUE,trend,Habitat condition trend of seaice,trend,Estimated trend in seaice condition
+hab_tidal_flat_extent,ohiprep:globalprep/hab_tidal_flat/v2022/output,tidal_flat_extent.csv,TRUE,km2,Habitat extent of tidal flat,km2,Area of tidal flat habitat
+hab_tidal_flat_trend,ohiprep:globalprep/hab_tidal_flat/v2022/output,tidal_flat_trend.csv,TRUE,trend,Habitat trend of tidal flat,trend,Estimated trend in tidal flat condition
+hab_tidal_flat_health,ohiprep:globalprep/hab_tidal_flat/v2022/output,tidal_flat_health.csv,TRUE,health,Habitat condition of tidal flat,proportion,Current condition of tidal flat habitat relative to historical condition
 hab_softbottom_extent,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2016/output,habitat_extent_softbottom_updated.csv,TRUE,km2,Habitat extent of softbottom,km2,Area of softbottom habitat
 hab_softbottom_health,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2020/output,habitat_health_softbottom.csv,TRUE,health,Habitat condition of softbottom,proportion,"Current condition of softbottom habitat, based on demersal destructive fishing practices (e.g., trawling) "
 hab_softbottom_trend,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2020/output,habitat_trend_softbottom.csv,TRUE,trend,Habitat condition trend of softbottom,trend,"Estimated change in softbottom condition, based on trends in demersal destructive fishing practices (e.g., trawling)"
