@@ -37,6 +37,7 @@
 "CPHAB",TRUE,"hab_coral_trend","Habitat condition trend of coral","Estimated trend in coral condition","trend","trend","hab_coral_trend.csv","rgn_id",,"habitat","year","trend",,TRUE,2021,2021,-0.42666666666643,0.834249999998065,FALSE,,,,220,FALSE
 "CPHAB",TRUE,"hab_seaice_health","Habitat condition of seaice","Current condition of seaice habitat relative to historical condition","health","proportion","hab_seaice_health.csv","rgn_id",,"habitat","year","health",,TRUE,2011,2021,0,1,TRUE,,,,220,FALSE
 "CPHAB",TRUE,"hab_seaice_trend","Habitat condition trend of seaice","Estimated trend in seaice condition","trend","trend","hab_seaice_trend.csv","rgn_id",,"habitat","year","trend",,TRUE,2015,2021,-1,1,FALSE,,,,220,FALSE
+<<<<<<< HEAD
 "CS",TRUE,"hab_tidal_flat_extent","Habitat extent of tidal flat","Area of tidal flat habitat","km2","km2","hab_tidal_flat_extent.csv","rgn_id",,"habitat","year","km2",,TRUE,1986,2016,0,19445.4911624193,FALSE,,,,220,FALSE
 "CSCP",TRUE,"hab_mangrove_extent","Habitat extent of mangrove","Area of mangrove habitat","km2","km2","hab_mangrove_extent.csv","rgn_id",,"habitat","year","km2",,TRUE,2016,2016,0,26684.7970779462,FALSE,,,,220,FALSE
 "CSCP",TRUE,"hab_saltmarsh_extent","Habitat extent of saltmarsh","Area of saltmarsh habitat","km2","km2","hab_saltmarsh_extent.csv","rgn_id",,"habitat","year","km2",,TRUE,2017,2017,0.00373038159668818,18855.2340400485,FALSE,,,,220,FALSE
@@ -45,6 +46,13 @@
 "CSHAB",TRUE,"hab_tidal_flat_trend","Habitat trend of tidal flat","Estimated trend in tidal flat condition","trend","trend","hab_tidal_flat_trend.csv","rgn_id",,"habitat","year","trend",,TRUE,2013,2016,-1,1,FALSE,,,,220,FALSE
 "CSHABCP",TRUE,"hab_mangrove_health","Habitat condition of mangrove","Current condition of mangrove habitat relative to historical condition","health","proportion","hab_mangrove_health.csv","rgn_id",,"habitat","year","health",,TRUE,2021,2021,0.279329608938547,1,TRUE,,,,220,FALSE
 "CSHABCP",TRUE,"hab_mangrove_trend","Habitat condition trend of mangrove","Estimated trend in mangrove condition","trend","trend","hab_mangrove_trend.csv","rgn_id",,"habitat","year","trend",,TRUE,2015,2016,-0.075379,0.074456,FALSE,,,,220,FALSE
+=======
+"CSCP",TRUE,"hab_mangrove_extent","Habitat extent of mangrove","Area of mangrove habitat","km2","km2","hab_mangrove_extent.csv","rgn_id",,"habitat","year","km2",,TRUE,1996,2020,0,31545.3108725613,FALSE,,,,220,FALSE
+"CSCP",TRUE,"hab_saltmarsh_extent","Habitat extent of saltmarsh","Area of saltmarsh habitat","km2","km2","hab_saltmarsh_extent.csv","rgn_id",,"habitat","year","km2",,TRUE,2017,2017,0.00373038159668818,18855.2340400485,FALSE,,,,220,FALSE
+"CSCP",TRUE,"hab_seagrass_extent","Habitat extent of seagrass","Area of seagrass habitat","km2","km2","hab_seagrass_extent.csv","rgn_id",,"habitat","year","km2",,TRUE,2020,2020,0.000173094865022489,261172.05437694,FALSE,,,,220,FALSE
+"CSHABCP",TRUE,"hab_mangrove_health","Habitat condition of mangrove","Current condition of mangrove habitat relative to historical condition","health","proportion","hab_mangrove_health.csv","rgn_id",,"habitat","year","health",,TRUE,2015,2020,0,1,TRUE,,,,220,FALSE
+"CSHABCP",TRUE,"hab_mangrove_trend","Habitat condition trend of mangrove","Estimated trend in mangrove condition","trend","trend","hab_mangrove_trend.csv","rgn_id",,"habitat","year","trend",,TRUE,2015,2020,-0.239410681399634,0.695876288659796,FALSE,,,,220,FALSE
+>>>>>>> 6dbf30f8238b997a632261d3e4fadc63013553ae
 "CSHABCP",TRUE,"hab_saltmarsh_health","Habitat condition of saltmarsh","Current condition of saltmarsh habitat relative to historical condition","health","proportion","hab_saltmarsh_health.csv","rgn_id",,"habitat","year","health",,TRUE,2021,2021,0.75,0.75,TRUE,,,,220,FALSE
 "CSHABCP",TRUE,"hab_saltmarsh_trend","Habitat condition trend of saltmarsh","Estimated trend in saltmarsh condition","trend","trend","hab_saltmarsh_trend.csv","rgn_id",,"habitat","year","trend",,TRUE,2021,2021,-0.015,-0.015,FALSE,,,,220,FALSE
 "CSHABCP",TRUE,"hab_seagrass_health","Habitat condition of seagrass","Current condition of seagrass habitat relative to historical condition","health","proportion","hab_seagrass_health.csv","rgn_id",,"habitat","year","health",,TRUE,2021,2021,0.71,1,TRUE,,,,220,FALSE
