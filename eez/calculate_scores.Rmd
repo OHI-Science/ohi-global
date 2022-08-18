@@ -140,7 +140,7 @@ If more complex changes are made to layer (i.e. changes to layer names, removing
   - to update `eez_layers_meta_data/layers_eez_targets.csv` if layers are added to the resilience/pressures matrices in the `eez/con`f folder. 
 
 ```{r eval = FALSE}
-source(here("metadata_documentation/layers_eez_script.R"))
+source(here("metadata_documentation", "layers_eez_script.R"))
 ```
 
 ### Step 9
@@ -266,9 +266,10 @@ Review results
 ### Link being sourced here is incorrect, need to change it! ????? <- v2022
 ohicore::score_check(
   
-  file_name = "new_carbon_storage_vals_3", 
+  file_name = "hab_tidal_flat_new_cond_trend_2", 
   
-  commit = "previous", scenario_year = current_year,
+  commit = "previous", 
+  scenario_year = current_year,
   save_csv = TRUE, NA_compare = TRUE
 )
 ```
