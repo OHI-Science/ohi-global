@@ -1,0 +1,5 @@
+Tidal flat data are used to calculate the carbon storage goal and the habitat subgoal.
+
+Tidal flat extents (km^2^) are derived from GeoTIFF files in the [Murray Global Intertidal Change Dataset](https://www.intertidal.app/home) [@murray_2019]. The GeoTIFF files contain pixels denoting tidal flat covered areas. Area per OHI region is calculated based on the number of cells that fall within each OHI region, including land and EEZs.
+
+
