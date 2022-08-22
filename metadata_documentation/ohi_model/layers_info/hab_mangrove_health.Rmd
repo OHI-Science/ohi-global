@@ -1,3 +1,4 @@
 See **`r layer_meta$name[layer_meta$layer == 'hab_mangrove_extent']`** layer for more information.
 
-Mangrove condition was defined as the current cover divided by reference cover.  FAO mangrove area data was provided on a country basis for 1980, 1990, 2000, and 2005.  Current condition is based on 2005 cover, and reference condition is based on the 1980 cover. Where country data were not available, we used a georegional average. 
+
+Mangrove condition was defined as the current cover divided by reference cover. 2020 extents from Global Mangrove Watch [-@bunting_global_2022] were used as current cover. Reference covers for most regions were 1980 estimates retrieved from FAO Forestry Paper 153 [@unitednations2007world]. Regions for which 1980 estimates were not available instead used 1996 estimates from Global Mangrove Watch [-@bunting_global_2022] as reference covers. 
