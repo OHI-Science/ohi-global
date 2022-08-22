@@ -23,7 +23,7 @@ where, $PPPpcGDP$ is the ln-transformed, rescaled purchasing power parity adjust
 
 We rescaled the ln-transformed $PPPpcGDP$ values from 0-1 by dividing by the value corresponding to the 99th quantile across all regions and years from 2005 to 2015 (values > 1 were capped at 1). Developed countries with lower demand for artisanal scale fishing (i.e., low poverty indicated by high PPPpcGDP) score high, regardless of the opportunity made available (since it would not matter to many), and developing countries with high demand and opportunity would also score high. 
 
-To assess the opportunity or ability to meet this demand, $O_{ao}$, we used data from UN SDG 14.b.1 [@foodandagricultureorganizationoftheunitednations2020], which scores countries on the institutional measures that support or protect access to artisanal and small-scale fishing. The data come are FAO member country responses to the Code of Conduct for Responsible Fisheries (CCRF) (Table 6.1) survey questionnaire which is circulated by FAO every two years to members and IGOs and INGOs and are on a scale from 0 to 1. 
+To assess the opportunity or ability to meet this demand, $O_{ao}$, we used data from UN SDG 14.b.1 [@sdg_14_b_1], which scores countries on the institutional measures that support or protect access to artisanal and small-scale fishing. The data come are FAO member country responses to the Code of Conduct for Responsible Fisheries (CCRF) (Table 6.1) survey questionnaire which is circulated by FAO every two years to members and IGOs and INGOs and are on a scale from 0 to 1. 
 
 The sustainability of artisanal fishing practices was estimated by subsetting for artisanal and subsistence stock B/Bmsy values which were calculated in our fisheries sub-goal (section 6.6.1).
 
@@ -31,7 +31,7 @@ Several issues and datasets relevant to artisanal fishing opportunities were not
 
 
 **Table 6.1. Artisanal access**. 
-Questions from UN SDG 14.b.1 [@foodandagricultureorganizationoftheunitednations2020] that were used to evaluate access to artisanal scale fishing.
+Questions from UN SDG 14.b.1 [@sdg_14_b_1] that were used to evaluate access to artisanal scale fishing.
 
 * Are there any laws, regulations, policies, plans or strategies that specifically target or address the
 small-scale fisheries sector? 
