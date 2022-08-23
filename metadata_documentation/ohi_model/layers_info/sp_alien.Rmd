@@ -4,4 +4,24 @@
 
 *Subcategory: nonindigenous species*
 
-These data (Molnar et al. 2008) report the number and type of alien species in each marine ecoregion (Spalding et al. 2007), with species types categorized as invasive and harmful invasive species. For our purposes, total count of all invasive species was used. We intersected the ecoregion data with our reporting units to determine the proportion of each ecoregion that falls within each reporting unit and then assigned this percentage of invasive species from the ecoregion to the reporting unit. The sum of all invasive species within each reporting unit was then rescaled to the maximum global value. Predicting the full potential impact of alien species depends in large part on having high-resolution spatial information on where they exist, how far they have spread and exactly which components of the food web they affect. The data from Molnar et al. approximate these impacts but at ecoregional scales. In addition, the impacts of alien species will vary depending on the goal under consideration. This implies that harmful effects would need to be assessed separately for each goal. Such an endeavor may be possible when applying this framework to a smaller case-study where this type of information can be acquired.
+The Global Register of Introduced and Invasive Species (GRIIS) is a series of country-wise checklists of introduced (naturalized) and invasive (harmful) species [@pagad_2018]. These data report the number and type of introduced and invasive species for each country, with species habitat listed under marine, brackish, freshwater, terrestrial, or some combination thereof. We only select species listed as marine or brackish, including those which are listed in combination with other habitat types (typically birds, plants, and insects which intersect multiple habitats). For our purposes, a weighted average of invasive species (90%) and introduced species (10%) were used to calculate the score. All values are rescaled to between 0 and 1.  
+
+$$
+Pressure = 0.1 * \frac{S_n - min(S_n)}{max(S_n) - min(S_n)} + 0.9 * \frac{S_h - min(S_h)}{max(S_h) - min(S_h)}
+$$
+
+Where,
+
+$S_n$ = number of introduced (naturalized) species in the region.
+
+$min(S_n)$ = the minimum number of introduced (naturalized) species in all regions.
+
+$max(S_n)$ = the maximum number of introduced (naturalized) species in all regions.
+
+$S_h$ = number of invasive (harmful) species in the region.
+
+$min(S_h)$ = the minimum number of invasive (harmful) species in all regions.
+
+$max(S_h)$ = the maximum number of invasive (harmful) species in all regions.
+
+Predicting the full potential impact of alien species depends in large part on having high-resolution spatial information on where they exist, how far they have spread and exactly which components of the food web they affect. The data from @pagad_2018 approximate these impacts but at country scales. In addition, the impacts of introduced and invasive species will vary depending on the goal under consideration. This implies that harmful effects would need to be assessed separately for each goal. Such an endeavor may be possible when applying this framework to a smaller case-study where this type of information can be acquired.

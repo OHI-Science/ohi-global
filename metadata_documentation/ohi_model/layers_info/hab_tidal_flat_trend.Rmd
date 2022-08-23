@@ -1,0 +1,4 @@
+See **`r layer_meta$name[layer_meta$layer == 'hab_tidal_flat_extent']`** layer for more information.
+
+
+We used the [Murray Global Intertidal Change Dataset](https://www.intertidal.app/home) [@murray_2019] tidal flat extent data to estimate the proportional yearly change in tidal flat area using a linear regression model of years from 2001 up to 2013. This length of data is longer than we usually do (typically 5 years), but we feel we get a better estimate using this period of time. Proportional yearly change is determined by regressing extent on year, and the resulting slope is divided by the extent from the earliest year in the model and multiplied by 5 to get the predicted change in five years. 
