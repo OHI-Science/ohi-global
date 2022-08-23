@@ -1,0 +1,23 @@
+*Resilience*
+
+*Category: social*
+
+Fisheries management was determined using governance capacity data from the [Minderoo Global Fishing Index](https://www.minderoo.org/global-fishing-index/) [@travaille_minderoo_2022]. This governance capacity data characterizes the development of a country's fisheries governance system on a continuum from zero to 12, based on each country's assessment score and balance across the [Governance Conceptual Framework](https://cdn.minderoo.org/content/uploads/2021/11/19141814/20211112-global-fishing-index-2021-conceptual-framework.pdf). The assessment score rages from 0-100 and is based on a region's performance across 6 dimensions of fisheries governance and weights each of these dimensions unequally, based on survey responses from fisheries experts:
+
+Dimension | Definition | Weight
+----------|------------|-------
+Policy and objectives | Assesses a country's fisheries policy foundation and governance and management objectives | 22%
+Management capacity | Assesses a country's fisheries policy foundation and governance and management objectives | 14%
+Information availability and monitoring | Assesses the range, quality and resolution of the fisheries information available to inform management decisions | 16%
+Level and control of access to fisheries resources | Assesses the extent of fishing access granted to various fleets and the tools used to regulate access across these fleets | 15%
+Compliance management system | Assesses the strength of a country's fisheries compliance and enforcement program | 17%
+Stakeholder engagement and participation | Assesses the capacity of stakeholders, including fishers and fish processors, governmental and non-governmental organizations, research institutions and local communities, to meaningfully participate in fisheries governance and management processes | 16%
+
+For more information about these variables and how they are calculated, see the following documentation by the Minderoo Global Fishing Index:\
+- [Methodology](https://www.minderoo.org/global-fishing-index/methodology/)\
+- [Technical Documentation](https://cdn.minderoo.org/content/uploads/2021/11/05140059/20220505-global-fishing-index-2021-technical-methods.pdf#page=13)\
+- [Indicator Codebook](https://cdn.minderoo.org/content/uploads/2021/11/19141816/20211112-global-fishing-index-2021-indicator-codebook.pdf)
+
+To gapfill the governance capacity data, we used gross domestic product (GDP) converted to international dollars using purchasing power parity rates. An international dollar has the same purchasing power over GDP as the U.S. dollar has in the United States. GDP at purchaser's prices is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. It is calculated without making deductions for depreciation of fabricated assets or for depletion and degradation of natural resources. Data are in constant international dollars based on the 2011 ICP round. We used the `predict()` function from the `stats` package to gapfill governance capacity using the GDP and United Nations geopolitical regions as predictor variables. Uninhabited regions received no score.
+
+
