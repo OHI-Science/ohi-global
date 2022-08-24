@@ -266,7 +266,7 @@ Review results
 ### Link being sourced here is incorrect, need to change it! ????? <- v2022
 ohicore::score_check(
   
-  file_name = "hab_tidal_flat_new_cond_trend_2", 
+  file_name = "spp_status", 
   
   commit = "previous", 
   scenario_year = current_year,
