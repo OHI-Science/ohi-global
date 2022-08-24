@@ -266,7 +266,7 @@ Review results
 ### Link being sourced here is incorrect, need to change it! ????? <- v2022
 ohicore::score_check(
   
-  file_name = "spp_trend", 
+  file_name = "spp_3nm_diversity", 
   
   commit = "previous", 
   scenario_year = current_year,
