@@ -1,3 +1,3 @@
-See **`r layer_meta$name[layer_meta$layer == 'hab_softbottom_extent']`** layer for more information.
+See **`hab_softbottom_extent`** and **`hab_softbottom_health`** layers for more information.
 
 Trend in soft bottom subtidal condition was estimated using a linear regression model that included the most recent five years of condition data. The proportional change in condition was determined (e.g., slope estimate was divided by the condition value for earliest year included in the regression) and then multiplied by five to get the change predicted in five years.   
