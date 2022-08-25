@@ -7,6 +7,7 @@ Artisanal fisheries contribute over half of the world’s marine and inland fish
 The livelihood and household economy provided by fishing are considered part of the coastal livelihoods and economies goal, although similar to food provision from artisanal fishing it is currently impossible to measure on a global scale. Our focus is on the opportunity to conduct this kind of fishing. What is intended by the idea of ‘opportunity’ is the ability to conduct sustainable artisanal-scale fishing when the need is present, rather than the actual amount of catch or household revenue that is generated. Although this may seem nuanced on the value and intent of artisanal fishing, the opportunity to conduct this fishing is clearly of great importance to many people [@mcgoodwin_understanding_2001]. Status for this goal is a function of need for artisanal fishing opportunities and whether or not the opportunity is permitted and/or encouraged institutionally and done sustainability. This need could potentially be driven by any number of socio-economic factors, but perhaps the simplest and most directly tied to this need is the percent of the population that is below the poverty level. Data on how many people live below the poverty level are not available for many countries. Therefore, we used an analogous proxy that is more complete globally: per capita gross domestic product (pcGDP) adjusted by the purchasing power parity (PPP). This metric translates the average annual income (pcGDP) into its local value (PPP). These data correlate with UN data on the percent of a population living below the $2/day international poverty standard (linear: R^2^ = 0.61, p <0.001; logarithmic regression: R^2^ = 0.76, p < 0.001). Because the relationship is a better fit with the ln-linear regression, we ln-transform the PPPpcGDP scores.
 
 #### Current status
+
 Status for this goal ($x_{ao}$) is therefore measured by unmet demand ($D_u$), which includes measures of opportunity for artisanal fishing ($O_{ao}$, defined below) and the sustainability of the methods used ($S_{ao}$):
 
 $$
@@ -19,7 +20,7 @@ $$
 D_{u} = (1 – PPPpcGDP) * (1 – O_{ao}), (Eq. 6.2)
 $$
 
-where, $PPPpcGDP$ is the ln-transformed, rescaled purchasing power parity adjusted per capita GDP, and $O_{ao}$ is the access to artisanal-scale fishing determined by the United Nations Sustainable Development Goal (UN SDG) 14.b.1 [@foodandagricultureorganizationoftheunitednations2020]. 
+where, $PPPpcGDP$ is the ln-transformed, rescaled purchasing power parity adjusted per capita GDP, and $O_{ao}$ is the access to artisanal-scale fishing determined by the United Nations Sustainable Development Goal (UN SDG) 14.b.1 [@sdg_14_b_1]. 
 
 We rescaled the ln-transformed $PPPpcGDP$ values from 0-1 by dividing by the value corresponding to the 99th quantile across all regions and years from 2005 to 2015 (values > 1 were capped at 1). Developed countries with lower demand for artisanal scale fishing (i.e., low poverty indicated by high PPPpcGDP) score high, regardless of the opportunity made available (since it would not matter to many), and developing countries with high demand and opportunity would also score high. 
 
