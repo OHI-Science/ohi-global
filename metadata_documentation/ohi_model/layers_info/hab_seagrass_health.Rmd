@@ -1,3 +1,3 @@
 See **`r layer_meta$name[layer_meta$layer == 'hab_seagrass_extent']`** layer for more information.
 
-An increasing or stable trend was assigned condition = 1.0, and a decreasing trend was assigned condition = 0.71. 0.71 reflects global loss since 1879 (29% loss of known areal extent); however, most of the loss is expected to have occurred since 1990.  There is likely to be much spatial variation that isn't accounted for by using a global value, but we are limited by the availability of data. Data was from Waycott et al. 2009. 
+An increasing or stable trend was assigned condition = 1.0, and a decreasing trend was assigned condition = 0.71. 0.71 reflects global loss since 1879 (29% loss of known areal extent); however, most of the loss is expected to have occurred since 1990.  There is likely to be much spatial variation that isn't accounted for by using a global value, but we are limited by the availability of data. Data was from @waycott2009accelerating. 
