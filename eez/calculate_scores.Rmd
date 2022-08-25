@@ -262,8 +262,9 @@ Review results
 
 ```{r eval = FALSE}
 ### Some methods for visualizing the data
-### final commit from last year (v2021): af4b1f3
+### final commit from last year (v2021): af4b1f3baf55704f272738d900560fb92cb81ab1
 ### Link being sourced here is incorrect, need to change it! ????? <- v2022
+
 ohicore::score_check(
   
   file_name = "spp_eez_diversity", 

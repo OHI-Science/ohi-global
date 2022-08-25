@@ -1,4 +1,4 @@
 See **`r layer_meta$name[layer_meta$layer == 'hab_saltmarsh_extent']`** layer for more information.
 
 
-Due to a severe lack of historical data, a global conservative condition score of 0.75 was given to every region based on an estimated 25%-50% loss (McOwen et al. 2017). There is likely to be much spatial variation that isn't accounted for by using a global value, but we are limited by the availability of data.
+Due to a severe lack of historical data, a global conservative condition score of 0.75 was given to every region based on an estimated 25%-50% loss [@mcowen2017]. There is likely to be much spatial variation that isn't accounted for by using a global value, but we are limited by the availability of data.

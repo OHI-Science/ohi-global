@@ -1,6 +1,6 @@
 See Species goal for calculations.
 
-These are the status data for the species subgoal, calculated using the species model.  These data describe the average condition of species within each region based on risk status from the IUCN Red List of Threatened Species ([http://www.iucnredlist.org/](http://www.iucnredlist.org/)) and BirdLife International ([http://datazone.birdlife.org](http://datazone.birdlife.org)) data.  
+These are the status data for the species subgoal, calculated using the species model.  These data describe the average condition of species within each region based on risk status from the IUCN Red List of Threatened Species ([http://www.iucnredlist.org/](http://www.iucnredlist.org/)) [@iucn2022] and BirdLife International ([http://datazone.birdlife.org](http://datazone.birdlife.org)) [@iucn_spatial_2022; @birdlifeinternationalandhandbookofthebirdsoftheworld2020] data.  
 
 We include only species from comprehensively assessed groups (groups with >90% of species assessed) to help control for sampling bias.  We found that some regions (e.g., Atlantic) had assessments for a much larger proportion of species than other regions, but this problem was less pronounced when we only included comprehensively assessed species.      
 

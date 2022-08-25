@@ -4,7 +4,7 @@ This goal aims to assess the average condition of the marine species within each
 
 #### Current status
 
-Species status was calculated as the area and status-weighted average of assessed species within each region. Marine species distribution and threat category data mostly came from IUCN Red List of Threatened Species, and we limited data to all species having IUCN habitat system of "marine" [http://www.iucnredlist.org](http://www.iucnredlist.org). Seabird distributions data came from Birdlife International [http://datazone.birdlife.org](http://datazone.birdlife.org).   
+Species status was calculated as the area and status-weighted average of assessed species within each region. Marine species distribution and threat category data mostly came from IUCN Red List of Threatened Species, and we limited data to all species having IUCN habitat system of "marine" [http://www.iucnredlist.org](http://www.iucnredlist.org) [@iucn2022; @iucn_spatial_2022]. Seabird distributions data came from Birdlife International [http://datazone.birdlife.org](http://datazone.birdlife.org) [@birdlifeinternationalandhandbookofthebirdsoftheworld2020].   
 
 We scaled the lower end of the biodiversity goal to be 0 when 75% species are extinct, a level comparable to the five documented mass extinctions [@barnosky_has_2011] and would constitute a catastrophic loss of biodiversity. 
 
