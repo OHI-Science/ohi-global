@@ -1,3 +1,3 @@
 See **`r layer_meta$name[layer_meta$layer == 'hab_saltmarsh_extent']`** layer for more information.
 
-A general 2% per year decerasing trend in salt marsh area was applied to every region due to a severe lack of historical data (Duarte et al. 2008). There is likely to be much spatial variation that isn't accounted for by using a global value, but we are limited by the availability of data.
+A general 2% per year decerasing trend in salt marsh area was applied to every region due to a severe lack of historical data [@duarte2008]. There is likely to be much spatial variation that isn't accounted for by using a global value, but we are limited by the availability of data.
