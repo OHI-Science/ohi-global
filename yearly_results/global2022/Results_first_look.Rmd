@@ -35,7 +35,7 @@ saveFile <- paste0('global', scenario) # location where files that are created a
 
 ### code to run code chunks
 ### (change these if data is updated, otherwise takes a while to run):
-update_data = FALSE # Select true if there are updates to the OHI data!!  Also be sure to change dateFile above
+update_data = TRUE # Select true if there are updates to the OHI data!! Also be sure to change dateFile above
 map_create  = FALSE # Updates the map figures (takes a while to run)
 goal_hists  = FALSE # Updates the goal histograms
 flower_plots = TRUE # Updates the flower plot figures
@@ -109,7 +109,6 @@ rgn_names <- read.csv(here(sprintf('eez/layers/rgn_global.csv', scenario))) %>%
 # Primary dataset
 
 ```{r final_data, echo=FALSE, message=FALSE, eval=update_data, include=FALSE}
-
 # Saves the last version of eez/scores.csv with a date appended to filename.
 ohi_final <- read_csv(here("eez/scores.csv"))
 write_csv(ohi_final, here(sprintf("yearly_results/%s/scores_%s.csv", saveFile, Sys.Date())))
@@ -197,13 +196,14 @@ for(year in 2012:scenario){
     filter(region_name != 'Global average')
   
   data_final <- rbind(index, data) %>%
-    select(region_name, region_id, Index, AO, SPP, BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, MAR, ICO, SP, LSP, NP, TR)
+    select(region_name, region_id, Index, AO, SPP, 
+           BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, 
+           MAR, ICO, SP, LSP, NP, TR)
   
-  write.csv(data_final, here(sprintf("yearly_results/%s/Results/data/scores_eez%s.csv", saveFile, year)), row.names = FALSE, na='')
-  
+  write.csv(data_final, 
+            here(sprintf("yearly_results/%s/Results/data/scores_eez%s.csv", saveFile, year)), 
+            row.names = FALSE, na='')
 }
-
-
 ```
 
 [These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/OHI_final_formatted_scores_2022-07-20.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2022.
@@ -252,7 +252,11 @@ Average global performance of the 10 goals.
 Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/FlowerPlots)
 
 ```{r flower_global, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/FlowerPlots/flower_GlobalAverage.png", saveFile)))
+knitr::include_graphics(
+  here(
+    sprintf("yearly_results/%s/Results/figures/FlowerPlots/flower_GlobalAverage.png", saveFile)
+    )
+  )
 ```
 
 ## Country summary
