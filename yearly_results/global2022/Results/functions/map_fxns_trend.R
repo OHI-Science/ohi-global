@@ -3,38 +3,71 @@
 require('rgdal')
 require('maptools')
 require('RColorBrewer')
-require('ggplot2')
+require('tidyverse')
 require('stringr')
+require('here')
+require('sf')
+require('glue')
 
-if(!exists('dir_global')) 
-  dir_global <- ifelse(dir.exists('~/github'), '~/github/ohi-global', '~/ohi-global')
+# mollCRS=raster::crs('+proj=moll +lon_0=0 +x_0=0 +y_0=0 +ellps=WGS84 +units=m +no_defs')
+# 
+# get_rgn_df <- function(
+#     dsn =  here::here('eez', 'spatial', 'downres'),
+#     layer = NULL, prj = 'gcs') {
+#   
+#   if(is.null(layer)){layer <- glue('rgn_eez_{prj}_low_res')}
+#   
+#   if(prj == "gcs"){crs <- 'EPSG:4326'} else {crs <- 'ESRI:54009'}
+#   
+#   rgn_shp <- terra::vect(x = dsn, layer = layer, crs = crs)
+#   
+#   ### The ID number for fortify(rgn_shp) is simply the row number within the @data.
+#   ### So create a lookup table for row number (zero to N-1) to rgn_id.
+#   rgn_lookup <- data.frame(id     = c(0:(length(rgn_shp$rgn_id) - 1)), 
+#                            rgn_id = rgn_shp$rgn_id)
+#   
+#   
+#   
+#     if (prj == 'mol') {
+#       cat('transforming spatial polygons data frame to Mollweide projection\n')
+#       rgn_shp <- spTransform(rgn_shp, CRS("+proj=moll +R=10567000 +lon_0=0 +x_0=0 +y_0=0 +units=m +towgs84=0,0,0,0,0,0,0 +no_defs"))
+#     }
+#   
+#   ### Fortify the rgn_eez from shapefile into dataframe.  Then attach the region
+#   ### ID by the polygon ID (row number from @data)
+#   rgn_df <- fortify(rgn_shp) %>%
+#     mutate(id = as.integer(id)) %>%
+#     left_join(rgn_lookup, by = 'id')
+#   
+#   return(rgn_df)
+# }
 
-get_rgn_df <- function(dsn = str_replace(dir_global, 'ohi-global', 'ohiprep/globalprep/spatial/downres'),
+get_rgn_df <- function(dsn = here::here('eez', 'spatial', 'downres'),
                        layer = NULL, prj = 'gcs') {
   if(is.null(layer)) layer <- sprintf('rgn_eez_%s_low_res', prj)
   rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE) #, p4s = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs')
-  
+
   ### The ID number for fortify(rgn_shp) is simply the row number within the @data.
   ### So create a lookup table for row number (zero to N-1) to rgn_id.
-  rgn_lookup <- data.frame(id     = c(0:(nrow(rgn_shp@data) - 1)), 
+  rgn_lookup <- data.frame(id     = c(0:(nrow(rgn_shp@data) - 1)),
                            rgn_id = rgn_shp@data$rgn_id)
-  
-  #   if (prj == 'mol') {
-  #     cat('transforming spatial polygons data frame to Mollweide projection\n')
-  #     rgn_shp <- spTransform(rgn_shp, CRS("+proj=moll +R=10567000 +lon_0=0 +x_0=0 +y_0=0 +units=m +towgs84=0,0,0,0,0,0,0 +no_defs"))
-  #   }
-  
+
+    # if (prj == 'mol') {
+    #   cat('transforming spatial polygons data frame to Mollweide projection\n')
+    #   rgn_shp <- sp::spTransform(rgn_shp, CRS("+proj=moll +R=10567000 +lon_0=0 +x_0=0 +y_0=0 +units=m +towgs84=0,0,0,0,0,0,0 +no_defs"))
+    # }
+
   ### Fortify the rgn_eez from shapefile into dataframe.  Then attach the region
   ### ID by the polygon ID (row number from @data)
   rgn_df <- fortify(rgn_shp) %>%
-    mutate(id = as.integer(id)) %>%
+    dplyr::mutate(id = as.integer(id)) %>%
     left_join(rgn_lookup, by = 'id')
-  
+
   return(rgn_df)
 }
 
 
-get_land_df <- function(dsn = sprintf('%s/../ohiprep/globalprep/spatial/downres', dir_global),
+get_land_df <- function(dsn = here::here('eez', 'spatial', 'downres'),
                         layer = 'rgn_land_mol_low_res') {
   ### gets Mollweide land forms for plotting.
   rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE)
@@ -46,7 +79,7 @@ get_land_df <- function(dsn = sprintf('%s/../ohiprep/globalprep/spatial/downres'
   return(rgn_df)
 }
 
-get_ocean_df <- function(dsn = sprintf('%s/../ohiprep/globalprep/spatial/downres', dir_global),
+get_ocean_df <- function(dsn = here::here('eez', 'spatial', 'downres'),
                          layer = 'rgn_all_mol_low_res') {
   ### gets Mollweide ocean regions (all) for plotting.
   rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE)

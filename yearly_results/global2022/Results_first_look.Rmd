@@ -266,7 +266,7 @@ knitr::include_graphics(
 ## Making the maps of goal scores that will be reported, these figures are not reported here, but will be called in 
 ## different parts of the text.
 
-source(here("yearly_results/global2016/Reporting/map_fxns.R"))
+source(here("yearly_results", paste0("global", scenario), "Results", "functions", "map_fxns.R"))
 
 ### set scenario and desired map projection
 prj <- 'mol'    ### note: 'gcs' is way faster.
@@ -292,7 +292,7 @@ for(year in 2012:scenario){
   
   scores_df <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv', saveFile, year)), stringsAsFactors = FALSE) %>%
     rename(rgn_name = region_name, rgn_id = region_id) %>%
-    mutate(rgn_id = as.character(rgn_id))
+    dplyr::mutate(rgn_id = as.character(rgn_id))
   
   ### load region data frame, so doesn't need to reload every time through the loop.  Also
   ### load the land data frame, if plotting in Mollweide projection.
@@ -363,13 +363,13 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 Country index scores for 2022  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/maps_by_goal_mol).
 
 ```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_Index_2022_mol.png", saveFile)))
+knitr::include_graphics(here(sprintf("yearly_results/%s/Results/figures/maps_by_goal_mol/global_map_Index_%s_mol.png", saveFile, scenario)))
 
 ```
 
 Distribution of country index scores. The median index score among countries was `r median(data_final$Index)`. 
 
-```{r histogram, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
+```{r histogram, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
 
 year=scenario
 
@@ -422,7 +422,7 @@ rank_data <- read_csv(here(sprintf("yearly_results/%s/Results/data/scores_eez%s.
 top <- rank_data %>%
   filter(Index >= 80)
 
-kable(top)
+knitr::kable(top)
 ```
 
 The regions with index scores of 60 or less are:
@@ -432,7 +432,7 @@ The regions with index scores of 60 or less are:
 low <- rank_data %>%
   filter(Index <= 60)
 
-kable(low)
+knitr::kable(low)
 ```
 
 ## Country scores across scenario year
@@ -655,7 +655,7 @@ data_spread <- spread(data_index, scenario, value) %>%
 Table View
 
 ```{r overview-table, echo=FALSE}
-kable(data_spread)
+knitr::kable(data_spread)
 ```
 
 The following is a very preliminary analysis of how the global scores changed over time.  Global index scores decreased by an average `r index$Index` points per year, with `r sum(trends_spread$Index<0)` regions having decreasing trends and `r sum(trends_spread$Index>0)` having increasing trends. 
@@ -695,7 +695,7 @@ trend_summary <- region_summary %>%
          num_rgns_pos_trend, num_rgns_neg_trend, mean_trend, sd_trend) %>%
   arrange(average_change_per_year)
 
-kable(trend_summary)
+knitr::kable(trend_summary)
 ```
 
 ## Country summary
@@ -785,7 +785,7 @@ trends_order <- region_trends %>%
   select(country, trend) %>%
   arrange(-trend)
 
-kable(trends_order[1:10, ])
+knitr::kable(trends_order[1:10, ])
 
 ```
 
@@ -794,7 +794,7 @@ The 10 regions with the largest decreases in index scores are:
 ```{r trend worst, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 bottom <- dim(trends_order)[1]
 
-kable(trends_order[(bottom-9):bottom, ])
+knitr::kable(trends_order[(bottom-9):bottom, ])
 
 ```
 
@@ -867,7 +867,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -877,7 +877,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -903,7 +903,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -913,7 +913,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -938,7 +938,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -948,7 +948,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -974,7 +974,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -984,7 +984,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -1010,7 +1010,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -1020,7 +1020,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -1046,7 +1046,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 
 ```
@@ -1057,7 +1057,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -1083,7 +1083,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -1093,7 +1093,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -1119,7 +1119,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -1129,7 +1129,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -1155,7 +1155,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -1165,7 +1165,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -1191,7 +1191,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -1201,7 +1201,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -1227,7 +1227,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -1237,7 +1237,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -1263,7 +1263,7 @@ data <- read.csv(here(sprintf('yearly_results/%s/Results/data/scores_eez%s.csv',
   filter(!is.na(score))
 
 top <- data[1:10, ]
-kable(top)
+knitr::kable(top)
 
 ```
 
@@ -1273,7 +1273,7 @@ kable(top)
 
 max <- dim(data)[1]
 bottom <- data[(max-9):max, ]
-kable(bottom)
+knitr::kable(bottom)
 
 ```
 
@@ -1408,7 +1408,7 @@ These changes do not reflect changes in actual system health!
 data <- read.csv(here(sprintf("yearly_results/%s/OHI_final_formatted_scores_%s.csv", saveFile, dateFile)), stringsAsFactors = FALSE) %>%
   rename("assess2022"=value) 
 
-data_old <- read.csv(here(sprintf('yearly_results/global%s/OHI_final_formatted_scores_2021-10-01.csv', benchmark)), stringsAsFactors = FALSE) %>%
+data_old <- read.csv(here(sprintf('yearly_results/global%s/OHI_final_formatted_scores_2021-11-17.csv', benchmark)), stringsAsFactors = FALSE) %>%
   dplyr::rename("assess2021"=value)
 
 
@@ -1428,7 +1428,7 @@ data_compare_summary <- data_compare %>%
   summarize(mean_change = mean(change, na.rm=TRUE)) %>%
   spread(dimension, mean_change)
 
-kable(data_compare_summary)
+knitr::kable(data_compare_summary)
 
 ```
 
