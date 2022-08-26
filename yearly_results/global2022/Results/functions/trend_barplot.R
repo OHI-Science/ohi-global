@@ -29,7 +29,7 @@
 #                                                  "Tourism & recreation"))
 
 
-data <- read.csv(here(sprintf("yearly_results/%s/Results/data/trends_2021.csv", saveFile))) %>%
+data <- read.csv(here(sprintf("yearly_results/%s/Results/data/trends_2022.csv", saveFile))) %>%
   filter(region_id != 0) %>%
   select(-region_id, -SPP, -HAB, -ECO, -LIV, -FIS, -MAR, -ICO, -LSP) %>%
   gather("goal", "trend", -country) %>%
