@@ -18,35 +18,52 @@ $$
 
 where, $E$ is the proportion of employees directly involved in the travel and tourism industry, and $S$ is sustainability. 
 
-Ideally there would be data available specifically for employment, $E$, in coastal tourism industries, however the best data available at a global scale reports the proportion of the workforce directly employed in tourism, not just coastal jobs [World Travel and Tourism Council, @wttc_world_2019]. Because we do not know how employment patterns vary geographically within sectors for each region, we assume that the proportion employed in the tourism industry is the same in coastal areas as it is away from the coast, and thus $E$ is the same whether applied solely to coastal areas or to the entire region. 
+Ideally there would be data available specifically for employment, $E$, in coastal tourism industries, however the best data available at a global scale reports the proportion of the workforce directly employed in tourism, not just coastal jobs [@wttc_econ_2022; @wef_ttdi_2021]. Because we do not know how employment patterns vary geographically within sectors for each region, we assume that the proportion employed in the tourism industry is the same in coastal areas as it is away from the coast, and thus $E$ is the same whether applied solely to coastal areas or to the entire region. 
 
-The WTTC data include jobs for both leisure and business that are directly connected to the tourism industry, including accommodation services, food and beverage services, retail trade, transportation services, and cultural, sports and recreational services, but exclude investment industries and suppliers. Unfortunately it was not possible to determine the proportion of jobs affiliated with strictly leisure tourism. However, some (unknown) proportion of business travelers also enjoy the coast for leisure during their visit to coastal areas, such that we assumed all travel and tourism employment was related to tourism and recreation values. Regional applications of the Index can make use of better-resolved data and more direct measures of tourism, as has been done within the US West Coast [@halpern_assessing_2014], where data for participation in coastal recreational activities across 19 different sectors were available.
+The WTTC data include jobs for both leisure and business that are directly connected to the tourism industry, including accommodation services, food and beverage services, retail trade, transportation services, and cultural, sports and recreational services, but exclude investment industries and suppliers. Unfortunately it was not possible to determine the proportion of jobs affiliated with strictly leisure tourism. However, some (unknown) proportion of business travelers also enjoy the coast for leisure during their visit to coastal areas, such that we assumed all travel and tourism employment was related to tourism and recreation values. Regional applications of the Index can make use of better-resolved data and more direct measures of tourism, as has been done within the US West Coast [@halpern2014assessing], where data for participation in coastal recreational activities across 19 different sectors were available.
 
+Measures of sustainability are data from the World Economic Forum's Travel & Tourism Development Index (TTDI) [-@wef_ttdi_2021]. This index measures “the set of factors and policies that enable the sustainable and resilient development of the Travel and Tourism (T&T) sector, which in turn contributes to the development of a country.” The index is comprised of five subindexes 17 pillars and 112 individual indicators, distributed among the different pillars. We use scores for the Travel and Tourism Sustainability Subindex which encompasses three pillars:
 
-Measures of sustainability are data from the World Economic Forum's [@crotti_world_2019] Travel Tourism Competitiveness Index (TTCI).  This index measures "the set of factors and policies that enable the sustainable development of the Travel & Tourism sector, which in turn, contributes to the development and competitiveness of a country".  
-
-The index is based on 14 pillars that are organized into four subindexes:
-
-* Enabling Environment (general settings necessary for operating in a country)
-    + Business Environment
-    + Safety and Security
-    + Health and Hygiene
-    + Human Resources and Labour Market
-    + ICT Readiness
-* Travel and Tourism Policy and Enabling Conditions (specific policies or strategic aspects that impact the travel and tourism industry more directly)
-    + Prioritization of Travel and Tourism
-    + International Openness
-    + Price Competitiveness
-    + Environmental Sustainability
-* Infrastructure (availability and quality of physical infrastructure of each economy)
-    + Air Transport Infrastructure
-    + Ground and Port Infrastructure
-    + Tourist Service Infrastructure
-* Natural and Cultural Resources (principal “reasons to travel”)
-    + Natural Resources
-    + Cultural Resources and Business Travel
     
-The sustainability factor, $S$ is calculated as the average of the 4 subindexes. Missing sustainability data were gapfilled using per capita GDP (World Bank data with gaps filled using CIA data) based on a linear regression model.  For regions without per capita GDP data, remaining missing data were gapfilled using averages of [UN geopolitical regions](https://github.com/OHI-Science/ohiprep/blob/master/src/LookupTables/rgn_georegions_wide_2013b.csv), [@united_nations_statistics_2013] with sustainability data. 
+Pillar 15: **Environmental Sustainability**
+
+  * Greenhouse gas (GHG) emissions per capita
+  * Renewable energy
+  * Global Climate Risk Index
+  * Investment in green energy and infrastructure
+  * Particulate matter (2.5) concentration
+  * Baseline water stress
+  * Red List Index
+  * Forest cover loss
+  * Wastewater treatment
+  * Clean ocean water
+  * Number of environmental treaty ratifications
+  * Adequate protection for nature
+  * Oversight of production impact on the environment and nature
+  * Total protected areas coverage
+  * Average proportion of key bio
+    
+Pillar 16: **Socioeconomic Resilience and Conditions**
+
+  * Poverty rate
+  * Social protection basic coverage
+  * Social protection spending
+  * Not in education, employment or training (NEET) ratio
+  * Equal workforce opportunities
+  * Workers’ rights
+  * Gender Inequality Index
+
+Pillar 17: **Travel and Tourism Demand Pressure and Impact**
+
+  * T&T GDP multiplier
+  * Inbound length of stay
+  * Seasonality of international tourist arrivals
+  * Concentration of interest in cultural attractions
+  * Concentration of interest in nature attractions
+  * Geographically dispersed tourism
+  * Quality of town and city centre
+    
+The sustainability factor, $S$, is the Travel and Tourism Sustainability Subindex score, which is the unweighted average of its three component pillars. Missing sustainability data were gapfilled using per capita GDP (World Bank data with gaps filled using CIA data) based on a linear regression model. For regions without per capita GDP data, remaining missing data were gapfilled using averages of [UN geopolitical regions](https://github.com/OHI-Science/ohiprep/blob/master/src/LookupTables/rgn_georegions_wide_2013b.csv), [@unitednationsstatistics2013] with sustainability data. 
 
 
 #### Trend
