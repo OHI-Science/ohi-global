@@ -11,7 +11,7 @@ output:
     theme: cerulean
     highlight: haddock
     includes: 
-      in_header: '../../../ohiprep/src/templates/ohi_hdr.html'
+      in_header: '../../documents/ohi_hdr.html'
   pdf_document:
     toc: true
 ---
@@ -23,6 +23,7 @@ This document describes results from the 2022 global OHI assessment. This is mos
 # Setup
 
 ```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 # 1. check the code chunk below and change variables if needed
 # 2. go through document and update text where::here needed.
 
@@ -35,6 +36,7 @@ scenario <- 2022 # identify scenario of focus (this can be changed to obtain dat
 benchmark = 2021 # previous year that is used for old vs. new OHI analyses
 globalYear <- paste0('global', scenario) # location where::here files that are created are to be saved
 oldCommit = 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 2021 assessment
+# 'ebf181718474e6f8305e3b26172fe30bfea2396d' # sha final commit for 2020 assessment
 
 # Directories
 dir_scen_year <- here::here('yearly_results', globalYear)
@@ -44,14 +46,17 @@ dir_results_functions <- here::here(dir_scen_year, 'Results', 'functions')
 dir_goal_maps <- here::here(dir_results_figures, 'maps_by_goal_mol')
 dir_goal_histograms <- here::here(dir_results_figures, "goal_histograms")
 
-# 'ebf181718474e6f8305e3b26172fe30bfea2396d' # sha final commit for 2020 assessment
+# Filenames
+scores_filename <- here::here(dir_scen_year, paste0("scores_",dateFile,".csv" ))
+final_filename <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_",dateFile,".csv"))
+current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_",scenario,".csv"))
 
 ### code to run code chunks
 ### (change these if data is updated, otherwise takes a while to run):
-update_data = TRUE # dplyr::select true if there are updates to the OHI data!! Also be sure to change dateFile above
+update_data = FALSE # dplyr::select true if there are updates to the OHI data!! Also be sure to change dateFile above
 map_create  = FALSE # Updates the map figures (takes a while to run)
 goal_hists  = FALSE # Updates the goal histograms
-flower_plots = TRUE # Updates the flower plot figures
+flower_plots = FALSE # Updates the flower plot figures
 
 ```
 
@@ -65,7 +70,7 @@ librarian::shelf(
   hwriter,
   RColorBrewer,
   knitr,
-  googleVis,
+  # googleVis,
   ohicore,
   sp,
   rgdal,
@@ -86,34 +91,21 @@ goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB',
            'SP', 'LSP', 'NP', 'TR')
 
 long_goals <- c(
-  "Index", 
-  "Artisanal opportunities",
-  "Species condition (subgoal)",
-  "Biodiversity",
-  "Habitat (subgoal)",
-  "Coastal protection",
-  "Carbon storage",
-  "Clean water",
-  "Economies",
-  "Livelihoods & economies",
-  "Livelihoods",
-  "Fisheries (subgoal)",
-  "Food provision",
-  "Mariculture (subgoal)",
-  "Iconic species (subgoal)",
-  "Sense of place",
+  "Index", "Artisanal opportunities",
+  "Species condition (subgoal)", "Biodiversity",
+  "Habitat (subgoal)", "Coastal protection",
+  "Carbon storage", "Clean water",
+  "Economies", "Livelihoods & economies",
+  "Livelihoods", "Fisheries (subgoal)",
+  "Food provision", "Mariculture (subgoal)",
+  "Iconic species (subgoal)", "Sense of place",
   "Lasting special places (subgoal)",
-  "Natural products",
-  "Tourism & recreation")
+  "Natural products", "Tourism & recreation")
 
 goal_names <- data.frame(
   goal=goals,
   long_goal=long_goals
 )
-
-
-## color scheme to use
-colorScheme <- 'new'  # color scheme to use on flower plots ("new" = color reflects size score and is not the original rainbow)
 
 ## General files to load
 rgn_names <- here::here('eez', 'layers', 'rgn_global.csv') %>% 
@@ -121,15 +113,27 @@ rgn_names <- here::here('eez', 'layers', 'rgn_global.csv') %>%
   dplyr::select(region_id = rgn_id, country = label) %>%
   dplyr::mutate(country = as.character(country))
 
+# Changes in R can cause colors to change from colorRampPallette space - "Lab"
+# ideally we use the same color palatte 
+color_file <- here::here(dir_results_functions, "color_palette.csv")
+if (file.exists(color_file)) {
+  colors <- readr::read_csv(color_file, col_types = cols())$colors
+} else {
+  reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+  blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"), space="Lab")(35)
+  colors <-   c(reds, blues)
+  tmp <- data.frame(colors = colors)
+  readr::write_csv(data.frame(tmp), color_file)
+}
+# Define standard color palette for histograms
+col.brks <- seq(0,100, by = 1)
+col.assign <- cut(col.brks, breaks = col.brks, include.lowest = TRUE) %>% unique()
+colors_df <- tibble(colors_plot = colors, col.assign = as.character(col.assign))
 ```
 
 # Primary dataset
 
 ```{r final_data_modified, message=FALSE, echo=FALSE, eval=update_data, include=FALSE}
-# Filenames
-scores_filename <- here::here(dir_scen_year, paste0("scores_",dateFile,".csv" ))
-final_filename <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_",dateFile,".csv"))
-
 # Saves the last version of eez/scores.csv with a date appended to filename.
 ohi_final <- here::here("eez", "scores.csv") %>% 
   readr::read_csv() %>% 
@@ -279,11 +283,7 @@ source(here::here(dir_results_functions, "map_fxns.R"))
 ### set scenario and desired map projection
 prj <- 'mol'    ### note: 'gcs' is way faster.
 
-# brewer.pal(10, "RdYlBu")
-reds <- colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
-blues <- colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
-colors <- c(reds, blues)
-#readr::write_csv(data.frame(colors), here::here("yearly_results/global2022/Results/color_palette.csv")) # do we comment this out for knitting? 
+
 
 ### get OHI data and rename column headings
 
@@ -331,8 +331,7 @@ for(year in 2012:scenario){
 }
 
 ## save a version of latest scenario year maps without legend
-scores_df_filename <- here::here(dir_results_data, paste0('scores_eez_', scenario,'.csv'))
-scores_df <- scores_df_filename %>% 
+scores_df <- current_scores_fn %>% 
   readr::read_csv() %>%
   dplyr::rename(rgn_name = region_name, rgn_id = region_id) %>%
   dplyr::mutate(rgn_id = as.character(rgn_id))
@@ -371,36 +370,22 @@ here::here(dir_goal_maps, paste0("global_map_Index_",scenario,"_mol.png")) %>%
 Distribution of country index scores. The median index score among countries was `r median(data_final$Index)`. 
 
 ```{r histogram, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
-current_scores <- here::here(dir_results_data, paste0("scores_eez_",scenario,".csv"))
-
-hist_data <- readr::read_csv(current_scores) %>%
-  dplyr::select(region_name, Index)
-
-hist_data_old <- here::here("yearly_results", paste0("global",benchmark), 
-                            "Results", "data",  paste0("scores_eez",benchmark,".csv")) %>% 
+hist_data <- current_scores_fn %>% 
   readr::read_csv() %>%
-  dplyr::select(region_name, Index)
-
-reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(66)
-blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"), space="Lab")(35)
-colors <-   c(reds, blues)
-
-col.brks <- seq(0,100, by = 1)
-col.assign <- cut(col.brks, breaks = col.brks, include.lowest = TRUE)
-colors_df <- data.frame(colors_plot=colors, col.assign)
-colors_df$col.assign <- as.character(colors_df$col.assign) 
-
-hist_data$col.assign <- cut(hist_data$Index, breaks=col.brks, include.lowest=TRUE) 
-hist_data$col.assign <- as.character(hist_data$col.assign)
-
-hist_data <- dplyr::left_join(hist_data, colors_df, by="col.assign") %>%
+  dplyr::select(region_name, Index) %>% 
+  dplyr::mutate(col.assign = as.character(cut(Index, breaks=col.brks, include.lowest=TRUE))) %>%
+  dplyr::left_join(colors_df, by="col.assign") %>%
   dplyr::mutate(colors_plot = as.character(colors_plot)) %>%
   dplyr::arrange(Index)
+
+# hist_data_old <- here::here("yearly_results", paste0("global",benchmark), 
+#                             "Results", "data",  paste0("scores_eez",benchmark,".csv")) %>% 
+#   readr::read_csv() %>%
+#   dplyr::select(region_name, Index)
 
 cols <- as.character(unique(hist_data$colors_plot))
 
 g <- ggplot(hist_data, aes(x=Index)) +
-  #geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
   geom_histogram(aes(fill = col.assign), bins = 31) +  
   scale_fill_manual("", values = cols, guide = FALSE) +
   xlim(c(0, 100)) +
@@ -416,7 +401,7 @@ ggsave(here::here(dir_results_figures, "score_histogram_color.png"),
 The regions with index scores of 80 or greater are:
 
 ```{r top performers, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE}
-rank_data <- readr::read_csv(current_scores) %>%
+rank_data <- readr::read_csv(current_scores_fn) %>%
   dplyr::select(region_name, Index)
 
 top <- rank_data %>%
@@ -497,7 +482,7 @@ This plot is good for providing a quick overview of:
 This interactive table describes the index and goal scores for the regions in 2022 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/scores_eez_2022.csv)): 
 
 ```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-readr::read_csv(current_scores) %>%
+readr::read_csv(current_scores_fn) %>%
   dplyr::select(-region_id) %>%
   data.frame() %>% 
   DT::datatable() %>% 
@@ -567,10 +552,10 @@ trends_wide <- rbind(index, eez_wide) %>%
   dplyr::select(country, region_id, !!!rlang::syms(goals)) %>% 
   readr::write_csv(here::here(dir_results_data, paste0("trends_",scenario,".csv")))
 
-########################  # v2022
-sum(trends_wide$Index>0)  # 79
-sum(trends_wide$Index<0)  # 138
-sum(trends_wide$Index==0) # 4
+########################  # v2022  Commented out to not include in knitted version
+# sum(trends_wide$Index>0)  # 79
+# sum(trends_wide$Index<0)  # 138
+# sum(trends_wide$Index==0) # 4
 
 ## make an html file that is color coded:
 pal = brewer.pal(10, 'RdYlBu')
@@ -738,10 +723,9 @@ col.brks  <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
 trends_hist$colors <- cut(trends_hist$trend, breaks=col.brks, include.lowest=TRUE, labels=values)
 cols <- as.character(unique(trends_hist$colors))
 
-
 g <- ggplot(trends_hist, aes(x=trend)) +
   geom_histogram(aes(fill=colors), bins=25, center=1.01, col="gray") +
-  scale_fill_manual("", breaks=colors, values=cols, guide=FALSE) +
+  scale_fill_manual(values=cols, guide=FALSE) +
   labs(y="Number of regions", x="Annual change in Index scores") + 
   geom_vline(xintercept=0, color="red") +  
   theme_bw()
@@ -788,27 +772,31 @@ here::here(dir_results_figures, "Trend_barplot.png") %>%
   knitr::include_graphics()
 ```
 
-# A closer look at goals
+# A closer look at goal scores
 
-This section takes a closer look at the goal/subgoal scores.
-
-## Scores
-
-Goal/subgoal scores for the 2022 scenario.
+This section takes a closer look at the goal/subgoal scores for the 2022 scenario.
 
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
-data <- current_scores %>% 
-  readr::read_csv() %>%
-  dplyr::filter(region_id != 0) %>%
-  dplyr::select(-region_name, -region_id)
-
-for(goal in names(data)){ # goal = "LSP"
+for(goal in goals){
   
-  data_goal <- data[, goal] %>% dplyr::pull()
+  # goal = "MAR"
   
-  g <- ggplot(data = NULL, aes(x=data_goal)) +
-    geom_histogram(color = "gray", fill="gray") +
-    labs(y="Number of regions", x= "OHI score") +
+  hist_data <- current_scores_fn %>% 
+    readr::read_csv(col_types = cols()) %>%
+    dplyr::filter(region_id != 0) %>% 
+    dplyr::select(region_id, goal) %>%  
+    dplyr::mutate(col.assign = cut(!!sym(goal), breaks = col.brks, include.lowest = TRUE) %>% 
+                    as.character()) %>%
+    dplyr::arrange(!!sym(goal)) %>% 
+    dplyr::left_join(colors_df, by = "col.assign")
+  
+  col <- as.character(hist_data$colors_plot)
+  names(col) <- as.character(hist_data$col.assign)
+  
+  g <- ggplot(data = hist_data, aes(x = !!sym(goal))) +
+    geom_histogram(aes(fill = col.assign), bins = 40) +
+    scale_fill_manual(values = col, guide = 'none') +
+    labs(y="Number of regions", x= paste0(goal, " score")) +
     xlim(-5,105) +
     theme_bw()
   
@@ -817,26 +805,57 @@ for(goal in names(data)){ # goal = "LSP"
 }
 ```
 
-## Goal filter functions
+```{r results = "asis", fig.height=30, fig.width=10, echo = FALSE}
+for(goal in 2:length(goals)) { # skip Index
+  ## Write markdown goal name and sub header 'Scores'
+  cat(paste0("## ", goal_names$long_goal[goal], "\n\n### Scores\n\n"))
+  
+  ## Define image file paths
+  p1 <- here::here(dir_goal_maps, paste0("global_map_",goal_names$goal[goal],"_",scenario,"_mol.png"))
+  p2 <- here::here(dir_goal_histograms, paste0(goal_names$goal[goal],"_scores.png"))
+  
+  ## Print images
+  cat(paste0("<center><img src='", p1, "' width='800'/></center>\n\n"))
+  cat(paste0("<center><img src='", p2, "' width='600'/></center>\n\n"))
+  # cat(paste0("![](", p1, ")"), "\n\n") # also works but no size control
+  # cat(paste0("![](", p2, ")"), "\n\n")
+  
+  ## Filter Data
+  data <- current_scores_fn %>% 
+    readr::read_csv(col_types = cols()) %>%
+    dplyr::filter(region_id != 0) %>%
+    dplyr::select(region_name, score = goal_names$goal[goal]) %>%
+    dplyr::arrange(-score) %>%
+    dplyr::filter(!is.na(score))
+  
+  ## Write markdown top 10
+  cat("### Top 10 performers \n\n")
+  data %>% utils::head(10) %>% knitr::kable() %>% base::print()
+  
+  ## Write markdown bottom 10
+  cat("### Bottom 10 performers \n\n")
+  data %>% utils::tail(10) %>% knitr::kable() %>% base::print()
+}
+```
 
-```{r top AO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+
+# Consider deleting below in favor of above
+
+
+```{r goal output functions, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+## Define helper functions for following outputs
 filter_data <- function(goal = "AO") {
-  data <- current_scores %>% 
+  data <- current_scores_fn %>% 
     readr::read_csv() %>%
     dplyr::filter(region_id != 0) %>%
     dplyr::select(region_name, score = goal) %>%
     dplyr::arrange(-score) %>%
     dplyr::filter(!is.na(score))
 }
-print_plots <- function(goal = "AO") {
-  here::here(dir_goal_maps, paste0("global_map_",goal,"_",scenario,"_mol.png")) %>% 
-    knitr::include_graphics() %>% 
-    base::print() %>% 
-    base::invisible()
-  here::here(dir_goal_histograms, paste0(goal,"_scores.png")) %>% 
-    knitr::include_graphics() %>% 
-    base::print() %>% 
-    base::invisible()
+print_plots <- function(goal = "AO") { 
+  p1 <- here::here(dir_goal_maps, paste0("global_map_",goal,"_",scenario,"_mol.png"))
+  p2 <- here::here(dir_goal_histograms, paste0(goal,"_scores.png"))
+  knitr::include_graphics(c(p1, p2)) 
 }
 ```
 
@@ -844,7 +863,7 @@ print_plots <- function(goal = "AO") {
 
 ### Scores
 
-```{r AO plots, echo=FALSE, fig.height=30, fig.width=10}
+```{r AO plots, echo=FALSE, fig.height=30, fig.width=10, results='asis'}
 print_plots(goal = "AO")
 ```
 
@@ -1109,11 +1128,11 @@ data %>% utils::tail(10) %>% knitr::kable()
 Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2022. 
 
 ```{r trend plots, echo=FALSE, fig.height=30, fig.width=10}
-for (goal in goals) {
-  here::here(dir_results_figures, "map_trends", paste0("trends_map_", goal, "_mol.png")) %>% 
-    knitr::include_graphics() %>% 
-    base::print()
-}
+files <- list.files(
+  path = here::here(dir_results_figures, "map_trends"), 
+  pattern = "png", full.names = TRUE) 
+
+knitr::include_graphics(files)
 ```
 
 ## Other analyses
@@ -1131,62 +1150,51 @@ The following is an interactive plot (region names are visible when hovering ove
 index <- read.csv(here::here(sprintf("yearly_results/%s/Results/data/avg_goal_scores.csv", globalYear)) ) %>%
   dplyr::select(region_id, country=region_name, index_avg = Index)
 
-trend <- read.csv(here::here(sprintf("yearly_results/%s/Results/data/trends_%s.csv", globalYear, scenario))) %>%
-  dplyr::select(region_id, index_trend = Index) %>%
-  dplyr::left_join(index, by= "region_id")
-
 avg_index <- index %>%
   dplyr::filter(region_id != 0) %>%
-  dplyr::summarize(mean(index_avg, na.rm=TRUE))
+  dplyr::summarize(mean(index_avg, na.rm=TRUE)) %>% 
+  dplyr::pull()
+
+trend <- read.csv(here::here(sprintf("yearly_results/%s/Results/data/trends_%s.csv", globalYear, scenario))) %>%
+  dplyr::select(region_id, index_trend = Index) %>%
+  dplyr::left_join(index, by= "region_id") %>% 
+  dplyr::mutate(
+    color = dplyr::case_when(
+      (index_avg >= avg_index) & (index_trend >= 0) ~ "Above avg score & Increasing",
+      (index_avg < avg_index) & (index_trend >= 0) ~ "Below avg score & Increasing",
+      (index_avg < avg_index) & (index_trend < 0) ~ "Below avg score & Decreasing",
+      (index_avg >= avg_index) & (index_trend < 0) ~ "Above avg score & Decreasing"
+    )
+  )
+
+avg_colors <- c("Above avg score & Increasing" = "#313695",
+                "Below avg score & Increasing" = "#74ADD1",
+                "Below avg score & Decreasing" = "#A50026",
+                "Above avg score & Decreasing" = "#FDAE61")
 
 p <- ggplot2::ggplot(trend, aes(x=index_avg, y=index_trend)) +
-  geom_point(aes(text=paste0("rgn = ", country)), shape=19, size=2, color="gray", alpha = 0.5) +
-  geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
-  geom_vline(xintercept = 67, color="red", size=.5, linetype=3) +
+  aes(color = color, text=paste0("rgn = ", country))+
+  geom_point(shape=19, size=2, alpha = 0.8) +
+  scale_color_manual(values = avg_colors) +
+  # geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
+  # geom_vline(xintercept = avg_index, color="red", size=.5, linetype=3, aes(text = "avg index")) +
+  labs(title="Index scores",
+       y = "Trend (change in score per year)", 
+       x = "Average (2012 to 2022 scores)") +
   theme_bw() + 
-  labs(title="Index scores", y="Trend (change in score per year)", x="Average (2012 to 2022 scores)") 
+  theme(legend.position = "none")
 
 
-plotly_fig <- plotly::ggplotly(p)
+plotly_fig <- plotly::ggplotly(p) %>% 
+  plotly::add_segments( # Add Vertical line with hover text
+    x = avg_index, xend = avg_index, y = min(trend$index_trend) - .1, yend = max(trend$index_trend) +.1, 
+    line = list(color = 'red', width = 1.5, dash = 'dot'), 
+    text = "Average OHI index score", hoverinfo = 'text', showlegend = FALSE) %>% 
+  plotly::add_segments( # Add horizontal line with hover text
+    x = min(trend$index_avg)-2, xend = max(trend$index_avg) + 2, y = 0, yend = 0, 
+    line = list(color = 'red', width = 1.5, dash = 'dot'), 
+    text = "No change on average", hoverinfo = 'text', showlegend = FALSE)
 plotly_fig
-
-
-#   ## ignore this for now, but info on labelling points:
-# 
-#   ### adding labels: outliers, no change, etc
-# 
-# labels1 <- c("Eritrea", "Syria", "Equatorial Guinea", "Somalia", "Nicaragua", "Myanmar", "British Virgin Islands", "Georgia", "Pitcairn", "Liberia", "Sierra Leone")
-# 
-# labels2 <- c("Amsterdam Island and Saint Paul Island", "Kerguelen Islands")
-# 
-# ## make sure region labels are spelled correctly
-# setdiff(labels1, trend$region_name)
-# setdiff(labels2, trend$region_name)
-# 
-# ## add labels column, give NA to those without labels
-# trend <- trend %>%
-#   dplyr::mutate(label1 = ifelse(region_name %in% labels1, as.character(region_name), NA)) %>%
-#   dplyr::mutate(label2 = ifelse(region_name %in% labels2, as.character(region_name), NA))
-# 
-# 
-# p <- ggplot2::ggplot(trend, aes(x=Index, y=index_trend)) +
-#     geom_point(shape=19, size=1.75, color="black", alpha = 0.5) +
-#     geom_text(aes(label=label1), hjust=0, nudge_x=0.4, size=2.2) +
-#     geom_text(aes(label=label2), vjust=0, nudge_y=0.1, nudge_x=-5, size=2.2) +
-#    geom_point(data=dplyr::filter(trend, region_name %in% label1), aes(x=Index, y=index_trend), shape=19, size=1.75, color="darkorange") +
-#    geom_point(data=dplyr::filter(trend, region_name %in% label2), aes(x=Index, y=index_trend), shape=19, size=1.75, color="darkorange") +
-#     geom_hline(yintercept = 0, color="red", size=.2, linetype=3) +
-#     geom_vline(xintercept = vaxis, color="red", size=.2, linetype=3) +
-#       stat_smooth(method=lm, se=FALSE, color="black", size=0.3) +
-#     theme_bw() +
-#     labs(y="Average change in Index score per year", x="OHI score, 2018")
-# 
-# plot(p)
-# 
-# ggsave("figures/trend vs score.png", width=7.5, height=5, units=c("in"), dpi=600)
-# ggsave("figures/trend vs score.tiff", width=6, height=4, units=c("in"), dpi=375)
-
-
 
 ```
 
@@ -1235,13 +1243,14 @@ The following interactive plot provides an overview of how the 2022 scenario sco
 ```{r compare assessments-plot, echo=FALSE, warning=FALSE}
 
 p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
+  geom_jitter(aes(text=paste0("rgn = ", region_name)), 
+              position = position_jitter(width=0.2, height=0), shape=19, size=1) +
   #geom_point(shape=19, size=1) +
   theme_bw() + 
   labs(title="Change in 2022 scores ", y="Change in score", x="") +
   scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
                               "MAR", "ECO", "LE", "LIV", "NP", "LSP", "SP", "ICO", "TR")) +
-  scale_colour_brewer(palette="Dark2") +
-  geom_jitter(aes(text=paste0("rgn = ", region_name)), position = position_jitter(width=0.2, height=0), shape=19, size=1)
+  scale_colour_brewer(palette="Dark2")
 
 plotly_fig <- plotly::ggplotly(p)
 plotly_fig
