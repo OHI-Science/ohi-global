@@ -182,9 +182,7 @@ index_avg_spread <- spread(index_avg, goal, avg_score) %>%
   data.frame()
 
 readr::write_csv(index_avg_spread, here::here(dir_results_data, "avg_goal_scores.csv"))
-
 ```
-
 
 ```{r data prep score table, message=FALSE, include=FALSE, echo=FALSE}
 ## create a score dataframe 
@@ -264,7 +262,7 @@ PlotFlower(
 
 Average global performance of the 10 goals.
 
-Flower plots for each region can be downloaded from [here::here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/FlowerPlots)
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/FlowerPlots)
 
 ```{r flower_global, echo=FALSE, fig.height=30, fig.width=10}
 here::here(dir_results_figures, "FlowerPlots", "flower_GlobalAverage.png") %>% 
@@ -274,18 +272,14 @@ here::here(dir_results_figures, "FlowerPlots", "flower_GlobalAverage.png") %>%
 ## Country summary
 
 ```{r Maps, eval=map_create, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
-
-## Making the maps of goal scores that will be reported, these figures are not reported here::here, but will be called in 
+## Making the maps of goal scores that will be reported, these figures are not reported here, but will be called in 
 ## different parts of the text.
-
+## This set of function can be updated and simplified to use geom_sf which was not an option when first written
+## Reccomended use of terra::vect() and the tidyterra package to plot
 source(here::here(dir_results_functions, "map_fxns.R"))
 
-### set scenario and desired map projection
+### set desired map projection
 prj <- 'mol'    ### note: 'gcs' is way faster.
-
-
-
-### get OHI data and rename column headings
 
 for(year in 2012:scenario){ 
   # year=2019
@@ -357,10 +351,9 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
   ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
                               colors_spec = colors, leg_on = FALSE)
 }
-
 ```
 
-Country index scores for 2022  Maps describing goal and index scores can be downloaded from [here::here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/maps_by_goal_mol).
+Country index scores for 2022  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/maps_by_goal_mol).
 
 ```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
 here::here(dir_goal_maps, paste0("global_map_Index_",scenario,"_mol.png")) %>% 
@@ -564,7 +557,8 @@ cols <- data.frame(country=trends_wide$country)
 
 for(goal in goals){ #goal="CW"
   tmp <- trends_wide[, goal] %>% dplyr::pull()
-  tmp <- assign(x = goal, value = cut(tmp, breaks=c(-1000, -10, -5, -2, -1, 0, 1, 2, 5, 10, 1000), include.lowest = TRUE, labels=pal))
+  tmp <- assign(x = goal, value = cut(tmp, breaks=c(-1000, -10, -5, -2, -1, 0, 1, 2, 5, 10, 1000), 
+                                      include.lowest = TRUE, labels=pal))
   tmp <- data.frame(goal=tmp)
   names(tmp) <- goal
   cols <- cbind(cols, tmp)
@@ -583,7 +577,7 @@ hwrite(trends_wide, here::here(dir_results_data, paste0("trends_",scenario,'.htm
 
 Trend values are slope estimates from a linear model of scores for each region/goal over the past 9 years. Positive values indicate increasing scores during the past 9 years and negative values indicate decreasing scores.
 
-A color-coded table of trend values for each country is available [here::here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/trends_2022.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/trends_2022.csv)).  
+A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/trends_2022.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/trends_2022.csv)).  
 
 
 NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed sceptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
@@ -760,7 +754,7 @@ trends_order %>%
 ## Country change in goal
 
 ```{r country goal trend, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-# Creates trend_barplot.png in yearly_results/global2022/Results/figures
+# Creates trend_barplot.png in yearly_results/global2022/Results/figures when called
 source(here::here(dir_results_functions, 'trend_barplot.R'))
 ```
 
@@ -777,10 +771,9 @@ here::here(dir_results_figures, "Trend_barplot.png") %>%
 This section takes a closer look at the goal/subgoal scores for the 2022 scenario.
 
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
-for(goal in goals){
-  
-  # goal = "MAR"
-  
+# Make pretty histograms
+for(goal in goals){ # goal = "MAR"
+
   hist_data <- current_scores_fn %>% 
     readr::read_csv(col_types = cols()) %>%
     dplyr::filter(region_id != 0) %>% 
@@ -806,6 +799,7 @@ for(goal in goals){
 ```
 
 ```{r results = "asis", fig.height=30, fig.width=10, echo = FALSE}
+# This builds the entire goals section
 for(goal in 2:length(goals)) { # skip Index
   ## Write markdown goal name and sub header 'Scores'
   cat(paste0("## ", goal_names$long_goal[goal], "\n\n### Scores\n\n"))
@@ -838,291 +832,6 @@ for(goal in 2:length(goals)) { # skip Index
 }
 ```
 
-
-# Consider deleting below in favor of above
-
-
-```{r goal output functions, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-## Define helper functions for following outputs
-filter_data <- function(goal = "AO") {
-  data <- current_scores_fn %>% 
-    readr::read_csv() %>%
-    dplyr::filter(region_id != 0) %>%
-    dplyr::select(region_name, score = goal) %>%
-    dplyr::arrange(-score) %>%
-    dplyr::filter(!is.na(score))
-}
-print_plots <- function(goal = "AO") { 
-  p1 <- here::here(dir_goal_maps, paste0("global_map_",goal,"_",scenario,"_mol.png"))
-  p2 <- here::here(dir_goal_histograms, paste0(goal,"_scores.png"))
-  knitr::include_graphics(c(p1, p2)) 
-}
-```
-
-## Artisanal opportunities
-
-### Scores
-
-```{r AO plots, echo=FALSE, fig.height=30, fig.width=10, results='asis'}
-print_plots(goal = "AO")
-```
-
-### Top 10 performers
-
-```{r top AO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "AO") 
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom AO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Species condition
-
-### Scores
-
-```{r SPP plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "SPP")
-```
-
-### Top 10 performers
-
-```{r top SPP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "SPP")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom SPP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Habitat
-
-### Scores
-
-```{r HAB plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "HAB")
-```
-
-### Top 10 performers
-
-```{r top HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "HAB")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom HAB, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Coastal protection
-
-### Scores
-
-```{r CP plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "CP")
-```
-
-### Top 10 performers
-
-```{r top CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "CP")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom CP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Carbon storage
-
-### Scores
-
-```{r CS plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "CS")
-```
-
-### Top 10 performers
-
-```{r top CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "CS")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom CS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Clean waters
-
-### Scores
-
-```{r CW plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "CW")
-```
-
-### Top 10 performers
-
-```{r top CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "CW")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom CW, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Fisheries
-
-### Scores
-
-```{r FIS plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "FIS")
-```
-
-### Top 10 performers
-
-```{r top FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "FIS")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom FIS, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Mariculture
-
-### Scores
-
-```{r MAR plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "MAR")
-```
-
-### Top 10 performers
-
-```{r top MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "MAR")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom MAR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Iconic species
-
-### Scores
-
-```{r ICO plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "ICO")
-```
-
-### Top 10 performers
-
-```{r top ICO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "ICO")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom ICO, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Lasting special places
-
-### Scores
-
-```{r LSP plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "LSP")
-```
-
-### Top 10 performers
-
-```{r top LSP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "LSP")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom LSP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Natural products
-
-### Scores
-
-```{r NP plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "NP")
-```
-
-### Top 10 performers
-
-```{r top NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "NP")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom NP, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
-## Tourism and recreation
-
-### Scores
-
-```{r TR plots, echo=FALSE, fig.height=30, fig.width=10}
-print_plots(goal = "TR")
-```
-
-### Top 10 performers
-
-```{r top TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data <- filter_data(goal = "TR")
-
-data %>% utils::head(10) %>% knitr::kable()
-```
-
-### Bottom 10 performers
-
-```{r bottom TR, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-data %>% utils::tail(10) %>% knitr::kable()
-```
-
 ## Trends
 
 Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2022. 
@@ -1146,7 +855,6 @@ Of most concern are regions that have poor scores and declining trends.
 The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
 
 ```{r trend vs avg index, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=TRUE, fig.width=6, fig.height=4}
-
 index <- read.csv(here::here(sprintf("yearly_results/%s/Results/data/avg_goal_scores.csv", globalYear)) ) %>%
   dplyr::select(region_id, country=region_name, index_avg = Index)
 
@@ -1176,8 +884,6 @@ p <- ggplot2::ggplot(trend, aes(x=index_avg, y=index_trend)) +
   aes(color = color, text=paste0("rgn = ", country))+
   geom_point(shape=19, size=2, alpha = 0.8) +
   scale_color_manual(values = avg_colors) +
-  # geom_hline(yintercept = 0, color="red", size=.5, linetype=3) +
-  # geom_vline(xintercept = avg_index, color="red", size=.5, linetype=3, aes(text = "avg index")) +
   labs(title="Index scores",
        y = "Trend (change in score per year)", 
        x = "Average (2012 to 2022 scores)") +
@@ -1207,7 +913,6 @@ If the models and source data remain the same, these scores should be exactly th
 These changes do not reflect changes in actual system health!   
 
 ```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-
 data <- read.csv(final_filename) %>%
   dplyr::rename("assess2022"=value) 
 
@@ -1241,11 +946,9 @@ knitr::kable(data_compare_summary)
 The following interactive plot provides an overview of how the 2022 scenario scores changed between the 2021 and 2022 assessments for all goals and dimensions.
 
 ```{r compare assessments-plot, echo=FALSE, warning=FALSE}
-
 p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
   geom_jitter(aes(text=paste0("rgn = ", region_name)), 
               position = position_jitter(width=0.2, height=0), shape=19, size=1) +
-  #geom_point(shape=19, size=1) +
   theme_bw() + 
   labs(title="Change in 2022 scores ", y="Change in score", x="") +
   scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
@@ -1254,6 +957,5 @@ p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
 
 plotly_fig <- plotly::ggplotly(p)
 plotly_fig
-
 ```
 
