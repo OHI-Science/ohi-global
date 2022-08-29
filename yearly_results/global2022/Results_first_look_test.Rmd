@@ -53,10 +53,10 @@ current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_",scenario,
 
 ### code to run code chunks
 ### (change these if data is updated, otherwise takes a while to run):
-update_data = FALSE # dplyr::select true if there are updates to the OHI data!! Also be sure to change dateFile above
-map_create  = FALSE # Updates the map figures (takes a while to run)
-goal_hists  = FALSE # Updates the goal histograms
-flower_plots = FALSE # Updates the flower plot figures
+update_data = TRUE # dplyr::select true if there are updates to the OHI data!! Also be sure to change dateFile above
+map_create  = TRUE # Updates the map figures (takes a while to run)
+goal_hists  = TRUE # Updates the goal histograms
+flower_plots = TRUE # Updates the flower plot figures
 
 ```
 
@@ -163,7 +163,6 @@ ohi_final_wide <- ohi_final_wide %>%
   dplyr::left_join(ohi_final_avg, by = "region_id") %>% 
   readr::write_csv(here::here(dir_results_data, "index_scores_wide_all_years.csv"))
 ```
-
 
 ```{r more data versions, eval=update_data, include=FALSE}
 ### create a version of the data that averages all years of scores
@@ -890,7 +889,6 @@ p <- ggplot2::ggplot(trend, aes(x=index_avg, y=index_trend)) +
   theme_bw() + 
   theme(legend.position = "none")
 
-
 plotly_fig <- plotly::ggplotly(p) %>% 
   plotly::add_segments( # Add Vertical line with hover text
     x = avg_index, xend = avg_index, y = min(trend$index_trend) - .1, yend = max(trend$index_trend) +.1, 
@@ -901,7 +899,6 @@ plotly_fig <- plotly::ggplotly(p) %>%
     line = list(color = 'red', width = 1.5, dash = 'dot'), 
     text = "No change on average", hoverinfo = 'text', showlegend = FALSE)
 plotly_fig
-
 ```
 
 # Comparing assessment years
