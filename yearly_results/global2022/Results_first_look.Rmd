@@ -22,46 +22,9 @@ This document describes results from the 2022 global OHI assessment. This is mos
 
 # Setup
 
-```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE)
-# 1. check the code chunk below and change variables if needed
-# 2. go through document and update text where::here needed.
-
-# the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = Sys.Date() # date extension on data files used for all tables/figures
-benchmark_date <- "2021-11-17" # Date from 2021
-
-## General settings to control
-scenario <- 2022 # identify scenario of focus (this can be changed to obtain data for other years)
-benchmark = 2021 # previous year that is used for old vs. new OHI analyses
-globalYear <- paste0('global', scenario) # location where::here files that are created are to be saved
-oldCommit = 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 2021 assessment
-# 'ebf181718474e6f8305e3b26172fe30bfea2396d' # sha final commit for 2020 assessment
-
-# Directories
-dir_scen_year <- here::here('yearly_results', globalYear)
-dir_results_data <- here::here(dir_scen_year, "Results", "data")
-dir_results_figures <- here::here(dir_scen_year, "Results", "figures")
-dir_results_functions <- here::here(dir_scen_year, 'Results', 'functions')
-dir_goal_maps <- here::here(dir_results_figures, 'maps_by_goal_mol')
-dir_goal_histograms <- here::here(dir_results_figures, "goal_histograms")
-
-# Filenames
-scores_filename <- here::here(dir_scen_year, paste0("scores_",dateFile,".csv" ))
-final_filename <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_",dateFile,".csv"))
-current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_",scenario,".csv"))
-
-### code to run code chunks
-### (change these if data is updated, otherwise takes a while to run):
-update_data  = FALSE # dplyr::select true if there are updates to the OHI data!! Also be sure to change dateFile above
-map_create   = FALSE # Updates the map figures (takes a while to run)
-goal_hists   = FALSE # Updates the goal histograms
-flower_plots = FALSE # Updates the flower plot figures
-
-```
-
 ```{r set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
-#load libraries
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+### load libraries
 if (!require(librarian)){install.packages('librarian')}
 if (!require(devtools)){install.packages("devtools")}
 if (!require(ohicore)){devtools::install_github('ohi-science/ohicore@dev')}
@@ -76,13 +39,49 @@ librarian::shelf(
   DT,
   broom,
   here,
+  ggthemes,
+  plotly,
   # repmis,
   # ggalt,
   # googleVis,
-  # reshape2,
-  ggthemes,
-  plotly
+  # reshape2
 )
+```
+
+```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+### 1. check the code chunk below and change variables if needed
+### 2. go through document and update text where::here needed.
+
+### the date in the below variable must be updated (for the results to reflect the new data)
+dateFile = Sys.Date() # date extension on data files used for all tables/figures
+benchmark_date <- "2021-11-17" # Date from 2021
+
+### General settings to control
+scenario <- 2022 # identify scenario of focus (this can be changed to obtain data for other years)
+benchmark = 2021 # previous year that is used for old vs. new OHI analyses
+globalYear <- paste0('global', scenario) # location where::here files that are created are to be saved
+oldCommit = 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 2021 assessment
+### 'ebf181718474e6f8305e3b26172fe30bfea2396d' # sha final commit for 2020 assessment
+
+### Directories
+dir_scen_year <- here::here('yearly_results', globalYear)
+dir_results_data <- here::here(dir_scen_year, "Results", "data")
+dir_results_figures <- here::here(dir_scen_year, "Results", "figures")
+dir_results_functions <- here::here(dir_scen_year, 'Results', 'functions')
+dir_goal_maps <- here::here(dir_results_figures, 'maps_by_goal_mol')
+dir_goal_histograms <- here::here(dir_results_figures, "goal_histograms")
+
+### Filenames
+scores_filename <- here::here(dir_scen_year, paste0("scores_",dateFile,".csv" ))
+final_filename <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_",dateFile,".csv"))
+current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_",scenario,".csv"))
+
+### code to run code chunks
+### (change these if data is updated, otherwise takes a while to run):
+update_data  = FALSE # select true if there are updates to the OHI data!! Also be sure to change dateFile above
+map_create   = FALSE # Updates the map figures (takes a while to run)
+goal_hists   = FALSE # Updates the goal histograms
+flower_plots = FALSE # Updates the flower plot figures
 
 # nice labels for things
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 
@@ -107,14 +106,14 @@ goal_names <- data.frame(
   long_goal=long_goals
 )
 
-## General files to load
+### General files to load
 rgn_names <- here::here('eez', 'layers', 'rgn_global.csv') %>% 
   readr::read_csv() %>%
   dplyr::select(region_id = rgn_id, country = label) %>%
   dplyr::mutate(country = as.character(country))
 
-# Changes in R can cause colors to change from colorRampPallette space - "Lab"
-# ideally we use the same color palatte 
+### Changes in R can cause colors to change from colorRampPallette space - "Lab"
+### ideally we use the same color palatte 
 color_file <- here::here(dir_results_functions, "color_palette.csv")
 if (file.exists(color_file)) {
   colors <- readr::read_csv(color_file, col_types = cols())$colors
@@ -125,7 +124,7 @@ if (file.exists(color_file)) {
   tmp <- data.frame(colors = colors)
   readr::write_csv(data.frame(tmp), color_file)
 }
-# Define standard color palette for histograms
+### Define standard color palette for histograms
 col.brks <- seq(0,100, by = 1)
 col.assign <- cut(col.brks, breaks = col.brks, include.lowest = TRUE) %>% unique()
 colors_df <- tibble(colors_plot = colors, col.assign = as.character(col.assign))
@@ -134,7 +133,7 @@ colors_df <- tibble(colors_plot = colors, col.assign = as.character(col.assign))
 # Primary dataset
 
 ```{r final_data_modified, message=FALSE, echo=FALSE, eval=update_data, include=FALSE}
-# Saves the last version of eez/scores.csv with a date appended to filename.
+### Saves the last version of eez/scores.csv with a date appended to filename.
 ohi_final <- here::here("eez", "scores.csv") %>% 
   readr::read_csv() %>% 
   readr::write_csv(scores_filename)
@@ -149,17 +148,17 @@ ohi_final_formatted <- readr::read_csv(scores_filename) %>%
   readr::write_csv(final_filename)
 
 ## create a version of data with region index scores wide
-ohi_final_wide <- readr::read_csv(final_filename) %>%
+ohi_final <- readr::read_csv(final_filename) %>%
   dplyr::filter(dimension == "score") %>%
   dplyr::filter(goal == "Index") 
 
-ohi_final_avg <- ohi_final_wide %>%
+ohi_final_avg <- ohi_final %>%
   dplyr::group_by(region_id) %>%
   dplyr::summarize(average = mean(value, na.rm=TRUE))
 
-ohi_final_wide <- ohi_final_wide %>%
+ohi_final_wide <- ohi_final %>%
   dplyr::select(scenario, region_id, region_name, value) %>%
-  spread(scenario, value) %>%
+  tidyr::pivot_wider(names_from = scenario, values_from = value) %>% 
   dplyr::left_join(ohi_final_avg, by = "region_id") %>% 
   readr::write_csv(here::here(dir_results_data, "index_scores_wide_all_years.csv"))
 ```
@@ -176,11 +175,12 @@ index_avg <- final_filename %>%
 
 index_avg$goal <- factor(index_avg$goal, levels = goals)
 
-index_avg_spread <- spread(index_avg, goal, avg_score) %>%
+index_avg_wide <- index_avg %>% 
+  tidyr::pivot_wider(names_from = goal, values_from = avg_score)  %>%
   dplyr::arrange(-Index) %>%
-  data.frame()
+  base::data.frame()
 
-readr::write_csv(index_avg_spread, here::here(dir_results_data, "avg_goal_scores.csv"))
+readr::write_csv(index_avg_wide, here::here(dir_results_data, "avg_goal_scores.csv"))
 ```
 
 ```{r data prep score table, message=FALSE, include=FALSE, echo=FALSE}
@@ -190,16 +190,13 @@ data_all <- readr::read_csv(final_filename)
 for(year in 2012:scenario){ 
   # year = 2016
   
-  data <- data_all[data_all$scenario == year, ]
-  
-  data <- data %>%
-    dplyr::filter(dimension == "score") %>%   # focus only on score data
+  data <- data_all %>%
+    dplyr::filter(dimension == "score", scenario == year) %>%   # focus only on score data
     dplyr::filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
     dplyr::mutate(region_name = as.character(region_name)) %>%
     dplyr::mutate(value = round(value, 2)) %>%
-    dplyr::select(-long_goal)
-  
-  data <- spread(data, goal, value)
+    dplyr::select(-long_goal) %>% 
+    tidyr::pivot_wider(names_from = goal, values_from = value)
   
   index <- data %>%
     dplyr::filter(region_name == 'Global average')
@@ -209,13 +206,11 @@ for(year in 2012:scenario){
     dplyr::filter(region_name != 'Global average')
   
   data_final <- rbind(index, data) %>%
-    dplyr::select(region_name, region_id, Index, AO, SPP, 
-           BD, HAB, CP, CS, CW, ECO, LE, LIV, FIS, FP, 
-           MAR, ICO, SP, LSP, NP, TR)
+    dplyr::select(region_name, region_id, goals)
   
-  readr::write_csv(
-    data_final, file = here::here(dir_results_data, paste0("scores_eez_",year,".csv"))
-  )
+  filename <- here::here(dir_results_data, paste0("scores_eez_",year,".csv")) 
+    
+  readr::write_csv(data_final, file = filename)
 }
 ```
 
@@ -955,4 +950,6 @@ p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
 plotly_fig <- plotly::ggplotly(p)
 plotly_fig
 ```
+
+
 
