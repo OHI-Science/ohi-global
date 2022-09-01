@@ -12,7 +12,7 @@ Component | Data |Trend
 Eutrophication (nutrient) | FAO fertilizer and manure data [@unitednations2021faostata; @halpern2021cumulative; @tuholske2021]| Standard method (section 5.3.1)
 Chemical | Land-based organic pollution (FAO pesticide data), Land-based inorganic pollution (based on run-off from impermeable surfaces), ocean-based pollution based on commercial shipping and port traffic [@unitednations2021faostata; @halpern2008global] | Trend based only on changes in organic pollution, other variables remained the same
 Pathogens | Proportion of population without access to improved sanitation facilities [@who-unicef2021] | Standard method
-Marine debris | Plastic pollution [@eriksen2014plastic] | Data on improperly disposed of plastics [@jambeck_plastic_2015]
+Marine debris | Plastic pollution [@eriksen2014plastic] | Data on improperly disposed of plastics [@jambeck2015plastic]
 
 We used the modeled input of land-based nitrogen input from livestock manure and crop fertilizer application as a proxy for nutrient input following similar methods to @halpern2021cumulative and @tuholske2021. The modeled proxy approach does not allow the distinction between toxic and non-toxic bloom events that can arise from excess nutrient input (often both referred to in the literature as harmful algal blooms, or HABs) or at what nutrient concentration an ecosystem is pushed into a HAB condition (i.e., the threshold value). Local studies may be able to obtain information on such non-linear responses and include it as part of this status measure.  
 
