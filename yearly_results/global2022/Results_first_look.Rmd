@@ -30,17 +30,22 @@ if (!require(devtools)){install.packages("devtools")}
 if (!require(ohicore)){devtools::install_github('ohi-science/ohicore@dev')}
 librarian::shelf(
   tidyverse,
+  here,
   hwriter,
   RColorBrewer,
-  knitr,
   ohicore,
-  sp,
-  rgdal,
   DT,
   broom,
-  here,
   ggthemes,
   plotly,
+  sf,
+  terra,
+  tidyterra,
+  rnaturalearth,
+  rnaturalearthdata
+  # knitr,
+  # sp,
+  # rgdal,
   # repmis,
   # ggalt,
   # googleVis,
@@ -52,36 +57,47 @@ librarian::shelf(
 ### 1. check the code chunk below and change variables if needed
 ### 2. go through document and update text where::here needed.
 
-### the date in the below variable must be updated (for the results to reflect the new data)
-dateFile = Sys.Date() # date extension on data files used for all tables/figures
-benchmark_date <- "2021-11-17" # Date from 2021
-
 ### General settings to control
 scenario <- 2022 # identify scenario of focus (this can be changed to obtain data for other years)
-benchmark = 2021 # previous year that is used for old vs. new OHI analyses
+benchmark <- 2021 # previous year that is used for old vs. new OHI analyses
 globalYear <- paste0('global', scenario) # location where::here files that are created are to be saved
-oldCommit = 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 2021 assessment
+oldCommit <- 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 2021 assessment
 ### 'ebf181718474e6f8305e3b26172fe30bfea2396d' # sha final commit for 2020 assessment
-
-### Directories
-dir_scen_year <- here::here('yearly_results', globalYear)
-dir_results_data <- here::here(dir_scen_year, "Results", "data")
-dir_results_figures <- here::here(dir_scen_year, "Results", "figures")
-dir_results_functions <- here::here(dir_scen_year, 'Results', 'functions')
-dir_goal_maps <- here::here(dir_results_figures, 'maps_by_goal_mol')
-dir_goal_histograms <- here::here(dir_results_figures, "goal_histograms")
-
-### Filenames
-scores_filename <- here::here(dir_scen_year, paste0("scores_",dateFile,".csv" ))
-final_filename <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_",dateFile,".csv"))
-current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_",scenario,".csv"))
 
 ### code to run code chunks
 ### (change these if data is updated, otherwise takes a while to run):
-update_data  = FALSE # select true if there are updates to the OHI data!! Also be sure to change dateFile above
-map_create   = FALSE # Updates the map figures (takes a while to run)
-goal_hists   = FALSE # Updates the goal histograms
-flower_plots = FALSE # Updates the flower plot figures
+update_data  <- FALSE # select true if there are updates to the OHI data!! Also be sure to change dateFile above
+map_create   <- FALSE # Updates the map figures (takes a while to run)
+goal_hists   <- FALSE # Updates the goal histograms
+flower_plots <- FALSE # Updates the flower plot figures
+
+### the date in the below variable must be updated (for the results to reflect the new data)
+# dateFile <- Sys.Date() # date extension on data files used for all tables/figures
+dateFile <- "2022-08-29" # date extension on data files used for all tables/figures
+benchmark_date <- "2021-11-17" # Date from last assesment
+```
+
+```{r parameters, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+### Directories
+dir_scen_year         <- here::here('yearly_results', globalYear)
+dir_results_data      <- here::here(dir_scen_year, "Results", "data")
+dir_results_figures   <- here::here(dir_scen_year, "Results", "figures")
+dir_results_functions <- here::here(dir_scen_year, 'Results', 'functions')
+dir_goal_maps         <- here::here(dir_results_figures, 'maps_by_goal_mol')
+dir_goal_histograms   <- here::here(dir_results_figures, "goal_histograms")
+
+### score filenames
+scores_filename   <- here::here(dir_scen_year, paste0("scores_",dateFile,".csv" ))
+final_filename    <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_",dateFile,".csv"))
+current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_",scenario,".csv"))
+
+### map filenames
+region_file <- here::here('eez', 'spatial', 'downres', 'regions_mol_simple.GeoJSON')
+ocean_file  <- here::here('eez', 'spatial', 'downres', 'ocean_mol_simple.GeoJSON')
+land_file   <- here::here('eez', 'spatial', 'downres', 'land_mol_simple.GeoJSON')
+
+### map projection
+mollweide    <- 'ESRI:54009'
 
 # nice labels for things
 goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 
@@ -102,8 +118,8 @@ long_goals <- c(
   "Natural products", "Tourism & recreation")
 
 goal_names <- data.frame(
-  goal=goals,
-  long_goal=long_goals
+  goal      = goals,
+  long_goal = long_goals
 )
 
 ### General files to load
@@ -126,6 +142,7 @@ if (file.exists(color_file)) {
 }
 ### Define standard color palette for histograms
 col.brks <- seq(0,100, by = 1)
+map.col.brks <- seq(0, 100, length.out = 6)
 col.assign <- cut(col.brks, breaks = col.brks, include.lowest = TRUE) %>% unique()
 colors_df <- tibble(colors_plot = colors, col.assign = as.character(col.assign))
 ```
@@ -265,85 +282,143 @@ here::here(dir_results_figures, "FlowerPlots", "flower_GlobalAverage.png") %>%
 
 ## Country summary
 
-```{r Maps, eval=map_create, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
-## Making the maps of goal scores that will be reported, these figures are not reported here, but will be called in 
-## different parts of the text.
-## This set of function can be updated and simplified to use geom_sf which was not an option when first written
-## Reccomended use of terra::vect() and the tidyterra package to plot
-source(here::here(dir_results_functions, "map_fxns.R"))
+```{r Maps_v2022, eval=map_create, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+### This used to be a long and difficult to follow function from the times before
+### geom_sf or tidyterra. This section was updated in v2022 with the goal of 
+### simplifying the process and making it easier to follow and edit in the future 
+### but it could be made into a function and placed in the functions folder again
+### This would help for the no legend vs legend versions.
+### I would also suggest parallelizing the first for loop and do all years at once
 
-### set desired map projection
-prj <- 'mol'    ### note: 'gcs' is way faster.
+### This is how the 'simple' geojson files were made, and can be uncommented to run
+### again hopefully without modification if needed.
+# terra::rast("/home/shares/ohi/git-annex/globalprep/spatial/v2017/ocean.tif") %>%
+#   terra::aggregate(fact = 10) %>%
+#   terra::as.polygons() %>%
+#   terra::writeVector(ocean_file, filetype = "GeoJSON", overwrite = TRUE)
+# 
+# terra::vect("/home/shares/ohi/git-annex/globalprep/spatial/v2017") %>%
+#   dplyr::filter(rgn_type =="eez", !rgn_name %in% c("Antarctica", "DISPUTED")) %>%
+#   terra::simplifyGeom(tolerance = 5000) %>%
+#   terra::writeVector(region_file, filetype = "GeoJSON", overwrite = TRUE)
+# 
+# rnaturalearth::ne_countries(scale = "medium", returnclass = "sf") %>%
+#   sf::st_transform(crs = 'ESRI:54009') %>%
+#   terra::vect() %>%
+#   terra::simplifyGeom(tolerance = 5000) %>%
+#   terra::writeVector(land_file, filetype = "GeoJSON", overwrite = TRUE)
 
-for(year in 2012:scenario){ 
-  # year=2019
-  year_year <- paste0("year_", year)
+land <- terra::vect(land_file, crs = mollweide)
   
-  # create a directory in maps_by_goal_mol for each year except current scenario year
-  if(year != scenario){
-    if(sum(grepl(year_year, list.files(here::here(dir_goal_maps)))) == 0){
-      dir.create(here::here(dir_goal_maps, year_year))
-    }
-  }
+ocean <- terra::vect(ocean_file, crs = mollweide)
+
+ohi_regions <- terra::vect(region_file, crs = mollweide) 
+
+for (year in 2012:scenario) { # year = 2022
   
-  scores_df <- read.csv(here::here(dir_results_data, paste0('scores_eez_',year,'.csv')) ) %>%
-    dplyr::rename(rgn_name = region_name, rgn_id = region_id) %>%
-    dplyr::mutate(rgn_id = as.character(rgn_id))
+  cat("Year: ", year, "\n")
   
-  ### load region data frame, so doesn't need to reload every time through the loop.  Also
-  ### load the land data frame, if plotting in Mollweide projection.
-  rgn_df <- get_rgn_df(prj = prj) 
-  if(prj == 'mol' & !exists('land_poly')) {
-    land_poly  <- get_land_df()
-    ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
-  }
+  year_year <- paste0('year_', year)
   
-  ### establish list of fields (goal and subgoal names) for mapping
-  mapFlds   <- names(scores_df %>% dplyr::select(-rgn_name, -rgn_id))
+  dir_year <- here::here(dir_goal_maps, year_year)
   
-  ### Loop over each field, plotting each map in turn and saving to file.
-  for (fld in mapFlds) { # fld <- mapFlds[1]
+  if(!dir.exists(dir_year) & year != scenario){dir.create(dir_year)}
+  
+  scores_file <- here::here(dir_results_data, paste0('scores_eez_',year,'.csv')) %>% 
+    readr::read_csv() %>% 
+    dplyr::rename(rgn_id = region_id) 
+  
+  scores_shape <- ohi_regions %>% 
+    terra::merge(scores_file)
+  
+  for (i in seq_along(goals)) { # i = 1
     
-    if(year == scenario){
-      fig_save = here::here(dir_goal_maps, sprintf('global_map_%s_%s_%s.png', fld, year, prj))
-    } else{ 
-      fig_save = here::here(dir_goal_maps, year_year, sprintf('global_map_%s_%s_%s.png', fld, year, prj))
+    cat(paste0("    Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
+    
+    scores <- scores_shape %>% 
+      dplyr::select(goals[i])
+    
+    p1 <- ggplot() +
+      tidyterra::geom_spatvector(data = ocean, color = NA, fill = 'grey97') +
+      tidyterra::geom_spatvector(data = scores, color = 'gray80', size = .1, 
+                                 aes(fill = !!sym(goals[i]))) +
+      tidyterra::geom_spatvector(data = land, fill = "grey80", color = "gray85", size = .25) +
+      scale_fill_gradientn(colours = colors, space = 'Lab', na.value = 'gray80',
+                           breaks = map.col.brks, labels = map.col.brks, limits = c(0, 100)) +
+      labs(title = goal_names$long_goal[i], fill = NULL) +
+      theme_classic() +
+      theme(axis.ticks = element_blank(), 
+            axis.text = element_blank(),
+            text = element_text(family = 'Helvetica', color = 'gray30', size = 12),
+            panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+            plot.title = element_text(size = rel(1.5), hjust = 0, face = 'bold'),
+            plot.background = element_rect(fill = 'white', color = NA),
+            panel.background = element_rect(fill = 'white', color = NA),
+            legend.position = 'right')
+    
+    fn <- paste0('global_map_',goals[i],'_',year,'_mol.png')
+    
+    if (year == scenario){
+      filename <- here::here(dir_goal_maps,fn)
+    } else {
+      filename <- here::here(dir_year, fn)
     }
     
-    ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, 
-                                prj = prj, 
-                                fig_save = fig_save, 
-                                colors_spec = colors, 
-                                leg_on = TRUE)
+    ggsave(filename = filename, plot = p1, width = 10, height = 6)
   }
 }
+```
 
-## save a version of latest scenario year maps without legend
-scores_df <- current_scores_fn %>% 
-  readr::read_csv() %>%
-  dplyr::rename(rgn_name = region_name, rgn_id = region_id) %>%
-  dplyr::mutate(rgn_id = as.character(rgn_id))
+```{r Maps_no_leg, eval=map_create, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+### save a version of latest scenario year maps without legend
+### This is where a function could help (see above comment)
+year = scenario
 
-dir.create(here::here(dir_goal_maps, paste0('year_', scenario,'_nolegend')))
+cat("Year: ", year, "\n")
 
-### load region data frame, so doesn't need to reload every time through the loop.  Also
-### load the land data frame, if plotting in Mollweide projection.
-rgn_df <- get_rgn_df(prj = prj)
-if(prj == 'mol' & !exists('land_poly')) {
-  land_poly  <- get_land_df()
-  ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
-}
+year_year <- paste0('year_', year, '_nolegend')
 
-### establish list of fields for mapping
-mapFlds   <- names(scores_df %>% dplyr::select(-rgn_name, -rgn_id))
+dir_year <- here::here(dir_goal_maps, year_year)
 
-### Loop over each field, plotting each map in turn and saving to file.
-for (fld in mapFlds) { # fld <- mapFlds[1]
+if(!dir.exists(dir_year) & year != scenario){dir.create(dir_year)}
+
+scores_file <- here::here(dir_results_data, paste0('scores_eez_',year,'.csv')) %>% 
+  readr::read_csv() %>% 
+  dplyr::rename(rgn_id = region_id) 
+
+scores_shape <- ohi_regions %>% 
+  terra::merge(scores_file)
+
+for (i in seq_along(goals)) { # i = 1
   
-  fig_save = here::here(dir_goal_maps, sprintf('%s_nolegend/global_map_%s_%s_%s.png', year_year, fld, scenario, prj))
+  cat(paste0("    Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
   
-  ohiplot <- plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
-                              colors_spec = colors, leg_on = FALSE)
+  scores <- scores_shape %>% 
+    dplyr::select(goals[i])
+  
+  p1 <- ggplot() +
+    tidyterra::geom_spatvector(data = ocean, color = NA, fill = 'grey97') +
+    tidyterra::geom_spatvector(data = scores, color = 'gray80', size = .1, 
+                               aes(fill = !!sym(goals[i]))) +
+    tidyterra::geom_spatvector(data = land, fill = "grey80", color = "gray85", size = .25) +
+    scale_fill_gradientn(colours = colors, space = 'Lab', na.value = 'gray80',
+                         breaks = map.col.brks, labels = map.col.brks, limits = c(0, 100)) +
+    labs(title = goal_names$long_goal[i], fill = NULL) +
+    theme_classic() +
+    theme(axis.ticks = element_blank(), 
+          axis.text = element_blank(),
+          text = element_text(family = 'Helvetica', color = 'gray30', size = 12),
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
+          plot.title = element_text(size = rel(1.5), hjust = 0, face = 'bold'),
+          plot.background = element_rect(fill = 'white', color = NA),
+          panel.background = element_rect(fill = 'white', color = NA),
+          legend.position = 'none')
+  
+  fn <- paste0('global_map_',goals[i],'_',year,'_mol.png')
+  
+  filename <- here::here(dir_year, fn)
+  
+  ggsave(filename = filename, plot = p1, width = 10, height = 6)
 }
 ```
 
@@ -423,7 +498,6 @@ data <- data %>%
   dplyr::ungroup() %>%
   data.frame()
 
-
 global <- data %>%
   dplyr::select(region_name, meanIndex) %>%
   dplyr::filter(region_name == "Global average") %>%
@@ -440,14 +514,10 @@ order_rgn <- rbind(order_rgn, global)
 data$goal <- factor(data$goal, levels = goals)
 data$region_name <- factor(data$region_name, levels=order_rgn$region_name)
 
-reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
-blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
-myPalette <-   c(reds, blues)
-
 ggplot(data, aes(y=region_name, x=scenario, fill=value)) + 
   geom_tile() +
   facet_grid(~goal) + 
-  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  scale_fill_gradientn(colours=colors, na.value="black") +
   theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
   ylab("") + 
   xlab("")
@@ -483,19 +553,33 @@ cols <- data.frame(country = data_final$region_name)
 for(goal in goals){ #goal="Index"
   tmp <- data_final[, goal]
   tmp <- dplyr::pull(tmp[,1])
-  tmp <- assign(goal, cut(tmp, breaks=c(0,10,20,30,40,50,60,70,80,90,100), include.lowest = TRUE, labels=pal))
+  tmp <- assign(
+    goal, 
+    cut(
+      tmp, 
+      breaks = c(0,10,20,30,40,50,60,70,80,90,100), 
+      include.lowest = TRUE, 
+      labels = pal))
   tmp <- data.frame(goal=tmp)
   names(tmp) <- goal
   cols <- cbind(cols, tmp)
 }
 
-hwrite(data_final, here::here(dir_results_data, paste0('scores_eez_',scenario,'.html')), 
-       br = TRUE, center = TRUE, border = 0, 
-       row.style = list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
-       col.bgcolor = list(scenario='#fff',dimension='#fff',country='#fff', region_id='#fff', Index = cols$Index, 
-                        AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
-                        ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
-                        SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
+hwrite(
+  data_final, 
+  here::here(dir_results_data, paste0('scores_eez_',scenario,'.html')), 
+  br = TRUE, center = TRUE, border = 0, 
+  row.style = list(goal='text-align:center'), 
+  table.style ='padding: 10px; margin:20px;', 
+  col.bgcolor = list(
+    scenario = '#fff', dimension = '#fff', country = '#fff', region_id = '#fff', 
+    Index = cols$Index, AO = cols$AO, SPP = cols$SPP, BD = cols$BD, 
+    HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
+    ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, FIS = cols$FIS, 
+    FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, SP = cols$SP, 
+    LSP = cols$LSP, NP = cols$NP, TR = cols$TR
+  )
+)
 
 ```
 
@@ -558,15 +642,21 @@ for(goal in goals){ #goal="CW"
   cols <- cbind(cols, tmp)
 }
 
-hwrite(trends_wide, here::here(dir_results_data, paste0("trends_",scenario,'.html')), 
-       br=TRUE, center=TRUE, border=0, 
-       row.style=list(goal='text-align:center'), table.style='padding: 10px; margin:20px;', 
-       col.bgcolor=list(country='#fff', region_id='#fff', Index = cols$Index, 
-                        AO = cols$AO, SPP = cols$SPP, BD = cols$BD, HAB = cols$HAB, CP = cols$CP,
-                        CS = cols$CS, CW = cols$CW, ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, 
-                        FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
-                        SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR))
-
+hwrite(
+  trends_wide, 
+  here::here(dir_results_data, paste0("trends_",scenario,'.html')), 
+  br = TRUE, center = TRUE, border = 0, 
+  row.style = list(goal='text-align:center'), 
+  table.style = 'padding: 10px; margin:20px;', 
+  col.bgcolor = list(
+    country = '#fff', region_id = '#fff', 
+    Index = cols$Index, AO = cols$AO, SPP = cols$SPP, BD = cols$BD,
+    HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
+    ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, 
+    FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
+    SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR
+  )
+)
 ```
 
 Trend values are slope estimates from a linear model of scores for each region/goal over the past 9 years. Positive values indicate increasing scores during the past 9 years and negative values indicate decreasing scores.
@@ -581,7 +671,6 @@ NOTE: Currently, these data include the livelihoods and economies goal but these
 The following table provides the global scores (eez area weighted average of region scores) for the Index and goals/subgoals for all years.
 
 ```{r overview, echo=FALSE, message=FALSE}
-
 data <- readr::read_csv(final_filename) 
 
 data_filter <- data %>%
@@ -596,7 +685,8 @@ data_index <- data_filter %>%
 
 data_index$goal <- factor(data_index$goal, levels = goals)
 
-data_spread <- spread(data_index, scenario, value) %>%
+data_wide <- data_index %>% 
+  tidyr::pivot_wider(names_from = scenario, values_from = value) %>% 
   dplyr::arrange(goal) %>%
   dplyr::filter(!goal %in% c("ECO", "LE", "LIV")) %>%
   dplyr::select(-goal) %>%
@@ -606,44 +696,43 @@ data_spread <- spread(data_index, scenario, value) %>%
 Table View
 
 ```{r overview-table, echo=FALSE}
-knitr::kable(data_spread)
+knitr::kable(data_wide)
 ```
 
 The following is a very preliminary analysis of how the global scores changed over time.  Global index scores decreased by an average `r index$Index` points per year, with `r sum(trends_wide$Index<0)` regions having decreasing trends and `r sum(trends_wide$Index>0)` having increasing trends. 
 
 ```{r Global goal trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 ### analysis:
-data_lm <- data_index %>%
+scenario_model <- function(df) {
+  lm(value ~ scenario, data = df) %>%
+    broom::tidy()
+}
+results_lm <- data_index %>%
   dplyr::group_by(goal) %>%
-  do(mdl = lm(value ~ scenario, data = .)) %>%
-  dplyr::mutate(p_value = summary(mdl)$coefficients[[8]])
-
-#data.frame(glance(data_lm, mdl))
-
-coef_df <- as.data.frame(plyr::ldply(data_lm$mdl, coef))
-
-results_lm <- cbind(data_lm, coef_df) %>%
+  tidyr::nest() %>%
+  dplyr::mutate(model = purrr::map(data, scenario_model)) %>%
+  tidyr::unnest(cols = c(model)) %>%
+  dplyr::filter(term == "scenario") %>%
+  dplyr::select(goal, average_change_per_year = estimate, p_value = p.value) %>%
   dplyr::ungroup() %>%
-  dplyr::select(goal, average_change_per_year = scenario, p_value) %>%
-  dplyr::arrange(average_change_per_year) %>%
-  dplyr::mutate(average_change_per_year = round(average_change_per_year, 2)) %>%
-  dplyr::mutate(p_value = round(p_value, 4)) %>%
-  data.frame()
+  dplyr::mutate(average_change_per_year = round(average_change_per_year, 2),
+                p_value = round(p_value, 4)) 
 
-# calculate how many regions with increases vs. decreasing scores
-
-region_summary <- dplyr::filter(region_trends, region_id != 0) %>%
+### calculate how many regions with increases vs. decreasing scores
+region_summary <- region_trends %>% 
+  dplyr::filter(region_id != 0) %>%
   dplyr::group_by(goal) %>%
-  dplyr::summarize(num_rgns_pos_trend = sum(trend > 0),
-            num_rgns_neg_trend = sum(trend < 0),
-            mean_trend = round(mean(trend, na.rm=TRUE), 2),
-            sd_trend = round(sd(trend, na.rm=TRUE), 2))
+  dplyr::summarize(
+    num_rgns_pos_trend = sum(trend > 0),
+    num_rgns_neg_trend = sum(trend < 0),
+    mean_trend = mean(trend, na.rm = TRUE) %>% round(2),
+    sd_trend = sd(trend, na.rm = TRUE) %>% round(2))
 
 trend_summary <- region_summary %>%
   dplyr::left_join(results_lm, by = "goal") %>%
   dplyr::left_join(goal_names) %>%
   dplyr::select(long_goal, average_change_per_year,	p_value,
-         num_rgns_pos_trend, num_rgns_neg_trend, mean_trend, sd_trend) %>%
+                num_rgns_pos_trend, num_rgns_neg_trend, mean_trend, sd_trend) %>%
   dplyr::arrange(average_change_per_year)
 
 knitr::kable(trend_summary)
@@ -652,6 +741,7 @@ knitr::kable(trend_summary)
 ## Country summary
 
 ```{r trend maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
+### This could be cleaned up just  like the maps above...
 source(here::here(dir_results_functions, 'map_fxns_trend.R'))
 
 ### set scenario and desired map projection
@@ -692,13 +782,13 @@ for (fld in mapFlds) { # fld <- mapFlds[1]
 The global average decreased by an average of `r index$Index` points per year, but there was a good deal of variation in trend among regions and goals.  
 
 ```{r index_trend, echo=FALSE, fig.height=30, fig.width=10}
-knitr::include_graphics(here::here(sprintf("yearly_results/%s/Results/figures/map_trends/trends_map_Index_mol.png", globalYear)))
+here::here(dir_results_figures, "map_trends", "trends_map_Index_mol.png") %>% 
+  knitr::include_graphics()
 ```
 
 The following histogram describes the distribution of trend (e.g., change in score per year) in index scores:
 
 ```{r trend histogram, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-
 trends_hist <- region_trends %>%
   dplyr::filter(goal == "Index") %>%
   dplyr::filter(region_id != 0) %>%
@@ -927,7 +1017,7 @@ data_compare <- data_compare %>%
 data_compare_summary <- data_compare %>%
   dplyr::group_by(long_goal, dimension) %>%
   dplyr::summarize(mean_change = mean(change, na.rm=TRUE)) %>%
-  spread(dimension, mean_change)
+  tidyr::pivot_wider(names_from = dimension, values_from = mean_change)
 
 knitr::kable(data_compare_summary)
 
