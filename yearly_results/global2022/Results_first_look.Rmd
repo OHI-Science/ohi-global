@@ -23,6 +23,7 @@ This document describes results from the 2022 global OHI assessment. This is mos
 # Setup
 
 ```{r set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+### Setup the R environment
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ### load libraries
 if (!require(librarian)){install.packages('librarian')}
@@ -54,27 +55,29 @@ librarian::shelf(
 ```
 
 ```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+### This chunk is where things need to be changed each year
+
 ### 1. check the code chunk below and change variables if needed
-### 2. go through document and update text where::here needed.
+### 2. go through document and update text where needed.
 
 ### General settings to control
-scenario <- 2022 # identify scenario of focus (this can be changed to obtain data for other years)
-benchmark <- 2021 # previous year that is used for old vs. new OHI analyses
-globalYear <- paste0('global', scenario) # location where::here files that are created are to be saved
-oldCommit <- 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 2021 assessment
+scenario   <- 2022 # identify scenario of focus (this can be changed to obtain data for other years)
+benchmark  <- 2021 # previous year that is used for old vs. new OHI analyses
+globalYear <- paste0('global', scenario) # location where files that are created are to be saved
+oldCommit  <- 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 2021 assessment
 ### 'ebf181718474e6f8305e3b26172fe30bfea2396d' # sha final commit for 2020 assessment
 
 ### code to run code chunks
 ### (change these if data is updated, otherwise takes a while to run):
-update_data  <- FALSE # select true if there are updates to the OHI data!! Also be sure to change dateFile above
+update_data  <- FALSE # select true if there are updates to the OHI data!! Also be sure to change dateFile below
 map_create   <- FALSE # Updates the map figures (takes a while to run)
 goal_hists   <- FALSE # Updates the goal histograms
 flower_plots <- FALSE # Updates the flower plot figures
 
 ### the date in the below variable must be updated (for the results to reflect the new data)
-# dateFile <- Sys.Date() # date extension on data files used for all tables/figures
-dateFile <- "2022-08-29" # date extension on data files used for all tables/figures
-benchmark_date <- "2021-11-17" # Date from last assesment
+# dateFile       <- Sys.Date()   # date extension on data files used for all tables/figures
+dateFile       <- "2022-08-29" # date extension on data files used for all tables/figures
+benchmark_date <- "2021-11-17" # Date from last assessment
 ```
 
 ```{r parameters, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
@@ -97,13 +100,14 @@ ocean_file  <- here::here('eez', 'spatial', 'downres', 'ocean_mol_simple.GeoJSON
 land_file   <- here::here('eez', 'spatial', 'downres', 'land_mol_simple.GeoJSON')
 
 ### map projection
-mollweide    <- 'ESRI:54009'
+mollweide <- 'ESRI:54009'
 
 # nice labels for things
-goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 
-           'CP', 'CS', 'CW', 'ECO', 'LE',
-           'LIV', 'FIS', 'FP', 'MAR', 'ICO', 
-           'SP', 'LSP', 'NP', 'TR')
+goals <- c(
+  'Index', 'AO', 'SPP', 'BD', 'HAB', 
+  'CP', 'CS', 'CW', 'ECO', 'LE',
+  'LIV', 'FIS', 'FP', 'MAR', 'ICO', 
+  'SP', 'LSP', 'NP', 'TR')
 
 long_goals <- c(
   "Index", "Artisanal opportunities",
@@ -128,23 +132,23 @@ rgn_names <- here::here('eez', 'layers', 'rgn_global.csv') %>%
   dplyr::select(region_id = rgn_id, country = label) %>%
   dplyr::mutate(country = as.character(country))
 
-### Changes in R can cause colors to change from colorRampPallette space - "Lab"
-### ideally we use the same color palatte 
+### Changes in R can cause colors to change from colorRampPallette `space = "Lab"`
+### ideally we use the same color palatte each year 
 color_file <- here::here(dir_results_functions, "color_palette.csv")
 if (file.exists(color_file)) {
   colors <- readr::read_csv(color_file, col_types = cols())$colors
 } else {
-  reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
-  blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"), space="Lab")(35)
-  colors <-   c(reds, blues)
-  tmp <- data.frame(colors = colors)
+  reds   <- colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space = "Lab")(65)
+  blues  <- colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"), space = "Lab")(35)
+  colors <- c(reds, blues)
+  tmp    <- data.frame(colors = colors)
   readr::write_csv(data.frame(tmp), color_file)
 }
 ### Define standard color palette for histograms
-col.brks <- seq(0,100, by = 1)
+col.brks     <- seq(0,100, by = 1)
 map.col.brks <- seq(0, 100, length.out = 6)
-col.assign <- cut(col.brks, breaks = col.brks, include.lowest = TRUE) %>% unique()
-colors_df <- tibble(colors_plot = colors, col.assign = as.character(col.assign))
+col.assign   <- cut(col.brks, breaks = col.brks, include.lowest = TRUE) %>% unique()
+colors_df    <- tibble(colors_plot = colors, col.assign = as.character(col.assign))
 ```
 
 # Primary dataset
@@ -157,7 +161,8 @@ ohi_final <- here::here("eez", "scores.csv") %>%
 
 # if data are updated, this saves a modified version that is easier to read
 # User friendly version of data: region names are also added to data and full goal names.
-ohi_final_formatted <- readr::read_csv(scores_filename) %>%
+ohi_final_formatted <- scores_filename %>% 
+  readr::read_csv() %>%
   dplyr::left_join(rgn_names, by = "region_id") %>%
   dplyr::mutate(country = ifelse(region_id == 0, "Global average", country)) %>%
   dplyr::left_join(goal_names, by = "goal") %>%
@@ -165,7 +170,8 @@ ohi_final_formatted <- readr::read_csv(scores_filename) %>%
   readr::write_csv(final_filename)
 
 ## create a version of data with region index scores wide
-ohi_final <- readr::read_csv(final_filename) %>%
+ohi_final <- final_filename %>% 
+  readr::read_csv() %>%
   dplyr::filter(dimension == "score") %>%
   dplyr::filter(goal == "Index") 
 
@@ -287,11 +293,13 @@ here::here(dir_results_figures, "FlowerPlots", "flower_GlobalAverage.png") %>%
 ### geom_sf or tidyterra. This section was updated in v2022 with the goal of 
 ### simplifying the process and making it easier to follow and edit in the future 
 ### but it could be made into a function and placed in the functions folder again
-### This would help for the no legend vs legend versions.
+### This would help for the no legend vs legend versions. Ideally it could be made 
+### compatible with the map trend plots below
 ### I would also suggest parallelizing the first for loop and do all years at once
 
 ### This is how the 'simple' geojson files were made, and can be uncommented to run
 ### again hopefully without modification if needed.
+
 # terra::rast("/home/shares/ohi/git-annex/globalprep/spatial/v2017/ocean.tif") %>%
 #   terra::aggregate(fact = 10) %>%
 #   terra::as.polygons() %>%
