@@ -19,7 +19,7 @@ This script calculates the OHI scores and is used after every layer is updated i
 
 ## Updates from previous assessment
 
-v2022 - shiny new `.Rmd`
+v2022 - new `.Rmd`
 
 # Methods  
 
@@ -119,7 +119,13 @@ Be sure to push all ohiprep changes!!
 
 ### Step 6
 
-Update the newest layer's file location and file name in `metadata_documentation/layers_eez_base.csv`
+Update the newest layer's file location and file name in `metadata_documentation/layers_eez_base.csv` by running the function below and responding to the resulting prompts in the console  
+
+```{r}
+## run function and respond to prompts in console
+layers_eez_base_updater()
+```
+
 
 ### Step 7
 
@@ -267,7 +273,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "spp_eez_diversity", 
+  file_name = "fp_weighting", 
   
   commit = "previous", 
   scenario_year = current_year,
