@@ -244,7 +244,9 @@ st_layers <- filter(layers, layer %in% st$layer) %>%
   mutate(web_name = gsub(" ", "_", name)) %>%
   mutate(web_name = tolower(web_name)) %>%
   mutate(web_name = gsub("/", "", web_name)) %>%
-  mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
+  mutate(info = sprintf("%s (%s): %s", name, layer, description))
+#%>%
+ # mutate(info = sprintf("[%s](%s#%s) (%s): %s", name, layers_web, web_name, layer, description))
 
 cat(paste(st_layers$info, collapse="\n\n"))
 }
@@ -335,8 +337,8 @@ A brief overview of all the data layers used to calculate the global OHI.  The "
 options(dplyr.summarise.inform=F)
 ## Get list of layers, name, description:
 base <- read.csv(here("metadata_documentation/layers_eez_base.csv")) %>%
-  mutate(Name = paste0("[", name, "](", "http://ohi-science.org/ohi-global/layers#", layer, ")")) %>%
-  select(layer, Name, Description = description)
+  # mutate(Name = paste0("[", name, "](", "http://ohi-science.org/ohi-global/layers#", layer, ")")) %>%
+  select(layer, Name = name, Description = description)
 
 ## Get dimension/targets
 target <- read.csv(here("metadata_documentation/layers_eez_targets.csv"), stringsAsFactors = FALSE) %>%
