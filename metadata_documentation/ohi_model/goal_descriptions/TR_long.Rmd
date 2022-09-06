@@ -63,7 +63,7 @@ Pillar 17: **Travel and Tourism Demand Pressure and Impact**
   * Geographically dispersed tourism
   * Quality of town and city centre
     
-The sustainability factor, $S$, is the Travel and Tourism Sustainability Subindex score, which is the unweighted average of its three component pillars. Missing sustainability data were gapfilled using per capita GDP (World Bank data with gaps filled using CIA data) based on a linear regression model. For regions without per capita GDP data, remaining missing data were gapfilled using averages of [UN geopolitical regions](https://github.com/OHI-Science/ohiprep/blob/master/src/LookupTables/rgn_georegions_wide_2013b.csv), [@unitednationsstatistics2013] with sustainability data. 
+The sustainability factor, $S$, is the Travel and Tourism Sustainability Subindex score, which is the unweighted average of its three component pillars. Missing sustainability data were gapfilled using per capita GDP (World Bank data with gaps filled using CIA data) based on a linear regression model. For regions without per capita GDP data, remaining missing data were gapfilled using averages of [UN geopolitical regions](https://github.com/OHI-Science/ohiprep/blob/master/src/LookupTables/rgn_georegions_wide_2013b.csv), [@unitednations2013statistics] with sustainability data. 
 
 
 #### Trend

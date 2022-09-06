@@ -1,5 +1,5 @@
 ---
-title: 'Ocean Health Index 2021: Methods'
+title: 'Ocean Health Index 2022: Methods'
 csl: methods-in-ecology-and-evolution.csl
 output:
   html_document:
@@ -53,7 +53,7 @@ options(knitr.kable.NA = '')
 # exclude when knitting
 # setwd("documents/methods")
 
-assessmentYear <- 2021
+assessmentYear <- 2022
 
 # sections to run:
 ten_goals <- TRUE
