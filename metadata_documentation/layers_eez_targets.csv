@@ -389,3 +389,9 @@ liv_status,LIV,status
 liv_trend,LIV,trend
 eco_status,ECO,status
 eco_trend,ECO,trend
+hab_kelp_extent,CP,status
+hab_kelp_extent,CP,trend
+hab_kelp_health,CP,status
+hab_kelp_health,HAB,status
+hab_kelp_trend,CP,trend
+hab_kelp_trend,HAB,trend
