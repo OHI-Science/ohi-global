@@ -1,7 +1,7 @@
 layer,gf_file
 ao_access,ohiprep:globalprep/ao/v2022/output/sdg_14_b_1_ao_gf.csv
 ao_sust,ohiprep:globalprep/ao/v2021/output/AO_bbmsy_summary_gf.csv
-ao_need,ohiprep:globalprep/ao/v2021/output/wb_gdppcppp_rescaled_gf.csv
+ao_need,ohiprep:globalprep/ao/v2022/output/wb_gdppcppp_rescaled_gf.csv
 cc_acid,ohiprep:globalprep/prs_oa/v2015/output/acid_eez_2014_gf.csv
 cc_slr,ohiprep:globalprep/prs_slr/v2022/output/slr_gf.csv
 cc_sst,ohiprep:globalprep/prs_sst/v2022/output/sst_eez_2017_gf.csv
@@ -24,10 +24,10 @@ fp_com_lb,ohiprep:globalprep/prs_fish/v2020/output/comm_lb_gf.csv
 fp_fish_management,ohiprep:globalprep/res_fisheries_governance/v2022/output/fisheries_governance_res_gf.csv
 fp_habitat,ohiprep:globalprep/res_cbd_habitat/v2014/data/r_habitat_2013a_gf.csv
 fp_artisanal,ohiprep:globalprep/ao/v2022/output/sdg_14_b_1_ao_gf.csv
-fp_mpa_coast,ohiprep:globalprep/lsp/v2021/output/mpa_3nm_resilience_gf.csv
-fp_mpa_eez,ohiprep:globalprep/lsp/v2021/output/mpa_eez_resilience_gf.csv
+fp_mpa_coast,ohiprep:globalprep/lsp/v2022/output/mpa_3nm_resilience_gf.csv
+fp_mpa_eez,ohiprep:globalprep/lsp/v2022/output/mpa_eez_resilience_gf.csv
 fp_targetharvest,ohiprep:globalprep/prs_targetedharvest/v2022/output/fao_targeted_gf.csv
-fp_wildcaught_weight,ohiprep:globalprep/fp/v2021/output/wildcaught_weight_gf.csv
+fp_wildcaught_weight,ohiprep:globalprep/fp/v2022/output/wildcaught_weight_gf.csv
 g_cites,ohiprep:globalprep/res_cites_signatories/v2017/output/cites_gf.csv
 g_tourism,ohiprep:globalprep/res_cbd_habitat/v2014/data/r_tourism_2013a_gf.csv
 hab_coral_extent,ohiprep:globalprep/hab_coral/v2021/data/extent_coral_gf.csv
@@ -53,11 +53,11 @@ hab_tidal_flat_health,NA
 hab_tidal_flat_trend,NA
 hd_habitat,ohiprep:globalprep/res_cbd_habitat/v2014/data/r_habitat_2013a_gf.csv
 hd_intertidal,ohiprep:globalprep/mar_prs_population/v2021/output/prs_pop_density_gf.csv
-hd_mpa_coast,ohiprep:globalprep/lsp/v2021/output/mpa_3nm_resilience_gf.csv
-hd_mpa_eez,ohiprep:globalprep/lsp/v2021/output/mpa_eez_resilience_gf.csv
+hd_mpa_coast,ohiprep:globalprep/lsp/v2022/output/mpa_3nm_resilience_gf.csv
+hd_mpa_eez,ohiprep:globalprep/lsp/v2022/output/mpa_eez_resilience_gf.csv
 hd_subtidal_hb,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data/gl_thr_blast_3nm_rgn2013_gf.csv
 hd_subtidal_sb,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2022/output/hd_sb_subtidal_gf.csv
-hd_coral,ohiprep:globalprep/prs_coral_harvest/v2021/output/prs_coral_gf.csv
+hd_coral,ohiprep:globalprep/prs_coral_harvest/v2022/output/prs_coral_gf.csv
 ico_spp_iucn_status,ohi-global:eez/temp/ICO_status_trend_gf.csv
 le_sector_weight,NA
 li_gci,ohiprep:globalprep/res_gci/v2018/output/gci_gf.csv

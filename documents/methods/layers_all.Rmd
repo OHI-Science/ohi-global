@@ -676,6 +676,25 @@
  proportion
 
  
+## Habitat condition of tidal flat 
+#### [hab_tidal_flat_health](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_tidal_flat_health.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_tidal_flat_health.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ proportion
+
+ 
 ## Habitat condition trend of coral 
 #### [hab_coral_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_coral_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -961,6 +980,25 @@
  km2
 
  
+## Habitat extent of tidal flat 
+#### [hab_tidal_flat_extent](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_tidal_flat_extent.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_tidal_flat_extent.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ km2
+
+ 
 ## Habitat presence/absence 
 #### [element_wts_hab_pres_abs](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_hab_pres_abs.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -978,6 +1016,25 @@
  
 #### Units {-} 
  0 or 1
+
+ 
+## Habitat trend of tidal flat 
+#### [hab_tidal_flat_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hab_tidal_flat_trend.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hab_tidal_flat_trend.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ trend
 
  
 ## High bycatch due to artisanal fishing 
@@ -1170,7 +1227,7 @@
  scaled 0-1
 
  
-## Management of habitat to protect fisheries biodiversity  
+## Management of habitat to protect fisheries biodiversity 
 #### [fp_habitat](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_habitat.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
