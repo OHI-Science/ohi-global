@@ -1,164 +1,158 @@
 ### map_fxns.R 
-### Aug 26, 2015: Casey O'Hara
-require('rgdal')
-require('maptools')
-require('RColorBrewer')
-require('ggplot2')
-require('stringr')
-
-get_rgn_df <- function(dsn = here::here('eez', 'spatial', 'downres'),
-                       layer = NULL, prj = 'gcs') {
-  if(is.null(layer)) layer <- sprintf('rgn_eez_%s_low_res', prj)
-  rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE) #, p4s = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs')
-
-  ### The ID number for fortify(rgn_shp) is simply the row number within the @data.
-  ### So create a lookup table for row number (zero to N-1) to rgn_id.
-  rgn_lookup <- data.frame(id     = c(0:(nrow(rgn_shp@data) - 1)), 
-                           rgn_id = rgn_shp@data$rgn_id)
-  
-#   if (prj == 'mol') {
-#     cat('transforming spatial polygons data frame to Mollweide projection\n')
-#     rgn_shp <- spTransform(rgn_shp, CRS("+proj=moll +R=10567000 +lon_0=0 +x_0=0 +y_0=0 +units=m +towgs84=0,0,0,0,0,0,0 +no_defs"))
-#   }
-  
-  ### Fortify the rgn_eez from shapefile into dataframe.  Then attach the region
-  ### ID by the polygon ID (row number from @data)
-  rgn_df <- fortify(rgn_shp) %>%
-    mutate(id = as.integer(id)) %>%
-    left_join(rgn_lookup, by = 'id')
-  
-  return(rgn_df)
-}
+### Sept 2022: Cullen Molitor
 
 
-get_land_df <- function(dsn = here::here('eez', 'spatial', 'downres'),
-                        layer = 'rgn_land_mol_low_res') {
-### gets Mollweide land forms for plotting.
-  rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE)
-  
-  ### Fortify the rgn_eez from shapefile into dataframe.  Then attach the region
-  ### ID by the polygon ID (row number from @data)
-  rgn_df <- fortify(rgn_shp)
-  
-  return(rgn_df)
-}
+### load libraries
+if (!require(librarian)){install.packages('librarian')}
+librarian::shelf(
+  tidyverse,
+  here,
+  terra,
+  tidyterra
+)
 
-get_ocean_df <- function(dsn = here::here('eez', 'spatial', 'downres'),
-                         layer = 'rgn_all_mol_low_res') {
-  ### gets Mollweide ocean regions (all) for plotting.
-  rgn_shp <- readOGR(dsn = path.expand(dsn), layer, verbose = FALSE)
-  
-  ### Fortify the rgn_eez from shapefile into dataframe.  Then attach the region
-  ### ID by the polygon ID (row number from @data)
-  rgn_df <- fortify(rgn_shp)
-  
-  return(rgn_df)
-}
+land <- terra::vect(land_file, crs = mollweide)
 
+ocean <- terra::vect(ocean_file, crs = mollweide)
 
-expand_fld <- function(fld) {
-  switch(fld,  
-         'Index' = 'Index',
-         'FP'    = 'Food Provision',
-         'AO'    = 'Artisanal Fishing Opportunity',
-         'NP'    = 'Natural Products',
-         'CS'    = 'Carbon Storage',
-         'CP'    = 'Coastal Protection',
-         'TR'    = 'Tourism & Recreation',
-         'LE'    = 'Coastal Livelihoods & Economies',
-         'SP'    = 'Sense of Place',
-         'CW'    = 'Clean Water',
-         'BD'    = 'Biodiversity',
-         'ECO'   = 'Economies',
-         'LIV'   = 'Livelihoods',
-         'FIS'   = 'Fisheries',
-         'MAR'   = 'Mariculture',
-         'ICO'   = 'Iconic Species',
-         'LSP'   = 'Lasting Special Places',
-         'HAB'   = 'Habitats', 
-         'SPP'   = 'Species',
-         fld)
-}
+ohi_regions <- terra::vect(region_file, crs = mollweide) 
 
-
-plot_scores <- function(rgn_df, fld, fig_save = NULL, prj = 'gcs',
-                        title = NULL, leg_title = FALSE, leg_on = TRUE, colors_spec = brewer.pal(10, 'RdYlBu')) {
-  if(is.null(title)) {
-    fld_name <- expand_fld(fld)
-    title <- sprintf(fld_name)
-  }
-  
-  col.brks  <- seq(0, 100, length.out = 6)
-
-  df_plot <- ggplot(data = rgn_df, aes(x = long, y = lat, group = group, fill = val)) +  
-    theme(axis.ticks = element_blank(), axis.text = element_blank(),
+plot_theme <- function(legend) {
+  theme_classic() +
+    theme(axis.ticks = element_blank(), 
+          axis.text = element_blank(),
           text = element_text(family = 'Helvetica', color = 'gray30', size = 12),
+          panel.grid.major = element_blank(), panel.grid.minor = element_blank(), 
           plot.title = element_text(size = rel(1.5), hjust = 0, face = 'bold'),
-          legend.position = ifelse(leg_on, 'right', 'none')) + 
-    scale_fill_gradientn(colours = colors_spec, space = 'Lab', na.value = 'gray80',
-                         breaks = col.brks, labels = col.brks, limits = c(0, 100)) + 
-    labs(title = title, 
-         fill  = ifelse(leg_title & leg_on, fld, ''),
-         x = NULL, y = NULL) 
-  if(prj == 'mol'){
-  ### For Mollweide, 'border()' doesn't seem to work.  Load in land and ocean polygons to plot directly.
-    if(!exists('land_poly'))
-      land_poly <- get_land_df()
-    if(!exists('ocean_poly'))
-      ocean_poly <- get_ocean_df()
+          plot.background = element_rect(fill = 'white', color = NA),
+          panel.background = element_rect(fill = 'white', color = NA),
+          legend.position = legend)
+}
+
+plot_scores_map <- function(metric = "scores") {
+  
+  if (metric == "scores") {
     
-    df_plot <- df_plot +
-      theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank()) +
-      geom_polygon(data = ocean_poly, color = 'gray97', fill = 'gray97', size = 0.25) +
-      geom_polygon(color = 'gray80', size = 0.1) +
-      geom_polygon(data = land_poly, color = 'gray85', fill = 'gray80', size = 0.25)
-    ### df_plot order: oceans (light grey), then EEZ score polygons, then land polygons (dark grey).
-  } else {
-  ### For default projection, use standard grey background for oceans, and use borders() for land forms.
-    df_plot <- df_plot +   
-      geom_polygon(color = 'gray80', size = 0.1) +
-      borders('world', color = 'gray40', fill = 'gray45', size = .25) + # create a layer of borders
-      scale_x_continuous(breaks = seq(-180, 180, by = 30), expand = c(0, 2)) +
-      scale_y_continuous(breaks = seq( -90,  90, by = 30), expand = c(0, 2))
+    for (year in 2012:scenario) { # year = 2022
+      
+      cat("Year: ", year, "\n")
+      
+      year_year <- paste0('year_', year)
+      
+      dir_year <- here::here(dir_goal_maps, year_year)
+      
+      if(!dir.exists(dir_year) & year != scenario){dir.create(dir_year)}
+      
+      scores_file <- here::here(dir_results_data, paste0('scores_eez_',year,'.csv')) %>% 
+        readr::read_csv() %>% 
+        dplyr::rename(rgn_id = region_id) 
+      
+      scores_shape <- ohi_regions %>% 
+        terra::merge(scores_file)
+      
+      for (i in seq_along(goals)) { # i = 1
+        
+        cat(paste0("    Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
+        
+        scores <- scores_shape %>% 
+          dplyr::select(goals[i])
+        
+        p1 <- ggplot() +
+          tidyterra::geom_spatvector(data = ocean, color = NA, fill = 'grey97') +
+          tidyterra::geom_spatvector(data = scores, color = 'gray80', size = .1, 
+                                     aes(fill = !!sym(goals[i]))) +
+          tidyterra::geom_spatvector(data = land, fill = "grey80", color = "gray85", size = .25) +
+          scale_fill_gradientn(colours = colors, space = 'Lab', na.value = 'gray80',
+                               breaks = col.brks.maps, labels = col.brks.maps, limits = c(0, 100)) +
+          labs(title = goal_names$long_goal[i], fill = NULL) +
+          plot_theme(legend = "right")
+        
+        fn <- paste0('global_map_',goals[i],'_',year,'_mol.png')
+        
+        if (year == scenario){filename <- here::here(dir_goal_maps,fn)} 
+        else {filename <- here::here(dir_year, fn)}
+        
+        ggsave(filename = filename, plot = p1, width = 10, height = 6)
+      }
+     
+    } 
+    ### save a version of latest scenario year maps without legend
+    cat("Year: ", year, " (no legend)\n")
+    
+    year_year <- paste0('year_', year, '_nolegend')
+    
+    dir_year <- here::here(dir_goal_maps, year_year)
+    
+    if(!dir.exists(dir_year) & year != scenario){dir.create(dir_year)}
+    
+    for (i in seq_along(goals)) { # i = 1
+      
+      cat(paste0("    Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
+      
+      scores <- scores_shape %>% 
+        dplyr::select(goals[i])
+      
+      p1 <- ggplot() +
+        tidyterra::geom_spatvector(data = ocean, color = NA, fill = 'grey97') +
+        tidyterra::geom_spatvector(data = scores, color = 'gray80', size = .1, 
+                                   aes(fill = !!sym(goals[i]))) +
+        tidyterra::geom_spatvector(data = land, fill = "grey80", color = "gray85", size = .25) +
+        scale_fill_gradientn(colours = colors, space = 'Lab', na.value = 'gray80',
+                             breaks = col.brks.maps, labels = col.brks.maps, limits = c(0, 100)) +
+        labs(title = goal_names$long_goal[i], fill = NULL) +
+        plot_theme(legend = 'none')
+      
+      fn <- paste0('global_map_',goals[i],'_',year,'_mol.png')
+      
+      filename <- here::here(dir_year, fn)
+      
+      ggsave(filename = filename, plot = p1, width = 10, height = 6)
+    }
+    
+  } else {  #### Trend maps
+    
+    trends_df <- here::here(dir_results_data, paste0('trends_',scenario,'.csv')) %>% 
+      readr::read_csv() %>%
+      dplyr::rename(rgn_name = country, rgn_id = region_id) 
+    
+    trend_shape <- ohi_regions %>% 
+      terra::merge(trends_df)
+    
+    dir_trend <- here::here(dir_results_figures, "map_trends")
+    
+    if(!dir.exists(dir_trend)){dir.create(dir_trend)}
+    
+    for (i in seq_along(goals)) { # i = 1
+      
+      cat(paste0("Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
+      
+      trends <- trend_shape %>% 
+        dplyr::select(goals[i])
+      
+      trends$val2 <- cut(pull(trends), col.brks.trends, include.lowest = TRUE)
+      tmp <- rev(names(table(trends$val2)))
+      tmp_labels <- gsub("-100", "min", tmp)
+      tmp_labels <- gsub("100", " max", tmp_labels)
+      
+      p1 <- ggplot() +
+        tidyterra::geom_spatvector(data = ocean, color = NA, fill = 'grey97') +
+        tidyterra::geom_spatvector(data = trends, color = 'gray80', size = .1, 
+                                   aes(fill = val2)) +
+        tidyterra::geom_spatvector(data = land, fill = "grey80", color = "gray85", size = .25) +
+        scale_fill_manual(values = rev(colors_trend), na.value = 'gray80', breaks = tmp, labels = tmp_labels, limits = tmp) +
+        labs(title = goal_names$long_goal[i], fill = NULL) +
+        plot_theme(legend = ifelse(goals[i]=="Index", "right", "none"))
+      
+      fn <- paste0('trends_map_',goals[i],'_mol.png')
+      
+      filename <- here::here(dir_trend, fn)
+      
+      ggsave(filename = filename, plot = p1, width = 10, height = 6)
+    }
   }
-
-  if(!is.null(fig_save)) {
-    #cat(sprintf('Saving map to %s...\n', fig_save))
-    ggsave(fig_save, width = 10, height = 6)
-    return(invisible(df_plot))
-  } else {
-    return(df_plot)
-  }  
 }
 
 
-plot_scores_easy <- function(scores_df, fld, rgn_df = NULL, fig_save = NULL, prj = 'gcs',
-                             title = NULL, leg_title = FALSE, leg_on = TRUE, colors_spec=brewer.pal(10, 'RdYlBu')) {
-  ### Separate out a simple data frame of rgn_id and field value; rename field to 'val'
-  ### so it's easier to call with dplyr and ggplot functions
-  
-  if(is.null(rgn_df)) {
-    rgn_df <- get_rgn_df(prj = prj)
-  }
-  fld_val  <- scores_df[ , c('rgn_id', fld)]
-  names(fld_val)[2] = 'val'
-  
-  ### join the fld_data info to the spatial info in rgn_df.  inner_join() will eliminate
-  ### any polygons for unreported regions (NA regions will still be included)
-  fld_data <- rgn_df %>%
-    inner_join(fld_val, 
-               by = 'rgn_id')
-  
-  ### expand the field name to create a title
-  fld_name <- expand_fld(fld)
-  scenario <- ifelse('year' %in% names(scores_df),     paste(' ', scores_df$year[1], sep = ''),
-              ifelse('scenario' %in% names(scores_df), paste(' ', scores_df$scenario[1], sep = ''),
-              ''))
-  title <- sprintf(fld_name)
-  
-  ### Call plot_scores function; with fig_save parameter will only save, not plot.
-  ### But the function returns the plot invisibly, so can assign it to ohiplot and then plot it.
-  ohiplot <- plot_scores(fld_data, fld, fig_save = fig_save, title = title, 
-                         leg_title = leg_title, leg_on = leg_on, prj = prj, colors_spec=colors)
-  return(ohiplot)
-}
+
+
+
