@@ -80,7 +80,7 @@ full_filepaths <- full_filepaths %>% select(layer, full_filepath) %>% rename(dat
 Save the updated filepaths for the dataprep csv's to ohi-global.
 
 ```{r}
-write.csv(full_filepaths, here("metadata_documentation/layers_eez_dataprep.csv"))
+write.csv(full_filepaths, here("metadata_documentation/layers_eez_dataprep.csv"), row.names = FALSE)
 ```
 
 
