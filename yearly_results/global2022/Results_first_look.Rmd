@@ -421,7 +421,8 @@ ggplot(data, aes(y=region_name, x=scenario, fill=value)) +
   scale_fill_gradientn(colours=colors, na.value="black") +
   theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
   ylab("") + 
-  xlab("")
+  xlab("") +
+  scale_x_continuous(breaks = c(2012, 2014, 2016, 2018, 2020, 2022))
 
 ggsave(here::here(dir_results_figures, "carpetPlot.png"), width=20, height=35)
 ```
@@ -651,45 +652,6 @@ knitr::kable(trend_summary)
 plot_scores_map(metric = "trends")
 ```
 
-```{r trend maps, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-### This could be cleaned up just  like the maps above...
-source(here::here(dir_results_functions, 'map_fxns_trend.R'))
-
-### set scenario and desired map projection
-prj <- 'mol'    ### note: 'gcs' is way faster.
-values <- brewer.pal(11, "RdYlBu")
-values <- colorRampPalette(values, space = 'Lab')(13)[2:13]
-col.brks <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
-
-### get OHI data and rename column headings
-scores_df <- here::here(dir_results_data, paste0('trends_',scenario,'.csv')) %>% 
-  readr::read_csv() %>%
-  dplyr::rename(rgn_name = country, rgn_id = region_id) %>%
-  dplyr::mutate(rgn_id = as.factor(rgn_id))
-
-### load region data frame, so doesn't need to reload every time through the loop.  Also
-### load the land data frame, if plotting in Mollweide projection.
-rgn_df <- get_rgn_df(prj = prj)
-
-if(prj == 'mol' & !exists('land_poly')) {
-  land_poly  <- get_land_df()
-  ocean_poly <- get_ocean_df() ### assume if land_poly doesn't exist, ocean_poly doesn't either...
-}
-
-### establish list of fields for mapping
-mapFlds <- names(scores_df %>% dplyr::select(-rgn_name, -rgn_id))
-
-### Loop over each field, plotting each map in turn and saving to file.
-## May need to create the map_trends folder if it doesn't already exist!  
-for (fld in mapFlds) { # fld <- mapFlds[1]
-  
-  fig_save = here::here(dir_results_figures, 'map_trends', sprintf('trends_map_%s_%s.png', fld, prj))
-  
-  plot_scores_easy(scores_df, fld, rgn_df, title = title, prj = prj, fig_save = fig_save,
-                   leg_on = ifelse(fld=="Index", TRUE, FALSE))
-}
-```
-
 The global average decreased by an average of `r index$Index` points per year, but there was a good deal of variation in trend among regions and goals.  
 
 ```{r index_trend, echo=FALSE, fig.height=30, fig.width=10}
@@ -749,7 +711,7 @@ trends_order %>%
 source(here::here(dir_results_functions, 'trend_barplot.R'))
 ```
 
-A heat map describing change in trend for country and goals:
+A bar plot describing change in trend for country and goals:
 
 ```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
 ## Figure created in trend_barplot.R
