@@ -69,10 +69,10 @@ oldCommit  <- 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 
 
 ### code to run code chunks
 ### (change these if data is updated, otherwise takes a while to run):
-update_data  <- FALSE # select true if there are updates to the OHI data!! Also be sure to change dateFile below
-map_create   <- FALSE # Updates the map figures (takes a while to run)
-goal_hists   <- FALSE # Updates the goal histograms
-flower_plots <- FALSE # Updates the flower plot figures
+update_data  <- TRUE # select true if there are updates to the OHI data!! Also be sure to change dateFile below
+map_create   <- TRUE # Updates the map figures (takes a while to run)
+goal_hists   <- TRUE # Updates the goal histograms
+flower_plots <- TRUE # Updates the flower plot figures
 
 ### the date in the below variable must be updated (for the results to reflect the new data)
 # dateFile       <- Sys.Date()   # date extension on data files used for all tables/figures
