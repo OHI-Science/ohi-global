@@ -14,99 +14,105 @@ output:
   pdf_document:
     toc: true
 ---
-
-
 ```{r data set up, include=FALSE}
+### load libraries
+if (!require(librarian)){install.packages('librarian')}
+librarian::shelf(
+  tidyverse,
+  here,
+  hwriter,
+  RColorBrewer,
+  ohicore,
+  DT,
+  gridExtra,
+  grid,
+  png,
+  cowplot,
+  plotly
+)
+### See ohi-global/yearly_results/global2022/Results_first_look.Rmd 
+### for code used to create some of the figures included here.  
+### If data are updated, that file must be updated prior to this one.
 
-#load libraries
-library(dplyr)
-library(tidyr)
-library(ggplot2)
-library(hwriter)
-library(RColorBrewer)
-library(knitr)
-library(DT)
-library(gridExtra)
-library(grid)
-library(png)
-library(cowplot)
-library(here)
-library(plotly)
+### General settings to control
+### identify scenario of focus (this can be changed to obtain data for other years)
+scenario <- "2022" 
 
-## See ohi-global/yearly_results/global2022/Results_first_look.Rmd for code used to create some of the figures included here.  If data are updated, that file must be updated prior to this one.
+### date extension on the radical data files that are used for all tables/figures
+radicalFile = '2022-08-29' 
 
-goals <- c('Index', 'AO', 'SPP', 'BD', 'HAB', 'CP', 'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS', 'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR')
-goal_names <- data.frame(goal=goals, long_goal=c("Index", 
-                                                  "Artisanal opportunities",
-                                                  "Species condition\n(Biodiversity)",
-                                                  "Biodiversity",
-                                                  "Habitat\n(Biodiversity)",
-                                                  "Coastal protection",
-                                                  "Carbon storage",
-                                                  "Clean water",
-                                                  "Economies",
-                                                  "Livelihoods & economies",
-                                                  "Livelihoods",
-                                                  "Fisheries\n(Food provision)",
-                                                  "Food provision",
-                                                  "Mariculture\n(Food provision)",
-                                                  "Iconic species\n(Sense of place)",
-                                                  "Sense of place",
-                                                  "Lasting special places\n(Sense of place)",
-                                                  "Natural products",
-                                                  "Tourism & recreation"))
-goal_names2 <- data.frame(goal=goals, long_goal=c("Index", 
-                                                  "Artisanal opportunities",
-                                                  "Species condition",
-                                                  "Biodiversity",
-                                                  "Habitat",
-                                                  "Coastal protection",
-                                                  "Carbon storage",
-                                                  "Clean water",
-                                                  "Economies",
-                                                  "Livelihoods & economies",
-                                                  "Livelihoods",
-                                                  "Fisheries",
-                                                  "Food provisioning",
-                                                  "Mariculture",
-                                                  "Iconic species",
-                                                  "Sense of place",
-                                                  "Lasting special places",
-                                                  "Natural products",
-                                                  "Tourism & recreation"))
-
-## General settings to control
-scenario <- "2022" #identify scenario of focus (this can be changed to obtain data for other years)
-
-## General files to load
-rgn_names <- read.csv(here('eez/layers/rgn_global.csv')) %>%
+### General data to load
+goals <- c(
+  'Index', 'AO', 'SPP', 'BD', 'HAB', 'CP',
+  'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS',
+  'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR'
+)
+goal_names <- data.frame(goal=goals, long_goal=c(
+  "Index", 
+  "Artisanal opportunities",
+  "Species condition\n(Biodiversity)",
+  "Biodiversity",
+  "Habitat\n(Biodiversity)",
+  "Coastal protection",
+  "Carbon storage",
+  "Clean water",
+  "Economies",
+  "Livelihoods & economies",
+  "Livelihoods",
+  "Fisheries\n(Food provision)",
+  "Food provision",
+  "Mariculture\n(Food provision)",
+  "Iconic species\n(Sense of place)",
+  "Sense of place",
+  "Lasting special places\n(Sense of place)",
+  "Natural products",
+  "Tourism & recreation")
+)
+goal_names2 <- data.frame(goal=goals, long_goal=c(
+  "Index", 
+  "Artisanal opportunities",
+  "Species condition",
+  "Biodiversity",
+  "Habitat",
+  "Coastal protection",
+  "Carbon storage",
+  "Clean water",
+  "Economies",
+  "Livelihoods & economies",
+  "Livelihoods",
+  "Fisheries",
+  "Food provisioning",
+  "Mariculture",
+  "Iconic species",
+  "Sense of place",
+  "Lasting special places",
+  "Natural products",
+  "Tourism & recreation")
+)
+rgn_names <- here::here('eez/layers/rgn_global.csv') %>% 
+  readr::read_csv() %>%
   dplyr::select(region_id = rgn_id, country = label) %>%
   dplyr::mutate(country = as.character(country))
-
-
-radicalFile = '2022-08-29' #date extension on the radical data files that are used for all tables/figures
-
 ```
 
 ### Overview of goals and subgoals
 
 ##### Table A. Description of 10 goals used to calculate OHI scores.
+
 In several tables and figures we refer to the goals and subgoals by their abbreviation.  Goals and subgoals have a 2 and 3 character abbreviation, respectively.
 
 ```{r goal description, echo=FALSE}
-
 data <- read.csv(here("metadata_documentation/ohi_model/tables/ten_goals.csv"))
 kable(data)
-
 ```
 
 ##### Table B. Description of subgoals used to calculate OHI scores.
+
 The following goals are comprised of 2 subgoals:biodiversity, food provision, sense of place, livelihoods and economies goals.
 
 ```{r subgoal description, echo=FALSE}
 data <- read.csv(here("metadata_documentation/ohi_model/tables/Subgoal_Descriptions.csv"))
 kable(data)
-
 ```
 
 
@@ -114,14 +120,13 @@ kable(data)
 
 See the [Methods](https://raw.githack.com/OHI-Science/ohi-global/draft/documents/methods/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
 
-A CSV formatted dataset from the 2022 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/OHI_final_formatted_scores_2022-08-29.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all 9 assessment years (2012-2022). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022) for description of data.
+A CSV formatted dataset from the 2022 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/OHI_final_formatted_scores_2022-08-29.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all `r scenario - 2011` assessment years (2012-2022). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022) for description of data.
 
 The data layers (described in section 7 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2022.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
 
 The files used to prepare data layers for the ohi-global assessment can be downloaded from Github: [ohiprep v2022.1: Preparation of data for 2022 Ocean Health Index global assessment](https://github.com/OHI-Science/ohiprep_v2022/releases).
 
 The core functions used to calculate OHI scores can be downloaded as a package from Github, using the following code in [R](https://cran.r-project.org/): 
-
 
 ```{r install ohicore, eval=FALSE}
 
@@ -133,11 +138,10 @@ library(ohicore)
 
 ```
 
-
 ### Summary of score results
 
-
 ##### Figure A. Regional 2022 OHI index scores.
+
 Map (top) and histogram (bottom) of 2022 index scores for each OHI region. 
 
 ```{r score figures, echo=FALSE, fig.height=10, fig.width=10}
@@ -158,10 +162,10 @@ grid.arrange(map_label, Index_map, hist_label, Index_hist,
 ```
 
 ##### Figure B. Flowerplot of 2022 goal/subgoal scores
+
 Flowerplot describing the 2022 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
 
 Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/FlowerPlots)
-
 
 ```{r flowerplot, echo=FALSE, height=5, width=10}
 ## Figure created in Reporting.Rmd
@@ -169,8 +173,8 @@ Flower plots for each region can be downloaded from [here](https://github.com/OH
 knitr::include_graphics(here(sprintf("yearly_results/global%s/Results/figures/FlowerPlots/flower_GlobalAverage.png", scenario)))
 ```
 
-
 ##### Figure C. Maps and histograms of 2022 OHI goal scores.
+
 The 2022 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
 
 ```{r testing images, echo=FALSE, fig.height=30, fig.width=10}
@@ -235,6 +239,7 @@ grid.arrange(AO_text, AO_map, AO_hist,
 ```
 
 ##### Figure D. Maps and histograms of 2022 OHI subgoal scores.
+
 The subgoal 202q scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
 ```{r subgoal scores, echo=FALSE, fig.width=10, fig.height=25}
@@ -291,9 +296,9 @@ grid.arrange(BD, bd,
 
 ```
 
-
 ##### Figure E. Country scores across scenario year
-Overview of the scores from the 2022 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 9 years of data.  Black regions indicate no data.  Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2022/Results/figures/carpetPlot.png) to zoom in to see specific regions.
+
+Overview of the scores from the 2022 assessment. Each row represents a region, the main groupings represent goals, and within each goal there are `r scenario - 2011` years of data. Black regions indicate no data. Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2022/Results/figures/carpetPlot.png) to zoom in to see specific regions.
 
 This plot is good for providing a quick overview of:
 
@@ -301,7 +306,6 @@ This plot is good for providing a quick overview of:
 * Which goals tend to have high scores across most regions (species, habitat)
 * Which goals have a lot of variation across regions (tourism & recreation, lasting special places)
 * Which goals are volatile across years (natural products, tourism & recreation)
-
 
 ```{r carpet plot, echo=FALSE, height=40, width=10}
 ## Figure created in Reporting.Rmd
@@ -312,6 +316,7 @@ knitr::include_graphics(here(sprintf("yearly_results/global%s/Results/figures/ca
 ### Summary of average annual change in scores
 
 ##### Table C. Global average scores for index and goals.
+
 Global scores (eez area weighted average of all regions) for index and goal/subgoals for all years. 
 
 ```{r overview, echo=FALSE}
@@ -342,10 +347,9 @@ data_spread <- spread(data_index, scenario, value) %>%
 kable(data_spread)
 ```
 
-
 ##### Figure F. Average annual change in OHI Index scores.
-Map (top) and histogram (bottom) of the slope estimates from a linear regression model of the Index scores from 2012 to 2022 for each region.
 
+Map (top) and histogram (bottom) of the slope estimates from a linear regression model of the Index scores from 2012 to 2022 for each region.
 
 ```{r trend figures, echo=FALSE, fig.height=10, fig.width=10}
 ## Figure created in Reporting.Rmd
@@ -364,9 +368,8 @@ grid.arrange(map_label, Index_map, hist_label, Index_hist,
 
 ```
 
-
-
 ##### Figure G. Average annual change in OHI goal scores.
+
 Map of the slope estimates from a linear regression model of the 10 goal scores from 2012 to 2022 for each region.
 
 ```{r trends goals, echo=FALSE, fig.height=15, fig.width=10}
@@ -409,6 +412,7 @@ grid.arrange(AO_map,
 ```
 
 ##### Figure H. Average annual change in OHI subgoal scores.
+
 Map of the slope estimates from a linear regression model of the 8 subgoal scores from 2012 to 2022 for each region. The subgoal scores for the following goals: biodiversity, food provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
 <br>
@@ -445,8 +449,8 @@ grid.arrange(BD, bd,
              ncol=2, widths=c(5,5), heights=c(0.2, 5, 0.2, 5, 0.2, 5, 0.2, 5))
 ```
 
-
 ##### Figure I. Barplot of average annual change in goal trends for each region.
+
 The values are the slope estimate from a linear regression model of the scores from 2012 to 2022 for each region and goal.
 
 ```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
