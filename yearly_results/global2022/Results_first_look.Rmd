@@ -727,7 +727,7 @@ This section takes a closer look at the goal/subgoal scores for the 2022 scenari
 
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
 # Make pretty histograms
-for(goal in goals){ # goal = "AO"
+for(goal in goals){ # goal = "HAB"
 
   hist_data <- current_scores_fn %>% 
     readr::read_csv(col_types = cols()) %>%
@@ -872,7 +872,6 @@ data <- read.csv(final_filename) %>%
 data_old <- here::here('yearly_results', paste0('global',benchmark,'/OHI_final_formatted_scores_',benchmark_date,'.csv')) %>% 
   readr::read_csv() %>%
   dplyr::rename("assess2021" = value)
-
 
 data_compare <- data_old %>%
   dplyr::left_join(data, by = c("scenario", "goal", "long_goal", "dimension", "region_id", "region_name")) %>%
