@@ -15,6 +15,8 @@ output:
     toc: true
 ---
 ```{r data set up, include=FALSE}
+### Setup the R environment
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 ### load libraries
 if (!require(librarian)){install.packages('librarian')}
 librarian::shelf(
@@ -39,7 +41,7 @@ librarian::shelf(
 scenario <- "2022" 
 
 ### date extension on the radical data files that are used for all tables/figures
-radicalFile = '2022-08-29' 
+radicalFile = '2022-09-06' 
 
 ### General data to load
 goals <- c(
@@ -103,7 +105,7 @@ In several tables and figures we refer to the goals and subgoals by their abbrev
 
 ```{r goal description, echo=FALSE}
 data <- read.csv(here("metadata_documentation/ohi_model/tables/ten_goals.csv"))
-kable(data)
+knitr::kable(data)
 ```
 
 ##### Table B. Description of subgoals used to calculate OHI scores.
@@ -112,15 +114,14 @@ The following goals are comprised of 2 subgoals:biodiversity, food provision, se
 
 ```{r subgoal description, echo=FALSE}
 data <- read.csv(here("metadata_documentation/ohi_model/tables/Subgoal_Descriptions.csv"))
-kable(data)
+knitr::kable(data)
 ```
-
 
 ### Datasets and additional information
 
 See the [Methods](https://raw.githack.com/OHI-Science/ohi-global/draft/documents/methods/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
 
-A CSV formatted dataset from the 2022 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/OHI_final_formatted_scores_2022-08-29.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all `r scenario - 2011` assessment years (2012-2022). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022) for description of data.
+A CSV formatted dataset from the 2022 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/OHI_final_formatted_scores_2022-08-29.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all `r 2022 - 2011` assessment years (2012-2022). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022) for description of data.
 
 The data layers (described in section 7 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2022.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
 
@@ -298,7 +299,7 @@ grid.arrange(BD, bd,
 
 ##### Figure E. Country scores across scenario year
 
-Overview of the scores from the 2022 assessment. Each row represents a region, the main groupings represent goals, and within each goal there are `r scenario - 2011` years of data. Black regions indicate no data. Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2022/Results/figures/carpetPlot.png) to zoom in to see specific regions.
+Overview of the scores from the 2022 assessment. Each row represents a region, the main groupings represent goals, and within each goal there are `r 2022 - 2011` years of data. Black regions indicate no data. Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2022/Results/figures/carpetPlot.png) to zoom in to see specific regions.
 
 This plot is good for providing a quick overview of:
 
@@ -324,7 +325,7 @@ Global scores (eez area weighted average of all regions) for index and goal/subg
 data <- read.csv(here(sprintf('yearly_results/global%s/OHI_final_formatted_scores_%s.csv', scenario, radicalFile))) 
 
 data_filter <- data %>%
-  filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
+  filter(region_id != 213)  %>% # Antarctica (calculated in a very different way)
   mutate(region_name = as.character(region_name)) %>%
   mutate(value = round(value, 2))
 
@@ -344,7 +345,7 @@ data_spread <- spread(data_index, scenario, value) %>%
 ```
 
 ```{r overview-table, echo=FALSE}
-kable(data_spread)
+knitr::kable(data_spread)
 ```
 
 ##### Figure F. Average annual change in OHI Index scores.
