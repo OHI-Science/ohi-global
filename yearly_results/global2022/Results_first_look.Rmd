@@ -69,14 +69,14 @@ oldCommit  <- 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 
 
 ### code to run code chunks
 ### (change these if data is updated, otherwise takes a while to run):
-update_data  <- TRUE # select true if there are updates to the OHI data!! Also be sure to change dateFile below
-map_create   <- TRUE # Updates the map figures (takes a while to run)
-goal_hists   <- TRUE # Updates the goal histograms
-flower_plots <- TRUE # Updates the flower plot figures
+update_data  <- FALSE # select true if there are updates to the OHI data!! Also be sure to change dateFile below
+map_create   <- FALSE # Updates the map figures (takes a while to run)
+goal_hists   <- FALSE # Updates the goal histograms
+flower_plots <- FALSE # Updates the flower plot figures
 
 ### the date in the below variable must be updated (for the results to reflect the new data)
 # dateFile       <- Sys.Date()   # date extension on data files used for all tables/figures
-dateFile       <- "2022-08-29" # date extension on data files used for all tables/figures
+dateFile       <- "2022-09-06" # date extension on data files used for all tables/figures
 benchmark_date <- "2021-11-17" # Date from last assessment
 ```
 
@@ -561,10 +561,9 @@ hwrite(
 )
 ```
 
-Trend values are slope estimates from a linear model of scores for each region/goal over the past 9 years. Positive values indicate increasing scores during the past 9 years and negative values indicate decreasing scores.
+Trend values are slope estimates from a linear model of scores for each region/goal over the past `r length(unique(scores$scenario))` years. Positive values indicate increasing scores during the past `r length(unique(scores$scenario))` years and negative values indicate decreasing scores.
 
 A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/trends_2022.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/trends_2022.csv)).  
-
 
 NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed sceptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
 
@@ -576,7 +575,7 @@ The following table provides the global scores (eez area weighted average of reg
 data <- readr::read_csv(final_filename) 
 
 data_filter <- data %>%
-  dplyr::filter(region_id != 213)  %>% # Antarctica (calculated in a very different way)
+  dplyr::filter(region_id != 213) %>% # Antarctica (calculated in a very different way)
   dplyr::mutate(region_name = as.character(region_name)) %>%
   dplyr::mutate(value = round(value, 2))
 
@@ -593,15 +592,11 @@ data_wide <- data_index %>%
   dplyr::filter(!goal %in% c("ECO", "LE", "LIV")) %>%
   dplyr::select(-goal) %>%
   dplyr::rename(goal = long_goal)
-```
 
-Table View
-
-```{r overview-table, echo=FALSE}
 knitr::kable(data_wide)
 ```
 
-The following is a very preliminary analysis of how the global scores changed over time.  Global index scores decreased by an average `r index$Index` points per year, with `r sum(trends_wide$Index<0)` regions having decreasing trends and `r sum(trends_wide$Index>0)` having increasing trends. 
+The following is a preliminary analysis of how the global scores changed over time. Global index scores decreased by an average `r index$Index` points per year, with `r sum(trends_wide$Index<0)` regions having decreasing trends and `r sum(trends_wide$Index>0)` having increasing trends. 
 
 ```{r Global goal trends, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 ### analysis:
@@ -633,9 +628,16 @@ region_summary <- region_trends %>%
 trend_summary <- region_summary %>%
   dplyr::left_join(results_lm, by = "goal") %>%
   dplyr::left_join(goal_names) %>%
-  dplyr::select(long_goal, average_change_per_year,	p_value,
-                num_rgns_pos_trend, num_rgns_neg_trend, mean_trend, sd_trend) %>%
-  dplyr::arrange(average_change_per_year)
+  dplyr::select(
+    goal = long_goal,
+    `avg. change per year` = average_change_per_year,
+    `P-value` = p_value,
+    `# regions positive trend` = num_rgns_pos_trend, 
+    `# regions negative trend` = num_rgns_neg_trend,
+    `mean trend` = mean_trend, 
+    `SD trend` = sd_trend
+    ) %>%
+  dplyr::arrange(`avg. change per year`)
 
 knitr::kable(trend_summary)
 ```
