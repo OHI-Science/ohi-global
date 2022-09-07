@@ -16,12 +16,6 @@ output:
     toc: true
 ---
 
-# Summary
-
-This document describes results from the 2022 global OHI assessment. This is mostly an internal document to explore and check results. It also creates the figures used on the website and in other documents.
-
-# Setup
-
 ```{r set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
 ### Setup the R environment
 knitr::opts_chunk$set(message = FALSE, warning = FALSE)
@@ -36,6 +30,7 @@ librarian::shelf(
 ```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
 ### General settings to control
 scenario <- 2022 
+globalYear <- paste0('global', scenario)
 ```
 
 ```{r parameters, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
@@ -73,7 +68,7 @@ goal_names <- data.frame(
 ### This builds the goals markdown 
 for(goal in 1:length(goals)) { # goal <- 1
   ### Write markdown goal name and sub header 'Scores'
-  cat(paste0("## ", goal_names$long_goal[goal], "\n\n"))
+  cat(paste0("# ", goal_names$long_goal[goal], "\n\n"))
   
   ### Define image file paths
   p1 <- here::here(dir_goal_heatmaps, paste0("carpetPlot_",goal_names$goal[goal],".png"))
