@@ -41,7 +41,16 @@ librarian::shelf(
 scenario <- "2022" 
 
 ### date extension on the radical data files that are used for all tables/figures
-radicalFile = '2022-09-06' 
+radicalFile <- '2022-09-06' 
+globalYear <- paste0("global", scenario)
+
+### Directories
+dir_scen_year       <- here::here('yearly_results', globalYear)
+dir_results_data    <- here::here(dir_scen_year, "Results", "data")
+dir_results_figures <- here::here(dir_scen_year, "Results", "figures")
+dir_goal_maps       <- here::here(dir_results_figures, 'maps_by_goal_mol')
+dir_map_no_leg      <- here::here(dir_goal_maps, paste0("year_",scenario,"_nolegend"))
+dir_goal_histograms <- here::here(dir_results_figures, "goal_histograms")
 
 ### General data to load
 goals <- c(
@@ -104,8 +113,9 @@ rgn_names <- here::here('eez/layers/rgn_global.csv') %>%
 In several tables and figures we refer to the goals and subgoals by their abbreviation.  Goals and subgoals have a 2 and 3 character abbreviation, respectively.
 
 ```{r goal description, echo=FALSE}
-data <- read.csv(here("metadata_documentation/ohi_model/tables/ten_goals.csv"))
-knitr::kable(data)
+here::here("metadata_documentation", "ohi_model", "tables", "ten_goals.csv") %>% 
+  readr::read_csv(col_types = cols()) %>% 
+  knitr::kable()
 ```
 
 ##### Table B. Description of subgoals used to calculate OHI scores.
@@ -113,8 +123,9 @@ knitr::kable(data)
 The following goals are comprised of 2 subgoals:biodiversity, food provision, sense of place, livelihoods and economies goals.
 
 ```{r subgoal description, echo=FALSE}
-data <- read.csv(here("metadata_documentation/ohi_model/tables/Subgoal_Descriptions.csv"))
-knitr::kable(data)
+here::here("metadata_documentation", "ohi_model", "tables", "Subgoal_Descriptions.csv") %>% 
+  readr::read_csv(col_types = cols()) %>% 
+  knitr::kable()
 ```
 
 ### Datasets and additional information
@@ -146,19 +157,24 @@ library(ohicore)
 Map (top) and histogram (bottom) of 2022 index scores for each OHI region. 
 
 ```{r score figures, echo=FALSE, fig.height=10, fig.width=10}
-## Figure created in Reporting.Rmd
-
 ## including multiple figures on a page
 ## https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html
 ## https://github.com/baptiste/gridextra/wiki/arranging-ggplot
 
-Index_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/maps_by_goal_mol/global_map_Index_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-map_label <- textGrob("", just=19, gp=gpar(fontsize=18))
-Index_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/score_histogram_color.png", scenario))), interpolate=TRUE)
-hist_label <- textGrob("", just=19, gp=gpar(fontsize=18))
+Index_map <- here::here(dir_goal_maps, paste0("global_map_Index_", scenario,"_mol.png")) %>% 
+  png::readPNG() %>% 
+  grid::rasterGrob(interpolate=TRUE)
 
-grid.arrange(map_label, Index_map, hist_label, Index_hist,
-             ncol=1, heights=c(1,5,1,6))
+map_label <- grid::textGrob("", just = 19, gp = gpar(fontsize=18))
+
+Index_hist <- here::here(dir_results_figures, "score_histogram_color.png") %>% 
+  png::readPNG() %>% 
+  grid::rasterGrob(interpolate=TRUE)
+
+hist_label <- grid::textGrob("", just = 19, gp = gpar(fontsize=18))
+
+gridExtra::grid.arrange(map_label, Index_map, hist_label, Index_hist,
+                        ncol=1, heights=c(1,5,1,6))
 
 ```
 
@@ -169,9 +185,8 @@ Flowerplot describing the 2022 average global index (middle) and goal (petals) s
 Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/FlowerPlots)
 
 ```{r flowerplot, echo=FALSE, height=5, width=10}
-## Figure created in Reporting.Rmd
-
-knitr::include_graphics(here(sprintf("yearly_results/global%s/Results/figures/FlowerPlots/flower_GlobalAverage.png", scenario)))
+here::here(dir_results_figures, 'FlowerPlots', "flower_GlobalAverage.png") %>% 
+  knitr::include_graphics()
 ```
 
 ##### Figure C. Maps and histograms of 2022 OHI goal scores.
@@ -180,63 +195,53 @@ The 2022 scores for each of the 10 OHI goals displayed for each region (left) an
 
 ```{r testing images, echo=FALSE, fig.height=30, fig.width=10}
 
-## change each year to reflect appropriate file paths
-scenario = "2022"
+text <- textGrob("", gp = gpar(fontsize = 14), vjust = -9.5)
 
-## Figures created in Reporting.Rmd
+goal_map <- function(goal) {
+  here::here(dir_map_no_leg, paste0("global_map_",goal,"_",scenario,"_mol.png")) %>% 
+    png::readPNG() %>% 
+    grid::rasterGrob(interpolate = TRUE)
+}
 
-AO_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global2022/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_AO_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-AO_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/AO_scores.png", scenario))), interpolate=TRUE)
-AO_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+goal_hist <- function(goal) {
+  here::here(dir_goal_histograms, paste0(goal,"_scores.png")) %>% 
+    png::readPNG() %>% 
+    grid::rasterGrob(interpolate = TRUE)
+}
 
-BD_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global2022/Results",scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_BD_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-BD_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/BD_scores.png", scenario))), interpolate=TRUE)
-BD_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+AO_map <- goal_map(goal = "AO"); AO_hist <- goal_hist(goal = "AO")
 
-CP_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_CP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-CP_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/CP_scores.png", scenario))), interpolate=TRUE)
-CP_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+BD_map <- goal_map(goal = "BD"); BD_hist <- goal_hist(goal = "BD")
 
-CS_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_CS_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-CS_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/CS_scores.png", scenario))), interpolate=TRUE)
-CS_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+CP_map <- goal_map(goal = "CP"); CP_hist <- goal_hist(goal = "CP")
 
-CW_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_CW_%s_mol.png",scenario, scenario))), interpolate=TRUE)
-CW_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/CW_scores.png", scenario))), interpolate=TRUE)
-CW_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+CS_map <- goal_map(goal = "CS"); CS_hist <- goal_hist(goal = "CS")
 
-FP_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_FP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-FP_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/FP_scores.png", scenario))), interpolate=TRUE)
-FP_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+CW_map <- goal_map(goal = "CW"); CW_hist <- goal_hist(goal = "CW")
 
-LE_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_LE_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-LE_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/LE_scores.png",scenario))), interpolate=TRUE)
-LE_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+FP_map <- goal_map(goal = "FP"); FP_hist <- goal_hist(goal = "FP")
 
-NP_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_NP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-NP_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/NP_scores.png",scenario))), interpolate=TRUE)
-NP_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+LE_map <- goal_map(goal = "LE"); LE_hist <- goal_hist(goal = "LE")
 
-SP_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_SP_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-SP_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/SP_scores.png",scenario))), interpolate=TRUE)
-SP_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+NP_map <- goal_map(goal = "NP"); NP_hist <- goal_hist(goal = "NP")
 
-TR_map <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results", scenario), sprintf("figures/maps_by_goal_mol/year_%s_nolegend/global_map_TR_%s_mol.png", scenario, scenario))), interpolate=TRUE)
-TR_hist <- rasterGrob(readPNG(here(sprintf("yearly_results/global%s/Results/figures/goal_histograms/TR_scores.png", scenario))), interpolate=TRUE)
-TR_text <- textGrob("", gp=gpar(fontsize=14), vjust=-9.5)
+SP_map <- goal_map(goal = "SP"); SP_hist <- goal_hist(goal = "SP")
 
-grid.arrange(AO_text, AO_map, AO_hist,
-             BD_text, BD_map, BD_hist,
-             CP_text, CP_map, CP_hist,
-             CS_text, CS_map, CS_hist,
-             CW_text, CW_map, CW_hist,
-             FP_text, FP_map, FP_hist,
-             LE_text, LE_map, LE_hist,
-             NP_text, NP_map, NP_hist,
-             SP_text, SP_map, SP_hist,
-             TR_text, TR_map, TR_hist,
-             ncol=3, widths=c(1,5,4))
+TR_map <- goal_map(goal = "TR"); TR_hist <- goal_hist(goal = "TR")
 
+grid.arrange(
+  text, AO_map, AO_hist,
+  text, BD_map, BD_hist,
+  text, CP_map, CP_hist,
+  text, CS_map, CS_hist,
+  text, CW_map, CW_hist,
+  text, FP_map, FP_hist,
+  text, LE_map, LE_hist,
+  text, NP_map, NP_hist,
+  text, SP_map, SP_hist,
+  text, TR_map, TR_hist,
+  ncol=3, widths=c(1,5,4)
+)
 ```
 
 ##### Figure D. Maps and histograms of 2022 OHI subgoal scores.
@@ -244,9 +249,6 @@ grid.arrange(AO_text, AO_map, AO_hist,
 The subgoal 202q scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
 ```{r subgoal scores, echo=FALSE, fig.width=10, fig.height=25}
-
-scenario <- "2022"
-
 # BD
 BD <- textGrob("Biodiversity", gp=gpar(fontsize=12), just="left", x=0)
 bd <- textGrob("")
