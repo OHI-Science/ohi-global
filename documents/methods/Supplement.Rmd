@@ -158,14 +158,14 @@ Gaps in data are common; many developing countries lack the resources to gather 
 One of the ongoing goals of the Ocean Health Index (OHI) has been to improve our approach to dealing with missing data, by quantifying the potential influence of gapfilled data on index scores, and developing effective methods of tracking, quantifying, and communicating this information [@frazier2016mapping].
 
 # Regions
-One of the first steps of conducting an OHI assessment is defining regions of interest. These can be based on political and/or ecological boundaries.  The definition of a “region” varies depending on the goals and scale of the OHI assessment.For the global OHI, each region is defined as the EEZ area (300 nm offshore) for all coastal countries and territories (e.g., US Virgin Islands).  
+One of the first steps of conducting an OHI assessment is defining regions of interest. These can be based on political and/or ecological boundaries. The definition of a “region” varies depending on the goals and scale of the OHI assessment. For the global OHI, each region is defined as the Exclusive Economic Zone boundaries [EEZ,  @claus2012marine] area (300 nm offshore) for all coastal countries and territories (e.g., US Virgin Islands).  
 
-There are 220 global coastal countries and territorial regions (Table 4.1). Regions are based on Exclusive Economic Zone boundaries [EEZ, @claus2012marine].  However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.). We have also modified some boundaries [@halpern2012index; @halpern2015patterns]. We do not estimate OHI values for disputed or unclaimed areas.
+There are 220 global coastal countries and territorial regions (Table 4.1). Regions are based on EEZ boundaries. However, we aggregate some EEZ regions to the level of country (e.g., Hawaii is estimated as part of the larger U.S.). We have also modified some boundaries [@halpern2012index; @halpern2015patterns]. We do not estimate OHI values for disputed or unclaimed areas.
 
 **Figure 4.1. Global regions**
-Map of the OHI regions (with color corresponding to 2021 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
+Map of the OHI regions (with color corresponding to 2022 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
 
-![](../../yearly_results/global2021/Results/figures/maps_by_goal_mol/global_map_Index_2021_mol.png)
+![](../../yearly_results/global2022/Results/figures/maps_by_goal_mol/global_map_Index_2022_mol.png)
 
 **Table 4.1. Global regions**
 
@@ -218,7 +218,7 @@ Three dimensions are used to calculate likely future status: trends, pressure, a
 # Goal models and data
 In this section we describe how the current status and trend of each goal was calculated. We also indicate which data layers were used to calculate current status, trend (if different from current status), pressure, and resilience.  
 
-The R code used to calculate the goal model is located [here](https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R) (scroll to the appropriate goal function). To learn more about the data layers used in the model calculations see Section 7: Description of data layers.  Table 7.1 includes links to the code and data used to create the data layers (current calculations are in the folder with the most recent year).  Table 7.2 describes the data sources used to create the data layers.  
+The R code used to calculate the goal model is located [here](https://github.com/OHI-Science/ohi-global/blob/draft/eez/conf/functions.R) (scroll to the appropriate goal function). To learn more about the data layers used in the model calculations see Section 7: Description of data layers. Table 7.1 includes links to the code and data used to create the data layers (current calculations are in the folder with the most recent year). Table 7.2 describes the data sources used to create the data layers.  
 
 
 ```{r goal functions, echo=FALSE, warning=FALSE, error=FALSE, results="asis"}
