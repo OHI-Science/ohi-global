@@ -436,6 +436,56 @@ This plot is good for providing a quick overview of:
 * Which goals have a lot of variation across regions (tourism & recreation, lasting special places)
 * Which goals are volatile across years (natural products, tourism & recreation)
 
+```{r individual carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=4.5, fig.height=23}
+for (i in goals) { # i <- "AO"
+  
+  data <- readr::read_csv(final_filename) 
+  
+  data <- data %>%
+    dplyr::filter(dimension == "score") %>%   # focus only on score data
+    dplyr::filter(region_id != 213)  %>% # eliminate Antarctica
+    dplyr::mutate(value = round(value, 0)) %>%
+    dplyr::mutate(region_name = as.character(region_name)) %>%
+    dplyr::group_by(region_id) %>% 
+    dplyr::mutate(meanIndex = mean(value[goal == i])) %>%
+    dplyr::ungroup() %>%
+    data.frame()
+  
+  global <- data %>%
+    dplyr::select(region_name, meanIndex) %>%
+    dplyr::filter(region_name == "Global average") %>%
+    unique()
+  
+  order_rgn <- data %>%
+    dplyr::filter(region_name != "Global average") %>%
+    dplyr::select(region_name, meanIndex) %>%
+    unique() %>%
+    dplyr::arrange(desc(meanIndex))
+  
+  order_rgn <- rbind(global, order_rgn)
+  
+  data$goal <- factor(data$goal, levels = goals)
+  data$region_name <- factor(data$region_name, levels = rev(order_rgn$region_name))
+  
+  data <- data %>%
+    dplyr::filter(goal == i)
+  
+  p1 <- ggplot(data, aes(y=region_name, x=scenario, fill=value)) + 
+    geom_tile() +
+    facet_grid(~goal) + 
+    scale_fill_gradientn(colours=colors, na.value="black") +
+    theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+    ylab("") + 
+    xlab("") +
+    scale_x_continuous(breaks = c(2012, 2014, 2016, 2018, 2020, 2022))
+  
+  fn <- paste0("carpetPlot_",i,".png")
+  
+  here::here(dir_results_figures, "goal_heatmaps", fn) %>% 
+    ggsave(plot = p1, width=6, height=35)
+}
+```
+
 ## Data
 
 This interactive table describes the index and goal scores for the regions in 2022 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/scores_eez_2022.csv)): 

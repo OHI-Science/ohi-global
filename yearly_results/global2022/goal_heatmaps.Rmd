@@ -1,0 +1,87 @@
+---
+title: "OHI `r format(Sys.Date(), '%Y')`: Goal heatmaps"
+author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+output: 
+  html_document:
+    code_folding: show
+    toc: true
+    toc_depth: 3
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+      in_header: '../../documents/ohi_hdr.html'
+  pdf_document:
+    toc: true
+---
+
+# Summary
+
+This document describes results from the 2022 global OHI assessment. This is mostly an internal document to explore and check results. It also creates the figures used on the website and in other documents.
+
+# Setup
+
+```{r set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+### Setup the R environment
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+### load libraries
+if (!require(librarian)){install.packages('librarian')}
+librarian::shelf(
+  tidyverse,
+  here,
+)
+```
+
+```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+### General settings to control
+scenario <- 2022 
+```
+
+```{r parameters, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+### Directories
+dir_scen_year       <- here::here('yearly_results', globalYear)
+dir_results_figures <- here::here(dir_scen_year, "Results", "figures")
+dir_goal_heatmaps   <- here::here(dir_results_figures, "goal_heatmaps")
+
+# nice labels for things
+goals <- c(
+  'Index', 'AO', 'SPP', 'BD', 'HAB', 
+  'CP', 'CS', 'CW', 'ECO', 'LE',
+  'LIV', 'FIS', 'FP', 'MAR', 'ICO', 
+  'SP', 'LSP', 'NP', 'TR')
+
+long_goals <- c(
+  "Index", "Artisanal opportunities",
+  "Species condition (subgoal)", "Biodiversity",
+  "Habitat (subgoal)", "Coastal protection",
+  "Carbon storage", "Clean water",
+  "Economies", "Livelihoods & economies",
+  "Livelihoods", "Fisheries (subgoal)",
+  "Food provision", "Mariculture (subgoal)",
+  "Iconic species (subgoal)", "Sense of place",
+  "Lasting special places (subgoal)",
+  "Natural products", "Tourism & recreation")
+
+goal_names <- data.frame(
+  goal      = goals,
+  long_goal = long_goals
+)
+```
+
+```{r results = "asis", fig.height=30, fig.width=10, echo = FALSE}
+### This builds the goals markdown 
+for(goal in 1:length(goals)) { # goal <- 1
+  ### Write markdown goal name and sub header 'Scores'
+  cat(paste0("## ", goal_names$long_goal[goal], "\n\n"))
+  
+  ### Define image file paths
+  p1 <- here::here(dir_goal_heatmaps, paste0("carpetPlot_",goal_names$goal[goal],".png"))
+  
+  ### Print images
+  cat(paste0("<center><img src='", p1, "' width='800'/></center>\n\n"))
+}
+```
+
+
+
