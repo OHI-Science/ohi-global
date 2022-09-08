@@ -445,7 +445,8 @@ Of most concern are regions that have poor scores and declining trends.
 The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
 
 ```{r trend vs avg index, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=TRUE, fig.width=6, fig.height=4}
-index <- read.csv(here::here(sprintf("yearly_results/global%s/Results/data/avg_goal_scores.csv", scenario)) ) %>%
+index <- here::here(dir_results_data, "avg_goal_scores.csv") %>% 
+  readr::read_csv(col_types = cols()) %>%
   dplyr::select(region_id, country=region_name, index_avg = Index)
 
 avg_index <- index %>%
@@ -453,7 +454,8 @@ avg_index <- index %>%
   dplyr::summarize(mean(index_avg, na.rm=TRUE)) %>% 
   dplyr::pull()
 
-trend <- read.csv(here::here(sprintf("yearly_results/global%s/Results/data/trends_%s.csv", scenario, scenario))) %>%
+trend <- here::here(dir_results_data, paste0("trends_",scenario,".csv")) %>% 
+  readr::read_csv(col_types = cols()) %>%
   dplyr::select(region_id, index_trend = Index) %>%
   dplyr::left_join(index, by= "region_id") %>% 
   dplyr::mutate(
@@ -470,11 +472,11 @@ avg_colors <- c("Above avg score & Increasing" = "#313695",
                 "Below avg score & Decreasing" = "#A50026",
                 "Above avg score & Decreasing" = "#FDAE61")
 
-p <- ggplot2::ggplot(trend, aes(x=index_avg, y=index_trend)) +
-  aes(color = color, text=paste0("rgn = ", country)) +
-  geom_point(shape=19, size=2, alpha = 0.8) +
+p <- ggplot2::ggplot(trend, aes(x = index_avg, y = index_trend)) +
+  aes(color = color, text = paste0("rgn = ", country)) +
+  geom_point(shape = 19, size = 2, alpha = 0.8) +
   scale_color_manual(values = avg_colors) +
-  labs(title="Index scores",
+  labs(title = "Index scores",
        y = "Trend (change in score per year)", 
        x = "Average (2012 to 2022 scores)") +
   theme_bw() + 
