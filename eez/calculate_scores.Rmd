@@ -122,7 +122,7 @@ Be sure to push all ohiprep changes!!
 Update the newest layer's file location and file name in `metadata_documentation/layers_eez_base.csv` by running the function below and responding to the resulting prompts in the console  
 
 ```{r}
-## run function and respond to prompts in console
+## run function and respond to prompts in console if layers_eez_base.csv needs to be updated
 layers_eez_base_updater()
 ```
 
