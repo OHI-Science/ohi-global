@@ -925,7 +925,7 @@ data_old <- here::here('yearly_results', paste0('global',benchmark,'/OHI_final_f
 
 data_compare <- data_old %>%
   dplyr::left_join(data, by = c("scenario", "goal", "long_goal", "dimension", "region_id", "region_name")) %>%
-  dplyr::filter(scenario==benchmark) %>%
+  dplyr::filter(scenario == benchmark) %>%
   dplyr::filter(region_id != 0)
 
 data_compare$goal <- factor(data_compare$goal, levels = goals)
