@@ -562,7 +562,7 @@ final_filename %>%
   dplyr::group_by(region_name, goal) %>% 
   dplyr::summarise(change = round(`2022` - `2012`, 3)) %>% 
   tidyr::pivot_wider(names_from = goal, values_from = change) %>% 
-  DT::datatable(options = list(pageLength = scenario - 2011)) %>% 
+  DT::datatable() %>% 
   shiny::div(style = "font-size: 60%; width: 60%")
 ```
 

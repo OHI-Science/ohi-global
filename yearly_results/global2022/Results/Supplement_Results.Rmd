@@ -108,10 +108,8 @@ rgn_names <- here::here('eez/layers/rgn_global.csv') %>%
   readr::read_csv() %>%
   dplyr::select(region_id = rgn_id, country = label) %>%
   dplyr::mutate(country = as.character(country))
-```
 
-```{r helper functions, include=FALSE}
-
+### helper functions
 label  <- grid::textGrob("", just = 19,    gp = gpar(fontsize = 18))
 text   <- grid::textGrob("", vjust = -9.5, gp = gpar(fontsize = 14))
 space  <- grid::textGrob("")
@@ -143,7 +141,6 @@ goal_hist <- function (goal, metric = "score") {
     png::readPNG() %>% 
     grid::rasterGrob(interpolate = TRUE)
 }
-
 ```
 
 ### Overview of goals and subgoals
