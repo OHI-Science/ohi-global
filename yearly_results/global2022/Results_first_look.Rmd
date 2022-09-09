@@ -102,7 +102,7 @@ land_file   <- here::here('eez', 'spatial', 'downres', 'land_mol_simple.GeoJSON'
 ### map projection
 mollweide <- 'ESRI:54009'
 
-# nice labels for things
+### goal vectors and data
 goals <- c(
   'Index', 'AO', 'SPP', 'BD', 'HAB', 
   'CP', 'CS', 'CW', 'ECO', 'LE',
@@ -135,7 +135,6 @@ rgn_names <- here::here('eez', 'layers', 'rgn_global.csv') %>%
 ### Define standard color palettes and breaks for plotting
 ### Changes in R can cause colors to change from colorRampPallette `space = "Lab"`
 ### ideally we use the same color palatte each year 
-### Colors 
 color_file <- here::here(dir_results_functions, "color_palette.csv")
 if (file.exists(color_file)) {
   colors <- readr::read_csv(color_file, col_types = cols())$colors
@@ -165,8 +164,8 @@ ohi_final <- here::here("eez", "scores.csv") %>%
   readr::read_csv() %>% 
   readr::write_csv(scores_filename)
 
-# if data are updated, this saves a modified version that is easier to read
-# User friendly version of data: region names are also added to data and full goal names.
+### if data are updated, this saves a modified version that is easier to read
+### User friendly version of data: region names are also added to data and full goal names.
 ohi_final_formatted <- scores_filename %>% 
   readr::read_csv() %>%
   dplyr::left_join(rgn_names, by = "region_id") %>%
@@ -175,7 +174,7 @@ ohi_final_formatted <- scores_filename %>%
   dplyr::select(scenario = year, goal, long_goal, dimension, region_id, region_name = country, value = score) %>% 
   readr::write_csv(final_filename)
 
-## create a version of data with region index scores wide
+### create a version of data with region index scores wide
 ohi_final <- final_filename %>% 
   readr::read_csv() %>%
   dplyr::filter(dimension == "score") %>%
@@ -486,12 +485,13 @@ for (i in goals) { # i <- "AO"
 }
 ```
 
-## Data
+## 2022 Data
 
 This interactive table describes the index and goal scores for the regions in 2022 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/scores_eez_2022.csv)): 
 
 ```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-readr::read_csv(current_scores_fn) %>%
+current_scores_fn %>% 
+  readr::read_csv() %>%
   dplyr::select(-region_id) %>%
   data.frame() %>% 
   DT::datatable() %>% 
@@ -533,6 +533,37 @@ hwrite(
   )
 )
 
+```
+
+## All years data
+
+This interactive table describes the index and goal scores for the regions in all years. This is helpful in investigating a single country by searching the region name.  
+
+```{r}
+final_filename %>% 
+  readr::read_csv(col_types = cols()) %>% 
+  dplyr::filter(dimension == 'score') %>% 
+  dplyr::select(scenario, goal, region_name, value) %>% 
+  tidyr::pivot_wider(names_from = goal, values_from = value) %>% 
+  DT::datatable(options = list(pageLength = scenario - 2011)) %>% 
+  shiny::div(style = "font-size: 60%; width: 60%")
+```
+
+## Change from 2012 to 2022
+
+This interactive table describes the gross change in index and goal scores for the regions between 2012 and 2022. This is helpful in investigating a single country by searching the region name and seeing how much each goal value has changed overall from the first year to the last.  
+
+```{r}
+final_filename %>% 
+  readr::read_csv(col_types = cols()) %>% 
+  dplyr::filter(dimension == 'score', scenario %in% c(2012, max(scenario))) %>% 
+  dplyr::select(scenario, goal, region_name, value) %>% 
+  tidyr::pivot_wider(names_from =  scenario, values_from = value) %>% 
+  dplyr::group_by(region_name, goal) %>% 
+  dplyr::summarise(change = round(`2022` - `2012`, 3)) %>% 
+  tidyr::pivot_wider(names_from = goal, values_from = change) %>% 
+  DT::datatable(options = list(pageLength = scenario - 2011)) %>% 
+  shiny::div(style = "font-size: 60%; width: 60%")
 ```
 
 # OHI Trends
@@ -960,6 +991,5 @@ p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
 plotly_fig <- plotly::ggplotly(p)
 plotly_fig
 ```
-
 
 
