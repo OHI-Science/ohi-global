@@ -62,7 +62,7 @@ goals <- c(
   'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS',
   'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR'
 )
-goal_names <- data.frame(goal=goals, long_goal=c(
+goal_names <- data.frame(goal = goals, long_goal = c(
   "Index", 
   "Artisanal opportunities",
   "Species condition\n(Biodiversity)",
@@ -83,7 +83,7 @@ goal_names <- data.frame(goal=goals, long_goal=c(
   "Natural products",
   "Tourism & recreation")
 )
-goal_names2 <- data.frame(goal=goals, long_goal=c(
+goal_names2 <- data.frame(goal = goals, long_goal = c(
   "Index", 
   "Artisanal opportunities",
   "Species condition",
@@ -213,7 +213,7 @@ gridExtra::grid.arrange(
 
 ##### Figure B. Flowerplot of 2022 goal/subgoal scores
 
-Flowerplot describing the 2022 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
+Flower plot describing the 2022 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
 
 Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/FlowerPlots)
 
@@ -319,28 +319,14 @@ here::here(dir_results_figures, "carpetPlot.png") %>%
 Global scores (eez area weighted average of all regions) for index and goal/subgoals for all years. 
 
 ```{r overview, echo=FALSE}
-data <- final_filename %>% 
+final_filename %>% 
   readr::read_csv(col_types = cols()) %>%
-  dplyr::filter(region_id != 213) %>% # Antarctica (calculated in a very different way)
-  dplyr::mutate(region_name = as.character(region_name)) %>%
-  dplyr::mutate(value = round(value, 2))
-
-data_index <- data %>%
-  dplyr::filter(region_id == 0, dimension == "score") %>%
-  dplyr::select(scenario, goal, long_goal, value)
-
-data_index$goal <- factor(data_index$goal, levels = goals)
-
-data_wide <- data_index %>% 
+  dplyr::mutate(value = round(value, 2), goal = factor(goal, levels = goals)) %>%
+  dplyr::filter(region_id == 0, dimension == "score", !goal %in% c("ECO", "LE", "LIV")) %>% 
   tidyr::pivot_wider(names_from = scenario, values_from = value) %>% 
   dplyr::arrange(goal) %>%
-  dplyr::filter(!goal %in% c("ECO", "LE", "LIV")) %>%
-  dplyr::select(-goal) %>%
-  dplyr::rename(goal = long_goal)
-```
-
-```{r overview-table, echo=FALSE}
-knitr::kable(data_wide)
+  dplyr::select(-c(goal, dimension, region_id, region_name), goal = long_goal) %>%
+  knitr::kable()
 ```
 
 ##### Figure F. Average annual change in OHI Index scores.
@@ -349,7 +335,8 @@ Map (top) and histogram (bottom) of the slope estimates from a linear regression
 
 ```{r trend figures, echo=FALSE, fig.height=10, fig.width=10}
 ## Figure created in Reporting.Rmd
-Index_map  <- goal_map(goal = "Index", metric = "trend"); Index_hist <- goal_hist(goal = "Index", metric = "trend") 
+Index_map  <-  goal_map(goal = "Index", metric = "trend")
+Index_hist <- goal_hist(goal = "Index", metric = "trend") 
 
 grid.arrange(
   label, Index_map, 
@@ -461,9 +448,9 @@ trend <- here::here(dir_results_data, paste0("trends_",scenario,".csv")) %>%
   dplyr::mutate(
     color = dplyr::case_when(
       (index_avg >= avg_index) & (index_trend >= 0) ~ "Above avg score & Increasing",
-      (index_avg < avg_index) & (index_trend >= 0) ~ "Below avg score & Increasing",
-      (index_avg < avg_index) & (index_trend < 0) ~ "Below avg score & Decreasing",
-      (index_avg >= avg_index) & (index_trend < 0) ~ "Above avg score & Decreasing"
+      (index_avg <  avg_index) & (index_trend >= 0) ~ "Below avg score & Increasing",
+      (index_avg <  avg_index) & (index_trend <  0) ~ "Below avg score & Decreasing",
+      (index_avg >= avg_index) & (index_trend <  0) ~ "Above avg score & Decreasing"
     )
   )
 

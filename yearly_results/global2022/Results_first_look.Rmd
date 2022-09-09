@@ -24,7 +24,7 @@ This document describes results from the 2022 global OHI assessment. This is mos
 
 ```{r set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
 ### Setup the R environment
-knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = FALSE)
 ### load libraries
 if (!require(librarian)){install.packages('librarian')}
 if (!require(devtools)){install.packages("devtools")}
@@ -294,7 +294,7 @@ here::here(dir_results_figures, "FlowerPlots", "flower_GlobalAverage.png") %>%
 
 ## Country summary
 
-```{r Map scores, eval=map_create, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+```{r Map scores, eval=map_create, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE, results='hide'}
 source(here::here(dir_results_functions, "map_fxns.R"))
 
 ### This is how the 'simple' geojson files were made, and can be uncommented to run
@@ -694,7 +694,7 @@ knitr::kable(trend_summary)
 
 ## Country summary
 
-```{r trend_maps, eval=map_create, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE}
+```{r trend_maps, eval=map_create, echo=FALSE, error=FALSE, message=FALSE, warning=FALSE, results='hide'}
 ### This should be run in the scores section above, but if not, run these lines
 # source(here::here(dir_results_functions, "map_fxns.R"))
 # land        <- terra::vect(land_file,   crs = mollweide)
