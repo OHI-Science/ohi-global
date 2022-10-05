@@ -1,13 +1,13 @@
 layer,updates
 ao_access,additional year of data
 ao_need,additional year of GDP data (2021)
-ao_sust,none
+ao_sust,additional year of data (2019)
 cc_acid,none
 cc_slr,additional year of data (2020)
 cc_sst,additional year of data (2021)
 cc_uv,additional year of data (2021)
 cw_chemical_trend,none
-cw_nutrient_trend,none
+cw_nutrient_trend,additional year of data (2020)
 cw_pathogen_trend,none
 cw_trash_trend,none
 eco_status,none
@@ -15,8 +15,8 @@ eco_trend,none
 element_wts_cp_km2_x_protection,none
 element_wts_cs_km2_x_storage,updated carbon accumulation rates
 element_wts_hab_pres_abs,none
-fis_b_bmsy,none
-fis_meancatch,none
+fis_b_bmsy,additional year of data (2019)
+fis_meancatch,additional year of data (2019)
 fp_art_hb,none
 fp_art_lb,none
 fp_artisanal,additional year of data
@@ -73,7 +73,7 @@ mar_capacity,none
 mar_harvest_tonnes,additional year of data (2020)
 mar_sustainability_score,additional year of data (2022)
 np_exposure_orn,additional year of data (2019)
-np_fofm_scores,none
+np_fofm_scores,additional year of data (2019)
 np_harvest_product_weight,updated with additional year of data 
 np_orn_tonnes_relative,additional year of data (2019)
 np_risk_orn,additional year of data (2019)
@@ -81,12 +81,12 @@ np_seaweed_sust,additional year of data (2022)
 np_seaweed_tonnes,additional year of data (2020)
 po_chemicals,none
 po_chemicals_3nm,none
-po_nutrients,none
-po_nutrients_3nm,none
+po_nutrients,additional year of data (2020)
+po_nutrients_3nm,additional year of data (2020)
 po_pathogens,none
 po_trash,none
 po_water,none
-res_spi,none
+res_spi,additional year of data (2022)
 rgn_area,none
 rgn_area_inland1km,none
 rgn_area_offshore3nm,none
@@ -99,9 +99,9 @@ species_diversity_3nm,updated iucn redlist classifications with 2022-1 assessmen
 species_diversity_eez,updated iucn redlist classifications with 2022-1 assessment
 spp_status,updated iucn redlist classifications with 2022-1 assessment
 spp_trend,updated iucn redlist classifications with 2022-1 assessment
-ss_spi,none
-ss_wgi,additional year of data (2020)
+ss_spi,additional year of data (2022)
+ss_wgi,additional year of data (2021)
 tr_jobs_pct_tourism,new data sources: https://www3.weforum.org/docs/WEF_Travel_Tourism_Development_2021.pdf; https://wttc.org/Research/Economic-Impact
 tr_sustainability,new data source: https://www3.weforum.org/docs/WEF_Travel_Tourism_Development_2021.pdf
 uninhabited,none
-wgi_all,additional year of data (2020)
+wgi_all,additional year of data (2021)

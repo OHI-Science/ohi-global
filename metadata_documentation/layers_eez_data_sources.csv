@@ -69,7 +69,7 @@ unitednations2013faoa,Marine revenue: mariculture,Total revenue from mariculture
 unitednations2013faob,Marine revenue: aquarium trade fishing,Revenue of Aquarium Trade Fishing derived from commodities database,1984-2009,National,n,n,n,n,n,n,n
 united_nations_fao_2016,Chemical pollution: land-based organic,Pesticide application data,1990-2013,1 km (FAO data is National),y,n,n,n,n,n,n
 unitednations2021faostat,Nutrient pollution,N excreted in manure data,2005-2019,1km (FAO data is National,NA,NA,NA,NA,NA,"y, new datasource",NA
-unitednations2021faostata,Nutrient pollution,Fertilizer application data,2005-2019,1 km (FAO data is National),y,n,n,n,n,y,NA
+unitednations2022faostata,Nutrient pollution,Fertilizer application data,2005-2020,1 km (FAO data is National),y,n,n,n,n,y,y
 unitednations2022a,Mariculture yield,"Production of finfish, seaweeds, and invertebrates",1950-2020,National,y,y,y,y,y,y,y
 unitednations2022,Global Fisheries Capture Production,Catch statistics for fisheries taxa,1950-2020,National,y,y,y,y,y,y,y
 unitednations2022,Global Capture Production: Targeted harvest,Catch statistics for cetaceans and marine turtles,1950-2020,National,y,y,y,y,y,y,y
@@ -87,7 +87,7 @@ worldbank2022,GDPpcPPP,Per capita purchasing power parity (PPP) adjusted gross d
 worldbank2014labor,Labor force,Number of people aged 15 and older who could contribute to the production of goods and services,1990-2011,National,n,n,n,n,n,n,n
 worldbank2016population,Total population,Census populations for countries,1990-2012,National,n,n,n,n,n,n,n
 worldbank2014unemployment,National percent unemployment,Percent of the labor force unemployed but able to and looking for work,1990-2011,National,n,n,n,n,n,n,n
-worldbank2021wgi,Worldwide Governance Indicators (WGI),"Accountability, Political Stability and Absence of Violence, Government Effectiveness, Regulatory Quality, Rule of Law, and Control of Corruption",1996-2020,National,y?,y,y,y,y,y,y
+worldbank2022wgi,Worldwide Governance Indicators (WGI),"Accountability, Political Stability and Absence of Violence, Government Effectiveness, Regulatory Quality, Rule of Law, and Control of Corruption",1996-2021,National,y?,y,y,y,y,y,y
 wttc_econ_2022,Economic Impact Reports,Economic and employment impact of Travel & Tourism for 185 countries/economies,2019-2021,National,,,,,,,"y, new datasource"
 wttc2013world,Marine jobs: tourism,Total contribution of tourism to employment,1988-2012,National,n,n,n,n,n,n,n
 wttc2013world,Marine revenue: tourism,"Total tourism revenue by country, adjusted by country's relative proportion of coastal area",1998-2012,National,n,n,n,n,n,n,n
