@@ -41,7 +41,7 @@ librarian::shelf(
 scenario <- "2022" 
 
 ### date extension on the radical data files that are used for all tables/figures
-radicalFile <- '2022-09-06' 
+radicalFile <- '2022-10-05' 
 globalYear <- paste0("global", scenario)
 
 ### Directories
