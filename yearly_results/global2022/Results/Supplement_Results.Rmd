@@ -1,0 +1,479 @@
+---
+title: 'OHI 2022 Results'
+output: 
+  html_document:
+    code_folding: show
+    toc: true
+    toc_depth: 5
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+    includes: 
+      in_header: '../../../documents/ohi_hdr.html'
+  pdf_document:
+    toc: true
+---
+```{r data set up, include=FALSE}
+### Setup the R environment
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+### load libraries
+if (!require(librarian)){install.packages('librarian')}
+librarian::shelf(
+  tidyverse,
+  here,
+  hwriter,
+  RColorBrewer,
+  ohicore,
+  DT,
+  gridExtra,
+  grid,
+  png,
+  cowplot,
+  plotly
+)
+### See ohi-global/yearly_results/global2022/Results_first_look.Rmd 
+### for code used to create some of the figures included here.  
+### If data are updated, that file must be updated prior to this one.
+
+### General settings to control
+### identify scenario of focus (this can be changed to obtain data for other years)
+scenario <- "2022" 
+
+### date extension on the radical data files that are used for all tables/figures
+radicalFile <- '2022-10-05' 
+globalYear <- paste0("global", scenario)
+
+### Directories
+dir_scen_year       <- here::here('yearly_results', globalYear)
+dir_results_data    <- here::here(dir_scen_year, "Results", "data")
+dir_results_figures <- here::here(dir_scen_year, "Results", "figures")
+dir_goal_maps       <- here::here(dir_results_figures, 'maps_by_goal_mol')
+dir_goal_maps_trend <- here::here(dir_results_figures, 'map_trends')
+dir_map_no_leg      <- here::here(dir_goal_maps, paste0("year_",scenario,"_nolegend"))
+dir_goal_histograms <- here::here(dir_results_figures, "goal_histograms")
+
+### Final formatted file
+final_filename <- here::here(dir_scen_year, paste0('OHI_final_formatted_scores_',radicalFile,'.csv'))
+
+### General data to load
+goals <- c(
+  'Index', 'AO', 'SPP', 'BD', 'HAB', 'CP',
+  'CS', 'CW', 'ECO', 'LE', 'LIV', 'FIS',
+  'FP', 'MAR', 'ICO', 'SP', 'LSP', 'NP', 'TR'
+)
+goal_names <- data.frame(goal = goals, long_goal = c(
+  "Index", 
+  "Artisanal opportunities",
+  "Species condition\n(Biodiversity)",
+  "Biodiversity",
+  "Habitat\n(Biodiversity)",
+  "Coastal protection",
+  "Carbon storage",
+  "Clean water",
+  "Economies",
+  "Livelihoods & economies",
+  "Livelihoods",
+  "Fisheries\n(Food provision)",
+  "Food provision",
+  "Mariculture\n(Food provision)",
+  "Iconic species\n(Sense of place)",
+  "Sense of place",
+  "Lasting special places\n(Sense of place)",
+  "Natural products",
+  "Tourism & recreation")
+)
+goal_names2 <- data.frame(goal = goals, long_goal = c(
+  "Index", 
+  "Artisanal opportunities",
+  "Species condition",
+  "Biodiversity",
+  "Habitat",
+  "Coastal protection",
+  "Carbon storage",
+  "Clean water",
+  "Economies",
+  "Livelihoods & economies",
+  "Livelihoods",
+  "Fisheries",
+  "Food provisioning",
+  "Mariculture",
+  "Iconic species",
+  "Sense of place",
+  "Lasting special places",
+  "Natural products",
+  "Tourism & recreation")
+)
+rgn_names <- here::here('eez/layers/rgn_global.csv') %>% 
+  readr::read_csv() %>%
+  dplyr::select(region_id = rgn_id, country = label) %>%
+  dplyr::mutate(country = as.character(country))
+
+### helper functions
+label  <- grid::textGrob("", just = 19,    gp = gpar(fontsize = 18))
+text   <- grid::textGrob("", vjust = -9.5, gp = gpar(fontsize = 14))
+space  <- grid::textGrob("")
+
+header <- function (goal) {
+  grid::textGrob(goal, gp = gpar(fontsize = 12), just = "left", x = 0)
+}
+
+goal_map <- function (goal, metric = "score") {
+  if (metric == "score") {
+    file <- here::here(dir_map_no_leg, paste0("global_map_",goal,"_",scenario,"_mol.png"))
+  } else {
+    file <- here::here(dir_goal_maps_trend, paste0("trends_map_",goal,"_mol.png"))
+  }
+  file %>% 
+    png::readPNG() %>% 
+    grid::rasterGrob(interpolate = TRUE)
+}
+
+goal_hist <- function (goal, metric = "score") {
+  if (metric == "score" && goal != "Index") {
+    file <- here::here(dir_goal_histograms, paste0(goal,"_scores.png"))
+  } else if (metric == "score" && goal == "Index") {
+    file <- here::here(dir_results_figures,"score_histogram_color.png")
+  } else {
+    file <- here::here(dir_results_figures,"trend_histogram_color.png")
+  }
+ file %>% 
+    png::readPNG() %>% 
+    grid::rasterGrob(interpolate = TRUE)
+}
+```
+
+### Overview of goals and subgoals
+
+##### Table A. Description of 10 goals used to calculate OHI scores.
+
+In several tables and figures we refer to the goals and subgoals by their abbreviation.  Goals and subgoals have a 2 and 3 character abbreviation, respectively.
+
+```{r goal description, echo=FALSE}
+here::here("metadata_documentation", "ohi_model", "tables", "ten_goals.csv") %>% 
+  readr::read_csv(col_types = cols()) %>% 
+  knitr::kable()
+```
+
+##### Table B. Description of subgoals used to calculate OHI scores.
+
+The following goals are comprised of 2 subgoals:biodiversity, food provision, sense of place, livelihoods and economies goals.
+
+```{r subgoal description, echo=FALSE}
+here::here("metadata_documentation", "ohi_model", "tables", "Subgoal_Descriptions.csv") %>% 
+  readr::read_csv(col_types = cols()) %>% 
+  knitr::kable()
+```
+
+### Datasets and additional information
+
+See the [Methods](https://raw.githack.com/OHI-Science/ohi-global/draft/documents/methods/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
+
+A CSV formatted dataset from the 2022 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/OHI_final_formatted_scores_2022-08-29.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all `r 2022 - 2011` assessment years (2012-2022). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022) for description of data.
+
+The data layers (described in section 7 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2022.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
+
+The files used to prepare data layers for the ohi-global assessment can be downloaded from Github: [ohiprep v2022.1: Preparation of data for 2022 Ocean Health Index global assessment](https://github.com/OHI-Science/ohiprep_v2022/releases).
+
+The core functions used to calculate OHI scores can be downloaded as a package from Github, using the following code in [R](https://cran.r-project.org/): 
+
+```{r install ohicore, eval=FALSE}
+
+install.packages('devtools')
+library(devtools)
+
+install_github('ohi-science/ohicore')
+library(ohicore)
+
+```
+
+### Summary of score results
+
+##### Figure A. Regional 2022 OHI index scores.
+
+Map (top) and histogram (bottom) of 2022 index scores for each OHI region. 
+
+```{r score figures, echo=FALSE, fig.height=10, fig.width=10}
+## including multiple figures on a page
+## https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html
+## https://github.com/baptiste/gridextra/wiki/arranging-ggplot
+
+Index_map  <- goal_map(goal = "Index"); Index_hist <- goal_hist(goal = "Index") 
+
+gridExtra::grid.arrange(
+  label, Index_map, 
+  label, Index_hist,
+  ncol = 1, 
+  heights = c(1, 5, 1, 6)
+)
+```
+
+##### Figure B. Flowerplot of 2022 goal/subgoal scores
+
+Flower plot describing the 2022 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
+
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/FlowerPlots)
+
+```{r flowerplot, echo=FALSE, height=5, width=10}
+here::here(dir_results_figures, 'FlowerPlots', "flower_GlobalAverage.png") %>% 
+  knitr::include_graphics()
+```
+
+##### Figure C. Maps and histograms of 2022 OHI goal scores.
+
+The 2022 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
+
+```{r testing images, echo=FALSE, fig.height=30, fig.width=10}
+AO_map <- goal_map(goal = "AO"); AO_hist <- goal_hist(goal = "AO")
+BD_map <- goal_map(goal = "BD"); BD_hist <- goal_hist(goal = "BD")
+CP_map <- goal_map(goal = "CP"); CP_hist <- goal_hist(goal = "CP")
+CS_map <- goal_map(goal = "CS"); CS_hist <- goal_hist(goal = "CS")
+CW_map <- goal_map(goal = "CW"); CW_hist <- goal_hist(goal = "CW")
+FP_map <- goal_map(goal = "FP"); FP_hist <- goal_hist(goal = "FP")
+LE_map <- goal_map(goal = "LE"); LE_hist <- goal_hist(goal = "LE")
+NP_map <- goal_map(goal = "NP"); NP_hist <- goal_hist(goal = "NP")
+SP_map <- goal_map(goal = "SP"); SP_hist <- goal_hist(goal = "SP")
+TR_map <- goal_map(goal = "TR"); TR_hist <- goal_hist(goal = "TR")
+
+grid.arrange(
+  text, AO_map, AO_hist,
+  text, BD_map, BD_hist,
+  text, CP_map, CP_hist,
+  text, CS_map, CS_hist,
+  text, CW_map, CW_hist,
+  text, FP_map, FP_hist,
+  text, LE_map, LE_hist,
+  text, NP_map, NP_hist,
+  text, SP_map, SP_hist,
+  text, TR_map, TR_hist,
+  ncol=3, widths=c(1,5,4)
+)
+```
+
+##### Figure D. Maps and histograms of 2022 OHI subgoal scores.
+
+The subgoal 202q scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
+
+```{r subgoal scores, echo=FALSE, fig.width=10, fig.height=25}
+BD      <- header(goal = "Biodiversity")
+HAB_map <- goal_map(goal = "HAB"); HAB_hist <- goal_hist(goal = "HAB")
+SPP_map <- goal_map(goal = "SPP"); SPP_hist <- goal_hist(goal = "SPP")
+
+FP      <- header(goal = "Food provision")
+FIS_map <- goal_map(goal = "FIS"); FIS_hist <- goal_hist(goal = "FIS")
+MAR_map <- goal_map(goal = "MAR"); MAR_hist <- goal_hist(goal = "MAR")
+
+SP      <- header(goal = "Sense of place")
+LSP_map <- goal_map(goal = "LSP"); LSP_hist <- goal_hist(goal = "LSP")
+ICO_map <- goal_map(goal = "ICO"); ICO_hist <- goal_hist(goal = "ICO")
+
+LE      <- header(goal = "Livelihoods & economies")
+LIV_map <- goal_map(goal = "LIV"); LIV_hist <- goal_hist(goal = "LIV")
+ECO_map <- goal_map(goal = "ECO"); ECO_hist <- goal_hist(goal = "ECO")
+
+grid.arrange(
+  BD,      space,
+  HAB_map, HAB_hist,
+  SPP_map, SPP_hist,
+  FP,      space,
+  FIS_map, FIS_hist, 
+  MAR_map, MAR_hist,
+  SP,      space,
+  ICO_map, ICO_hist,
+  LSP_map, LSP_hist,
+  LE,      space,
+  LIV_map, LIV_hist, 
+  ECO_map, ECO_hist,
+  ncol = 2, 
+  widths  = c(5, 4), 
+  heights = c(0.6, 5, 5, 
+              0.6, 5, 5, 
+              0.6, 5, 5, 
+              0.6, 5, 5)
+)
+```
+
+##### Figure E. Country scores across scenario year
+
+Overview of the scores from the 2022 assessment. Each row represents a region, the main groupings represent goals, and within each goal there are `r 2022 - 2011` years of data. Black regions indicate no data. Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2022/Results/figures/carpetPlot.png) to zoom in to see specific regions.
+
+This plot is good for providing a quick overview of:
+
+* What is the range of scores?
+* Which goals tend to have high scores across most regions (species, habitat)
+* Which goals have a lot of variation across regions (tourism & recreation, lasting special places)
+* Which goals are volatile across years (natural products, tourism & recreation)
+
+```{r carpet plot, echo=FALSE, height=40, width=10}
+here::here(dir_results_figures, "carpetPlot.png") %>% 
+  knitr::include_graphics()
+```
+
+### Summary of average annual change in scores
+
+##### Table C. Global average scores for index and goals.
+
+Global scores (eez area weighted average of all regions) for index and goal/subgoals for all years. 
+
+```{r overview, echo=FALSE}
+final_filename %>% 
+  readr::read_csv(col_types = cols()) %>%
+  dplyr::mutate(value = round(value, 2), goal = factor(goal, levels = goals)) %>%
+  dplyr::filter(region_id == 0, dimension == "score", !goal %in% c("ECO", "LE", "LIV")) %>% 
+  tidyr::pivot_wider(names_from = scenario, values_from = value) %>% 
+  dplyr::arrange(goal) %>%
+  dplyr::select(-c(goal, dimension, region_id, region_name), goal = long_goal) %>%
+  knitr::kable()
+```
+
+##### Figure F. Average annual change in OHI Index scores.
+
+Map (top) and histogram (bottom) of the slope estimates from a linear regression model of the Index scores from 2012 to 2022 for each region.
+
+```{r trend figures, echo=FALSE, fig.height=10, fig.width=10}
+## Figure created in Reporting.Rmd
+Index_map  <-  goal_map(goal = "Index", metric = "trend")
+Index_hist <- goal_hist(goal = "Index", metric = "trend") 
+
+grid.arrange(
+  label, Index_map, 
+  label, Index_hist,
+  ncol = 1, 
+  heights = c(1, 5, 1, 6)
+)
+```
+
+##### Figure G. Average annual change in OHI goal scores.
+
+Map of the slope estimates from a linear regression model of the 10 goal scores from 2012 to 2022 for each region.
+
+```{r trends goals, echo=FALSE, fig.height=15, fig.width=10}
+## Figures created in Reporting.Rmd
+AO_map <- goal_map(goal = "AO", metric = "trend")
+BD_map <- goal_map(goal = "BD", metric = "trend")
+CP_map <- goal_map(goal = "CP", metric = "trend")
+CS_map <- goal_map(goal = "CS", metric = "trend")
+CW_map <- goal_map(goal = "CW", metric = "trend")
+FP_map <- goal_map(goal = "FP", metric = "trend")
+LE_map <- goal_map(goal = "LE", metric = "trend")
+NP_map <- goal_map(goal = "NP", metric = "trend")
+SP_map <- goal_map(goal = "SP", metric = "trend")
+TR_map <- goal_map(goal = "TR", metric = "trend")
+
+grid.arrange(
+  AO_map, BD_map,
+  CP_map, CS_map,
+  CW_map, FP_map,
+  LE_map, NP_map,
+  SP_map, TR_map,
+  ncol = 2
+)
+```
+
+##### Figure H. Average annual change in OHI subgoal scores.
+
+Map of the slope estimates from a linear regression model of the 8 subgoal scores from 2012 to 2022 for each region. The subgoal scores for the following goals: biodiversity, food provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
+
+<br>
+```{r subgoal trends, echo=FALSE, fig.width=10, fig.height=15}
+BD      <- header(goal = "Biodiversity")
+HAB_map <- goal_map(goal = "HAB", metric = "trend")
+SPP_map <- goal_map(goal = "SPP", metric = "trend")
+
+FP      <- header(goal = "Food provision")
+FIS_map <- goal_map(goal = "FIS", metric = "trend")
+MAR_map <- goal_map(goal = "MAR", metric = "trend")
+
+SP      <- header(goal = "Sense of place")
+LSP_map <- goal_map(goal = "LSP", metric = "trend")
+ICO_map <- goal_map(goal = "ICO", metric = "trend")
+
+LE      <- header(goal = "Livelihoods & economies")
+LIV_map <- goal_map(goal = "LIV", metric = "trend")
+ECO_map <- goal_map(goal = "ECO", metric = "trend")
+
+grid.arrange(
+  BD,      space,
+  HAB_map, SPP_map,
+  FP,      space,
+  FIS_map, MAR_map, 
+  SP,      space,
+  ICO_map, LSP_map, 
+  LE,      space,
+  LIV_map, ECO_map, 
+  ncol = 2, 
+  widths  = c(5, 5), 
+  heights = c(0.2, 5, 
+              0.2, 5, 
+              0.2, 5,  
+              0.2, 5)
+)
+```
+
+##### Figure I. Barplot of average annual change in goal trends for each region.
+
+The values are the slope estimate from a linear regression model of the scores from 2012 to 2022 for each region and goal.
+
+```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
+## Figure created in trend_barplot.R
+here::here(dir_results_figures, "Trend_barplot.png") %>% 
+  knitr::include_graphics()
+```
+
+##### Figure J. Comparing trend and average index scores
+
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2022) and the trends for each region.
+
+Of most concern are regions that have poor scores and declining trends.
+
+The following is an interactive plot (region names are visible when hovering over the points) showing the relationship between average index scores and trend.  The horizontal line represents the 0 trend and the vertical line is the average of the average index scores.
+
+```{r trend vs avg index, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=TRUE, fig.width=6, fig.height=4}
+index <- here::here(dir_results_data, "avg_goal_scores.csv") %>% 
+  readr::read_csv(col_types = cols()) %>%
+  dplyr::select(region_id, country=region_name, index_avg = Index)
+
+avg_index <- index %>%
+  dplyr::filter(region_id != 0) %>%
+  dplyr::summarize(mean(index_avg, na.rm=TRUE)) %>% 
+  dplyr::pull()
+
+trend <- here::here(dir_results_data, paste0("trends_",scenario,".csv")) %>% 
+  readr::read_csv(col_types = cols()) %>%
+  dplyr::select(region_id, index_trend = Index) %>%
+  dplyr::left_join(index, by= "region_id") %>% 
+  dplyr::mutate(
+    color = dplyr::case_when(
+      (index_avg >= avg_index) & (index_trend >= 0) ~ "Above avg score & Increasing",
+      (index_avg <  avg_index) & (index_trend >= 0) ~ "Below avg score & Increasing",
+      (index_avg <  avg_index) & (index_trend <  0) ~ "Below avg score & Decreasing",
+      (index_avg >= avg_index) & (index_trend <  0) ~ "Above avg score & Decreasing"
+    )
+  )
+
+avg_colors <- c("Above avg score & Increasing" = "#313695",
+                "Below avg score & Increasing" = "#74ADD1",
+                "Below avg score & Decreasing" = "#A50026",
+                "Above avg score & Decreasing" = "#FDAE61")
+
+p <- ggplot2::ggplot(trend, aes(x = index_avg, y = index_trend)) +
+  aes(color = color, text = paste0("rgn = ", country)) +
+  geom_point(shape = 19, size = 2, alpha = 0.8) +
+  scale_color_manual(values = avg_colors) +
+  labs(title = "Index scores",
+       y = "Trend (change in score per year)", 
+       x = "Average (2012 to 2022 scores)") +
+  theme_bw() + 
+  theme(legend.position = "none")
+
+plotly_fig <- plotly::ggplotly(p) %>% 
+  plotly::add_segments( # Add Vertical line with hover text
+    x = avg_index, xend = avg_index, y = min(trend$index_trend) - .1, yend = max(trend$index_trend) +.1, 
+    line = list(color = 'red', width = 1.5, dash = 'dot'), 
+    text = "Average OHI index score", hoverinfo = 'text', showlegend = FALSE) %>% 
+  plotly::add_segments( # Add horizontal line with hover text
+    x = min(trend$index_avg)-2, xend = max(trend$index_avg) + 2, y = 0, yend = 0, 
+    line = list(color = 'red', width = 1.5, dash = 'dot'), 
+    text = "No change on average", hoverinfo = 'text', showlegend = FALSE)
+plotly_fig
+```

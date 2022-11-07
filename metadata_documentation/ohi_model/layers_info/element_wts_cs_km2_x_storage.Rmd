@@ -1,4 +1,4 @@
-This layer describes the relative value of the habitats in each region to carbon storage, and is calculated by multiplying the habitat extent (km^2^) in each region by the amount of carbon the habitat sequesters (Laffoley & Grimsditch 2009). 
+This layer describes the relative value of the habitats in each region to carbon storage, and is calculated by multiplying the habitat extent (km^2^) in each region by the amount of carbon the habitat sequesters [@chen_tidal_2022]. 
 
 Data is generated in ohi-global/eez/conf/functions.R. 
 
@@ -6,9 +6,9 @@ These data are called internally by ohicore functions (see: conf/config.R to see
 
 **Table 7.3. Carbon storage weights**
 
-Habitat | Carbon storage
-------------- | -------------
-Mangrove | 139
-Saltmarsh | 210 
-Seagrass | 83 
-
+|Habitat carbon storage| Sequestration (weight)|
+|----------------------|-------|
+| Mangrove             | 230.9 |
+| Saltmarsh            | 244.7 |
+| Seagrass             |   138 |
+| Tidal flat           | 129.8 |

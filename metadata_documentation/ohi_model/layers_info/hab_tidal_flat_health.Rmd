@@ -1,0 +1,4 @@
+See **`r layer_meta$name[layer_meta$layer == 'hab_tidal_flat_extent']`** layer for more information.
+
+
+Tidal flat condition was defined as the current cover divided by reference cover. For current cover we use the average of the 2010 and 2013 extent. The reference cover is the average cover of 1989 and 1992. 

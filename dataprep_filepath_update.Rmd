@@ -1,0 +1,96 @@
+---
+title: "update_layers_eez_dataprep"
+output: html_document
+date: '2022-08-26'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(here)
+```
+
+Take a look at the layers_eez_base.csv and make sure all dataprep filepaths have been updated for this assessment year. Then run the following code in order to combine the updated assessment years' dataprep filepaths with the name of the dataprep, which is found in the file layers_eez_dataprep.csv.
+
+```{r}
+# read in the layers_eez_base file to retrieve the columns that are relevant to the dataprep filepaths
+# subset columns to just layer and dir
+layers_eez_base <- read.csv(here("metadata_documentation/layers_eez_base.csv")) %>% 
+  select(layer, dir)
+
+layers_eez_dataprep <- read.csv(here("metadata_documentation/layers_eez_dataprep.csv"))
+
+# subset dir column from the to exclude the end of the filepaths becuase the output and data folders are not what we want, we are just after the dataprep html files
+layers_eez_base$dir <- gsub(pattern = "output", replacement = "", x = layers_eez_base$dir)
+layers_eez_base$dir <- gsub(pattern = "data", replacement = "", x = layers_eez_base$dir)
+
+# subset the dataprep url column for just the last file in the path
+layers_eez_dataprep$html_filename <- basename(layers_eez_dataprep$dataprep_url)
+
+# remove the filenames that are not actual files that end in html, but rather folders
+# create object of all folder names that we will be able to index for readability
+folders <- c("v2015",
+             "v2016", 
+             "v2017", 
+             "v2018", 
+             "weighting_files", 
+             "res_cbd_habitat",
+             "hab_rockyreef",
+             "le",
+             "res_li_sector_evenness",
+             "spatial")
+
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[1], replacement = "", x = layers_eez_dataprep$html_filename)
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[2], replacement = "", x = layers_eez_dataprep$html_filename)
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[3], replacement = "", x = layers_eez_dataprep$html_filename)
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[4], replacement = "", x = layers_eez_dataprep$html_filename)
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[5], replacement = "", x = layers_eez_dataprep$html_filename)
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[6], replacement = "", x = layers_eez_dataprep$html_filename)
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[7], replacement = "", x = layers_eez_dataprep$html_filename)
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[8], replacement = "", x = layers_eez_dataprep$html_filename)
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[9], replacement = "", x = layers_eez_dataprep$html_filename)
+layers_eez_dataprep$html_filename <- gsub(pattern = folders[10], replacement = "", x = layers_eez_dataprep$html_filename)
+
+# concatenate the updated filepaths with the filenames 
+full_filepaths <- left_join(layers_eez_base, layers_eez_dataprep) %>% 
+  unite(col = full_filepath, c(dir, html_filename), sep = "")
+```
+
+If a filepath ends in a /, remove that character.
+
+```{r}
+for (i in seq_along(full_filepaths$full_filepath)) {
+  if (endsWith(full_filepaths$full_filepath[i], "/") == TRUE) {
+    print(paste0("Removing / from the end of the filepath ", full_filepaths$full_filepath[i]))
+    full_filepaths$full_filepath[i] <- substr(full_filepaths$full_filepath[i], 1, (nchar(full_filepaths$full_filepath[i]) - 1))
+  }
+  else{
+    print(paste0("Filepath ", full_filepaths$full_filepath[i], " is already correct."))
+  }
+}
+```
+
+Correct the column names so the updated filepath column is `dataprep_url`.
+
+```{r}
+full_filepaths <- full_filepaths %>% select(layer, full_filepath) %>% rename(dataprep_url = full_filepath)
+```
+
+Save the updated filepaths for the dataprep csv's to ohi-global.
+
+```{r}
+write.csv(full_filepaths, here("metadata_documentation/layers_eez_dataprep.csv"), row.names = FALSE)
+```
+
+
+
+
+
+
+
+
+
+
+
+

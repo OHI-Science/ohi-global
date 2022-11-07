@@ -19,7 +19,7 @@ $$
 where, $C_c$ is current condition and $C_r$ is reference condition.
 
 **Table 6.4. Coastal protectiveness ranks**
-Scores range from 1-4, with 4 being the most protective [@tallis_invest_2011].
+Scores range from 1-4, with 4 being the most protective [@tallis2011invest].
 
 Habitat | Protectiveness rank ($w$)
 ------- | -------------------------
@@ -30,7 +30,7 @@ coral reefs | 3
 seagrasses | 1
 kelp | 1
 
-The reference area for each habitat is treated as a fixed value; in cases where current area might exceed this reference value (e.g., through restoration), we cap the score at the maximum value (1.0). Although this does not give credit for restoration, data tend to be of poor quality making it difficult to determine true increases, and in general habitat restoration beyond reference values is extremely unlikely. Rank weights for the protective ability of each habitat ($w_{k}$) come from previous work [@tallis_invest_2011].
+The reference area for each habitat is treated as a fixed value; in cases where current area might exceed this reference value (e.g., through restoration), we cap the score at the maximum value (1.0). Although this does not give credit for restoration, data tend to be of poor quality making it difficult to determine true increases, and in general habitat restoration beyond reference values is extremely unlikely. Rank weights for the protective ability of each habitat ($w_{k}$) come from previous work [@tallis2011invest].
 
 #### Trend
 The trend for this goal is calculated using different methods for each habitat due to data availability (Table 6.2, with sea ice shoreline following the same general methods as sea ice edge). 

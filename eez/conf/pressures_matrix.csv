@@ -1,14 +1,15 @@
 goal,element,element_name,po_chemicals,po_chemicals_3nm,po_pathogens,po_nutrients,po_nutrients_3nm,po_trash,sp_alien,sp_genetic,hd_coral,hd_subtidal_sb,hd_subtidal_hb,hd_intertidal,fp_com_hb,fp_com_lb,fp_art_lb,fp_art_hb,fp_targetharvest,cc_sst,cc_acid,cc_uv,cc_slr,ss_wgi,ss_spi
 AO,,,,1,,,1,,1,,,1,3,1,2,1,,3,,,,,,1,1
 CP,coral,,,1,,,2,,1,,1,,3,,,,,,,3,1,1,2,1,1
-CP,mangrove,,,1,,,1,,,,,,,3,,,,,,,,,2,1,1
-CP,saltmarsh,,,1,,,2,,1,,,,,3,,,,,,,,,3,1,1
-CP,kelp,,,2,,,3,,1,,,,,3,,,,,,2,1,,3,1,1
-CP,seagrass,,,2,,,3,,1,,,,,3,,,,,,2,1,,3,1,1
+CP,mangrove,,,1,,,1,,,,,,,3,,,,,,,,,1,1,1
+CP,saltmarsh,,,1,,,2,,1,,,,,3,,,,,,,,,2,1,1
+CP,kelp,,,2,,,3,,1,,,,,3,,,,,,2,1,,,1,1
+CP,seagrass,,,2,,,3,,1,,,,,3,,,,,,2,1,,2,1,1
 CP,seaice_shoreline,,,,,,,,,,,,,,,,,,,3,,,2,1,1
 CS,mangrove,,,1,,,1,,,,,,,3,,,,,,,,,1,1,1
 CS,saltmarsh,,,1,,,2,,1,,,,,3,,,,,,,,,2,1,1
 CS,seagrass,,,2,,,3,,1,,,,,3,,,,,,2,1,,2,1,1
+CS,tidal flat,,,2,,,2,,1,,,,,3,,,,,,2,,,2,1,1
 CW,,,,3,3,,3,3,,,,,,,,,,,,,,,,1,1
 ECO,aqf,Aquarium Trade Fishing,2,,,1,,,1,,,,3,,,,1,3,,1,1,,,1,1
 ECO,cf,Commercial Fishing,2,,,1,,,1,1,,2,2,1,3,1,1,2,,,,,,1,1
@@ -17,13 +18,14 @@ ECO,mmw,Marine Mammal Watching,,,,,,1,,,,,,,1,,,,,,,,,1,1
 ECO,tour,Tourism,3,,3,,3,3,,,,,,,,,,,,,,,2,1,1
 ECO,wte,Wave & Tidal Energy,,,,,,,,,,,,,,,,,,,,,1,1,1
 FIS,,,1,,,1,,,1,1,,2,2,1,3,1,1,2,,,,,,1,1
-HAB,coral,,,1,,,2,,1,,1,,3,,,,,3,,3,1,1,1,1,1
+HAB,coral,,,1,,,2,,1,,1,,3,,,,,3,,3,1,1,2,1,1
 HAB,mangrove,,,1,,,1,,,,,,,3,,,,,,,,,1,1,1
 HAB,saltmarsh,,,1,,,2,,1,,,,,3,,,,,,,,,2,1,1
-HAB,kelp,,,2,,,3,,1,,,,,3,,,,,,2,1,,2,1,1
+HAB,kelp,,,2,,,3,,1,,,,,2,,,,,,2,1,,,1,1
 HAB,seagrass,,,2,,,3,,1,,,,,3,,,,,,2,1,,2,1,1
 HAB,seaice_edge,,,,,,,,,,,,,,,,,,,3,,,1,1,1
 HAB,soft_bottom,,,2,,,2,,1,,,3,,,3,1,1,,,,,,,1,1
+HAB,tidal flat,,,2,,,2,,1,,,,,3,,,,,,2,,,2,1,1
 ICO,,,,3,,,1,1,1,,,,2,3,2,,,2,2,1,1,,,1,1
 LIV,cf,Commercial Fishing,2,,,1,,,1,1,,2,2,1,3,1,1,2,,,,,,1,1
 LIV,mar,Mariculture,2,,,,3,,,,,,,,,,,,,,,,1,1,1

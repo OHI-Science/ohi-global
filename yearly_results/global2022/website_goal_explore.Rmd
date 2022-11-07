@@ -1,0 +1,75 @@
+---
+title: "Website data: MRF"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(here)
+scores <- read_csv(here("yearly_results/global2021/OHI_final_formatted_scores_2021-10-28.csv"))
+
+```
+
+### LSP
+How many countrys have 30% protected areas?
+```{r}
+scores %>%
+  filter(scores$dimension == "status") %>%
+  filter(scenario == 2021) %>%
+  filter(goal == "LSP") %>%
+  filter(value >= 100) %>%
+  data.frame()
+
+scores %>%
+  filter(scores$dimension == "status") %>%
+  filter(scenario == 2012) %>%
+  filter(goal == "LSP") %>%
+  filter(value >= 100) %>%
+  data.frame()
+
+
+## has this changed over time?
+
+tmp <- scores %>%
+  filter(scores$dimension == "score") %>%
+  filter(value < 50) %>%
+  data.frame()
+table(tmp$scenario)
+
+
+scores %>%
+  filter(scores$dimension == "score") %>%
+  filter(region_name == "Puerto Rico and Virgin Islands") %>%
+  filter(goal == "TR") %>%
+  data.frame()
+```
+
+
+### TR
+```{r}
+
+read_csv(here("eez/layers/tr_jobs_pct_tourism.csv")) %>%
+  filter(rgn_id=="8") %>%
+  data.frame()
+
+```
+
+### AO
+```{r}
+
+
+tmp <- read_csv(here("eez/layers/ao_need.csv")) %>%
+  group_by(year) %>%
+  summarize(value = mean(value, na.rm=TRUE))
+plot(tmp$year, tmp$value, ylab="Rescaled GDPpcPPP")
+
+read_csv(here("eez/layers/ao_access.csv")) %>%
+  group_by(year) %>%
+  summarize(value = mean(value, na.rm=TRUE))
+
+tmp <- read_csv(here("eez/layers/ao_sust.csv")) %>%
+  group_by(year) %>%
+  summarize(score = mean(score, na.rm=TRUE))
+
+plot(tmp$year, tmp$score, ylab="Avg B/Bmsy score for artisanal species")
+```

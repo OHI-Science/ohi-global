@@ -1,0 +1,54 @@
+---
+title: "Exploring scores"
+output: html_document
+---
+
+A place to explore scores.
+
+
+```{r setup, include=FALSE}
+
+library(here)
+library(tidyverse)
+
+```
+
+
+## Trends across assessment years 
+ - Here we would like to look at the differences in scores across ASSESSMENT years. Although it isn't really scientifically sound to compare across assessments with different methods, it is still an interesting talking point to see just how much the scores have changed. 
+ 
+```{r}
+scores_2015 <- read.csv(file.path(here(), "yearly_results/global2015/Reporting/data/scores_eez2015.csv")) %>%
+  dplyr::select(-dimension) %>%
+  mutate(country = ifelse(country == "eez_weighted_avg", "Global average", country)) %>%
+  rename("region_name" = "country") 
+
+scores_2016 <- read.csv(file.path(here(), "yearly_results/global2016/Reporting/data/scores_eez2016.csv")) %>%
+  mutate(scenario = 2016,
+         country = ifelse(country == "eez_weighted_avg", "Global average", country)) %>%
+  rename("region_name" = "country")
+
+
+scores_2017 <- read.csv(file.path(here(), "yearly_results/global2017/Results/data/scores_eez2017.csv")) %>%
+  mutate(scenario = 2017)
+
+scores_2018 <- read.csv(file.path(here(), "yearly_results/global2018/Results/data/scores_eez2018.csv")) %>%
+  mutate(scenario = 2018)
+
+scores_2019 <- read.csv(file.path(here(), "yearly_results/global2019/Results/data/scores_eez2019.csv")) %>%
+  mutate(scenario = 2019)
+
+scores_2020 <- read.csv(file.path(here(), "yearly_results/global2020/Results/data/scores_eez2020.csv")) %>%
+  mutate(scenario = 2020)
+
+scores_2021 <- read.csv(file.path(here(), "yearly_results/global2021/Results/data/scores_eez2021.csv")) %>%
+  mutate(scenario = 2021)
+
+
+all_years <- rbind(scores_2015, scores_2016, scores_2017, scores_2018, scores_2019, scores_2020, scores_2021) %>%
+  pivot_longer(cols = 4:22, names_to = "goal", values_to = "score") %>%
+  filter(region_name == "Global average", 
+         goal == "Index")
+
+```
+

@@ -1,4 +1,4 @@
-This data layer provides the risk category and the year the species was assessed from the IUCN Red List of Threatened Species ([http://www.iucnredlist.org/](http://www.iucnredlist.org/)) for the iconic species in each region.   Regionally specific IUCN risk category data for *subpopulations* are included where available. Trend calculations are based on the change in each species' IUCN risk category over time, based upon past and current IUCN assessments.
+This data layer provides the risk category and the year the species was assessed from the IUCN Red List of Threatened Species ([http://www.iucnredlist.org/](http://www.iucnredlist.org/)) [@iucn2022] for the iconic species in each region. Regionally specific IUCN risk category data for *subpopulations* are included where available. Trend calculations are based on the change in each species' IUCN risk category over time, based upon past and current IUCN assessments.
 
 OHI defines iconic species as those relevant to local cultural identity through the species’ relationship to traditional activities such as fishing, hunting, commerce or involvement in local ethnic or religious practices;  and species with locally-recognized aesthetic value (e.g., touristic attractions/common artistic subjects such as whales).  Habitat forming species are excluded in this definition of iconic species. The OHI global iconic species list combines three species lists from WWF Global: global priorities, regional and local priorities, and flagship species.  The criteria for including species on the WWF lists are consistent with the OHI’s definition of iconic species.  
 
@@ -8,15 +8,13 @@ Most of the iconic species are not region specific, and the global list is appli
 
 **Table 7.5. Iconic species resources**
 
-Iconic List   | Source 
--------------- | ---------------
-Priority Species | http://wwf.panda.org/what_we_do/endangered_species/
-Flagship Species | http://wwf.panda.org/what_we_do/endangered_species/
-Australia’s Flagship Species | http://www.wwf.org.au/our_work/saving_the_natural_world/wildlife_and_habitats/australian_priority_species/ 
-Pakistan’s Priority Species | http://www.wwfpak.org/species/priority_species.php
-India’s Priority Species | http://www.wwfindia.org/about_wwf/priority_species/
-Madagascar’s Flagship Species | http://www.wwf.mg/ourwork/cssp/species_report/wwf_madagascar_s_flagship_species/
-Malaysia’s Flagship Species | http://www.wwf.org.my/about_wwf/what_we_do/species_main/
-Portugal’s Flagship Species | http://www.wwf.pt/o_nosso_planeta/especies/top_5_das_especies_de_portugal___as_cinco_especies_mais_ameacadas_e_ emblematicas_de_portugal/
-Peru’s Priority Species | http://peru.panda.org/nuestro_trabajo/iniciativas_globales/
+Iconic List                   | Source 
+----------------------------- | -----------------------------
+Priority Species              | https://wwf.panda.org/discover/knowledge_hub/endangered_species/
+Flagship Species              | https://wwf.panda.org/discover/our_focus/wildlife_practice/flagship_keystone_indicator_definition/
+Australia’s Flagship Species  | https://www.wwf.org.au/what-we-do/species
+Pakistan’s Priority Species   | https://wwf.org.pk/species/priority_species.php
+India’s Priority Species      | https://www.wwfindia.org/about_wwf/priority_species/
+Madagascar’s Flagship Species | https://www.worldwildlife.org/places/madagascar
+Malaysia’s Flagship Species   | https://www.wwf.org.my/?23365/WWF-Malaysia-calls-attention-to-flagship-species-conservation-in-conjunction-with-World-Wildlife-Day
 
