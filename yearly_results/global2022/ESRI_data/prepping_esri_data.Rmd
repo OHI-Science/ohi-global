@@ -1,0 +1,143 @@
+---
+title: "Create shapefiles to give to ARCGIS"
+author: "Gage Clawson"
+date: "9/28/2020"
+output: html_document
+---
+
+This Rmd preps our scores data to plug into the ARCGIS Living Atlas of the World for the Ocean Health Index: https://ucsb.maps.arcgis.com/home/item.html?id=1f305abdc47a45bf867783c7419db6d0
+
+Through UCSB, you should have an ARCGIS online account. You will need to be added to the group "Global Ocean Health Index" by either Gage Clawson or Melanie Frazier. https://ucsb.maps.arcgis.com/home/group.html?id=e2857950e3314d77a1fd14959f3cce8e#overview
+
+First, you will run this script with the updated scores for your assessment year. 
+
+Next you will need to upload this data into the ARCGIS OHI global map.
+
+To obtain the zip file which you will update, export the .dbf, .shp, .shx, and .prj files from the scores_xxxx folder on Mazu, and rename to "ohi_scores_2020_final.zip".
+
+**NOTE: It is important that this file is named "ohi_scores_2020_final.zip", even if the assessment year is not 2020. This is because we originally uploaded the data and created an ARCGIS map from it when it was named "ohi_scores_2020_final.zip". I'm sure we could figure out how to change the name of the file if we wanted to, or recreate the map, but at this time its not worth the effort... just roll with 2020 in the name.**
+
+Now log into https://ucsb.maps.arcgis.com/. Click on Groups ---> Global Ocean Health Index ---> and update the files accordingly as instructed below. 
+
+Upload the ohi_scores_2020_final.zip file to "OHI Scores Source" by clicking "Update Data" ---> "Overwrite Entire Layer". Now the data is updated on ARCGIS Online! All you have left to do is edit the text on "OHI Scores Source" and "Historical Global Ocean Health Index Scores (2012-2021)" to match the current assessment year. 
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
+library(sf)
+library(tidyverse)
+library(here)
+library(mapview)
+
+setwd(here("yearly_results/global2021/ESRI_data"))
+```
+
+Match our scores data with the shapefiles that Victor provided, grab the geometries, and rewrite so that we can upload to ARCGIS online.
+```{r}
+ohi_scores_sf <- st_read("Global_OHI_Scores_2012_to_2019.shp")
+
+# mapview(ohi_scores_sf)
+colnames(ohi_scores_sf)
+
+
+## lets compare to our scores from last year 
+ohi_scores_renamed <- ohi_scores_sf %>%
+  # dplyr::filter(Year == 2012) %>%
+  # dplyr::filter(rgn_id == 174) %>%
+  dplyr::rename("MAR_score" = "scr_", "MAR_trend" = "trd_") %>%
+  dplyr::rename("AO_score" = "scr1", "AO_trend" = "trd1") %>%
+  dplyr::rename("BD_score" = "sc_1", "BD_trend" = "tr_1") %>%
+  dplyr::rename("CP_score" = "sc_2", "CP_trend" = "tr_2") %>%
+  dplyr::rename("CS_score" = "sc_3", "CS_trend" = "tr_3") %>%
+  dplyr::rename("CW_score" = "sc_4", "CW_trend" = "tr_4") %>%
+  dplyr::rename("ECO_score" = "sc_5", "ECO_trend" = "tr_5") %>%
+  dplyr::rename("FIS_score" = "sc_6", "FIS_trend" = "tr_6") %>%
+  dplyr::rename("FP_score" = "sc_7", "FP_trend" = "tr_7") %>%
+  dplyr::rename("HAB_score" = "sc_8", "HAB_trend" = "tr_8") %>%
+  dplyr::rename("ICO_score" = "sc_9", "ICO_trend" = "tr_9") %>%
+  dplyr::rename("Index_score" = "s_10") %>%
+  dplyr::rename("LSP_score" = "s_13", "LSP_trend" = "t_12") %>%
+  dplyr::rename("LIV_score" = "s_12", "LIV_trend" = "t_11") %>%
+  dplyr::rename("LE_score" = "s_11", "LE_trend" = "t_10") %>%
+  dplyr::rename("NP_score" = "s_14", "NP_trend" = "t_13") %>%
+  dplyr::rename("SP_score" = "s_15", "SP_trend" = "F_t_14") %>%
+  dplyr::rename("SPP_score" = "s_16", "SPP_trend" = "t_15") %>%
+  dplyr::rename("TR_score" = "s_17", "TR_trend" = "t_16") 
+
+ohi_scores_renamed_2 <- ohi_scores_renamed %>%
+  dplyr::select(rgn_id , geometry) %>%
+  dplyr::rename("region_id"="rgn_id") %>%
+  distinct(region_id, geometry)
+
+# rgn_nam, rgn_key, are_km2
+```
+
+```{r}
+scores_2021 <- read_csv(file.path("../scores_2021-11-17.csv")) %>% ## change this to your new assessment years score csv
+  dplyr::filter(dimension %in% c("score", "trend", "index")) %>% 
+  pivot_wider(names_from = c(goal, dimension), values_from = score)
+
+region_data()
+regions_shape()
+
+regions_df <- regions %>%
+  as.data.frame() %>%
+  dplyr::select(-geometry) %>%
+  dplyr::filter(rgn_type == "eez") %>%
+  dplyr::rename("rgn_nam" = "rgn_name" , "are_km2" = "area_km2")
+
+scores_2021_sf_names <- scores_2021 %>%
+  merge(ohi_scores_renamed_2) %>%
+  dplyr::rename("rgn_id" = "region_id") %>%
+  st_sf() %>%
+  merge(regions_df) %>%
+  dplyr::select(-rgn_ant_id, -rgn_type, -type_w_ant)
+
+
+st_write(scores_2021_sf_names, "scores_2021/scores_2021_names.shp", driver="ESRI Shapefile")
+
+# scores_2020_shp_names <- as_Spatial(scores_2020_sf_names)
+mapview(scores_2021_sf_names)
+
+scores_2021_sf_no_names <- scores_2021_sf_names %>%
+  dplyr::rename("scr_" = "MAR_score",  "trd_" = "MAR_trend") %>%
+  dplyr::rename( "scr1" = "AO_score",   "trd1" = "AO_trend") %>%
+  dplyr::rename("sc_1" = "BD_score", "tr_1" = "BD_trend") %>%
+  dplyr::rename( "sc_2" = "CP_score",  "tr_2" = "CP_trend") %>%
+  dplyr::rename( "sc_3" = "CS_score" , "tr_3" = "CS_trend") %>%
+  dplyr::rename( "sc_4" = "CW_score",  "tr_4" = "CW_trend") %>%
+  dplyr::rename( "sc_5" = "ECO_score", "tr_5" = "ECO_trend") %>%
+  dplyr::rename( "sc_6" = "FIS_score", "tr_6" = "FIS_trend") %>%
+  dplyr::rename( "sc_7" = "FP_score", "tr_7" = "FP_trend") %>%
+  dplyr::rename("sc_8" = "HAB_score" , "tr_8" = "HAB_trend" ) %>%
+  dplyr::rename("sc_9" = "ICO_score",  "tr_9" = "ICO_trend") %>%
+  dplyr::rename( "s_10" = "Index_score") %>%
+  dplyr::rename( "s_13" = "LSP_score", "t_12" = "LSP_trend") %>%
+  dplyr::rename( "s_12" = "LIV_score", "t_11" = "LIV_trend") %>%
+  dplyr::rename( "s_11" = "LE_score", "t_10" = "LE_trend") %>%
+  dplyr::rename("s_14" = "NP_score", "t_13" = "NP_trend") %>%
+  dplyr::rename( "s_15" = "SP_score", "F_t_14" = "SP_trend") %>%
+  dplyr::rename( "s_16" = "SPP_score", "t_15" = "SPP_trend") %>%
+  dplyr::rename("s_17" = "TR_score", "t_16" = "TR_trend") %>%
+  dplyr::rename("Year" = "year") %>%
+  mutate(Std_Date = case_when(
+    Year == 2012 ~ "2012-12-01",
+    Year == 2013 ~ "2013-12-01",
+    Year == 2014 ~ "2014-12-01",
+    Year == 2015 ~ "2015-12-01",
+    Year == 2016 ~ "2016-12-01",
+    Year == 2017 ~ "2017-12-01",
+    Year == 2018 ~ "2018-12-01",
+    Year == 2019 ~ "2019-12-01",
+    Year == 2020 ~ "2020-12-01",
+    Year == 2021 ~ "2021-12-01"
+  ))
+
+st_write(scores_2021_sf_no_names, "scores_2021/ohi_scores_2020_final.shp", driver="ESRI Shapefile") ## always keep 2020 in the name... see instructions above.
+
+mapview(scores_2021_sf_no_names)
+```
+
+

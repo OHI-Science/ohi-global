@@ -1,0 +1,246 @@
+---
+title: "SPP explore"
+author: "Gage Clawson"
+date: "10/10/2022"
+output: html_document
+---
+
+## Explore the SPP data after new data updates
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+library(knitr)
+library(tidyr)
+library(broom)
+source('http://ohi-science.org/ohiprep_v2022/workflow/R/common.R')
+region_data()
+```
+
+
+Take a look at trends
+
+
+```{r}
+
+
+scores <- read_csv(file.path(here(), "yearly_results/global2022/OHI_final_formatted_scores_2022-10-05.csv"))
+
+
+spp_status <- scores %>%
+  filter(goal == "SPP", dimension == "score", region_id != 0) 
+
+spp_trend <- scores %>%
+  filter(goal == "SPP", dimension == "trend", region_id != 0, scenario == 2022)
+  
+
+## get top ten and bottom ten scores for 2021
+
+DT::datatable(spp_status %>%
+  filter(scenario == 2022) %>%
+  arrange(-value) %>%
+    dplyr::select(goal, dimension, region_name, scenario, value))
+
+
+reds <-  colorRampPalette(c("#A50026", "#D73027", "#F46D43", "#FDAE61", "#FEE090"), space="Lab")(65)
+blues <-  colorRampPalette(c("#E0F3F8", "#ABD9E9", "#74ADD1", "#4575B4", "#313695"))(35)
+myPalette <-   c(reds, blues)
+
+data <- scores %>%
+  filter(dimension == "score") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(value, 0)) %>%
+  mutate(region_name = as.character(region_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame() %>%
+  filter(goal == "SPP")
+  
+
+data_spread <- data %>%
+  pivot_wider(names_from = c(scenario), values_from = c(value)) %>% 
+  mutate(difference = `2022`-`2012`)
+
+# ok so Libya and Syria have the biggest decrease in score (-6) from 2012 to 2021.. lets look into this
+
+data_lib_cyp <- data %>%
+  filter(region_name %in% c("Libya", "Syria"))
+
+
+
+ggplot(data_lib_cyp, aes(y=region_name, x=scenario, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+
+
+
+
+```
+
+
+Lets take a look at Libya specifically, since it is doing poorly (and getting worse). I downloaded the spp_data/assessments_libya.csv file from: https://www.iucnredlist.org/search
+
+```{r}
+## read in data
+
+libya_assessments <- read.csv("spp_data/assessments_libya.csv")
+
+summary_libya <- libya_assessments %>%
+  filter(str_detect(systems, "Marine")) %>%
+  group_by(yearPublished, redlistCategory) %>%
+  summarise(number = n())
+
+summary_libya <- libya_assessments %>%
+  filter(str_detect(systems, "Marine"),
+         yearPublished >=2011) %>%
+  group_by(populationTrend) %>%
+  summarise(number = n()) %>%
+  ungroup() %>%
+  mutate(percent = number/sum(number))
+
+
+summary_libya <- libya_assessments %>%
+  filter(str_detect(systems, "Marine"),
+         yearPublished >=2011) %>%
+  group_by(redlistCategory) %>%
+  summarise(number = n()) %>%
+  ungroup() %>%
+  mutate(percent = number/sum(number))
+
+## Libya has seen the largest decline in species score, dropping by 6 points. This is a concerning trend, especially considering that Libya has the third worst species subgoal score for 2021. Over the past 10 years, only 4% of the species assessed in Libya have increasing population trends, while 25% are decreasing, according to the IUCN Red List. However, there still remain many data gaps with 7% of the assessed species being data deficient, and nearly 50% with unknown population trends. 
+```
+
+
+Now lets take a look at Chile, since it is doing well (and getting better.. slightly). I downloaded the spp_data/assessments_chl.csv file from: https://www.iucnredlist.org/search
+
+```{r}
+## read in data
+
+chl_assessments <- read.csv("spp_data/assessments_chl.csv")
+
+summary_chl <- chl_assessments %>%
+  filter(str_detect(systems, "Marine")) %>%
+  group_by(yearPublished, redlistCategory) %>%
+  summarise(number = n())
+
+summary_chl <- chl_assessments %>%
+  filter(str_detect(systems, "Marine"),
+         yearPublished >=2011) %>%
+  group_by(populationTrend) %>%
+  summarise(number = n()) %>%
+  ungroup() %>%
+  mutate(percent = number/sum(number))
+
+
+summary_chl <- chl_assessments %>%
+  filter(str_detect(systems, "Marine"),
+         yearPublished >=2011) %>%
+  group_by(redlistCategory) %>%
+  summarise(number = n()) %>%
+  ungroup() %>%
+  mutate(percent = number/sum(number)) 
+
+## So what we see with Chile is 76% of all species have been classified as least concern, and nearly equal amounts of species have increasing/decreasing population trends. This seems to match up pretty well with its slight positive trend (+1 point over 10 years of data). 
+```
+
+
+Lets compare LSP and SPP scores, and see if there is a meaningful correlation
+
+```{r}
+library(corrplot)
+library(RColorBrewer)
+
+spp_lsp <- scores %>%
+  filter(dimension == "score", goal %in% c("LSP", "SPP")) 
+
+
+
+spp_lsp_spread <- spp_lsp %>%
+  dplyr::select(-long_goal) %>%
+  pivot_wider(names_from = goal, values_from = value) %>% 
+  dplyr::select("year" = "scenario", LSP, SPP, region_name)
+
+
+m <- cor(spp_lsp$LSP, spp_lsp$SPP, use = "na.or.complete")
+
+
+m
+
+
+corrplot(m, type="upper", order="hclust",
+         col=brewer.pal(n=8, name="RdYlBu"))
+
+mtcars
+
+
+spp <- spp_lsp %>%
+  dplyr::filter(goal == "SPP") %>% 
+  dplyr::select("year" = "scenario", value)
+
+lsp <- spp_lsp %>%
+  dplyr::filter(goal == "LSP") %>% 
+  dplyr::select("year" = "scenario", value)
+
+
+spp_spread <- spp_lsp_spread %>%
+  dplyr::select(year, region_name, SPP) %>%
+  dplyr::filter(region_name == "Global average") %>%
+  dplyr::select(-region_name)
+
+spp_ts <- ts(spp_spread)
+
+# spp_spread$year <- lubridate::ymd(spp_spread$year, truncated = 2L)
+
+
+lsp_spread <- spp_lsp_spread %>%
+  dplyr::select(year, region_name, LSP) %>%
+    dplyr::filter(region_name == "Global average") %>%
+  dplyr::select(-region_name)
+
+lsp_ts <- ts(lsp_spread)
+
+# lsp_spread$year <- lubridate::ymd(lsp_spread$year, truncated = 2L)
+
+acf(ts.intersect(lsp_ts, spp_ts))
+```
+
+```{r}
+max_year = 2021
+
+## Create a trends dataset and save to content/data folder
+region_trends <- scores %>%
+  filter(dimension == "score") %>%
+  filter(!is.na(value)) %>%
+  group_by(goal, long_goal, region_id, region_name) %>%
+  do(mdl = tidy(lm(value ~ scenario, data = .))) %>%
+  unnest(mdl)  #fitting a model per each goal and rgn_id
+  
+# data.frame(glance(data_lm, mdl))
+region_trends2 <- region_trends %>%
+  filter(term == "scenario") %>%
+  mutate(scenario = sprintf("2012 - %s", max_year),
+         dimension = "average_yearly_change_in_scores") %>%
+  select(scenario, goal, long_goal, dimension, region_id, region_name, value = estimate, p.value) %>%
+  data.frame() 
+
+
+rgn_trends <- region_trends2 %>%
+   # filter(goal %in% c("LSP", "SPP")) %>%
+  dplyr::select(-long_goal, -p.value) %>%
+  pivot_wider(names_from = goal, values_from = value) %>%
+  dplyr::select(-scenario, -dimension, -region_id, -region_name)
+
+test <- cor(rgn_trends, use = "na.or.complete")
+corrplot(test)
+
+
+```
+
+

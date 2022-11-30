@@ -1,0 +1,414 @@
+---
+title: "Understanding 2022 Fisheries scores and underlying data"
+author: "*Compiled on `r date()` by `r Sys.info()['user']`*"
+output: 
+  html_document:
+    code_folding: hide
+    toc: true
+    toc_depth: 3
+    toc_float: yes
+    number_sections: false
+    theme: cerulean
+    highlight: haddock
+  pdf_document:
+    toc: true
+---
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+setwd(here("yearly_results/global2022/data_check"))
+source('http://ohi-science.org/ohiprep_v2022/workflow/R/common.R')
+library(tidyverse)
+
+region_data()
+```
+
+# Look at scores over time
+
+Maldives
+South Africa
+Ile Europa
+Israel
+Papua New Guinea 
+US
+Falkland 
+Norway
+Palau
+
+
+Picking some countries that have significant changes over the past 6 years. 
+
+```{r}
+#scores data
+scores <- read_csv("../scores_2022-10-05.csv")%>%
+  filter(goal == "FIS") 
+#%>%
+ # filter(region_id == 8, dimension == "score")
+
+test <- scores %>%
+  filter(dimension == "score") %>%
+  filter(year == 2022) %>%
+  left_join(rgns_eez, by = c("region_id" = "rgn_id")) %>%
+  filter(score < 50)
+
+
+#pull out some specific countries
+
+ctry_data <- scores %>%
+  left_join(rgns_eez, by = c("region_id" = "rgn_id")) %>%
+ filter(rgn_name %in% c("Ile Europa", "Maldives", "Israel", "Papua New Guinea", "Norway", "Falkland Islands", "United States", "South Africa", "Palau", "Australia"))
+```
+
+Plot these countries 
+
+```{r}
+score <- ctry_data %>%
+  filter(dimension == "score")
+
+ggplot(score, aes(x = year, y = score, color = rgn_name)) +
+  geom_line() +
+  theme_bw() +
+  labs(y = "FIS score") +
+  theme(legend.title=element_blank())
+
+# so nothing too crazy. Generally we see a decline between 2016 and 2018, and then things level out/get better. This is true for the global trends as well.
+
+```
+
+
+
+```{r}
+
+t <- ctry_data %>%
+  filter(dimension %in% c("pressures", "status", "resilience"))
+
+ggplot(t, aes(x = year, y = score, color = dimension)) +
+  geom_line() +
+  theme_bw() +
+  facet_wrap(~rgn_nam) +
+  theme(legend.title=element_blank())
+
+```
+
+It looks like pressures and resilience are not having a big impact on these status values. Next things to look at is catch over time and stock scores with proportional catch over time.
+
+Looking at b/bmsy and catch data
+
+```{r}
+bbmsy_gf <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/fis/v2022/output/fis_bbmsy_gf.csv') %>%
+  filter(rgn_id %in% unique(ctry_data$region_id)) 
+
+bbmsy <- read_csv("~/github/ohi-global/eez/layers/fis_b_bmsy.csv") %>%
+  filter(rgn_id %in% unique(ctry_data$region_id)) %>%
+  mutate(group = 
+           case_when(
+             bbmsy < 0.95 ~ "overfished",
+             bbmsy >= 0.95 & bbmsy <= 1.05 ~ "fully exploited",
+             bbmsy > 1.05 ~ "underfished"
+           )) %>%
+  left_join(bbmsy_gf, by = c("rgn_id", "stock_id", "year", "bbmsy"))
+
+catch <- read_csv("~/github/ohi-global/eez/layers/fis_meancatch.csv") %>%
+  filter(rgn_id %in% unique(ctry_data$region_id)) %>%
+  separate(stock_id_taxonkey, into = c("stock_id", "taxonkey"), sep = "_(?!.*_)")
+
+combine <- bbmsy %>% 
+  full_join(catch) %>%
+  group_by(rgn_id, group, year, bmsy_data_source) %>%
+  summarize(catch = sum(mean_catch, na.rm=T)) %>%
+  group_by(rgn_id, group, year) %>%
+  mutate(total_catch = sum(catch)) %>%
+  ungroup() %>%
+  mutate(percent_cmsy = catch/total_catch) %>%
+  mutate(percent_cmsy = ifelse(bmsy_data_source == "RAM", NA, percent_cmsy)) %>%
+  group_by(rgn_id, group, year) %>%
+  summarize(catch = sum(catch), 
+            perc_cmsy = sum(percent_cmsy, na.rm = TRUE)*100) %>%
+  left_join(rgns_eez) %>%
+  select(year, rgn_name, group, catch, perc_cmsy) %>%
+  distinct() %>%
+  mutate(status = ifelse(is.na(group), "no status", group)) %>%
+  filter(year > 2008) 
+
+
+
+ggplot(combine, aes(year, catch)) + 
+  geom_area(aes(fill = status)) +
+  facet_wrap(~rgn_name, scales = "free") +
+  scale_fill_manual(breaks = c("fully exploited", "no status", "overfished", "underfished"), 
+                       values=c("darkblue", "orange", "darkred", "darkgreen")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+
+## so we can see here that Falkland Islands and Israel are largely based on gapfilled data...
+
+# Papua New Guinea started doing well because they have many underfished stocks, which are not penalized under our current model.
+
+# The United States has seen a slight decrease in fully exploited stocks since 2013, which explains the modest decrease in score. 
+```
+
+
+What stocks are making up Papua New Guineas catch?
+
+```{r}
+pap <- catch %>% 
+  filter(rgn_id == 17,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch))
+
+plotly::ggplotly(ggplot(pap, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+
+```
+
+
+It looks like *Katsuwonus_pelamis-71* makes up a significant portion of the catch! Almost 50% of catch. This is a **skipjack tuna**
+
+```{r}
+skipjack_bbmsy <- bbmsy %>%
+  filter(stock_id %in% c("Katsuwonus_pelamis-71", "Thunnus_albacares-71"))
+
+ggplot(skipjack_bbmsy, aes(x = year, y = bbmsy)) +
+  geom_line() +
+  theme_bw() +
+  geom_hline(yintercept = 1.45, color = "darkgreen", lty = "dashed") +
+  ylab("B/Bmsy") +
+  xlab("Year") +
+  ggtitle("skipjack FAO area 71") +
+  facet_wrap(~stock_id)
+
+```
+
+This seems to be a large fishery for across the world ([FAO](https://www.fao.org/fishery/species/2494/en)). And the status has been stretching farther away from 1, becoming largely underfished in Papua New Guinea. Since we no longer penalize for underfished stocks, the score is doing better. Additionally, this data is NOT CMSY gapfilled, and only 3 years of the data are gapfilled, which follow the general trends of the previous 17 years.
+
+Let's see what's going on with South Africa
+
+```{r}
+sa <- catch %>% 
+  filter(rgn_id == 102,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch))
+
+plotly::ggplotly(ggplot(sa, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+```
+
+Again we have a single fishery making up almost 50% of the total catch. However, this fishery doesn't have a bbmsy value associated with it in the RAM data! Meaning that we use a gapfilled value for this stock. Paired with the fact that some of South Africa's catch is over fished, we see a decline and low scores for a region which has many marine protected areas. Additionally, much of South Africa's BBMSY values are estimated by CMSY, which we don't have much faith in. 
+
+
+
+Let's look at the islands. Ile Europa and Ile Tromelin are geographically close, near Madagascar.
+
+```{r}
+Iles <- catch %>% 
+  filter(rgn_id %in% c(35),
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year, rgn_id) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
+  left_join(rgn_deets)
+
+plotly::ggplotly(ggplot(Iles, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position="") +
+  facet_wrap(~rgn_nam))
+
+
+## Take a look at the bbmsy data for Ile Europa: 
+ile_bbmsy <- bbmsy %>%
+  filter(rgn_id == 35, stock_id %in% c("Thunnus_albacares-51", "Katsuwonus_pelamis-51"))
+```
+
+Ok it looks like Tuna is a significant portion of catch for these islands. These BBMSY scores have decreased pretty significantly since 2015 and are now considered overfished. BUT the bbmsy values since 2016 for these species are gapfilled, which is why we see that decrease. 
+
+```{r}
+
+ile_catch <- Iles %>%
+  filter(catch_prop > 0.1,
+         !is.na(bbmsy))
+
+ggplot(ile_catch, aes(x = year, y = bbmsy, color = stock_id)) +
+  geom_line() +
+  theme_bw() +
+  labs(y = "B/Bmsy",
+       x = "Year",
+       ggtitle = "Tuna status for FAO 51") +
+  theme(legend.title=element_blank())
+
+```
+
+Let's look at the Maldives
+
+```{r}
+maldives <- catch %>% 
+  filter(rgn_id == 39,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch)) %>%
+  left_join(rgn_deets)
+
+plotly::ggplotly(ggplot(maldives, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+```
+
+Again *Katsuwonus pelamis* (Skipjack Tuna) is majority of catch.
+
+
+
+What stocks are making up USA catch?
+
+```{r}
+ggplot(combine %>% filter(rgn_id == 163), aes(year, catch)) + 
+  geom_area(aes(fill = status)) +
+  facet_wrap(~rgn_name, scales = "free") +
+  scale_fill_manual(breaks = c("fully exploited", "no status", "overfished", "underfished"), 
+                       values=c("darkblue", "orange", "darkred", "darkgreen")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+
+usa <- catch %>% 
+  filter(rgn_id == 163,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch))
+
+plotly::ggplotly(ggplot(usa, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position="right"))
+
+```
+
+
+It looks like *Gadus Chalcogrammus* makes up a significant portion of the catch! Almost 26% of catch. This is a **Alaska Pollock**
+
+```{r}
+pollock_bbmsy <- bbmsy %>%
+  # filter(stock_id %in% c("Theragra_chalcogramma-67")) 
+  filter(str_detect(stock_id, "chalcogra"))
+
+sum(pollock_bbmsy$mean_catch)/sum(bbmsy$mean_catch, na.rm = TRUE)
+
+
+
+ggplot(pollock_bbmsy, aes(x = year, y = bbmsy)) +
+  geom_line() +
+  theme_bw() +
+  geom_hline(yintercept = 1.45, color = "darkgreen", lty = "dashed") +
+  ylab("B/Bmsy") +
+  xlab("Year") +
+  ggtitle("skipjack FAO area 71") +
+  facet_wrap(~stock_id)
+
+```
+
+
+Lets look at the catch production to see how much catch has increased over the past 10 years... and where: 
+
+```{r}
+stock_catch <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/fis/v2022/output/stock_catch.csv') %>%
+  filter(year >= 2009)
+
+stock_catch_year <- stock_catch  %>%
+  group_by(year) %>%
+  summarise(tonnes_sum = sum(tons, na.rm = TRUE))
+
+
+df <- read_csv(file.path(dir_M,'git-annex/globalprep/fis/v2022/int/stock_catch_by_rgn_taxa.csv')) %>%
+  filter(year >= 2009)
+
+
+colnames(df)
+
+df_years <- df %>%
+  group_by(year) %>%
+  summarise(sum_tons = sum(tons, na.rm = TRUE))
+
+# only see ~1% increase in catch over the past 10 years 
+
+df_rgn_years <- df %>%
+  group_by(year, rgn_id) %>%
+  summarise(sum_tons = sum(tons, na.rm = TRUE)) %>%
+  pivot_wider(names_from = year, values_from = sum_tons) %>%
+  mutate(diff = `2019`-`2009`) %>%
+  mutate(perc_diff = diff/`2009`) %>%
+  left_join(rgns_eez)
+
+mean(df_rgn_years$perc_diff, na.rm = TRUE) # 0.3158116
+
+df_usa <- df %>%
+  filter(rgn_id == 163) %>%
+  filter(CommonName == "Alaska pollock") %>%
+  group_by(year, CommonName) %>%
+  summarise(sum_tons = sum(tons, na.rm = TRUE)) # so alaska pollock catch has increased... but the stock status is saying its more underfished...?
+
+```
+
+
+What stocks are making up Norway catch?
+
+```{r}
+ggplot(combine %>% filter(rgn_id == 223), aes(year, catch)) + 
+  geom_area(aes(fill = status)) +
+  facet_wrap(~rgn_nam, scales = "free") +
+  scale_fill_manual(breaks = c("fully exploited", "no status", "overfished", "underfished"), 
+                       values=c("darkblue", "orange", "darkred", "darkgreen")) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+
+nor <- catch %>% 
+  filter(rgn_id == 223,
+         year > 2008) %>%
+  left_join(bbmsy) %>%
+  group_by(year) %>%
+  mutate(catch_prop = mean_catch/sum(mean_catch)) 
+
+plotly::ggplotly(ggplot(nor, aes(year, catch_prop)) + 
+  geom_area(aes(fill = stock_id)) +
+  theme_bw() +
+  theme(legend.position=""))
+
+```
+
+
+It looks like *Gadus_morhua-27* makes up a significant portion of the catch! Almost 32% of catch. This is a **Atlantic Cod**
+
+```{r}
+cod_bbmsy <- bbmsy %>%
+  filter(stock_id %in% c("Gadus_morhua-27"))
+
+ggplot(pollock_bbmsy, aes(x = year, y = bbmsy)) +
+  geom_line() +
+  theme_bw() +
+  geom_hline(yintercept = 1.45, color = "darkgreen", lty = "dashed") +
+  ylab("B/Bmsy") +
+  xlab("Year") +
+  ggtitle("skipjack FAO area 71") +
+  facet_wrap(~stock_id)
+
+## However, I don't think this has had an effect on the score really... since this stock is underharvested and we don't apply an underharvest penalty anymore.
+
+test <- bbmsy %>%
+  filter(rgn_id == 223) %>%
+  filter(year > 2009)
+```
+
+
+
