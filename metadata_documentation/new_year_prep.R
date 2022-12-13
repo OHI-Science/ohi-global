@@ -18,8 +18,8 @@ library(here)
 
 yrs <- read.csv(here("eez/conf/scenario_data_years.csv"))
 new_yr <- yrs %>%
-  filter(scenario_year == 2021) %>%  # indicate year of previous assessment
-  mutate(scenario_year = 2022) %>%       # indicate this year's assessment
+  filter(scenario_year == 2022) %>%  # indicate year of previous assessment
+  mutate(scenario_year = 2023) %>%       # indicate this year's assessment
   arrange(layer_name, scenario_year, data_year)
 
 yrs <- rbind(yrs, new_yr) %>%
