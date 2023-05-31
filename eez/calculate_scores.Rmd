@@ -60,7 +60,7 @@ Install the appropriate `ohicore` package. Options are:
 
 - @master: typically this version will be used
 
-- @dev: used when testing new code in ohicore (used in v2022)
+- @dev: used when testing new code in ohicore (used in v2023)
 
 ```{r setup, eval = FALSE}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, eval = FALSE, echo = TRUE)
@@ -118,11 +118,11 @@ Be sure to push all ohiprep changes!!
 
 ### Step 6
 
-Update the newest layer's file location and file name in `metadata_documentation/layers_eez_base.csv` by running the function below and responding to the resulting prompts in the console  
+Update the newest layer's file location and file name in `metadata_documentation/layers_eez_base.csv` by running the function below and responding to the resulting prompts in the console. OR you can do it by hand, by updating the assessment year in the `dir` in the csv. 
 
 ```{r}
 ## run function and respond to prompts in console if layers_eez_base.csv needs to be updated
-layers_eez_base_updater()
+layers_eez_base_updater() 
 ```
 
 
@@ -199,20 +199,15 @@ ohicore::CheckLayers(layers.csv = here('eez/layers.csv'),
 ## some warnings like this are ok here (check on duplicated rows): 
 
 # Unused fields...
-# uninhabited: southern_island,est_population
-# ico_spp_iucn_status: iucn_sid,eval_yr
-# mar_harvest_tonnes: taxa_group,family
-
-# Layers missing data, ie all NA ...
-# element_wts_cp_km2_x_protection: element_wts_cp_km2_x_protection.csv
-# element_wts_cs_km2_x_storage: element_wts_cs_km2_x_storage.csv
-# element_wts_hab_pres_abs: element_wts_hab_pres_abs.csv
-
+#     uninhabited: southern_island,est_population
+#     ico_spp_iucn_status: iucn_sid,eval_yr
+#     mar_harvest_tonnes: taxa_group,family
 # Rows duplicated...
-# ss_spi: 660
-# res_spi: 660
-# ico_spp_iucn_status: 15776
-# mar_sustainability_score: 1
+#     ico_spp_iucn_status: 16616
+# Layers missing data, ie all NA ...
+#     element_wts_cp_km2_x_protection: element_wts_cp_km2_x_protection.csv
+#     element_wts_cs_km2_x_storage: element_wts_cs_km2_x_storage.csv
+#     element_wts_hab_pres_abs: element_wts_hab_pres_abs.csv
 
 # calculate scores for each year scenario and save to a single csv file:
 
@@ -249,7 +244,7 @@ conf   <-  ohicore::Conf(here('eez/conf'))
 layers <-  ohicore::Layers(layers.csv = here('eez/layers.csv'), layers.dir = here('eez/layers'))
 
 #scorelist = lapply(X=2018, FUN=get_scores)
-scorelist = lapply(X=scenario_years, FUN=get_scores) # 27 warnings were generated (nothing of concern)
+scorelist = lapply(X=scenario_years, FUN=get_scores) # 28 warnings were generated (nothing of concern)
 scores_all_years <- dplyr::bind_rows(scorelist)
 
 
