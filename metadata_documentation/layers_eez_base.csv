@@ -3,7 +3,7 @@
 "ao_sust","ohiprep:globalprep/ao/v2022/output","ao_nind_scores.csv",TRUE,"score","Artisanal fisheries sustainability","scaled 0-1","Score based on the amount of sustainably and unsustainably caught artisanal fisheries, based on B/Bmsy values."
 "ao_need","ohiprep:globalprep/ao/v2022/output","wb_gdppcppp_rescaled.csv",TRUE,"value","Economic need for artisanal fishing","scaled 0-1","Inverse of per capita purchasing power parity (PPP) adjusted gross domestic product (GDP): GDPpcPPP as a proxy for subsistence fishing need"
 "cc_acid","ohiprep:globalprep/prs_oa/v2017/output","acid.csv",TRUE,"pressure_score","Ocean acidification","scaled 0-1","Pressure due to increasing ocean acidification, scaled using biological thresholds"
-"cc_slr","ohiprep:globalprep/prs_slr/v2022/output","slr.csv",TRUE,"pressure_score","Sea level rise","scaled 0-1","Pressure due to rising mean sea level"
+"cc_slr","ohiprep:globalprep/prs_slr/v2023/output","slr.csv",TRUE,"pressure_score","Sea level rise","scaled 0-1","Pressure due to rising mean sea level"
 "cc_sst","ohiprep:globalprep/prs_sst/v2022/output","sst_updated.csv",TRUE,"pressure_score","Sea surface temperature","scaled 0-1","Presure due to increasing extreme sea surface temperature events"
 "cc_uv","ohiprep:globalprep/prs_uv/v2022/output","uv.csv",TRUE,"pressure_score","UV radiation","scaled 0-1","Pressure due to increasing frequency of UV anomolies"
 "cw_chemical_trend","ohiprep:globalprep/prs_chem/v2016/output","cw_chemical_trend_updated.csv",TRUE,"trend","Chemical pollution trend","trend","Trends in chemical pollution, based on commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution) within EEZ"
