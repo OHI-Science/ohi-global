@@ -142,7 +142,7 @@ If more complex changes are made to layer (i.e. changes to layer names, removing
 
 - `eez_layers_meta_data/update_targets_with_pre_res.R` 
 
-  - to update `eez_layers_meta_data/layers_eez_targets.csv` if layers are added to the resilience/pressures matrices in the `eez/con`f folder. 
+  - to update `eez_layers_meta_data/layers_eez_targets.csv` if layers are added to the resilience/pressures matrices in the `eez/conf` folder. 
 
 ```{r eval = FALSE}
 source(here("metadata_documentation", "layers_eez_script.R"))
@@ -266,7 +266,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "cc_slr_score_check", 
+  file_name = "cc_uv_score_check", 
   
   commit = "previous", 
   scenario_year = current_year,
