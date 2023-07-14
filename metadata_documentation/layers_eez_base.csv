@@ -93,7 +93,7 @@
 "rgn_area_offshore3nm","ohiprep:globalprep/lsp/v2023/output","rgn_area_offshore3nm.csv",TRUE,"area","Offshore 3nm area","km2","Offshore area of OHI regions within 3nm of shoreline"
 "rgn_global","ohiprep:globalprep/spatial/v2017/output","rgn_global.csv",TRUE,"label","OHI region id","label","Subset of regions that are not deleted or disputed"
 "rgn_labels","ohiprep:globalprep/spatial/v2017/output","rgn_labels.csv",TRUE,"label","Regions","label","Regions by type (eez, subocean, unclaimed)"
-"sp_alien","ohiprep:globalprep/prs_alien/v2022/output","prs_alien.csv",TRUE,"pressure_score","Nonindigenous species","scaled 0-1","Measure of harmful invasive species"
+"sp_alien","ohiprep:globalprep/prs_alien/v2023/output","prs_alien.csv",TRUE,"pressure_score","Nonindigenous species","scaled 0-1","Measure of harmful invasive species"
 "sp_alien_species","ohiprep:globalprep/res_cbd_habitat/v2014/data","r_alien_species_Nature2012disaggregated.csv",TRUE,"resilience score","Management of nonindigenous species","scaled 0-1","Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: invasive species related questions"
 "sp_genetic","ohiprep:globalprep/mar/v2023/output","GenEsc.csv",TRUE,"pressure_score","Genetic escapes","scaled 0-1","Introduced mariculture species (Mariculture Sustainability Index) as a proxy for genetic escapes"
 "species_diversity_3nm","ohiprep:globalprep/spp/v2022/output","sp_status_3nm.csv",TRUE,"score","Measure of coastal ecological integrity","scaled 0-1","Marine species condition (same calculation and data as the species subgoal status score)  calculated within 3 nm of shoreline as a proxy for ecological integrity"
