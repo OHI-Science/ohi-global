@@ -266,7 +266,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "fis_b_bmsy", 
+  file_name = "fp_wildcaught_weight", 
   
   commit = "previous", 
   scenario_year = current_year,
