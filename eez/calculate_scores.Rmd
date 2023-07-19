@@ -266,7 +266,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "po_pathogen", 
+  file_name = "cw_pathogen_trend", 
   
   commit = "previous", 
   scenario_year = current_year,
