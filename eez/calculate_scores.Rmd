@@ -123,6 +123,7 @@ Update the newest layer's file location and file name in `metadata_documentation
 ```{r}
 ## run function and respond to prompts in console if layers_eez_base.csv needs to be updated
 layers_eez_base_updater()
+
 ```
 
 
@@ -266,7 +267,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "np_exposure_orn", 
+  file_name = "np", 
   
   commit = "previous", 
   scenario_year = current_year,
