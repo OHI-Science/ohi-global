@@ -267,7 +267,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "np", 
+  file_name = "saltmarsh_trend", 
   
   commit = "previous", 
   scenario_year = current_year,
