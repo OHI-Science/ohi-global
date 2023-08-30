@@ -946,9 +946,9 @@ CP <- function(layers) {
 
 TR <- function(layers) {
   ## formula:
-  ##  E   = Ep                         # Ep: % of direct tourism jobs. tr_jobs_pct_tourism.csv
+  ##  A   = Ap                         # Ap: proportions of tourist arrivals to area of coastline. tr_arrivals_props_tourism.csv
   ##  S   = (S_score - 1) / (7 - 1)    # S_score: raw TTCI score, not normalized (1-7). tr_sustainability.csv
-  ##  Xtr = E * S
+  ##  Xtr = A * S
   pct_ref <- 90
   
   scen_year <- layers$data$scenario_year
@@ -956,7 +956,7 @@ TR <- function(layers) {
   
   ## read in layers
   tourism <-
-    AlignDataYears(layer_nm = "tr_jobs_pct_tourism", layers_obj = layers) %>%
+    AlignDataYears(layer_nm = "tr_arrivals_props_tourism", layers_obj = layers) %>%
     dplyr::select(-layer_name)
   sustain <-
     AlignDataYears(layer_nm = "tr_sustainability", layers_obj = layers) %>%
@@ -966,10 +966,10 @@ TR <- function(layers) {
     dplyr::full_join(tourism, sustain, by = c('rgn_id', 'scenario_year'))
   
   tr_model <- tr_data %>%
-    dplyr::mutate(E   = Ep,
+    dplyr::mutate(A   = Ap,
            S   = (S_score - 1) / (7 - 1),
            # scale score from 1 to 7.
-           Xtr = E * S)
+           Xtr = A * S)
 
 
   # assign NA for uninhabitated islands (i.e., islands with <100 people)
