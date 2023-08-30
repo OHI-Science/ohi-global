@@ -1,0 +1,217 @@
+---
+title: "LSP explore"
+author: "Gage Clawson"
+date: "10/10/2022"
+output: html_document
+---
+
+## Explore the LSP data after new data updates
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+source('http://ohi-science.org/ohiprep_v2022/workflow/R/common.R')
+region_data()
+```
+
+```{r}
+
+lsp_scores <- read_csv(file.path(here(), "yearly_results/global2022/scores_2022-10-05.csv"))
+
+
+lsp_status <- lsp_scores %>%
+  filter(goal == "LSP", dimension == "status", region_id != 0) %>%
+  left_join(rgns_eez, by = c("region_id" = "rgn_id"))
+  
+
+## get top ten and bottom ten scores for 2021
+
+DT::datatable(lsp_status %>%
+  filter(year == 2022) %>%
+  arrange(-score) %>%
+    dplyr::select(goal, dimension, rgn_name, year, score))
+
+
+test <- lsp_status %>% filter(score ==100, year == 2022)
+
+
+
+test <- lsp_status %>% filter(score ==100, year == 2012)
+
+```
+
+
+**Some interesting possible comparisons**
+
+Within country, over time:
+ - Pitcairn; 
+    - implemented one of the biggest protected areas in world.
+    - https://www.theguardian.com/environment/2015/mar/18/pitcairn-islands-marine-reserve-budget-2015
+    
+    
+Pitcairn's score has increased dramatically over the past 10 years. Until 2015, Pitcairn did not have any protected areas in it's surrounding areas, and recieved a score 0. However, in 2015, the United Kingdom government implemeted the largest single marine reserve in the world (at the time), and it's score jumped to 100/100 in 2016, when the change was realized in the global OHI scores. 
+    
+
+```{r}
+data <- lsp_status %>%
+  filter(dimension == "status") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(score, 0)) %>%
+  mutate(rgn_name = as.character(rgn_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame() %>%
+  filter(goal == "LSP")
+  
+
+
+data_pit <- data %>%
+  filter(rgn_name == "Pitcairn")
+
+data_pit
+
+
+ggplot(data_pit, aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+```
+    
+    
+
+ - New Zealand; 
+    - implementing a huge protected area? 
+    - https://www.pewtrusts.org/en/research-and-analysis/articles/2020/11/02/new-zealand-could-soon-protect-one-of-worlds-most-biodiverse-marine-areas
+ - Canada;
+    - has the worlds largest coastline, but still isn't reaching the 30% target... They have agreed to protect at least 10% of their coastline by 2020.. did they do it? In 2019 they announced they protected 13.8% of its oceans.
+    - https://storymaps.arcgis.com/stories/0ab9b72c6351401480e20c8e921c270e
+ 
+Across countries for 2021: 
+ - Australia (great score) vs. India/China/Canada (not great scores)
+     - 
+ - USA vs. Canada; why is Canada so much worse? 
+ - IRL vs. NZL; similar pretty progressive island nations. 
+ - South Africa, Mozambique, Namibia all have GREAT scores. Counter to the general public perception. Could be cool to explore why. 
+
+Future trends: 
+  - Expect Christmas Islands and Cocos (Keeling) to increase in the 2022 assessment
+  - https://news.mongabay.com/2021/05/two-new-australian-marine-parks-protect-area-twice-the-size-the-great-barrier-reef/
+
+
+```{r}
+ggplot(data %>% filter(rgn_name %in% c("Canada", "Pitcairn", "New Zealand", "Australia", "South Africa", "Mozambique", "Tanzania", "Namibia", "Ireland", "Thailand", "Seychelles", "India", "China")), aes(y=rgn_name, x=scenario, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("") 
+
+
+data %>% filter(rgn_name %in% c("Canada", "Pitcairn", "New Zealand", "Australia", "South Africa", "Mozambique", "Tanzania", "Namibia", "Ireland", "Thailand", "Seychelles", "India", "China")) %>%
+                  dplyr::select(rgn_name, scenario, value)
+```
+
+
+Seychelles: 
+
+Seychelles had a LSP status score of 53.23 from 2012 to 2020, however, in 2021 the status score jumped to 100. Why did this occur? 
+Seychelles completed its commitment to increase it’s marine protection to a full 30 percent of its exclusive economic zone (EEZ) in 2020. This major accomplishment is realized in the 2021 OHI LSP status score for Seychelles. It’s new marine protected area now covers an area larger than Germany. 
+Source: https://www.nature.org/en-us/about-us/where-we-work/africa/stories-in-africa/seychelles-conservation-commitment-comes-to-life/
+
+```{r}
+data <- lsp_status %>%
+  filter(dimension == "status") %>%   # focus only on score data
+  filter(region_id != 213)  %>% # eliminate Antarctica
+  mutate(value = round(score, 0)) %>%
+  mutate(rgn_name = as.character(rgn_name)) %>%
+  group_by(region_id) %>% 
+  mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  ungroup() %>%
+  data.frame() %>%
+  filter(goal == "LSP")
+  
+
+
+data_sey <- data %>%
+  filter(rgn_name == "Seychelles")
+
+data_sey
+
+
+ggplot(data_sey, aes(y=rgn_name, x=year, fill=value)) + 
+  geom_tile() +
+  facet_grid(~goal) + 
+  scale_fill_gradientn(colours=myPalette, na.value="black") +
+  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  ylab("") + 
+  xlab("")
+```
+
+
+Take the below stats from this folder: https://github.com/OHI-Science/ohiprep_v2022/tree/gh-pages/globalprep/lsp/v2022/int
+
+Determine proportion of ocean/land areas that are protected
+
+```{r}
+prot_3nm <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/lsp/v2022/int/area_protected_3nm.csv')
+
+prot_3nm_2021 <- prot_3nm %>%
+  filter(year == 2021) %>%
+  mutate(type = "3nm")
+
+sum(prot_3nm_2021$a_prot_km2) # 1103835
+sum(prot_3nm_2021$a_tot_km2) # 4995189
+
+1103835/4995189 # 0.2209796 ; ~22% of 3nm areas are protected 
+
+
+prot_1km <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/lsp/v2022/int/area_protected_1km.csv')
+
+prot_1km_2021 <- prot_1km %>%
+  filter(year == 2021) %>%
+  mutate(type = "1km")
+
+sum(prot_1km_2021$a_prot_km2) # 301274.8
+sum(prot_1km_2021$a_tot_km2) # 1133638
+
+301274.8/1133638 # 0.2657593 ; ~27% of 1km areas are protected 
+
+
+prot_eez <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/lsp/v2022/int/area_protected_eez.csv')
+
+prot_eez_2021 <- prot_eez %>%
+  filter(year == 2021) %>%
+  mutate(type = "eez")
+
+sum(prot_eez_2021$a_prot_km2) # 27816775
+sum(prot_eez_2021$a_tot_km2) # 359482664
+
+27816775/359482664 # 0.07738002 ; ~7.7% of eez areas are protected 
+
+
+all_prot <- rbind(prot_eez_2021, prot_1km_2021, prot_3nm_2021) %>%
+  group_by(type) %>%
+  summarise(total_area = sum(a_tot_km2),
+            total_prot_area = sum(a_prot_km2)) %>%
+  mutate(percent_prot = (total_prot_area/total_area)*100)
+
+all_prot
+# A tibble: 3 × 4
+#   type  total_area total_prot_area percent_prot
+#   <chr>      <dbl>           <dbl>        <dbl>
+# 1 1km     1133638.         301275.        26.6 
+# 2 3nm     4995189         1103835.        22.1 
+# 3 eez   359482664        27816775.         7.74
+```
+
+
+
+
+ 

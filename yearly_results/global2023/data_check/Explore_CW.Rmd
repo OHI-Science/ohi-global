@@ -1,0 +1,174 @@
+---
+title: "Explore_CW"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(here)
+library(tidyverse)
+library(ggplot2)
+library(cowplot)
+```
+
+```{r}
+
+fao_fert <- read_csv("/home/shares/ohi/git-annex/globalprep/_raw_data/FAOSTAT/crop_nutrient/d2022/Inputs_FertilizersNutrient_E_All_Data_NOFLAG.csv") %>%
+  pivot_longer(cols = c(9:68), names_to = "Year", values_to = "Value") %>%
+  select(Area, Item, Year, Value) %>%
+  filter(Item == "Nutrient nitrogen N (total)") %>%
+  mutate(Year = str_remove_all(Year, "Y")) %>%
+  filter(!(Area %in% c("World", "Africa", "Eastern Africa", "Middle Africa", "Northern Africa", "Southern Africa", "Western Africa", "Americas", "Northern America", "Central America", "Caribbean", "South America", "Asia", "Central Asia", "Eastern Asia", "Southern Asia", "South-eastern Asia", "Western Asia", "Europe", "Eastern Europe", "Northern Europe", "Southern Europe", "Western Europe", "Oceania", "Australia and New Zealand", "Melanesia", "Micronesia", "Polynesia", "European Union (27)", "Least Developed Countries", "Land Locked Developing Countries", "Small Island Developing States", "Low Income Food Deficit Countries",  "Net Food Importing Developing Countries"    )))
+
+
+# [177] "World"                                                "Africa"                                              
+# [179] "Eastern Africa"                                       "Middle Africa"                                       
+# [181] "Northern Africa"                                      "Southern Africa"                                     
+# [183] "Western Africa"                                       "Americas"                                            
+# [185] "Northern America"                                     "Central America"                                     
+# [187] "Caribbean"                                            "South America"                                       
+# [189] "Asia"                                                 "Central Asia"                                        
+# [191] "Eastern Asia"                                         "Southern Asia"                                       
+# [193] "South-eastern Asia"                                   "Western Asia"                                        
+# [195] "Europe"                                               "Eastern Europe"                                      
+# [197] "Northern Europe"                                      "Southern Europe"                                     
+# [199] "Western Europe"                                       "Oceania"                                             
+# [201] "Australia and New Zealand"                            "Melanesia"                                           
+# [203] "Micronesia"                                           "Polynesia"                                           
+# [205] "European Union (27)"                                  "Least Developed Countries"                           
+# [207] "Land Locked Developing Countries"                     "Small Island Developing States"                      
+# [209] "Low Income Food Deficit Countries"                    "Net Food Importing Developing Countries"     
+
+global_summary <- fao_fert %>%
+  group_by(Item, Year) %>%
+  summarize(tonnes_fertilizer = sum(Value, na.rm=TRUE))
+
+sum(global_summary$tonnes_fertilizer)
+## 396804539 total for 2021
+
+ggplot(data=global_summary, aes(x=Year, y=tonnes_fertilizer)) +
+  geom_point() +
+  geom_line() +
+  ylim(c(0,max(global_summary$tonnes_fertilizer))) +
+  geom_point(data=filter(fao_fert, Area=="China, mainland"), aes(x=Year, y=Value)) +  
+  geom_line(data=filter(fao_fert, Area=="China, mainland"), aes(x=Year, y=Value)) +
+  theme_cowplot()
+
+## global
+(mean(c(396804539, 391202040))- mean(c(354831412, 343901680)))/mean(c(354831412, 343901680)) # 0.1277648
+
+country_trend <- fao_fert %>%
+    group_by(Area, Item) %>%
+  do(mdl = broom::tidy(lm(Value ~ Year, data = .))) %>%
+  unnest(mdl)  #fitting a model per each goal and rgn_id
+  
+# data.frame(glance(data_lm, mdl))
+country_trend2 <- country_trend %>%
+  filter(str_detect(term, "Year")) %>%
+  filter(Item == "Nutrient nitrogen N (total)") %>%
+  select(Area, Item, term, estimate, p.value) %>%
+  data.frame() %>%
+  arrange(estimate) 
+
+hist(country_trend2$estimate)
+
+test <- country_trend2 %>%
+  filter(estimate <0) %>% 
+  mutate(term = str_remove_all(term, "Year")) %>%
+  filter(term >= 2010) %>%
+  distinct(Area)
+
+tmp <- filter(fao_fert, Area=="United States of America")  
+mean(tmp$Value)/mean(global_summary$tonnes_fertilizer)
+(mean(c(11621292, 11672412))- mean(c(11624755, 12231299)))/mean(c(11624755, 12231299))
+
+tmp <- filter(fao_fert, Area=="China, mainland")  
+mean(tmp$Value)/mean(global_summary$tonnes_fertilizer)
+(mean(c(25741925.3, 26737666.7))- mean(c(30131120, 29531825)))/mean(c(30131120, 29531825)) # -0.1203989
+
+tmp<-filter(fao_fert, Area=="Germany")  
+mean(tmp$Value)/mean(global_summary$tonnes_fertilizer)
+(mean(c(1372084, 1265477.0))- mean(c(1640414, 1786485)))/mean(c(1640414, 1786485)) # -0.2303359
+
+
+
+fao_manure <- read_csv(here("yearly_results/global2021/data_check/FAOSTAT_data_manure_N_11-18-2021.csv")) %>%
+  select(Area, Item, Year, Value) %>%
+  mutate(tonne_n_manure = Value/1000)
+
+global_summary <- fao_manure %>%
+  group_by(Year) %>%
+  summarize(tonne_n_manure = sum(tonne_n_manure, na.rm=TRUE))
+## 127604367 total for 2019
+
+1532596931/127604367 # 12.01054 x 
+
+(mean(c(127604367, 126459749))- mean(c(116874752, 117494821)))/mean(c(116874752, 117494821))
+mean(global_summary$tonne_n_manure)/1061460157 # tonnes N synthetic fertilizer
+
+country_summary <- fao_manure %>%
+  group_by(Year, Area) %>%
+  summarize(tonne_n_manure = sum(tonne_n_manure, na.rm=TRUE)) 
+
+country_trend2 <- country_summary %>%
+  group_by(Area) %>%
+  do(mdl = broom::tidy(lm(tonne_n_manure ~ Year, data = .))) %>%
+  unnest(mdl)  #fitting a model per each goal and rgn_id
+  
+# data.frame(glance(data_lm, mdl))
+country_trend2 <- country_trend2 %>%
+  filter(term == "Year") %>%
+  select(Area, term, estimate, p.value) %>%
+  data.frame() %>%
+  arrange(estimate)
+
+hist(country_trend2$estimate)
+
+tmp<-filter(country_summary, Area=="New Zealand")  
+(mean(c(1271619, 1261905))- mean(c(1355148, 1338153)))/mean(c(1355148, 1338153))
+
+tmp<-filter(country_summary, Area=="South Africa")  
+(mean(c(968926, 988076))- mean(c(1073404, 1068567)))/mean(c(1073404, 1068567))
+  
+```
+
+Sanitation
+
+```{r}
+#population
+pop <- read_csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/mar_prs_population/v2021/output/UN_population.csv")
+
+#Proportion access to sanitation:
+sani <- read_csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2021/gh-pages/globalprep/prs_cw_pathogen/v2021/intermediate/sani_complete.csv") %>%
+  left_join(pop)
+
+prop_sani <- sani %>%
+  filter(!is.na(population)) %>%
+  mutate(people_with_sani = population * basic_sani_prop) %>%
+  select(rgn_name, year, basic_sani_prop, population, people_with_sani)
+
+prop_sani %>%
+  group_by(year) %>%
+  summarize(global_pop = sum(population),
+            people_w_sani = sum(people_with_sani)) %>%
+  filter(year >= 2011) %>%
+  data.frame()
+
+(5796067472 - 4580949783)/4580949783
+(7193771000 - 6544742000)/6544742000
+
+country_trend2 <- prop_sani %>%
+  group_by(rgn_name) %>%
+  do(mdl = broom::tidy(lm(people_with_sani ~ year, data = .))) %>%
+  unnest(mdl)  #fitting a model per each goal and rgn_id
+  
+# data.frame(glance(data_lm, mdl))
+country_trend2 <- country_trend2 %>%
+  filter(term == "year") %>%
+  select(rgn_name, term, estimate, p.value) %>%
+  data.frame() %>%
+  arrange(estimate)
+
+
+```
+
+```

@@ -1,0 +1,234 @@
+---
+title: "MAR explore"
+author: "Gage Clawson"
+date: "10/06/2022"
+output: html_document
+---
+
+## Explore the MAR data after new data updates
+
+```{r setup, include=FALSE, message = F, warning = F}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+
+library(tidyverse)
+library(here)
+library(kableExtra)
+source('http://ohi-science.org/ohiprep_v2022/workflow/R/common.R')
+region_data()
+```
+
+```{r}
+
+mar_scores <- read.csv(file.path(here(), "yearly_results/global2022/scores_2022-10-05.csv"))
+
+
+mar_status <- mar_scores %>%
+  filter(goal == "MAR", dimension == "score", region_id != 0)
+
+tmp <- mar_status %>%
+  filter(region_id %in% c(224,223))
+
+## get top ten and bottom ten scores for 2021
+
+DT::datatable(mar_status %>%
+  filter(year == 2022) %>%
+  arrange(-score) %>%
+    dplyr::select(goal, dimension, year, score, score))
+
+## lets take a look at the carpet plot for MAR, found here: goal_heatmaps.html
+
+```
+
+
+**Some interesting possible comparisons**
+
+Within country, over time:
+ - Germany; 
+    - huge increase over whole time period
+    
+    
+Germany's mariculture status score has increased dramatically over the past 10 years. 
+
+
+Chile and Norway production/status comparison: 
+
+ - They have almost the same amount of production. 
+
+```{r}
+
+tonnes_prod <- read_csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/mar/v2022/output/mar_harvest_tonnes.csv")
+
+chile_tonnes <- tonnes_prod %>%
+  filter(rgn_id %in% c(223,224)) %>%
+  filter(year == 2020) %>%
+  group_by(rgn_id) %>%
+  summarise(tonnes = sum(tonnes))
+
+```
+
+
+## Some global stats:
+
+
+Total tonnes produced
+```{r}
+tonnes_prod <- read_csv("https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/mar/v2022/output/mar_harvest_tonnes.csv")
+
+tonnes_prod_2020 <- tonnes_prod %>%
+  filter(year == 2020)
+sum(tonnes_prod_2020$tonnes) # 50883081
+
+
+tonnes_chn <- tonnes_prod_2020 %>%
+  filter(rgn_id == 209)
+sum(tonnes_chn$tonnes) # 34133179
+
+34133179/50883081 # 0.6708159
+
+tonnes_prod_spp <- tonnes_prod_2020 %>%
+  mutate(spp = gsub("_.*", "", taxa_code))
+
+
+most_common <- tonnes_prod_spp %>%
+  filter(tonnes > 0 ) %>%
+  group_by(spp) %>%
+  summarise(count_most_common = n()) %>%
+  arrange(-count_most_common)
+
+kable(head(most_common,15))
+
+most_common_prod <- tonnes_prod_spp %>%
+  filter(tonnes > 0) %>%
+  group_by(spp) %>%
+  summarise(total_prod = sum(tonnes)) %>%
+  arrange(-total_prod)
+
+DT::datatable(head(most_common_prod,15))
+```
+
+Look at Norway and China sustainability scores
+
+```{r}
+mar_sust <- read.csv(file.path(here(), "eez/layers/mar_sustainability_score.csv")) %>%
+  left_join(rgns_eez) %>%
+  dplyr::select(1:5)
+
+
+write.csv(mar_sust, file.path(here(), "yearly_results/global2022/data_check/mariculture_sustainability.csv"))
+
+mar_tonnes <- read.csv(file.path(here(), "eez/layers/mar_harvest_tonnes.csv")) %>%
+  left_join(rgns_eez) %>%
+  dplyr::select(1:7)
+
+write.csv(mar_tonnes, file.path(here(), "yearly_results/global2022/data_check/mariculture_production.csv"))
+
+
+pot_tonnes <- read.csv(file.path(here(), "eez/layers/mar_capacity.csv"))   %>%
+  left_join(rgns_eez) %>%
+  dplyr::select(1:4)
+
+write.csv(pot_tonnes, file.path(here(), "yearly_results/global2022/data_check/mariculture_potential.csv"))
+
+
+mar_all <- mar_tonnes %>%
+  left_join(mar_sust, by = c("rgn_id", "taxa_code", "rgn_name")) %>%
+  left_join(pot_tonnes, by = c("rgn_id", "rgn_name")) %>%
+  dplyr::rename("production_year" = "year.x", "sustainability_year" = "year.y", "gentry_year" = "year")
+
+write.csv(mar_all, file.path(here(), "yearly_results/global2022/data_check/combined_mariculture_layers.csv"))
+
+
+summarized_mar <- mar_all %>%
+  tidyr::spread(production_year, tonnes) %>%
+  tidyr::gather("production_year", "tonnes",-(1:9)) %>%
+    dplyr::mutate(scenario_year = as.numeric(production_year)) %>%
+  filter(scenario_year >= 2001) %>%
+  dplyr::select(-taxa_group)
+
+  m <- summarized_mar %>%
+    dplyr::group_by(rgn_id, taxa_code, sust_coeff) %>%
+    dplyr::arrange(rgn_id, taxa_code, scenario_year) %>%
+    dplyr::mutate(rolling_mean_4_year_tonnes = zoo::rollapply(tonnes, 4, mean, na.rm = TRUE, partial =
+                                        TRUE, align = "right")) %>%
+    dplyr::ungroup() %>%
+    mutate(rolling_mean_4_year_tonnes = ifelse(rolling_mean_4_year_tonnes == "NaN", 0, rolling_mean_4_year_tonnes))
+ 
+   tonnes_pot_div <- m %>%
+    dplyr::group_by(rgn_id, rgn_name, scenario_year) %>%
+    dplyr::summarize(tonnes_sum = sum(rolling_mean_4_year_tonnes, na.rm = TRUE)) %>%  #na.rm = TRUE assumes that NA values are 0
+    dplyr::left_join(pot_tonnes, by = c('rgn_id', 'rgn_name')) %>%
+    dplyr::mutate(tonnes_score = tonnes_sum / potential_mar_tonnes) %>%
+    dplyr::ungroup() 
+    
+    sustainability <- m %>%
+    dplyr::group_by(rgn_id, rgn_name, scenario_year) %>%
+    dplyr::summarise(sust_rgn = weighted.mean(x = sust_coeff, w = rolling_mean_4_year_tonnes, na.rm = TRUE)) %>%
+    dplyr::ungroup()
+  
+    ry <- sustainability %>%
+      dplyr::left_join(tonnes_pot_div) %>%
+      # dplyr::mutate(mar_score = sust_rgn*tonnes_score) %>%
+      dplyr::mutate(tonnes_score_rescale = ifelse(tonnes_score > 1,
+                                    1,
+                                    tonnes_score)) %>%
+      dplyr::mutate(sust_times_tonnes_score = sust_rgn*tonnes_score_rescale) %>%
+      dplyr::select(-year)
+    
+    write.csv(ry, file.path(here(), "yearly_results/global2022/data_check/summarized_mariculture_layers.csv"))
+  
+
+mar_tonnes_chn_nor <- mar_tonnes %>% 
+  filter(rgn_id %in% c(209, 223, 137, 216))
+
+mar_sust_chn_nor <- mar_sust %>%
+  dplyr::select(-year) %>%
+  filter(rgn_id %in% c(209, 223, 137, 216, 224)) %>%
+  left_join(mar_tonnes, by = c("rgn_id", "taxa_code")) %>%
+  arrange(rgn_id, taxa_code, year) %>%
+  filter(year > 2005)
+
+tmp <- mar_sust_chn_nor %>%
+  group_by(rgn_id, year) %>%
+  summarise(avg_sust = mean(sust_coeff))
+
+
+tmp <- mar_sust_chn_nor %>%
+  filter(year == 2020) %>%
+  arrange(rgn_id, -tonnes)
+
+## potential tonnes of mar for Norway
+204374.5
+
+## produced tonnes of mar for Norway 
+tmp <- mar_sust_chn_nor %>%
+  filter(rgn_id %in% c(223)) %>%
+  filter(year == 2020)
+sum(tmp$tonnes) # 1490045
+
+
+1490045/204374.5
+# norway produces 7x more mariculture than their potential 
+
+tmp <- mar_sust_chn_nor %>%
+  filter(rgn_id == 223, year == 2020) %>%
+  mutate(total_tonnes = sum(tonnes)) %>%
+  mutate(percent = tonnes/total_tonnes)
+
+
+```
+
+
+```{r}
+mar_sust_chn_nor <- mar_sust %>%
+  dplyr::select(-year) %>%
+  filter(rgn_id %in% c(224, 223)) %>%
+  left_join(mar_tonnes, by = c("rgn_id", "taxa_code")) %>%
+  arrange(rgn_id, taxa_code, year) %>%
+  filter(year == 2020)
+
+## Majority of production in Chile and Norway comes from Salmon, which is why their scores are bad.
+```
+
+
+
+ 
