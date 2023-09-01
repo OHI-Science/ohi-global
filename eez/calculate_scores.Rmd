@@ -266,7 +266,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "tr_arrivals_props_tourism", 
+  file_name = "lsp_scores", 
   
   commit = "previous", 
   scenario_year = current_year,
