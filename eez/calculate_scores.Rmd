@@ -268,7 +268,7 @@ ohicore::score_check(
   
   file_name = "tr_arrivals_props_tourism", 
   
-  commit = "previous", 
+  commit = "026c53e5a468596b7922f13e2f2025ec4981ab0a", # change this back to "previous" next time
   scenario_year = current_year,
   save_csv = TRUE, NA_compare = TRUE
 )
