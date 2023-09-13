@@ -6,7 +6,7 @@ output: html_document
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(here)
-scores <- read_csv(here("yearly_results/global2021/OHI_final_formatted_scores_2021-10-28.csv"))
+scores <- read_csv(here("yearly_results/global2023/OHI_final_formatted_scores_2023-09-15.csv"))
 
 ```
 
