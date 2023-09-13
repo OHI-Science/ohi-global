@@ -1,5 +1,5 @@
 ---
-title: 'Ocean Health Index 2022: Methods'
+title: 'Ocean Health Index 2023: Methods'
 csl: methods-in-ecology-and-evolution.csl
 output:
   html_document:
@@ -52,7 +52,7 @@ options(knitr.kable.NA = '')
 # exclude when knitting
 # setwd("documents/methods")
 
-assessmentYear <- 2022
+assessmentYear <- 2023
 
 # sections to run:
 ten_goals <- TRUE
@@ -164,7 +164,7 @@ There are 220 global coastal countries and territorial regions (Table 4.1). Regi
 **Figure 4.1. Global regions**
 Map of the OHI regions (with color corresponding to 2022 regional index scores). Mollweide coordinate reference system is used because it accurately represents area.  
 
-![](../../yearly_results/global2022/Results/figures/maps_by_goal_mol/global_map_Index_2022_mol.png)
+![](../../yearly_results/global2023/Results/figures/maps_by_goal_mol/global_map_Index_2023_mol.png)
 
 **Table 4.1. Global regions**
 

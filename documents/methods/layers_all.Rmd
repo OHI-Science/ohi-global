@@ -125,6 +125,25 @@
  B/Bmsy
 
  
+## CITES signatories 
+#### [g_cites](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_cites.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/g_cites.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ 0 or 1
+
+ 
 ## Carbon storage weights 
 #### [element_wts_cs_km2_x_storage](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/element_wts_cs_km2_x_storage.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -180,25 +199,6 @@
  
 #### Units {-} 
  trend
-
- 
-## CITES signatories 
-#### [g_cites](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/g_cites.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/g_cites.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- 0 or 1
 
  
 ## Coastal chemical pollution 
@@ -315,6 +315,44 @@
  scaled 0-1
 
  
+## EEZ protected marine areas (fishing preservation) 
+#### [fp_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mpa_eez.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_mpa_eez.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
+
+ 
+## EEZ protected marine areas (habitat preservation) 
+#### [hd_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_mpa_eez.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_mpa_eez.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ scaled 0-1
+
+ 
 ## Economic diversity 
 #### [li_sector_evenness](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/li_sector_evenness.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -389,44 +427,6 @@
  
 #### Units {-} 
  trend -1 to 1
-
- 
-## EEZ protected marine areas (fishing preservation) 
-#### [fp_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/fp_mpa_eez.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/fp_mpa_eez.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- scaled 0-1
-
- 
-## EEZ protected marine areas (habitat preservation) 
-#### [hd_mpa_eez](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/hd_mpa_eez.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/hd_mpa_eez.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- scaled 0-1
 
  
 ## Exposure of ornamental fishing to coral and rocky reef habitats 
@@ -1075,6 +1075,25 @@
  scaled 0-1
 
  
+## IUCN extinction risk 
+#### [ico_spp_iucn_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ico_spp_iucn_status.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/ico_spp_iucn_status.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ IUCN risk category
+
+ 
 ## Inland 1km area 
 #### [rgn_area_inland1km](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_area_inland1km.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1130,25 +1149,6 @@
  
 #### Units {-} 
  scaled 0-1
-
- 
-## IUCN extinction risk 
-#### [ico_spp_iucn_status](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/ico_spp_iucn_status.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/ico_spp_iucn_status.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- IUCN risk category
 
  
 ## Livelihood status scores 
@@ -1493,6 +1493,25 @@
  trend
 
  
+## OHI region id 
+#### [rgn_global](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_global.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/rgn_global.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ label
+
+ 
 ## Ocean acidification 
 #### [cc_acid](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_acid.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1550,25 +1569,6 @@
  km2
 
  
-## OHI region id 
-#### [rgn_global](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/rgn_global.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/rgn_global.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- label
-
- 
 ## Pathogen pollution 
 #### [po_pathogens](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/po_pathogens.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1607,25 +1607,6 @@
  trend
 
  
-## Percent direct employment in tourism 
-#### [tr_jobs_pct_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_jobs_pct_tourism.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/tr_jobs_pct_tourism.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- proportion
-
- 
 ## Plastic trash trends 
 #### [cw_trash_trend](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cw_trash_trend.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -1662,6 +1643,25 @@
  
 #### Units {-} 
  tonnes
+
+ 
+## Proportion of tourist arrivals to area of coastline 
+#### [tr_arrivals_props_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_arrivals_props_tourism.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/tr_arrivals_props_tourism.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ proportion
 
  
 ## Region areas based on EEZ boundaries 
@@ -1968,25 +1968,6 @@
  scaled 0-1
 
  
-## Uninhabited regions 
-#### [uninhabited](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/uninhabited.csv) {-} 
-```{r, echo=FALSE, results='hide'}
-
-                                  x <- tempfile(fileext = 'Rmd')
-
-                                  on.exit(unlink(x))
-
-                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/uninhabited.Rmd", x)
-```
- 
-```{r, child = x, echo=FALSE, results='asis'} 
- 
-``` 
- 
-#### Units {-} 
- population
-
- 
 ## UV radiation 
 #### [cc_uv](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/cc_uv.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
@@ -2004,6 +1985,25 @@
  
 #### Units {-} 
  scaled 0-1
+
+ 
+## Uninhabited regions 
+#### [uninhabited](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/uninhabited.csv) {-} 
+```{r, echo=FALSE, results='hide'}
+
+                                  x <- tempfile(fileext = 'Rmd')
+
+                                  on.exit(unlink(x))
+
+                                  download.file("https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/metadata_documentation/ohi_model/layers_info/uninhabited.Rmd", x)
+```
+ 
+```{r, child = x, echo=FALSE, results='asis'} 
+ 
+``` 
+ 
+#### Units {-} 
+ population
 
  
 ## Weakness of governance 
