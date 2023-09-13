@@ -1,5 +1,5 @@
 Mangrove data are used to calculate the coastal protection and carbon storage goals, and the habitat subgoal.
 
-Mangrove extents (km^2^) are derived from shapefiles in the [Global Mangrove Watch Version 3.0 Dataset (1996 - 2020)](https://data.unep-wcmc.org/datasets/45) [@bunting_global_2022]. The shapefiles contain polygons denoting mangrove covered areas. Those polygons are rasterized and then area per OHI region is calculated based on the number of cells that fall within each OHI region, including land and EEZs.
+Mangrove extents (km^2^) are derived from shapefiles in the [Global Mangrove Watch Version 3.0 Dataset (1996 - 2020)](https://data.unep-wcmc.org/datasets/45) [@bunting2022global]. The shapefiles contain polygons denoting mangrove covered areas. Those polygons are rasterized and then area per OHI region is calculated based on the number of cells that fall within each OHI region, including land and EEZs.
 
 
