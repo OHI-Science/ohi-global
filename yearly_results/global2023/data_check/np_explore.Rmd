@@ -12,11 +12,11 @@ knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
 
 library(tidyverse)
 library(here)
-source('http://ohi-science.org/ohiprep_v2021/workflow/R/common.R')
+source('http://ohi-science.org/ohiprep_v2023/workflow/R/common.R')
 ```
 
 ```{r}
-scores <- read_csv(file.path(here(), "yearly_results/global2022/OHI_final_formatted_scores_2022-10-05.csv"))
+scores <- read_csv(file.path(here(), "yearly_results/global2023/OHI_final_formatted_scores_2023-09-15.csv"))
 
 
 np_scores <- scores %>%
@@ -26,7 +26,7 @@ np_scores <- scores %>%
 ## get top ten and bottom ten scores for 2021
 
 DT::datatable(np_scores %>%
-  filter(scenario == 2022) %>%
+  filter(scenario == 2023) %>%
   arrange(-value) %>%
     dplyr::select(goal, dimension, region_name, scenario, value))
 
@@ -46,7 +46,7 @@ chn_np <- np_scores %>%
 
 # both scores have increased pretty dramatically over the past 10 years
 
-fofm_scores <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/np/v2022/output/np_fofm_scores.csv')
+fofm_scores <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2023/gh-pages/globalprep/np/v2023/output/np_fofm_scores.csv')
 
 overall_fofm <- fofm_scores %>%
   group_by(year) %>%
@@ -57,12 +57,12 @@ chn_fofm <- fofm_scores %>%
 
 # what about seaweeds? Has there been a decrease in that? 
 
-sw_sust <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/np/v2022/output/np_seaweed_sust.csv')
+sw_sust <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2023/gh-pages/globalprep/np/v2023/output/np_seaweed_sust.csv')
 
 chn_sw_sust <- sw_sust %>%
   filter(rgn_id == 209) ## doesnt seem like there is a sw score here 
 
-sw_prod <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/np/v2022/output/np_seaweed_harvest_tonnes.csv')
+sw_prod <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2023/gh-pages/globalprep/np/v2023/output/np_seaweed_harvest_tonnes.csv')
 
 chn_sw_prod <- sw_prod %>%
   filter(rgn_id %in% c(209, 216)) %>% ## ok no sw production in China
@@ -79,7 +79,7 @@ chn_sw_prod/all_sw_prod
 
 
 
-prod_weights <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/np/v2022/output/np_product_weights.csv')
+prod_weights <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2023/gh-pages/globalprep/np/v2023/output/np_product_weights.csv')
 
 chn_idn_prod_weights <- prod_weights %>%
   filter(rgn_id %in% c(209, 216))
