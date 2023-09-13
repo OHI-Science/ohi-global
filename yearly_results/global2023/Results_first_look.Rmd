@@ -18,7 +18,7 @@ output:
 
 # Summary
 
-This document describes results from the 2022 global OHI assessment. This is mostly an internal document to explore and check results. It also creates the figures used on the website and in other documents.
+This document describes results from the 2023 global OHI assessment. This is mostly an internal document to explore and check results. It also creates the figures used on the website and in other documents.
 
 # Setup
 
@@ -561,7 +561,7 @@ final_filename %>%
   dplyr::select(scenario, goal, region_name, value) %>% 
   tidyr::pivot_wider(names_from =  scenario, values_from = value) %>% 
   dplyr::group_by(region_name, goal) %>% 
-  dplyr::summarise(change = round(`2022` - `2012`, 3)) %>% 
+  dplyr::summarise(change = round(`2023` - `2012`, 3)) %>% 
   tidyr::pivot_wider(names_from = goal, values_from = change) %>% 
   DT::datatable() %>% 
   shiny::div(style = "font-size: 60%; width: 60%")
@@ -676,6 +676,8 @@ data_wide <- data_index %>%
   dplyr::rename(goal = long_goal)
 
 knitr::kable(data_wide)
+
+write.csv(data_wide, file = paste0(dir_results_data, "/area_weighted_average_scores_by_year_and_goal_v", scenario,".csv"), row.names = FALSE)
 ```
 
 The following is a preliminary analysis of how the global scores changed over time. Global index scores decreased by an average `r index$Index` points per year, with `r sum(trends_wide$Index<0)` regions having decreasing trends and `r sum(trends_wide$Index>0)` having increasing trends. 
@@ -885,7 +887,7 @@ knitr::include_graphics(files)
 
 ### Comparing trend and average index scores
 
-To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2022) and the trends for each region.
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2023) and the trends for each region.
 
 Of most concern are regions that have poor scores and declining trends.
 
@@ -923,7 +925,7 @@ p <- ggplot2::ggplot(trend, aes(x=index_avg, y=index_trend)) +
   scale_color_manual(values = avg_colors) +
   labs(title="Index scores",
        y = "Trend (change in score per year)", 
-       x = "Average (2012 to 2022 scores)") +
+       x = "Average (2012 to 2023 scores)") +
   theme_bw() + 
   theme(legend.position = "none")
 
@@ -949,11 +951,11 @@ These changes do not reflect changes in actual system health!
 
 ```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 data <- read.csv(final_filename) %>%
-  dplyr::rename("assess2022"=value) 
+  dplyr::rename("assess2023"=value) 
 
 data_old <- here::here('yearly_results', paste0('global',benchmark,'/OHI_final_formatted_scores_',benchmark_date,'.csv')) %>% 
   readr::read_csv() %>%
-  dplyr::rename("assess2021" = value)
+  dplyr::rename("assess2022" = value)
 
 data_compare <- data_old %>%
   dplyr::left_join(data, by = c("scenario", "goal", "long_goal", "dimension", "region_id", "region_name")) %>%
@@ -964,7 +966,7 @@ data_compare$goal <- factor(data_compare$goal, levels = goals)
 
 data_compare <- data_compare %>%
   dplyr::arrange(goal) %>%
-  dplyr::mutate(change = assess2022 - assess2021)
+  dplyr::mutate(change = assess2023 - assess2022)
 
 data_compare_summary <- data_compare %>%
   dplyr::group_by(long_goal, dimension) %>%
@@ -977,14 +979,14 @@ knitr::kable(data_compare_summary)
 
 ### Country data 
 
-The following interactive plot provides an overview of how the 2022 scenario scores changed between the 2021 and 2022 assessments for all goals and dimensions.
+The following interactive plot provides an overview of how the 2023 scenario scores changed between the 2022 and 2023 assessments for all goals and dimensions.
 
 ```{r compare assessments-plot, echo=FALSE, warning=FALSE}
 p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
   geom_jitter(aes(text=paste0("rgn = ", region_name)), 
               position = position_jitter(width=0.2, height=0), shape=19, size=1) +
   theme_bw() + 
-  labs(title="Change in 2022 scores ", y="Change in score", x="") +
+  labs(title="Change in 2023 scores ", y="Change in score", x="") +
   scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
                               "MAR", "ECO", "LE", "LIV", "NP", "LSP", "SP", "ICO", "TR")) +
   scale_colour_brewer(palette="Dark2")

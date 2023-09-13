@@ -1,5 +1,5 @@
 ---
-title: 'OHI 2022 Results'
+title: 'OHI 2023 Results'
 output: 
   html_document:
     code_folding: show
@@ -32,16 +32,16 @@ librarian::shelf(
   cowplot,
   plotly
 )
-### See ohi-global/yearly_results/global2022/Results_first_look.Rmd 
+### See ohi-global/yearly_results/global2023/Results_first_look.Rmd 
 ### for code used to create some of the figures included here.  
 ### If data are updated, that file must be updated prior to this one.
 
 ### General settings to control
 ### identify scenario of focus (this can be changed to obtain data for other years)
-scenario <- "2022" 
+scenario <- "2023" 
 
 ### date extension on the radical data files that are used for all tables/figures
-radicalFile <- '2022-10-05' 
+radicalFile <- '2023-09-15' 
 globalYear <- paste0("global", scenario)
 
 ### Directories
@@ -169,11 +169,11 @@ here::here("metadata_documentation", "ohi_model", "tables", "Subgoal_Description
 
 See the [Methods](https://raw.githack.com/OHI-Science/ohi-global/draft/documents/methods/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
 
-A CSV formatted dataset from the 2022 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/OHI_final_formatted_scores_2022-08-29.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all `r 2022 - 2011` assessment years (2012-2022). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022) for description of data.
+A CSV formatted dataset from the 2023 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/OHI_final_formatted_scores_2023-09-15.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all `r 2023 - 2011` assessment years (2012-2023). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2023) for description of data.
 
-The data layers (described in section 7 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2022.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
+The data layers (described in section 7 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2023.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
 
-The files used to prepare data layers for the ohi-global assessment can be downloaded from Github: [ohiprep v2022.1: Preparation of data for 2022 Ocean Health Index global assessment](https://github.com/OHI-Science/ohiprep_v2022/releases).
+The files used to prepare data layers for the ohi-global assessment can be downloaded from Github: [ohiprep v2023.1: Preparation of data for 2023 Ocean Health Index global assessment](https://github.com/OHI-Science/ohiprep_v2023/releases).
 
 The core functions used to calculate OHI scores can be downloaded as a package from Github, using the following code in [R](https://cran.r-project.org/): 
 
@@ -189,9 +189,9 @@ library(ohicore)
 
 ### Summary of score results
 
-##### Figure A. Regional 2022 OHI index scores.
+##### Figure A. Regional 2023 OHI index scores.
 
-Map (top) and histogram (bottom) of 2022 index scores for each OHI region. 
+Map (top) and histogram (bottom) of 2023 index scores for each OHI region. 
 
 ```{r score figures, echo=FALSE, fig.height=10, fig.width=10}
 ## including multiple figures on a page
@@ -208,20 +208,20 @@ gridExtra::grid.arrange(
 )
 ```
 
-##### Figure B. Flowerplot of 2022 goal/subgoal scores
+##### Figure B. Flowerplot of 2023 goal/subgoal scores
 
-Flower plot describing the 2022 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
+Flower plot describing the 2023 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
 
-Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/FlowerPlots)
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2023/Results/figures/FlowerPlots)
 
 ```{r flowerplot, echo=FALSE, height=5, width=10}
 here::here(dir_results_figures, 'FlowerPlots', "flower_GlobalAverage.png") %>% 
   knitr::include_graphics()
 ```
 
-##### Figure C. Maps and histograms of 2022 OHI goal scores.
+##### Figure C. Maps and histograms of 2023 OHI goal scores.
 
-The 2022 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
+The 2023 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
 
 ```{r testing images, echo=FALSE, fig.height=30, fig.width=10}
 AO_map <- goal_map(goal = "AO"); AO_hist <- goal_hist(goal = "AO")
@@ -250,7 +250,7 @@ grid.arrange(
 )
 ```
 
-##### Figure D. Maps and histograms of 2022 OHI subgoal scores.
+##### Figure D. Maps and histograms of 2023 OHI subgoal scores.
 
 The subgoal 202q scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
@@ -295,7 +295,7 @@ grid.arrange(
 
 ##### Figure E. Country scores across scenario year
 
-Overview of the scores from the 2022 assessment. Each row represents a region, the main groupings represent goals, and within each goal there are `r 2022 - 2011` years of data. Black regions indicate no data. Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2022/Results/figures/carpetPlot.png) to zoom in to see specific regions.
+Overview of the scores from the 2023 assessment. Each row represents a region, the main groupings represent goals, and within each goal there are `r 2023 - 2011` years of data. Black regions indicate no data. Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2023/Results/figures/carpetPlot.png) to zoom in to see specific regions.
 
 This plot is good for providing a quick overview of:
 
@@ -328,7 +328,7 @@ final_filename %>%
 
 ##### Figure F. Average annual change in OHI Index scores.
 
-Map (top) and histogram (bottom) of the slope estimates from a linear regression model of the Index scores from 2012 to 2022 for each region.
+Map (top) and histogram (bottom) of the slope estimates from a linear regression model of the Index scores from 2012 to 2023 for each region.
 
 ```{r trend figures, echo=FALSE, fig.height=10, fig.width=10}
 ## Figure created in Reporting.Rmd
@@ -345,7 +345,7 @@ grid.arrange(
 
 ##### Figure G. Average annual change in OHI goal scores.
 
-Map of the slope estimates from a linear regression model of the 10 goal scores from 2012 to 2022 for each region.
+Map of the slope estimates from a linear regression model of the 10 goal scores from 2012 to 2023 for each region.
 
 ```{r trends goals, echo=FALSE, fig.height=15, fig.width=10}
 ## Figures created in Reporting.Rmd
@@ -372,7 +372,7 @@ grid.arrange(
 
 ##### Figure H. Average annual change in OHI subgoal scores.
 
-Map of the slope estimates from a linear regression model of the 8 subgoal scores from 2012 to 2022 for each region. The subgoal scores for the following goals: biodiversity, food provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
+Map of the slope estimates from a linear regression model of the 8 subgoal scores from 2012 to 2023 for each region. The subgoal scores for the following goals: biodiversity, food provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
 <br>
 ```{r subgoal trends, echo=FALSE, fig.width=10, fig.height=15}
@@ -412,7 +412,7 @@ grid.arrange(
 
 ##### Figure I. Barplot of average annual change in goal trends for each region.
 
-The values are the slope estimate from a linear regression model of the scores from 2012 to 2022 for each region and goal.
+The values are the slope estimate from a linear regression model of the scores from 2012 to 2023 for each region and goal.
 
 ```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
 ## Figure created in trend_barplot.R
@@ -422,7 +422,7 @@ here::here(dir_results_figures, "Trend_barplot.png") %>%
 
 ##### Figure J. Comparing trend and average index scores
 
-To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2022) and the trends for each region.
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2023) and the trends for each region.
 
 Of most concern are regions that have poor scores and declining trends.
 
@@ -462,7 +462,7 @@ p <- ggplot2::ggplot(trend, aes(x = index_avg, y = index_trend)) +
   scale_color_manual(values = avg_colors) +
   labs(title = "Index scores",
        y = "Trend (change in score per year)", 
-       x = "Average (2012 to 2022 scores)") +
+       x = "Average (2012 to 2023 scores)") +
   theme_bw() + 
   theme(legend.position = "none")
 
