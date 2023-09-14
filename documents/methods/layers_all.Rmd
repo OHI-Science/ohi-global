@@ -1645,7 +1645,7 @@
  tonnes
 
  
-## Proportion of tourist arrivals to area of coastline 
+## Proportion of total international arrivals to area of coastline to total population 
 #### [tr_arrivals_props_tourism](https://github.com/OHI-Science/ohi-global/tree/draft/eez/layers/tr_arrivals_props_tourism.csv) {-} 
 ```{r, echo=FALSE, results='hide'}
 
@@ -1661,7 +1661,7 @@
 ``` 
  
 #### Units {-} 
- proportion
+ proportion scaled 0-1
 
  
 ## Region areas based on EEZ boundaries 
