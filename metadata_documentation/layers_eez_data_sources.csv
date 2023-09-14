@@ -1,6 +1,6 @@
 ds_reference,ds_name,ds_description,ds_years,ds_native_resolution,ds_updated_2016,ds_updated_2017,ds_updated_2018,ds_updated_2019,ds_updated_2020,ds_updated_2021,ds_updated_2022,ds_updated_2023,
 anderson2018stock,Stock assessement methods for data-limited fisheries,Methods: Data-limited stocks assessments,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
-aviso2023,Sea level rise,Net change in sea level during the time series,1993-2021,0.25 deg,y,y,y,y,n,y,y,y,erika: add to zotero
+aviso2023,Sea level rise,Net change in sea level during the time series,1993-2021,0.25 deg,y,y,y,y,n,y,y,y,
 behrenfeld1997photosynthetic,NPP,Net Primary Productivity,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,
 birdlifeinternationalandhandbookofthebirdsoftheworld2020,Marine bird species threatened status,Status and distribution of marine bird species,2020,National,y,y,y,y,y,y,n,n,
 mcowen2017,Salt marsh,Global salt marsh extent and condition,1973-2015,Global,n,n,n,n,n,"y, new datasource",n,n,
@@ -37,7 +37,7 @@ iucn2022,Marine species threatened status,IUCN Red List of threatened species by
 iucn_spatial_2022,"Marine species ranges, IUCN",IUCN spatial distribution,2022,Polygons rasterized to 0.5 deg,y,y,y,y,y,y,y,n,
 iucn2021spatial,"Marine species ranges, IUCN",IUCN spatial distribution,2021,Polygons rasterized to 0.5 deg,NA,NA,NA,NA,NA,"y, new datasource",n,n,
 jambeck2015plastic,Improper plastic disposal,Trends in mismanaged plastic waste for 2010 and projected for 2025 as a proxy for trash trends,2010-2025 (projected),National,y,n,n,n,n,n,n,n,
-jarihovila2013,UV radiation,Anomalies in intensity of ultraviolet (UV) radiation,2005-2022,1 deg,y,y,y,y,y,y,y,y,erika: add to zotero
+jarihovila2013,UV radiation,Anomalies in intensity of ultraviolet (UV) radiation,2005-2022,1 deg,y,y,y,y,y,y,y,y,
 kaufmann2010worldwide,Methods: Worldwide Governance Indicators (WGI),"Accountability, Political Stability and Absence of Violence, Government Effectiveness, Regulatory Quality, Rule of Law, and Control of Corruption",NA,NA,NA,NA,NA,n,n,n,n,n,
 chen_tidal_2022,Carbon storage weight,Carbon sequestration by habitat,2022,habitat,n,n,n,n,n,n,"y, new datasource",n,
 lewis2017largescale,Marine protected areas and terrestrial protected areas,Location and area of marine and terrestrial protected areas manual,NA,NA,NA,NA,NA,n,n,n,n,n,
@@ -101,9 +101,15 @@ krumhansl2016global,Kelp forests,Global kelp trends,1983-2012,National,NA,NA,NA,
 tuholske2021,Nutrient pollution,Global wastewater methods,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",n,n,
 halpern2022cumulative,Nutrient pollution,"Global food systems crop and livestock maps, and excess nutrient methdos",NA,1km,NA,NA,NA,NA,NA,"y, new datasource",n,n,
 murray_2019,Tidal flats,"Global tidal flat habitat extent and trend, from remote sensing",1984-2016,30m,NA,NA,NA,NA,NA,NA,"y, new datasource",n,
-pagad_2018,Global Register of Introduced and Invasive Species,Global country level count of introduced and invasive species,"2018-2020, 2022",National,NA,NA,NA,NA,NA,NA,"y, new datasource",y,erika: add to zotero
+pagad_2018,Global Register of Introduced and Invasive Species,Global country level count of introduced and invasive species,"2018-2020, 2022",National,NA,NA,NA,NA,NA,NA,"y, new datasource",y,
 palomares2022search,SeaLifeBase,"Global online database similar to FishBase, containing information about non-fish marine organisms, such as taxonomy, marine species distribution, and ecology, to be used to conduct biodiversity and ecosystem studies",NA,0.5 deg,y,y,y,y,y,y,NA,,
 froese2022fishbase,FishBase,"Global biodiversity information system on finfishes, provides a wide range of information on all species currently known in the world: taxonomy, biology, trophic ecology, life history, and uses, as well as historical data reaching back to 250 years",NA,0.5 deg,y,y,y,y,y,y,NA,,
 faofisheriesandaquaculturedepartment2015cwp,Coordinating Working Party Handbook of Fishery Statistical Standards. Section H: FISHING AREAS FOR STATISTICAL PURPOSES,Food and Agriculture Organization of the United Nations major fishing areas,1999-2022,NA,NA,NA,NA,NA,NA,NA,NA,n,
 unep-wcmcandiucn2023,Protected Planet: The World Database on Protected Areas (WDPA),The most comprehensive global database on terrestrial and marine protected areas,1800 - 2021,500m,y,NA,y,y,y,y,y,y,
 garcia2023,Biocultural vulnerability exposes threats of culturally important species,Global list of Culturally important species,NA,continent,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",
+unwto2023arrivals,United Nations World Tourism Organization (UNWTO) 145 Key Tourism Statistics: Inbound Tourism - Total arrivals,"Total international arrivals, annual by country, including Overnights (tourists), Same-day (excursionists), and Total arrivals",1995-2021,National,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",
+worldbank2023population,"Population, total","Total population, annual by country",1960-2022,National,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",
+ourworldindata2023population,"Population, 10,000 BCE to 2021","Total population, annual by country","10,000 BCE-2021",National,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",
+statista2023sabapopulation,Population of Saba in the Caribbean Netherlands from 2011 to 2023,"Total population, annual for Saba",2011-2023,National,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",
+statista2023sinteustatiuspopulation,Population of Sint Eustatius in the Caribbean Netherlands from 2011 to 2023,"Total population, annual for Sint Eustatius",2011-2023,National,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",
+statista2023bonairepopulation,Population of Bonaire in the Caribbean Netherlands from 2011 to 2023,"Total population, annual for Bonaire",2011-2023,National,NA,NA,NA,NA,NA,NA,NA,"y, new datasource"
