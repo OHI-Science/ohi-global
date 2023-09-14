@@ -243,7 +243,7 @@ for(year in 2012:scenario){
 }
 ```
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/OHI_final_formatted_scores_2022-07-20.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2022.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/OHI_final_formatted_scores_2022-09-15.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2023.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
@@ -285,7 +285,7 @@ PlotFlower(
 
 Average global performance of the 10 goals.
 
-Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/FlowerPlots)
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2023/Results/figures/FlowerPlots)
 
 ```{r flower_global, echo=FALSE, fig.height=30, fig.width=10}
 here::here(dir_results_figures, "FlowerPlots", "flower_GlobalAverage.png") %>% 
@@ -323,7 +323,7 @@ ohi_regions <- terra::vect(region_file, crs = mollweide)
 plot_scores_map(metric = "scores")
 ```
 
-Country index scores for 2022  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2022/Results/figures/maps_by_goal_mol).
+Country index scores for 2023  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2032/Results/figures/maps_by_goal_mol).
 
 ```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
 here::here(dir_goal_maps, paste0("global_map_Index_",scenario,"_mol.png")) %>% 
@@ -384,7 +384,7 @@ knitr::kable(low)
 
 ## Country scores across scenario year
 
-Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2022 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 7 years of data.  Black regions indicate no data.
+Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2023 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 12 years of data. Black regions indicate no data.
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 data <- readr::read_csv(final_filename) 
@@ -486,9 +486,9 @@ for (i in goals) { # i <- "AO"
 }
 ```
 
-## 2022 Data
+## 2023 Data
 
-This interactive table describes the index and goal scores for the regions in 2022 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/scores_eez_2022.csv)): 
+This interactive table describes the index and goal scores for the regions in 2023 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/scores_eez_2023.csv)): 
 
 ```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 current_scores_fn %>% 
@@ -550,9 +550,9 @@ final_filename %>%
   shiny::div(style = "font-size: 60%; width: 60%")
 ```
 
-## Change from 2012 to 2022
+## Change from 2012 to 2023
 
-This interactive table describes the gross change in index and goal scores for the regions between 2012 and 2022. This is helpful in investigating a single country by searching the region name and seeing how much each goal value has changed overall from the first year to the last.  
+This interactive table describes the gross change in index and goal scores for the regions between 2012 and 2023. This is helpful in investigating a single country by searching the region name and seeing how much each goal value has changed overall from the first year to the last.  
 
 ```{r}
 final_filename %>% 
@@ -645,7 +645,7 @@ hwrite(
 
 Trend values are slope estimates from a linear model of scores for each region/goal over the past `r length(unique(scores$scenario))` years. Positive values indicate increasing scores during the past `r length(unique(scores$scenario))` years and negative values indicate decreasing scores.
 
-A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/trends_2022.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2022/Results/data/trends_2022.csv)).  
+A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/trends_2023.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/trends_2023.csv)).  
 
 NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed sceptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
 
@@ -793,7 +793,7 @@ trends_order %>%
 ## Country change in goal
 
 ```{r country goal trend, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
-# Creates trend_barplot.png in yearly_results/global2022/Results/figures when called
+# Creates trend_barplot.png in yearly_results/global2023/Results/figures when called
 source(here::here(dir_results_functions, 'trend_barplot.R'))
 ```
 
@@ -807,7 +807,7 @@ here::here(dir_results_figures, "Trend_barplot.png") %>%
 
 # A closer look at goal scores
 
-This section takes a closer look at the goal/subgoal scores for the 2022 scenario.
+This section takes a closer look at the goal/subgoal scores for the 2023 scenario.
 
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
 # Make pretty histograms
@@ -873,7 +873,7 @@ for(goal in 2:length(goals)) { # skip Index
 
 ## Trends
 
-Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2022. 
+Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2023. 
 
 ```{r trend plots, echo=FALSE, fig.height=30, fig.width=10}
 files <- list.files(
@@ -943,7 +943,7 @@ plotly_fig
 
 # Comparing assessment years
 
-The following is a comparison of the global status scores generated for the 2022 scenario by this year's assessment vs. last year's assessment. 
+The following is a comparison of the global status scores generated for the 2023 scenario by this year's assessment vs. last year's assessment. 
 
 If the models and source data remain the same, these scores should be exactly the same.  Differences indicate changes in methods or source data.  
 
