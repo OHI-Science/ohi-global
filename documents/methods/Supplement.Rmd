@@ -29,8 +29,9 @@ Compiled on `r date()`.
  # 2. Make sure that all the files in metadata_documentation have been updated (e.g., layers_eez_base, layers_eez_targets, layers_eez_methods, layers_eez_datasources)
  # 3. Run CombineLayers.R to create the relevant Rmd file for data layers (if any changes to these files), creates layers_all.R
  # 4. Save a new OHI.bib file from Zotero if changes to references (Export BibLaTeX)
-  # 5. Review document to fix year references (i.e., title at top, assessmentYear variable in this code chunk, update figure 4.1)
- # 6. Knit this file and review html output. 
+#5. If there are changes to the references, run BIBcorrect.R!!!
+  # 6. Review document to fix year references (i.e., title at top, assessmentYear variable in this code chunk, update figure 4.1)
+ # 7. Knit this file and review html output. 
 
 
 
