@@ -38,6 +38,6 @@ bib <- gsub(pattern = "EDF France", "{{EDF France}}", bib)
 bib <- gsub(pattern = "Joint Nature Conservation Committee (JNCC)", "{{Joint Nature Conservation Committee}}", bib)
 bib <- gsub(pattern = "\\{US\\} Department of State", "{{US Department of State}}", bib)
 bib <- gsub(pattern = "author = \\{Social Progress Index\\}", "author = {{Social Progress Index}}", bib)
-bib <- gsub(pattern = "Our World in Data", "{{Our World in Data}}", bib)
+bib <- gsub(pattern = "Our World in Data", "{Our World in Data}", bib)
 writeLines(bib, "OHI.bib")
 
