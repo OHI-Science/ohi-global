@@ -16,9 +16,9 @@ $$
 T_{r} = { A }\times { S }, (Eq. 6.21)
 $$
 
-where, $A$ is the proportion of total international arrivals to coastal area (combined inland (1 km) and offshore (3 nm) area) to total population, and $S$ is sustainability. 
+where, $A$ is the proportion of international overnight visitor arrivals to total international arrivals, and $S$ is sustainability. 
 
-Ideally there would be data available specifically for arrivals, $A$, related to coastal tourism; however, the best data available at a global scale reports the total international arrivals, which does not solely reflect coastal tourism [@unwto2023arrivals]. Because we do not know how arrivals patterns vary geographically for each region, we attempt to help this value reflect coastal tourism by dividing by coastal area (representing capacity/space for coastal tourism) [@lewis2017largescale]. We further divide by total population as a proxy for ability to help tourists (ideally this would also be solely coastal, but again global datasets for this were not available) [@worldbank2023population; @ourworldindata2023population; @statista2023bonairepopulation; @statista2023sabapopulation; @statista2023sinteustatiuspopulation]. 
+Ideally there would be data available specifically for arrivals, $A$, related to coastal tourism; however, the best data available at a global scale reports the total international arrivals, which does not solely reflect coastal tourism [@unwto2023arrivals].
 
 Unfortunately it was not possible to determine the proportion of international arrivals affiliated with strictly leisure tourism. However, some (unknown) proportion of business travelers also enjoy the coast for leisure during their visit to coastal areas, such that we assumed all tourist arrivals were related to tourism and recreation values. Regional applications of the Index can make use of better-resolved data and more direct measures of tourism, as has been done within the US West Coast [@halpern2014assessing], where data for participation in coastal recreational activities across 19 different sectors were available.
 
