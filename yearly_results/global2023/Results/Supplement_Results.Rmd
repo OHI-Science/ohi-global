@@ -41,7 +41,7 @@ librarian::shelf(
 scenario <- "2023" 
 
 ### date extension on the radical data files that are used for all tables/figures
-radicalFile <- '2023-09-15' 
+radicalFile <- '2023-10-02' 
 globalYear <- paste0("global", scenario)
 
 ### Directories
@@ -252,7 +252,7 @@ grid.arrange(
 
 ##### Figure D. Maps and histograms of 2023 OHI subgoal scores.
 
-The subgoal 202q scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
+The subgoal 2023 scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
 ```{r subgoal scores, echo=FALSE, fig.width=10, fig.height=25}
 BD      <- header(goal = "Biodiversity")

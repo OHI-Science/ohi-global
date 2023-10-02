@@ -73,11 +73,11 @@ oldCommit  <- '33ca88c7f4cd7cbcd381bdf0921f4d553f1e344d' # final commit for 2022
 update_data  <- TRUE # select true if there are updates to the OHI data!! Also be sure to change dateFile below
 map_create   <- TRUE # Updates the map figures (takes a while to run)
 goal_hists   <- TRUE # Updates the goal histograms
-flower_plots <- TRUE # Updates the flower plot figures
+flower_plots <- FALSE # Updates the flower plot figures
 
 ### the date in the below variable must be updated (for the results to reflect the new data)
 # dateFile       <- Sys.Date()   # date extension on data files used for all tables/figures
-dateFile       <- "2023-09-15" # date extension on data files used for all tables/figures
+dateFile       <- "2023-10-02" # date extension on data files used for all tables/figures
 benchmark_date <- "2022-10-05" # Date from last assessment
 ```
 
@@ -243,7 +243,7 @@ for(year in 2012:scenario){
 }
 ```
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/OHI_final_formatted_scores_2022-09-15.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2023.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/OHI_final_formatted_scores_2022-10-02.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2023.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
