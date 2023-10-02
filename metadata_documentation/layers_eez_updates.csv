@@ -7,7 +7,7 @@ cc_slr,additional year of data (2021)
 cc_sst,additional year of data (2022)
 cc_uv,additional year of data (2022)
 cw_chemical_trend,none
-cw_nutrient_trend,additional year of data (2020)
+cw_nutrient_trend,none
 cw_pathogen_trend,additional year of data (2022)
 cw_trash_trend,none
 eco_status,none
@@ -16,7 +16,7 @@ element_wts_cp_km2_x_protection,none
 element_wts_cs_km2_x_storage,updated carbon accumulation rates
 element_wts_hab_pres_abs,none
 fis_b_bmsy,"updated RAM values, but 2019 is still the year of data used like before since it is still what matches the fisheries catch data"
-fis_meancatch,additional year of data (2019)
+fis_meancatch,none
 fp_art_hb,none
 fp_art_lb,none
 fp_artisanal,"reran because database had been updated for same year, no score changes"
@@ -36,31 +36,31 @@ hab_coral_trend,none
 hab_kelp_extent,none
 hab_kelp_health,none
 hab_kelp_trend,none
-hab_mangrove_extent,updated data: https://data.unep-wcmc.org/datasets/45
-hab_mangrove_health,updated data: https://data.unep-wcmc.org/datasets/45; now calculated using 2020 extents as current
-hab_mangrove_trend,updated data: https://data.unep-wcmc.org/datasets/45
+hab_mangrove_extent,none
+hab_mangrove_health,none
+hab_mangrove_trend,none
 hab_rockyreef_extent,none
 hab_saltmarsh_extent,none
 hab_saltmarsh_health,none
-hab_saltmarsh_trend,updated global trend value: https://doi.org/10.1038/s41586-022-05355-z
+hab_saltmarsh_trend,updated trend value: https://doi.org/10.1038/s41586-022-05355-z
 hab_seagrass_extent,none
 hab_seagrass_health,none
 hab_seagrass_trend,none
 hab_seaice_extent,none
 hab_seaice_health,"additional year of data (2022), updated to version 2 of dataset"
 hab_seaice_trend,"additional year of data (2022), updated to version 2 of dataset"
-hab_softbottom_health,new data source
-hab_softbottom_trend,new data source
-hab_tidal_flat_extent,new data layer
-hab_tidal_flat_health,new data layer
-hab_tidal_flat_trend,new data layer
+hab_softbottom_health,none
+hab_softbottom_trend,none
+hab_tidal_flat_extent,none
+hab_tidal_flat_health,none
+hab_tidal_flat_trend,none
 hd_coral,"additional years of data (2020, 2021)"
 hd_habitat,none
 hd_intertidal,none
 hd_mpa_coast,additional year of data
 hd_mpa_eez,additional year of data
 hd_subtidal_hb,none
-hd_subtidal_sb,new data source
+hd_subtidal_sb,none
 ico_spp_iucn_status,added to the list of iconic species using new data source https://www.pnas.org/doi/10.1073/pnas.2217303120
 le_sector_weight,none
 li_gci,none
@@ -72,21 +72,21 @@ lsp_prot_area_offshore3nm,additional year of data (2023)
 mar_capacity,none
 mar_harvest_tonnes,additional year of data (2021)
 mar_sustainability_score,additional year of data (2023)
-np_exposure_orn,additional year of data (2020)
-np_fofm_scores,additional year of data (2020)
+np_exposure_orn,additional year of data (2021)
+np_fofm_scores,additional year of BBmsy values
 np_harvest_product_weight,updated with additional year of data
-np_orn_tonnes_relative,additional year of data (2020)
-np_risk_orn,additional year of data (2020)
+np_orn_tonnes_relative,additional year of data (2021)
+np_risk_orn,additional year of data (2021)
 np_seaweed_sust,additional year of data (2023)
 np_seaweed_tonnes,additional year of data (2021)
 po_chemicals,none
 po_chemicals_3nm,none
-po_nutrients,additional year of data (2020)
-po_nutrients_3nm,additional year of data (2020)
+po_nutrients,none
+po_nutrients_3nm,none
 po_pathogens,additional year of data (2022)
 po_trash,none
 po_water,none
-res_spi,additional year of data (2022)
+res_spi,none
 rgn_area,none
 rgn_area_inland1km,none
 rgn_area_offshore3nm,none
@@ -95,13 +95,13 @@ rgn_labels,none
 sp_alien,"GRIIS database was updated (uses data from 2018-2020, 2022)"
 sp_alien_species,none
 sp_genetic,additional year of FAO mariculture yield data (2021); and updated escapes data from Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations (2023)
-species_diversity_3nm,updated iucn redlist classifications with 2022-1 assessment
-species_diversity_eez,updated iucn redlist classifications with 2022-1 assessment
-spp_status,updated iucn redlist classifications with 2022-1 assessment
-spp_trend,updated iucn redlist classifications with 2022-1 assessment
-ss_spi,additional year of data (2022)
-ss_wgi,additional year of data (2021)
+species_diversity_3nm,none
+species_diversity_eez,none
+spp_status,none
+spp_trend,none
+ss_spi,none
+ss_wgi,additional year of data (2022)
 tr_arrivals_props_tourism,new data sources & reworking of code to accommodate a new proportion of arrivals to coastal area to population
 tr_sustainability,new data source: https://www3.weforum.org/docs/WEF_Travel_Tourism_Development_2021.pdf
 uninhabited,none
-wgi_all,additional year of data (2021)
+wgi_all,additional year of data (2022)

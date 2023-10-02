@@ -266,7 +266,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "tr_arrivals_props_tourism_new_to_old_methods", 
+  file_name = "wgi", 
   
   commit = "previous", # change this back to "previous" next time
   scenario_year = current_year,
