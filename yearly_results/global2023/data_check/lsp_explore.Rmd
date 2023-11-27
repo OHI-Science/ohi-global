@@ -18,7 +18,7 @@ region_data()
 
 ```{r}
 
-lsp_scores <- read_csv(file.path(here(), "yearly_results/global2022/scores_2022-10-05.csv"))
+lsp_scores <- read_csv(file.path(here(), "yearly_results/global2023/scores_2023-10-02.csv"))
 
 
 lsp_status <- lsp_scores %>%
@@ -29,7 +29,7 @@ lsp_status <- lsp_scores %>%
 ## get top ten and bottom ten scores for 2021
 
 DT::datatable(lsp_status %>%
-  filter(year == 2022) %>%
+  filter(year == 2023) %>%
   arrange(-score) %>%
     dplyr::select(goal, dimension, rgn_name, year, score))
 
@@ -160,43 +160,43 @@ Take the below stats from this folder: https://github.com/OHI-Science/ohiprep_v2
 Determine proportion of ocean/land areas that are protected
 
 ```{r}
-prot_3nm <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/lsp/v2022/int/area_protected_3nm.csv')
+prot_3nm <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2023/gh-pages/globalprep/lsp/v2023/int/area_protected_3nm.csv')
 
-prot_3nm_2021 <- prot_3nm %>%
-  filter(year == 2021) %>%
+prot_3nm_2022 <- prot_3nm %>%
+  filter(year == 2022) %>%
   mutate(type = "3nm")
 
-sum(prot_3nm_2021$a_prot_km2) # 1103835
-sum(prot_3nm_2021$a_tot_km2) # 4995189
+sum(prot_3nm_2022$a_prot_km2) # [1] 1106411
+sum(prot_3nm_2022$a_tot_km2) # 4995189
 
-1103835/4995189 # 0.2209796 ; ~22% of 3nm areas are protected 
+1106411/4995189 # 0.2214953 ; ~22% of 3nm areas are protected 
 
 
-prot_1km <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/lsp/v2022/int/area_protected_1km.csv')
+prot_1km <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2023/gh-pages/globalprep/lsp/v2023/int/area_protected_1km.csv')
 
-prot_1km_2021 <- prot_1km %>%
-  filter(year == 2021) %>%
+prot_1km_2022 <- prot_1km %>%
+  filter(year == 2022) %>%
   mutate(type = "1km")
 
-sum(prot_1km_2021$a_prot_km2) # 301274.8
-sum(prot_1km_2021$a_tot_km2) # 1133638
+sum(prot_1km_2022$a_prot_km2) # 302110.8
+sum(prot_1km_2022$a_tot_km2) # 1133638
 
-301274.8/1133638 # 0.2657593 ; ~27% of 1km areas are protected 
+302110.8/1133638 # 0.2664967 ; ~27% of 1km areas are protected 
 
 
-prot_eez <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2022/gh-pages/globalprep/lsp/v2022/int/area_protected_eez.csv')
+prot_eez <- read.csv('https://raw.githubusercontent.com/OHI-Science/ohiprep_v2023/gh-pages/globalprep/lsp/v2023/int/area_protected_eez.csv')
 
-prot_eez_2021 <- prot_eez %>%
-  filter(year == 2021) %>%
+prot_eez_2022 <- prot_eez %>%
+  filter(year == 2022) %>%
   mutate(type = "eez")
 
-sum(prot_eez_2021$a_prot_km2) # 27816775
-sum(prot_eez_2021$a_tot_km2) # 359482664
+sum(prot_eez_2022$a_prot_km2) # 28099489
+sum(prot_eez_2022$a_tot_km2) # 359482664
 
-27816775/359482664 # 0.07738002 ; ~7.7% of eez areas are protected 
+28099489/359482664 # 0.07816646 ; ~7.7% of eez areas are protected 
 
 
-all_prot <- rbind(prot_eez_2021, prot_1km_2021, prot_3nm_2021) %>%
+all_prot <- rbind(prot_eez_2022, prot_1km_2022, prot_3nm_2022) %>%
   group_by(type) %>%
   summarise(total_area = sum(a_tot_km2),
             total_prot_area = sum(a_prot_km2)) %>%
