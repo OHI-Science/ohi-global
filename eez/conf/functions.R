@@ -5,7 +5,7 @@
 
 
 FIS <- function(layers) {
-
+ 
   scen_year <- layers$data$scenario_year
   
   #catch data

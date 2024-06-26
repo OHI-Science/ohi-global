@@ -65,7 +65,7 @@ Install the appropriate `ohicore` package. Options are:
 ```{r setup, eval = FALSE}
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, eval = FALSE, echo = TRUE)
 if (!require(devtools)){install.packages("devtools")}
-if (!require(ohicore)){devtools::install_github('ohi-science/ohicore@dev')}
+if (!require(ohicore)){devtools::install_github('ohi-science/ohicore@master')}
 ```
 
 ### Step 2
