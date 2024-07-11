@@ -271,7 +271,7 @@ ohicore::score_check(
   file_name = "lsp", 
   
   commit = "e7497d6", # change this back to "previous" next time
-  scenario_year = 2024,
+  scenario_year = 2023,
   scenario_name = "eez", 
   save_csv = TRUE, NA_compare = TRUE
 )
