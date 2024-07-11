@@ -73,7 +73,7 @@ if (!require(ohicore)){devtools::install_github('ohi-science/ohicore@master')}
 Identify the repo where data will be taken from: 
 
 ```{r eval = FALSE}
-current_year <- 2023
+current_year <- 2024
 version_year <- paste0("v", current_year)
 repo_loc <- paste0("https://raw.githubusercontent.com/OHI-Science/ohiprep_", version_year, "/gh-pages/")
 ```
@@ -262,16 +262,31 @@ Review results
 
 ```{r eval = FALSE}
 ### Some methods for visualizing the data
-### final commit from last year (v2022): 33ca88c7f4cd7cbcd381bdf0921f4d553f1e344d
+### final commit from last year (v2023): e7497d6
+### NOTE: scenario_year indicates the years that are being compared across last year nad this year. This will almost always be the previous year
+### If the current year is used, there will be no data from last year to compare!!!
 
 ohicore::score_check(
   
-  file_name = "wgi", 
+  file_name = "lsp", 
   
-  commit = "previous", # change this back to "previous" next time
-  scenario_year = current_year,
+  commit = "e7497d6", # change this back to "previous" next time
+  scenario_year = 2024,
+  scenario_name = "eez", 
   save_csv = TRUE, NA_compare = TRUE
 )
+
+p <- ggplot2::ggplot(filter(data_new, year==scenario_year), ggplot2::aes(x=goal, y=change, color=dimension)) +
+      #geom_point(shape=19, size=1) +
+      ggplot2::theme_bw() + 
+      ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 1)) + 
+      ggplot2::labs(title=paste("Score compared to commit:", commit, sep=" "), y="Change in score", x="") +
+      ggplot2::scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
+                                           "MAR", "ECO", "LE", "LIV", "NP", "LSP", "SP", "ICO", "TR")) +
+      ggplot2::scale_colour_brewer(palette="Dark2") +
+      ggplot2::geom_jitter(ggplot2::aes(text=paste0("rgn = ", region_id, "\n", rgn_name)), 
+                           position = ggplot2::position_jitter(width=0.2, height=0), shape=19, size=1)
+  
 ```
 
 **Below here is case-to-case basis.**
