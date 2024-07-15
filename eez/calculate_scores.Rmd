@@ -275,17 +275,6 @@ ohicore::score_check(
   scenario_name = "eez", 
   save_csv = TRUE, NA_compare = TRUE
 )
-
-p <- ggplot2::ggplot(filter(data_new, year==scenario_year), ggplot2::aes(x=goal, y=change, color=dimension)) +
-      #geom_point(shape=19, size=1) +
-      ggplot2::theme_bw() + 
-      ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 1)) + 
-      ggplot2::labs(title=paste("Score compared to commit:", commit, sep=" "), y="Change in score", x="") +
-      ggplot2::scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
-                                           "MAR", "ECO", "LE", "LIV", "NP", "LSP", "SP", "ICO", "TR")) +
-      ggplot2::scale_colour_brewer(palette="Dark2") +
-      ggplot2::geom_jitter(ggplot2::aes(text=paste0("rgn = ", region_id, "\n", rgn_name)), 
-                           position = ggplot2::position_jitter(width=0.2, height=0), shape=19, size=1)
   
 ```
 
