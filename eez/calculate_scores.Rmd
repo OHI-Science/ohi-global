@@ -268,9 +268,9 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "hab_seaice", 
+  file_name = "cc_uv", 
   
-  commit = "e7497d6", # change this back to "previous" next time
+  commit = "previous", # change this back to "previous" next time
   scenario_year = 2023,
   scenario_name = "eez", 
   save_csv = TRUE, NA_compare = TRUE
