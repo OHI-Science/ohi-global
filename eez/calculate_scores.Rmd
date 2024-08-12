@@ -268,7 +268,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "cc_uv", 
+  file_name = "cw_pathogen_trend", 
   
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2023,
