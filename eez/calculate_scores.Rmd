@@ -268,7 +268,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "mar_sustainability_score", 
+  file_name = "sp_genetic", 
   
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2023,
