@@ -268,7 +268,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "cw_pathogen_trend", 
+  file_name = "mar_sustainability_score", 
   
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2023,
