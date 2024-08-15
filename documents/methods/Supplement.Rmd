@@ -360,7 +360,7 @@ url <- read.csv(here("metadata_documentation/layers_eez_dataprep.csv")) %>%
   mutate(method_count = cumsum(N)) %>%
   mutate(total_methods = sum(N)) %>%
   mutate(count = sum(N)) %>%
-  mutate(url_link = ifelse(count==1,  sprintf("[data prep](http://ohi-science.org/ohiprep_v%s/%s)", assessmentYear, dataprep_url), 
+  mutate(url_link = ifelse(count==1,  sprintf("[data prep](https://htmlpreview.github.io/?https://github.com/ohi-science/ohiprep_v%s/gh-pages/%s)", assessmentYear, dataprep_url), 
                 sprintf("[data prep %s](http://ohi-science.org/ohiprep_v%s/%s)", method_count, assessmentYear, dataprep_url))) %>%
   summarize(url_link = paste(url_link, collapse = ", ")) %>%
   select(layer, url_link) %>%
