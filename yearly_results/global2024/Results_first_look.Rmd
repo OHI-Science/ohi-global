@@ -20,6 +20,9 @@ output:
 
 This document describes results from the 2024 global OHI assessment. This is mostly an internal document to explore and check results. It also creates the figures used on the website and in other documents.
 
+Note for 2024 fellows- I updated most of the notes, values, and code that required years, copied over folders, and ran most of the script but there are some places I didnt change which I marked with ###### update this 2024!######. These are mostly github links to download from and I think all the 2024 scores need to be updated and pushed before we can change that-Sanj
+
+
 # Setup
 
 ```{r set up, echo=FALSE, error=FALSE, warning=FALSE, include = FALSE}
@@ -61,10 +64,13 @@ librarian::shelf(
 ### 2. go through document and update text where needed.
 
 ### General settings to control
-scenario   <- 2023 # identify scenario of focus (this can be changed to obtain data for other years)
-benchmark  <- 2022 # previous year that is used for old vs. new OHI analyses
+scenario   <- 2024 # identify scenario of focus (this can be changed to obtain data for other years)
+benchmark  <- 2023 # previous year that is used for old vs. new OHI analyses
 globalYear <- paste0('global', scenario) # location where files that are created are to be saved
-oldCommit  <- '33ca88c7f4cd7cbcd381bdf0921f4d553f1e344d' # final commit for 2022 assessment
+
+#you can find this at https://github.com/OHI-Science/ohi-global/commits/draft/yearly_results/global2023 after you change the year
+oldCommit  <- 'e7497d697c654c7d5c49b76cb70eb22b31a61e13' # final commit for 2023 assessment
+### '33ca88c7f4cd7cbcd381bdf0921f4d553f1e344d' # final commit for 2022 assessment
 ### 'af4b1f3baf55704f272738d900560fb92cb81ab1' # sha final commit for 2021 assessment
 ### 'ebf181718474e6f8305e3b26172fe30bfea2396d' # sha final commit for 2020 assessment
 
@@ -243,6 +249,7 @@ for(year in 2012:scenario){
 }
 ```
 
+###### update this 2024!######
 [These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/OHI_final_formatted_scores_2022-10-02.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2023.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
@@ -285,6 +292,7 @@ PlotFlower(
 
 Average global performance of the 10 goals.
 
+###### update this 2024!######
 Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2023/Results/figures/FlowerPlots)
 
 ```{r flower_global, echo=FALSE, fig.height=30, fig.width=10}
@@ -323,6 +331,7 @@ ohi_regions <- terra::vect(region_file, crs = mollweide)
 plot_scores_map(metric = "scores")
 ```
 
+###### update this 2024!######
 Country index scores for 2023  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2032/Results/figures/maps_by_goal_mol).
 
 ```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
@@ -384,6 +393,7 @@ knitr::kable(low)
 
 ## Country scores across scenario year
 
+###### update this 2024!######
 Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2023 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 12 years of data. Black regions indicate no data.
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
@@ -477,7 +487,7 @@ for (i in goals) { # i <- "AO"
     theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
     ylab("") + 
     xlab("") +
-    scale_x_continuous(breaks = c(2012, 2014, 2016, 2018, 2020, 2022))
+    scale_x_continuous(breaks = c(2012, 2014, 2016, 2018, 2020, 2022, 2024))
   
   fn <- paste0("carpetPlot_",i,".png")
   
@@ -486,9 +496,10 @@ for (i in goals) { # i <- "AO"
 }
 ```
 
-## 2023 Data
+## 2024 Data
 
-This interactive table describes the index and goal scores for the regions in 2023 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/scores_eez_2023.csv)): 
+###### update this 2024!######
+This interactive table describes the index and goal scores for the regions in 2024 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/scores_eez_2023.csv)): 
 
 ```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 current_scores_fn %>% 
@@ -550,9 +561,9 @@ final_filename %>%
   shiny::div(style = "font-size: 60%; width: 60%")
 ```
 
-## Change from 2012 to 2023
+## Change from 2012 to 2024
 
-This interactive table describes the gross change in index and goal scores for the regions between 2012 and 2023. This is helpful in investigating a single country by searching the region name and seeing how much each goal value has changed overall from the first year to the last.  
+This interactive table describes the gross change in index and goal scores for the regions between 2012 and 2024. This is helpful in investigating a single country by searching the region name and seeing how much each goal value has changed overall from the first year to the last.  
 
 ```{r}
 final_filename %>% 
@@ -561,7 +572,7 @@ final_filename %>%
   dplyr::select(scenario, goal, region_name, value) %>% 
   tidyr::pivot_wider(names_from =  scenario, values_from = value) %>% 
   dplyr::group_by(region_name, goal) %>% 
-  dplyr::summarise(change = round(`2023` - `2012`, 3)) %>% 
+  dplyr::summarise(change = round(`2024` - `2012`, 3)) %>% 
   tidyr::pivot_wider(names_from = goal, values_from = change) %>% 
   DT::datatable() %>% 
   shiny::div(style = "font-size: 60%; width: 60%")
@@ -645,6 +656,7 @@ hwrite(
 
 Trend values are slope estimates from a linear model of scores for each region/goal over the past `r length(unique(scores$scenario))` years. Positive values indicate increasing scores during the past `r length(unique(scores$scenario))` years and negative values indicate decreasing scores.
 
+###### update this 2024!######
 A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/trends_2023.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/trends_2023.csv)).  
 
 NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed sceptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
@@ -948,14 +960,13 @@ The following is a comparison of the global status scores generated for the 2023
 If the models and source data remain the same, these scores should be exactly the same.  Differences indicate changes in methods or source data.  
 
 These changes do not reflect changes in actual system health!   
-
 ```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 data <- read.csv(final_filename) %>%
-  dplyr::rename("assess2023"=value) 
+  dplyr::rename("assess2024"=value) 
 
 data_old <- here::here('yearly_results', paste0('global',benchmark,'/OHI_final_formatted_scores_',benchmark_date,'.csv')) %>% 
   readr::read_csv() %>%
-  dplyr::rename("assess2022" = value)
+  dplyr::rename("assess2023" = value)
 
 data_compare <- data_old %>%
   dplyr::left_join(data, by = c("scenario", "goal", "long_goal", "dimension", "region_id", "region_name")) %>%
@@ -986,7 +997,7 @@ p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
   geom_jitter(aes(text=paste0("rgn = ", region_name)), 
               position = position_jitter(width=0.2, height=0), shape=19, size=1) +
   theme_bw() + 
-  labs(title="Change in 2023 scores ", y="Change in score", x="") +
+  labs(title="Change in 2024 scores ", y="Change in score", x="") +
   scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
                               "MAR", "ECO", "LE", "LIV", "NP", "LSP", "SP", "ICO", "TR")) +
   scale_colour_brewer(palette="Dark2")
