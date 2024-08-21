@@ -83,6 +83,7 @@ flower_plots <- FALSE # Updates the flower plot figures
 
 ### the date in the below variable must be updated (for the results to reflect the new data)
 # dateFile       <- Sys.Date()   # date extension on data files used for all tables/figures
+###### update this 2024!######
 dateFile       <- "2023-10-02" # date extension on data files used for all tables/figures
 benchmark_date <- "2022-10-05" # Date from last assessment
 ```
@@ -225,6 +226,7 @@ data_all <- readr::read_csv(final_filename)
 for(year in 2012:scenario){ 
   # year = 2016
   
+#this shows an error message at first but if you run it again it should work..
   data <- data_all %>%
     dplyr::filter(dimension == "score", scenario == year) %>%   # focus only on score data
     dplyr::filter(region_id != 213)  %>%         # Antarctica (calculated in a very different way)
@@ -885,7 +887,7 @@ for(goal in 2:length(goals)) { # skip Index
 
 ## Trends
 
-Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2023. 
+Annual change in goal/subgoal scores calculated using a linear regression on scores from 2012 to 2024. 
 
 ```{r trend plots, echo=FALSE, fig.height=30, fig.width=10}
 files <- list.files(
@@ -899,7 +901,7 @@ knitr::include_graphics(files)
 
 ### Comparing trend and average index scores
 
-To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2023) and the trends for each region.
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2024) and the trends for each region.
 
 Of most concern are regions that have poor scores and declining trends.
 
