@@ -263,12 +263,12 @@ Review results
 ```{r eval = FALSE}
 ### Some methods for visualizing the data
 ### final commit from last year (v2023): e7497d6
-### NOTE: scenario_year indicates the years that are being compared across last year nad this year. This will almost always be the previous year
+### NOTE: scenario_year indicates the years that are being compared across last year and this year. This will almost always be the previous year
 ### If the current year is used, there will be no data from last year to compare!!!
 
 ohicore::score_check(
   
-  file_name = "fp_targetharvest", 
+  file_name = "spp_status", 
   
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2023,
