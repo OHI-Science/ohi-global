@@ -6,6 +6,7 @@
 183,"Brown seaweeds_1",2019,0.67
 183,"Brown seaweeds_1",2020,0.67
 183,"Brown seaweeds_1",2021,0.67
+183,"Brown seaweeds_1",2022,0.67
 155,"Elkhorn sea moss_2",2000,0.67
 155,"Elkhorn sea moss_2",2001,0.67
 155,"Elkhorn sea moss_2",2002,0.67
@@ -39,6 +40,8 @@
 155,"Elkhorn sea moss_2",2020,0.67
 40,"Elkhorn sea moss_3",2021,0.67
 155,"Elkhorn sea moss_2",2021,0.67
+40,"Elkhorn sea moss_3",2022,0.67
+155,"Elkhorn sea moss_2",2022,0.67
 184,"Gracilaria seaweeds_4",1990,0.67
 184,"Gracilaria seaweeds_4",1991,0.67
 184,"Gracilaria seaweeds_4",1992,0.67
@@ -93,361 +96,373 @@
 216,"Gracilaria seaweeds_5",2020,0.67
 184,"Gracilaria seaweeds_4",2021,0.67
 216,"Gracilaria seaweeds_5",2021,0.67
+184,"Gracilaria seaweeds_4",2022,0.67
+216,"Gracilaria seaweeds_5",2022,0.67
 183,"Green seaweeds_6",2014,0.67
 183,"Green seaweeds_6",2015,0.67
 183,"Green seaweeds_6",2016,0.67
 183,"Green seaweeds_6",2017,0.67
 183,"Green seaweeds_6",2018,0.67
 183,"Green seaweeds_6",2019,0.67
+207,"Green seaweeds_7",2019,0.67
 183,"Green seaweeds_6",2020,0.67
+207,"Green seaweeds_7",2020,0.67
 183,"Green seaweeds_6",2021,0.67
-183,"Red seaweeds_7",2014,0.67
-183,"Red seaweeds_7",2015,0.67
-183,"Red seaweeds_7",2016,0.67
-183,"Red seaweeds_7",2017,0.67
-183,"Red seaweeds_7",2018,0.67
-183,"Red seaweeds_7",2019,0.67
-183,"Red seaweeds_7",2020,0.67
-183,"Red seaweeds_7",2021,0.67
-102,"Sea lettuces nei_8",2002,0.67
-102,"Sea lettuces nei_8",2003,0.67
-102,"Sea lettuces nei_8",2004,0.67
-102,"Sea lettuces nei_8",2005,0.67
-102,"Sea lettuces nei_8",2006,0.67
-102,"Sea lettuces nei_8",2007,0.67
-102,"Sea lettuces nei_8",2008,0.67
-102,"Sea lettuces nei_8",2009,0.67
-102,"Sea lettuces nei_8",2010,0.67
-102,"Sea lettuces nei_8",2011,0.67
-102,"Sea lettuces nei_8",2012,0.67
-102,"Sea lettuces nei_8",2013,0.67
-102,"Sea lettuces nei_8",2014,0.67
-102,"Sea lettuces nei_8",2015,0.67
-102,"Sea lettuces nei_8",2016,0.67
-102,"Sea lettuces nei_8",2017,0.67
-102,"Sea lettuces nei_8",2018,0.67
-102,"Sea lettuces nei_8",2019,0.67
-102,"Sea lettuces nei_8",2020,0.67
-102,"Sea lettuces nei_8",2021,0.67
-14,"Seaweeds nei_9",1968,0.67
-14,"Seaweeds nei_9",1969,0.67
-14,"Seaweeds nei_9",1970,0.67
-14,"Seaweeds nei_9",1971,0.67
-14,"Seaweeds nei_9",1972,0.67
-14,"Seaweeds nei_9",1973,0.67
-14,"Seaweeds nei_9",1974,0.67
-14,"Seaweeds nei_9",1975,0.67
-14,"Seaweeds nei_9",1976,0.67
-14,"Seaweeds nei_9",1977,0.67
-14,"Seaweeds nei_9",1978,0.67
-14,"Seaweeds nei_9",1979,0.67
-14,"Seaweeds nei_9",1980,0.67
-14,"Seaweeds nei_9",1981,0.67
-14,"Seaweeds nei_9",1982,0.67
-14,"Seaweeds nei_9",1983,0.67
-14,"Seaweeds nei_9",1984,0.67
-14,"Seaweeds nei_9",1985,0.67
-14,"Seaweeds nei_9",1986,0.67
-14,"Seaweeds nei_9",1987,0.67
-14,"Seaweeds nei_9",1988,0.67
-14,"Seaweeds nei_9",1989,0.67
-14,"Seaweeds nei_9",1990,0.67
-14,"Seaweeds nei_9",1991,0.67
-14,"Seaweeds nei_9",1992,0.67
-14,"Seaweeds nei_9",1993,0.67
-14,"Seaweeds nei_9",1994,0.67
-14,"Seaweeds nei_9",1995,0.67
-14,"Seaweeds nei_9",1996,0.67
-14,"Seaweeds nei_9",1997,0.67
-14,"Seaweeds nei_9",1998,0.67
-14,"Seaweeds nei_9",1999,0.67
-14,"Seaweeds nei_9",2000,0.67
-14,"Seaweeds nei_9",2001,0.67
-14,"Seaweeds nei_9",2002,0.67
-14,"Seaweeds nei_9",2003,0.67
-14,"Seaweeds nei_9",2004,0.67
-14,"Seaweeds nei_9",2005,0.67
-14,"Seaweeds nei_9",2006,0.67
-14,"Seaweeds nei_9",2007,0.67
-14,"Seaweeds nei_9",2008,0.67
-14,"Seaweeds nei_9",2009,0.67
-14,"Seaweeds nei_9",2010,0.67
-14,"Seaweeds nei_9",2011,0.67
-14,"Seaweeds nei_9",2012,0.67
-14,"Seaweeds nei_9",2013,0.67
-14,"Seaweeds nei_9",2014,0.67
-14,"Seaweeds nei_9",2015,0.67
-14,"Seaweeds nei_9",2016,0.67
-182,"Seaweeds nei_10",2016,0.67
-14,"Seaweeds nei_9",2017,0.67
-182,"Seaweeds nei_10",2017,0.67
-14,"Seaweeds nei_9",2018,0.67
-182,"Seaweeds nei_10",2018,0.67
-14,"Seaweeds nei_9",2019,0.67
-182,"Seaweeds nei_10",2019,0.67
-14,"Seaweeds nei_9",2020,0.67
-182,"Seaweeds nei_10",2020,0.67
-14,"Seaweeds nei_9",2021,0.67
-182,"Seaweeds nei_10",2021,0.67
-14,"Warty gracilaria_11",1954,0.67
-14,"Warty gracilaria_11",1955,0.67
-14,"Warty gracilaria_11",1956,0.67
-14,"Warty gracilaria_11",1957,0.67
-14,"Warty gracilaria_11",1958,0.67
-14,"Warty gracilaria_11",1959,0.67
-14,"Warty gracilaria_11",1960,0.67
-14,"Warty gracilaria_11",1961,0.67
-14,"Warty gracilaria_11",1962,0.67
-14,"Warty gracilaria_11",1963,0.67
-14,"Warty gracilaria_11",1964,0.67
-14,"Warty gracilaria_11",1965,0.67
-14,"Warty gracilaria_11",1966,0.67
-14,"Warty gracilaria_11",1967,0.67
-14,"Warty gracilaria_11",1968,0.67
-14,"Warty gracilaria_11",1969,0.67
-14,"Warty gracilaria_11",1970,0.67
-14,"Warty gracilaria_11",1971,0.67
-14,"Warty gracilaria_11",1972,0.67
-14,"Warty gracilaria_11",1973,0.67
-14,"Warty gracilaria_11",1974,0.67
-14,"Warty gracilaria_11",1975,0.67
-14,"Warty gracilaria_11",1976,0.67
-14,"Warty gracilaria_11",1977,0.67
-14,"Warty gracilaria_11",1978,0.67
-14,"Warty gracilaria_11",1979,0.67
-14,"Warty gracilaria_11",1980,0.67
-14,"Warty gracilaria_11",1981,0.67
-14,"Warty gracilaria_11",1982,0.67
-14,"Warty gracilaria_11",1983,0.67
-14,"Warty gracilaria_11",1984,0.67
-14,"Warty gracilaria_11",1985,0.67
-14,"Warty gracilaria_11",1986,0.67
-14,"Warty gracilaria_11",1987,0.67
-14,"Warty gracilaria_11",1988,0.67
-14,"Warty gracilaria_11",1989,0.67
-14,"Warty gracilaria_11",1990,0.67
-14,"Warty gracilaria_11",1991,0.67
-14,"Warty gracilaria_11",1992,0.67
-14,"Warty gracilaria_11",1993,0.67
-14,"Warty gracilaria_11",1994,0.67
-14,"Warty gracilaria_11",1995,0.67
-14,"Warty gracilaria_11",1996,0.67
-14,"Warty gracilaria_11",1997,0.67
-14,"Warty gracilaria_11",1998,0.67
-14,"Warty gracilaria_11",1999,0.67
-14,"Warty gracilaria_11",2000,0.67
-14,"Warty gracilaria_11",2001,0.67
-14,"Warty gracilaria_11",2002,0.67
-14,"Warty gracilaria_11",2003,0.67
-14,"Warty gracilaria_11",2004,0.67
-14,"Warty gracilaria_11",2005,0.67
-14,"Warty gracilaria_11",2006,0.67
-14,"Warty gracilaria_11",2007,0.67
-14,"Warty gracilaria_11",2008,0.67
-14,"Warty gracilaria_11",2009,0.67
-14,"Warty gracilaria_11",2010,0.67
-14,"Warty gracilaria_11",2011,0.67
-14,"Warty gracilaria_11",2012,0.67
-14,"Warty gracilaria_11",2013,0.67
-14,"Warty gracilaria_11",2014,0.67
-14,"Warty gracilaria_11",2015,0.67
-14,"Warty gracilaria_11",2016,0.67
-14,"Warty gracilaria_11",2017,0.67
-14,"Warty gracilaria_11",2018,0.67
-14,"Warty gracilaria_11",2019,0.67
-14,"Warty gracilaria_11",2020,0.67
-14,"Warty gracilaria_11",2021,0.67
-20,"Aquatic plants nei_12",1974,0.67
-20,"Aquatic plants nei_12",1975,0.67
-20,"Aquatic plants nei_12",1976,0.67
-20,"Aquatic plants nei_12",1977,0.67
-20,"Aquatic plants nei_12",1978,0.67
-20,"Aquatic plants nei_12",1979,0.67
-20,"Aquatic plants nei_12",1980,0.67
-20,"Aquatic plants nei_12",1981,0.67
-20,"Aquatic plants nei_12",1982,0.67
-20,"Aquatic plants nei_12",1983,0.67
-20,"Aquatic plants nei_12",1984,0.67
-20,"Aquatic plants nei_12",1985,0.67
-20,"Aquatic plants nei_12",1986,0.67
-20,"Aquatic plants nei_12",1987,0.67
-20,"Aquatic plants nei_12",1988,0.67
-20,"Aquatic plants nei_12",1989,0.67
-20,"Aquatic plants nei_12",1990,0.67
-20,"Aquatic plants nei_12",1991,0.67
-20,"Aquatic plants nei_12",1992,0.67
-20,"Aquatic plants nei_12",1993,0.67
-20,"Aquatic plants nei_12",1994,0.67
-20,"Aquatic plants nei_12",1995,0.67
-20,"Aquatic plants nei_12",1996,0.67
-20,"Aquatic plants nei_12",1997,0.67
-20,"Aquatic plants nei_12",1998,0.67
-20,"Aquatic plants nei_12",1999,0.67
-20,"Aquatic plants nei_12",2000,0.67
-20,"Aquatic plants nei_12",2001,0.67
-20,"Aquatic plants nei_12",2002,0.67
-20,"Aquatic plants nei_12",2003,0.67
-20,"Aquatic plants nei_12",2004,0.67
-20,"Aquatic plants nei_12",2005,0.67
-20,"Aquatic plants nei_12",2006,0.67
-20,"Aquatic plants nei_12",2007,0.67
-20,"Aquatic plants nei_12",2008,0.67
-20,"Aquatic plants nei_12",2009,0.67
-20,"Aquatic plants nei_12",2010,0.67
-20,"Aquatic plants nei_12",2011,0.67
-20,"Aquatic plants nei_12",2012,0.67
-20,"Aquatic plants nei_12",2013,0.67
-20,"Aquatic plants nei_12",2014,0.67
-20,"Aquatic plants nei_12",2015,0.67
-20,"Aquatic plants nei_12",2016,0.67
-20,"Aquatic plants nei_12",2017,0.67
-20,"Aquatic plants nei_12",2018,0.67
-20,"Aquatic plants nei_12",2019,0.67
-20,"Aquatic plants nei_12",2020,0.67
-20,"Aquatic plants nei_12",2021,0.67
-73,"Brown seaweeds_13",1960,0.67
-73,"Brown seaweeds_13",1961,0.67
-73,"Brown seaweeds_13",1962,0.67
-73,"Brown seaweeds_13",1963,0.67
-73,"Brown seaweeds_13",1964,0.67
-73,"Brown seaweeds_13",1965,0.67
-73,"Brown seaweeds_13",1966,0.67
-73,"Brown seaweeds_13",1967,0.67
-73,"Brown seaweeds_13",1968,0.67
-73,"Brown seaweeds_13",1969,0.67
-73,"Brown seaweeds_13",1970,0.67
-73,"Brown seaweeds_13",1971,0.67
-73,"Brown seaweeds_13",1972,0.67
-73,"Brown seaweeds_13",1973,0.67
-73,"Brown seaweeds_13",1974,0.67
-73,"Brown seaweeds_13",1975,0.67
-73,"Brown seaweeds_13",1976,0.67
-73,"Brown seaweeds_13",1977,0.67
-73,"Brown seaweeds_13",1978,0.67
-209,"Brown seaweeds_14",1978,0.67
-73,"Brown seaweeds_13",1979,0.67
-209,"Brown seaweeds_14",1979,0.67
-73,"Brown seaweeds_13",1980,0.67
-209,"Brown seaweeds_14",1980,0.67
-73,"Brown seaweeds_13",1981,0.67
-209,"Brown seaweeds_14",1981,0.67
-73,"Brown seaweeds_13",1982,0.67
-209,"Brown seaweeds_14",1982,0.67
-73,"Brown seaweeds_13",1983,0.67
-209,"Brown seaweeds_14",1983,0.67
-73,"Brown seaweeds_13",1984,0.67
-209,"Brown seaweeds_14",1984,0.67
-73,"Brown seaweeds_13",1985,0.67
-209,"Brown seaweeds_14",1985,0.67
-73,"Brown seaweeds_13",1986,0.67
-209,"Brown seaweeds_14",1986,0.67
-73,"Brown seaweeds_13",1987,0.67
-209,"Brown seaweeds_14",1987,0.67
-73,"Brown seaweeds_13",1988,0.67
-209,"Brown seaweeds_14",1988,0.67
-73,"Brown seaweeds_13",1989,0.67
-209,"Brown seaweeds_14",1989,0.67
-73,"Brown seaweeds_13",1990,0.67
-209,"Brown seaweeds_14",1990,0.67
-73,"Brown seaweeds_13",1991,0.67
-209,"Brown seaweeds_14",1991,0.67
-73,"Brown seaweeds_13",1992,0.67
-209,"Brown seaweeds_14",1992,0.67
-73,"Brown seaweeds_13",1993,0.67
-209,"Brown seaweeds_14",1993,0.67
-73,"Brown seaweeds_13",1994,0.67
-209,"Brown seaweeds_14",1994,0.67
-73,"Brown seaweeds_13",1995,0.67
-209,"Brown seaweeds_14",1995,0.67
-73,"Brown seaweeds_13",1996,0.67
-209,"Brown seaweeds_14",1996,0.67
-73,"Brown seaweeds_13",1997,0.67
-209,"Brown seaweeds_14",1997,0.67
-73,"Brown seaweeds_13",1998,0.67
-209,"Brown seaweeds_14",1998,0.67
-73,"Brown seaweeds_13",1999,0.67
-209,"Brown seaweeds_14",1999,0.67
-73,"Brown seaweeds_13",2000,0.67
-209,"Brown seaweeds_14",2000,0.67
-73,"Brown seaweeds_13",2001,0.67
-209,"Brown seaweeds_14",2001,0.67
-73,"Brown seaweeds_13",2002,0.67
-209,"Brown seaweeds_14",2002,0.67
-73,"Brown seaweeds_13",2003,0.67
-209,"Brown seaweeds_14",2003,0.67
-73,"Brown seaweeds_13",2004,0.67
-209,"Brown seaweeds_14",2004,0.67
-73,"Brown seaweeds_13",2005,0.67
-209,"Brown seaweeds_14",2005,0.67
-73,"Brown seaweeds_13",2006,0.67
-209,"Brown seaweeds_14",2006,0.67
-73,"Brown seaweeds_13",2007,0.67
-209,"Brown seaweeds_14",2007,0.67
-73,"Brown seaweeds_13",2008,0.67
-175,"Brown seaweeds_15",2008,0.67
-209,"Brown seaweeds_14",2008,0.67
-73,"Brown seaweeds_13",2009,0.67
-175,"Brown seaweeds_15",2009,0.67
-209,"Brown seaweeds_14",2009,0.67
-73,"Brown seaweeds_13",2010,0.67
-175,"Brown seaweeds_15",2010,0.67
-209,"Brown seaweeds_14",2010,0.67
-73,"Brown seaweeds_13",2011,0.67
-175,"Brown seaweeds_15",2011,0.67
-209,"Brown seaweeds_14",2011,0.67
-73,"Brown seaweeds_13",2012,0.67
-175,"Brown seaweeds_15",2012,0.67
-179,"Brown seaweeds_16",2012,0.67
-209,"Brown seaweeds_14",2012,0.67
-73,"Brown seaweeds_13",2013,0.67
-175,"Brown seaweeds_15",2013,0.67
-179,"Brown seaweeds_16",2013,0.67
-209,"Brown seaweeds_14",2013,0.67
-73,"Brown seaweeds_13",2014,0.67
-175,"Brown seaweeds_15",2014,0.67
-179,"Brown seaweeds_16",2014,0.67
-209,"Brown seaweeds_14",2014,0.67
-73,"Brown seaweeds_13",2015,0.67
-163,"Brown seaweeds_17",2015,0.67
-175,"Brown seaweeds_15",2015,0.67
-179,"Brown seaweeds_16",2015,0.67
-209,"Brown seaweeds_14",2015,0.67
-73,"Brown seaweeds_13",2016,0.67
-135,"Brown seaweeds_18",2016,0.67
-163,"Brown seaweeds_17",2016,0.67
-175,"Brown seaweeds_15",2016,0.67
-179,"Brown seaweeds_16",2016,0.67
-209,"Brown seaweeds_14",2016,0.67
-73,"Brown seaweeds_13",2017,0.67
-135,"Brown seaweeds_18",2017,0.67
-163,"Brown seaweeds_17",2017,0.67
-175,"Brown seaweeds_15",2017,0.67
-179,"Brown seaweeds_16",2017,0.67
-209,"Brown seaweeds_14",2017,0.67
-73,"Brown seaweeds_13",2018,0.67
-135,"Brown seaweeds_18",2018,0.67
-163,"Brown seaweeds_17",2018,0.67
-175,"Brown seaweeds_15",2018,0.67
-179,"Brown seaweeds_16",2018,0.67
-209,"Brown seaweeds_14",2018,0.67
-73,"Brown seaweeds_13",2019,0.67
-135,"Brown seaweeds_18",2019,0.67
-163,"Brown seaweeds_17",2019,0.67
-175,"Brown seaweeds_15",2019,0.67
-179,"Brown seaweeds_16",2019,0.67
-209,"Brown seaweeds_14",2019,0.67
-73,"Brown seaweeds_13",2020,0.67
-135,"Brown seaweeds_18",2020,0.67
-163,"Brown seaweeds_17",2020,0.67
-175,"Brown seaweeds_15",2020,0.67
-179,"Brown seaweeds_16",2020,0.67
-209,"Brown seaweeds_14",2020,0.67
-73,"Brown seaweeds_13",2021,0.67
-135,"Brown seaweeds_18",2021,0.67
-163,"Brown seaweeds_17",2021,0.67
-175,"Brown seaweeds_15",2021,0.67
-179,"Brown seaweeds_16",2021,0.67
-209,"Brown seaweeds_14",2021,0.67
+207,"Green seaweeds_7",2021,0.67
+183,"Green seaweeds_6",2022,0.67
+207,"Green seaweeds_7",2022,0.67
+183,"Red seaweeds_8",2014,0.67
+183,"Red seaweeds_8",2015,0.67
+183,"Red seaweeds_8",2016,0.67
+183,"Red seaweeds_8",2017,0.67
+183,"Red seaweeds_8",2018,0.67
+183,"Red seaweeds_8",2019,0.67
+183,"Red seaweeds_8",2020,0.67
+183,"Red seaweeds_8",2021,0.67
+183,"Red seaweeds_8",2022,0.67
+102,"Sea lettuces nei_9",2002,0.67
+102,"Sea lettuces nei_9",2003,0.67
+102,"Sea lettuces nei_9",2004,0.67
+102,"Sea lettuces nei_9",2005,0.67
+102,"Sea lettuces nei_9",2006,0.67
+102,"Sea lettuces nei_9",2007,0.67
+102,"Sea lettuces nei_9",2008,0.67
+102,"Sea lettuces nei_9",2009,0.67
+102,"Sea lettuces nei_9",2010,0.67
+102,"Sea lettuces nei_9",2011,0.67
+102,"Sea lettuces nei_9",2012,0.67
+102,"Sea lettuces nei_9",2013,0.67
+102,"Sea lettuces nei_9",2014,0.67
+102,"Sea lettuces nei_9",2015,0.67
+102,"Sea lettuces nei_9",2016,0.67
+102,"Sea lettuces nei_9",2017,0.67
+102,"Sea lettuces nei_9",2018,0.67
+102,"Sea lettuces nei_9",2019,0.67
+102,"Sea lettuces nei_9",2020,0.67
+102,"Sea lettuces nei_9",2021,0.67
+102,"Sea lettuces nei_9",2022,0.67
+14,"Seaweeds nei_10",1968,0.67
+14,"Seaweeds nei_10",1969,0.67
+14,"Seaweeds nei_10",1970,0.67
+14,"Seaweeds nei_10",1971,0.67
+14,"Seaweeds nei_10",1972,0.67
+14,"Seaweeds nei_10",1973,0.67
+14,"Seaweeds nei_10",1974,0.67
+14,"Seaweeds nei_10",1975,0.67
+14,"Seaweeds nei_10",1976,0.67
+14,"Seaweeds nei_10",1977,0.67
+14,"Seaweeds nei_10",1978,0.67
+14,"Seaweeds nei_10",1979,0.67
+14,"Seaweeds nei_10",1980,0.67
+14,"Seaweeds nei_10",1981,0.67
+14,"Seaweeds nei_10",1982,0.67
+14,"Seaweeds nei_10",1983,0.67
+14,"Seaweeds nei_10",1984,0.67
+14,"Seaweeds nei_10",1985,0.67
+14,"Seaweeds nei_10",1986,0.67
+14,"Seaweeds nei_10",1987,0.67
+14,"Seaweeds nei_10",1988,0.67
+14,"Seaweeds nei_10",1989,0.67
+14,"Seaweeds nei_10",1990,0.67
+14,"Seaweeds nei_10",1991,0.67
+14,"Seaweeds nei_10",1992,0.67
+14,"Seaweeds nei_10",1993,0.67
+14,"Seaweeds nei_10",1994,0.67
+14,"Seaweeds nei_10",1995,0.67
+14,"Seaweeds nei_10",1996,0.67
+14,"Seaweeds nei_10",1997,0.67
+14,"Seaweeds nei_10",1998,0.67
+14,"Seaweeds nei_10",1999,0.67
+14,"Seaweeds nei_10",2000,0.67
+14,"Seaweeds nei_10",2001,0.67
+14,"Seaweeds nei_10",2002,0.67
+14,"Seaweeds nei_10",2003,0.67
+14,"Seaweeds nei_10",2004,0.67
+14,"Seaweeds nei_10",2005,0.67
+14,"Seaweeds nei_10",2006,0.67
+14,"Seaweeds nei_10",2007,0.67
+14,"Seaweeds nei_10",2008,0.67
+14,"Seaweeds nei_10",2009,0.67
+14,"Seaweeds nei_10",2010,0.67
+14,"Seaweeds nei_10",2011,0.67
+14,"Seaweeds nei_10",2012,0.67
+14,"Seaweeds nei_10",2013,0.67
+14,"Seaweeds nei_10",2014,0.67
+14,"Seaweeds nei_10",2015,0.67
+14,"Seaweeds nei_10",2016,0.67
+182,"Seaweeds nei_11",2016,0.67
+14,"Seaweeds nei_10",2017,0.67
+182,"Seaweeds nei_11",2017,0.67
+14,"Seaweeds nei_10",2018,0.67
+182,"Seaweeds nei_11",2018,0.67
+14,"Seaweeds nei_10",2019,0.67
+182,"Seaweeds nei_11",2019,0.67
+14,"Seaweeds nei_10",2020,0.67
+182,"Seaweeds nei_11",2020,0.67
+14,"Seaweeds nei_10",2021,0.67
+182,"Seaweeds nei_11",2021,0.67
+14,"Seaweeds nei_10",2022,0.67
+182,"Seaweeds nei_11",2022,0.67
+14,"Warty gracilaria_12",1954,0.67
+14,"Warty gracilaria_12",1955,0.67
+14,"Warty gracilaria_12",1956,0.67
+14,"Warty gracilaria_12",1957,0.67
+14,"Warty gracilaria_12",1958,0.67
+14,"Warty gracilaria_12",1959,0.67
+14,"Warty gracilaria_12",1960,0.67
+14,"Warty gracilaria_12",1961,0.67
+14,"Warty gracilaria_12",1962,0.67
+14,"Warty gracilaria_12",1963,0.67
+14,"Warty gracilaria_12",1964,0.67
+14,"Warty gracilaria_12",1965,0.67
+14,"Warty gracilaria_12",1966,0.67
+14,"Warty gracilaria_12",1967,0.67
+14,"Warty gracilaria_12",1968,0.67
+14,"Warty gracilaria_12",1969,0.67
+14,"Warty gracilaria_12",1970,0.67
+14,"Warty gracilaria_12",1971,0.67
+14,"Warty gracilaria_12",1972,0.67
+14,"Warty gracilaria_12",1973,0.67
+14,"Warty gracilaria_12",1974,0.67
+14,"Warty gracilaria_12",1975,0.67
+14,"Warty gracilaria_12",1976,0.67
+14,"Warty gracilaria_12",1977,0.67
+14,"Warty gracilaria_12",1978,0.67
+14,"Warty gracilaria_12",1979,0.67
+14,"Warty gracilaria_12",1980,0.67
+14,"Warty gracilaria_12",1981,0.67
+14,"Warty gracilaria_12",1982,0.67
+14,"Warty gracilaria_12",1983,0.67
+14,"Warty gracilaria_12",1984,0.67
+14,"Warty gracilaria_12",1985,0.67
+14,"Warty gracilaria_12",1986,0.67
+14,"Warty gracilaria_12",1987,0.67
+14,"Warty gracilaria_12",1988,0.67
+14,"Warty gracilaria_12",1989,0.67
+14,"Warty gracilaria_12",1990,0.67
+14,"Warty gracilaria_12",1991,0.67
+14,"Warty gracilaria_12",1992,0.67
+14,"Warty gracilaria_12",1993,0.67
+14,"Warty gracilaria_12",1994,0.67
+14,"Warty gracilaria_12",1995,0.67
+14,"Warty gracilaria_12",1996,0.67
+14,"Warty gracilaria_12",1997,0.67
+14,"Warty gracilaria_12",1998,0.67
+14,"Warty gracilaria_12",1999,0.67
+14,"Warty gracilaria_12",2000,0.67
+14,"Warty gracilaria_12",2001,0.67
+14,"Warty gracilaria_12",2002,0.67
+14,"Warty gracilaria_12",2003,0.67
+14,"Warty gracilaria_12",2004,0.67
+14,"Warty gracilaria_12",2005,0.67
+14,"Warty gracilaria_12",2006,0.67
+14,"Warty gracilaria_12",2007,0.67
+14,"Warty gracilaria_12",2008,0.67
+14,"Warty gracilaria_12",2009,0.67
+14,"Warty gracilaria_12",2010,0.67
+14,"Warty gracilaria_12",2011,0.67
+14,"Warty gracilaria_12",2012,0.67
+14,"Warty gracilaria_12",2013,0.67
+14,"Warty gracilaria_12",2014,0.67
+14,"Warty gracilaria_12",2015,0.67
+14,"Warty gracilaria_12",2016,0.67
+14,"Warty gracilaria_12",2017,0.67
+14,"Warty gracilaria_12",2018,0.67
+14,"Warty gracilaria_12",2019,0.67
+14,"Warty gracilaria_12",2020,0.67
+14,"Warty gracilaria_12",2021,0.67
+14,"Warty gracilaria_12",2022,0.67
+20,"Aquatic plants nei_13",1974,0.67
+20,"Aquatic plants nei_13",1975,0.67
+20,"Aquatic plants nei_13",1976,0.67
+20,"Aquatic plants nei_13",1977,0.67
+20,"Aquatic plants nei_13",1978,0.67
+20,"Aquatic plants nei_13",1979,0.67
+20,"Aquatic plants nei_13",1980,0.67
+20,"Aquatic plants nei_13",1981,0.67
+20,"Aquatic plants nei_13",1982,0.67
+20,"Aquatic plants nei_13",1983,0.67
+20,"Aquatic plants nei_13",1984,0.67
+20,"Aquatic plants nei_13",1985,0.67
+20,"Aquatic plants nei_13",1986,0.67
+20,"Aquatic plants nei_13",1987,0.67
+20,"Aquatic plants nei_13",1988,0.67
+20,"Aquatic plants nei_13",1989,0.67
+20,"Aquatic plants nei_13",1990,0.67
+20,"Aquatic plants nei_13",1991,0.67
+20,"Aquatic plants nei_13",1992,0.67
+20,"Aquatic plants nei_13",1993,0.67
+20,"Aquatic plants nei_13",1994,0.67
+20,"Aquatic plants nei_13",1995,0.67
+20,"Aquatic plants nei_13",1996,0.67
+20,"Aquatic plants nei_13",1997,0.67
+20,"Aquatic plants nei_13",1998,0.67
+20,"Aquatic plants nei_13",1999,0.67
+20,"Aquatic plants nei_13",2000,0.67
+20,"Aquatic plants nei_13",2001,0.67
+20,"Aquatic plants nei_13",2002,0.67
+20,"Aquatic plants nei_13",2003,0.67
+20,"Aquatic plants nei_13",2004,0.67
+20,"Aquatic plants nei_13",2005,0.67
+20,"Aquatic plants nei_13",2006,0.67
+20,"Aquatic plants nei_13",2007,0.67
+20,"Aquatic plants nei_13",2008,0.67
+20,"Aquatic plants nei_13",2009,0.67
+20,"Aquatic plants nei_13",2010,0.67
+20,"Aquatic plants nei_13",2011,0.67
+20,"Aquatic plants nei_13",2012,0.67
+20,"Aquatic plants nei_13",2013,0.67
+20,"Aquatic plants nei_13",2014,0.67
+20,"Aquatic plants nei_13",2015,0.67
+20,"Aquatic plants nei_13",2016,0.67
+20,"Aquatic plants nei_13",2017,0.67
+20,"Aquatic plants nei_13",2018,0.67
+20,"Aquatic plants nei_13",2019,0.67
+20,"Aquatic plants nei_13",2020,0.67
+20,"Aquatic plants nei_13",2021,0.67
+20,"Aquatic plants nei_13",2022,0.67
+73,"Brown seaweeds_14",1960,0.67
+73,"Brown seaweeds_14",1961,0.67
+73,"Brown seaweeds_14",1962,0.67
+73,"Brown seaweeds_14",1963,0.67
+73,"Brown seaweeds_14",1964,0.67
+73,"Brown seaweeds_14",1965,0.67
+73,"Brown seaweeds_14",1966,0.67
+73,"Brown seaweeds_14",1967,0.67
+73,"Brown seaweeds_14",1968,0.67
+73,"Brown seaweeds_14",1969,0.67
+73,"Brown seaweeds_14",1970,0.67
+73,"Brown seaweeds_14",1971,0.67
+73,"Brown seaweeds_14",1972,0.67
+73,"Brown seaweeds_14",1973,0.67
+73,"Brown seaweeds_14",1974,0.67
+73,"Brown seaweeds_14",1975,0.67
+73,"Brown seaweeds_14",1976,0.67
+73,"Brown seaweeds_14",1977,0.67
+73,"Brown seaweeds_14",1978,0.67
+209,"Brown seaweeds_15",1978,0.67
+73,"Brown seaweeds_14",1979,0.67
+209,"Brown seaweeds_15",1979,0.67
+73,"Brown seaweeds_14",1980,0.67
+209,"Brown seaweeds_15",1980,0.67
+73,"Brown seaweeds_14",1981,0.67
+209,"Brown seaweeds_15",1981,0.67
+73,"Brown seaweeds_14",1982,0.67
+209,"Brown seaweeds_15",1982,0.67
+73,"Brown seaweeds_14",1983,0.67
+209,"Brown seaweeds_15",1983,0.67
+73,"Brown seaweeds_14",1984,0.67
+209,"Brown seaweeds_15",1984,0.67
+73,"Brown seaweeds_14",1985,0.67
+209,"Brown seaweeds_15",1985,0.67
+73,"Brown seaweeds_14",1986,0.67
+209,"Brown seaweeds_15",1986,0.67
+73,"Brown seaweeds_14",1987,0.67
+209,"Brown seaweeds_15",1987,0.67
+73,"Brown seaweeds_14",1988,0.67
+209,"Brown seaweeds_15",1988,0.67
+73,"Brown seaweeds_14",1989,0.67
+209,"Brown seaweeds_15",1989,0.67
+73,"Brown seaweeds_14",1990,0.67
+209,"Brown seaweeds_15",1990,0.67
+73,"Brown seaweeds_14",1991,0.67
+209,"Brown seaweeds_15",1991,0.67
+73,"Brown seaweeds_14",1992,0.67
+209,"Brown seaweeds_15",1992,0.67
+73,"Brown seaweeds_14",1993,0.67
+209,"Brown seaweeds_15",1993,0.67
+73,"Brown seaweeds_14",1994,0.67
+209,"Brown seaweeds_15",1994,0.67
+73,"Brown seaweeds_14",1995,0.67
+209,"Brown seaweeds_15",1995,0.67
+73,"Brown seaweeds_14",1996,0.67
+209,"Brown seaweeds_15",1996,0.67
+73,"Brown seaweeds_14",1997,0.67
+209,"Brown seaweeds_15",1997,0.67
+73,"Brown seaweeds_14",1998,0.67
+209,"Brown seaweeds_15",1998,0.67
+73,"Brown seaweeds_14",1999,0.67
+209,"Brown seaweeds_15",1999,0.67
+73,"Brown seaweeds_14",2000,0.67
+209,"Brown seaweeds_15",2000,0.67
+73,"Brown seaweeds_14",2001,0.67
+209,"Brown seaweeds_15",2001,0.67
+73,"Brown seaweeds_14",2002,0.67
+209,"Brown seaweeds_15",2002,0.67
+73,"Brown seaweeds_14",2003,0.67
+209,"Brown seaweeds_15",2003,0.67
+73,"Brown seaweeds_14",2004,0.67
+209,"Brown seaweeds_15",2004,0.67
+73,"Brown seaweeds_14",2005,0.67
+209,"Brown seaweeds_15",2005,0.67
+73,"Brown seaweeds_14",2006,0.67
+209,"Brown seaweeds_15",2006,0.67
+73,"Brown seaweeds_14",2007,0.67
+209,"Brown seaweeds_15",2007,0.67
+73,"Brown seaweeds_14",2008,0.67
+175,"Brown seaweeds_16",2008,0.67
+209,"Brown seaweeds_15",2008,0.67
+73,"Brown seaweeds_14",2009,0.67
+175,"Brown seaweeds_16",2009,0.67
+209,"Brown seaweeds_15",2009,0.67
+73,"Brown seaweeds_14",2010,0.67
+175,"Brown seaweeds_16",2010,0.67
+209,"Brown seaweeds_15",2010,0.67
+73,"Brown seaweeds_14",2011,0.67
+175,"Brown seaweeds_16",2011,0.67
+209,"Brown seaweeds_15",2011,0.67
+73,"Brown seaweeds_14",2012,0.67
+175,"Brown seaweeds_16",2012,0.67
+179,"Brown seaweeds_17",2012,0.67
+209,"Brown seaweeds_15",2012,0.67
+73,"Brown seaweeds_14",2013,0.67
+175,"Brown seaweeds_16",2013,0.67
+179,"Brown seaweeds_17",2013,0.67
+209,"Brown seaweeds_15",2013,0.67
+73,"Brown seaweeds_14",2014,0.67
+175,"Brown seaweeds_16",2014,0.67
+179,"Brown seaweeds_17",2014,0.67
+209,"Brown seaweeds_15",2014,0.67
+73,"Brown seaweeds_14",2015,0.67
+163,"Brown seaweeds_18",2015,0.67
+175,"Brown seaweeds_16",2015,0.67
+179,"Brown seaweeds_17",2015,0.67
+209,"Brown seaweeds_15",2015,0.67
+73,"Brown seaweeds_14",2016,0.67
+163,"Brown seaweeds_18",2016,0.67
+175,"Brown seaweeds_16",2016,0.67
+179,"Brown seaweeds_17",2016,0.67
+209,"Brown seaweeds_15",2016,0.67
+73,"Brown seaweeds_14",2017,0.67
+163,"Brown seaweeds_18",2017,0.67
+175,"Brown seaweeds_16",2017,0.67
+179,"Brown seaweeds_17",2017,0.67
+209,"Brown seaweeds_15",2017,0.67
+73,"Brown seaweeds_14",2018,0.67
+163,"Brown seaweeds_18",2018,0.67
+175,"Brown seaweeds_16",2018,0.67
+179,"Brown seaweeds_17",2018,0.67
+209,"Brown seaweeds_15",2018,0.67
+73,"Brown seaweeds_14",2019,0.67
+163,"Brown seaweeds_18",2019,0.67
+175,"Brown seaweeds_16",2019,0.67
+179,"Brown seaweeds_17",2019,0.67
+209,"Brown seaweeds_15",2019,0.67
+73,"Brown seaweeds_14",2020,0.67
+163,"Brown seaweeds_18",2020,0.67
+175,"Brown seaweeds_16",2020,0.67
+179,"Brown seaweeds_17",2020,0.67
+209,"Brown seaweeds_15",2020,0.67
+73,"Brown seaweeds_14",2021,0.67
+163,"Brown seaweeds_18",2021,0.67
+175,"Brown seaweeds_16",2021,0.67
+179,"Brown seaweeds_17",2021,0.67
+209,"Brown seaweeds_15",2021,0.67
+73,"Brown seaweeds_14",2022,0.67
+163,"Brown seaweeds_18",2022,0.67
+175,"Brown seaweeds_16",2022,0.67
+179,"Brown seaweeds_17",2022,0.67
+209,"Brown seaweeds_15",2022,0.67
 15,"Caulerpa seaweeds_19",1950,0.67
 15,"Caulerpa seaweeds_19",1951,0.67
 15,"Caulerpa seaweeds_19",1952,0.67
@@ -515,2237 +530,2456 @@
 15,"Caulerpa seaweeds_19",2014,0.67
 15,"Caulerpa seaweeds_19",2015,0.67
 15,"Caulerpa seaweeds_19",2016,0.67
+152,"Caulerpa seaweeds_20",2016,0.67
 15,"Caulerpa seaweeds_19",2017,0.67
+152,"Caulerpa seaweeds_20",2017,0.67
 15,"Caulerpa seaweeds_19",2018,0.67
+152,"Caulerpa seaweeds_20",2018,0.67
 15,"Caulerpa seaweeds_19",2019,0.67
+152,"Caulerpa seaweeds_20",2019,0.67
 15,"Caulerpa seaweeds_19",2020,0.67
+152,"Caulerpa seaweeds_20",2020,0.67
 15,"Caulerpa seaweeds_19",2021,0.67
-209,"Dark green nori_20",2003,0.67
-209,"Dark green nori_20",2004,0.67
-209,"Dark green nori_20",2005,0.67
-209,"Dark green nori_20",2006,0.67
-209,"Dark green nori_20",2007,0.67
-209,"Dark green nori_20",2008,0.67
-209,"Dark green nori_20",2009,0.67
-209,"Dark green nori_20",2010,0.67
-209,"Dark green nori_20",2011,0.67
-209,"Dark green nori_20",2012,0.67
-209,"Dark green nori_20",2013,0.67
-209,"Dark green nori_20",2014,0.67
-209,"Dark green nori_20",2015,0.67
-209,"Dark green nori_20",2016,0.67
-209,"Dark green nori_20",2017,0.67
-209,"Dark green nori_20",2018,0.67
-209,"Dark green nori_20",2019,0.67
-209,"Dark green nori_20",2020,0.67
-209,"Dark green nori_20",2021,0.67
-15,"Elkhorn sea moss_21",1965,0.67
-15,"Elkhorn sea moss_21",1966,0.67
-15,"Elkhorn sea moss_21",1967,0.67
-15,"Elkhorn sea moss_21",1968,0.67
-15,"Elkhorn sea moss_21",1969,0.67
-15,"Elkhorn sea moss_21",1970,0.67
-15,"Elkhorn sea moss_21",1971,0.67
-15,"Elkhorn sea moss_21",1972,0.67
-15,"Elkhorn sea moss_21",1973,0.67
-15,"Elkhorn sea moss_21",1974,0.67
-15,"Elkhorn sea moss_21",1975,0.67
-15,"Elkhorn sea moss_21",1976,0.67
-15,"Elkhorn sea moss_21",1977,0.67
-15,"Elkhorn sea moss_21",1978,0.67
-15,"Elkhorn sea moss_21",1979,0.67
-15,"Elkhorn sea moss_21",1980,0.67
-15,"Elkhorn sea moss_21",1981,0.67
-15,"Elkhorn sea moss_21",1982,0.67
-15,"Elkhorn sea moss_21",1983,0.67
-15,"Elkhorn sea moss_21",1984,0.67
-15,"Elkhorn sea moss_21",1985,0.67
-15,"Elkhorn sea moss_21",1986,0.67
-15,"Elkhorn sea moss_21",1987,0.67
-15,"Elkhorn sea moss_21",1988,0.67
-15,"Elkhorn sea moss_21",1989,0.67
-15,"Elkhorn sea moss_21",1990,0.67
-139,"Elkhorn sea moss_22",1990,0.67
-15,"Elkhorn sea moss_21",1991,0.67
-139,"Elkhorn sea moss_22",1991,0.67
-15,"Elkhorn sea moss_21",1992,0.67
-139,"Elkhorn sea moss_22",1992,0.67
-15,"Elkhorn sea moss_21",1993,0.67
-139,"Elkhorn sea moss_22",1993,0.67
-15,"Elkhorn sea moss_21",1994,0.67
-139,"Elkhorn sea moss_22",1994,0.67
-15,"Elkhorn sea moss_21",1995,0.67
-139,"Elkhorn sea moss_22",1995,0.67
-15,"Elkhorn sea moss_21",1996,0.67
-139,"Elkhorn sea moss_22",1996,0.67
-15,"Elkhorn sea moss_21",1997,0.67
-139,"Elkhorn sea moss_22",1997,0.67
-15,"Elkhorn sea moss_21",1998,0.67
-139,"Elkhorn sea moss_22",1998,0.67
-207,"Elkhorn sea moss_23",1998,0.67
-15,"Elkhorn sea moss_21",1999,0.67
-139,"Elkhorn sea moss_22",1999,0.67
-207,"Elkhorn sea moss_23",1999,0.67
-15,"Elkhorn sea moss_21",2000,0.67
-139,"Elkhorn sea moss_22",2000,0.67
-207,"Elkhorn sea moss_23",2000,0.67
-15,"Elkhorn sea moss_21",2001,0.67
-139,"Elkhorn sea moss_22",2001,0.67
-202,"Elkhorn sea moss_24",2001,0.67
-206,"Elkhorn sea moss_25",2001,0.67
-207,"Elkhorn sea moss_23",2001,0.67
-7,"Elkhorn sea moss_26",2002,0.67
-15,"Elkhorn sea moss_21",2002,0.67
-41,"Elkhorn sea moss_27",2002,0.67
-139,"Elkhorn sea moss_22",2002,0.67
-202,"Elkhorn sea moss_24",2002,0.67
-206,"Elkhorn sea moss_25",2002,0.67
-207,"Elkhorn sea moss_23",2002,0.67
-7,"Elkhorn sea moss_26",2003,0.67
-15,"Elkhorn sea moss_21",2003,0.67
-41,"Elkhorn sea moss_27",2003,0.67
-139,"Elkhorn sea moss_22",2003,0.67
-202,"Elkhorn sea moss_24",2003,0.67
-206,"Elkhorn sea moss_25",2003,0.67
-207,"Elkhorn sea moss_23",2003,0.67
-7,"Elkhorn sea moss_26",2004,0.67
-15,"Elkhorn sea moss_21",2004,0.67
-41,"Elkhorn sea moss_27",2004,0.67
-139,"Elkhorn sea moss_22",2004,0.67
-202,"Elkhorn sea moss_24",2004,0.67
-206,"Elkhorn sea moss_25",2004,0.67
-207,"Elkhorn sea moss_23",2004,0.67
-7,"Elkhorn sea moss_26",2005,0.67
-15,"Elkhorn sea moss_21",2005,0.67
-41,"Elkhorn sea moss_27",2005,0.67
-139,"Elkhorn sea moss_22",2005,0.67
-202,"Elkhorn sea moss_24",2005,0.67
-206,"Elkhorn sea moss_25",2005,0.67
-207,"Elkhorn sea moss_23",2005,0.67
-7,"Elkhorn sea moss_26",2006,0.67
-15,"Elkhorn sea moss_21",2006,0.67
-41,"Elkhorn sea moss_27",2006,0.67
-139,"Elkhorn sea moss_22",2006,0.67
-202,"Elkhorn sea moss_24",2006,0.67
-206,"Elkhorn sea moss_25",2006,0.67
-207,"Elkhorn sea moss_23",2006,0.67
-7,"Elkhorn sea moss_26",2007,0.67
-15,"Elkhorn sea moss_21",2007,0.67
-41,"Elkhorn sea moss_27",2007,0.67
-139,"Elkhorn sea moss_22",2007,0.67
-202,"Elkhorn sea moss_24",2007,0.67
-206,"Elkhorn sea moss_25",2007,0.67
-207,"Elkhorn sea moss_23",2007,0.67
-7,"Elkhorn sea moss_26",2008,0.67
-15,"Elkhorn sea moss_21",2008,0.67
-41,"Elkhorn sea moss_27",2008,0.67
-139,"Elkhorn sea moss_22",2008,0.67
-171,"Elkhorn sea moss_28",2008,0.67
-202,"Elkhorn sea moss_24",2008,0.67
-205,"Elkhorn sea moss_29",2008,0.67
-206,"Elkhorn sea moss_25",2008,0.67
-207,"Elkhorn sea moss_23",2008,0.67
-7,"Elkhorn sea moss_26",2009,0.67
-15,"Elkhorn sea moss_21",2009,0.67
-41,"Elkhorn sea moss_27",2009,0.67
-139,"Elkhorn sea moss_22",2009,0.67
-171,"Elkhorn sea moss_28",2009,0.67
-202,"Elkhorn sea moss_24",2009,0.67
-205,"Elkhorn sea moss_29",2009,0.67
-206,"Elkhorn sea moss_25",2009,0.67
-207,"Elkhorn sea moss_23",2009,0.67
-7,"Elkhorn sea moss_26",2010,0.67
-15,"Elkhorn sea moss_21",2010,0.67
-17,"Elkhorn sea moss_30",2010,0.67
-41,"Elkhorn sea moss_27",2010,0.67
-139,"Elkhorn sea moss_22",2010,0.67
-171,"Elkhorn sea moss_28",2010,0.67
-202,"Elkhorn sea moss_24",2010,0.67
-205,"Elkhorn sea moss_29",2010,0.67
-206,"Elkhorn sea moss_25",2010,0.67
-207,"Elkhorn sea moss_23",2010,0.67
-7,"Elkhorn sea moss_26",2011,0.67
-15,"Elkhorn sea moss_21",2011,0.67
-17,"Elkhorn sea moss_30",2011,0.67
-41,"Elkhorn sea moss_27",2011,0.67
-139,"Elkhorn sea moss_22",2011,0.67
-171,"Elkhorn sea moss_28",2011,0.67
-202,"Elkhorn sea moss_24",2011,0.67
-205,"Elkhorn sea moss_29",2011,0.67
-206,"Elkhorn sea moss_25",2011,0.67
-207,"Elkhorn sea moss_23",2011,0.67
-7,"Elkhorn sea moss_26",2012,0.67
-15,"Elkhorn sea moss_21",2012,0.67
-17,"Elkhorn sea moss_30",2012,0.67
-41,"Elkhorn sea moss_27",2012,0.67
-139,"Elkhorn sea moss_22",2012,0.67
-171,"Elkhorn sea moss_28",2012,0.67
-202,"Elkhorn sea moss_24",2012,0.67
-205,"Elkhorn sea moss_29",2012,0.67
-206,"Elkhorn sea moss_25",2012,0.67
-207,"Elkhorn sea moss_23",2012,0.67
-7,"Elkhorn sea moss_26",2013,0.67
-15,"Elkhorn sea moss_21",2013,0.67
-17,"Elkhorn sea moss_30",2013,0.67
-41,"Elkhorn sea moss_27",2013,0.67
-139,"Elkhorn sea moss_22",2013,0.67
-171,"Elkhorn sea moss_28",2013,0.67
-202,"Elkhorn sea moss_24",2013,0.67
-205,"Elkhorn sea moss_29",2013,0.67
-206,"Elkhorn sea moss_25",2013,0.67
-207,"Elkhorn sea moss_23",2013,0.67
-7,"Elkhorn sea moss_26",2014,0.67
-15,"Elkhorn sea moss_21",2014,0.67
-17,"Elkhorn sea moss_30",2014,0.67
-41,"Elkhorn sea moss_27",2014,0.67
-137,"Elkhorn sea moss_31",2014,0.67
-139,"Elkhorn sea moss_22",2014,0.67
-171,"Elkhorn sea moss_28",2014,0.67
-202,"Elkhorn sea moss_24",2014,0.67
-205,"Elkhorn sea moss_29",2014,0.67
-206,"Elkhorn sea moss_25",2014,0.67
-207,"Elkhorn sea moss_23",2014,0.67
-7,"Elkhorn sea moss_26",2015,0.67
-15,"Elkhorn sea moss_21",2015,0.67
-17,"Elkhorn sea moss_30",2015,0.67
-41,"Elkhorn sea moss_27",2015,0.67
-137,"Elkhorn sea moss_31",2015,0.67
-139,"Elkhorn sea moss_22",2015,0.67
-171,"Elkhorn sea moss_28",2015,0.67
-202,"Elkhorn sea moss_24",2015,0.67
-205,"Elkhorn sea moss_29",2015,0.67
-206,"Elkhorn sea moss_25",2015,0.67
-207,"Elkhorn sea moss_23",2015,0.67
-7,"Elkhorn sea moss_26",2016,0.67
-15,"Elkhorn sea moss_21",2016,0.67
-17,"Elkhorn sea moss_30",2016,0.67
-41,"Elkhorn sea moss_27",2016,0.67
-137,"Elkhorn sea moss_31",2016,0.67
-139,"Elkhorn sea moss_22",2016,0.67
-171,"Elkhorn sea moss_28",2016,0.67
-202,"Elkhorn sea moss_24",2016,0.67
-205,"Elkhorn sea moss_29",2016,0.67
-206,"Elkhorn sea moss_25",2016,0.67
-207,"Elkhorn sea moss_23",2016,0.67
-7,"Elkhorn sea moss_26",2017,0.67
-15,"Elkhorn sea moss_21",2017,0.67
-17,"Elkhorn sea moss_30",2017,0.67
-41,"Elkhorn sea moss_27",2017,0.67
-137,"Elkhorn sea moss_31",2017,0.67
-139,"Elkhorn sea moss_22",2017,0.67
-171,"Elkhorn sea moss_28",2017,0.67
-202,"Elkhorn sea moss_24",2017,0.67
-205,"Elkhorn sea moss_29",2017,0.67
-206,"Elkhorn sea moss_25",2017,0.67
-207,"Elkhorn sea moss_23",2017,0.67
-7,"Elkhorn sea moss_26",2018,0.67
-15,"Elkhorn sea moss_21",2018,0.67
-17,"Elkhorn sea moss_30",2018,0.67
-41,"Elkhorn sea moss_27",2018,0.67
-119,"Elkhorn sea moss_32",2018,0.67
-127,"Elkhorn sea moss_33",2018,0.67
-137,"Elkhorn sea moss_31",2018,0.67
-139,"Elkhorn sea moss_22",2018,0.67
-171,"Elkhorn sea moss_28",2018,0.67
-202,"Elkhorn sea moss_24",2018,0.67
-205,"Elkhorn sea moss_29",2018,0.67
-206,"Elkhorn sea moss_25",2018,0.67
-207,"Elkhorn sea moss_23",2018,0.67
-7,"Elkhorn sea moss_26",2019,0.67
-15,"Elkhorn sea moss_21",2019,0.67
-17,"Elkhorn sea moss_30",2019,0.67
-41,"Elkhorn sea moss_27",2019,0.67
-119,"Elkhorn sea moss_32",2019,0.67
-127,"Elkhorn sea moss_33",2019,0.67
-137,"Elkhorn sea moss_31",2019,0.67
-139,"Elkhorn sea moss_22",2019,0.67
-171,"Elkhorn sea moss_28",2019,0.67
-202,"Elkhorn sea moss_24",2019,0.67
-205,"Elkhorn sea moss_29",2019,0.67
-206,"Elkhorn sea moss_25",2019,0.67
-207,"Elkhorn sea moss_23",2019,0.67
-7,"Elkhorn sea moss_26",2020,0.67
-15,"Elkhorn sea moss_21",2020,0.67
-17,"Elkhorn sea moss_30",2020,0.67
-41,"Elkhorn sea moss_27",2020,0.67
-119,"Elkhorn sea moss_32",2020,0.67
-127,"Elkhorn sea moss_33",2020,0.67
-137,"Elkhorn sea moss_31",2020,0.67
-139,"Elkhorn sea moss_22",2020,0.67
-171,"Elkhorn sea moss_28",2020,0.67
-202,"Elkhorn sea moss_24",2020,0.67
-205,"Elkhorn sea moss_29",2020,0.67
-206,"Elkhorn sea moss_25",2020,0.67
-207,"Elkhorn sea moss_23",2020,0.67
-7,"Elkhorn sea moss_26",2021,0.67
-15,"Elkhorn sea moss_21",2021,0.67
-17,"Elkhorn sea moss_30",2021,0.67
-41,"Elkhorn sea moss_27",2021,0.67
-119,"Elkhorn sea moss_32",2021,0.67
-127,"Elkhorn sea moss_33",2021,0.67
-137,"Elkhorn sea moss_31",2021,0.67
-139,"Elkhorn sea moss_22",2021,0.67
-171,"Elkhorn sea moss_28",2021,0.67
-202,"Elkhorn sea moss_24",2021,0.67
-205,"Elkhorn sea moss_29",2021,0.67
-206,"Elkhorn sea moss_25",2021,0.67
-207,"Elkhorn sea moss_23",2021,0.67
-9,"Eucheuma seaweeds nei_34",1984,0.67
-9,"Eucheuma seaweeds nei_34",1985,0.67
-18,"Eucheuma seaweeds nei_35",1985,0.67
-9,"Eucheuma seaweeds nei_34",1986,0.67
-18,"Eucheuma seaweeds nei_35",1986,0.67
-212,"Eucheuma seaweeds nei_36",1986,0.67
-9,"Eucheuma seaweeds nei_34",1987,0.67
-18,"Eucheuma seaweeds nei_35",1987,0.67
-212,"Eucheuma seaweeds nei_36",1987,0.67
-9,"Eucheuma seaweeds nei_34",1988,0.67
-18,"Eucheuma seaweeds nei_35",1988,0.67
-212,"Eucheuma seaweeds nei_36",1988,0.67
-9,"Eucheuma seaweeds nei_34",1989,0.67
-18,"Eucheuma seaweeds nei_35",1989,0.67
-212,"Eucheuma seaweeds nei_36",1989,0.67
-9,"Eucheuma seaweeds nei_34",1990,0.67
-18,"Eucheuma seaweeds nei_35",1990,0.67
-212,"Eucheuma seaweeds nei_36",1990,0.67
-9,"Eucheuma seaweeds nei_34",1991,0.67
-18,"Eucheuma seaweeds nei_35",1991,0.67
-212,"Eucheuma seaweeds nei_36",1991,0.67
-9,"Eucheuma seaweeds nei_34",1992,0.67
-18,"Eucheuma seaweeds nei_35",1992,0.67
-42,"Eucheuma seaweeds nei_37",1992,0.67
-212,"Eucheuma seaweeds nei_36",1992,0.67
-9,"Eucheuma seaweeds nei_34",1993,0.67
-18,"Eucheuma seaweeds nei_35",1993,0.67
-42,"Eucheuma seaweeds nei_37",1993,0.67
-212,"Eucheuma seaweeds nei_36",1993,0.67
-9,"Eucheuma seaweeds nei_34",1994,0.67
-18,"Eucheuma seaweeds nei_35",1994,0.67
-42,"Eucheuma seaweeds nei_37",1994,0.67
-212,"Eucheuma seaweeds nei_36",1994,0.67
-9,"Eucheuma seaweeds nei_34",1995,0.67
-18,"Eucheuma seaweeds nei_35",1995,0.67
-42,"Eucheuma seaweeds nei_37",1995,0.67
-212,"Eucheuma seaweeds nei_36",1995,0.67
-9,"Eucheuma seaweeds nei_34",1996,0.67
-18,"Eucheuma seaweeds nei_35",1996,0.67
-42,"Eucheuma seaweeds nei_37",1996,0.67
-212,"Eucheuma seaweeds nei_36",1996,0.67
-9,"Eucheuma seaweeds nei_34",1997,0.67
-18,"Eucheuma seaweeds nei_35",1997,0.67
-42,"Eucheuma seaweeds nei_37",1997,0.67
-212,"Eucheuma seaweeds nei_36",1997,0.67
-9,"Eucheuma seaweeds nei_34",1998,0.67
-18,"Eucheuma seaweeds nei_35",1998,0.67
-42,"Eucheuma seaweeds nei_37",1998,0.67
-212,"Eucheuma seaweeds nei_36",1998,0.67
-9,"Eucheuma seaweeds nei_34",1999,0.67
-18,"Eucheuma seaweeds nei_35",1999,0.67
-42,"Eucheuma seaweeds nei_37",1999,0.67
-122,"Eucheuma seaweeds nei_38",1999,0.67
-212,"Eucheuma seaweeds nei_36",1999,0.67
-9,"Eucheuma seaweeds nei_34",2000,0.67
-18,"Eucheuma seaweeds nei_35",2000,0.67
-42,"Eucheuma seaweeds nei_37",2000,0.67
-122,"Eucheuma seaweeds nei_38",2000,0.67
-212,"Eucheuma seaweeds nei_36",2000,0.67
-216,"Eucheuma seaweeds nei_39",2000,0.67
-9,"Eucheuma seaweeds nei_34",2001,0.67
-18,"Eucheuma seaweeds nei_35",2001,0.67
-24,"Eucheuma seaweeds nei_40",2001,0.67
-42,"Eucheuma seaweeds nei_37",2001,0.67
-122,"Eucheuma seaweeds nei_38",2001,0.67
-212,"Eucheuma seaweeds nei_36",2001,0.67
-216,"Eucheuma seaweeds nei_39",2001,0.67
-9,"Eucheuma seaweeds nei_34",2002,0.67
-18,"Eucheuma seaweeds nei_35",2002,0.67
-24,"Eucheuma seaweeds nei_40",2002,0.67
-42,"Eucheuma seaweeds nei_37",2002,0.67
-122,"Eucheuma seaweeds nei_38",2002,0.67
-212,"Eucheuma seaweeds nei_36",2002,0.67
-216,"Eucheuma seaweeds nei_39",2002,0.67
-9,"Eucheuma seaweeds nei_34",2003,0.67
-18,"Eucheuma seaweeds nei_35",2003,0.67
-24,"Eucheuma seaweeds nei_40",2003,0.67
-42,"Eucheuma seaweeds nei_37",2003,0.67
-122,"Eucheuma seaweeds nei_38",2003,0.67
-209,"Eucheuma seaweeds nei_41",2003,0.67
-212,"Eucheuma seaweeds nei_36",2003,0.67
-216,"Eucheuma seaweeds nei_39",2003,0.67
-9,"Eucheuma seaweeds nei_34",2004,0.67
-18,"Eucheuma seaweeds nei_35",2004,0.67
-24,"Eucheuma seaweeds nei_40",2004,0.67
-42,"Eucheuma seaweeds nei_37",2004,0.67
-122,"Eucheuma seaweeds nei_38",2004,0.67
-209,"Eucheuma seaweeds nei_41",2004,0.67
-212,"Eucheuma seaweeds nei_36",2004,0.67
-216,"Eucheuma seaweeds nei_39",2004,0.67
-9,"Eucheuma seaweeds nei_34",2005,0.67
-18,"Eucheuma seaweeds nei_35",2005,0.67
-24,"Eucheuma seaweeds nei_40",2005,0.67
-42,"Eucheuma seaweeds nei_37",2005,0.67
-122,"Eucheuma seaweeds nei_38",2005,0.67
-209,"Eucheuma seaweeds nei_41",2005,0.67
-212,"Eucheuma seaweeds nei_36",2005,0.67
-216,"Eucheuma seaweeds nei_39",2005,0.67
-9,"Eucheuma seaweeds nei_34",2006,0.67
-18,"Eucheuma seaweeds nei_35",2006,0.67
-24,"Eucheuma seaweeds nei_40",2006,0.67
-42,"Eucheuma seaweeds nei_37",2006,0.67
-122,"Eucheuma seaweeds nei_38",2006,0.67
-209,"Eucheuma seaweeds nei_41",2006,0.67
-212,"Eucheuma seaweeds nei_36",2006,0.67
-216,"Eucheuma seaweeds nei_39",2006,0.67
-9,"Eucheuma seaweeds nei_34",2007,0.67
-18,"Eucheuma seaweeds nei_35",2007,0.67
-24,"Eucheuma seaweeds nei_40",2007,0.67
-42,"Eucheuma seaweeds nei_37",2007,0.67
-122,"Eucheuma seaweeds nei_38",2007,0.67
-209,"Eucheuma seaweeds nei_41",2007,0.67
-212,"Eucheuma seaweeds nei_36",2007,0.67
-216,"Eucheuma seaweeds nei_39",2007,0.67
-231,"Eucheuma seaweeds nei_42",2007,0.67
-9,"Eucheuma seaweeds nei_34",2008,0.67
-18,"Eucheuma seaweeds nei_35",2008,0.67
-24,"Eucheuma seaweeds nei_40",2008,0.67
-42,"Eucheuma seaweeds nei_37",2008,0.67
-122,"Eucheuma seaweeds nei_38",2008,0.67
-209,"Eucheuma seaweeds nei_41",2008,0.67
-212,"Eucheuma seaweeds nei_36",2008,0.67
-216,"Eucheuma seaweeds nei_39",2008,0.67
-231,"Eucheuma seaweeds nei_42",2008,0.67
-9,"Eucheuma seaweeds nei_34",2009,0.67
-18,"Eucheuma seaweeds nei_35",2009,0.67
-24,"Eucheuma seaweeds nei_40",2009,0.67
-42,"Eucheuma seaweeds nei_37",2009,0.67
-122,"Eucheuma seaweeds nei_38",2009,0.67
-209,"Eucheuma seaweeds nei_41",2009,0.67
-212,"Eucheuma seaweeds nei_36",2009,0.67
-216,"Eucheuma seaweeds nei_39",2009,0.67
-231,"Eucheuma seaweeds nei_42",2009,0.67
-9,"Eucheuma seaweeds nei_34",2010,0.67
-18,"Eucheuma seaweeds nei_35",2010,0.67
-24,"Eucheuma seaweeds nei_40",2010,0.67
-42,"Eucheuma seaweeds nei_37",2010,0.67
-122,"Eucheuma seaweeds nei_38",2010,0.67
-209,"Eucheuma seaweeds nei_41",2010,0.67
-212,"Eucheuma seaweeds nei_36",2010,0.67
-216,"Eucheuma seaweeds nei_39",2010,0.67
-231,"Eucheuma seaweeds nei_42",2010,0.67
-9,"Eucheuma seaweeds nei_34",2011,0.67
-18,"Eucheuma seaweeds nei_35",2011,0.67
-24,"Eucheuma seaweeds nei_40",2011,0.67
-42,"Eucheuma seaweeds nei_37",2011,0.67
-122,"Eucheuma seaweeds nei_38",2011,0.67
-209,"Eucheuma seaweeds nei_41",2011,0.67
-212,"Eucheuma seaweeds nei_36",2011,0.67
-216,"Eucheuma seaweeds nei_39",2011,0.67
-231,"Eucheuma seaweeds nei_42",2011,0.67
-9,"Eucheuma seaweeds nei_34",2012,0.67
-18,"Eucheuma seaweeds nei_35",2012,0.67
-24,"Eucheuma seaweeds nei_40",2012,0.67
-42,"Eucheuma seaweeds nei_37",2012,0.67
-122,"Eucheuma seaweeds nei_38",2012,0.67
-209,"Eucheuma seaweeds nei_41",2012,0.67
-212,"Eucheuma seaweeds nei_36",2012,0.67
-216,"Eucheuma seaweeds nei_39",2012,0.67
-231,"Eucheuma seaweeds nei_42",2012,0.67
-9,"Eucheuma seaweeds nei_34",2013,0.67
-18,"Eucheuma seaweeds nei_35",2013,0.67
-24,"Eucheuma seaweeds nei_40",2013,0.67
-42,"Eucheuma seaweeds nei_37",2013,0.67
-122,"Eucheuma seaweeds nei_38",2013,0.67
-127,"Eucheuma seaweeds nei_43",2013,0.67
-209,"Eucheuma seaweeds nei_41",2013,0.67
-212,"Eucheuma seaweeds nei_36",2013,0.67
-216,"Eucheuma seaweeds nei_39",2013,0.67
-231,"Eucheuma seaweeds nei_42",2013,0.67
-9,"Eucheuma seaweeds nei_34",2014,0.67
-18,"Eucheuma seaweeds nei_35",2014,0.67
-24,"Eucheuma seaweeds nei_40",2014,0.67
-42,"Eucheuma seaweeds nei_37",2014,0.67
-122,"Eucheuma seaweeds nei_38",2014,0.67
-127,"Eucheuma seaweeds nei_43",2014,0.67
-209,"Eucheuma seaweeds nei_41",2014,0.67
-212,"Eucheuma seaweeds nei_36",2014,0.67
-216,"Eucheuma seaweeds nei_39",2014,0.67
-231,"Eucheuma seaweeds nei_42",2014,0.67
-9,"Eucheuma seaweeds nei_34",2015,0.67
-18,"Eucheuma seaweeds nei_35",2015,0.67
-24,"Eucheuma seaweeds nei_40",2015,0.67
-42,"Eucheuma seaweeds nei_37",2015,0.67
-122,"Eucheuma seaweeds nei_38",2015,0.67
-125,"Eucheuma seaweeds nei_44",2015,0.67
-127,"Eucheuma seaweeds nei_43",2015,0.67
-209,"Eucheuma seaweeds nei_41",2015,0.67
-212,"Eucheuma seaweeds nei_36",2015,0.67
-216,"Eucheuma seaweeds nei_39",2015,0.67
-231,"Eucheuma seaweeds nei_42",2015,0.67
-9,"Eucheuma seaweeds nei_34",2016,0.67
-18,"Eucheuma seaweeds nei_35",2016,0.67
-24,"Eucheuma seaweeds nei_40",2016,0.67
-42,"Eucheuma seaweeds nei_37",2016,0.67
-122,"Eucheuma seaweeds nei_38",2016,0.67
-125,"Eucheuma seaweeds nei_44",2016,0.67
-127,"Eucheuma seaweeds nei_43",2016,0.67
-209,"Eucheuma seaweeds nei_41",2016,0.67
-212,"Eucheuma seaweeds nei_36",2016,0.67
-216,"Eucheuma seaweeds nei_39",2016,0.67
-231,"Eucheuma seaweeds nei_42",2016,0.67
-9,"Eucheuma seaweeds nei_34",2017,0.67
-18,"Eucheuma seaweeds nei_35",2017,0.67
-24,"Eucheuma seaweeds nei_40",2017,0.67
-42,"Eucheuma seaweeds nei_37",2017,0.67
-122,"Eucheuma seaweeds nei_38",2017,0.67
-125,"Eucheuma seaweeds nei_44",2017,0.67
-127,"Eucheuma seaweeds nei_43",2017,0.67
-209,"Eucheuma seaweeds nei_41",2017,0.67
-212,"Eucheuma seaweeds nei_36",2017,0.67
-216,"Eucheuma seaweeds nei_39",2017,0.67
-231,"Eucheuma seaweeds nei_42",2017,0.67
-9,"Eucheuma seaweeds nei_34",2018,0.67
-18,"Eucheuma seaweeds nei_35",2018,0.67
-24,"Eucheuma seaweeds nei_40",2018,0.67
-42,"Eucheuma seaweeds nei_37",2018,0.67
-122,"Eucheuma seaweeds nei_38",2018,0.67
-125,"Eucheuma seaweeds nei_44",2018,0.67
-127,"Eucheuma seaweeds nei_43",2018,0.67
-209,"Eucheuma seaweeds nei_41",2018,0.67
-212,"Eucheuma seaweeds nei_36",2018,0.67
-216,"Eucheuma seaweeds nei_39",2018,0.67
-231,"Eucheuma seaweeds nei_42",2018,0.67
-9,"Eucheuma seaweeds nei_34",2019,0.67
-18,"Eucheuma seaweeds nei_35",2019,0.67
-24,"Eucheuma seaweeds nei_40",2019,0.67
-42,"Eucheuma seaweeds nei_37",2019,0.67
-122,"Eucheuma seaweeds nei_38",2019,0.67
-125,"Eucheuma seaweeds nei_44",2019,0.67
-127,"Eucheuma seaweeds nei_43",2019,0.67
-209,"Eucheuma seaweeds nei_41",2019,0.67
-212,"Eucheuma seaweeds nei_36",2019,0.67
-216,"Eucheuma seaweeds nei_39",2019,0.67
-231,"Eucheuma seaweeds nei_42",2019,0.67
-9,"Eucheuma seaweeds nei_34",2020,0.67
-18,"Eucheuma seaweeds nei_35",2020,0.67
-24,"Eucheuma seaweeds nei_40",2020,0.67
-42,"Eucheuma seaweeds nei_37",2020,0.67
-122,"Eucheuma seaweeds nei_38",2020,0.67
-125,"Eucheuma seaweeds nei_44",2020,0.67
-127,"Eucheuma seaweeds nei_43",2020,0.67
-209,"Eucheuma seaweeds nei_41",2020,0.67
-212,"Eucheuma seaweeds nei_36",2020,0.67
-216,"Eucheuma seaweeds nei_39",2020,0.67
-231,"Eucheuma seaweeds nei_42",2020,0.67
-9,"Eucheuma seaweeds nei_34",2021,0.67
-18,"Eucheuma seaweeds nei_35",2021,0.67
-24,"Eucheuma seaweeds nei_40",2021,0.67
-42,"Eucheuma seaweeds nei_37",2021,0.67
-122,"Eucheuma seaweeds nei_38",2021,0.67
-125,"Eucheuma seaweeds nei_44",2021,0.67
-127,"Eucheuma seaweeds nei_43",2021,0.67
-209,"Eucheuma seaweeds nei_41",2021,0.67
-212,"Eucheuma seaweeds nei_36",2021,0.67
-216,"Eucheuma seaweeds nei_39",2021,0.67
-231,"Eucheuma seaweeds nei_42",2021,0.67
-20,"Fragile codium_45",2005,0.67
-20,"Fragile codium_45",2006,0.67
-20,"Fragile codium_45",2007,0.67
-20,"Fragile codium_45",2008,0.67
-20,"Fragile codium_45",2009,0.67
-20,"Fragile codium_45",2010,0.67
-20,"Fragile codium_45",2011,0.67
-20,"Fragile codium_45",2012,0.67
-20,"Fragile codium_45",2013,0.67
-20,"Fragile codium_45",2014,0.67
-20,"Fragile codium_45",2015,0.67
-20,"Fragile codium_45",2016,0.67
-20,"Fragile codium_45",2017,0.67
-20,"Fragile codium_45",2018,0.67
-20,"Fragile codium_45",2019,0.67
-20,"Fragile codium_45",2020,0.67
-20,"Fragile codium_45",2021,0.67
-21,"Gelidium seaweeds_46",1989,0.67
-21,"Gelidium seaweeds_46",1990,0.67
-21,"Gelidium seaweeds_46",1991,0.67
-21,"Gelidium seaweeds_46",1992,0.67
-21,"Gelidium seaweeds_46",1993,0.67
-21,"Gelidium seaweeds_46",1994,0.67
-21,"Gelidium seaweeds_46",1995,0.67
-21,"Gelidium seaweeds_46",1996,0.67
-21,"Gelidium seaweeds_46",1997,0.67
-21,"Gelidium seaweeds_46",1998,0.67
-21,"Gelidium seaweeds_46",1999,0.67
-21,"Gelidium seaweeds_46",2000,0.67
-21,"Gelidium seaweeds_46",2001,0.67
-21,"Gelidium seaweeds_46",2002,0.67
-21,"Gelidium seaweeds_46",2003,0.67
-21,"Gelidium seaweeds_46",2004,0.67
-21,"Gelidium seaweeds_46",2005,0.67
-21,"Gelidium seaweeds_46",2006,0.67
-21,"Gelidium seaweeds_46",2007,0.67
-21,"Gelidium seaweeds_46",2008,0.67
-21,"Gelidium seaweeds_46",2009,0.67
-21,"Gelidium seaweeds_46",2010,0.67
-21,"Gelidium seaweeds_46",2011,0.67
-21,"Gelidium seaweeds_46",2012,0.67
-21,"Gelidium seaweeds_46",2013,0.67
-21,"Gelidium seaweeds_46",2014,0.67
-21,"Gelidium seaweeds_46",2015,0.67
-21,"Gelidium seaweeds_46",2016,0.67
-21,"Gelidium seaweeds_46",2017,0.67
-21,"Gelidium seaweeds_46",2018,0.67
-21,"Gelidium seaweeds_46",2019,0.67
-21,"Gelidium seaweeds_46",2020,0.67
-21,"Gelidium seaweeds_46",2021,0.67
-224,"Giant kelp_47",2008,0.67
-224,"Giant kelp_47",2009,0.67
-224,"Giant kelp_47",2010,0.67
-224,"Giant kelp_47",2011,0.67
-138,"Giant kelp_48",2012,0.67
-224,"Giant kelp_47",2012,0.67
-138,"Giant kelp_48",2013,0.67
-224,"Giant kelp_47",2013,0.67
-138,"Giant kelp_48",2014,0.67
-224,"Giant kelp_47",2014,0.67
-138,"Giant kelp_48",2015,0.67
-224,"Giant kelp_47",2015,0.67
-138,"Giant kelp_48",2016,0.67
-224,"Giant kelp_47",2016,0.67
-138,"Giant kelp_48",2017,0.67
-224,"Giant kelp_47",2017,0.67
-138,"Giant kelp_48",2018,0.67
-224,"Giant kelp_47",2018,0.67
-138,"Giant kelp_48",2019,0.67
-224,"Giant kelp_47",2019,0.67
-138,"Giant kelp_48",2020,0.67
-224,"Giant kelp_47",2020,0.67
-138,"Giant kelp_48",2021,0.67
-224,"Giant kelp_47",2021,0.67
-207,"Gracilaria seaweeds_49",1950,0.67
-207,"Gracilaria seaweeds_49",1951,0.67
-207,"Gracilaria seaweeds_49",1952,0.67
-207,"Gracilaria seaweeds_49",1953,0.67
-207,"Gracilaria seaweeds_49",1954,0.67
-207,"Gracilaria seaweeds_49",1955,0.67
-207,"Gracilaria seaweeds_49",1956,0.67
-207,"Gracilaria seaweeds_49",1957,0.67
-207,"Gracilaria seaweeds_49",1958,0.67
-207,"Gracilaria seaweeds_49",1959,0.67
-207,"Gracilaria seaweeds_49",1960,0.67
-207,"Gracilaria seaweeds_49",1961,0.67
-207,"Gracilaria seaweeds_49",1962,0.67
-207,"Gracilaria seaweeds_49",1963,0.67
-207,"Gracilaria seaweeds_49",1964,0.67
-21,"Gracilaria seaweeds_50",1965,0.67
-207,"Gracilaria seaweeds_49",1965,0.67
-21,"Gracilaria seaweeds_50",1966,0.67
-207,"Gracilaria seaweeds_49",1966,0.67
-21,"Gracilaria seaweeds_50",1967,0.67
-207,"Gracilaria seaweeds_49",1967,0.67
-21,"Gracilaria seaweeds_50",1968,0.67
-207,"Gracilaria seaweeds_49",1968,0.67
-21,"Gracilaria seaweeds_50",1969,0.67
-207,"Gracilaria seaweeds_49",1969,0.67
-21,"Gracilaria seaweeds_50",1970,0.67
-207,"Gracilaria seaweeds_49",1970,0.67
-224,"Gracilaria seaweeds_51",1970,0.67
-21,"Gracilaria seaweeds_50",1971,0.67
-207,"Gracilaria seaweeds_49",1971,0.67
-224,"Gracilaria seaweeds_51",1971,0.67
-21,"Gracilaria seaweeds_50",1972,0.67
-207,"Gracilaria seaweeds_49",1972,0.67
-224,"Gracilaria seaweeds_51",1972,0.67
-21,"Gracilaria seaweeds_50",1973,0.67
-207,"Gracilaria seaweeds_49",1973,0.67
-224,"Gracilaria seaweeds_51",1973,0.67
-21,"Gracilaria seaweeds_50",1974,0.67
-207,"Gracilaria seaweeds_49",1974,0.67
-224,"Gracilaria seaweeds_51",1974,0.67
-21,"Gracilaria seaweeds_50",1975,0.67
-207,"Gracilaria seaweeds_49",1975,0.67
-224,"Gracilaria seaweeds_51",1975,0.67
-21,"Gracilaria seaweeds_50",1976,0.67
-207,"Gracilaria seaweeds_49",1976,0.67
-224,"Gracilaria seaweeds_51",1976,0.67
-21,"Gracilaria seaweeds_50",1977,0.67
-207,"Gracilaria seaweeds_49",1977,0.67
-224,"Gracilaria seaweeds_51",1977,0.67
-21,"Gracilaria seaweeds_50",1978,0.67
-207,"Gracilaria seaweeds_49",1978,0.67
-224,"Gracilaria seaweeds_51",1978,0.67
-21,"Gracilaria seaweeds_50",1979,0.67
-207,"Gracilaria seaweeds_49",1979,0.67
-224,"Gracilaria seaweeds_51",1979,0.67
-21,"Gracilaria seaweeds_50",1980,0.67
-207,"Gracilaria seaweeds_49",1980,0.67
-224,"Gracilaria seaweeds_51",1980,0.67
-21,"Gracilaria seaweeds_50",1981,0.67
-207,"Gracilaria seaweeds_49",1981,0.67
-224,"Gracilaria seaweeds_51",1981,0.67
-21,"Gracilaria seaweeds_50",1982,0.67
-207,"Gracilaria seaweeds_49",1982,0.67
-224,"Gracilaria seaweeds_51",1982,0.67
-21,"Gracilaria seaweeds_50",1983,0.67
-207,"Gracilaria seaweeds_49",1983,0.67
-224,"Gracilaria seaweeds_51",1983,0.67
-21,"Gracilaria seaweeds_50",1984,0.67
-207,"Gracilaria seaweeds_49",1984,0.67
-224,"Gracilaria seaweeds_51",1984,0.67
-21,"Gracilaria seaweeds_50",1985,0.67
-122,"Gracilaria seaweeds_52",1985,0.67
-207,"Gracilaria seaweeds_49",1985,0.67
-224,"Gracilaria seaweeds_51",1985,0.67
-21,"Gracilaria seaweeds_50",1986,0.67
-122,"Gracilaria seaweeds_52",1986,0.67
-207,"Gracilaria seaweeds_49",1986,0.67
-224,"Gracilaria seaweeds_51",1986,0.67
-21,"Gracilaria seaweeds_50",1987,0.67
-122,"Gracilaria seaweeds_52",1987,0.67
-207,"Gracilaria seaweeds_49",1987,0.67
-224,"Gracilaria seaweeds_51",1987,0.67
-21,"Gracilaria seaweeds_50",1988,0.67
-122,"Gracilaria seaweeds_52",1988,0.67
-207,"Gracilaria seaweeds_49",1988,0.67
-224,"Gracilaria seaweeds_51",1988,0.67
-21,"Gracilaria seaweeds_50",1989,0.67
-122,"Gracilaria seaweeds_52",1989,0.67
-207,"Gracilaria seaweeds_49",1989,0.67
-224,"Gracilaria seaweeds_51",1989,0.67
-21,"Gracilaria seaweeds_50",1990,0.67
-122,"Gracilaria seaweeds_52",1990,0.67
-207,"Gracilaria seaweeds_49",1990,0.67
-224,"Gracilaria seaweeds_51",1990,0.67
-21,"Gracilaria seaweeds_50",1991,0.67
-122,"Gracilaria seaweeds_52",1991,0.67
-207,"Gracilaria seaweeds_49",1991,0.67
-224,"Gracilaria seaweeds_51",1991,0.67
-21,"Gracilaria seaweeds_50",1992,0.67
-122,"Gracilaria seaweeds_52",1992,0.67
-207,"Gracilaria seaweeds_49",1992,0.67
-224,"Gracilaria seaweeds_51",1992,0.67
-21,"Gracilaria seaweeds_50",1993,0.67
-101,"Gracilaria seaweeds_53",1993,0.67
-122,"Gracilaria seaweeds_52",1993,0.67
-207,"Gracilaria seaweeds_49",1993,0.67
-224,"Gracilaria seaweeds_51",1993,0.67
-21,"Gracilaria seaweeds_50",1994,0.67
-101,"Gracilaria seaweeds_53",1994,0.67
-122,"Gracilaria seaweeds_52",1994,0.67
-207,"Gracilaria seaweeds_49",1994,0.67
-224,"Gracilaria seaweeds_51",1994,0.67
-21,"Gracilaria seaweeds_50",1995,0.67
-101,"Gracilaria seaweeds_53",1995,0.67
-102,"Gracilaria seaweeds_54",1995,0.67
-122,"Gracilaria seaweeds_52",1995,0.67
-138,"Gracilaria seaweeds_55",1995,0.67
-207,"Gracilaria seaweeds_49",1995,0.67
-224,"Gracilaria seaweeds_51",1995,0.67
-21,"Gracilaria seaweeds_50",1996,0.67
-101,"Gracilaria seaweeds_53",1996,0.67
-102,"Gracilaria seaweeds_54",1996,0.67
-122,"Gracilaria seaweeds_52",1996,0.67
-138,"Gracilaria seaweeds_55",1996,0.67
-207,"Gracilaria seaweeds_49",1996,0.67
-224,"Gracilaria seaweeds_51",1996,0.67
-21,"Gracilaria seaweeds_50",1997,0.67
-101,"Gracilaria seaweeds_53",1997,0.67
-102,"Gracilaria seaweeds_54",1997,0.67
-122,"Gracilaria seaweeds_52",1997,0.67
-138,"Gracilaria seaweeds_55",1997,0.67
-207,"Gracilaria seaweeds_49",1997,0.67
-224,"Gracilaria seaweeds_51",1997,0.67
-21,"Gracilaria seaweeds_50",1998,0.67
-101,"Gracilaria seaweeds_53",1998,0.67
-102,"Gracilaria seaweeds_54",1998,0.67
-122,"Gracilaria seaweeds_52",1998,0.67
-138,"Gracilaria seaweeds_55",1998,0.67
-207,"Gracilaria seaweeds_49",1998,0.67
-224,"Gracilaria seaweeds_51",1998,0.67
-21,"Gracilaria seaweeds_50",1999,0.67
-101,"Gracilaria seaweeds_53",1999,0.67
-102,"Gracilaria seaweeds_54",1999,0.67
-122,"Gracilaria seaweeds_52",1999,0.67
-138,"Gracilaria seaweeds_55",1999,0.67
-207,"Gracilaria seaweeds_49",1999,0.67
-224,"Gracilaria seaweeds_51",1999,0.67
-21,"Gracilaria seaweeds_50",2000,0.67
-101,"Gracilaria seaweeds_53",2000,0.67
-102,"Gracilaria seaweeds_54",2000,0.67
-122,"Gracilaria seaweeds_52",2000,0.67
-138,"Gracilaria seaweeds_55",2000,0.67
-207,"Gracilaria seaweeds_49",2000,0.67
-224,"Gracilaria seaweeds_51",2000,0.67
-21,"Gracilaria seaweeds_50",2001,0.67
-101,"Gracilaria seaweeds_53",2001,0.67
-102,"Gracilaria seaweeds_54",2001,0.67
-122,"Gracilaria seaweeds_52",2001,0.67
-138,"Gracilaria seaweeds_55",2001,0.67
-207,"Gracilaria seaweeds_49",2001,0.67
-224,"Gracilaria seaweeds_51",2001,0.67
-15,"Gracilaria seaweeds_56",2002,0.67
-21,"Gracilaria seaweeds_50",2002,0.67
-101,"Gracilaria seaweeds_53",2002,0.67
-102,"Gracilaria seaweeds_54",2002,0.67
-122,"Gracilaria seaweeds_52",2002,0.67
-138,"Gracilaria seaweeds_55",2002,0.67
-207,"Gracilaria seaweeds_49",2002,0.67
-224,"Gracilaria seaweeds_51",2002,0.67
-15,"Gracilaria seaweeds_56",2003,0.67
-21,"Gracilaria seaweeds_50",2003,0.67
-101,"Gracilaria seaweeds_53",2003,0.67
-102,"Gracilaria seaweeds_54",2003,0.67
-122,"Gracilaria seaweeds_52",2003,0.67
-138,"Gracilaria seaweeds_55",2003,0.67
-207,"Gracilaria seaweeds_49",2003,0.67
-209,"Gracilaria seaweeds_57",2003,0.67
-224,"Gracilaria seaweeds_51",2003,0.67
-15,"Gracilaria seaweeds_56",2004,0.67
-21,"Gracilaria seaweeds_50",2004,0.67
-101,"Gracilaria seaweeds_53",2004,0.67
-102,"Gracilaria seaweeds_54",2004,0.67
-122,"Gracilaria seaweeds_52",2004,0.67
-138,"Gracilaria seaweeds_55",2004,0.67
-207,"Gracilaria seaweeds_49",2004,0.67
-209,"Gracilaria seaweeds_57",2004,0.67
-224,"Gracilaria seaweeds_51",2004,0.67
-15,"Gracilaria seaweeds_56",2005,0.67
-21,"Gracilaria seaweeds_50",2005,0.67
-101,"Gracilaria seaweeds_53",2005,0.67
-102,"Gracilaria seaweeds_54",2005,0.67
-122,"Gracilaria seaweeds_52",2005,0.67
-138,"Gracilaria seaweeds_55",2005,0.67
-207,"Gracilaria seaweeds_49",2005,0.67
-209,"Gracilaria seaweeds_57",2005,0.67
-224,"Gracilaria seaweeds_51",2005,0.67
-15,"Gracilaria seaweeds_56",2006,0.67
-21,"Gracilaria seaweeds_50",2006,0.67
-101,"Gracilaria seaweeds_53",2006,0.67
-102,"Gracilaria seaweeds_54",2006,0.67
-122,"Gracilaria seaweeds_52",2006,0.67
-138,"Gracilaria seaweeds_55",2006,0.67
-207,"Gracilaria seaweeds_49",2006,0.67
-209,"Gracilaria seaweeds_57",2006,0.67
-224,"Gracilaria seaweeds_51",2006,0.67
-15,"Gracilaria seaweeds_56",2007,0.67
-21,"Gracilaria seaweeds_50",2007,0.67
-101,"Gracilaria seaweeds_53",2007,0.67
-102,"Gracilaria seaweeds_54",2007,0.67
-122,"Gracilaria seaweeds_52",2007,0.67
-138,"Gracilaria seaweeds_55",2007,0.67
-207,"Gracilaria seaweeds_49",2007,0.67
-209,"Gracilaria seaweeds_57",2007,0.67
-224,"Gracilaria seaweeds_51",2007,0.67
-15,"Gracilaria seaweeds_56",2008,0.67
-21,"Gracilaria seaweeds_50",2008,0.67
-101,"Gracilaria seaweeds_53",2008,0.67
-102,"Gracilaria seaweeds_54",2008,0.67
-122,"Gracilaria seaweeds_52",2008,0.67
-138,"Gracilaria seaweeds_55",2008,0.67
-171,"Gracilaria seaweeds_58",2008,0.67
-207,"Gracilaria seaweeds_49",2008,0.67
-209,"Gracilaria seaweeds_57",2008,0.67
-224,"Gracilaria seaweeds_51",2008,0.67
-15,"Gracilaria seaweeds_56",2009,0.67
-21,"Gracilaria seaweeds_50",2009,0.67
-101,"Gracilaria seaweeds_53",2009,0.67
-102,"Gracilaria seaweeds_54",2009,0.67
-122,"Gracilaria seaweeds_52",2009,0.67
-138,"Gracilaria seaweeds_55",2009,0.67
-171,"Gracilaria seaweeds_58",2009,0.67
-207,"Gracilaria seaweeds_49",2009,0.67
-209,"Gracilaria seaweeds_57",2009,0.67
-224,"Gracilaria seaweeds_51",2009,0.67
-15,"Gracilaria seaweeds_56",2010,0.67
-21,"Gracilaria seaweeds_50",2010,0.67
-101,"Gracilaria seaweeds_53",2010,0.67
-102,"Gracilaria seaweeds_54",2010,0.67
-122,"Gracilaria seaweeds_52",2010,0.67
-138,"Gracilaria seaweeds_55",2010,0.67
-171,"Gracilaria seaweeds_58",2010,0.67
-207,"Gracilaria seaweeds_49",2010,0.67
-209,"Gracilaria seaweeds_57",2010,0.67
-224,"Gracilaria seaweeds_51",2010,0.67
-15,"Gracilaria seaweeds_56",2011,0.67
-21,"Gracilaria seaweeds_50",2011,0.67
-101,"Gracilaria seaweeds_53",2011,0.67
-102,"Gracilaria seaweeds_54",2011,0.67
-122,"Gracilaria seaweeds_52",2011,0.67
-138,"Gracilaria seaweeds_55",2011,0.67
-171,"Gracilaria seaweeds_58",2011,0.67
-207,"Gracilaria seaweeds_49",2011,0.67
-209,"Gracilaria seaweeds_57",2011,0.67
-224,"Gracilaria seaweeds_51",2011,0.67
-15,"Gracilaria seaweeds_56",2012,0.67
-21,"Gracilaria seaweeds_50",2012,0.67
-101,"Gracilaria seaweeds_53",2012,0.67
-102,"Gracilaria seaweeds_54",2012,0.67
-122,"Gracilaria seaweeds_52",2012,0.67
-138,"Gracilaria seaweeds_55",2012,0.67
-171,"Gracilaria seaweeds_58",2012,0.67
-207,"Gracilaria seaweeds_49",2012,0.67
-209,"Gracilaria seaweeds_57",2012,0.67
-224,"Gracilaria seaweeds_51",2012,0.67
-15,"Gracilaria seaweeds_56",2013,0.67
-21,"Gracilaria seaweeds_50",2013,0.67
-101,"Gracilaria seaweeds_53",2013,0.67
-102,"Gracilaria seaweeds_54",2013,0.67
-122,"Gracilaria seaweeds_52",2013,0.67
-138,"Gracilaria seaweeds_55",2013,0.67
-171,"Gracilaria seaweeds_58",2013,0.67
-207,"Gracilaria seaweeds_49",2013,0.67
-209,"Gracilaria seaweeds_57",2013,0.67
-224,"Gracilaria seaweeds_51",2013,0.67
-15,"Gracilaria seaweeds_56",2014,0.67
-21,"Gracilaria seaweeds_50",2014,0.67
-101,"Gracilaria seaweeds_53",2014,0.67
-102,"Gracilaria seaweeds_54",2014,0.67
-122,"Gracilaria seaweeds_52",2014,0.67
-138,"Gracilaria seaweeds_55",2014,0.67
-171,"Gracilaria seaweeds_58",2014,0.67
-207,"Gracilaria seaweeds_49",2014,0.67
-209,"Gracilaria seaweeds_57",2014,0.67
-224,"Gracilaria seaweeds_51",2014,0.67
-15,"Gracilaria seaweeds_56",2015,0.67
-21,"Gracilaria seaweeds_50",2015,0.67
-101,"Gracilaria seaweeds_53",2015,0.67
-102,"Gracilaria seaweeds_54",2015,0.67
-122,"Gracilaria seaweeds_52",2015,0.67
-138,"Gracilaria seaweeds_55",2015,0.67
-171,"Gracilaria seaweeds_58",2015,0.67
-207,"Gracilaria seaweeds_49",2015,0.67
-209,"Gracilaria seaweeds_57",2015,0.67
-224,"Gracilaria seaweeds_51",2015,0.67
-15,"Gracilaria seaweeds_56",2016,0.67
-21,"Gracilaria seaweeds_50",2016,0.67
-101,"Gracilaria seaweeds_53",2016,0.67
-102,"Gracilaria seaweeds_54",2016,0.67
-122,"Gracilaria seaweeds_52",2016,0.67
-138,"Gracilaria seaweeds_55",2016,0.67
-171,"Gracilaria seaweeds_58",2016,0.67
-182,"Gracilaria seaweeds_59",2016,0.67
-207,"Gracilaria seaweeds_49",2016,0.67
-209,"Gracilaria seaweeds_57",2016,0.67
-224,"Gracilaria seaweeds_51",2016,0.67
-15,"Gracilaria seaweeds_56",2017,0.67
-20,"Gracilaria seaweeds_60",2017,0.67
-21,"Gracilaria seaweeds_50",2017,0.67
-101,"Gracilaria seaweeds_53",2017,0.67
-102,"Gracilaria seaweeds_54",2017,0.67
-122,"Gracilaria seaweeds_52",2017,0.67
-138,"Gracilaria seaweeds_55",2017,0.67
-171,"Gracilaria seaweeds_58",2017,0.67
-182,"Gracilaria seaweeds_59",2017,0.67
-207,"Gracilaria seaweeds_49",2017,0.67
-209,"Gracilaria seaweeds_57",2017,0.67
-224,"Gracilaria seaweeds_51",2017,0.67
-15,"Gracilaria seaweeds_56",2018,0.67
-20,"Gracilaria seaweeds_60",2018,0.67
-21,"Gracilaria seaweeds_50",2018,0.67
-101,"Gracilaria seaweeds_53",2018,0.67
-102,"Gracilaria seaweeds_54",2018,0.67
-122,"Gracilaria seaweeds_52",2018,0.67
-138,"Gracilaria seaweeds_55",2018,0.67
-171,"Gracilaria seaweeds_58",2018,0.67
-182,"Gracilaria seaweeds_59",2018,0.67
-207,"Gracilaria seaweeds_49",2018,0.67
-209,"Gracilaria seaweeds_57",2018,0.67
-224,"Gracilaria seaweeds_51",2018,0.67
-15,"Gracilaria seaweeds_56",2019,0.67
-20,"Gracilaria seaweeds_60",2019,0.67
-21,"Gracilaria seaweeds_50",2019,0.67
-101,"Gracilaria seaweeds_53",2019,0.67
-102,"Gracilaria seaweeds_54",2019,0.67
-122,"Gracilaria seaweeds_52",2019,0.67
-138,"Gracilaria seaweeds_55",2019,0.67
-171,"Gracilaria seaweeds_58",2019,0.67
-182,"Gracilaria seaweeds_59",2019,0.67
-207,"Gracilaria seaweeds_49",2019,0.67
-209,"Gracilaria seaweeds_57",2019,0.67
-224,"Gracilaria seaweeds_51",2019,0.67
-15,"Gracilaria seaweeds_56",2020,0.67
-20,"Gracilaria seaweeds_60",2020,0.67
-21,"Gracilaria seaweeds_50",2020,0.67
-101,"Gracilaria seaweeds_53",2020,0.67
-102,"Gracilaria seaweeds_54",2020,0.67
-122,"Gracilaria seaweeds_52",2020,0.67
-138,"Gracilaria seaweeds_55",2020,0.67
-171,"Gracilaria seaweeds_58",2020,0.67
-182,"Gracilaria seaweeds_59",2020,0.67
-207,"Gracilaria seaweeds_49",2020,0.67
-209,"Gracilaria seaweeds_57",2020,0.67
-224,"Gracilaria seaweeds_51",2020,0.67
-15,"Gracilaria seaweeds_56",2021,0.67
-20,"Gracilaria seaweeds_60",2021,0.67
-21,"Gracilaria seaweeds_50",2021,0.67
-101,"Gracilaria seaweeds_53",2021,0.67
-102,"Gracilaria seaweeds_54",2021,0.67
-122,"Gracilaria seaweeds_52",2021,0.67
-138,"Gracilaria seaweeds_55",2021,0.67
-171,"Gracilaria seaweeds_58",2021,0.67
-182,"Gracilaria seaweeds_59",2021,0.67
-207,"Gracilaria seaweeds_49",2021,0.67
-209,"Gracilaria seaweeds_57",2021,0.67
-224,"Gracilaria seaweeds_51",2021,0.67
-20,"Green laver_61",1974,0.67
-20,"Green laver_61",1975,0.67
-20,"Green laver_61",1976,0.67
-20,"Green laver_61",1977,0.67
-20,"Green laver_61",1978,0.67
-20,"Green laver_61",1979,0.67
-20,"Green laver_61",1980,0.67
-20,"Green laver_61",1981,0.67
-20,"Green laver_61",1982,0.67
-20,"Green laver_61",1983,0.67
-20,"Green laver_61",1984,0.67
-20,"Green laver_61",1985,0.67
-20,"Green laver_61",1986,0.67
-20,"Green laver_61",1987,0.67
-20,"Green laver_61",1988,0.67
-20,"Green laver_61",1989,0.67
-20,"Green laver_61",1990,0.67
-20,"Green laver_61",1991,0.67
-20,"Green laver_61",1992,0.67
-20,"Green laver_61",1993,0.67
-20,"Green laver_61",1994,0.67
-20,"Green laver_61",1995,0.67
-20,"Green laver_61",1996,0.67
-20,"Green laver_61",1997,0.67
-20,"Green laver_61",1998,0.67
-20,"Green laver_61",1999,0.67
-20,"Green laver_61",2000,0.67
-20,"Green laver_61",2001,0.67
-20,"Green laver_61",2002,0.67
-20,"Green laver_61",2003,0.67
-20,"Green laver_61",2004,0.67
-20,"Green laver_61",2005,0.67
-20,"Green laver_61",2006,0.67
-20,"Green laver_61",2007,0.67
-20,"Green laver_61",2008,0.67
-20,"Green laver_61",2009,0.67
-20,"Green laver_61",2010,0.67
-20,"Green laver_61",2011,0.67
-20,"Green laver_61",2012,0.67
-20,"Green laver_61",2013,0.67
-20,"Green laver_61",2014,0.67
-20,"Green laver_61",2015,0.67
-20,"Green laver_61",2016,0.67
-20,"Green laver_61",2017,0.67
-20,"Green laver_61",2018,0.67
-20,"Green laver_61",2019,0.67
-20,"Green laver_61",2020,0.67
-20,"Green laver_61",2021,0.67
-179,"Harpoon seaweeds_62",1996,0.67
-179,"Harpoon seaweeds_62",1997,0.67
-179,"Harpoon seaweeds_62",1998,0.67
-179,"Harpoon seaweeds_62",1999,0.67
-179,"Harpoon seaweeds_62",2000,0.67
-179,"Harpoon seaweeds_62",2001,0.67
-179,"Harpoon seaweeds_62",2002,0.67
-179,"Harpoon seaweeds_62",2003,0.67
-179,"Harpoon seaweeds_62",2004,0.67
-179,"Harpoon seaweeds_62",2005,0.67
-179,"Harpoon seaweeds_62",2006,0.67
-179,"Harpoon seaweeds_62",2007,0.67
-179,"Harpoon seaweeds_62",2008,0.67
-179,"Harpoon seaweeds_62",2009,0.67
-179,"Harpoon seaweeds_62",2010,0.67
-179,"Harpoon seaweeds_62",2011,0.67
-179,"Harpoon seaweeds_62",2012,0.67
-179,"Harpoon seaweeds_62",2013,0.67
-179,"Harpoon seaweeds_62",2014,0.67
-179,"Harpoon seaweeds_62",2015,0.67
-179,"Harpoon seaweeds_62",2016,0.67
-179,"Harpoon seaweeds_62",2017,0.67
-179,"Harpoon seaweeds_62",2018,0.67
-179,"Harpoon seaweeds_62",2019,0.67
-179,"Harpoon seaweeds_62",2020,0.67
-179,"Harpoon seaweeds_62",2021,0.67
-209,"Japanese isinglass_63",2003,0.67
-209,"Japanese isinglass_63",2004,0.67
-209,"Japanese isinglass_63",2005,0.67
-209,"Japanese isinglass_63",2006,0.67
-209,"Japanese isinglass_63",2007,0.67
-209,"Japanese isinglass_63",2008,0.67
-209,"Japanese isinglass_63",2009,0.67
-209,"Japanese isinglass_63",2010,0.67
-209,"Japanese isinglass_63",2011,0.67
-209,"Japanese isinglass_63",2012,0.67
-209,"Japanese isinglass_63",2013,0.67
-209,"Japanese isinglass_63",2014,0.67
-209,"Japanese isinglass_63",2015,0.67
-209,"Japanese isinglass_63",2016,0.67
-209,"Japanese isinglass_63",2017,0.67
-209,"Japanese isinglass_63",2018,0.67
-209,"Japanese isinglass_63",2019,0.67
-209,"Japanese isinglass_63",2020,0.67
-209,"Japanese isinglass_63",2021,0.67
-21,"Japanese kelp_64",1950,0.67
-209,"Japanese kelp_65",1950,0.67
-210,"Japanese kelp_66",1950,0.67
-21,"Japanese kelp_64",1951,0.67
-209,"Japanese kelp_65",1951,0.67
-210,"Japanese kelp_66",1951,0.67
-21,"Japanese kelp_64",1952,0.67
-209,"Japanese kelp_65",1952,0.67
-210,"Japanese kelp_66",1952,0.67
-21,"Japanese kelp_64",1953,0.67
-209,"Japanese kelp_65",1953,0.67
-210,"Japanese kelp_66",1953,0.67
-21,"Japanese kelp_64",1954,0.67
-209,"Japanese kelp_65",1954,0.67
-210,"Japanese kelp_66",1954,0.67
-21,"Japanese kelp_64",1955,0.67
-209,"Japanese kelp_65",1955,0.67
-210,"Japanese kelp_66",1955,0.67
-21,"Japanese kelp_64",1956,0.67
-209,"Japanese kelp_65",1956,0.67
-210,"Japanese kelp_66",1956,0.67
-21,"Japanese kelp_64",1957,0.67
-209,"Japanese kelp_65",1957,0.67
-210,"Japanese kelp_66",1957,0.67
-21,"Japanese kelp_64",1958,0.67
-209,"Japanese kelp_65",1958,0.67
-210,"Japanese kelp_66",1958,0.67
-21,"Japanese kelp_64",1959,0.67
-209,"Japanese kelp_65",1959,0.67
-210,"Japanese kelp_66",1959,0.67
-21,"Japanese kelp_64",1960,0.67
-209,"Japanese kelp_65",1960,0.67
-210,"Japanese kelp_66",1960,0.67
-21,"Japanese kelp_64",1961,0.67
-209,"Japanese kelp_65",1961,0.67
-210,"Japanese kelp_66",1961,0.67
-21,"Japanese kelp_64",1962,0.67
-209,"Japanese kelp_65",1962,0.67
-210,"Japanese kelp_66",1962,0.67
-21,"Japanese kelp_64",1963,0.67
-209,"Japanese kelp_65",1963,0.67
-210,"Japanese kelp_66",1963,0.67
-21,"Japanese kelp_64",1964,0.67
-209,"Japanese kelp_65",1964,0.67
-210,"Japanese kelp_66",1964,0.67
-21,"Japanese kelp_64",1965,0.67
-209,"Japanese kelp_65",1965,0.67
-210,"Japanese kelp_66",1965,0.67
-21,"Japanese kelp_64",1966,0.67
-209,"Japanese kelp_65",1966,0.67
-210,"Japanese kelp_66",1966,0.67
-21,"Japanese kelp_64",1967,0.67
-209,"Japanese kelp_65",1967,0.67
-210,"Japanese kelp_66",1967,0.67
-21,"Japanese kelp_64",1968,0.67
-209,"Japanese kelp_65",1968,0.67
-210,"Japanese kelp_66",1968,0.67
-21,"Japanese kelp_64",1969,0.67
-209,"Japanese kelp_65",1969,0.67
-210,"Japanese kelp_66",1969,0.67
-21,"Japanese kelp_64",1970,0.67
-209,"Japanese kelp_65",1970,0.67
-210,"Japanese kelp_66",1970,0.67
-21,"Japanese kelp_64",1971,0.67
-209,"Japanese kelp_65",1971,0.67
-210,"Japanese kelp_66",1971,0.67
-21,"Japanese kelp_64",1972,0.67
-209,"Japanese kelp_65",1972,0.67
-210,"Japanese kelp_66",1972,0.67
-21,"Japanese kelp_64",1973,0.67
-209,"Japanese kelp_65",1973,0.67
-210,"Japanese kelp_66",1973,0.67
-20,"Japanese kelp_67",1974,0.67
-21,"Japanese kelp_64",1974,0.67
-209,"Japanese kelp_65",1974,0.67
-210,"Japanese kelp_66",1974,0.67
-20,"Japanese kelp_67",1975,0.67
-21,"Japanese kelp_64",1975,0.67
-209,"Japanese kelp_65",1975,0.67
-210,"Japanese kelp_66",1975,0.67
-20,"Japanese kelp_67",1976,0.67
-21,"Japanese kelp_64",1976,0.67
-209,"Japanese kelp_65",1976,0.67
-210,"Japanese kelp_66",1976,0.67
-20,"Japanese kelp_67",1977,0.67
-21,"Japanese kelp_64",1977,0.67
-209,"Japanese kelp_65",1977,0.67
-210,"Japanese kelp_66",1977,0.67
-20,"Japanese kelp_67",1978,0.67
-21,"Japanese kelp_64",1978,0.67
-209,"Japanese kelp_65",1978,0.67
-210,"Japanese kelp_66",1978,0.67
-20,"Japanese kelp_67",1979,0.67
-21,"Japanese kelp_64",1979,0.67
-209,"Japanese kelp_65",1979,0.67
-210,"Japanese kelp_66",1979,0.67
-20,"Japanese kelp_67",1980,0.67
-21,"Japanese kelp_64",1980,0.67
-209,"Japanese kelp_65",1980,0.67
-210,"Japanese kelp_66",1980,0.67
-20,"Japanese kelp_67",1981,0.67
-21,"Japanese kelp_64",1981,0.67
-209,"Japanese kelp_65",1981,0.67
-210,"Japanese kelp_66",1981,0.67
-20,"Japanese kelp_67",1982,0.67
-21,"Japanese kelp_64",1982,0.67
-209,"Japanese kelp_65",1982,0.67
-210,"Japanese kelp_66",1982,0.67
-20,"Japanese kelp_67",1983,0.67
-21,"Japanese kelp_64",1983,0.67
-209,"Japanese kelp_65",1983,0.67
-210,"Japanese kelp_66",1983,0.67
-20,"Japanese kelp_67",1984,0.67
-21,"Japanese kelp_64",1984,0.67
-209,"Japanese kelp_65",1984,0.67
-210,"Japanese kelp_66",1984,0.67
-20,"Japanese kelp_67",1985,0.67
-21,"Japanese kelp_64",1985,0.67
-209,"Japanese kelp_65",1985,0.67
-210,"Japanese kelp_66",1985,0.67
-20,"Japanese kelp_67",1986,0.67
-21,"Japanese kelp_64",1986,0.67
-209,"Japanese kelp_65",1986,0.67
-210,"Japanese kelp_66",1986,0.67
-20,"Japanese kelp_67",1987,0.67
-21,"Japanese kelp_64",1987,0.67
-209,"Japanese kelp_65",1987,0.67
-210,"Japanese kelp_66",1987,0.67
-20,"Japanese kelp_67",1988,0.67
-21,"Japanese kelp_64",1988,0.67
-209,"Japanese kelp_65",1988,0.67
-210,"Japanese kelp_66",1988,0.67
-20,"Japanese kelp_67",1989,0.67
-21,"Japanese kelp_64",1989,0.67
-209,"Japanese kelp_65",1989,0.67
-210,"Japanese kelp_66",1989,0.67
-20,"Japanese kelp_67",1990,0.67
-21,"Japanese kelp_64",1990,0.67
-209,"Japanese kelp_65",1990,0.67
-210,"Japanese kelp_66",1990,0.67
-20,"Japanese kelp_67",1991,0.67
-21,"Japanese kelp_64",1991,0.67
-209,"Japanese kelp_65",1991,0.67
-210,"Japanese kelp_66",1991,0.67
-20,"Japanese kelp_67",1992,0.67
-21,"Japanese kelp_64",1992,0.67
-209,"Japanese kelp_65",1992,0.67
-210,"Japanese kelp_66",1992,0.67
-20,"Japanese kelp_67",1993,0.67
-21,"Japanese kelp_64",1993,0.67
-209,"Japanese kelp_65",1993,0.67
-210,"Japanese kelp_66",1993,0.67
-20,"Japanese kelp_67",1994,0.67
-21,"Japanese kelp_64",1994,0.67
-209,"Japanese kelp_65",1994,0.67
-210,"Japanese kelp_66",1994,0.67
-20,"Japanese kelp_67",1995,0.67
-21,"Japanese kelp_64",1995,0.67
-209,"Japanese kelp_65",1995,0.67
-210,"Japanese kelp_66",1995,0.67
-20,"Japanese kelp_67",1996,0.67
-21,"Japanese kelp_64",1996,0.67
-209,"Japanese kelp_65",1996,0.67
-210,"Japanese kelp_66",1996,0.67
-20,"Japanese kelp_67",1997,0.67
-21,"Japanese kelp_64",1997,0.67
-209,"Japanese kelp_65",1997,0.67
-210,"Japanese kelp_66",1997,0.67
-20,"Japanese kelp_67",1998,0.67
-21,"Japanese kelp_64",1998,0.67
-209,"Japanese kelp_65",1998,0.67
-210,"Japanese kelp_66",1998,0.67
-20,"Japanese kelp_67",1999,0.67
-21,"Japanese kelp_64",1999,0.67
-209,"Japanese kelp_65",1999,0.67
-210,"Japanese kelp_66",1999,0.67
-20,"Japanese kelp_67",2000,0.67
-21,"Japanese kelp_64",2000,0.67
-209,"Japanese kelp_65",2000,0.67
-210,"Japanese kelp_66",2000,0.67
-20,"Japanese kelp_67",2001,0.67
-21,"Japanese kelp_64",2001,0.67
-209,"Japanese kelp_65",2001,0.67
-210,"Japanese kelp_66",2001,0.67
-20,"Japanese kelp_67",2002,0.67
-21,"Japanese kelp_64",2002,0.67
-209,"Japanese kelp_65",2002,0.67
-210,"Japanese kelp_66",2002,0.67
-20,"Japanese kelp_67",2003,0.67
-21,"Japanese kelp_64",2003,0.67
-209,"Japanese kelp_65",2003,0.67
-210,"Japanese kelp_66",2003,0.67
-20,"Japanese kelp_67",2004,0.67
-21,"Japanese kelp_64",2004,0.67
-209,"Japanese kelp_65",2004,0.67
-210,"Japanese kelp_66",2004,0.67
-20,"Japanese kelp_67",2005,0.67
-21,"Japanese kelp_64",2005,0.67
-209,"Japanese kelp_65",2005,0.67
-210,"Japanese kelp_66",2005,0.67
-20,"Japanese kelp_67",2006,0.67
-21,"Japanese kelp_64",2006,0.67
-209,"Japanese kelp_65",2006,0.67
-210,"Japanese kelp_66",2006,0.67
-20,"Japanese kelp_67",2007,0.67
-21,"Japanese kelp_64",2007,0.67
-209,"Japanese kelp_65",2007,0.67
-210,"Japanese kelp_66",2007,0.67
-20,"Japanese kelp_67",2008,0.67
-21,"Japanese kelp_64",2008,0.67
-209,"Japanese kelp_65",2008,0.67
-210,"Japanese kelp_66",2008,0.67
-20,"Japanese kelp_67",2009,0.67
-21,"Japanese kelp_64",2009,0.67
-209,"Japanese kelp_65",2009,0.67
-210,"Japanese kelp_66",2009,0.67
-20,"Japanese kelp_67",2010,0.67
-21,"Japanese kelp_64",2010,0.67
-209,"Japanese kelp_65",2010,0.67
-210,"Japanese kelp_66",2010,0.67
-20,"Japanese kelp_67",2011,0.67
-21,"Japanese kelp_64",2011,0.67
-209,"Japanese kelp_65",2011,0.67
-210,"Japanese kelp_66",2011,0.67
-20,"Japanese kelp_67",2012,0.67
-21,"Japanese kelp_64",2012,0.67
-209,"Japanese kelp_65",2012,0.67
-210,"Japanese kelp_66",2012,0.67
-20,"Japanese kelp_67",2013,0.67
-21,"Japanese kelp_64",2013,0.67
-209,"Japanese kelp_65",2013,0.67
-210,"Japanese kelp_66",2013,0.67
-20,"Japanese kelp_67",2014,0.67
-21,"Japanese kelp_64",2014,0.67
-209,"Japanese kelp_65",2014,0.67
-210,"Japanese kelp_66",2014,0.67
-20,"Japanese kelp_67",2015,0.67
-21,"Japanese kelp_64",2015,0.67
-209,"Japanese kelp_65",2015,0.67
-210,"Japanese kelp_66",2015,0.67
-20,"Japanese kelp_67",2016,0.67
-21,"Japanese kelp_64",2016,0.67
-209,"Japanese kelp_65",2016,0.67
-210,"Japanese kelp_66",2016,0.67
-20,"Japanese kelp_67",2017,0.67
-21,"Japanese kelp_64",2017,0.67
-209,"Japanese kelp_65",2017,0.67
-210,"Japanese kelp_66",2017,0.67
-20,"Japanese kelp_67",2018,0.67
-21,"Japanese kelp_64",2018,0.67
-209,"Japanese kelp_65",2018,0.67
-210,"Japanese kelp_66",2018,0.67
-20,"Japanese kelp_67",2019,0.67
-21,"Japanese kelp_64",2019,0.67
-209,"Japanese kelp_65",2019,0.67
-210,"Japanese kelp_66",2019,0.67
-20,"Japanese kelp_67",2020,0.67
-21,"Japanese kelp_64",2020,0.67
-209,"Japanese kelp_65",2020,0.67
-210,"Japanese kelp_66",2020,0.67
-20,"Japanese kelp_67",2021,0.67
-21,"Japanese kelp_64",2021,0.67
-209,"Japanese kelp_65",2021,0.67
-210,"Japanese kelp_66",2021,0.67
-20,"Laver (Nori)_68",1950,0.67
-210,"Laver (Nori)_69",1950,0.67
-20,"Laver (Nori)_68",1951,0.67
-210,"Laver (Nori)_69",1951,0.67
-20,"Laver (Nori)_68",1952,0.67
-210,"Laver (Nori)_69",1952,0.67
-20,"Laver (Nori)_68",1953,0.67
-210,"Laver (Nori)_69",1953,0.67
-20,"Laver (Nori)_68",1954,0.67
-210,"Laver (Nori)_69",1954,0.67
-20,"Laver (Nori)_68",1955,0.67
-210,"Laver (Nori)_69",1955,0.67
-20,"Laver (Nori)_68",1956,0.67
-210,"Laver (Nori)_69",1956,0.67
-20,"Laver (Nori)_68",1957,0.67
-210,"Laver (Nori)_69",1957,0.67
-20,"Laver (Nori)_68",1958,0.67
-210,"Laver (Nori)_69",1958,0.67
-20,"Laver (Nori)_68",1959,0.67
-210,"Laver (Nori)_69",1959,0.67
-20,"Laver (Nori)_68",1960,0.67
-210,"Laver (Nori)_69",1960,0.67
-20,"Laver (Nori)_68",1961,0.67
-210,"Laver (Nori)_69",1961,0.67
-20,"Laver (Nori)_68",1962,0.67
-210,"Laver (Nori)_69",1962,0.67
-20,"Laver (Nori)_68",1963,0.67
-210,"Laver (Nori)_69",1963,0.67
-20,"Laver (Nori)_68",1964,0.67
-210,"Laver (Nori)_69",1964,0.67
-20,"Laver (Nori)_68",1965,0.67
-210,"Laver (Nori)_69",1965,0.67
-20,"Laver (Nori)_68",1966,0.67
-210,"Laver (Nori)_69",1966,0.67
-20,"Laver (Nori)_68",1967,0.67
-210,"Laver (Nori)_69",1967,0.67
-20,"Laver (Nori)_68",1968,0.67
-210,"Laver (Nori)_69",1968,0.67
-20,"Laver (Nori)_68",1969,0.67
-210,"Laver (Nori)_69",1969,0.67
-20,"Laver (Nori)_68",1970,0.67
-210,"Laver (Nori)_69",1970,0.67
-20,"Laver (Nori)_68",1971,0.67
-210,"Laver (Nori)_69",1971,0.67
-20,"Laver (Nori)_68",1972,0.67
-210,"Laver (Nori)_69",1972,0.67
-20,"Laver (Nori)_68",1973,0.67
-210,"Laver (Nori)_69",1973,0.67
-20,"Laver (Nori)_68",1974,0.67
-210,"Laver (Nori)_69",1974,0.67
-20,"Laver (Nori)_68",1975,0.67
-21,"Laver (Nori)_70",1975,0.67
-210,"Laver (Nori)_69",1975,0.67
-20,"Laver (Nori)_68",1976,0.67
-21,"Laver (Nori)_70",1976,0.67
-210,"Laver (Nori)_69",1976,0.67
-20,"Laver (Nori)_68",1977,0.67
-21,"Laver (Nori)_70",1977,0.67
-210,"Laver (Nori)_69",1977,0.67
-20,"Laver (Nori)_68",1978,0.67
-21,"Laver (Nori)_70",1978,0.67
-210,"Laver (Nori)_69",1978,0.67
-20,"Laver (Nori)_68",1979,0.67
-21,"Laver (Nori)_70",1979,0.67
-210,"Laver (Nori)_69",1979,0.67
-20,"Laver (Nori)_68",1980,0.67
-21,"Laver (Nori)_70",1980,0.67
-210,"Laver (Nori)_69",1980,0.67
-20,"Laver (Nori)_68",1981,0.67
-21,"Laver (Nori)_70",1981,0.67
-210,"Laver (Nori)_69",1981,0.67
-14,"Laver (Nori)_71",1982,0.67
-20,"Laver (Nori)_68",1982,0.67
-21,"Laver (Nori)_70",1982,0.67
-210,"Laver (Nori)_69",1982,0.67
-14,"Laver (Nori)_71",1983,0.67
-20,"Laver (Nori)_68",1983,0.67
-21,"Laver (Nori)_70",1983,0.67
-210,"Laver (Nori)_69",1983,0.67
-14,"Laver (Nori)_71",1984,0.67
-20,"Laver (Nori)_68",1984,0.67
-21,"Laver (Nori)_70",1984,0.67
-210,"Laver (Nori)_69",1984,0.67
-14,"Laver (Nori)_71",1985,0.67
-20,"Laver (Nori)_68",1985,0.67
-21,"Laver (Nori)_70",1985,0.67
-210,"Laver (Nori)_69",1985,0.67
-14,"Laver (Nori)_71",1986,0.67
-20,"Laver (Nori)_68",1986,0.67
-21,"Laver (Nori)_70",1986,0.67
-210,"Laver (Nori)_69",1986,0.67
-14,"Laver (Nori)_71",1987,0.67
-20,"Laver (Nori)_68",1987,0.67
-21,"Laver (Nori)_70",1987,0.67
-210,"Laver (Nori)_69",1987,0.67
-14,"Laver (Nori)_71",1988,0.67
-20,"Laver (Nori)_68",1988,0.67
-21,"Laver (Nori)_70",1988,0.67
-210,"Laver (Nori)_69",1988,0.67
-14,"Laver (Nori)_71",1989,0.67
-20,"Laver (Nori)_68",1989,0.67
-21,"Laver (Nori)_70",1989,0.67
-210,"Laver (Nori)_69",1989,0.67
-14,"Laver (Nori)_71",1990,0.67
-20,"Laver (Nori)_68",1990,0.67
-21,"Laver (Nori)_70",1990,0.67
-210,"Laver (Nori)_69",1990,0.67
-14,"Laver (Nori)_71",1991,0.67
-20,"Laver (Nori)_68",1991,0.67
-21,"Laver (Nori)_70",1991,0.67
-210,"Laver (Nori)_69",1991,0.67
-14,"Laver (Nori)_71",1992,0.67
-20,"Laver (Nori)_68",1992,0.67
-21,"Laver (Nori)_70",1992,0.67
-210,"Laver (Nori)_69",1992,0.67
-14,"Laver (Nori)_71",1993,0.67
-20,"Laver (Nori)_68",1993,0.67
-21,"Laver (Nori)_70",1993,0.67
-210,"Laver (Nori)_69",1993,0.67
-14,"Laver (Nori)_71",1994,0.67
-20,"Laver (Nori)_68",1994,0.67
-21,"Laver (Nori)_70",1994,0.67
-210,"Laver (Nori)_69",1994,0.67
-14,"Laver (Nori)_71",1995,0.67
-20,"Laver (Nori)_68",1995,0.67
-21,"Laver (Nori)_70",1995,0.67
-210,"Laver (Nori)_69",1995,0.67
-14,"Laver (Nori)_71",1996,0.67
-20,"Laver (Nori)_68",1996,0.67
-21,"Laver (Nori)_70",1996,0.67
-210,"Laver (Nori)_69",1996,0.67
-14,"Laver (Nori)_71",1997,0.67
-20,"Laver (Nori)_68",1997,0.67
-21,"Laver (Nori)_70",1997,0.67
-210,"Laver (Nori)_69",1997,0.67
-14,"Laver (Nori)_71",1998,0.67
-20,"Laver (Nori)_68",1998,0.67
-21,"Laver (Nori)_70",1998,0.67
-210,"Laver (Nori)_69",1998,0.67
-14,"Laver (Nori)_71",1999,0.67
-20,"Laver (Nori)_68",1999,0.67
-21,"Laver (Nori)_70",1999,0.67
-210,"Laver (Nori)_69",1999,0.67
-14,"Laver (Nori)_71",2000,0.67
-20,"Laver (Nori)_68",2000,0.67
-21,"Laver (Nori)_70",2000,0.67
-210,"Laver (Nori)_69",2000,0.67
-14,"Laver (Nori)_71",2001,0.67
-20,"Laver (Nori)_68",2001,0.67
-21,"Laver (Nori)_70",2001,0.67
-210,"Laver (Nori)_69",2001,0.67
-14,"Laver (Nori)_71",2002,0.67
-20,"Laver (Nori)_68",2002,0.67
-21,"Laver (Nori)_70",2002,0.67
-210,"Laver (Nori)_69",2002,0.67
-14,"Laver (Nori)_71",2003,0.67
-20,"Laver (Nori)_68",2003,0.67
-21,"Laver (Nori)_70",2003,0.67
-210,"Laver (Nori)_69",2003,0.67
-14,"Laver (Nori)_71",2004,0.67
-20,"Laver (Nori)_68",2004,0.67
-21,"Laver (Nori)_70",2004,0.67
-210,"Laver (Nori)_69",2004,0.67
-14,"Laver (Nori)_71",2005,0.67
-20,"Laver (Nori)_68",2005,0.67
-21,"Laver (Nori)_70",2005,0.67
-210,"Laver (Nori)_69",2005,0.67
-14,"Laver (Nori)_71",2006,0.67
-20,"Laver (Nori)_68",2006,0.67
-21,"Laver (Nori)_70",2006,0.67
-210,"Laver (Nori)_69",2006,0.67
-14,"Laver (Nori)_71",2007,0.67
-20,"Laver (Nori)_68",2007,0.67
-21,"Laver (Nori)_70",2007,0.67
-210,"Laver (Nori)_69",2007,0.67
-14,"Laver (Nori)_71",2008,0.67
-20,"Laver (Nori)_68",2008,0.67
-21,"Laver (Nori)_70",2008,0.67
-210,"Laver (Nori)_69",2008,0.67
-14,"Laver (Nori)_71",2009,0.67
-20,"Laver (Nori)_68",2009,0.67
-21,"Laver (Nori)_70",2009,0.67
-210,"Laver (Nori)_69",2009,0.67
-14,"Laver (Nori)_71",2010,0.67
-20,"Laver (Nori)_68",2010,0.67
-21,"Laver (Nori)_70",2010,0.67
-210,"Laver (Nori)_69",2010,0.67
-14,"Laver (Nori)_71",2011,0.67
-20,"Laver (Nori)_68",2011,0.67
-21,"Laver (Nori)_70",2011,0.67
-210,"Laver (Nori)_69",2011,0.67
-14,"Laver (Nori)_71",2012,0.67
-20,"Laver (Nori)_68",2012,0.67
-21,"Laver (Nori)_70",2012,0.67
-210,"Laver (Nori)_69",2012,0.67
-14,"Laver (Nori)_71",2013,0.67
-20,"Laver (Nori)_68",2013,0.67
-21,"Laver (Nori)_70",2013,0.67
-210,"Laver (Nori)_69",2013,0.67
-14,"Laver (Nori)_71",2014,0.67
-20,"Laver (Nori)_68",2014,0.67
-21,"Laver (Nori)_70",2014,0.67
-210,"Laver (Nori)_69",2014,0.67
-14,"Laver (Nori)_71",2015,0.67
-20,"Laver (Nori)_68",2015,0.67
-21,"Laver (Nori)_70",2015,0.67
-210,"Laver (Nori)_69",2015,0.67
-14,"Laver (Nori)_71",2016,0.67
-20,"Laver (Nori)_68",2016,0.67
-21,"Laver (Nori)_70",2016,0.67
-210,"Laver (Nori)_69",2016,0.67
-14,"Laver (Nori)_71",2017,0.67
-20,"Laver (Nori)_68",2017,0.67
-21,"Laver (Nori)_70",2017,0.67
-210,"Laver (Nori)_69",2017,0.67
-14,"Laver (Nori)_71",2018,0.67
-20,"Laver (Nori)_68",2018,0.67
-21,"Laver (Nori)_70",2018,0.67
-210,"Laver (Nori)_69",2018,0.67
-14,"Laver (Nori)_71",2019,0.67
-20,"Laver (Nori)_68",2019,0.67
-21,"Laver (Nori)_70",2019,0.67
-210,"Laver (Nori)_69",2019,0.67
-14,"Laver (Nori)_71",2020,0.67
-20,"Laver (Nori)_68",2020,0.67
-21,"Laver (Nori)_70",2020,0.67
-210,"Laver (Nori)_69",2020,0.67
-14,"Laver (Nori)_71",2021,0.67
-20,"Laver (Nori)_68",2021,0.67
-21,"Laver (Nori)_70",2021,0.67
-210,"Laver (Nori)_69",2021,0.67
-209,"Nori nei_72",1971,0.67
-209,"Nori nei_72",1972,0.67
-209,"Nori nei_72",1973,0.67
-209,"Nori nei_72",1974,0.67
-209,"Nori nei_72",1975,0.67
-209,"Nori nei_72",1976,0.67
-209,"Nori nei_72",1977,0.67
-209,"Nori nei_72",1978,0.67
-209,"Nori nei_72",1979,0.67
-209,"Nori nei_72",1980,0.67
-209,"Nori nei_72",1981,0.67
-209,"Nori nei_72",1982,0.67
-209,"Nori nei_72",1983,0.67
-209,"Nori nei_72",1984,0.67
-209,"Nori nei_72",1985,0.67
-209,"Nori nei_72",1986,0.67
-209,"Nori nei_72",1987,0.67
-209,"Nori nei_72",1988,0.67
-209,"Nori nei_72",1989,0.67
-209,"Nori nei_72",1990,0.67
-209,"Nori nei_72",1991,0.67
-209,"Nori nei_72",1992,0.67
-209,"Nori nei_72",1993,0.67
-209,"Nori nei_72",1994,0.67
-209,"Nori nei_72",1995,0.67
-209,"Nori nei_72",1996,0.67
-209,"Nori nei_72",1997,0.67
-209,"Nori nei_72",1998,0.67
-209,"Nori nei_72",1999,0.67
-209,"Nori nei_72",2000,0.67
-209,"Nori nei_72",2001,0.67
-209,"Nori nei_72",2002,0.67
-209,"Nori nei_72",2003,0.67
-209,"Nori nei_72",2004,0.67
-209,"Nori nei_72",2005,0.67
-209,"Nori nei_72",2006,0.67
-209,"Nori nei_72",2007,0.67
-209,"Nori nei_72",2008,0.67
-209,"Nori nei_72",2009,0.67
-209,"Nori nei_72",2010,0.67
-209,"Nori nei_72",2011,0.67
-209,"Nori nei_72",2012,0.67
-209,"Nori nei_72",2013,0.67
-209,"Nori nei_72",2014,0.67
-209,"Nori nei_72",2015,0.67
-209,"Nori nei_72",2016,0.67
-209,"Nori nei_72",2017,0.67
-209,"Nori nei_72",2018,0.67
-209,"Nori nei_72",2019,0.67
-209,"Nori nei_72",2020,0.67
-209,"Nori nei_72",2021,0.67
-216,"Red seaweeds_73",1950,0.67
-216,"Red seaweeds_73",1951,0.67
-216,"Red seaweeds_73",1952,0.67
-216,"Red seaweeds_73",1953,0.67
-216,"Red seaweeds_73",1954,0.67
-216,"Red seaweeds_73",1955,0.67
-216,"Red seaweeds_73",1956,0.67
-216,"Red seaweeds_73",1957,0.67
-216,"Red seaweeds_73",1958,0.67
-216,"Red seaweeds_73",1959,0.67
-216,"Red seaweeds_73",1960,0.67
-216,"Red seaweeds_73",1961,0.67
-216,"Red seaweeds_73",1962,0.67
-216,"Red seaweeds_73",1963,0.67
-216,"Red seaweeds_73",1964,0.67
-216,"Red seaweeds_73",1965,0.67
-216,"Red seaweeds_73",1966,0.67
-216,"Red seaweeds_73",1967,0.67
-216,"Red seaweeds_73",1968,0.67
-216,"Red seaweeds_73",1969,0.67
-216,"Red seaweeds_73",1970,0.67
-216,"Red seaweeds_73",1971,0.67
-216,"Red seaweeds_73",1972,0.67
-216,"Red seaweeds_73",1973,0.67
-216,"Red seaweeds_73",1974,0.67
-216,"Red seaweeds_73",1975,0.67
-216,"Red seaweeds_73",1976,0.67
-216,"Red seaweeds_73",1977,0.67
-216,"Red seaweeds_73",1978,0.67
-216,"Red seaweeds_73",1979,0.67
-216,"Red seaweeds_73",1980,0.67
-216,"Red seaweeds_73",1981,0.67
-216,"Red seaweeds_73",1982,0.67
-216,"Red seaweeds_73",1983,0.67
-216,"Red seaweeds_73",1984,0.67
-216,"Red seaweeds_73",1985,0.67
-216,"Red seaweeds_73",1986,0.67
-216,"Red seaweeds_73",1987,0.67
-216,"Red seaweeds_73",1988,0.67
-216,"Red seaweeds_73",1989,0.67
-216,"Red seaweeds_73",1990,0.67
-216,"Red seaweeds_73",1991,0.67
-216,"Red seaweeds_73",1992,0.67
-216,"Red seaweeds_73",1993,0.67
-216,"Red seaweeds_73",1994,0.67
-216,"Red seaweeds_73",1995,0.67
-216,"Red seaweeds_73",1996,0.67
-216,"Red seaweeds_73",1997,0.67
-216,"Red seaweeds_73",1998,0.67
-216,"Red seaweeds_73",1999,0.67
-216,"Red seaweeds_73",2000,0.67
-203,"Red seaweeds_74",2001,0.67
-216,"Red seaweeds_73",2001,0.67
-203,"Red seaweeds_74",2002,0.67
-216,"Red seaweeds_73",2002,0.67
-203,"Red seaweeds_74",2003,0.67
-216,"Red seaweeds_73",2003,0.67
-203,"Red seaweeds_74",2004,0.67
-216,"Red seaweeds_73",2004,0.67
-203,"Red seaweeds_74",2005,0.67
-216,"Red seaweeds_73",2005,0.67
-203,"Red seaweeds_74",2006,0.67
-216,"Red seaweeds_73",2006,0.67
-203,"Red seaweeds_74",2007,0.67
-216,"Red seaweeds_73",2007,0.67
-203,"Red seaweeds_74",2008,0.67
-216,"Red seaweeds_73",2008,0.67
-203,"Red seaweeds_74",2009,0.67
-216,"Red seaweeds_73",2009,0.67
-203,"Red seaweeds_74",2010,0.67
-216,"Red seaweeds_73",2010,0.67
-203,"Red seaweeds_74",2011,0.67
-216,"Red seaweeds_73",2011,0.67
-203,"Red seaweeds_74",2012,0.67
-216,"Red seaweeds_73",2012,0.67
-203,"Red seaweeds_74",2013,0.67
-216,"Red seaweeds_73",2013,0.67
-203,"Red seaweeds_74",2014,0.67
-216,"Red seaweeds_73",2014,0.67
-203,"Red seaweeds_74",2015,0.67
-216,"Red seaweeds_73",2015,0.67
-203,"Red seaweeds_74",2016,0.67
-216,"Red seaweeds_73",2016,0.67
-203,"Red seaweeds_74",2017,0.67
-216,"Red seaweeds_73",2017,0.67
-203,"Red seaweeds_74",2018,0.67
-216,"Red seaweeds_73",2018,0.67
-203,"Red seaweeds_74",2019,0.67
-216,"Red seaweeds_73",2019,0.67
-203,"Red seaweeds_74",2020,0.67
-216,"Red seaweeds_73",2020,0.67
-203,"Red seaweeds_74",2021,0.67
-216,"Red seaweeds_73",2021,0.67
-182,"Sea belt_75",2007,0.67
-182,"Sea belt_75",2008,0.67
-175,"Sea belt_76",2009,0.67
-182,"Sea belt_75",2009,0.67
-175,"Sea belt_76",2010,0.67
-182,"Sea belt_75",2010,0.67
-175,"Sea belt_76",2011,0.67
-182,"Sea belt_75",2011,0.67
-175,"Sea belt_76",2012,0.67
-182,"Sea belt_75",2012,0.67
-175,"Sea belt_76",2013,0.67
-182,"Sea belt_75",2013,0.67
-175,"Sea belt_76",2014,0.67
-182,"Sea belt_75",2014,0.67
-141,"Sea belt_77",2015,0.67
-175,"Sea belt_76",2015,0.67
-182,"Sea belt_75",2015,0.67
-223,"Sea belt_78",2015,0.67
-141,"Sea belt_77",2016,0.67
-175,"Sea belt_76",2016,0.67
-182,"Sea belt_75",2016,0.67
-223,"Sea belt_78",2016,0.67
-141,"Sea belt_77",2017,0.67
-175,"Sea belt_76",2017,0.67
-182,"Sea belt_75",2017,0.67
-223,"Sea belt_78",2017,0.67
-141,"Sea belt_77",2018,0.67
-175,"Sea belt_76",2018,0.67
-182,"Sea belt_75",2018,0.67
-223,"Sea belt_78",2018,0.67
-141,"Sea belt_77",2019,0.67
-175,"Sea belt_76",2019,0.67
-182,"Sea belt_75",2019,0.67
-223,"Sea belt_78",2019,0.67
-141,"Sea belt_77",2020,0.67
-175,"Sea belt_76",2020,0.67
-182,"Sea belt_75",2020,0.67
-223,"Sea belt_78",2020,0.67
-141,"Sea belt_77",2021,0.67
-175,"Sea belt_76",2021,0.67
-182,"Sea belt_75",2021,0.67
-223,"Sea belt_78",2021,0.67
-210,"Seaweeds nei_79",1977,0.67
-210,"Seaweeds nei_79",1978,0.67
-210,"Seaweeds nei_79",1979,0.67
-210,"Seaweeds nei_79",1980,0.67
-210,"Seaweeds nei_79",1981,0.67
-210,"Seaweeds nei_79",1982,0.67
-210,"Seaweeds nei_79",1983,0.67
-210,"Seaweeds nei_79",1984,0.67
-210,"Seaweeds nei_79",1985,0.67
-210,"Seaweeds nei_79",1986,0.67
-210,"Seaweeds nei_79",1987,0.67
-210,"Seaweeds nei_79",1988,0.67
-210,"Seaweeds nei_79",1989,0.67
-210,"Seaweeds nei_79",1990,0.67
-210,"Seaweeds nei_79",1991,0.67
-210,"Seaweeds nei_79",1992,0.67
-210,"Seaweeds nei_79",1993,0.67
-210,"Seaweeds nei_79",1994,0.67
-210,"Seaweeds nei_79",1995,0.67
-210,"Seaweeds nei_79",1996,0.67
-210,"Seaweeds nei_79",1997,0.67
-210,"Seaweeds nei_79",1998,0.67
-210,"Seaweeds nei_79",1999,0.67
-210,"Seaweeds nei_79",2000,0.67
-210,"Seaweeds nei_79",2001,0.67
-210,"Seaweeds nei_79",2002,0.67
-210,"Seaweeds nei_79",2003,0.67
-210,"Seaweeds nei_79",2004,0.67
-182,"Seaweeds nei_80",2005,0.67
-210,"Seaweeds nei_79",2005,0.67
-182,"Seaweeds nei_80",2006,0.67
-210,"Seaweeds nei_79",2006,0.67
-182,"Seaweeds nei_80",2007,0.67
-210,"Seaweeds nei_79",2007,0.67
-182,"Seaweeds nei_80",2008,0.67
-210,"Seaweeds nei_79",2008,0.67
-179,"Seaweeds nei_81",2009,0.67
-182,"Seaweeds nei_80",2009,0.67
-210,"Seaweeds nei_79",2009,0.67
-179,"Seaweeds nei_81",2010,0.67
-182,"Seaweeds nei_80",2010,0.67
-210,"Seaweeds nei_79",2010,0.67
-179,"Seaweeds nei_81",2011,0.67
-182,"Seaweeds nei_80",2011,0.67
-210,"Seaweeds nei_79",2011,0.67
-179,"Seaweeds nei_81",2012,0.67
-182,"Seaweeds nei_80",2012,0.67
-210,"Seaweeds nei_79",2012,0.67
-179,"Seaweeds nei_81",2013,0.67
-182,"Seaweeds nei_80",2013,0.67
-210,"Seaweeds nei_79",2013,0.67
-179,"Seaweeds nei_81",2014,0.67
-182,"Seaweeds nei_80",2014,0.67
-210,"Seaweeds nei_79",2014,0.67
-163,"Seaweeds nei_82",2015,0.67
-179,"Seaweeds nei_81",2015,0.67
-181,"Seaweeds nei_83",2015,0.67
-182,"Seaweeds nei_80",2015,0.67
-210,"Seaweeds nei_79",2015,0.67
-163,"Seaweeds nei_82",2016,0.67
-179,"Seaweeds nei_81",2016,0.67
-181,"Seaweeds nei_83",2016,0.67
-210,"Seaweeds nei_79",2016,0.67
-163,"Seaweeds nei_82",2017,0.67
-179,"Seaweeds nei_81",2017,0.67
-181,"Seaweeds nei_83",2017,0.67
-210,"Seaweeds nei_79",2017,0.67
-163,"Seaweeds nei_82",2018,0.67
-179,"Seaweeds nei_81",2018,0.67
-181,"Seaweeds nei_83",2018,0.67
-210,"Seaweeds nei_79",2018,0.67
-163,"Seaweeds nei_82",2019,0.67
-179,"Seaweeds nei_81",2019,0.67
-181,"Seaweeds nei_83",2019,0.67
-210,"Seaweeds nei_79",2019,0.67
-163,"Seaweeds nei_82",2020,0.67
-179,"Seaweeds nei_81",2020,0.67
-181,"Seaweeds nei_83",2020,0.67
-210,"Seaweeds nei_79",2020,0.67
-163,"Seaweeds nei_82",2021,0.67
-179,"Seaweeds nei_81",2021,0.67
-181,"Seaweeds nei_83",2021,0.67
-210,"Seaweeds nei_79",2021,0.67
-62,"Slender wart weed_84",2016,0.67
-62,"Slender wart weed_84",2017,0.67
-62,"Slender wart weed_84",2018,0.67
-62,"Slender wart weed_84",2019,0.67
-62,"Slender wart weed_84",2020,0.67
-62,"Slender wart weed_84",2021,0.67
-15,"Spiny eucheuma_85",1974,0.67
-15,"Spiny eucheuma_85",1975,0.67
-15,"Spiny eucheuma_85",1976,0.67
-15,"Spiny eucheuma_85",1977,0.67
-15,"Spiny eucheuma_85",1978,0.67
-15,"Spiny eucheuma_85",1979,0.67
-15,"Spiny eucheuma_85",1980,0.67
-15,"Spiny eucheuma_85",1981,0.67
-15,"Spiny eucheuma_85",1982,0.67
-15,"Spiny eucheuma_85",1983,0.67
-15,"Spiny eucheuma_85",1984,0.67
-15,"Spiny eucheuma_85",1985,0.67
-15,"Spiny eucheuma_85",1986,0.67
-15,"Spiny eucheuma_85",1987,0.67
-15,"Spiny eucheuma_85",1988,0.67
-15,"Spiny eucheuma_85",1989,0.67
-202,"Spiny eucheuma_86",1989,0.67
-15,"Spiny eucheuma_85",1990,0.67
-202,"Spiny eucheuma_86",1990,0.67
-15,"Spiny eucheuma_85",1991,0.67
-202,"Spiny eucheuma_86",1991,0.67
-15,"Spiny eucheuma_85",1992,0.67
-202,"Spiny eucheuma_86",1992,0.67
-15,"Spiny eucheuma_85",1993,0.67
-202,"Spiny eucheuma_86",1993,0.67
-15,"Spiny eucheuma_85",1994,0.67
-202,"Spiny eucheuma_86",1994,0.67
-15,"Spiny eucheuma_85",1995,0.67
-202,"Spiny eucheuma_86",1995,0.67
-15,"Spiny eucheuma_85",1996,0.67
-202,"Spiny eucheuma_86",1996,0.67
-15,"Spiny eucheuma_85",1997,0.67
-202,"Spiny eucheuma_86",1997,0.67
-15,"Spiny eucheuma_85",1998,0.67
-202,"Spiny eucheuma_86",1998,0.67
-15,"Spiny eucheuma_85",1999,0.67
-202,"Spiny eucheuma_86",1999,0.67
-15,"Spiny eucheuma_85",2000,0.67
-202,"Spiny eucheuma_86",2000,0.67
-15,"Spiny eucheuma_85",2001,0.67
-202,"Spiny eucheuma_86",2001,0.67
-206,"Spiny eucheuma_87",2001,0.67
-15,"Spiny eucheuma_85",2002,0.67
-139,"Spiny eucheuma_88",2002,0.67
-202,"Spiny eucheuma_86",2002,0.67
-206,"Spiny eucheuma_87",2002,0.67
-15,"Spiny eucheuma_85",2003,0.67
-139,"Spiny eucheuma_88",2003,0.67
-202,"Spiny eucheuma_86",2003,0.67
-206,"Spiny eucheuma_87",2003,0.67
-15,"Spiny eucheuma_85",2004,0.67
-139,"Spiny eucheuma_88",2004,0.67
-202,"Spiny eucheuma_86",2004,0.67
-206,"Spiny eucheuma_87",2004,0.67
-15,"Spiny eucheuma_85",2005,0.67
-139,"Spiny eucheuma_88",2005,0.67
-202,"Spiny eucheuma_86",2005,0.67
-206,"Spiny eucheuma_87",2005,0.67
-15,"Spiny eucheuma_85",2006,0.67
-139,"Spiny eucheuma_88",2006,0.67
-202,"Spiny eucheuma_86",2006,0.67
-206,"Spiny eucheuma_87",2006,0.67
-15,"Spiny eucheuma_85",2007,0.67
-139,"Spiny eucheuma_88",2007,0.67
-202,"Spiny eucheuma_86",2007,0.67
-206,"Spiny eucheuma_87",2007,0.67
-15,"Spiny eucheuma_85",2008,0.67
-139,"Spiny eucheuma_88",2008,0.67
-202,"Spiny eucheuma_86",2008,0.67
-206,"Spiny eucheuma_87",2008,0.67
-15,"Spiny eucheuma_85",2009,0.67
-139,"Spiny eucheuma_88",2009,0.67
-202,"Spiny eucheuma_86",2009,0.67
-206,"Spiny eucheuma_87",2009,0.67
-15,"Spiny eucheuma_85",2010,0.67
-43,"Spiny eucheuma_89",2010,0.67
-139,"Spiny eucheuma_88",2010,0.67
-202,"Spiny eucheuma_86",2010,0.67
-206,"Spiny eucheuma_87",2010,0.67
-15,"Spiny eucheuma_85",2011,0.67
-43,"Spiny eucheuma_89",2011,0.67
-139,"Spiny eucheuma_88",2011,0.67
-202,"Spiny eucheuma_86",2011,0.67
-206,"Spiny eucheuma_87",2011,0.67
-15,"Spiny eucheuma_85",2012,0.67
-43,"Spiny eucheuma_89",2012,0.67
-139,"Spiny eucheuma_88",2012,0.67
-202,"Spiny eucheuma_86",2012,0.67
-206,"Spiny eucheuma_87",2012,0.67
-15,"Spiny eucheuma_85",2013,0.67
-43,"Spiny eucheuma_89",2013,0.67
-139,"Spiny eucheuma_88",2013,0.67
-202,"Spiny eucheuma_86",2013,0.67
-206,"Spiny eucheuma_87",2013,0.67
-15,"Spiny eucheuma_85",2014,0.67
-43,"Spiny eucheuma_89",2014,0.67
-139,"Spiny eucheuma_88",2014,0.67
-202,"Spiny eucheuma_86",2014,0.67
-206,"Spiny eucheuma_87",2014,0.67
-15,"Spiny eucheuma_85",2015,0.67
-43,"Spiny eucheuma_89",2015,0.67
-139,"Spiny eucheuma_88",2015,0.67
-202,"Spiny eucheuma_86",2015,0.67
-206,"Spiny eucheuma_87",2015,0.67
-15,"Spiny eucheuma_85",2016,0.67
-43,"Spiny eucheuma_89",2016,0.67
-139,"Spiny eucheuma_88",2016,0.67
-202,"Spiny eucheuma_86",2016,0.67
-206,"Spiny eucheuma_87",2016,0.67
-15,"Spiny eucheuma_85",2017,0.67
-43,"Spiny eucheuma_89",2017,0.67
-139,"Spiny eucheuma_88",2017,0.67
-202,"Spiny eucheuma_86",2017,0.67
-206,"Spiny eucheuma_87",2017,0.67
-15,"Spiny eucheuma_85",2018,0.67
-43,"Spiny eucheuma_89",2018,0.67
-139,"Spiny eucheuma_88",2018,0.67
-202,"Spiny eucheuma_86",2018,0.67
-206,"Spiny eucheuma_87",2018,0.67
-15,"Spiny eucheuma_85",2019,0.67
-43,"Spiny eucheuma_89",2019,0.67
-139,"Spiny eucheuma_88",2019,0.67
-202,"Spiny eucheuma_86",2019,0.67
-206,"Spiny eucheuma_87",2019,0.67
-15,"Spiny eucheuma_85",2020,0.67
-43,"Spiny eucheuma_89",2020,0.67
-139,"Spiny eucheuma_88",2020,0.67
-202,"Spiny eucheuma_86",2020,0.67
-206,"Spiny eucheuma_87",2020,0.67
-15,"Spiny eucheuma_85",2021,0.67
-43,"Spiny eucheuma_89",2021,0.67
-139,"Spiny eucheuma_88",2021,0.67
-202,"Spiny eucheuma_86",2021,0.67
-206,"Spiny eucheuma_87",2021,0.67
-141,"Tangle_90",2015,0.67
-141,"Tangle_90",2016,0.67
-141,"Tangle_90",2017,0.67
-141,"Tangle_90",2018,0.67
-141,"Tangle_90",2019,0.67
-141,"Tangle_90",2020,0.67
-141,"Tangle_90",2021,0.67
-20,"Wakame_91",1950,0.67
-210,"Wakame_92",1950,0.67
-20,"Wakame_91",1951,0.67
-210,"Wakame_92",1951,0.67
-20,"Wakame_91",1952,0.67
-210,"Wakame_92",1952,0.67
-20,"Wakame_91",1953,0.67
-210,"Wakame_92",1953,0.67
-20,"Wakame_91",1954,0.67
-210,"Wakame_92",1954,0.67
-20,"Wakame_91",1955,0.67
-210,"Wakame_92",1955,0.67
-20,"Wakame_91",1956,0.67
-210,"Wakame_92",1956,0.67
-20,"Wakame_91",1957,0.67
-210,"Wakame_92",1957,0.67
-20,"Wakame_91",1958,0.67
-210,"Wakame_92",1958,0.67
-20,"Wakame_91",1959,0.67
-210,"Wakame_92",1959,0.67
-20,"Wakame_91",1960,0.67
-210,"Wakame_92",1960,0.67
-20,"Wakame_91",1961,0.67
-210,"Wakame_92",1961,0.67
-20,"Wakame_91",1962,0.67
-210,"Wakame_92",1962,0.67
-20,"Wakame_91",1963,0.67
-21,"Wakame_93",1963,0.67
-210,"Wakame_92",1963,0.67
-20,"Wakame_91",1964,0.67
-21,"Wakame_93",1964,0.67
-210,"Wakame_92",1964,0.67
-20,"Wakame_91",1965,0.67
-21,"Wakame_93",1965,0.67
-210,"Wakame_92",1965,0.67
-20,"Wakame_91",1966,0.67
-21,"Wakame_93",1966,0.67
-210,"Wakame_92",1966,0.67
-20,"Wakame_91",1967,0.67
-21,"Wakame_93",1967,0.67
-210,"Wakame_92",1967,0.67
-20,"Wakame_91",1968,0.67
-21,"Wakame_93",1968,0.67
-210,"Wakame_92",1968,0.67
-20,"Wakame_91",1969,0.67
-21,"Wakame_93",1969,0.67
-210,"Wakame_92",1969,0.67
-20,"Wakame_91",1970,0.67
-21,"Wakame_93",1970,0.67
-210,"Wakame_92",1970,0.67
-20,"Wakame_91",1971,0.67
-21,"Wakame_93",1971,0.67
-210,"Wakame_92",1971,0.67
-20,"Wakame_91",1972,0.67
-21,"Wakame_93",1972,0.67
-210,"Wakame_92",1972,0.67
-20,"Wakame_91",1973,0.67
-21,"Wakame_93",1973,0.67
-210,"Wakame_92",1973,0.67
-20,"Wakame_91",1974,0.67
-21,"Wakame_93",1974,0.67
-210,"Wakame_92",1974,0.67
-20,"Wakame_91",1975,0.67
-21,"Wakame_93",1975,0.67
-210,"Wakame_92",1975,0.67
-20,"Wakame_91",1976,0.67
-21,"Wakame_93",1976,0.67
-210,"Wakame_92",1976,0.67
-20,"Wakame_91",1977,0.67
-21,"Wakame_93",1977,0.67
-210,"Wakame_92",1977,0.67
-20,"Wakame_91",1978,0.67
-21,"Wakame_93",1978,0.67
-210,"Wakame_92",1978,0.67
-20,"Wakame_91",1979,0.67
-21,"Wakame_93",1979,0.67
-210,"Wakame_92",1979,0.67
-20,"Wakame_91",1980,0.67
-21,"Wakame_93",1980,0.67
-210,"Wakame_92",1980,0.67
-20,"Wakame_91",1981,0.67
-21,"Wakame_93",1981,0.67
-210,"Wakame_92",1981,0.67
-20,"Wakame_91",1982,0.67
-21,"Wakame_93",1982,0.67
-210,"Wakame_92",1982,0.67
-20,"Wakame_91",1983,0.67
-21,"Wakame_93",1983,0.67
-210,"Wakame_92",1983,0.67
-20,"Wakame_91",1984,0.67
-21,"Wakame_93",1984,0.67
-210,"Wakame_92",1984,0.67
-20,"Wakame_91",1985,0.67
-21,"Wakame_93",1985,0.67
-179,"Wakame_94",1985,0.67
-210,"Wakame_92",1985,0.67
-20,"Wakame_91",1986,0.67
-21,"Wakame_93",1986,0.67
-179,"Wakame_94",1986,0.67
-210,"Wakame_92",1986,0.67
-20,"Wakame_91",1987,0.67
-21,"Wakame_93",1987,0.67
-179,"Wakame_94",1987,0.67
-210,"Wakame_92",1987,0.67
-20,"Wakame_91",1988,0.67
-21,"Wakame_93",1988,0.67
-179,"Wakame_94",1988,0.67
-210,"Wakame_92",1988,0.67
-20,"Wakame_91",1989,0.67
-21,"Wakame_93",1989,0.67
-179,"Wakame_94",1989,0.67
-210,"Wakame_92",1989,0.67
-20,"Wakame_91",1990,0.67
-21,"Wakame_93",1990,0.67
-179,"Wakame_94",1990,0.67
-210,"Wakame_92",1990,0.67
-20,"Wakame_91",1991,0.67
-21,"Wakame_93",1991,0.67
-179,"Wakame_94",1991,0.67
-210,"Wakame_92",1991,0.67
-20,"Wakame_91",1992,0.67
-21,"Wakame_93",1992,0.67
-179,"Wakame_94",1992,0.67
-210,"Wakame_92",1992,0.67
-20,"Wakame_91",1993,0.67
-21,"Wakame_93",1993,0.67
-179,"Wakame_94",1993,0.67
-210,"Wakame_92",1993,0.67
-20,"Wakame_91",1994,0.67
-21,"Wakame_93",1994,0.67
-179,"Wakame_94",1994,0.67
-210,"Wakame_92",1994,0.67
-20,"Wakame_91",1995,0.67
-21,"Wakame_93",1995,0.67
-179,"Wakame_94",1995,0.67
-210,"Wakame_92",1995,0.67
-20,"Wakame_91",1996,0.67
-21,"Wakame_93",1996,0.67
-179,"Wakame_94",1996,0.67
-210,"Wakame_92",1996,0.67
-20,"Wakame_91",1997,0.67
-21,"Wakame_93",1997,0.67
-179,"Wakame_94",1997,0.67
-210,"Wakame_92",1997,0.67
-20,"Wakame_91",1998,0.67
-21,"Wakame_93",1998,0.67
-179,"Wakame_94",1998,0.67
-210,"Wakame_92",1998,0.67
-20,"Wakame_91",1999,0.67
-21,"Wakame_93",1999,0.67
-179,"Wakame_94",1999,0.67
-210,"Wakame_92",1999,0.67
-20,"Wakame_91",2000,0.67
-21,"Wakame_93",2000,0.67
-179,"Wakame_94",2000,0.67
-210,"Wakame_92",2000,0.67
-20,"Wakame_91",2001,0.67
-21,"Wakame_93",2001,0.67
-179,"Wakame_94",2001,0.67
-210,"Wakame_92",2001,0.67
-20,"Wakame_91",2002,0.67
-21,"Wakame_93",2002,0.67
-179,"Wakame_94",2002,0.67
-210,"Wakame_92",2002,0.67
-20,"Wakame_91",2003,0.67
-21,"Wakame_93",2003,0.67
-179,"Wakame_94",2003,0.67
-209,"Wakame_95",2003,0.67
-210,"Wakame_92",2003,0.67
-20,"Wakame_91",2004,0.67
-21,"Wakame_93",2004,0.67
-179,"Wakame_94",2004,0.67
-209,"Wakame_95",2004,0.67
-210,"Wakame_92",2004,0.67
-20,"Wakame_91",2005,0.67
-21,"Wakame_93",2005,0.67
-179,"Wakame_94",2005,0.67
-209,"Wakame_95",2005,0.67
-210,"Wakame_92",2005,0.67
-20,"Wakame_91",2006,0.67
-21,"Wakame_93",2006,0.67
-179,"Wakame_94",2006,0.67
-209,"Wakame_95",2006,0.67
-210,"Wakame_92",2006,0.67
-20,"Wakame_91",2007,0.67
-21,"Wakame_93",2007,0.67
-179,"Wakame_94",2007,0.67
-209,"Wakame_95",2007,0.67
-210,"Wakame_92",2007,0.67
-20,"Wakame_91",2008,0.67
-21,"Wakame_93",2008,0.67
-179,"Wakame_94",2008,0.67
-209,"Wakame_95",2008,0.67
-210,"Wakame_92",2008,0.67
-20,"Wakame_91",2009,0.67
-21,"Wakame_93",2009,0.67
-179,"Wakame_94",2009,0.67
-209,"Wakame_95",2009,0.67
-210,"Wakame_92",2009,0.67
-20,"Wakame_91",2010,0.67
-21,"Wakame_93",2010,0.67
-179,"Wakame_94",2010,0.67
-209,"Wakame_95",2010,0.67
-210,"Wakame_92",2010,0.67
-20,"Wakame_91",2011,0.67
-21,"Wakame_93",2011,0.67
-179,"Wakame_94",2011,0.67
-209,"Wakame_95",2011,0.67
-210,"Wakame_92",2011,0.67
-20,"Wakame_91",2012,0.67
-21,"Wakame_93",2012,0.67
-179,"Wakame_94",2012,0.67
-209,"Wakame_95",2012,0.67
-210,"Wakame_92",2012,0.67
-20,"Wakame_91",2013,0.67
-21,"Wakame_93",2013,0.67
-179,"Wakame_94",2013,0.67
-209,"Wakame_95",2013,0.67
-210,"Wakame_92",2013,0.67
-20,"Wakame_91",2014,0.67
-21,"Wakame_93",2014,0.67
-179,"Wakame_94",2014,0.67
-209,"Wakame_95",2014,0.67
-210,"Wakame_92",2014,0.67
-20,"Wakame_91",2015,0.67
-21,"Wakame_93",2015,0.67
-179,"Wakame_94",2015,0.67
-209,"Wakame_95",2015,0.67
-210,"Wakame_92",2015,0.67
-20,"Wakame_91",2016,0.67
-21,"Wakame_93",2016,0.67
-179,"Wakame_94",2016,0.67
-209,"Wakame_95",2016,0.67
-210,"Wakame_92",2016,0.67
-20,"Wakame_91",2017,0.67
-21,"Wakame_93",2017,0.67
-179,"Wakame_94",2017,0.67
-209,"Wakame_95",2017,0.67
-210,"Wakame_92",2017,0.67
-20,"Wakame_91",2018,0.67
-21,"Wakame_93",2018,0.67
-179,"Wakame_94",2018,0.67
-209,"Wakame_95",2018,0.67
-210,"Wakame_92",2018,0.67
-20,"Wakame_91",2019,0.67
-21,"Wakame_93",2019,0.67
-179,"Wakame_94",2019,0.67
-209,"Wakame_95",2019,0.67
-210,"Wakame_92",2019,0.67
-20,"Wakame_91",2020,0.67
-21,"Wakame_93",2020,0.67
-179,"Wakame_94",2020,0.67
-209,"Wakame_95",2020,0.67
-210,"Wakame_92",2020,0.67
-20,"Wakame_91",2021,0.67
-21,"Wakame_93",2021,0.67
-179,"Wakame_94",2021,0.67
-209,"Wakame_95",2021,0.67
-210,"Wakame_92",2021,0.67
+152,"Caulerpa seaweeds_20",2021,0.67
+15,"Caulerpa seaweeds_19",2022,0.67
+152,"Caulerpa seaweeds_20",2022,0.67
+209,"Dark green nori_21",2003,0.67
+209,"Dark green nori_21",2004,0.67
+209,"Dark green nori_21",2005,0.67
+209,"Dark green nori_21",2006,0.67
+209,"Dark green nori_21",2007,0.67
+209,"Dark green nori_21",2008,0.67
+209,"Dark green nori_21",2009,0.67
+209,"Dark green nori_21",2010,0.67
+209,"Dark green nori_21",2011,0.67
+209,"Dark green nori_21",2012,0.67
+209,"Dark green nori_21",2013,0.67
+209,"Dark green nori_21",2014,0.67
+209,"Dark green nori_21",2015,0.67
+209,"Dark green nori_21",2016,0.67
+209,"Dark green nori_21",2017,0.67
+209,"Dark green nori_21",2018,0.67
+209,"Dark green nori_21",2019,0.67
+209,"Dark green nori_21",2020,0.67
+209,"Dark green nori_21",2021,0.67
+209,"Dark green nori_21",2022,0.67
+15,"Elkhorn sea moss_22",1965,0.67
+15,"Elkhorn sea moss_22",1966,0.67
+15,"Elkhorn sea moss_22",1967,0.67
+15,"Elkhorn sea moss_22",1968,0.67
+15,"Elkhorn sea moss_22",1969,0.67
+15,"Elkhorn sea moss_22",1970,0.67
+15,"Elkhorn sea moss_22",1971,0.67
+15,"Elkhorn sea moss_22",1972,0.67
+15,"Elkhorn sea moss_22",1973,0.67
+15,"Elkhorn sea moss_22",1974,0.67
+15,"Elkhorn sea moss_22",1975,0.67
+15,"Elkhorn sea moss_22",1976,0.67
+15,"Elkhorn sea moss_22",1977,0.67
+15,"Elkhorn sea moss_22",1978,0.67
+15,"Elkhorn sea moss_22",1979,0.67
+15,"Elkhorn sea moss_22",1980,0.67
+15,"Elkhorn sea moss_22",1981,0.67
+15,"Elkhorn sea moss_22",1982,0.67
+15,"Elkhorn sea moss_22",1983,0.67
+15,"Elkhorn sea moss_22",1984,0.67
+15,"Elkhorn sea moss_22",1985,0.67
+15,"Elkhorn sea moss_22",1986,0.67
+15,"Elkhorn sea moss_22",1987,0.67
+15,"Elkhorn sea moss_22",1988,0.67
+15,"Elkhorn sea moss_22",1989,0.67
+15,"Elkhorn sea moss_22",1990,0.67
+139,"Elkhorn sea moss_23",1990,0.67
+15,"Elkhorn sea moss_22",1991,0.67
+139,"Elkhorn sea moss_23",1991,0.67
+15,"Elkhorn sea moss_22",1992,0.67
+139,"Elkhorn sea moss_23",1992,0.67
+15,"Elkhorn sea moss_22",1993,0.67
+139,"Elkhorn sea moss_23",1993,0.67
+15,"Elkhorn sea moss_22",1994,0.67
+139,"Elkhorn sea moss_23",1994,0.67
+15,"Elkhorn sea moss_22",1995,0.67
+139,"Elkhorn sea moss_23",1995,0.67
+15,"Elkhorn sea moss_22",1996,0.67
+139,"Elkhorn sea moss_23",1996,0.67
+15,"Elkhorn sea moss_22",1997,0.67
+139,"Elkhorn sea moss_23",1997,0.67
+15,"Elkhorn sea moss_22",1998,0.67
+139,"Elkhorn sea moss_23",1998,0.67
+207,"Elkhorn sea moss_24",1998,0.67
+15,"Elkhorn sea moss_22",1999,0.67
+139,"Elkhorn sea moss_23",1999,0.67
+207,"Elkhorn sea moss_24",1999,0.67
+15,"Elkhorn sea moss_22",2000,0.67
+139,"Elkhorn sea moss_23",2000,0.67
+207,"Elkhorn sea moss_24",2000,0.67
+15,"Elkhorn sea moss_22",2001,0.67
+139,"Elkhorn sea moss_23",2001,0.67
+202,"Elkhorn sea moss_25",2001,0.67
+206,"Elkhorn sea moss_26",2001,0.67
+207,"Elkhorn sea moss_24",2001,0.67
+7,"Elkhorn sea moss_27",2002,0.67
+15,"Elkhorn sea moss_22",2002,0.67
+41,"Elkhorn sea moss_28",2002,0.67
+139,"Elkhorn sea moss_23",2002,0.67
+202,"Elkhorn sea moss_25",2002,0.67
+206,"Elkhorn sea moss_26",2002,0.67
+207,"Elkhorn sea moss_24",2002,0.67
+7,"Elkhorn sea moss_27",2003,0.67
+15,"Elkhorn sea moss_22",2003,0.67
+41,"Elkhorn sea moss_28",2003,0.67
+139,"Elkhorn sea moss_23",2003,0.67
+202,"Elkhorn sea moss_25",2003,0.67
+206,"Elkhorn sea moss_26",2003,0.67
+207,"Elkhorn sea moss_24",2003,0.67
+7,"Elkhorn sea moss_27",2004,0.67
+15,"Elkhorn sea moss_22",2004,0.67
+41,"Elkhorn sea moss_28",2004,0.67
+139,"Elkhorn sea moss_23",2004,0.67
+202,"Elkhorn sea moss_25",2004,0.67
+206,"Elkhorn sea moss_26",2004,0.67
+207,"Elkhorn sea moss_24",2004,0.67
+7,"Elkhorn sea moss_27",2005,0.67
+15,"Elkhorn sea moss_22",2005,0.67
+41,"Elkhorn sea moss_28",2005,0.67
+139,"Elkhorn sea moss_23",2005,0.67
+202,"Elkhorn sea moss_25",2005,0.67
+206,"Elkhorn sea moss_26",2005,0.67
+207,"Elkhorn sea moss_24",2005,0.67
+7,"Elkhorn sea moss_27",2006,0.67
+15,"Elkhorn sea moss_22",2006,0.67
+41,"Elkhorn sea moss_28",2006,0.67
+139,"Elkhorn sea moss_23",2006,0.67
+202,"Elkhorn sea moss_25",2006,0.67
+206,"Elkhorn sea moss_26",2006,0.67
+207,"Elkhorn sea moss_24",2006,0.67
+7,"Elkhorn sea moss_27",2007,0.67
+15,"Elkhorn sea moss_22",2007,0.67
+41,"Elkhorn sea moss_28",2007,0.67
+139,"Elkhorn sea moss_23",2007,0.67
+202,"Elkhorn sea moss_25",2007,0.67
+206,"Elkhorn sea moss_26",2007,0.67
+207,"Elkhorn sea moss_24",2007,0.67
+7,"Elkhorn sea moss_27",2008,0.67
+15,"Elkhorn sea moss_22",2008,0.67
+41,"Elkhorn sea moss_28",2008,0.67
+139,"Elkhorn sea moss_23",2008,0.67
+171,"Elkhorn sea moss_29",2008,0.67
+202,"Elkhorn sea moss_25",2008,0.67
+205,"Elkhorn sea moss_30",2008,0.67
+206,"Elkhorn sea moss_26",2008,0.67
+207,"Elkhorn sea moss_24",2008,0.67
+7,"Elkhorn sea moss_27",2009,0.67
+15,"Elkhorn sea moss_22",2009,0.67
+41,"Elkhorn sea moss_28",2009,0.67
+139,"Elkhorn sea moss_23",2009,0.67
+171,"Elkhorn sea moss_29",2009,0.67
+202,"Elkhorn sea moss_25",2009,0.67
+205,"Elkhorn sea moss_30",2009,0.67
+206,"Elkhorn sea moss_26",2009,0.67
+207,"Elkhorn sea moss_24",2009,0.67
+7,"Elkhorn sea moss_27",2010,0.67
+15,"Elkhorn sea moss_22",2010,0.67
+17,"Elkhorn sea moss_31",2010,0.67
+41,"Elkhorn sea moss_28",2010,0.67
+139,"Elkhorn sea moss_23",2010,0.67
+171,"Elkhorn sea moss_29",2010,0.67
+202,"Elkhorn sea moss_25",2010,0.67
+205,"Elkhorn sea moss_30",2010,0.67
+206,"Elkhorn sea moss_26",2010,0.67
+207,"Elkhorn sea moss_24",2010,0.67
+7,"Elkhorn sea moss_27",2011,0.67
+15,"Elkhorn sea moss_22",2011,0.67
+17,"Elkhorn sea moss_31",2011,0.67
+41,"Elkhorn sea moss_28",2011,0.67
+139,"Elkhorn sea moss_23",2011,0.67
+171,"Elkhorn sea moss_29",2011,0.67
+202,"Elkhorn sea moss_25",2011,0.67
+205,"Elkhorn sea moss_30",2011,0.67
+206,"Elkhorn sea moss_26",2011,0.67
+207,"Elkhorn sea moss_24",2011,0.67
+7,"Elkhorn sea moss_27",2012,0.67
+15,"Elkhorn sea moss_22",2012,0.67
+17,"Elkhorn sea moss_31",2012,0.67
+41,"Elkhorn sea moss_28",2012,0.67
+139,"Elkhorn sea moss_23",2012,0.67
+164,"Elkhorn sea moss_32",2012,0.67
+171,"Elkhorn sea moss_29",2012,0.67
+202,"Elkhorn sea moss_25",2012,0.67
+205,"Elkhorn sea moss_30",2012,0.67
+206,"Elkhorn sea moss_26",2012,0.67
+207,"Elkhorn sea moss_24",2012,0.67
+7,"Elkhorn sea moss_27",2013,0.67
+15,"Elkhorn sea moss_22",2013,0.67
+17,"Elkhorn sea moss_31",2013,0.67
+41,"Elkhorn sea moss_28",2013,0.67
+139,"Elkhorn sea moss_23",2013,0.67
+164,"Elkhorn sea moss_32",2013,0.67
+171,"Elkhorn sea moss_29",2013,0.67
+202,"Elkhorn sea moss_25",2013,0.67
+205,"Elkhorn sea moss_30",2013,0.67
+206,"Elkhorn sea moss_26",2013,0.67
+207,"Elkhorn sea moss_24",2013,0.67
+7,"Elkhorn sea moss_27",2014,0.67
+15,"Elkhorn sea moss_22",2014,0.67
+17,"Elkhorn sea moss_31",2014,0.67
+41,"Elkhorn sea moss_28",2014,0.67
+137,"Elkhorn sea moss_33",2014,0.67
+139,"Elkhorn sea moss_23",2014,0.67
+164,"Elkhorn sea moss_32",2014,0.67
+171,"Elkhorn sea moss_29",2014,0.67
+202,"Elkhorn sea moss_25",2014,0.67
+205,"Elkhorn sea moss_30",2014,0.67
+206,"Elkhorn sea moss_26",2014,0.67
+207,"Elkhorn sea moss_24",2014,0.67
+7,"Elkhorn sea moss_27",2015,0.67
+15,"Elkhorn sea moss_22",2015,0.67
+17,"Elkhorn sea moss_31",2015,0.67
+41,"Elkhorn sea moss_28",2015,0.67
+137,"Elkhorn sea moss_33",2015,0.67
+139,"Elkhorn sea moss_23",2015,0.67
+164,"Elkhorn sea moss_32",2015,0.67
+171,"Elkhorn sea moss_29",2015,0.67
+202,"Elkhorn sea moss_25",2015,0.67
+205,"Elkhorn sea moss_30",2015,0.67
+206,"Elkhorn sea moss_26",2015,0.67
+207,"Elkhorn sea moss_24",2015,0.67
+7,"Elkhorn sea moss_27",2016,0.67
+15,"Elkhorn sea moss_22",2016,0.67
+17,"Elkhorn sea moss_31",2016,0.67
+41,"Elkhorn sea moss_28",2016,0.67
+137,"Elkhorn sea moss_33",2016,0.67
+139,"Elkhorn sea moss_23",2016,0.67
+164,"Elkhorn sea moss_32",2016,0.67
+171,"Elkhorn sea moss_29",2016,0.67
+202,"Elkhorn sea moss_25",2016,0.67
+205,"Elkhorn sea moss_30",2016,0.67
+206,"Elkhorn sea moss_26",2016,0.67
+207,"Elkhorn sea moss_24",2016,0.67
+7,"Elkhorn sea moss_27",2017,0.67
+15,"Elkhorn sea moss_22",2017,0.67
+17,"Elkhorn sea moss_31",2017,0.67
+41,"Elkhorn sea moss_28",2017,0.67
+137,"Elkhorn sea moss_33",2017,0.67
+139,"Elkhorn sea moss_23",2017,0.67
+164,"Elkhorn sea moss_32",2017,0.67
+171,"Elkhorn sea moss_29",2017,0.67
+202,"Elkhorn sea moss_25",2017,0.67
+205,"Elkhorn sea moss_30",2017,0.67
+206,"Elkhorn sea moss_26",2017,0.67
+207,"Elkhorn sea moss_24",2017,0.67
+7,"Elkhorn sea moss_27",2018,0.67
+15,"Elkhorn sea moss_22",2018,0.67
+17,"Elkhorn sea moss_31",2018,0.67
+41,"Elkhorn sea moss_28",2018,0.67
+119,"Elkhorn sea moss_34",2018,0.67
+127,"Elkhorn sea moss_35",2018,0.67
+137,"Elkhorn sea moss_33",2018,0.67
+139,"Elkhorn sea moss_23",2018,0.67
+164,"Elkhorn sea moss_32",2018,0.67
+171,"Elkhorn sea moss_29",2018,0.67
+202,"Elkhorn sea moss_25",2018,0.67
+205,"Elkhorn sea moss_30",2018,0.67
+206,"Elkhorn sea moss_26",2018,0.67
+207,"Elkhorn sea moss_24",2018,0.67
+7,"Elkhorn sea moss_27",2019,0.67
+15,"Elkhorn sea moss_22",2019,0.67
+17,"Elkhorn sea moss_31",2019,0.67
+41,"Elkhorn sea moss_28",2019,0.67
+119,"Elkhorn sea moss_34",2019,0.67
+127,"Elkhorn sea moss_35",2019,0.67
+137,"Elkhorn sea moss_33",2019,0.67
+139,"Elkhorn sea moss_23",2019,0.67
+164,"Elkhorn sea moss_32",2019,0.67
+171,"Elkhorn sea moss_29",2019,0.67
+202,"Elkhorn sea moss_25",2019,0.67
+205,"Elkhorn sea moss_30",2019,0.67
+206,"Elkhorn sea moss_26",2019,0.67
+207,"Elkhorn sea moss_24",2019,0.67
+7,"Elkhorn sea moss_27",2020,0.67
+15,"Elkhorn sea moss_22",2020,0.67
+17,"Elkhorn sea moss_31",2020,0.67
+41,"Elkhorn sea moss_28",2020,0.67
+119,"Elkhorn sea moss_34",2020,0.67
+127,"Elkhorn sea moss_35",2020,0.67
+137,"Elkhorn sea moss_33",2020,0.67
+139,"Elkhorn sea moss_23",2020,0.67
+164,"Elkhorn sea moss_32",2020,0.67
+171,"Elkhorn sea moss_29",2020,0.67
+202,"Elkhorn sea moss_25",2020,0.67
+205,"Elkhorn sea moss_30",2020,0.67
+206,"Elkhorn sea moss_26",2020,0.67
+207,"Elkhorn sea moss_24",2020,0.67
+7,"Elkhorn sea moss_27",2021,0.67
+15,"Elkhorn sea moss_22",2021,0.67
+17,"Elkhorn sea moss_31",2021,0.67
+41,"Elkhorn sea moss_28",2021,0.67
+119,"Elkhorn sea moss_34",2021,0.67
+127,"Elkhorn sea moss_35",2021,0.67
+137,"Elkhorn sea moss_33",2021,0.67
+139,"Elkhorn sea moss_23",2021,0.67
+164,"Elkhorn sea moss_32",2021,0.67
+171,"Elkhorn sea moss_29",2021,0.67
+202,"Elkhorn sea moss_25",2021,0.67
+205,"Elkhorn sea moss_30",2021,0.67
+206,"Elkhorn sea moss_26",2021,0.67
+207,"Elkhorn sea moss_24",2021,0.67
+7,"Elkhorn sea moss_27",2022,0.67
+15,"Elkhorn sea moss_22",2022,0.67
+17,"Elkhorn sea moss_31",2022,0.67
+41,"Elkhorn sea moss_28",2022,0.67
+119,"Elkhorn sea moss_34",2022,0.67
+127,"Elkhorn sea moss_35",2022,0.67
+137,"Elkhorn sea moss_33",2022,0.67
+139,"Elkhorn sea moss_23",2022,0.67
+164,"Elkhorn sea moss_32",2022,0.67
+171,"Elkhorn sea moss_29",2022,0.67
+202,"Elkhorn sea moss_25",2022,0.67
+205,"Elkhorn sea moss_30",2022,0.67
+206,"Elkhorn sea moss_26",2022,0.67
+207,"Elkhorn sea moss_24",2022,0.67
+9,"Eucheuma seaweeds nei_36",1984,0.67
+9,"Eucheuma seaweeds nei_36",1985,0.67
+18,"Eucheuma seaweeds nei_37",1985,0.67
+9,"Eucheuma seaweeds nei_36",1986,0.67
+18,"Eucheuma seaweeds nei_37",1986,0.67
+212,"Eucheuma seaweeds nei_38",1986,0.67
+9,"Eucheuma seaweeds nei_36",1987,0.67
+18,"Eucheuma seaweeds nei_37",1987,0.67
+212,"Eucheuma seaweeds nei_38",1987,0.67
+9,"Eucheuma seaweeds nei_36",1988,0.67
+18,"Eucheuma seaweeds nei_37",1988,0.67
+212,"Eucheuma seaweeds nei_38",1988,0.67
+9,"Eucheuma seaweeds nei_36",1989,0.67
+18,"Eucheuma seaweeds nei_37",1989,0.67
+212,"Eucheuma seaweeds nei_38",1989,0.67
+9,"Eucheuma seaweeds nei_36",1990,0.67
+18,"Eucheuma seaweeds nei_37",1990,0.67
+212,"Eucheuma seaweeds nei_38",1990,0.67
+9,"Eucheuma seaweeds nei_36",1991,0.67
+18,"Eucheuma seaweeds nei_37",1991,0.67
+212,"Eucheuma seaweeds nei_38",1991,0.67
+9,"Eucheuma seaweeds nei_36",1992,0.67
+18,"Eucheuma seaweeds nei_37",1992,0.67
+42,"Eucheuma seaweeds nei_39",1992,0.67
+212,"Eucheuma seaweeds nei_38",1992,0.67
+9,"Eucheuma seaweeds nei_36",1993,0.67
+18,"Eucheuma seaweeds nei_37",1993,0.67
+42,"Eucheuma seaweeds nei_39",1993,0.67
+212,"Eucheuma seaweeds nei_38",1993,0.67
+9,"Eucheuma seaweeds nei_36",1994,0.67
+18,"Eucheuma seaweeds nei_37",1994,0.67
+42,"Eucheuma seaweeds nei_39",1994,0.67
+212,"Eucheuma seaweeds nei_38",1994,0.67
+9,"Eucheuma seaweeds nei_36",1995,0.67
+18,"Eucheuma seaweeds nei_37",1995,0.67
+42,"Eucheuma seaweeds nei_39",1995,0.67
+212,"Eucheuma seaweeds nei_38",1995,0.67
+9,"Eucheuma seaweeds nei_36",1996,0.67
+18,"Eucheuma seaweeds nei_37",1996,0.67
+42,"Eucheuma seaweeds nei_39",1996,0.67
+212,"Eucheuma seaweeds nei_38",1996,0.67
+9,"Eucheuma seaweeds nei_36",1997,0.67
+18,"Eucheuma seaweeds nei_37",1997,0.67
+42,"Eucheuma seaweeds nei_39",1997,0.67
+212,"Eucheuma seaweeds nei_38",1997,0.67
+9,"Eucheuma seaweeds nei_36",1998,0.67
+18,"Eucheuma seaweeds nei_37",1998,0.67
+42,"Eucheuma seaweeds nei_39",1998,0.67
+212,"Eucheuma seaweeds nei_38",1998,0.67
+9,"Eucheuma seaweeds nei_36",1999,0.67
+18,"Eucheuma seaweeds nei_37",1999,0.67
+42,"Eucheuma seaweeds nei_39",1999,0.67
+122,"Eucheuma seaweeds nei_40",1999,0.67
+212,"Eucheuma seaweeds nei_38",1999,0.67
+9,"Eucheuma seaweeds nei_36",2000,0.67
+18,"Eucheuma seaweeds nei_37",2000,0.67
+42,"Eucheuma seaweeds nei_39",2000,0.67
+122,"Eucheuma seaweeds nei_40",2000,0.67
+212,"Eucheuma seaweeds nei_38",2000,0.67
+216,"Eucheuma seaweeds nei_41",2000,0.67
+9,"Eucheuma seaweeds nei_36",2001,0.67
+18,"Eucheuma seaweeds nei_37",2001,0.67
+24,"Eucheuma seaweeds nei_42",2001,0.67
+42,"Eucheuma seaweeds nei_39",2001,0.67
+122,"Eucheuma seaweeds nei_40",2001,0.67
+212,"Eucheuma seaweeds nei_38",2001,0.67
+216,"Eucheuma seaweeds nei_41",2001,0.67
+9,"Eucheuma seaweeds nei_36",2002,0.67
+18,"Eucheuma seaweeds nei_37",2002,0.67
+24,"Eucheuma seaweeds nei_42",2002,0.67
+42,"Eucheuma seaweeds nei_39",2002,0.67
+122,"Eucheuma seaweeds nei_40",2002,0.67
+212,"Eucheuma seaweeds nei_38",2002,0.67
+216,"Eucheuma seaweeds nei_41",2002,0.67
+9,"Eucheuma seaweeds nei_36",2003,0.67
+18,"Eucheuma seaweeds nei_37",2003,0.67
+24,"Eucheuma seaweeds nei_42",2003,0.67
+42,"Eucheuma seaweeds nei_39",2003,0.67
+122,"Eucheuma seaweeds nei_40",2003,0.67
+209,"Eucheuma seaweeds nei_43",2003,0.67
+212,"Eucheuma seaweeds nei_38",2003,0.67
+216,"Eucheuma seaweeds nei_41",2003,0.67
+9,"Eucheuma seaweeds nei_36",2004,0.67
+18,"Eucheuma seaweeds nei_37",2004,0.67
+24,"Eucheuma seaweeds nei_42",2004,0.67
+42,"Eucheuma seaweeds nei_39",2004,0.67
+122,"Eucheuma seaweeds nei_40",2004,0.67
+209,"Eucheuma seaweeds nei_43",2004,0.67
+212,"Eucheuma seaweeds nei_38",2004,0.67
+216,"Eucheuma seaweeds nei_41",2004,0.67
+9,"Eucheuma seaweeds nei_36",2005,0.67
+18,"Eucheuma seaweeds nei_37",2005,0.67
+24,"Eucheuma seaweeds nei_42",2005,0.67
+42,"Eucheuma seaweeds nei_39",2005,0.67
+122,"Eucheuma seaweeds nei_40",2005,0.67
+209,"Eucheuma seaweeds nei_43",2005,0.67
+212,"Eucheuma seaweeds nei_38",2005,0.67
+216,"Eucheuma seaweeds nei_41",2005,0.67
+9,"Eucheuma seaweeds nei_36",2006,0.67
+18,"Eucheuma seaweeds nei_37",2006,0.67
+24,"Eucheuma seaweeds nei_42",2006,0.67
+42,"Eucheuma seaweeds nei_39",2006,0.67
+122,"Eucheuma seaweeds nei_40",2006,0.67
+209,"Eucheuma seaweeds nei_43",2006,0.67
+212,"Eucheuma seaweeds nei_38",2006,0.67
+216,"Eucheuma seaweeds nei_41",2006,0.67
+9,"Eucheuma seaweeds nei_36",2007,0.67
+18,"Eucheuma seaweeds nei_37",2007,0.67
+24,"Eucheuma seaweeds nei_42",2007,0.67
+42,"Eucheuma seaweeds nei_39",2007,0.67
+122,"Eucheuma seaweeds nei_40",2007,0.67
+209,"Eucheuma seaweeds nei_43",2007,0.67
+212,"Eucheuma seaweeds nei_38",2007,0.67
+216,"Eucheuma seaweeds nei_41",2007,0.67
+231,"Eucheuma seaweeds nei_44",2007,0.67
+9,"Eucheuma seaweeds nei_36",2008,0.67
+18,"Eucheuma seaweeds nei_37",2008,0.67
+24,"Eucheuma seaweeds nei_42",2008,0.67
+42,"Eucheuma seaweeds nei_39",2008,0.67
+122,"Eucheuma seaweeds nei_40",2008,0.67
+209,"Eucheuma seaweeds nei_43",2008,0.67
+212,"Eucheuma seaweeds nei_38",2008,0.67
+216,"Eucheuma seaweeds nei_41",2008,0.67
+231,"Eucheuma seaweeds nei_44",2008,0.67
+9,"Eucheuma seaweeds nei_36",2009,0.67
+18,"Eucheuma seaweeds nei_37",2009,0.67
+24,"Eucheuma seaweeds nei_42",2009,0.67
+42,"Eucheuma seaweeds nei_39",2009,0.67
+122,"Eucheuma seaweeds nei_40",2009,0.67
+209,"Eucheuma seaweeds nei_43",2009,0.67
+212,"Eucheuma seaweeds nei_38",2009,0.67
+216,"Eucheuma seaweeds nei_41",2009,0.67
+231,"Eucheuma seaweeds nei_44",2009,0.67
+9,"Eucheuma seaweeds nei_36",2010,0.67
+18,"Eucheuma seaweeds nei_37",2010,0.67
+24,"Eucheuma seaweeds nei_42",2010,0.67
+42,"Eucheuma seaweeds nei_39",2010,0.67
+122,"Eucheuma seaweeds nei_40",2010,0.67
+209,"Eucheuma seaweeds nei_43",2010,0.67
+212,"Eucheuma seaweeds nei_38",2010,0.67
+216,"Eucheuma seaweeds nei_41",2010,0.67
+231,"Eucheuma seaweeds nei_44",2010,0.67
+9,"Eucheuma seaweeds nei_36",2011,0.67
+18,"Eucheuma seaweeds nei_37",2011,0.67
+24,"Eucheuma seaweeds nei_42",2011,0.67
+42,"Eucheuma seaweeds nei_39",2011,0.67
+122,"Eucheuma seaweeds nei_40",2011,0.67
+209,"Eucheuma seaweeds nei_43",2011,0.67
+212,"Eucheuma seaweeds nei_38",2011,0.67
+216,"Eucheuma seaweeds nei_41",2011,0.67
+231,"Eucheuma seaweeds nei_44",2011,0.67
+9,"Eucheuma seaweeds nei_36",2012,0.67
+18,"Eucheuma seaweeds nei_37",2012,0.67
+24,"Eucheuma seaweeds nei_42",2012,0.67
+42,"Eucheuma seaweeds nei_39",2012,0.67
+122,"Eucheuma seaweeds nei_40",2012,0.67
+209,"Eucheuma seaweeds nei_43",2012,0.67
+212,"Eucheuma seaweeds nei_38",2012,0.67
+216,"Eucheuma seaweeds nei_41",2012,0.67
+231,"Eucheuma seaweeds nei_44",2012,0.67
+9,"Eucheuma seaweeds nei_36",2013,0.67
+18,"Eucheuma seaweeds nei_37",2013,0.67
+24,"Eucheuma seaweeds nei_42",2013,0.67
+42,"Eucheuma seaweeds nei_39",2013,0.67
+122,"Eucheuma seaweeds nei_40",2013,0.67
+127,"Eucheuma seaweeds nei_45",2013,0.67
+209,"Eucheuma seaweeds nei_43",2013,0.67
+212,"Eucheuma seaweeds nei_38",2013,0.67
+216,"Eucheuma seaweeds nei_41",2013,0.67
+231,"Eucheuma seaweeds nei_44",2013,0.67
+9,"Eucheuma seaweeds nei_36",2014,0.67
+18,"Eucheuma seaweeds nei_37",2014,0.67
+24,"Eucheuma seaweeds nei_42",2014,0.67
+42,"Eucheuma seaweeds nei_39",2014,0.67
+122,"Eucheuma seaweeds nei_40",2014,0.67
+127,"Eucheuma seaweeds nei_45",2014,0.67
+209,"Eucheuma seaweeds nei_43",2014,0.67
+212,"Eucheuma seaweeds nei_38",2014,0.67
+216,"Eucheuma seaweeds nei_41",2014,0.67
+231,"Eucheuma seaweeds nei_44",2014,0.67
+9,"Eucheuma seaweeds nei_36",2015,0.67
+18,"Eucheuma seaweeds nei_37",2015,0.67
+24,"Eucheuma seaweeds nei_42",2015,0.67
+42,"Eucheuma seaweeds nei_39",2015,0.67
+122,"Eucheuma seaweeds nei_40",2015,0.67
+125,"Eucheuma seaweeds nei_46",2015,0.67
+127,"Eucheuma seaweeds nei_45",2015,0.67
+209,"Eucheuma seaweeds nei_43",2015,0.67
+212,"Eucheuma seaweeds nei_38",2015,0.67
+216,"Eucheuma seaweeds nei_41",2015,0.67
+231,"Eucheuma seaweeds nei_44",2015,0.67
+9,"Eucheuma seaweeds nei_36",2016,0.67
+18,"Eucheuma seaweeds nei_37",2016,0.67
+24,"Eucheuma seaweeds nei_42",2016,0.67
+42,"Eucheuma seaweeds nei_39",2016,0.67
+122,"Eucheuma seaweeds nei_40",2016,0.67
+125,"Eucheuma seaweeds nei_46",2016,0.67
+127,"Eucheuma seaweeds nei_45",2016,0.67
+209,"Eucheuma seaweeds nei_43",2016,0.67
+212,"Eucheuma seaweeds nei_38",2016,0.67
+216,"Eucheuma seaweeds nei_41",2016,0.67
+231,"Eucheuma seaweeds nei_44",2016,0.67
+9,"Eucheuma seaweeds nei_36",2017,0.67
+18,"Eucheuma seaweeds nei_37",2017,0.67
+24,"Eucheuma seaweeds nei_42",2017,0.67
+42,"Eucheuma seaweeds nei_39",2017,0.67
+122,"Eucheuma seaweeds nei_40",2017,0.67
+125,"Eucheuma seaweeds nei_46",2017,0.67
+127,"Eucheuma seaweeds nei_45",2017,0.67
+209,"Eucheuma seaweeds nei_43",2017,0.67
+212,"Eucheuma seaweeds nei_38",2017,0.67
+216,"Eucheuma seaweeds nei_41",2017,0.67
+231,"Eucheuma seaweeds nei_44",2017,0.67
+9,"Eucheuma seaweeds nei_36",2018,0.67
+18,"Eucheuma seaweeds nei_37",2018,0.67
+24,"Eucheuma seaweeds nei_42",2018,0.67
+42,"Eucheuma seaweeds nei_39",2018,0.67
+122,"Eucheuma seaweeds nei_40",2018,0.67
+125,"Eucheuma seaweeds nei_46",2018,0.67
+127,"Eucheuma seaweeds nei_45",2018,0.67
+209,"Eucheuma seaweeds nei_43",2018,0.67
+212,"Eucheuma seaweeds nei_38",2018,0.67
+216,"Eucheuma seaweeds nei_41",2018,0.67
+231,"Eucheuma seaweeds nei_44",2018,0.67
+9,"Eucheuma seaweeds nei_36",2019,0.67
+18,"Eucheuma seaweeds nei_37",2019,0.67
+24,"Eucheuma seaweeds nei_42",2019,0.67
+42,"Eucheuma seaweeds nei_39",2019,0.67
+122,"Eucheuma seaweeds nei_40",2019,0.67
+125,"Eucheuma seaweeds nei_46",2019,0.67
+127,"Eucheuma seaweeds nei_45",2019,0.67
+209,"Eucheuma seaweeds nei_43",2019,0.67
+212,"Eucheuma seaweeds nei_38",2019,0.67
+216,"Eucheuma seaweeds nei_41",2019,0.67
+231,"Eucheuma seaweeds nei_44",2019,0.67
+9,"Eucheuma seaweeds nei_36",2020,0.67
+18,"Eucheuma seaweeds nei_37",2020,0.67
+24,"Eucheuma seaweeds nei_42",2020,0.67
+42,"Eucheuma seaweeds nei_39",2020,0.67
+122,"Eucheuma seaweeds nei_40",2020,0.67
+125,"Eucheuma seaweeds nei_46",2020,0.67
+127,"Eucheuma seaweeds nei_45",2020,0.67
+209,"Eucheuma seaweeds nei_43",2020,0.67
+212,"Eucheuma seaweeds nei_38",2020,0.67
+216,"Eucheuma seaweeds nei_41",2020,0.67
+231,"Eucheuma seaweeds nei_44",2020,0.67
+9,"Eucheuma seaweeds nei_36",2021,0.67
+18,"Eucheuma seaweeds nei_37",2021,0.67
+24,"Eucheuma seaweeds nei_42",2021,0.67
+42,"Eucheuma seaweeds nei_39",2021,0.67
+122,"Eucheuma seaweeds nei_40",2021,0.67
+125,"Eucheuma seaweeds nei_46",2021,0.67
+127,"Eucheuma seaweeds nei_45",2021,0.67
+209,"Eucheuma seaweeds nei_43",2021,0.67
+212,"Eucheuma seaweeds nei_38",2021,0.67
+216,"Eucheuma seaweeds nei_41",2021,0.67
+231,"Eucheuma seaweeds nei_44",2021,0.67
+9,"Eucheuma seaweeds nei_36",2022,0.67
+18,"Eucheuma seaweeds nei_37",2022,0.67
+24,"Eucheuma seaweeds nei_42",2022,0.67
+42,"Eucheuma seaweeds nei_39",2022,0.67
+122,"Eucheuma seaweeds nei_40",2022,0.67
+125,"Eucheuma seaweeds nei_46",2022,0.67
+127,"Eucheuma seaweeds nei_45",2022,0.67
+209,"Eucheuma seaweeds nei_43",2022,0.67
+212,"Eucheuma seaweeds nei_38",2022,0.67
+216,"Eucheuma seaweeds nei_41",2022,0.67
+231,"Eucheuma seaweeds nei_44",2022,0.67
+20,"Fragile codium_47",2005,0.67
+20,"Fragile codium_47",2006,0.67
+20,"Fragile codium_47",2007,0.67
+20,"Fragile codium_47",2008,0.67
+20,"Fragile codium_47",2009,0.67
+20,"Fragile codium_47",2010,0.67
+20,"Fragile codium_47",2011,0.67
+20,"Fragile codium_47",2012,0.67
+20,"Fragile codium_47",2013,0.67
+20,"Fragile codium_47",2014,0.67
+20,"Fragile codium_47",2015,0.67
+20,"Fragile codium_47",2016,0.67
+20,"Fragile codium_47",2017,0.67
+20,"Fragile codium_47",2018,0.67
+20,"Fragile codium_47",2019,0.67
+20,"Fragile codium_47",2020,0.67
+20,"Fragile codium_47",2021,0.67
+20,"Fragile codium_47",2022,0.67
+21,"Gelidium seaweeds_48",1989,0.67
+21,"Gelidium seaweeds_48",1990,0.67
+21,"Gelidium seaweeds_48",1991,0.67
+21,"Gelidium seaweeds_48",1992,0.67
+21,"Gelidium seaweeds_48",1993,0.67
+21,"Gelidium seaweeds_48",1994,0.67
+21,"Gelidium seaweeds_48",1995,0.67
+21,"Gelidium seaweeds_48",1996,0.67
+21,"Gelidium seaweeds_48",1997,0.67
+21,"Gelidium seaweeds_48",1998,0.67
+21,"Gelidium seaweeds_48",1999,0.67
+21,"Gelidium seaweeds_48",2000,0.67
+21,"Gelidium seaweeds_48",2001,0.67
+21,"Gelidium seaweeds_48",2002,0.67
+21,"Gelidium seaweeds_48",2003,0.67
+21,"Gelidium seaweeds_48",2004,0.67
+21,"Gelidium seaweeds_48",2005,0.67
+21,"Gelidium seaweeds_48",2006,0.67
+21,"Gelidium seaweeds_48",2007,0.67
+21,"Gelidium seaweeds_48",2008,0.67
+21,"Gelidium seaweeds_48",2009,0.67
+21,"Gelidium seaweeds_48",2010,0.67
+21,"Gelidium seaweeds_48",2011,0.67
+21,"Gelidium seaweeds_48",2012,0.67
+21,"Gelidium seaweeds_48",2013,0.67
+21,"Gelidium seaweeds_48",2014,0.67
+21,"Gelidium seaweeds_48",2015,0.67
+21,"Gelidium seaweeds_48",2016,0.67
+21,"Gelidium seaweeds_48",2017,0.67
+21,"Gelidium seaweeds_48",2018,0.67
+21,"Gelidium seaweeds_48",2019,0.67
+21,"Gelidium seaweeds_48",2020,0.67
+21,"Gelidium seaweeds_48",2021,0.67
+21,"Gelidium seaweeds_48",2022,0.67
+224,"Giant kelp_49",2008,0.67
+224,"Giant kelp_49",2009,0.67
+224,"Giant kelp_49",2010,0.67
+224,"Giant kelp_49",2011,0.67
+138,"Giant kelp_50",2012,0.67
+224,"Giant kelp_49",2012,0.67
+138,"Giant kelp_50",2013,0.67
+224,"Giant kelp_49",2013,0.67
+138,"Giant kelp_50",2014,0.67
+224,"Giant kelp_49",2014,0.67
+138,"Giant kelp_50",2015,0.67
+224,"Giant kelp_49",2015,0.67
+138,"Giant kelp_50",2016,0.67
+224,"Giant kelp_49",2016,0.67
+138,"Giant kelp_50",2017,0.67
+224,"Giant kelp_49",2017,0.67
+138,"Giant kelp_50",2018,0.67
+224,"Giant kelp_49",2018,0.67
+138,"Giant kelp_50",2019,0.67
+224,"Giant kelp_49",2019,0.67
+138,"Giant kelp_50",2020,0.67
+224,"Giant kelp_49",2020,0.67
+138,"Giant kelp_50",2021,0.67
+224,"Giant kelp_49",2021,0.67
+138,"Giant kelp_50",2022,0.67
+224,"Giant kelp_49",2022,0.67
+207,"Gracilaria seaweeds_51",1950,0.67
+207,"Gracilaria seaweeds_51",1951,0.67
+207,"Gracilaria seaweeds_51",1952,0.67
+207,"Gracilaria seaweeds_51",1953,0.67
+207,"Gracilaria seaweeds_51",1954,0.67
+207,"Gracilaria seaweeds_51",1955,0.67
+207,"Gracilaria seaweeds_51",1956,0.67
+207,"Gracilaria seaweeds_51",1957,0.67
+207,"Gracilaria seaweeds_51",1958,0.67
+207,"Gracilaria seaweeds_51",1959,0.67
+207,"Gracilaria seaweeds_51",1960,0.67
+207,"Gracilaria seaweeds_51",1961,0.67
+207,"Gracilaria seaweeds_51",1962,0.67
+207,"Gracilaria seaweeds_51",1963,0.67
+207,"Gracilaria seaweeds_51",1964,0.67
+21,"Gracilaria seaweeds_52",1965,0.67
+207,"Gracilaria seaweeds_51",1965,0.67
+21,"Gracilaria seaweeds_52",1966,0.67
+207,"Gracilaria seaweeds_51",1966,0.67
+21,"Gracilaria seaweeds_52",1967,0.67
+207,"Gracilaria seaweeds_51",1967,0.67
+21,"Gracilaria seaweeds_52",1968,0.67
+207,"Gracilaria seaweeds_51",1968,0.67
+21,"Gracilaria seaweeds_52",1969,0.67
+207,"Gracilaria seaweeds_51",1969,0.67
+21,"Gracilaria seaweeds_52",1970,0.67
+207,"Gracilaria seaweeds_51",1970,0.67
+224,"Gracilaria seaweeds_53",1970,0.67
+21,"Gracilaria seaweeds_52",1971,0.67
+207,"Gracilaria seaweeds_51",1971,0.67
+224,"Gracilaria seaweeds_53",1971,0.67
+21,"Gracilaria seaweeds_52",1972,0.67
+207,"Gracilaria seaweeds_51",1972,0.67
+224,"Gracilaria seaweeds_53",1972,0.67
+21,"Gracilaria seaweeds_52",1973,0.67
+207,"Gracilaria seaweeds_51",1973,0.67
+224,"Gracilaria seaweeds_53",1973,0.67
+21,"Gracilaria seaweeds_52",1974,0.67
+207,"Gracilaria seaweeds_51",1974,0.67
+224,"Gracilaria seaweeds_53",1974,0.67
+21,"Gracilaria seaweeds_52",1975,0.67
+207,"Gracilaria seaweeds_51",1975,0.67
+224,"Gracilaria seaweeds_53",1975,0.67
+21,"Gracilaria seaweeds_52",1976,0.67
+207,"Gracilaria seaweeds_51",1976,0.67
+224,"Gracilaria seaweeds_53",1976,0.67
+21,"Gracilaria seaweeds_52",1977,0.67
+207,"Gracilaria seaweeds_51",1977,0.67
+224,"Gracilaria seaweeds_53",1977,0.67
+21,"Gracilaria seaweeds_52",1978,0.67
+207,"Gracilaria seaweeds_51",1978,0.67
+224,"Gracilaria seaweeds_53",1978,0.67
+21,"Gracilaria seaweeds_52",1979,0.67
+207,"Gracilaria seaweeds_51",1979,0.67
+224,"Gracilaria seaweeds_53",1979,0.67
+21,"Gracilaria seaweeds_52",1980,0.67
+207,"Gracilaria seaweeds_51",1980,0.67
+224,"Gracilaria seaweeds_53",1980,0.67
+21,"Gracilaria seaweeds_52",1981,0.67
+207,"Gracilaria seaweeds_51",1981,0.67
+224,"Gracilaria seaweeds_53",1981,0.67
+21,"Gracilaria seaweeds_52",1982,0.67
+207,"Gracilaria seaweeds_51",1982,0.67
+224,"Gracilaria seaweeds_53",1982,0.67
+21,"Gracilaria seaweeds_52",1983,0.67
+207,"Gracilaria seaweeds_51",1983,0.67
+224,"Gracilaria seaweeds_53",1983,0.67
+21,"Gracilaria seaweeds_52",1984,0.67
+207,"Gracilaria seaweeds_51",1984,0.67
+224,"Gracilaria seaweeds_53",1984,0.67
+21,"Gracilaria seaweeds_52",1985,0.67
+122,"Gracilaria seaweeds_54",1985,0.67
+207,"Gracilaria seaweeds_51",1985,0.67
+224,"Gracilaria seaweeds_53",1985,0.67
+21,"Gracilaria seaweeds_52",1986,0.67
+122,"Gracilaria seaweeds_54",1986,0.67
+207,"Gracilaria seaweeds_51",1986,0.67
+224,"Gracilaria seaweeds_53",1986,0.67
+21,"Gracilaria seaweeds_52",1987,0.67
+122,"Gracilaria seaweeds_54",1987,0.67
+207,"Gracilaria seaweeds_51",1987,0.67
+224,"Gracilaria seaweeds_53",1987,0.67
+21,"Gracilaria seaweeds_52",1988,0.67
+122,"Gracilaria seaweeds_54",1988,0.67
+207,"Gracilaria seaweeds_51",1988,0.67
+224,"Gracilaria seaweeds_53",1988,0.67
+21,"Gracilaria seaweeds_52",1989,0.67
+122,"Gracilaria seaweeds_54",1989,0.67
+207,"Gracilaria seaweeds_51",1989,0.67
+224,"Gracilaria seaweeds_53",1989,0.67
+21,"Gracilaria seaweeds_52",1990,0.67
+122,"Gracilaria seaweeds_54",1990,0.67
+207,"Gracilaria seaweeds_51",1990,0.67
+224,"Gracilaria seaweeds_53",1990,0.67
+21,"Gracilaria seaweeds_52",1991,0.67
+122,"Gracilaria seaweeds_54",1991,0.67
+207,"Gracilaria seaweeds_51",1991,0.67
+224,"Gracilaria seaweeds_53",1991,0.67
+21,"Gracilaria seaweeds_52",1992,0.67
+122,"Gracilaria seaweeds_54",1992,0.67
+207,"Gracilaria seaweeds_51",1992,0.67
+224,"Gracilaria seaweeds_53",1992,0.67
+21,"Gracilaria seaweeds_52",1993,0.67
+101,"Gracilaria seaweeds_55",1993,0.67
+122,"Gracilaria seaweeds_54",1993,0.67
+207,"Gracilaria seaweeds_51",1993,0.67
+224,"Gracilaria seaweeds_53",1993,0.67
+21,"Gracilaria seaweeds_52",1994,0.67
+101,"Gracilaria seaweeds_55",1994,0.67
+122,"Gracilaria seaweeds_54",1994,0.67
+207,"Gracilaria seaweeds_51",1994,0.67
+224,"Gracilaria seaweeds_53",1994,0.67
+21,"Gracilaria seaweeds_52",1995,0.67
+101,"Gracilaria seaweeds_55",1995,0.67
+102,"Gracilaria seaweeds_56",1995,0.67
+122,"Gracilaria seaweeds_54",1995,0.67
+138,"Gracilaria seaweeds_57",1995,0.67
+207,"Gracilaria seaweeds_51",1995,0.67
+224,"Gracilaria seaweeds_53",1995,0.67
+21,"Gracilaria seaweeds_52",1996,0.67
+101,"Gracilaria seaweeds_55",1996,0.67
+102,"Gracilaria seaweeds_56",1996,0.67
+122,"Gracilaria seaweeds_54",1996,0.67
+138,"Gracilaria seaweeds_57",1996,0.67
+207,"Gracilaria seaweeds_51",1996,0.67
+224,"Gracilaria seaweeds_53",1996,0.67
+21,"Gracilaria seaweeds_52",1997,0.67
+101,"Gracilaria seaweeds_55",1997,0.67
+102,"Gracilaria seaweeds_56",1997,0.67
+122,"Gracilaria seaweeds_54",1997,0.67
+138,"Gracilaria seaweeds_57",1997,0.67
+207,"Gracilaria seaweeds_51",1997,0.67
+224,"Gracilaria seaweeds_53",1997,0.67
+21,"Gracilaria seaweeds_52",1998,0.67
+101,"Gracilaria seaweeds_55",1998,0.67
+102,"Gracilaria seaweeds_56",1998,0.67
+122,"Gracilaria seaweeds_54",1998,0.67
+138,"Gracilaria seaweeds_57",1998,0.67
+207,"Gracilaria seaweeds_51",1998,0.67
+224,"Gracilaria seaweeds_53",1998,0.67
+21,"Gracilaria seaweeds_52",1999,0.67
+101,"Gracilaria seaweeds_55",1999,0.67
+102,"Gracilaria seaweeds_56",1999,0.67
+122,"Gracilaria seaweeds_54",1999,0.67
+138,"Gracilaria seaweeds_57",1999,0.67
+207,"Gracilaria seaweeds_51",1999,0.67
+224,"Gracilaria seaweeds_53",1999,0.67
+21,"Gracilaria seaweeds_52",2000,0.67
+101,"Gracilaria seaweeds_55",2000,0.67
+102,"Gracilaria seaweeds_56",2000,0.67
+122,"Gracilaria seaweeds_54",2000,0.67
+138,"Gracilaria seaweeds_57",2000,0.67
+207,"Gracilaria seaweeds_51",2000,0.67
+224,"Gracilaria seaweeds_53",2000,0.67
+21,"Gracilaria seaweeds_52",2001,0.67
+101,"Gracilaria seaweeds_55",2001,0.67
+102,"Gracilaria seaweeds_56",2001,0.67
+122,"Gracilaria seaweeds_54",2001,0.67
+138,"Gracilaria seaweeds_57",2001,0.67
+207,"Gracilaria seaweeds_51",2001,0.67
+224,"Gracilaria seaweeds_53",2001,0.67
+15,"Gracilaria seaweeds_58",2002,0.67
+21,"Gracilaria seaweeds_52",2002,0.67
+101,"Gracilaria seaweeds_55",2002,0.67
+102,"Gracilaria seaweeds_56",2002,0.67
+122,"Gracilaria seaweeds_54",2002,0.67
+138,"Gracilaria seaweeds_57",2002,0.67
+207,"Gracilaria seaweeds_51",2002,0.67
+224,"Gracilaria seaweeds_53",2002,0.67
+15,"Gracilaria seaweeds_58",2003,0.67
+21,"Gracilaria seaweeds_52",2003,0.67
+101,"Gracilaria seaweeds_55",2003,0.67
+102,"Gracilaria seaweeds_56",2003,0.67
+122,"Gracilaria seaweeds_54",2003,0.67
+138,"Gracilaria seaweeds_57",2003,0.67
+207,"Gracilaria seaweeds_51",2003,0.67
+209,"Gracilaria seaweeds_59",2003,0.67
+224,"Gracilaria seaweeds_53",2003,0.67
+15,"Gracilaria seaweeds_58",2004,0.67
+21,"Gracilaria seaweeds_52",2004,0.67
+101,"Gracilaria seaweeds_55",2004,0.67
+102,"Gracilaria seaweeds_56",2004,0.67
+122,"Gracilaria seaweeds_54",2004,0.67
+138,"Gracilaria seaweeds_57",2004,0.67
+207,"Gracilaria seaweeds_51",2004,0.67
+209,"Gracilaria seaweeds_59",2004,0.67
+224,"Gracilaria seaweeds_53",2004,0.67
+15,"Gracilaria seaweeds_58",2005,0.67
+21,"Gracilaria seaweeds_52",2005,0.67
+101,"Gracilaria seaweeds_55",2005,0.67
+102,"Gracilaria seaweeds_56",2005,0.67
+122,"Gracilaria seaweeds_54",2005,0.67
+138,"Gracilaria seaweeds_57",2005,0.67
+207,"Gracilaria seaweeds_51",2005,0.67
+209,"Gracilaria seaweeds_59",2005,0.67
+224,"Gracilaria seaweeds_53",2005,0.67
+15,"Gracilaria seaweeds_58",2006,0.67
+21,"Gracilaria seaweeds_52",2006,0.67
+101,"Gracilaria seaweeds_55",2006,0.67
+102,"Gracilaria seaweeds_56",2006,0.67
+122,"Gracilaria seaweeds_54",2006,0.67
+138,"Gracilaria seaweeds_57",2006,0.67
+207,"Gracilaria seaweeds_51",2006,0.67
+209,"Gracilaria seaweeds_59",2006,0.67
+224,"Gracilaria seaweeds_53",2006,0.67
+15,"Gracilaria seaweeds_58",2007,0.67
+21,"Gracilaria seaweeds_52",2007,0.67
+101,"Gracilaria seaweeds_55",2007,0.67
+102,"Gracilaria seaweeds_56",2007,0.67
+122,"Gracilaria seaweeds_54",2007,0.67
+138,"Gracilaria seaweeds_57",2007,0.67
+207,"Gracilaria seaweeds_51",2007,0.67
+209,"Gracilaria seaweeds_59",2007,0.67
+224,"Gracilaria seaweeds_53",2007,0.67
+15,"Gracilaria seaweeds_58",2008,0.67
+21,"Gracilaria seaweeds_52",2008,0.67
+101,"Gracilaria seaweeds_55",2008,0.67
+102,"Gracilaria seaweeds_56",2008,0.67
+122,"Gracilaria seaweeds_54",2008,0.67
+138,"Gracilaria seaweeds_57",2008,0.67
+171,"Gracilaria seaweeds_60",2008,0.67
+207,"Gracilaria seaweeds_51",2008,0.67
+209,"Gracilaria seaweeds_59",2008,0.67
+224,"Gracilaria seaweeds_53",2008,0.67
+15,"Gracilaria seaweeds_58",2009,0.67
+21,"Gracilaria seaweeds_52",2009,0.67
+101,"Gracilaria seaweeds_55",2009,0.67
+102,"Gracilaria seaweeds_56",2009,0.67
+122,"Gracilaria seaweeds_54",2009,0.67
+138,"Gracilaria seaweeds_57",2009,0.67
+171,"Gracilaria seaweeds_60",2009,0.67
+207,"Gracilaria seaweeds_51",2009,0.67
+209,"Gracilaria seaweeds_59",2009,0.67
+224,"Gracilaria seaweeds_53",2009,0.67
+15,"Gracilaria seaweeds_58",2010,0.67
+21,"Gracilaria seaweeds_52",2010,0.67
+101,"Gracilaria seaweeds_55",2010,0.67
+102,"Gracilaria seaweeds_56",2010,0.67
+122,"Gracilaria seaweeds_54",2010,0.67
+138,"Gracilaria seaweeds_57",2010,0.67
+171,"Gracilaria seaweeds_60",2010,0.67
+207,"Gracilaria seaweeds_51",2010,0.67
+209,"Gracilaria seaweeds_59",2010,0.67
+224,"Gracilaria seaweeds_53",2010,0.67
+15,"Gracilaria seaweeds_58",2011,0.67
+21,"Gracilaria seaweeds_52",2011,0.67
+101,"Gracilaria seaweeds_55",2011,0.67
+102,"Gracilaria seaweeds_56",2011,0.67
+122,"Gracilaria seaweeds_54",2011,0.67
+138,"Gracilaria seaweeds_57",2011,0.67
+171,"Gracilaria seaweeds_60",2011,0.67
+207,"Gracilaria seaweeds_51",2011,0.67
+209,"Gracilaria seaweeds_59",2011,0.67
+224,"Gracilaria seaweeds_53",2011,0.67
+15,"Gracilaria seaweeds_58",2012,0.67
+21,"Gracilaria seaweeds_52",2012,0.67
+101,"Gracilaria seaweeds_55",2012,0.67
+102,"Gracilaria seaweeds_56",2012,0.67
+122,"Gracilaria seaweeds_54",2012,0.67
+138,"Gracilaria seaweeds_57",2012,0.67
+171,"Gracilaria seaweeds_60",2012,0.67
+207,"Gracilaria seaweeds_51",2012,0.67
+209,"Gracilaria seaweeds_59",2012,0.67
+224,"Gracilaria seaweeds_53",2012,0.67
+15,"Gracilaria seaweeds_58",2013,0.67
+21,"Gracilaria seaweeds_52",2013,0.67
+101,"Gracilaria seaweeds_55",2013,0.67
+102,"Gracilaria seaweeds_56",2013,0.67
+122,"Gracilaria seaweeds_54",2013,0.67
+138,"Gracilaria seaweeds_57",2013,0.67
+171,"Gracilaria seaweeds_60",2013,0.67
+207,"Gracilaria seaweeds_51",2013,0.67
+209,"Gracilaria seaweeds_59",2013,0.67
+224,"Gracilaria seaweeds_53",2013,0.67
+15,"Gracilaria seaweeds_58",2014,0.67
+21,"Gracilaria seaweeds_52",2014,0.67
+101,"Gracilaria seaweeds_55",2014,0.67
+102,"Gracilaria seaweeds_56",2014,0.67
+122,"Gracilaria seaweeds_54",2014,0.67
+138,"Gracilaria seaweeds_57",2014,0.67
+171,"Gracilaria seaweeds_60",2014,0.67
+207,"Gracilaria seaweeds_51",2014,0.67
+209,"Gracilaria seaweeds_59",2014,0.67
+224,"Gracilaria seaweeds_53",2014,0.67
+15,"Gracilaria seaweeds_58",2015,0.67
+21,"Gracilaria seaweeds_52",2015,0.67
+101,"Gracilaria seaweeds_55",2015,0.67
+102,"Gracilaria seaweeds_56",2015,0.67
+122,"Gracilaria seaweeds_54",2015,0.67
+138,"Gracilaria seaweeds_57",2015,0.67
+171,"Gracilaria seaweeds_60",2015,0.67
+207,"Gracilaria seaweeds_51",2015,0.67
+209,"Gracilaria seaweeds_59",2015,0.67
+224,"Gracilaria seaweeds_53",2015,0.67
+15,"Gracilaria seaweeds_58",2016,0.67
+21,"Gracilaria seaweeds_52",2016,0.67
+101,"Gracilaria seaweeds_55",2016,0.67
+102,"Gracilaria seaweeds_56",2016,0.67
+122,"Gracilaria seaweeds_54",2016,0.67
+138,"Gracilaria seaweeds_57",2016,0.67
+171,"Gracilaria seaweeds_60",2016,0.67
+182,"Gracilaria seaweeds_61",2016,0.67
+207,"Gracilaria seaweeds_51",2016,0.67
+209,"Gracilaria seaweeds_59",2016,0.67
+224,"Gracilaria seaweeds_53",2016,0.67
+15,"Gracilaria seaweeds_58",2017,0.67
+20,"Gracilaria seaweeds_62",2017,0.67
+21,"Gracilaria seaweeds_52",2017,0.67
+101,"Gracilaria seaweeds_55",2017,0.67
+102,"Gracilaria seaweeds_56",2017,0.67
+122,"Gracilaria seaweeds_54",2017,0.67
+138,"Gracilaria seaweeds_57",2017,0.67
+171,"Gracilaria seaweeds_60",2017,0.67
+182,"Gracilaria seaweeds_61",2017,0.67
+207,"Gracilaria seaweeds_51",2017,0.67
+209,"Gracilaria seaweeds_59",2017,0.67
+224,"Gracilaria seaweeds_53",2017,0.67
+15,"Gracilaria seaweeds_58",2018,0.67
+20,"Gracilaria seaweeds_62",2018,0.67
+21,"Gracilaria seaweeds_52",2018,0.67
+101,"Gracilaria seaweeds_55",2018,0.67
+102,"Gracilaria seaweeds_56",2018,0.67
+122,"Gracilaria seaweeds_54",2018,0.67
+138,"Gracilaria seaweeds_57",2018,0.67
+171,"Gracilaria seaweeds_60",2018,0.67
+182,"Gracilaria seaweeds_61",2018,0.67
+207,"Gracilaria seaweeds_51",2018,0.67
+209,"Gracilaria seaweeds_59",2018,0.67
+224,"Gracilaria seaweeds_53",2018,0.67
+15,"Gracilaria seaweeds_58",2019,0.67
+20,"Gracilaria seaweeds_62",2019,0.67
+21,"Gracilaria seaweeds_52",2019,0.67
+101,"Gracilaria seaweeds_55",2019,0.67
+102,"Gracilaria seaweeds_56",2019,0.67
+122,"Gracilaria seaweeds_54",2019,0.67
+138,"Gracilaria seaweeds_57",2019,0.67
+171,"Gracilaria seaweeds_60",2019,0.67
+182,"Gracilaria seaweeds_61",2019,0.67
+207,"Gracilaria seaweeds_51",2019,0.67
+209,"Gracilaria seaweeds_59",2019,0.67
+224,"Gracilaria seaweeds_53",2019,0.67
+15,"Gracilaria seaweeds_58",2020,0.67
+20,"Gracilaria seaweeds_62",2020,0.67
+21,"Gracilaria seaweeds_52",2020,0.67
+101,"Gracilaria seaweeds_55",2020,0.67
+102,"Gracilaria seaweeds_56",2020,0.67
+122,"Gracilaria seaweeds_54",2020,0.67
+138,"Gracilaria seaweeds_57",2020,0.67
+171,"Gracilaria seaweeds_60",2020,0.67
+182,"Gracilaria seaweeds_61",2020,0.67
+207,"Gracilaria seaweeds_51",2020,0.67
+209,"Gracilaria seaweeds_59",2020,0.67
+224,"Gracilaria seaweeds_53",2020,0.67
+15,"Gracilaria seaweeds_58",2021,0.67
+20,"Gracilaria seaweeds_62",2021,0.67
+21,"Gracilaria seaweeds_52",2021,0.67
+101,"Gracilaria seaweeds_55",2021,0.67
+102,"Gracilaria seaweeds_56",2021,0.67
+122,"Gracilaria seaweeds_54",2021,0.67
+138,"Gracilaria seaweeds_57",2021,0.67
+171,"Gracilaria seaweeds_60",2021,0.67
+182,"Gracilaria seaweeds_61",2021,0.67
+207,"Gracilaria seaweeds_51",2021,0.67
+209,"Gracilaria seaweeds_59",2021,0.67
+224,"Gracilaria seaweeds_53",2021,0.67
+15,"Gracilaria seaweeds_58",2022,0.67
+20,"Gracilaria seaweeds_62",2022,0.67
+21,"Gracilaria seaweeds_52",2022,0.67
+101,"Gracilaria seaweeds_55",2022,0.67
+102,"Gracilaria seaweeds_56",2022,0.67
+122,"Gracilaria seaweeds_54",2022,0.67
+138,"Gracilaria seaweeds_57",2022,0.67
+171,"Gracilaria seaweeds_60",2022,0.67
+182,"Gracilaria seaweeds_61",2022,0.67
+207,"Gracilaria seaweeds_51",2022,0.67
+209,"Gracilaria seaweeds_59",2022,0.67
+224,"Gracilaria seaweeds_53",2022,0.67
+20,"Green laver_63",1974,0.67
+20,"Green laver_63",1975,0.67
+20,"Green laver_63",1976,0.67
+20,"Green laver_63",1977,0.67
+20,"Green laver_63",1978,0.67
+20,"Green laver_63",1979,0.67
+20,"Green laver_63",1980,0.67
+20,"Green laver_63",1981,0.67
+20,"Green laver_63",1982,0.67
+20,"Green laver_63",1983,0.67
+20,"Green laver_63",1984,0.67
+20,"Green laver_63",1985,0.67
+20,"Green laver_63",1986,0.67
+20,"Green laver_63",1987,0.67
+20,"Green laver_63",1988,0.67
+20,"Green laver_63",1989,0.67
+20,"Green laver_63",1990,0.67
+20,"Green laver_63",1991,0.67
+20,"Green laver_63",1992,0.67
+20,"Green laver_63",1993,0.67
+20,"Green laver_63",1994,0.67
+20,"Green laver_63",1995,0.67
+20,"Green laver_63",1996,0.67
+20,"Green laver_63",1997,0.67
+20,"Green laver_63",1998,0.67
+20,"Green laver_63",1999,0.67
+20,"Green laver_63",2000,0.67
+20,"Green laver_63",2001,0.67
+20,"Green laver_63",2002,0.67
+20,"Green laver_63",2003,0.67
+20,"Green laver_63",2004,0.67
+20,"Green laver_63",2005,0.67
+20,"Green laver_63",2006,0.67
+20,"Green laver_63",2007,0.67
+20,"Green laver_63",2008,0.67
+20,"Green laver_63",2009,0.67
+20,"Green laver_63",2010,0.67
+20,"Green laver_63",2011,0.67
+20,"Green laver_63",2012,0.67
+20,"Green laver_63",2013,0.67
+20,"Green laver_63",2014,0.67
+20,"Green laver_63",2015,0.67
+20,"Green laver_63",2016,0.67
+20,"Green laver_63",2017,0.67
+20,"Green laver_63",2018,0.67
+20,"Green laver_63",2019,0.67
+20,"Green laver_63",2020,0.67
+20,"Green laver_63",2021,0.67
+20,"Green laver_63",2022,0.67
+179,"Harpoon seaweeds_64",1996,0.67
+179,"Harpoon seaweeds_64",1997,0.67
+179,"Harpoon seaweeds_64",1998,0.67
+179,"Harpoon seaweeds_64",1999,0.67
+179,"Harpoon seaweeds_64",2000,0.67
+179,"Harpoon seaweeds_64",2001,0.67
+179,"Harpoon seaweeds_64",2002,0.67
+179,"Harpoon seaweeds_64",2003,0.67
+179,"Harpoon seaweeds_64",2004,0.67
+179,"Harpoon seaweeds_64",2005,0.67
+179,"Harpoon seaweeds_64",2006,0.67
+179,"Harpoon seaweeds_64",2007,0.67
+179,"Harpoon seaweeds_64",2008,0.67
+179,"Harpoon seaweeds_64",2009,0.67
+179,"Harpoon seaweeds_64",2010,0.67
+179,"Harpoon seaweeds_64",2011,0.67
+179,"Harpoon seaweeds_64",2012,0.67
+179,"Harpoon seaweeds_64",2013,0.67
+179,"Harpoon seaweeds_64",2014,0.67
+179,"Harpoon seaweeds_64",2015,0.67
+179,"Harpoon seaweeds_64",2016,0.67
+179,"Harpoon seaweeds_64",2017,0.67
+179,"Harpoon seaweeds_64",2018,0.67
+179,"Harpoon seaweeds_64",2019,0.67
+179,"Harpoon seaweeds_64",2020,0.67
+179,"Harpoon seaweeds_64",2021,0.67
+179,"Harpoon seaweeds_64",2022,0.67
+209,"Japanese isinglass_65",2003,0.67
+209,"Japanese isinglass_65",2004,0.67
+209,"Japanese isinglass_65",2005,0.67
+209,"Japanese isinglass_65",2006,0.67
+209,"Japanese isinglass_65",2007,0.67
+209,"Japanese isinglass_65",2008,0.67
+209,"Japanese isinglass_65",2009,0.67
+209,"Japanese isinglass_65",2010,0.67
+209,"Japanese isinglass_65",2011,0.67
+209,"Japanese isinglass_65",2012,0.67
+209,"Japanese isinglass_65",2013,0.67
+209,"Japanese isinglass_65",2014,0.67
+209,"Japanese isinglass_65",2015,0.67
+209,"Japanese isinglass_65",2016,0.67
+209,"Japanese isinglass_65",2017,0.67
+209,"Japanese isinglass_65",2018,0.67
+209,"Japanese isinglass_65",2019,0.67
+209,"Japanese isinglass_65",2020,0.67
+209,"Japanese isinglass_65",2021,0.67
+209,"Japanese isinglass_65",2022,0.67
+21,"Japanese kelp_66",1950,0.67
+209,"Japanese kelp_67",1950,0.67
+210,"Japanese kelp_68",1950,0.67
+21,"Japanese kelp_66",1951,0.67
+209,"Japanese kelp_67",1951,0.67
+210,"Japanese kelp_68",1951,0.67
+21,"Japanese kelp_66",1952,0.67
+209,"Japanese kelp_67",1952,0.67
+210,"Japanese kelp_68",1952,0.67
+21,"Japanese kelp_66",1953,0.67
+209,"Japanese kelp_67",1953,0.67
+210,"Japanese kelp_68",1953,0.67
+21,"Japanese kelp_66",1954,0.67
+209,"Japanese kelp_67",1954,0.67
+210,"Japanese kelp_68",1954,0.67
+21,"Japanese kelp_66",1955,0.67
+209,"Japanese kelp_67",1955,0.67
+210,"Japanese kelp_68",1955,0.67
+21,"Japanese kelp_66",1956,0.67
+209,"Japanese kelp_67",1956,0.67
+210,"Japanese kelp_68",1956,0.67
+21,"Japanese kelp_66",1957,0.67
+209,"Japanese kelp_67",1957,0.67
+210,"Japanese kelp_68",1957,0.67
+21,"Japanese kelp_66",1958,0.67
+209,"Japanese kelp_67",1958,0.67
+210,"Japanese kelp_68",1958,0.67
+21,"Japanese kelp_66",1959,0.67
+209,"Japanese kelp_67",1959,0.67
+210,"Japanese kelp_68",1959,0.67
+21,"Japanese kelp_66",1960,0.67
+209,"Japanese kelp_67",1960,0.67
+210,"Japanese kelp_68",1960,0.67
+21,"Japanese kelp_66",1961,0.67
+209,"Japanese kelp_67",1961,0.67
+210,"Japanese kelp_68",1961,0.67
+21,"Japanese kelp_66",1962,0.67
+209,"Japanese kelp_67",1962,0.67
+210,"Japanese kelp_68",1962,0.67
+21,"Japanese kelp_66",1963,0.67
+209,"Japanese kelp_67",1963,0.67
+210,"Japanese kelp_68",1963,0.67
+21,"Japanese kelp_66",1964,0.67
+209,"Japanese kelp_67",1964,0.67
+210,"Japanese kelp_68",1964,0.67
+21,"Japanese kelp_66",1965,0.67
+209,"Japanese kelp_67",1965,0.67
+210,"Japanese kelp_68",1965,0.67
+21,"Japanese kelp_66",1966,0.67
+209,"Japanese kelp_67",1966,0.67
+210,"Japanese kelp_68",1966,0.67
+21,"Japanese kelp_66",1967,0.67
+209,"Japanese kelp_67",1967,0.67
+210,"Japanese kelp_68",1967,0.67
+21,"Japanese kelp_66",1968,0.67
+209,"Japanese kelp_67",1968,0.67
+210,"Japanese kelp_68",1968,0.67
+21,"Japanese kelp_66",1969,0.67
+209,"Japanese kelp_67",1969,0.67
+210,"Japanese kelp_68",1969,0.67
+21,"Japanese kelp_66",1970,0.67
+209,"Japanese kelp_67",1970,0.67
+210,"Japanese kelp_68",1970,0.67
+21,"Japanese kelp_66",1971,0.67
+209,"Japanese kelp_67",1971,0.67
+210,"Japanese kelp_68",1971,0.67
+21,"Japanese kelp_66",1972,0.67
+209,"Japanese kelp_67",1972,0.67
+210,"Japanese kelp_68",1972,0.67
+21,"Japanese kelp_66",1973,0.67
+209,"Japanese kelp_67",1973,0.67
+210,"Japanese kelp_68",1973,0.67
+20,"Japanese kelp_69",1974,0.67
+21,"Japanese kelp_66",1974,0.67
+209,"Japanese kelp_67",1974,0.67
+210,"Japanese kelp_68",1974,0.67
+20,"Japanese kelp_69",1975,0.67
+21,"Japanese kelp_66",1975,0.67
+209,"Japanese kelp_67",1975,0.67
+210,"Japanese kelp_68",1975,0.67
+20,"Japanese kelp_69",1976,0.67
+21,"Japanese kelp_66",1976,0.67
+209,"Japanese kelp_67",1976,0.67
+210,"Japanese kelp_68",1976,0.67
+20,"Japanese kelp_69",1977,0.67
+21,"Japanese kelp_66",1977,0.67
+209,"Japanese kelp_67",1977,0.67
+210,"Japanese kelp_68",1977,0.67
+20,"Japanese kelp_69",1978,0.67
+21,"Japanese kelp_66",1978,0.67
+209,"Japanese kelp_67",1978,0.67
+210,"Japanese kelp_68",1978,0.67
+20,"Japanese kelp_69",1979,0.67
+21,"Japanese kelp_66",1979,0.67
+209,"Japanese kelp_67",1979,0.67
+210,"Japanese kelp_68",1979,0.67
+20,"Japanese kelp_69",1980,0.67
+21,"Japanese kelp_66",1980,0.67
+209,"Japanese kelp_67",1980,0.67
+210,"Japanese kelp_68",1980,0.67
+20,"Japanese kelp_69",1981,0.67
+21,"Japanese kelp_66",1981,0.67
+209,"Japanese kelp_67",1981,0.67
+210,"Japanese kelp_68",1981,0.67
+20,"Japanese kelp_69",1982,0.67
+21,"Japanese kelp_66",1982,0.67
+209,"Japanese kelp_67",1982,0.67
+210,"Japanese kelp_68",1982,0.67
+20,"Japanese kelp_69",1983,0.67
+21,"Japanese kelp_66",1983,0.67
+209,"Japanese kelp_67",1983,0.67
+210,"Japanese kelp_68",1983,0.67
+20,"Japanese kelp_69",1984,0.67
+21,"Japanese kelp_66",1984,0.67
+209,"Japanese kelp_67",1984,0.67
+210,"Japanese kelp_68",1984,0.67
+20,"Japanese kelp_69",1985,0.67
+21,"Japanese kelp_66",1985,0.67
+209,"Japanese kelp_67",1985,0.67
+210,"Japanese kelp_68",1985,0.67
+20,"Japanese kelp_69",1986,0.67
+21,"Japanese kelp_66",1986,0.67
+209,"Japanese kelp_67",1986,0.67
+210,"Japanese kelp_68",1986,0.67
+20,"Japanese kelp_69",1987,0.67
+21,"Japanese kelp_66",1987,0.67
+209,"Japanese kelp_67",1987,0.67
+210,"Japanese kelp_68",1987,0.67
+20,"Japanese kelp_69",1988,0.67
+21,"Japanese kelp_66",1988,0.67
+209,"Japanese kelp_67",1988,0.67
+210,"Japanese kelp_68",1988,0.67
+20,"Japanese kelp_69",1989,0.67
+21,"Japanese kelp_66",1989,0.67
+209,"Japanese kelp_67",1989,0.67
+210,"Japanese kelp_68",1989,0.67
+20,"Japanese kelp_69",1990,0.67
+21,"Japanese kelp_66",1990,0.67
+209,"Japanese kelp_67",1990,0.67
+210,"Japanese kelp_68",1990,0.67
+20,"Japanese kelp_69",1991,0.67
+21,"Japanese kelp_66",1991,0.67
+209,"Japanese kelp_67",1991,0.67
+210,"Japanese kelp_68",1991,0.67
+20,"Japanese kelp_69",1992,0.67
+21,"Japanese kelp_66",1992,0.67
+209,"Japanese kelp_67",1992,0.67
+210,"Japanese kelp_68",1992,0.67
+20,"Japanese kelp_69",1993,0.67
+21,"Japanese kelp_66",1993,0.67
+209,"Japanese kelp_67",1993,0.67
+210,"Japanese kelp_68",1993,0.67
+20,"Japanese kelp_69",1994,0.67
+21,"Japanese kelp_66",1994,0.67
+209,"Japanese kelp_67",1994,0.67
+210,"Japanese kelp_68",1994,0.67
+20,"Japanese kelp_69",1995,0.67
+21,"Japanese kelp_66",1995,0.67
+209,"Japanese kelp_67",1995,0.67
+210,"Japanese kelp_68",1995,0.67
+20,"Japanese kelp_69",1996,0.67
+21,"Japanese kelp_66",1996,0.67
+209,"Japanese kelp_67",1996,0.67
+210,"Japanese kelp_68",1996,0.67
+20,"Japanese kelp_69",1997,0.67
+21,"Japanese kelp_66",1997,0.67
+209,"Japanese kelp_67",1997,0.67
+210,"Japanese kelp_68",1997,0.67
+20,"Japanese kelp_69",1998,0.67
+21,"Japanese kelp_66",1998,0.67
+209,"Japanese kelp_67",1998,0.67
+210,"Japanese kelp_68",1998,0.67
+20,"Japanese kelp_69",1999,0.67
+21,"Japanese kelp_66",1999,0.67
+209,"Japanese kelp_67",1999,0.67
+210,"Japanese kelp_68",1999,0.67
+20,"Japanese kelp_69",2000,0.67
+21,"Japanese kelp_66",2000,0.67
+209,"Japanese kelp_67",2000,0.67
+210,"Japanese kelp_68",2000,0.67
+20,"Japanese kelp_69",2001,0.67
+21,"Japanese kelp_66",2001,0.67
+209,"Japanese kelp_67",2001,0.67
+210,"Japanese kelp_68",2001,0.67
+20,"Japanese kelp_69",2002,0.67
+21,"Japanese kelp_66",2002,0.67
+209,"Japanese kelp_67",2002,0.67
+210,"Japanese kelp_68",2002,0.67
+20,"Japanese kelp_69",2003,0.67
+21,"Japanese kelp_66",2003,0.67
+209,"Japanese kelp_67",2003,0.67
+210,"Japanese kelp_68",2003,0.67
+20,"Japanese kelp_69",2004,0.67
+21,"Japanese kelp_66",2004,0.67
+209,"Japanese kelp_67",2004,0.67
+210,"Japanese kelp_68",2004,0.67
+20,"Japanese kelp_69",2005,0.67
+21,"Japanese kelp_66",2005,0.67
+209,"Japanese kelp_67",2005,0.67
+210,"Japanese kelp_68",2005,0.67
+20,"Japanese kelp_69",2006,0.67
+21,"Japanese kelp_66",2006,0.67
+209,"Japanese kelp_67",2006,0.67
+210,"Japanese kelp_68",2006,0.67
+20,"Japanese kelp_69",2007,0.67
+21,"Japanese kelp_66",2007,0.67
+209,"Japanese kelp_67",2007,0.67
+210,"Japanese kelp_68",2007,0.67
+20,"Japanese kelp_69",2008,0.67
+21,"Japanese kelp_66",2008,0.67
+209,"Japanese kelp_67",2008,0.67
+210,"Japanese kelp_68",2008,0.67
+20,"Japanese kelp_69",2009,0.67
+21,"Japanese kelp_66",2009,0.67
+209,"Japanese kelp_67",2009,0.67
+210,"Japanese kelp_68",2009,0.67
+20,"Japanese kelp_69",2010,0.67
+21,"Japanese kelp_66",2010,0.67
+209,"Japanese kelp_67",2010,0.67
+210,"Japanese kelp_68",2010,0.67
+20,"Japanese kelp_69",2011,0.67
+21,"Japanese kelp_66",2011,0.67
+209,"Japanese kelp_67",2011,0.67
+210,"Japanese kelp_68",2011,0.67
+20,"Japanese kelp_69",2012,0.67
+21,"Japanese kelp_66",2012,0.67
+209,"Japanese kelp_67",2012,0.67
+210,"Japanese kelp_68",2012,0.67
+20,"Japanese kelp_69",2013,0.67
+21,"Japanese kelp_66",2013,0.67
+209,"Japanese kelp_67",2013,0.67
+210,"Japanese kelp_68",2013,0.67
+20,"Japanese kelp_69",2014,0.67
+21,"Japanese kelp_66",2014,0.67
+209,"Japanese kelp_67",2014,0.67
+210,"Japanese kelp_68",2014,0.67
+20,"Japanese kelp_69",2015,0.67
+21,"Japanese kelp_66",2015,0.67
+209,"Japanese kelp_67",2015,0.67
+210,"Japanese kelp_68",2015,0.67
+20,"Japanese kelp_69",2016,0.67
+21,"Japanese kelp_66",2016,0.67
+209,"Japanese kelp_67",2016,0.67
+210,"Japanese kelp_68",2016,0.67
+20,"Japanese kelp_69",2017,0.67
+21,"Japanese kelp_66",2017,0.67
+209,"Japanese kelp_67",2017,0.67
+210,"Japanese kelp_68",2017,0.67
+20,"Japanese kelp_69",2018,0.67
+21,"Japanese kelp_66",2018,0.67
+209,"Japanese kelp_67",2018,0.67
+210,"Japanese kelp_68",2018,0.67
+20,"Japanese kelp_69",2019,0.67
+21,"Japanese kelp_66",2019,0.67
+209,"Japanese kelp_67",2019,0.67
+210,"Japanese kelp_68",2019,0.67
+20,"Japanese kelp_69",2020,0.67
+21,"Japanese kelp_66",2020,0.67
+209,"Japanese kelp_67",2020,0.67
+210,"Japanese kelp_68",2020,0.67
+20,"Japanese kelp_69",2021,0.67
+21,"Japanese kelp_66",2021,0.67
+209,"Japanese kelp_67",2021,0.67
+210,"Japanese kelp_68",2021,0.67
+20,"Japanese kelp_69",2022,0.67
+21,"Japanese kelp_66",2022,0.67
+209,"Japanese kelp_67",2022,0.67
+210,"Japanese kelp_68",2022,0.67
+20,"Laver (Nori)_70",1950,0.67
+210,"Laver (Nori)_71",1950,0.67
+20,"Laver (Nori)_70",1951,0.67
+210,"Laver (Nori)_71",1951,0.67
+20,"Laver (Nori)_70",1952,0.67
+210,"Laver (Nori)_71",1952,0.67
+20,"Laver (Nori)_70",1953,0.67
+210,"Laver (Nori)_71",1953,0.67
+20,"Laver (Nori)_70",1954,0.67
+210,"Laver (Nori)_71",1954,0.67
+20,"Laver (Nori)_70",1955,0.67
+210,"Laver (Nori)_71",1955,0.67
+20,"Laver (Nori)_70",1956,0.67
+210,"Laver (Nori)_71",1956,0.67
+20,"Laver (Nori)_70",1957,0.67
+210,"Laver (Nori)_71",1957,0.67
+20,"Laver (Nori)_70",1958,0.67
+210,"Laver (Nori)_71",1958,0.67
+20,"Laver (Nori)_70",1959,0.67
+210,"Laver (Nori)_71",1959,0.67
+20,"Laver (Nori)_70",1960,0.67
+210,"Laver (Nori)_71",1960,0.67
+20,"Laver (Nori)_70",1961,0.67
+210,"Laver (Nori)_71",1961,0.67
+20,"Laver (Nori)_70",1962,0.67
+210,"Laver (Nori)_71",1962,0.67
+20,"Laver (Nori)_70",1963,0.67
+210,"Laver (Nori)_71",1963,0.67
+20,"Laver (Nori)_70",1964,0.67
+210,"Laver (Nori)_71",1964,0.67
+20,"Laver (Nori)_70",1965,0.67
+210,"Laver (Nori)_71",1965,0.67
+20,"Laver (Nori)_70",1966,0.67
+210,"Laver (Nori)_71",1966,0.67
+20,"Laver (Nori)_70",1967,0.67
+210,"Laver (Nori)_71",1967,0.67
+20,"Laver (Nori)_70",1968,0.67
+210,"Laver (Nori)_71",1968,0.67
+20,"Laver (Nori)_70",1969,0.67
+210,"Laver (Nori)_71",1969,0.67
+20,"Laver (Nori)_70",1970,0.67
+210,"Laver (Nori)_71",1970,0.67
+20,"Laver (Nori)_70",1971,0.67
+210,"Laver (Nori)_71",1971,0.67
+20,"Laver (Nori)_70",1972,0.67
+210,"Laver (Nori)_71",1972,0.67
+20,"Laver (Nori)_70",1973,0.67
+210,"Laver (Nori)_71",1973,0.67
+20,"Laver (Nori)_70",1974,0.67
+210,"Laver (Nori)_71",1974,0.67
+20,"Laver (Nori)_70",1975,0.67
+21,"Laver (Nori)_72",1975,0.67
+210,"Laver (Nori)_71",1975,0.67
+20,"Laver (Nori)_70",1976,0.67
+21,"Laver (Nori)_72",1976,0.67
+210,"Laver (Nori)_71",1976,0.67
+20,"Laver (Nori)_70",1977,0.67
+21,"Laver (Nori)_72",1977,0.67
+210,"Laver (Nori)_71",1977,0.67
+20,"Laver (Nori)_70",1978,0.67
+21,"Laver (Nori)_72",1978,0.67
+210,"Laver (Nori)_71",1978,0.67
+20,"Laver (Nori)_70",1979,0.67
+21,"Laver (Nori)_72",1979,0.67
+210,"Laver (Nori)_71",1979,0.67
+20,"Laver (Nori)_70",1980,0.67
+21,"Laver (Nori)_72",1980,0.67
+210,"Laver (Nori)_71",1980,0.67
+20,"Laver (Nori)_70",1981,0.67
+21,"Laver (Nori)_72",1981,0.67
+210,"Laver (Nori)_71",1981,0.67
+14,"Laver (Nori)_73",1982,0.67
+20,"Laver (Nori)_70",1982,0.67
+21,"Laver (Nori)_72",1982,0.67
+210,"Laver (Nori)_71",1982,0.67
+14,"Laver (Nori)_73",1983,0.67
+20,"Laver (Nori)_70",1983,0.67
+21,"Laver (Nori)_72",1983,0.67
+210,"Laver (Nori)_71",1983,0.67
+14,"Laver (Nori)_73",1984,0.67
+20,"Laver (Nori)_70",1984,0.67
+21,"Laver (Nori)_72",1984,0.67
+210,"Laver (Nori)_71",1984,0.67
+14,"Laver (Nori)_73",1985,0.67
+20,"Laver (Nori)_70",1985,0.67
+21,"Laver (Nori)_72",1985,0.67
+210,"Laver (Nori)_71",1985,0.67
+14,"Laver (Nori)_73",1986,0.67
+20,"Laver (Nori)_70",1986,0.67
+21,"Laver (Nori)_72",1986,0.67
+210,"Laver (Nori)_71",1986,0.67
+14,"Laver (Nori)_73",1987,0.67
+20,"Laver (Nori)_70",1987,0.67
+21,"Laver (Nori)_72",1987,0.67
+210,"Laver (Nori)_71",1987,0.67
+14,"Laver (Nori)_73",1988,0.67
+20,"Laver (Nori)_70",1988,0.67
+21,"Laver (Nori)_72",1988,0.67
+210,"Laver (Nori)_71",1988,0.67
+14,"Laver (Nori)_73",1989,0.67
+20,"Laver (Nori)_70",1989,0.67
+21,"Laver (Nori)_72",1989,0.67
+210,"Laver (Nori)_71",1989,0.67
+14,"Laver (Nori)_73",1990,0.67
+20,"Laver (Nori)_70",1990,0.67
+21,"Laver (Nori)_72",1990,0.67
+210,"Laver (Nori)_71",1990,0.67
+14,"Laver (Nori)_73",1991,0.67
+20,"Laver (Nori)_70",1991,0.67
+21,"Laver (Nori)_72",1991,0.67
+210,"Laver (Nori)_71",1991,0.67
+14,"Laver (Nori)_73",1992,0.67
+20,"Laver (Nori)_70",1992,0.67
+21,"Laver (Nori)_72",1992,0.67
+210,"Laver (Nori)_71",1992,0.67
+14,"Laver (Nori)_73",1993,0.67
+20,"Laver (Nori)_70",1993,0.67
+21,"Laver (Nori)_72",1993,0.67
+210,"Laver (Nori)_71",1993,0.67
+14,"Laver (Nori)_73",1994,0.67
+20,"Laver (Nori)_70",1994,0.67
+21,"Laver (Nori)_72",1994,0.67
+210,"Laver (Nori)_71",1994,0.67
+14,"Laver (Nori)_73",1995,0.67
+20,"Laver (Nori)_70",1995,0.67
+21,"Laver (Nori)_72",1995,0.67
+210,"Laver (Nori)_71",1995,0.67
+14,"Laver (Nori)_73",1996,0.67
+20,"Laver (Nori)_70",1996,0.67
+21,"Laver (Nori)_72",1996,0.67
+210,"Laver (Nori)_71",1996,0.67
+14,"Laver (Nori)_73",1997,0.67
+20,"Laver (Nori)_70",1997,0.67
+21,"Laver (Nori)_72",1997,0.67
+210,"Laver (Nori)_71",1997,0.67
+14,"Laver (Nori)_73",1998,0.67
+20,"Laver (Nori)_70",1998,0.67
+21,"Laver (Nori)_72",1998,0.67
+210,"Laver (Nori)_71",1998,0.67
+14,"Laver (Nori)_73",1999,0.67
+20,"Laver (Nori)_70",1999,0.67
+21,"Laver (Nori)_72",1999,0.67
+210,"Laver (Nori)_71",1999,0.67
+14,"Laver (Nori)_73",2000,0.67
+20,"Laver (Nori)_70",2000,0.67
+21,"Laver (Nori)_72",2000,0.67
+210,"Laver (Nori)_71",2000,0.67
+14,"Laver (Nori)_73",2001,0.67
+20,"Laver (Nori)_70",2001,0.67
+21,"Laver (Nori)_72",2001,0.67
+210,"Laver (Nori)_71",2001,0.67
+14,"Laver (Nori)_73",2002,0.67
+20,"Laver (Nori)_70",2002,0.67
+21,"Laver (Nori)_72",2002,0.67
+210,"Laver (Nori)_71",2002,0.67
+14,"Laver (Nori)_73",2003,0.67
+20,"Laver (Nori)_70",2003,0.67
+21,"Laver (Nori)_72",2003,0.67
+210,"Laver (Nori)_71",2003,0.67
+14,"Laver (Nori)_73",2004,0.67
+20,"Laver (Nori)_70",2004,0.67
+21,"Laver (Nori)_72",2004,0.67
+210,"Laver (Nori)_71",2004,0.67
+14,"Laver (Nori)_73",2005,0.67
+20,"Laver (Nori)_70",2005,0.67
+21,"Laver (Nori)_72",2005,0.67
+210,"Laver (Nori)_71",2005,0.67
+14,"Laver (Nori)_73",2006,0.67
+20,"Laver (Nori)_70",2006,0.67
+21,"Laver (Nori)_72",2006,0.67
+210,"Laver (Nori)_71",2006,0.67
+14,"Laver (Nori)_73",2007,0.67
+20,"Laver (Nori)_70",2007,0.67
+21,"Laver (Nori)_72",2007,0.67
+210,"Laver (Nori)_71",2007,0.67
+14,"Laver (Nori)_73",2008,0.67
+20,"Laver (Nori)_70",2008,0.67
+21,"Laver (Nori)_72",2008,0.67
+210,"Laver (Nori)_71",2008,0.67
+14,"Laver (Nori)_73",2009,0.67
+20,"Laver (Nori)_70",2009,0.67
+21,"Laver (Nori)_72",2009,0.67
+210,"Laver (Nori)_71",2009,0.67
+14,"Laver (Nori)_73",2010,0.67
+20,"Laver (Nori)_70",2010,0.67
+21,"Laver (Nori)_72",2010,0.67
+210,"Laver (Nori)_71",2010,0.67
+14,"Laver (Nori)_73",2011,0.67
+20,"Laver (Nori)_70",2011,0.67
+21,"Laver (Nori)_72",2011,0.67
+210,"Laver (Nori)_71",2011,0.67
+14,"Laver (Nori)_73",2012,0.67
+20,"Laver (Nori)_70",2012,0.67
+21,"Laver (Nori)_72",2012,0.67
+210,"Laver (Nori)_71",2012,0.67
+14,"Laver (Nori)_73",2013,0.67
+20,"Laver (Nori)_70",2013,0.67
+21,"Laver (Nori)_72",2013,0.67
+210,"Laver (Nori)_71",2013,0.67
+14,"Laver (Nori)_73",2014,0.67
+20,"Laver (Nori)_70",2014,0.67
+21,"Laver (Nori)_72",2014,0.67
+210,"Laver (Nori)_71",2014,0.67
+14,"Laver (Nori)_73",2015,0.67
+20,"Laver (Nori)_70",2015,0.67
+21,"Laver (Nori)_72",2015,0.67
+210,"Laver (Nori)_71",2015,0.67
+14,"Laver (Nori)_73",2016,0.67
+20,"Laver (Nori)_70",2016,0.67
+21,"Laver (Nori)_72",2016,0.67
+210,"Laver (Nori)_71",2016,0.67
+14,"Laver (Nori)_73",2017,0.67
+20,"Laver (Nori)_70",2017,0.67
+21,"Laver (Nori)_72",2017,0.67
+210,"Laver (Nori)_71",2017,0.67
+14,"Laver (Nori)_73",2018,0.67
+20,"Laver (Nori)_70",2018,0.67
+21,"Laver (Nori)_72",2018,0.67
+210,"Laver (Nori)_71",2018,0.67
+14,"Laver (Nori)_73",2019,0.67
+20,"Laver (Nori)_70",2019,0.67
+21,"Laver (Nori)_72",2019,0.67
+210,"Laver (Nori)_71",2019,0.67
+14,"Laver (Nori)_73",2020,0.67
+20,"Laver (Nori)_70",2020,0.67
+21,"Laver (Nori)_72",2020,0.67
+210,"Laver (Nori)_71",2020,0.67
+14,"Laver (Nori)_73",2021,0.67
+20,"Laver (Nori)_70",2021,0.67
+21,"Laver (Nori)_72",2021,0.67
+210,"Laver (Nori)_71",2021,0.67
+14,"Laver (Nori)_73",2022,0.67
+20,"Laver (Nori)_70",2022,0.67
+21,"Laver (Nori)_72",2022,0.67
+210,"Laver (Nori)_71",2022,0.67
+209,"Nori nei_74",1971,0.67
+209,"Nori nei_74",1972,0.67
+209,"Nori nei_74",1973,0.67
+209,"Nori nei_74",1974,0.67
+209,"Nori nei_74",1975,0.67
+209,"Nori nei_74",1976,0.67
+209,"Nori nei_74",1977,0.67
+209,"Nori nei_74",1978,0.67
+209,"Nori nei_74",1979,0.67
+209,"Nori nei_74",1980,0.67
+209,"Nori nei_74",1981,0.67
+209,"Nori nei_74",1982,0.67
+209,"Nori nei_74",1983,0.67
+209,"Nori nei_74",1984,0.67
+209,"Nori nei_74",1985,0.67
+209,"Nori nei_74",1986,0.67
+209,"Nori nei_74",1987,0.67
+209,"Nori nei_74",1988,0.67
+209,"Nori nei_74",1989,0.67
+209,"Nori nei_74",1990,0.67
+209,"Nori nei_74",1991,0.67
+209,"Nori nei_74",1992,0.67
+209,"Nori nei_74",1993,0.67
+209,"Nori nei_74",1994,0.67
+209,"Nori nei_74",1995,0.67
+209,"Nori nei_74",1996,0.67
+209,"Nori nei_74",1997,0.67
+209,"Nori nei_74",1998,0.67
+209,"Nori nei_74",1999,0.67
+209,"Nori nei_74",2000,0.67
+209,"Nori nei_74",2001,0.67
+209,"Nori nei_74",2002,0.67
+209,"Nori nei_74",2003,0.67
+209,"Nori nei_74",2004,0.67
+209,"Nori nei_74",2005,0.67
+209,"Nori nei_74",2006,0.67
+209,"Nori nei_74",2007,0.67
+209,"Nori nei_74",2008,0.67
+209,"Nori nei_74",2009,0.67
+209,"Nori nei_74",2010,0.67
+209,"Nori nei_74",2011,0.67
+209,"Nori nei_74",2012,0.67
+209,"Nori nei_74",2013,0.67
+209,"Nori nei_74",2014,0.67
+209,"Nori nei_74",2015,0.67
+209,"Nori nei_74",2016,0.67
+209,"Nori nei_74",2017,0.67
+209,"Nori nei_74",2018,0.67
+209,"Nori nei_74",2019,0.67
+209,"Nori nei_74",2020,0.67
+209,"Nori nei_74",2021,0.67
+209,"Nori nei_74",2022,0.67
+216,"Red seaweeds_75",1950,0.67
+216,"Red seaweeds_75",1951,0.67
+216,"Red seaweeds_75",1952,0.67
+216,"Red seaweeds_75",1953,0.67
+216,"Red seaweeds_75",1954,0.67
+216,"Red seaweeds_75",1955,0.67
+216,"Red seaweeds_75",1956,0.67
+216,"Red seaweeds_75",1957,0.67
+216,"Red seaweeds_75",1958,0.67
+216,"Red seaweeds_75",1959,0.67
+216,"Red seaweeds_75",1960,0.67
+216,"Red seaweeds_75",1961,0.67
+216,"Red seaweeds_75",1962,0.67
+216,"Red seaweeds_75",1963,0.67
+216,"Red seaweeds_75",1964,0.67
+216,"Red seaweeds_75",1965,0.67
+216,"Red seaweeds_75",1966,0.67
+216,"Red seaweeds_75",1967,0.67
+216,"Red seaweeds_75",1968,0.67
+216,"Red seaweeds_75",1969,0.67
+216,"Red seaweeds_75",1970,0.67
+216,"Red seaweeds_75",1971,0.67
+216,"Red seaweeds_75",1972,0.67
+216,"Red seaweeds_75",1973,0.67
+216,"Red seaweeds_75",1974,0.67
+216,"Red seaweeds_75",1975,0.67
+216,"Red seaweeds_75",1976,0.67
+216,"Red seaweeds_75",1977,0.67
+216,"Red seaweeds_75",1978,0.67
+216,"Red seaweeds_75",1979,0.67
+216,"Red seaweeds_75",1980,0.67
+216,"Red seaweeds_75",1981,0.67
+216,"Red seaweeds_75",1982,0.67
+216,"Red seaweeds_75",1983,0.67
+216,"Red seaweeds_75",1984,0.67
+216,"Red seaweeds_75",1985,0.67
+216,"Red seaweeds_75",1986,0.67
+216,"Red seaweeds_75",1987,0.67
+216,"Red seaweeds_75",1988,0.67
+216,"Red seaweeds_75",1989,0.67
+216,"Red seaweeds_75",1990,0.67
+216,"Red seaweeds_75",1991,0.67
+216,"Red seaweeds_75",1992,0.67
+216,"Red seaweeds_75",1993,0.67
+216,"Red seaweeds_75",1994,0.67
+216,"Red seaweeds_75",1995,0.67
+216,"Red seaweeds_75",1996,0.67
+216,"Red seaweeds_75",1997,0.67
+216,"Red seaweeds_75",1998,0.67
+216,"Red seaweeds_75",1999,0.67
+216,"Red seaweeds_75",2000,0.67
+203,"Red seaweeds_76",2001,0.67
+216,"Red seaweeds_75",2001,0.67
+203,"Red seaweeds_76",2002,0.67
+216,"Red seaweeds_75",2002,0.67
+203,"Red seaweeds_76",2003,0.67
+216,"Red seaweeds_75",2003,0.67
+203,"Red seaweeds_76",2004,0.67
+216,"Red seaweeds_75",2004,0.67
+203,"Red seaweeds_76",2005,0.67
+216,"Red seaweeds_75",2005,0.67
+203,"Red seaweeds_76",2006,0.67
+216,"Red seaweeds_75",2006,0.67
+203,"Red seaweeds_76",2007,0.67
+216,"Red seaweeds_75",2007,0.67
+203,"Red seaweeds_76",2008,0.67
+216,"Red seaweeds_75",2008,0.67
+203,"Red seaweeds_76",2009,0.67
+216,"Red seaweeds_75",2009,0.67
+203,"Red seaweeds_76",2010,0.67
+216,"Red seaweeds_75",2010,0.67
+203,"Red seaweeds_76",2011,0.67
+216,"Red seaweeds_75",2011,0.67
+203,"Red seaweeds_76",2012,0.67
+216,"Red seaweeds_75",2012,0.67
+203,"Red seaweeds_76",2013,0.67
+216,"Red seaweeds_75",2013,0.67
+203,"Red seaweeds_76",2014,0.67
+216,"Red seaweeds_75",2014,0.67
+203,"Red seaweeds_76",2015,0.67
+216,"Red seaweeds_75",2015,0.67
+203,"Red seaweeds_76",2016,0.67
+216,"Red seaweeds_75",2016,0.67
+203,"Red seaweeds_76",2017,0.67
+216,"Red seaweeds_75",2017,0.67
+203,"Red seaweeds_76",2018,0.67
+216,"Red seaweeds_75",2018,0.67
+203,"Red seaweeds_76",2019,0.67
+216,"Red seaweeds_75",2019,0.67
+203,"Red seaweeds_76",2020,0.67
+216,"Red seaweeds_75",2020,0.67
+203,"Red seaweeds_76",2021,0.67
+216,"Red seaweeds_75",2021,0.67
+203,"Red seaweeds_76",2022,0.67
+216,"Red seaweeds_75",2022,0.67
+182,"Sea belt_77",2007,0.67
+182,"Sea belt_77",2008,0.67
+175,"Sea belt_78",2009,0.67
+182,"Sea belt_77",2009,0.67
+175,"Sea belt_78",2010,0.67
+182,"Sea belt_77",2010,0.67
+175,"Sea belt_78",2011,0.67
+182,"Sea belt_77",2011,0.67
+175,"Sea belt_78",2012,0.67
+182,"Sea belt_77",2012,0.67
+175,"Sea belt_78",2013,0.67
+182,"Sea belt_77",2013,0.67
+175,"Sea belt_78",2014,0.67
+182,"Sea belt_77",2014,0.67
+141,"Sea belt_79",2015,0.67
+175,"Sea belt_78",2015,0.67
+182,"Sea belt_77",2015,0.67
+223,"Sea belt_80",2015,0.67
+141,"Sea belt_79",2016,0.67
+175,"Sea belt_78",2016,0.67
+182,"Sea belt_77",2016,0.67
+223,"Sea belt_80",2016,0.67
+141,"Sea belt_79",2017,0.67
+175,"Sea belt_78",2017,0.67
+182,"Sea belt_77",2017,0.67
+223,"Sea belt_80",2017,0.67
+141,"Sea belt_79",2018,0.67
+175,"Sea belt_78",2018,0.67
+182,"Sea belt_77",2018,0.67
+223,"Sea belt_80",2018,0.67
+141,"Sea belt_79",2019,0.67
+175,"Sea belt_78",2019,0.67
+182,"Sea belt_77",2019,0.67
+223,"Sea belt_80",2019,0.67
+141,"Sea belt_79",2020,0.67
+175,"Sea belt_78",2020,0.67
+182,"Sea belt_77",2020,0.67
+223,"Sea belt_80",2020,0.67
+141,"Sea belt_79",2021,0.67
+175,"Sea belt_78",2021,0.67
+182,"Sea belt_77",2021,0.67
+223,"Sea belt_80",2021,0.67
+141,"Sea belt_79",2022,0.67
+175,"Sea belt_78",2022,0.67
+182,"Sea belt_77",2022,0.67
+223,"Sea belt_80",2022,0.67
+210,"Seaweeds nei_81",1977,0.67
+210,"Seaweeds nei_81",1978,0.67
+210,"Seaweeds nei_81",1979,0.67
+210,"Seaweeds nei_81",1980,0.67
+210,"Seaweeds nei_81",1981,0.67
+210,"Seaweeds nei_81",1982,0.67
+210,"Seaweeds nei_81",1983,0.67
+210,"Seaweeds nei_81",1984,0.67
+210,"Seaweeds nei_81",1985,0.67
+210,"Seaweeds nei_81",1986,0.67
+210,"Seaweeds nei_81",1987,0.67
+210,"Seaweeds nei_81",1988,0.67
+210,"Seaweeds nei_81",1989,0.67
+210,"Seaweeds nei_81",1990,0.67
+210,"Seaweeds nei_81",1991,0.67
+210,"Seaweeds nei_81",1992,0.67
+210,"Seaweeds nei_81",1993,0.67
+210,"Seaweeds nei_81",1994,0.67
+210,"Seaweeds nei_81",1995,0.67
+210,"Seaweeds nei_81",1996,0.67
+210,"Seaweeds nei_81",1997,0.67
+210,"Seaweeds nei_81",1998,0.67
+210,"Seaweeds nei_81",1999,0.67
+210,"Seaweeds nei_81",2000,0.67
+210,"Seaweeds nei_81",2001,0.67
+210,"Seaweeds nei_81",2002,0.67
+210,"Seaweeds nei_81",2003,0.67
+210,"Seaweeds nei_81",2004,0.67
+182,"Seaweeds nei_82",2005,0.67
+210,"Seaweeds nei_81",2005,0.67
+182,"Seaweeds nei_82",2006,0.67
+210,"Seaweeds nei_81",2006,0.67
+182,"Seaweeds nei_82",2007,0.67
+210,"Seaweeds nei_81",2007,0.67
+182,"Seaweeds nei_82",2008,0.67
+210,"Seaweeds nei_81",2008,0.67
+179,"Seaweeds nei_83",2009,0.67
+182,"Seaweeds nei_82",2009,0.67
+210,"Seaweeds nei_81",2009,0.67
+179,"Seaweeds nei_83",2010,0.67
+182,"Seaweeds nei_82",2010,0.67
+210,"Seaweeds nei_81",2010,0.67
+179,"Seaweeds nei_83",2011,0.67
+182,"Seaweeds nei_82",2011,0.67
+210,"Seaweeds nei_81",2011,0.67
+179,"Seaweeds nei_83",2012,0.67
+182,"Seaweeds nei_82",2012,0.67
+210,"Seaweeds nei_81",2012,0.67
+179,"Seaweeds nei_83",2013,0.67
+182,"Seaweeds nei_82",2013,0.67
+210,"Seaweeds nei_81",2013,0.67
+179,"Seaweeds nei_83",2014,0.67
+182,"Seaweeds nei_82",2014,0.67
+210,"Seaweeds nei_81",2014,0.67
+163,"Seaweeds nei_84",2015,0.67
+179,"Seaweeds nei_83",2015,0.67
+181,"Seaweeds nei_85",2015,0.67
+182,"Seaweeds nei_82",2015,0.67
+210,"Seaweeds nei_81",2015,0.67
+163,"Seaweeds nei_84",2016,0.67
+179,"Seaweeds nei_83",2016,0.67
+181,"Seaweeds nei_85",2016,0.67
+210,"Seaweeds nei_81",2016,0.67
+163,"Seaweeds nei_84",2017,0.67
+179,"Seaweeds nei_83",2017,0.67
+181,"Seaweeds nei_85",2017,0.67
+210,"Seaweeds nei_81",2017,0.67
+163,"Seaweeds nei_84",2018,0.67
+179,"Seaweeds nei_83",2018,0.67
+181,"Seaweeds nei_85",2018,0.67
+210,"Seaweeds nei_81",2018,0.67
+163,"Seaweeds nei_84",2019,0.67
+179,"Seaweeds nei_83",2019,0.67
+181,"Seaweeds nei_85",2019,0.67
+210,"Seaweeds nei_81",2019,0.67
+163,"Seaweeds nei_84",2020,0.67
+179,"Seaweeds nei_83",2020,0.67
+181,"Seaweeds nei_85",2020,0.67
+210,"Seaweeds nei_81",2020,0.67
+163,"Seaweeds nei_84",2021,0.67
+179,"Seaweeds nei_83",2021,0.67
+181,"Seaweeds nei_85",2021,0.67
+210,"Seaweeds nei_81",2021,0.67
+163,"Seaweeds nei_84",2022,0.67
+179,"Seaweeds nei_83",2022,0.67
+181,"Seaweeds nei_85",2022,0.67
+210,"Seaweeds nei_81",2022,0.67
+62,"Slender wart weed_86",2016,0.67
+62,"Slender wart weed_86",2017,0.67
+62,"Slender wart weed_86",2018,0.67
+62,"Slender wart weed_86",2019,0.67
+62,"Slender wart weed_86",2020,0.67
+62,"Slender wart weed_86",2021,0.67
+62,"Slender wart weed_86",2022,0.67
+15,"Spiny eucheuma_87",1974,0.67
+15,"Spiny eucheuma_87",1975,0.67
+15,"Spiny eucheuma_87",1976,0.67
+15,"Spiny eucheuma_87",1977,0.67
+15,"Spiny eucheuma_87",1978,0.67
+15,"Spiny eucheuma_87",1979,0.67
+15,"Spiny eucheuma_87",1980,0.67
+15,"Spiny eucheuma_87",1981,0.67
+15,"Spiny eucheuma_87",1982,0.67
+15,"Spiny eucheuma_87",1983,0.67
+15,"Spiny eucheuma_87",1984,0.67
+15,"Spiny eucheuma_87",1985,0.67
+15,"Spiny eucheuma_87",1986,0.67
+15,"Spiny eucheuma_87",1987,0.67
+15,"Spiny eucheuma_87",1988,0.67
+15,"Spiny eucheuma_87",1989,0.67
+202,"Spiny eucheuma_88",1989,0.67
+15,"Spiny eucheuma_87",1990,0.67
+202,"Spiny eucheuma_88",1990,0.67
+15,"Spiny eucheuma_87",1991,0.67
+202,"Spiny eucheuma_88",1991,0.67
+15,"Spiny eucheuma_87",1992,0.67
+202,"Spiny eucheuma_88",1992,0.67
+15,"Spiny eucheuma_87",1993,0.67
+202,"Spiny eucheuma_88",1993,0.67
+15,"Spiny eucheuma_87",1994,0.67
+202,"Spiny eucheuma_88",1994,0.67
+15,"Spiny eucheuma_87",1995,0.67
+202,"Spiny eucheuma_88",1995,0.67
+15,"Spiny eucheuma_87",1996,0.67
+202,"Spiny eucheuma_88",1996,0.67
+15,"Spiny eucheuma_87",1997,0.67
+202,"Spiny eucheuma_88",1997,0.67
+15,"Spiny eucheuma_87",1998,0.67
+202,"Spiny eucheuma_88",1998,0.67
+15,"Spiny eucheuma_87",1999,0.67
+202,"Spiny eucheuma_88",1999,0.67
+15,"Spiny eucheuma_87",2000,0.67
+202,"Spiny eucheuma_88",2000,0.67
+15,"Spiny eucheuma_87",2001,0.67
+202,"Spiny eucheuma_88",2001,0.67
+206,"Spiny eucheuma_89",2001,0.67
+15,"Spiny eucheuma_87",2002,0.67
+139,"Spiny eucheuma_90",2002,0.67
+202,"Spiny eucheuma_88",2002,0.67
+206,"Spiny eucheuma_89",2002,0.67
+15,"Spiny eucheuma_87",2003,0.67
+139,"Spiny eucheuma_90",2003,0.67
+202,"Spiny eucheuma_88",2003,0.67
+206,"Spiny eucheuma_89",2003,0.67
+15,"Spiny eucheuma_87",2004,0.67
+139,"Spiny eucheuma_90",2004,0.67
+202,"Spiny eucheuma_88",2004,0.67
+206,"Spiny eucheuma_89",2004,0.67
+15,"Spiny eucheuma_87",2005,0.67
+139,"Spiny eucheuma_90",2005,0.67
+202,"Spiny eucheuma_88",2005,0.67
+206,"Spiny eucheuma_89",2005,0.67
+15,"Spiny eucheuma_87",2006,0.67
+139,"Spiny eucheuma_90",2006,0.67
+202,"Spiny eucheuma_88",2006,0.67
+206,"Spiny eucheuma_89",2006,0.67
+15,"Spiny eucheuma_87",2007,0.67
+139,"Spiny eucheuma_90",2007,0.67
+202,"Spiny eucheuma_88",2007,0.67
+206,"Spiny eucheuma_89",2007,0.67
+15,"Spiny eucheuma_87",2008,0.67
+139,"Spiny eucheuma_90",2008,0.67
+202,"Spiny eucheuma_88",2008,0.67
+206,"Spiny eucheuma_89",2008,0.67
+15,"Spiny eucheuma_87",2009,0.67
+139,"Spiny eucheuma_90",2009,0.67
+202,"Spiny eucheuma_88",2009,0.67
+206,"Spiny eucheuma_89",2009,0.67
+15,"Spiny eucheuma_87",2010,0.67
+43,"Spiny eucheuma_91",2010,0.67
+139,"Spiny eucheuma_90",2010,0.67
+202,"Spiny eucheuma_88",2010,0.67
+206,"Spiny eucheuma_89",2010,0.67
+15,"Spiny eucheuma_87",2011,0.67
+43,"Spiny eucheuma_91",2011,0.67
+139,"Spiny eucheuma_90",2011,0.67
+202,"Spiny eucheuma_88",2011,0.67
+206,"Spiny eucheuma_89",2011,0.67
+15,"Spiny eucheuma_87",2012,0.67
+43,"Spiny eucheuma_91",2012,0.67
+139,"Spiny eucheuma_90",2012,0.67
+202,"Spiny eucheuma_88",2012,0.67
+206,"Spiny eucheuma_89",2012,0.67
+15,"Spiny eucheuma_87",2013,0.67
+43,"Spiny eucheuma_91",2013,0.67
+139,"Spiny eucheuma_90",2013,0.67
+202,"Spiny eucheuma_88",2013,0.67
+206,"Spiny eucheuma_89",2013,0.67
+15,"Spiny eucheuma_87",2014,0.67
+43,"Spiny eucheuma_91",2014,0.67
+139,"Spiny eucheuma_90",2014,0.67
+202,"Spiny eucheuma_88",2014,0.67
+206,"Spiny eucheuma_89",2014,0.67
+15,"Spiny eucheuma_87",2015,0.67
+43,"Spiny eucheuma_91",2015,0.67
+139,"Spiny eucheuma_90",2015,0.67
+202,"Spiny eucheuma_88",2015,0.67
+206,"Spiny eucheuma_89",2015,0.67
+15,"Spiny eucheuma_87",2016,0.67
+43,"Spiny eucheuma_91",2016,0.67
+139,"Spiny eucheuma_90",2016,0.67
+202,"Spiny eucheuma_88",2016,0.67
+206,"Spiny eucheuma_89",2016,0.67
+15,"Spiny eucheuma_87",2017,0.67
+43,"Spiny eucheuma_91",2017,0.67
+139,"Spiny eucheuma_90",2017,0.67
+202,"Spiny eucheuma_88",2017,0.67
+206,"Spiny eucheuma_89",2017,0.67
+15,"Spiny eucheuma_87",2018,0.67
+43,"Spiny eucheuma_91",2018,0.67
+139,"Spiny eucheuma_90",2018,0.67
+202,"Spiny eucheuma_88",2018,0.67
+206,"Spiny eucheuma_89",2018,0.67
+15,"Spiny eucheuma_87",2019,0.67
+43,"Spiny eucheuma_91",2019,0.67
+139,"Spiny eucheuma_90",2019,0.67
+202,"Spiny eucheuma_88",2019,0.67
+206,"Spiny eucheuma_89",2019,0.67
+15,"Spiny eucheuma_87",2020,0.67
+43,"Spiny eucheuma_91",2020,0.67
+139,"Spiny eucheuma_90",2020,0.67
+202,"Spiny eucheuma_88",2020,0.67
+206,"Spiny eucheuma_89",2020,0.67
+15,"Spiny eucheuma_87",2021,0.67
+43,"Spiny eucheuma_91",2021,0.67
+139,"Spiny eucheuma_90",2021,0.67
+202,"Spiny eucheuma_88",2021,0.67
+206,"Spiny eucheuma_89",2021,0.67
+15,"Spiny eucheuma_87",2022,0.67
+43,"Spiny eucheuma_91",2022,0.67
+139,"Spiny eucheuma_90",2022,0.67
+202,"Spiny eucheuma_88",2022,0.67
+206,"Spiny eucheuma_89",2022,0.67
+141,"Tangle_92",2015,0.67
+141,"Tangle_92",2016,0.67
+141,"Tangle_92",2017,0.67
+141,"Tangle_92",2018,0.67
+141,"Tangle_92",2019,0.67
+141,"Tangle_92",2020,0.67
+141,"Tangle_92",2021,0.67
+141,"Tangle_92",2022,0.67
+20,"Wakame_93",1950,0.67
+210,"Wakame_94",1950,0.67
+20,"Wakame_93",1951,0.67
+210,"Wakame_94",1951,0.67
+20,"Wakame_93",1952,0.67
+210,"Wakame_94",1952,0.67
+20,"Wakame_93",1953,0.67
+210,"Wakame_94",1953,0.67
+20,"Wakame_93",1954,0.67
+210,"Wakame_94",1954,0.67
+20,"Wakame_93",1955,0.67
+210,"Wakame_94",1955,0.67
+20,"Wakame_93",1956,0.67
+210,"Wakame_94",1956,0.67
+20,"Wakame_93",1957,0.67
+210,"Wakame_94",1957,0.67
+20,"Wakame_93",1958,0.67
+210,"Wakame_94",1958,0.67
+20,"Wakame_93",1959,0.67
+210,"Wakame_94",1959,0.67
+20,"Wakame_93",1960,0.67
+210,"Wakame_94",1960,0.67
+20,"Wakame_93",1961,0.67
+210,"Wakame_94",1961,0.67
+20,"Wakame_93",1962,0.67
+210,"Wakame_94",1962,0.67
+20,"Wakame_93",1963,0.67
+21,"Wakame_95",1963,0.67
+210,"Wakame_94",1963,0.67
+20,"Wakame_93",1964,0.67
+21,"Wakame_95",1964,0.67
+210,"Wakame_94",1964,0.67
+20,"Wakame_93",1965,0.67
+21,"Wakame_95",1965,0.67
+210,"Wakame_94",1965,0.67
+20,"Wakame_93",1966,0.67
+21,"Wakame_95",1966,0.67
+210,"Wakame_94",1966,0.67
+20,"Wakame_93",1967,0.67
+21,"Wakame_95",1967,0.67
+210,"Wakame_94",1967,0.67
+20,"Wakame_93",1968,0.67
+21,"Wakame_95",1968,0.67
+210,"Wakame_94",1968,0.67
+20,"Wakame_93",1969,0.67
+21,"Wakame_95",1969,0.67
+210,"Wakame_94",1969,0.67
+20,"Wakame_93",1970,0.67
+21,"Wakame_95",1970,0.67
+210,"Wakame_94",1970,0.67
+20,"Wakame_93",1971,0.67
+21,"Wakame_95",1971,0.67
+210,"Wakame_94",1971,0.67
+20,"Wakame_93",1972,0.67
+21,"Wakame_95",1972,0.67
+210,"Wakame_94",1972,0.67
+20,"Wakame_93",1973,0.67
+21,"Wakame_95",1973,0.67
+210,"Wakame_94",1973,0.67
+20,"Wakame_93",1974,0.67
+21,"Wakame_95",1974,0.67
+210,"Wakame_94",1974,0.67
+20,"Wakame_93",1975,0.67
+21,"Wakame_95",1975,0.67
+210,"Wakame_94",1975,0.67
+20,"Wakame_93",1976,0.67
+21,"Wakame_95",1976,0.67
+210,"Wakame_94",1976,0.67
+20,"Wakame_93",1977,0.67
+21,"Wakame_95",1977,0.67
+210,"Wakame_94",1977,0.67
+20,"Wakame_93",1978,0.67
+21,"Wakame_95",1978,0.67
+210,"Wakame_94",1978,0.67
+20,"Wakame_93",1979,0.67
+21,"Wakame_95",1979,0.67
+210,"Wakame_94",1979,0.67
+20,"Wakame_93",1980,0.67
+21,"Wakame_95",1980,0.67
+210,"Wakame_94",1980,0.67
+20,"Wakame_93",1981,0.67
+21,"Wakame_95",1981,0.67
+210,"Wakame_94",1981,0.67
+20,"Wakame_93",1982,0.67
+21,"Wakame_95",1982,0.67
+210,"Wakame_94",1982,0.67
+20,"Wakame_93",1983,0.67
+21,"Wakame_95",1983,0.67
+210,"Wakame_94",1983,0.67
+20,"Wakame_93",1984,0.67
+21,"Wakame_95",1984,0.67
+210,"Wakame_94",1984,0.67
+20,"Wakame_93",1985,0.67
+21,"Wakame_95",1985,0.67
+179,"Wakame_96",1985,0.67
+210,"Wakame_94",1985,0.67
+20,"Wakame_93",1986,0.67
+21,"Wakame_95",1986,0.67
+179,"Wakame_96",1986,0.67
+210,"Wakame_94",1986,0.67
+20,"Wakame_93",1987,0.67
+21,"Wakame_95",1987,0.67
+179,"Wakame_96",1987,0.67
+210,"Wakame_94",1987,0.67
+20,"Wakame_93",1988,0.67
+21,"Wakame_95",1988,0.67
+179,"Wakame_96",1988,0.67
+210,"Wakame_94",1988,0.67
+20,"Wakame_93",1989,0.67
+21,"Wakame_95",1989,0.67
+179,"Wakame_96",1989,0.67
+210,"Wakame_94",1989,0.67
+20,"Wakame_93",1990,0.67
+21,"Wakame_95",1990,0.67
+179,"Wakame_96",1990,0.67
+210,"Wakame_94",1990,0.67
+20,"Wakame_93",1991,0.67
+21,"Wakame_95",1991,0.67
+179,"Wakame_96",1991,0.67
+210,"Wakame_94",1991,0.67
+20,"Wakame_93",1992,0.67
+21,"Wakame_95",1992,0.67
+179,"Wakame_96",1992,0.67
+210,"Wakame_94",1992,0.67
+20,"Wakame_93",1993,0.67
+21,"Wakame_95",1993,0.67
+179,"Wakame_96",1993,0.67
+210,"Wakame_94",1993,0.67
+20,"Wakame_93",1994,0.67
+21,"Wakame_95",1994,0.67
+179,"Wakame_96",1994,0.67
+210,"Wakame_94",1994,0.67
+20,"Wakame_93",1995,0.67
+21,"Wakame_95",1995,0.67
+179,"Wakame_96",1995,0.67
+210,"Wakame_94",1995,0.67
+20,"Wakame_93",1996,0.67
+21,"Wakame_95",1996,0.67
+179,"Wakame_96",1996,0.67
+210,"Wakame_94",1996,0.67
+20,"Wakame_93",1997,0.67
+21,"Wakame_95",1997,0.67
+179,"Wakame_96",1997,0.67
+210,"Wakame_94",1997,0.67
+20,"Wakame_93",1998,0.67
+21,"Wakame_95",1998,0.67
+179,"Wakame_96",1998,0.67
+210,"Wakame_94",1998,0.67
+20,"Wakame_93",1999,0.67
+21,"Wakame_95",1999,0.67
+179,"Wakame_96",1999,0.67
+210,"Wakame_94",1999,0.67
+20,"Wakame_93",2000,0.67
+21,"Wakame_95",2000,0.67
+179,"Wakame_96",2000,0.67
+210,"Wakame_94",2000,0.67
+20,"Wakame_93",2001,0.67
+21,"Wakame_95",2001,0.67
+179,"Wakame_96",2001,0.67
+210,"Wakame_94",2001,0.67
+20,"Wakame_93",2002,0.67
+21,"Wakame_95",2002,0.67
+179,"Wakame_96",2002,0.67
+210,"Wakame_94",2002,0.67
+20,"Wakame_93",2003,0.67
+21,"Wakame_95",2003,0.67
+179,"Wakame_96",2003,0.67
+209,"Wakame_97",2003,0.67
+210,"Wakame_94",2003,0.67
+20,"Wakame_93",2004,0.67
+21,"Wakame_95",2004,0.67
+179,"Wakame_96",2004,0.67
+209,"Wakame_97",2004,0.67
+210,"Wakame_94",2004,0.67
+20,"Wakame_93",2005,0.67
+21,"Wakame_95",2005,0.67
+179,"Wakame_96",2005,0.67
+209,"Wakame_97",2005,0.67
+210,"Wakame_94",2005,0.67
+20,"Wakame_93",2006,0.67
+21,"Wakame_95",2006,0.67
+179,"Wakame_96",2006,0.67
+209,"Wakame_97",2006,0.67
+210,"Wakame_94",2006,0.67
+20,"Wakame_93",2007,0.67
+21,"Wakame_95",2007,0.67
+179,"Wakame_96",2007,0.67
+209,"Wakame_97",2007,0.67
+210,"Wakame_94",2007,0.67
+20,"Wakame_93",2008,0.67
+21,"Wakame_95",2008,0.67
+179,"Wakame_96",2008,0.67
+209,"Wakame_97",2008,0.67
+210,"Wakame_94",2008,0.67
+20,"Wakame_93",2009,0.67
+21,"Wakame_95",2009,0.67
+179,"Wakame_96",2009,0.67
+209,"Wakame_97",2009,0.67
+210,"Wakame_94",2009,0.67
+20,"Wakame_93",2010,0.67
+21,"Wakame_95",2010,0.67
+179,"Wakame_96",2010,0.67
+209,"Wakame_97",2010,0.67
+210,"Wakame_94",2010,0.67
+20,"Wakame_93",2011,0.67
+21,"Wakame_95",2011,0.67
+179,"Wakame_96",2011,0.67
+209,"Wakame_97",2011,0.67
+210,"Wakame_94",2011,0.67
+20,"Wakame_93",2012,0.67
+21,"Wakame_95",2012,0.67
+179,"Wakame_96",2012,0.67
+209,"Wakame_97",2012,0.67
+210,"Wakame_94",2012,0.67
+20,"Wakame_93",2013,0.67
+21,"Wakame_95",2013,0.67
+179,"Wakame_96",2013,0.67
+209,"Wakame_97",2013,0.67
+210,"Wakame_94",2013,0.67
+20,"Wakame_93",2014,0.67
+21,"Wakame_95",2014,0.67
+179,"Wakame_96",2014,0.67
+209,"Wakame_97",2014,0.67
+210,"Wakame_94",2014,0.67
+20,"Wakame_93",2015,0.67
+21,"Wakame_95",2015,0.67
+179,"Wakame_96",2015,0.67
+209,"Wakame_97",2015,0.67
+210,"Wakame_94",2015,0.67
+20,"Wakame_93",2016,0.67
+21,"Wakame_95",2016,0.67
+179,"Wakame_96",2016,0.67
+209,"Wakame_97",2016,0.67
+210,"Wakame_94",2016,0.67
+20,"Wakame_93",2017,0.67
+21,"Wakame_95",2017,0.67
+179,"Wakame_96",2017,0.67
+209,"Wakame_97",2017,0.67
+210,"Wakame_94",2017,0.67
+20,"Wakame_93",2018,0.67
+21,"Wakame_95",2018,0.67
+179,"Wakame_96",2018,0.67
+209,"Wakame_97",2018,0.67
+210,"Wakame_94",2018,0.67
+20,"Wakame_93",2019,0.67
+21,"Wakame_95",2019,0.67
+179,"Wakame_96",2019,0.67
+209,"Wakame_97",2019,0.67
+210,"Wakame_94",2019,0.67
+20,"Wakame_93",2020,0.67
+21,"Wakame_95",2020,0.67
+179,"Wakame_96",2020,0.67
+209,"Wakame_97",2020,0.67
+210,"Wakame_94",2020,0.67
+20,"Wakame_93",2021,0.67
+21,"Wakame_95",2021,0.67
+179,"Wakame_96",2021,0.67
+209,"Wakame_97",2021,0.67
+210,"Wakame_94",2021,0.67
+20,"Wakame_93",2022,0.67
+21,"Wakame_95",2022,0.67
+179,"Wakame_96",2022,0.67
+209,"Wakame_97",2022,0.67
+210,"Wakame_94",2022,0.67
+61,"Warty gracilaria_99",2019,0.67
+61,"Warty gracilaria_99",2020,0.67
+61,"Warty gracilaria_99",2021,0.67
+61,"Warty gracilaria_99",2022,0.67
+20,"[Capsosiphon fulvescens]_100",1967,0.67
+20,"[Capsosiphon fulvescens]_100",1968,0.67
+20,"[Capsosiphon fulvescens]_100",1969,0.67
+20,"[Capsosiphon fulvescens]_100",1970,0.67
+20,"[Capsosiphon fulvescens]_100",1971,0.67
+20,"[Capsosiphon fulvescens]_100",1972,0.67
+20,"[Capsosiphon fulvescens]_100",1973,0.67
+20,"[Capsosiphon fulvescens]_100",1974,0.67
+20,"[Capsosiphon fulvescens]_100",1975,0.67
+20,"[Capsosiphon fulvescens]_100",1976,0.67
+20,"[Capsosiphon fulvescens]_100",1977,0.67
+20,"[Capsosiphon fulvescens]_100",1978,0.67
+20,"[Capsosiphon fulvescens]_100",1979,0.67
+20,"[Capsosiphon fulvescens]_100",1980,0.67
+20,"[Capsosiphon fulvescens]_100",1981,0.67
+20,"[Capsosiphon fulvescens]_100",1982,0.67
+20,"[Capsosiphon fulvescens]_100",1983,0.67
+20,"[Capsosiphon fulvescens]_100",1984,0.67
+20,"[Capsosiphon fulvescens]_100",1985,0.67
+20,"[Capsosiphon fulvescens]_100",1986,0.67
+20,"[Capsosiphon fulvescens]_100",1987,0.67
+20,"[Capsosiphon fulvescens]_100",1988,0.67
+20,"[Capsosiphon fulvescens]_100",1989,0.67
+20,"[Capsosiphon fulvescens]_100",1990,0.67
+20,"[Capsosiphon fulvescens]_100",1991,0.67
+20,"[Capsosiphon fulvescens]_100",1992,0.67
+20,"[Capsosiphon fulvescens]_100",1993,0.67
+20,"[Capsosiphon fulvescens]_100",1994,0.67
+20,"[Capsosiphon fulvescens]_100",1995,0.67
+20,"[Capsosiphon fulvescens]_100",1996,0.67
+20,"[Capsosiphon fulvescens]_100",1997,0.67
+20,"[Capsosiphon fulvescens]_100",1998,0.67
+20,"[Capsosiphon fulvescens]_100",1999,0.67
+20,"[Capsosiphon fulvescens]_100",2000,0.67
+20,"[Capsosiphon fulvescens]_100",2001,0.67
+20,"[Capsosiphon fulvescens]_100",2002,0.67
+20,"[Capsosiphon fulvescens]_100",2003,0.67
+20,"[Capsosiphon fulvescens]_100",2004,0.67
+20,"[Capsosiphon fulvescens]_100",2005,0.67
+20,"[Capsosiphon fulvescens]_100",2006,0.67
+20,"[Capsosiphon fulvescens]_100",2007,0.67
+20,"[Capsosiphon fulvescens]_100",2008,0.67
+20,"[Capsosiphon fulvescens]_100",2009,0.67
+20,"[Capsosiphon fulvescens]_100",2010,0.67
+20,"[Capsosiphon fulvescens]_100",2011,0.67
+20,"[Capsosiphon fulvescens]_100",2012,0.67
+20,"[Capsosiphon fulvescens]_100",2013,0.67
+20,"[Capsosiphon fulvescens]_100",2014,0.67
+20,"[Capsosiphon fulvescens]_100",2015,0.67
+20,"[Capsosiphon fulvescens]_100",2016,0.67
+20,"[Capsosiphon fulvescens]_100",2017,0.67
+20,"[Capsosiphon fulvescens]_100",2018,0.67
+20,"[Capsosiphon fulvescens]_100",2019,0.67
+20,"[Capsosiphon fulvescens]_100",2020,0.67
+20,"[Capsosiphon fulvescens]_100",2021,0.67
+20,"[Capsosiphon fulvescens]_100",2022,0.67
+155,"[Cladosiphon okamuranus]_101",2008,0.67
+155,"[Cladosiphon okamuranus]_101",2009,0.67
+155,"[Cladosiphon okamuranus]_101",2010,0.67
+155,"[Cladosiphon okamuranus]_101",2011,0.67
+155,"[Cladosiphon okamuranus]_101",2012,0.67
+155,"[Cladosiphon okamuranus]_101",2013,0.67
+155,"[Cladosiphon okamuranus]_101",2014,0.67
+155,"[Cladosiphon okamuranus]_101",2015,0.67
+155,"[Cladosiphon okamuranus]_101",2016,0.67
+155,"[Cladosiphon okamuranus]_101",2017,0.67
+155,"[Cladosiphon okamuranus]_101",2018,0.67
+155,"[Cladosiphon okamuranus]_101",2019,0.67
+155,"[Cladosiphon okamuranus]_101",2020,0.67
+155,"[Cladosiphon okamuranus]_101",2021,0.67
+155,"[Cladosiphon okamuranus]_101",2022,0.67
+120,"[Eucheuma isiforme]_102",1994,0.67
+120,"[Eucheuma isiforme]_102",1995,0.67
+120,"[Eucheuma isiforme]_102",1996,0.67
+120,"[Eucheuma isiforme]_102",1997,0.67
+120,"[Eucheuma isiforme]_102",1998,0.67
+120,"[Eucheuma isiforme]_102",1999,0.67
+120,"[Eucheuma isiforme]_102",2000,0.67
+120,"[Eucheuma isiforme]_102",2001,0.67
+120,"[Eucheuma isiforme]_102",2002,0.67
+120,"[Eucheuma isiforme]_102",2003,0.67
+120,"[Eucheuma isiforme]_102",2004,0.67
+120,"[Eucheuma isiforme]_102",2005,0.67
+120,"[Eucheuma isiforme]_102",2006,0.67
+120,"[Eucheuma isiforme]_102",2007,0.67
+120,"[Eucheuma isiforme]_102",2008,0.67
+120,"[Eucheuma isiforme]_102",2009,0.67
+120,"[Eucheuma isiforme]_102",2010,0.67
+120,"[Eucheuma isiforme]_102",2011,0.67
+120,"[Eucheuma isiforme]_102",2012,0.67
+164,"[Eucheuma isiforme]_103",2012,0.67
+120,"[Eucheuma isiforme]_102",2013,0.67
+164,"[Eucheuma isiforme]_103",2013,0.67
+120,"[Eucheuma isiforme]_102",2014,0.67
+164,"[Eucheuma isiforme]_103",2014,0.67
+120,"[Eucheuma isiforme]_102",2015,0.67
+164,"[Eucheuma isiforme]_103",2015,0.67
+120,"[Eucheuma isiforme]_102",2016,0.67
+164,"[Eucheuma isiforme]_103",2016,0.67
+120,"[Eucheuma isiforme]_102",2017,0.67
+164,"[Eucheuma isiforme]_103",2017,0.67
+120,"[Eucheuma isiforme]_102",2018,0.67
+164,"[Eucheuma isiforme]_103",2018,0.67
+120,"[Eucheuma isiforme]_102",2019,0.67
+164,"[Eucheuma isiforme]_103",2019,0.67
+120,"[Eucheuma isiforme]_102",2020,0.67
+164,"[Eucheuma isiforme]_103",2020,0.67
+120,"[Eucheuma isiforme]_102",2021,0.67
+164,"[Eucheuma isiforme]_103",2021,0.67
+120,"[Eucheuma isiforme]_102",2022,0.67
+164,"[Eucheuma isiforme]_103",2022,0.67
+20,"[Sargassum spp]_104",2017,0.67
+20,"[Sargassum spp]_104",2018,0.67
+20,"[Sargassum spp]_104",2019,0.67
+216,"[Sargassum spp]_105",2019,0.67
+20,"[Sargassum spp]_104",2020,0.67
+216,"[Sargassum spp]_105",2020,0.67
+20,"[Sargassum spp]_104",2021,0.67
+216,"[Sargassum spp]_105",2021,0.67
+20,"[Sargassum spp]_104",2022,0.67
+216,"[Sargassum spp]_105",2022,0.67
