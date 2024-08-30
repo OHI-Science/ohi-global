@@ -268,7 +268,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "np", 
+  file_name = "ss_wgi", 
   
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2023,
