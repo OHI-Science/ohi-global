@@ -39,6 +39,7 @@ kaufmann2010worldwide,Worldwide Governance Indicators (WGI),"Methods: Accountabi
 chen_tidal_2022,Carbon storage weight,Carbon sequestration by habitat,2022,habitat,n,n,n,n,n,n,"y, new datasource",n,n
 lewis2017largescale,Marine protected areas and terrestrial protected areas,Methods: Location and area of marine and terrestrial protected areas manual,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 martell2016simple,A simple method for estimating MSY from catch and resilience,Methods: Data-limited stock assessments,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+melnychuk2017fisheries,Fisheries management index,Management index of the world's marine fisheries,2018,National,NA,NA,NA,"y, new data source (replaces Mora 2009 data)",n,n,n,n,n
 sdg_14_b_1,Fisheries management effectiveness: artisanal; Artisanal fisheries access,Management effectiveness and access of artisanal fisheries,2018-2022,National,n,n,n,n,n,"y, new datasource (replaces Mora 2009 data)",y,"y, minor updates no score changes",n
 noaa2023,The Coral Reef Temperature Anomaly Database (CoRTAD) Version 6,Sea surface temperature anomalies,1982-2022,4 km,n,n,y,n,n,y,y,n,n
 oconnor_whale_2009,Marine jobs: marine mammal watching,Jobs based on number of whale watchers in a country and a regional average number of whale watchers per employee. Includes all marine mammal watching.,1998-2008,National,n,n,n,n,n,n,n,n,n
@@ -50,7 +51,7 @@ ricard2012examining,Knowledge and status of comercially exploited marine species
 rosenberg2014developing,Developing new approaches to global stock status assessment and maximum sustainable production of the seas,Methods: Data-limited stocks assessments,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 schutte2010regional,Coral reefs,Global coral change in condition,"2002,1980-2009,2006",0.5 km; 1 km; Sites (points),n,n,n,n,n,n,n,n,n
 schwab2017global,Global Competitiveness Index (GCI),Composite measure of 12 aspects of economic competitiveness,2007-2017,National,n,y,y,n,n,n,n,n,n
-iucn2021spatial,Spatial data - IUCN Red List of Threatened Species,"Threatened Species Distribution maps (i.e., spatial data) published on the IUCN Red List ",2021,hexagonal grid system called the ISEA10 grid,NA,NA,NA,NA,NA,"y, improved methods",n,n,n
+short2011extinction,Seagrass,Global seagrass habitat trend and change in condition,1975-2010,"1 km, National",n,n,n,n,n,"y, improved methods",n,n,n
 unep-wcmc2005,Seagrass,Global seagrass habitat extent,1934-2020,Spatial cell scale,n,n,n,y,n,y,n,n,n
 socialprogressindex2022,Social Progress Index,Index measuring quality of life indicators,2011-2022,National,y,y,y,y,y,y,y,n,n
 stern2021,Social Progress Index,Methods: Index measuring quality of life indicators,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -83,6 +84,7 @@ worldbank2014labor,Labor force,Number of people aged 15 and older who could cont
 worldbank2016population,Total population,Census populations for countries,1990-2012,National,n,n,n,n,n,n,n,n,n
 worldbank2014unemployment,National percent unemployment,Percent of the labor force unemployed but able to and looking for work,1990-2011,National,n,n,n,n,n,n,n,n,n
 worldbank2024wgi,Worldwide Governance Indicators (WGI),"Accountability, Political Stability and Absence of Violence, Government Effectiveness, Regulatory Quality, Rule of Law, and Control of Corruption",1996-2022,National,y?,y,y,y,y,y,y,n,y
+wttc_econ_2022,Economic Impact Reports,Economic and employment impact of Travel & Tourism for 185 countries/economies,2019-2021,National,NA,NA,NA,NA,NA,NA,"y, new datasource",n,n
 wttc2013world,Marine jobs: tourism,Total contribution of tourism to employment,1988-2012,National,n,n,n,n,n,n,n,n,n
 wttc2013world,Marine revenue: tourism,"Total tourism revenue by country, adjusted by country's relative proportion of coastal area",1998-2012,National,n,n,n,n,n,n,n,n,n
 froehlich2020avoiding,Avoiding the ecological limits of forage fish for fed aquaculture,Avoiding the ecological limits of forage fish for fed aquaculture,2018,Stock,NA,NA,NA,NA,"y, new data",n,n,n,n
@@ -96,6 +98,8 @@ tuholske2021,Nutrient pollution,Global wastewater methods,NA,NA,NA,NA,NA,NA,NA,"
 halpern2022cumulative,Nutrient pollution,"Global food systems crop and livestock maps, and excess nutrient methdos",NA,1km,NA,NA,NA,NA,NA,"y, new datasource",n,n,n
 murray_2019,Tidal flats,"Global tidal flat habitat extent and trend, from remote sensing",1984-2016,30m,NA,NA,NA,NA,NA,NA,"y, new datasource",n,n
 pagad_2018,Global Register of Introduced and Invasive Species,Global country level count of introduced and invasive species,"2018-2020, 2022",National,NA,NA,NA,NA,NA,NA,"y, new datasource",y,n
+palomares2022search,SeaLifeBase,"Global online database similar to FishBase, containing information about non-fish marine organisms, such as taxonomy, marine species distribution, and ecology, to be used to conduct biodiversity and ecosystem studies",NA,0.5 deg,y,y,y,y,y,y,NA,NA,NA
+froese2022fishbase,FishBase,"Global biodiversity information system on finfishes, provides a wide range of information on all species currently known in the world: taxonomy, biology, trophic ecology, life history, and uses, as well as historical data reaching back to 250 years",NA,0.5 deg,y,y,y,y,y,y,NA,NA,NA
 faofisheriesandaquaculturedepartment2015cwp,Coordinating Working Party Handbook of Fishery Statistical Standards. Section H: FISHING AREAS FOR STATISTICAL PURPOSES,Food and Agriculture Organization of the United Nations major fishing areas,NA,Supranational,n,n,n,n,n,n,n,n,n
 unep-wcmcandiucn2024,Protected Planet: The World Database on Protected Areas (WDPA),The most comprehensive global database on terrestrial and marine protected areas,1800 - 2023,500m,y,y,y,y,y,y,y,y,y
 garcia2023,Biocultural vulnerability exposes threats of culturally important species,Global list of Culturally important species,NA,continent,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",n
