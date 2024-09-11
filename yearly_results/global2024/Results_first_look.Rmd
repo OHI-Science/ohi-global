@@ -57,7 +57,7 @@ librarian::shelf(
 )
 ```
 
-```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include=FALSE}
 ### This chunk is where things need to be changed each year
 
 ### 1. check the code chunk below and change variables if needed
@@ -79,28 +79,28 @@ oldCommit  <- 'e7497d697c654c7d5c49b76cb70eb22b31a61e13' # final commit for 2023
 update_data  <- TRUE # select true if there are updates to the OHI data!! Also be sure to change dateFile below
 map_create   <- TRUE # Updates the map figures (takes a while to run)
 goal_hists   <- TRUE # Updates the goal histograms
-flower_plots <- FALSE # Updates the flower plot figures
+flower_plots <- TRUE # Updates the flower plot figures
 
 ### the date in the below variable must be updated (for the results to reflect the new data)
 # dateFile       <- Sys.Date()   # date extension on data files used for all tables/figures
 ###### update this 2024!######
-dateFile       <- "2023-10-02" # date extension on data files used for all tables/figures
-benchmark_date <- "2022-10-05" # Date from last assessment
+dateFile       <- "2024-09-11" # date extension on data files used for all tables/figures
+benchmark_date <- "2023-10-02" # Date from last assessment
 ```
 
-```{r parameters, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+```{r parameters, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include=FALSE}
 ### Directories
-dir_scen_year         <- here::here('yearly_results', globalYear)
+dir_scen_year         <- here::here("yearly_results", globalYear)
 dir_results_data      <- here::here(dir_scen_year, "Results", "data")
 dir_results_figures   <- here::here(dir_scen_year, "Results", "figures")
-dir_results_functions <- here::here(dir_scen_year, 'Results', 'functions')
-dir_goal_maps         <- here::here(dir_results_figures, 'maps_by_goal_mol')
+dir_results_functions <- here::here(dir_scen_year, "Results", "functions")
+dir_goal_maps         <- here::here(dir_results_figures, "maps_by_goal_mol")
 dir_goal_histograms   <- here::here(dir_results_figures, "goal_histograms")
 
 ### score filenames
-scores_filename   <- here::here(dir_scen_year, paste0("scores_",dateFile,".csv" ))
-final_filename    <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_",dateFile,".csv"))
-current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_",scenario,".csv"))
+scores_filename   <- here::here(dir_scen_year, paste0("scores_", dateFile, ".csv" ))
+final_filename    <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_", dateFile, ".csv"))
+current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_", scenario, ".csv"))
 
 ### map filenames
 region_file <- here::here('eez', 'spatial', 'downres', 'regions_mol_simple.GeoJSON')
@@ -156,7 +156,7 @@ if (file.exists(color_file)) {
 colors_trend <- brewer.pal(11, "RdYlBu")
 colors_trend <- colorRampPalette(colors_trend, space = 'Lab')(13)[2:13]
 ### Color Breaks
-col.brks     <- seq(0,100, by = 1)
+col.brks     <- seq(0, 100, by = 1)
 col.brks.maps <- seq(0, 100, length.out = 6)
 col.brks.trends <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
 ### Colors with breaks 
@@ -190,7 +190,7 @@ ohi_final <- final_filename %>%
 
 ohi_final_avg <- ohi_final %>%
   dplyr::group_by(region_id) %>%
-  dplyr::summarize(average = mean(value, na.rm=TRUE))
+  dplyr::summarize(average = mean(value, na.rm = TRUE))
 
 ohi_final_wide <- ohi_final %>%
   dplyr::select(scenario, region_id, region_name, value) %>%
@@ -206,7 +206,7 @@ index_avg <- final_filename %>%
   readr::read_csv() %>%
   dplyr::filter(dimension == "score") %>%
   dplyr::group_by(goal, region_id, region_name) %>%
-  dplyr::summarize(avg_score = mean(value, na.rm=TRUE)) %>%
+  dplyr::summarize(avg_score = mean(value, na.rm = TRUE)) %>%
   dplyr::ungroup()
 
 index_avg$goal <- factor(index_avg$goal, levels = goals)
@@ -251,8 +251,7 @@ for(year in 2012:scenario){
 }
 ```
 
-###### update this 2024!######
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/OHI_final_formatted_scores_2022-10-02.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2023.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/OHI_final_formatted_scores_2024-09-11.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2024.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
@@ -263,7 +262,7 @@ Region 0 is the global average scores, which are calculated using an area-weight
 This section describes global patterns in index and goal scores.  The overall global score was `r data_final %>% dplyr::filter(region_name == "Global average") %>% dplyr::select(Index) %>% .[['Index']]`.
 
 ```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval = flower_plots}
-source(here::here(dir_results_functions, 'flowerPlot.R'))
+source(here::here(dir_results_functions, "flowerPlot.R"))
 
 # Make sure you create the Results/figures/FlowerPlots folder before running this function
 PlotFlower(
@@ -333,8 +332,7 @@ ohi_regions <- terra::vect(region_file, crs = mollweide)
 plot_scores_map(metric = "scores")
 ```
 
-###### update this 2024!######
-Country index scores for 2023  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2032/Results/figures/maps_by_goal_mol).
+Country index scores for 2024  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2024/Results/figures/maps_by_goal_mol).
 
 ```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
 here::here(dir_goal_maps, paste0("global_map_Index_",scenario,"_mol.png")) %>% 
