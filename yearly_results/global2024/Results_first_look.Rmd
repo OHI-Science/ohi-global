@@ -57,7 +57,7 @@ librarian::shelf(
 )
 ```
 
-```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+```{r control, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include=FALSE}
 ### This chunk is where things need to be changed each year
 
 ### 1. check the code chunk below and change variables if needed
@@ -79,28 +79,28 @@ oldCommit  <- 'e7497d697c654c7d5c49b76cb70eb22b31a61e13' # final commit for 2023
 update_data  <- TRUE # select true if there are updates to the OHI data!! Also be sure to change dateFile below
 map_create   <- TRUE # Updates the map figures (takes a while to run)
 goal_hists   <- TRUE # Updates the goal histograms
-flower_plots <- FALSE # Updates the flower plot figures
+flower_plots <- TRUE # Updates the flower plot figures
 
 ### the date in the below variable must be updated (for the results to reflect the new data)
 # dateFile       <- Sys.Date()   # date extension on data files used for all tables/figures
 ###### update this 2024!######
-dateFile       <- "2023-10-02" # date extension on data files used for all tables/figures
-benchmark_date <- "2022-10-05" # Date from last assessment
+dateFile       <- "2024-09-11" # date extension on data files used for all tables/figures
+benchmark_date <- "2023-10-02" # Date from last assessment
 ```
 
-```{r parameters, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include = FALSE}
+```{r parameters, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, include=FALSE}
 ### Directories
-dir_scen_year         <- here::here('yearly_results', globalYear)
+dir_scen_year         <- here::here("yearly_results", globalYear)
 dir_results_data      <- here::here(dir_scen_year, "Results", "data")
 dir_results_figures   <- here::here(dir_scen_year, "Results", "figures")
-dir_results_functions <- here::here(dir_scen_year, 'Results', 'functions')
-dir_goal_maps         <- here::here(dir_results_figures, 'maps_by_goal_mol')
+dir_results_functions <- here::here(dir_scen_year, "Results", "functions")
+dir_goal_maps         <- here::here(dir_results_figures, "maps_by_goal_mol")
 dir_goal_histograms   <- here::here(dir_results_figures, "goal_histograms")
 
 ### score filenames
-scores_filename   <- here::here(dir_scen_year, paste0("scores_",dateFile,".csv" ))
-final_filename    <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_",dateFile,".csv"))
-current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_",scenario,".csv"))
+scores_filename   <- here::here(dir_scen_year, paste0("scores_", dateFile, ".csv" ))
+final_filename    <-  here::here(dir_scen_year, paste0("OHI_final_formatted_scores_", dateFile, ".csv"))
+current_scores_fn <- here::here(dir_results_data, paste0("scores_eez_", scenario, ".csv"))
 
 ### map filenames
 region_file <- here::here('eez', 'spatial', 'downres', 'regions_mol_simple.GeoJSON')
@@ -156,7 +156,7 @@ if (file.exists(color_file)) {
 colors_trend <- brewer.pal(11, "RdYlBu")
 colors_trend <- colorRampPalette(colors_trend, space = 'Lab')(13)[2:13]
 ### Color Breaks
-col.brks     <- seq(0,100, by = 1)
+col.brks     <- seq(0, 100, by = 1)
 col.brks.maps <- seq(0, 100, length.out = 6)
 col.brks.trends <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
 ### Colors with breaks 
@@ -190,7 +190,7 @@ ohi_final <- final_filename %>%
 
 ohi_final_avg <- ohi_final %>%
   dplyr::group_by(region_id) %>%
-  dplyr::summarize(average = mean(value, na.rm=TRUE))
+  dplyr::summarize(average = mean(value, na.rm = TRUE))
 
 ohi_final_wide <- ohi_final %>%
   dplyr::select(scenario, region_id, region_name, value) %>%
@@ -206,7 +206,7 @@ index_avg <- final_filename %>%
   readr::read_csv() %>%
   dplyr::filter(dimension == "score") %>%
   dplyr::group_by(goal, region_id, region_name) %>%
-  dplyr::summarize(avg_score = mean(value, na.rm=TRUE)) %>%
+  dplyr::summarize(avg_score = mean(value, na.rm = TRUE)) %>%
   dplyr::ungroup()
 
 index_avg$goal <- factor(index_avg$goal, levels = goals)
@@ -251,8 +251,7 @@ for(year in 2012:scenario){
 }
 ```
 
-###### update this 2024!######
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/OHI_final_formatted_scores_2022-10-02.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2023.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/OHI_final_formatted_scores_2024-09-11.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2024.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
@@ -263,7 +262,7 @@ Region 0 is the global average scores, which are calculated using an area-weight
 This section describes global patterns in index and goal scores.  The overall global score was `r data_final %>% dplyr::filter(region_name == "Global average") %>% dplyr::select(Index) %>% .[['Index']]`.
 
 ```{r Flower plots, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval = flower_plots}
-source(here::here(dir_results_functions, 'flowerPlot.R'))
+source(here::here(dir_results_functions, "flowerPlot.R"))
 
 # Make sure you create the Results/figures/FlowerPlots folder before running this function
 PlotFlower(
@@ -333,8 +332,7 @@ ohi_regions <- terra::vect(region_file, crs = mollweide)
 plot_scores_map(metric = "scores")
 ```
 
-###### update this 2024!######
-Country index scores for 2023  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2032/Results/figures/maps_by_goal_mol).
+Country index scores for 2024  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2024/Results/figures/maps_by_goal_mol).
 
 ```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
 here::here(dir_goal_maps, paste0("global_map_Index_",scenario,"_mol.png")) %>% 
@@ -369,7 +367,7 @@ g <- ggplot(hist_data, aes(x=Index)) +
 print(g)
 
 ggsave(here::here(dir_results_figures, "score_histogram_color.png"), 
-       width=4, height=3, units=c("in"), dpi=300)
+       width = 4, height = 3, units = c("in"), dpi = 300)
 ```
 
 The regions with index scores of 80 or greater are:
@@ -396,7 +394,7 @@ knitr::kable(low)
 ## Country scores across scenario year
 
 ###### update this 2024!######
-Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2023 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 12 years of data. Black regions indicate no data.
+Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2024 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 12 years of data. Black regions indicate no data.
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 data <- readr::read_csv(final_filename) 
@@ -407,7 +405,7 @@ data <- data %>%
   dplyr::mutate(value = round(value, 0)) %>%
   dplyr::mutate(region_name = as.character(region_name)) %>%
   dplyr::group_by(region_id) %>% 
-  dplyr::mutate(meanIndex=mean(value[goal=="Index"])) %>%
+  dplyr::mutate(meanIndex = mean(value[goal == "Index"])) %>%
   dplyr::ungroup() %>%
   data.frame()
 
@@ -425,18 +423,18 @@ order_rgn <- data %>%
 order_rgn <- rbind(order_rgn, global)
 
 data$goal <- factor(data$goal, levels = goals)
-data$region_name <- factor(data$region_name, levels=order_rgn$region_name)
+data$region_name <- factor(data$region_name, levels = order_rgn$region_name)
 
-ggplot(data, aes(y=region_name, x=scenario, fill=value)) + 
+ggplot(data, aes(y = region_name, x = scenario, fill = value)) + 
   geom_tile() +
   facet_grid(~goal) + 
-  scale_fill_gradientn(colours=colors, na.value="black") +
-  theme(axis.text.x  = element_text(angle=90, vjust=0.5), axis.text.y=element_text(size=10)) +
+  scale_fill_gradientn(colours = colors, na.value = "black") +
+  theme(axis.text.x  = element_text(angle = 90, vjust = 0.5), axis.text.y = element_text(size = 10)) +
   ylab("") + 
   xlab("") +
-  scale_x_continuous(breaks = c(2012, 2014, 2016, 2018, 2020, 2022))
+  scale_x_continuous(breaks = c(2012, 2014, 2016, 2018, 2020, 2022, 2024))
 
-ggsave(here::here(dir_results_figures, "carpetPlot.png"), width=20, height=35)
+ggsave(here::here(dir_results_figures, "carpetPlot.png"), width = 20, height = 35)
 ```
 
 *Don't try too hard to interpret the results for specific countries/goals/years!!*
@@ -500,8 +498,7 @@ for (i in goals) { # i <- "AO"
 
 ## 2024 Data
 
-###### update this 2024!######
-This interactive table describes the index and goal scores for the regions in 2024 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/scores_eez_2023.csv)): 
+This interactive table describes the index and goal scores for the regions in 2024 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/Results/data/scores_eez_2024.csv)): 
 
 ```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 current_scores_fn %>% 
@@ -526,7 +523,7 @@ for(goal in goals){ #goal="Index"
       breaks = c(0,10,20,30,40,50,60,70,80,90,100), 
       include.lowest = TRUE, 
       labels = pal))
-  tmp <- data.frame(goal=tmp)
+  tmp <- data.frame(goal = tmp)
   names(tmp) <- goal
   cols <- cbind(cols, tmp)
 }
@@ -658,10 +655,9 @@ hwrite(
 
 Trend values are slope estimates from a linear model of scores for each region/goal over the past `r length(unique(scores$scenario))` years. Positive values indicate increasing scores during the past `r length(unique(scores$scenario))` years and negative values indicate decreasing scores.
 
-###### update this 2024!######
-A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/trends_2023.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2023/Results/data/trends_2023.csv)).  
+A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2024/Results/data/trends_2024.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/Results/data/trends_2024.csv)).  
 
-NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed sceptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
+NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed skeptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
 
 ## Global summary
 
@@ -821,7 +817,7 @@ here::here(dir_results_figures, "Trend_barplot.png") %>%
 
 # A closer look at goal scores
 
-This section takes a closer look at the goal/subgoal scores for the 2023 scenario.
+This section takes a closer look at the goal/subgoal scores for the 2024 scenario.
 
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
 # Make pretty histograms
@@ -939,7 +935,7 @@ p <- ggplot2::ggplot(trend, aes(x=index_avg, y=index_trend)) +
   scale_color_manual(values = avg_colors) +
   labs(title="Index scores",
        y = "Trend (change in score per year)", 
-       x = "Average (2012 to 2023 scores)") +
+       x = "Average (2012 to 2024 scores)") +
   theme_bw() + 
   theme(legend.position = "none")
 
@@ -957,14 +953,14 @@ plotly_fig
 
 # Comparing assessment years
 
-The following is a comparison of the global status scores generated for the 2023 scenario by this year's assessment vs. last year's assessment. 
+The following is a comparison of the global status scores generated for the 2024 scenario by this year's assessment vs. last year's assessment. 
 
 If the models and source data remain the same, these scores should be exactly the same.  Differences indicate changes in methods or source data.  
 
 These changes do not reflect changes in actual system health!   
 ```{r compare assessments, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 data <- read.csv(final_filename) %>%
-  dplyr::rename("assess2024"=value) 
+  dplyr::rename("assess2024" = value) 
 
 data_old <- here::here('yearly_results', paste0('global',benchmark,'/OHI_final_formatted_scores_',benchmark_date,'.csv')) %>% 
   readr::read_csv() %>%
@@ -979,11 +975,11 @@ data_compare$goal <- factor(data_compare$goal, levels = goals)
 
 data_compare <- data_compare %>%
   dplyr::arrange(goal) %>%
-  dplyr::mutate(change = assess2023 - assess2022)
+  dplyr::mutate(change = assess2024 - assess2023)
 
 data_compare_summary <- data_compare %>%
   dplyr::group_by(long_goal, dimension) %>%
-  dplyr::summarize(mean_change = mean(change, na.rm=TRUE)) %>%
+  dplyr::summarize(mean_change = mean(change, na.rm = TRUE)) %>%
   tidyr::pivot_wider(names_from = dimension, values_from = mean_change)
 
 knitr::kable(data_compare_summary)
@@ -992,17 +988,18 @@ knitr::kable(data_compare_summary)
 
 ### Country data 
 
-The following interactive plot provides an overview of how the 2023 scenario scores changed between the 2022 and 2023 assessments for all goals and dimensions.
+The following interactive plot provides an overview of how the 2023 scenario scores changed between the 2023 and 2024 assessments for all goals and dimensions.
 
 ```{r compare assessments-plot, echo=FALSE, warning=FALSE}
-p <- ggplot2::ggplot(data_compare, aes(x=goal, y=change, color=dimension)) +
-  geom_jitter(aes(text=paste0("rgn = ", region_name)), 
-              position = position_jitter(width=0.2, height=0), shape=19, size=1) +
+p <- ggplot2::ggplot(data_compare, aes(x = goal, y = change, color = dimension)) +
+  geom_jitter(aes(text = paste0("rgn = ", region_name)), 
+              position = position_jitter(width = 0.2, height = 0), shape = 19, size = 1) +
   theme_bw() + 
-  labs(title="Change in 2024 scores ", y="Change in score", x="") +
-  scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS", "CW", "FIS", "FP", 
-                              "MAR", "ECO", "LE", "LIV", "NP", "LSP", "SP", "ICO", "TR")) +
-  scale_colour_brewer(palette="Dark2")
+  labs(title = "Change in 2024 scores ", y = "Change in score", x = "") +
+  scale_x_discrete(limits = c("Index", "AO", "SPP", "BD", "HAB", "CP", "CS",
+                              "CW", "FIS", "FP", "MAR", "ECO", "LE", "LIV",
+                              "NP", "LSP", "SP", "ICO", "TR")) +
+  scale_colour_brewer(palette = "Dark2")
 
 plotly_fig <- plotly::ggplotly(p)
 plotly_fig
