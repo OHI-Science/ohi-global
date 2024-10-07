@@ -233,7 +233,7 @@ targets <- read.csv(here("metadata_documentation/layers_eez_targets.csv"))
 layers_web <- "http://ohi-science.org/ohi-global/layers.html"
 
 # function
-data_layers <- function(dimension, goal){ # goal = "ICO"; dimension=c("status", "trend")
+data_layers <- function(dimension, goal){ # goal = "MAR"; dimension=c("status", "trend")
   
   st <- targets[targets$goal == goal, ]
   st <- st[st$dimension %in% dimension, ]
