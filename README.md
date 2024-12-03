@@ -4,6 +4,7 @@ ohi-global
 ### Ocean Health Index assessment of global EEZ regions 
 This repository includes files for the global OHI assessment using eez boundaries for 220 country and territorial regions.
 
+
 General information about file structure is here: http://ohi-science.org/manual/#file-system-organization
 
 
