@@ -16,6 +16,7 @@
 "ao_access",2022,2022
 "ao_access",2023,2022
 "ao_access",2024,2022
+"ao_access",2025,2022
 "ao_need",2008,2007
 "ao_need",2009,2008
 "ao_need",2010,2009
@@ -33,6 +34,7 @@
 "ao_need",2022,2021
 "ao_need",2023,2022
 "ao_need",2024,2023
+"ao_need",2025,2023
 "ao_sust",2008,2005
 "ao_sust",2009,2006
 "ao_sust",2010,2007
@@ -50,6 +52,7 @@
 "ao_sust",2022,2019
 "ao_sust",2023,2019
 "ao_sust",2024,2019
+"ao_sust",2025,2019
 "cc_acid",2012,2010
 "cc_acid",2013,2011
 "cc_acid",2014,2012
@@ -63,6 +66,7 @@
 "cc_acid",2022,2020
 "cc_acid",2023,2021
 "cc_acid",2024,2022
+"cc_acid",2025,2022
 "cc_slr",2012,2010
 "cc_slr",2013,2011
 "cc_slr",2014,2012
@@ -76,6 +80,7 @@
 "cc_slr",2022,2020
 "cc_slr",2023,2021
 "cc_slr",2024,2022
+"cc_slr",2025,2022
 "cc_sst",2012,2011
 "cc_sst",2013,2012
 "cc_sst",2014,2013
@@ -89,6 +94,7 @@
 "cc_sst",2022,2021
 "cc_sst",2023,2022
 "cc_sst",2024,2022
+"cc_sst",2025,2022
 "cc_uv",2012,2011
 "cc_uv",2013,2012
 "cc_uv",2014,2013
@@ -102,6 +108,7 @@
 "cc_uv",2022,2021
 "cc_uv",2023,2022
 "cc_uv",2024,2023
+"cc_uv",2025,2023
 "cw_chemical_trend",2012,2012
 "cw_chemical_trend",2013,2013
 "cw_chemical_trend",2014,2014
@@ -115,6 +122,7 @@
 "cw_chemical_trend",2022,2016
 "cw_chemical_trend",2023,2016
 "cw_chemical_trend",2024,2016
+"cw_chemical_trend",2025,2016
 "cw_nutrient_trend",2012,2010
 "cw_nutrient_trend",2013,2011
 "cw_nutrient_trend",2014,2012
@@ -128,6 +136,7 @@
 "cw_nutrient_trend",2022,2020
 "cw_nutrient_trend",2023,2020
 "cw_nutrient_trend",2024,2020
+"cw_nutrient_trend",2025,2020
 "cw_pathogen_trend",2012,2010
 "cw_pathogen_trend",2013,2011
 "cw_pathogen_trend",2014,2012
@@ -141,6 +150,7 @@
 "cw_pathogen_trend",2022,2020
 "cw_pathogen_trend",2023,2021
 "cw_pathogen_trend",2024,2022
+"cw_pathogen_trend",2025,2022
 "cw_trash_trend",2012,2016
 "cw_trash_trend",2013,2016
 "cw_trash_trend",2014,2016
@@ -154,6 +164,7 @@
 "cw_trash_trend",2022,2016
 "cw_trash_trend",2023,2016
 "cw_trash_trend",2024,2016
+"cw_trash_trend",2025,2016
 "eco_status",2012,2012
 "eco_status",2013,2013
 "eco_status",2014,2013
@@ -167,6 +178,7 @@
 "eco_status",2022,2013
 "eco_status",2023,2013
 "eco_status",2024,2013
+"eco_status",2025,2013
 "eco_trend",2012,2012
 "eco_trend",2013,2013
 "eco_trend",2014,2013
@@ -180,6 +192,7 @@
 "eco_trend",2022,2013
 "eco_trend",2023,2013
 "eco_trend",2024,2013
+"eco_trend",2025,2013
 "fis_b_bmsy",2008,2005
 "fis_b_bmsy",2009,2006
 "fis_b_bmsy",2010,2007
@@ -197,6 +210,7 @@
 "fis_b_bmsy",2022,2019
 "fis_b_bmsy",2023,2019
 "fis_b_bmsy",2024,2019
+"fis_b_bmsy",2025,2019
 "fis_meancatch",2008,2005
 "fis_meancatch",2009,2006
 "fis_meancatch",2010,2007
@@ -214,6 +228,7 @@
 "fis_meancatch",2022,2019
 "fis_meancatch",2023,2019
 "fis_meancatch",2024,2019
+"fis_meancatch",2025,2019
 "fp_art_hb",2012,2009
 "fp_art_hb",2013,2010
 "fp_art_hb",2014,2011
@@ -227,6 +242,7 @@
 "fp_art_hb",2022,2017
 "fp_art_hb",2023,2017
 "fp_art_hb",2024,2017
+"fp_art_hb",2025,2017
 "fp_art_lb",2012,2009
 "fp_art_lb",2013,2010
 "fp_art_lb",2014,2011
@@ -240,6 +256,7 @@
 "fp_art_lb",2022,2017
 "fp_art_lb",2023,2017
 "fp_art_lb",2024,2017
+"fp_art_lb",2025,2017
 "fp_artisanal",2012,2018
 "fp_artisanal",2013,2018
 "fp_artisanal",2014,2018
@@ -253,6 +270,7 @@
 "fp_artisanal",2022,2022
 "fp_artisanal",2023,2022
 "fp_artisanal",2024,2022
+"fp_artisanal",2025,2022
 "fp_com_hb",2012,2009
 "fp_com_hb",2013,2010
 "fp_com_hb",2014,2011
@@ -266,6 +284,7 @@
 "fp_com_hb",2022,2017
 "fp_com_hb",2023,2017
 "fp_com_hb",2024,2017
+"fp_com_hb",2025,2017
 "fp_com_lb",2012,2009
 "fp_com_lb",2013,2010
 "fp_com_lb",2014,2011
@@ -279,6 +298,7 @@
 "fp_com_lb",2022,2017
 "fp_com_lb",2023,2017
 "fp_com_lb",2024,2017
+"fp_com_lb",2025,2017
 "fp_fish_management",2012,2019
 "fp_fish_management",2013,2019
 "fp_fish_management",2014,2019
@@ -292,6 +312,7 @@
 "fp_fish_management",2022,2019
 "fp_fish_management",2023,2019
 "fp_fish_management",2024,2019
+"fp_fish_management",2025,2019
 "fp_habitat",2012,2005
 "fp_habitat",2013,2005
 "fp_habitat",2014,2005
@@ -305,6 +326,7 @@
 "fp_habitat",2022,2005
 "fp_habitat",2023,2005
 "fp_habitat",2024,2005
+"fp_habitat",2025,2005
 "fp_mpa_coast",2012,2011
 "fp_mpa_coast",2013,2012
 "fp_mpa_coast",2014,2013
@@ -318,6 +340,7 @@
 "fp_mpa_coast",2022,2021
 "fp_mpa_coast",2023,2022
 "fp_mpa_coast",2024,2023
+"fp_mpa_coast",2025,2023
 "fp_mpa_eez",2012,2011
 "fp_mpa_eez",2013,2012
 "fp_mpa_eez",2014,2013
@@ -331,6 +354,7 @@
 "fp_mpa_eez",2022,2021
 "fp_mpa_eez",2023,2022
 "fp_mpa_eez",2024,2023
+"fp_mpa_eez",2025,2023
 "fp_targetharvest",2012,2010
 "fp_targetharvest",2013,2011
 "fp_targetharvest",2014,2012
@@ -344,6 +368,7 @@
 "fp_targetharvest",2022,2020
 "fp_targetharvest",2023,2021
 "fp_targetharvest",2024,2022
+"fp_targetharvest",2025,2022
 "fp_wildcaught_weight",2012,2009
 "fp_wildcaught_weight",2013,2010
 "fp_wildcaught_weight",2014,2011
@@ -357,6 +382,7 @@
 "fp_wildcaught_weight",2022,2019
 "fp_wildcaught_weight",2023,2019
 "fp_wildcaught_weight",2024,2019
+"fp_wildcaught_weight",2025,2019
 "g_cites",2012,2012
 "g_cites",2013,2013
 "g_cites",2014,2014
@@ -370,6 +396,7 @@
 "g_cites",2022,2017
 "g_cites",2023,2017
 "g_cites",2024,2017
+"g_cites",2025,2017
 "g_tourism",2012,2005
 "g_tourism",2013,2005
 "g_tourism",2014,2005
@@ -383,6 +410,7 @@
 "g_tourism",2022,2005
 "g_tourism",2023,2005
 "g_tourism",2024,2005
+"g_tourism",2025,2005
 "hab_coral_extent",2000,2021
 "hab_coral_extent",2001,2021
 "hab_coral_extent",2002,2021
@@ -408,6 +436,7 @@
 "hab_coral_extent",2022,2021
 "hab_coral_extent",2023,2021
 "hab_coral_extent",2024,2021
+"hab_coral_extent",2025,2021
 "hab_coral_health",2012,2021
 "hab_coral_health",2013,2021
 "hab_coral_health",2014,2021
@@ -421,6 +450,7 @@
 "hab_coral_health",2022,2021
 "hab_coral_health",2023,2021
 "hab_coral_health",2024,2021
+"hab_coral_health",2025,2021
 "hab_coral_trend",2012,2021
 "hab_coral_trend",2013,2021
 "hab_coral_trend",2014,2021
@@ -434,6 +464,7 @@
 "hab_coral_trend",2022,2021
 "hab_coral_trend",2023,2021
 "hab_coral_trend",2024,2021
+"hab_coral_trend",2025,2021
 "hab_kelp_extent",2012,2020
 "hab_kelp_extent",2013,2020
 "hab_kelp_extent",2014,2020
@@ -447,6 +478,7 @@
 "hab_kelp_extent",2022,2020
 "hab_kelp_extent",2023,2020
 "hab_kelp_extent",2024,2020
+"hab_kelp_extent",2025,2020
 "hab_kelp_health",2012,2021
 "hab_kelp_health",2013,2021
 "hab_kelp_health",2014,2021
@@ -460,6 +492,7 @@
 "hab_kelp_health",2022,2021
 "hab_kelp_health",2023,2021
 "hab_kelp_health",2024,2021
+"hab_kelp_health",2025,2021
 "hab_kelp_trend",2012,2021
 "hab_kelp_trend",2013,2021
 "hab_kelp_trend",2014,2021
@@ -473,6 +506,7 @@
 "hab_kelp_trend",2022,2021
 "hab_kelp_trend",2023,2021
 "hab_kelp_trend",2024,2021
+"hab_kelp_trend",2025,2021
 "hab_mangrove_extent",2012,2015
 "hab_mangrove_extent",2013,2015
 "hab_mangrove_extent",2014,2015
@@ -486,6 +520,7 @@
 "hab_mangrove_extent",2022,2020
 "hab_mangrove_extent",2023,2020
 "hab_mangrove_extent",2024,2020
+"hab_mangrove_extent",2025,2020
 "hab_mangrove_health",2012,2015
 "hab_mangrove_health",2013,2015
 "hab_mangrove_health",2014,2015
@@ -499,6 +534,7 @@
 "hab_mangrove_health",2022,2020
 "hab_mangrove_health",2023,2020
 "hab_mangrove_health",2024,2020
+"hab_mangrove_health",2025,2020
 "hab_mangrove_trend",2012,2015
 "hab_mangrove_trend",2013,2015
 "hab_mangrove_trend",2014,2015
@@ -512,6 +548,7 @@
 "hab_mangrove_trend",2022,2020
 "hab_mangrove_trend",2023,2020
 "hab_mangrove_trend",2024,2020
+"hab_mangrove_trend",2025,2020
 "hab_rockyreef_extent",2000,2012
 "hab_rockyreef_extent",2001,2012
 "hab_rockyreef_extent",2002,2012
@@ -537,6 +574,7 @@
 "hab_rockyreef_extent",2022,2012
 "hab_rockyreef_extent",2023,2012
 "hab_rockyreef_extent",2024,2012
+"hab_rockyreef_extent",2025,2012
 "hab_saltmarsh_extent",2012,2017
 "hab_saltmarsh_extent",2013,2017
 "hab_saltmarsh_extent",2014,2017
@@ -550,6 +588,7 @@
 "hab_saltmarsh_extent",2022,2017
 "hab_saltmarsh_extent",2023,2017
 "hab_saltmarsh_extent",2024,2017
+"hab_saltmarsh_extent",2025,2017
 "hab_saltmarsh_health",2012,2021
 "hab_saltmarsh_health",2013,2021
 "hab_saltmarsh_health",2014,2021
@@ -563,6 +602,7 @@
 "hab_saltmarsh_health",2022,2021
 "hab_saltmarsh_health",2023,2021
 "hab_saltmarsh_health",2024,2021
+"hab_saltmarsh_health",2025,2021
 "hab_saltmarsh_trend",2012,2023
 "hab_saltmarsh_trend",2013,2023
 "hab_saltmarsh_trend",2014,2023
@@ -576,6 +616,7 @@
 "hab_saltmarsh_trend",2022,2023
 "hab_saltmarsh_trend",2023,2023
 "hab_saltmarsh_trend",2024,2023
+"hab_saltmarsh_trend",2025,2023
 "hab_seagrass_extent",2012,2020
 "hab_seagrass_extent",2013,2020
 "hab_seagrass_extent",2014,2020
@@ -589,6 +630,7 @@
 "hab_seagrass_extent",2022,2020
 "hab_seagrass_extent",2023,2020
 "hab_seagrass_extent",2024,2020
+"hab_seagrass_extent",2025,2020
 "hab_seagrass_health",2012,2021
 "hab_seagrass_health",2013,2021
 "hab_seagrass_health",2014,2021
@@ -602,6 +644,7 @@
 "hab_seagrass_health",2022,2021
 "hab_seagrass_health",2023,2021
 "hab_seagrass_health",2024,2021
+"hab_seagrass_health",2025,2021
 "hab_seagrass_trend",2012,2021
 "hab_seagrass_trend",2013,2021
 "hab_seagrass_trend",2014,2021
@@ -615,6 +658,7 @@
 "hab_seagrass_trend",2022,2021
 "hab_seagrass_trend",2023,2021
 "hab_seagrass_trend",2024,2021
+"hab_seagrass_trend",2025,2021
 "hab_seaice_extent",2012,2016
 "hab_seaice_extent",2013,2016
 "hab_seaice_extent",2014,2016
@@ -628,6 +672,7 @@
 "hab_seaice_extent",2022,2016
 "hab_seaice_extent",2023,2016
 "hab_seaice_extent",2024,2016
+"hab_seaice_extent",2025,2016
 "hab_seaice_health",2012,2011
 "hab_seaice_health",2013,2012
 "hab_seaice_health",2014,2013
@@ -641,6 +686,7 @@
 "hab_seaice_health",2022,2021
 "hab_seaice_health",2023,2022
 "hab_seaice_health",2024,2023
+"hab_seaice_health",2025,2023
 "hab_seaice_trend",2012,2011
 "hab_seaice_trend",2013,2012
 "hab_seaice_trend",2014,2013
@@ -654,6 +700,7 @@
 "hab_seaice_trend",2022,2021
 "hab_seaice_trend",2023,2022
 "hab_seaice_trend",2024,2023
+"hab_seaice_trend",2025,2023
 "hab_softbottom_extent",2012,2012
 "hab_softbottom_extent",2013,2012
 "hab_softbottom_extent",2014,2012
@@ -667,6 +714,7 @@
 "hab_softbottom_extent",2022,2012
 "hab_softbottom_extent",2023,2012
 "hab_softbottom_extent",2024,2012
+"hab_softbottom_extent",2025,2012
 "hab_softbottom_health",2012,2012
 "hab_softbottom_health",2013,2013
 "hab_softbottom_health",2014,2014
@@ -680,6 +728,7 @@
 "hab_softbottom_health",2022,2020
 "hab_softbottom_health",2023,2020
 "hab_softbottom_health",2024,2020
+"hab_softbottom_health",2025,2020
 "hab_softbottom_trend",2012,2012
 "hab_softbottom_trend",2013,2013
 "hab_softbottom_trend",2014,2014
@@ -693,6 +742,7 @@
 "hab_softbottom_trend",2022,2020
 "hab_softbottom_trend",2023,2020
 "hab_softbottom_trend",2024,2020
+"hab_softbottom_trend",2025,2020
 "hab_tidal_flat_extent",2012,2013
 "hab_tidal_flat_extent",2013,2013
 "hab_tidal_flat_extent",2014,2013
@@ -706,6 +756,7 @@
 "hab_tidal_flat_extent",2022,2013
 "hab_tidal_flat_extent",2023,2013
 "hab_tidal_flat_extent",2024,2013
+"hab_tidal_flat_extent",2025,2013
 "hab_tidal_flat_health",2012,2013
 "hab_tidal_flat_health",2013,2013
 "hab_tidal_flat_health",2014,2013
@@ -719,6 +770,7 @@
 "hab_tidal_flat_health",2022,2013
 "hab_tidal_flat_health",2023,2013
 "hab_tidal_flat_health",2024,2013
+"hab_tidal_flat_health",2025,2013
 "hab_tidal_flat_trend",2012,2013
 "hab_tidal_flat_trend",2013,2013
 "hab_tidal_flat_trend",2014,2013
@@ -732,6 +784,7 @@
 "hab_tidal_flat_trend",2022,2013
 "hab_tidal_flat_trend",2023,2013
 "hab_tidal_flat_trend",2024,2013
+"hab_tidal_flat_trend",2025,2013
 "hd_coral",2008,2005
 "hd_coral",2009,2006
 "hd_coral",2010,2007
@@ -749,6 +802,7 @@
 "hd_coral",2022,2019
 "hd_coral",2023,2021
 "hd_coral",2024,2022
+"hd_coral",2025,2022
 "hd_habitat",2012,2005
 "hd_habitat",2013,2005
 "hd_habitat",2014,2005
@@ -762,6 +816,7 @@
 "hd_habitat",2022,2005
 "hd_habitat",2023,2005
 "hd_habitat",2024,2005
+"hd_habitat",2025,2005
 "hd_intertidal",2012,2012
 "hd_intertidal",2013,2013
 "hd_intertidal",2014,2014
@@ -775,6 +830,7 @@
 "hd_intertidal",2022,2020
 "hd_intertidal",2023,2020
 "hd_intertidal",2024,2020
+"hd_intertidal",2025,2020
 "hd_mpa_coast",2012,2011
 "hd_mpa_coast",2013,2012
 "hd_mpa_coast",2014,2013
@@ -788,6 +844,7 @@
 "hd_mpa_coast",2022,2021
 "hd_mpa_coast",2023,2022
 "hd_mpa_coast",2024,2023
+"hd_mpa_coast",2025,2023
 "hd_mpa_eez",2012,2011
 "hd_mpa_eez",2013,2012
 "hd_mpa_eez",2014,2013
@@ -801,6 +858,7 @@
 "hd_mpa_eez",2022,2021
 "hd_mpa_eez",2023,2022
 "hd_mpa_eez",2024,2023
+"hd_mpa_eez",2025,2023
 "hd_subtidal_hb",2012,2012
 "hd_subtidal_hb",2013,2012
 "hd_subtidal_hb",2014,2012
@@ -814,6 +872,7 @@
 "hd_subtidal_hb",2022,2012
 "hd_subtidal_hb",2023,2012
 "hd_subtidal_hb",2024,2012
+"hd_subtidal_hb",2025,2012
 "hd_subtidal_sb",2012,2012
 "hd_subtidal_sb",2013,2013
 "hd_subtidal_sb",2014,2014
@@ -827,6 +886,7 @@
 "hd_subtidal_sb",2022,2020
 "hd_subtidal_sb",2023,2020
 "hd_subtidal_sb",2024,2020
+"hd_subtidal_sb",2025,2020
 "ico_spp_iucn_status",1992,1992
 "ico_spp_iucn_status",1993,1992
 "ico_spp_iucn_status",1994,1993
@@ -860,6 +920,7 @@
 "ico_spp_iucn_status",2022,2021
 "ico_spp_iucn_status",2023,2022
 "ico_spp_iucn_status",2024,2023
+"ico_spp_iucn_status",2025,2023
 "li_gci",2012,2011
 "li_gci",2013,2012
 "li_gci",2014,2013
@@ -873,6 +934,7 @@
 "li_gci",2022,2017
 "li_gci",2023,2017
 "li_gci",2024,2017
+"li_gci",2025,2017
 "li_sector_evenness",2012,2013
 "li_sector_evenness",2013,2013
 "li_sector_evenness",2014,2013
@@ -886,6 +948,7 @@
 "li_sector_evenness",2022,2013
 "li_sector_evenness",2023,2013
 "li_sector_evenness",2024,2013
+"li_sector_evenness",2025,2013
 "liv_status",2012,2012
 "liv_status",2013,2013
 "liv_status",2014,2013
@@ -899,6 +962,7 @@
 "liv_status",2022,2013
 "liv_status",2023,2013
 "liv_status",2024,2013
+"liv_status",2025,2013
 "liv_trend",2012,2012
 "liv_trend",2013,2013
 "liv_trend",2014,2013
@@ -912,6 +976,7 @@
 "liv_trend",2022,2013
 "liv_trend",2023,2013
 "liv_trend",2024,2013
+"liv_trend",2025,2013
 "lsp_prot_area_inland1km",2008,2007
 "lsp_prot_area_inland1km",2009,2008
 "lsp_prot_area_inland1km",2010,2009
@@ -929,6 +994,7 @@
 "lsp_prot_area_inland1km",2022,2021
 "lsp_prot_area_inland1km",2023,2022
 "lsp_prot_area_inland1km",2024,2023
+"lsp_prot_area_inland1km",2025,2023
 "lsp_prot_area_offshore3nm",2008,2007
 "lsp_prot_area_offshore3nm",2009,2008
 "lsp_prot_area_offshore3nm",2010,2009
@@ -946,6 +1012,7 @@
 "lsp_prot_area_offshore3nm",2022,2021
 "lsp_prot_area_offshore3nm",2023,2022
 "lsp_prot_area_offshore3nm",2024,2023
+"lsp_prot_area_offshore3nm",2025,2023
 "mar_capacity",2000,2019
 "mar_capacity",2001,2019
 "mar_capacity",2002,2019
@@ -971,6 +1038,7 @@
 "mar_capacity",2022,2019
 "mar_capacity",2023,2019
 "mar_capacity",2024,2019
+"mar_capacity",2025,2019
 "mar_harvest_tonnes",2000,1998
 "mar_harvest_tonnes",2001,1999
 "mar_harvest_tonnes",2002,2000
@@ -996,6 +1064,7 @@
 "mar_harvest_tonnes",2022,2020
 "mar_harvest_tonnes",2023,2021
 "mar_harvest_tonnes",2024,2022
+"mar_harvest_tonnes",2025,2022
 "mar_sustainability_score",2000,2024
 "mar_sustainability_score",2001,2024
 "mar_sustainability_score",2002,2024
@@ -1021,6 +1090,7 @@
 "mar_sustainability_score",2022,2024
 "mar_sustainability_score",2023,2024
 "mar_sustainability_score",2024,2024
+"mar_sustainability_score",2025,2024
 "np_exposure_orn",2008,2006
 "np_exposure_orn",2009,2007
 "np_exposure_orn",2010,2008
@@ -1038,6 +1108,7 @@
 "np_exposure_orn",2022,2020
 "np_exposure_orn",2023,2021
 "np_exposure_orn",2024,2022
+"np_exposure_orn",2025,2022
 "np_fofm_scores",2008,2005
 "np_fofm_scores",2009,2006
 "np_fofm_scores",2010,2007
@@ -1055,6 +1126,7 @@
 "np_fofm_scores",2022,2019
 "np_fofm_scores",2023,2019
 "np_fofm_scores",2024,2019
+"np_fofm_scores",2025,2019
 "np_harvest_product_weight",2008,2024
 "np_harvest_product_weight",2009,2024
 "np_harvest_product_weight",2010,2024
@@ -1072,6 +1144,7 @@
 "np_harvest_product_weight",2022,2024
 "np_harvest_product_weight",2023,2024
 "np_harvest_product_weight",2024,2024
+"np_harvest_product_weight",2025,2024
 "np_orn_tonnes_relative",2008,2006
 "np_orn_tonnes_relative",2009,2007
 "np_orn_tonnes_relative",2010,2008
@@ -1089,6 +1162,7 @@
 "np_orn_tonnes_relative",2022,2020
 "np_orn_tonnes_relative",2023,2021
 "np_orn_tonnes_relative",2024,2022
+"np_orn_tonnes_relative",2025,2022
 "np_risk_orn",2008,2006
 "np_risk_orn",2009,2007
 "np_risk_orn",2010,2008
@@ -1106,6 +1180,7 @@
 "np_risk_orn",2022,2020
 "np_risk_orn",2023,2021
 "np_risk_orn",2024,2022
+"np_risk_orn",2025,2022
 "np_seaweed_sust",2008,2006
 "np_seaweed_sust",2009,2007
 "np_seaweed_sust",2010,2008
@@ -1123,6 +1198,7 @@
 "np_seaweed_sust",2022,2020
 "np_seaweed_sust",2023,2021
 "np_seaweed_sust",2024,2022
+"np_seaweed_sust",2025,2022
 "np_seaweed_tonnes",2008,2006
 "np_seaweed_tonnes",2009,2007
 "np_seaweed_tonnes",2010,2008
@@ -1140,6 +1216,7 @@
 "np_seaweed_tonnes",2022,2020
 "np_seaweed_tonnes",2023,2021
 "np_seaweed_tonnes",2024,2022
+"np_seaweed_tonnes",2025,2022
 "po_chemicals",2012,2012
 "po_chemicals",2013,2013
 "po_chemicals",2014,2014
@@ -1153,6 +1230,7 @@
 "po_chemicals",2022,2016
 "po_chemicals",2023,2016
 "po_chemicals",2024,2016
+"po_chemicals",2025,2016
 "po_chemicals_3nm",2012,2012
 "po_chemicals_3nm",2013,2013
 "po_chemicals_3nm",2014,2014
@@ -1166,6 +1244,7 @@
 "po_chemicals_3nm",2022,2016
 "po_chemicals_3nm",2023,2016
 "po_chemicals_3nm",2024,2016
+"po_chemicals_3nm",2025,2016
 "po_nutrients",2012,2010
 "po_nutrients",2013,2011
 "po_nutrients",2014,2012
@@ -1179,6 +1258,7 @@
 "po_nutrients",2022,2020
 "po_nutrients",2023,2020
 "po_nutrients",2024,2020
+"po_nutrients",2025,2020
 "po_nutrients_3nm",2012,2010
 "po_nutrients_3nm",2013,2011
 "po_nutrients_3nm",2014,2012
@@ -1192,6 +1272,7 @@
 "po_nutrients_3nm",2022,2020
 "po_nutrients_3nm",2023,2020
 "po_nutrients_3nm",2024,2020
+"po_nutrients_3nm",2025,2020
 "po_pathogens",2012,2011
 "po_pathogens",2013,2011
 "po_pathogens",2014,2012
@@ -1205,6 +1286,7 @@
 "po_pathogens",2022,2020
 "po_pathogens",2023,2021
 "po_pathogens",2024,2022
+"po_pathogens",2025,2022
 "po_trash",2012,2015
 "po_trash",2013,2015
 "po_trash",2014,2015
@@ -1218,6 +1300,7 @@
 "po_trash",2022,2015
 "po_trash",2023,2015
 "po_trash",2024,2015
+"po_trash",2025,2015
 "po_water",2012,2005
 "po_water",2013,2005
 "po_water",2014,2005
@@ -1231,6 +1314,7 @@
 "po_water",2022,2005
 "po_water",2023,2005
 "po_water",2024,2005
+"po_water",2025,2005
 "res_spi",2012,2012
 "res_spi",2013,2013
 "res_spi",2014,2014
@@ -1244,6 +1328,7 @@
 "res_spi",2022,2022
 "res_spi",2023,2022
 "res_spi",2024,2022
+"res_spi",2025,2022
 "sp_alien",2012,2019
 "sp_alien",2013,2019
 "sp_alien",2014,2019
@@ -1257,6 +1342,7 @@
 "sp_alien",2022,2022
 "sp_alien",2023,2022
 "sp_alien",2024,2022
+"sp_alien",2025,2022
 "sp_alien_species",2012,2005
 "sp_alien_species",2013,2005
 "sp_alien_species",2014,2005
@@ -1270,6 +1356,7 @@
 "sp_alien_species",2022,2005
 "sp_alien_species",2023,2005
 "sp_alien_species",2024,2005
+"sp_alien_species",2025,2005
 "sp_genetic",2012,2010
 "sp_genetic",2013,2011
 "sp_genetic",2014,2012
@@ -1283,6 +1370,7 @@
 "sp_genetic",2022,2020
 "sp_genetic",2023,2021
 "sp_genetic",2024,2022
+"sp_genetic",2025,2022
 "species_diversity_3nm",2012,2012
 "species_diversity_3nm",2013,2013
 "species_diversity_3nm",2014,2014
@@ -1296,6 +1384,7 @@
 "species_diversity_3nm",2022,2022
 "species_diversity_3nm",2023,2023
 "species_diversity_3nm",2024,2024
+"species_diversity_3nm",2025,2024
 "species_diversity_eez",2012,2012
 "species_diversity_eez",2013,2012
 "species_diversity_eez",2014,2013
@@ -1309,6 +1398,7 @@
 "species_diversity_eez",2022,2021
 "species_diversity_eez",2023,2022
 "species_diversity_eez",2024,2023
+"species_diversity_eez",2025,2023
 "spp_status",2012,2012
 "spp_status",2013,2012
 "spp_status",2014,2013
@@ -1322,6 +1412,7 @@
 "spp_status",2022,2021
 "spp_status",2023,2022
 "spp_status",2024,2023
+"spp_status",2025,2023
 "ss_spi",2012,2012
 "ss_spi",2013,2013
 "ss_spi",2014,2014
@@ -1335,6 +1426,7 @@
 "ss_spi",2022,2022
 "ss_spi",2023,2022
 "ss_spi",2024,2022
+"ss_spi",2025,2022
 "ss_wgi",2012,2011
 "ss_wgi",2013,2011
 "ss_wgi",2014,2012
@@ -1348,6 +1440,7 @@
 "ss_wgi",2022,2020
 "ss_wgi",2023,2021
 "ss_wgi",2024,2022
+"ss_wgi",2025,2022
 "tr_arrivals_props_tourism",2008,2006
 "tr_arrivals_props_tourism",2009,2006
 "tr_arrivals_props_tourism",2010,2007
@@ -1365,6 +1458,7 @@
 "tr_arrivals_props_tourism",2022,2019
 "tr_arrivals_props_tourism",2023,2020
 "tr_arrivals_props_tourism",2024,2021
+"tr_arrivals_props_tourism",2025,2021
 "tr_sustainability",2008,2019
 "tr_sustainability",2009,2019
 "tr_sustainability",2010,2019
@@ -1382,6 +1476,7 @@
 "tr_sustainability",2022,2021
 "tr_sustainability",2023,2021
 "tr_sustainability",2024,2023
+"tr_sustainability",2025,2023
 "wgi_all",2012,2011
 "wgi_all",2013,2011
 "wgi_all",2014,2012
@@ -1395,3 +1490,4 @@
 "wgi_all",2022,2020
 "wgi_all",2023,2021
 "wgi_all",2024,2022
+"wgi_all",2025,2022
