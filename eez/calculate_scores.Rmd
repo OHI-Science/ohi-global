@@ -73,9 +73,11 @@ if (!require(ohicore)){devtools::install_github('ohi-science/ohicore@master')}
 Identify the repo where data will be taken from: 
 
 ```{r eval = FALSE}
-current_year <- 2024
+current_year <- 2025
 version_year <- paste0("v", current_year)
-repo_loc <- paste0("https://raw.githubusercontent.com/OHI-Science/ohiprep_", version_year, "/gh-pages/")
+repo_loc <- paste0("https://raw.githubusercontent.com/OHI-Science/ohiprep_", version_year, "/refs/heads/main/")
+
+# https://github.com/OHI-Science/ohiprep_v2025/blob/main/globalprep/ao/v2024/output/ao_nind_scores.csv
 ```
 
 ### Step 3
@@ -262,16 +264,16 @@ Review results
 
 ```{r eval = FALSE}
 ### Some methods for visualizing the data
-### final commit from last year (v2023): e7497d6
+### final commit from last year (v2024): cfddd4fdfc591551a35b7698dc7c2c18709f00af, cfddd4f
 ### NOTE: scenario_year indicates the years that are being compared across last year and this year. This will almost always be the previous year
 ### If the current year is used, there will be no data from last year to compare!!!
 
 ohicore::score_check(
   
-  file_name = "hd_intertidal", 
+  file_name = "lsp_prot_area_inland1km", 
   
   commit = "previous", # change this back to "previous" next time
-  scenario_year = 2023,
+  scenario_year = 2024,
   scenario_name = "eez", 
   save_csv = TRUE, NA_compare = TRUE
 )
