@@ -109,7 +109,7 @@ librarian::shelf(
 ) 
 
 ## source file path info depending on operating system
-source(paste0('http://ohi-science.org/ohiprep_', version_year, '/workflow/R/common.R'))
+source(paste0('https://raw.githubusercontent.com/OHI-Science/ohiprep_', version_year, '/refs/heads/main/workflow/R/common.R'))
 ```
 
 **After updating a data layer**
@@ -254,6 +254,7 @@ scores_all_years <- dplyr::bind_rows(scorelist)
 write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
 ```
 
+
 ### Step 10
 
 Review results
@@ -270,7 +271,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "lsp_prot_area_inland1km", 
+  file_name = "fp_mpa_check", 
   
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
