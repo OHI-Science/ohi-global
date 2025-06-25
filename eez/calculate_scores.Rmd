@@ -32,7 +32,7 @@ This script calculates the OHI scores and is used after every layer is updated i
 
 4. Set up the R environment  
 
-5. Be sure to push all ohiprep changes!!  
+5. Be sure to push all ohiprep changes and pull possible changes from other fellows working in the repo!!
 
 6. Update the newest layer's file location and file name in metadata_documentation/layers_eez_base.csv  
 
@@ -118,6 +118,8 @@ source(paste0('https://raw.githubusercontent.com/OHI-Science/ohiprep_', version_
 
 Be sure to push all ohiprep changes!!
 
+Also, **Pull possible changes from other fellows working in the repo!!**
+
 ### Step 6
 
 Update the newest layer's file location and file name in `metadata_documentation/layers_eez_base.csv` by running the function below and responding to the resulting prompts in the console. OR you can do it by hand, by updating the assessment year in the `dir` in the csv. 
@@ -130,7 +132,7 @@ layers_eez_base_updater()
 
 ### Step 7
 
-Make sure the appropriate data year is entered in `eez/conf/scenario_data_years.csv`
+**Make sure the appropriate data year is entered in** `eez/conf/scenario_data_years.csv`
 
 ### Step 8
 
@@ -246,12 +248,12 @@ conf   <-  ohicore::Conf(here('eez/conf'))
 layers <-  ohicore::Layers(layers.csv = here('eez/layers.csv'), layers.dir = here('eez/layers'))
 
 #scorelist = lapply(X=2018, FUN=get_scores)
-scorelist = lapply(X=scenario_years, FUN=get_scores) # 28 warnings were generated (nothing of concern)
+scorelist = lapply(X = scenario_years, FUN = get_scores) # 28 warnings were generated (nothing of concern)
 scores_all_years <- dplyr::bind_rows(scorelist)
 
 
 # save results
-write.csv(scores_all_years, here('eez/scores.csv'), na='', row.names=F)
+write.csv(scores_all_years, here('eez/scores.csv'), na = '', row.names = FALSE)
 ```
 
 
