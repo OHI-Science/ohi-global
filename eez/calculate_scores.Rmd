@@ -78,7 +78,6 @@ current_year <- 2025
 version_year <- paste0("v", current_year)
 repo_loc <- paste0("https://raw.githubusercontent.com/OHI-Science/ohiprep_", version_year, "/refs/heads/main/")
 
-# https://github.com/OHI-Science/ohiprep_v2025/blob/main/globalprep/ao/v2024/output/ao_nind_scores.csv
 ```
 
 ### Step 3
