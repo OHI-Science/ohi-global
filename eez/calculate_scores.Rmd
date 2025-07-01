@@ -273,9 +273,9 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "reverting ohiprep prev2025", 
+  file_name = "hd_intertidal", 
   
-  commit = "cfddd4f", # change this back to "previous" next time
+  commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
   scenario_name = "eez", 
   save_csv = TRUE, NA_compare = TRUE
