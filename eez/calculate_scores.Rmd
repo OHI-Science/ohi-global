@@ -73,11 +73,11 @@ if (!require(ohicore)){devtools::install_github('ohi-science/ohicore@master')}
 Identify the repo where data will be taken from: 
 
 ```{r eval = FALSE}
+
 current_year <- 2025
 version_year <- paste0("v", current_year)
 repo_loc <- paste0("https://raw.githubusercontent.com/OHI-Science/ohiprep_", version_year, "/refs/heads/main/")
 
-# https://github.com/OHI-Science/ohiprep_v2025/blob/main/globalprep/ao/v2024/output/ao_nind_scores.csv
 ```
 
 ### Step 3
@@ -273,7 +273,11 @@ Review results
 
 ohicore::score_check(
   
+<<<<<<< HEAD
   file_name = "ao_need_check", 
+=======
+  file_name = "hd_intertidal", 
+>>>>>>> c54b6e14116516a820b5079eda881f7b146c3124
   
   commit = "7fb2661", # change this back to "previous" next time
   scenario_year = 2024,
@@ -286,11 +290,14 @@ ohicore::score_check(
 **Below here is case-to-case basis.**
 
 ```{r eval = FALSE}
-compare <- read.csv(here("eez/score_check/hab_seaice_score_check_diff_data_2023-06-12.csv"))
+compare <- read.csv(here("eez/score_check/checking data 2_diff_data_2025-06-26.csv"))
+
+tmp <- compare %>% 
+  dplyr::filter(is.na(score) & !is.na(old_score))
 
 hab_test <- compare %>%
   dplyr::filter(goal == "HAB",
-         year == 2023, 
+         year == 2024, 
          dimension == "score")
 
 test <- scores_all_years %>%
