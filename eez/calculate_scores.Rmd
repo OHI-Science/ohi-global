@@ -273,9 +273,9 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "fp_mpa_check", 
+  file_name = "ao_need_check", 
   
-  commit = "previous", # change this back to "previous" next time
+  commit = "7fb2661", # change this back to "previous" next time
   scenario_year = 2024,
   scenario_name = "eez", 
   save_csv = TRUE, NA_compare = TRUE
