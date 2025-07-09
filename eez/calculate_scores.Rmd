@@ -273,13 +273,9 @@ Review results
 
 ohicore::score_check(
   
-<<<<<<< HEAD
-  file_name = "ao_need_check", 
-=======
-  file_name = "hd_intertidal", 
->>>>>>> c54b6e14116516a820b5079eda881f7b146c3124
-  
-  commit = "7fb2661", # change this back to "previous" next time
+  file_name = "sp_genetic", 
+
+  commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
   scenario_name = "eez", 
   save_csv = TRUE, NA_compare = TRUE
