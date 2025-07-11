@@ -273,7 +273,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "fis_bbmsy", 
+  file_name = "fis_meancatch", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
