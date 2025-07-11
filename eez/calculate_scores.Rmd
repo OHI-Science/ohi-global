@@ -273,7 +273,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "sp_genetic", 
+  file_name = "fis_bbmsy", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
