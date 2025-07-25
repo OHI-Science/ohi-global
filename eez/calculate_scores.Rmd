@@ -273,7 +273,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "ao_access_check_2025-07-22", 
+  file_name = "spp_check", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
