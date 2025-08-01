@@ -273,7 +273,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "wgi_all", 
+  file_name = "fp_wildcaught_weight", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
