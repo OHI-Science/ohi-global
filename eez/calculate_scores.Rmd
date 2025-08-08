@@ -273,7 +273,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "tr_arrivals", 
+  file_name = "tr_sustainability", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
@@ -282,6 +282,7 @@ ohicore::score_check(
 )
   
 ```
+
 
 **Below here is case-to-case basis.**
 
