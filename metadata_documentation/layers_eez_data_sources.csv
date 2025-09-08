@@ -25,13 +25,14 @@ halpern2008global,Chemical pollution: land-based organic,Modeled pollution from 
 halpern2008global,Chemical pollution: ocean-based,Modeled pollution from shipping and ports,2003/2011,1 km,n,n,n,n,n,n,n,n,n
 halpern2008global,Nutrient pollution,Modeled N input from fertilizer use as a proxy for nutrient pollution,1990-2013,1 km (FAO data is National),y,n,n,n,n,NA,n,n,n
 halpern2008global,Rocky reef,Global rocky reef habitat extent,2005,2 arcmin; Points,n,n,n,n,n,n,n,n,n
-halpern2015spatial,Soft-bottom subtidal,Global soft-bottom subtidal habitat extent,2001-2005,0.5 deg,n,n,n,n,n,n,n,n,n,"y, new datasource""
+halpern2015spatial,Soft-bottom subtidal,Global soft-bottom subtidal habitat extent,2001-2005,0.5 deg,n,n,n,n,n,n,n,n,n,"y, new datasource"
 halpern2012index,Iconic species list,WWF Priority and Flagship Species Lists,2011,Global; National,n,n,n,n,n,n,n,n,n
 halpern2012index,Land and ocean areas,Land and ocean areas for OHI land and eez regions,2013,1 km,n,n,n,n,n,n,n,n,n
 halpern2015patterns,Land and ocean areas,Land and ocean areas for OHI land and eez regions,2013,1 km,n,n,n,n,n,n,n,n,n
 halpern2015spatial,Chemical pollution: ocean-based,Modeled pollution from shipping and ports,2003/2011,1 km,n,n,n,n,n,n,n,n,n
 bunting2022global,Mangroves,"Global mangrove habitat extent and trend, from remote sensing and assessments",1996-2016,Polygons rasterized to 1km,n,n,n,n,n,"y, new datasource",n,n,n
 homer2004development,Chemical pollution: land-based inorganic,Modeled pollution from urban runoff from impervious surfaces,2000,1 km,n,n,n,n,n,n,n,n,n
+international_labour_organization_average_2025,Job quality fishing,Average monthly earnings of employees by sex and economic activity,2009-2023,annual,n,n,n,n,n,n,n,n,n,y
 iucn_iucn_2025,Marine species threatened status,IUCN Red List of threatened species by category; sub-population status for iconic species,1965-2024,Global,y,y,y,y,y,y,y,y,y,y
 iucn_spatial_2025,"Marine species ranges, IUCN",IUCN spatial distribution,2024,Polygons rasterized to 0.5 deg,y,y,y,y,y,y,y,n,y,y
 jambeck2015plastic,Improper plastic disposal,Trends in mismanaged plastic waste for 2010 and projected for 2025 as a proxy for trash trends,2010-2025 (projected),National,y,n,n,n,n,n,n,n,n
@@ -45,6 +46,7 @@ sdg_14_b_1,Fisheries management effectiveness: artisanal; Artisanal fisheries ac
 noaa2023,The Coral Reef Temperature Anomaly Database (CoRTAD) Version 6,Sea surface temperature anomalies,1982-2022,4 km,n,n,y,n,n,y,y,n,n
 oconnor_whale_2009,Marine jobs: marine mammal watching,Jobs based on number of whale watchers in a country and a regional average number of whale watchers per employee. Includes all marine mammal watching.,1998-2008,National,n,n,n,n,n,n,n,n,n
 oconnor_whale_2009,Marine revenue: marine mammal watching,Total revenue from marine mammal watching,1998-2008,National,n,n,n,n,n,n,n,n,n
+organisation_for_economic_co-operation_and_development_oecd_employment_2025,Job quantity fishing,"Employment in fisheries, aquaculture, and processing",2009-2023,annual,n,n,n,n,n,n,n,n,n,y
 omalleyocean,NPP database,Net Primary Productivity database,2003-2015,0.083 deg,NA,NA,y,n,n,n,n,n,n
 oostendorp2012occupational,Marine wages,"Occupations within commercial fishing, ports and harbors, ship and boat building, tourism, and transportation and shipping",1989-2008,National,n,n,n,n,n,n,n,n,n
 ramlegacystockassessmentdatabase2024,Stock assessments,Stock assesment scores data,1800-2023,Stock,y,y,y,y,y,y,n,y,y
