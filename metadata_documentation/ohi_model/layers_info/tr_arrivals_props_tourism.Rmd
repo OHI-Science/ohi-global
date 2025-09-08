@@ -1,5 +1,0 @@
-The [United Nations World Tourism Organization (UNWTO)](https://www.unwto.org/) [-@unwto2023arrivals] includes total international arrivals data. This is provided in the form of thousands of people arriving, which we convert to total number of people arriving. We divide these arrivals by the total arrivals in the country.
-
-To address missing values in arrivals, specifically referring to "Overnight visitors (tourists)," we employ a two-step process. First, we attempt to fill the gaps by subtracting "Same-day visitors (excursionists)" from "Total arrivals" if the latter is available. If this is not feasible, we resort to interpolating or extrapolating based on historical data spanning from 1995 to 2019, employing a linear model to estimate increases or decreases on a regional level.
-
-In light of the Covid-19 pandemic, we have adopted a distinct approach for the years 2020 and 2021. We calculate the global average proportionate change from the preceding year, apply this percentage change to the previous year's arrivals or total values, and then add the result to the corresponding previous year's arrivals or total value.

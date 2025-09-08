@@ -465,7 +465,7 @@ AO <- function(layers) {
 }
 
 NP <- function(scores, layers) {
-
+browser()
       scen_year <- layers$data$scenario_year
   
   

@@ -36,12 +36,6 @@ setdiff(source$ds_reference, refs$reference)
 setdiff(refs$reference, source$ds_reference)
 
 
-# layer files
-layers <- list.files(here("metadata_documentation/ohi_model/layers_info"), pattern="Rmd")
-layers <- gsub(".Rmd", "", layers)
-setdiff(base$layer, layers)
-setdiff(layers, base$layer)
-
 
 #gapfilling data
 gap <- read.csv(here("metadata_documentation/layers_eez_gapfill.csv"))
