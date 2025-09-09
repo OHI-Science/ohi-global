@@ -49,19 +49,19 @@ hab_seagrass_trend,none
 hab_seaice_extent,additional year of data (2023)
 hab_seaice_health,additional year of data (2023)
 hab_seaice_trend,additional year of data (2023)
-hab_softbottom_health,none
-hab_softbottom_trend,none
+hab_softbottom_health,new datasource
+hab_softbottom_trend,new datasource
 hab_tidal_flat_extent,none
 hab_tidal_flat_health,none
 hab_tidal_flat_trend,none
 hd_coral,additional year of data (2022)
 hd_habitat,none
-hd_intertidal,"same year of data, corrected coastal population estimates"
+hd_intertidal,new datasource
 hd_mpa_coast,none
 hd_mpa_eez,none
 hd_subtidal_hb,none
 hd_subtidal_sb,none
-ico_spp_iucn_status,additional year of data (2023)
+ico_spp_iucn_status,additional year of data (2024)
 le_sector_weight,none
 li_gci,none
 li_sector_evenness,none
@@ -94,10 +94,10 @@ rgn_labels,none
 sp_alien,none
 sp_alien_species,none
 sp_genetic,additional year of FAO mariculture yield data (2022); escapes data from Monterey Bay Aquarium Seafood Watch Aquaculture Recommendations (2023) was NOT updated
-species_diversity_3nm,additional year of data (2023)
-species_diversity_eez,additional year of data (2023)
-spp_status,additional year of data (2023)
-spp_trend,additional year of data (2023)
+species_diversity_3nm,additional year of data (2024)
+species_diversity_eez,additional year of data (2024)
+spp_status,additional year of data (2024)
+spp_trend,additional year of data (2024)
 ss_spi,none
 ss_wgi,additional year of data (2022)
 tr_arrivals_props_tourism,adding domestic data from the same data source & reworking of code to accommodate a new methodology: (tourism arrivals * (coastal pop per region/total pop per region))/coastal area
