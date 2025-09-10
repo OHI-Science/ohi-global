@@ -79,7 +79,7 @@
 "np_seaweed_sust","ohiprep:globalprep/np/v2025/output","np_seaweeds.csv",TRUE,"rel_sust_tonnes","Seaweed mariculture sustainability score","scaled 0-1","Seaweed mariculture sustainability based on the Mariculture Sustainability Index (MSI)"
 "np_fofm_sust","ohiprep:globalprep/np/v2025/output","np_fofm.csv",TRUE,"score","Fish oil and fish meal score","scaled 0-1","Score based on the amount of sustainably caught forage fish used for fish oil and fish meal."
 "np_ornamental_sust","ohiprep:globalprep/np/v2025/output","np_ornamentals.csv",TRUE,"score","Sustainability of harvesting of ornamental fish","scaled 0-1","Score is based on whether ornamental fishing has unsustainable harvest practices (i.e., the intensity of cyanide fishing for ornamental fish, and any harvest of corals since they are CITES protected species). Risk for ornamental fish was set based on assessments of cyanide or dynamite fishing by Reefs at Risk Revisited (www.wri.org/publication/reefs-at-risk-revisited) under the assumption that most ornamental fishes are harvested from coral reefs."
-"np_seaweed_weight","ohiprep:globalprep/np/v2025/output","np_seaweeds_weights.csv",TRUE,"usd","USD from seaweed mariculture","USD","USD value is used to weight scores for each natural product"
+"np_seaweed_weight","ohiprep:globalprep/np/v2025/output","np_seaweed_weights.csv",TRUE,"usd","USD from seaweed mariculture","USD","USD value is used to weight scores for each natural product"
 "np_fofm_weight","ohiprep:globalprep/np/v2025/output","np_fofm_weights.csv",TRUE,"usd","USD from fish oil fish meal","USD","USD value is used to weight scores for each natural product"
 "np_ornamental_weight","ohiprep:globalprep/np/v2025/output","np_ornamentals_weights.csv",TRUE,"usd","USD from ornamental harvest","USD","USD value is used to weight scores for each natural product"
 "po_chemicals","ohiprep:globalprep/prs_chem/v2016/output","cw_chemical_score_updated.csv",TRUE,"pressure_score","Chemical pollution","scaled 0-1","Modeled chemical pollution within EEZ from commercial shipping traffic, ports and harbors, land-based pesticide use (organic pollution), and urban runoff (inorganic pollution)"
@@ -108,4 +108,5 @@
 "tr_sustainability","ohiprep:globalprep/tr/v2025/output","tr_sustainability.csv",TRUE,"S_score","Tourism sustainability index","scaled 0-1","Travel and Tourism Development Index (TTDI)"
 "uninhabited","ohiprep:globalprep/supplementary_information/v2018","rgn_uninhabited_islands.csv",TRUE,"Inhabited","Uninhabited regions","population","Regions with low and no number of inhabitants (also identifies Southern Islands)"
 "wgi_all","ohiprep:globalprep/prs_res_wgi/v2025/output","wgi_res.csv",TRUE,"resilience_score","Strength of governance","scaled 0-1","World Governance Indicators (WGI) six combined scores"
+
 
