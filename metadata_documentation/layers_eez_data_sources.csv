@@ -1,5 +1,5 @@
 ds_reference,ds_name,ds_description,ds_years,ds_native_resolution,ds_updated_2016,ds_updated_2017,ds_updated_2018,ds_updated_2019,ds_updated_2020,ds_updated_2021,ds_updated_2022,ds_updated_2023,ds_updated_2024,ds_updated_2025
-allen_coral_atlas_allen_2025,Global coral reef extent, Allen Coral Atlas' global coral habitat map for reef extent (2025 release),2010-2025,1m,n,n,n,n,n,n,n,n,y
+allen_coral_atlas_allen_2025,Global coral reef extent,Allen Coral Atlas' global coral habitat map for reef extent (2025 release),2010-2025,1m,n,n,n,n,n,n,n,n,n,y
 anderson2018stock,Stock assessement methods for data-limited fisheries,R code to conduct data-limited stocks assessments,NA,NA,n,n,n,n,n,n,n,n,n,n
 aviso2024,Sea level rise,Net change in sea level during the time series,1993-2022,0.25 deg,y,y,y,y,n,y,y,y,y,n
 behrenfeld1997photosynthetic,NPP,Methods: Net Primary Productivity,2003-2017,0.83 x 0.83 deg,NA,NA,NA,NA,NA,NA,NA,NA,NA,n
@@ -21,7 +21,7 @@ eriksen2014plastic,Trash pollution,Plastic trash pollution in ocean,2014,0.2 deg
 esri_2010,Land and ocean areas,Land and ocean areas for OHI land and eez regions,2013,1 km,n,n,n,n,n,n,n,n,n,n
 free2017mapping,Stock boundaries,Maps of fish stock boundaries for the original RAM Myers stock-recruit database,2017,Stock,NA,"y, new datasource",n,n,n,n,n,n,n,n
 gentry2019exploring,Mariculture Capacity,Aquaculture potential for finfish and bivalves.,2017,0.0083 deg,NA,NA,NA,"y, new datasource",n,n,n,n,n,n
-global_coral_reef_monitoring_network_status_2020,GCRMN Global Coral Status Report 2020,A report on the change in coral and algal cover from 1980 through 2020 in GCRMN regions,1980-2020,NA,n,n,n,n,n,n,n,n,y
+global_coral_reef_monitoring_network_status_2020,GCRMN Global Coral Status Report 2020,A report on the change in coral and algal cover from 1980 through 2020 in GCRMN regions,1980-2020,NA,n,n,n,n,n,n,n,n,n,y
 halpern2008global,Chemical pollution: land-based inorganic,Modeled pollution from urban runoff from impervious surfaces,2000,1 km,n,n,n,n,n,n,n,n,n,n
 halpern2008global,Chemical pollution: land-based organic,Modeled pollution from pesticides,1990-2013,1 km (FAO data is National),y,n,n,n,n,n,n,n,n,n
 halpern2008global,Chemical pollution: ocean-based,Modeled pollution from shipping and ports,2003/2011,1 km,n,n,n,n,n,n,n,n,n,n
@@ -43,11 +43,11 @@ kaufmann2010worldwide,Worldwide Governance Indicators (WGI),"Methods: Accountabi
 chen_tidal_2022,Carbon storage weight,Carbon sequestration by habitat,2022,habitat,n,n,n,n,n,n,"y, new datasource",n,n,n
 lebakula_ornl_2024,Global population,Raster of data of human population,2000-2023,Global,n,n,n,n,n,n,n,n,n,y
 lewis2017largescale,Marine protected areas and terrestrial protected areas,Methods: Location and area of marine and terrestrial protected areas manual,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,n
-luijendijk_et_al_state_2018,State of the World's Beaches, A scientific report on the deterioration of sandy beaches,2018,NA,n,n,n,n,n,n,n,n,y
+luijendijk_et_al_state_2018,State of the World's Beaches, A scientific report on the deterioration of sandy beaches,2018,NA,n,n,n,n,n,n,n,n,n,y
 martell2016simple,A simple method for estimating MSY from catch and resilience,Methods: Data-limited stock assessments,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,n
 sdg_14_b_1,Fisheries management effectiveness: artisanal; Artisanal fisheries access,Management effectiveness and access of artisanal fisheries,2018-2022,National,n,n,n,n,n,"y, new datasource (replaces Mora 2009 data)",y,"y, minor updates no score changes",n,n
 noaa2023,The Coral Reef Temperature Anomaly Database (CoRTAD) Version 6,Sea surface temperature anomalies,1982-2022,4 km,n,n,y,n,n,y,y,n,n,n
-ncei_ncei_2025,Global Distribution of Marine Microplastics, National Centers for Environmental Information Marine Microplastics geodatabase,2021-2025,5m,n,n,n,n,n,n,n,n,y
+ncei_ncei_2025,Global Distribution of Marine Microplastics, National Centers for Environmental Information Marine Microplastics geodatabase,2021-2025,5m,n,n,n,n,n,n,n,n,n,y
 oconnor_whale_2009,Marine jobs: marine mammal watching,Jobs based on number of whale watchers in a country and a regional average number of whale watchers per employee. Includes all marine mammal watching.,1998-2008,National,n,n,n,n,n,n,n,n,n,n
 oconnor_whale_2009,Marine revenue: marine mammal watching,Total revenue from marine mammal watching,1998-2008,National,n,n,n,n,n,n,n,n,n,n
 organisation_for_economic_co-operation_and_development_oecd_employment_2025,Job quantity fishing,"Employment in fisheries, aquaculture, and processing",2009-2023,annual,n,n,n,n,n,n,n,n,n,y
@@ -113,4 +113,4 @@ ourworldindata2023population,"Population, 10,000 BCE to 2021","Total population,
 statista2023sabapopulation,Population of Saba in the Caribbean Netherlands from 2011 to 2023,"Total population, annual for Saba",2011-2023,National,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",n,n
 statista2023sinteustatiuspopulation,Population of Sint Eustatius in the Caribbean Netherlands from 2011 to 2023,"Total population, annual for Sint Eustatius",2011-2023,National,NA,NA,NA,NA,NA,NA,NA,"y, new datasource",n,n
 cia2024,GDP - per capita (PPP),GDP - per capita (PPP) compares GDP on a purchasing power parity basis divided by population as of 1 July for the same year.,2023,National,NA,NA,NA,NA,NA,NA,"y, new datasource",n,y,n
-zhang_et_al_gcl_fcs30_2024,GCL_FCS30: a global coastline dataset with 30m resolution,Global distribution of beaches by type,2024,30m,n,n,n,n,n,n,n,n,y
+zhang_et_al_gcl_fcs30_2024,GCL_FCS30: a global coastline dataset with 30m resolution,Global distribution of beaches by type,2024,30m,n,n,n,n,n,n,n,n,n,y
