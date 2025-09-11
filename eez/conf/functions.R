@@ -465,161 +465,69 @@ AO <- function(layers) {
 }
 
 NP <- function(scores, layers) {
-browser()
+
       scen_year <- layers$data$scenario_year
   
   
-    ### Reassembles NP harvest information from separate data layers for ornamentals, seaweeds, and FOFM:
-    #########################################.
-    
-    #### Ornamentals Calculations
-    ## load ornamentals relative tonnes data from layers dataframe
-    h_ornamentals_tonnes_rel <-
-      AlignDataYears(layer_nm = "np_orn_tonnes_relative", layers_obj = layers) %>%
-      dplyr::select(year = scenario_year, region_id = rgn_id, product, tonnes_rel)
-  
-    ### Read in ornamentals risk dataframe
-    #########################################.
-    np_exposure_ornamentals <- 
-      AlignDataYears(layer_nm = "np_exposure_orn", layers_obj = layers) %>%
-      dplyr::select(year = scenario_year, region_id = rgn_id, product, exposure)
-  
+    #### Ornamentals 
+    np_ornamentals_score <-
+      AlignDataYears(layer_nm = "np_ornamental_sust", layers_obj = layers) %>%
+      dplyr::select(year = scenario_year, region_id = rgn_id, orns_score=score)
+    np_ornamentals_weights <-
+      AlignDataYears(layer_nm = "np_ornamental_weights", layers_obj = layers) %>%
+      dplyr::select(year = scenario_year, region_id = rgn_id, orns_weight = usd_weight)
     
 
-    ### Read in ornamentals risk dataframe
-    #########################################.
-  np_risk_ornamentals <- 
-    AlignDataYears(layer_nm = "np_risk_orn", layers_obj = layers) %>%
-    dplyr::select(year = scenario_year, region_id = rgn_id, product, risk)
-    
-
-    ### calculates NP sustainability coefficient for ornamentals, based
-    ### on (1 - mean(c(exposure, risk))).  Returns first input dataframe with
-    ### new columns for sustainability coefficient, and sustainability-adjusted
-    ### NP ornamentals product_status:
-    ### [rgn_id product  year  sustainability  product_status]
-    #########################################.
-    
-    
-    ### join Exposure (with harvest) and Risk
-    np_orn_sust <- np_exposure_ornamentals %>%
-      left_join(np_risk_ornamentals, by = c('region_id', 'year', 'product')) %>%
-      rowwise() %>%
-      mutate(sustainability = 1 - mean(c(exposure, risk), na.rm = TRUE)) %>%
-      left_join(h_ornamentals_tonnes_rel, by = c('region_id', 'year', 'product'))
-    
-    ### calculate rgn-product-year status for ornamentals 
-    np_orn_scores <- np_orn_sust %>%
-      mutate(product_status = tonnes_rel * sustainability) %>%
-      filter(region_id <= 250) %>%  # disputed regions
-      select(year, region_id, product, product_status) %>%
-      ungroup() 
-    
-    #########################################    
-    ### Calculate NP scores for seaweeds based on two layers: 
-    ### harvested tons of seaweed and sustainability of seaweed
-    #########################################
-  
-    ### Read in seaweed tonnes data
-    np_seaweed_tonnes <- 
-      AlignDataYears(layer_nm = "np_seaweed_tonnes", layers_obj = layers) %>%
-      dplyr::select(year = scenario_year, region_id = rgn_id, taxa_code, tonnes) %>%
-      mutate(product = "seaweeds") 
-   
-    ### Read in seaweed sustainability data 
-    np_seaweed_sust <- 
+    ### Seaweeds
+    np_seaweed_score <- 
       AlignDataYears(layer_nm = "np_seaweed_sust", layers_obj = layers) %>%
-      dplyr::select(year = scenario_year, region_id = rgn_id, taxa_code, sust_coeff) %>%
-      mutate(product = "seaweeds") %>%
-      group_by(year, region_id, product) %>%
-      summarise(sust_coeff = mean(sust_coeff, na.rm = TRUE)) %>%
-      ungroup()
+      dplyr::select(year = scenario_year, region_id = rgn_id, seaweed_score=rel_sust_tonnes, 
+                    ) 
     
-    ### Summarize the sustainably harvested tonnes of 
-    ### seaweed per region per year, and calculate a 
-    ### score for this product. 
-
-    
-    ## sum per region id, year, and product to get tons 
-    seaweed_sum <- np_seaweed_tonnes %>%
-      group_by(region_id, year, product) %>%
-      summarise(tonnes = sum(tonnes, na.rm = TRUE))
-
-    # Calculate Rolling Averages
-    # Determine rolling averages for harvested tonnes in order to determine peak values.
-
-    # Find max year in the summarized data table
-    year_max <- max(seaweed_sum$year)
-
-    roll_tonnes <- seaweed_sum %>%
-      arrange(region_id, year, product) %>%
-      group_by(region_id) %>%
-      mutate(tonnes_rollmean = zoo::rollapply(tonnes, width=4, FUN=mean, align='right', partial=TRUE, na.rm=FALSE)) %>%
-      rename(tonnes_orig = tonnes) %>% # prevent overwriting of reported and gapfilled values
-      mutate(tonnes = ifelse(!is.na(tonnes_rollmean), tonnes_rollmean, tonnes_orig)) %>%
-      select(region_id, year, product, tonnes, tonnes_orig)
+    np_seaweed_weights <-
+      AlignDataYears(layer_nm = "np_seaweed_weights", layers_obj = layers) %>%
+      dplyr::select(year = scenario_year, region_id = rgn_id, seaweed_weight=usd_weight)
     
 
-    # Score Harvest Relative to Peaks
-
-   # Score harvest (tonnes) relative to peaks. Output values as .csvs. Perform this using a for loop.
-
-
-    #buffer  <-  0.35 # 35% buffer (from OHI Methods) ## commented out because we excluded this for v2020...
-
-    ## Find peak harvest per region-product and apply conservative buffer (scale down)
-    peak_tonnes <- roll_tonnes %>%
-      group_by(region_id) %>%
-        #mutate(tonnes_peak = max(tonnes, na.rm=T)  * (1 - buffer)) %>%
-        mutate(tonnes_peak = max(tonnes, na.rm = T)) %>%
-        ungroup()
-
-    ## Determine relative seaweed product status:
-    np_seaweed_scores <- peak_tonnes %>%
-        mutate(tonnes_rel = ifelse(tonnes >= tonnes_peak, 1, tonnes / tonnes_peak)) %>%
-      # dplyr::select(year, region_id, product, taxa_code, tonnes_rel) %>%
-      dplyr::select(year, region_id, product, tonnes_rel) %>%
-      left_join(np_seaweed_sust) %>%
-      mutate(product_status = tonnes_rel*sust_coeff) %>%
-      dplyr::select(year, region_id, product, product_status)
-    
-    #########################################
-    ### Read in calculated FOFM scores 
-    #########################################
-    
+    ### FOFM
     np_fofm_scores <- 
-      AlignDataYears(layer_nm = "np_fofm_scores", layers_obj = layers) %>%
-      dplyr::select(year = scenario_year, region_id = rgn_id, product_status = score) %>%
-      mutate(product = "fish_oil") 
+      AlignDataYears(layer_nm = "np_fofm_sust", layers_obj = layers) %>%
+      dplyr::select(year = scenario_year, region_id = rgn_id, fofm_score=score) 
+
+    np_fofm_weights <-
+      AlignDataYears(layer_nm = "np_fofm_weights", layers_obj = layers) %>%
+      dplyr::select(year = scenario_year, region_id = rgn_id, fofm_weight=usd_weight)
     
+## calculate weights from USD estimates
     
-    ### Calculates NP status for all production years for each region, based
-    ### upon weighted mean of all products produced.
-    ### Reports scenario year as the NP status.
-    ### Calculates NP trend for each region, based upon slope of a linear
-    ### model over the past five years
-    ### Returns data frame with status and trend by region:
-    ### [goal   dimension   region_id   score]
-    #########################################.
-    
-    ### read in product weights
-    np_product_weights <- 
-      AlignDataYears(layer_nm = "np_harvest_product_weight", layers_obj = layers) %>%
-      dplyr::select(year = scenario_year, region_id = rgn_id, product, prod_weight = weight)
-    
+
     ### Calculate status, trends
     ### aggregate across products to rgn-year status, weighting by usd_rel
-    np_status_all <- rbind(np_fofm_scores, np_seaweed_scores, np_orn_scores) %>%
-      left_join(np_product_weights, by = c("year", "region_id", "product")) %>%
-      filter(!is.na(product_status) & !is.na(prod_weight)) %>%
-      select(region_id, year, product, product_status, prod_weight) %>%
-      group_by(region_id, year) %>%
-      summarize(status = weighted.mean(product_status, prod_weight)) %>%
-      filter(!is.na(status)) %>% # 1/0 produces NaN
+    np_weights <- full_join(np_fofm_weights, np_seaweed_weights, by=c("region_id", "year")) %>%
+      full_join(np_ornamentals_weights, by=c("region_id", "year")) %>%
+      mutate(across(where(is.numeric), ~ replace_na(.x, 0)))
+    
+    np_scores <- full_join(np_fofm_scores, np_seaweed_score, by=c("region_id", "year")) %>%
+      full_join(np_ornamentals_score, by=c("region_id", "year")) %>%
+      mutate(across(where(is.numeric), ~ replace_na(.x, 0))) 
+    
+    total <- left_join(np_scores, np_weights, by=c("region_id", "year")) 
+    
+    total <- total %>%
+      # gather to long (metric = fofm/seaweed/orns; kind = score/weight)
+      pivot_longer(
+        cols = matches("^(fofm|seaweed|orns)_(score|weight)$"),
+        names_to = c("metric", "kind"),
+        names_pattern = "(fofm|seaweed|orns)_(score|weight)",
+        values_to = "val"
+      ) %>%
+      pivot_wider(names_from = kind, values_from = val) %>%  # -> columns: score, weight
+      group_by(year, region_id) %>%
+      summarise(status = weighted.mean(score, weight)) %>%
       ungroup()
     
     ### get current status
-    np_status_current <- np_status_all %>%
+    np_status_current <- total %>%
       filter(year == scen_year & !is.na(status)) %>%
       mutate(dimension = 'status',
              score     = round(status, 4) * 100) %>%
@@ -634,7 +542,7 @@ browser()
     trend_years <- (scen_year - 4):(scen_year)
     
     np_trend <-
-      CalculateTrend(status_data = np_status_all, trend_years = trend_years)
+      CalculateTrend(status_data = total, trend_years = trend_years)
     
     ### return scores
     np_scores <- np_status_current %>%
@@ -647,7 +555,7 @@ browser()
   ## Reference Point Accounting
   WriteRefPoint(goal = "NP",
                 method = "Harvest peak within region times 0.65 buffer",
-                ref_pt = "varies for each region")
+                ref_pt = "varies for each item")
   ## Reference Point End  
   
   return(np_scores)

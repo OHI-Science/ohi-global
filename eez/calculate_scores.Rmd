@@ -63,9 +63,11 @@ Install the appropriate `ohicore` package. Options are:
 - @dev: used when testing new code in ohicore (used in v2023)
 
 ```{r setup, eval = FALSE}
+
 knitr::opts_chunk$set(message = FALSE, warning = FALSE, eval = FALSE, echo = TRUE)
 if (!require(devtools)){install.packages("devtools")}
 if (!require(ohicore)){devtools::install_github('ohi-science/ohicore@master')}
+
 ```
 
 ### Step 2
@@ -85,7 +87,9 @@ repo_loc <- paste0("https://raw.githubusercontent.com/OHI-Science/ohiprep_", ver
 Define the scenario years in this year's assessment
 
 ```{r eval = FALSE}
+
 scenario_years <- c(2012:current_year)
+
 ```
 
 ## Steps 4-11 
@@ -97,6 +101,7 @@ scenario_years <- c(2012:current_year)
 Set up the R environment 
 
 ```{r eval = FALSE}
+
 ## load packages:
 if (!require(librarian)){install.packages("librarian")}
 librarian::shelf(
@@ -110,6 +115,7 @@ librarian::shelf(
 
 ## source file path info depending on operating system
 source(paste0('https://raw.githubusercontent.com/OHI-Science/ohiprep_', version_year, '/refs/heads/main/workflow/R/common.R'))
+
 ```
 
 **After updating a data layer**
@@ -149,7 +155,9 @@ If more complex changes are made to layer (i.e. changes to layer names, removing
   - to update `eez_layers_meta_data/layers_eez_targets.csv` if layers are added to the resilience/pressures matrices in the `eez/conf` folder. 
 
 ```{r eval = FALSE}
+
 source(here("metadata_documentation", "layers_eez_script.R"))
+
 ```
 
 ### Step 9
@@ -157,6 +165,7 @@ source(here("metadata_documentation", "layers_eez_script.R"))
 Run scenarios!
 
 ```{r eval = FALSE}
+
 ## Read in the layers.csv file with paths to the data files
 g <- read.csv(here("eez/layers.csv"), stringsAsFactors = FALSE, na.strings='')
 
@@ -273,7 +282,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "hd_coral_and_fp_targetharvest", 
+  file_name = "np", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
@@ -287,10 +296,14 @@ ohicore::score_check(
 **Below here is case-to-case basis.**
 
 ```{r eval = FALSE}
-compare <- read.csv(here("eez/score_check/checking data 2_diff_data_2025-06-26.csv"))
+compare <- read.csv(here("eez/score_check/np_diff_data_2025-09-10.csv"))
+filter(compare, region_id==163 & year==2024 & goal=="NP")
 
 tmp <- compare %>% 
   dplyr::filter(is.na(score) & !is.na(old_score))
+
+tmp <- compare %>%
+  filter(is.na(score) & !is.na(old_score))
 
 hab_test <- compare %>%
   dplyr::filter(goal == "HAB",
