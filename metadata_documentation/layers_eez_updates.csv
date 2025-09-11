@@ -15,7 +15,7 @@ eco_trend,none
 element_wts_cp_km2_x_protection,none
 element_wts_cs_km2_x_storage,none
 element_wts_hab_pres_abs,none
-fis_b_bmsy,"updated RAM values (v4.65: 2023), but 2019 is still the year of data used like before since it is still what matches the fisheries catch data"
+fis_b_bmsy,"updated RAM data"
 fis_meancatch,none
 fp_art_hb,none
 fp_art_lb,none
@@ -24,8 +24,8 @@ fp_com_hb,none
 fp_com_lb,none
 fp_fish_management,none
 fp_habitat,none
-fp_mpa_coast,additional year of data (2023)
-fp_mpa_eez,additional year of data (2023)
+fp_mpa_coast,additional year of data (2024)
+fp_mpa_eez,additional year of data (2024)
 fp_targetharvest,additional year of data (2022)
 fp_wildcaught_weight,additional year of data for mariculture (2022) but not fisheries (2019)
 g_cites,none
@@ -60,7 +60,7 @@ hd_intertidal,new datasource
 hd_mpa_coast,none
 hd_mpa_eez,none
 hd_subtidal_hb,none
-hd_subtidal_sb,none
+hd_subtidal_sb,new data source
 ico_spp_iucn_status,additional year of data (2024)
 le_sector_weight,none
 li_gci,none
@@ -101,6 +101,6 @@ spp_trend,additional year of data (2024)
 ss_spi,none
 ss_wgi,additional year of data (2022)
 tr_arrivals_props_tourism,adding domestic data from the same data source & reworking of code to accommodate a new methodology: (tourism arrivals * (coastal pop per region/total pop per region))/coastal area
-tr_sustainability,"new data source/year of data (2023): World Economic Forum's ""Travel and Tourism Development Index"" (https://www.weforum.org/publications/travel-tourism-development-index-2024/)"
+tr_sustainability,none
 uninhabited,none
 wgi_all,additional year of data (2022)

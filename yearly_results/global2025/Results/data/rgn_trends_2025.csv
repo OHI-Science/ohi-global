@@ -1,0 +1,3950 @@
+goal,country,region_id,trend
+AO,eez_weighted_avg,0,0.17
+AO,Cocos Islands,1,0.01
+AO,Christmas Island,2,0.01
+AO,Norfolk Island,3,2.81
+AO,New Caledonia,5,0.01
+AO,Vanuatu,6,-3.29
+AO,Solomon Islands,7,1.68
+AO,Palau,8,-4.44
+AO,Micronesia,9,1.61
+AO,Nauru,10,1.22
+AO,Marshall Islands,11,0
+AO,Northern Mariana Islands and Guam,13,2.22
+AO,Taiwan,14,1.45
+AO,Philippines,15,-0.15
+AO,Australia,16,0.14
+AO,Papua New Guinea,17,0.01
+AO,Fiji,18,-2.51
+AO,Tuvalu,19,1.84
+AO,South Korea,20,0.73
+AO,North Korea,21,0.92
+AO,Cambodia,24,0.28
+AO,Thailand,25,-0.14
+AO,Andaman and Nicobar,26,0.5
+AO,Comoro Islands,28,0.14
+AO,Mayotte,29,0.16
+AO,Seychelles,31,0.79
+AO,R_union,32,0.01
+AO,Mauritius,37,0.13
+AO,Maldives,39,-1.21
+AO,Sri Lanka,40,0
+AO,Mozambique,41,-0.05
+AO,Madagascar,42,2.08
+AO,Kenya,43,-3.12
+AO,Somalia,44,-0.11
+AO,Eritrea,45,0.02
+AO,Djibouti,46,-0.48
+AO,Yemen,47,-1.13
+AO,Oman,48,-1.39
+AO,Sudan,49,-0.28
+AO,Saudi Arabia,50,-0.04
+AO,Kuwait,51,-0.08
+AO,Bahrain,52,0.37
+AO,Pakistan,53,5.41
+AO,United Arab Emirates,54,-0.05
+AO,Azores,55,0.73
+AO,Cape Verde,56,-0.42
+AO,Madeira,57,1.03
+AO,Canary Islands,58,0.81
+AO,Belgium,59,-0.03
+AO,Gibraltar,60,0.94
+AO,Tunisia,61,-0.32
+AO,Morocco,62,-0.74
+AO,Western Sahara,63,-2.08
+AO,Mauritania,64,-0.87
+AO,Gambia,65,-0.78
+AO,Senegal,66,-1.27
+AO,Libya,67,-1.5
+AO,Malta,68,1.42
+AO,Latvia,69,0.67
+AO,Estonia,70,0.76
+AO,Bulgaria,71,1.27
+AO,Romania,72,1.65
+AO,Russia,73,1.03
+AO,Georgia,74,0.57
+AO,Ukraine,75,-0.05
+AO,Turkey,76,-0.25
+AO,Syria,77,0.72
+AO,Lebanon,78,0.1
+AO,Israel,79,0.89
+AO,Greece,80,0.72
+AO,Cyprus,81,0.52
+AO,Albania,82,2.53
+AO,Algeria,84,-0.04
+AO,Ascension,85,0.13
+AO,Saint Helena,86,1.17
+AO,Tristan da Cunha,88,-0.98
+AO,Falkland Islands,95,0.13
+AO,Sierra Leone,96,-0.06
+AO,Liberia,97,0.21
+AO,Togo,98,-0.5
+AO,Benin,99,1.21
+AO,Republique du Congo,100,-2.19
+AO,Namibia,101,1.63
+AO,South Africa,102,-0.82
+AO,Sao Tome and Principe,103,-0.39
+AO,Equatorial Guinea,104,-1.01
+AO,Ghana,106,-1.76
+AO,Bermuda,108,-0.15
+AO,Bahamas,110,0.78
+AO,Turks and Caicos Islands,111,-0.75
+AO,Cuba,112,0.15
+AO,Cayman Islands,113,0
+AO,Haiti,114,-0.81
+AO,Dominican Republic,115,-1.91
+AO,Puerto Rico and Virgin Islands of the United States,116,-0.29
+AO,British Virgin Islands,117,-0.23
+AO,Anguilla,118,-0.55
+AO,Saint Kitts and Nevis,119,-0.72
+AO,Antigua and Barbuda,120,0
+AO,Montserrat,121,-0.49
+AO,Saint Lucia,122,-1.72
+AO,Dominica,123,-1.5
+AO,Barbados,124,-0.4
+AO,Grenada,125,0.38
+AO,Trinidad and Tobago,126,-0.87
+AO,Saint Vincent and the Grenadines,127,-1.75
+AO,Panama,129,-0.12
+AO,Costa Rica,130,0.03
+AO,Nicaragua,131,-1.01
+AO,Colombia,132,-0.55
+AO,Honduras,133,-1.02
+AO,El Salvador,134,-0.97
+AO,Mexico,135,-0.89
+AO,Guatemala,136,2.03
+AO,Ecuador,137,-0.33
+AO,Peru,138,-1.67
+AO,Venezuela,139,1.61
+AO,Guadeloupe and Martinique,140,-0.37
+AO,Faeroe Islands,141,-0.14
+AO,Iceland,143,0.13
+AO,Greenland,145,-0.01
+AO,Pitcairn,146,0.71
+AO,French Polynesia,147,2.31
+AO,Line Islands (Kiribati),148,-0.07
+AO,American Samoa,151,0.36
+AO,Samoa,152,1.5
+AO,Cook Islands,153,-0.14
+AO,Tonga,155,4.14
+AO,Phoenix Islands (Kiribati),157,-0.05
+AO,Wallis and Futuna,161,2.47
+AO,New Zealand,162,-0.07
+AO,United States,163,-0.71
+AO,Belize,164,-0.2
+AO,Jamaica,166,4.98
+AO,Guyana,167,1.81
+AO,Suriname,168,0.3
+AO,French Guiana,169,0.21
+AO,Brazil,171,-0.09
+AO,Argentina,172,0.57
+AO,Uruguay,173,-2.13
+AO,Finland,174,-1.21
+AO,Denmark,175,0.25
+AO,Germany,176,0.53
+AO,Netherlands,177,0.84
+AO,Poland,178,-0.29
+AO,France,179,0.26
+AO,United Kingdom,180,-0.59
+AO,Ireland,181,0.45
+AO,Spain,182,0.28
+AO,Portugal,183,0.96
+AO,Italy,184,0.57
+AO,Monaco,185,0.02
+AO,Montenegro,186,-2.46
+AO,Croatia,187,-0.01
+AO,Slovenia,188,0.46
+AO,Lithuania,189,-0.76
+AO,Qatar,190,0
+AO,Iran,191,0.13
+AO,Iraq,192,0.75
+AO,Guinea Bissau,193,-0.28
+AO,Guinea,194,0.11
+AO,Ivory Coast,195,-1.09
+AO,Nigeria,196,0.18
+AO,Cameroon,197,-0.48
+AO,Gabon,198,-0.09
+AO,Democratic Republic of the Congo,199,-1.08
+AO,Angola,200,-1.07
+AO,Tanzania,202,0.05
+AO,India,203,-0.19
+AO,Bangladesh,204,3.26
+AO,Myanmar,205,-0.49
+AO,Malaysia,206,0.34
+AO,Vietnam,207,-2.17
+AO,Singapore,208,-0.63
+AO,China,209,0.67
+AO,Japan,210,2.69
+AO,Gilbert Islands (Kiribati),212,0.08
+AO,Egypt,214,-0.04
+AO,Jordan,215,0.74
+AO,Indonesia,216,-1
+AO,Canada,218,-1.62
+AO,Saint Pierre and Miquelon,219,1
+AO,Sint Maarten,220,-0.4
+AO,Northern Saint-Martin,221,-0.48
+AO,Sweden,222,-0.42
+AO,Norway,223,-0.15
+AO,Chile,224,1.97
+AO,Jersey,227,0.31
+AO,Guernsey,228,0.31
+AO,East Timor,231,-0.33
+AO,Bosnia and Herzegovina,232,0.6
+AO,Oecussi Ambeno,237,0.83
+AO,Curacao,244,-0.77
+AO,Bonaire,245,-0.63
+AO,Brunei,247,1.53
+AO,Saba,248,-0.48
+AO,Sint Eustatius,249,-0.48
+AO,Aruba,250,-0.31
+BD,eez_weighted_avg,0,-0.02
+BD,Cocos Islands,1,0.01
+BD,Christmas Island,2,0.45
+BD,Norfolk Island,3,0.24
+BD,Macquarie Island,4,0.42
+BD,New Caledonia,5,-0.16
+BD,Vanuatu,6,-0.14
+BD,Solomon Islands,7,-0.21
+BD,Palau,8,-0.12
+BD,Micronesia,9,-0.06
+BD,Nauru,10,-0.49
+BD,Marshall Islands,11,-0.11
+BD,Wake Island,12,-0.12
+BD,Northern Mariana Islands and Guam,13,0.22
+BD,Taiwan,14,-0.33
+BD,Philippines,15,0.22
+BD,Australia,16,-0.12
+BD,Papua New Guinea,17,-0.33
+BD,Fiji,18,-0.14
+BD,Tuvalu,19,-0.16
+BD,South Korea,20,-0.28
+BD,North Korea,21,-0.04
+BD,Cambodia,24,0.23
+BD,Thailand,25,0.13
+BD,Andaman and Nicobar,26,0.42
+BD,Comoro Islands,28,-0.03
+BD,Mayotte,29,-0.02
+BD,Glorioso Islands,30,0.1
+BD,Seychelles,31,-0.12
+BD,R_union,32,0.03
+BD,Juan de Nova Island,33,0.11
+BD,Bassas da India,34,0.2
+BD,Ile Europa,35,-0.06
+BD,Ile Tromelin,36,-0.1
+BD,Mauritius,37,-0.3
+BD,British Indian Ocean Territory,38,-0.17
+BD,Maldives,39,-0.08
+BD,Sri Lanka,40,-0.05
+BD,Mozambique,41,-0.11
+BD,Madagascar,42,0.21
+BD,Kenya,43,-0.14
+BD,Somalia,44,-0.26
+BD,Eritrea,45,-0.18
+BD,Djibouti,46,-0.15
+BD,Yemen,47,-0.29
+BD,Oman,48,-0.38
+BD,Sudan,49,-0.18
+BD,Saudi Arabia,50,-0.22
+BD,Kuwait,51,-0.18
+BD,Bahrain,52,-0.22
+BD,Pakistan,53,-0.2
+BD,United Arab Emirates,54,-0.27
+BD,Azores,55,-0.02
+BD,Cape Verde,56,0.14
+BD,Madeira,57,0.35
+BD,Canary Islands,58,-0.02
+BD,Belgium,59,0.03
+BD,Gibraltar,60,-0.21
+BD,Tunisia,61,-0.3
+BD,Morocco,62,0.07
+BD,Western Sahara,63,-0.08
+BD,Mauritania,64,-0.03
+BD,Gambia,65,-0.08
+BD,Senegal,66,-0.09
+BD,Libya,67,-0.25
+BD,Malta,68,-0.35
+BD,Latvia,69,0.11
+BD,Estonia,70,0.06
+BD,Bulgaria,71,-0.3
+BD,Romania,72,0.27
+BD,Russia,73,0.05
+BD,Georgia,74,-0.33
+BD,Ukraine,75,-0.05
+BD,Turkey,76,-0.06
+BD,Syria,77,-0.31
+BD,Lebanon,78,-0.16
+BD,Israel,79,-0.2
+BD,Greece,80,-0.23
+BD,Cyprus,81,-0.27
+BD,Albania,82,-0.29
+BD,Algeria,84,0.07
+BD,Ascension,85,0.29
+BD,Saint Helena,86,-0.04
+BD,Tristan da Cunha,88,0.49
+BD,South Georgia and the South Sandwich Islands,89,-0.53
+BD,Prince Edward Islands,90,0.07
+BD,Crozet Islands,91,0.06
+BD,Amsterdam Island and Saint Paul Island,92,0.4
+BD,Kerguelen Islands,93,0.3
+BD,Heard and McDonald Islands,94,0.75
+BD,Falkland Islands,95,0.08
+BD,Sierra Leone,96,-0.4
+BD,Liberia,97,-0.25
+BD,Togo,98,-0.17
+BD,Benin,99,-0.16
+BD,Republique du Congo,100,-0.27
+BD,Namibia,101,-0.14
+BD,South Africa,102,-0.05
+BD,Sao Tome and Principe,103,-0.05
+BD,Equatorial Guinea,104,-0.17
+BD,Bouvet Island,105,-1.66
+BD,Ghana,106,-0.21
+BD,Clipperton Island,107,0.16
+BD,Bermuda,108,0.19
+BD,Bahamas,110,-0.17
+BD,Turks and Caicos Islands,111,-0.01
+BD,Cuba,112,-0.2
+BD,Cayman Islands,113,-0.06
+BD,Haiti,114,-0.17
+BD,Dominican Republic,115,-0.12
+BD,Puerto Rico and Virgin Islands of the United States,116,-0.14
+BD,British Virgin Islands,117,-0.15
+BD,Anguilla,118,-0.08
+BD,Saint Kitts and Nevis,119,-0.14
+BD,Antigua and Barbuda,120,-0.11
+BD,Montserrat,121,-0.19
+BD,Saint Lucia,122,-0.14
+BD,Dominica,123,0.1
+BD,Barbados,124,-0.03
+BD,Grenada,125,-0.18
+BD,Trinidad and Tobago,126,-0.24
+BD,Saint Vincent and the Grenadines,127,-0.11
+BD,Panama,129,-0.17
+BD,Costa Rica,130,-0.13
+BD,Nicaragua,131,-0.26
+BD,Colombia,132,-0.13
+BD,Honduras,133,-0.26
+BD,El Salvador,134,-0.05
+BD,Mexico,135,-0.17
+BD,Guatemala,136,-0.08
+BD,Ecuador,137,-0.08
+BD,Peru,138,0.02
+BD,Venezuela,139,-0.19
+BD,Guadeloupe and Martinique,140,-0.14
+BD,Faeroe Islands,141,0.08
+BD,Iceland,143,0.36
+BD,Jan Mayen,144,0.8
+BD,Greenland,145,-0.05
+BD,Pitcairn,146,-0.05
+BD,French Polynesia,147,-0.12
+BD,Line Islands (Kiribati),148,-0.17
+BD,Jarvis Island,149,0.27
+BD,Palmyra Atoll,150,-0.19
+BD,American Samoa,151,-0.14
+BD,Samoa,152,-0.14
+BD,Cook Islands,153,-0.08
+BD,Niue,154,0.03
+BD,Tonga,155,-0.14
+BD,Tokelau,156,-0.16
+BD,Phoenix Islands (Kiribati),157,-0.18
+BD,Howland Island and Baker Island,158,0.2
+BD,Johnston Atoll,159,0.18
+BD,Wallis and Futuna,161,-0.14
+BD,New Zealand,162,0.04
+BD,United States,163,-0
+BD,Belize,164,-0.2
+BD,Jamaica,166,-0.17
+BD,Guyana,167,0.01
+BD,Suriname,168,0.02
+BD,French Guiana,169,-0.1
+BD,Brazil,171,-0.07
+BD,Argentina,172,0.03
+BD,Uruguay,173,-0.14
+BD,Finland,174,-0
+BD,Denmark,175,0.06
+BD,Germany,176,0.1
+BD,Netherlands,177,0.55
+BD,Poland,178,0.29
+BD,France,179,0.37
+BD,United Kingdom,180,0.21
+BD,Ireland,181,0.14
+BD,Spain,182,-0.06
+BD,Portugal,183,-0
+BD,Italy,184,-0.23
+BD,Monaco,185,-0.33
+BD,Montenegro,186,-0.24
+BD,Croatia,187,-0.25
+BD,Slovenia,188,-0.26
+BD,Lithuania,189,0.23
+BD,Qatar,190,-0.28
+BD,Iran,191,-0.26
+BD,Iraq,192,-0.11
+BD,Guinea Bissau,193,-0.24
+BD,Guinea,194,-0.6
+BD,Ivory Coast,195,-0.33
+BD,Nigeria,196,-0.07
+BD,Cameroon,197,-0.02
+BD,Gabon,198,-0.33
+BD,Democratic Republic of the Congo,199,-0.31
+BD,Angola,200,0.4
+BD,Tanzania,202,-0.14
+BD,India,203,0.11
+BD,Bangladesh,204,-0.41
+BD,Myanmar,205,-0.16
+BD,Malaysia,206,0.09
+BD,Vietnam,207,0.38
+BD,Singapore,208,-0.02
+BD,China,209,-0.2
+BD,Japan,210,-0.13
+BD,Gilbert Islands (Kiribati),212,-0.16
+BD,Egypt,214,-0.18
+BD,Jordan,215,-0.2
+BD,Indonesia,216,0.34
+BD,Canada,218,0.13
+BD,Saint Pierre and Miquelon,219,0.54
+BD,Sint Maarten,220,-0.22
+BD,Northern Saint-Martin,221,-0.23
+BD,Sweden,222,-0.01
+BD,Norway,223,0.1
+BD,Chile,224,0.11
+BD,Jersey,227,0.08
+BD,Guernsey,228,0.01
+BD,East Timor,231,0.19
+BD,Bosnia and Herzegovina,232,-0.51
+BD,Oecussi Ambeno,237,0.33
+BD,Curacao,244,-0.11
+BD,Bonaire,245,-0.16
+BD,Brunei,247,-0.11
+BD,Saba,248,-0.21
+BD,Sint Eustatius,249,-0.12
+BD,Aruba,250,-0.15
+CP,eez_weighted_avg,0,0.02
+CP,Cocos Islands,1,0
+CP,Christmas Island,2,0
+CP,Norfolk Island,3,0
+CP,Macquarie Island,4,0
+CP,New Caledonia,5,0
+CP,Vanuatu,6,-0
+CP,Solomon Islands,7,0
+CP,Palau,8,0
+CP,Micronesia,9,-0
+CP,Nauru,10,0
+CP,Marshall Islands,11,-0
+CP,Wake Island,12,-0
+CP,Northern Mariana Islands and Guam,13,0
+CP,Taiwan,14,-0
+CP,Philippines,15,0.02
+CP,Australia,16,0.01
+CP,Papua New Guinea,17,-0.01
+CP,Fiji,18,0
+CP,Tuvalu,19,0
+CP,South Korea,20,0
+CP,North Korea,21,-0.08
+CP,Cambodia,24,0.07
+CP,Thailand,25,0.21
+CP,Andaman and Nicobar,26,0.09
+CP,Comoro Islands,28,0
+CP,Mayotte,29,0
+CP,Glorioso Islands,30,0
+CP,Seychelles,31,-0
+CP,R_union,32,0
+CP,Juan de Nova Island,33,0
+CP,Bassas da India,34,0
+CP,Ile Europa,35,-0
+CP,Ile Tromelin,36,0
+CP,Mauritius,37,-0
+CP,British Indian Ocean Territory,38,0
+CP,Maldives,39,0
+CP,Sri Lanka,40,0.01
+CP,Mozambique,41,-0.13
+CP,Madagascar,42,0.02
+CP,Kenya,43,0.12
+CP,Somalia,44,0.02
+CP,Eritrea,45,-0.01
+CP,Djibouti,46,-0
+CP,Yemen,47,-0.09
+CP,Oman,48,0.01
+CP,Sudan,49,0.01
+CP,Saudi Arabia,50,-0
+CP,Kuwait,51,0
+CP,Bahrain,52,0
+CP,Pakistan,53,-0.16
+CP,United Arab Emirates,54,0.01
+CP,Azores,55,0
+CP,Canary Islands,58,-0
+CP,Belgium,59,-0
+CP,Tunisia,61,0
+CP,Morocco,62,0
+CP,Western Sahara,63,0
+CP,Mauritania,64,-0
+CP,Gambia,65,-0.11
+CP,Senegal,66,0
+CP,Libya,67,-0.09
+CP,Malta,68,0
+CP,Latvia,69,0
+CP,Estonia,70,-0
+CP,Bulgaria,71,0
+CP,Romania,72,0
+CP,Russia,73,0.07
+CP,Georgia,74,0
+CP,Ukraine,75,-0
+CP,Turkey,76,0
+CP,Syria,77,-0.09
+CP,Lebanon,78,-0
+CP,Israel,79,-0
+CP,Greece,80,-0
+CP,Cyprus,81,-0
+CP,Albania,82,-0
+CP,Algeria,84,-0
+CP,Tristan da Cunha,88,0
+CP,Prince Edward Islands,90,0
+CP,Crozet Islands,91,0
+CP,Falkland Islands,95,0
+CP,Sierra Leone,96,-0.09
+CP,Liberia,97,-0.09
+CP,Togo,98,0
+CP,Benin,99,0
+CP,Republique du Congo,100,0
+CP,Namibia,101,0
+CP,South Africa,102,-0
+CP,Sao Tome and Principe,103,0.05
+CP,Equatorial Guinea,104,-0.06
+CP,Ghana,106,-0.01
+CP,Clipperton Island,107,0
+CP,Bermuda,108,-0
+CP,Bahamas,110,0.19
+CP,Turks and Caicos Islands,111,0.23
+CP,Cuba,112,0
+CP,Cayman Islands,113,0.01
+CP,Haiti,114,0.06
+CP,Dominican Republic,115,0.03
+CP,Puerto Rico and Virgin Islands of the United States,116,-0
+CP,British Virgin Islands,117,-0.01
+CP,Anguilla,118,-0
+CP,Saint Kitts and Nevis,119,-0
+CP,Antigua and Barbuda,120,-0.01
+CP,Montserrat,121,-0
+CP,Saint Lucia,122,0
+CP,Dominica,123,0
+CP,Barbados,124,0
+CP,Grenada,125,0
+CP,Trinidad and Tobago,126,0.01
+CP,Saint Vincent and the Grenadines,127,-0
+CP,Panama,129,-0.03
+CP,Costa Rica,130,-0.07
+CP,Nicaragua,131,-0.04
+CP,Colombia,132,0.08
+CP,Honduras,133,0
+CP,El Salvador,134,0.03
+CP,Mexico,135,0.05
+CP,Guatemala,136,0
+CP,Ecuador,137,0.09
+CP,Peru,138,0.01
+CP,Venezuela,139,0.01
+CP,Guadeloupe and Martinique,140,-0.01
+CP,Faeroe Islands,141,-0
+CP,Iceland,143,-0
+CP,Jan Mayen,144,0
+CP,Greenland,145,0.02
+CP,Pitcairn,146,0
+CP,French Polynesia,147,0
+CP,Line Islands (Kiribati),148,-0
+CP,Jarvis Island,149,0
+CP,Palmyra Atoll,150,-0
+CP,American Samoa,151,-0
+CP,Samoa,152,-0
+CP,Cook Islands,153,0
+CP,Niue,154,-0
+CP,Tonga,155,-0
+CP,Tokelau,156,-0
+CP,Phoenix Islands (Kiribati),157,-0
+CP,Howland Island and Baker Island,158,0
+CP,Johnston Atoll,159,-0
+CP,Wallis and Futuna,161,0
+CP,New Zealand,162,0
+CP,United States,163,0.32
+CP,Belize,164,0.04
+CP,Jamaica,166,-0.03
+CP,Guyana,167,-0
+CP,Suriname,168,-0.24
+CP,French Guiana,169,0
+CP,Brazil,171,0.02
+CP,Argentina,172,0
+CP,Uruguay,173,0
+CP,Finland,174,-0
+CP,Denmark,175,-0
+CP,Germany,176,0
+CP,Netherlands,177,0
+CP,Poland,178,0
+CP,France,179,0.05
+CP,United Kingdom,180,-0
+CP,Ireland,181,0
+CP,Spain,182,-0
+CP,Portugal,183,0
+CP,Italy,184,-0
+CP,Monaco,185,-0
+CP,Montenegro,186,0
+CP,Croatia,187,0
+CP,Slovenia,188,-0
+CP,Lithuania,189,-0
+CP,Qatar,190,-0
+CP,Iran,191,-0.01
+CP,Iraq,192,-0.02
+CP,Guinea Bissau,193,-0.01
+CP,Guinea,194,-0.02
+CP,Ivory Coast,195,-0
+CP,Nigeria,196,-0.03
+CP,Cameroon,197,-0.02
+CP,Gabon,198,-0.05
+CP,Democratic Republic of the Congo,199,0.14
+CP,Angola,200,-0.03
+CP,Tanzania,202,0.04
+CP,India,203,-0.06
+CP,Bangladesh,204,0.15
+CP,Myanmar,205,0.19
+CP,Malaysia,206,-0.01
+CP,Vietnam,207,-0.02
+CP,Singapore,208,0.01
+CP,China,209,0.04
+CP,Japan,210,-0
+CP,Gilbert Islands (Kiribati),212,-0
+CP,Egypt,214,-0
+CP,Jordan,215,0
+CP,Indonesia,216,0.01
+CP,Canada,218,-0.44
+CP,Sint Maarten,220,0
+CP,Northern Saint-Martin,221,0
+CP,Sweden,222,-0
+CP,Norway,223,0.59
+CP,Chile,224,0
+CP,Jersey,227,-0
+CP,Guernsey,228,-0
+CP,East Timor,231,0.02
+CP,Oecussi Ambeno,237,0
+CP,Curacao,244,0
+CP,Bonaire,245,-0
+CP,Brunei,247,-0
+CP,Saba,248,0
+CP,Sint Eustatius,249,0
+CP,Aruba,250,-0
+CS,eez_weighted_avg,0,0
+CS,Cocos Islands,1,-0
+CS,Christmas Island,2,-0
+CS,New Caledonia,5,0
+CS,Vanuatu,6,-0
+CS,Solomon Islands,7,0
+CS,Palau,8,0
+CS,Micronesia,9,-0.01
+CS,Marshall Islands,11,0
+CS,Northern Mariana Islands and Guam,13,0
+CS,Taiwan,14,-0
+CS,Philippines,15,0.03
+CS,Australia,16,0.01
+CS,Papua New Guinea,17,-0.01
+CS,Fiji,18,0.01
+CS,Tuvalu,19,0
+CS,South Korea,20,0
+CS,North Korea,21,-0.07
+CS,Cambodia,24,0.08
+CS,Thailand,25,0.18
+CS,Andaman and Nicobar,26,0.1
+CS,Comoro Islands,28,0
+CS,Mayotte,29,0
+CS,Seychelles,31,-0
+CS,R_union,32,0
+CS,Ile Europa,35,0
+CS,Mauritius,37,0
+CS,British Indian Ocean Territory,38,0
+CS,Maldives,39,0
+CS,Sri Lanka,40,0
+CS,Mozambique,41,-0.13
+CS,Madagascar,42,0.01
+CS,Kenya,43,0.13
+CS,Somalia,44,-0.01
+CS,Eritrea,45,-0.06
+CS,Djibouti,46,-0.06
+CS,Yemen,47,-0.09
+CS,Oman,48,0.04
+CS,Sudan,49,0
+CS,Saudi Arabia,50,0
+CS,Kuwait,51,-0
+CS,Bahrain,52,-0
+CS,Pakistan,53,0.09
+CS,United Arab Emirates,54,0.01
+CS,Canary Islands,58,-0
+CS,Belgium,59,-0
+CS,Tunisia,61,-0
+CS,Morocco,62,-0
+CS,Western Sahara,63,-0
+CS,Mauritania,64,0
+CS,Gambia,65,-0.1
+CS,Senegal,66,0
+CS,Libya,67,-0.12
+CS,Malta,68,0
+CS,Latvia,69,0
+CS,Estonia,70,0
+CS,Bulgaria,71,0
+CS,Romania,72,0
+CS,Russia,73,0
+CS,Georgia,74,0
+CS,Ukraine,75,-0
+CS,Turkey,76,-0
+CS,Syria,77,-0.01
+CS,Lebanon,78,0
+CS,Israel,79,-0
+CS,Greece,80,-0
+CS,Cyprus,81,0
+CS,Albania,82,-0
+CS,Algeria,84,-0
+CS,Saint Helena,86,0
+CS,Sierra Leone,96,-0.04
+CS,Liberia,97,-0.08
+CS,Togo,98,-0
+CS,Benin,99,0
+CS,Republique du Congo,100,0
+CS,Namibia,101,-0
+CS,South Africa,102,0
+CS,Sao Tome and Principe,103,0.05
+CS,Equatorial Guinea,104,-0.07
+CS,Ghana,106,-0
+CS,Bermuda,108,0
+CS,Bahamas,110,0.21
+CS,Turks and Caicos Islands,111,0.13
+CS,Cuba,112,0
+CS,Cayman Islands,113,0.02
+CS,Haiti,114,0.07
+CS,Dominican Republic,115,0.03
+CS,Puerto Rico and Virgin Islands of the United States,116,0
+CS,British Virgin Islands,117,-0.08
+CS,Anguilla,118,0
+CS,Saint Kitts and Nevis,119,0
+CS,Antigua and Barbuda,120,-0
+CS,Montserrat,121,0
+CS,Saint Lucia,122,-0
+CS,Dominica,123,0
+CS,Barbados,124,0
+CS,Grenada,125,0
+CS,Trinidad and Tobago,126,0.01
+CS,Saint Vincent and the Grenadines,127,0
+CS,Panama,129,-0.01
+CS,Costa Rica,130,-0.06
+CS,Nicaragua,131,-0.01
+CS,Colombia,132,0.1
+CS,Honduras,133,0
+CS,El Salvador,134,0.02
+CS,Mexico,135,0.03
+CS,Guatemala,136,0.02
+CS,Ecuador,137,0.1
+CS,Peru,138,0.04
+CS,Venezuela,139,0.01
+CS,Guadeloupe and Martinique,140,0
+CS,Iceland,143,0
+CS,Greenland,145,0
+CS,French Polynesia,147,0
+CS,American Samoa,151,0
+CS,Samoa,152,-0
+CS,Cook Islands,153,0
+CS,Tonga,155,-0
+CS,Tokelau,156,0
+CS,New Zealand,162,-0.02
+CS,United States,163,0.01
+CS,Belize,164,0.02
+CS,Jamaica,166,-0.01
+CS,Guyana,167,0.01
+CS,Suriname,168,-0.13
+CS,French Guiana,169,0
+CS,Brazil,171,-0
+CS,Argentina,172,-0
+CS,Uruguay,173,-0
+CS,Finland,174,0
+CS,Denmark,175,-0
+CS,Germany,176,-0
+CS,Netherlands,177,-0
+CS,Poland,178,0
+CS,France,179,0
+CS,United Kingdom,180,-0
+CS,Ireland,181,0
+CS,Spain,182,0
+CS,Portugal,183,0
+CS,Italy,184,0
+CS,Monaco,185,-0
+CS,Montenegro,186,0
+CS,Croatia,187,-0
+CS,Slovenia,188,0
+CS,Lithuania,189,-0
+CS,Qatar,190,0
+CS,Iran,191,-0
+CS,Iraq,192,-0.06
+CS,Guinea Bissau,193,-0.01
+CS,Guinea,194,-0.01
+CS,Ivory Coast,195,0.01
+CS,Nigeria,196,-0.01
+CS,Cameroon,197,-0.02
+CS,Gabon,198,-0.04
+CS,Democratic Republic of the Congo,199,0.11
+CS,Angola,200,-0.01
+CS,Tanzania,202,0.06
+CS,India,203,-0.03
+CS,Bangladesh,204,0.06
+CS,Myanmar,205,0.16
+CS,Malaysia,206,-0.01
+CS,Vietnam,207,-0.02
+CS,Singapore,208,0
+CS,China,209,-0
+CS,Japan,210,-0.01
+CS,Gilbert Islands (Kiribati),212,-0
+CS,Egypt,214,-0
+CS,Jordan,215,-0
+CS,Indonesia,216,0.01
+CS,Canada,218,-0
+CS,Saint Pierre and Miquelon,219,0
+CS,Sint Maarten,220,0
+CS,Northern Saint-Martin,221,0
+CS,Sweden,222,-0
+CS,Norway,223,-0
+CS,Chile,224,0
+CS,Jersey,227,0
+CS,Guernsey,228,-0
+CS,East Timor,231,0.01
+CS,Oecussi Ambeno,237,0.06
+CS,Curacao,244,-0
+CS,Bonaire,245,-0.03
+CS,Brunei,247,0
+CS,Saba,248,0
+CS,Sint Eustatius,249,0
+CS,Aruba,250,-0
+CW,eez_weighted_avg,0,0.29
+CW,Cocos Islands,1,0.21
+CW,Christmas Island,2,0.48
+CW,Norfolk Island,3,0.54
+CW,Macquarie Island,4,-0.05
+CW,New Caledonia,5,-0.12
+CW,Vanuatu,6,-0.2
+CW,Solomon Islands,7,-0.08
+CW,Palau,8,0.62
+CW,Micronesia,9,1.95
+CW,Nauru,10,-0.02
+CW,Marshall Islands,11,-0.08
+CW,Wake Island,12,0.04
+CW,Northern Mariana Islands and Guam,13,0.14
+CW,Taiwan,14,0.58
+CW,Philippines,15,0.6
+CW,Australia,16,0.5
+CW,Papua New Guinea,17,0.03
+CW,Fiji,18,0.29
+CW,Tuvalu,19,0.17
+CW,South Korea,20,-0.07
+CW,North Korea,21,0.64
+CW,Cambodia,24,0.7
+CW,Thailand,25,1
+CW,Andaman and Nicobar,26,0.43
+CW,Comoro Islands,28,-0.06
+CW,Mayotte,29,4.05
+CW,Glorioso Islands,30,0
+CW,Seychelles,31,0.91
+CW,R_union,32,0.31
+CW,Juan de Nova Island,33,0.02
+CW,Bassas da India,34,0.01
+CW,Ile Europa,35,-0.02
+CW,Ile Tromelin,36,0.01
+CW,Mauritius,37,0.86
+CW,British Indian Ocean Territory,38,0
+CW,Maldives,39,3.16
+CW,Sri Lanka,40,0.64
+CW,Mozambique,41,0.29
+CW,Madagascar,42,0.11
+CW,Kenya,43,-0.29
+CW,Somalia,44,-0.23
+CW,Eritrea,45,-0.2
+CW,Djibouti,46,-0.06
+CW,Yemen,47,-0.09
+CW,Oman,48,0.03
+CW,Sudan,49,-0.05
+CW,Saudi Arabia,50,-0.04
+CW,Kuwait,51,0.03
+CW,Bahrain,52,-0.13
+CW,Pakistan,53,0.65
+CW,United Arab Emirates,54,0.04
+CW,Azores,55,0.26
+CW,Cape Verde,56,0.78
+CW,Madeira,57,0.31
+CW,Canary Islands,58,0.31
+CW,Belgium,59,0.27
+CW,Gibraltar,60,0.26
+CW,Tunisia,61,1
+CW,Morocco,62,0.48
+CW,Western Sahara,63,0.18
+CW,Mauritania,64,0.34
+CW,Gambia,65,0.07
+CW,Senegal,66,0.33
+CW,Libya,67,0.14
+CW,Malta,68,-0.02
+CW,Latvia,69,0.32
+CW,Estonia,70,0.18
+CW,Bulgaria,71,0.63
+CW,Romania,72,0.76
+CW,Russia,73,0.44
+CW,Georgia,74,0.09
+CW,Ukraine,75,0.13
+CW,Turkey,76,1.09
+CW,Syria,77,0.69
+CW,Lebanon,78,1.31
+CW,Israel,79,0.37
+CW,Greece,80,0.02
+CW,Cyprus,81,0.26
+CW,Albania,82,0.73
+CW,Algeria,84,-0.07
+CW,Ascension,85,0.07
+CW,Saint Helena,86,-0.05
+CW,Tristan da Cunha,88,-0.13
+CW,South Georgia and the South Sandwich Islands,89,0.01
+CW,Prince Edward Islands,90,-0.6
+CW,Crozet Islands,91,0.06
+CW,Amsterdam Island and Saint Paul Island,92,-0.46
+CW,Kerguelen Islands,93,-0.22
+CW,Heard and McDonald Islands,94,-0.09
+CW,Falkland Islands,95,-0.59
+CW,Sierra Leone,96,0.22
+CW,Liberia,97,0.17
+CW,Togo,98,0.2
+CW,Benin,99,0.21
+CW,Republique du Congo,100,0.54
+CW,Namibia,101,-0.03
+CW,South Africa,102,0.2
+CW,Sao Tome and Principe,103,0.35
+CW,Equatorial Guinea,104,0.18
+CW,Bouvet Island,105,0.01
+CW,Ghana,106,0.24
+CW,Clipperton Island,107,0.04
+CW,Bermuda,108,0.19
+CW,Bahamas,110,0.53
+CW,Turks and Caicos Islands,111,0.08
+CW,Cuba,112,0.49
+CW,Cayman Islands,113,0.14
+CW,Haiti,114,0.33
+CW,Dominican Republic,115,0.6
+CW,Puerto Rico and Virgin Islands of the United States,116,0.15
+CW,British Virgin Islands,117,0.13
+CW,Anguilla,118,1.19
+CW,Saint Kitts and Nevis,119,1.04
+CW,Antigua and Barbuda,120,0.13
+CW,Montserrat,121,0.28
+CW,Saint Lucia,122,0.25
+CW,Dominica,123,0.5
+CW,Barbados,124,0.91
+CW,Grenada,125,0.26
+CW,Trinidad and Tobago,126,0.29
+CW,Saint Vincent and the Grenadines,127,1.67
+CW,Panama,129,0.38
+CW,Costa Rica,130,0.83
+CW,Nicaragua,131,0.62
+CW,Colombia,132,0.69
+CW,Honduras,133,0.5
+CW,El Salvador,134,0.42
+CW,Mexico,135,0.53
+CW,Guatemala,136,0.14
+CW,Ecuador,137,0.72
+CW,Peru,138,0.25
+CW,Venezuela,139,0.92
+CW,Guadeloupe and Martinique,140,0.98
+CW,Faeroe Islands,141,0.16
+CW,Iceland,143,-0.07
+CW,Jan Mayen,144,0.01
+CW,Greenland,145,-0.03
+CW,Pitcairn,146,-0.02
+CW,French Polynesia,147,-0.01
+CW,Line Islands (Kiribati),148,0.15
+CW,Jarvis Island,149,0.02
+CW,Palmyra Atoll,150,0.03
+CW,American Samoa,151,0.1
+CW,Samoa,152,0.64
+CW,Cook Islands,153,0.17
+CW,Niue,154,0.16
+CW,Tonga,155,0.49
+CW,Tokelau,156,0.65
+CW,Phoenix Islands (Kiribati),157,0.18
+CW,Howland Island and Baker Island,158,0.01
+CW,Johnston Atoll,159,0.09
+CW,Wallis and Futuna,161,0.04
+CW,New Zealand,162,-0.72
+CW,United States,163,-0
+CW,Belize,164,0.33
+CW,Jamaica,166,0.4
+CW,Guyana,167,0.23
+CW,Suriname,168,0.38
+CW,French Guiana,169,-0.38
+CW,Brazil,171,0.29
+CW,Argentina,172,0.9
+CW,Uruguay,173,0.49
+CW,Finland,174,0.08
+CW,Denmark,175,-0.11
+CW,Germany,176,0.08
+CW,Netherlands,177,0.21
+CW,Poland,178,0.63
+CW,France,179,0.08
+CW,United Kingdom,180,0.19
+CW,Ireland,181,0.07
+CW,Spain,182,0.03
+CW,Portugal,183,0.53
+CW,Italy,184,0.06
+CW,Monaco,185,0.2
+CW,Montenegro,186,0.46
+CW,Croatia,187,-0.15
+CW,Slovenia,188,0.19
+CW,Lithuania,189,0.5
+CW,Qatar,190,0.21
+CW,Iran,191,-0.08
+CW,Iraq,192,0.8
+CW,Guinea Bissau,193,0.26
+CW,Guinea,194,0.19
+CW,Ivory Coast,195,0.24
+CW,Nigeria,196,0.19
+CW,Cameroon,197,0.17
+CW,Gabon,198,0.2
+CW,Democratic Republic of the Congo,199,0.29
+CW,Angola,200,-0.28
+CW,Tanzania,202,-0.16
+CW,India,203,1.21
+CW,Bangladesh,204,1.39
+CW,Myanmar,205,0.17
+CW,Malaysia,206,0.22
+CW,Vietnam,207,1.07
+CW,Singapore,208,0.2
+CW,China,209,1.15
+CW,Japan,210,0.06
+CW,Gilbert Islands (Kiribati),212,0.01
+CW,Egypt,214,0.44
+CW,Jordan,215,-0.07
+CW,Indonesia,216,1.01
+CW,Canada,218,0.13
+CW,Saint Pierre and Miquelon,219,0.06
+CW,Sint Maarten,220,0.25
+CW,Northern Saint-Martin,221,1.33
+CW,Sweden,222,0.07
+CW,Norway,223,-0.04
+CW,Chile,224,-0.29
+CW,Jersey,227,-0.39
+CW,Guernsey,228,-0.19
+CW,East Timor,231,0.37
+CW,Bosnia and Herzegovina,232,0.36
+CW,Oecussi Ambeno,237,0.68
+CW,Curacao,244,0.44
+CW,Bonaire,245,0.15
+CW,Brunei,247,1.47
+CW,Saba,248,0.18
+CW,Sint Eustatius,249,0.21
+CW,Aruba,250,0.35
+ECO,eez_weighted_avg,0,0.2
+ECO,Cocos Islands,1,0.01
+ECO,Christmas Island,2,0.01
+ECO,Norfolk Island,3,0.01
+ECO,New Caledonia,5,0.06
+ECO,Vanuatu,6,0
+ECO,Solomon Islands,7,0.02
+ECO,Palau,8,0.35
+ECO,Micronesia,9,0.07
+ECO,Nauru,10,0.41
+ECO,Marshall Islands,11,0.06
+ECO,Wake Island,12,0.26
+ECO,Northern Mariana Islands and Guam,13,0.65
+ECO,Taiwan,14,0.21
+ECO,Philippines,15,0.14
+ECO,Australia,16,0
+ECO,Papua New Guinea,17,0.12
+ECO,Fiji,18,0.29
+ECO,Tuvalu,19,2.05
+ECO,South Korea,20,0
+ECO,North Korea,21,-0.13
+ECO,Cambodia,24,0.07
+ECO,Thailand,25,0.04
+ECO,Andaman and Nicobar,26,0.41
+ECO,Comoro Islands,28,0.14
+ECO,Mayotte,29,0
+ECO,Glorioso Islands,30,0.02
+ECO,Seychelles,31,0.17
+ECO,R_union,32,0.28
+ECO,Juan de Nova Island,33,0.02
+ECO,Mauritius,37,0.09
+ECO,British Indian Ocean Territory,38,0.15
+ECO,Maldives,39,0.14
+ECO,Sri Lanka,40,0.72
+ECO,Mozambique,41,0
+ECO,Madagascar,42,0
+ECO,Kenya,43,0
+ECO,Somalia,44,0.24
+ECO,Eritrea,45,-2.3
+ECO,Djibouti,46,0
+ECO,Yemen,47,0.29
+ECO,Oman,48,0
+ECO,Sudan,49,0.06
+ECO,Saudi Arabia,50,0.05
+ECO,Kuwait,51,0.05
+ECO,Bahrain,52,0.21
+ECO,Pakistan,53,0.05
+ECO,United Arab Emirates,54,0.05
+ECO,Azores,55,0
+ECO,Cape Verde,56,0.16
+ECO,Madeira,57,0.04
+ECO,Canary Islands,58,-0
+ECO,Belgium,59,0
+ECO,Gibraltar,60,-0
+ECO,Tunisia,61,0.01
+ECO,Morocco,62,0.01
+ECO,Western Sahara,63,0.04
+ECO,Mauritania,64,0.03
+ECO,Gambia,65,0
+ECO,Senegal,66,0.39
+ECO,Libya,67,0.16
+ECO,Malta,68,0.17
+ECO,Latvia,69,0.01
+ECO,Estonia,70,0.77
+ECO,Bulgaria,71,0
+ECO,Romania,72,0
+ECO,Russia,73,0.02
+ECO,Georgia,74,1.08
+ECO,Ukraine,75,0
+ECO,Turkey,76,0
+ECO,Syria,77,0
+ECO,Lebanon,78,0.03
+ECO,Israel,79,0
+ECO,Greece,80,-0.14
+ECO,Cyprus,81,0.01
+ECO,Albania,82,0
+ECO,Algeria,84,0.01
+ECO,Ascension,85,0.17
+ECO,Saint Helena,86,-0.07
+ECO,Tristan da Cunha,88,0.17
+ECO,Falkland Islands,95,-0.01
+ECO,Sierra Leone,96,0.13
+ECO,Liberia,97,0
+ECO,Togo,98,0.1
+ECO,Benin,99,0
+ECO,Republique du Congo,100,0.72
+ECO,Namibia,101,0.61
+ECO,South Africa,102,0.85
+ECO,Sao Tome and Principe,103,0
+ECO,Equatorial Guinea,104,-0.01
+ECO,Ghana,106,0.24
+ECO,Bermuda,108,-0.45
+ECO,Bahamas,110,0.16
+ECO,Turks and Caicos Islands,111,0.13
+ECO,Cuba,112,0.25
+ECO,Cayman Islands,113,-0.01
+ECO,Haiti,114,0.24
+ECO,Dominican Republic,115,0.25
+ECO,Puerto Rico and Virgin Islands of the United States,116,0.11
+ECO,British Virgin Islands,117,0.23
+ECO,Anguilla,118,-0.13
+ECO,Saint Kitts and Nevis,119,0.3
+ECO,Antigua and Barbuda,120,-0.38
+ECO,Montserrat,121,0.13
+ECO,Saint Lucia,122,0.26
+ECO,Dominica,123,0.43
+ECO,Barbados,124,-0.1
+ECO,Grenada,125,-0
+ECO,Trinidad and Tobago,126,0.38
+ECO,Saint Vincent and the Grenadines,127,0.18
+ECO,Panama,129,0.02
+ECO,Costa Rica,130,0.27
+ECO,Nicaragua,131,0
+ECO,Colombia,132,0.15
+ECO,Honduras,133,0
+ECO,El Salvador,134,0
+ECO,Mexico,135,0
+ECO,Guatemala,136,0
+ECO,Ecuador,137,0.86
+ECO,Peru,138,0.37
+ECO,Venezuela,139,0.18
+ECO,Guadeloupe and Martinique,140,0.05
+ECO,Faeroe Islands,141,0.2
+ECO,Iceland,143,0.1
+ECO,Jan Mayen,144,0.17
+ECO,Greenland,145,0.01
+ECO,Pitcairn,146,0.53
+ECO,French Polynesia,147,0.92
+ECO,Line Islands (Kiribati),148,0.26
+ECO,American Samoa,151,0.53
+ECO,Samoa,152,0.32
+ECO,Cook Islands,153,0.36
+ECO,Niue,154,0
+ECO,Tonga,155,0.79
+ECO,Tokelau,156,0.53
+ECO,Phoenix Islands (Kiribati),157,0.26
+ECO,Wallis and Futuna,161,0.53
+ECO,New Zealand,162,0.16
+ECO,United States,163,0.01
+ECO,Belize,164,0
+ECO,Jamaica,166,0.14
+ECO,Guyana,167,0.79
+ECO,Suriname,168,0.49
+ECO,French Guiana,169,0.01
+ECO,Brazil,171,0.15
+ECO,Argentina,172,0
+ECO,Uruguay,173,0
+ECO,Finland,174,0
+ECO,Denmark,175,0.14
+ECO,Germany,176,0
+ECO,Netherlands,177,0.08
+ECO,Poland,178,0
+ECO,France,179,0
+ECO,United Kingdom,180,0.28
+ECO,Ireland,181,0.23
+ECO,Spain,182,0
+ECO,Portugal,183,0
+ECO,Italy,184,0
+ECO,Monaco,185,0.03
+ECO,Montenegro,186,-0.14
+ECO,Croatia,187,0
+ECO,Slovenia,188,0
+ECO,Lithuania,189,0
+ECO,Qatar,190,1.14
+ECO,Iran,191,0.76
+ECO,Iraq,192,1.03
+ECO,Guinea Bissau,193,0.52
+ECO,Guinea,194,0.18
+ECO,Ivory Coast,195,0.49
+ECO,Nigeria,196,0.33
+ECO,Cameroon,197,-0.01
+ECO,Gabon,198,0.68
+ECO,Democratic Republic of the Congo,199,0.17
+ECO,Angola,200,0.57
+ECO,Tanzania,202,0
+ECO,India,203,0
+ECO,Bangladesh,204,0.01
+ECO,Myanmar,205,0.53
+ECO,Malaysia,206,-0.31
+ECO,Vietnam,207,0.38
+ECO,Singapore,208,0.04
+ECO,China,209,-0.02
+ECO,Japan,210,0
+ECO,Gilbert Islands (Kiribati),212,0
+ECO,Egypt,214,0.01
+ECO,Jordan,215,0
+ECO,Indonesia,216,0.92
+ECO,Canada,218,0
+ECO,Saint Pierre and Miquelon,219,0
+ECO,Sint Maarten,220,0.12
+ECO,Northern Saint-Martin,221,0.12
+ECO,Sweden,222,0
+ECO,Norway,223,0.14
+ECO,Chile,224,0.17
+ECO,Jersey,227,0.17
+ECO,Guernsey,228,0.17
+ECO,East Timor,231,0
+ECO,Bosnia and Herzegovina,232,0
+ECO,Oecussi Ambeno,237,0.41
+ECO,Curacao,244,0.08
+ECO,Bonaire,245,0.08
+ECO,Brunei,247,-0.41
+ECO,Saba,248,0.08
+ECO,Sint Eustatius,249,0.08
+ECO,Aruba,250,0
+FIS,eez_weighted_avg,0,0.02
+FIS,Cocos Islands,1,0.14
+FIS,Christmas Island,2,0.03
+FIS,Norfolk Island,3,0
+FIS,Macquarie Island,4,0
+FIS,New Caledonia,5,-0.38
+FIS,Vanuatu,6,-0.48
+FIS,Solomon Islands,7,-0.14
+FIS,Palau,8,-0.05
+FIS,Micronesia,9,-0
+FIS,Nauru,10,0.01
+FIS,Marshall Islands,11,-0
+FIS,Wake Island,12,0.07
+FIS,Northern Mariana Islands and Guam,13,0.12
+FIS,Taiwan,14,0.39
+FIS,Philippines,15,0.03
+FIS,Australia,16,0.08
+FIS,Papua New Guinea,17,-0.02
+FIS,Fiji,18,-0.34
+FIS,Tuvalu,19,-0.06
+FIS,South Korea,20,0.15
+FIS,North Korea,21,0.05
+FIS,Cambodia,24,-0.41
+FIS,Thailand,25,-0.21
+FIS,Andaman and Nicobar,26,0.03
+FIS,Comoro Islands,28,0.16
+FIS,Mayotte,29,0.05
+FIS,Glorioso Islands,30,0.01
+FIS,Seychelles,31,-0.02
+FIS,R_union,32,0.02
+FIS,Juan de Nova Island,33,0.7
+FIS,Bassas da India,34,0.7
+FIS,Ile Europa,35,0.7
+FIS,Ile Tromelin,36,-0.2
+FIS,Mauritius,37,-0.02
+FIS,British Indian Ocean Territory,38,0.03
+FIS,Maldives,39,0.16
+FIS,Sri Lanka,40,-0.04
+FIS,Mozambique,41,0.04
+FIS,Madagascar,42,-0.04
+FIS,Kenya,43,0.28
+FIS,Somalia,44,0.03
+FIS,Eritrea,45,-0.02
+FIS,Djibouti,46,1.68
+FIS,Yemen,47,0.05
+FIS,Oman,48,-0.21
+FIS,Sudan,49,0.01
+FIS,Saudi Arabia,50,0.06
+FIS,Kuwait,51,0.03
+FIS,Bahrain,52,0.2
+FIS,Pakistan,53,0.07
+FIS,United Arab Emirates,54,-0.14
+FIS,Azores,55,-0.51
+FIS,Cape Verde,56,-0.25
+FIS,Madeira,57,-0.77
+FIS,Canary Islands,58,-0.34
+FIS,Belgium,59,-0.52
+FIS,Gibraltar,60,-0.21
+FIS,Tunisia,61,-0.22
+FIS,Morocco,62,-0.09
+FIS,Western Sahara,63,-0.11
+FIS,Mauritania,64,-0.08
+FIS,Gambia,65,-0.17
+FIS,Senegal,66,-0.05
+FIS,Libya,67,-0.06
+FIS,Malta,68,0.44
+FIS,Latvia,69,-2.56
+FIS,Estonia,70,-2.15
+FIS,Bulgaria,71,-0.06
+FIS,Romania,72,0.16
+FIS,Russia,73,1.03
+FIS,Georgia,74,-0.01
+FIS,Ukraine,75,-0.09
+FIS,Turkey,76,-0.36
+FIS,Syria,77,-0.84
+FIS,Lebanon,78,0.08
+FIS,Israel,79,-0.11
+FIS,Greece,80,-0.06
+FIS,Cyprus,81,-0.62
+FIS,Albania,82,-0.05
+FIS,Algeria,84,-0.2
+FIS,Ascension,85,-1.61
+FIS,Saint Helena,86,-0.04
+FIS,Tristan da Cunha,88,-0.1
+FIS,South Georgia and the South Sandwich Islands,89,1.13
+FIS,Prince Edward Islands,90,0.14
+FIS,Crozet Islands,91,-1.07
+FIS,Amsterdam Island and Saint Paul Island,92,0.02
+FIS,Kerguelen Islands,93,-0.24
+FIS,Heard and McDonald Islands,94,-1.3
+FIS,Falkland Islands,95,0.31
+FIS,Sierra Leone,96,-0.16
+FIS,Liberia,97,0.03
+FIS,Togo,98,-0.17
+FIS,Benin,99,0.64
+FIS,Republique du Congo,100,-0.44
+FIS,Namibia,101,0.92
+FIS,South Africa,102,-0.5
+FIS,Sao Tome and Principe,103,-0.03
+FIS,Equatorial Guinea,104,-0.08
+FIS,Bouvet Island,105,-0.03
+FIS,Ghana,106,-0.38
+FIS,Clipperton Island,107,-2.11
+FIS,Bermuda,108,0.08
+FIS,Bahamas,110,0.07
+FIS,Turks and Caicos Islands,111,-0.01
+FIS,Cuba,112,0.01
+FIS,Cayman Islands,113,-0.51
+FIS,Haiti,114,-0.04
+FIS,Dominican Republic,115,-0.12
+FIS,Puerto Rico and Virgin Islands of the United States,116,-0
+FIS,British Virgin Islands,117,0.04
+FIS,Anguilla,118,0.08
+FIS,Saint Kitts and Nevis,119,-0.05
+FIS,Antigua and Barbuda,120,-0.01
+FIS,Montserrat,121,0.01
+FIS,Saint Lucia,122,-0.09
+FIS,Dominica,123,-0.01
+FIS,Barbados,124,-0.01
+FIS,Grenada,125,0.15
+FIS,Trinidad and Tobago,126,0.03
+FIS,Saint Vincent and the Grenadines,127,0.05
+FIS,Panama,129,0.08
+FIS,Costa Rica,130,-1.12
+FIS,Nicaragua,131,-0.04
+FIS,Colombia,132,0.57
+FIS,Honduras,133,-0.03
+FIS,El Salvador,134,-0.19
+FIS,Mexico,135,-1.31
+FIS,Guatemala,136,-0.35
+FIS,Ecuador,137,0.31
+FIS,Peru,138,0.5
+FIS,Venezuela,139,1.08
+FIS,Guadeloupe and Martinique,140,-0.07
+FIS,Faeroe Islands,141,-0.12
+FIS,Iceland,143,-0.08
+FIS,Jan Mayen,144,-0.01
+FIS,Greenland,145,-0.17
+FIS,Pitcairn,146,-0.12
+FIS,French Polynesia,147,-0.21
+FIS,Line Islands (Kiribati),148,-0
+FIS,Jarvis Island,149,-0.35
+FIS,Palmyra Atoll,150,0.06
+FIS,American Samoa,151,-0.26
+FIS,Samoa,152,-0.42
+FIS,Cook Islands,153,-0.28
+FIS,Niue,154,-0.11
+FIS,Tonga,155,-0.23
+FIS,Tokelau,156,-0.08
+FIS,Phoenix Islands (Kiribati),157,-0.05
+FIS,Howland Island and Baker Island,158,0.01
+FIS,Johnston Atoll,159,0
+FIS,Wallis and Futuna,161,-0.17
+FIS,New Zealand,162,-0.41
+FIS,United States,163,-0.23
+FIS,Belize,164,-0.12
+FIS,Jamaica,166,-0.06
+FIS,Guyana,167,0.05
+FIS,Suriname,168,-0
+FIS,French Guiana,169,0.59
+FIS,Brazil,171,0.03
+FIS,Argentina,172,1.47
+FIS,Uruguay,173,1.33
+FIS,Finland,174,-1.78
+FIS,Denmark,175,-0.01
+FIS,Germany,176,-0.03
+FIS,Netherlands,177,-0.08
+FIS,Poland,178,-2.9
+FIS,France,179,-0.31
+FIS,United Kingdom,180,-0.33
+FIS,Ireland,181,-0.15
+FIS,Spain,182,-0.17
+FIS,Portugal,183,-0.1
+FIS,Italy,184,0.05
+FIS,Monaco,185,-0.18
+FIS,Montenegro,186,0.43
+FIS,Croatia,187,-0.11
+FIS,Slovenia,188,-0.39
+FIS,Lithuania,189,-2.83
+FIS,Qatar,190,0.23
+FIS,Iran,191,0.14
+FIS,Iraq,192,0.04
+FIS,Guinea Bissau,193,-0.07
+FIS,Guinea,194,-0.06
+FIS,Ivory Coast,195,-0.17
+FIS,Nigeria,196,-0.2
+FIS,Cameroon,197,-0.19
+FIS,Gabon,198,-0.11
+FIS,Democratic Republic of the Congo,199,0.57
+FIS,Angola,200,-0.2
+FIS,Tanzania,202,0.01
+FIS,India,203,-0.14
+FIS,Bangladesh,204,-0.03
+FIS,Myanmar,205,0
+FIS,Malaysia,206,0.05
+FIS,Vietnam,207,-0.17
+FIS,Singapore,208,-0.21
+FIS,China,209,0.05
+FIS,Japan,210,0.49
+FIS,Gilbert Islands (Kiribati),212,-0.03
+FIS,Egypt,214,-0.12
+FIS,Jordan,215,0.02
+FIS,Indonesia,216,-0.01
+FIS,Canada,218,-0.11
+FIS,Saint Pierre and Miquelon,219,0.64
+FIS,Sint Maarten,220,0.14
+FIS,Northern Saint-Martin,221,-0
+FIS,Sweden,222,-1.92
+FIS,Norway,223,-0.22
+FIS,Chile,224,1.81
+FIS,Jersey,227,-0.37
+FIS,Guernsey,228,-0.37
+FIS,East Timor,231,-0.13
+FIS,Bosnia and Herzegovina,232,-0.07
+FIS,Oecussi Ambeno,237,-0.24
+FIS,Curacao,244,0.16
+FIS,Bonaire,245,0.2
+FIS,Brunei,247,0.34
+FIS,Saba,248,0.05
+FIS,Sint Eustatius,249,0.05
+FIS,Aruba,250,0.05
+FP,eez_weighted_avg,0,-0.08
+FP,Cocos Islands,1,0.14
+FP,Christmas Island,2,0.03
+FP,Norfolk Island,3,0
+FP,Macquarie Island,4,0
+FP,New Caledonia,5,-0.35
+FP,Vanuatu,6,-0.48
+FP,Solomon Islands,7,-0.14
+FP,Palau,8,-0.05
+FP,Micronesia,9,-0
+FP,Nauru,10,0.01
+FP,Marshall Islands,11,-0.01
+FP,Wake Island,12,0.07
+FP,Northern Mariana Islands and Guam,13,0.31
+FP,Taiwan,14,-0.68
+FP,Philippines,15,-0.02
+FP,Australia,16,-0.6
+FP,Papua New Guinea,17,-0.02
+FP,Fiji,18,-0.35
+FP,Tuvalu,19,-0.06
+FP,South Korea,20,0.6
+FP,North Korea,21,1.41
+FP,Cambodia,24,-0.45
+FP,Thailand,25,-0.45
+FP,Andaman and Nicobar,26,0.03
+FP,Comoro Islands,28,0.16
+FP,Mayotte,29,0.27
+FP,Glorioso Islands,30,0.01
+FP,Seychelles,31,-0.03
+FP,R_union,32,0.04
+FP,Juan de Nova Island,33,0.7
+FP,Bassas da India,34,0.7
+FP,Ile Europa,35,0.7
+FP,Ile Tromelin,36,-0.2
+FP,Mauritius,37,-0.44
+FP,British Indian Ocean Territory,38,0.03
+FP,Maldives,39,0.16
+FP,Sri Lanka,40,-0.15
+FP,Mozambique,41,0.04
+FP,Madagascar,42,-0.15
+FP,Kenya,43,0.27
+FP,Somalia,44,0.03
+FP,Eritrea,45,-0.02
+FP,Djibouti,46,1.68
+FP,Yemen,47,0.05
+FP,Oman,48,-0.34
+FP,Sudan,49,0.01
+FP,Saudi Arabia,50,-1.42
+FP,Kuwait,51,0.03
+FP,Bahrain,52,0.2
+FP,Pakistan,53,0.07
+FP,United Arab Emirates,54,-0.19
+FP,Azores,55,-0.51
+FP,Cape Verde,56,-0.25
+FP,Madeira,57,-0.77
+FP,Canary Islands,58,-0.34
+FP,Belgium,59,-0.52
+FP,Gibraltar,60,-0.21
+FP,Tunisia,61,-0.37
+FP,Morocco,62,-0.1
+FP,Western Sahara,63,-0.11
+FP,Mauritania,64,-0.08
+FP,Gambia,65,-0.17
+FP,Senegal,66,-0.07
+FP,Libya,67,-0.06
+FP,Malta,68,0.09
+FP,Latvia,69,-2.56
+FP,Estonia,70,-2.34
+FP,Bulgaria,71,-1.08
+FP,Romania,72,0.21
+FP,Russia,73,0.85
+FP,Georgia,74,-0.01
+FP,Ukraine,75,-0.02
+FP,Turkey,76,-0.09
+FP,Syria,77,-0.84
+FP,Lebanon,78,0.08
+FP,Israel,79,0.5
+FP,Greece,80,0.22
+FP,Cyprus,81,1.45
+FP,Albania,82,1.26
+FP,Algeria,84,-0.27
+FP,Ascension,85,-1.61
+FP,Saint Helena,86,-0.04
+FP,Tristan da Cunha,88,-0.1
+FP,South Georgia and the South Sandwich Islands,89,1.13
+FP,Prince Edward Islands,90,0.14
+FP,Crozet Islands,91,-1.07
+FP,Amsterdam Island and Saint Paul Island,92,0.02
+FP,Kerguelen Islands,93,-0.24
+FP,Heard and McDonald Islands,94,-1.3
+FP,Falkland Islands,95,0.31
+FP,Sierra Leone,96,-0.16
+FP,Liberia,97,0.03
+FP,Togo,98,-0.17
+FP,Benin,99,0.64
+FP,Republique du Congo,100,-0.44
+FP,Namibia,101,0.92
+FP,South Africa,102,-0.51
+FP,Sao Tome and Principe,103,-0.03
+FP,Equatorial Guinea,104,-0.08
+FP,Bouvet Island,105,-0.03
+FP,Ghana,106,-0.38
+FP,Clipperton Island,107,-2.11
+FP,Bermuda,108,0.08
+FP,Bahamas,110,0.08
+FP,Turks and Caicos Islands,111,-0.01
+FP,Cuba,112,0.59
+FP,Cayman Islands,113,-0.51
+FP,Haiti,114,-0.04
+FP,Dominican Republic,115,-0.12
+FP,Puerto Rico and Virgin Islands of the United States,116,-0
+FP,British Virgin Islands,117,0.04
+FP,Anguilla,118,0.08
+FP,Saint Kitts and Nevis,119,-0.05
+FP,Antigua and Barbuda,120,-0.01
+FP,Montserrat,121,0.01
+FP,Saint Lucia,122,-0.14
+FP,Dominica,123,-0.01
+FP,Barbados,124,-0.01
+FP,Grenada,125,0.15
+FP,Trinidad and Tobago,126,0.03
+FP,Saint Vincent and the Grenadines,127,0.05
+FP,Panama,129,-0.32
+FP,Costa Rica,130,-1.22
+FP,Nicaragua,131,0.33
+FP,Colombia,132,0.31
+FP,Honduras,133,-0.66
+FP,El Salvador,134,-0.2
+FP,Mexico,135,-1.25
+FP,Guatemala,136,-0.6
+FP,Ecuador,137,2.48
+FP,Peru,138,0.52
+FP,Venezuela,139,0.33
+FP,Guadeloupe and Martinique,140,-0.08
+FP,Faeroe Islands,141,0.01
+FP,Iceland,143,-0.31
+FP,Jan Mayen,144,-0.01
+FP,Greenland,145,-0.18
+FP,Pitcairn,146,-0.12
+FP,French Polynesia,147,0.05
+FP,Line Islands (Kiribati),148,-0
+FP,Jarvis Island,149,-0.35
+FP,Palmyra Atoll,150,0.06
+FP,American Samoa,151,-0.26
+FP,Samoa,152,-0.43
+FP,Cook Islands,153,-0.28
+FP,Niue,154,-0.11
+FP,Tonga,155,-0.24
+FP,Tokelau,156,-0.08
+FP,Phoenix Islands (Kiribati),157,-0.05
+FP,Howland Island and Baker Island,158,0.01
+FP,Johnston Atoll,159,0
+FP,Wallis and Futuna,161,-0.17
+FP,New Zealand,162,-0.61
+FP,United States,163,-0.31
+FP,Belize,164,1.48
+FP,Jamaica,166,-0.06
+FP,Guyana,167,-0.05
+FP,Suriname,168,0
+FP,French Guiana,169,0.59
+FP,Brazil,171,-0.39
+FP,Argentina,172,1.47
+FP,Uruguay,173,1.33
+FP,Finland,174,-1.1
+FP,Denmark,175,0.15
+FP,Germany,176,1.04
+FP,Netherlands,177,-0.04
+FP,Poland,178,-2.9
+FP,France,179,-0.28
+FP,United Kingdom,180,-0.14
+FP,Ireland,181,-0.35
+FP,Spain,182,-0.16
+FP,Portugal,183,0.34
+FP,Italy,184,-0.41
+FP,Monaco,185,-0.18
+FP,Montenegro,186,0.21
+FP,Croatia,187,2.11
+FP,Slovenia,188,0.11
+FP,Lithuania,189,-2.83
+FP,Qatar,190,0.22
+FP,Iran,191,0.2
+FP,Iraq,192,0.04
+FP,Guinea Bissau,193,-0.07
+FP,Guinea,194,-0.06
+FP,Ivory Coast,195,-0.17
+FP,Nigeria,196,-0.2
+FP,Cameroon,197,-0.19
+FP,Gabon,198,-0.11
+FP,Democratic Republic of the Congo,199,0.57
+FP,Angola,200,-0.2
+FP,Tanzania,202,-0.34
+FP,India,203,-0.61
+FP,Bangladesh,204,-0.07
+FP,Myanmar,205,-0.01
+FP,Malaysia,206,-0.07
+FP,Vietnam,207,-0.25
+FP,Singapore,208,-0.35
+FP,China,209,0.19
+FP,Japan,210,0.3
+FP,Gilbert Islands (Kiribati),212,-0.01
+FP,Egypt,214,-0.71
+FP,Jordan,215,0.02
+FP,Indonesia,216,0.24
+FP,Canada,218,-0.09
+FP,Saint Pierre and Miquelon,219,0.64
+FP,Sint Maarten,220,0.14
+FP,Northern Saint-Martin,221,-0
+FP,Sweden,222,-1.95
+FP,Norway,223,-0.43
+FP,Chile,224,-0.04
+FP,Jersey,227,-0.33
+FP,Guernsey,228,-0.37
+FP,East Timor,231,-0.13
+FP,Bosnia and Herzegovina,232,-0.2
+FP,Oecussi Ambeno,237,-0.24
+FP,Curacao,244,0.16
+FP,Bonaire,245,0.2
+FP,Brunei,247,0.02
+FP,Saba,248,0.05
+FP,Sint Eustatius,249,0.05
+FP,Aruba,250,0.05
+HAB,eez_weighted_avg,0,0.16
+HAB,Cocos Islands,1,0.23
+HAB,Christmas Island,2,1.09
+HAB,Norfolk Island,3,0.48
+HAB,Macquarie Island,4,0.67
+HAB,New Caledonia,5,-0.03
+HAB,Vanuatu,6,0
+HAB,Solomon Islands,7,-0.16
+HAB,Palau,8,-0.03
+HAB,Micronesia,9,0.11
+HAB,Nauru,10,-0.75
+HAB,Marshall Islands,11,0
+HAB,Wake Island,12,-0
+HAB,Northern Mariana Islands and Guam,13,0.63
+HAB,Taiwan,14,-0.3
+HAB,Philippines,15,0.69
+HAB,Australia,16,0.11
+HAB,Papua New Guinea,17,-0.37
+HAB,Fiji,18,-0.01
+HAB,Tuvalu,19,-0.02
+HAB,South Korea,20,-0.05
+HAB,North Korea,21,0.22
+HAB,Cambodia,24,0.99
+HAB,Thailand,25,0.78
+HAB,Andaman and Nicobar,26,1.2
+HAB,Comoro Islands,28,0.11
+HAB,Mayotte,29,0.14
+HAB,Glorioso Islands,30,0.37
+HAB,Seychelles,31,0.02
+HAB,R_union,32,0.25
+HAB,Juan de Nova Island,33,0.4
+HAB,Bassas da India,34,0.54
+HAB,Ile Europa,35,-0
+HAB,Ile Tromelin,36,0
+HAB,Mauritius,37,-0.37
+HAB,British Indian Ocean Territory,38,-0.1
+HAB,Maldives,39,0.13
+HAB,Sri Lanka,40,0.25
+HAB,Mozambique,41,0.09
+HAB,Madagascar,42,0.67
+HAB,Kenya,43,0.04
+HAB,Somalia,44,-0.24
+HAB,Eritrea,45,0.15
+HAB,Djibouti,46,0.08
+HAB,Yemen,47,-0.11
+HAB,Oman,48,-0.41
+HAB,Sudan,49,0.06
+HAB,Saudi Arabia,50,0.06
+HAB,Kuwait,51,0.25
+HAB,Bahrain,52,0.24
+HAB,Pakistan,53,-0.09
+HAB,United Arab Emirates,54,0.15
+HAB,Azores,55,0.08
+HAB,Cape Verde,56,0.33
+HAB,Madeira,57,0.88
+HAB,Canary Islands,58,0.2
+HAB,Belgium,59,-0.08
+HAB,Gibraltar,60,0
+HAB,Tunisia,61,-0.15
+HAB,Morocco,62,0.46
+HAB,Western Sahara,63,0.08
+HAB,Mauritania,64,0.15
+HAB,Gambia,65,0.03
+HAB,Senegal,66,0
+HAB,Libya,67,0.06
+HAB,Malta,68,-0.26
+HAB,Latvia,69,-0.03
+HAB,Estonia,70,-0.11
+HAB,Bulgaria,71,-0.07
+HAB,Romania,72,1.06
+HAB,Russia,73,0.2
+HAB,Georgia,74,-0.18
+HAB,Ukraine,75,0.43
+HAB,Turkey,76,0.39
+HAB,Syria,77,-0.15
+HAB,Lebanon,78,0.17
+HAB,Israel,79,0.06
+HAB,Greece,80,0.12
+HAB,Cyprus,81,-0.01
+HAB,Albania,82,-0.05
+HAB,Algeria,84,0.67
+HAB,Ascension,85,0.65
+HAB,Saint Helena,86,0.02
+HAB,Tristan da Cunha,88,0.9
+HAB,South Georgia and the South Sandwich Islands,89,-1.26
+HAB,Prince Edward Islands,90,0.06
+HAB,Crozet Islands,91,0
+HAB,Amsterdam Island and Saint Paul Island,92,0.71
+HAB,Kerguelen Islands,93,0.4
+HAB,Heard and McDonald Islands,94,1.29
+HAB,Falkland Islands,95,0.06
+HAB,Sierra Leone,96,-0.58
+HAB,Liberia,97,-0.32
+HAB,Togo,98,-0.12
+HAB,Benin,99,-0.07
+HAB,Republique du Congo,100,-0.26
+HAB,Namibia,101,-0.13
+HAB,South Africa,102,0.01
+HAB,Sao Tome and Principe,103,0.09
+HAB,Equatorial Guinea,104,-0.15
+HAB,Bouvet Island,105,-3.52
+HAB,Ghana,106,-0.22
+HAB,Clipperton Island,107,0.65
+HAB,Bermuda,108,0.41
+HAB,Bahamas,110,0.13
+HAB,Turks and Caicos Islands,111,0.25
+HAB,Cuba,112,0.06
+HAB,Cayman Islands,113,0.07
+HAB,Haiti,114,0.02
+HAB,Dominican Republic,115,0.04
+HAB,Puerto Rico and Virgin Islands of the United States,116,-0.05
+HAB,British Virgin Islands,117,-0.13
+HAB,Anguilla,118,0.05
+HAB,Saint Kitts and Nevis,119,0.08
+HAB,Antigua and Barbuda,120,-0.02
+HAB,Montserrat,121,-0.04
+HAB,Saint Lucia,122,0.06
+HAB,Dominica,123,0.42
+HAB,Barbados,124,0.04
+HAB,Grenada,125,0.01
+HAB,Trinidad and Tobago,126,0.01
+HAB,Saint Vincent and the Grenadines,127,0.1
+HAB,Panama,129,0.02
+HAB,Costa Rica,130,0.01
+HAB,Nicaragua,131,0.01
+HAB,Colombia,132,0.04
+HAB,Honduras,133,-0.01
+HAB,El Salvador,134,0.2
+HAB,Mexico,135,0.02
+HAB,Guatemala,136,0.15
+HAB,Ecuador,137,0.13
+HAB,Peru,138,0.24
+HAB,Venezuela,139,0.02
+HAB,Guadeloupe and Martinique,140,-0.08
+HAB,Faeroe Islands,141,-0.13
+HAB,Iceland,143,0.85
+HAB,Jan Mayen,144,1.51
+HAB,Greenland,145,0.06
+HAB,Pitcairn,146,0
+HAB,French Polynesia,147,-0
+HAB,Line Islands (Kiribati),148,-0.01
+HAB,Jarvis Island,149,0.87
+HAB,Palmyra Atoll,150,-0.1
+HAB,American Samoa,151,-0
+HAB,Samoa,152,-0
+HAB,Cook Islands,153,0.11
+HAB,Niue,154,0.31
+HAB,Tonga,155,-0.02
+HAB,Tokelau,156,0
+HAB,Phoenix Islands (Kiribati),157,-0.04
+HAB,Howland Island and Baker Island,158,0.68
+HAB,Johnston Atoll,159,0.61
+HAB,Wallis and Futuna,161,-0
+HAB,New Zealand,162,-0
+HAB,United States,163,0.16
+HAB,Belize,164,0.13
+HAB,Jamaica,166,-0.1
+HAB,Guyana,167,0.28
+HAB,Suriname,168,0.33
+HAB,French Guiana,169,0.04
+HAB,Brazil,171,0.1
+HAB,Argentina,172,0.17
+HAB,Uruguay,173,-0.07
+HAB,Finland,174,0
+HAB,Denmark,175,-0.04
+HAB,Germany,176,0.09
+HAB,Netherlands,177,1
+HAB,Poland,178,0.21
+HAB,France,179,0.78
+HAB,United Kingdom,180,0.25
+HAB,Ireland,181,0.11
+HAB,Spain,182,0.09
+HAB,Portugal,183,0.08
+HAB,Italy,184,0.08
+HAB,Monaco,185,-0
+HAB,Montenegro,186,0.04
+HAB,Croatia,187,0.01
+HAB,Slovenia,188,-0.02
+HAB,Lithuania,189,0.27
+HAB,Qatar,190,0.16
+HAB,Iran,191,0.04
+HAB,Iraq,192,0.24
+HAB,Guinea Bissau,193,-0.23
+HAB,Guinea,194,-0.92
+HAB,Ivory Coast,195,-0.47
+HAB,Nigeria,196,0.11
+HAB,Cameroon,197,0.26
+HAB,Gabon,198,-0.4
+HAB,Democratic Republic of the Congo,199,-0.29
+HAB,Angola,200,0.93
+HAB,Tanzania,202,0.01
+HAB,India,203,0.63
+HAB,Bangladesh,204,-0.24
+HAB,Myanmar,205,0.16
+HAB,Malaysia,206,0.55
+HAB,Vietnam,207,1.19
+HAB,Singapore,208,0.35
+HAB,China,209,0.04
+HAB,Japan,210,0.02
+HAB,Gilbert Islands (Kiribati),212,-0.08
+HAB,Egypt,214,0.15
+HAB,Jordan,215,-0
+HAB,Indonesia,216,1.01
+HAB,Canada,218,0.35
+HAB,Saint Pierre and Miquelon,219,1.1
+HAB,Sint Maarten,220,-0
+HAB,Northern Saint-Martin,221,0.1
+HAB,Sweden,222,-0.18
+HAB,Norway,223,0.12
+HAB,Chile,224,0.07
+HAB,Jersey,227,0.05
+HAB,Guernsey,228,-0.13
+HAB,East Timor,231,0.57
+HAB,Oecussi Ambeno,237,0.76
+HAB,Curacao,244,-0
+HAB,Bonaire,245,-0.04
+HAB,Brunei,247,0.07
+HAB,Saba,248,-0.17
+HAB,Sint Eustatius,249,-0.01
+HAB,Aruba,250,-0
+ICO,eez_weighted_avg,0,-0.36
+ICO,Cocos Islands,1,-1.18
+ICO,Christmas Island,2,-1.51
+ICO,Norfolk Island,3,-0.48
+ICO,Macquarie Island,4,-0.54
+ICO,New Caledonia,5,-0.53
+ICO,Vanuatu,6,-1.01
+ICO,Solomon Islands,7,-0.86
+ICO,Palau,8,-0.97
+ICO,Micronesia,9,-1.02
+ICO,Nauru,10,-1.27
+ICO,Marshall Islands,11,-1.13
+ICO,Wake Island,12,-1.24
+ICO,Northern Mariana Islands and Guam,13,-1.02
+ICO,Taiwan,14,-0.61
+ICO,Philippines,15,-0.57
+ICO,Australia,16,0.47
+ICO,Papua New Guinea,17,-0.79
+ICO,Fiji,18,-0.56
+ICO,Tuvalu,19,-1.13
+ICO,South Korea,20,0.02
+ICO,North Korea,21,-0.07
+ICO,Cambodia,24,-0.98
+ICO,Thailand,25,-0.85
+ICO,Andaman and Nicobar,26,-0.8
+ICO,Comoro Islands,28,-0.56
+ICO,Mayotte,29,-0.95
+ICO,Glorioso Islands,30,0.49
+ICO,Seychelles,31,-0.36
+ICO,R_union,32,-0.96
+ICO,Juan de Nova Island,33,0.49
+ICO,Bassas da India,34,0.49
+ICO,Ile Europa,35,0.49
+ICO,Ile Tromelin,36,0.49
+ICO,Mauritius,37,-0.07
+ICO,British Indian Ocean Territory,38,-1.08
+ICO,Maldives,39,-0.93
+ICO,Sri Lanka,40,-0.27
+ICO,Mozambique,41,-0.46
+ICO,Madagascar,42,-0.49
+ICO,Kenya,43,-0.56
+ICO,Somalia,44,-0.7
+ICO,Eritrea,45,-0.67
+ICO,Djibouti,46,-0.8
+ICO,Yemen,47,-0.9
+ICO,Oman,48,-0.82
+ICO,Sudan,49,-1.14
+ICO,Saudi Arabia,50,-0.72
+ICO,Kuwait,51,-0.36
+ICO,Bahrain,52,-0.32
+ICO,Pakistan,53,-0.73
+ICO,United Arab Emirates,54,-0.79
+ICO,Azores,55,-0.23
+ICO,Cape Verde,56,-0.43
+ICO,Madeira,57,-0.23
+ICO,Canary Islands,58,-0.23
+ICO,Belgium,59,-0
+ICO,Gibraltar,60,-0.22
+ICO,Tunisia,61,-0.42
+ICO,Morocco,62,-0.47
+ICO,Western Sahara,63,-0.53
+ICO,Mauritania,64,-0.56
+ICO,Gambia,65,-0.69
+ICO,Senegal,66,-0.23
+ICO,Libya,67,-0.24
+ICO,Malta,68,-0.03
+ICO,Latvia,69,-0.01
+ICO,Estonia,70,-0.01
+ICO,Bulgaria,71,0
+ICO,Romania,72,0
+ICO,Russia,73,0.09
+ICO,Georgia,74,-0.31
+ICO,Ukraine,75,0
+ICO,Turkey,76,-0.78
+ICO,Syria,77,-0.05
+ICO,Lebanon,78,0.01
+ICO,Israel,79,-0.67
+ICO,Greece,80,-0.16
+ICO,Cyprus,81,-0.35
+ICO,Albania,82,-0.35
+ICO,Algeria,84,-0.57
+ICO,Ascension,85,-0.44
+ICO,Saint Helena,86,-0.44
+ICO,Tristan da Cunha,88,-0.44
+ICO,South Georgia and the South Sandwich Islands,89,0.53
+ICO,Prince Edward Islands,90,0.69
+ICO,Crozet Islands,91,0.49
+ICO,Amsterdam Island and Saint Paul Island,92,0.49
+ICO,Kerguelen Islands,93,0.49
+ICO,Heard and McDonald Islands,94,0.84
+ICO,Falkland Islands,95,0.02
+ICO,Sierra Leone,96,-0.59
+ICO,Liberia,97,-0.88
+ICO,Togo,98,-0.53
+ICO,Benin,99,-0.82
+ICO,Republique du Congo,100,-0.33
+ICO,Namibia,101,-0.14
+ICO,South Africa,102,-0.38
+ICO,Sao Tome and Principe,103,-0.75
+ICO,Equatorial Guinea,104,-0.68
+ICO,Bouvet Island,105,1.34
+ICO,Ghana,106,-0.79
+ICO,Clipperton Island,107,-0.62
+ICO,Bermuda,108,-0.48
+ICO,Bahamas,110,-0.78
+ICO,Turks and Caicos Islands,111,-0.84
+ICO,Cuba,112,-0.69
+ICO,Cayman Islands,113,-0.84
+ICO,Haiti,114,-0.99
+ICO,Dominican Republic,115,-0.63
+ICO,Puerto Rico and Virgin Islands of the United States,116,-0.51
+ICO,British Virgin Islands,117,-0.74
+ICO,Anguilla,118,-0.79
+ICO,Saint Kitts and Nevis,119,-0.67
+ICO,Antigua and Barbuda,120,-0.86
+ICO,Montserrat,121,-0.85
+ICO,Saint Lucia,122,-0.78
+ICO,Dominica,123,-0.97
+ICO,Barbados,124,-0.83
+ICO,Grenada,125,-0.77
+ICO,Trinidad and Tobago,126,-0.67
+ICO,Saint Vincent and the Grenadines,127,-0.72
+ICO,Panama,129,-0.68
+ICO,Costa Rica,130,-0.77
+ICO,Nicaragua,131,-0.63
+ICO,Colombia,132,-0.77
+ICO,Honduras,133,-0.74
+ICO,El Salvador,134,-0.55
+ICO,Mexico,135,-0.13
+ICO,Guatemala,136,-0.69
+ICO,Ecuador,137,-0.2
+ICO,Peru,138,0.03
+ICO,Venezuela,139,-0.75
+ICO,Guadeloupe and Martinique,140,-0.76
+ICO,Faeroe Islands,141,0.01
+ICO,Iceland,143,-0.06
+ICO,Jan Mayen,144,0.46
+ICO,Greenland,145,0.15
+ICO,Pitcairn,146,-0.78
+ICO,French Polynesia,147,-0.85
+ICO,Line Islands (Kiribati),148,-1.14
+ICO,Jarvis Island,149,-1.24
+ICO,Palmyra Atoll,150,-1.24
+ICO,American Samoa,151,-1
+ICO,Samoa,152,-1.08
+ICO,Cook Islands,153,-1.21
+ICO,Niue,154,-1.24
+ICO,Tonga,155,-0.93
+ICO,Tokelau,156,-1.22
+ICO,Phoenix Islands (Kiribati),157,-1.14
+ICO,Howland Island and Baker Island,158,-1.24
+ICO,Johnston Atoll,159,-1.24
+ICO,Wallis and Futuna,161,-1.29
+ICO,New Zealand,162,-0
+ICO,United States,163,-0.08
+ICO,Belize,164,-0.78
+ICO,Jamaica,166,-0.75
+ICO,Guyana,167,-0.79
+ICO,Suriname,168,-0.98
+ICO,French Guiana,169,-0.92
+ICO,Brazil,171,-0.26
+ICO,Argentina,172,-0.08
+ICO,Uruguay,173,-0.25
+ICO,Finland,174,-0.01
+ICO,Denmark,175,0.01
+ICO,Germany,176,0
+ICO,Netherlands,177,0
+ICO,Poland,178,0.03
+ICO,France,179,-0.12
+ICO,United Kingdom,180,-0.08
+ICO,Ireland,181,-0.1
+ICO,Spain,182,-0.39
+ICO,Portugal,183,-0.19
+ICO,Italy,184,-0.16
+ICO,Monaco,185,-0.26
+ICO,Montenegro,186,-0.37
+ICO,Croatia,187,-0.2
+ICO,Slovenia,188,-0.3
+ICO,Lithuania,189,-0.01
+ICO,Qatar,190,-0.95
+ICO,Iran,191,-0.65
+ICO,Iraq,192,-0.79
+ICO,Guinea Bissau,193,-0.68
+ICO,Guinea,194,-0.62
+ICO,Ivory Coast,195,-0.73
+ICO,Nigeria,196,-0.7
+ICO,Cameroon,197,-0.75
+ICO,Gabon,198,-0.7
+ICO,Democratic Republic of the Congo,199,-0.59
+ICO,Angola,200,-0.21
+ICO,Tanzania,202,-0.71
+ICO,India,203,-0.64
+ICO,Bangladesh,204,-0.67
+ICO,Myanmar,205,-0.64
+ICO,Malaysia,206,-0.66
+ICO,Vietnam,207,-0.52
+ICO,Singapore,208,-1.03
+ICO,China,209,-0.25
+ICO,Japan,210,-0.26
+ICO,Gilbert Islands (Kiribati),212,-0.92
+ICO,Egypt,214,-0.83
+ICO,Jordan,215,-0.64
+ICO,Indonesia,216,-0.48
+ICO,Canada,218,-0.02
+ICO,Saint Pierre and Miquelon,219,0.01
+ICO,Sint Maarten,220,-0.8
+ICO,Northern Saint-Martin,221,-0.8
+ICO,Sweden,222,0.01
+ICO,Norway,223,-0.11
+ICO,Chile,224,-0.09
+ICO,Jersey,227,-0.34
+ICO,Guernsey,228,-0.34
+ICO,East Timor,231,-1.08
+ICO,Bosnia and Herzegovina,232,-0.17
+ICO,Oecussi Ambeno,237,-1.08
+ICO,Curacao,244,-0.84
+ICO,Bonaire,245,-0.75
+ICO,Brunei,247,-0.85
+ICO,Saba,248,-0.75
+ICO,Sint Eustatius,249,-0.75
+ICO,Aruba,250,-0.84
+Index,eez_weighted_avg,0,-0.21
+Index,Cocos Islands,1,0.42
+Index,Christmas Island,2,0.24
+Index,Norfolk Island,3,0.94
+Index,Macquarie Island,4,0.02
+Index,New Caledonia,5,-1.11
+Index,Vanuatu,6,-0.98
+Index,Solomon Islands,7,-0.44
+Index,Palau,8,-0.84
+Index,Micronesia,9,-0.66
+Index,Nauru,10,0.05
+Index,Marshall Islands,11,-1.07
+Index,Wake Island,12,-0.11
+Index,Northern Mariana Islands and Guam,13,-0.36
+Index,Taiwan,14,0.09
+Index,Philippines,15,-0.19
+Index,Australia,16,0
+Index,Papua New Guinea,17,-0.71
+Index,Fiji,18,-0.87
+Index,Tuvalu,19,0.04
+Index,South Korea,20,-0.15
+Index,North Korea,21,0.38
+Index,Cambodia,24,-0.06
+Index,Thailand,25,0.04
+Index,Andaman and Nicobar,26,0.16
+Index,Comoro Islands,28,0.14
+Index,Mayotte,29,0.41
+Index,Glorioso Islands,30,0.88
+Index,Seychelles,31,0.39
+Index,R_union,32,-0.06
+Index,Juan de Nova Island,33,0.18
+Index,Bassas da India,34,0.23
+Index,Ile Europa,35,0.15
+Index,Ile Tromelin,36,-0.01
+Index,Mauritius,37,-0.24
+Index,British Indian Ocean Territory,38,-0.07
+Index,Maldives,39,0.28
+Index,Sri Lanka,40,-0.21
+Index,Mozambique,41,-0.36
+Index,Madagascar,42,0.44
+Index,Kenya,43,-0.58
+Index,Somalia,44,-0.06
+Index,Eritrea,45,-0.37
+Index,Djibouti,46,0.58
+Index,Yemen,47,-0.85
+Index,Oman,48,-0.29
+Index,Sudan,49,-0.53
+Index,Saudi Arabia,50,-0.51
+Index,Kuwait,51,-0.55
+Index,Bahrain,52,-0.27
+Index,Pakistan,53,0.7
+Index,United Arab Emirates,54,0.15
+Index,Azores,55,-0.11
+Index,Cape Verde,56,-0.45
+Index,Madeira,57,-0.1
+Index,Canary Islands,58,-0.02
+Index,Belgium,59,-0.61
+Index,Gibraltar,60,0.11
+Index,Tunisia,61,-0.44
+Index,Morocco,62,-0.28
+Index,Western Sahara,63,-0.23
+Index,Mauritania,64,-0.18
+Index,Gambia,65,-0.1
+Index,Senegal,66,-0.51
+Index,Libya,67,-0.51
+Index,Malta,68,-0.01
+Index,Latvia,69,-0.41
+Index,Estonia,70,-0.52
+Index,Bulgaria,71,-0.08
+Index,Romania,72,0.38
+Index,Russia,73,0.08
+Index,Georgia,74,0.08
+Index,Ukraine,75,-0.81
+Index,Turkey,76,-0.06
+Index,Syria,77,-0.28
+Index,Lebanon,78,0.17
+Index,Israel,79,-0.21
+Index,Greece,80,-0.04
+Index,Cyprus,81,0.19
+Index,Albania,82,0.63
+Index,Algeria,84,-0.02
+Index,Ascension,85,0.41
+Index,Saint Helena,86,0.07
+Index,Tristan da Cunha,88,-0.13
+Index,South Georgia and the South Sandwich Islands,89,0.11
+Index,Prince Edward Islands,90,0.13
+Index,Crozet Islands,91,-0.14
+Index,Amsterdam Island and Saint Paul Island,92,0.05
+Index,Kerguelen Islands,93,0.02
+Index,Heard and McDonald Islands,94,-0.11
+Index,Falkland Islands,95,-0.65
+Index,Sierra Leone,96,-0.15
+Index,Liberia,97,-0.16
+Index,Togo,98,0.03
+Index,Benin,99,0.42
+Index,Republique du Congo,100,-0.85
+Index,Namibia,101,-0.06
+Index,South Africa,102,-0.54
+Index,Sao Tome and Principe,103,-0.03
+Index,Equatorial Guinea,104,-0.14
+Index,Bouvet Island,105,-0.25
+Index,Ghana,106,-0.57
+Index,Clipperton Island,107,0.43
+Index,Bermuda,108,-0.44
+Index,Bahamas,110,-0.06
+Index,Turks and Caicos Islands,111,0.03
+Index,Cuba,112,0.02
+Index,Cayman Islands,113,-0.49
+Index,Haiti,114,-0.26
+Index,Dominican Republic,115,-0.02
+Index,Puerto Rico and Virgin Islands of the United States,116,-0.18
+Index,British Virgin Islands,117,-0.62
+Index,Anguilla,118,-0.05
+Index,Saint Kitts and Nevis,119,-0.1
+Index,Antigua and Barbuda,120,-0.22
+Index,Montserrat,121,-0.09
+Index,Saint Lucia,122,0.13
+Index,Dominica,123,-0.67
+Index,Barbados,124,-0.35
+Index,Grenada,125,-0.21
+Index,Trinidad and Tobago,126,-0.69
+Index,Saint Vincent and the Grenadines,127,-0.41
+Index,Panama,129,-0.41
+Index,Costa Rica,130,-0.1
+Index,Nicaragua,131,0.52
+Index,Colombia,132,0.06
+Index,Honduras,133,-0.56
+Index,El Salvador,134,-0.12
+Index,Mexico,135,0.12
+Index,Guatemala,136,-0.04
+Index,Ecuador,137,0.86
+Index,Peru,138,-0.23
+Index,Venezuela,139,-0.08
+Index,Guadeloupe and Martinique,140,0.05
+Index,Faeroe Islands,141,0.01
+Index,Iceland,143,0.17
+Index,Jan Mayen,144,0.15
+Index,Greenland,145,-0.02
+Index,Pitcairn,146,0.69
+Index,French Polynesia,147,-0
+Index,Line Islands (Kiribati),148,-0.1
+Index,Jarvis Island,149,-0.14
+Index,Palmyra Atoll,150,-0.15
+Index,American Samoa,151,-0.77
+Index,Samoa,152,-0.43
+Index,Cook Islands,153,-0.56
+Index,Niue,154,-0.12
+Index,Tonga,155,-0.4
+Index,Tokelau,156,-0.03
+Index,Phoenix Islands (Kiribati),157,-0.1
+Index,Howland Island and Baker Island,158,-0.08
+Index,Johnston Atoll,159,-0.07
+Index,Wallis and Futuna,161,0.18
+Index,New Zealand,162,-0.57
+Index,United States,163,-0.62
+Index,Belize,164,0.2
+Index,Jamaica,166,0.39
+Index,Guyana,167,0.22
+Index,Suriname,168,-0.15
+Index,French Guiana,169,-0.05
+Index,Brazil,171,-0.48
+Index,Argentina,172,-0.12
+Index,Uruguay,173,-0.27
+Index,Finland,174,-0.73
+Index,Denmark,175,0
+Index,Germany,176,-0.23
+Index,Netherlands,177,-0.05
+Index,Poland,178,-0.37
+Index,France,179,-0.18
+Index,United Kingdom,180,-0.66
+Index,Ireland,181,0.24
+Index,Spain,182,-0.28
+Index,Portugal,183,0.26
+Index,Italy,184,-0.37
+Index,Monaco,185,-0.37
+Index,Montenegro,186,-0.16
+Index,Croatia,187,0.15
+Index,Slovenia,188,-0.19
+Index,Lithuania,189,-0.53
+Index,Qatar,190,-0.2
+Index,Iran,191,0.09
+Index,Iraq,192,0.2
+Index,Guinea Bissau,193,-0.11
+Index,Guinea,194,-0.07
+Index,Ivory Coast,195,-0.38
+Index,Nigeria,196,-0.09
+Index,Cameroon,197,-0.2
+Index,Gabon,198,0.01
+Index,Democratic Republic of the Congo,199,0.18
+Index,Angola,200,-0.52
+Index,Tanzania,202,-0.06
+Index,India,203,0.06
+Index,Bangladesh,204,0.6
+Index,Myanmar,205,0
+Index,Malaysia,206,-0.69
+Index,Vietnam,207,-0.39
+Index,Singapore,208,-0.67
+Index,China,209,-0.16
+Index,Japan,210,0.48
+Index,Gilbert Islands (Kiribati),212,-0.52
+Index,Egypt,214,-0.34
+Index,Jordan,215,-0.34
+Index,Indonesia,216,-0.2
+Index,Canada,218,-0.98
+Index,Saint Pierre and Miquelon,219,0.24
+Index,Sint Maarten,220,-0.65
+Index,Northern Saint-Martin,221,0.03
+Index,Sweden,222,-0.59
+Index,Norway,223,-0.29
+Index,Chile,224,0.14
+Index,Jersey,227,0.02
+Index,Guernsey,228,0.02
+Index,East Timor,231,-0.38
+Index,Bosnia and Herzegovina,232,0.19
+Index,Oecussi Ambeno,237,0.27
+Index,Curacao,244,-0.43
+Index,Bonaire,245,0.05
+Index,Brunei,247,-0.27
+Index,Saba,248,-0.03
+Index,Sint Eustatius,249,0.05
+Index,Aruba,250,-0
+LE,eez_weighted_avg,0,0.11
+LE,Cocos Islands,1,0.06
+LE,Christmas Island,2,0.06
+LE,Norfolk Island,3,0.06
+LE,New Caledonia,5,0.03
+LE,Vanuatu,6,0
+LE,Solomon Islands,7,0.01
+LE,Palau,8,0.29
+LE,Micronesia,9,0.07
+LE,Nauru,10,0.24
+LE,Marshall Islands,11,0.06
+LE,Wake Island,12,0.16
+LE,Northern Mariana Islands and Guam,13,0.25
+LE,Taiwan,14,-0.07
+LE,Philippines,15,-0.05
+LE,Australia,16,0.06
+LE,Papua New Guinea,17,0.06
+LE,Fiji,18,0.13
+LE,Tuvalu,19,1.03
+LE,South Korea,20,0.03
+LE,North Korea,21,0.01
+LE,Cambodia,24,0.04
+LE,Thailand,25,0.38
+LE,Andaman and Nicobar,26,0.17
+LE,Comoro Islands,28,-0.01
+LE,Mayotte,29,0
+LE,Glorioso Islands,30,-0.02
+LE,Seychelles,31,0.08
+LE,R_union,32,0.12
+LE,Juan de Nova Island,33,-0.02
+LE,Mauritius,37,0.08
+LE,British Indian Ocean Territory,38,0.17
+LE,Maldives,39,0.07
+LE,Sri Lanka,40,-0.38
+LE,Mozambique,41,0
+LE,Madagascar,42,-0.26
+LE,Kenya,43,-0
+LE,Somalia,44,0.09
+LE,Eritrea,45,-2.51
+LE,Djibouti,46,-0.03
+LE,Yemen,47,0.15
+LE,Oman,48,0
+LE,Sudan,49,0.09
+LE,Saudi Arabia,50,0.02
+LE,Kuwait,51,0.02
+LE,Bahrain,52,0.3
+LE,Pakistan,53,-0.07
+LE,United Arab Emirates,54,0.02
+LE,Azores,55,0.01
+LE,Cape Verde,56,0.08
+LE,Madeira,57,0.03
+LE,Canary Islands,58,0.01
+LE,Belgium,59,0.36
+LE,Gibraltar,60,-0
+LE,Tunisia,61,0.01
+LE,Morocco,62,0
+LE,Western Sahara,63,-0
+LE,Mauritania,64,-0.01
+LE,Gambia,65,0
+LE,Senegal,66,0.2
+LE,Libya,67,0.04
+LE,Malta,68,0.07
+LE,Latvia,69,0.34
+LE,Estonia,70,0.4
+LE,Bulgaria,71,0
+LE,Romania,72,-0.04
+LE,Russia,73,0.18
+LE,Georgia,74,0.54
+LE,Ukraine,75,-0
+LE,Turkey,76,0
+LE,Syria,77,0
+LE,Lebanon,78,-0.03
+LE,Israel,79,0
+LE,Greece,80,-0.1
+LE,Cyprus,81,-0.05
+LE,Albania,82,0
+LE,Algeria,84,0
+LE,Ascension,85,0.03
+LE,Saint Helena,86,-0.36
+LE,Tristan da Cunha,88,0.03
+LE,Falkland Islands,95,-0.01
+LE,Sierra Leone,96,0.11
+LE,Liberia,97,0
+LE,Togo,98,0.05
+LE,Benin,99,0.02
+LE,Republique du Congo,100,0.37
+LE,Namibia,101,0.3
+LE,South Africa,102,0.43
+LE,Sao Tome and Principe,103,0
+LE,Equatorial Guinea,104,-0
+LE,Ghana,106,-0.03
+LE,Bermuda,108,-0.77
+LE,Bahamas,110,0.27
+LE,Turks and Caicos Islands,111,0.09
+LE,Cuba,112,0.12
+LE,Cayman Islands,113,-0
+LE,Haiti,114,0.12
+LE,Dominican Republic,115,0.12
+LE,Puerto Rico and Virgin Islands of the United States,116,0.07
+LE,British Virgin Islands,117,0.11
+LE,Anguilla,118,-0.39
+LE,Saint Kitts and Nevis,119,-0.02
+LE,Antigua and Barbuda,120,-0.19
+LE,Montserrat,121,0.06
+LE,Saint Lucia,122,0.12
+LE,Dominica,123,0.17
+LE,Barbados,124,-0.05
+LE,Grenada,125,-0
+LE,Trinidad and Tobago,126,0.02
+LE,Saint Vincent and the Grenadines,127,0.09
+LE,Panama,129,0.01
+LE,Costa Rica,130,0.23
+LE,Nicaragua,131,-0.09
+LE,Colombia,132,0.08
+LE,Honduras,133,0.04
+LE,El Salvador,134,0.1
+LE,Mexico,135,0.06
+LE,Guatemala,136,0
+LE,Ecuador,137,0.46
+LE,Peru,138,0.25
+LE,Venezuela,139,0.51
+LE,Guadeloupe and Martinique,140,0.03
+LE,Faeroe Islands,141,0.05
+LE,Iceland,143,-0.17
+LE,Jan Mayen,144,0.03
+LE,Greenland,145,0
+LE,Pitcairn,146,0.27
+LE,French Polynesia,147,0.46
+LE,Line Islands (Kiribati),148,0.16
+LE,American Samoa,151,0.26
+LE,Samoa,152,0.16
+LE,Cook Islands,153,0.19
+LE,Niue,154,0.01
+LE,Tonga,155,0.4
+LE,Tokelau,156,0.27
+LE,Phoenix Islands (Kiribati),157,0.16
+LE,Wallis and Futuna,161,0.27
+LE,New Zealand,162,0.08
+LE,United States,163,-0.04
+LE,Belize,164,0
+LE,Jamaica,166,0.06
+LE,Guyana,167,0.27
+LE,Suriname,168,0.2
+LE,French Guiana,169,0.07
+LE,Brazil,171,0.35
+LE,Argentina,172,-0
+LE,Uruguay,173,0
+LE,Finland,174,0.19
+LE,Denmark,175,0.14
+LE,Germany,176,0.08
+LE,Netherlands,177,0.04
+LE,Poland,178,0.04
+LE,France,179,0
+LE,United Kingdom,180,0.03
+LE,Ireland,181,0.11
+LE,Spain,182,-0.02
+LE,Portugal,183,0.01
+LE,Italy,184,0.06
+LE,Monaco,185,0.07
+LE,Montenegro,186,-0.07
+LE,Croatia,187,-0.01
+LE,Slovenia,188,0
+LE,Lithuania,189,0.17
+LE,Qatar,190,0.57
+LE,Iran,191,0.38
+LE,Iraq,192,0.52
+LE,Guinea Bissau,193,0.24
+LE,Guinea,194,0.14
+LE,Ivory Coast,195,0.22
+LE,Nigeria,196,0.17
+LE,Cameroon,197,0.01
+LE,Gabon,198,0.35
+LE,Democratic Republic of the Congo,199,0.09
+LE,Angola,200,0.32
+LE,Tanzania,202,0
+LE,India,203,0.12
+LE,Bangladesh,204,0.01
+LE,Myanmar,205,0.27
+LE,Malaysia,206,-0.34
+LE,Vietnam,207,0.23
+LE,Singapore,208,0.05
+LE,China,209,0.01
+LE,Japan,210,0.16
+LE,Gilbert Islands (Kiribati),212,0.15
+LE,Egypt,214,-0.06
+LE,Jordan,215,-0.01
+LE,Indonesia,216,0.24
+LE,Canada,218,-0.06
+LE,Saint Pierre and Miquelon,219,0
+LE,Sint Maarten,220,0.05
+LE,Northern Saint-Martin,221,0.05
+LE,Sweden,222,0
+LE,Norway,223,0.34
+LE,Chile,224,0.09
+LE,Jersey,227,0.03
+LE,Guernsey,228,0.03
+LE,East Timor,231,0.01
+LE,Bosnia and Herzegovina,232,0
+LE,Oecussi Ambeno,237,0.2
+LE,Curacao,244,0.04
+LE,Bonaire,245,0.04
+LE,Brunei,247,-0.21
+LE,Saba,248,0.04
+LE,Sint Eustatius,249,0.04
+LE,Aruba,250,0
+LIV,eez_weighted_avg,0,0.02
+LIV,Cocos Islands,1,0.11
+LIV,Christmas Island,2,0.11
+LIV,Norfolk Island,3,0.11
+LIV,New Caledonia,5,0
+LIV,Vanuatu,6,0
+LIV,Solomon Islands,7,0
+LIV,Palau,8,0.24
+LIV,Micronesia,9,0.07
+LIV,Nauru,10,0.07
+LIV,Marshall Islands,11,0.07
+LIV,Wake Island,12,0.07
+LIV,Northern Mariana Islands and Guam,13,-0.15
+LIV,Taiwan,14,-0.36
+LIV,Philippines,15,-0.25
+LIV,Australia,16,0.13
+LIV,Papua New Guinea,17,0
+LIV,Fiji,18,-0.03
+LIV,Tuvalu,19,0
+LIV,South Korea,20,0.06
+LIV,North Korea,21,0.16
+LIV,Cambodia,24,0.01
+LIV,Thailand,25,0.72
+LIV,Andaman and Nicobar,26,-0.06
+LIV,Comoro Islands,28,-0.16
+LIV,Mayotte,29,0
+LIV,Glorioso Islands,30,-0.06
+LIV,Seychelles,31,0
+LIV,R_union,32,-0.03
+LIV,Juan de Nova Island,33,-0.06
+LIV,Mauritius,37,0.08
+LIV,British Indian Ocean Territory,38,0.18
+LIV,Maldives,39,0
+LIV,Sri Lanka,40,-1.48
+LIV,Mozambique,41,0
+LIV,Madagascar,42,-0.51
+LIV,Kenya,43,-0.01
+LIV,Somalia,44,-0.06
+LIV,Eritrea,45,-2.72
+LIV,Djibouti,46,-0.06
+LIV,Yemen,47,0
+LIV,Oman,48,0
+LIV,Sudan,49,0.11
+LIV,Saudi Arabia,50,0
+LIV,Kuwait,51,0
+LIV,Bahrain,52,0.38
+LIV,Pakistan,53,-0.19
+LIV,United Arab Emirates,54,0
+LIV,Azores,55,0.03
+LIV,Cape Verde,56,0
+LIV,Madeira,57,0.03
+LIV,Canary Islands,58,0.03
+LIV,Belgium,59,0.73
+LIV,Gibraltar,60,0
+LIV,Tunisia,61,0
+LIV,Morocco,62,0
+LIV,Western Sahara,63,-0.05
+LIV,Mauritania,64,-0.04
+LIV,Gambia,65,0
+LIV,Senegal,66,0
+LIV,Libya,67,-0.08
+LIV,Malta,68,-0.04
+LIV,Latvia,69,0.66
+LIV,Estonia,70,0.04
+LIV,Bulgaria,71,-0
+LIV,Romania,72,-0.09
+LIV,Russia,73,0.33
+LIV,Georgia,74,-0
+LIV,Ukraine,75,-0
+LIV,Turkey,76,0
+LIV,Syria,77,0
+LIV,Lebanon,78,-0.09
+LIV,Israel,79,0
+LIV,Greece,80,-0.07
+LIV,Cyprus,81,-0.12
+LIV,Albania,82,0
+LIV,Algeria,84,0
+LIV,Ascension,85,-0.11
+LIV,Saint Helena,86,-0.66
+LIV,Tristan da Cunha,88,-0.11
+LIV,Falkland Islands,95,-0.01
+LIV,Sierra Leone,96,0.09
+LIV,Liberia,97,0
+LIV,Togo,98,0
+LIV,Benin,99,0.04
+LIV,Republique du Congo,100,0.03
+LIV,Namibia,101,0
+LIV,South Africa,102,0
+LIV,Sao Tome and Principe,103,0
+LIV,Equatorial Guinea,104,-0
+LIV,Ghana,106,-0.3
+LIV,Bermuda,108,-1.1
+LIV,Bahamas,110,0.38
+LIV,Turks and Caicos Islands,111,0.05
+LIV,Cuba,112,-0
+LIV,Cayman Islands,113,0
+LIV,Haiti,114,0
+LIV,Dominican Republic,115,0
+LIV,Puerto Rico and Virgin Islands of the United States,116,0.03
+LIV,British Virgin Islands,117,-0
+LIV,Anguilla,118,-0.64
+LIV,Saint Kitts and Nevis,119,-0.35
+LIV,Antigua and Barbuda,120,0
+LIV,Montserrat,121,-0.01
+LIV,Saint Lucia,122,-0.02
+LIV,Dominica,123,-0.09
+LIV,Barbados,124,0
+LIV,Grenada,125,0
+LIV,Trinidad and Tobago,126,-0.34
+LIV,Saint Vincent and the Grenadines,127,-0
+LIV,Panama,129,0
+LIV,Costa Rica,130,0.19
+LIV,Nicaragua,131,-0.18
+LIV,Colombia,132,-0
+LIV,Honduras,133,0.08
+LIV,El Salvador,134,0.2
+LIV,Mexico,135,0.12
+LIV,Guatemala,136,0
+LIV,Ecuador,137,0.07
+LIV,Peru,138,0.12
+LIV,Venezuela,139,0.83
+LIV,Guadeloupe and Martinique,140,0.01
+LIV,Faeroe Islands,141,-0.11
+LIV,Iceland,143,-0.43
+LIV,Jan Mayen,144,-0.11
+LIV,Greenland,145,0
+LIV,Pitcairn,146,0.01
+LIV,French Polynesia,147,0
+LIV,Line Islands (Kiribati),148,0.07
+LIV,American Samoa,151,-0.01
+LIV,Samoa,152,0.01
+LIV,Cook Islands,153,0.03
+LIV,Niue,154,0.02
+LIV,Tonga,155,0
+LIV,Tokelau,156,0.01
+LIV,Phoenix Islands (Kiribati),157,0.07
+LIV,Wallis and Futuna,161,0.01
+LIV,New Zealand,162,0
+LIV,United States,163,-0.09
+LIV,Belize,164,0
+LIV,Jamaica,166,-0.02
+LIV,Guyana,167,-0.25
+LIV,Suriname,168,-0.09
+LIV,French Guiana,169,0.12
+LIV,Brazil,171,0.54
+LIV,Argentina,172,-0.01
+LIV,Uruguay,173,0
+LIV,Finland,174,0.39
+LIV,Denmark,175,0.13
+LIV,Germany,176,0.16
+LIV,Netherlands,177,-0
+LIV,Poland,178,0.07
+LIV,France,179,0
+LIV,United Kingdom,180,-0.22
+LIV,Ireland,181,0
+LIV,Spain,182,-0.03
+LIV,Portugal,183,0.02
+LIV,Italy,184,0.12
+LIV,Monaco,185,0.11
+LIV,Montenegro,186,-0
+LIV,Croatia,187,-0.01
+LIV,Slovenia,188,0
+LIV,Lithuania,189,0.34
+LIV,Qatar,190,0.01
+LIV,Iran,191,0
+LIV,Iraq,192,0
+LIV,Guinea Bissau,193,-0.04
+LIV,Guinea,194,0.12
+LIV,Ivory Coast,195,-0.04
+LIV,Nigeria,196,0
+LIV,Cameroon,197,0.04
+LIV,Gabon,198,0.02
+LIV,Democratic Republic of the Congo,199,0
+LIV,Angola,200,0.07
+LIV,Tanzania,202,0
+LIV,India,203,0.24
+LIV,Bangladesh,204,0
+LIV,Myanmar,205,0
+LIV,Malaysia,206,-0.36
+LIV,Vietnam,207,0.09
+LIV,Singapore,208,0.06
+LIV,China,209,0.05
+LIV,Japan,210,0.32
+LIV,Gilbert Islands (Kiribati),212,0.3
+LIV,Egypt,214,-0.12
+LIV,Jordan,215,-0.01
+LIV,Indonesia,216,-0.44
+LIV,Canada,218,-0.12
+LIV,Saint Pierre and Miquelon,219,-0
+LIV,Sint Maarten,220,-0.01
+LIV,Northern Saint-Martin,221,-0.01
+LIV,Sweden,222,0
+LIV,Norway,223,0.54
+LIV,Chile,224,0
+LIV,Jersey,227,-0.11
+LIV,Guernsey,228,-0.11
+LIV,East Timor,231,0.01
+LIV,Bosnia and Herzegovina,232,0
+LIV,Oecussi Ambeno,237,-0.01
+LIV,Curacao,244,-0
+LIV,Bonaire,245,-0
+LIV,Brunei,247,-0.01
+LIV,Saba,248,-0
+LIV,Sint Eustatius,249,-0
+LIV,Aruba,250,0
+LSP,eez_weighted_avg,0,0.65
+LSP,Cocos Islands,1,8.5
+LSP,Christmas Island,2,4.38
+LSP,Norfolk Island,3,8.84
+LSP,Macquarie Island,4,0
+LSP,New Caledonia,5,0.31
+LSP,Vanuatu,6,0
+LSP,Solomon Islands,7,0
+LSP,Palau,8,0
+LSP,Micronesia,9,0
+LSP,Nauru,10,0
+LSP,Marshall Islands,11,-0.12
+LSP,Wake Island,12,0
+LSP,Northern Mariana Islands and Guam,13,-0.28
+LSP,Taiwan,14,-0.03
+LSP,Philippines,15,2.27
+LSP,Australia,16,0
+LSP,Papua New Guinea,17,-0
+LSP,Fiji,18,0.01
+LSP,Tuvalu,19,-0
+LSP,South Korea,20,0.08
+LSP,North Korea,21,0
+LSP,Cambodia,24,1.89
+LSP,Thailand,25,3.48
+LSP,Andaman and Nicobar,26,0
+LSP,Comoro Islands,28,0.87
+LSP,Mayotte,29,0
+LSP,Glorioso Islands,30,9.89
+LSP,Seychelles,31,4.93
+LSP,R_union,32,0
+LSP,Juan de Nova Island,33,0
+LSP,Bassas da India,34,0
+LSP,Ile Europa,35,0
+LSP,Ile Tromelin,36,0
+LSP,Mauritius,37,-0.04
+LSP,British Indian Ocean Territory,38,0
+LSP,Maldives,39,0.46
+LSP,Sri Lanka,40,1.96
+LSP,Mozambique,41,-0.09
+LSP,Madagascar,42,3.24
+LSP,Kenya,43,0.04
+LSP,Somalia,44,-0
+LSP,Eritrea,45,0
+LSP,Djibouti,46,0
+LSP,Yemen,47,0.62
+LSP,Oman,48,3.55
+LSP,Sudan,49,0
+LSP,Saudi Arabia,50,2.19
+LSP,Kuwait,51,0.47
+LSP,Bahrain,52,0
+LSP,Pakistan,53,2.38
+LSP,United Arab Emirates,54,0.5
+LSP,Azores,55,-0.46
+LSP,Cape Verde,56,0.25
+LSP,Madeira,57,0
+LSP,Canary Islands,58,0
+LSP,Belgium,59,0
+LSP,Gibraltar,60,0
+LSP,Tunisia,61,-0.63
+LSP,Morocco,62,0.15
+LSP,Western Sahara,63,0
+LSP,Mauritania,64,0
+LSP,Gambia,65,0.19
+LSP,Senegal,66,1.13
+LSP,Libya,67,0
+LSP,Malta,68,0.43
+LSP,Latvia,69,0
+LSP,Estonia,70,0
+LSP,Bulgaria,71,0
+LSP,Romania,72,0
+LSP,Russia,73,0.3
+LSP,Georgia,74,-0
+LSP,Ukraine,75,0
+LSP,Turkey,76,0
+LSP,Syria,77,0
+LSP,Lebanon,78,0.07
+LSP,Israel,79,1.85
+LSP,Greece,80,-0.12
+LSP,Cyprus,81,2.78
+LSP,Albania,82,-0.26
+LSP,Algeria,84,0.24
+LSP,Ascension,85,8.87
+LSP,Saint Helena,86,0
+LSP,Tristan da Cunha,88,0
+LSP,South Georgia and the South Sandwich Islands,89,0
+LSP,Prince Edward Islands,90,1.38
+LSP,Crozet Islands,91,0
+LSP,Amsterdam Island and Saint Paul Island,92,0
+LSP,Kerguelen Islands,93,0
+LSP,Heard and McDonald Islands,94,0
+LSP,Falkland Islands,95,-0
+LSP,Sierra Leone,96,0
+LSP,Liberia,97,0
+LSP,Togo,98,0
+LSP,Benin,99,0
+LSP,Republique du Congo,100,0.92
+LSP,Namibia,101,0
+LSP,South Africa,102,1.99
+LSP,Sao Tome and Principe,103,-0
+LSP,Equatorial Guinea,104,0.75
+LSP,Bouvet Island,105,0
+LSP,Ghana,106,-0.06
+LSP,Clipperton Island,107,8.79
+LSP,Bermuda,108,0
+LSP,Bahamas,110,0.85
+LSP,Turks and Caicos Islands,111,-0
+LSP,Cuba,112,-0.03
+LSP,Cayman Islands,113,-0
+LSP,Haiti,114,3.17
+LSP,Dominican Republic,115,0
+LSP,Puerto Rico and Virgin Islands of the United States,116,-0
+LSP,British Virgin Islands,117,0
+LSP,Anguilla,118,-0
+LSP,Saint Kitts and Nevis,119,6.19
+LSP,Antigua and Barbuda,120,1.34
+LSP,Montserrat,121,0
+LSP,Saint Lucia,122,-0
+LSP,Dominica,123,0
+LSP,Barbados,124,0
+LSP,Grenada,125,0.7
+LSP,Trinidad and Tobago,126,0
+LSP,Saint Vincent and the Grenadines,127,-0
+LSP,Panama,129,0.08
+LSP,Costa Rica,130,0.29
+LSP,Nicaragua,131,0
+LSP,Colombia,132,2.86
+LSP,Honduras,133,0
+LSP,El Salvador,134,0.09
+LSP,Mexico,135,0
+LSP,Guatemala,136,0.12
+LSP,Ecuador,137,0
+LSP,Peru,138,0.04
+LSP,Venezuela,139,-0.09
+LSP,Guadeloupe and Martinique,140,0
+LSP,Faeroe Islands,141,-0.24
+LSP,Iceland,143,0.26
+LSP,Jan Mayen,144,0
+LSP,Greenland,145,-0.01
+LSP,Pitcairn,146,8.79
+LSP,French Polynesia,147,0
+LSP,Line Islands (Kiribati),148,0
+LSP,Jarvis Island,149,0
+LSP,Palmyra Atoll,150,0
+LSP,American Samoa,151,-0
+LSP,Samoa,152,0
+LSP,Cook Islands,153,9.81
+LSP,Niue,154,0
+LSP,Tonga,155,-0
+LSP,Tokelau,156,0
+LSP,Phoenix Islands (Kiribati),157,0
+LSP,Howland Island and Baker Island,158,0
+LSP,Johnston Atoll,159,0
+LSP,Wallis and Futuna,161,0
+LSP,New Zealand,162,0.06
+LSP,United States,163,-0.02
+LSP,Belize,164,3.59
+LSP,Jamaica,166,0.13
+LSP,Guyana,167,-0.57
+LSP,Suriname,168,0
+LSP,French Guiana,169,0
+LSP,Brazil,171,0.01
+LSP,Argentina,172,0.33
+LSP,Uruguay,173,1.17
+LSP,Finland,174,0.15
+LSP,Denmark,175,0
+LSP,Germany,176,0
+LSP,Netherlands,177,0
+LSP,Poland,178,0
+LSP,France,179,0
+LSP,United Kingdom,180,0
+LSP,Ireland,181,4.14
+LSP,Spain,182,0.18
+LSP,Portugal,183,0
+LSP,Italy,184,0.04
+LSP,Monaco,185,-1.29
+LSP,Montenegro,186,0
+LSP,Croatia,187,2.31
+LSP,Slovenia,188,0.88
+LSP,Lithuania,189,0
+LSP,Qatar,190,-0
+LSP,Iran,191,-0
+LSP,Iraq,192,0
+LSP,Guinea Bissau,193,0
+LSP,Guinea,194,0
+LSP,Ivory Coast,195,0
+LSP,Nigeria,196,-0.02
+LSP,Cameroon,197,2.03
+LSP,Gabon,198,2.38
+LSP,Democratic Republic of the Congo,199,0.03
+LSP,Angola,200,-0
+LSP,Tanzania,202,0
+LSP,India,203,0.05
+LSP,Bangladesh,204,3.64
+LSP,Myanmar,205,0.27
+LSP,Malaysia,206,1.81
+LSP,Vietnam,207,-0.01
+LSP,Singapore,208,0
+LSP,China,209,0.01
+LSP,Japan,210,0.5
+LSP,Gilbert Islands (Kiribati),212,0
+LSP,Egypt,214,-0.07
+LSP,Jordan,215,2.22
+LSP,Indonesia,216,0.64
+LSP,Canada,218,0.76
+LSP,Saint Pierre and Miquelon,219,0
+LSP,Sint Maarten,220,-0.68
+LSP,Northern Saint-Martin,221,0
+LSP,Sweden,222,0.7
+LSP,Norway,223,0.42
+LSP,Chile,224,0.23
+LSP,Jersey,227,0.91
+LSP,Guernsey,228,0.61
+LSP,East Timor,231,0.17
+LSP,Bosnia and Herzegovina,232,-0
+LSP,Oecussi Ambeno,237,1.75
+LSP,Curacao,244,-0.04
+LSP,Bonaire,245,3.17
+LSP,Brunei,247,-0.05
+LSP,Saba,248,1.09
+LSP,Sint Eustatius,249,2.12
+LSP,Aruba,250,0
+MAR,eez_weighted_avg,0,0.11
+MAR,Cocos Islands,1,0
+MAR,Christmas Island,2,0
+MAR,Norfolk Island,3,0
+MAR,New Caledonia,5,-0
+MAR,Vanuatu,6,-0
+MAR,Solomon Islands,7,-0
+MAR,Palau,8,-0
+MAR,Micronesia,9,0
+MAR,Marshall Islands,11,0
+MAR,Northern Mariana Islands and Guam,13,-0.02
+MAR,Taiwan,14,-0.12
+MAR,Philippines,15,0.14
+MAR,Australia,16,0.01
+MAR,Papua New Guinea,17,0
+MAR,Fiji,18,-0
+MAR,Tuvalu,19,0
+MAR,South Korea,20,0.03
+MAR,North Korea,21,1.77
+MAR,Cambodia,24,0.21
+MAR,Thailand,25,-0.5
+MAR,Andaman and Nicobar,26,0
+MAR,Comoro Islands,28,0
+MAR,Mayotte,29,-0.01
+MAR,Seychelles,31,-0
+MAR,R_union,32,-0.2
+MAR,Mauritius,37,0.03
+MAR,British Indian Ocean Territory,38,0
+MAR,Maldives,39,0
+MAR,Sri Lanka,40,0.13
+MAR,Mozambique,41,-0
+MAR,Madagascar,42,0
+MAR,Kenya,43,0.01
+MAR,Somalia,44,0
+MAR,Eritrea,45,0
+MAR,Djibouti,46,0
+MAR,Yemen,47,-0
+MAR,Oman,48,0.01
+MAR,Sudan,49,0
+MAR,Saudi Arabia,50,0.63
+MAR,Kuwait,51,-0
+MAR,Bahrain,52,0
+MAR,Pakistan,53,0
+MAR,United Arab Emirates,54,0.09
+MAR,Azores,55,0
+MAR,Cape Verde,56,0
+MAR,Madeira,57,0
+MAR,Canary Islands,58,0
+MAR,Belgium,59,0
+MAR,Gibraltar,60,0
+MAR,Tunisia,61,0.26
+MAR,Morocco,62,0.01
+MAR,Western Sahara,63,0
+MAR,Mauritania,64,0
+MAR,Gambia,65,0
+MAR,Senegal,66,0.01
+MAR,Libya,67,-0
+MAR,Malta,68,-0.09
+MAR,Latvia,69,0
+MAR,Estonia,70,0.24
+MAR,Bulgaria,71,0
+MAR,Romania,72,-0
+MAR,Russia,73,0.6
+MAR,Georgia,74,0
+MAR,Ukraine,75,-0.01
+MAR,Turkey,76,0.03
+MAR,Syria,77,0
+MAR,Lebanon,78,-0.04
+MAR,Israel,79,1.58
+MAR,Greece,80,-0.06
+MAR,Cyprus,81,2.27
+MAR,Albania,82,2.17
+MAR,Algeria,84,1.18
+MAR,Ascension,85,0
+MAR,Saint Helena,86,0
+MAR,Tristan da Cunha,88,0
+MAR,Falkland Islands,95,0
+MAR,Sierra Leone,96,0
+MAR,Liberia,97,0
+MAR,Togo,98,0
+MAR,Benin,99,0
+MAR,Republique du Congo,100,0
+MAR,Namibia,101,-0
+MAR,South Africa,102,0.01
+MAR,Sao Tome and Principe,103,0
+MAR,Equatorial Guinea,104,0
+MAR,Ghana,106,0
+MAR,Bermuda,108,0
+MAR,Bahamas,110,0
+MAR,Turks and Caicos Islands,111,0
+MAR,Cuba,112,0
+MAR,Cayman Islands,113,0
+MAR,Haiti,114,0
+MAR,Dominican Republic,115,-0.03
+MAR,Puerto Rico and Virgin Islands of the United States,116,-0
+MAR,Anguilla,118,0
+MAR,Antigua and Barbuda,120,0
+MAR,Montserrat,121,0
+MAR,Saint Lucia,122,0.02
+MAR,Dominica,123,0
+MAR,Barbados,124,0
+MAR,Grenada,125,0
+MAR,Trinidad and Tobago,126,0
+MAR,Saint Vincent and the Grenadines,127,0
+MAR,Panama,129,0
+MAR,Costa Rica,130,-0.01
+MAR,Nicaragua,131,0.02
+MAR,Colombia,132,-0.02
+MAR,Honduras,133,0.09
+MAR,El Salvador,134,0.02
+MAR,Mexico,135,0.06
+MAR,Guatemala,136,0.15
+MAR,Ecuador,137,3.98
+MAR,Peru,138,0.04
+MAR,Venezuela,139,0.07
+MAR,Guadeloupe and Martinique,140,0
+MAR,Faeroe Islands,141,0.62
+MAR,Iceland,143,0.52
+MAR,Greenland,145,0
+MAR,Pitcairn,146,0
+MAR,French Polynesia,147,-0.02
+MAR,Line Islands (Kiribati),148,0
+MAR,American Samoa,151,0
+MAR,Samoa,152,0
+MAR,Cook Islands,153,0
+MAR,Niue,154,0
+MAR,Tonga,155,-0.01
+MAR,Tokelau,156,0
+MAR,Phoenix Islands (Kiribati),157,0
+MAR,Wallis and Futuna,161,0
+MAR,New Zealand,162,0.01
+MAR,United States,163,0.03
+MAR,Belize,164,-0.17
+MAR,Jamaica,166,-0
+MAR,Guyana,167,0
+MAR,Suriname,168,0
+MAR,French Guiana,169,0
+MAR,Brazil,171,0
+MAR,Argentina,172,0
+MAR,Uruguay,173,0
+MAR,Finland,174,0.01
+MAR,Denmark,175,-0.37
+MAR,Germany,176,3.66
+MAR,Netherlands,177,0
+MAR,Poland,178,0
+MAR,France,179,-0.18
+MAR,United Kingdom,180,-0.06
+MAR,Ireland,181,0
+MAR,Spain,182,-0.05
+MAR,Portugal,183,3.3
+MAR,Italy,184,-1.32
+MAR,Monaco,185,0
+MAR,Montenegro,186,0
+MAR,Croatia,187,3.45
+MAR,Slovenia,188,0.2
+MAR,Lithuania,189,0
+MAR,Qatar,190,0
+MAR,Iran,191,2.12
+MAR,Iraq,192,0
+MAR,Guinea Bissau,193,0
+MAR,Guinea,194,0
+MAR,Ivory Coast,195,0
+MAR,Nigeria,196,0
+MAR,Cameroon,197,0
+MAR,Gabon,198,0
+MAR,Democratic Republic of the Congo,199,0
+MAR,Angola,200,0
+MAR,Tanzania,202,-0.05
+MAR,India,203,0.4
+MAR,Bangladesh,204,0.33
+MAR,Myanmar,205,-0.02
+MAR,Malaysia,206,-0.1
+MAR,Vietnam,207,0.85
+MAR,Singapore,208,0.16
+MAR,China,209,-0.05
+MAR,Japan,210,-0.42
+MAR,Gilbert Islands (Kiribati),212,-0.05
+MAR,Egypt,214,-0.31
+MAR,Jordan,215,0
+MAR,Indonesia,216,0.2
+MAR,Canada,218,0.09
+MAR,Sint Maarten,220,0
+MAR,Northern Saint-Martin,221,0
+MAR,Sweden,222,-2.23
+MAR,Norway,223,-0.05
+MAR,Chile,224,0.72
+MAR,Jersey,227,-0
+MAR,East Timor,231,-0
+MAR,Bosnia and Herzegovina,232,0.01
+MAR,Oecussi Ambeno,237,0
+MAR,Brunei,247,0.21
+MAR,Saba,248,0
+MAR,Sint Eustatius,249,0
+NP,eez_weighted_avg,0,-0.21
+NP,Cocos Islands,1,-0.28
+NP,Christmas Island,2,-0.28
+NP,Norfolk Island,3,-0.29
+NP,New Caledonia,5,-4.77
+NP,Vanuatu,6,-0.15
+NP,Solomon Islands,7,0.23
+NP,Palau,8,0.6
+NP,Micronesia,9,-1.43
+NP,Marshall Islands,11,-5.11
+NP,Wake Island,12,-0.28
+NP,Northern Mariana Islands and Guam,13,-1.16
+NP,Taiwan,14,0.22
+NP,Philippines,15,-1.05
+NP,Australia,16,-0.22
+NP,Papua New Guinea,17,-0.3
+NP,Fiji,18,-1.37
+NP,Tuvalu,19,-0.28
+NP,South Korea,20,2.83
+NP,North Korea,21,0.7
+NP,Cambodia,24,-0.48
+NP,Thailand,25,-0.51
+NP,Andaman and Nicobar,26,0.06
+NP,Comoro Islands,28,-0.55
+NP,Mayotte,29,-0.28
+NP,Seychelles,31,0
+NP,R_union,32,-0.36
+NP,Mauritius,37,0.26
+NP,Maldives,39,1.1
+NP,Sri Lanka,40,-2.52
+NP,Mozambique,41,-0.29
+NP,Madagascar,42,2.99
+NP,Kenya,43,1.43
+NP,Somalia,44,0.27
+NP,Eritrea,45,-0.02
+NP,Yemen,47,0.01
+NP,Oman,48,0.05
+NP,Saudi Arabia,50,0.22
+NP,Bahrain,52,0.18
+NP,Pakistan,53,0.01
+NP,United Arab Emirates,54,1
+NP,Azores,55,-0.96
+NP,Cape Verde,56,-3
+NP,Madeira,57,-1.51
+NP,Canary Islands,58,-0.82
+NP,Belgium,59,-2.54
+NP,Tunisia,61,-0.56
+NP,Morocco,62,0.28
+NP,Western Sahara,63,0.3
+NP,Mauritania,64,-0.69
+NP,Gambia,65,-2.6
+NP,Senegal,66,-3.13
+NP,Libya,67,1.42
+NP,Malta,68,0.05
+NP,Latvia,69,-0.02
+NP,Estonia,70,-0.01
+NP,Bulgaria,71,1.09
+NP,Romania,72,0.53
+NP,Russia,73,0.98
+NP,Georgia,74,-0
+NP,Ukraine,75,-1.78
+NP,Turkey,76,0.64
+NP,Syria,77,-0.22
+NP,Lebanon,78,2.03
+NP,Israel,79,-0.93
+NP,Greece,80,-0.5
+NP,Cyprus,81,-0.13
+NP,Albania,82,-1.78
+NP,Algeria,84,0.29
+NP,Ascension,85,-0.28
+NP,South Georgia and the South Sandwich Islands,89,-0.31
+NP,Heard and McDonald Islands,94,-0.35
+NP,Falkland Islands,95,-5.15
+NP,Sierra Leone,96,-0.37
+NP,Liberia,97,-0.96
+NP,Togo,98,-2.38
+NP,Benin,99,-0.63
+NP,Republique du Congo,100,-3.65
+NP,Namibia,101,-2.02
+NP,South Africa,102,-1.96
+NP,Sao Tome and Principe,103,-0.78
+NP,Equatorial Guinea,104,-0.11
+NP,Ghana,106,-1.45
+NP,Bermuda,108,0.92
+NP,Bahamas,110,0
+NP,Turks and Caicos Islands,111,-0.28
+NP,Cuba,112,1.17
+NP,Haiti,114,-0.36
+NP,Dominican Republic,115,1.31
+NP,Puerto Rico and Virgin Islands of the United States,116,-0.31
+NP,British Virgin Islands,117,-0.28
+NP,Anguilla,118,-0.29
+NP,Saint Kitts and Nevis,119,-0.09
+NP,Antigua and Barbuda,120,0.01
+NP,Montserrat,121,-0.09
+NP,Saint Lucia,122,5.32
+NP,Dominica,123,-0.46
+NP,Barbados,124,0.02
+NP,Grenada,125,-0.99
+NP,Trinidad and Tobago,126,-0.21
+NP,Saint Vincent and the Grenadines,127,-0.27
+NP,Panama,129,0
+NP,Costa Rica,130,1.58
+NP,Nicaragua,131,9.28
+NP,Colombia,132,-1.67
+NP,Honduras,133,-0.32
+NP,El Salvador,134,-0.28
+NP,Mexico,135,0.87
+NP,Guatemala,136,-0.27
+NP,Ecuador,137,4.39
+NP,Peru,138,0.45
+NP,Venezuela,139,0.9
+NP,Guadeloupe and Martinique,140,0.4
+NP,Faeroe Islands,141,-0.01
+NP,Iceland,143,0.18
+NP,Jan Mayen,144,0
+NP,Greenland,145,0
+NP,French Polynesia,147,0.77
+NP,Line Islands (Kiribati),148,-0.28
+NP,American Samoa,151,-0.28
+NP,Samoa,152,-0.29
+NP,Cook Islands,153,-9.17
+NP,Niue,154,-0.31
+NP,Tonga,155,-3.28
+NP,Tokelau,156,-0.28
+NP,Phoenix Islands (Kiribati),157,-0.28
+NP,Wallis and Futuna,161,-0.35
+NP,New Zealand,162,-0.25
+NP,United States,163,-0.21
+NP,Belize,164,-0.86
+NP,Jamaica,166,0.6
+NP,Guyana,167,0.64
+NP,Suriname,168,1.11
+NP,French Guiana,169,-0.34
+NP,Brazil,171,0.12
+NP,Argentina,172,0.7
+NP,Uruguay,173,-0.06
+NP,Finland,174,0.05
+NP,Denmark,175,0.1
+NP,Germany,176,0.33
+NP,Netherlands,177,0.06
+NP,Poland,178,0.06
+NP,France,179,1
+NP,United Kingdom,180,-0.69
+NP,Ireland,181,2.66
+NP,Spain,182,0.32
+NP,Portugal,183,1.28
+NP,Italy,184,-0.65
+NP,Montenegro,186,0.1
+NP,Croatia,187,-1.76
+NP,Slovenia,188,-2.55
+NP,Lithuania,189,-0.02
+NP,Qatar,190,1.15
+NP,Iran,191,0.75
+NP,Iraq,192,0.23
+NP,Guinea Bissau,193,0.08
+NP,Guinea,194,-0.31
+NP,Ivory Coast,195,-1.91
+NP,Nigeria,196,-1.47
+NP,Cameroon,197,-0.19
+NP,Gabon,198,-0.65
+NP,Democratic Republic of the Congo,199,-0.71
+NP,Angola,200,-1.85
+NP,Tanzania,202,-0.56
+NP,India,203,-0.64
+NP,Bangladesh,204,0.04
+NP,Myanmar,205,0.03
+NP,Malaysia,206,-1.34
+NP,Vietnam,207,0.16
+NP,Singapore,208,-0.93
+NP,China,209,2.73
+NP,Japan,210,1.11
+NP,Gilbert Islands (Kiribati),212,-0.2
+NP,Egypt,214,-0.22
+NP,Jordan,215,-0.07
+NP,Indonesia,216,1.46
+NP,Canada,218,-2.64
+NP,Saint Pierre and Miquelon,219,-0.35
+NP,Northern Saint-Martin,221,0
+NP,Sweden,222,-0.01
+NP,Norway,223,0.8
+NP,Chile,224,2.54
+NP,Jersey,227,0.22
+NP,Guernsey,228,0.22
+NP,East Timor,231,-0.36
+NP,Bosnia and Herzegovina,232,-0.3
+NP,Curacao,244,-1.05
+NP,Bonaire,245,-0.35
+NP,Brunei,247,0
+NP,Aruba,250,1.77
+SP,eez_weighted_avg,0,0.14
+SP,Cocos Islands,1,3.66
+SP,Christmas Island,2,1.44
+SP,Norfolk Island,3,4.18
+SP,Macquarie Island,4,-0.27
+SP,New Caledonia,5,-0.11
+SP,Vanuatu,6,-0.5
+SP,Solomon Islands,7,-0.43
+SP,Palau,8,-0.48
+SP,Micronesia,9,-0.51
+SP,Nauru,10,-0.63
+SP,Marshall Islands,11,-0.62
+SP,Wake Island,12,-0.62
+SP,Northern Mariana Islands and Guam,13,-0.65
+SP,Taiwan,14,-0.32
+SP,Philippines,15,0.85
+SP,Australia,16,0.24
+SP,Papua New Guinea,17,-0.4
+SP,Fiji,18,-0.28
+SP,Tuvalu,19,-0.56
+SP,South Korea,20,0.05
+SP,North Korea,21,-0.04
+SP,Cambodia,24,0.46
+SP,Thailand,25,1.31
+SP,Andaman and Nicobar,26,-0.4
+SP,Comoro Islands,28,0.16
+SP,Mayotte,29,-0.48
+SP,Glorioso Islands,30,5.19
+SP,Seychelles,31,2.29
+SP,R_union,32,-0.48
+SP,Juan de Nova Island,33,0.24
+SP,Bassas da India,34,0.24
+SP,Ile Europa,35,0.24
+SP,Ile Tromelin,36,0.24
+SP,Mauritius,37,-0.06
+SP,British Indian Ocean Territory,38,-0.54
+SP,Maldives,39,-0.24
+SP,Sri Lanka,40,0.84
+SP,Mozambique,41,-0.28
+SP,Madagascar,42,1.37
+SP,Kenya,43,-0.26
+SP,Somalia,44,-0.35
+SP,Eritrea,45,-0.34
+SP,Djibouti,46,-0.4
+SP,Yemen,47,-0.14
+SP,Oman,48,1.37
+SP,Sudan,49,-0.57
+SP,Saudi Arabia,50,0.73
+SP,Kuwait,51,0.05
+SP,Bahrain,52,-0.16
+SP,Pakistan,53,0.82
+SP,United Arab Emirates,54,-0.14
+SP,Azores,55,-0.35
+SP,Cape Verde,56,-0.09
+SP,Madeira,57,-0.12
+SP,Canary Islands,58,-0.12
+SP,Belgium,59,-0
+SP,Gibraltar,60,-0.11
+SP,Tunisia,61,-0.53
+SP,Morocco,62,-0.16
+SP,Western Sahara,63,-0.27
+SP,Mauritania,64,-0.28
+SP,Gambia,65,-0.25
+SP,Senegal,66,0.45
+SP,Libya,67,-0.12
+SP,Malta,68,0.2
+SP,Latvia,69,-0
+SP,Estonia,70,-0.01
+SP,Bulgaria,71,0
+SP,Romania,72,0
+SP,Russia,73,0.2
+SP,Georgia,74,-0.16
+SP,Ukraine,75,0
+SP,Turkey,76,-0.39
+SP,Syria,77,-0.02
+SP,Lebanon,78,0.04
+SP,Israel,79,0.59
+SP,Greece,80,-0.14
+SP,Cyprus,81,1.21
+SP,Albania,82,-0.3
+SP,Algeria,84,-0.16
+SP,Ascension,85,4.21
+SP,Saint Helena,86,-0.22
+SP,Tristan da Cunha,88,-0.22
+SP,South Georgia and the South Sandwich Islands,89,0.26
+SP,Prince Edward Islands,90,1.03
+SP,Crozet Islands,91,0.24
+SP,Amsterdam Island and Saint Paul Island,92,0.24
+SP,Kerguelen Islands,93,0.24
+SP,Heard and McDonald Islands,94,0.42
+SP,Falkland Islands,95,0.01
+SP,Sierra Leone,96,-0.29
+SP,Liberia,97,-0.44
+SP,Togo,98,-0.27
+SP,Benin,99,-0.41
+SP,Republique du Congo,100,0.29
+SP,Namibia,101,-0.07
+SP,South Africa,102,0.81
+SP,Sao Tome and Principe,103,-0.38
+SP,Equatorial Guinea,104,0.03
+SP,Bouvet Island,105,0.67
+SP,Ghana,106,-0.42
+SP,Clipperton Island,107,4.09
+SP,Bermuda,108,-0.24
+SP,Bahamas,110,0.03
+SP,Turks and Caicos Islands,111,-0.42
+SP,Cuba,112,-0.36
+SP,Cayman Islands,113,-0.42
+SP,Haiti,114,1.09
+SP,Dominican Republic,115,-0.31
+SP,Puerto Rico and Virgin Islands of the United States,116,-0.26
+SP,British Virgin Islands,117,-0.37
+SP,Anguilla,118,-0.39
+SP,Saint Kitts and Nevis,119,2.76
+SP,Antigua and Barbuda,120,0.24
+SP,Montserrat,121,-0.43
+SP,Saint Lucia,122,-0.39
+SP,Dominica,123,-0.48
+SP,Barbados,124,-0.42
+SP,Grenada,125,-0.04
+SP,Trinidad and Tobago,126,-0.34
+SP,Saint Vincent and the Grenadines,127,-0.36
+SP,Panama,129,-0.3
+SP,Costa Rica,130,-0.24
+SP,Nicaragua,131,-0.31
+SP,Colombia,132,1.04
+SP,Honduras,133,-0.37
+SP,El Salvador,134,-0.23
+SP,Mexico,135,-0.06
+SP,Guatemala,136,-0.28
+SP,Ecuador,137,-0.1
+SP,Peru,138,0.04
+SP,Venezuela,139,-0.42
+SP,Guadeloupe and Martinique,140,-0.38
+SP,Faeroe Islands,141,-0.11
+SP,Iceland,143,0.1
+SP,Jan Mayen,144,0.23
+SP,Greenland,145,0.07
+SP,Pitcairn,146,4
+SP,French Polynesia,147,-0.43
+SP,Line Islands (Kiribati),148,-0.57
+SP,Jarvis Island,149,-0.62
+SP,Palmyra Atoll,150,-0.62
+SP,American Samoa,151,-0.5
+SP,Samoa,152,-0.54
+SP,Cook Islands,153,4.3
+SP,Niue,154,-0.62
+SP,Tonga,155,-0.47
+SP,Tokelau,156,-0.61
+SP,Phoenix Islands (Kiribati),157,-0.57
+SP,Howland Island and Baker Island,158,-0.62
+SP,Johnston Atoll,159,-0.62
+SP,Wallis and Futuna,161,-0.64
+SP,New Zealand,162,0.03
+SP,United States,163,-0.05
+SP,Belize,164,1.4
+SP,Jamaica,166,-0.31
+SP,Guyana,167,-0.68
+SP,Suriname,168,-0.49
+SP,French Guiana,169,-0.46
+SP,Brazil,171,-0.13
+SP,Argentina,172,0.13
+SP,Uruguay,173,0.46
+SP,Finland,174,0.07
+SP,Denmark,175,0.01
+SP,Germany,176,0
+SP,Netherlands,177,0
+SP,Poland,178,0.01
+SP,France,179,-0.06
+SP,United Kingdom,180,-0.04
+SP,Ireland,181,2.02
+SP,Spain,182,-0.11
+SP,Portugal,183,-0.1
+SP,Italy,184,-0.06
+SP,Monaco,185,-0.77
+SP,Montenegro,186,-0.19
+SP,Croatia,187,1.06
+SP,Slovenia,188,0.29
+SP,Lithuania,189,-0
+SP,Qatar,190,-0.48
+SP,Iran,191,-0.33
+SP,Iraq,192,-0.39
+SP,Guinea Bissau,193,-0.34
+SP,Guinea,194,-0.31
+SP,Ivory Coast,195,-0.37
+SP,Nigeria,196,-0.36
+SP,Cameroon,197,0.64
+SP,Gabon,198,0.84
+SP,Democratic Republic of the Congo,199,-0.28
+SP,Angola,200,-0.1
+SP,Tanzania,202,-0.35
+SP,India,203,-0.29
+SP,Bangladesh,204,1.49
+SP,Myanmar,205,-0.18
+SP,Malaysia,206,0.57
+SP,Vietnam,207,-0.27
+SP,Singapore,208,-0.51
+SP,China,209,-0.12
+SP,Japan,210,0.12
+SP,Gilbert Islands (Kiribati),212,-0.46
+SP,Egypt,214,-0.45
+SP,Jordan,215,0.79
+SP,Indonesia,216,0.08
+SP,Canada,218,0.37
+SP,Saint Pierre and Miquelon,219,0.01
+SP,Sint Maarten,220,-0.74
+SP,Northern Saint-Martin,221,-0.4
+SP,Sweden,222,0.36
+SP,Norway,223,0.16
+SP,Chile,224,0.07
+SP,Jersey,227,0.29
+SP,Guernsey,228,0.14
+SP,East Timor,231,-0.45
+SP,Bosnia and Herzegovina,232,-0.08
+SP,Oecussi Ambeno,237,0.34
+SP,Curacao,244,-0.44
+SP,Bonaire,245,1.21
+SP,Brunei,247,-0.45
+SP,Saba,248,0.17
+SP,Sint Eustatius,249,0.68
+SP,Aruba,250,-0.42
+SPP,eez_weighted_avg,0,-0.2
+SPP,Cocos Islands,1,-0.2
+SPP,Christmas Island,2,-0.18
+SPP,Norfolk Island,3,0
+SPP,Macquarie Island,4,0.18
+SPP,New Caledonia,5,-0.29
+SPP,Vanuatu,6,-0.29
+SPP,Solomon Islands,7,-0.26
+SPP,Palau,8,-0.21
+SPP,Micronesia,9,-0.22
+SPP,Nauru,10,-0.23
+SPP,Marshall Islands,11,-0.23
+SPP,Wake Island,12,-0.25
+SPP,Northern Mariana Islands and Guam,13,-0.2
+SPP,Taiwan,14,-0.35
+SPP,Philippines,15,-0.25
+SPP,Australia,16,-0.35
+SPP,Papua New Guinea,17,-0.28
+SPP,Fiji,18,-0.28
+SPP,Tuvalu,19,-0.3
+SPP,South Korea,20,-0.5
+SPP,North Korea,21,-0.29
+SPP,Cambodia,24,-0.54
+SPP,Thailand,25,-0.52
+SPP,Andaman and Nicobar,26,-0.35
+SPP,Comoro Islands,28,-0.17
+SPP,Mayotte,29,-0.17
+SPP,Glorioso Islands,30,-0.18
+SPP,Seychelles,31,-0.26
+SPP,R_union,32,-0.19
+SPP,Juan de Nova Island,33,-0.18
+SPP,Bassas da India,34,-0.15
+SPP,Ile Europa,35,-0.11
+SPP,Ile Tromelin,36,-0.21
+SPP,Mauritius,37,-0.24
+SPP,British Indian Ocean Territory,38,-0.25
+SPP,Maldives,39,-0.29
+SPP,Sri Lanka,40,-0.34
+SPP,Mozambique,41,-0.31
+SPP,Madagascar,42,-0.24
+SPP,Kenya,43,-0.31
+SPP,Somalia,44,-0.29
+SPP,Eritrea,45,-0.52
+SPP,Djibouti,46,-0.38
+SPP,Yemen,47,-0.46
+SPP,Oman,48,-0.35
+SPP,Sudan,49,-0.42
+SPP,Saudi Arabia,50,-0.5
+SPP,Kuwait,51,-0.62
+SPP,Bahrain,52,-0.68
+SPP,Pakistan,53,-0.3
+SPP,United Arab Emirates,54,-0.69
+SPP,Azores,55,-0.13
+SPP,Cape Verde,56,-0.05
+SPP,Madeira,57,-0.19
+SPP,Canary Islands,58,-0.24
+SPP,Belgium,59,0.14
+SPP,Gibraltar,60,-0.42
+SPP,Tunisia,61,-0.44
+SPP,Morocco,62,-0.32
+SPP,Western Sahara,63,-0.23
+SPP,Mauritania,64,-0.21
+SPP,Gambia,65,-0.2
+SPP,Senegal,66,-0.19
+SPP,Libya,67,-0.56
+SPP,Malta,68,-0.44
+SPP,Latvia,69,0.24
+SPP,Estonia,70,0.24
+SPP,Bulgaria,71,-0.54
+SPP,Romania,72,-0.51
+SPP,Russia,73,-0.11
+SPP,Georgia,74,-0.48
+SPP,Ukraine,75,-0.53
+SPP,Turkey,76,-0.51
+SPP,Syria,77,-0.47
+SPP,Lebanon,78,-0.5
+SPP,Israel,79,-0.45
+SPP,Greece,80,-0.58
+SPP,Cyprus,81,-0.52
+SPP,Albania,82,-0.54
+SPP,Algeria,84,-0.53
+SPP,Ascension,85,-0.08
+SPP,Saint Helena,86,-0.1
+SPP,Tristan da Cunha,88,0.08
+SPP,South Georgia and the South Sandwich Islands,89,0.19
+SPP,Prince Edward Islands,90,0.09
+SPP,Crozet Islands,91,0.13
+SPP,Amsterdam Island and Saint Paul Island,92,0.08
+SPP,Kerguelen Islands,93,0.21
+SPP,Heard and McDonald Islands,94,0.21
+SPP,Falkland Islands,95,0.1
+SPP,Sierra Leone,96,-0.22
+SPP,Liberia,97,-0.19
+SPP,Togo,98,-0.22
+SPP,Benin,99,-0.24
+SPP,Republique du Congo,100,-0.28
+SPP,Namibia,101,-0.16
+SPP,South Africa,102,-0.12
+SPP,Sao Tome and Principe,103,-0.19
+SPP,Equatorial Guinea,104,-0.19
+SPP,Bouvet Island,105,0.2
+SPP,Ghana,106,-0.21
+SPP,Clipperton Island,107,-0.33
+SPP,Bermuda,108,-0.04
+SPP,Bahamas,110,-0.46
+SPP,Turks and Caicos Islands,111,-0.26
+SPP,Cuba,112,-0.46
+SPP,Cayman Islands,113,-0.19
+SPP,Haiti,114,-0.36
+SPP,Dominican Republic,115,-0.27
+SPP,Puerto Rico and Virgin Islands of the United States,116,-0.23
+SPP,British Virgin Islands,117,-0.18
+SPP,Anguilla,118,-0.21
+SPP,Saint Kitts and Nevis,119,-0.36
+SPP,Antigua and Barbuda,120,-0.21
+SPP,Montserrat,121,-0.33
+SPP,Saint Lucia,122,-0.35
+SPP,Dominica,123,-0.22
+SPP,Barbados,124,-0.09
+SPP,Grenada,125,-0.37
+SPP,Trinidad and Tobago,126,-0.48
+SPP,Saint Vincent and the Grenadines,127,-0.32
+SPP,Panama,129,-0.36
+SPP,Costa Rica,130,-0.26
+SPP,Nicaragua,131,-0.54
+SPP,Colombia,132,-0.3
+SPP,Honduras,133,-0.51
+SPP,El Salvador,134,-0.3
+SPP,Mexico,135,-0.37
+SPP,Guatemala,136,-0.31
+SPP,Ecuador,137,-0.28
+SPP,Peru,138,-0.2
+SPP,Venezuela,139,-0.39
+SPP,Guadeloupe and Martinique,140,-0.21
+SPP,Faeroe Islands,141,0.3
+SPP,Iceland,143,-0.13
+SPP,Jan Mayen,144,0.08
+SPP,Greenland,145,-0.17
+SPP,Pitcairn,146,-0.09
+SPP,French Polynesia,147,-0.24
+SPP,Line Islands (Kiribati),148,-0.33
+SPP,Jarvis Island,149,-0.33
+SPP,Palmyra Atoll,150,-0.29
+SPP,American Samoa,151,-0.29
+SPP,Samoa,152,-0.29
+SPP,Cook Islands,153,-0.27
+SPP,Niue,154,-0.24
+SPP,Tonga,155,-0.26
+SPP,Tokelau,156,-0.33
+SPP,Phoenix Islands (Kiribati),157,-0.32
+SPP,Howland Island and Baker Island,158,-0.28
+SPP,Johnston Atoll,159,-0.25
+SPP,Wallis and Futuna,161,-0.27
+SPP,New Zealand,162,0.08
+SPP,United States,163,-0.17
+SPP,Belize,164,-0.53
+SPP,Jamaica,166,-0.24
+SPP,Guyana,167,-0.26
+SPP,Suriname,168,-0.28
+SPP,French Guiana,169,-0.23
+SPP,Brazil,171,-0.23
+SPP,Argentina,172,-0.11
+SPP,Uruguay,173,-0.21
+SPP,Finland,174,-0.01
+SPP,Denmark,175,0.15
+SPP,Germany,176,0.11
+SPP,Netherlands,177,0.1
+SPP,Poland,178,0.38
+SPP,France,179,-0.04
+SPP,United Kingdom,180,0.17
+SPP,Ireland,181,0.17
+SPP,Spain,182,-0.21
+SPP,Portugal,183,-0.09
+SPP,Italy,184,-0.55
+SPP,Monaco,185,-0.66
+SPP,Montenegro,186,-0.52
+SPP,Croatia,187,-0.5
+SPP,Slovenia,188,-0.51
+SPP,Lithuania,189,0.2
+SPP,Qatar,190,-0.71
+SPP,Iran,191,-0.55
+SPP,Iraq,192,-0.47
+SPP,Guinea Bissau,193,-0.26
+SPP,Guinea,194,-0.27
+SPP,Ivory Coast,195,-0.2
+SPP,Nigeria,196,-0.26
+SPP,Cameroon,197,-0.31
+SPP,Gabon,198,-0.25
+SPP,Democratic Republic of the Congo,199,-0.33
+SPP,Angola,200,-0.12
+SPP,Tanzania,202,-0.29
+SPP,India,203,-0.41
+SPP,Bangladesh,204,-0.57
+SPP,Myanmar,205,-0.47
+SPP,Malaysia,206,-0.36
+SPP,Vietnam,207,-0.44
+SPP,Singapore,208,-0.39
+SPP,China,209,-0.45
+SPP,Japan,210,-0.27
+SPP,Gilbert Islands (Kiribati),212,-0.24
+SPP,Egypt,214,-0.51
+SPP,Jordan,215,-0.39
+SPP,Indonesia,216,-0.33
+SPP,Canada,218,-0.09
+SPP,Saint Pierre and Miquelon,219,-0.02
+SPP,Sint Maarten,220,-0.44
+SPP,Northern Saint-Martin,221,-0.57
+SPP,Sweden,222,0.17
+SPP,Norway,223,0.09
+SPP,Chile,224,0.14
+SPP,Jersey,227,0.11
+SPP,Guernsey,228,0.15
+SPP,East Timor,231,-0.18
+SPP,Bosnia and Herzegovina,232,-0.51
+SPP,Oecussi Ambeno,237,-0.11
+SPP,Curacao,244,-0.22
+SPP,Bonaire,245,-0.28
+SPP,Brunei,247,-0.28
+SPP,Saba,248,-0.25
+SPP,Sint Eustatius,249,-0.24
+SPP,Aruba,250,-0.3
+TR,eez_weighted_avg,0,-3.57
+TR,New Caledonia,5,-5.61
+TR,Vanuatu,6,-5.03
+TR,Solomon Islands,7,-5.5
+TR,Palau,8,-4.82
+TR,Micronesia,9,-8.2
+TR,Marshall Islands,11,-4.86
+TR,Northern Mariana Islands and Guam,13,-4.9
+TR,Philippines,15,-2.34
+TR,Papua New Guinea,17,-6.11
+TR,Fiji,18,-4.46
+TR,Tuvalu,19,-1.6
+TR,South Korea,20,-5.4
+TR,Cambodia,24,-1.54
+TR,Thailand,25,-1.68
+TR,Comoro Islands,28,1.6
+TR,Seychelles,31,-0.06
+TR,Mauritius,37,-2.91
+TR,Maldives,39,-0.13
+TR,Sri Lanka,40,-0.5
+TR,Mozambique,41,-2.97
+TR,Madagascar,42,-2
+TR,Kenya,43,-3.96
+TR,Djibouti,46,3.39
+TR,Yemen,47,-6.92
+TR,Oman,48,-2.32
+TR,Sudan,49,-0.73
+TR,Saudi Arabia,50,-4.35
+TR,Kuwait,51,-4.78
+TR,Bahrain,52,-3.23
+TR,Pakistan,53,0.34
+TR,United Arab Emirates,54,1.04
+TR,Cape Verde,56,-0.87
+TR,Belgium,59,-3.69
+TR,Tunisia,61,-3.38
+TR,Morocco,62,-2.66
+TR,Gambia,65,2.98
+TR,Senegal,66,-1.54
+TR,Libya,67,-4.59
+TR,Malta,68,-1.54
+TR,Latvia,69,-2.99
+TR,Estonia,70,-4.2
+TR,Bulgaria,71,-2.41
+TR,Russia,73,-3.03
+TR,Georgia,74,0.05
+TR,Ukraine,75,-6.33
+TR,Turkey,76,-1.54
+TR,Syria,77,-2.71
+TR,Lebanon,78,-1.67
+TR,Israel,79,-3.36
+TR,Greece,80,-0.37
+TR,Cyprus,81,-1.11
+TR,Albania,82,4.14
+TR,Sierra Leone,96,-0.44
+TR,Togo,98,3.52
+TR,Benin,99,3.36
+TR,Republique du Congo,100,-3.19
+TR,Namibia,101,-1.22
+TR,South Africa,102,-3.54
+TR,Sao Tome and Principe,103,0.89
+TR,Ghana,106,-1.68
+TR,Bermuda,108,-4.64
+TR,Bahamas,110,-2.53
+TR,Turks and Caicos Islands,111,1.22
+TR,Cuba,112,-1.72
+TR,Cayman Islands,113,-3.56
+TR,Haiti,114,-2.86
+TR,Dominican Republic,115,0.15
+TR,Puerto Rico and Virgin Islands of the United States,116,-1.04
+TR,British Virgin Islands,117,-5.4
+TR,Saint Kitts and Nevis,119,-3.74
+TR,Antigua and Barbuda,120,-2.27
+TR,Saint Lucia,122,-1.96
+TR,Dominica,123,-5.04
+TR,Barbados,124,-3.57
+TR,Grenada,125,-1.73
+TR,Trinidad and Tobago,126,-5.55
+TR,Saint Vincent and the Grenadines,127,-3.45
+TR,Panama,129,-3.54
+TR,Costa Rica,130,-1.91
+TR,Nicaragua,131,-3.33
+TR,Colombia,132,0.63
+TR,Honduras,133,-3.48
+TR,El Salvador,134,-0.05
+TR,Mexico,135,2.08
+TR,Guatemala,136,-1.39
+TR,Peru,138,-2.24
+TR,Venezuela,139,-4.51
+TR,Iceland,143,1.53
+TR,French Polynesia,147,-3.04
+TR,American Samoa,151,-7.25
+TR,Samoa,152,-5.18
+TR,Tonga,155,-4.93
+TR,New Zealand,162,-4.22
+TR,United States,163,-5.22
+TR,Belize,164,0.01
+TR,Jamaica,166,-1.52
+TR,Guyana,167,-0.03
+TR,Suriname,168,-2.62
+TR,Brazil,171,-4.94
+TR,Argentina,172,-4.98
+TR,Uruguay,173,-2.63
+TR,Finland,174,-5.41
+TR,Denmark,175,-0.54
+TR,Germany,176,-4.42
+TR,Netherlands,177,-2.11
+TR,Poland,178,-1.59
+TR,France,179,-3.23
+TR,United Kingdom,180,-5.57
+TR,Ireland,181,-2.7
+TR,Spain,182,-3.09
+TR,Portugal,183,-0.39
+TR,Italy,184,-3.01
+TR,Monaco,185,-2.37
+TR,Montenegro,186,0.56
+TR,Croatia,187,0.49
+TR,Slovenia,188,-0.14
+TR,Lithuania,189,-2.61
+TR,Qatar,190,-3.44
+TR,Guinea Bissau,193,-0.71
+TR,Guinea,194,0.14
+TR,Nigeria,196,0.74
+TR,Cameroon,197,-1.94
+TR,Democratic Republic of the Congo,199,2.99
+TR,Angola,200,-2.35
+TR,Tanzania,202,0.81
+TR,India,203,0.97
+TR,Bangladesh,204,0.08
+TR,Myanmar,205,0.03
+TR,Malaysia,206,-6.35
+TR,Vietnam,207,-3.01
+TR,Singapore,208,-4.56
+TR,China,209,-6.1
+TR,Gilbert Islands (Kiribati),212,-4.6
+TR,Egypt,214,-2.22
+TR,Jordan,215,-4.6
+TR,Indonesia,216,-4.44
+TR,Canada,218,-5.61
+TR,Sint Maarten,220,-4.93
+TR,Sweden,222,-3.98
+TR,Norway,223,-4.29
+TR,Chile,224,-3.02
+TR,East Timor,231,-3.17
+TR,Bosnia and Herzegovina,232,1.69
+TR,Curacao,244,-2.57
+TR,Brunei,247,-4.99
+TR,Aruba,250,-1.31
+NP,Djibouti,46,7.43
+NP,Sudan,49,-12.28
