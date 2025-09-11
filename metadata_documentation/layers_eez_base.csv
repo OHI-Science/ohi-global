@@ -30,9 +30,9 @@ fp_targetharvest,ohiprep:globalprep/prs_targetedharvest/v2025/output,fao_targete
 fp_wildcaught_weight,ohiprep:globalprep/fp/v2025/output,wildcaught_weight.csv,TRUE,w_fis,Food provision weights,proportion,"Proportion of wild caught fisheries relative to total food production (e.g., fisheries and mariculture)"
 g_cites,ohiprep:globalprep/res_cites_signatories/v2017/output,cites.csv,TRUE,resilience_score,CITES signatories,0 or 1,Convention on International Trade in Endangered Species of Wild Fauna and Flora (CITES) signatories
 g_tourism,ohiprep:globalprep/res_cbd_habitat/v2014/data,r_tourism_2013a.csv,TRUE,resilience score,Management of tourism to preserve biodiversity,scaled 0-1,Survey responses by country to the Convention on Biological Diversity (CBD) Third National Report: tourism related questions
-hab_coral_extent,ohiprep:globalprep/hab_coral/v2021/data,habitat_extent_coral_updated.csv,TRUE,km2,Habitat extent of coral,km2,Area of coral habitat
-hab_coral_health,ohiprep:globalprep/hab_coral/v2021/data,habitat_health_coral_updated.csv,TRUE,health,Habitat condition of coral,proportion,Current condition of coral habitat relative to historical condition
-hab_coral_trend,ohiprep:globalprep/hab_coral/v2021/data,habitat_trend_coral_updated.csv,TRUE,trend,Habitat condition trend of coral,trend,Estimated trend in coral condition
+hab_coral_extent,ohiprep:globalprep/hab_coral/v2025/data,habitat_extent_coral_updated.csv,TRUE,km2,Habitat extent of coral,km2,Area of coral habitat
+hab_coral_health,ohiprep:globalprep/hab_coral/v2025/data,habitat_health_coral_updated.csv,TRUE,health,Habitat condition of coral,proportion,Current condition of coral habitat relative to historical condition
+hab_coral_trend,ohiprep:globalprep/hab_coral/v2025/data,habitat_trend_coral_updated.csv,TRUE,trend,Habitat condition trend of coral,trend,Estimated trend in coral condition
 hab_mangrove_extent,ohiprep:globalprep/hab_mangrove/v2022/data,habitat_extent_mangrove_updated.csv,TRUE,km2,Habitat extent of mangrove,km2,Area of mangrove habitat
 hab_mangrove_health,ohiprep:globalprep/hab_mangrove/v2022/data,habitat_health_mangrove_updated.csv,TRUE,health,Habitat condition of mangrove,proportion,Current condition of mangrove habitat relative to historical condition
 hab_mangrove_trend,ohiprep:globalprep/hab_mangrove/v2022/data,habitat_trend_mangrove_updated.csv,TRUE,trend,Habitat condition trend of mangrove,trend,Estimated trend in mangrove condition
@@ -106,3 +106,6 @@ tr_arrivals_props_tourism,ohiprep:globalprep/tr/v2025/output,tr_arrivals_props_t
 tr_sustainability,ohiprep:globalprep/tr/v2025/output,tr_sustainability.csv,TRUE,S_score,Tourism sustainability index,scaled 0-1,Travel and Tourism Development Index (TTDI)
 uninhabited,ohiprep:globalprep/supplementary_information/v2018,rgn_uninhabited_islands.csv,TRUE,Inhabited,Uninhabited regions,population,Regions with low and no number of inhabitants (also identifies Southern Islands)
 wgi_all,ohiprep:globalprep/prs_res_wgi/v2025/output,wgi_res.csv,TRUE,resilience_score,Strength of governance,scaled 0-1,World Governance Indicators (WGI) six combined scores
+hab_beaches_extent,ohiprep:globalprep/hab_beaches/v2025/data,hab_beaches_extent.csv,TRUE,km2,Habitat extent of beaches,km2,Area of sandy beach habitat
+hab_beaches_health,ohiprep:globalprep/hab_beaches/v2025/data,hab_beaches_health.csv,TRUE,health,Habitat condition of beaches,proportion,Current condition of beaches from 2018 evaluation
+hab_beaches_trend,ohiprep:globalprep/hab_beaches/v2025/data,hab_beaches_trend.csv,TRUE,trend,Habitat condition trend of beaches,trend,Estimated trends from 2010-2020 global coastline data set

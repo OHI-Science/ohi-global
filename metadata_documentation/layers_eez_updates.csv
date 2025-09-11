@@ -1,11 +1,11 @@
 layer,updates
-ao_access,none
-ao_need,additional year of GDP data (2023)
-ao_sust,"same year of data (2019), but RAM data was updated (2023)"
-cc_acid,"new data source (Copernicus Marine Service, 2022)"
-cc_slr,additional year of data (2022)
+ao_access,additonal year of FAO CCRF survey data for small-scale fisheries (2024)
+ao_need,changes from previous data but full data year was not added (2023)
+ao_sust,"same year of data (2019), but RAM data was updated (2024)"
+cc_acid,"Additional year of data from Copernicus Marine (2024)"
+cc_slr,none
 cc_sst,none
-cc_uv,additional year of data (2023)
+cc_uv,none
 cw_chemical_trend,none
 cw_nutrient_trend,none
 cw_pathogen_trend,corrected coastal population density
@@ -30,9 +30,9 @@ fp_targetharvest,additional year of data (2022)
 fp_wildcaught_weight,additional year of data for mariculture (2022) but not fisheries (2019)
 g_cites,none
 g_tourism,none
-hab_coral_extent,none
-hab_coral_health,none
-hab_coral_trend,none
+hab_coral_extent,new global reef extent data from Allen Coral Atlas (2025)
+hab_coral_health,new condition status reports from Global Coral Reef Monitoring Network 2020 report (2025)
+hab_coral_trend,new trend data from Allen Coral Atlas (2025)
 hab_kelp_extent,none
 hab_kelp_health,none
 hab_kelp_trend,none
@@ -46,9 +46,9 @@ hab_saltmarsh_trend,none
 hab_seagrass_extent,none
 hab_seagrass_health,none
 hab_seagrass_trend,none
-hab_seaice_extent,additional year of data (2023)
-hab_seaice_health,additional year of data (2023)
-hab_seaice_trend,additional year of data (2023)
+hab_seaice_extent,additional year of data (2024)
+hab_seaice_health,additional year of data (2024)
+hab_seaice_trend,additional year of data (2024)
 hab_softbottom_health,new datasource
 hab_softbottom_trend,new datasource
 hab_tidal_flat_extent,none
