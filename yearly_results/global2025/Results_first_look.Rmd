@@ -297,7 +297,7 @@ PlotFlower(
 Average global performance of the 10 goals.
 
 ###### update this 2025!######
-Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2023/Results/figures/FlowerPlots)
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2025/Results/figures/FlowerPlots)
 
 ```{r flower_global, echo=FALSE, fig.height=30, fig.width=10}
 here::here(dir_results_figures, "FlowerPlots", "flower_GlobalAverage.png") %>% 
@@ -335,7 +335,7 @@ ohi_regions <- terra::vect(region_file, crs = mollweide)
 plot_scores_map(metric = "scores")
 ```
 
-Country index scores for 2024  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2024/Results/figures/maps_by_goal_mol).
+Country index scores for 2025  Maps describing goal and index scores can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2025/Results/figures/maps_by_goal_mol).
 
 ```{r index_map, echo=FALSE, fig.height=30, fig.width=10}
 here::here(dir_goal_maps, paste0("global_map_Index_",scenario,"_mol.png")) %>% 
@@ -397,7 +397,7 @@ knitr::kable(low)
 ## Country scores across scenario year
 
 ###### update this 2024!######
-Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2024 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 12 years of data. Black regions indicate no data.
+Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2025/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2024 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 12 years of data. Black regions indicate no data.
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 data <- readr::read_csv(final_filename) 
@@ -501,7 +501,7 @@ for (i in goals) { # i <- "AO"
 
 ## 2025 Data
 
-This interactive table describes the index and goal scores for the regions in 2025 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/Results/data/scores_eez_2025.csv)): 
+This interactive table describes the index and goal scores for the regions in 2025 (or, [download csv version](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2025/Results/data/scores_eez_2025.csv)): 
 
 ```{r score table, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE}
 current_scores_fn %>% 
@@ -658,7 +658,7 @@ hwrite(
 
 Trend values are slope estimates from a linear model of scores for each region/goal over the past `r length(unique(scores$scenario))` years. Positive values indicate increasing scores during the past `r length(unique(scores$scenario))` years and negative values indicate decreasing scores.
 
-A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2024/Results/data/trends_2024.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/Results/data/trends_2024.csv)).  
+A color-coded table of trend values for each country is available [here](https://rawgit.com/OHI-Science/ohi-global/draft/yearly_results/global2025/Results/data/trends_2025.html) (as well as a [csv file](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2025/Results/data/trends_2025.csv)).  
 
 NOTE: Currently, these data include the livelihoods and economies goal but these results should be viewed skeptically because these data were last updated for the 2013 assessment.  Many other goals contain components with poor data resolution (i.e., infrequently, or never, measured over time).  
 
@@ -956,7 +956,7 @@ plotly_fig
 
 # Comparing assessment years
 
-The following is a comparison of the global status scores generated for the 2024 scenario by this year's assessment vs. last year's assessment. 
+The following is a comparison of the global status scores generated for the 2025 scenario by this year's assessment vs. last year's assessment. 
 
 If the models and source data remain the same, these scores should be exactly the same.  Differences indicate changes in methods or source data.  
 
@@ -991,7 +991,7 @@ knitr::kable(data_compare_summary)
 
 ### Country data 
 
-The following interactive plot provides an overview of how the 2023 scenario scores changed between the 2023 and 2024 assessments for all goals and dimensions.
+The following interactive plot provides an overview of how the 2024 scenario scores changed between the 2024 and 2025 assessments for all goals and dimensions.
 
 ```{r compare assessments-plot, echo=FALSE, warning=FALSE}
 p <- ggplot2::ggplot(data_compare, aes(x = goal, y = change, color = dimension)) +
