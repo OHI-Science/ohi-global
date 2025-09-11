@@ -1358,7 +1358,6 @@ CW <- function(layers) {
 HAB <- function(layers) {
   scen_year <- layers$data$scenario_year
   
-  
   extent_lyrs <-
     c(
       'hab_mangrove_extent',
@@ -1368,7 +1367,8 @@ HAB <- function(layers) {
       'hab_seaice_extent',
       'hab_softbottom_extent',
       'hab_kelp_extent',
-      'hab_tidal_flat_extent'
+      'hab_tidal_flat_extent',
+      'hab_beaches_extent'
     )
   health_lyrs <-
     c(
@@ -1379,7 +1379,8 @@ HAB <- function(layers) {
       'hab_seaice_health',
       'hab_softbottom_health',
       'hab_kelp_health',
-      'hab_tidal_flat_health'
+      'hab_tidal_flat_health',
+      'hab_beaches_health'
     )
   trend_lyrs <-
     c(
@@ -1390,7 +1391,8 @@ HAB <- function(layers) {
       'hab_seaice_trend',
       'hab_softbottom_trend',
       'hab_kelp_trend',
-      'hab_tidal_flat_trend'
+      'hab_tidal_flat_trend',
+      'hab_beaches_trend'
     )
   
   # get data together:
@@ -1409,21 +1411,21 @@ HAB <- function(layers) {
     dplyr::select(region_id = rgn_id, habitat, trend) %>%
     dplyr::mutate(habitat = as.character(habitat))
   
-  
   # join and limit to HAB habitats
   d <- health %>%
     dplyr::full_join(trend, by = c('region_id', 'habitat')) %>%
     dplyr::full_join(extent, by = c('region_id', 'habitat')) %>%
     dplyr::filter(
       habitat %in% c(
-        'coral',
+        'corals',
         'mangrove',
         'saltmarsh',
         'seaice_edge',
         'seagrass',
         'soft_bottom',
         'kelp',
-        'tidal flat'
+        'tidal flat',
+        'beaches'
       )
     ) %>%
     dplyr::mutate(w  = ifelse(!is.na(extent) & extent > 0, 1, NA)) %>%
@@ -1479,7 +1481,8 @@ HAB <- function(layers) {
         'seaice_edge',
         'soft_bottom',
         'kelp',
-        'tidal flat'
+        'tidal flat',
+        'beaches'
       )
     ) %>%
     dplyr::filter(extent > 0) %>%

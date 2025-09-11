@@ -30,9 +30,12 @@ fp_targetharvest,globalprep/prs_targetedharvest/v2024/output/fao_targeted_gf.csv
 fp_wildcaught_weight,globalprep/fp/v2024/output/wildcaught_weight_gf.csv
 g_cites,globalprep/res_cites_signatories/v2017/output/cites_gf.csv
 g_tourism,globalprep/res_cbd_habitat/v2014/data/r_tourism_2013a_gf.csv
-hab_coral_extent,globalprep/hab_coral/v2021/data/extent_coral_gf.csv
-hab_coral_health,globalprep/hab_coral/v2021/data/health_coral_gf.csv
-hab_coral_trend,globalprep/hab_coral/v2021/data/trend_coral_gf.csv
+hab_beaches_extent,globalprep/hab_beaches/v2025/data/extent_beaches_gf.csv
+hab_beaches_health,globalprep/hab_beaches/v2025/data/health_beaches_gf.csv
+hab_beaches_trend,globalprep/hab_beaches/v2025/data/trend_beaches_gf.csv
+hab_coral_extent,globalprep/hab_coral/v2025/data/extent_coral_gf.csv
+hab_coral_health,globalprep/hab_coral/v2025/data/health_coral_gf.csv
+hab_coral_trend,globalprep/hab_coral/v2025/data/trend_coral_gf.csv
 hab_mangrove_extent,NA
 hab_mangrove_health,globalprep/hab_mangrove/v2022/data/health_gap_fill.csv
 hab_mangrove_trend,globalprep/hab_mangrove/v2022/data/trend_gap_fill.csv
