@@ -282,7 +282,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "np", 
+  file_name = "coral_hab_check_2025-09-11", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
