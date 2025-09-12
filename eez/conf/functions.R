@@ -976,6 +976,8 @@ TR <- function(layers) {
 
 LIV <- function(layers) {
   
+  browser()
+  
   # NOTE: scripts and related files for calculating these subgoals is located: 
   # eez/archive
   # These data are no longer available and status/trend have not been updated since 2013
