@@ -975,33 +975,121 @@ TR <- function(layers) {
 
 
 LIV <- function(layers) {
-  
-  browser()
-  
+
   # NOTE: scripts and related files for calculating these subgoals is located: 
   # eez/archive
   # These data are no longer available and status/trend have not been updated since 2013
   
   scen_year <- layers$data$scenario_year
   
-  ## status data
-  status_liv <- 
-    AlignDataYears(layer_nm = "liv_status", layers_obj = layers) %>%
-    dplyr::select(-layer_name, -liv_status_year) %>%
-    dplyr::mutate(goal = "LIV") %>%
-    dplyr::filter(scenario_year == scen_year) %>%
-    dplyr::select(region_id = rgn_id, goal, score = status) %>%
-    dplyr::mutate(dimension = 'status')
+  liv_fis_qual <-
+    AlignDataYears(layer_nm = "liv_fis_qual", layers_obj = layers) %>%
+    select(year = scenario_year, region_id = rgn_id, quality)
   
-  # trend data  
-  trend_liv <- 
-    AlignDataYears(layer_nm = "liv_trend", layers_obj = layers) %>%
-    dplyr::select(-layer_name, -liv_trend_year) %>%
-    dplyr::mutate(goal = "LIV") %>%
-    dplyr::filter(scenario_year == scen_year) %>%
-    dplyr::select(region_id = rgn_id, goal, score = trend) %>%
-    dplyr::mutate(dimension = 'trend')
+  liv_mar_qual <-
+    AlignDataYears(layer_nm = "liv_mar_qual", layers_obj = layers) %>%
+    select(year = scenario_year, region_id = rgn_id, quality)
   
+  liv_tr_qual <-
+    AlignDataYears(layer_nm = "liv_tr_qual", layers_obj = layers) %>%
+    select(year = scenario_year, region_id = rgn_id, quality)
+  
+  labor_force <-
+    AlignDataYears(layer_nm = "liv_labor_force", layers_obj = layers) %>%
+    select(year = scenario_year, region_id = rgn_id, labor_force)
+  
+  liv_fis_quant <-
+    AlignDataYears(layer_nm = "liv_fis_quant", layers_obj = layers) %>%
+    select(year = scenario_year, region_id = rgn_id, quantity)
+  
+  liv_mar_quant <-
+    AlignDataYears(layer_nm = "liv_mar_quant", layers_obj = layers) %>%
+    select(year = scenario_year, region_id = rgn_id, quantity)
+    
+  liv_tr_quant <- 
+    AlignDataYears(layer_nm = "liv_tr_quant", layers_obj = layers) %>%
+    select(year = scenario_year, region_id = rgn_id, quantity)
+  
+  # Combine fis
+  liv_fis <- liv_fis_quant %>%
+    left_join(labor_force, by = c("year", "region_id")) %>%
+    mutate(prop = quantity/labor_force) %>%
+    select(year, region_id, prop) %>%
+    full_join(liv_fis_qual, by = c("year", "region_id")) %>%
+    mutate(liv = prop * quality) %>%
+    filter(!is.na(prop)) %>%
+    filter(!is.na(quality)) %>%
+    group_by(region_id) %>%
+    mutate(max_liv = if (any(year %in% 2016:2020)) {
+        max(ifelse(year %in% 2016:2020, liv, NA), na.rm = TRUE)
+      } else {
+        NA_real_
+      }) %>%
+    mutate(liv_rescaled = liv/max_liv) %>%
+    mutate(liv_rescaled = ifelse(liv_rescaled > 1, 1, liv_rescaled)) %>%
+    select(year, region_id, liv, liv_rescaled) %>%
+    mutate(sector = "fis")
+  
+  # Combine mar
+  liv_mar <- liv_mar_quant %>%
+    left_join(labor_force, by = c("year", "region_id")) %>%
+    mutate(prop = quantity/labor_force) %>%
+    select(year, region_id, prop) %>%
+    full_join(liv_fis_qual, by = c("year", "region_id")) %>%
+    mutate(liv = prop * quality) %>%
+    filter(!is.na(prop)) %>%
+    filter(!is.na(quality)) %>%
+    group_by(region_id) %>%
+    mutate(max_liv = if (any(year %in% 2016:2020)) {
+      max(ifelse(year %in% 2016:2020, liv, NA), na.rm = TRUE)
+    } else {
+      NA_real_
+    }) %>%
+    mutate(liv_rescaled = liv/max_liv) %>%
+    mutate(liv_rescaled = ifelse(liv_rescaled > 1, 1, liv_rescaled)) %>%
+    select(year, region_id, liv, liv_rescaled) %>%
+    mutate(sector = "mar")
+  
+  # Combine tr
+  liv_tr <- liv_tr_quant %>%
+    left_join(labor_force, by = c("year", "region_id")) %>%
+    mutate(prop = quantity/labor_force) %>%
+    select(year, region_id, prop) %>%
+    full_join(liv_fis_qual, by = c("year", "region_id")) %>%
+    mutate(liv = prop * quality) %>%
+    filter(!is.na(prop)) %>%
+    filter(!is.na(quality)) %>%
+    group_by(region_id) %>%
+    mutate(max_liv = if (any(year %in% 2016:2020)) {
+      max(ifelse(year %in% 2016:2020, liv, NA), na.rm = TRUE)
+    } else {
+      NA_real_
+    }) %>%
+    mutate(liv_rescaled = liv/max_liv) %>%
+    mutate(liv_rescaled = ifelse(liv_rescaled > 1, 1, liv_rescaled)) %>%
+    select(year, region_id, liv, liv_rescaled) %>%
+    mutate(sector = "tr")
+  
+ liv <- rbind(liv_fis, liv_mar, liv_tr) %>%
+   group_by(region_id, year) %>%
+   summarise(status = weighted.mean(liv_rescaled, liv)) %>%
+   ungroup() 
+ 
+ # Status
+ status_liv <- liv %>%
+   dplyr::mutate(goal = "LIV") %>%
+   dplyr::filter(year == scen_year) %>%
+   dplyr::mutate(dimension = 'status') %>%
+   dplyr::select(region_id, status, dimension, goal) %>%
+   mutate(score = round(status, 4)* 100) %>%
+   select(-status)
+  
+  # Trend  
+ trend_years <- (scen_year - 4):(scen_year)
+ 
+ trend_liv <-
+   CalculateTrend(status_data = liv, trend_years = trend_years) %>%
+   mutate(goal = "LIV")
   
   scores <- rbind(status_liv, trend_liv) %>%
     dplyr::select(region_id, goal, dimension, score)

@@ -282,7 +282,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "NP_updated_gf", 
+  file_name = "LIV_updated", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
@@ -296,8 +296,8 @@ ohicore::score_check(
 **Below here is case-to-case basis.**
 
 ```{r eval = FALSE}
-compare <- read.csv(here("eez/score_check/np_diff_data_2025-09-10.csv"))
-filter(compare, region_id==163 & year==2024 & goal=="NP")
+compare <- read.csv(here("eez/score_check/LIV_updated_diff_data_2025-09-12.csv")) %>%
+filter(year==2024 & goal=="LIV")
 
 tmp <- compare %>% 
   dplyr::filter(is.na(score) & !is.na(old_score))
