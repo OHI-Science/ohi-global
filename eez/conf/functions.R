@@ -769,9 +769,9 @@ CP <- function(layers) {
   
   ## set ranks for each habitat
   habitat.rank <- c(
-    'coral'            = 4,
+    'coral'            = 3,
     'mangrove'         = 4,
-    'saltmarsh'        = 3,
+    'saltmarsh'        = 4,
     'seagrass'         = 1,
     'seaice_shoreline' = 4,
     'kelp' = 1
