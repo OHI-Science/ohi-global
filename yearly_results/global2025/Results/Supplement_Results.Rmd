@@ -1,5 +1,5 @@
 ---
-title: 'OHI 2024 Results'
+title: 'OHI 2025 Results'
 output: 
   html_document:
     code_folding: show
@@ -38,10 +38,10 @@ librarian::shelf(
 
 ### General settings to control
 ### identify scenario of focus (this can be changed to obtain data for other years)
-scenario <- "2024" 
+scenario <- "2025" 
 
 ### date extension on the radical data files that are used for all tables/figures
-radicalFile <- '2024-09-11' 
+radicalFile <- '2025-09-11' 
 globalYear <- paste0("global", scenario)
 
 ### Directories
@@ -150,8 +150,7 @@ goal_hist <- function (goal, metric = "score") {
 In several tables and figures we refer to the goals and subgoals by their abbreviation.  Goals and subgoals have a 2 and 3 character abbreviation, respectively.
 
 ```{r goal description, echo=FALSE}
-here::here("metadata_documentation", "ohi_model", "tables", "ten_goals.csv") %>% 
-  readr::read_csv(col_types = cols()) %>% 
+read_csv("https://raw.githubusercontent.com/OHI-Science/OHI-website/refs/heads/main/tables/ten_goals.csv", col_types = cols()) %>% 
   knitr::kable()
 ```
 
@@ -160,8 +159,7 @@ here::here("metadata_documentation", "ohi_model", "tables", "ten_goals.csv") %>%
 The following goals are comprised of 2 subgoals:biodiversity, food provision, sense of place, livelihoods and economies goals.
 
 ```{r subgoal description, echo=FALSE}
-here::here("metadata_documentation", "ohi_model", "tables", "Subgoal_Descriptions.csv") %>% 
-  readr::read_csv(col_types = cols()) %>% 
+readr::read_csv("https://raw.githubusercontent.com/OHI-Science/OHI-website/refs/heads/main/tables/Subgoal_Descriptions.csv", col_types = cols()) %>% 
   knitr::kable()
 ```
 
@@ -169,7 +167,7 @@ here::here("metadata_documentation", "ohi_model", "tables", "Subgoal_Description
 
 See the [Methods](https://raw.githack.com/OHI-Science/ohi-global/draft/documents/methods/Supplement.html) document for more information about the models and data used to calculate the global Ocean Health Index.
 
-A CSV formatted dataset from the 2024 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/OHI_final_formatted_scores_2024-09-11.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all `r 2024 - 2011` assessment years (2012-2024). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2024) for description of data.
+A CSV formatted dataset from the 2025 assessment is [available](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2025/OHI_final_formatted_scores_2025-09-11.csv), right click on data and select "Save as...". These data include index and goal/subgoal scores (as well as the dimensions used to calculate scores: status, trend, pressure, resilience) for all `r 2025 - 2011` assessment years (2012-2025). See [README](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2025) for description of data.
 
 The data layers (described in section 7 in Methods) and functions used to calculate scores can be downloaded from Github: [ohi-global v2024.1: Global scenarios data for Ocean Health Index](https://github.com/OHI-Science/ohi-global/releases).  
 
@@ -189,9 +187,9 @@ library(ohicore)
 
 ### Summary of score results
 
-##### Figure A. Regional 2024 OHI index scores.
+##### Figure A. Regional 2025 OHI index scores.
 
-Map (top) and histogram (bottom) of 2024 index scores for each OHI region. 
+Map (top) and histogram (bottom) of 2025 index scores for each OHI region. 
 
 ```{r score figures, echo=FALSE, fig.height=10, fig.width=10}
 ## including multiple figures on a page
@@ -208,20 +206,20 @@ gridExtra::grid.arrange(
 )
 ```
 
-##### Figure B. Flowerplot of 2024 goal/subgoal scores
+##### Figure B. Flowerplot of 2025 goal/subgoal scores
 
-Flower plot describing the 2024 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
+Flower plot describing the 2025 average global index (middle) and goal (petals) scores. Scores are an eez area weighted average of regional scores.  
 
-Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2024/Results/figures/FlowerPlots)
+Flower plots for each region can be downloaded from [here](https://github.com/OHI-Science/ohi-global/tree/draft/yearly_results/global2025/Results/figures/FlowerPlots)
 
 ```{r flowerplot, echo=FALSE, height=5, width=10}
 here::here(dir_results_figures, 'FlowerPlots', "flower_GlobalAverage.png") %>% 
   knitr::include_graphics()
 ```
 
-##### Figure C. Maps and histograms of 2024 OHI goal scores.
+##### Figure C. Maps and histograms of 2025 OHI goal scores.
 
-The 2024 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
+The 2025 scores for each of the 10 OHI goals displayed for each region (left) and as a histogram (right).
 
 ```{r testing images, echo=FALSE, fig.height=30, fig.width=10}
 AO_map <- goal_map(goal = "AO"); AO_hist <- goal_hist(goal = "AO")
@@ -250,9 +248,9 @@ grid.arrange(
 )
 ```
 
-##### Figure D. Maps and histograms of 2024 OHI subgoal scores.
+##### Figure D. Maps and histograms of 2025 OHI subgoal scores.
 
-The subgoal 2024 scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
+The subgoal 2025 scores for the following goals: biodiversity, foob provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
 ```{r subgoal scores, echo=FALSE, fig.width=10, fig.height=25}
 BD      <- header(goal = "Biodiversity")
@@ -295,7 +293,7 @@ grid.arrange(
 
 ##### Figure E. Country scores across scenario year
 
-Overview of the scores from the 2024 assessment. Each row represents a region, the main groupings represent goals, and within each goal there are `r 2024 - 2011` years of data. Black regions indicate no data. Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2024/Results/figures/carpetPlot.png) to zoom in to see specific regions.
+Overview of the scores from the 2025 assessment. Each row represents a region, the main groupings represent goals, and within each goal there are `r 2025 - 2011` years of data. Black regions indicate no data. Download the [png version](https://github.com/OHI-Science/ohi-global/raw/draft/yearly_results/global2025/Results/figures/carpetPlot.png) to zoom in to see specific regions.
 
 This plot is good for providing a quick overview of:
 
@@ -328,7 +326,7 @@ final_filename %>%
 
 ##### Figure F. Average annual change in OHI Index scores.
 
-Map (top) and histogram (bottom) of the slope estimates from a linear regression model of the Index scores from 2012 to 2024 for each region.
+Map (top) and histogram (bottom) of the slope estimates from a linear regression model of the Index scores from 2012 to 2025 for each region.
 
 ```{r trend figures, echo=FALSE, fig.height=10, fig.width=10}
 ## Figure created in Reporting.Rmd
@@ -345,7 +343,7 @@ grid.arrange(
 
 ##### Figure G. Average annual change in OHI goal scores.
 
-Map of the slope estimates from a linear regression model of the 10 goal scores from 2012 to 2024 for each region.
+Map of the slope estimates from a linear regression model of the 10 goal scores from 2012 to 2025 for each region.
 
 ```{r trends goals, echo=FALSE, fig.height=15, fig.width=10}
 ## Figures created in Reporting.Rmd
@@ -372,7 +370,7 @@ grid.arrange(
 
 ##### Figure H. Average annual change in OHI subgoal scores.
 
-Map of the slope estimates from a linear regression model of the 8 subgoal scores from 2012 to 2024 for each region. The subgoal scores for the following goals: biodiversity, food provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
+Map of the slope estimates from a linear regression model of the 8 subgoal scores from 2012 to 2025 for each region. The subgoal scores for the following goals: biodiversity, food provision, sense of place, and livelihoods and economies.  The scores are displayed as a map (left) and histogram (right).
 
 <br>
 ```{r subgoal trends, echo=FALSE, fig.width=10, fig.height=15}
@@ -412,7 +410,7 @@ grid.arrange(
 
 ##### Figure I. Barplot of average annual change in goal trends for each region.
 
-The values are the slope estimate from a linear regression model of the scores from 2012 to 2024 for each region and goal.
+The values are the slope estimate from a linear regression model of the scores from 2012 to 2025 for each region and goal.
 
 ```{r trend barplot, echo=FALSE, fig.height=30, fig.width=10}
 ## Figure created in trend_barplot.R
@@ -422,7 +420,7 @@ here::here(dir_results_figures, "Trend_barplot.png") %>%
 
 ##### Figure J. Comparing trend and average index scores
 
-To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2024) and the trends for each region.
+To obtain a more complete picture of which regions are doing well and which are doing poorly we compared the average index scores (averaged over 2012 to 2025) and the trends for each region.
 
 Of most concern are regions that have poor scores and declining trends.
 
