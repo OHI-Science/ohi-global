@@ -396,8 +396,7 @@ knitr::kable(low)
 
 ## Country scores across scenario year
 
-###### update this 2024!######
-Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2025/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2024 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 12 years of data. Black regions indicate no data.
+Carpet plot figure ([download as high resolution png](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2025/Results/figures/carpetPlot.png)) providing an overview of the scores from the 2025 assessment.  Each row represents a region, the main groupings represent goals, and within each goal there are 14 years of data. Black regions indicate no data.
 
 ```{r carpet plot, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, fig.width=14, fig.height=23}
 data <- readr::read_csv(final_filename) 
