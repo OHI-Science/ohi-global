@@ -498,8 +498,7 @@ NP <- function(scores, layers) {
       AlignDataYears(layer_nm = "np_fofm_weights", layers_obj = layers) %>%
       dplyr::select(year = scenario_year, region_id = rgn_id, fofm_weight=usd_weight)
     
-## calculate weights from USD estimates
-    
+
 
     ### Calculate status, trends
     ### aggregate across products to rgn-year status, weighting by usd_rel
@@ -557,6 +556,35 @@ NP <- function(scores, layers) {
                 method = "Harvest peak within region times 0.65 buffer",
                 ref_pt = "varies for each item")
   ## Reference Point End  
+  #browser()
+  ## create weights file for pressures/resilience calculations
+  
+  #weights <- extent %>%
+   # filter(
+    #  habitat %in% c(
+     #   'seagrass',
+      #  'saltmarsh',
+       # 'mangrove',
+        #'coral',
+        #'seaice_edge',
+      #  'soft_bottom',
+      #  'kelp',
+      #  'tidal flat',
+      #  'beaches'
+    #  )
+    # ) %>%
+    #dplyr::filter(extent > 0) %>%
+    #dplyr::mutate(boolean = 1) %>%
+    #dplyr::mutate(layer = "element_wts_hab_pres_abs") %>%
+    #dplyr::select(rgn_id = region_id, habitat, boolean, layer)
+  
+#  write.csv(weights,
+ #           sprintf(here("eez/temp/element_wts_hab_pres_abs_%s.csv"), scen_year),
+  #          row.names = FALSE)
+  
+  #layers$data$element_wts_hab_pres_abs <- weights
+  
+  
   
   return(np_scores)
 }

@@ -282,7 +282,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "CPweights", 
+  file_name = "NP_updated_gf", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
