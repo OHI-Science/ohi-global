@@ -976,10 +976,6 @@ TR <- function(layers) {
 
 LIV <- function(layers) {
 
-  # NOTE: scripts and related files for calculating these subgoals is located: 
-  # eez/archive
-  # These data are no longer available and status/trend have not been updated since 2013
-  
   scen_year <- layers$data$scenario_year
   
   liv_fis_qual <-
@@ -1010,6 +1006,10 @@ LIV <- function(layers) {
     AlignDataYears(layer_nm = "liv_tr_quant", layers_obj = layers) %>%
     select(year = scenario_year, region_id = rgn_id, quantity)
   
+  # rescaling year: most recent 10 years
+  max_year <- max(liv_fis_quant$year)
+  min_year <- max_year - 9
+  
   # Combine fis
   liv_fis <- liv_fis_quant %>%
     left_join(labor_force, by = c("year", "region_id")) %>%
@@ -1020,8 +1020,8 @@ LIV <- function(layers) {
     filter(!is.na(prop)) %>%
     filter(!is.na(quality)) %>%
     group_by(region_id) %>%
-    mutate(max_liv = if (any(year %in% 2016:2020)) {
-        max(ifelse(year %in% 2016:2020, liv, NA), na.rm = TRUE)
+    mutate(max_liv = if (any(year %in% min_year:max_year)) {
+        max(ifelse(year %in% min_year:max_year, liv, NA), na.rm = TRUE)
       } else {
         NA_real_
       }) %>%
@@ -1040,8 +1040,8 @@ LIV <- function(layers) {
     filter(!is.na(prop)) %>%
     filter(!is.na(quality)) %>%
     group_by(region_id) %>%
-    mutate(max_liv = if (any(year %in% 2016:2020)) {
-      max(ifelse(year %in% 2016:2020, liv, NA), na.rm = TRUE)
+    mutate(max_liv = if (any(year %in% min_year:max_year)) {
+      max(ifelse(year %in% min_year:max_year, liv, NA), na.rm = TRUE)
     } else {
       NA_real_
     }) %>%
@@ -1060,8 +1060,8 @@ LIV <- function(layers) {
     filter(!is.na(prop)) %>%
     filter(!is.na(quality)) %>%
     group_by(region_id) %>%
-    mutate(max_liv = if (any(year %in% 2016:2020)) {
-      max(ifelse(year %in% 2016:2020, liv, NA), na.rm = TRUE)
+    mutate(max_liv = if (any(year %in% min_year:max_year)) {
+      max(ifelse(year %in% min_year:max_year, liv, NA), na.rm = TRUE)
     } else {
       NA_real_
     }) %>%
@@ -1100,10 +1100,7 @@ LIV <- function(layers) {
 
 ECO <- function(layers) {
 
-  # NOTE: scripts and related files for calculating these subgoals is located: 
-  # eez/archive
-  # These data are no longer available and status/trend have not been updated since 2013
-  
+
   scen_year <- layers$data$scenario_year
   
   ## status data
