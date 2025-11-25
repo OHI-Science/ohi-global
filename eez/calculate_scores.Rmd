@@ -282,7 +282,7 @@ Review results
 
 ohicore::score_check(
   
-  file_name = "fis_bbmsy_year_change", 
+  file_name = "ico_year_change", 
 
   commit = "previous", # change this back to "previous" next time
   scenario_year = 2024,
