@@ -263,6 +263,7 @@ scores_all_years <- dplyr::bind_rows(scorelist)
 
 # save results
 write.csv(scores_all_years, here('eez/scores.csv'), na = '', row.names = FALSE)
+
 ```
 
 

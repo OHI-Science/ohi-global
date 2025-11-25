@@ -1110,6 +1110,7 @@ ECO <- function(layers) {
     dplyr::mutate(goal = "ECO") %>%
     dplyr::filter(scenario_year == scen_year) %>%
     dplyr::select(region_id = rgn_id, goal, score = status) %>%
+    dplyr::mutate(score = NA) %>%
     dplyr::mutate(dimension = 'status')
   
 # trend data  
@@ -1119,6 +1120,7 @@ ECO <- function(layers) {
     dplyr::mutate(goal = "ECO") %>%
     dplyr::filter(scenario_year == scen_year) %>%
     dplyr::select(region_id = rgn_id, goal, score = trend) %>%
+    dplyr::mutate(score = NA) %>%
     dplyr::mutate(dimension = 'trend')
   
   
