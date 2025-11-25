@@ -60,7 +60,6 @@ hd_coral,ohiprep:globalprep/prs_coral_harvest/v2025/output,prs_coral_harvest.csv
 ico_spp_iucn_status,ohiprep:globalprep/ico/v2025/output,ico_spp_iucn_status.csv,TRUE,category,IUCN extinction risk,IUCN risk category,IUCN extinction risk category for iconic species located within each region
 le_sector_weight,ohiprep:globalprep/le/v2015/data,le_sector_weight.csv,TRUE,weight,Sectors in each region,value,Proportion of jobs within each marine sector
 li_gci,ohiprep:globalprep/res_gci/v2018/output,gci_res.csv,TRUE,resilience_score,Global Competitiveness Index (GCI),scaled 0-1,Competitiveness in achieving sustained economic prosperity
-li_sector_evenness,ohiprep:globalprep/res_li_sector_evenness/v2013,r_li_sector_evenness_2013a.csv,TRUE,resilience score,Economic diversity,scaled 0-1,Sector evenness based on Shannon's Diversity Index calculated on the proportion of jobs in each sector as a measure of economic diversity
 liv_tr_qual,ohiprep:globalprep/liv/v2025/output,tour_quality.csv,TRUE,quality,Tourism and Recreation job quality,2021 PPP USD,Annual income in the Tourism and Recreation sector
 liv_tr_quant,ohiprep:globalprep/liv/v2025/output,tour_quantity.csv,TRUE,quantity,Tourism and Recreation job quantity,Persons (1),Number of people employed in coastal Tourism and Recreation
 liv_fis_qual,ohiprep:globalprep/liv/v2025/output,fis_quality.csv,TRUE,quality,Fisheries job quality,2021 PPP USD,Annual income in the Fisheries sector
