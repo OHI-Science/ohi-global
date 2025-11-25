@@ -58,7 +58,7 @@ hd_subtidal_hb,ohiprep:globalprep/np_prs_poison_blast_fishing/v2013/data,gl_thr_
 hd_subtidal_sb,ohiprep:globalprep/hab_prs_hd_subtidal_soft_bottom/v2025/output,hd_sb_subtidal.csv,TRUE,pressure_score,Subtidal soft bottom habitat destruction,scaled 0-1,"Pressure on soft-bottom habitats due to demersal destructive commercial fishing practices (e.g., trawling)"
 hd_coral,ohiprep:globalprep/prs_coral_harvest/v2025/output,prs_coral_harvest.csv,TRUE,pressure_score,Coral harvest pressure,scaled 0-1,Pressure on coral due to harvesting as a natural product
 ico_spp_iucn_status,ohiprep:globalprep/ico/v2025/output,ico_spp_iucn_status.csv,TRUE,category,IUCN extinction risk,IUCN risk category,IUCN extinction risk category for iconic species located within each region
-le_sector_weight,ohiprep:globalprep/le/v2015/data,le_sector_weight.csv,TRUE,weight,Sectors in each region,value,Proportion of jobs within each marine sector
+le_sector_weight,ohiprep:globalprep/liv/v2025/output,le_sector_weights.csv,TRUE,weight,Sectors in each region,value,Presence of jobs within each marine sector
 li_gci,ohiprep:globalprep/res_gci/v2018/output,gci_res.csv,TRUE,resilience_score,Global Competitiveness Index (GCI),scaled 0-1,Competitiveness in achieving sustained economic prosperity
 liv_tr_qual,ohiprep:globalprep/liv/v2025/output,tour_quality.csv,TRUE,quality,Tourism and Recreation job quality,2021 PPP USD,Annual income in the Tourism and Recreation sector
 liv_tr_quant,ohiprep:globalprep/liv/v2025/output,tour_quantity.csv,TRUE,quantity,Tourism and Recreation job quantity,Persons (1),Number of people employed in coastal Tourism and Recreation
