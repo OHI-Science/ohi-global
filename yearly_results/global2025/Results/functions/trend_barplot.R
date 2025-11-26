@@ -3,7 +3,7 @@
 data <- here(sprintf("yearly_results/%s/Results/data/trends_%s.csv", globalYear, scenario)) %>% 
   read.csv() %>%
   filter(region_id != 0) %>%
-  select(-region_id, -SPP, -HAB, -ECO, -LIV, -FIS, -MAR, -ICO, -LSP) %>%
+  select(-region_id, -SPP, -HAB, -LIV, -FIS, -MAR, -ICO, -LSP) %>%
   gather("goal", "trend", -country) %>%
   left_join(goal_names, by='goal') %>%
   select(country, goal=long_goal, trend)

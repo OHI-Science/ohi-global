@@ -22,8 +22,6 @@ editor_options:
 
 This document describes results from the 2025 global OHI assessment. This is mostly an internal document to explore and check results. It also creates the figures used on the website and in other documents.
 
-Note for 2025 fellows- I updated most of the notes, values, and code that required years, copied over folders, and ran most of the script but there are some places I didnt change which I marked with ###### update this 2024!######. These are mostly github links to download from and I think all the 2024 scores need to be updated and pushed before we can change that-Sanj
-
 
 # Setup
 
@@ -87,7 +85,7 @@ flower_plots <- FALSE # Updates the flower plot figures
 ### the date in the below variable must be updated (for the results to reflect the new data)
 # dateFile       <- Sys.Date()   # date extension on data files used for all tables/figures
 ###### update this 2024!######
-dateFile       <- "2025-09-11" # date extension on data files used for all tables/figures
+dateFile       <- "2025-11-26" # date extension on data files used for all tables/figures
 benchmark_date <- "2024-09-11" # Date from last assessment
 ```
 
@@ -254,7 +252,7 @@ for(year in 2012:scenario){
 }
 ```
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2024/OHI_final_formatted_scores_2024-09-11.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2025.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2025/OHI_final_formatted_scores_2025-11-26.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2025.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
@@ -616,7 +614,7 @@ eez_wide <- trends_wide %>%
   dplyr::filter(country != 'eez_weighted_avg')
 
 trends_wide <- rbind(index, eez_wide) %>%
-  dplyr::select(country, region_id, !!!rlang::syms(goals)) %>% 
+ dplyr::select(country, region_id, !!!rlang::syms(grep("ECO", goals, invert=TRUE, value=TRUE))) %>% 
   readr::write_csv(here::here(dir_results_data, paste0("trends_",scenario,".csv")))
 
 ########################  # v2022  Commented out to not include in knitted version
@@ -629,7 +627,7 @@ pal = brewer.pal(10, 'RdYlBu')
 
 cols <- data.frame(country=trends_wide$country)
 
-for(goal in goals){ #goal="CW"
+for(goal in grep("ECO", goals, invert=TRUE, value=TRUE)){ #goal="CW"
   tmp <- trends_wide[, goal] %>% dplyr::pull()
   tmp <- assign(x = goal, value = cut(tmp, breaks=c(-1000, -10, -5, -2, -1, 0, 1, 2, 5, 10, 1000), 
                                       include.lowest = TRUE, labels=pal))
@@ -648,7 +646,8 @@ hwrite(
     country = '#fff', region_id = '#fff', 
     Index = cols$Index, AO = cols$AO, SPP = cols$SPP, BD = cols$BD,
     HAB = cols$HAB, CP = cols$CP, CS = cols$CS, CW = cols$CW, 
-    ECO = cols$ECO, LE = cols$LE, LIV = cols$LIV, 
+    #ECO = cols$ECO, 
+    LE = cols$LE, LIV = cols$LIV, 
     FIS = cols$FIS, FP = cols$FP, MAR = cols$MAR, ICO = cols$ICO, 
     SP = cols$SP, LSP = cols$LSP, NP = cols$NP, TR = cols$TR
   )
@@ -701,6 +700,7 @@ scenario_model <- function(df) {
     broom::tidy()
 }
 results_lm <- data_index %>%
+  dplyr::filter(goal != "ECO") %>%
   dplyr::group_by(goal) %>%
   tidyr::nest() %>%
   dplyr::mutate(model = purrr::map(data, scenario_model)) %>%
@@ -713,6 +713,7 @@ results_lm <- data_index %>%
 
 ### calculate how many regions with increases vs. decreasing scores
 region_summary <- region_trends %>% 
+  dplyr::filter(goal != "ECO") %>%
   dplyr::filter(region_id != 0) %>%
   dplyr::group_by(goal) %>%
   dplyr::summarize(
@@ -823,7 +824,7 @@ This section takes a closer look at the goal/subgoal scores for the 2025 scenari
 
 ```{r goal histograms, message=FALSE, warning=FALSE, error=FALSE, echo=FALSE, eval=goal_hists}
 # Make pretty histograms
-for(goal in goals){ # goal = "HAB"
+for(goal in grep("ECO", goals, invert=TRUE, value=TRUE)){ # goal = "HAB"
 
   hist_data <- current_scores_fn %>% 
     readr::read_csv(col_types = cols()) %>%

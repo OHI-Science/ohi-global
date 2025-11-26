@@ -33,7 +33,7 @@ plot_scores_map <- function(metric = "scores") {
   
   if (metric == "scores") {
     
-    for (year in 2012:as.numeric(scenario)) {
+    for (year in 2012:as.numeric(scenario)) { #year=2025
       
       cat("Year: ", year, "\n")
       
@@ -53,10 +53,18 @@ plot_scores_map <- function(metric = "scores") {
       ocean_sf  <- sf::st_as_sf(ocean)
       land_sf   <- sf::st_as_sf(land)
       
-      for (i in seq_along(goals)) {
+      for (i in seq_along(goals)) { #i=9
         
         cat(paste0("    Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
         
+        if (all(is.na(scores_sf[[goals[i]]]))) {
+          p1 <- ggplot() +
+            geom_sf(data = ocean_sf, color = NA, fill = 'grey97') +
+            geom_sf(data = scores_sf, fill = "gray80", color = 'gray80', size = .1) +
+            geom_sf(data = land_sf, fill = "grey80", color = "gray85", size = .25) +
+            labs(title = goal_names$long_goal[i], fill = NULL) +
+            plot_theme(legend = "right")
+        } else {
         p1 <- ggplot() +
           geom_sf(data = ocean_sf, color = NA, fill = 'grey97') +
           geom_sf(data = scores_sf, color = 'gray80', size = .1, 
@@ -66,6 +74,7 @@ plot_scores_map <- function(metric = "scores") {
                                breaks = col.brks.maps, labels = col.brks.maps, limits = c(0, 100)) +
           labs(title = goal_names$long_goal[i], fill = NULL) +
           plot_theme(legend = "right")
+        }
         
         fn <- paste0('global_map_', goals[i], '_', year, '_mol.png')
         if (year == scenario) {
@@ -97,6 +106,15 @@ plot_scores_map <- function(metric = "scores") {
     for (i in seq_along(goals)) {
       cat(paste0("    Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
       
+      
+      if (all(is.na(scores_sf[[goals[i]]]))) {
+        p1 <- ggplot() +
+          geom_sf(data = ocean_sf, color = NA, fill = 'grey97') +
+          geom_sf(data = scores_sf, fill = "gray80", color = 'gray80', size = .1) +
+          geom_sf(data = land_sf, fill = "grey80", color = "gray85", size = .25) +
+          labs(title = goal_names$long_goal[i], fill = NULL) +
+          plot_theme(legend = "right")
+      } else {
       p1 <- ggplot() +
         geom_sf(data = ocean_sf, color = NA, fill = 'grey97') +
         geom_sf(data = scores_sf, color = 'gray80', size = .1, 
@@ -106,6 +124,7 @@ plot_scores_map <- function(metric = "scores") {
                              breaks = col.brks.maps, labels = col.brks.maps, limits = c(0, 100)) +
         labs(title = goal_names$long_goal[i], fill = NULL) +
         plot_theme(legend = 'none')
+      }
       
       fn <- paste0('global_map_', goals[i], '_', scenario, '_mol.png')
       filename <- here::here(dir_year, fn)
@@ -126,15 +145,28 @@ plot_scores_map <- function(metric = "scores") {
     dir_trend <- here::here(dir_results_figures, "map_trends")
     if (!dir.exists(dir_trend)) dir.create(dir_trend)
     
-    for (i in seq_along(goals)) {
+    for (i in seq_along(goals)){
+      
       cat(paste0("Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
       
+      if(goals[i] == "ECO"){
+        trends_sf=NA
+      }else{
       trends_sf <- trend_sf
       trends_sf$val2 <- cut(dplyr::pull(trends_sf, !!goals[i]), col.brks.trends, include.lowest = TRUE)
       tmp <- rev(names(table(trends_sf$val2)))
       tmp_labels <- gsub("-100", "min", tmp)
       tmp_labels <- gsub("100", " max", tmp_labels)
+      }
       
+      if (goals[i]=="ECO") {
+        p1 <- ggplot() +
+          geom_sf(data = ocean_sf, color = NA, fill = 'grey97') +
+          geom_sf(data = scores_sf, fill = "gray80", color = 'gray80', size = .1) +
+          geom_sf(data = land_sf, fill = "grey80", color = "gray85", size = .25) +
+          labs(title = goal_names$long_goal[i], fill = NULL) +
+          plot_theme(legend = "right")
+      }else {
       p1 <- ggplot() +
         geom_sf(data = ocean_sf, color = NA, fill = 'grey97') +
         geom_sf(data = trends_sf, color = 'gray80', size = .1, 
@@ -144,7 +176,8 @@ plot_scores_map <- function(metric = "scores") {
                           breaks = tmp, labels = tmp_labels, limits = tmp) +
         labs(title = goal_names$long_goal[i], fill = NULL) +
         plot_theme(legend = ifelse(goals[i] == "Index", "right", "none"))
-      
+      }
+       
       fn <- paste0('trends_map_', goals[i], '_mol.png')
       filename <- here::here(dir_trend, fn)
       ggsave(filename = filename, plot = p1, width = 10, height = 6)
