@@ -145,28 +145,27 @@ plot_scores_map <- function(metric = "scores") {
     dir_trend <- here::here(dir_results_figures, "map_trends")
     if (!dir.exists(dir_trend)) dir.create(dir_trend)
     
-    for (i in seq_along(goals)){
+    for (i in seq_along(goals)){ #i=2
       
+      
+      if (goals[i]=="ECO") {
+        cat(paste0("Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
+        p1 <- ggplot() +
+          geom_sf(data = ocean_sf, color = NA, fill = 'grey97') +
+          geom_sf(data = trends_sf, fill = "gray80", color = 'gray80', size = .1) +
+          geom_sf(data = land_sf, fill = "grey80", color = "gray85", size = .25) +
+          labs(title = goal_names$long_goal[i], fill = NULL) +
+          plot_theme(legend = "right")
+      }else {
       cat(paste0("Goal: ", goal_names$long_goal[i], ' (', goals[i], ")\n"))
       
-      if(goals[i] == "ECO"){
-        trends_sf=NA
-      }else{
       trends_sf <- trend_sf
       trends_sf$val2 <- cut(dplyr::pull(trends_sf, !!goals[i]), col.brks.trends, include.lowest = TRUE)
       tmp <- rev(names(table(trends_sf$val2)))
       tmp_labels <- gsub("-100", "min", tmp)
       tmp_labels <- gsub("100", " max", tmp_labels)
-      }
       
-      if (goals[i]=="ECO") {
-        p1 <- ggplot() +
-          geom_sf(data = ocean_sf, color = NA, fill = 'grey97') +
-          geom_sf(data = scores_sf, fill = "gray80", color = 'gray80', size = .1) +
-          geom_sf(data = land_sf, fill = "grey80", color = "gray85", size = .25) +
-          labs(title = goal_names$long_goal[i], fill = NULL) +
-          plot_theme(legend = "right")
-      }else {
+    
       p1 <- ggplot() +
         geom_sf(data = ocean_sf, color = NA, fill = 'grey97') +
         geom_sf(data = trends_sf, color = 'gray80', size = .1, 
@@ -184,6 +183,8 @@ plot_scores_map <- function(metric = "scores") {
     }
   }
 }
+  
+
 
 
 

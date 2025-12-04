@@ -468,7 +468,6 @@ NP <- function(scores, layers) {
 
       scen_year <- layers$data$scenario_year
   
-  
     #### Ornamentals 
     np_ornamentals_score <-
       AlignDataYears(layer_nm = "np_ornamental_sust", layers_obj = layers) %>%
@@ -499,12 +498,28 @@ NP <- function(scores, layers) {
       dplyr::select(year = scenario_year, region_id = rgn_id, fofm_weight=usd_weight)
     
 
-
     ### Calculate status, trends
     ### aggregate across products to rgn-year status, weighting by usd_rel
     np_weights <- full_join(np_fofm_weights, np_seaweed_weights, by=c("region_id", "year")) %>%
       full_join(np_ornamentals_weights, by=c("region_id", "year")) %>%
       mutate(across(where(is.numeric), ~ replace_na(.x, 0)))
+  
+    # zeroing out weights when the most recent 3 years have < 500 total value from all three products
+    np_weights <- np_weights %>%
+      group_by(region_id) %>%
+      arrange(desc(year), .by_group = TRUE) %>%           # most recent years first
+      # total weight per row (sum of the 3 weight columns)
+      mutate(row_total = rowSums(across(ends_with("_weight")), na.rm = TRUE),
+             # flag the 3 most recent years within each region
+             recent3 = row_number() <= 3,
+             # sum of weights over those 3 most recent years
+             recent3_sum = sum(if_else(recent3, row_total, 0))) %>%
+      # if recent3_sum < 500, zero all weight columns for that region
+      mutate(across(ends_with("_weight"),
+                    ~ if_else(recent3_sum < 500, 0, .))) %>%
+      ungroup() %>%
+      select(-row_total, -recent3, -recent3_sum)
+      
     
     np_scores <- full_join(np_fofm_scores, np_seaweed_score, by=c("region_id", "year")) %>%
       full_join(np_ornamentals_score, by=c("region_id", "year")) %>%
@@ -523,8 +538,10 @@ NP <- function(scores, layers) {
       pivot_wider(names_from = kind, values_from = val) %>%  # -> columns: score, weight
       group_by(year, region_id) %>%
       summarise(status = weighted.mean(score, weight)) %>%
-      ungroup()
+      ungroup() %>%
+      mutate(status = ifelse(is.nan(status), NA, status))
     
+
     ### get current status
     np_status_current <- total %>%
       filter(year == scen_year & !is.na(status)) %>%
@@ -553,37 +570,9 @@ NP <- function(scores, layers) {
 
   ## Reference Point Accounting
   WriteRefPoint(goal = "NP",
-                method = "Harvest peak within region times 0.65 buffer",
-                ref_pt = "varies for each item")
+                method = "varies by product",
+                ref_pt = "varies by product")
   ## Reference Point End  
-  #browser()
-  ## create weights file for pressures/resilience calculations
-  
-  #weights <- extent %>%
-   # filter(
-    #  habitat %in% c(
-     #   'seagrass',
-      #  'saltmarsh',
-       # 'mangrove',
-        #'coral',
-        #'seaice_edge',
-      #  'soft_bottom',
-      #  'kelp',
-      #  'tidal flat',
-      #  'beaches'
-    #  )
-    # ) %>%
-    #dplyr::filter(extent > 0) %>%
-    #dplyr::mutate(boolean = 1) %>%
-    #dplyr::mutate(layer = "element_wts_hab_pres_abs") %>%
-    #dplyr::select(rgn_id = region_id, habitat, boolean, layer)
-  
-#  write.csv(weights,
- #           sprintf(here("eez/temp/element_wts_hab_pres_abs_%s.csv"), scen_year),
-  #          row.names = FALSE)
-  
-  #layers$data$element_wts_hab_pres_abs <- weights
-  
   
   
   return(np_scores)

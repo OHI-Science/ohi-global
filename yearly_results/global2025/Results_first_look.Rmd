@@ -85,7 +85,7 @@ flower_plots <- FALSE # Updates the flower plot figures
 ### the date in the below variable must be updated (for the results to reflect the new data)
 # dateFile       <- Sys.Date()   # date extension on data files used for all tables/figures
 ###### update this 2024!######
-dateFile       <- "2025-11-26" # date extension on data files used for all tables/figures
+dateFile       <- "2025-12-03" # date extension on data files used for all tables/figures
 benchmark_date <- "2024-09-11" # Date from last assessment
 ```
 
@@ -163,11 +163,13 @@ col.brks.trends <- c(-100, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 100)
 ### Colors with breaks 
 col.assign   <- cut(col.brks, breaks = col.brks, include.lowest = TRUE) %>% unique()
 colors_df    <- tibble(colors_plot = colors, col.assign = as.character(col.assign))
+
 ```
 
 # Primary dataset
 
 ```{r final_data_modified, message=FALSE, echo=FALSE, eval=update_data, include=FALSE}
+
 ### Saves the last version of eez/scores.csv with a date appended to filename.
 ohi_final <- here::here("eez", "scores.csv") %>% 
   readr::read_csv() %>% 
@@ -250,9 +252,10 @@ for(year in 2012:scenario){
     
   readr::write_csv(data_final, file = filename)
 }
+
 ```
 
-[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2025/OHI_final_formatted_scores_2025-11-26.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2025.
+[These data](https://raw.githubusercontent.com/OHI-Science/ohi-global/draft/yearly_results/global2025/OHI_final_formatted_scores_2025-12-03.csv) are the OHI scores for the eez regions of 220 countries and territories from 2012 to 2025.
 
 Region 0 is the global average scores, which are calculated using an area-weighted average of the region scores (status, likely future state, and score).
 
@@ -562,7 +565,7 @@ final_filename %>%
 
 ## Change from 2012 to 2025
 
-This interactive table describes the gross change in index and goal scores for the regions between 2012 and 2024. This is helpful in investigating a single country by searching the region name and seeing how much each goal value has changed overall from the first year to the last.  
+This interactive table describes the gross change in index and goal scores for the regions between 2012 and 2025. This is helpful in investigating a single country by searching the region name and seeing how much each goal value has changed overall from the first year to the last.  
 
 ```{r}
 final_filename %>% 
@@ -614,7 +617,7 @@ eez_wide <- trends_wide %>%
   dplyr::filter(country != 'eez_weighted_avg')
 
 trends_wide <- rbind(index, eez_wide) %>%
- dplyr::select(country, region_id, !!!rlang::syms(grep("ECO", goals, invert=TRUE, value=TRUE))) %>% 
+ dplyr::select(country, region_id, goals[goals != "ECO"]) %>% 
   readr::write_csv(here::here(dir_results_data, paste0("trends_",scenario,".csv")))
 
 ########################  # v2022  Commented out to not include in knitted version
@@ -627,7 +630,7 @@ pal = brewer.pal(10, 'RdYlBu')
 
 cols <- data.frame(country=trends_wide$country)
 
-for(goal in grep("ECO", goals, invert=TRUE, value=TRUE)){ #goal="CW"
+for(goal in goals[names(goals) != "ECO"]){ #goal="CW"
   tmp <- trends_wide[, goal] %>% dplyr::pull()
   tmp <- assign(x = goal, value = cut(tmp, breaks=c(-1000, -10, -5, -2, -1, 0, 1, 2, 5, 10, 1000), 
                                       include.lowest = TRUE, labels=pal))
@@ -682,7 +685,7 @@ data_index$goal <- factor(data_index$goal, levels = goals)
 data_wide <- data_index %>% 
   tidyr::pivot_wider(names_from = scenario, values_from = value) %>% 
   dplyr::arrange(goal) %>%
-  dplyr::filter(!goal %in% c("ECO", "LE", "LIV")) %>%
+  dplyr::filter(!goal %in% c("ECO")) %>%
   dplyr::select(-goal) %>%
   dplyr::rename(goal = long_goal)
 
